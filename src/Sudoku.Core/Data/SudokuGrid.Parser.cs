@@ -152,7 +152,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the value using multi-line simple grid (without any candidates).
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingSimpleMultilineGrid(ref Parser parser)
 			{
@@ -212,7 +212,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the Excel format.
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingExcel(ref Parser parser)
 			{
@@ -246,7 +246,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the PM grid.
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingPencilMarked(ref Parser parser)
 			{
@@ -359,7 +359,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the simple table format string (Sudoku explainer format).
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <returns>The grid.</returns>
 			private static SudokuGrid OnParsingSimpleTable(ref Parser parser)
 			{
@@ -383,7 +383,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the susser format string.
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingSusser(ref Parser parser)
 			{
@@ -486,7 +486,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Parse the sukaku format string.
 			/// </summary>
-			/// <param name="parser">(<see langword="ref"/> parameter) The parser.</param>
+			/// <param name="parser">The parser.</param>
 			/// <param name="compatibleFirst">
 			/// Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
 			/// </param>

@@ -25,7 +25,7 @@ namespace System.Extensions
 		/// Check whether the specified string instance is satisfied
 		/// the specified regular expression pattern or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+		/// <param name="this">The value to check.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <exception cref="InvalidRegexStringException">
@@ -41,7 +41,7 @@ namespace System.Extensions
 		/// Check whether the specified string instance can match the value
 		/// using the specified regular expression pattern or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+		/// <param name="this">The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		/// <remarks>
@@ -62,7 +62,7 @@ namespace System.Extensions
 		/// Searches the specified input string for the first occurrence of
 		/// the specified regular expression pattern.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+		/// <param name="this">The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>
 		/// The value after matching. If failed to match,
@@ -86,7 +86,7 @@ namespace System.Extensions
 		/// Searches the input string for the first occurrence of the specified regular
 		/// expression, using the specified matching options.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+		/// <param name="this">The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <param name="regexOption">The matching options.</param>
 		/// <returns>
@@ -117,7 +117,7 @@ namespace System.Extensions
 		/// Searches the specified input string for all occurrences of a
 		/// specified regular expression pattern.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+		/// <param name="this">The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <returns>
 		/// The result after matching. If failed to match,
@@ -142,7 +142,7 @@ namespace System.Extensions
 		/// specified regular expression pattern, using the specified matching
 		/// options.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+		/// <param name="this">The value to match.</param>
 		/// <param name="pattern">The regular expression pattern.</param>
 		/// <param name="regexOption">The matching options.</param>
 		/// <returns>
@@ -179,7 +179,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Reserve all characters that satisfy the specified pattern.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <param name="reservePattern">
 		/// The pattern that reserved characters satisfied. All supported patterns are:
 		/// <list type="table">
@@ -240,7 +240,7 @@ namespace System.Extensions
 		/// To check if the current string value is a valid regular
 		/// expression pattern or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+		/// <param name="this">The value to check.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		public static bool IsRegexPattern(this string @this)
 		{
@@ -258,7 +258,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Trim all spaces when they started a new line, or null lines.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <returns>The trimmed result.</returns>
 		/// <remarks>
 		/// Note that all null lines and header spaces are removed.
@@ -271,14 +271,14 @@ namespace System.Extensions
 		/// <summary>
 		/// Trim new-line characters from the tail of the string.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <returns>The result.</returns>
 		public static string TrimEndNewLine(this string @this) => @this.TrimEnd(new[] { '\r', '\n' });
 
 		/// <summary>
 		/// Split the string with the fixed characters (new line).
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string.</param>
+		/// <param name="this">The string.</param>
 		/// <returns>The result.</returns>
 		public static string[] SplitByNewLine(this string @this) =>
 			@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);

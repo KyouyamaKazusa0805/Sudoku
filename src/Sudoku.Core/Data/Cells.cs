@@ -137,7 +137,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with a series of cell offsets.
 		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) cell offsets.</param>
+		/// <param name="cells">cell offsets.</param>
 		/// <remarks>
 		/// <para>
 		/// Note that all offsets will be set <see langword="true"/>, but their own peers
@@ -476,8 +476,8 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="high">(<see langword="out"/> parameter) Higher 40 bits.</param>
-		/// <param name="low">(<see langword="out"/> parameter) Lower 41 bits.</param>
+		/// <param name="high">Higher 40 bits.</param>
+		/// <param name="low">Lower 41 bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void Deconstruct(out long high, out long low)
 		{
@@ -531,7 +531,7 @@ namespace Sudoku.Data
 		/// Copies the current instance to the tagret <see cref="Span{T}"/> instance.
 		/// </summary>
 		/// <param name="span">
-		/// (<see langword="ref"/> parameter) The target <see cref="Span{T}"/> instance.
+		/// The target <see cref="Span{T}"/> instance.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly unsafe void CopyTo(ref Span<int> span)
@@ -554,7 +554,7 @@ namespace Sudoku.Data
 		/// Indicates whether all cells in this instance are in one region.
 		/// </summary>
 		/// <param name="region">
-		/// (<see langword="out"/> parameter) The region covered. If the return value
+		/// The region covered. If the return value
 		/// is false, this value will be the constant -1.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
@@ -604,7 +604,7 @@ namespace Sudoku.Data
 		/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
 		/// </summary>
 		/// <param name="limit">
-		/// (<see langword="in"/> parameter) The map to limit the result peer intersection.
+		/// The map to limit the result peer intersection.
 		/// </param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -886,7 +886,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Set the specified cells as <see langword="true"/> value.
 		/// </summary>
-		/// <param name="offsets">(<see langword="in"/> parameter) The cells to add.</param>
+		/// <param name="offsets">The cells to add.</param>
 		public void AddRange(in ReadOnlySpan<int> offsets)
 		{
 			foreach (int cell in offsets)
@@ -1004,7 +1004,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get the subview mask of this map.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>The mask.</returns>
 		public static short operator /(in Cells map, int region)
@@ -1028,7 +1028,7 @@ namespace Sudoku.Data
 		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
 		/// will be set <see langword="true"/>.
 		/// </summary>
-		/// <param name="gridMap">(<see langword="in"/> parameter) The instance to negate.</param>
+		/// <param name="gridMap">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		/// <remarks>
 		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
@@ -1049,8 +1049,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+		/// <param name="left">The subtrahend.</param>
+		/// <param name="right">The subtractor.</param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator >(in Cells left, in Cells right) => !(left - right).IsEmpty;
@@ -1058,8 +1058,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The subtrahend.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The subtractor.</param>
+		/// <param name="left">The subtrahend.</param>
+		/// <param name="right">The subtractor.</param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
@@ -1068,7 +1068,7 @@ namespace Sudoku.Data
 		/// The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current
 		/// map, and return the new map).
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to add.</param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1078,7 +1078,7 @@ namespace Sudoku.Data
 		/// The syntactic sugar for <c>new Cells(map) { ~cell }</c> (i.e. remove a cell from the current
 		/// map, and return the new map).
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="cell">The cell to remove.</param>
 		/// <returns>The result of the map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1088,8 +1088,8 @@ namespace Sudoku.Data
 		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
 		/// but not in <paramref name="right"/> cells.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator -(in Cells left, in Cells right) => left & ~right;
@@ -1105,8 +1105,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all cells that two <see cref="Cells"/>s both contain.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator &(in Cells left, in Cells right) =>
@@ -1115,8 +1115,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all cells from two <see cref="Cells"/>s.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator |(in Cells left, in Cells right) =>
@@ -1125,8 +1125,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all cells that only appears once in two <see cref="Cells"/>s.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator ^(in Cells left, in Cells right) =>
@@ -1143,27 +1143,27 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
 		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
+		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Cells(in Span<int> cells) => new(cells);
 
 		/// <summary>
 		/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
 		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) The cells.</param>
+		/// <param name="cells">The cells.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Cells(in ReadOnlySpan<int> cells) => new(cells);
 
 		/// <summary>
 		/// Implicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public static implicit operator Span<int>(in Cells map) => map.ToSpan();
 
 		/// <summary>
 		/// Implicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public static implicit operator ReadOnlySpan<int>(in Cells map) => map.ToReadOnlySpan();
 	}
 }

@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Check whether the fish is sashimi one.
 		/// </summary>
 		/// <param name="baseSets">The base sets.</param>
-		/// <param name="fins">(<see langword="in"/> parameter) All fins.</param>
+		/// <param name="fins">All fins.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating that. All cases are below:

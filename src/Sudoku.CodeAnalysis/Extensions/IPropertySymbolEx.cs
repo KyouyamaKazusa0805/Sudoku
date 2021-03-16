@@ -13,7 +13,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// <summary>
 		/// To find the node by the specified property symbol.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The symbol.</param>
+		/// <param name="this">The symbol.</param>
 		/// <param name="syntaxTree">The syntax tree.</param>
 		/// <param name="semanticModel">The semantic model.</param>
 		/// <returns>The property node.</returns>

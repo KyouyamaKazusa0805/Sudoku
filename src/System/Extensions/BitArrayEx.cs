@@ -12,7 +12,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Get the cardinality of the specified <see cref="BitArray"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="this">The array.</param>
 		/// <returns>The total number of bits set <see langword="true"/>.</returns>
 		public static int GetCardinality(this BitArray @this)
 		{

@@ -13,8 +13,8 @@ namespace Sudoku.Data.Extensions
 		/// Try to parse the string, and converts the instance to a cell instance represented
 		/// by a <see cref="byte"/> value.
 		/// </summary>
-		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
-		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
+		/// <param name="str">The string.</param>
+		/// <param name="cell">The cell.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		public static bool TryParse(in string str, out byte cell)
 		{
@@ -82,8 +82,8 @@ namespace Sudoku.Data.Extensions
 		/// Try to parse the string, and converts the instance to cells instance represented
 		/// by <see cref="byte"/> values.
 		/// </summary>
-		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
-		/// <param name="cells">(<see langword="out"/> parameter) The cells.</param>
+		/// <param name="str">The string.</param>
+		/// <param name="cells">The cells.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool TryParse(in string str, out Cells cells) => TryParse(str, out cells, new[] { ' ' });
@@ -92,9 +92,9 @@ namespace Sudoku.Data.Extensions
 		/// Try to parse the string, and converts the instance to cells instance represented
 		/// by <see cref="byte"/> values, with the specified separators.
 		/// </summary>
-		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
-		/// <param name="cells">(<see langword="out"/> parameter) The cell.</param>
-		/// <param name="separators">(<see langword="params"/> parameter) All separators.</param>
+		/// <param name="str">The string.</param>
+		/// <param name="cells">The cell.</param>
+		/// <param name="separators">All separators.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		public static bool TryParse(in string str, out Cells cells, params char[] separators)
 		{

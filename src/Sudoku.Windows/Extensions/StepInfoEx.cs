@@ -15,8 +15,8 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Creates a new <see cref="Bitmap"/> instance that uses the .
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The information.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid used.</param>
+		/// <param name="this">The information.</param>
+		/// <param name="grid">The grid used.</param>
 		/// <returns>The <see cref="Bitmap"/> instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Bitmap CreateBitmap(this StepInfo @this, in SudokuGrid grid) =>

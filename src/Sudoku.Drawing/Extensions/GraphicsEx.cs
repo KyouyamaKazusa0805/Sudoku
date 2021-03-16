@@ -13,11 +13,11 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Draw an <see cref="int"/> value onto the current graphics.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+		/// <param name="this">The graphics instance.</param>
 		/// <param name="value">The value to drawing onto.</param>
 		/// <param name="font">The font.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="point">(<see langword="in"/> parameter) The point.</param>
+		/// <param name="point">The point.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void DrawInt32(this Graphics @this, int value, Font font, Brush brush, in PointF point) =>
 			@this.DrawString(value.ToString(), font, brush, point);
@@ -25,11 +25,11 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Draw an <see cref="int"/> value onto the current graphics.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+		/// <param name="this">The graphics instance.</param>
 		/// <param name="value">The value to drawing onto.</param>
 		/// <param name="font">The font.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="point">(<see langword="in"/> parameter) The point.</param>
+		/// <param name="point">The point.</param>
 		/// <param name="stringFormat">The string format instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void DrawInt32(
@@ -39,9 +39,9 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Draw a cross sign (<c>x</c>).
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="this">The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+		/// <param name="rectangle">The rectangle.</param>
 		/// <remarks>
 		/// This method will draw a cross sign and fill with the specified color, so you don't need
 		/// to find any fill methods.
@@ -58,9 +58,9 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Draw a capsule.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="this">The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+		/// <param name="rectangle">The rectangle.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void DrawCapsule(this Graphics @this, Pen pen, in RectangleF rectangle) =>
 			@this.DrawRoundedRectangle(pen, rectangle, 0);
@@ -68,9 +68,9 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Fill a capsule.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="this">The graphics.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+		/// <param name="rectangle">The rectangle.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void FillCapsule(this Graphics @this, Brush brush, in RectangleF rectangle) =>
 			@this.FillRoundedRectangle(brush, rectangle, 0);
@@ -78,9 +78,9 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Draw a rounded rectangle.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="this">The graphics.</param>
 		/// <param name="pen">The pen.</param>
-		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle to draw.</param>
+		/// <param name="rectangle">The rectangle to draw.</param>
 		/// <param name="circleRadius">The radius of each vertex.</param>
 		/// <exception cref="ArgumentException">
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in
@@ -138,9 +138,9 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Fill a rounded rectangle.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+		/// <param name="this">The graphics.</param>
 		/// <param name="brush">The brush.</param>
-		/// <param name="rectangle">(<see langword="in"/> parameter) The rectangle to fill.</param>
+		/// <param name="rectangle">The rectangle to fill.</param>
 		/// <param name="circleRadius">The radius of each vertex.</param>
 		/// <exception cref="ArgumentException">
 		/// Throws when <paramref name="circleRadius"/> is greater than the value in

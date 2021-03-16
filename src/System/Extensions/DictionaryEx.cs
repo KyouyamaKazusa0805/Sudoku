@@ -18,7 +18,7 @@ namespace System.Extensions
 		/// The iterator type, which means the iteration type for the <typeparamref name="TValue"/>
 		/// instances.
 		/// </typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+		/// <param name="this">The dictionary.</param>
 		/// <returns>The result array.</returns>
 		public static T[][] ToArray<TKey, TValue, T>(this IDictionary<TKey, TValue> @this)
 			where TKey : notnull
@@ -40,7 +40,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <typeparam name="TKey">The type of the key.</typeparam>
 		/// <typeparam name="TValue">The type of the element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+		/// <param name="this">The dictionary.</param>
 		/// <param name="list">The list to add into the dictionary.</param>
 		/// <returns>The number of elements that is successful to add.</returns>
 		public static int TryAddRange<TKey, TValue>(

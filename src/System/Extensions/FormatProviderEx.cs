@@ -14,11 +14,11 @@ namespace System.Extensions
 		/// If the rule is defined, this method will return the string representation
 		/// according to the format rule.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The format provider.</param>
+		/// <param name="this">The format provider.</param>
 		/// <param name="obj">The object.</param>
 		/// <param name="format">The format string.</param>
 		/// <param name="result">
-		/// (<see langword="out"/> parameter) The result. If the format has been defined,
+		/// The result. If the format has been defined,
 		/// this value won't be <see langword="null"/>.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>

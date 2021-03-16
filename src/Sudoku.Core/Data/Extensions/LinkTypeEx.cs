@@ -9,7 +9,7 @@
 		/// <summary>
 		/// Get the string notation of this current link type.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The link type.</param>
+		/// <param name="this">The link type.</param>
 		/// <returns>The notation.</returns>
 		public static string GetNotation(this LinkType @this) => @this switch
 		{

@@ -193,7 +193,7 @@
             <summary>
             Initializes an instance with the specified technique codes.
             </summary>
-            <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
+            <param name="techniqueCodes">The technique codes.</param>
         </member>
         <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor(System.Collections.BitArray)">
             <summary>

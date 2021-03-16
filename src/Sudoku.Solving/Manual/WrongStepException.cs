@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Initializes a <see cref="WrongStepException"/> with the specified invalid grid and the wrong step.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+		/// <param name="grid">The invalid sudoku grid.</param>
 		/// <param name="wrongStep">The wrong step.</param>
 		public WrongStepException(in SudokuGrid grid, StepInfo wrongStep)
 		{

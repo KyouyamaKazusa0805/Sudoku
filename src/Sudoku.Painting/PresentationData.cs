@@ -148,11 +148,11 @@ namespace Sudoku.Painting
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="cells">(<see langword="out"/> parameter) The cells.</param>
-		/// <param name="candidates">(<see langword="out"/> parameter) The candidates.</param>
-		/// <param name="regions">(<see langword="out"/> parameter) The regions.</param>
-		/// <param name="links">(<see langword="out"/> parameter) The links.</param>
-		/// <param name="directLines">(<see langword="out"/> parameter) The direct lines.</param>
+		/// <param name="cells">The cells.</param>
+		/// <param name="candidates">The candidates.</param>
+		/// <param name="regions">The regions.</param>
+		/// <param name="links">The links.</param>
+		/// <param name="directLines">The direct lines.</param>
 		public void Deconstruct(
 			out ICollection<PaintingPair<int>>? cells, out ICollection<PaintingPair<int>>? candidates,
 			out ICollection<PaintingPair<int>>? regions, out ICollection<PaintingPair<Link>>? links,

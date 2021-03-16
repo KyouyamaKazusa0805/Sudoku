@@ -22,7 +22,7 @@ namespace Sudoku.Data.GridIterators
 		/// <summary>
 		/// Initializes an instance with the enumerator and the condition method.
 		/// </summary>
-		/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+		/// <param name="enumerator">The enumerator.</param>
 		/// <param name="condition">The condition method.</param>
 		public WhereIterator(in Enumerator enumerator, Predicate<int> condition)
 		{

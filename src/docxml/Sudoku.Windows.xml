@@ -66,7 +66,7 @@
             <summary>
             Initializes an instance with the specified puzzle.
             </summary>
-            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
+            <param name="puzzle">The puzzle.</param>
         </member>
         <member name="M:Sudoku.Windows.BackdoorWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -120,7 +120,7 @@
             <summary>
             Initializes an instance with the specified puzzle.
             </summary>
-            <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
+            <param name="puzzle">The puzzle.</param>
         </member>
         <member name="M:Sudoku.Windows.BugNSearchWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -174,7 +174,7 @@
             <summary>
             Show the dialog.
             </summary>
-            <param name="color">(<see langword="out"/> parameter) The color selected.</param>
+            <param name="color">The color selected.</param>
             <param name="flags">The flags that the control should enable.</param>
             <param name="customPreviewEventHandler">
             The event handler. The default value is <see langword="null"/>.
@@ -694,7 +694,7 @@
             <summary>
             Indicates the event handler triggering when the color is start to pick.
             </summary>
-            <param name="color">(<see langword="in"/> parameter) The color.</param>
+            <param name="color">The color.</param>
         </member>
         <member name="T:Sudoku.Windows.CustomControls.TechniqueBox">
             <summary>
@@ -957,7 +957,7 @@
             <summary>
             Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
+            <param name="this">The bitmap image.</param>
             <returns>The target image result.</returns>
             <seealso cref="T:System.Windows.Media.ImageSource"/>
         </member>
@@ -971,7 +971,7 @@
             <summary>
             Get the <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> from the specified <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap source.</param>
+            <param name="this">The bitmap source.</param>
             <returns>The image.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.DrawingColorEx">
@@ -984,7 +984,7 @@
             <summary>
             Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>The target color.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.ImageEx">
@@ -995,9 +995,9 @@
         </member>
         <member name="M:Sudoku.Windows.Extensions.ImageEx.Deconstruct(System.Windows.Controls.Image,System.Double@,System.Double@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The image.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
+            <param name="this">The image.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
         </member>
         <member name="T:Sudoku.Windows.Extensions.KeyEx">
             <summary>
@@ -1009,7 +1009,7 @@
             <summary>
             Check whether the specified key is a digit key.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="this">The key.</param>
             <param name="fromZero">
             Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
             or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
@@ -1020,7 +1020,7 @@
             <summary>
             Check whether the specified key is a digit key in number pad.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="this">The key.</param>
             <param name="fromZero">
             Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
             or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
@@ -1032,7 +1032,7 @@
             Check whether the specified key is a digit key above those alphabets
             in keyboard.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="this">The key.</param>
             <param name="fromZero">
             Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
             or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
@@ -1043,14 +1043,14 @@
             <summary>
             Check whether the specified key is a letter.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="this">The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.KeyEx.IsArrow(System.Windows.Input.Key)">
             <summary>
             Check whether the specified key is a arrow key (up, down, left or right).
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The key.</param>
+            <param name="this">The key.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.PointEx">
@@ -1064,36 +1064,36 @@
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.Deconstruct(System.Windows.Point@,System.Double@,System.Double@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The instance.</param>
-            <param name="x">(<see langword="out"/> parameter) The x component.</param>
-            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+            <param name="this">The instance.</param>
+            <param name="x">The x component.</param>
+            <param name="y">The y component.</param>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.ToWPoint(System.Drawing.Point@)">
             <summary>
             Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <param name="this">The point to convert.</param>
             <returns>The result of conversion.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPoint(System.Windows.Point@)">
             <summary>
             Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <param name="this">The point to convert.</param>
             <returns>The result of conversion.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPointF(System.Windows.Point@)">
             <summary>
             Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point to convert.</param>
+            <param name="this">The point to convert.</param>
             <returns>The result of conversion.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.Truncate(System.Windows.Point@)">
             <summary>
             To truncate the point.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
+            <param name="this">The point to truncate.</param>
             <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.StepInfoEx">
@@ -1106,8 +1106,8 @@
             <summary>
             Creates a new <see cref="T:System.Drawing.Bitmap"/> instance that uses the .
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The information.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid used.</param>
+            <param name="this">The information.</param>
+            <param name="grid">The grid used.</param>
             <returns>The <see cref="T:System.Drawing.Bitmap"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Windows.Extensions.WindowsColorEx">
@@ -1120,43 +1120,43 @@
             <summary>
             Get the hue from the specified <see cref="T:System.Windows.Media.Color"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>A <see cref="T:System.Single"/> value.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetBrightness(System.Windows.Media.Color@)">
             <summary>
             Get the brightness from the specified <see cref="T:System.Windows.Media.Color"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>A <see cref="T:System.Single"/> value.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetSaturation(System.Windows.Media.Color@)">
             <summary>
             Get the saturation from the specified <see cref="T:System.Windows.Media.Color"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>A <see cref="T:System.Single"/> value.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.Deconstruct(System.Windows.Media.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
-            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
-            <param name="r">(<see langword="out"/> parameter) The red value.</param>
-            <param name="g">(<see langword="out"/> parameter) The green value.</param>
-            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+            <param name="this">The color.</param>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color@)">
             <summary>
             Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>The target color.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToHexString(System.Windows.Media.Color@)">
             <summary>
             Converts the <see cref="T:System.Windows.Media.Color"/> to the specified hex string.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The color.</param>
+            <param name="this">The color.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromAhsb(System.Int32,System.Single,System.Single,System.Single)">
@@ -1202,22 +1202,22 @@
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.Deconstruct(System.Windows.Size@,System.Double@,System.Double@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The size.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
+            <param name="this">The size.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSizeF(System.Windows.Size)">
             <summary>
             Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The current size.</param>
+            <param name="this">The current size.</param>
             <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSize(System.Windows.Size)">
             <summary>
             Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The current size.</param>
+            <param name="this">The current size.</param>
             <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
         </member>
         <member name="T:Sudoku.Windows.MainWindow">
@@ -2045,7 +2045,7 @@
             <summary>
             To check the validity of all conclusions.
             </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
@@ -2113,7 +2113,7 @@
             Indicates the message for wrong handling.
             </summary>
             <param name="errorInfo">The error information.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Windows.Messagings.FailedToBackupConfig">
             <summary>
@@ -2388,7 +2388,7 @@
             Indicates whether the format string is valid.
             </summary>
             <param name="filePath">The file path.</param>
-            <param name="text">(<see langword="out"/> parameter) The output text.</param>
+            <param name="text">The output text.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.ButtonSave_Click(System.Object,System.Windows.RoutedEventArgs)">
@@ -2544,7 +2544,7 @@
             Change the button's background and foreground color.
             </summary>
             <param name="button">The button.</param>
-            <param name="color">(<see langword="in"/> parameter) The color.</param>
+            <param name="color">The color.</param>
         </member>
         <member name="M:Sudoku.Windows.SettingsWindow.CloseWindow(System.Boolean)">
             <summary>

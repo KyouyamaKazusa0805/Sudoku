@@ -13,7 +13,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// Check whether the containing type of the specified syntax node satisfies the
 		/// specified condition.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The syntax node.</param>
+		/// <param name="this">The syntax node.</param>
 		/// <param name="predicate">
 		/// The condition, where the parameter of the anonymous function or lambda is
 		/// the node that used in traversing the iteration.

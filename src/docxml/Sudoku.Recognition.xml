@@ -80,7 +80,7 @@
             <summary>
             To correct the orientation.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
+            <param name="this">The bitmap.</param>
         </member>
         <member name="M:Sudoku.Recognition.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
             <summary>
@@ -93,16 +93,16 @@
             Convert the color palette to four lookup tables.
             </summary>
             <param name="palette">The color palette to transform.</param>
-            <param name="bTable">(<see langword="out"/> parameter) Lookup table for the B channel.</param>
-            <param name="gTable">(<see langword="out"/> parameter) Lookup table for the G channel.</param>
-            <param name="rTable">(<see langword="out"/> parameter) Lookup table for the R channel.</param>
-            <param name="aTable">(<see langword="out"/> parameter) Lookup table for the A channel.</param>
+            <param name="bTable">Lookup table for the B channel.</param>
+            <param name="gTable">Lookup table for the G channel.</param>
+            <param name="rTable">Lookup table for the R channel.</param>
+            <param name="aTable">Lookup table for the A channel.</param>
         </member>
         <member name="M:Sudoku.Recognition.Extensions.BitmapEx.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
             <summary>
             Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
             </summary>
-            <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
+            <param name="image">The image to copy data to.</param>
             <param name="bmp">the bitmap to copy data from.</param>
         </member>
         <member name="T:Sudoku.Recognition.Extensions.PointArrayEx">
@@ -131,9 +131,9 @@
         </member>
         <member name="M:Sudoku.Recognition.Extensions.RotateRectEx.Deconstruct(Emgu.CV.Structure.RotatedRect,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
-            <param name="center">(<see langword="out"/> parameter) The center.</param>
-            <param name="size">(<see langword="out"/> parameter) The size.</param>
+            <param name="this">The rectangle.</param>
+            <param name="center">The center.</param>
+            <param name="size">The size.</param>
         </member>
         <member name="T:Sudoku.Recognition.FailedToFillValueException">
             <summary>

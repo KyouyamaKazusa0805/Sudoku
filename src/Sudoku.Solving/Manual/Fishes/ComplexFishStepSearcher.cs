@@ -102,7 +102,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Get all possible fish steps.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
 		/// <param name="digit">The current digit used.</param>
 		private unsafe void GetAll(
@@ -465,7 +465,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Get POM technique eliminations at first.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
 		private static IList<Conclusion>?[] GetPomEliminationsFirstly(in SudokuGrid grid)
 		{

@@ -467,17 +467,17 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="empty">(<see langword="out"/> parameter) The map of all empty cells.</param>
-		/// <param name="bivalue">(<see langword="out"/> parameter) The map of all bi-value cells.</param>
+		/// <param name="empty">The map of all empty cells.</param>
+		/// <param name="bivalue">The map of all bi-value cells.</param>
 		/// <param name="candidates">
-		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit.
+		/// The map of all cells that contain the candidate of that digit.
 		/// </param>
 		/// <param name="digits">
-		/// (<see langword="out"/> parameter) The map of all cells that contain the candidate of that digit
+		/// The map of all cells that contain the candidate of that digit
 		/// or that value in given or modifiable.
 		/// </param>
 		/// <param name="values">
-		/// (<see langword="out"/> parameter) The map of all cells that is the given or modifiable value,
+		/// The map of all cells that is the given or modifiable value,
 		/// and the digit is the specified one.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -970,7 +970,7 @@ namespace Sudoku.Data
 		/// <see cref="Parse(string, ParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
-		/// <param name="str">(<see langword="in"/> parameter) The string.</param>
+		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, ParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1031,7 +1031,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <param name="result">
-		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// The result parsed. If the conversion is failed,
 		/// this argument will be <see cref="Undefined"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -1057,7 +1057,7 @@ namespace Sudoku.Data
 		/// <param name="str">The string.</param>
 		/// <param name="option">The grid parsing type.</param>
 		/// <param name="result">
-		/// (<see langword="out"/> parameter) The result parsed. If the conversion is failed,
+		/// The result parsed. If the conversion is failed,
 		/// this argument will be <see cref="Undefined"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -1087,8 +1087,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The method that is pointed by the function pointer <see cref="ValueChanged"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
-		/// <param name="e">(<see langword="in"/> parameter) The event arguments.</param>
+		/// <param name="this">The sudoku grid.</param>
+		/// <param name="e">The event arguments.</param>
 		/// <seealso cref="ValueChanged"/>
 		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
 		{
@@ -1110,7 +1110,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The method that is pointed by the function pointer <see cref="RefreshingCandidates"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="ref"/> parameter) The sudoku grid.</param>
+		/// <param name="this">The sudoku grid.</param>
 		/// <seealso cref="RefreshingCandidates"/>
 		private static void OnRefreshingCandidates(ref SudokuGrid @this)
 		{

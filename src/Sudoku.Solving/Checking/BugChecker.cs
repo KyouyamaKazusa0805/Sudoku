@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// Initializes an instance with the specified grid.
 		/// </summary>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
+		/// <param name="puzzle">The current puzzle grid.</param>
 		/// <exception cref="InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
 		public BugChecker(in SudokuGrid puzzle) => Puzzle = puzzle.IsValid()
 			? puzzle

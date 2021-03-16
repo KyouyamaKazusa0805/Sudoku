@@ -31,7 +31,7 @@ namespace Sudoku.Diagnostics
 		/// To convert the size into the appropriate size unit.
 		/// </summary>
 		/// <param name="bytes">The bytes.</param>
-		/// <param name="unit">(<see langword="out"/> parameter) The unit.</param>
+		/// <param name="unit">The unit.</param>
 		/// <returns>The value of the specified size unit.</returns>
 		public static decimal Convert(long bytes, out SizeUnit unit)
 		{

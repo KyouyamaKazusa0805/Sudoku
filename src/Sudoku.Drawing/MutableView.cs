@@ -85,8 +85,8 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Add a direct link into the list.
 		/// </summary>
-		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
-		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
 		public void AddDirectLine(in Cells start, in Cells end) =>
 			(DirectLines ??= new List<(Cells, Cells)>()).Add((start, end));
 
@@ -143,14 +143,14 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Remove the link from the list.
 		/// </summary>
-		/// <param name="link">(<see langword="in"/> parameter) The link.</param>
+		/// <param name="link">The link.</param>
 		public void RemoveLink(in Link link) => Links?.Remove(link);
 
 		/// <summary>
 		/// Remove the direct link from the list.
 		/// </summary>
-		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
-		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
 		public void RemoveDirectLine(in Cells start, in Cells end) => DirectLines?.Remove((start, end));
 
 		/// <summary>
@@ -264,15 +264,15 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Indicates whether the list contains the specified link.
 		/// </summary>
-		/// <param name="inference">(<see langword="in"/> parameter) The link.</param>
+		/// <param name="inference">The link.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsLink(in Link inference) => Links?.Contains(inference) ?? false;
 
 		/// <summary>
 		/// Indicates whether the list contains the specified direct line.
 		/// </summary>
-		/// <param name="start">(<see langword="in"/> parameter) The start map.</param>
-		/// <param name="end">(<see langword="in"/> parameter) The end map.</param>
+		/// <param name="start">The start map.</param>
+		/// <param name="end">The end map.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsDirectLine(in Cells start, in Cells end) =>
 			DirectLines?.Contains((start, end)) ?? false;

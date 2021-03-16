@@ -25,7 +25,7 @@ namespace Sudoku.Recognition.Extensions
 		/// <summary>
 		/// To correct the orientation.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The bitmap.</param>
+		/// <param name="this">The bitmap.</param>
 		public static void CorrectOrientation(this Bitmap @this)
 		{
 			if (Array.IndexOf(@this.PropertyIdList, 274) > -1)
@@ -251,10 +251,10 @@ namespace Sudoku.Recognition.Extensions
 		/// Convert the color palette to four lookup tables.
 		/// </summary>
 		/// <param name="palette">The color palette to transform.</param>
-		/// <param name="bTable">(<see langword="out"/> parameter) Lookup table for the B channel.</param>
-		/// <param name="gTable">(<see langword="out"/> parameter) Lookup table for the G channel.</param>
-		/// <param name="rTable">(<see langword="out"/> parameter) Lookup table for the R channel.</param>
-		/// <param name="aTable">(<see langword="out"/> parameter) Lookup table for the A channel.</param>
+		/// <param name="bTable">Lookup table for the B channel.</param>
+		/// <param name="gTable">Lookup table for the G channel.</param>
+		/// <param name="rTable">Lookup table for the R channel.</param>
+		/// <param name="aTable">Lookup table for the A channel.</param>
 		public static void ColorPaletteToLookupTable(
 			ColorPalette palette, out Matrix<byte> bTable,
 			out Matrix<byte> gTable, out Matrix<byte> rTable, out Matrix<byte> aTable)
@@ -279,7 +279,7 @@ namespace Sudoku.Recognition.Extensions
 		/// <summary>
 		/// Utility function for converting <see cref="Bitmap"/> to <see cref="Image"/>.
 		/// </summary>
-		/// <param name="image">(<see langword="this"/> parameter) The image to copy data to.</param>
+		/// <param name="image">The image to copy data to.</param>
 		/// <param name="bmp">the bitmap to copy data from.</param>
 		private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
 			where TColor : struct, IColor where TDepth : new()

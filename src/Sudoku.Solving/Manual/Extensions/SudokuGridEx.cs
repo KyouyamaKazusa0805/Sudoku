@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// To clean the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <remarks>
 		/// "To clean a grid" means we process this grid to fill with singles that is found
 		/// in <see cref="SingleStepSearcher"/>, and remove eliminations that is found

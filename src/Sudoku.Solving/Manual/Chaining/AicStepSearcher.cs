@@ -51,7 +51,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Search for chains of each type.
 		/// </summary>
-		/// <param name="accumulator">(<see langword="in"/> parameter) The accumulator.</param>
+		/// <param name="accumulator">The accumulator.</param>
 		/// <param name="grid">Thr grid.</param>
 		/// <param name="xEnabled">
 		/// Indicates whether the strong links in regions are enabled to search for.
@@ -81,8 +81,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Do unary chaining.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pOn">(<see langword="in"/> parameter) The node set on.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pOn">The node set on.</param>
 		/// <param name="xEnabled">
 		/// Indicates whether the strong links in regions are enabled to search for.
 		/// </param>
@@ -141,8 +141,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create a loop hint (i.e. a <see cref="LoopStepInfo"/>).
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="destOn">(<see langword="in"/> parameter) The start node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="destOn">The start node.</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
 		/// <returns>
@@ -191,8 +191,8 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create an AIC hint (i.e. a <see cref="AicStepInfo"/>).
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The elimination node (which is used for searching the whole chain).</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="target">The elimination node (which is used for searching the whole chain).</param>
 		/// <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
 		/// <returns>
@@ -250,12 +250,12 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Simulate the passing strong and weak links in AICs.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
 		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="chains">The chain nodes.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
+		/// <param name="source">The source node.</param>
 		private void DoAic(
 			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains,
 			in Node source)
@@ -318,13 +318,13 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Simulate the passing strong and weak links in CNLs.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="onToOn">The nodes that the end candidates are currently on.</param>
 		/// <param name="onToOff">The nodes the end candidates are currently off.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="loops">The loop nodes.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
+		/// <param name="source">The source node.</param>
 		private void DoLoops(
 			in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff,
 			bool xEnabled, bool yEnabled, IList<Node> loops, in Node source)

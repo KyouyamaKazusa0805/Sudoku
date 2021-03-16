@@ -14,7 +14,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Get the name of the current symmetry type.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The type.</param>
+		/// <param name="this">The type.</param>
 		/// <returns>The name.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string GetName(this SymmetryType @this)

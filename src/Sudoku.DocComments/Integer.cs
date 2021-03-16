@@ -15,7 +15,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		///	Indicates whether the specified value is the power of two.
 		/// </summary>
-		///	<param name="this">(<see langword="this"/> parameter) The value.</param>
+		///	<param name="this">The value.</param>
 		///	<returns>A <see cref="bool"/> value indicating that.</returns>
 		///	<remarks>
 		///	The equivalent code: <c>x != 0 &amp;&amp; (x &amp; (x - 1)) != 0</c>.
@@ -25,7 +25,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Indicates whether the current value is an odd.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
 		///	The equivalent code: <c>(x &amp; 1) != 0</c>.
@@ -35,7 +35,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Indicates whether the current value is an even.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
 		///	The equivalent code: <c>(x &amp; 1) == 0</c>.
@@ -45,7 +45,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Indicates whether the current value contains the bit specified as <paramref name="bitPosition"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="bitPosition">The position of that bit to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
@@ -56,7 +56,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Determine whether the current value overlaps the specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="other">The other value to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
@@ -67,7 +67,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Determine whether the current value overlaps the negation of the specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="other">The other value to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
@@ -78,7 +78,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Determine whether the bits of the current value fully covers the ones of the specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="other">The other value to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <remarks>
@@ -90,7 +90,7 @@ namespace Sudoku.DocComments
 		/// Find the first offset of set bit of the binary representation
 		/// of the specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <returns>
 		/// <para>An <see cref="int"/> value indicating that.</para>
 		/// <para>
@@ -107,7 +107,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Get the total number of set bits of the binary representation of a specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <returns>An <see cref="int"/> value indicating that.</returns>
 		public static int PopCount(Integer @this) => throw new NotImplementedException();
 
@@ -116,7 +116,7 @@ namespace Sudoku.DocComments
 		/// Find a index of the binary representation of a value after the specified index,
 		/// whose bit is set <see langword="true"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="index">The index.</param>
 		/// <returns>The index.</returns>
 		public static int GetNextSet(Integer @this, int index) => throw new NotImplementedException();
@@ -125,7 +125,7 @@ namespace Sudoku.DocComments
 		/// Get an <see cref="int"/> value, indicating that the absolute position of
 		/// all set bits with the specified set bit order.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="order">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
 		public static int SetAt(Integer @this, int order) => throw new NotImplementedException();
@@ -133,7 +133,7 @@ namespace Sudoku.DocComments
 		/// <summary>
 		/// Find all offsets of set bits of the binary representation of a specified value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <returns>All offsets.</returns>
 		public static IEnumerable<int> GetAllSets(Integer @this) => throw new NotImplementedException();
 
@@ -144,13 +144,13 @@ namespace Sudoku.DocComments
 		/// method is an extension method, and returns nothing.
 		/// </para>
 		/// </summary>
-		/// <param name="this">(<see langword="this ref"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		public static void ReverseBits(ref Integer @this) => throw new NotImplementedException();
 
 		/// <summary>
 		/// Skip the specified number of set bits and iterate on the integer with other set bits.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The integer to iterate.</param>
+		/// <param name="this">The integer to iterate.</param>
 		/// <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
 		/// <returns>The integer that only contains the other set bits.</returns>
 		/// <remarks>
@@ -175,7 +175,7 @@ namespace Sudoku.DocComments
 		/// </para>
 		/// </summary>
 		/// <param name="this">
-		/// (<see langword="this"/> parameter) The value.
+		/// The value.
 		/// </param>
 		/// <returns>All indices of set bits.</returns>
 		/// <remarks>

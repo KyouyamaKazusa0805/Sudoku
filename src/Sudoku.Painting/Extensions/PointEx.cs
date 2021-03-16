@@ -12,9 +12,9 @@ namespace Sudoku.Painting.Extensions
 	public static class PointEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this in"/> parameter) The instance.</param>
-		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
-		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
+		/// <param name="this">The instance.</param>
+		/// <param name="x">The x component.</param>
+		/// <param name="y">The y component.</param>
 		public static void Deconstruct(this in DPoint @this, out int x, out int y)
 		{
 			x = @this.X;
@@ -22,9 +22,9 @@ namespace Sudoku.Painting.Extensions
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this in"/> parameter) The instance.</param>
-		/// <param name="x">(<see langword="out"/> parameter) The x component.</param>
-		/// <param name="y">(<see langword="out"/> parameter) The y component.</param>
+		/// <param name="this">The instance.</param>
+		/// <param name="x">The x component.</param>
+		/// <param name="y">The y component.</param>
 		public static void Deconstruct(this in DPointF @this, out float x, out float y)
 		{
 			x = @this.X;
@@ -34,7 +34,7 @@ namespace Sudoku.Painting.Extensions
 		/// <summary>
 		/// To truncate the point.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
+		/// <param name="this">The point to truncate.</param>
 		/// <returns>The result.</returns>
 		public static DPoint Truncate(this in DPointF @this) => new((int)@this.X, (int)@this.Y);
 
@@ -42,7 +42,7 @@ namespace Sudoku.Painting.Extensions
 		/// Get a new <see cref="DPointF"/> instance created by the original one, with the specified offset
 		/// added into the properties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
+		/// <param name="this">The point.</param>
 		/// <param name="offset">The offset.</param>
 		/// <returns>The result point.</returns>
 		/// <seealso cref="DPointF.X"/>
@@ -54,7 +54,7 @@ namespace Sudoku.Painting.Extensions
 		/// Get a new <see cref="DPointF"/> instance created by the original one, with the specified offset
 		/// added into the properties <see cref="DPointF.X"/> and <see cref="DPointF.Y"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The point.</param>
+		/// <param name="this">The point.</param>
 		/// <param name="xOffset">The X offset.</param>
 		/// <param name="yOffset">The Y offset.</param>
 		/// <returns>The result point.</returns>

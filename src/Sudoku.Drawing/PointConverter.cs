@@ -45,7 +45,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Initializes an instance with the specified <see cref="SizeF"/>.
 		/// </summary>
-		/// <param name="size">(<see langword="in"/> parameter) The size.</param>
+		/// <param name="size">The size.</param>
 		/// <seealso cref="SizeF"/>
 		public PointConverter(in SizeF size)
 		{
@@ -106,7 +106,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the focus cell offset via a mouse point.
 		/// </summary>
-		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+		/// <param name="point">The mouse point.</param>
 		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCell(in PointF point)
@@ -126,7 +126,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the focus candidate offset via a mouse point.
 		/// </summary>
-		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+		/// <param name="point">The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCandidate(in PointF point)
@@ -139,7 +139,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the center mouse point of all candidates.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
+		/// <param name="map">The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public PointF GetMouseCenter(in Candidates map)
@@ -153,7 +153,7 @@ namespace Sudoku.Drawing
 		/// <summary>
 		/// Get the rectangle from all candidates.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
+		/// <param name="map">The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public RectangleF GetMouseRectangle(in Candidates map)

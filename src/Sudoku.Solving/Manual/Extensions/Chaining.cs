@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get all available weak links.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="p">(<see langword="in"/> parameter) The current node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="p">The current node.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <returns>All possible weak links.</returns>
 		public static ISet<Node> GetOnToOff(in SudokuGrid grid, in Node p, bool yEnabled)
@@ -57,8 +57,8 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get all available strong links.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="p">(<see langword="in"/> parameter) The current node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="p">The current node.</param>
 		/// <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
 		/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 		/// <param name="enableFastProperties">
@@ -150,9 +150,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Add hidden parents of a cell.
 		/// </summary>
-		/// <param name="p">(<see langword="ref"/> parameter) The node.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+		/// <param name="p">The node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="source">The source grid.</param>
 		/// <param name="offNodes">All off nodes.</param>
 		/// <exception cref="Exception">
 		/// Throws when the parent node of the specified node cannot be found.
@@ -174,9 +174,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Add hidden parents of a region.
 		/// </summary>
-		/// <param name="p">(<see langword="ref"/> parameter) The node.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+		/// <param name="p">The node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="source">The source grid.</param>
 		/// <param name="currRegion">The current region label.</param>
 		/// <param name="offNodes">All off nodes.</param>
 		/// <exception cref="Exception">

@@ -84,7 +84,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Search for chains of each type.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		private void GetAll(IList<ChainingStepInfo> accumulator, ref SudokuGrid grid)
 		{
 			// Iterate on empty cells.
@@ -163,9 +163,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Do binary chaining.
 		/// </summary>
 		/// <param name="accumulator">The current accumulator.</param>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-		/// <param name="pOn">(<see langword="in"/> parameter) The on node.</param>
-		/// <param name="pOff">(<see langword="in"/> parameter) The off node.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pOn">The on node.</param>
+		/// <param name="pOff">The off node.</param>
 		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 		/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 		/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
@@ -228,7 +228,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// Do region chaining.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="ref"/> parameter) </param>
+		/// <param name="grid"></param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
@@ -298,7 +298,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Do chaining (i.e. multiple chaining).
 		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="toOn">The list to <c>on</c> nodes.</param>
 		/// <param name="toOff">The list to <c>off</c> nodes.</param>
 		/// <returns>The result.</returns>
@@ -372,10 +372,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create a chaining hint whose conclusion is an on result.
 		/// </summary>
-		/// <param name="destOn">(<see langword="in"/> parameter) The destination on node.</param>
-		/// <param name="destOff">(<see langword="in"/> parameter) The destination off node.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
+		/// <param name="destOn">The destination on node.</param>
+		/// <param name="destOff">The destination off node.</param>
+		/// <param name="source">The source node.</param>
+		/// <param name="target">The target node.</param>
 		/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 		/// <returns>The hint.</returns>
 		private BinaryChainingStepInfo CreateChainingOnHint(
@@ -439,10 +439,10 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create a chaining hint whose conclusion is an off result.
 		/// </summary>
-		/// <param name="destOn">(<see langword="in"/> parameter) The destination on node.</param>
-		/// <param name="destOff">(<see langword="in"/> parameter) The destination off node.</param>
-		/// <param name="source">(<see langword="in"/> parameter) The source node.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
+		/// <param name="destOn">The destination on node.</param>
+		/// <param name="destOff">The destination off node.</param>
+		/// <param name="source">The source node.</param>
+		/// <param name="target">The target node.</param>
 		/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 		/// <returns>The hint.</returns>
 		private BinaryChainingStepInfo CreateChainingOffHint(
@@ -499,9 +499,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <summary>
 		/// Create the hint for cell forcing chains.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="sourceCell">The source cell.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The target elimination node.</param>
+		/// <param name="target">The target elimination node.</param>
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The information instance.</returns>
 		private CellChainingStepInfo CreateCellFcHint(
@@ -571,7 +571,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <param name="digit">The digit.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
+		/// <param name="target">The target node.</param>
 		/// <param name="outcomes">All outcomes (conclusions).</param>
 		/// <returns>The technique information instance.</returns>
 		private RegionChainingStepInfo CreateRegionFcHint(

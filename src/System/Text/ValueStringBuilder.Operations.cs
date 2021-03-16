@@ -200,7 +200,7 @@ namespace System.Text
 		/// <summary>
 		/// Append a serial of characters.
 		/// </summary>
-		/// <param name="value">(<see langword="in"/> parameter) The characters.</param>
+		/// <param name="value">The characters.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Append(in ReadOnlySpan<char> value)
 		{

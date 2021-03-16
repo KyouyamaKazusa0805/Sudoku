@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG + n with forcing chains.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		private void CheckMultipleWithForcingChains(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Do chaining. This method is only called by
 		/// <see cref="CheckMultipleWithForcingChains(IList{StepInfo}, in SudokuGrid, IReadOnlyList{int})"/>.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="toOn">All nodes to on.</param>
 		/// <param name="toOff">All nodes to off.</param>
 		/// <returns>The result nodes.</returns>
@@ -163,7 +163,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <see cref="CheckMultipleWithForcingChains(IList{StepInfo}, in SudokuGrid, IReadOnlyList{int})"/>.
 		/// </summary>
 		/// <param name="trueCandidates">The true candidates.</param>
-		/// <param name="target">(<see langword="in"/> parameter) The target node.</param>
+		/// <param name="target">The target node.</param>
 		/// <param name="outcomes">All outcomes.</param>
 		/// <returns>The result information instance.</returns>
 		/// <seealso cref="CheckMultipleWithForcingChains(IList{StepInfo}, in SudokuGrid, IReadOnlyList{int})"/>

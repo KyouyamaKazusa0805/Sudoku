@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Indicates whether the current object is equal to another object of the same type.
 		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) An object to compare with this object.</param>
+		/// <param name="other">An object to compare with this object.</param>
 		/// <returns>
 		/// <see langword="true"/> if the current object is equal to the other parameter;
 		/// otherwise, <see langword="false"/>.

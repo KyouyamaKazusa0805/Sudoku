@@ -101,7 +101,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Initialize the maps that used later.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void InitializeMaps(in SudokuGrid grid) =>
 			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;

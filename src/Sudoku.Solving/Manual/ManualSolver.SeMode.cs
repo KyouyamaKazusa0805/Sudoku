@@ -17,10 +17,10 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation grid to calculate.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <param name="solution">The solution.</param>
 		/// <param name="sukaku">Indicates whether the current mode is sukaku mode.</param>
 		/// <param name="progressResult">
 		/// (<see langword="ref"/> parameter)

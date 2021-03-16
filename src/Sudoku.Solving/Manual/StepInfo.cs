@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Put this instance into the specified grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		public void ApplyTo(ref SudokuGrid grid)
 		{
 			foreach (var conclusion in Conclusions)
@@ -88,8 +88,8 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+		/// <param name="name">The name.</param>
+		/// <param name="difficulty">The difficulty.</param>
 		public void Deconstruct(out string name, out decimal difficulty)
 		{
 			name = Name;
@@ -97,9 +97,9 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+		/// <param name="name">The name.</param>
+		/// <param name="difficulty">The difficulty.</param>
+		/// <param name="difficultyLevel">The difficulty level.</param>
 		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel)
 		{
 			name = Name;
@@ -108,10 +108,10 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+		/// <param name="name">The name.</param>
+		/// <param name="difficulty">The difficulty.</param>
+		/// <param name="difficultyLevel">The difficulty level.</param>
+		/// <param name="conclusions">All conclusions.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions)
@@ -123,11 +123,11 @@ namespace Sudoku.Solving.Manual
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">(<see langword="out"/> parameter) The name.</param>
-		/// <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-		/// <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-		/// <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-		/// <param name="views">(<see langword="out"/> parameter) All views.</param>
+		/// <param name="name">The name.</param>
+		/// <param name="difficulty">The difficulty.</param>
+		/// <param name="difficultyLevel">The difficulty level.</param>
+		/// <param name="conclusions">All conclusions.</param>
+		/// <param name="views">All views.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views)

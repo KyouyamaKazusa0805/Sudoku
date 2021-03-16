@@ -202,7 +202,7 @@ namespace Sudoku.Solving.Manual.Tracing
 		/// <summary>
 		/// Implicit cast from <see cref="SudokuGrid"/> to <see cref="TraceableGrid"/>.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator TraceableGrid(in SudokuGrid grid) => new(grid);
 

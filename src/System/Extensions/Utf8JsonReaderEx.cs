@@ -13,7 +13,7 @@ namespace System.Extensions
 		/// Try to read an object.
 		/// </summary>
 		/// <typeparam name="T">The object to read.</typeparam>
-		/// <param name="this">(<see langword="this ref"/> parameter) The reader instance.</param>
+		/// <param name="this">The reader instance.</param>
 		/// <param name="converter">The converter to convert the value.</param>
 		/// <param name="type">The type to convert.</param>
 		/// <param name="options">The options on deserialization.</param>

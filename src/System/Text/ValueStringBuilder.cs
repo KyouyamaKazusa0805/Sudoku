@@ -64,7 +64,7 @@ namespace System.Text
 		/// <summary>
 		/// Initializes an instance with the buffer specified as a <see cref="Span{T}"/>.
 		/// </summary>
-		/// <param name="buffer">(<see langword="in"/> parameter) The initial buffer.</param>
+		/// <param name="buffer">The initial buffer.</param>
 		/// <remarks>
 		/// <para>
 		/// For the buffer, you can use the nested <see langword="stackalloc"/> expression to create
@@ -126,7 +126,7 @@ namespace System.Text
 		/// <summary>
 		/// Determines whether the current instance has same values with the other instance.
 		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) The other instance.</param>
+		/// <param name="other">The other instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public readonly unsafe bool Equals(in ValueStringBuilder other)
 		{

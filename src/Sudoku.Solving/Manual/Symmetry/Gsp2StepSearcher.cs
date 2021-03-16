@@ -155,7 +155,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <summary>
 		/// Full restore a cell.
 		/// </summary>
-		/// <param name="cell">(<see langword="ref"/> parameter) The cell to restore.</param>
+		/// <param name="cell">The cell to restore.</param>
 		/// <param name="r1">The region list 1 for a row.</param>
 		/// <param name="r2">The region list 2 for a row.</param>
 		/// <param name="r3">The region list 3 for a row.</param>
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <summary>
 		/// Swap values on two different regions.
 		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="region1">The region 1.</param>
 		/// <param name="region2">The region 2.</param>
 		private static unsafe void SwapTwoRegions(ref SudokuGrid grid, int region1, int region2)

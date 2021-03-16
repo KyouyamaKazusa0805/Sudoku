@@ -16,7 +16,7 @@ namespace System.Extensions
 		/// The type to cast. The type should be a <see langword="class"/> because the type
 		/// to implement <see cref="ICloneable"/> should be a reference type.
 		/// </typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
+		/// <param name="this">The object.</param>
 		/// <returns>
 		/// The cast result. If cast is valid, the value will be so valid; otherwise,
 		/// <see langword="null"/>.
@@ -32,7 +32,7 @@ namespace System.Extensions
 		/// The type to cast. The type should be a <see langword="class"/> because the type
 		/// to implement <see cref="ICloneable"/> should be a reference type.
 		/// </typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
+		/// <param name="this">The object.</param>
 		/// <returns>The cast result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class => (TClass)@this.Clone();
@@ -41,7 +41,7 @@ namespace System.Extensions
 		/// Try to cast the current instance to the generic cloneable type <see cref="ICloneable{T}"/>.
 		/// </summary>
 		/// <typeparam name="TClass">The type of the instance.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The object.</param>
+		/// <param name="this">The object.</param>
 		/// <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
 		/// <seealso cref="ICloneable{T}"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Initializes an instance with the specified solution.
 		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <param name="solution">The solution.</param>
 		public TemplateStepSearcher(in SudokuGrid solution) => _solution = solution;
 
 

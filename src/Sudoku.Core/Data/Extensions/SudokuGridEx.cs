@@ -11,7 +11,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>

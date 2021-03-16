@@ -16,7 +16,7 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// To solve the specified puzzle.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+		/// <param name="grid">The puzzle.</param>
 		/// <returns>
 		/// An <see cref="AnalysisResult"/> displaying all information of solving.
 		/// </returns>

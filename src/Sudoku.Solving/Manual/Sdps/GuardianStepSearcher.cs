@@ -170,7 +170,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <param name="cell2">The second cell.</param>
 		/// <param name="digit">The current digit.</param>
 		/// <param name="guardians">
-		/// (<see langword="in"/> parameter) The current guardian cells.
+		/// The current guardian cells.
 		/// This map may not contain cells that lies in the region
 		/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
 		/// </param>

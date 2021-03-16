@@ -222,7 +222,7 @@ namespace Sudoku.Drawing
 		/// Draw focused cells.
 		/// </summary>
 		/// <param name="g">The graphics.</param>
-		/// <param name="focusedCells">(<see langword="in"/> parameter) The focused cells.</param>
+		/// <param name="focusedCells">The focused cells.</param>
 		private void DrawFocusedCells(Graphics g, in Cells focusedCells)
 		{
 			using var b = new SolidBrush(Preferences.FocusedCellColor);

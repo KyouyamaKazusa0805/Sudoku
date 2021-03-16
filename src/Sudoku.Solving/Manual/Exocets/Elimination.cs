@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Initializes an instance with the eliminations and the reason.
 		/// </summary>
-		/// <param name="eliminations">(<see langword="in"/> parameter) The eliminations.</param>
+		/// <param name="eliminations">The eliminations.</param>
 		/// <param name="reason">The reason why those candidates can be eliminated.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Elimination(in Candidates eliminations, EliminatedReason reason)
@@ -63,9 +63,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="eliminations">(<see langword="out"/> parameter) The eliminations.</param>
+		/// <param name="eliminations">The eliminations.</param>
 		/// <param name="reason">
-		/// (<see langword="out"/> parameter) The reason why the eliminations should be removed.
+		/// The reason why the eliminations should be removed.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Deconstruct(out Candidates eliminations, out EliminatedReason reason)

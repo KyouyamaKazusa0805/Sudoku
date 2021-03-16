@@ -57,8 +57,8 @@ namespace Sudoku.Models
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="current">(<see langword="out"/> parameter) The number of unsolved candidates.</param>
-		/// <param name="unsolvedCells">(<see langword="out"/> parameter) The number of unsolved cells.</param>
+		/// <param name="current">The number of unsolved candidates.</param>
+		/// <param name="unsolvedCells">The number of unsolved cells.</param>
 		public readonly void Deconstruct(out int current, out int unsolvedCells)
 		{
 			current = CurrentCandidatesCount;
@@ -67,13 +67,13 @@ namespace Sudoku.Models
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="currentCandidatesCount">
-		/// (<see langword="out"/> parameter) The number of unsolved candidates.
+		/// The number of unsolved candidates.
 		/// </param>
 		/// <param name="currentCellsCount">
-		/// (<see langword="out"/> parameter) The number of unsolved cells.
+		/// The number of unsolved cells.
 		/// </param>
 		/// <param name="initialCandidatesCount">
-		/// (<see langword="out"/> parameter) The number of unsolved candidates in the initial grid.
+		/// The number of unsolved candidates in the initial grid.
 		/// </param>
 		public readonly void Deconstruct(
 			out int currentCandidatesCount, out int currentCellsCount, out int initialCandidatesCount)

@@ -35,7 +35,7 @@ namespace Sudoku.Painting
 		/// Try to get the palette color using the specified index.
 		/// </summary>
 		/// <param name="id">The ID value.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The result color.</param>
+		/// <param name="result">The result color.</param>
 		/// <returns>A <see cref="bool"/> indicating whether the operation is successful.</returns>
 		public bool TryGetPaletteColor(int id, out Color result)
 		{

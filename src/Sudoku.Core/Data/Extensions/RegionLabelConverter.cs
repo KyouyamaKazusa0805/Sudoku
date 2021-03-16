@@ -12,7 +12,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Get the label in the specified region.
 		/// </summary>
-		/// <param name="region">(<see langword="this"/> parameter) The region.</param>
+		/// <param name="region">The region.</param>
 		/// <returns>The region label.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static RegionLabel ToLabel(this int region) => (RegionLabel)(region / 9);

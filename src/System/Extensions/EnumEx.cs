@@ -77,7 +77,7 @@ namespace System.Extensions
 		/// To get all possible flags from a specified enumeration instance.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of that enumeration.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The field.</param>
+		/// <param name="this">The field.</param>
 		/// <returns>
 		/// All flags. If the enumeration field doesn't contain any flags,
 		/// the return value will be <see langword="null"/>.
@@ -112,7 +112,7 @@ namespace System.Extensions
 		/// Get all possible flags that the current enumeration field set.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+		/// <param name="this">The current enumeration type instance.</param>
 		/// <returns>All flags.</returns>
 		public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
@@ -158,7 +158,7 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+		/// <param name="this">The current enumeration type instance.</param>
 		/// <param name="other">The other instance to check.</param>
 		/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 		/// <remarks>
@@ -192,7 +192,7 @@ namespace System.Extensions
 		/// Determines whether the instance has the flags specified as <paramref name="flags"/>.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="flags">All flags used.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public static unsafe bool MultiFlags<TEnum>(this TEnum @this, TEnum flags) where TEnum : unmanaged, Enum

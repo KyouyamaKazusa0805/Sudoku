@@ -16,10 +16,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// Check the type 1.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="d1">The digit 1 to check.</param>
 		/// <param name="d2">The digit 2 to check.</param>
-		/// <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
+		/// <param name="loop">The cells of that loop.</param>
 		/// <param name="extraCell">Indicates the extra cell.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="comparer">The comparer.</param>
@@ -62,11 +62,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// Check the type 2.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="d1">The digit 1 to check.</param>
 		/// <param name="d2">The digit 2 to check.</param>
-		/// <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
-		/// <param name="extraCells">(<see langword="in"/> parameter) The cells of all extra cells.</param>
+		/// <param name="loop">The cells of that loop.</param>
+		/// <param name="extraCells">The cells of all extra cells.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="comparer">The comparer.</param>
 		partial void CheckType2(

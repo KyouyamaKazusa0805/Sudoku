@@ -32,7 +32,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
-		/// <param name="parent">(<see langword="in"/> parameter) The parent node.</param>
+		/// <param name="parent">The parent node.</param>
 		public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) =>
 			Parents = new List<Node> { parent };
 
@@ -151,8 +151,8 @@ namespace Sudoku.Data
 		public void ClearParents() => Parents = null;
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
-		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
+		/// <param name="candidate">The candidate.</param>
+		/// <param name="isOn">Indicates whether the candidate is on.</param>
 		public readonly void Deconstruct(out int candidate, out bool isOn)
 		{
 			candidate = Cell * 9 + Digit;
@@ -160,9 +160,9 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
-		/// <param name="isOn">(<see langword="out"/> parameter) Indicates whether the candidate is on.</param>
-		/// <param name="parents">(<see langword="out"/> parameter) All parents of this node.</param>
+		/// <param name="candidate">The candidate.</param>
+		/// <param name="isOn">Indicates whether the candidate is on.</param>
+		/// <param name="parents">All parents of this node.</param>
 		public readonly void Deconstruct(out int candidate, out bool isOn, out IList<Node>? parents)
 		{
 			candidate = Cell * 9 + Digit;
@@ -181,7 +181,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.
 		/// </summary>
-		/// <param name="node">(<see langword="in"/> parameter) The node.</param>
+		/// <param name="node">The node.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public readonly bool IsParentOf(in Node node)
 		{

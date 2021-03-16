@@ -100,7 +100,7 @@ namespace Sudoku.Solving.BruteForces
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solution">
-		/// (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
+		/// The solution. The value keeps <see langword="null"/>
 		/// if you doesn't want to use this result.
 		/// </param>
 		/// <param name="limit">The limit.</param>
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.BruteForces
 		/// </summary>
 		/// <param name="puzzle">The puzzle.</param>
 		/// <param name="solution">
-		/// (<see langword="ref"/> parameter) The solution receiver. This parameter is used when you want
+		/// The solution receiver. This parameter is used when you want
 		/// to use the solution string. The receiver is represented as a <see cref="ValueStringBuilder"/>.
 		/// </param>
 		/// <param name="limit">The limit.</param>
@@ -185,7 +185,7 @@ namespace Sudoku.Solving.BruteForces
 		/// Check the validity of the puzzle.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		/// <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
+		/// <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
 		/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
 		public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
 		{
@@ -739,7 +739,7 @@ namespace Sudoku.Solving.BruteForces
 		/// <summary>
 		/// The internal solving method.
 		/// </summary>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The pointer to the puzzle string.</param>
+		/// <param name="puzzle">The pointer to the puzzle string.</param>
 		/// <param name="solutionPtr">The pointer to the solution string.</param>
 		/// <param name="limit">The limitation for the number of all final solutions.</param>
 		/// <returns>The number of solutions found.</returns>

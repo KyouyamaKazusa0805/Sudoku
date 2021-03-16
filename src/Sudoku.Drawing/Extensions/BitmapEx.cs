@@ -12,7 +12,7 @@ namespace Sudoku.Drawing.Extensions
 		/// <summary>
 		/// Zoom a picture.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The bitmap instance.</param>
+		/// <param name="this">The bitmap instance.</param>
 		/// <param name="newWidth">The new width.</param>
 		/// <param name="newHeight">The new height.</param>
 		/// <returns>The new bitmap instance that has been zoomed.</returns>

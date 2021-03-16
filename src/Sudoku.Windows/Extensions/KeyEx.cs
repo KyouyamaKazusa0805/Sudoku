@@ -13,7 +13,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Check whether the specified key is a digit key.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="this">The key.</param>
 		/// <param name="fromZero">
 		/// Indicates whether the checking is from <see cref="D0"/>
 		/// or <see cref="NumPad0"/>.
@@ -27,7 +27,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Check whether the specified key is a digit key in number pad.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="this">The key.</param>
 		/// <param name="fromZero">
 		/// Indicates whether the checking is from <see cref="D0"/>
 		/// or <see cref="NumPad0"/>.
@@ -41,7 +41,7 @@ namespace Sudoku.Windows.Extensions
 		/// Check whether the specified key is a digit key above those alphabets
 		/// in keyboard.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="this">The key.</param>
 		/// <param name="fromZero">
 		/// Indicates whether the checking is from <see cref="D0"/>
 		/// or <see cref="NumPad0"/>.
@@ -54,7 +54,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Check whether the specified key is a letter.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="this">The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsAlphabet(this Key @this) => @this is >= A and <= Z;
@@ -62,7 +62,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Check whether the specified key is a arrow key (up, down, left or right).
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The key.</param>
+		/// <param name="this">The key.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsArrow(this Key @this) => @this is Up or Down or Left or Right;

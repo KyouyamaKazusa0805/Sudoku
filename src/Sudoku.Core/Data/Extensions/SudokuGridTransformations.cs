@@ -64,7 +64,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror left-right the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
 		public static unsafe SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
 		{
@@ -85,7 +85,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror top-bottom the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
 		public static unsafe SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
 		{
@@ -106,7 +106,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror diagonal the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
 		public static unsafe SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
 		{
@@ -127,7 +127,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Transpose the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Transpose(this in SudokuGrid @this) => @this.MirrorDiagonal();
@@ -135,7 +135,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Mirror anti-diagonal the grid.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
 		public static unsafe SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
 		{
@@ -157,7 +157,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid clockwise.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
 		public static unsafe SudokuGrid RotateClockwise(this in SudokuGrid @this)
 		{
@@ -176,7 +176,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid counterclockwise.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
 		public static unsafe SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
 		{
@@ -195,7 +195,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
 		public static unsafe SudokuGrid RotatePi(this in SudokuGrid @this)
 		{
@@ -214,7 +214,7 @@ namespace Sudoku.Data.Extensions
 		/// <summary>
 		/// Swap to regions.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <param name="region1">The region 1.</param>
 		/// <param name="region2">The region 2.</param>
 		/// <returns>The result.</returns>

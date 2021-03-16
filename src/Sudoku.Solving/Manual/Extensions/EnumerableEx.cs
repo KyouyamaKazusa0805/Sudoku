@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Check whether the current loop is valid UL-shaped loop.
 		/// </summary>
-		/// <param name="loop">(<see langword="this"/> parameter) The loop.</param>
+		/// <param name="loop">The loop.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static unsafe bool IsValidLoop(this IEnumerable<int> loop)
 		{

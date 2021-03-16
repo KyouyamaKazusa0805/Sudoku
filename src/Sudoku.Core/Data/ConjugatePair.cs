@@ -33,7 +33,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with the map and the digit.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="digit">The digit.</param>
 		public ConjugatePair(in Cells map, int digit)
 		{

@@ -43,9 +43,9 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="startCandidate">(<see langword="out"/> parameter) The start candidate.</param>
-		/// <param name="endCandidate">(<see langword="out"/> parameter) The end candidate.</param>
-		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
+		/// <param name="startCandidate">The start candidate.</param>
+		/// <param name="endCandidate">The end candidate.</param>
+		/// <param name="linkType">The link type.</param>
 		public void Deconstruct(out int startCandidate, out int endCandidate, out LinkType linkType)
 		{
 			startCandidate = StartCandidate;
@@ -54,11 +54,11 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="startCell">(<see langword="out"/> parameter) The start cell.</param>
-		/// <param name="startDigit">(<see langword="out"/> parameter) The start digit.</param>
-		/// <param name="endCell">(<see langword="out"/> parameter) The end cell.</param>
-		/// <param name="endDigit">(<see langword="out"/> parameter) The end digit.</param>
-		/// <param name="linkType">(<see langword="out"/> parameter) The link type.</param>
+		/// <param name="startCell">The start cell.</param>
+		/// <param name="startDigit">The start digit.</param>
+		/// <param name="endCell">The end cell.</param>
+		/// <param name="endDigit">The end digit.</param>
+		/// <param name="linkType">The link type.</param>
 		public void Deconstruct(
 			out int startCell, out int startDigit, out int endCell, out int endDigit, out LinkType linkType)
 		{

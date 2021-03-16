@@ -14,7 +14,7 @@
             Sort the specified array by quick sort.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
             <remarks>
             If you want to use this method, please note that the <typeparamref name="T"/>
@@ -47,7 +47,7 @@
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="this">The array.</param>
             <param name="count">The number of elements you want to take.</param>
             <returns>
             The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c> and
@@ -202,7 +202,7 @@
             specified as the parameter.
             </summary>
             <param name="other">The value to compare.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <param name="result">The result.</param>
             <returns>Indicates whether the searching is successful.</returns>
             <remarks>
             Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
@@ -226,7 +226,7 @@
             <summary>
             Remove the element at the specified index.
             </summary>
-            <param name="index">(<see langword="in"/> parameter) The index.</param>
+            <param name="index">The index.</param>
             <returns>The element removed.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
@@ -483,7 +483,7 @@
             <summary>
             Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The array.</param>
+            <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
         <member name="T:System.Extensions.BitOperationsEx">
@@ -579,7 +579,7 @@
             The type to cast. The type should be a <see langword="class"/> because the type
             to implement <see cref="T:System.ICloneable"/> should be a reference type.
             </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <param name="this">The object.</param>
             <returns>
             The cast result. If cast is valid, the value will be so valid; otherwise,
             <see langword="null"/>.
@@ -593,7 +593,7 @@
             The type to cast. The type should be a <see langword="class"/> because the type
             to implement <see cref="T:System.ICloneable"/> should be a reference type.
             </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <param name="this">The object.</param>
             <returns>The cast result.</returns>
         </member>
         <member name="M:System.Extensions.CloneableEx.Cast``1(System.ICloneable)">
@@ -601,7 +601,7 @@
             Try to cast the current instance to the generic cloneable type <see cref="T:System.ICloneable`1"/>.
             </summary>
             <typeparam name="TClass">The type of the instance.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The object.</param>
+            <param name="this">The object.</param>
             <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
             <seealso cref="T:System.ICloneable`1"/>
         </member>
@@ -618,7 +618,7 @@
             <see cref="T:System.Collections.Generic.ICollection`1"/>.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The collection.</param>
+            <param name="this">The collection.</param>
             <param name="values">
             The values you want to add to the end of the collection.
             </param>
@@ -629,7 +629,7 @@
             the specified list doesn't contain the specified element.
             </summary>
             <typeparam name="T">The type of all elements.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="item">The item to add.</param>
         </member>
         <member name="T:System.Extensions.DictionaryEx">
@@ -648,7 +648,7 @@
             The iterator type, which means the iteration type for the <typeparamref name="TValue"/>
             instances.
             </typeparam>
-            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+            <param name="this">The dictionary.</param>
             <returns>The result array.</returns>
         </member>
         <member name="M:System.Extensions.DictionaryEx.TryAddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
@@ -657,7 +657,7 @@
             </summary>
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The dictionary.</param>
+            <param name="this">The dictionary.</param>
             <param name="list">The list to add into the dictionary.</param>
             <returns>The number of elements that is successful to add.</returns>
         </member>
@@ -671,7 +671,7 @@
             <summary>
             Indicates whether the specified value is nearly equals to the current value.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="this">The value.</param>
             <param name="other">The other value.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -681,7 +681,7 @@
             If the differ of two values to compare is lower than the specified epsilon value,
             the method will return <see langword="true"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="this">The value.</param>
             <param name="other">The other value to compare.</param>
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
@@ -701,7 +701,7 @@
             Check whether the specified list has only one element.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Extensions.EnumerableEx.Contains``1(System.Collections.Generic.IEnumerable{``0},``0[])">
@@ -709,9 +709,9 @@
             Check whether the list contains the element that is in the specified array.
             </summary>
             <typeparam name="T">The type of the element to check.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="elements">
-            (<see langword="params"/> parameter) The array that contains the target elements.
+            The array that contains the target elements.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -720,7 +720,7 @@
             Check whether the collection contains any elements that match the specified type.
             </summary>
             <typeparam name="T">The type to check.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Extensions.EnumerableEx.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
@@ -728,7 +728,7 @@
             Get the index of the whole list, whose corresponding element is satisfy the specified condition.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="predicate">The condition to check.</param>
             <returns>
             The index of the element satisfied the condition. If the list can't find that element,
@@ -764,7 +764,7 @@
             To get all possible flags from a specified enumeration instance.
             </summary>
             <typeparam name="TEnum">The type of that enumeration.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The field.</param>
+            <param name="this">The field.</param>
             <returns>
             All flags. If the enumeration field doesn't contain any flags,
             the return value will be <see langword="null"/>.
@@ -775,13 +775,13 @@
             Get all possible flags that the current enumeration field set.
             </summary>
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+            <param name="this">The current enumeration type instance.</param>
             <returns>All flags.</returns>
         </member>
         <member name="M:System.Extensions.EnumEx.Flags``1(``0,``0)">
             <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The current enumeration type instance.</param>
+            <param name="this">The current enumeration type instance.</param>
             <param name="other">The other instance to check.</param>
             <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
             <remarks>
@@ -794,7 +794,7 @@
             Determines whether the instance has the flags specified as <paramref name="flags"/>.
             </summary>
             <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="flags">All flags used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
@@ -810,11 +810,11 @@
             If the rule is defined, this method will return the string representation
             according to the format rule.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The format provider.</param>
+            <param name="this">The format provider.</param>
             <param name="obj">The object.</param>
             <param name="format">The format string.</param>
             <param name="result">
-            (<see langword="out"/> parameter) The result. If the format has been defined,
+            The result. If the format has been defined,
             this value won't be <see langword="null"/>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -833,11 +833,11 @@
         </member>
         <member name="M:System.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The index.</param>
+            <param name="this">The index.</param>
             <param name="isFromEnd">
-            (<see langword="out"/> parameter) Indicates whether the current index is from end.
+            Indicates whether the current index is from end.
             </param>
-            <param name="value">(<see langword="out"/> parameter) Indicates the value.</param>
+            <param name="value">Indicates the value.</param>
         </member>
         <member name="T:System.Extensions.ListEx">
             <summary>
@@ -850,7 +850,7 @@
             Remove duplicate items in the specified list.
             </summary>
             <typeparam name="T">The type of each elements.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
         </member>
         <member name="M:System.Extensions.ListEx.RemoveDuplicateItems``1(System.Collections.Generic.IList{``0})">
@@ -858,7 +858,7 @@
             Remove duplicate items in the specified list.
             </summary>
             <typeparam name="T">The type of each elements.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
         </member>
         <member name="M:System.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
@@ -873,7 +873,7 @@
             </code>
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <seealso cref="M:System.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)"/>
         </member>
         <member name="M:System.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)">
@@ -881,15 +881,15 @@
             Remove at the element in the specified index.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="index">(<see langword="in"/> parameter) The index to remove.</param>
+            <param name="this">The list.</param>
+            <param name="index">The index to remove.</param>
         </member>
         <member name="M:System.Extensions.ListEx.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
             <summary>
             Try to convert the current list to a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <returns>The result of the conversion.</returns>
             <exception cref="T:System.InvalidCastException">
             Throws when the specified list is neither <see cref="T:System.Collections.Generic.List`1"/> nor <typeparamref name="T"/>[].
@@ -930,7 +930,7 @@
             Indicates whether custom attributes of a specified type are applied to a specified member.
             </summary>
             <typeparam name="TAttribute">The type of that attribute.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The member information instance.</param>
+            <param name="this">The member information instance.</param>
             <returns>
             <see langword="true"/> if an attribute of the specified type is applied to <paramref name="this"/>;
             otherwise, <see langword="false"/>.
@@ -1017,7 +1017,7 @@
             <paramref name="start"/> and <paramref name="end"/>.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="start">The start index.</param>
             <param name="end">The end index.</param>
             <returns>The list of the elements that is in the specified range.</returns>
@@ -1027,8 +1027,8 @@
             Returns the list that is in the range specified as a <see cref="T:System.Range"/> instance.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
-            <param name="range">(<see langword="in"/> parameter) The range.</param>
+            <param name="this">The list.</param>
+            <param name="range">The range.</param>
             <returns>The list of the elements that is in the specified range.</returns>
         </member>
         <member name="M:System.Extensions.ReadOnlyListEx.FindIndexOf``1(System.Collections.Generic.IReadOnlyList{``0},System.Predicate{``0})">
@@ -1036,7 +1036,7 @@
             Find the index of an element that satisfy the specified condition.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="predicate">The condition.</param>
             <returns>
             The result index of that element. If the list doesn't contain any element to satisfy the condition,
@@ -1056,7 +1056,7 @@
             </summary>
             <typeparam name="T">The element type.</typeparam>
             <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">(<see langword="this in"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
             <example>
@@ -1070,7 +1070,7 @@
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The array.</param>
+            <param name="this">The array.</param>
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
@@ -1084,7 +1084,7 @@
             <summary>
             Indicates whether the specified value is nearly equals to the current value.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="this">The value.</param>
             <param name="other">The other value.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -1094,7 +1094,7 @@
             If the differ of two values to compare is lower than the specified epsilon value,
             the method will return <see langword="true"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value.</param>
+            <param name="this">The value.</param>
             <param name="other">The other value to compare.</param>
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
@@ -1112,7 +1112,7 @@
             </summary>
             <typeparam name="T">The element type.</typeparam>
             <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">(<see langword="this in"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
             <example>
@@ -1126,7 +1126,7 @@
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The array.</param>
+            <param name="this">The array.</param>
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
@@ -1141,7 +1141,7 @@
             Reverse all characters in a specified string builder instance.
             </summary>
             <param name="this">
-            (<see langword="this"/> parameter) The instance to reverse all characters.
+            The instance to reverse all characters.
             </param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1150,7 +1150,7 @@
             Remove the specified number of characters from the end of the string builder
             instance.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance to remove characters.</param>
+            <param name="this">The instance to remove characters.</param>
             <param name="length">The number of characters you want to remove.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1159,7 +1159,7 @@
             Append a character to the end of the specified string builder instance,
             and then append a <see cref="P:System.Environment.NewLine"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="value">The character you want to append.</param>
             <returns>The reference of the current instance.</returns>
             <remarks>
@@ -1177,7 +1177,7 @@
             and then append a <see cref="P:System.Environment.NewLine"/>.
             </summary>
             <typeparam name="T">The type of the instance to add.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="obj">
             The <see cref="T:System.String"/> representation of an object you want to append.
             </param>
@@ -1190,7 +1190,7 @@
             <summary>
             Append several lines into the <see cref="T:System.Text.StringBuilder"/> instance.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="lines">The lines you want to add.</param>
             <returns>The reference of the parameter <paramref name="this"/>.</returns>
         </member>
@@ -1199,7 +1199,7 @@
             Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
             the text is not <see langword="null"/>; otherwise, do nothing.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+            <param name="this">The string builder.</param>
             <param name="text">The text to add.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1209,7 +1209,7 @@
             the text is not <see langword="null"/>, and then add a terminator at the tail;
             otherwise, do nothing.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+            <param name="this">The string builder.</param>
             <param name="text">The text to add.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1218,7 +1218,7 @@
             Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="contentList">All contents.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1229,7 +1229,7 @@
             a string to be appended.
             </summary>
             <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="contentList">All contents.</param>
             <param name="converter">The converter method specified as a function pointer.</param>
             <returns>The reference of the current instance.</returns>
@@ -1241,7 +1241,7 @@
             a string to be appended.
             </summary>
             <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="contentList">All contents.</param>
             <param name="converter">The converter method specified as a function pointer.</param>
             <returns>The reference of the current instance.</returns>
@@ -1253,7 +1253,7 @@
             to convert the specified value into a string to be appended.
             </summary>
             <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="contentList">All contents.</param>
             <param name="converter">The converter method specified as a function pointer.</param>
             <returns>The reference of the current instance.</returns>
@@ -1264,7 +1264,7 @@
             append a new line as a separator.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The list.</param>
+            <param name="this">The list.</param>
             <param name="contentList">All contents.</param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -1300,7 +1300,7 @@
             Check whether the specified string instance is satisfied
             the specified regular expression pattern or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+            <param name="this">The value to check.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
@@ -1313,7 +1313,7 @@
             Check whether the specified string instance can match the value
             using the specified regular expression pattern or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="this">The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
             <remarks>
@@ -1331,7 +1331,7 @@
             Searches the specified input string for the first occurrence of
             the specified regular expression pattern.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="this">The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>
             The value after matching. If failed to match,
@@ -1352,7 +1352,7 @@
             Searches the input string for the first occurrence of the specified regular
             expression, using the specified matching options.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="this">The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <param name="regexOption">The matching options.</param>
             <returns>
@@ -1374,7 +1374,7 @@
             Searches the specified input string for all occurrences of a
             specified regular expression pattern.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="this">The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <returns>
             The result after matching. If failed to match,
@@ -1396,7 +1396,7 @@
             specified regular expression pattern, using the specified matching
             options.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to match.</param>
+            <param name="this">The value to match.</param>
             <param name="pattern">The regular expression pattern.</param>
             <param name="regexOption">The matching options.</param>
             <returns>
@@ -1417,7 +1417,7 @@
             <summary>
             Reserve all characters that satisfy the specified pattern.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <param name="this">The string.</param>
             <param name="reservePattern">
             The pattern that reserved characters satisfied. All supported patterns are:
             <list type="table">
@@ -1450,14 +1450,14 @@
             To check if the current string value is a valid regular
             expression pattern or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The value to check.</param>
+            <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="M:System.Extensions.StringEx.TrimVerbatim(System.String)">
             <summary>
             Trim all spaces when they started a new line, or null lines.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <param name="this">The string.</param>
             <returns>The trimmed result.</returns>
             <remarks>
             Note that all null lines and header spaces are removed.
@@ -1467,14 +1467,14 @@
             <summary>
             Trim new-line characters from the tail of the string.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <param name="this">The string.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:System.Extensions.StringEx.SplitByNewLine(System.String)">
             <summary>
             Split the string with the fixed characters (new line).
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The string.</param>
+            <param name="this">The string.</param>
             <returns>The result.</returns>
         </member>
         <member name="T:System.Extensions.TypeEx">
@@ -1488,7 +1488,7 @@
             Determine whether the type is the subclass of the specified one.
             </summary>
             <typeparam name="TClass">The specified type to check.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The type to check.</param>
+            <param name="this">The type to check.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.Extensions.Utf8JsonReaderEx">
@@ -1502,7 +1502,7 @@
             Try to read an object.
             </summary>
             <typeparam name="T">The object to read.</typeparam>
-            <param name="this">(<see langword="this ref"/> parameter) The reader instance.</param>
+            <param name="this">The reader instance.</param>
             <param name="converter">The converter to convert the value.</param>
             <param name="type">The type to convert.</param>
             <param name="options">The options on deserialization.</param>
@@ -1519,7 +1519,7 @@
             Try to write an object.
             </summary>
             <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="value">The value to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
@@ -1529,7 +1529,7 @@
             Try to write a series of objects.
             </summary>
             <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="values">Values to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
@@ -1584,7 +1584,7 @@
             an integer that indicates whether the current instance precedes, follows, or
             occurs in the same position in the sort order as the other object.
             </summary>
-            <param name="other">(<see langword="in"/> parameter) An object to compare with this instance.</param>
+            <param name="other">An object to compare with this instance.</param>
             <returns>
             A value that indicates the relative order of the objects being compared. The
             return value has these meanings: Value Meaning Less than zero This instance precedes
@@ -1606,7 +1606,7 @@
             <summary>
             Indicates whether the current object is equal to another object of the same type.
             </summary>
-            <param name="other">(<see langword="in"/> parameter) An object to compare with this object.</param>
+            <param name="other">An object to compare with this object.</param>
             <returns>
             <see langword="true"/> if the current object is equal to the other parameter;
             otherwise, <see langword="false"/>.
@@ -1679,7 +1679,7 @@
             <summary>
             Try to copy the current instance to the specified builder.
             </summary>
-            <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
+            <param name="builder">The builder.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the target argument doesn't contain the enough space.
             </exception>
@@ -1715,7 +1715,7 @@
             <summary>
             Initializes an instance with the buffer specified as a <see cref="T:System.Span`1"/>.
             </summary>
-            <param name="buffer">(<see langword="in"/> parameter) The initial buffer.</param>
+            <param name="buffer">The initial buffer.</param>
             <remarks>
             <para>
             For the buffer, you can use the nested <see langword="stackalloc"/> expression to create
@@ -1769,7 +1769,7 @@
             <summary>
             Determines whether the current instance has same values with the other instance.
             </summary>
-            <param name="other">(<see langword="in"/> parameter) The other instance.</param>
+            <param name="other">The other instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
@@ -1967,7 +1967,7 @@
             <summary>
             Append a serial of characters.
             </summary>
-            <param name="value">(<see langword="in"/> parameter) The characters.</param>
+            <param name="value">The characters.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.AppendLine">
             <summary>

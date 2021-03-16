@@ -30,7 +30,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified digits.
 		/// </summary>
-		/// <param name="digits">(<see langword="in"/> parameter) The digits.</param>
+		/// <param name="digits">The digits.</param>
 		public DigitCollection(in ReadOnlySpan<int> digits) : this()
 		{
 			foreach (int digit in digits)

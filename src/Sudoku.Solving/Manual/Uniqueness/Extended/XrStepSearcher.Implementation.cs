@@ -16,9 +16,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
-		/// <param name="extraCells">(<see langword="in"/> parameter) The extra cells map.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="extraCells">The extra cells map.</param>
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType1(
@@ -65,9 +65,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
-		/// <param name="extraCells">(<see langword="in"/> parameter) The extra cells map.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
+		/// <param name="extraCells">The extra cells map.</param>
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraDigit">The extra digit.</param>
 		partial void CheckType2(
@@ -108,11 +108,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
 		/// <param name="normalDigits">The normal digits mask.</param>
 		/// <param name="extraDigits">The extra digits mask.</param>
-		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
+		/// <param name="extraCellsMap">The map of extra cells.</param>
 		partial void CheckType3Naked(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
 			short normalDigits, short extraDigits, in Cells extraCellsMap)
@@ -204,10 +204,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// cannot be found.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="allCellsMap">The map of all cells used.</param>
 		/// <param name="normalDigits">The normal digits mask.</param>
-		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
+		/// <param name="extraCellsMap">The map of extra cells.</param>
 		partial void CheckType14(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
 			short normalDigits, in Cells extraCellsMap)

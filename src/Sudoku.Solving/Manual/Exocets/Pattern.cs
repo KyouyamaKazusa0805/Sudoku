@@ -50,11 +50,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <param name="tq2">The target Q2 cell.</param>
 		/// <param name="tr1">The target R1 cell.</param>
 		/// <param name="tr2">The target R2 cell.</param>
-		/// <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
-		/// <param name="mq1">(<see langword="in"/> parameter) The mirror Q1 cell.</param>
-		/// <param name="mq2">(<see langword="in"/> parameter) The mirror Q2 cell.</param>
-		/// <param name="mr1">(<see langword="in"/> parameter) The mirror R1 cell.</param>
-		/// <param name="mr2">(<see langword="in"/> parameter) The mirror R2 cell.</param>
+		/// <param name="crossline">The cross line cells.</param>
+		/// <param name="mq1">The mirror Q1 cell.</param>
+		/// <param name="mq2">The mirror Q2 cell.</param>
+		/// <param name="mr1">The mirror R1 cell.</param>
+		/// <param name="mr2">The mirror R2 cell.</param>
 		public Pattern(
 			int base1, int base2, int tq1, int tq2, int tr1, int tr2, in Cells crossline,
 			in Cells mq1, in Cells mq2, in Cells mr1, in Cells mr2)
@@ -130,9 +130,9 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
-		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
-		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
+		/// <param name="baseCellsMap">The base cells.</param>
+		/// <param name="targetCellsMap">The target cells.</param>
+		/// <param name="crosslineMap">The cross-line cells.</param>
 		public void Deconstruct(out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
 		{
 			baseCellsMap = new() { Base1, Base2 };
@@ -141,12 +141,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
-		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
-		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
-		/// <param name="tq2">(<see langword="out"/> parameter) The target Q2 cell.</param>
-		/// <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
-		/// <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
+		/// <param name="base1">The base cell 1.</param>
+		/// <param name="base2">The base cell 2.</param>
+		/// <param name="tq1">The target Q1 cell.</param>
+		/// <param name="tq2">The target Q2 cell.</param>
+		/// <param name="tr1">The target R1 cell.</param>
+		/// <param name="tr2">The target R2 cell.</param>
 		public void Deconstruct(out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2)
 		{
 			base1 = Base1;
@@ -158,20 +158,20 @@ namespace Sudoku.Solving.Manual.Exocets
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
-		/// <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
-		/// <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
-		/// <param name="tq2">(<see langword="out"/> parameter) The target Q2 cell.</param>
-		/// <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
-		/// <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
-		/// <param name="crossline">(<see langword="out"/> parameter) The cross line cells.</param>
-		/// <param name="mq1">(<see langword="out"/> parameter) The mirror Q1 cell.</param>
-		/// <param name="mq2">(<see langword="out"/> parameter) The mirror Q2 cell.</param>
-		/// <param name="mr1">(<see langword="out"/> parameter) The mirror R1 cell.</param>
-		/// <param name="mr2">(<see langword="out"/> parameter) The mirror R2 cell.</param>
-		/// <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
-		/// <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
-		/// <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
+		/// <param name="base1">The base cell 1.</param>
+		/// <param name="base2">The base cell 2.</param>
+		/// <param name="tq1">The target Q1 cell.</param>
+		/// <param name="tq2">The target Q2 cell.</param>
+		/// <param name="tr1">The target R1 cell.</param>
+		/// <param name="tr2">The target R2 cell.</param>
+		/// <param name="crossline">The cross line cells.</param>
+		/// <param name="mq1">The mirror Q1 cell.</param>
+		/// <param name="mq2">The mirror Q2 cell.</param>
+		/// <param name="mr1">The mirror R1 cell.</param>
+		/// <param name="mr2">The mirror R2 cell.</param>
+		/// <param name="baseCellsMap">The base cells.</param>
+		/// <param name="targetCellsMap">The target cells.</param>
+		/// <param name="crosslineMap">The cross-line cells.</param>
 		public void Deconstruct(
 			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2,
 			out Cells crossline, out Cells mq1, out Cells mq2, out Cells mr1, out Cells mr2,

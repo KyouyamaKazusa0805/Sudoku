@@ -39,7 +39,7 @@ namespace Sudoku.Data.Stepping
 		/// <summary>
 		/// Initializes an instance with the specified sudoku grid (value type).
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private UndoableGrid(in SudokuGrid grid) => _innerGrid = grid;
 
@@ -361,7 +361,7 @@ namespace Sudoku.Data.Stepping
 		/// <summary>
 		/// Implicit cast from <see cref="SudokuGrid"/> to <see cref="UndoableGrid"/>.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <remarks>The cast won't use neither box nor unbox operations.</remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator UndoableGrid(in SudokuGrid grid) => new(grid);

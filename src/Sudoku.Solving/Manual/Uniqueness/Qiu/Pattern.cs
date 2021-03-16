@@ -14,9 +14,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// Initializes an instance with the specified maps.
 		/// </summary>
-		/// <param name="square">(<see langword="in"/> parameter) The square.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair.</param>
+		/// <param name="square">The square.</param>
+		/// <param name="baseLine">The base line.</param>
+		/// <param name="pair">The pair.</param>
 		public Pattern(in Cells square, in Cells baseLine, in Cells pair)
 		{
 			Square = square;
@@ -47,9 +47,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
-		/// <param name="square">(<see langword="out"/> parameter) The square map.</param>
-		/// <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>
+		/// <param name="pair">The pair map.</param>
+		/// <param name="square">The square map.</param>
+		/// <param name="baseLine">The base line map.</param>
 		public void Deconstruct(out Cells pair, out Cells square, out Cells baseLine)
 		{
 			pair = Pair;

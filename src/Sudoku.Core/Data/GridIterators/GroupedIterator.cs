@@ -25,7 +25,7 @@ namespace Sudoku.Data.GridIterators
 		/// <summary>
 		/// Initializes an instance with the specified enumerator and the key selector.
 		/// </summary>
-		/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+		/// <param name="enumerator">The enumerator.</param>
 		/// <param name="keySelector">The key selecting method.</param>
 		public GroupedIterator(in Enumerator enumerator, Func<int, TKey> keySelector)
 		{
@@ -92,7 +92,7 @@ namespace Sudoku.Data.GridIterators
 		/// <summary>
 		/// Initializes an instance with the specified enumerator and the key selector.
 		/// </summary>
-		/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+		/// <param name="enumerator">The enumerator.</param>
 		/// <param name="keySelector">The key selecting method.</param>
 		/// <param name="converter">The convert method.</param>
 		public GroupedIterator(

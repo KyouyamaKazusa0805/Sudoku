@@ -169,7 +169,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <summary>
 		/// To check whether the loop is valid.
 		/// </summary>
-		/// <param name="cells">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="cells">The loop.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		private static bool IsValidLoop(in Cells cells)
 		{

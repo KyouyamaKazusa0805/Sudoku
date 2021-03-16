@@ -22,10 +22,10 @@ namespace Sudoku.Drawing.Extensions
 		/// Check whether the color ID holds a custom color.
 		/// </summary>
 		/// <param name="this">The color ID.</param>
-		/// <param name="a">(<see langword="out"/> parameter) The alpha.</param>
-		/// <param name="r">(<see langword="out"/> parameter) The red.</param>
-		/// <param name="g">(<see langword="out"/> parameter) The green.</param>
-		/// <param name="b">(<see langword="out"/> parameter) The blue.</param>
+		/// <param name="a">The alpha.</param>
+		/// <param name="r">The red.</param>
+		/// <param name="g">The green.</param>
+		/// <param name="b">The blue.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		/// <remarks>
 		/// <see cref="DrawingInfo"/> objects holds key and value two properties, where

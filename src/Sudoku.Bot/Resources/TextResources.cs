@@ -70,7 +70,7 @@ namespace Sudoku.Bot.Resources
 		/// Try to get the value via the specified key.
 		/// </summary>
 		/// <param name="key">The key.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <param name="result">The result.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		private bool TryGetValue(string key, [NotNullWhen(true)] out string? result)
 		{

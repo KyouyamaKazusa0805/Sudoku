@@ -68,7 +68,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To solve the puzzle.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+		/// <param name="grid">The puzzle.</param>
 		/// <param name="progress">The progress instance to report the state.</param>
 		/// <param name="countryCode">The country code.</param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>

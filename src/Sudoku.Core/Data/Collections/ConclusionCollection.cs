@@ -24,7 +24,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified collection.
 		/// </summary>
-		/// <param name="collection">(<see langword="in"/> parameter) The collection.</param>
+		/// <param name="collection">The collection.</param>
 		public ConclusionCollection(in ReadOnlySpan<Conclusion> collection) : this() => _collection = collection;
 
 		/// <summary>

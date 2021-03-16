@@ -24,7 +24,7 @@ namespace Sudoku.Data.GridIterators
 		/// <summary>
 		/// Initializes an instance with the enumerator and the convert method.
 		/// </summary>
-		/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+		/// <param name="enumerator">The enumerator.</param>
 		/// <param name="converter">The convert method.</param>
 		public SelectIterator(in Enumerator enumerator, Func<int, T> converter)
 		{

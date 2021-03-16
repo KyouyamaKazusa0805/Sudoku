@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check type 3 (with naked subsets).
 		/// </summary>
 		/// <param name="accumulator">The result.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckType3Naked(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check type 4.
 		/// </summary>
 		/// <param name="accumulator">The result.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckType4(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
@@ -292,7 +292,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG + n.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckMultiple(
 			IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
@@ -342,7 +342,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Check BUG-XZ.
 		/// </summary>
 		/// <param name="accumulator">The result list.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="trueCandidates">All true candidates.</param>
 		partial void CheckXz(IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
 		{

@@ -13,7 +13,7 @@ namespace System.Extensions
 		/// Reverse all characters in a specified string builder instance.
 		/// </summary>
 		/// <param name="this">
-		/// (<see langword="this"/> parameter) The instance to reverse all characters.
+		/// The instance to reverse all characters.
 		/// </param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder Reverse(this StringBuilder @this)
@@ -33,7 +33,7 @@ namespace System.Extensions
 		/// Remove the specified number of characters from the end of the string builder
 		/// instance.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance to remove characters.</param>
+		/// <param name="this">The instance to remove characters.</param>
 		/// <param name="length">The number of characters you want to remove.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder RemoveFromEnd(this StringBuilder @this, int length) =>
@@ -43,7 +43,7 @@ namespace System.Extensions
 		/// Append a character to the end of the specified string builder instance,
 		/// and then append a <see cref="Environment.NewLine"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="value">The character you want to append.</param>
 		/// <returns>The reference of the current instance.</returns>
 		/// <remarks>
@@ -62,7 +62,7 @@ namespace System.Extensions
 		/// and then append a <see cref="Environment.NewLine"/>.
 		/// </summary>
 		/// <typeparam name="T">The type of the instance to add.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="obj">
 		/// The <see cref="string"/> representation of an object you want to append.
 		/// </param>
@@ -76,7 +76,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Append several lines into the <see cref="StringBuilder"/> instance.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="lines">The lines you want to add.</param>
 		/// <returns>The reference of the parameter <paramref name="this"/>.</returns>
 		public static StringBuilder AppendLines(this StringBuilder @this, int lines)
@@ -93,7 +93,7 @@ namespace System.Extensions
 		/// Append the text into the tail of the <see cref="StringBuilder"/> object if
 		/// the text is not <see langword="null"/>; otherwise, do nothing.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+		/// <param name="this">The string builder.</param>
 		/// <param name="text">The text to add.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder NullableAppend(this StringBuilder @this, string? text) =>
@@ -104,7 +104,7 @@ namespace System.Extensions
 		/// the text is not <see langword="null"/>, and then add a terminator at the tail;
 		/// otherwise, do nothing.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The string builder.</param>
+		/// <param name="this">The string builder.</param>
 		/// <param name="text">The text to add.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder NullableAppendLine(this StringBuilder @this, string? text) =>
@@ -114,7 +114,7 @@ namespace System.Extensions
 		/// Append a series of elements, and convert them to a <see cref="string"/> representation.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="contentList">All contents.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder AppendRange<T>(this StringBuilder @this, IEnumerable<T?> contentList)
@@ -133,7 +133,7 @@ namespace System.Extensions
 		/// a string to be appended.
 		/// </summary>
 		/// <typeparam name="TElement">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="contentList">All contents.</param>
 		/// <param name="converter">The converter method specified as a function pointer.</param>
 		/// <returns>The reference of the current instance.</returns>
@@ -154,7 +154,7 @@ namespace System.Extensions
 		/// a string to be appended.
 		/// </summary>
 		/// <typeparam name="TElement">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="contentList">All contents.</param>
 		/// <param name="converter">The converter method specified as a function pointer.</param>
 		/// <returns>The reference of the current instance.</returns>
@@ -176,7 +176,7 @@ namespace System.Extensions
 		/// to convert the specified value into a string to be appended.
 		/// </summary>
 		/// <typeparam name="TElement">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="contentList">All contents.</param>
 		/// <param name="converter">The converter method specified as a function pointer.</param>
 		/// <returns>The reference of the current instance.</returns>
@@ -196,7 +196,7 @@ namespace System.Extensions
 		/// append a new line as a separator.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="contentList">All contents.</param>
 		/// <returns>The reference of the current instance.</returns>
 		public static StringBuilder AppendLineRange<T>(this StringBuilder @this, IEnumerable<T?> contentList)

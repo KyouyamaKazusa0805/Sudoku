@@ -181,7 +181,7 @@ namespace Sudoku.Windows
 		/// Change the button's background and foreground color.
 		/// </summary>
 		/// <param name="button">The button.</param>
-		/// <param name="color">(<see langword="in"/> parameter) The color.</param>
+		/// <param name="color">The color.</param>
 		private void ChangeColor(Button button, in Color color)
 		{
 			button.Background = new SolidColorBrush(color);

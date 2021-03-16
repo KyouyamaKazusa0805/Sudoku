@@ -125,7 +125,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Represents a string value indicating this instance.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The string.</returns>
 			public string ToString(in SudokuGrid grid) =>
 				Sukaku
@@ -139,7 +139,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Represents a string value indicating this instance, with the specified format string.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <param name="format">The string format.</param>
 			/// <returns>The string.</returns>
 			public string ToString(in SudokuGrid grid, string? format) => Create(format).ToString(grid);
@@ -147,7 +147,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To Excel format string.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The string.</returns>
 			private string ToExcelString(in SudokuGrid grid)
 			{
@@ -175,7 +175,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To string with Hodoku library format compatible string.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The string.</returns>
 			private string ToHodokuLibraryFormatString(in SudokuGrid grid) =>
 				$":0000:x:{ToSingleLineStringCore(grid)}:::";
@@ -183,7 +183,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To string with the sukaku format.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The string.</returns>
 			/// <exception cref="ArgumentException">
 			/// Throws when the puzzle is an invalid sukaku puzzle (at least one cell is given or modifiable).
@@ -251,7 +251,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To single line string.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The result.</returns>
 			private unsafe string ToSingleLineStringCore(in SudokuGrid grid)
 			{
@@ -293,7 +293,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To multi-line string with candidates.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The result.</returns>
 			private string ToMultiLineStringCore(in SudokuGrid grid)
 			{
@@ -488,7 +488,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// To multi-line normal grid string without any candidates.
 			/// </summary>
-			/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+			/// <param name="grid">The grid.</param>
 			/// <returns>The result.</returns>
 			private string ToMultiLineSimpleGridCore(in SudokuGrid grid)
 			{

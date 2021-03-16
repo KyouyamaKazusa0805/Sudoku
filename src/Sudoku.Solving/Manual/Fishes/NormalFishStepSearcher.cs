@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// Get all possible normal fishes.
 		/// </summary>
 		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="r">The possible row table to iterate.</param>
 		/// <param name="c">The possible column table to iterate.</param>
@@ -235,12 +235,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Get the direct fish view with the specified grid and the base sets.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="digit">The digit.</param>
 		/// <param name="baseSets">The base sets.</param>
 		/// <param name="coverSets">The cover sets.</param>
 		/// <param name="fins">
-		/// (<see langword="in"/> parameter) The cells of the fin in the current fish.
+		/// The cells of the fin in the current fish.
 		/// </param>
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 		/// <returns>The view.</returns>

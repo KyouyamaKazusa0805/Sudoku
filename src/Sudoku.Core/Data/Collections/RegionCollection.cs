@@ -31,7 +31,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Initializes an instance with the specified regions.
 		/// </summary>
-		/// <param name="regions">(<see langword="in"/> parameter) The regions.</param>
+		/// <param name="regions">The regions.</param>
 		public RegionCollection(in ReadOnlySpan<int> regions) : this()
 		{
 			foreach (int region in regions)

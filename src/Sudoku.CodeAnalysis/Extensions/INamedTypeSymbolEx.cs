@@ -12,7 +12,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// <summary>
 		/// Check whether the current symbol derives from the specified type symbol.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The symbol to check.</param>
+		/// <param name="this">The symbol to check.</param>
 		/// <param name="type">The type.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool DerivedFrom(this INamedTypeSymbol @this, ITypeSymbol? type)
@@ -36,7 +36,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// <summary>
 		/// Creates an <see cref="INamedTypeSymbol"/> with specified type arguments.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The base symbol.</param>
+		/// <param name="this">The base symbol.</param>
 		/// <param name="compilation">The compilation.</param>
 		/// <param name="specialTypes">All special types to create.</param>
 		/// <returns>Result symbol.</returns>
@@ -52,7 +52,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// <summary>
 		/// Check whether the current symbol derives from the specified type.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The symbol to check.</param>
+		/// <param name="this">The symbol to check.</param>
 		/// <param name="compilation">The compilation.</param>
 		/// <param name="typeName">The type name.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>

@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Initializes an instance with the specified digit mask and the map of cells.
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public Als(short digitMask, in Cells map) : this(digitMask, map, default)
 		{
 		}
@@ -29,9 +29,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Initializes an instance with the specified digit mask and the map of cells.
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="possibleEliminationSet">
-		/// (<see langword="in"/> parameter) The possible elimination set.
+		/// The possible elimination set.
 		/// </param>
 		public Als(short digitMask, in Cells map, in Cells possibleEliminationSet)
 		{
@@ -90,9 +90,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
-		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
+		/// <param name="region">The region.</param>
+		/// <param name="digitsMask">The digits mask.</param>
+		/// <param name="map">The map.</param>
 		public void Deconstruct(out int region, out short digitsMask, out Cells map)
 		{
 			region = Region;
@@ -102,13 +102,13 @@ namespace Sudoku.Solving.Manual.Alses
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isBivalueCell">
-		/// (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
+		/// Indicates whether the specified ALS is bi-value.
 		/// </param>
-		/// <param name="region">(<see langword="out"/> parameter) The region.</param>
-		/// <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-		/// <param name="map">(<see langword="out"/> parameter) The map.</param>
-		/// <param name="possibleEliminations">(<see langword="out"/> parameter) The possible eliminations.</param>
-		/// <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
+		/// <param name="region">The region.</param>
+		/// <param name="digitsMask">The digits mask.</param>
+		/// <param name="map">The map.</param>
+		/// <param name="possibleEliminations">The possible eliminations.</param>
+		/// <param name="strongLinksMask">The strong links mask.</param>
 		public void Deconstruct(
 			out bool isBivalueCell, out int region, out short digitsMask,
 			out Cells map, out Cells possibleEliminations, out IEnumerable<short> strongLinksMask)
@@ -127,9 +127,9 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="digit">The digit.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <param name="result">The result.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool ContainsDigit(in SudokuGrid grid, int digit, out Cells result)
 		{

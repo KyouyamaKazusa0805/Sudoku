@@ -90,10 +90,10 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
-		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// Indicates whether the technique is enabled.
 		/// </param>
 		/// <param name="isReadOnly">
-		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// Indicates whether the technique can't modify the priority.
 		/// </param>
 		public void Deconstruct(out bool isEnabled, out bool isReadOnly)
 		{
@@ -103,13 +103,13 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
-		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// Indicates whether the technique is enabled.
 		/// </param>
 		/// <param name="isReadOnly">
-		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// Indicates whether the technique can't modify the priority.
 		/// </param>
 		/// <param name="priority">
-		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// Indicates the priority of the technique.
 		/// </param>
 		public void Deconstruct(out bool isEnabled, out bool isReadOnly, out int priority)
 		{
@@ -120,16 +120,16 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
-		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// Indicates whether the technique is enabled.
 		/// </param>
 		/// <param name="isReadOnly">
-		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// Indicates whether the technique can't modify the priority.
 		/// </param>
 		/// <param name="priority">
-		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// Indicates the priority of the technique.
 		/// </param>
 		/// <param name="disabledReason">
-		/// (<see langword="out"/> parameter) Indicates why this technique is disabled.
+		/// Indicates why this technique is disabled.
 		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason)
@@ -142,25 +142,25 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="isEnabled">
-		/// (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+		/// Indicates whether the technique is enabled.
 		/// </param>
 		/// <param name="isReadOnly">
-		/// (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+		/// Indicates whether the technique can't modify the priority.
 		/// </param>
 		/// <param name="priority">
-		/// (<see langword="out"/> parameter) Indicates the priority of the technique.
+		/// Indicates the priority of the technique.
 		/// </param>
 		/// <param name="disabledReason">
-		/// (<see langword="out"/> parameter) Indicates why this technique is disabled.
+		/// Indicates why this technique is disabled.
 		/// </param>
 		/// <param name="onlyEnableInAnalysis">
-		/// (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
+		/// Indicates whether the searcher is enabled only in traversing mode.
 		/// </param>
 		/// <param name="displayLevel">
-		/// (<see langword="out"/> parameter) Indicates the display level.
+		/// Indicates the display level.
 		/// </param>
 		/// <param name="displayLabel">
-		/// (<see langword="out"/> parameter) Indicates the display label.
+		/// Indicates the display label.
 		/// </param>
 		public void Deconstruct(
 			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,

@@ -55,7 +55,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// (Copy constructor) Initializes an instance with another one.
 		/// </summary>
-		/// <param name="another">(<see langword="in"/> parameter) The another instance.</param>
+		/// <param name="another">The another instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Candidates(in Candidates another) => this = another;
 
@@ -184,7 +184,7 @@ namespace Sudoku.Data
 		/// Initializes an instance with the specified <see cref="Cells"/> and the number
 		/// representing.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="digit">The digit.</param>
 		public Candidates(in Cells map, int digit) : this()
 		{
@@ -197,7 +197,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Initializes an instance with the specified candidates.
 		/// </summary>
-		/// <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
+		/// <param name="candidates">The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Candidates(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
 
@@ -325,7 +325,7 @@ namespace Sudoku.Data
 		/// Copies the current instance to the tagret <see cref="Span{T}"/> instance.
 		/// </summary>
 		/// <param name="span">
-		/// (<see langword="ref"/> parameter) The target <see cref="Span{T}"/> instance.
+		/// The target <see cref="Span{T}"/> instance.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly void CopyTo(ref Span<int> span)
@@ -540,7 +540,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Set the specified candidates as <see langword="true"/> value.
 		/// </summary>
-		/// <param name="candidates">(<see langword="in"/> parameter) The candidate offsets.</param>
+		/// <param name="candidates">The candidate offsets.</param>
 		public void AddRange(in ReadOnlySpan<int> candidates)
 		{
 			foreach (int candidate in candidates)
@@ -628,7 +628,7 @@ namespace Sudoku.Data
 		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
 		/// will be set <see langword="true"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The instance to negate.</param>
+		/// <param name="map">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator ~(in Candidates map)
@@ -655,8 +655,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all candidates that two <see cref="Candidates"/>s both contain.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The intersection result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator &(in Candidates left, in Candidates right)
@@ -681,8 +681,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all candidates from two <see cref="Candidates"/>s.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The union result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator |(in Candidates left, in Candidates right)
@@ -707,8 +707,8 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Get all candidates that only appears once in two <see cref="Candidates"/>s.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The symmetrical difference result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator ^(in Candidates left, in Candidates right)
@@ -734,8 +734,8 @@ namespace Sudoku.Data
 		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> candidates
 		/// but not in <paramref name="right"/> candidates.
 		/// </summary>
-		/// <param name="left">(<see langword="in"/> parameter) The left instance.</param>
-		/// <param name="right">(<see langword="in"/> parameter) The right instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Candidates operator -(in Candidates left, in Candidates right)
@@ -760,7 +760,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Simplified calls <see cref="Reduce(int)"/>.
 		/// </summary>
-		/// <param name="candidates">(<see langword="in"/> parameter) The candidates.</param>
+		/// <param name="candidates">The candidates.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The cells.</returns>
 		/// <seealso cref="Reduce(int)"/>
@@ -777,19 +777,19 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Implicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public static implicit operator Span<int>(in Candidates map) => map.ToSpan();
 
 		/// <summary>
 		/// Implicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public static implicit operator ReadOnlySpan<int>(in Candidates map) => map.ToReadOnlySpan();
 
 		/// <summary>
 		/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		public static explicit operator int[](in Candidates map) => map.ToArray();
 	}
 }

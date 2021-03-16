@@ -17,7 +17,7 @@ namespace Sudoku.Bot.Extensions
 		/// <summary>
 		/// Send the message without mention someone.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The event arguments.</param>
+		/// <param name="this">The event arguments.</param>
 		/// <param name="message">The message to send.</param>
 		/// <returns>The task.</returns>
 		public static async Task NormalSendAsync(this GroupMessageReceivedEventArgs @this, MessageElement message) =>
@@ -26,7 +26,7 @@ namespace Sudoku.Bot.Extensions
 		/// <summary>
 		/// To reply an image.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The event arguments.</param>
+		/// <param name="this">The event arguments.</param>
 		/// <param name="image">The image to reply.</param>
 		/// <param name="path">
 		/// The path to store the file. Due to the technical implementation, the method will save the file

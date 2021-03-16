@@ -8,8 +8,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Gathering basic eliminations.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="elims">(<see langword="ref"/> parameter) The elimination set.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="elims">The elimination set.</param>
 		/// <param name="cell">The cell to check eliminations.</param>
 		/// <param name="baseCands">The mask that holds the digits in the base cells.</param>
 		/// <param name="baseCandsWithAhsOrConjugatePair">

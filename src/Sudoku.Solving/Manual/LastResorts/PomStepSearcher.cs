@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Get all invalid positions.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <returns>The 9 maps for invalid positions of each digit.</returns>
 		private static Cells[] GetInvalidPos(in SudokuGrid grid)
 		{

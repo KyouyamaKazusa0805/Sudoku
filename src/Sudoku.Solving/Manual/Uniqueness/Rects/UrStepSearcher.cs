@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Get all possible hints from the grid.
 		/// </summary>
 		/// <param name="gathered">The list stored the result.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 		private void GetAll(IList<UrStepInfo> gathered, in SudokuGrid grid, bool arMode)
 		{
@@ -220,7 +220,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <summary>
 		/// Check preconditions.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 		/// <returns>Indicates whether the UR is passed to check.</returns>
@@ -259,7 +259,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// is same as the given map contains.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		/// <param name="region">The region.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -298,7 +298,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="currentCell">The current cell.</param>
 		/// <param name="anotherCell">Another cell to check.</param>
 		/// <param name="region">
-		/// (<see langword="out"/> parameter) The result regions that both cells lie in.
+		/// The result regions that both cells lie in.
 		/// If the cell can't be found, the parameter will be an empty array of type <see cref="int"/>.
 		/// </param>
 		/// <returns>

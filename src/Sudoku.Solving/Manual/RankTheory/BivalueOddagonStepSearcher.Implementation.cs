@@ -16,12 +16,12 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
-		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+		/// <param name="extraCellsMap">The extra cells map.</param>
 		partial void CheckType1(
 			IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
 			IReadOnlyList<Link> links, in Cells extraCellsMap)
@@ -62,12 +62,12 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
-		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+		/// <param name="extraCellsMap">The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType2(
 			IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
@@ -121,12 +121,12 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="d1">The digit 1.</param>
 		/// <param name="d2">The digit 2.</param>
-		/// <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
-		/// <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+		/// <param name="extraCellsMap">The extra cells map.</param>
 		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
 		partial void CheckType3(
 			IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,

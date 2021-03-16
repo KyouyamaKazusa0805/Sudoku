@@ -174,34 +174,34 @@
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="hasSolved">
-            (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
+            Indicates whether the puzzle has been solved.
             </param>
             <param name="solvingStepsCount">
-            (<see langword="out"/> parameter) The total number of all solving steps.
+            The total number of all solving steps.
             </param>
             <param name="solvingSteps">
-            (<see langword="out"/> parameter) The all solving steps.
+            The all solving steps.
             </param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid}@,System.Object@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>
+            <param name="solverName">The solver name.</param>
             <param name="hasSolved">
-            (<see langword="out"/> parameter) Indicates whether the solver has solved the puzzle.
+            Indicates whether the solver has solved the puzzle.
             </param>
-            <param name="total">(<see langword="out"/> parameter) The total difficulty.</param>
-            <param name="max">(<see langword="out"/> parameter) The maximum difficulty of all steps.</param>
-            <param name="pearl">(<see langword="out"/> parameter) The pearl difficulty of the puzzle.</param>
-            <param name="diamond">(<see langword="out"/> parameter) The diamond difficulty of the puzzle.</param>
-            <param name="puzzle">(<see langword="out"/> parameter) The puzzle.</param>
-            <param name="solution">(<see langword="out"/> parameter) The solution.</param>
-            <param name="elasped">(<see langword="out"/> parameter) The time elapsed.</param>
-            <param name="stepCount">(<see langword="out"/> parameter) The number of all steps.</param>
-            <param name="steps">(<see langword="out"/> parameter) The steps.</param>
+            <param name="total">The total difficulty.</param>
+            <param name="max">The maximum difficulty of all steps.</param>
+            <param name="pearl">The pearl difficulty of the puzzle.</param>
+            <param name="diamond">The diamond difficulty of the puzzle.</param>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution.</param>
+            <param name="elasped">The time elapsed.</param>
+            <param name="stepCount">The number of all steps.</param>
+            <param name="steps">The steps.</param>
             <param name="stepGrids">
-            (<see langword="out"/> parameter) The grids corresponding to the steps.
+            The grids corresponding to the steps.
             </param>
-            <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
+            <param name="additional">The additional message.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
             <summary>
@@ -320,10 +320,10 @@
             Solve backtrackingly.
             </summary>
             <param name="solutionsCount">
-            (<see langword="ref"/> parameter) The number of solutions.
+            The number of solutions.
             </param>
             <param name="result">
-            (<see langword="ref"/> parameter) The result array.
+            The result array.
             </param>
             <param name="gridValues">All grid values.</param>
             <param name="finishedCellsCount">The number of cells had finished.</param>
@@ -428,7 +428,7 @@
             </summary>
             <param name="puzzle">The puzzle.</param>
             <param name="solution">
-            (<see langword="out"/> parameter) The solution. The value keeps <see langword="null"/>
+            The solution. The value keeps <see langword="null"/>
             if you doesn't want to use this result.
             </param>
             <param name="limit">The limit.</param>
@@ -451,7 +451,7 @@
             </summary>
             <param name="puzzle">The puzzle.</param>
             <param name="solution">
-            (<see langword="ref"/> parameter) The solution receiver. This parameter is used when you want
+            The solution receiver. This parameter is used when you want
             to use the solution string. The receiver is represented as a <see cref="T:System.Text.ValueStringBuilder"/>.
             </param>
             <param name="limit">The limit.</param>
@@ -472,7 +472,7 @@
             Check the validity of the puzzle.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">(<see langword="out"/> parameter) The solution if the puzzle is unique.</param>
+            <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
             <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
@@ -522,7 +522,7 @@
             <summary>
             The internal solving method.
             </summary>
-            <param name="puzzle">(<see langword="in"/> parameter) The pointer to the puzzle string.</param>
+            <param name="puzzle">The pointer to the puzzle string.</param>
             <param name="solutionPtr">The pointer to the solution string.</param>
             <param name="limit">The limitation for the number of all final solutions.</param>
             <returns>The number of solutions found.</returns>
@@ -645,7 +645,7 @@
             Search all backdoors whose level is lower or equals than the
             specified depth.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="depth">
             The depth you want to search for. The depth value must be between 0 and 3.
             where value 0 is for searching for assignments.
@@ -657,7 +657,7 @@
             <summary>
             Search all backdoors whose depth is exactly same as the argument.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="depth">
             The depth you want to search for. The depth value must be between 0 and 3.
             where value 0 is for searching for assignments.
@@ -680,7 +680,7 @@
             To find all backdoors in a sudoku grid.
             </summary>
             <param name="result">The result list.</param>
-            <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
+            <param name="grid">A sudoku grid to search backdoors.</param>
             <param name="depth">The depth to search.</param>
             <exception cref="T:Sudoku.InvalidPuzzleException">
             Throws when the grid is invalid (has no solution or multiple solutions).
@@ -695,7 +695,7 @@
             <summary>
             Initializes an instance with the specified grid.
             </summary>
-            <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
+            <param name="puzzle">The current puzzle grid.</param>
             <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
@@ -751,7 +751,7 @@
             <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Nullable{System.Boolean}@)"/>,
             but doesn't contain any <see langword="out"/> parameters.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+            <param name="this">The grid.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
             <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)"/>
             <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Nullable{System.Boolean}@)"/>
@@ -762,7 +762,7 @@
             <see cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid@,System.Nullable{System.Boolean}@)"/>,
             but doesn't contain any <see langword="out"/> parameters.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The grid.</param>
+            <param name="this">The grid.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
             <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid@)"/>
             <seealso cref="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsValid(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Data.Stepping.UndoableGrid@,System.Nullable{System.Boolean}@)"/>
@@ -771,9 +771,9 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="solutionIfValid">
-            (<see langword="out"/> parameter) The solution if the puzzle is valid;
+            The solution if the puzzle is valid;
             otherwise, <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -783,9 +783,9 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="solutionIfValid">
-            (<see langword="out"/> parameter) The solution if the puzzle is valid;
+            The solution if the puzzle is valid;
             otherwise, <see langword="null"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -794,9 +794,9 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="sukaku">
-            (<see langword="out"/> parameter) A <see cref="T:System.Boolean"/> value indicating whether the current
+            A <see cref="T:System.Boolean"/> value indicating whether the current
             grid is a sukaku. <see langword="true"/> is for sukaku.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -805,9 +805,9 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="sukaku">
-            (<see langword="out"/> parameter) A <see cref="T:System.Boolean"/> value indicating whether the current
+            A <see cref="T:System.Boolean"/> value indicating whether the current
             grid is a sukaku. <see langword="true"/> is for sukaku.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
@@ -816,13 +816,13 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="solutionIfValid">
-            (<see langword="out"/> parameter) The solution if the puzzle is valid;
+            The solution if the puzzle is valid;
             otherwise, <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
             </param>
             <param name="sukaku">
-            (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+            Indicates whether the current mode is sukaku mode.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
@@ -831,13 +831,13 @@
             <summary>
             To check if a puzzle has only one solution or not.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <param name="solutionIfValid">
-            (<see langword="out"/> parameter) The solution if the puzzle is valid;
+            The solution if the puzzle is valid;
             otherwise, <see langword="null"/>.
             </param>
             <param name="sukaku">
-            (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+            Indicates whether the current mode is sukaku mode.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -845,35 +845,35 @@
             <summary>
             To check if the puzzle is minimal or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsPearl(Sudoku.Data.SudokuGrid@)">
             <summary>
             To check if the puzzle is pearl or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.IsDiamond(Sudoku.Data.SudokuGrid@)">
             <summary>
             To check if the puzzle is diamond or not.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+            <param name="this">The puzzle to check.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.CanBeSolvedUsingOnlySsts(Sudoku.Data.SudokuGrid@)">
             <summary>
             To check whether the puzzle can be solved using only simple sudoku technique set.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
+            <param name="this">The puzzle.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Checking.PuzzleAttributeChecker.GetDifficultyLevel(Sudoku.Data.SudokuGrid@)">
             <summary>
             Get the difficulty level of this puzzle.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
+            <param name="this">The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
         <member name="T:Sudoku.Solving.Extensions.Algorithms">
@@ -939,7 +939,7 @@
             <summary>
             To solve the specified puzzle.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+            <param name="grid">The puzzle.</param>
             <returns>
             An <see cref="T:Sudoku.Solving.AnalysisResult"/> displaying all information of solving.
             </returns>
@@ -976,7 +976,7 @@
             <summary>
             Search for all possible steps in a grid.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="progress">The progress.</param>
             <param name="countryCode">The country code.</param>
             <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
@@ -987,7 +987,7 @@
             <summary>
             Search for all possible steps in a grid.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="progress">The progress.</param>
             <param name="countryCode">The country code.</param>
             <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
@@ -1004,16 +1004,16 @@
             Initializes an instance with the specified digit mask and the map of cells.
             </summary>
             <param name="digitMask">The digit mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
             </summary>
             <param name="digitMask">The digit mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
             <param name="possibleEliminationSet">
-            (<see langword="in"/> parameter) The possible elimination set.
+            The possible elimination set.
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.Als.IsBivalueCell">
@@ -1049,20 +1049,20 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="region">(<see langword="out"/> parameter) The region.</param>
-            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-            <param name="map">(<see langword="out"/> parameter) The map.</param>
+            <param name="region">The region.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isBivalueCell">
-            (<see langword="out"/> parameter) Indicates whether the specified ALS is bi-value.
+            Indicates whether the specified ALS is bi-value.
             </param>
-            <param name="region">(<see langword="out"/> parameter) The region.</param>
-            <param name="digitsMask">(<see langword="out"/> parameter) The digits mask.</param>
-            <param name="map">(<see langword="out"/> parameter) The map.</param>
-            <param name="possibleEliminations">(<see langword="out"/> parameter) The possible eliminations.</param>
-            <param name="strongLinksMask">(<see langword="out"/> parameter) The strong links mask.</param>
+            <param name="region">The region.</param>
+            <param name="digitsMask">The digits mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminations">The possible eliminations.</param>
+            <param name="strongLinksMask">The strong links mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
             <inheritdoc/>
@@ -1071,9 +1071,9 @@
             <summary>
             Indicates whether the specified grid contains the digit.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <param name="result">The result.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als@)">
@@ -1543,7 +1543,7 @@
             <summary>
             Search for chains of each type.
             </summary>
-            <param name="accumulator">(<see langword="in"/> parameter) The accumulator.</param>
+            <param name="accumulator">The accumulator.</param>
             <param name="grid">Thr grid.</param>
             <param name="xEnabled">
             Indicates whether the strong links in regions are enabled to search for.
@@ -1557,8 +1557,8 @@
             Do unary chaining.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pOn">(<see langword="in"/> parameter) The node set on.</param>
+            <param name="grid">The grid.</param>
+            <param name="pOn">The node set on.</param>
             <param name="xEnabled">
             Indicates whether the strong links in regions are enabled to search for.
             </param>
@@ -1570,8 +1570,8 @@
             <summary>
             Create a loop hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.LoopStepInfo"/>).
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="destOn">(<see langword="in"/> parameter) The start node.</param>
+            <param name="grid">The grid.</param>
+            <param name="destOn">The start node.</param>
             <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
             <returns>
@@ -1584,8 +1584,8 @@
             <summary>
             Create an AIC hint (i.e. a <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepInfo"/>).
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="target">(<see langword="in"/> parameter) The elimination node (which is used for searching the whole chain).</param>
+            <param name="grid">The grid.</param>
+            <param name="target">The elimination node (which is used for searching the whole chain).</param>
             <param name="xEnabled">Indicates whether X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether Y-Chains are enabled.</param>
             <returns>
@@ -1598,24 +1598,24 @@
             <summary>
             Simulate the passing strong and weak links in AICs.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="onToOn">The nodes that the end candidates are currently on.</param>
             <param name="onToOff">The nodes the end candidates are currently off.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <param name="chains">The chain nodes.</param>
-            <param name="source">(<see langword="in"/> parameter) The source node.</param>
+            <param name="source">The source node.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicStepSearcher.DoLoops(Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean,System.Boolean,System.Collections.Generic.IList{Sudoku.Data.Node},Sudoku.Data.Node@)">
             <summary>
             Simulate the passing strong and weak links in CNLs.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="onToOn">The nodes that the end candidates are currently on.</param>
             <param name="onToOff">The nodes the end candidates are currently off.</param>
             <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <param name="loops">The loop nodes.</param>
-            <param name="source">(<see langword="in"/> parameter) The source node.</param>
+            <param name="source">The source node.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo">
             <summary>
@@ -1942,16 +1942,16 @@
             Search for chains of each type.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcStepSearcher.DoBinaryChaining(System.Collections.Generic.IList{Sudoku.Solving.Manual.Chaining.ChainingStepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Collections.Generic.Set{Sudoku.Data.Node},System.Collections.Generic.Set{Sudoku.Data.Node},System.Boolean,System.Boolean)">
             <summary>
             Do binary chaining.
             </summary>
             <param name="accumulator">The current accumulator.</param>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
-            <param name="pOn">(<see langword="in"/> parameter) The on node.</param>
-            <param name="pOff">(<see langword="in"/> parameter) The off node.</param>
+            <param name="grid">The grid.</param>
+            <param name="pOn">The on node.</param>
+            <param name="pOff">The off node.</param>
             <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
             <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
             <param name="doReduction">Indicates whether the method executes double chaining.</param>
@@ -1962,7 +1962,7 @@
             Do region chaining.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="ref"/> parameter) </param>
+            <param name="grid"></param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
@@ -1972,7 +1972,7 @@
             <summary>
             Do chaining (i.e. multiple chaining).
             </summary>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="toOn">The list to <c>on</c> nodes.</param>
             <param name="toOff">The list to <c>off</c> nodes.</param>
             <returns>The result.</returns>
@@ -1981,10 +1981,10 @@
             <summary>
             Create a chaining hint whose conclusion is an on result.
             </summary>
-            <param name="destOn">(<see langword="in"/> parameter) The destination on node.</param>
-            <param name="destOff">(<see langword="in"/> parameter) The destination off node.</param>
-            <param name="source">(<see langword="in"/> parameter) The source node.</param>
-            <param name="target">(<see langword="in"/> parameter) The target node.</param>
+            <param name="destOn">The destination on node.</param>
+            <param name="destOff">The destination off node.</param>
+            <param name="source">The source node.</param>
+            <param name="target">The target node.</param>
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
@@ -1992,10 +1992,10 @@
             <summary>
             Create a chaining hint whose conclusion is an off result.
             </summary>
-            <param name="destOn">(<see langword="in"/> parameter) The destination on node.</param>
-            <param name="destOff">(<see langword="in"/> parameter) The destination off node.</param>
-            <param name="source">(<see langword="in"/> parameter) The source node.</param>
-            <param name="target">(<see langword="in"/> parameter) The target node.</param>
+            <param name="destOn">The destination on node.</param>
+            <param name="destOff">The destination off node.</param>
+            <param name="source">The source node.</param>
+            <param name="target">The target node.</param>
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
@@ -2003,9 +2003,9 @@
             <summary>
             Create the hint for cell forcing chains.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="sourceCell">The source cell.</param>
-            <param name="target">(<see langword="in"/> parameter) The target elimination node.</param>
+            <param name="target">The target elimination node.</param>
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The information instance.</returns>
         </member>
@@ -2015,7 +2015,7 @@
             </summary>
             <param name="region">The region.</param>
             <param name="digit">The digit.</param>
-            <param name="target">(<see langword="in"/> parameter) The target node.</param>
+            <param name="target">The target node.</param>
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The technique information instance.</returns>
         </member>
@@ -2277,7 +2277,7 @@
             <summary>
             Initializes an instance with the eliminations and the reason.
             </summary>
-            <param name="eliminations">(<see langword="in"/> parameter) The eliminations.</param>
+            <param name="eliminations">The eliminations.</param>
             <param name="reason">The reason why those candidates can be eliminated.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Elimination.Count">
@@ -2302,9 +2302,9 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="eliminations">(<see langword="out"/> parameter) The eliminations.</param>
+            <param name="eliminations">The eliminations.</param>
             <param name="reason">
-            (<see langword="out"/> parameter) The reason why the eliminations should be removed.
+            The reason why the eliminations should be removed.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
@@ -2501,8 +2501,8 @@
             <summary>
             Gathering basic eliminations.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="elims">(<see langword="ref"/> parameter) The elimination set.</param>
+            <param name="grid">The grid.</param>
+            <param name="elims">The elimination set.</param>
             <param name="cell">The cell to check eliminations.</param>
             <param name="baseCands">The mask that holds the digits in the base cells.</param>
             <param name="baseCandsWithAhsOrConjugatePair">
@@ -2514,7 +2514,7 @@
             <summary>
             Check the cross-line cells.
             </summary>
-            <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
+            <param name="crossline">The cross line cells.</param>
             <param name="needChecking">The digits that need checking.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the structure passed the validation.
@@ -2524,12 +2524,12 @@
             <summary>
             Check the target cells.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="pos1">The cell 1 to determine.</param>
             <param name="pos2">The cell 2 to determine.</param>
             <param name="baseCands">The candidates that is from base two cells.</param>
             <param name="ahsOrConjugatePairCands">
-            (<see langword="out"/> parameter) The other candidate mask. If failed to check,
+            The other candidate mask. If failed to check,
             the value will be -1.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
@@ -2579,11 +2579,11 @@
             <param name="tq2">The target Q2 cell.</param>
             <param name="tr1">The target R1 cell.</param>
             <param name="tr2">The target R2 cell.</param>
-            <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
-            <param name="mq1">(<see langword="in"/> parameter) The mirror Q1 cell.</param>
-            <param name="mq2">(<see langword="in"/> parameter) The mirror Q2 cell.</param>
-            <param name="mr1">(<see langword="in"/> parameter) The mirror R1 cell.</param>
-            <param name="mr2">(<see langword="in"/> parameter) The mirror R2 cell.</param>
+            <param name="crossline">The cross line cells.</param>
+            <param name="mq1">The mirror Q1 cell.</param>
+            <param name="mq2">The mirror Q2 cell.</param>
+            <param name="mr1">The mirror R1 cell.</param>
+            <param name="mr2">The mirror R2 cell.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.Pattern.Base1">
             <summary>
@@ -2642,35 +2642,35 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
-            <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
-            <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
+            <param name="baseCellsMap">The base cells.</param>
+            <param name="targetCellsMap">The target cells.</param>
+            <param name="crosslineMap">The cross-line cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
-            <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
-            <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
-            <param name="tq2">(<see langword="out"/> parameter) The target Q2 cell.</param>
-            <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
-            <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
+            <param name="base1">The base cell 1.</param>
+            <param name="base2">The base cell 2.</param>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="base1">(<see langword="out"/> parameter) The base cell 1.</param>
-            <param name="base2">(<see langword="out"/> parameter) The base cell 2.</param>
-            <param name="tq1">(<see langword="out"/> parameter) The target Q1 cell.</param>
-            <param name="tq2">(<see langword="out"/> parameter) The target Q2 cell.</param>
-            <param name="tr1">(<see langword="out"/> parameter) The target R1 cell.</param>
-            <param name="tr2">(<see langword="out"/> parameter) The target R2 cell.</param>
-            <param name="crossline">(<see langword="out"/> parameter) The cross line cells.</param>
-            <param name="mq1">(<see langword="out"/> parameter) The mirror Q1 cell.</param>
-            <param name="mq2">(<see langword="out"/> parameter) The mirror Q2 cell.</param>
-            <param name="mr1">(<see langword="out"/> parameter) The mirror R1 cell.</param>
-            <param name="mr2">(<see langword="out"/> parameter) The mirror R2 cell.</param>
-            <param name="baseCellsMap">(<see langword="out"/> parameter) The base cells.</param>
-            <param name="targetCellsMap">(<see langword="out"/> parameter) The target cells.</param>
-            <param name="crosslineMap">(<see langword="out"/> parameter) The cross-line cells.</param>
+            <param name="base1">The base cell 1.</param>
+            <param name="base2">The base cell 2.</param>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
+            <param name="crossline">The cross line cells.</param>
+            <param name="mq1">The mirror Q1 cell.</param>
+            <param name="mq2">The mirror Q2 cell.</param>
+            <param name="mr1">The mirror R1 cell.</param>
+            <param name="mr2">The mirror R2 cell.</param>
+            <param name="baseCellsMap">The base cells.</param>
+            <param name="targetCellsMap">The target cells.</param>
+            <param name="crosslineMap">The cross-line cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2747,7 +2747,7 @@
             <summary>
             Check the cross-line cells.
             </summary>
-            <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
+            <param name="tempCrossline">The cross-line map.</param>
             <param name="baseCandidatesMask">The base candidate mask.</param>
             <param name="t1">The target cell 1.</param>
             <param name="t2">The target cell 2.</param>
@@ -2764,7 +2764,7 @@
             <summary>
             To check whether the specified analysis result contains the specified technique.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="code">The technique code to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
@@ -2778,10 +2778,10 @@
             <summary>
             Check whether the cells form an empty cell.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
+            <param name="this">The empty cell grid map.</param>
             <param name="block">The block.</param>
-            <param name="row">(<see langword="out"/> parameter) The row.</param>
-            <param name="column">(<see langword="out"/> parameter) The column.</param>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.Chaining">
@@ -2793,8 +2793,8 @@
             <summary>
             Get all available weak links.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="p">(<see langword="in"/> parameter) The current node.</param>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
@@ -2802,8 +2802,8 @@
             <summary>
             Get all available strong links.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="p">(<see langword="in"/> parameter) The current node.</param>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
             <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <param name="enableFastProperties">
@@ -2821,9 +2821,9 @@
             <summary>
             Add hidden parents of a cell.
             </summary>
-            <param name="p">(<see langword="ref"/> parameter) The node.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">
             Throws when the parent node of the specified node cannot be found.
@@ -2833,9 +2833,9 @@
             <summary>
             Add hidden parents of a region.
             </summary>
-            <param name="p">(<see langword="ref"/> parameter) The node.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="source">(<see langword="in"/> parameter) The source grid.</param>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
             <param name="currRegion">The current region label.</param>
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">
@@ -2852,7 +2852,7 @@
             <summary>
             Check whether the current loop is valid UL-shaped loop.
             </summary>
-            <param name="loop">(<see langword="this"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.Int32Ex">
@@ -2880,7 +2880,7 @@
             <summary>
             Get the region index for the specified cell and the region type.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The cell.</param>
+            <param name="this">The cell.</param>
             <param name="label">The label to represent a region type.</param>
             <returns>The region index.</returns>
         </member>
@@ -2888,7 +2888,7 @@
             <summary>
             Get extra difficulty rating for a chain node sequence.
             </summary>
-            <param name="length">(<see langword="this"/> parameter) The length.</param>
+            <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.ManualSolverEx">
@@ -2901,9 +2901,9 @@
             <summary>
             Get the searchers to enumerate on Sudoku Explainer mode.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
+            <param name="this">The manual solver.</param>
             <param name="solution">
-            (<see langword="in"/> parameter) The solution for a sudoku grid.
+            The solution for a sudoku grid.
             This parameter is necessary because some technique searchers will use this value,
             such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
             </param>
@@ -2913,9 +2913,9 @@
             <summary>
             Get the searchers to enumerate on Hodoku mode.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
+            <param name="this">The manual solver.</param>
             <param name="solution">
-            (<see langword="in"/> parameter) The solution for a sudoku grid.
+            The solution for a sudoku grid.
             This parameter is necessary because some technique searchers will use this value,
             such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
             </param>
@@ -2931,7 +2931,7 @@
             <summary>
             Get highlight candidate offsets through the specified target node.
             </summary>
-            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+            <param name="target">The target node.</param>
             <param name="simpleChain">
             Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepSearcher"/>. The
             default value is <see langword="false"/>.
@@ -2942,7 +2942,7 @@
             <summary>
             Get the links through the specified target node.
             </summary>
-            <param name="target">(<see langword="this in"/> parameter) The target node.</param>
+            <param name="this">The target node.</param>
             <param name="showAllLinks">
             Indicates whether the current chain will display all chains (even contains the weak links
             from the elimination node). The default value is <see langword="false"/>. If you want to
@@ -2960,7 +2960,7 @@
             <summary>
             Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The list of cells.</param>
+            <param name="this">The list of cells.</param>
             <param name="offset">The offset. The default value is 4.</param>
             <returns>All links.</returns>
         </member>
@@ -2974,21 +2974,21 @@
             <summary>
             Check whether the current technique information is an ALS technique.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
             Check whether the current technique information is a chaining-ruled technique.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
             <summary>
             Check whether the current technique information is a uniqueness technique.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The technique instance.</param>
+            <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.SudokuGridEx">
@@ -3006,7 +3006,7 @@
             <summary>
             To clean the grid.
             </summary>
-            <param name="this">(<see langword="this ref"/> parameter) The grid.</param>
+            <param name="this">The grid.</param>
             <remarks>
             "To clean a grid" means we process this grid to fill with singles that is found
             in <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>, and remove eliminations that is found
@@ -3114,7 +3114,7 @@
             <summary>
             Initialize the maps that used later.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo">
             <summary>
@@ -3328,7 +3328,7 @@
             Get all possible fish steps.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
             <param name="digit">The current digit used.</param>
         </member>
@@ -3336,7 +3336,7 @@
             <summary>
             Get POM technique eliminations at first.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishStepInfo">
@@ -3427,7 +3427,7 @@
             Check whether the fish is sashimi one.
             </summary>
             <param name="baseSets">The base sets.</param>
-            <param name="fins">(<see langword="in"/> parameter) All fins.</param>
+            <param name="fins">All fins.</param>
             <param name="digit">The digit.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating that. All cases are below:
@@ -3542,7 +3542,7 @@
             Get all possible normal fishes.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <param name="r">The possible row table to iterate.</param>
             <param name="c">The possible column table to iterate.</param>
@@ -3555,12 +3555,12 @@
             <summary>
             Get the direct fish view with the specified grid and the base sets.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="baseSets">The base sets.</param>
             <param name="coverSets">The cover sets.</param>
             <param name="fins">
-            (<see langword="in"/> parameter) The cells of the fin in the current fish.
+            The cells of the fin in the current fish.
             </param>
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
@@ -3638,13 +3638,13 @@
             Process the calculation.
             </summary>
             <param name="result">The result.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="size">The size.</param>
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
-            <param name="a">(<see langword="in"/> parameter) The left grid map.</param>
-            <param name="b">(<see langword="in"/> parameter) The right grid map.</param>
-            <param name="c">(<see langword="in"/> parameter) The intersection.</param>
+            <param name="a">The left grid map.</param>
+            <param name="b">The right grid map.</param>
+            <param name="c">The intersection.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionStepInfo">
             <summary>
@@ -3767,7 +3767,7 @@
             This searcher will try to extract a value from the
             solution.
             </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Properties">
             <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
@@ -3841,7 +3841,7 @@
             Take all information recursively.
             </summary>
             <param name="result">The result.</param>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="startCand">The start candidate.</param>
             <param name="length">The length.</param>
         </member>
@@ -3855,7 +3855,7 @@
             <summary>
             Record all information to be used in undo grid.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <returns>The result.</returns>
@@ -3864,7 +3864,7 @@
             <summary>
             Undo the grid.
             </summary>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="list">The list.</param>
             <param name="cell">The cell.</param>
             <param name="mask">The mask.</param>
@@ -3874,7 +3874,7 @@
             To check the specified cell has a same digit filled in a cell
             which is same region with the current one.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
             <returns>The result.</returns>
         </member>
@@ -3952,7 +3952,7 @@
             <summary>
             Get all invalid positions.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <returns>The 9 maps for invalid positions of each digit.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomStepSearcher.GetTemplates">
@@ -4008,7 +4008,7 @@
             <summary>
             Initializes an instance with the specified solution.
             </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.TemplateDeleteOnly">
             <summary>
@@ -4032,7 +4032,7 @@
             <summary>
             To check whether the specified solver can solve the puzzle.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+            <param name="grid">The puzzle.</param>
             <returns>
             A <see cref="T:System.Boolean"/> value indicating whether the solver
             solved the puzzle successfully.
@@ -4044,7 +4044,7 @@
             </summary>
             <param name="steps">The steps have been found.</param>
             <param name="step">The current step.</param>
-            <param name="cloneation">(<see langword="ref"/> parameter) The cloneation of the grid.</param>
+            <param name="cloneation">The cloneation of the grid.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
@@ -4086,7 +4086,7 @@
             <summary>
             To solve the puzzle.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+            <param name="grid">The puzzle.</param>
             <param name="progress">The progress instance to report the state.</param>
             <param name="countryCode">The country code.</param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
@@ -4096,10 +4096,10 @@
             <summary>
             Solve naively.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="cloneation">(<see langword="ref"/> parameter) The cloneation grid to calculate.</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
             <param name="sukaku">Indicates whether the current mode is sukaku.</param>
             <param name="progressResult">
             (<see langword="ref"/> parameter)
@@ -4123,10 +4123,10 @@
             <summary>
             Solve the puzzle with <see cref="P:Sudoku.Solving.Manual.ManualSolver.AnalyzeDifficultyStrictly"/> option.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="cloneation">(<see langword="ref"/> parameter) The cloneation grid to calculate.</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation grid to calculate.</param>
             <param name="steps">All steps found.</param>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
             <param name="sukaku">Indicates whether the current mode is sukaku mode.</param>
             <param name="progressResult">
             (<see langword="ref"/> parameter)
@@ -4463,7 +4463,7 @@
             Gets all possible searchers via the current manual solver settings.
             </summary>
             <param name="solution">
-            <para>(<see langword="in"/> parameter) The solution grid.</para>
+            <para>The solution grid.</para>
             <para>
             This parameter is necessary because some technique searchers will use this value,
             such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
@@ -4477,11 +4477,11 @@
             </summary>
             <param name="steps">The steps.</param>
             <param name="step">The step.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="cloneation">(<see langword="ref"/> parameter) The cloneation (playground).</param>
+            <param name="grid">The grid.</param>
+            <param name="cloneation">The cloneation (playground).</param>
             <param name="stopwatch">The stopwatch.</param>
             <param name="stepGrids">The step grids.</param>
-            <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+            <param name="result">The analysis result.</param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.OperationCanceledException">
@@ -4492,7 +4492,7 @@
             <summary>
             To check the validity of all conclusions.
             </summary>
-            <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+            <param name="solution">The solution.</param>
             <param name="conclusions">The conclusions.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
@@ -4500,9 +4500,9 @@
             <summary>
             To report the progress.
             </summary>
-            <param name="cloneation">(<see langword="in"/> parameter) The cloneation grid.</param>
+            <param name="cloneation">The cloneation grid.</param>
             <param name="progress">The progress reporter.</param>
-            <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
+            <param name="progressResult">The progress result.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo">
             <summary>
@@ -4545,7 +4545,7 @@
             <summary>
             To check whether the loop is valid.
             </summary>
-            <param name="cells">(<see langword="in"/> parameter) The loop.</param>
+            <param name="cells">The loop.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType1(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@)">
@@ -4553,24 +4553,24 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
@@ -4578,12 +4578,12 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo">
@@ -5066,7 +5066,7 @@
             <param name="cell2">The second cell.</param>
             <param name="digit">The current digit.</param>
             <param name="guardians">
-            (<see langword="in"/> parameter) The current guardian cells.
+            The current guardian cells.
             This map may not contain cells that lies in the region
             that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
             </param>
@@ -5391,33 +5391,33 @@
             <summary>
             Put this instance into the specified grid.
             </summary>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
+            <param name="name">The name.</param>
+            <param name="difficulty">The difficulty.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
+            <param name="name">The name.</param>
+            <param name="difficulty">The difficulty.</param>
+            <param name="difficultyLevel">The difficulty level.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
+            <param name="name">The name.</param>
+            <param name="difficulty">The difficulty.</param>
+            <param name="difficultyLevel">The difficulty level.</param>
+            <param name="conclusions">All conclusions.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">(<see langword="out"/> parameter) The name.</param>
-            <param name="difficulty">(<see langword="out"/> parameter) The difficulty.</param>
-            <param name="difficultyLevel">(<see langword="out"/> parameter) The difficulty level.</param>
-            <param name="conclusions">(<see langword="out"/> parameter) All conclusions.</param>
-            <param name="views">(<see langword="out"/> parameter) All views.</param>
+            <param name="name">The name.</param>
+            <param name="difficulty">The difficulty.</param>
+            <param name="difficultyLevel">The difficulty level.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="views">All views.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.HasTag(Sudoku.Techniques.TechniqueTags)">
             <summary>
@@ -5479,7 +5479,7 @@
             <summary>
             Take a technique step after searched all solving steps.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid to search steps.</param>
+            <param name="grid">The grid to search steps.</param>
             <returns>A technique information.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
@@ -5487,7 +5487,7 @@
             Accumulate all technique information instances into the specified accumulator.
             </summary>
             <param name="accumulator">The accumulator to store technique information.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
+            <param name="grid">The grid to search for techniques.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.BindOne(Sudoku.Solving.Manual.Tracing.TraceableGrid)">
             <summary>
@@ -5718,7 +5718,7 @@
             <summary>
             Full restore a cell.
             </summary>
-            <param name="cell">(<see langword="ref"/> parameter) The cell to restore.</param>
+            <param name="cell">The cell to restore.</param>
             <param name="r1">The region list 1 for a row.</param>
             <param name="r2">The region list 2 for a row.</param>
             <param name="r3">The region list 3 for a row.</param>
@@ -5730,7 +5730,7 @@
             <summary>
             Swap values on two different regions.
             </summary>
-            <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="region1">The region 1.</param>
             <param name="region2">The region 2.</param>
         </member>
@@ -5794,24 +5794,24 @@
             Check diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+            <param name="grid">The grid.</param>
+            <param name="info">The step information result.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckAntiDiagonal(System.Collections.Generic.IList{Sudoku.Data.Conclusion},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Symmetry.GspStepInfo@)">
             <summary>
             Check anti-diagonal symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+            <param name="grid">The grid.</param>
+            <param name="info">The step information result.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.CheckCentral(System.Collections.Generic.IList{Sudoku.Data.Conclusion},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Symmetry.GspStepInfo@)">
             <summary>
             Check central symmetry.
             </summary>
             <param name="result">The result accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+            <param name="grid">The grid.</param>
+            <param name="info">The step information result.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo">
             <summary>
@@ -5918,61 +5918,61 @@
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            Indicates whether the technique is enabled.
             </param>
             <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            Indicates whether the technique can't modify the priority.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            Indicates whether the technique is enabled.
             </param>
             <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            Indicates whether the technique can't modify the priority.
             </param>
             <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            Indicates the priority of the technique.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            Indicates whether the technique is enabled.
             </param>
             <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            Indicates whether the technique can't modify the priority.
             </param>
             <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            Indicates the priority of the technique.
             </param>
             <param name="disabledReason">
-            (<see langword="out"/> parameter) Indicates why this technique is disabled.
+            Indicates why this technique is disabled.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="isEnabled">
-            (<see langword="out"/> parameter) Indicates whether the technique is enabled.
+            Indicates whether the technique is enabled.
             </param>
             <param name="isReadOnly">
-            (<see langword="out"/> parameter) Indicates whether the technique can't modify the priority.
+            Indicates whether the technique can't modify the priority.
             </param>
             <param name="priority">
-            (<see langword="out"/> parameter) Indicates the priority of the technique.
+            Indicates the priority of the technique.
             </param>
             <param name="disabledReason">
-            (<see langword="out"/> parameter) Indicates why this technique is disabled.
+            Indicates why this technique is disabled.
             </param>
             <param name="onlyEnableInAnalysis">
-            (<see langword="out"/> parameter) Indicates whether the searcher is enabled only in traversing mode.
+            Indicates whether the searcher is enabled only in traversing mode.
             </param>
             <param name="displayLevel">
-            (<see langword="out"/> parameter) Indicates the display level.
+            Indicates the display level.
             </param>
             <param name="displayLabel">
-            (<see langword="out"/> parameter) Indicates the display label.
+            Indicates the display label.
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.FromSearcher(Sudoku.Solving.Manual.StepSearcher)">
@@ -6145,7 +6145,7 @@
             <summary>
             Implicit cast from <see cref="T:Sudoku.Data.SudokuGrid"/> to <see cref="T:Sudoku.Solving.Manual.Tracing.TraceableGrid"/>.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Tracing.TraceableGrid.op_Explicit(Sudoku.Solving.Manual.Tracing.TraceableGrid)~Sudoku.Data.SudokuGrid">
             <summary>
@@ -6257,7 +6257,7 @@
             Check BUG + n with forcing chains.
             </summary>
             <param name="accumulator">The result list.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.DoChaining(Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Collections.Generic.ISet{Sudoku.Data.Node})">
@@ -6265,7 +6265,7 @@
             Do chaining. This method is only called by
             <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="toOn">All nodes to on.</param>
             <param name="toOff">All nodes to off.</param>
             <returns>The result nodes.</returns>
@@ -6277,7 +6277,7 @@
             <see cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})"/>.
             </summary>
             <param name="trueCandidates">The true candidates.</param>
-            <param name="target">(<see langword="in"/> parameter) The target node.</param>
+            <param name="target">The target node.</param>
             <param name="outcomes">All outcomes.</param>
             <returns>The result information instance.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.CheckMultipleWithForcingChains(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})"/>
@@ -6337,7 +6337,7 @@
             Check type 3 (with naked subsets).
             </summary>
             <param name="accumulator">The result.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6345,7 +6345,7 @@
             Check type 4.
             </summary>
             <param name="accumulator">The result.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.CheckMultiple(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6353,7 +6353,7 @@
             Check BUG + n.
             </summary>
             <param name="accumulator">The result list.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.CheckXz(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6361,7 +6361,7 @@
             Check BUG-XZ.
             </summary>
             <param name="accumulator">The result list.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="trueCandidates">All true candidates.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
@@ -6564,9 +6564,9 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
-            <param name="extraCells">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
         </member>
@@ -6575,9 +6575,9 @@
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
-            <param name="extraCells">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
         </member>
@@ -6586,11 +6586,11 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigits">The extra digits mask.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.CheckType14(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@)">
             <summary>
@@ -6599,10 +6599,10 @@
             cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="allCellsMap">(<see langword="in"/> parameter) The map of all cells used.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
             <param name="normalDigits">The normal digits mask.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The map of extra cells.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Combinations">
             <summary>
@@ -6827,24 +6827,24 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
@@ -6852,12 +6852,12 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo},Sudoku.Data.SudokuGrid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Link},Sudoku.Data.Cells@,System.Int16)">
@@ -6865,12 +6865,12 @@
             Check type 4.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1.</param>
             <param name="d2">The digit 2.</param>
-            <param name="loop">(<see langword="in"/> parameter) The loop.</param>
+            <param name="loop">The loop.</param>
             <param name="links">The links.</param>
-            <param name="extraCellsMap">(<see langword="in"/> parameter) The extra cells map.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo">
@@ -7066,48 +7066,48 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="cornerMask1">The corner mask 1.</param>
             <param name="cornerMask2">The corner mask 2.</param>
             <param name="centerMask">The center mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="cornerMask1">The corner mask 1.</param>
             <param name="cornerMask2">The corner mask 2.</param>
             <param name="centerMask">The center mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="cornerMask1">The corner mask 1.</param>
             <param name="cornerMask2">The corner mask 2.</param>
             <param name="centerMask">The center mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Check type 4.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="cornerMask1">The corner mask 1.</param>
             <param name="cornerMask2">The corner mask 2.</param>
             <param name="centerMask">The center mask.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.#cctor">
             <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
@@ -7340,9 +7340,9 @@
             <summary>
             Initializes an instance with the specified maps.
             </summary>
-            <param name="square">(<see langword="in"/> parameter) The square.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair.</param>
+            <param name="square">The square.</param>
+            <param name="baseLine">The base line.</param>
+            <param name="pair">The pair.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Square">
             <summary>
@@ -7366,9 +7366,9 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="pair">(<see langword="out"/> parameter) The pair map.</param>
-            <param name="square">(<see langword="out"/> parameter) The square map.</param>
-            <param name="baseLine">(<see langword="out"/> parameter) The base line map.</param>
+            <param name="pair">The pair map.</param>
+            <param name="square">The square map.</param>
+            <param name="baseLine">The base line map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
             <inheritdoc/>
@@ -7488,12 +7488,12 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="isRow">Indicates whether the searching is for rows.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-            <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
@@ -7502,12 +7502,12 @@
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="isRow">Indicates whether the searching is for rows.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-            <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
@@ -7516,12 +7516,12 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="isRow">Indicates whether the searching is for rows.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-            <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="otherDigitsMask">Other digits mask.</param>
         </member>
@@ -7531,10 +7531,10 @@
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="isRow">Indicates whether the searching is for rows.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-            <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.CheckLockedType(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16)">
@@ -7542,12 +7542,12 @@
             Check locked type.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="isRow">Indicates whether the searching is for rows.</param>
-            <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-            <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-            <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pair">The pair cells.</param>
+            <param name="square">The square cells.</param>
+            <param name="baseLine">The base line cells.</param>
+            <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.#cctor">
@@ -7896,14 +7896,14 @@
             Get all possible hints from the grid.
             </summary>
             <param name="gathered">The list stored the result.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.CheckPreconditions(Sudoku.Data.SudokuGrid@,System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
             Check preconditions.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
             <returns>Indicates whether the UR is passed to check.</returns>
@@ -7915,7 +7915,7 @@
             is same as the given map contains.
             </summary>
             <param name="digit">The digit.</param>
-            <param name="map">(<see langword="in"/> parameter) The map.</param>
+            <param name="map">The map.</param>
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
@@ -7944,7 +7944,7 @@
             <param name="currentCell">The current cell.</param>
             <param name="anotherCell">Another cell to check.</param>
             <param name="region">
-            (<see langword="out"/> parameter) The result regions that both cells lie in.
+            The result regions that both cells lie in.
             If the cell can't be found, the parameter will be an empty array of type <see cref="T:System.Int32"/>.
             </param>
             <returns>
@@ -7963,7 +7963,7 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -7971,7 +7971,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -7980,7 +7980,7 @@
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -7989,7 +7989,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -7998,7 +7998,7 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8007,7 +8007,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8016,7 +8016,7 @@
             Check type 4.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8025,7 +8025,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8034,7 +8034,7 @@
             Check type 5.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8042,7 +8042,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8051,7 +8051,7 @@
             Check type 6.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8060,7 +8060,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8069,7 +8069,7 @@
             Check hidden UR.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8077,7 +8077,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8086,7 +8086,7 @@
             Check UR+2D.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8095,7 +8095,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8104,7 +8104,7 @@
             Check UR+2B/1SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8113,7 +8113,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8122,7 +8122,7 @@
             Check UR+2D/1SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8131,7 +8131,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8140,7 +8140,7 @@
             Check UR+3X.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8148,7 +8148,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8157,7 +8157,7 @@
             Check UR+3X/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8165,7 +8165,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8174,7 +8174,7 @@
             Check UR+3N/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8182,7 +8182,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8191,7 +8191,7 @@
             Check UR+3U/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8199,7 +8199,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8208,7 +8208,7 @@
             Check UR+3E/2SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8216,7 +8216,7 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="cornerCell">The corner cell.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8225,7 +8225,7 @@
             Check UR+4X/3SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8234,7 +8234,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8243,7 +8243,7 @@
             Check UR+4C/3SL.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8252,7 +8252,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8261,7 +8261,7 @@
             Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8270,7 +8270,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="size">The size of the wing to search.</param>
             <param name="index">The index.</param>
@@ -8280,7 +8280,7 @@
             Check UR+SdC.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8289,7 +8289,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8298,7 +8298,7 @@
             Check UR+Guardian.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
@@ -8310,7 +8310,7 @@
             Check AR+Hidden single.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="urCells">All UR cells.</param>
             <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
@@ -8319,7 +8319,7 @@
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">
-            (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+            The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
         </member>
@@ -8689,7 +8689,7 @@
             <summary>
             Find all possible loops used for checking each type.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="cell1">The cell 1.</param>
             <param name="cell2">The cell 2.</param>
             <param name="d1">The digit 1.</param>
@@ -8701,10 +8701,10 @@
             Check the type 1.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1 to check.</param>
             <param name="d2">The digit 2 to check.</param>
-            <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
+            <param name="loop">The cells of that loop.</param>
             <param name="extraCell">Indicates the extra cell.</param>
             <param name="links">The links.</param>
             <param name="comparer">The comparer.</param>
@@ -8714,11 +8714,11 @@
             Check the type 2.
             </summary>
             <param name="accumulator">The accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="grid">The grid.</param>
             <param name="d1">The digit 1 to check.</param>
             <param name="d2">The digit 2 to check.</param>
-            <param name="loop">(<see langword="in"/> parameter) The cells of that loop.</param>
-            <param name="extraCells">(<see langword="in"/> parameter) The cells of all extra cells.</param>
+            <param name="loop">The cells of that loop.</param>
+            <param name="extraCells">The cells of all extra cells.</param>
             <param name="links">The links.</param>
             <param name="comparer">The comparer.</param>
         </member>
@@ -8923,8 +8923,8 @@
             Check type 1.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType2(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.Cells@,System.Int16)">
@@ -8932,7 +8932,7 @@
             Check type 2.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="pattern">The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType3(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16)">
@@ -8940,8 +8940,8 @@
             Check type 3.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.CheckType4(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@,System.Int16)">
@@ -8949,8 +8949,8 @@
             Check type 4.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-            <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
             <param name="mask">The mask.</param>
         </member>
         <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Patterns">
@@ -9310,7 +9310,7 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
             </summary>
-            <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+            <param name="grid">The invalid sudoku grid.</param>
             <param name="wrongStep">The wrong step.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">

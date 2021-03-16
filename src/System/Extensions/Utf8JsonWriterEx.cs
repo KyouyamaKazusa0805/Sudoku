@@ -14,7 +14,7 @@ namespace System.Extensions
 		/// Try to write an object.
 		/// </summary>
 		/// <typeparam name="T">The type of the value.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="value">The value to serialize.</param>
 		/// <param name="converter">The converter.</param>
 		/// <param name="options">The options on serialization.</param>
@@ -35,7 +35,7 @@ namespace System.Extensions
 		/// Try to write a series of objects.
 		/// </summary>
 		/// <typeparam name="T">The type of the value.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="values">Values to serialize.</param>
 		/// <param name="converter">The converter.</param>
 		/// <param name="options">The options on serialization.</param>

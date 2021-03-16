@@ -95,7 +95,7 @@ namespace Sudoku.Windows
 		/// Indicates whether the format string is valid.
 		/// </summary>
 		/// <param name="filePath">The file path.</param>
-		/// <param name="text">(<see langword="out"/> parameter) The output text.</param>
+		/// <param name="text">The output text.</param>
 		/// <returns>The <see cref="bool"/> value indicating that.</returns>
 		private bool IsFormatValid(string filePath, out string text)
 		{

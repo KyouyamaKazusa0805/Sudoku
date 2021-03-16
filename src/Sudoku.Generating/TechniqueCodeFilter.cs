@@ -26,7 +26,7 @@ namespace Sudoku.Generating
 		/// <summary>
 		/// Initializes an instance with the specified technique codes.
 		/// </summary>
-		/// <param name="techniqueCodes">(<see langword="params"/> parameter) The technique codes.</param>
+		/// <param name="techniqueCodes">The technique codes.</param>
 		public TechniqueCodeFilter(params Technique[] techniqueCodes)
 		{
 			foreach (var techniqueCode in techniqueCodes)

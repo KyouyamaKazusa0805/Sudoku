@@ -12,7 +12,7 @@ namespace System
 		/// Sort the specified array by quick sort.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="this">The array.</param>
 		/// <param name="comparer">The method to compare two elements.</param>
 		/// <remarks>
 		/// If you want to use this method, please note that the <typeparamref name="T"/>
@@ -82,7 +82,7 @@ namespace System
 		/// <summary>
 		/// Get all subsets from the specified number of the values to take.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The array.</param>
+		/// <param name="this">The array.</param>
 		/// <param name="count">The number of elements you want to take.</param>
 		/// <returns>
 		/// The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c> and

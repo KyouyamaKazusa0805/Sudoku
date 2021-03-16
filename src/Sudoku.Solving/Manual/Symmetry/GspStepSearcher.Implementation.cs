@@ -12,8 +12,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check diagonal symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="info">The step information result.</param>
 		private static unsafe partial void CheckDiagonal(
 			IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{
@@ -141,8 +141,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check anti-diagonal symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="info">The step information result.</param>
 		private static unsafe partial void CheckAntiDiagonal(
 			IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{
@@ -271,8 +271,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// Check central symmetry.
 		/// </summary>
 		/// <param name="result">The result accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="info">(<see langword="out"/> parameter) The step information result.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="info">The step information result.</param>
 		private static unsafe partial void CheckCentral(
 			IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
 		{

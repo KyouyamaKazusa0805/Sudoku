@@ -74,7 +74,7 @@
             <summary>
             Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
+            <param name="this">The bitmap image.</param>
             <returns>The target image result.</returns>
             <seealso cref="T:System.Windows.Media.ImageSource"/>
         </member>
@@ -247,7 +247,7 @@
             <summary>
             Sets the specified text into the message window.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="text">The text to set.</param>
             <returns>The reference that is same as <see langword="this"/>.</returns>
         </member>
@@ -255,7 +255,7 @@
             <summary>
             Sets the specified title into the message window.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="title">The title to set.</param>
             <returns>The reference that is same as <see langword="this"/>.</returns>
         </member>
@@ -281,7 +281,7 @@
             Modify the current instance, to change the default extension property
             <see cref="P:Microsoft.Win32.FileDialog.DefaultExt"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="extension">The extension to change.</param>
             <returns>The current instance.</returns>
             <seealso cref="P:Microsoft.Win32.FileDialog.DefaultExt"/>
@@ -291,7 +291,7 @@
             Modify the current instance, to change the filter property
             <see cref="P:Microsoft.Win32.FileDialog.Filter"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="filter">The filter to change.</param>
             <returns>The current instance.</returns>
             <seealso cref="P:Microsoft.Win32.FileDialog.Filter"/>
@@ -301,7 +301,7 @@
             Modify the current instance, to change the multi-select property
             <see cref="P:Microsoft.Win32.OpenFileDialog.Multiselect"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="multiselect">The multi-select to change.</param>
             <returns>The current instance.</returns>
             <seealso cref="P:Microsoft.Win32.OpenFileDialog.Multiselect"/>
@@ -311,7 +311,7 @@
             Modify the current instance, to change the title property
             <see cref="P:Microsoft.Win32.FileDialog.Title"/>.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The instance.</param>
+            <param name="this">The instance.</param>
             <param name="title">The title to change.</param>
             <returns>The current instance.</returns>
             <seealso cref="P:Microsoft.Win32.FileDialog.Title"/>

@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
 		/// <param name="otherCellsMap">
-		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// The map of other cells during the current UR searching.
 		/// </param>
 		/// <param name="size">The size of the wing to search.</param>
 		/// <param name="index">The index.</param>
@@ -408,7 +408,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check UR+SdC.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -417,7 +417,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
 		/// <param name="otherCellsMap">
-		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// The map of other cells during the current UR searching.
 		/// </param>
 		/// <param name="index">The index.</param>
 		partial void CheckSdc(
@@ -701,7 +701,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check UR+Guardian.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
@@ -806,7 +806,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Check AR+Hidden single.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
 		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 		/// <param name="comparer">The mask comparer.</param>
@@ -815,7 +815,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="corner1">The corner cell 1.</param>
 		/// <param name="corner2">The corner cell 2.</param>
 		/// <param name="otherCellsMap">
-		/// (<see langword="in"/> parameter) The map of other cells during the current UR searching.
+		/// The map of other cells during the current UR searching.
 		/// </param>
 		/// <param name="index">The index.</param>
 		partial void CheckHiddenSingleAvoidable(

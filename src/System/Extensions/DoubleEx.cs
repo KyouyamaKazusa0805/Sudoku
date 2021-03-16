@@ -9,7 +9,7 @@
 		/// <summary>
 		/// Indicates whether the specified value is nearly equals to the current value.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="other">The other value.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public static bool NearlyEquals(this double @this, double other) =>
@@ -20,7 +20,7 @@
 		/// If the differ of two values to compare is lower than the specified epsilon value,
 		/// the method will return <see langword="true"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The value.</param>
+		/// <param name="this">The value.</param>
 		/// <param name="other">The other value to compare.</param>
 		/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>

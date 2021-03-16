@@ -48,8 +48,8 @@ namespace Sudoku.Models
 		public override string ToString() => (Id, Value).ToString();
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="id">(<see langword="out"/> parameter) The ID.</param>
-		/// <param name="value">(<see langword="out"/> parameter) The value.</param>
+		/// <param name="id">The ID.</param>
+		/// <param name="value">The value.</param>
 		public void Deconstruct(out long id, out int value)
 		{
 			id = Id;
@@ -67,7 +67,7 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Implicit cast from <see cref="ValueTuple{T1, T2}"/> to <see cref="DrawingInfo"/>.
 		/// </summary>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
+		/// <param name="pair">The pair value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator DrawingInfo(in (long Id, int Value) pair) => new(pair.Id, pair.Value);
 	}

@@ -12,10 +12,10 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Check whether the cells form an empty cell.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The empty cell grid map.</param>
+		/// <param name="this">The empty cell grid map.</param>
 		/// <param name="block">The block.</param>
-		/// <param name="row">(<see langword="out"/> parameter) The row.</param>
-		/// <param name="column">(<see langword="out"/> parameter) The column.</param>
+		/// <param name="row">The row.</param>
+		/// <param name="column">The column.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsEmptyRectangle(this in Cells @this, int block, out int row, out int column)
 		{

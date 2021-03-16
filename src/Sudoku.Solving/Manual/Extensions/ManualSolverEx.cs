@@ -15,9 +15,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get the searchers to enumerate on Sudoku Explainer mode.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
+		/// <param name="this">The manual solver.</param>
 		/// <param name="solution">
-		/// (<see langword="in"/> parameter) The solution for a sudoku grid.
+		/// The solution for a sudoku grid.
 		/// This parameter is necessary because some technique searchers will use this value,
 		/// such as <see cref="BfStepSearcher"/>.
 		/// </param>
@@ -45,9 +45,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get the searchers to enumerate on Hodoku mode.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The manual solver.</param>
+		/// <param name="this">The manual solver.</param>
 		/// <param name="solution">
-		/// (<see langword="in"/> parameter) The solution for a sudoku grid.
+		/// The solution for a sudoku grid.
 		/// This parameter is necessary because some technique searchers will use this value,
 		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
 		/// </param>

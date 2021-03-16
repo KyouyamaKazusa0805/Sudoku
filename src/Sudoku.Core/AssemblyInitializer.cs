@@ -29,7 +29,7 @@ namespace Sudoku
 		/// <param name="langSourceInstanceName">The name of the language resource instance.</param>
 		/// <param name="path">The path to deserialize.</param>
 		/// <param name="result">
-		/// (<see langword="out"/> parameter) The result that indicates whether the deserialization operation
+		/// The result that indicates whether the deserialization operation
 		/// is successful.
 		/// </param>
 		/// <exception cref="AssemblyFailedToLoadException">

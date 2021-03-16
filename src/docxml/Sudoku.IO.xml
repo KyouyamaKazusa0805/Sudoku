@@ -336,7 +336,7 @@
             </summary>
             <param name="batch">The batch code.</param>
             <param name="settings">The settings.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <param name="result">The result.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.IO.PictureFileType">

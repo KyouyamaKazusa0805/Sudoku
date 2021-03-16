@@ -82,7 +82,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Show the dialog.
 		/// </summary>
-		/// <param name="color">(<see langword="out"/> parameter) The color selected.</param>
+		/// <param name="color">The color selected.</param>
 		/// <param name="flags">The flags that the control should enable.</param>
 		/// <param name="customPreviewEventHandler">
 		/// The event handler. The default value is <see langword="null"/>.

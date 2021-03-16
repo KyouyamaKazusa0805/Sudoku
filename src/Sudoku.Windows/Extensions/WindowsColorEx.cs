@@ -17,7 +17,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Get the hue from the specified <see cref="WColor"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetHue(this in WColor @this) =>
@@ -26,7 +26,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Get the brightness from the specified <see cref="WColor"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetBrightness(this in WColor @this) =>
@@ -35,18 +35,18 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Get the saturation from the specified <see cref="WColor"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>A <see cref="float"/> value.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetSaturation(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetSaturation();
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
-		/// <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
-		/// <param name="r">(<see langword="out"/> parameter) The red value.</param>
-		/// <param name="g">(<see langword="out"/> parameter) The green value.</param>
-		/// <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+		/// <param name="this">The color.</param>
+		/// <param name="a">The alpha value.</param>
+		/// <param name="r">The red value.</param>
+		/// <param name="g">The green value.</param>
+		/// <param name="b">The blue value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct(this in WColor @this, out byte a, out byte r, out byte g, out byte b)
 		{
@@ -59,7 +59,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Convert <see cref="WColor"/> to <see cref="DColor"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>The target color.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static DColor ToDColor(this in WColor @this) =>
@@ -68,7 +68,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Converts the <see cref="WColor"/> to the specified hex string.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string ToHexString(this in WColor @this)

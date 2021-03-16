@@ -17,12 +17,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType1(
@@ -98,12 +98,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType2(
@@ -173,12 +173,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="otherDigitsMask">Other digits mask.</param>
 		partial void CheckType3(
@@ -276,10 +276,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckType4(
 			IList<StepInfo> accumulator, bool isRow, in Cells pair, in Cells square,
@@ -367,12 +367,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// Check locked type.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="isRow">Indicates whether the searching is for rows.</param>
-		/// <param name="pair">(<see langword="in"/> parameter) The pair cells.</param>
-		/// <param name="square">(<see langword="in"/> parameter) The square cells.</param>
-		/// <param name="baseLine">(<see langword="in"/> parameter) The base line cells.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pair">The pair cells.</param>
+		/// <param name="square">The square cells.</param>
+		/// <param name="baseLine">The base line cells.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="comparer">The mask comparer.</param>
 		partial void CheckLockedType(
 			IList<StepInfo> accumulator, in SudokuGrid grid, bool isRow, in Cells pair, in Cells square,

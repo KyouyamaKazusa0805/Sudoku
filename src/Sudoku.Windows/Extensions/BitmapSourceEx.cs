@@ -12,7 +12,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Get the <see cref="BitmapImage"/> from the specified <see cref="BitmapSource"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The bitmap source.</param>
+		/// <param name="this">The bitmap source.</param>
 		/// <returns>The image.</returns>
 		public static BitmapImage GetBitmapImage(this BitmapSource @this)
 		{

@@ -13,7 +13,7 @@ namespace Sudoku.Windows.Extensions
 		/// <summary>
 		/// Convert <see cref="DColor"/> to <see cref="WColor"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The color.</param>
+		/// <param name="this">The color.</param>
 		/// <returns>The target color.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static WColor ToWColor(this in DColor @this) =>

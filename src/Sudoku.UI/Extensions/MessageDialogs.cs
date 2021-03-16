@@ -33,7 +33,7 @@ namespace Sudoku.UI.Extensions
 		/// <summary>
 		/// Sets the specified text into the message window.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="text">The text to set.</param>
 		/// <returns>The reference that is same as <see langword="this"/>.</returns>
 		public static MessageDialog WithText(this MessageDialog @this, string text)
@@ -45,7 +45,7 @@ namespace Sudoku.UI.Extensions
 		/// <summary>
 		/// Sets the specified title into the message window.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="title">The title to set.</param>
 		/// <returns>The reference that is same as <see langword="this"/>.</returns>
 		public static MessageDialog WithTitle(this MessageDialog @this, string title)

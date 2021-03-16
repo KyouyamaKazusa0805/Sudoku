@@ -16,12 +16,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="cornerMask1">The corner mask 1.</param>
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		partial void CheckType1(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, in Cells map)
@@ -88,12 +88,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="cornerMask1">The corner mask 1.</param>
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		partial void CheckType2(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
 			short cornerMask2, short centerMask, in Cells map)
@@ -150,12 +150,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="cornerMask1">The corner mask 1.</param>
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		partial void CheckType3(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
 			short cornerMask1, short cornerMask2, short centerMask, in Cells map)
@@ -272,12 +272,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// Check type 4.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="cornerMask1">The corner mask 1.</param>
 		/// <param name="cornerMask2">The corner mask 2.</param>
 		/// <param name="centerMask">The center mask.</param>
-		/// <param name="map">(<see langword="in"/> parameter) The map.</param>
+		/// <param name="map">The map.</param>
 		partial void CheckType4(
 			IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
 			short cornerMask1, short cornerMask2, short centerMask, in Cells map)

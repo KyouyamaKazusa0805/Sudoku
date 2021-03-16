@@ -34,7 +34,7 @@ namespace Sudoku.Windows
 		/// Indicates the message for wrong handling.
 		/// </summary>
 		/// <param name="errorInfo">The error information.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		public static void WrongHandling(StepInfo errorInfo, in SudokuGrid grid) =>
 			ErrorInfoWindow.Create(errorInfo, grid).ShowDialog();
 

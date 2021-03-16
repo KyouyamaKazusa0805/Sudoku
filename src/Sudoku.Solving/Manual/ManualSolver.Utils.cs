@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual
 		/// Gets all possible searchers via the current manual solver settings.
 		/// </summary>
 		/// <param name="solution">
-		/// <para>(<see langword="in"/> parameter) The solution grid.</para>
+		/// <para>The solution grid.</para>
 		/// <para>
 		/// This parameter is necessary because some technique searchers will use this value,
 		/// such as <see cref="BfStepSearcher"/>. The default value is <see langword="null"/>.
@@ -135,11 +135,11 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="steps">The steps.</param>
 		/// <param name="step">The step.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation (playground).</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="cloneation">The cloneation (playground).</param>
 		/// <param name="stopwatch">The stopwatch.</param>
 		/// <param name="stepGrids">The step grids.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The analysis result.</param>
+		/// <param name="result">The analysis result.</param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <exception cref="OperationCanceledException">
@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To check the validity of all conclusions.
 		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		private static bool CheckConclusionsValidity(in SudokuGrid solution, IEnumerable<Conclusion> conclusions)
@@ -217,9 +217,9 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To report the progress.
 		/// </summary>
-		/// <param name="cloneation">(<see langword="in"/> parameter) The cloneation grid.</param>
+		/// <param name="cloneation">The cloneation grid.</param>
 		/// <param name="progress">The progress reporter.</param>
-		/// <param name="progressResult">(<see langword="ref"/> parameter) The progress result.</param>
+		/// <param name="progressResult">The progress result.</param>
 		private static void ReportProgress(
 			in SudokuGrid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
 		{

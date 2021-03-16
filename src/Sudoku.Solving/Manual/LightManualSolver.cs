@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// To check whether the specified solver can solve the puzzle.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The puzzle.</param>
+		/// <param name="grid">The puzzle.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the solver
 		/// solved the puzzle successfully.
@@ -52,7 +52,7 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <param name="steps">The steps have been found.</param>
 		/// <param name="step">The current step.</param>
-		/// <param name="cloneation">(<see langword="ref"/> parameter) The cloneation of the grid.</param>
+		/// <param name="cloneation">The cloneation of the grid.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		private bool SaveStep(ICollection<StepInfo> steps, StepInfo step, ref SudokuGrid cloneation)
 		{

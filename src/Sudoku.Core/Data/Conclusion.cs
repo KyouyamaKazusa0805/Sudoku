@@ -56,7 +56,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Put this instance into the specified grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		public void ApplyTo(ref SudokuGrid grid)
 		{
 			switch (ConclusionType)
@@ -75,8 +75,8 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
-		/// <param name="candidate">(<see langword="out"/> parameter) The candidate.</param>
+		/// <param name="conclusionType">The type of this conclusion.</param>
+		/// <param name="candidate">The candidate.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int candidate)
 		{
 			conclusionType = ConclusionType;
@@ -84,9 +84,9 @@ namespace Sudoku.Data
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="conclusionType">(<see langword="out"/> parameter) The type of this conclusion.</param>
-		/// <param name="cell">(<see langword="out"/> parameter) The cell.</param>
-		/// <param name="digit">(<see langword="out"/> parameter) The digit.</param>
+		/// <param name="conclusionType">The type of this conclusion.</param>
+		/// <param name="cell">The cell.</param>
+		/// <param name="digit">The digit.</param>
 		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
 		{
 			conclusionType = ConclusionType;

@@ -19,7 +19,7 @@ namespace System.Extensions
 		/// Check whether the specified list has only one element.
 		/// </summary>
 		/// <typeparam name="T">The type of the element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
 		{
@@ -45,9 +45,9 @@ namespace System.Extensions
 		/// Check whether the list contains the element that is in the specified array.
 		/// </summary>
 		/// <typeparam name="T">The type of the element to check.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="elements">
-		/// (<see langword="params"/> parameter) The array that contains the target elements.
+		/// The array that contains the target elements.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public static bool Contains<T>(this IEnumerable<T> @this, params T[] elements) where T : IEquatable<T>
@@ -75,7 +75,7 @@ namespace System.Extensions
 		/// Check whether the collection contains any elements that match the specified type.
 		/// </summary>
 		/// <typeparam name="T">The type to check.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool ContainsType<T>(this IEnumerable<T> @this) => @this.OfType<T>().Any();
@@ -84,7 +84,7 @@ namespace System.Extensions
 		/// Get the index of the whole list, whose corresponding element is satisfy the specified condition.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="predicate">The condition to check.</param>
 		/// <returns>
 		/// The index of the element satisfied the condition. If the list can't find that element,

@@ -1148,7 +1148,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// To check the validity of all conclusions.
 		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <param name="solution">The solution.</param>
 		/// <param name="conclusions">The conclusions.</param>
 		/// <returns>A <see cref="bool"/> indicating that.</returns>
 		private static bool CheckConclusionsValidity(in SudokuGrid solution, IEnumerable<Conclusion> conclusions)

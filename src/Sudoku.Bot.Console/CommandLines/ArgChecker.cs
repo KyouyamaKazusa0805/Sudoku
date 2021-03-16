@@ -28,7 +28,7 @@ namespace Sudoku.Bot.Console.CommandLines
 		/// Try to get the path from the arguments.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
-		/// <param name="path">(<see langword="out"/> parameter) The result path.</param>
+		/// <param name="path">The result path.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool TryGetPath(string[] args, [NotNullWhen(true)] out string? path)
 		{
@@ -53,7 +53,7 @@ namespace Sudoku.Bot.Console.CommandLines
 		/// </summary>
 		/// <param name="args">The arguments.</param>
 		/// <param name="size">
-		/// (<see langword="out"/> parameter) The result size. If failed to get, the value is always 800.
+		/// The result size. If failed to get, the value is always 800.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool TryGetSize(string[] args, out int size)

@@ -42,7 +42,7 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Initializes an instance with the specified <see cref="SizeF"/> instance.
 		/// </summary>
-		/// <param name="size">(<see langword="in"/> parameter) The <see cref="SizeF"/> instance.</param>
+		/// <param name="size">The <see cref="SizeF"/> instance.</param>
 		public DrawingPointConverter(in SizeF size)
 		{
 			// Initialize sizes.
@@ -102,7 +102,7 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Get the focus cell offset via a mouse point.
 		/// </summary>
-		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+		/// <param name="point">The mouse point.</param>
 		/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCell(in PointF point)
@@ -122,7 +122,7 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Get the focus candidate offset via a mouse point.
 		/// </summary>
-		/// <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+		/// <param name="point">The mouse point.</param>
 		/// <returns>The candidate offset.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int GetCandidate(in PointF point)
@@ -162,7 +162,7 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Get the center mouse point of all candidates.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
+		/// <param name="map">The map of candidates.</param>
 		/// <returns>The center mouse point.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public PointF GetMouseCenter(in Candidates map)
@@ -213,7 +213,7 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Get the rectangle from all candidates.
 		/// </summary>
-		/// <param name="map">(<see langword="in"/> parameter) The candidates.</param>
+		/// <param name="map">The candidates.</param>
 		/// <returns>The rectangle.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public RectangleF GetMouseRectangleViaCandidates(in Candidates map)

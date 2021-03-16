@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="crossline">(<see langword="in"/> parameter) The cross line cells.</param>
+		/// <param name="crossline">The cross line cells.</param>
 		/// <param name="needChecking">The digits that need checking.</param>
 		/// <returns>
 		/// A <see cref="bool"/> value indicating whether the structure passed the validation.
@@ -40,12 +40,12 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the target cells.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="pos1">The cell 1 to determine.</param>
 		/// <param name="pos2">The cell 2 to determine.</param>
 		/// <param name="baseCands">The candidates that is from base two cells.</param>
 		/// <param name="ahsOrConjugatePairCands">
-		/// (<see langword="out"/> parameter) The other candidate mask. If failed to check,
+		/// The other candidate mask. If failed to check,
 		/// the value will be -1.
 		/// </param>
 		/// <returns>The <see cref="bool"/> value.</returns>

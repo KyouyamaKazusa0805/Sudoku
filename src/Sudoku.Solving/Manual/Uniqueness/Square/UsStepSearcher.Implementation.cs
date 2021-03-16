@@ -16,8 +16,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// Check type 1.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType1(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// Check type 2.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType2(IList<StepInfo> accumulator, in Cells pattern, short mask)
 		{
@@ -135,8 +135,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// Check type 3.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType3(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{
@@ -233,8 +233,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// Check type 4.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
-		/// <param name="pattern">(<see langword="in"/> parameter) The pattern.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="pattern">The pattern.</param>
 		/// <param name="mask">The mask.</param>
 		partial void CheckType4(IList<StepInfo> accumulator, in SudokuGrid grid, in Cells pattern, short mask)
 		{

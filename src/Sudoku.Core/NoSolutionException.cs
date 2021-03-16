@@ -14,7 +14,7 @@ namespace Sudoku
 		/// <summary>
 		/// Initializes a <see cref="NoSolutionException"/> with the specified invalid grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+		/// <param name="grid">The invalid sudoku grid.</param>
 		public NoSolutionException(in SudokuGrid grid)
 		{
 			InvalidGrid = grid;

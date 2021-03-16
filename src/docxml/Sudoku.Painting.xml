@@ -34,7 +34,7 @@
             <summary>
             Initializes an instance with the specified <see cref="T:System.Drawing.SizeF"/> instance.
             </summary>
-            <param name="size">(<see langword="in"/> parameter) The <see cref="T:System.Drawing.SizeF"/> instance.</param>
+            <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
         </member>
         <member name="P:Sudoku.Painting.DrawingPointConverter.ControlSize">
             <summary>
@@ -69,14 +69,14 @@
             <summary>
             Get the focus cell offset via a mouse point.
             </summary>
-            <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+            <param name="point">The mouse point.</param>
             <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
         <member name="M:Sudoku.Painting.DrawingPointConverter.GetCandidate(System.Drawing.PointF@)">
             <summary>
             Get the focus candidate offset via a mouse point.
             </summary>
-            <param name="point">(<see langword="in"/> parameter) The mouse point.</param>
+            <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
         <member name="M:Sudoku.Painting.DrawingPointConverter.GetMouseCenter(System.Int32)">
@@ -98,7 +98,7 @@
             <summary>
             Get the center mouse point of all candidates.
             </summary>
-            <param name="map">(<see langword="in"/> parameter) The map of candidates.</param>
+            <param name="map">The map of candidates.</param>
             <returns>The center mouse point.</returns>
         </member>
         <member name="M:Sudoku.Painting.DrawingPointConverter.GetMouseRectangleViaCell(System.Int32)">
@@ -128,7 +128,7 @@
             <summary>
             Get the rectangle from all candidates.
             </summary>
-            <param name="map">(<see langword="in"/> parameter) The candidates.</param>
+            <param name="map">The candidates.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Painting.DrawingPointConverter.GetMouseRectangleViaRegion(System.Int32)">
@@ -148,7 +148,7 @@
             <summary>
             Zoom a picture.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The bitmap instance.</param>
+            <param name="this">The bitmap instance.</param>
             <param name="newWidth">The new width.</param>
             <param name="newHeight">The new height.</param>
             <returns>The new bitmap instance that has been zoomed.</returns>
@@ -161,11 +161,11 @@
         </member>
         <member name="M:Sudoku.Painting.Extensions.ColorEx.Deconstruct(System.Drawing.Color,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this"/> parameter) The color.</param>
-            <param name="a">(<see langword="out"/> parameter) The alpha value.</param>
-            <param name="r">(<see langword="out"/> parameter) The red value.</param>
-            <param name="g">(<see langword="out"/> parameter) The green value.</param>
-            <param name="b">(<see langword="out"/> parameter) The blue value.</param>
+            <param name="this">The color.</param>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
         </member>
         <member name="T:Sudoku.Painting.Extensions.GraphicsEx">
             <summary>
@@ -176,30 +176,30 @@
             <summary>
             Draw an <see cref="T:System.Int32"/> value onto the current graphics.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+            <param name="this">The graphics instance.</param>
             <param name="value">The value to drawing onto.</param>
             <param name="font">The font.</param>
             <param name="brush">The brush.</param>
-            <param name="point">(<see langword="in"/> parameter) The point.</param>
+            <param name="point">The point.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawInt32(System.Drawing.Graphics,System.Int32,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@,System.Drawing.StringFormat)">
             <summary>
             Draw an <see cref="T:System.Int32"/> value onto the current graphics.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics instance.</param>
+            <param name="this">The graphics instance.</param>
             <param name="value">The value to drawing onto.</param>
             <param name="font">The font.</param>
             <param name="brush">The brush.</param>
-            <param name="point">(<see langword="in"/> parameter) The point.</param>
+            <param name="point">The point.</param>
             <param name="stringFormat">The string format instance.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@)">
             <summary>
             Draw a cross sign (<c>x</c>).
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="this">The graphics.</param>
             <param name="pen">The pen.</param>
-            <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+            <param name="rectangle">The rectangle.</param>
             <remarks>
             This method will draw a cross sign and fill with the specified color, so you don't need
             to find any fill methods.
@@ -209,25 +209,25 @@
             <summary>
             Draw a capsule.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="this">The graphics.</param>
             <param name="pen">The pen.</param>
-            <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+            <param name="rectangle">The rectangle.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.GraphicsEx.FillCapsule(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF@)">
             <summary>
             Fill a capsule.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="this">The graphics.</param>
             <param name="brush">The brush.</param>
-            <param name="rectangle">(<see langword="in"/> parameter) The rectangle.</param>
+            <param name="rectangle">The rectangle.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@,System.Single)">
             <summary>
             Draw a rounded rectangle.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="this">The graphics.</param>
             <param name="pen">The pen.</param>
-            <param name="rectangle">(<see langword="in"/> parameter) The rectangle to draw.</param>
+            <param name="rectangle">The rectangle to draw.</param>
             <param name="circleRadius">The radius of each vertex.</param>
             <exception cref="T:System.ArgumentException">
             Throws when <paramref name="circleRadius"/> is greater than the value in
@@ -238,9 +238,9 @@
             <summary>
             Fill a rounded rectangle.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The graphics.</param>
+            <param name="this">The graphics.</param>
             <param name="brush">The brush.</param>
-            <param name="rectangle">(<see langword="in"/> parameter) The rectangle to fill.</param>
+            <param name="rectangle">The rectangle to fill.</param>
             <param name="circleRadius">The radius of each vertex.</param>
             <exception cref="T:System.ArgumentException">
             Throws when <paramref name="circleRadius"/> is greater than the value in
@@ -256,21 +256,21 @@
         </member>
         <member name="M:Sudoku.Painting.Extensions.PointEx.Deconstruct(System.Drawing.Point@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The instance.</param>
-            <param name="x">(<see langword="out"/> parameter) The x component.</param>
-            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+            <param name="this">The instance.</param>
+            <param name="x">The x component.</param>
+            <param name="y">The y component.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.PointEx.Deconstruct(System.Drawing.PointF@,System.Single@,System.Single@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The instance.</param>
-            <param name="x">(<see langword="out"/> parameter) The x component.</param>
-            <param name="y">(<see langword="out"/> parameter) The y component.</param>
+            <param name="this">The instance.</param>
+            <param name="x">The x component.</param>
+            <param name="y">The y component.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.PointEx.Truncate(System.Drawing.PointF@)">
             <summary>
             To truncate the point.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point to truncate.</param>
+            <param name="this">The point to truncate.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Painting.Extensions.PointEx.WithOffset(System.Drawing.PointF@,System.Single)">
@@ -278,7 +278,7 @@
             Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
             added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point.</param>
+            <param name="this">The point.</param>
             <param name="offset">The offset.</param>
             <returns>The result point.</returns>
             <seealso cref="P:System.Drawing.PointF.X"/>
@@ -289,7 +289,7 @@
             Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
             added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The point.</param>
+            <param name="this">The point.</param>
             <param name="xOffset">The X offset.</param>
             <param name="yOffset">The Y offset.</param>
             <returns>The result point.</returns>
@@ -307,16 +307,16 @@
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">(<see langword="in"/> parameter) The left up point.</param>
-            <param name="rightDown">(<see langword="in"/> parameter) The right down point.</param>
+            <param name="leftUp">The left up point.</param>
+            <param name="rightDown">The right down point.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Painting.Extensions.RectangleEx.CreateInstance(System.Drawing.PointF@,System.Drawing.PointF@)">
             <summary>
             Create an instance with two points.
             </summary>
-            <param name="leftUp">(<see langword="in"/> parameter) The left up point.</param>
-            <param name="rightDown">(<see langword="in"/> parameter) The right down point.</param>
+            <param name="leftUp">The left up point.</param>
+            <param name="rightDown">The right down point.</param>
             <returns>The rectangle.</returns>
         </member>
         <member name="M:Sudoku.Painting.Extensions.RectangleEx.Zoom(System.Drawing.RectangleF@,System.Single)">
@@ -324,7 +324,7 @@
             Zoom in or out the rectangle by the specified offset.
             If the offset is positive, the rectangle will be larger; otherwise, smaller.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
+            <param name="this">The rectangle.</param>
             <param name="offset">The offset to zoom in or out.</param>
             <returns>The new rectangle.</returns>
         </member>
@@ -332,22 +332,22 @@
             <summary>
             Truncate the specified rectangle.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
+            <param name="this">The rectangle.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Painting.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
-            <param name="point">(<see langword="out"/> parameter) The point.</param>
-            <param name="size">(<see langword="out"/> parameter) The size.</param>
+            <param name="this">The rectangle.</param>
+            <param name="point">The point.</param>
+            <param name="size">The size.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The rectangle.</param>
-            <param name="x">(<see langword="out"/> parameter) The x.</param>
-            <param name="y">(<see langword="out"/> parameter) The y.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
+            <param name="this">The rectangle.</param>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
         </member>
         <member name="T:Sudoku.Painting.Extensions.SizeEx">
             <summary>
@@ -358,21 +358,21 @@
         </member>
         <member name="M:Sudoku.Painting.Extensions.SizeEx.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
+            <param name="this">The size instance.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">(<see langword="this in"/> parameter) The size instance.</param>
-            <param name="width">(<see langword="out"/> parameter) The width.</param>
-            <param name="height">(<see langword="out"/> parameter) The height.</param>
+            <param name="this">The size instance.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.SizeEx.Truncate(System.Drawing.SizeF@)">
             <summary>
             To truncate the size.
             </summary>
-            <param name="this">(<see langword="this in"/> parameter) The size.</param>
+            <param name="this">The size.</param>
             <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Painting.GridImageGenerator">
@@ -663,14 +663,14 @@
             Initializes an instance with the color palette index and the value.
             </summary>
             <param name="paletteIndex">The palette index.</param>
-            <param name="value">(<see langword="in"/> parameter) The value used.</param>
+            <param name="value">The value used.</param>
         </member>
         <member name="M:Sudoku.Painting.PaintingPair`1.#ctor(System.Drawing.Color@,`0@)">
             <summary>
             Initializes an instance with the color and the value.
             </summary>
-            <param name="color">(<see langword="in"/> parameter) The color used.</param>
-            <param name="value">(<see langword="in"/> parameter) The value used.</param>
+            <param name="color">The color used.</param>
+            <param name="value">The value used.</param>
         </member>
         <member name="P:Sudoku.Painting.PaintingPair`1.PaletteColorIndex">
             <summary>
@@ -704,18 +704,18 @@
         <member name="M:Sudoku.Painting.PaintingPair`1.Deconstruct(System.Boolean@,System.Int32@,System.Drawing.Color@,`0@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="usePaletteColor">
-            (<see langword="out"/> parameter) Indicates whether the instance stores the index
+            Indicates whether the instance stores the index
             rather than color value.
             </param>
             <param name="paletteIndex">
-            (<see langword="out"/> parameter) The palette color index. The value should be valid
+            The palette color index. The value should be valid
             to use when the value <paramref name="usePaletteColor"/> is <see langword="true"/>.
             </param>
             <param name="color">
-            (<see langword="out"/> parameter) The color. The palette color index. The value should be valid
+            The color. The palette color index. The value should be valid
             to use when the value <paramref name="usePaletteColor"/> is <see langword="false"/>.
             </param>
-            <param name="value">(<see langword="out"/> parameter) The value.</param>
+            <param name="value">The value.</param>
         </member>
         <member name="M:Sudoku.Painting.PaintingPair`1.Equals(System.Object)">
             <inheritdoc/>
@@ -827,11 +827,11 @@
         </member>
         <member name="M:Sudoku.Painting.PresentationData.Deconstruct(System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{Sudoku.Data.Link}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cells">(<see langword="out"/> parameter) The cells.</param>
-            <param name="candidates">(<see langword="out"/> parameter) The candidates.</param>
-            <param name="regions">(<see langword="out"/> parameter) The regions.</param>
-            <param name="links">(<see langword="out"/> parameter) The links.</param>
-            <param name="directLines">(<see langword="out"/> parameter) The direct lines.</param>
+            <param name="cells">The cells.</param>
+            <param name="candidates">The candidates.</param>
+            <param name="regions">The regions.</param>
+            <param name="links">The links.</param>
+            <param name="directLines">The direct lines.</param>
         </member>
         <member name="M:Sudoku.Painting.PresentationData.Add``1(System.String,``0@)">
             <summary>
@@ -893,7 +893,7 @@
             Try to get the palette color using the specified index.
             </summary>
             <param name="id">The ID value.</param>
-            <param name="result">(<see langword="out"/> parameter) The result color.</param>
+            <param name="result">The result color.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating whether the operation is successful.</returns>
         </member>
         <member name="M:Sudoku.Painting.Settings.InternalCoverBy(Sudoku.Painting.Settings)">

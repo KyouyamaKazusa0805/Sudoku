@@ -14,9 +14,9 @@ namespace Sudoku.Drawing.Extensions
 		/// Try to parse the string, and convert it to a color ID.
 		/// </summary>
 		/// <param name="str">The string.</param>
-		/// <param name="colorId">(<see langword="out"/> parameter) The color ID.</param>
+		/// <param name="colorId">The color ID.</param>
 		/// <param name="alpha">The alpha.</param>
-		/// <param name="separators">(<see langword="params"/> parameter) The separators.</param>
+		/// <param name="separators">The separators.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		public static bool TryParse(string str, out long colorId, byte? alpha = null, params char[] separators)
 		{

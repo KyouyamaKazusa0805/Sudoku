@@ -204,13 +204,13 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the puzzle has been solved.
+		/// Indicates whether the puzzle has been solved.
 		/// </param>
 		/// <param name="solvingStepsCount">
-		/// (<see langword="out"/> parameter) The total number of all solving steps.
+		/// The total number of all solving steps.
 		/// </param>
 		/// <param name="solvingSteps">
-		/// (<see langword="out"/> parameter) The all solving steps.
+		/// The all solving steps.
 		/// </param>
 		public void Deconstruct(
 			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<StepInfo>? solvingSteps)
@@ -221,23 +221,23 @@ namespace Sudoku.Solving
 		}
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="solverName">(<see langword="out"/> parameter) The solver name.</param>
+		/// <param name="solverName">The solver name.</param>
 		/// <param name="hasSolved">
-		/// (<see langword="out"/> parameter) Indicates whether the solver has solved the puzzle.
+		/// Indicates whether the solver has solved the puzzle.
 		/// </param>
-		/// <param name="total">(<see langword="out"/> parameter) The total difficulty.</param>
-		/// <param name="max">(<see langword="out"/> parameter) The maximum difficulty of all steps.</param>
-		/// <param name="pearl">(<see langword="out"/> parameter) The pearl difficulty of the puzzle.</param>
-		/// <param name="diamond">(<see langword="out"/> parameter) The diamond difficulty of the puzzle.</param>
-		/// <param name="puzzle">(<see langword="out"/> parameter) The puzzle.</param>
-		/// <param name="solution">(<see langword="out"/> parameter) The solution.</param>
-		/// <param name="elasped">(<see langword="out"/> parameter) The time elapsed.</param>
-		/// <param name="stepCount">(<see langword="out"/> parameter) The number of all steps.</param>
-		/// <param name="steps">(<see langword="out"/> parameter) The steps.</param>
+		/// <param name="total">The total difficulty.</param>
+		/// <param name="max">The maximum difficulty of all steps.</param>
+		/// <param name="pearl">The pearl difficulty of the puzzle.</param>
+		/// <param name="diamond">The diamond difficulty of the puzzle.</param>
+		/// <param name="puzzle">The puzzle.</param>
+		/// <param name="solution">The solution.</param>
+		/// <param name="elasped">The time elapsed.</param>
+		/// <param name="stepCount">The number of all steps.</param>
+		/// <param name="steps">The steps.</param>
 		/// <param name="stepGrids">
-		/// (<see langword="out"/> parameter) The grids corresponding to the steps.
+		/// The grids corresponding to the steps.
 		/// </param>
-		/// <param name="additional">(<see langword="out"/> parameter) The additional message.</param>
+		/// <param name="additional">The additional message.</param>
 		public void Deconstruct(
 			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
 			out decimal diamond, out SudokuGrid puzzle, out SudokuGrid? solution, out TimeSpan elasped,

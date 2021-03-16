@@ -33,7 +33,7 @@ namespace Sudoku.Windows
 		/// <summary>
 		/// Initializes an instance with the specified puzzle.
 		/// </summary>
-		/// <param name="puzzle">(<see langword="in"/> parameter) The puzzle.</param>
+		/// <param name="puzzle">The puzzle.</param>
 		public BackdoorWindow(in SudokuGrid puzzle)
 		{
 			InitializeComponent();

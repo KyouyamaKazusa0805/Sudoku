@@ -15,7 +15,7 @@ namespace Sudoku
 		/// Initializes a <see cref="InvalidPuzzleException"/> with the specified invalid grid,
 		/// and the reason why throws this exception instance.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+		/// <param name="grid">The invalid sudoku grid.</param>
 		/// <param name="reason">The reason why the exception throws.</param>
 		public InvalidPuzzleException(in SudokuGrid grid, string reason)
 		{

@@ -47,7 +47,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// This searcher will try to extract a value from the
 		/// solution.
 		/// </summary>
-		/// <param name="solution">(<see langword="in"/> parameter) The solution.</param>
+		/// <param name="solution">The solution.</param>
 		public BfStepSearcher(in SudokuGrid solution) => _solution = solution;
 
 

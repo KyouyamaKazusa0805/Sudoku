@@ -88,7 +88,7 @@ namespace System.Collections.Generic
 		/// specified as the parameter.
 		/// </summary>
 		/// <param name="other">The value to compare.</param>
-		/// <param name="result">(<see langword="out"/> parameter) The result.</param>
+		/// <param name="result">The result.</param>
 		/// <returns>Indicates whether the searching is successful.</returns>
 		/// <remarks>
 		/// Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
@@ -130,7 +130,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Remove the element at the specified index.
 		/// </summary>
-		/// <param name="index">(<see langword="in"/> parameter) The index.</param>
+		/// <param name="index">The index.</param>
 		/// <returns>The element removed.</returns>
 		public T RemoveAt(in Index index)
 		{

@@ -52,13 +52,13 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// Process the calculation.
 		/// </summary>
 		/// <param name="result">The result.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="baseSet">The base set.</param>
 		/// <param name="coverSet">The cover set.</param>
-		/// <param name="a">(<see langword="in"/> parameter) The left grid map.</param>
-		/// <param name="b">(<see langword="in"/> parameter) The right grid map.</param>
-		/// <param name="c">(<see langword="in"/> parameter) The intersection.</param>
+		/// <param name="a">The left grid map.</param>
+		/// <param name="b">The right grid map.</param>
+		/// <param name="c">The intersection.</param>
 		private static void GetAll(
 			IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
 			in Cells a, in Cells b, in Cells c)

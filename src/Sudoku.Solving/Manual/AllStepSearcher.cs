@@ -46,7 +46,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Search for all possible steps in a grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
 		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
@@ -153,7 +153,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Search for all possible steps in a grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="progress">The progress.</param>
 		/// <param name="countryCode">The country code.</param>
 		/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>

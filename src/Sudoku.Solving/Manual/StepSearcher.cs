@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid to search steps.</param>
+		/// <param name="grid">The grid to search steps.</param>
 		/// <returns>A technique information.</returns>
 		public StepInfo? GetOne(in SudokuGrid grid)
 		{
@@ -64,7 +64,7 @@ namespace Sudoku.Solving.Manual
 		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid to search for techniques.</param>
+		/// <param name="grid">The grid to search for techniques.</param>
 		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
 
 

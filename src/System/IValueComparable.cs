@@ -12,7 +12,7 @@
 		/// an integer that indicates whether the current instance precedes, follows, or
 		/// occurs in the same position in the sort order as the other object.
 		/// </summary>
-		/// <param name="other">(<see langword="in"/> parameter) An object to compare with this instance.</param>
+		/// <param name="other">An object to compare with this instance.</param>
 		/// <returns>
 		/// A value that indicates the relative order of the objects being compared. The
 		/// return value has these meanings: Value Meaning Less than zero This instance precedes

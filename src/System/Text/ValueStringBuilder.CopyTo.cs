@@ -5,7 +5,7 @@
 		/// <summary>
 		/// Try to copy the current instance to the specified builder.
 		/// </summary>
-		/// <param name="builder">(<see langword="ref"/> parameter) The builder.</param>
+		/// <param name="builder">The builder.</param>
 		/// <exception cref="ArgumentException">
 		/// Throws when the target argument doesn't contain the enough space.
 		/// </exception>

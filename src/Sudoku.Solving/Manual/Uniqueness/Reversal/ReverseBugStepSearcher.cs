@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <summary>
 		/// Find all possible loops used for checking each type.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="cell1">The cell 1.</param>
 		/// <param name="cell2">The cell 2.</param>
 		/// <param name="d1">The digit 1.</param>

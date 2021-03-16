@@ -13,7 +13,7 @@ namespace Sudoku
 		/// <summary>
 		/// Initializes a <see cref="PuzzleShouldHaveBeenSolvedException"/> instance with the specified puzzle.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		public PuzzleShouldHaveBeenSolvedException(in SudokuGrid grid)
 		{
 			InvalidGrid = grid;

@@ -14,7 +14,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <typeparam name="T">The element type.</typeparam>
 		/// <typeparam name="TResult">The result type.</typeparam>
-		/// <param name="this">(<see langword="this in"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="selector">The selector that is used for conversion.</param>
 		/// <returns>The array of target result elements.</returns>
 		/// <example>
@@ -38,7 +38,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Get all subsets from the specified number of the values to take.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The array.</param>
+		/// <param name="this">The array.</param>
 		/// <param name="count">The number of elements you want to take.</param>
 		/// <returns>All subsets.</returns>
 		public static IEnumerable<T[]> GetSubsets<T>(this in Span<T> @this, int count)

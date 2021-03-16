@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Checking
 		/// Search all backdoors whose level is lower or equals than the
 		/// specified depth.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="depth">
 		/// The depth you want to search for. The depth value must be between 0 and 3.
 		/// where value 0 is for searching for assignments.
@@ -61,7 +61,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// Search all backdoors whose depth is exactly same as the argument.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="depth">
 		/// The depth you want to search for. The depth value must be between 0 and 3.
 		/// where value 0 is for searching for assignments.
@@ -97,7 +97,7 @@ namespace Sudoku.Solving.Checking
 		/// To find all backdoors in a sudoku grid.
 		/// </summary>
 		/// <param name="result">The result list.</param>
-		/// <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
+		/// <param name="grid">A sudoku grid to search backdoors.</param>
 		/// <param name="depth">The depth to search.</param>
 		/// <exception cref="InvalidPuzzleException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).

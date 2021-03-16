@@ -213,7 +213,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Check the cross-line cells.
 		/// </summary>
-		/// <param name="tempCrossline">(<see langword="in"/> parameter) The cross-line map.</param>
+		/// <param name="tempCrossline">The cross-line map.</param>
 		/// <param name="baseCandidatesMask">The base candidate mask.</param>
 		/// <param name="t1">The target cell 1.</param>
 		/// <param name="t2">The target cell 2.</param>

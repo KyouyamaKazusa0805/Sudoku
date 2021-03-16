@@ -14,7 +14,7 @@ namespace System.Extensions
 		/// <paramref name="start"/> and <paramref name="end"/>.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="start">The start index.</param>
 		/// <param name="end">The end index.</param>
 		/// <returns>The list of the elements that is in the specified range.</returns>
@@ -30,8 +30,8 @@ namespace System.Extensions
 		/// Returns the list that is in the range specified as a <see cref="Range"/> instance.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
-		/// <param name="range">(<see langword="in"/> parameter) The range.</param>
+		/// <param name="this">The list.</param>
+		/// <param name="range">The range.</param>
 		/// <returns>The list of the elements that is in the specified range.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IEnumerable<T> Slice<T>(this IReadOnlyList<T> @this, in Range range) =>
@@ -41,7 +41,7 @@ namespace System.Extensions
 		/// Find the index of an element that satisfy the specified condition.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">(<see langword="this"/> parameter) The list.</param>
+		/// <param name="this">The list.</param>
 		/// <param name="predicate">The condition.</param>
 		/// <returns>
 		/// The result index of that element. If the list doesn't contain any element to satisfy the condition,

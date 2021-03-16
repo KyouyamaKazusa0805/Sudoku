@@ -18,7 +18,7 @@ namespace Sudoku.UI.Extensions
 		/// <summary>
 		/// Convert the <see cref="Bitmap"/> to <see cref="ImageSource"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The bitmap image.</param>
+		/// <param name="this">The bitmap image.</param>
 		/// <returns>The target image result.</returns>
 		/// <seealso cref="ImageSource"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

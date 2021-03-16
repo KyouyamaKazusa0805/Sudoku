@@ -17,7 +17,7 @@ namespace Sudoku.Data.GridIterators
 		/// <summary>
 		/// Initializes an instance with the enumerator and the count.
 		/// </summary>
-		/// <param name="enumerator">(<see langword="in"/> parameter) The enumerator.</param>
+		/// <param name="enumerator">The enumerator.</param>
 		/// <param name="count">The count.</param>
 		public SkipIterator(in Enumerator enumerator, int count)
 		{

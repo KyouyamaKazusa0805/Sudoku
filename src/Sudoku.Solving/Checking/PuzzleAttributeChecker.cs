@@ -25,7 +25,7 @@ namespace Sudoku.Solving.Checking
 		/// <see cref="IsValid(in SudokuGrid, out SudokuGrid, out bool?)"/>,
 		/// but doesn't contain any <see langword="out"/> parameters.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		/// <seealso cref="IsValid(in SudokuGrid, out SudokuGrid)"/>
 		/// <seealso cref="IsValid(in SudokuGrid, out SudokuGrid, out bool?)"/>
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Checking
 		/// <see cref="IsValid(UndoableGrid, out UndoableGrid, out bool?)"/>,
 		/// but doesn't contain any <see langword="out"/> parameters.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The grid.</param>
+		/// <param name="this">The grid.</param>
 		/// <returns>The <see cref="bool"/> indicating that.</returns>
 		/// <seealso cref="IsValid(UndoableGrid, out UndoableGrid)"/>
 		/// <seealso cref="IsValid(UndoableGrid, out UndoableGrid, out bool?)"/>
@@ -46,9 +46,9 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="solutionIfValid">
-		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// The solution if the puzzle is valid;
 		/// otherwise, <see cref="SudokuGrid.Undefined"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -72,9 +72,9 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="solutionIfValid">
-		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// The solution if the puzzle is valid;
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -98,9 +98,9 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="sukaku">
-		/// (<see langword="out"/> parameter) A <see cref="bool"/> value indicating whether the current
+		/// A <see cref="bool"/> value indicating whether the current
 		/// grid is a sukaku. <see langword="true"/> is for sukaku.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -126,9 +126,9 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="sukaku">
-		/// (<see langword="out"/> parameter) A <see cref="bool"/> value indicating whether the current
+		/// A <see cref="bool"/> value indicating whether the current
 		/// grid is a sukaku. <see langword="true"/> is for sukaku.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
@@ -138,13 +138,13 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="solutionIfValid">
-		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// The solution if the puzzle is valid;
 		/// otherwise, <see cref="SudokuGrid.Undefined"/>.
 		/// </param>
 		/// <param name="sukaku">
-		/// (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+		/// Indicates whether the current mode is sukaku mode.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="SudokuGrid.Undefined"/>
@@ -174,13 +174,13 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if a puzzle has only one solution or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <param name="solutionIfValid">
-		/// (<see langword="out"/> parameter) The solution if the puzzle is valid;
+		/// The solution if the puzzle is valid;
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <param name="sukaku">
-		/// (<see langword="out"/> parameter) Indicates whether the current mode is sukaku mode.
+		/// Indicates whether the current mode is sukaku mode.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsValid(
@@ -211,7 +211,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is minimal or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsMinimal(this in SudokuGrid @this)
 		{
@@ -245,7 +245,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is pearl or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsPearl(this in SudokuGrid @this) =>
 			@this.IsValid() && new ManualSolver().Solve(@this) is var result
@@ -254,7 +254,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check if the puzzle is diamond or not.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle to check.</param>
+		/// <param name="this">The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsDiamond(this in SudokuGrid @this)
 		{
@@ -275,7 +275,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// To check whether the puzzle can be solved using only simple sudoku technique set.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
+		/// <param name="this">The puzzle.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool CanBeSolvedUsingOnlySsts(this in SudokuGrid @this) =>
 			@this.IsValid() && new ManualSolver().Solve(@this).DifficultyLevel <= DifficultyLevel.Moderate;
@@ -283,7 +283,7 @@ namespace Sudoku.Solving.Checking
 		/// <summary>
 		/// Get the difficulty level of this puzzle.
 		/// </summary>
-		/// <param name="this">(<see langword="this in"/> parameter) The puzzle.</param>
+		/// <param name="this">The puzzle.</param>
 		/// <returns>The difficulty level.</returns>
 		public static DifficultyLevel GetDifficultyLevel(this in SudokuGrid @this) =>
 			new ManualSolver().Solve(@this).DifficultyLevel;

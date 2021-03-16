@@ -100,7 +100,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// Take all information recursively.
 		/// </summary>
 		/// <param name="result">The result.</param>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="startCand">The start candidate.</param>
 		/// <param name="length">The length.</param>
 		private void GetAll(IList<BowmanBingoStepInfo> result, ref SudokuGrid grid, int startCand, int length)
@@ -168,7 +168,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Record all information to be used in undo grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The result.</returns>
@@ -187,7 +187,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Undo the grid.
 		/// </summary>
-		/// <param name="grid">(<see langword="ref"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="list">The list.</param>
 		/// <param name="cell">The cell.</param>
 		/// <param name="mask">The mask.</param>
@@ -205,7 +205,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// To check the specified cell has a same digit filled in a cell
 		/// which is same region with the current one.
 		/// </summary>
-		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="grid">The grid.</param>
 		/// <param name="cell">The cell.</param>
 		/// <returns>The result.</returns>
 		private static bool IsValidGrid(in SudokuGrid grid, int cell)

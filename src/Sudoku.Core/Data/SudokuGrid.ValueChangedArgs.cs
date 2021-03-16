@@ -52,10 +52,10 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc cref="DeconstructMethod"/>
-			/// <param name="cell">(<see langword="out"/> parameter) The cell offset.</param>
-			/// <param name="oldMask">(<see langword="out"/> parameter) The old mask.</param>
-			/// <param name="newMask">(<see langword="out"/> parameter) The new mask.</param>
-			/// <param name="setValue">(<see langword="out"/> parameter) the set value.</param>
+			/// <param name="cell">The cell offset.</param>
+			/// <param name="oldMask">The old mask.</param>
+			/// <param name="newMask">The new mask.</param>
+			/// <param name="setValue">the set value.</param>
 			public void Deconstruct(out int cell, out short oldMask, out short newMask, out int setValue)
 			{
 				cell = Cell;

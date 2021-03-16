@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The list of cells.</param>
+		/// <param name="this">The list of cells.</param>
 		/// <param name="offset">The offset. The default value is 4.</param>
 		/// <returns>All links.</returns>
 		public static IReadOnlyList<Link> GetLinks(this IReadOnlyList<int> @this, int offset = 4)

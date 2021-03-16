@@ -30,7 +30,7 @@ namespace Sudoku.UI.Extensions
 		/// Modify the current instance, to change the default extension property
 		/// <see cref="FileDialog.DefaultExt"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="extension">The extension to change.</param>
 		/// <returns>The current instance.</returns>
 		/// <seealso cref="FileDialog.DefaultExt"/>
@@ -44,7 +44,7 @@ namespace Sudoku.UI.Extensions
 		/// Modify the current instance, to change the filter property
 		/// <see cref="FileDialog.Filter"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="filter">The filter to change.</param>
 		/// <returns>The current instance.</returns>
 		/// <seealso cref="FileDialog.Filter"/>
@@ -58,7 +58,7 @@ namespace Sudoku.UI.Extensions
 		/// Modify the current instance, to change the multi-select property
 		/// <see cref="OpenFileDialog.Multiselect"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="multiselect">The multi-select to change.</param>
 		/// <returns>The current instance.</returns>
 		/// <seealso cref="OpenFileDialog.Multiselect"/>
@@ -72,7 +72,7 @@ namespace Sudoku.UI.Extensions
 		/// Modify the current instance, to change the title property
 		/// <see cref="FileDialog.Title"/>.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
+		/// <param name="this">The instance.</param>
 		/// <param name="title">The title to change.</param>
 		/// <returns>The current instance.</returns>
 		/// <seealso cref="FileDialog.Title"/>

@@ -13,7 +13,7 @@ namespace Sudoku.CodeAnalysis.Extensions
 		/// <summary>
 		/// Gets the full name of the parameter.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The argument syntax node.</param>
+		/// <param name="this">The argument syntax node.</param>
 		/// <param name="semanticModel">The semantic model.</param>
 		/// <returns>The full name.</returns>
 		public static string? GetParamFullName(this ArgumentSyntax @this, SemanticModel semanticModel)

@@ -11,9 +11,9 @@ namespace Sudoku.Recognition.Extensions
 	public static class RotateRectEx
 	{
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">(<see langword="this"/> parameter) The rectangle.</param>
-		/// <param name="center">(<see langword="out"/> parameter) The center.</param>
-		/// <param name="size">(<see langword="out"/> parameter) The size.</param>
+		/// <param name="this">The rectangle.</param>
+		/// <param name="center">The center.</param>
+		/// <param name="size">The size.</param>
 		public static void Deconstruct(this RotatedRect @this, out PointF center, out SizeF size)
 		{
 			center = @this.Center;

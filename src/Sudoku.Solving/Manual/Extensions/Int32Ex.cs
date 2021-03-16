@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get the region index for the specified cell and the region type.
 		/// </summary>
-		/// <param name="this">(<see langword="this"/> parameter) The cell.</param>
+		/// <param name="this">The cell.</param>
 		/// <param name="label">The label to represent a region type.</param>
 		/// <returns>The region index.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <summary>
 		/// Get extra difficulty rating for a chain node sequence.
 		/// </summary>
-		/// <param name="length">(<see langword="this"/> parameter) The length.</param>
+		/// <param name="length">The length.</param>
 		/// <returns>The difficulty.</returns>
 		public static decimal GetExtraDifficultyByLength(this int length)
 		{
