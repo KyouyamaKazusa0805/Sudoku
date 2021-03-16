@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Checking
 		/// where value 0 is for searching for assignments.
 		/// </param>
 		/// <returns>All backdoors.</returns>
-		/// <exception cref="SudokuHandlingException">Throws when the specified grid is invalid.</exception>
+		/// <exception cref="InvalidPuzzleException">Throws when the specified grid is invalid.</exception>
 		public IEnumerable<IReadOnlyList<Conclusion>> SearchForBackdoors(in SudokuGrid grid, int depth)
 		{
 			if (depth is < 0 or > 3)
@@ -43,7 +43,10 @@ namespace Sudoku.Solving.Checking
 
 			if (!grid.IsValid())
 			{
-				throw new SudokuHandlingException(errorCode: 202);
+				throw new InvalidPuzzleException(
+					grid: grid,
+					reason: "the grid should contain unique solution before checking backdoors"
+				);
 			}
 
 			var result = new List<IReadOnlyList<Conclusion>>();
@@ -96,7 +99,7 @@ namespace Sudoku.Solving.Checking
 		/// <param name="result">The result list.</param>
 		/// <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
 		/// <param name="depth">The depth to search.</param>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="InvalidPuzzleException">
 		/// Throws when the grid is invalid (has no solution or multiple solutions).
 		/// </exception>
 		private static void SearchForBackdoors(
@@ -104,7 +107,10 @@ namespace Sudoku.Solving.Checking
 		{
 			if (!grid.IsValid(out SudokuGrid solution))
 			{
-				throw new SudokuHandlingException<SudokuGrid>(errorCode: 202, grid);
+				throw new InvalidPuzzleException(
+					grid: grid,
+					reason: "the grid should contain unique solution before checking backdoors"
+				);
 			}
 
 			var tempGrid = grid;

@@ -312,7 +312,7 @@
             <see cref="P:Microsoft.Win32.FileDialog.Title"/>.
             </summary>
             <param name="this">(<see langword="this"/> parameter) The instance.</param>
-            <param name="multiselect">The title to change.</param>
+            <param name="title">The title to change.</param>
             <returns>The current instance.</returns>
             <seealso cref="P:Microsoft.Win32.FileDialog.Title"/>
         </member>

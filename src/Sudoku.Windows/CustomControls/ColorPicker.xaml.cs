@@ -79,7 +79,7 @@ namespace Sudoku.Windows.CustomControls
 		/// Save the custom palette to your drives.
 		/// </summary>
 		/// <param name="filename">The file name that you want to save.</param>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="TypeInitializationException">
 		/// Throws when the color palette is currently <see langword="null"/>;
 		/// or throws when the process has encountered an error while writing the serialization string.
 		/// </exception>
@@ -87,18 +87,14 @@ namespace Sudoku.Windows.CustomControls
 		{
 			if (_colorPalette is null)
 			{
-				throw new SudokuHandlingException(errorCode: 402);
+				throw new TypeInitializationException(
+					typeof(ColorPicker).FullName,
+					new("Color palette is current null.")
+				);
 			}
 
 			_colorPalette.CustomColors = _customColorSampleList.GetColors();
-			try
-			{
-				File.WriteAllText(filename, GetXmlText(_colorPalette));
-			}
-			catch (Exception ex)
-			{
-				throw new SudokuHandlingException(ex);
-			}
+			File.WriteAllText(filename, GetXmlText(_colorPalette));
 		}
 
 		/// <summary>
@@ -113,7 +109,7 @@ namespace Sudoku.Windows.CustomControls
 						ColorPickerSettings.CustomColorsDirectory,
 						ColorPickerSettings.CustomColorsFilename));
 			}
-			catch (SudokuHandlingException ex) when (ex.ErrorCode is 402 or 601)
+			catch (TypeInitializationException ex) when (ex.TypeName == typeof(ColorPicker).FullName)
 			{
 			}
 		}
@@ -122,36 +118,33 @@ namespace Sudoku.Windows.CustomControls
 		/// Load the custom palette from the specified file using deserialization.
 		/// </summary>
 		/// <param name="filename">The file name to load from.</param>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="TypeInitializationException">
 		/// Throws when the color palette is currently <see langword="null"/>.
 		/// </exception>
 		public void LoadCustomPalette(string filename)
 		{
 			if (_colorPalette is null)
 			{
-				throw new SudokuHandlingException(errorCode: 402);
+				throw new TypeInitializationException(
+					typeof(ColorPicker).FullName,
+					new("Color palette is currently null.")
+				);
 			}
 
 			if (File.Exists(filename))
 			{
-				try
-				{
-					_colorPalette = LoadFromXml<ColorPickerPalette>(filename);
+				_colorPalette = LoadFromXml<ColorPickerPalette>(filename);
 
-					_customColorSampleList._colorSampleList.ItemsSource = _colorPalette!.CustomColors;
+				_customColorSampleList._colorSampleList.ItemsSource = _colorPalette!.CustomColors;
 
-					_colorSampleList1.Clear();
-					_colorSampleList2.Clear();
-					_colorSampleList1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
-					_colorSampleList2.AddRange(
-						_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch));
-					_swatch1._colorSampleList.ItemsSource = _colorSampleList1;
-					_swatch2._colorSampleList.ItemsSource = _colorSampleList2;
-				}
-				catch (Exception ex)
-				{
-					throw new SudokuHandlingException(ex);
-				}
+				_colorSampleList1.Clear();
+				_colorSampleList2.Clear();
+				_colorSampleList1.AddRange(_colorPalette.BuiltInColors.Take(NumColorsFirstSwatch));
+				_colorSampleList2.AddRange(
+					_colorPalette.BuiltInColors.Skip(NumColorsFirstSwatch).Take(NumColorsSecondSwatch)
+				);
+				_swatch1._colorSampleList.ItemsSource = _colorSampleList1;
+				_swatch2._colorSampleList.ItemsSource = _colorSampleList2;
 			}
 		}
 
@@ -166,7 +159,7 @@ namespace Sudoku.Windows.CustomControls
 				{
 					SaveCustomPalette(ColorPickerSettings.CustomPaletteFilename);
 				}
-				catch (SudokuHandlingException ex) when (ex.ErrorCode == 601)
+				catch (TypeInitializationException ex) when (ex.TypeName == typeof(ColorPicker).FullName)
 				{
 				}
 			}

@@ -135,6 +135,38 @@
             <param name="center">(<see langword="out"/> parameter) The center.</param>
             <param name="size">(<see langword="out"/> parameter) The size.</param>
         </member>
+        <member name="T:Sudoku.Recognition.FailedToFillValueException">
+            <summary>
+            Indicates the exception that throws when the value is failed to fill into a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.FailedToFillValueException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recognition.FailedToFillValueException"/> instance
+            with the specified cell and the digit.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.Cell">
+            <summary>
+            Indicates the wrong cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.Digit">
+            <summary>
+            Indicates the wrong digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognition.FailedToFillValueException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Recognition.GridRecognizer">
             <summary>
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
@@ -216,7 +248,7 @@
             </summary>
             <param name="field">The field.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.Recognition.FailedToFillValueException">
             Throws when the processing is wrong or unhandleable.
             </exception>
         </member>
@@ -229,7 +261,10 @@
             The result value (must be between 1 and 9). If the recognition is failed,
             the value will be <c>0</c>.
             </returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the OCR engine error.</exception>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the inner tool isn't been initialized.
+            </exception>
+            <exception cref="T:Sudoku.Recognition.TesseractException">Throws when the OCR engine error.</exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.InitTesseract(System.String,System.String)">
             <summary>
@@ -267,7 +302,7 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException">
             Throws when the tool has not initialized yet.
             </exception>
         </member>
@@ -277,6 +312,54 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The task.</returns>
+        </member>
+        <member name="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException">
+            <summary>
+            Indicates the exception that throws when the recognition tools hasn't been initialized
+            before using a function.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Recognition.TesseractException">
+            <summary>
+            Indicates the exception that throws when the tesseract has encountered an error.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.TesseractException.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Recognition.TesseractException"/> with the specified detail.
+            </summary>
+            <param name="detail">The detail.</param>
+        </member>
+        <member name="M:Sudoku.Recognition.TesseractException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.TesseractException.Detail">
+            <summary>
+            Indicates the detail.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.TesseractException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.TesseractException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognition.TesseractException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

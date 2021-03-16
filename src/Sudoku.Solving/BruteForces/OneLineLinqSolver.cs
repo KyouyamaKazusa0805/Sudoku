@@ -18,8 +18,9 @@ namespace Sudoku.Solving.BruteForces
 
 
 		/// <inheritdoc/>
-		/// <exception cref="SudokuHandlingException">
-		/// Throws when the puzzle doesn't contain a unique solution.
+		/// <exception cref="NoSolutionException">Throws when the puzzle has no valid solution.</exception>
+		/// <exception cref="MultipleSolutionsException">
+		/// Throws when the puzzle has multiple solutions.
 		/// </exception>
 		public AnalysisResult Solve(in SudokuGrid grid)
 		{
@@ -31,9 +32,9 @@ namespace Sudoku.Solving.BruteForces
 
 			return results.Count switch
 			{
-				0 => throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
+				0 => throw new NoSolutionException(grid),
 				1 => new(SolverName, grid, true, stopwatch.Elapsed) { Solution = SudokuGrid.Parse(results[0]) },
-				_ => throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, grid)
+				_ => throw new MultipleSolutionsException(grid)
 			};
 		}
 

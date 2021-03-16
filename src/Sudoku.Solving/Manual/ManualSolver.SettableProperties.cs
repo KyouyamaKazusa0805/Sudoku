@@ -70,7 +70,7 @@
 		/// Indicates whether the solver will check the validity of the conclusions
 		/// after searched them. If the conclusions eliminate the wrong digits or
 		/// assign to the wrong cells, it will report the error
-		/// (i.e. throw a <see cref="SudokuHandlingException"/>).
+		/// (i.e. throw a <see cref="WrongStepException"/>).
 		/// </para>
 		/// <para>
 		/// The value is <see langword="true"/> in default case. If the value is
@@ -84,7 +84,7 @@
 		/// the grid has no solution at present.
 		/// </para>
 		/// </summary>
-		/// <seealso cref="SudokuHandlingException"/>
+		/// <seealso cref="WrongStepException"/>
 		public bool CheckConclusionValidityAfterSearched { get; set; } = true;
 
 		/// <summary>

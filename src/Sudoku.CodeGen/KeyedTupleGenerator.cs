@@ -158,7 +158,7 @@ namespace Sudoku.CodeGen
 					default: sb.Append("th"); break;
 				}
 
-				sb.AppendLine(" item.");
+				sb.AppendLine(" item.</param>");
 			}
 
 			sb

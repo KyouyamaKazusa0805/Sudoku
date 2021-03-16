@@ -99,8 +99,7 @@ namespace Sudoku.Solving.Manual
 						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
 						cancellationToken);
 				}
-				catch (SudokuHandlingException<SudokuGrid, StepInfo> ex)
-				when (ex.ErrorCode == 201 && ex.Arg2 is { } info)
+				catch (WrongStepException ex)
 				{
 					return new(SolverName, grid, false, TimeSpan.Zero) { Additional = ex };
 				}

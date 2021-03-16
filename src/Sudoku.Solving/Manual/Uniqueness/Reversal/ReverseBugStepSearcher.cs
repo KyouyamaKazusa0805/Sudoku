@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
@@ -117,7 +118,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			{
 				f(grid, ValueMaps[d1] | ValueMaps[d2], cell2, d1, digitsMask, 2);
 			}
-			catch (SudokuHandlingException)
+			catch (Exception ex) when (ex.Message == "Exit the recursion.")
 			{
 				return result;
 			}
@@ -145,7 +146,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						{
 							result.Add((loopMap, loop.GetLinks()));
 
-							throw new SudokuHandlingException();
+							throw new Exception("Exit the recursion.");
 						}
 						else
 						{

@@ -35,7 +35,7 @@ namespace Sudoku.Solving.Manual
 		/// </param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>The analysis result.</returns>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="WrongStepException">
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
@@ -132,10 +132,7 @@ namespace Sudoku.Solving.Manual
 					else
 					{
 						var solutionCopied = solution;
-						throw new SudokuHandlingException<SudokuGrid, StepInfo>(
-							errorCode: 201,
-							grid,
-							selection.First(first));
+						throw new WrongStepException(grid, selection.First(first));
 
 						bool first(StepInfo step) => !CheckConclusionsValidity(solutionCopied, step.Conclusions);
 					}
@@ -183,7 +180,7 @@ namespace Sudoku.Solving.Manual
 					}
 					else
 					{
-						throw new SudokuHandlingException<SudokuGrid, StepInfo>(errorCode: 201, grid, step);
+						throw new WrongStepException(grid, step);
 					}
 				}
 			}

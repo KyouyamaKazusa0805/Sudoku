@@ -330,7 +330,7 @@
             Save the custom palette to your drives.
             </summary>
             <param name="filename">The file name that you want to save.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:System.TypeInitializationException">
             Throws when the color palette is currently <see langword="null"/>;
             or throws when the process has encountered an error while writing the serialization string.
             </exception>
@@ -345,7 +345,7 @@
             Load the custom palette from the specified file using deserialization.
             </summary>
             <param name="filename">The file name to load from.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:System.TypeInitializationException">
             Throws when the color palette is currently <see langword="null"/>.
             </exception>
         </member>

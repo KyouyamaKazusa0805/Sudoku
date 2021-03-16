@@ -55,7 +55,7 @@ namespace Sudoku.Windows
 				return await Task.Run(() =>
 				{
 					try { return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth); }
-					catch (SudokuHandlingException) { return null; }
+					catch (InvalidPuzzleException) { return null; }
 				});
 			}
 

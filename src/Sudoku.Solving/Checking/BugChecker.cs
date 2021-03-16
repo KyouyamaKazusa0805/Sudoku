@@ -20,11 +20,13 @@ namespace Sudoku.Solving.Checking
 		/// Initializes an instance with the specified grid.
 		/// </summary>
 		/// <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
-		/// <exception cref="SudokuHandlingException">Throws when the puzzle is invalid.</exception>
-		public BugChecker(in SudokuGrid puzzle) =>
-			Puzzle = puzzle.IsValid()
-				? puzzle
-				: throw new SudokuHandlingException<SudokuGrid>(errorCode: 202, puzzle);
+		/// <exception cref="InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
+		public BugChecker(in SudokuGrid puzzle) => Puzzle = puzzle.IsValid()
+			? puzzle
+			: throw new InvalidPuzzleException(
+				grid: puzzle,
+				reason: "the puzzle should contain unique solution before checking the BUG pattern."
+			);
 
 
 		/// <summary>

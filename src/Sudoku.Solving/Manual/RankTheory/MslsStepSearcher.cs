@@ -30,11 +30,10 @@ namespace Sudoku.Solving.Manual.RankTheory
 		{
 			short* linkForEachRegion = stackalloc short[27];
 			var linkForEachDigit = stackalloc Cells[9];
-			foreach (var pattern in Patterns)
+			for (int globalIndex = 0; globalIndex < Patterns.Count; globalIndex++)
 			{
-				var map = EmptyMap & pattern;
-				if (pattern.Count < 12
-					&& (pattern.Count - map.Count, pattern.Count - map.Count) is not ( <= 1, <= 2))
+				Cells pattern = Patterns[globalIndex], map = EmptyMap & pattern;
+				if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
 				{
 					continue;
 				}
@@ -47,7 +46,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 					n += MathEx.Min(
 						PopCount((uint)pMap->RowMask),
 						PopCount((uint)pMap->ColumnMask),
-						PopCount((uint)pMap->BlockMask));
+						PopCount((uint)pMap->BlockMask)
+					);
 				}
 
 				if (n == count)

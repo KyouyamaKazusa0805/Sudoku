@@ -21,7 +21,7 @@ namespace Sudoku.Solving.BruteForces
 
 
 		/// <inheritdoc/>
-		/// <exception cref="SudokuHandlingException">Throws when the puzzle contains no solutions.</exception>
+		/// <exception cref="NoSolutionException">Throws when the puzzle contains no solutions.</exception>
 		public AnalysisResult Solve(in SudokuGrid grid)
 		{
 			_grid = grid;
@@ -39,13 +39,10 @@ namespace Sudoku.Solving.BruteForces
 
 				return new(SolverName, grid, true, stopwatch.Elapsed)
 				{
-					Solution = new(
-						result ?? throw new SudokuHandlingException<SudokuGrid>(errorCode: 102, grid),
-						GridCreatingOption.MinusOne
-					)
+					Solution = new(result ?? throw new NoSolutionException(grid), GridCreatingOption.MinusOne)
 				};
 			}
-			catch (SudokuHandlingException ex) when (ex.ErrorCode == 101)
+			catch (MultipleSolutionsException ex)
 			{
 				stopwatch.Stop();
 
@@ -64,7 +61,7 @@ namespace Sudoku.Solving.BruteForces
 		/// </param>
 		/// <param name="gridValues">All grid values.</param>
 		/// <param name="finishedCellsCount">The number of cells had finished.</param>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="MultipleSolutionsException">
 		/// Throws when the puzzle contains multiple solutions.
 		/// </exception>
 		private void BacktrackinglySolve(
@@ -75,7 +72,7 @@ namespace Sudoku.Solving.BruteForces
 				// Solution found.
 				if (++solutionsCount > 1)
 				{
-					throw new SudokuHandlingException<SudokuGrid>(errorCode: 101, _grid);
+					throw new MultipleSolutionsException(_grid);
 				}
 
 				// We should catch the result.

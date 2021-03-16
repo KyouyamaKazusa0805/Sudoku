@@ -313,7 +313,7 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle contains no solutions.</exception>
+            <exception cref="T:Sudoku.NoSolutionException">Throws when the puzzle contains no solutions.</exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.BacktrackinglySolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
             <summary>
@@ -327,7 +327,7 @@
             </param>
             <param name="gridValues">All grid values.</param>
             <param name="finishedCellsCount">The number of cells had finished.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.MultipleSolutionsException">
             Throws when the puzzle contains multiple solutions.
             </exception>
         </member>
@@ -350,8 +350,9 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the puzzle doesn't contain a unique solution.
+            <exception cref="T:Sudoku.NoSolutionException">Throws when the puzzle has no valid solution.</exception>
+            <exception cref="T:Sudoku.MultipleSolutionsException">
+            Throws when the puzzle has multiple solutions.
             </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolveStrings(System.String)">
@@ -416,8 +417,9 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.SudokuHandlingException">
-            Throws when the puzzle doesn't contain a unique solution.
+            <exception cref="T:Sudoku.NoSolutionException">Throws when the puzzle has no valid solution.</exception>
+            <exception cref="T:Sudoku.MultipleSolutionsException">
+            Throws when the puzzle has multiple solutions.
             </exception>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.String@,System.Int32)">
@@ -649,7 +651,7 @@
             where value 0 is for searching for assignments.
             </param>
             <returns>All backdoors.</returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the specified grid is invalid.</exception>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the specified grid is invalid.</exception>
         </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExact(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
@@ -680,7 +682,7 @@
             <param name="result">The result list.</param>
             <param name="grid">(<see langword="in"/> parameter) A sudoku grid to search backdoors.</param>
             <param name="depth">The depth to search.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.InvalidPuzzleException">
             Throws when the grid is invalid (has no solution or multiple solutions).
             </exception>
         </member>
@@ -694,7 +696,7 @@
             Initializes an instance with the specified grid.
             </summary>
             <param name="puzzle">(<see langword="in"/> parameter) The current puzzle grid.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">Throws when the puzzle is invalid.</exception>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Checking.BugChecker.IsBugPattern">
             <summary>
@@ -2823,7 +2825,7 @@
             <param name="grid">(<see langword="in"/> parameter) The grid.</param>
             <param name="source">(<see langword="in"/> parameter) The source grid.</param>
             <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:System.Exception">
             Throws when the parent node of the specified node cannot be found.
             </exception>
         </member>
@@ -2836,7 +2838,7 @@
             <param name="source">(<see langword="in"/> parameter) The source grid.</param>
             <param name="currRegion">The current region label.</param>
             <param name="offNodes">All off nodes.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:System.Exception">
             Throws when the parent node of the specified node cannot be found.
             </exception>
         </member>
@@ -4112,7 +4114,7 @@
             </param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.Solving.Manual.WrongStepException">
             Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
@@ -4139,7 +4141,7 @@
             </param>
             <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
             <returns>The analysis result.</returns>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.Solving.Manual.WrongStepException">
             Throws when the solver can't solved due to wrong handling.
             </exception>
             <seealso cref="T:Sudoku.Models.GridProgressResult"/>
@@ -4210,7 +4212,7 @@
             Indicates whether the solver will check the validity of the conclusions
             after searched them. If the conclusions eliminate the wrong digits or
             assign to the wrong cells, it will report the error
-            (i.e. throw a <see cref="T:Sudoku.SudokuHandlingException"/>).
+            (i.e. throw a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/>).
             </para>
             <para>
             The value is <see langword="true"/> in default case. If the value is
@@ -4224,7 +4226,7 @@
             the grid has no solution at present.
             </para>
             </summary>
-            <seealso cref="T:Sudoku.SudokuHandlingException"/>
+            <seealso cref="T:Sudoku.Solving.Manual.WrongStepException"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolver.CheckGurthSymmetricalPlacement">
             <summary>
@@ -9298,6 +9300,42 @@
             <summary>
             Encapsulates a <b>wing</b> technique solver.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Data.SudokuGrid@,Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.InvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

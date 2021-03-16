@@ -908,7 +908,16 @@
             <param name="a">The first value.</param>
             <param name="b">The second value.</param>
             <param name="c">The third value.</param>
-            <returns>Which is the most minimal one.</returns>
+            <returns>Which is the minimal value.</returns>
+        </member>
+        <member name="M:System.Extensions.MathEx.Max(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the maximum one of three values.
+            </summary>
+            <param name="a">The first value.</param>
+            <param name="b">The second value.</param>
+            <param name="c">The third value.</param>
+            <returns>Which is the maximum value.</returns>
         </member>
         <member name="T:System.Extensions.MemberInfoEx">
             <summary>
@@ -2066,6 +2075,20 @@
             Append a string.
             </summary>
             <param name="s">The string.</param>
+        </member>
+        <member name="T:System.WeakBox`1">
+            <summary>
+            Provides a data structure that stores a value type to avoid boxing and unboxing operations.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="Value">The value stored.</param>
+        </member>
+        <member name="M:System.WeakBox`1.#ctor(`0)">
+            <summary>
+            Provides a data structure that stores a value type to avoid boxing and unboxing operations.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="Value">The value stored.</param>
         </member>
     </members>
 </doc>

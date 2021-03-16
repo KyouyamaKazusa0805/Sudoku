@@ -123,11 +123,16 @@ namespace Sudoku.Resources
 		/// To change the current language with the specified country code.
 		/// </summary>
 		/// <param name="countryCode">The country code.</param>
+		/// <exception cref="ResourceCannotBeFoundException">
+		/// Throws when the resource file can't be found.
+		/// </exception>
 		private static void ChangeLanguage(CountryCode countryCode)
 		{
 			CurrentCountryCode = countryCode;
 
-			var defaultDictionary = CurrentLangSourceEnUs ?? throw new SudokuHandlingException<string>(errorCode: 403, nameof(LangSourceEnUs));
+			var defaultDictionary = CurrentLangSourceEnUs ?? throw new ResourceCannotBeFoundException(
+				nameof(LangSourceEnUs)
+			);
 			if (countryCode == CountryCode.Default)
 			{
 				goto DefaultAssignment;

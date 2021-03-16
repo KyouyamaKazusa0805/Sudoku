@@ -73,7 +73,7 @@ namespace Sudoku.UI.Extensions
 		/// <see cref="FileDialog.Title"/>.
 		/// </summary>
 		/// <param name="this">(<see langword="this"/> parameter) The instance.</param>
-		/// <param name="multiselect">The title to change.</param>
+		/// <param name="title">The title to change.</param>
 		/// <returns>The current instance.</returns>
 		/// <seealso cref="FileDialog.Title"/>
 		public static OpenFileDialog WithTitle(this OpenFileDialog @this, string title)

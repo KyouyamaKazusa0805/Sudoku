@@ -46,7 +46,7 @@ namespace Sudoku.Recognition
 		/// </summary>
 		/// <param name="field">The field.</param>
 		/// <returns>The grid.</returns>
-		/// <exception cref="SudokuHandlingException">
+		/// <exception cref="FailedToFillValueException">
 		/// Throws when the processing is wrong or unhandleable.
 		/// </exception>
 		public SudokuGrid RecognizeDigits(Field field)
@@ -58,19 +58,20 @@ namespace Sudoku.Recognition
 				for (int y = 0; y < 9; y++)
 				{
 					// Recognize digit from cell.
-					int recognition = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-					if (recognition == -1)
+					if (
+						RecognizeCellNumber(
+							field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2))
+						) is var recognition and not -1
+					)
 					{
-						continue;
-					}
+						int cell = x * 9 + y, digit = recognition - 1;
+						if (!result[cell, digit])
+						{
+							throw new FailedToFillValueException(cell, digit);
+						}
 
-					int cell = x * 9 + y, digit = recognition - 1;
-					if (!result[cell, digit])
-					{
-						throw new SudokuHandlingException<int, int>(302, cell, digit);
+						result[cell] = digit;
 					}
-
-					result[cell] = digit;
 				}
 			}
 
@@ -86,7 +87,10 @@ namespace Sudoku.Recognition
 		/// The result value (must be between 1 and 9). If the recognition is failed,
 		/// the value will be <c>0</c>.
 		/// </returns>
-		/// <exception cref="SudokuHandlingException">Throws when the OCR engine error.</exception>
+		/// <exception cref="NullReferenceException">
+		/// Throws when the inner tool isn't been initialized.
+		/// </exception>
+		/// <exception cref="TesseractException">Throws when the OCR engine error.</exception>
 		private int RecognizeCellNumber(Field cellImg)
 		{
 			if (_ocr is null)
@@ -105,7 +109,7 @@ namespace Sudoku.Recognition
 			_ocr.SetImage(imgThresholds);
 			if (_ocr.Recognize() != 0)
 			{
-				throw new SudokuHandlingException(errorCode: 303);
+				throw new TesseractException("can't recognize any cell image");
 			}
 
 			var characters = _ocr.GetCharacters();

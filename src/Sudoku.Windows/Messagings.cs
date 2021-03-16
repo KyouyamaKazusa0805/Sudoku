@@ -263,8 +263,7 @@ namespace Sudoku.Windows
 		{
 			switch (analysisResult.Additional)
 			{
-				case SudokuHandlingException<SudokuGrid, StepInfo> ex
-				when ex.Arg1 is var grid && ex.Arg2 is { } info:
+				case WrongStepException { InvalidGrid: var grid, WrongStep: { } info }:
 				{
 					ErrorInfoWindow.Create(info, grid).ShowDialog();
 

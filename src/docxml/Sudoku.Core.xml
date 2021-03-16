@@ -4,6 +4,42 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.AssemblyFailedToLoadException">
+            <summary>
+            Indicates an exception that throws when the module initializer failed to fetch the resource data,
+            which causes the assembly can't be loaded successfully.
+            </summary>
+        </member>
+        <member name="M:Sudoku.AssemblyFailedToLoadException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.AssemblyFailedToLoadException"/> instance with the specified assembly name
+            and the file path.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="M:Sudoku.AssemblyFailedToLoadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.AssemblyFailedToLoadException.AssemblyName">
+            <summary>
+            Indicates the assembly name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.AssemblyFailedToLoadException.FilePath">
+            <summary>
+            Indicates the file path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.AssemblyFailedToLoadException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.AssemblyFailedToLoadException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.AssemblyFailedToLoadException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.AssemblyInitializer">
             <summary>
             Indicates the assembly initializer.
@@ -13,17 +49,21 @@
             <summary>
             The initialize method.
             </summary>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <exception cref="T:Sudoku.AssemblyFailedToLoadException">
             Throws when the deserialization operation is failed.
             </exception>
         </member>
-        <member name="M:Sudoku.AssemblyInitializer.DeserializeResourceDictionary(System.String,System.String)">
+        <member name="M:Sudoku.AssemblyInitializer.DeserializeResourceDictionary(System.String,System.String,System.Boolean@)">
             <summary>
             Deserialize the resource dictionary. If failed, throw the exception.
             </summary>
             <param name="langSourceInstanceName">The name of the language resource instance.</param>
             <param name="path">The path to deserialize.</param>
-            <exception cref="T:Sudoku.SudokuHandlingException">
+            <param name="result">
+            (<see langword="out"/> parameter) The result that indicates whether the deserialization operation
+            is successful.
+            </param>
+            <exception cref="T:Sudoku.AssemblyFailedToLoadException">
             Throws when the specified files don't exist.
             </exception>
         </member>
@@ -4381,6 +4421,44 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
+        <member name="T:Sudoku.InvalidPuzzleException">
+            <summary>
+            Indicates an error that throws when a sudoku grid is in an invalid state in other scenarios
+            that <see cref="T:Sudoku.MultipleSolutionsException"/> or <see cref="T:Sudoku.NoSolutionException"/> can't cover.
+            </summary>
+        </member>
+        <member name="M:Sudoku.InvalidPuzzleException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.InvalidPuzzleException"/> with the specified invalid grid,
+            and the reason why throws this exception instance.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+            <param name="reason">The reason why the exception throws.</param>
+        </member>
+        <member name="M:Sudoku.InvalidPuzzleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.InvalidPuzzleException.Reason">
+            <summary>
+            Indicates the reason why the exception throws.
+            </summary>
+        </member>
+        <member name="P:Sudoku.InvalidPuzzleException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.InvalidPuzzleException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.InvalidPuzzleException.InvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="M:Sudoku.InvalidPuzzleException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
             Encapsulates a drawing information pair for highlighting cells,
@@ -4593,6 +4671,124 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.MultipleSolutionsException">
+            <summary>
+            Indicates an error that throws when a sudoku grid has multiple solutions
+            while solving, checking or generating a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.MultipleSolutionsException"/> with the specified invalid grid.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+        </member>
+        <member name="M:Sudoku.MultipleSolutionsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.MultipleSolutionsException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.MultipleSolutionsException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.MultipleSolutionsException.InvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="M:Sudoku.MultipleSolutionsException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.NoSolutionException">
+            <summary>
+            Indicates an error that throws when a sudoku grid has no solution
+            while solving, checking or generating a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.NoSolutionException"/> with the specified invalid grid.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The invalid sudoku grid.</param>
+        </member>
+        <member name="M:Sudoku.NoSolutionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.NoSolutionException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.NoSolutionException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.NoSolutionException.InvalidGrid">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="M:Sudoku.NoSolutionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.PuzzleShouldHaveBeenSolvedException">
+            <summary>
+            Indicates an exception that throws when the puzzle should have been solved before using a function.
+            </summary>
+        </member>
+        <member name="M:Sudoku.PuzzleShouldHaveBeenSolvedException.#ctor(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.PuzzleShouldHaveBeenSolvedException"/> instance with the specified puzzle.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+        </member>
+        <member name="M:Sudoku.PuzzleShouldHaveBeenSolvedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.PuzzleShouldHaveBeenSolvedException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.PuzzleShouldHaveBeenSolvedException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.PuzzleShouldHaveBeenSolvedException.InvalidGrid">
+            <summary>
+            Indicates the invalid grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.PuzzleShouldHaveBeenSolvedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.ResourceCannotBeFoundException">
+            <summary>
+            Indicates the exception that throws when the resource can't be found.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ResourceCannotBeFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.ResourceCannotBeFoundException"/> instance with the specified resource.
+            </summary>
+            <param name="resource">The resource.</param>
+        </member>
+        <member name="M:Sudoku.ResourceCannotBeFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.ResourceCannotBeFoundException.Resource">
+            <summary>
+            Indicates the resource file.
+            </summary>
+        </member>
+        <member name="P:Sudoku.ResourceCannotBeFoundException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.ResourceCannotBeFoundException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.ResourceCannotBeFoundException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Resources.Paths">
             <summary>
             Here displays the default and basic paths in this project.
@@ -4721,6 +4917,9 @@
             To change the current language with the specified country code.
             </summary>
             <param name="countryCode">The country code.</param>
+            <exception cref="T:Sudoku.ResourceCannotBeFoundException">
+            Throws when the resource file can't be found.
+            </exception>
         </member>
         <member name="M:Sudoku.Resources.TextResources.TryGetValue(System.String)">
             <summary>
@@ -4731,83 +4930,6 @@
             The value. If the key can't be found in neither the current language dictionary
             nor the default dictionary, the return value will be <see langword="null"/>.
             </returns>
-        </member>
-        <member name="T:Sudoku.SudokuHandlingException">
-            <summary>
-            Provides an exception that should thrown when the operation is error to handle or something is wrong.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the error code.
-            </summary>
-            <param name="errorCode">The error code.</param>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException.#ctor(System.Exception)">
-            <summary>
-            Initializes an instance with the inner exception. If called this method,
-            the <see cref="P:Sudoku.SudokuHandlingException.ErrorCode"/> always keeps the value 601.
-            </summary>
-            <param name="innerException">The inner exception.</param>
-            <seealso cref="P:Sudoku.SudokuHandlingException.ErrorCode"/>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException.ErrorCode">
-            <summary>
-            Indicates the error code.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SudokuHandlingException`1">
-            <summary>
-            Provides an exception that should thrown when the operation is error to handle or something is wrong.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException`1.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException`1.#ctor(System.Int32,`0)">
-            <summary>
-            Initializes an instance with the error code and the argument.
-            </summary>
-            <param name="errorCode">The error code.</param>
-            <param name="arg">The arg 1.</param>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException`1.Arg1">
-            <summary>
-            Indicates the argument 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException`1.Message">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SudokuHandlingException`2">
-            <summary>
-            Provides an exception that should thrown when the operation is error to handle or something is wrong.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException`2.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:Sudoku.SudokuHandlingException`2.#ctor(System.Int32,`0,`1)">
-            <summary>
-            Initializes an instance with the error code and the argument.
-            </summary>
-            <param name="errorCode">The error code.</param>
-            <param name="arg1">The arg 1.</param>
-            <param name="arg2">The arg 2.</param>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException`2.Arg2">
-            <summary>
-            Indicates the argument 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SudokuHandlingException`2.Message">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Techniques.Technique">
             <summary>

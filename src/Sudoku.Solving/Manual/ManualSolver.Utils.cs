@@ -123,10 +123,7 @@ namespace Sudoku.Solving.Manual
 				{
 					TemplateDeleteOnly = OnlyRecordTemplateDelete
 				});
-			}
 
-			if (solution.HasValue)
-			{
 				result.Add(new BfStepSearcher(solution.Value));
 			}
 
