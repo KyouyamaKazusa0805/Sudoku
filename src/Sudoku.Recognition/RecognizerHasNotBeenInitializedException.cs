@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_RECOGNITION
+
+using System;
 using System.Runtime.Serialization;
 
 namespace Sudoku.Recognition
@@ -33,3 +35,5 @@ namespace Sudoku.Recognition
 			"https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3706955&doc_id=633030";
 	}
 }
+
+#endif
