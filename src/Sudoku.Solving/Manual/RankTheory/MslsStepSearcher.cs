@@ -58,46 +58,48 @@ namespace Sudoku.Solving.Manual.RankTheory
 					var candidateOffsets = new List<DrawingInfo>();
 					for (int digit = 0; digit < 9; digit++)
 					{
+						short q = (short)(1 << digit);
 						var currentMap = linkForEachDigit[digit];
-						short rMask = currentMap.RowMask;
-						short cMask = currentMap.ColumnMask;
-						short bMask = currentMap.BlockMask;
-						int temp = MathEx.Min(PopCount((uint)rMask), PopCount((uint)cMask), PopCount((uint)bMask));
+						uint
+							rMask = (uint)currentMap.RowMask,
+							cMask = (uint)currentMap.ColumnMask,
+							bMask = (uint)currentMap.BlockMask;
+						int temp = MathEx.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
 						var elimMap = Cells.Empty;
 						int check = 0;
-						if (PopCount((uint)rMask) == temp)
+						if (PopCount(rMask) == temp)
 						{
 							check++;
 							foreach (int i in rMask)
 							{
 								int region = i + 9;
-								linkForEachRegion[region] |= (short)(1 << digit);
+								linkForEachRegion[region] |= q;
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (PopCount((uint)cMask) == temp)
+						if (PopCount(cMask) == temp)
 						{
 							check++;
 							foreach (int i in cMask)
 							{
 								int region = i + 18;
-								linkForEachRegion[region] |= (short)(1 << digit);
+								linkForEachRegion[region] |= q;
 								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 							}
 						}
-						if (PopCount((uint)bMask) == temp)
+						if (PopCount(bMask) == temp)
 						{
 							check++;
 							foreach (int i in bMask)
 							{
-								linkForEachRegion[i] |= (short)(1 << digit);
+								linkForEachRegion[i] |= q;
 								elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
 							}
 						}
 
 						if (check > 1)
 						{
-							canF |= (short)(1 << digit);
+							canF |= q;
 						}
 
 						elimMap &= CandMaps[digit];

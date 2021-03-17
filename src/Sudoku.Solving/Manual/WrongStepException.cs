@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc/>
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			info.AddValue(nameof(InvalidGrid), InvalidGrid, typeof(SudokuGrid));
+			info.AddValue(nameof(InvalidGrid), InvalidGrid.ToString("#"), typeof(string));
 			info.AddValue(nameof(WrongStep), WrongStep?.ToString() ?? "Unknown step", typeof(string));
 
 			base.GetObjectData(info, context);

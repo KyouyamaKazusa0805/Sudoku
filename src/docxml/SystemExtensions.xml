@@ -492,17 +492,53 @@
             </summary>
             <seealso cref="T:System.Numerics.BitOperations"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Byte,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.SByte)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Byte)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int16)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt16)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int64)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt64)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.SByte)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Byte)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int16)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt16)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int64)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt64)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
         </member>
         <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Byte,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
@@ -516,6 +552,18 @@
         <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int64,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Byte@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int16@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int32@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int64@)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        </member>
         <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Byte,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
@@ -528,41 +576,17 @@
         <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int64,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Byte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Byte,System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int16,System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Byte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Byte@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int16@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int32@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int64@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
+            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
         <member name="T:System.Extensions.CloneableEx">
             <summary>
