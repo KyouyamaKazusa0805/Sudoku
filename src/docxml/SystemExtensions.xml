@@ -1038,21 +1038,12 @@
         <member name="M:System.Extensions.ReadOnlyListEx.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
             <summary>
             Returns the list that is in the range specified as two parameters called
-            <paramref name="start"/> and <paramref name="end"/>.
+            <paramref name="start"/> and <paramref name="length"/>.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The list.</param>
             <param name="start">The start index.</param>
-            <param name="end">The end index.</param>
-            <returns>The list of the elements that is in the specified range.</returns>
-        </member>
-        <member name="M:System.Extensions.ReadOnlyListEx.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Range@)">
-            <summary>
-            Returns the list that is in the range specified as a <see cref="T:System.Range"/> instance.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="range">The range.</param>
+            <param name="length">The end index.</param>
             <returns>The list of the elements that is in the specified range.</returns>
         </member>
         <member name="M:System.Extensions.ReadOnlyListEx.FindIndexOf``1(System.Collections.Generic.IReadOnlyList{``0},System.Predicate{``0})">

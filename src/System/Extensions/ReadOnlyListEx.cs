@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace System.Extensions
 {
@@ -11,31 +10,23 @@ namespace System.Extensions
 	{
 		/// <summary>
 		/// Returns the list that is in the range specified as two parameters called
-		/// <paramref name="start"/> and <paramref name="end"/>.
+		/// <paramref name="start"/> and <paramref name="length"/>.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="this">The list.</param>
 		/// <param name="start">The start index.</param>
-		/// <param name="end">The end index.</param>
+		/// <param name="length">The end index.</param>
 		/// <returns>The list of the elements that is in the specified range.</returns>
-		public static IEnumerable<T> Slice<T>(this IReadOnlyList<T> @this, int start, int end)
+		public static IReadOnlyList<T> Slice<T>(this IReadOnlyList<T> @this, int start, int length)
 		{
-			for (int i = start; i < end; i++)
+			var array = new T[length - start];
+			for (int i = start, end = start + length; i < end; i++)
 			{
-				yield return @this[i];
+				array[i - start] = @this[i];
 			}
-		}
 
-		/// <summary>
-		/// Returns the list that is in the range specified as a <see cref="Range"/> instance.
-		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="this">The list.</param>
-		/// <param name="range">The range.</param>
-		/// <returns>The list of the elements that is in the specified range.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static IEnumerable<T> Slice<T>(this IReadOnlyList<T> @this, in Range range) =>
-			@this.Slice(range.Start.GetOffset(@this.Count), range.End.GetOffset(@this.Count));
+			return array;
+		}
 
 		/// <summary>
 		/// Find the index of an element that satisfy the specified condition.

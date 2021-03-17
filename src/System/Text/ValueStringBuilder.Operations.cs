@@ -18,9 +18,8 @@ namespace System.Text
 				Grow(count);
 			}
 
-			int remaining = Length - index;
-			_chars.Slice(index, remaining).CopyTo(_chars[(index + count)..]);
-			_chars.Slice(index, count).Fill(value);
+			_chars[index..Length].CopyTo(_chars[(index + count)..]);
+			_chars[index..(index + count)].Fill(value);
 			Length += count;
 		}
 
@@ -37,8 +36,7 @@ namespace System.Text
 				Grow(count);
 			}
 
-			int remaining = Length - index;
-			_chars.Slice(index, remaining).CopyTo(_chars[(index + count)..]);
+			_chars[index..Length].CopyTo(_chars[(index + count)..]);
 			s.AsSpan().CopyTo(_chars[index..]);
 			Length += count;
 		}
@@ -110,7 +108,7 @@ namespace System.Text
 				Grow(count);
 			}
 
-			var dst = _chars.Slice(Length, count);
+			var dst = _chars[Length..(Length + count)];
 			for (int i = 0; i < dst.Length; i++)
 			{
 				dst[i] = c;
@@ -189,7 +187,7 @@ namespace System.Text
 				Grow(length);
 			}
 
-			var dst = _chars.Slice(Length, length);
+			var dst = _chars[Length..(Length + length)];
 			for (int i = 0; i < dst.Length; i++)
 			{
 				dst[i] = *value++;
@@ -418,7 +416,7 @@ namespace System.Text
 			}
 
 			Length = originalPos + length;
-			return _chars.Slice(originalPos, length);
+			return _chars[originalPos..Length];
 		}
 
 		/// <summary>
