@@ -83,7 +83,10 @@ namespace Sudoku.Windows
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonExport_Click(object sender, RoutedEventArgs e) =>
-			_textBoxAnalysisResult.Text = _analysisResult.ToString(CreateFormat());
+			_textBoxAnalysisResult.Text = _analysisResult.ToString(
+				CreateFormat(),
+				((WindowsSettings)_settings).LanguageCode
+			);
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) =>

@@ -282,19 +282,19 @@ namespace Sudoku.Solving
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The result string.</returns>
 		public string ToString(string format, CountryCode countryCode) =>
-			new AnalysisResultFormatter(this).ToString(format, null, countryCode);
+			new Formatter(this).ToString(format, null, countryCode);
 
 		/// <inheritdoc/>
 		public string ToString(string? format, IFormatProvider? formatProvider) =>
-			new AnalysisResultFormatter(this).ToString(format, formatProvider);
+			new Formatter(this).ToString(format, formatProvider);
 
-		/// <inheritdoc cref="AnalysisResultFormatter.ToString(AnalysisResultFormattingOptions)"/>
+		/// <inheritdoc cref="Formatter.ToString(AnalysisResultFormattingOptions)"/>
 		public string ToString(AnalysisResultFormattingOptions options) =>
-			new AnalysisResultFormatter(this).ToString(options);
+			new Formatter(this).ToString(options);
 
-		/// <inheritdoc cref="AnalysisResultFormatter.ToString(AnalysisResultFormattingOptions, CountryCode)"/>
+		/// <inheritdoc cref="Formatter.ToString(AnalysisResultFormattingOptions, CountryCode)"/>
 		public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode) =>
-			new AnalysisResultFormatter(this).ToString(options, countryCode);
+			new Formatter(this).ToString(options, countryCode);
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
