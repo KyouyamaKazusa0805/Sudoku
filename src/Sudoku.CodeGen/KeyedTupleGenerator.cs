@@ -102,12 +102,8 @@ namespace Sudoku.CodeGen
 		{
 			const int o = 9;
 
-#if NETSTANDARD2_1
-			return $"{(UsingTabsAsIndentingCharacters ? "\t" : "    ")}[{nameof(CompilerGeneratedAttribute)[..^o]}]";
-#else
 			const string name = nameof(CompilerGeneratedAttribute);
 			return $"{(UsingTabsAsIndentingCharacters ? "\t" : "    ")}[{name.Substring(0, name.Length - o)}]";
-#endif
 		}
 		private static string PrintRecordDocComment(int length)
 		{
