@@ -29,7 +29,7 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// If the output is single line, the output will append the candidates
-		/// value at the tail of the string in ':candidate list'. In addition,
+		/// value at the tail of the string in '<c>:candidate list</c>'. In addition,
 		/// candidates will be represented as 'digit', 'row offset' and
 		/// 'column offset' in order.
 		/// </para>
@@ -46,7 +46,13 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// Indicates whether need to handle all grid outlines while outputting.
-		/// See file <i><a href="#">How to use 'Grid' class.md</a></i> for more information.
+		/// Visit the page
+		/// <i>
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3352782&amp;doc_id=633030">
+		/// How to use the structure SudokuGrid
+		/// </a>
+		/// </i>
+		/// for more information.
 		/// </summary>
 		SubtleGridLines = 8,
 
