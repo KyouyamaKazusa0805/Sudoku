@@ -117,9 +117,10 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Same behavior of the constructor as <see cref="Cells(IEnumerable{int})"/>.
+		/// Same behavior of the constructor as <see cref="Cells(IEnumerable{int})"/>:
+		/// Initializes an instance with the specified array of cells.
 		/// </summary>
-		/// <param name="cells">All offsets.</param>
+		/// <param name="cells">All cells.</param>
 		/// <remarks>
 		/// This constructor is defined after another constructor with
 		/// <see cref="ReadOnlySpan{T}"/> had defined. Although this constructor
@@ -130,8 +131,52 @@ namespace Sudoku.Data
 		/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 		/// </remarks>
 		/// <seealso cref="Cells(IEnumerable{int})"/>
-		public Cells(int[] cells) : this((IEnumerable<int>)cells)
+		public unsafe Cells(int[] cells) : this()
 		{
+			fixed (int* ptr = cells)
+			{
+				int i = 0;
+				for (int* p = ptr; i < cells.Length; i++, p++)
+				{
+					InternalAdd(*p, true);
+				}
+			}
+		}
+
+		/// <summary>
+		/// (Copy constructor) Initializes an instance with the specified instance.
+		/// </summary>
+		/// <param name="another">Another instance.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Cells(in Cells another) => this = another;
+
+		/// <summary>
+		/// Initializes an instance with a series of cell offsets.
+		/// </summary>
+		/// <param name="cells">cell offsets.</param>
+		/// <remarks>
+		/// <para>
+		/// Note that all offsets will be set <see langword="true"/>, but their own peers
+		/// won't be set <see langword="true"/>.
+		/// </para>
+		/// <para>
+		/// In some case, you can use object initializer instead.
+		/// You can use the code
+		/// <code>
+		/// var map = new Cells { 0, 3, 5 };
+		/// </code>
+		/// instead of the code
+		/// <code>
+		/// var map = new Cells(stackalloc[] { 0, 3, 5 });
+		/// </code>
+		/// </para>
+		/// </remarks>
+		public Cells(in Span<int> cells) : this()
+		{
+			foreach (int offset in cells)
+			{
+				InternalAdd(offset, true);
+			}
 		}
 
 		/// <summary>
@@ -197,8 +242,9 @@ namespace Sudoku.Data
 		/// <param name="high">Higher 27 bits.</param>
 		/// <param name="mid">Medium 27 bits.</param>
 		/// <param name="low">Lower 27 bits.</param>
-		public Cells(int high, int mid, int low)
-			: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
+		public Cells(int high, int mid, int low) : this(
+			(high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL),
+			(mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 		{
 		}
 
@@ -584,11 +630,8 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly unsafe bool Contains(int cell)
-		{
-			long* ptr = stackalloc[] { _low, _high };
-			return (ptr[cell / Shifting] >> cell % Shifting & 1) != 0;
-		}
+		public readonly unsafe bool Contains(int cell) =>
+			((cell / Shifting == 0 ? _low : _high) >> cell % Shifting & 1) != 0;
 
 		/// <summary>
 		/// Get the subview mask of this map.
@@ -875,11 +918,6 @@ namespace Sudoku.Data
 		/// Set the specified cell as <see langword="true"/> value.
 		/// </summary>
 		/// <param name="offset">The cell offset.</param>
-		/// <remarks>
-		/// Different with <see cref="Add(int)"/>, the method will process negative values,
-		/// but this won't.
-		/// </remarks>
-		/// <seealso cref="Add(int)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void AddAnyway(int offset) => InternalAdd(offset, true);
 
@@ -1065,28 +1103,8 @@ namespace Sudoku.Data
 		public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
 
 		/// <summary>
-		/// The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current
-		/// map, and return the new map).
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="cell">The cell to add.</param>
-		/// <returns>The result map.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator +(in Cells map, int cell) => new(map) { cell };
-
-		/// <summary>
-		/// The syntactic sugar for <c>new Cells(map) { ~cell }</c> (i.e. remove a cell from the current
-		/// map, and return the new map).
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="cell">The cell to remove.</param>
-		/// <returns>The result of the map.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator -(in Cells map, int cell) => new(map) { ~cell };
-
-		/// <summary>
-		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> cells
-		/// but not in <paramref name="right"/> cells.
+		/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> instance
+		/// but not in <paramref name="right"/> instance.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -1094,16 +1112,8 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator -(in Cells left, in Cells right) => left & ~right;
 
-		/// <inheritdoc cref="operator -(in Cells, in Cells)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator -(IEnumerable<int> left, in Cells right) => new Cells(left) - right;
-
-		/// <inheritdoc cref="operator -(in Cells, in Cells)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator -(in Cells left, IEnumerable<int> right) => left - new Cells(right);
-
 		/// <summary>
-		/// Get all cells that two <see cref="Cells"/>s both contain.
+		/// Get all cells that two <see cref="Cells"/> instances both contain.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -1113,7 +1123,7 @@ namespace Sudoku.Data
 			new(left._high & right._high, left._low & right._low);
 
 		/// <summary>
-		/// Get all cells from two <see cref="Cells"/>s.
+		/// Get all cells from two <see cref="Cells"/> instances.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
@@ -1123,7 +1133,7 @@ namespace Sudoku.Data
 			new(left._high | right._high, left._low | right._low);
 
 		/// <summary>
-		/// Get all cells that only appears once in two <see cref="Cells"/>s.
+		/// Get all cells that only appears once in two <see cref="Cells"/> instances.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>

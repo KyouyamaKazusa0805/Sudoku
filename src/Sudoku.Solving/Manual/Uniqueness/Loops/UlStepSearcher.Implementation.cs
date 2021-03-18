@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 			}
 
 			var candidateOffsets = new List<DrawingInfo>();
-			foreach (int cell in loop - extraCell)
+			foreach (int cell in new Cells(loop) { ~extraCell })
 			{
 				candidateOffsets.Add(new(0, cell * 9 + d1));
 				candidateOffsets.Add(new(0, cell * 9 + d2));

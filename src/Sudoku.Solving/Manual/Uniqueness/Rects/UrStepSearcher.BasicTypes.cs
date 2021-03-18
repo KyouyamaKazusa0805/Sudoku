@@ -696,7 +696,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = otherCellsMap - abzCell;
+			var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
 			int r = abzCell.ToRegion(RegionLabel.Row), c = abzCell.ToRegion(RegionLabel.Column);
 
 			foreach (int digit in stackalloc[] { d1, d2 })

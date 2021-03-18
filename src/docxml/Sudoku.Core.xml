@@ -811,9 +811,10 @@
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32[])">
             <summary>
-            Same behavior of the constructor as <see cref="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>.
+            Same behavior of the constructor as <see cref="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>:
+            Initializes an instance with the specified array of cells.
             </summary>
-            <param name="cells">All offsets.</param>
+            <param name="cells">All cells.</param>
             <remarks>
             This constructor is defined after another constructor with
             <see cref="T:System.ReadOnlySpan`1"/> had defined. Although this constructor
@@ -824,6 +825,35 @@
             doesn't implemented the interface <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </remarks>
             <seealso cref="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)">
+            <summary>
+            (Copy constructor) Initializes an instance with the specified instance.
+            </summary>
+            <param name="another">Another instance.</param>
+        </member>
+        <member name="M:Sudoku.Data.Cells.#ctor(System.Span{System.Int32}@)">
+            <summary>
+            Initializes an instance with a series of cell offsets.
+            </summary>
+            <param name="cells">cell offsets.</param>
+            <remarks>
+            <para>
+            Note that all offsets will be set <see langword="true"/>, but their own peers
+            won't be set <see langword="true"/>.
+            </para>
+            <para>
+            In some case, you can use object initializer instead.
+            You can use the code
+            <code>
+            var map = new Cells { 0, 3, 5 };
+            </code>
+            instead of the code
+            <code>
+            var map = new Cells(stackalloc[] { 0, 3, 5 });
+            </code>
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
@@ -1128,11 +1158,6 @@
             Set the specified cell as <see langword="true"/> value.
             </summary>
             <param name="offset">The cell offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.Cells.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Cells.Add(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
@@ -1241,42 +1266,18 @@
             <param name="right">The subtractor.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.op_Addition(Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            The syntactic sugar for <c>new Cells(map) { cell }</c> (i.e. add a new cell into the current
-            map, and return the new map).
-            </summary>
-            <param name="map">The map.</param>
-            <param name="cell">The cell to add.</param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            The syntactic sugar for <c>new Cells(map) { ~cell }</c> (i.e. remove a cell from the current
-            map, and return the new map).
-            </summary>
-            <param name="map">The map.</param>
-            <param name="cell">The cell to remove.</param>
-            <returns>The result of the map.</returns>
-        </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Get a <see cref="T:Sudoku.Data.Cells"/> that contains all <paramref name="left"/> cells
-            but not in <paramref name="right"/> cells.
+            Get a <see cref="T:Sudoku.Data.Cells"/> that contains all <paramref name="left"/> instance
+            but not in <paramref name="right"/> instance.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.op_Subtraction(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Data.Cells@)">
-            <inheritdoc cref="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)"/>
-        </member>
         <member name="M:Sudoku.Data.Cells.op_BitwiseAnd(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Get all cells that two <see cref="T:Sudoku.Data.Cells"/>s both contain.
+            Get all cells that two <see cref="T:Sudoku.Data.Cells"/> instances both contain.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -1284,7 +1285,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_BitwiseOr(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Get all cells from two <see cref="T:Sudoku.Data.Cells"/>s.
+            Get all cells from two <see cref="T:Sudoku.Data.Cells"/> instances.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -1292,7 +1293,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_ExclusiveOr(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Get all cells that only appears once in two <see cref="T:Sudoku.Data.Cells"/>s.
+            Get all cells that only appears once in two <see cref="T:Sudoku.Data.Cells"/> instances.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>

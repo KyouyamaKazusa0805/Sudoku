@@ -185,7 +185,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							int elimCell = (otherCellsMap - otherCell)[0];
+							int elimCell = new Cells(otherCellsMap) { ~otherCell }[0];
 							if (grid.Exists(otherCell, digit) is not true)
 							{
 								continue;
@@ -333,7 +333,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								continue;
 							}
 
-							int elimCell = (otherCellsMap - otherCell)[0];
+							int elimCell = new Cells(otherCellsMap) { ~otherCell }[0];
 							if (grid.Exists(otherCell, digit) is not true)
 							{
 								continue;
@@ -583,7 +583,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = otherCellsMap - abzCell;
+			var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
 			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				int[] offsets = adjacentCellsMap.ToArray();
@@ -700,7 +700,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// Step 1: Get the diagonal cell of 'cornerCell' and determine
 			// the existence of strong link.
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = otherCellsMap - abzCell;
+			var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
 			int[] offsets = adjacentCellsMap.ToArray();
 			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
@@ -827,7 +827,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = otherCellsMap - abzCell;
+			var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
 			int[] offsets = adjacentCellsMap.ToArray();
 			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
@@ -950,7 +950,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			}
 
 			int abzCell = GetDiagonalCell(urCells, cornerCell);
-			var adjacentCellsMap = otherCellsMap - abzCell;
+			var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
 			int[] offsets = adjacentCellsMap.ToArray();
 			int abxCell = offsets[0], abyCell = offsets[1];
 			foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
@@ -1077,7 +1077,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int abwCell = GetDiagonalCell(urCells, corner1);
-				int abzCell = (otherCellsMap - abwCell)[0];
+				int abzCell = new Cells(otherCellsMap) { ~abwCell }[0];
 				foreach (var (head, begin, end, extra) in
 					stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 				{
@@ -1220,7 +1220,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				int end = GetDiagonalCell(urCells, corner1);
-				int extra = (otherCellsMap - end)[0];
+				int extra = new Cells(otherCellsMap) { ~end }[0];
 				foreach (var (abx, aby, abw, abz) in
 					stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 				{

@@ -111,7 +111,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 						}
 
 						int region = cell.ToRegion(label);
-						var cellsMap = RegionMaps[region] & EmptyMap - cell;
+						var cellsMap = RegionMaps[region] & new Cells(EmptyMap) { ~cell };
 						if (cellsMap.IsEmpty)
 						{
 							continue;

@@ -106,7 +106,10 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 						int zDigit = TrailingZeroCount(maskToCheck);
 						var cellsMap = new Cells(cells);
-						if ((cellsMap + pivot & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
+						if (
+							(new Cells(cellsMap) { pivot } & CandMaps[zDigit]).Count
+							!= (isIncomplete ? size - 1 : size)
+						)
 						{
 							continue;
 						}

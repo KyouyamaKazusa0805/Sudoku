@@ -99,9 +99,9 @@ namespace Sudoku.Solving.Manual.Extensions
 				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 				{
 					int region = p.Cell.ToRegion(label);
-					var cells = (
+					var cells = new Cells(
 						h(grid, p.Digit, region, isDynamic, enableFastProperties) & RegionMaps[region]
-					) - p.Cell;
+					) { ~p.Cell };
 					if (cells.Count == 1)
 					{
 						var pOn = new Node(cells[0], p.Digit, true, p);

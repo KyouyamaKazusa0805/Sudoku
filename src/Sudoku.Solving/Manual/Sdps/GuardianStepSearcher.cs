@@ -121,7 +121,7 @@ namespace Sudoku.Solving.Manual.Sdps
 								}
 
 								int region = cell.ToRegion(label);
-								var otherCellsMap = RegionMaps[region] & globalMap - cell;
+								var otherCellsMap = RegionMaps[region] & new Cells(globalMap) { ~cell };
 								if (otherCellsMap.Count != 1)
 								{
 									continue;
@@ -186,7 +186,7 @@ namespace Sudoku.Solving.Manual.Sdps
 			tempMap &= CandMaps[digit];
 			tempMap |= guardians;
 
-			return tempMap - cell1 - cell2;
+			return new Cells(tempMap) { ~cell1, ~cell2 };
 		}
 	}
 }

@@ -43,7 +43,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			for (int i = 0, length = possibleCells.Length - 1; i < length; i++)
 			{
 				int cell1 = possibleCells[i];
-				foreach (int cell2 in (PeerMaps[cell1] & valueMap) - cell1)
+				foreach (int cell2 in new Cells(PeerMaps[cell1] & valueMap) { ~cell1 })
 				{
 					if (cell2 < cell1)
 					{

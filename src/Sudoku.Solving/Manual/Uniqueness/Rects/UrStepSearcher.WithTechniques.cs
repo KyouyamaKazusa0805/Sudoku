@@ -862,12 +862,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					}
 
 					var otherCellsToCheck = RegionMaps[region] & CandMaps[otherDigit] & PeerMaps[anotherCell];
-					int sameRegions = (otherCellsToCheck + anotherCell).CoveredRegions;
+					int sameRegions = new Cells(otherCellsToCheck) { anotherCell }.CoveredRegions;
 					foreach (int sameRegion in sameRegions)
 					{
 						// Check whether all possible positions of the digit 'b' in this region only
 						// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-						if ((RegionMaps[sameRegion] - anotherCell & CandMaps[otherDigit]) != otherCellsToCheck)
+						if (
+							(new Cells(RegionMaps[sameRegion]) { ~anotherCell } & CandMaps[otherDigit])
+							!= otherCellsToCheck
+						)
 						{
 							continue;
 						}
