@@ -133,7 +133,7 @@
             <summary>
             Send the message without mention someone.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The event arguments.</param>
+            <param name="this">The event arguments.</param>
             <param name="message">The message to send.</param>
             <returns>The task.</returns>
         </member>
@@ -141,7 +141,7 @@
             <summary>
             To reply an image.
             </summary>
-            <param name="this">(<see langword="this"/> parameter) The event arguments.</param>
+            <param name="this">The event arguments.</param>
             <param name="image">The image to reply.</param>
             <param name="path">
             The path to store the file. Due to the technical implementation, the method will save the file
@@ -196,7 +196,7 @@
             Try to get the value via the specified key.
             </summary>
             <param name="key">The key.</param>
-            <param name="result">(<see langword="out"/> parameter) The result.</param>
+            <param name="result">The result.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Bot.Serialization.SerializationOptions">
