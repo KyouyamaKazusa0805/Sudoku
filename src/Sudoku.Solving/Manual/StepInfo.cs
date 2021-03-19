@@ -150,7 +150,7 @@ namespace Sudoku.Solving.Manual
 		public unsafe bool HasTag(TechniqueTags flags)
 		{
 			bool p = ((short)flags & (short)flags - 1) == 0;
-			delegate* managed<TechniqueTags, TechniqueTags, bool> func = p ? &EnumEx.Flags : &EnumEx.MultiFlags;
+			delegate*<TechniqueTags, TechniqueTags, bool> func = p ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
 			return func(TechniqueTags, flags);
 		}

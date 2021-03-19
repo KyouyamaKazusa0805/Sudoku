@@ -953,7 +953,7 @@ namespace Sudoku.Windows
 		/// Transform the grid.
 		/// </summary>
 		/// <param name="transformation">The inner function to process the transformation.</param>
-		private unsafe void Transform(delegate* managed<in SudokuGrid, SudokuGrid> transformation)
+		private unsafe void Transform(delegate*<in SudokuGrid, SudokuGrid> transformation)
 		{
 			if (_puzzle != SudokuGrid.Empty/* && Messagings.AskWhileClearingStack() == MessageBoxResult.Yes*/)
 			{

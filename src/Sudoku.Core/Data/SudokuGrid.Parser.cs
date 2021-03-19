@@ -18,7 +18,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// The list of all methods to parse.
 			/// </summary>
-			private static readonly delegate* managed<ref Parser, SudokuGrid>[] ParseFunctions;
+			private static readonly delegate*<ref Parser, SudokuGrid>[] ParseFunctions;
 
 
 			/// <summary>
@@ -49,7 +49,7 @@ namespace Sudoku.Data
 			/// <inheritdoc cref="StaticConstructor"/>
 			static Parser()
 			{
-				ParseFunctions = new delegate* managed<ref Parser, SudokuGrid>[]
+				ParseFunctions = new delegate*<ref Parser, SudokuGrid>[]
 				{
 					&OnParsingSimpleTable,
 					&OnParsingSimpleMultilineGrid,

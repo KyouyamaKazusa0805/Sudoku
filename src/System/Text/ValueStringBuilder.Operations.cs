@@ -329,7 +329,7 @@ namespace System.Text
 		/// <param name="converter">The converter.</param>
 		/// <param name="separator">The separator when an element is finished to append.</param>
 		public unsafe void AppendRange<TUnmanaged>(
-			IEnumerable<TUnmanaged> list, delegate* managed<TUnmanaged, string?> converter,
+			IEnumerable<TUnmanaged> list, delegate*<TUnmanaged, string?> converter,
 			string? separator = null) where TUnmanaged : unmanaged
 		{
 			foreach (var element in list)
@@ -382,7 +382,7 @@ namespace System.Text
 		/// <param name="converter">The converter.</param>
 		/// <param name="separator">The separator when an element is finished to append.</param>
 		public unsafe void AppendRange<TUnmanaged>(
-			TUnmanaged* list, int length, delegate* managed<TUnmanaged, string?> converter,
+			TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter,
 			string? separator = null) where TUnmanaged : unmanaged
 		{
 			int index = 0;

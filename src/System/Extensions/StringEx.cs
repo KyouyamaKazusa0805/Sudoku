@@ -208,7 +208,7 @@ namespace System.Extensions
 		/// </exception>
 		public static unsafe string Reserve(this string @this, string reservePattern)
 		{
-			delegate* managed<char, bool> predicate = reservePattern switch
+			delegate*<char, bool> predicate = reservePattern switch
 			{
 				@"\d" => &char.IsDigit,
 				@"\t" => &isTab,
