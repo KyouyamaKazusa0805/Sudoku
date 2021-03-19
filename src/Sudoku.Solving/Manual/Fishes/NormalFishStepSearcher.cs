@@ -119,14 +119,14 @@ namespace Sudoku.Solving.Manual.Fishes
 					var baseLine = size switch
 					{
 						2 => CandMaps[digit] & (RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]),
-						3 =>
-							CandMaps[digit] & (
-								RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
-								| RegionMaps[baseSets[2]]),
-						4 =>
-							CandMaps[digit] & (
-								RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
-								| RegionMaps[baseSets[2]] | RegionMaps[baseSets[3]])
+						3 => CandMaps[digit] & (
+							RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
+							| RegionMaps[baseSets[2]]
+						),
+						4 => CandMaps[digit] & (
+							RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
+							| RegionMaps[baseSets[2]] | RegionMaps[baseSets[3]]
+						)
 					};
 
 					// Iterate on the cover set combination.
@@ -136,14 +136,14 @@ namespace Sudoku.Solving.Manual.Fishes
 						var coverLine = size switch
 						{
 							2 => CandMaps[digit] & (RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]),
-							3 =>
-								CandMaps[digit] & (
-									RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
-									| RegionMaps[coverSets[2]]),
-							4 =>
-								CandMaps[digit] & (
-									RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
-									| RegionMaps[coverSets[2]] | RegionMaps[coverSets[3]])
+							3 => CandMaps[digit] & (
+								RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
+								| RegionMaps[coverSets[2]]
+							),
+							4 => CandMaps[digit] & (
+								RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
+								| RegionMaps[coverSets[2]] | RegionMaps[coverSets[3]]
+							)
 						};
 
 						// Now check the fins and the elimination cells.
@@ -282,16 +282,9 @@ namespace Sudoku.Solving.Manual.Fishes
 								continue;
 							}
 
-							var baseMap = Cells.Empty;
-							foreach (int b in baseSets)
-							{
-								baseMap |= RegionMaps[b];
-							}
-							var coverMap = Cells.Empty;
-							foreach (int c in coverSets)
-							{
-								coverMap |= RegionMaps[c];
-							}
+							Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
+							foreach (int b in baseSets) baseMap |= RegionMaps[b];
+							foreach (int c in coverSets) coverMap |= RegionMaps[c];
 							baseMap &= coverMap;
 							if (baseMap.Contains(cell))
 							{
