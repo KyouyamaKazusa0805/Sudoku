@@ -24,8 +24,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	public sealed record UrWithWingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset
+	) : UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <summary>
 		/// Indicates the difficulty rating extra.

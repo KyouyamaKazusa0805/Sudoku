@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="IsLocked">Indicates whether the subset is locked.</param>
 	public sealed record NakedSubsetStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked)
-		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
+		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked
+	) : SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + ExtraDifficulty;

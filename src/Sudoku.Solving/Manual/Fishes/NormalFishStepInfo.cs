@@ -33,8 +33,8 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </param>
 	public sealed record NormalFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
-		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi)
-		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
+		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi
+	) : FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + SashimiExtraDifficulty;

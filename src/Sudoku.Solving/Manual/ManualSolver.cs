@@ -94,10 +94,11 @@ namespace Sudoku.Solving.Manual
 					return AnalyzeDifficultyStrictly
 					? SolveSeMode(
 						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-						cancellationToken)
-					: SolveNaively(
+						cancellationToken
+					) : SolveNaively(
 						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-						cancellationToken);
+						cancellationToken
+					);
 				}
 				catch (WrongStepException ex)
 				{

@@ -16,8 +16,8 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	public sealed record HiddenSubsetStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits)
-		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
+		int Region, in Cells Cells, IReadOnlyList<int> Digits
+	) : SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };

@@ -22,8 +22,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	public record UrPlusStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		IReadOnlyList<ConjugatePair> ConjugatePairs, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		IReadOnlyList<ConjugatePair> ConjugatePairs, int AbsoluteOffset
+	) : UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;

@@ -20,8 +20,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Level">The dynamic searching level.</param>
 	public abstract record ChainingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		bool XEnabled, bool YEnabled, bool IsNishio, bool IsMultiple, bool IsDynamic, int Level)
-		: StepInfo(Conclusions, Views)
+		bool XEnabled, bool YEnabled, bool IsNishio, bool IsMultiple, bool IsDynamic, int Level
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The sort key.

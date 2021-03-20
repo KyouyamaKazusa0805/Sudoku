@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="X">The digit X.</param>
 	public sealed record AlsWWingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
-		in ConjugatePair ConjugatePair, short WDigitsMask, int X)
-		: AlsStepInfo(Conclusions, Views)
+		in ConjugatePair ConjugatePair, short WDigitsMask, int X
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.2M;

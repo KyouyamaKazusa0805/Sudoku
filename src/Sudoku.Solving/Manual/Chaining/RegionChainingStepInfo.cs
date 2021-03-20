@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
 	public sealed record RegionChainingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level)
-		: ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
+		int Region, int Digit, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level
+	) : ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey =>

@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Views">All views.</param>
 	/// <param name="Candidates">All candidates used.</param>
 	public sealed record BugMultipleStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates)
-		: BugStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The table of extra difficulty values.

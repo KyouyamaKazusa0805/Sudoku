@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="SubsetCells">The subset cells.</param>
 	public sealed record UlType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells)
-		: UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells
+	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 3;

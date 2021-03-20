@@ -20,9 +20,9 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Level">Indicates the dynamic level of the chain.</param>
 	public sealed record BinaryChainingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		in Node SourceNode, in Node FromOnNode, in Node FromOffNode, bool IsAbsurd, bool IsMultiple,
-		bool IsNishio, int Level)
-		: ChainingStepInfo(Conclusions, Views, true, true, IsNishio, IsMultiple, true, Level)
+		in Node SourceNode, in Node FromOnNode, in Node FromOffNode,
+		bool IsAbsurd, bool IsMultiple, bool IsNishio, int Level
+	) : ChainingStepInfo(Conclusions, Views, true, true, IsNishio, IsMultiple, true, Level)
 	{
 		/// <inheritdoc/>
 		public override int FlatComplexity => FromOnNode.AncestorsCount + FromOffNode.AncestorsCount;

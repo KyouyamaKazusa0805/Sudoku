@@ -32,8 +32,7 @@ namespace System.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static bool SatisfyPattern(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
+		public static bool SatisfyPattern(this string @this, string pattern) => pattern.IsRegexPattern()
 			? @this.Match(pattern) == @this
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
@@ -53,8 +52,7 @@ namespace System.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static bool IsMatch(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
+		public static bool IsMatch(this string @this, string pattern) => pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
@@ -77,8 +75,7 @@ namespace System.Extensions
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static string? Match(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
+		public static string? Match(this string @this, string pattern) => pattern.IsRegexPattern()
 			? @this.Match(pattern, RegexOptions.None)
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
@@ -132,8 +129,7 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		/// <seealso cref="Regex.Matches(string, string)"/>
-		public static string[] MatchAll(this string @this, string pattern) =>
-			pattern.IsRegexPattern()
+		public static string[] MatchAll(this string @this, string pattern) => pattern.IsRegexPattern()
 			? @this.MatchAll(pattern, RegexOptions.None)
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
@@ -263,10 +259,10 @@ namespace System.Extensions
 		/// <remarks>
 		/// Note that all null lines and header spaces are removed.
 		/// </remarks>
-		public static string TrimVerbatim(this string @this) =>
-			Regex.Replace(
-				@this, NullLinesOrHeaderSpaces,
-				string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan);
+		public static string TrimVerbatim(this string @this) => Regex.Replace(
+			@this, NullLinesOrHeaderSpaces,
+			string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan
+		);
 
 		/// <summary>
 		/// Trim new-line characters from the tail of the string.

@@ -20,14 +20,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset.</param>
 	public sealed record ArWithHiddenSingleStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		int[] Cells, int BaseCell, int TargetCell, int TargetRegion, int AbsoluteOffset)
-		: UrStepInfo(
-			Conclusions, Views, TargetRegion switch
-			{
-				>= 0 and < 9 => Technique.ArHiddenSingleBlock,
-				>= 9 and < 18 => Technique.ArHiddenSingleRow,
-				>= 18 and < 27 => Technique.ArHiddenSingleColumn
-			}, Digit1, Digit2, Cells, true, AbsoluteOffset)
+		int[] Cells, int BaseCell, int TargetCell, int TargetRegion, int AbsoluteOffset
+	) : UrStepInfo(
+		Conclusions, Views, TargetRegion switch
+		{
+			>= 0 and < 9 => Technique.ArHiddenSingleBlock,
+			>= 9 and < 18 => Technique.ArHiddenSingleRow,
+			>= 18 and < 27 => Technique.ArHiddenSingleColumn
+		}, Digit1, Digit2, Cells, true, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.7M;

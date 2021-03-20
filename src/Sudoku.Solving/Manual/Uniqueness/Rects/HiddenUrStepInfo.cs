@@ -20,10 +20,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	public sealed record HiddenUrStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
-		int AbsoluteOffset)
-		: UrPlusStepInfo(
-			Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
-			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
+		int AbsoluteOffset
+	) : UrPlusStepInfo(
+		Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
+		Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override string? Acronym => IsAvoidable ? "HAR" : "HUR";

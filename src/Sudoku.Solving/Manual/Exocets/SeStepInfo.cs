@@ -20,8 +20,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="Eliminations">All eliminations.</param>
 	public sealed record SeStepInfo(
 		IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
-		int EndoTargetCell, int[]? ExtraRegionsMask, IReadOnlyList<Elimination> Eliminations)
-		: ExocetStepInfo(Views, Exocet, Digits, null, null, Eliminations)
+		int EndoTargetCell, int[]? ExtraRegionsMask, IReadOnlyList<Elimination> Eliminations
+	) : ExocetStepInfo(Views, Exocet, Digits, null, null, Eliminations)
 	{
 		/// <summary>
 		/// Indicates whether the specified instance contains any extra regions.

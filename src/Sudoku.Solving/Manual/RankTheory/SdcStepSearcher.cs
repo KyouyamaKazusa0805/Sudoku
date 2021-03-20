@@ -143,8 +143,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 										short maskOnlyInInter = (short)(
 											selectedInterMask & ~(blockMask | lineMask)
 										);
-										if
-										(
+										if (
 											!cannibalMode && (
 												(blockMask & lineMask) != 0
 												|| maskIsolated != 0 && (
@@ -163,18 +162,22 @@ namespace Sudoku.Solving.Manual.RankTheory
 										int digitIsolated = TrailingZeroCount(maskIsolated);
 										if (digitIsolated != Constants.InvalidFirstSet)
 										{
-											elimMapIsolated =
-											(
+											elimMapIsolated = (
 												cannibalMode
 												? (currentBlockMap | currentLineMap)
 												: currentInterMap
 											) * CandMaps[digitIsolated] & EmptyMap;
 										}
 
-										if (currentInterMap.Count + i + j ==
-											PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-											&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty
-												|| !elimMapIsolated.IsEmpty))
+										if (
+											currentInterMap.Count + i + j
+											== PopCount((uint)blockMask) + PopCount((uint)lineMask)
+												+ PopCount((uint)maskOnlyInInter)
+											&& (
+												!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty
+												|| !elimMapIsolated.IsEmpty
+											)
+										)
 										{
 											// Check eliminations.
 											var conclusions = new List<Conclusion>();

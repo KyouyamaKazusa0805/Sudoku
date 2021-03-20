@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
 	public sealed record CellChainingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level)
-		: ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
+		int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level
+	) : ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 	{
 		/// <inheritdoc/>
 		public override int FlatComplexity

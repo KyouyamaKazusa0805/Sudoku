@@ -20,8 +20,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrType2StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Technique TechniqueCode,
-		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int ExtraDigit, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TechniqueCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int ExtraDigit, int AbsoluteOffset
+	) : UrStepInfo(Conclusions, Views, TechniqueCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;

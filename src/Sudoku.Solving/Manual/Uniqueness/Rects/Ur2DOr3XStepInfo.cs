@@ -23,8 +23,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	public sealed record Ur2DOr3XStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		int XDigit, int YDigit, int XyCell, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		int XDigit, int YDigit, int XyCell, int AbsoluteOffset
+	) : UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.7M;

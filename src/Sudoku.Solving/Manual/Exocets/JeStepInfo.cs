@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	public sealed record JeStepInfo(
 		IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
 		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		IReadOnlyList<Elimination> Eliminations)
-		: ExocetStepInfo(Views, Exocet, Digits, LockedMemberQ, LockedMemberR, Eliminations)
+		IReadOnlyList<Elimination> Eliminations
+	) : ExocetStepInfo(Views, Exocet, Digits, LockedMemberQ, LockedMemberR, Eliminations)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

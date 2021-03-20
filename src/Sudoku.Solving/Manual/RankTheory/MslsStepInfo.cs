@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="Views">All views.</param>
 	/// <param name="Cells">Indicates the cells used.</param>
 	public sealed record MslsStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells)
-		: RankTheoryStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.4M + (decimal)Floor((Sqrt(1 + 8 * Cells.Count) - 1) / 2) * .1M;

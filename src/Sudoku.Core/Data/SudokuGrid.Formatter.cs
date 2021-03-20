@@ -21,8 +21,16 @@ namespace Sudoku.Data
 			/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 			/// be multi-line.
 			/// </param>
-			public Formatter(bool multiline)
-				: this('.', multiline, false, false, false, false, false, false, false)
+			public Formatter(bool multiline) : this(
+				placeholder: '.',
+				multiline: multiline,
+				withModifiables: false,
+				withCandidates: false,
+				treatValueAsGiven: false,
+				subtleGridLines: false,
+				hodokuCompatible: false,
+				sukaku: false,
+				excel: false)
 			{
 			}
 

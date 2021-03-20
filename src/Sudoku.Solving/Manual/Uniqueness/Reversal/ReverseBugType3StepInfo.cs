@@ -19,8 +19,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	/// <param name="IsNaked">Indicates whether the subset is naked.</param>
 	public sealed record ReverseBugType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop,
-		in Cells ExtraCells, int Digit1, int Digit2, short DigitsMask, bool IsNaked)
-		: ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
+		in Cells ExtraCells, int Digit1, int Digit2, short DigitsMask, bool IsNaked
+	) : ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.8M;

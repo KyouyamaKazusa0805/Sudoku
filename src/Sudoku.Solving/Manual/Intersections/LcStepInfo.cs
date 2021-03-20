@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <param name="BaseSet">The base region.</param>
 	/// <param name="CoverSet">The cover region.</param>
 	public sealed record LcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int BaseSet, int CoverSet)
-		: IntersectionStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit, int BaseSet, int CoverSet
+	) : IntersectionStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
