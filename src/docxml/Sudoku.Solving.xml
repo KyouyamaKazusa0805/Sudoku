@@ -2997,11 +2997,6 @@
             </summary>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Extensions.SudokuGridEx.SstsSearchers">
-            <summary>
-            All available SSTS searchers.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Extensions.SudokuGridEx.Clean(Sudoku.Data.SudokuGrid@)">
             <summary>
             To clean the grid.
@@ -4487,6 +4482,24 @@
             <exception cref="T:System.OperationCanceledException">
             Throws when the current operation is cancelled.
             </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.GetSstsSearchers(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get all available SSTS searchers.
+            </summary>
+            <param name="enableFullHouse">
+            Set an option to <see cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableFullHouse"/>.
+            </param>
+            <param name="enableLastDigit">
+            Set an option to <see cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableLastDigit"/>.
+            </param>
+            <param name="showDirectLines">
+            Set an option to <see cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.ShowDirectLines"/>.
+            </param>
+            <returns>Returns the list of SSTS searchers.</returns>
+            <seealso cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableFullHouse"/>
+            <seealso cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.EnableLastDigit"/>
+            <seealso cref="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.ShowDirectLines"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.CheckConclusionsValidity(Sudoku.Data.SudokuGrid@,System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>

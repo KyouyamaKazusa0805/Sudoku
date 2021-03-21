@@ -14,17 +14,6 @@ namespace Sudoku.Solving.Manual.Extensions
 	public static class SudokuGridEx
 	{
 		/// <summary>
-		/// All available SSTS searchers.
-		/// </summary>
-		private static readonly StepSearcher[] SstsSearchers =
-		{
-			new SingleStepSearcher(),
-			new LcStepSearcher(),
-			new SubsetStepSearcher()
-		};
-
-
-		/// <summary>
 		/// To clean the grid.
 		/// </summary>
 		/// <param name="this">The grid.</param>
@@ -39,14 +28,16 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <seealso cref="SubsetStepSearcher"/>
 		public static void Clean(this ref SudokuGrid @this)
 		{
+			var sstsSearchers = ManualSolver.GetSstsSearchers();
+
 			var steps = new List<StepInfo>();
 
 		Again:
 			steps.Clear();
 			InitializeMaps(@this);
-			for (int i = 0, length = SstsSearchers.Length; i < length; i++)
+			for (int i = 0, length = sstsSearchers.Length; i < length; i++)
 			{
-				var searcher = SstsSearchers[i];
+				var searcher = sstsSearchers[i];
 				searcher.GetAll(steps, @this);
 				if (steps.Count == 0)
 				{

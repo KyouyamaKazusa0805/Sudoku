@@ -191,6 +191,36 @@ namespace Sudoku.Solving.Manual
 
 
 		/// <summary>
+		/// Get all available SSTS searchers.
+		/// </summary>
+		/// <param name="enableFullHouse">
+		/// Set an option to <see cref="SingleStepSearcher.EnableFullHouse"/>.
+		/// </param>
+		/// <param name="enableLastDigit">
+		/// Set an option to <see cref="SingleStepSearcher.EnableLastDigit"/>.
+		/// </param>
+		/// <param name="showDirectLines">
+		/// Set an option to <see cref="SingleStepSearcher.ShowDirectLines"/>.
+		/// </param>
+		/// <returns>Returns the list of SSTS searchers.</returns>
+		/// <seealso cref="SingleStepSearcher.EnableFullHouse"/>
+		/// <seealso cref="SingleStepSearcher.EnableLastDigit"/>
+		/// <seealso cref="SingleStepSearcher.ShowDirectLines"/>
+		public static StepSearcher[] GetSstsSearchers(
+			bool enableFullHouse = false, bool enableLastDigit = false, bool showDirectLines = false) =>
+			new StepSearcher[]
+			{
+				new SingleStepSearcher
+				{
+					EnableFullHouse = enableFullHouse,
+					EnableLastDigit = enableLastDigit,
+					ShowDirectLines = showDirectLines
+				},
+				new LcStepSearcher(),
+				new SubsetStepSearcher()
+			};
+
+		/// <summary>
 		/// To check the validity of all conclusions.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
