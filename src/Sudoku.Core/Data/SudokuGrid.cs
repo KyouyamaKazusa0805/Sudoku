@@ -699,7 +699,6 @@ namespace Sudoku.Data
 			{
 				var sb = new ValueStringBuilder(400);
 				sb.AppendRange(pArr, 81, &p, separator);
-				sb.RemoveFromEnd(separator.Length);
 				return sb.ToString();
 			}
 
