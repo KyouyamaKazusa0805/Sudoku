@@ -19,10 +19,10 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 | GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |
 | Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  |
 
-| How to use this solution<br />如何使用 |                                                              |
-| -------------------------------------- | ------------------------------------------------------------ |
-| Bilingual<br />中英双语介绍            | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
-| Chinese only<br />中文介绍             | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
+| Intro about how to compile the solution<br />关于如何编译解决方案的介绍 |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Bilingual<br />中英双语介绍                                  | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
+| Chinese only<br />中文介绍                                   | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
 
 | Wiki<br />百科页面         |                                                           |
 | -------------------------- | --------------------------------------------------------- |
@@ -33,11 +33,11 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 | Programming language<br />编程语言                   | C#                                                           |
 | Programming Language version<br />编程语言版本       | 9.0                                                          |
 | Framework<br />框架                                  | .NET 5                                                       |
-| Indenting<br />缩进                                  | Tabs (`\t`)<br />原生 Tab                                    |
-| Integrated development environment<br />集成开发环境 | Visual Studio 2019 (Version 16.10)<br />Visual Studio 2019（16.10 预览版） |
+| Indenting<br />缩进                                  | Tabs (`\t`)<br />Tab                                         |
+| Integrated development environment<br />集成开发环境 | Visual Studio 2019 (Version 16.10 Preview)<br />Visual Studio 2019（16.10 预览版） |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
 
-> You can also use JetBrains Rider as your IDE. However, disappointing, some features may leave bugs. :(
+> You can also use JetBrains Rider as your IDE. However, disappointing, some features contain bugs still now. :(
 >
 > 当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发，不过有点难受的地方是，有一些特性目前还有 bug。（不开心脸）
 >
