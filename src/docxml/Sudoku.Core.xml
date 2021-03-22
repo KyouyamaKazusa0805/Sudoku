@@ -6357,6 +6357,15 @@
             </para>
             </summary>
         </member>
+        <member name="M:Sudoku.Techniques.TechniqueStrings.GetComplexFishTechniqueCodeFromName(System.String)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
+            to a complex fish name, such as "Finned Franken Swordfish".
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The <see cref="T:Sudoku.Techniques.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
+        </member>
         <member name="T:Sudoku.Techniques.TechniqueTags">
             <summary>
             Provides a series of tags to mark on a technique.

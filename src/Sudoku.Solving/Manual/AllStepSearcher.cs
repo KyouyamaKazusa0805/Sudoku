@@ -69,11 +69,10 @@ namespace Sudoku.Solving.Manual
 			FastProperties.InitializeMaps(grid);
 			int i = -1;
 			var bag = new List<StepInfo>();
-			var progressResult =
-				new TechniqueProgressResult(
-					searchers.Length,
-					countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode
-				);
+			var progressResult = new TechniqueProgressResult(
+				searchers.Length,
+				countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode
+			);
 			foreach (var searcher in searchers)
 			{
 				// Check whether the searcher is only used for analyzing a sudoku grid.
