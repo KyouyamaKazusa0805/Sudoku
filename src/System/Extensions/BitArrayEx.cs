@@ -14,15 +14,19 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="this">The array.</param>
 		/// <returns>The total number of bits set <see langword="true"/>.</returns>
-		public static int GetCardinality(this BitArray @this)
+		public static unsafe int GetCardinality(this BitArray @this)
 		{
 			int[] integers = new int[((@this.Length >> 5) + 1)];
 			@this.CopyTo(integers, 0);
 
 			int result = 0;
-			foreach (int integer in integers)
+			fixed (int* p = integers)
 			{
-				result += PopCount((uint)integer);
+				int i = 0, length = integers.Length;
+				for (int* ptr = p; i < length; ptr++, i++)
+				{
+					result += PopCount((uint)*ptr);
+				}
 			}
 
 			return result;
