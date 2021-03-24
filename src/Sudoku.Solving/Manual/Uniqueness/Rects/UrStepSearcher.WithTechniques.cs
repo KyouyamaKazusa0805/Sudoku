@@ -55,6 +55,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 			if (new Cells { corner1, corner2 }.AllSetsAreInOneRegion(out int region) && region < 9)
 			{
+				#region Subtype 1
 				// Subtype 1.
 				int[] offsets = otherCellsMap.ToArray();
 				int otherCell1 = offsets[0], otherCell2 = offsets[1];
@@ -397,10 +398,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 					}
 				}
+				#endregion
 			}
 			else
 			{
+				#region Subtype 2
 				// TODO: Finish processing Subtype 2.
+				#endregion
 			}
 		}
 
