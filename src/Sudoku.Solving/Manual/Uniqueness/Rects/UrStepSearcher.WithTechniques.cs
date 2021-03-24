@@ -843,18 +843,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									new()
 									{
+										Cells = new DrawingInfo[] { new(0, targetCell) },
 										Candidates = candidateOffsets,
 										Regions = new DrawingInfo[] { new(0, block), new(1, line) }
 									},
 									new()
 									{
+										Candidates = new DrawingInfo[]
+										{
+											new(1, resultCell * 9 + extraDigit),
+											new(1, targetCell * 9 + extraDigit)
+										},
 										StepFilling = new (int, char)[]
 										{
 											(bivalueCellToCheck, 'y'),
 											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '0')),
+											(urCellInSameBlock, (char)(extraDigit + '1')),
 											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '0'))
+											(resultCell, (char)(extraDigit + '1'))
 										}
 									}
 								},
@@ -901,15 +907,34 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							new(1, resultCell * 9 + extraDigit),
 							new(1, targetCell * 9 + extraDigit)
 						};
+						var candidateOffsetsAnotherSubtypeLighter = new List<DrawingInfo>
+						{
+							new(1, resultCell * 9 + extraDigit),
+							new(1, targetCell * 9 + extraDigit)
+						};
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock))
 						{
-							candidateOffsetsAnotherSubtype.Add(
-								new(digit == extraDigit ? 1 : 0, urCellInSameBlock * 9 + digit));
+							if (digit == extraDigit)
+							{
+								candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
+							}
+							else
+							{
+								candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
+							}
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
-							candidateOffsetsAnotherSubtype.Add(
-								new(digit == extraDigit ? 1 : 0, anotherCell * 9 + digit));
+							if (digit == extraDigit)
+							{
+								candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
+							}
+							else
+							{
+								candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
+							}
 						}
 						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
 						{
@@ -924,6 +949,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								{
 									new()
 									{
+										Cells = new DrawingInfo[] { new(0, targetCell) },
 										Candidates = candidateOffsetsAnotherSubtype,
 										Regions = new DrawingInfo[]
 										{
@@ -934,13 +960,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									},
 									new()
 									{
+										Candidates = candidateOffsetsAnotherSubtypeLighter,
 										StepFilling = new (int, char)[]
 										{
 											(bivalueCellToCheck, 'y'),
 											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '0')),
+											(urCellInSameBlock, (char)(extraDigit + '1')),
 											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '0'))
+											(resultCell, (char)(extraDigit + '1'))
 										}
 									}
 								},

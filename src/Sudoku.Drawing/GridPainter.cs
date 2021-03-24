@@ -133,7 +133,10 @@ namespace Sudoku.Drawing
 			using SolidBrush
 				bGiven = new(Preferences.GivenColor),
 				bModifiable = new(Preferences.ModifiableColor),
-				bCandidate = new(Preferences.CandidateColor);
+				bCandidate = new(Preferences.CandidateColor),
+				bCandidateLighter = new(
+					Color.FromArgb(Preferences.CandidateColor.A >> 1, Preferences.CandidateColor)
+				);
 			using Font
 				fGiven = GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale),
 				fModifiable = GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale),
@@ -148,12 +151,28 @@ namespace Sudoku.Drawing
 					case CellStatus.Empty when Preferences.ShowCandidates:
 					{
 						// Draw candidates.
+						int stepFillingCell = -1;
+						if (View is { StepFilling: not null })
+						{
+							foreach (var (stepCell, stepChar) in View.StepFilling)
+							{
+								if (stepCell == cell)
+								{
+									stepFillingCell = stepCell;
+									break;
+								}
+							}
+						}
+
 						short candidateMask = (short)(mask & SudokuGrid.MaxCandidatesMask);
 						foreach (int digit in candidateMask)
 						{
 							var point = Converter.GetMousePointInCenter(cell, digit);
 							point.Y += vOffsetCandidate;
-							g.DrawInt32(digit + 1, fCandidate, bCandidate, point, sf);
+							g.DrawInt32(
+								digit + 1, fCandidate, stepFillingCell != -1 ? bCandidateLighter : bCandidate,
+								point, sf
+							);
 						}
 
 						break;
@@ -273,13 +292,33 @@ namespace Sudoku.Drawing
 		/// <param name="offset">The drawing offset.</param>
 		private void DrawEliminations(Graphics g, IEnumerable<Conclusion> conclusions, float offset)
 		{
-			using var eliminationBrush = new SolidBrush(Preferences.EliminationColor);
-			using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
+			using SolidBrush
+				eliminationBrush = new(Preferences.EliminationColor),
+				cannibalBrush = new(Preferences.CannibalismColor),
+				eliminationBrushLighter = new(
+					Color.FromArgb(Preferences.EliminationColor.A >> 1, Preferences.EliminationColor)
+				),
+				cannibalBrushLighter = new(
+					Color.FromArgb(Preferences.CannibalismColor.A >> 1, Preferences.CannibalismColor)
+				);
 			foreach (var (t, c, d) in conclusions)
 			{
 				if (t != ConclusionType.Elimination)
 				{
 					continue;
+				}
+
+				int stepFillingCell = -1;
+				if (View is { StepFilling: not null })
+				{
+					foreach (var (fillingCell, fillingChar) in View.StepFilling)
+					{
+						if (fillingCell == c)
+						{
+							stepFillingCell = fillingCell;
+							break;
+						}
+					}
 				}
 
 				bool isCannibalism = false;
@@ -299,8 +338,11 @@ namespace Sudoku.Drawing
 
 			Drawing:
 				g.FillEllipse(
-					isCannibalism ? cannibalBrush : eliminationBrush,
-					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3));
+					isCannibalism
+					? stepFillingCell != -1 ? cannibalBrushLighter : cannibalBrush
+					: stepFillingCell != -1 ? eliminationBrushLighter : eliminationBrush,
+					Converter.GetMouseRectangle(c, d).Zoom(-offset / 3)
+				);
 			}
 		}
 
@@ -637,7 +679,11 @@ namespace Sudoku.Drawing
 			float candidateWidth = Converter.CandidateSize.Width;
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
-			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
+			using SolidBrush
+				bCandidate = new(Preferences.CandidateColor),
+				bCandidateLighter = new(
+					Color.FromArgb(Preferences.CandidateColor.A >> 1, Preferences.CandidateColor)
+				);
 			using var fCandidate =
 				GetFontByScale(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
 			using var sf = new StringFormat
@@ -667,27 +713,54 @@ namespace Sudoku.Drawing
 				if (!isOverlapped)
 				{
 					int cell = candidate / 9, digit = candidate % 9;
+					int stepFillingCell = -1;
+					if (View is { StepFilling: not null })
+					{
+						foreach (var (fillingCell, fillingChar) in View.StepFilling)
+						{
+							if (fillingCell == cell)
+							{
+								stepFillingCell = fillingCell;
+								break;
+							}
+						}
+					}
+
 					if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 					{
-						using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
+						using var brush = new SolidBrush(
+							stepFillingCell != -1
+							? Color.FromArgb(aWeight, rWeight, gWeight, bWeight)
+							: Color.FromArgb(aWeight >> 1, rWeight, gWeight, bWeight)
+						);
 						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 						// In direct view, candidates should be drawn also.
 						if (!Preferences.ShowCandidates)
 						{
-							d(cell, digit, vOffsetCandidate);
+							d(
+								cell, digit, vOffsetCandidate,
+								stepFillingCell != -1 ? bCandidateLighter : bCandidate
+							);
 						}
 					}
 					else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 					{
 						// In the normal case, I'll draw these circles.
-						using var brush = new SolidBrush(color);
+						using var brush = new SolidBrush(
+							stepFillingCell != -1
+							? Color.FromArgb(color.A >> 1, color)
+							: color
+						);
 						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 						// In direct view, candidates should be drawn also.
 						if (!Preferences.ShowCandidates)
 						{
-							d(cell, digit, vOffsetCandidate);
+							d(
+								cell, digit, vOffsetCandidate,
+								stepFillingCell != -1 ? bCandidateLighter : bCandidate
+							);
 						}
 					}
 				}
@@ -697,19 +770,35 @@ namespace Sudoku.Drawing
 			{
 				foreach (var (type, cell, digit) in Conclusions)
 				{
+					int stepFillingCell = -1;
+					if (View is { StepFilling: not null })
+					{
+						foreach (var (fillingCell, fillingChar) in View.StepFilling)
+						{
+							if (fillingCell == cell)
+							{
+								stepFillingCell = fillingCell;
+								break;
+							}
+						}
+					}
+
 					if (type == ConclusionType.Elimination)
 					{
-						d(cell, digit, vOffsetCandidate);
+						d(
+							cell, digit, vOffsetCandidate,
+							stepFillingCell != -1 ? bCandidateLighter : bCandidate
+						);
 					}
 				}
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void d(int cell, int digit, float vOffsetCandidate)
+			void d(int cell, int digit, float vOffsetCandidate, Brush brush)
 			{
 				var point = Converter.GetMousePointInCenter(cell, digit);
 				point.Y += vOffsetCandidate;
-				g.DrawInt32(digit + 1, fCandidate, bCandidate, point, sf);
+				g.DrawInt32(digit + 1, fCandidate, brush, point, sf);
 			}
 		}
 
