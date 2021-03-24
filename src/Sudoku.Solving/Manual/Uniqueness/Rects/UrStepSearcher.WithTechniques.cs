@@ -845,6 +845,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									{
 										Candidates = candidateOffsets,
 										Regions = new DrawingInfo[] { new(0, block), new(1, line) }
+									},
+									new()
+									{
+										StepFilling = new (int, char)[]
+										{
+											(bivalueCellToCheck, 'y'),
+											(targetCell, 'x'),
+											(urCellInSameBlock, (char)(extraDigit + '0')),
+											(anotherCell, 'x'),
+											(resultCell, (char)(extraDigit + '0'))
+										}
 									}
 								},
 								d1,
@@ -919,6 +930,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											new(0, block),
 											new(1, line),
 											new(1, anotherLine)
+										}
+									},
+									new()
+									{
+										StepFilling = new (int, char)[]
+										{
+											(bivalueCellToCheck, 'y'),
+											(targetCell, 'x'),
+											(urCellInSameBlock, (char)(extraDigit + '0')),
+											(anotherCell, 'x'),
+											(resultCell, (char)(extraDigit + '0'))
 										}
 									}
 								},

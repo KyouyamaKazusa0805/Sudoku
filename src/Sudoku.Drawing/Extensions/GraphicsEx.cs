@@ -37,6 +37,20 @@ namespace Sudoku.Drawing.Extensions
 			@this.DrawString(value.ToString(), font, brush, point, stringFormat);
 
 		/// <summary>
+		/// Draw an <see cref="char"/> value onto the current graphics.
+		/// </summary>
+		/// <param name="this">The graphics instance.</param>
+		/// <param name="value">The value to drawing onto.</param>
+		/// <param name="font">The font.</param>
+		/// <param name="brush">The brush.</param>
+		/// <param name="point">The point.</param>
+		/// <param name="stringFormat">The string format instance.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void DrawChar(
+			this Graphics @this, char value, Font font, Brush brush, in PointF point, StringFormat stringFormat) =>
+			@this.DrawString(value.ToString(), font, brush, point, stringFormat);
+
+		/// <summary>
 		/// Draw a cross sign (<c>x</c>).
 		/// </summary>
 		/// <param name="this">The graphics.</param>

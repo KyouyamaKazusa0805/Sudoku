@@ -338,6 +338,17 @@
             <param name="point">The point.</param>
             <param name="stringFormat">The string format instance.</param>
         </member>
+        <member name="M:Sudoku.Drawing.Extensions.GraphicsEx.DrawChar(System.Drawing.Graphics,System.Char,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@,System.Drawing.StringFormat)">
+            <summary>
+            Draw an <see cref="T:System.Char"/> value onto the current graphics.
+            </summary>
+            <param name="this">The graphics instance.</param>
+            <param name="value">The value to drawing onto.</param>
+            <param name="font">The font.</param>
+            <param name="brush">The brush.</param>
+            <param name="point">The point.</param>
+            <param name="stringFormat">The string format instance.</param>
+        </member>
         <member name="M:Sudoku.Drawing.Extensions.GraphicsEx.DrawCrossSign(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF@)">
             <summary>
             Draw a cross sign (<c>x</c>).
@@ -550,13 +561,17 @@
             <param name="offset">The drawing offset.</param>
             <seealso cref="P:Sudoku.Drawing.GridPainter.View"/>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.DrawViewIfNeedInternal(System.Drawing.Graphics,System.Single,System.Object)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawViewIfNeedInternal(System.Drawing.Graphics,System.Single,System.Object,System.Boolean)">
             <summary>
             Draw the specified view.
             </summary>
             <param name="g">The graphics.</param>
             <param name="offset">The drawing offset.</param>
             <param name="view">The view instance.</param>
+            <param name="isView">
+            Indicates whether the current <paramref name="view"/> instance is <see cref="T:Sudoku.Drawing.View"/>.
+            </param>
+            <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
         <member name="M:Sudoku.Drawing.GridPainter.DrawFocusedCells(System.Drawing.Graphics,Sudoku.Data.Cells@)">
             <summary>
@@ -626,13 +641,21 @@
             <param name="g">The graphics.</param>
             <param name="cells">The cells.</param>
         </member>
-        <member name="M:Sudoku.Drawing.GridPainter.GetFontByScale(System.String,System.Single,System.Decimal)">
+        <member name="M:Sudoku.Drawing.GridPainter.DrawStepFilling(System.Drawing.Graphics,System.Collections.Generic.IEnumerable{System.ValueTuple{System.Int32,System.Char}})">
+            <summary>
+            Draw step filling values.
+            </summary>
+            <param name="g">The graphics.</param>
+            <param name="stepFilling">The list of step filling values.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridPainter.GetFontByScale(System.String,System.Single,System.Decimal,System.Nullable{System.Drawing.FontStyle})">
             <summary>
             Get the font via name, size and the scale.
             </summary>
             <param name="fontName">The font name.</param>
             <param name="size">The size.</param>
             <param name="scale">The scale.</param>
+            <param name="style">The style.</param>
             <returns>The font.</returns>
         </member>
         <member name="T:Sudoku.Drawing.MutableView">
@@ -1269,6 +1292,12 @@
         <member name="P:Sudoku.Drawing.View.DirectLines">
             <summary>
             Indicates all direct lines.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.View.StepFilling">
+            <summary>
+            Indicates the step filling that is used to display the temporary values, this property
+            is commonly used by the technique unknown covering.
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.View.Equals(System.Object)">

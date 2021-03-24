@@ -39,6 +39,12 @@ namespace Sudoku.Drawing
 		/// </summary>
 		public IReadOnlyList<(Cells Start, Cells End)>? DirectLines { get; init; }
 
+		/// <summary>
+		/// Indicates the step filling that is used to display the temporary values, this property
+		/// is commonly used by the technique unknown covering.
+		/// </summary>
+		public IReadOnlyList<(int Cell, char Value)>? StepFilling { get; init; }
+
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is View comparer && Equals(comparer);
@@ -51,7 +57,8 @@ namespace Sudoku.Drawing
 				|| Candidates is null ^ other.Candidates is null
 				|| Regions is null ^ other.Regions is null
 				|| Links is null ^ other.Links is null
-				|| DirectLines is null ^ other.DirectLines is null)
+				|| DirectLines is null ^ other.DirectLines is null
+				|| StepFilling is null ^ other.StepFilling is null)
 			{
 				return false;
 			}
@@ -60,7 +67,8 @@ namespace Sudoku.Drawing
 				&& (Candidates is null || !Candidates.Any(c => !other.Candidates!.Contains(c)))
 				&& (Regions is null || !Regions.Any(c => !other.Regions!.Contains(c)))
 				&& (Links is null || !Links.Any(l => !other.Links!.Contains(l)))
-				&& (DirectLines is null || !DirectLines.Any(d => !other.DirectLines!.Contains(d)));
+				&& (DirectLines is null || !DirectLines.Any(d => !other.DirectLines!.Contains(d)))
+				&& (StepFilling is null || !StepFilling.Any(p => !other.StepFilling!.Contains(p)));
 			// You can also implement this method in this way.
 			//return GetHashCode() == other.GetHashCode();
 		}

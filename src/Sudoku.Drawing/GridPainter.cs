@@ -125,20 +125,19 @@ namespace Sudoku.Drawing
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 			float halfWidth = cellWidth / 2F;
 
-			using var bGiven = new SolidBrush(Preferences.GivenColor);
-			using var bModifiable = new SolidBrush(Preferences.ModifiableColor);
-			using var bCandidate = new SolidBrush(Preferences.CandidateColor);
-			using var fGiven =
-				GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale);
-			using var fModifiable =
-				GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale);
-			using var fCandidate =
-				GetFontByScale(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
 			using var sf = new StringFormat
 			{
 				Alignment = StringAlignment.Center,
 				LineAlignment = StringAlignment.Center
 			};
+			using SolidBrush
+				bGiven = new(Preferences.GivenColor),
+				bModifiable = new(Preferences.ModifiableColor),
+				bCandidate = new(Preferences.CandidateColor);
+			using Font
+				fGiven = GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale),
+				fModifiable = GetFontByScale(Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale),
+				fCandidate = GetFontByScale(Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale);
 
 			for (int cell = 0; cell < 81; cell++)
 			{
@@ -185,7 +184,7 @@ namespace Sudoku.Drawing
 		{
 			if (CustomView is not null)
 			{
-				DrawViewIfNeedInternal(g, offset, CustomView);
+				DrawViewIfNeedInternal(g, offset, CustomView, false);
 			}
 		}
 
@@ -199,7 +198,7 @@ namespace Sudoku.Drawing
 		{
 			if (View is not null)
 			{
-				DrawViewIfNeedInternal(g, offset, View);
+				DrawViewIfNeedInternal(g, offset, View, true);
 			}
 		}
 
@@ -209,13 +208,18 @@ namespace Sudoku.Drawing
 		/// <param name="g">The graphics.</param>
 		/// <param name="offset">The drawing offset.</param>
 		/// <param name="view">The view instance.</param>
-		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic view)
+		/// <param name="isView">
+		/// Indicates whether the current <paramref name="view"/> instance is <see cref="Drawing.View"/>.
+		/// </param>
+		/// <seealso cref="Drawing.View"/>
+		private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic view, bool isView)
 		{
 			if (view.Regions is IEnumerable<DrawingInfo> regions) DrawRegions(g, regions, offset);
 			if (view.Cells is IEnumerable<DrawingInfo> cells) DrawCells(g, cells);
 			if (view.Candidates is IEnumerable<DrawingInfo> candidates) DrawCandidates(g, candidates, offset);
 			if (view.Links is IEnumerable<Link> links) DrawLinks(g, links, offset);
 			if (view.DirectLines is IEnumerable<(Cells, Cells)> directLines) DrawDirectLines(g, directLines, offset);
+			if (isView && view.StepFilling is IEnumerable<(int, char)> filling) DrawStepFilling(g, filling);
 		}
 
 		/// <summary>
@@ -731,6 +735,38 @@ namespace Sudoku.Drawing
 			}
 		}
 
+		/// <summary>
+		/// Draw step filling values.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="stepFilling">The list of step filling values.</param>
+		private void DrawStepFilling(Graphics g, IEnumerable<(int, char)> stepFilling)
+		{
+			const string fontName = "Times New Roman";
+
+			float cellWidth = Converter.CellSize.Width;
+			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
+			float halfWidth = cellWidth / 2F;
+
+			using var brush = new SolidBrush(Color.FromArgb(128, Color.Black));
+			using var font = GetFontByScale(
+				fontName, halfWidth, Preferences.ValueScale, FontStyle.Bold | FontStyle.Italic
+			);
+			using var sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
+
+			foreach (var (cell, character) in stepFilling)
+			{
+				// Draw values.
+				var point = Converter.GetMousePointInCenter(cell);
+				point.Y += vOffsetValue;
+				g.DrawChar(character, font, brush, point, sf);
+			}
+		}
+
 
 		/// <summary>
 		/// Get the font via name, size and the scale.
@@ -738,9 +774,10 @@ namespace Sudoku.Drawing
 		/// <param name="fontName">The font name.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="scale">The scale.</param>
+		/// <param name="style">The style.</param>
 		/// <returns>The font.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static Font GetFontByScale(string fontName, float size, decimal scale) =>
-			new(fontName, size * (float)scale, FontStyle.Regular);
+		private static Font GetFontByScale(string fontName, float size, decimal scale, FontStyle? style = null) =>
+			new(fontName, size * (float)scale, style ?? FontStyle.Regular);
 	}
 }
