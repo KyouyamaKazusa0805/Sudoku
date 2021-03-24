@@ -258,6 +258,7 @@
   "UrWxyzWing": "唯一矩形 + WXYZ-Wing",
   "UrSdc": "唯一矩形 + 融合跨区数组",
   "UrGuardian": "唯一矩形 + 守护者",
+  "UrUnknownCovering": "唯一矩形 + 未知数",
   "AdvancedUr": "唯一矩形 (+)",
   "ArType1": "可规避矩形类型 1",
   "ArType2": "可规避矩形类型 2",

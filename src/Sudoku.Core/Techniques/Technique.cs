@@ -834,6 +834,11 @@ namespace Sudoku.Techniques
 		UrSdc,
 
 		/// <summary>
+		/// Indicates the UR unknown covering.
+		/// </summary>
+		UrUnknownCovering,
+
+		/// <summary>
 		/// Indicates the UR guardian.
 		/// </summary>
 		UrGuardian,
