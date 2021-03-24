@@ -92,13 +92,13 @@ namespace Sudoku.Solving.Manual
 					var tempList = new List<StepInfo>();
 					var copied = grid;
 					return AnalyzeDifficultyStrictly
-					? SolveSeMode(
-						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-						cancellationToken
-					) : SolveNaively(
-						grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-						cancellationToken
-					);
+						? SolveSeMode(
+							grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
+							cancellationToken
+						) : SolveNaively(
+							grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
+							cancellationToken
+						);
 				}
 				catch (WrongStepException ex)
 				{

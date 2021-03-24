@@ -112,6 +112,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						if (SearchForExtendedUniqueRectangles)
 						{
+							CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
 							CheckGuardianUnique(gathered, grid, urCells, comparer, d1, d2, index);
 							CheckGuardianAvoidable(gathered, grid, urCells, comparer, d1, d2, index);
 						}
@@ -168,7 +169,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										if (!arMode)
 										{
 											CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-
+											
 											if (SearchForExtendedUniqueRectangles)
 											{
 												Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -179,7 +180,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										{
 											if (SearchForExtendedUniqueRectangles)
 											{
-												CheckHiddenSingleAvoidable(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+												CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											}
 										}
 

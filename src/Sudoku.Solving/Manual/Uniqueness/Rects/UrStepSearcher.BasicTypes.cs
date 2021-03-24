@@ -591,12 +591,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			void gather(
 				in SudokuGrid grid, in Cells otherCellsMap, bool isRow, int digit, int region1, int region2)
 			{
-				if ((!isRow
-					|| !IsConjugatePair(digit, new() { corner1, o1 }, region1)
-					|| !IsConjugatePair(digit, new() { corner2, o2 }, region2))
-					&& (isRow
-					|| !IsConjugatePair(digit, new() { corner1, o2 }, region1)
-					|| !IsConjugatePair(digit, new() { corner2, o1 }, region2)))
+				if (
+					(
+						!isRow
+						|| !IsConjugatePair(digit, new() { corner1, o1 }, region1)
+						|| !IsConjugatePair(digit, new() { corner2, o2 }, region2)
+					) && (
+						isRow
+						|| !IsConjugatePair(digit, new() { corner1, o2 }, region1)
+						|| !IsConjugatePair(digit, new() { corner2, o1 }, region2)
+					)
+				)
 				{
 					return;
 				}

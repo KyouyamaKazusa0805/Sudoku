@@ -25,8 +25,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		partial void Check4C3SL(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
 		partial void CheckWing(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int size, int index);
 		partial void CheckSdc(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckUnknownCoveringUnique(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer, int d1, int d2, int index);
 		partial void CheckGuardianUnique(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer, int d1, int d2, int index);
 		partial void CheckGuardianAvoidable(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer, int d1, int d2, int index);
-		partial void CheckHiddenSingleAvoidable(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
+		partial void CheckHiddenSingleAvoidable(IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index);
 	}
 }

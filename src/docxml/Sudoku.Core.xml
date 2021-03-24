@@ -5768,6 +5768,11 @@
             Indicates the UR sue de coq.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.Technique.UrUnknownCovering">
+            <summary>
+            Indicates the UR unknown covering.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.Technique.UrGuardian">
             <summary>
             Indicates the UR guardian.

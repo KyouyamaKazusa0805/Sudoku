@@ -26,17 +26,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override decimal Difficulty => 4.9M;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+
+		/// <inheritdoc/>
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string digitsStr = new DigitCollection(stackalloc int[] { Digit1, Digit2 }).ToString("or ");
+			string digitsStr = new DigitCollection(stackalloc int[] { Digit1, Digit2 }).ToString(" or ");
 			string targetCellStr = new Cells { TargetCell }.ToString();
+			string extraDigitStr = (ExtraDigit + 1).ToString();
 			return
 				$"unknown covering: Suppose {targetCellStr} is filled with the unknown digit X (X is {digitsStr}), " +
-				$"then 4 cells form a UR deadly pattern of digit X and {ExtraDigit}";
+				$"then 4 cells form a UR deadly pattern of digit X and {extraDigitStr}";
 		}
 	}
 }

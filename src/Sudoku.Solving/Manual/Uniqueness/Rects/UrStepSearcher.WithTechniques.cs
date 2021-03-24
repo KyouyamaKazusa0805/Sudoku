@@ -698,6 +698,239 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		/// <summary>
+		/// Check UR+Unknown covering.
+		/// </summary>
+		/// <param name="accumulator">The technique accumulator.</param>
+		/// <param name="grid">The grid.</param>
+		/// <param name="urCells">All UR cells.</param>
+		/// <param name="comparer">The comparer.</param>
+		/// <param name="d1">The digit 1.</param>
+		/// <param name="d2">The digit 2.</param>
+		/// <param name="index">The index.</param>
+		partial void CheckUnknownCoveringUnique(
+			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer,
+			int d1, int d2, int index)
+		{
+			//      ↓urCellInSameBlock
+			// ab  abc      abc  ←anotherCell
+			//
+			//     abcx-----abcy ←resultCell
+			//           c
+			//      ↑targetCell
+			// Where the digit 'a' and 'b' in the down-left cell 'abc' can be removed.
+
+			var cells = new Cells(urCells);
+
+			// Check all cells are ampty.
+			bool containsValueCells = false;
+			foreach (int cell in cells)
+			{
+				if (grid.GetStatus(cell) != CellStatus.Empty)
+				{
+					containsValueCells = true;
+					break;
+				}
+			}
+			if (containsValueCells)
+			{
+				return;
+			}
+
+			// Iterate on each cell.
+			foreach (int targetCell in cells)
+			{
+				int block = targetCell.ToRegion(RegionLabel.Block);
+				var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
+				if (bivalueCellsToCheck.IsEmpty)
+				{
+					continue;
+				}
+
+				// Check all bivalue cells.
+				foreach (int bivalueCellToCheck in bivalueCellsToCheck)
+				{
+					if (new Cells { bivalueCellToCheck, targetCell }.CoveredLine != Constants.InvalidFirstSet)
+					{
+						// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
+						continue;
+					}
+
+					if (grid.GetCandidates(bivalueCellToCheck) != comparer)
+					{
+						// 'bivalueCell' must contain both 'd1' and 'd2'.
+						continue;
+					}
+
+					int urCellInSameBlock = new Cells(RegionMaps[block] & cells) { ~targetCell }[0];
+					int coveredLine = new Cells { bivalueCellToCheck, urCellInSameBlock }.CoveredLine;
+					if (coveredLine == Constants.InvalidFirstSet)
+					{
+						// The bi-value cell 'bivalueCellToCheck' should be lie on a same region
+						// as 'urCellInSameBlock'.
+						continue;
+					}
+
+					int anotherCell = (new Cells(cells) { ~urCellInSameBlock } & RegionMaps[coveredLine])[0];
+					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
+					{
+						short abcMask = (short)(comparer | (short)(1 << extraDigit));
+
+						if (grid.GetCandidates(anotherCell) != abcMask)
+						{
+							continue;
+						}
+
+						// Check the conjugate pair of the extra digit.
+						int resultCell = new Cells(cells) { ~urCellInSameBlock, ~anotherCell, ~targetCell }[0];
+						var map = new Cells { targetCell, resultCell };
+						int line = map.CoveredLine;
+						if (!IsConjugatePair(extraDigit, map, line))
+						{
+							continue;
+						}
+
+						#region Subtype 1
+						if (grid.GetCandidates(urCellInSameBlock) != abcMask)
+						{
+							goto SubType2;
+						}
+
+						// Here, is the basic sub-type having passed the checking.
+						// Gather conclusions.
+						var conclusions = new List<Conclusion>();
+						foreach (int digit in grid.GetCandidates(targetCell))
+						{
+							if (digit == d1 || digit == d2)
+							{
+								conclusions.Add(new(ConclusionType.Elimination, targetCell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							goto SubType2;
+						}
+
+						// Gather views.
+						var candidateOffsets = new List<DrawingInfo>
+						{
+							new(0, resultCell * 9 + d1),
+							new(0, resultCell * 9 + d2),
+							new(1, resultCell * 9 + extraDigit),
+							new(1, targetCell * 9 + extraDigit)
+						};
+						foreach (int digit in grid.GetCandidates(urCellInSameBlock))
+						{
+							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
+						}
+						foreach (int digit in grid.GetCandidates(anotherCell))
+						{
+							candidateOffsets.Add(new(0, anotherCell * 9 + digit));
+						}
+						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+						{
+							candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
+						}
+
+						// Add into the list.
+						accumulator.Add(
+							new UrWithUnknownCoveringStepInfo(
+								conclusions,
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsets,
+										Regions = new DrawingInfo[] { new(0, block), new(1, line) }
+									}
+								},
+								d1,
+								d2,
+								targetCell,
+								extraDigit,
+								urCells,
+								index));
+					#endregion
+
+#pragma warning disable IDE0055
+						#region Subtype 2
+#pragma warning restore IDE0055
+					SubType2:
+						// The extra digit should form a conjugate pair in that line.
+						var anotherMap = new Cells { urCellInSameBlock, anotherCell };
+						int anotherLine = anotherMap.CoveredLine;
+						if (!IsConjugatePair(extraDigit, anotherMap, anotherLine))
+						{
+							continue;
+						}
+
+						// Gather conclusions.
+						var conclusionsAnotherSubType = new List<Conclusion>();
+						foreach (int digit in grid.GetCandidates(targetCell))
+						{
+							if (digit == d1 || digit == d2)
+							{
+								conclusionsAnotherSubType.Add(
+									new(ConclusionType.Elimination, targetCell, digit));
+							}
+						}
+						if (conclusionsAnotherSubType.Count == 0)
+						{
+							continue;
+						}
+
+						// Gather views.
+						var candidateOffsetsAnotherSubtype = new List<DrawingInfo>
+						{
+							new(0, resultCell * 9 + d1),
+							new(0, resultCell * 9 + d2),
+							new(1, resultCell * 9 + extraDigit),
+							new(1, targetCell * 9 + extraDigit)
+						};
+						foreach (int digit in grid.GetCandidates(urCellInSameBlock))
+						{
+							candidateOffsetsAnotherSubtype.Add(
+								new(digit == extraDigit ? 1 : 0, urCellInSameBlock * 9 + digit));
+						}
+						foreach (int digit in grid.GetCandidates(anotherCell))
+						{
+							candidateOffsetsAnotherSubtype.Add(
+								new(digit == extraDigit ? 1 : 0, anotherCell * 9 + digit));
+						}
+						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+						{
+							candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
+						}
+
+						// Add into the list.
+						accumulator.Add(
+							new UrWithUnknownCoveringStepInfo(
+								conclusionsAnotherSubType,
+								new View[]
+								{
+									new()
+									{
+										Candidates = candidateOffsetsAnotherSubtype,
+										Regions = new DrawingInfo[]
+										{
+											new(0, block),
+											new(1, line),
+											new(1, anotherLine)
+										}
+									}
+								},
+								d1,
+								d2,
+								targetCell,
+								extraDigit,
+								urCells,
+								index));
+						#endregion
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Check UR+Guardian.
 		/// </summary>
 		/// <param name="accumulator">The technique accumulator.</param>
@@ -808,8 +1041,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="accumulator">The technique accumulator.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="urCells">All UR cells.</param>
-		/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
-		/// <param name="comparer">The mask comparer.</param>
 		/// <param name="d1">The digit 1 used in UR.</param>
 		/// <param name="d2">The digit 2 used in UR.</param>
 		/// <param name="corner1">The corner cell 1.</param>
@@ -819,8 +1050,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </param>
 		/// <param name="index">The index.</param>
 		partial void CheckHiddenSingleAvoidable(
-			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer,
-			int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, int d1, int d2,
+			int corner1, int corner2, in Cells otherCellsMap, int index)
 		{
 			// ↓corner1
 			// a   | aby  -  -
