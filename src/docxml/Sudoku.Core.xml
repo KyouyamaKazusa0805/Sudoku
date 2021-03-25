@@ -963,6 +963,11 @@
             <summary>
             Indicates the covered line.
             </summary>
+            <remarks>
+            When the covered region can't be found, it'll return <see cref="F:Sudoku.Constants.InvalidFirstSet"/>
+            (i.e. 32) always.
+            </remarks>
+            <seealso cref="F:Sudoku.Constants.InvalidFirstSet"/>
         </member>
         <member name="P:Sudoku.Data.Cells.Count">
             <summary>

@@ -125,17 +125,18 @@ namespace Sudoku.Drawing
 			float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 			float halfWidth = cellWidth / 2F;
 
-			using var sf = new StringFormat
-			{
-				Alignment = StringAlignment.Center,
-				LineAlignment = StringAlignment.Center
-			};
+			using StringFormat
+				sf = new()
+				{
+					Alignment = StringAlignment.Center,
+					LineAlignment = StringAlignment.Center
+				};
 			using SolidBrush
 				bGiven = new(Preferences.GivenColor),
 				bModifiable = new(Preferences.ModifiableColor),
 				bCandidate = new(Preferences.CandidateColor),
 				bCandidateLighter = new(
-					Color.FromArgb(Preferences.CandidateColor.A >> 1, Preferences.CandidateColor)
+					Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor)
 				);
 			using Font
 				fGiven = GetFontByScale(Preferences.GivenFontName, halfWidth, Preferences.ValueScale),
@@ -296,10 +297,10 @@ namespace Sudoku.Drawing
 				eliminationBrush = new(Preferences.EliminationColor),
 				cannibalBrush = new(Preferences.CannibalismColor),
 				eliminationBrushLighter = new(
-					Color.FromArgb(Preferences.EliminationColor.A >> 1, Preferences.EliminationColor)
+					Color.FromArgb(Preferences.EliminationColor.A >> 2, Preferences.EliminationColor)
 				),
 				cannibalBrushLighter = new(
-					Color.FromArgb(Preferences.CannibalismColor.A >> 1, Preferences.CannibalismColor)
+					Color.FromArgb(Preferences.CannibalismColor.A >> 2, Preferences.CannibalismColor)
 				);
 			foreach (var (t, c, d) in conclusions)
 			{
@@ -682,7 +683,7 @@ namespace Sudoku.Drawing
 			using SolidBrush
 				bCandidate = new(Preferences.CandidateColor),
 				bCandidateLighter = new(
-					Color.FromArgb(Preferences.CandidateColor.A >> 1, Preferences.CandidateColor)
+					Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor)
 				);
 			using var fCandidate =
 				GetFontByScale(Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale);
@@ -731,7 +732,7 @@ namespace Sudoku.Drawing
 						using var brush = new SolidBrush(
 							stepFillingCell != -1
 							? Color.FromArgb(aWeight, rWeight, gWeight, bWeight)
-							: Color.FromArgb(aWeight >> 1, rWeight, gWeight, bWeight)
+							: Color.FromArgb(aWeight >> 2, rWeight, gWeight, bWeight)
 						);
 						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
@@ -749,7 +750,7 @@ namespace Sudoku.Drawing
 						// In the normal case, I'll draw these circles.
 						using var brush = new SolidBrush(
 							stepFillingCell != -1
-							? Color.FromArgb(color.A >> 1, color)
+							? Color.FromArgb(color.A >> 2, color)
 							: color
 						);
 						g.FillEllipse(brush, Converter.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
@@ -837,7 +838,7 @@ namespace Sudoku.Drawing
 			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
 			float halfWidth = cellWidth / 2F;
 
-			using var brush = new SolidBrush(Color.FromArgb(128, Color.Black));
+			using var brush = new SolidBrush(Color.Red);
 			using var font = GetFontByScale(
 				fontName, halfWidth, Preferences.ValueScale, FontStyle.Bold | FontStyle.Italic
 			);

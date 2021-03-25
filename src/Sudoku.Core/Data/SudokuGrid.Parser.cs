@@ -119,7 +119,7 @@ namespace Sudoku.Data
 				else
 				{
 					// Other cases.
-					for (int trial = 0; trial < 8; trial++)
+					for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
 					{
 						var grid = ParseFunctions[trial](ref this);
 						if (grid != Undefined)

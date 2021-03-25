@@ -343,6 +343,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the covered line.
 		/// </summary>
+		/// <remarks>
+		/// When the covered region can't be found, it'll return <see cref="Constants.InvalidFirstSet"/>
+		/// (i.e. 32) always.
+		/// </remarks>
+		/// <seealso cref="Constants.InvalidFirstSet"/>
 		public readonly int CoveredLine
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
