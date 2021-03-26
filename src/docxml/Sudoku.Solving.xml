@@ -1350,7 +1350,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="Pivot">The pivot cell.</param>
-            <param name="Alses">All ALSes used.</param>
+            <param name="Petals">All ALSes used.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
             <summary>
@@ -1359,12 +1359,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
             <param name="Pivot">The pivot cell.</param>
-            <param name="Alses">All ALSes used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.PetalsCount">
-            <summary>
-            Indicates how many petals used.
-            </summary>
+            <param name="Petals">All ALSes used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.Difficulty">
             <inheritdoc/>
@@ -1397,6 +1392,24 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.DbStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepSearcher.ProcessDeathAlsInfo(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells[],System.Int16[],System.Int32[0:,0:],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Alses.Als})">
+            <summary>
+            Process death ALSes information.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="candMaps">The digit distributions.</param>
+            <param name="checkedCandidates">All checked candidates.</param>
+            <param name="death">The death table.</param>
+            <param name="alses">The ALS list.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepSearcher.PreprocessAndGatherAlses(Sudoku.Data.SudokuGrid@,Sudoku.Data.Cells@)">
+            <summary>
+            To preprocess and gather all ALSes.
+            </summary>
+            <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+            <param name="emptyMap">(<see langword="in"/> parameter) The map of all empty cells.</param>
+            <returns>All ALSes.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.EripStepInfo">
             <summary>

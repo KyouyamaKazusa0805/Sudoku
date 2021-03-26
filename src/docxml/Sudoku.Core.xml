@@ -1187,13 +1187,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.Cells.Add(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Data.Cells.RemoveAll(System.Predicate{System.Int32})">
-            <summary>
-            Remove some cells from the current instance when those cells satisfy the specified condition.
-            </summary>
-            <param name="condition">The condition.</param>
-            <returns>The number of cells removed successfully.</returns>
-        </member>
         <member name="M:Sudoku.Data.Cells.Clear">
             <summary>
             Clear all bits.

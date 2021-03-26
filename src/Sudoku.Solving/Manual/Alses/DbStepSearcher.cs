@@ -1,11 +1,16 @@
-﻿using System;
+﻿#define OLD_ALGORITHM
+
+using System;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Alses
@@ -19,142 +24,304 @@ namespace Sudoku.Solving.Manual.Alses
 		public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.DeathBlossom))
 		{
 			DisplayLevel = 3,
+#if OLD_ALGORITHM
 			IsEnabled = false,
-			DisabledReason = DisabledReason.HasBugs
+			DisabledReason = DisabledReason.TooSlow
+#endif
 		};
 
 
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			// Create a copy.
-			var readOnlyGrid = grid;
+			const int maxPetals = 5;
 
-			// Gather all possible ALSes.
-			var alses = Als.GetAllAlses(grid);
+			var tempAccumulator = new List<DbStepInfo>();
+			short[] checkedCandidates = new short[81];
+			int[,] death = new int[729, 1000];
+			var alsList = PreprocessAndGatherAlses(grid, EmptyMap);
+			ProcessDeathAlsInfo(grid, CandMaps, checkedCandidates, death, alsList);
 
-			// Now iterate on all candidates in the current grid.
-			// In fact, start from version 0.2, you can write the code like:
-			// foreach (int candidate in grid)
-			// {
-			//     // ...
-			// }
-			// Here we have got the empty map, so nested loop is faster.
-			// Firstly, iterate on each empty cell.
-			foreach (int cell in EmptyMap)
+			for (int pivot = 0; pivot < 81; pivot++)
 			{
-				// Secondly, iterate on each digit in that cell.
-				foreach (int digit in grid.GetCandidates(cell))
+				if (grid.GetStatus(pivot) != CellStatus.Empty
+					|| checkedCandidates[pivot] != grid.GetCandidates(pivot)
+					|| PopCount((uint)checkedCandidates[pivot]) > maxPetals)
 				{
-					var relativeAlses = new List<Als>();
+					continue;
+				}
 
-					// Get all ALSes relative to the current candidate.
-					// Firstly, iterate on each ALS.
-					foreach (var als in alses)
+				short cands = grid.GetCandidates(pivot);
+				int digitsCount = PopCount((uint)cands);
+				short[] allZ = new short[digitsCount];
+				int[] stack = new int[digitsCount];
+
+				var digits = cands.GetAllSets();
+				int n = 0;
+				while (n >= 0)
+				{
+					bool flag = true;
+					int digit = digits[n];
+					for (int i = stack[n] + 1; i <= death[pivot * 9 + digit, 0]; i++)
 					{
-						// Get all cells used in this ALS.
-						var appearing = als.Map;
-						appearing.RemoveAll(condition);
+						short value = (short)(alsList[death[pivot * 9 + digit, i]].DigitsMask & ~cands);
+						allZ[n] = (short)(n == 0 ? value : (allZ[n - 1] & value));
 
-						// The method of that condition.
-						// Why use local functions rather than lambdas? All captured variables
-						// in local functions will be stored in a struct rather than a class.
-						bool condition(int cell) => readOnlyGrid.Exists(cell, digit) is not true;
-
-						// If the peer intersection contains that cell, the ALS is relative one.
-						// Add into the list.
-						if (appearing.PeerIntersection.Contains(cell))
+						if (allZ[n] > 0)
 						{
-							relativeAlses.Add(als);
+							stack[n] = i;
+							flag = false;
+							break;
 						}
 					}
 
-					for (int size = 2, maxSize = Math.Min(relativeAlses.Count, 6); size <= maxSize; size++)
+					if (flag)
 					{
-						foreach (var combination in relativeAlses.GetSubsets(size))
+						stack[n--] = 0;
+					}
+					else if (n == digitsCount - 1)
+					{
+						int k = 0;
+						var temp = Cells.Empty;
+						foreach (int d in digits)
 						{
-							// Throw-when-use-out mode.
-							var tempGrid = readOnlyGrid;
-							tempGrid[cell] = digit;
+							var map = alsList[death[pivot * 9 + d, stack[k]]].Map;
+							temp = k++ == 0 ? map : temp | map;
+						}
 
-							// When we set the value to true, all relative ALSes will be
-							// degenerated to a subset.
-							// Now remove the values as subset eliminations.
-							foreach (var (_, _, digits, _, elimMap, _) in combination)
+						if (temp.InOneRegion || allZ[n] == 0)
+						{
+							// All in same region means that they with target cell together
+							// forms a naked subset.
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (int d in allZ[n])
+						{
+							var elimMap = (temp & CandMaps[d]).PeerIntersection & CandMaps[d];
+							if (elimMap.IsEmpty)
 							{
-								short subsetDigits = (short)(digits & ~(1 << digit));
-								foreach (int subsetDigit in subsetDigits)
+								continue;
+							}
+
+							foreach (int cell in elimMap)
+							{
+								conclusions.Add(new(ConclusionType.Elimination, cell, d));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						// Sort all used ALSes into the dictionary.
+						var dic = new Dictionary<int, Als>();
+						k = 0;
+						foreach (int d in digits)
+						{
+							dic.Add(d, alsList[death[pivot * 9 + d, stack[k++]]]);
+						}
+
+						// Check overlap ALSes.
+						if (!AllowOverlapping)
+						{
+							var alsesUsed = dic.Values.ToArray();
+							bool overlap = false;
+							for (int i = 0, length = alsesUsed.Length; i < length - 1; i++)
+							{
+								for (int j = i + 1; j < length; j++)
 								{
-									foreach (int elimCell in elimMap & CandMaps[subsetDigit])
+									if (!(alsesUsed[i].Map & alsesUsed[j].Map).IsEmpty)
 									{
-										// Remove the candidate.
-										tempGrid[elimCell, subsetDigit] = false;
+										overlap = true;
+										goto LastCheck;
 									}
 								}
 							}
 
-							// Check whether there's any cell becoming a null cell.
-							int nullCell = -1;
-							for (int possibleNullCell = 0; possibleNullCell < 81; possibleNullCell++)
+						LastCheck:
+							if (overlap)
 							{
-								if (tempGrid.GetCandidates(possibleNullCell) == 0)
-								{
-									nullCell = possibleNullCell;
-									break;
-								}
-							}
-
-							if (nullCell == -1)
-							{
-								// Failed to search.
 								continue;
 							}
-
-							// Death blossom found.
-							// Now construct eliminations.
-							var p = Cells.Empty;
-							foreach (var als in combination)
-							{
-								p |= als.Map;
-							}
-							var realElimMap = p * CandMaps[digit];
-							var conclusions = new Conclusion[realElimMap.Count];
-							int i = 0;
-							foreach (int c in realElimMap)
-							{
-								conclusions[i++] = new(ConclusionType.Elimination, c, digit);
-							}
-
-							var views = new View[combination.Length + 1];
-							var globalCells = new List<DrawingInfo>();
-							for (int index = 1; index <= combination.Length; index++)
-							{
-								var alsCells = combination[index].Map;
-								var cells = new List<DrawingInfo>();
-								foreach (int c in alsCells)
-								{
-									var info = new DrawingInfo(index, c);
-									cells.Add(info);
-									globalCells.Add(info);
-								}
-
-								views[index] = new() { Cells = cells };
-							}
-
-							views[0] = new() { Cells = globalCells };
-
-#if DEBUG
-							accumulator.Add(
-								new DbStepInfo(
-									conclusions,
-									views,
-									cell,
-									null!));
-#endif
 						}
+
+						// Record all highlight cells.
+						var cellOffsets = new List<DrawingInfo>();
+						int z = 0;
+						foreach (var (d, a) in dic)
+						{
+							foreach (int c in a.Map)
+							{
+								cellOffsets.Add(new(-z - 1, c));
+							}
+
+							z = (z + 1) % 4;
+						}
+
+						// Record all highlight candidates.
+						var candidateOffsets = new List<DrawingInfo>();
+						foreach (int pivotDigit in grid.GetCandidates(pivot))
+						{
+							candidateOffsets.Add(new(0, pivot * 9 + pivotDigit));
+						}
+
+						z = 0;
+						foreach (var (d, a) in dic)
+						{
+							foreach (int c in a.Map)
+							{
+								foreach (int dd in grid.GetCandidates(c))
+								{
+									candidateOffsets.Add(new(d == dd ? 1 : -z - 1, c * 9 + dd));
+								}
+							}
+
+							z = (z + 1) % 4;
+						}
+
+						// Record all highlight regions.
+						var regionOffsets = new List<DrawingInfo>();
+						z = 0;
+						foreach (var als in dic.Values)
+						{
+							regionOffsets.Add(new(-z - 1, als.Region));
+
+							z = (z + 1) % 4;
+						}
+
+						// Add item.
+						tempAccumulator.Add(
+							new DbStepInfo(
+								conclusions,
+								new View[]
+								{
+									new()
+									{
+										Cells = AlsShowRegions ? cellOffsets : null,
+										Candidates = AlsShowRegions ? null : candidateOffsets,
+										Regions = AlsShowRegions ? regionOffsets : null
+									}
+								},
+								pivot,
+								dic));
+					}
+					else
+					{
+						n++;
 					}
 				}
 			}
+
+			accumulator.AddRange(
+				from info in tempAccumulator.RemoveDuplicateItems()
+				orderby info.Petals.Count, info.Pivot
+				select info);
+		}
+
+		/// <summary>
+		/// Process death ALSes information.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="candMaps">The digit distributions.</param>
+		/// <param name="checkedCandidates">All checked candidates.</param>
+		/// <param name="death">The death table.</param>
+		/// <param name="alses">The ALS list.</param>
+		private static void ProcessDeathAlsInfo(
+			in SudokuGrid grid, Cells[] candMaps, short[] checkedCandidates,
+			int[,] death, IReadOnlyList<Als> alses)
+		{
+			int max = 0, i = 0;
+			foreach (var (_, region, digitsMask, map, _, _) in alses)
+			{
+				foreach (int digit in digitsMask)
+				{
+					var temp = (candMaps[digit] & map).PeerIntersection & candMaps[digit];
+					if (temp.IsEmpty)
+					{
+						continue;
+					}
+
+					foreach (int cell in temp)
+					{
+						if ((digitsMask & ~grid.GetCandidates(cell)) == 0)
+						{
+							continue;
+						}
+
+						checkedCandidates[cell] |= (short)(1 << digit);
+						int candidate = cell * 9 + digit;
+						death[candidate, 0]++;
+
+						int value = death[candidate, 0];
+						if (value > max)
+						{
+							max = value;
+						}
+
+						death[candidate, value] = i;
+					}
+				}
+
+				i++;
+			}
+		}
+
+		/// <summary>
+		/// To preprocess and gather all ALSes.
+		/// </summary>
+		/// <param name="grid">(<see langword="in"/> parameter) The grid.</param>
+		/// <param name="emptyMap">(<see langword="in"/> parameter) The map of all empty cells.</param>
+		/// <returns>All ALSes.</returns>
+		private IReadOnlyList<Als> PreprocessAndGatherAlses(in SudokuGrid grid, in Cells emptyMap)
+		{
+			var list = new List<Als>();
+			Cells tempEmptyCells;
+			for (int region = 0; region < 27; region++)
+			{
+				tempEmptyCells = emptyMap & RegionMaps[region];
+				if (tempEmptyCells.Count < 3)
+				{
+					// Every death blossom should lies in more than 2 cells.
+					continue;
+				}
+
+				int[] emptyCellsArray = tempEmptyCells.ToArray();
+				for (int i = 1; i < emptyCellsArray.Length; i++)
+				{
+					foreach (int[] cells in emptyCellsArray.GetSubsets(i))
+					{
+						if ((cells | emptyMap) != emptyMap)
+						{
+							continue;
+						}
+
+						short cands = 0;
+						foreach (int cell in cells)
+						{
+							cands |= grid.GetCandidates(cell);
+						}
+						if (PopCount((uint)cands) != i + 1)
+						{
+							// Not an ALS.
+							continue;
+						}
+
+						var map = new Cells(cells);
+						if ((PopCount((uint)map.BlockMask), region) is (1, >= 9))
+						{
+							// If the current cells are in the same block and same line (i.e. in mini-line),
+							// we will process them in blocks.
+							continue;
+						}
+
+						list.Add(new(cands, map));
+					}
+				}
+			}
+
+			return list;
 		}
 	}
 }

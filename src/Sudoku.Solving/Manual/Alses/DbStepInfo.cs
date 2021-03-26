@@ -13,18 +13,14 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
 	/// <param name="Pivot">The pivot cell.</param>
-	/// <param name="Alses">All ALSes used.</param>
+	/// <param name="Petals">All ALSes used.</param>
 	public sealed record DbStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
-		IReadOnlyDictionary<int, Als> Alses) : AlsStepInfo(Conclusions, Views)
+		IReadOnlyDictionary<int, Als> Petals
+	) : AlsStepInfo(Conclusions, Views)
 	{
-		/// <summary>
-		/// Indicates how many petals used.
-		/// </summary>
-		public int PetalsCount => Alses.Count;
-
 		/// <inheritdoc/>
-		public override decimal Difficulty => 8.0M + PetalsCount * .1M;
+		public override decimal Difficulty => 8.0M + Petals.Count * .1M;
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
@@ -50,17 +46,10 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <returns>The string result.</returns>
 		private unsafe string? AlsPetalsToString()
 		{
-#if DEBUG
-			if (Alses is null)
-			{
-				return null;
-			}
-#endif
-
 			const string separator = ", ";
 
 			var sb = new ValueStringBuilder(stackalloc char[50]);
-			sb.AppendRange(Alses, &appender, separator);
+			sb.AppendRange(Petals, &appender, separator);
 			return sb.ToString();
 
 			static string appender(KeyValuePair<int, Als> pair)
