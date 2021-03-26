@@ -1,3 +1,7 @@
+> Recently I can't connect to GitHub. Updates may be slower than normal cases.
+>
+> 最近我连不上 GitHub，可能更新就比平常慢一些了。
+
 # Sunnie's Sudoku Solution (向向的数独解决方案)
 
 ## Introduction (简介)
