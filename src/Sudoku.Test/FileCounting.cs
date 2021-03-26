@@ -12,13 +12,12 @@ namespace Sudoku.Test
 		/// <summary>
 		/// To count all files, and output the result using the <see cref="Console"/>.
 		/// </summary>
-		internal static void CountUp() =>
-			Console.WriteLine(
-				new FileCounter(
-					root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
-					extension: "cs",
-					withBinOrObjDirectory: false
-				).CountUp()
-			);
+		internal static void CountUp() => Console.WriteLine(
+			new FileCounter(
+				root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
+				extension: "cs",
+				withBinOrObjDirectory: false
+			).CountUp()
+		);
 	}
 }

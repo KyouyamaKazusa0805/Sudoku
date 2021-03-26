@@ -104,9 +104,7 @@ namespace Sudoku.Diagnostics
 			stopwatch.Start();
 			g(new(Root));
 
-			int filesCount, resultLines;
-			long charactersCount, bytes;
-			charactersCount = bytes = filesCount = resultLines = 0;
+			(int filesCount, int resultLines, long charactersCount, long bytes) = default((int, int, long, long));
 			foreach (string fileName in FileList)
 			{
 				StreamReader? sr = null;
@@ -146,17 +144,17 @@ namespace Sudoku.Diagnostics
 					from file in directory.GetFiles()
 					let fullName = file.FullName
 					where Pattern is null || fullName.SatisfyPattern(Pattern)
-					select fullName);
+					select fullName
+				);
 
 				// Get all files for each folder recursively.
 				foreach (var d in
 					from dir in directory.GetDirectories()
 					let name = dir.Name
-					where
-						name.Length > 0 && name[0] is >= 'A' and <= 'Z'
-						&& (
-							!WithBinOrObjDirectory && name is not ("bin" or "Bin" or "obj" or "Obj")
-							|| WithBinOrObjDirectory)
+					where name.Length > 0 && name[0] is >= 'A' and <= 'Z' && (
+						!WithBinOrObjDirectory && name is not ("bin" or "Bin" or "obj" or "Obj")
+						|| WithBinOrObjDirectory
+					)
 					select dir)
 				{
 					g(d);
