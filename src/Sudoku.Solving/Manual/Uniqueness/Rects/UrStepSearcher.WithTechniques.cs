@@ -721,7 +721,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//     abcx-----abcy ←resultCell
 			//           c
 			//      ↑targetCell
-			// Where the digit 'a' and 'b' in the down-left cell 'abc' can be removed.
+			// Where the digit 'a' and 'b' in the down-left cell 'abcx' can be removed.
 
 			var cells = new Cells(urCells);
 
@@ -815,14 +815,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						}
 
 						// Gather views.
-						var candidateOffsets = new List<DrawingInfo>
+						var candidateOffsets = new List<DrawingInfo> { new(1, targetCell * 9 + extraDigit) };
+						if (grid.Exists(resultCell, d1) is true)
 						{
-							new(0, resultCell * 9 + d1),
-							new(0, resultCell * 9 + d2),
-							new(1, resultCell * 9 + extraDigit),
-							new(1, targetCell * 9 + extraDigit)
-						};
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock))
+							candidateOffsets.Add(new(0, resultCell * 9 + d1));
+						}
+						if (grid.Exists(resultCell, d2) is true)
+						{
+							candidateOffsets.Add(new(0, resultCell * 9 + d2));
+						}
+						if (grid.Exists(resultCell, extraDigit) is true)
+						{
+							candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
+						}
+
+						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
 							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
 						}
@@ -902,17 +909,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						// Gather views.
 						var candidateOffsetsAnotherSubtype = new List<DrawingInfo>
 						{
-							new(0, resultCell * 9 + d1),
-							new(0, resultCell * 9 + d2),
-							new(1, resultCell * 9 + extraDigit),
 							new(1, targetCell * 9 + extraDigit)
 						};
+						if (grid.Exists(resultCell, d1) is true)
+						{
+							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
+						}
+						if (grid.Exists(resultCell, d2) is true)
+						{
+							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
+						}
+						if (grid.Exists(resultCell, extraDigit) is true)
+						{
+							candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
+						}
+
 						var candidateOffsetsAnotherSubtypeLighter = new List<DrawingInfo>
 						{
 							new(1, resultCell * 9 + extraDigit),
 							new(1, targetCell * 9 + extraDigit)
 						};
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock))
+						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
 							if (digit == extraDigit)
 							{
