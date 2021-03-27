@@ -64,8 +64,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="label">The label to represent a region type.</param>
 		/// <returns>The region index.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int ToRegion(this int @this, RegionLabel label) =>
-		(
+		public static int ToRegion(this int @this, RegionLabel label) => (
 			label switch
 			{
 				RegionLabel.Row => RowTable,
