@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		{
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = TechniqueStrings.SubsetNames[ExtraCells.Count + 1];
+			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1];
 			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string subsetCellsStr = ExtraCells.ToString();
 			return

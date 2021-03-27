@@ -6331,12 +6331,13 @@
             Indicates the brute force.
             </summary>
         </member>
-        <member name="T:Sudoku.Techniques.TechniqueStrings">
+        <member name="T:Sudoku.Techniques.TechniqueNaming">
             <summary>
-            Provides the <see cref="T:System.String"/> values to be used.
+            Provides the methods that uses or handles about types <see cref="T:Sudoku.Techniques.Technique"/> and <see cref="T:System.String"/>.
             </summary>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueStrings.SubsetNames">
+        <member name="F:Sudoku.Techniques.TechniqueNaming.SubsetNames">
             <summary>
             <para>The names of all subsets by their sizes.</para>
             <para>
@@ -6348,7 +6349,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueStrings.RegularWingNames">
+        <member name="F:Sudoku.Techniques.TechniqueNaming.RegularWingNames">
             <summary>
             <para>The names of all regular wings by their sizes.</para>
             <para>
@@ -6360,7 +6361,7 @@
             </para>
             </summary>
         </member>
-        <member name="M:Sudoku.Techniques.TechniqueStrings.GetComplexFishTechniqueCodeFromName(System.String)">
+        <member name="M:Sudoku.Techniques.TechniqueNaming.GetComplexFishTechniqueCodeFromName(System.String)">
             <summary>
             Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
             to a complex fish name, such as "Finned Franken Swordfish".

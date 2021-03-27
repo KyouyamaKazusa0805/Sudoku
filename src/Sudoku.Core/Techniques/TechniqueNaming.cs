@@ -4,9 +4,10 @@ using System.Extensions;
 namespace Sudoku.Techniques
 {
 	/// <summary>
-	/// Provides the <see cref="string"/> values to be used.
+	/// Provides the methods that uses or handles about types <see cref="Technique"/> and <see cref="string"/>.
 	/// </summary>
-	public static class TechniqueStrings
+	/// <seealso cref="Technique"/>
+	public static class TechniqueNaming
 	{
 		/// <summary>
 		/// <para>The names of all subsets by their sizes.</para>
@@ -55,7 +56,7 @@ namespace Sudoku.Techniques
 			int bufferLength = 0;
 			fixed (char* p = name)
 			{
-				for (char* ptr = p; * ptr != '\0'; ptr++)
+				for (char* ptr = p; *ptr != '\0'; ptr++)
 				{
 					if (*ptr is not ('-' or ' '))
 					{

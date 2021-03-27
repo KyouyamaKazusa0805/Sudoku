@@ -112,8 +112,8 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		{
 			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
 			>= 4 and < 9 => IsIncomplete
-				? $"Incomplete {TechniqueStrings.RegularWingNames[Size]}"
-				: TechniqueStrings.RegularWingNames[Size]
+				? $"Incomplete {TechniqueNaming.RegularWingNames[Size]}"
+				: TechniqueNaming.RegularWingNames[Size]
 		};
 
 

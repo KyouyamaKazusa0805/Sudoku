@@ -74,7 +74,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>
-			TechniqueStrings.GetComplexFishTechniqueCodeFromName(InternalName);
+			TechniqueNaming.GetComplexFishTechniqueCodeFromName(InternalName);
 
 		/// <summary>
 		/// Indicates the base difficulty.
