@@ -201,6 +201,20 @@ namespace Sudoku.Solving
 		}
 
 
+		/// <summary>
+		/// Gets the step information at the specified index.
+		/// </summary>
+		/// <param name="index">The index.</param>
+		/// <returns>The step information.</returns>
+		/// <exception cref="InvalidOperationException">Throws when the result list is null.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Throws when the index is out of range.</exception>
+		public StepInfo this[int index] => Steps is not { Count: not 0 }
+			? throw new InvalidOperationException("You can't extract any elements because of being null.")
+			: index >= Steps.Count || index < 0
+			? throw new ArgumentOutOfRangeException(nameof(index))
+			: Steps[index];
+
+
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="hasSolved">
 		/// Indicates whether the puzzle has been solved.

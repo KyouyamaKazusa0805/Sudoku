@@ -118,6 +118,15 @@
             Indicates the bottle neck during the whole grid solving.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Item(System.Int32)">
+            <summary>
+            Gets the step information at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The step information.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the result list is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="hasSolved">
