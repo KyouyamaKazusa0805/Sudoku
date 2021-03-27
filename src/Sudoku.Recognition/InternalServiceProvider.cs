@@ -98,11 +98,11 @@ namespace Sudoku.Recognition
 				throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.");
 			}
 
-			// Convert the image to gray-scale and filter out the noise
+			// Convert the image to gray-scale and filter out the noisy points.
 			var imgGray = new Mat();
 			Cv.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
-			// TODO: Problematic for some image.
+			// TODO: Problematic for some images.
 			var imgThresholds = new Mat();
 			Cv.Threshold(imgGray, imgThresholds, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
