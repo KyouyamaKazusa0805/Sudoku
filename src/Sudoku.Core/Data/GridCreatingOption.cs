@@ -3,7 +3,7 @@
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Indicates teh grid creating option.
+	/// Indicates the grid creating option.
 	/// </summary>
 	[Closed]
 	public enum GridCreatingOption : byte

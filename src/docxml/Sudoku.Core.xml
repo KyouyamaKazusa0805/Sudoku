@@ -1993,7 +1993,7 @@
         </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
-            Indicates teh grid creating option.
+            Indicates the grid creating option.
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridCreatingOption.None">
