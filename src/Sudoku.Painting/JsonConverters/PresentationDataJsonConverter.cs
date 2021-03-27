@@ -23,6 +23,7 @@ namespace Sudoku.Painting.JsonConverters
 			var regions = new List<PaintingPair<int>>();
 			var links = new List<PaintingPair<Link>>();
 			var directLines = new List<PaintingPair<(Cells, Cells)>>();
+			var stepSketch = new List<PaintingPair<(int, char)>>();
 
 			dynamic? inst = null;
 			while (reader.Read())
@@ -37,7 +38,8 @@ namespace Sudoku.Painting.JsonConverters
 							nameof(PresentationData.Candidates) => candidates,
 							nameof(PresentationData.Regions) => regions,
 							nameof(PresentationData.Links) => links,
-							nameof(PresentationData.DirectLines) => directLines
+							nameof(PresentationData.DirectLines) => directLines,
+							nameof(PresentationData.StepSketch) => stepSketch
 						};
 						break;
 					}
@@ -71,6 +73,14 @@ namespace Sudoku.Painting.JsonConverters
 									options);
 								break;
 							}
+							case List<PaintingPair<(int, char)>>:
+							{
+								reader.ReadObject(
+									converter as JsonConverter<PaintingPair<(int, char)>>,
+									type,
+									options);
+								break;
+							}
 						}
 						break;
 					}
@@ -83,7 +93,8 @@ namespace Sudoku.Painting.JsonConverters
 				Candidates = assign(candidates),
 				Regions = assign(regions),
 				Links = assign(links),
-				DirectLines = assign(directLines)
+				DirectLines = assign(directLines),
+				StepSketch = assign(stepSketch)
 			};
 
 			static ICollection<T>? assign<T>(List<T> z) => z.Count == 0 ? null : z;
@@ -119,6 +130,11 @@ namespace Sudoku.Painting.JsonConverters
 			writer.WritePropertyName(nameof(PresentationData.DirectLines));
 			writer.WriteStartArray();
 			writer.WriteObjects(value.DirectLines, converter as JsonConverter<PaintingPair<(Cells, Cells)>>, options);
+			writer.WriteEndArray();
+
+			writer.WritePropertyName(nameof(PresentationData.StepSketch));
+			writer.WriteStartArray();
+			writer.WriteObjects(value.StepSketch, converter as JsonConverter<PaintingPair<(int, char)>>, options);
 			writer.WriteEndArray();
 
 			writer.WriteEndObject();
