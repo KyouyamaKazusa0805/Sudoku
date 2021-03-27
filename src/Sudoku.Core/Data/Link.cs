@@ -89,12 +89,8 @@ namespace Sudoku.Data
 		{
 			var (a, b, c) = this;
 			var (d, e, f) = other;
-			return (int)c << 20 == (int)f << 20
-				&& a << 10 == d << 10
-				&& b == e
-				|| (int)c << 20 == (int)f << 20
-				&& b << 10 == e << 10
-				&& a == d;
+			return (int)c << 20 == (int)f << 20 && a << 10 == d << 10 && b == e
+				|| (int)c << 20 == (int)f << 20 && b << 10 == e << 10 && a == d;
 		}
 
 		/// <inheritdoc cref="object.GetHashCode"/>
