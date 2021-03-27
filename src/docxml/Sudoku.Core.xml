@@ -144,6 +144,11 @@
             Indicates a cell string.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CellOrCellList">
+            <summary>
+            Indicates the cell list string.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Region">
             <summary>
             Indicates the region string.
@@ -1198,6 +1203,26 @@
             </summary>
             <param name="cell">The cell to add into.</param>
             <param name="value">The value to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.Cells.Parse(System.String)">
+            <summary>
+            Parse a <see cref="T:System.String"/> and convert to the <see cref="T:Sudoku.Data.Cells"/> instance.
+            </summary>
+            <param name="str">The string text.</param>
+            <returns>The result cell instance.</returns>
+            <exception cref="T:System.FormatException">Throws when the specified text is invalid to parse.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Cells.TryParse(System.String,Sudoku.Data.Cells@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/>, and convert it to the <see cref="T:Sudoku.Data.Cells"/>
+            instance.
+            </summary>
+            <param name="str">The string to parse.</param>
+            <param name="result">The result that converted.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the parsing operation
+            has been successfully executed.
+            </returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>

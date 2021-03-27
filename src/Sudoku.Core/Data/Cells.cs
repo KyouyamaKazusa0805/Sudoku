@@ -6,8 +6,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data
@@ -344,10 +346,10 @@ namespace Sudoku.Data
 		/// Indicates the covered line.
 		/// </summary>
 		/// <remarks>
-		/// When the covered region can't be found, it'll return <see cref="Constants.InvalidFirstSet"/>
+		/// When the covered region can't be found, it'll return <see cref="InvalidFirstSet"/>
 		/// (i.e. 32) always.
 		/// </remarks>
-		/// <seealso cref="Constants.InvalidFirstSet"/>
+		/// <seealso cref="InvalidFirstSet"/>
 		public readonly int CoveredLine
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -998,6 +1000,99 @@ namespace Sudoku.Data
 				}
 			}
 		}
+
+
+		/// <summary>
+		/// Parse a <see cref="string"/> and convert to the <see cref="Cells"/> instance.
+		/// </summary>
+		/// <param name="str">The string text.</param>
+		/// <returns>The result cell instance.</returns>
+		/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
+		public static unsafe Cells Parse(string str)
+		{
+			var regex = new Regex(
+				RegularExpressions.CellOrCellList,
+				RegexOptions.ExplicitCapture,
+				TimeSpan.FromSeconds(5)
+			);
+
+			// Check whether the match is successful.
+			var matches = regex.Matches(str);
+			if (matches.Count == 0)
+			{
+				throw new FormatException("The specified string can't match any cell instance.");
+			}
+
+			// Declare the buffer.
+			int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+
+			// Declare the result variable.
+			var result = Empty;
+
+			// Iterate on each match instance.
+			foreach (Match match in matches)
+			{
+				string value = match.Value;
+				char* anchorR, anchorC;
+				fixed (char* pValue = value)
+				{
+					anchorR = anchorC = pValue;
+
+					// Find the index of the character 'C'.
+					// The regular expression guaranteed the string must contain the character 'C' or 'c',
+					// so we don't need to check '*p != '\0''.
+					for (; *anchorC is not ('C' or 'c'/* or '\0'*/); anchorC++) ;
+				}
+
+				// Stores the possible values into the buffer.
+				int rIndex = 0, cIndex = 0;
+				for (char* p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
+				{
+					bufferRows[rIndex] = *p - '1';
+				}
+				for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
+				{
+					bufferColumns[cIndex] = *p - '1';
+				}
+
+				// Now combine two buffers.
+				for (int i = 0; i < rIndex; i++)
+				{
+					for (int j = 0; j < cIndex; j++)
+					{
+						result.Add(bufferRows[i] * 9 + bufferColumns[j]);
+					}
+				}
+			}
+
+			// Returns the result.
+			return result;
+		}
+
+		/// <summary>
+		/// Try to parse the specified <see cref="string"/>, and convert it to the <see cref="Cells"/>
+		/// instance.
+		/// </summary>
+		/// <param name="str">The string to parse.</param>
+		/// <param name="result">The result that converted.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result indicating whether the parsing operation
+		/// has been successfully executed.
+		/// </returns>
+		public static bool TryParse(string str, out Cells result)
+		{
+			try
+			{
+				result = Parse(str);
+				return true;
+			}
+			catch (FormatException)
+			{
+				result = Empty;
+				return false;
+			}
+		}
+
 
 		/// <summary>
 		/// <para>

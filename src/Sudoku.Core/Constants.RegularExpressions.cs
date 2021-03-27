@@ -63,6 +63,11 @@
 			public const string Cell = @"[Rr]([1-9])[Cc]([1-9])";
 
 			/// <summary>
+			/// Indicates the cell list string.
+			/// </summary>
+			public const string CellOrCellList = @"(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})";
+
+			/// <summary>
 			/// Indicates the region string.
 			/// </summary>
 			public const string Region = @"([Rr][1-9]|[Cc][1-9]|[Bb][1-9])";

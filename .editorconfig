@@ -451,6 +451,9 @@ dotnet_diagnostic.CA2208.severity = silent
 # CA2244: Do not duplicate indexed element initializations
 dotnet_diagnostic.CA2244.severity = error
 
+# CA2249: Consider using 'string.Contains' instead of 'string.IndexOf'
+dotnet_diagnostic.CA2249.severity = silent
+
 
 # Other custom disabled cases.
 # May be deleted later in the future.
