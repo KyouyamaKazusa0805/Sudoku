@@ -69,6 +69,7 @@ namespace Sudoku.Painting
 			PaintCandidates(g, view.Candidates, offset);
 			PaintLinks(g, view.Links, offset);
 			PaintDirectLines(g, view.DirectLines, offset);
+			PaintStepSketches(g, view.StepSketch);
 		}
 
 		/// <summary>
@@ -607,6 +608,58 @@ namespace Sudoku.Painting
 					using var pen = new Pen(colorToDraw, 5F);
 					g.DrawCrossSign(pen, rect);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Draw step filling values.
+		/// </summary>
+		/// <param name="g">The graphics.</param>
+		/// <param name="stepSketch">The list of step filling values.</param>
+		partial void PaintStepSketches(Graphics g, ICollection<PaintingPair<(int, char)>>? stepSketch)
+		{
+			if (stepSketch is null)
+			{
+				return;
+			}
+
+			float cellWidth = Converter.CellSize.Width;
+			float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
+			float halfWidth = cellWidth / 2F;
+
+			using var sf = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				LineAlignment = StringAlignment.Center
+			};
+
+			foreach (var (usePalette, id, color, (cell, character)) in stepSketch)
+			{
+				Color tempColor;
+				if (usePalette)
+				{
+					if (!Preferences.TryGetPaletteColor(id, out tempColor))
+					{
+						tempColor = Color.Red;
+					}
+				}
+				else
+				{
+					tempColor = color;
+				}
+
+				using var brush = new SolidBrush(tempColor);
+				using var font = GetFont(
+					fontName: Preferences.StepSketchFontName,
+					size: halfWidth,
+					scale: Preferences.ValueScale,
+					fontStyle: FontStyle.Bold | FontStyle.Italic
+				);
+
+				// Draw values.
+				var point = Converter.GetMouseCenter(cell);
+				point.Y += vOffsetValue;
+				g.DrawChar(character, font, brush, point, sf);
 			}
 		}
 	}

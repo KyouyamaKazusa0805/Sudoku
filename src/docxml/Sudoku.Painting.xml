@@ -137,6 +137,9 @@
             </summary>
             <param name="region">The region.</param>
             <returns>The rectangle.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the <paramref name="region"/> is less than 0 or greater than 26.
+            </exception>
         </member>
         <member name="T:Sudoku.Painting.Extensions.BitmapEx">
             <summary>
@@ -171,6 +174,27 @@
             <summary>
             Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawChar(System.Drawing.Graphics,System.Char,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
+            <summary>
+            Draw an <see cref="T:System.Char"/> value onto the current graphics.
+            </summary>
+            <param name="this">The graphics instance.</param>
+            <param name="value">The value to drawing onto.</param>
+            <param name="font">The font.</param>
+            <param name="brush">The brush.</param>
+            <param name="point">The point.</param>
+        </member>
+        <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawChar(System.Drawing.Graphics,System.Char,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@,System.Drawing.StringFormat)">
+            <summary>
+            Draw an <see cref="T:System.Char"/> value onto the current graphics.
+            </summary>
+            <param name="this">The graphics instance.</param>
+            <param name="value">The value to drawing onto.</param>
+            <param name="font">The font.</param>
+            <param name="brush">The brush.</param>
+            <param name="point">The point.</param>
+            <param name="stringFormat">The string format instance.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.GraphicsEx.DrawInt32(System.Drawing.Graphics,System.Int32,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF@)">
             <summary>
@@ -450,13 +474,14 @@
             this parameter is not <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Painting.GridImageGenerator.GetFont(System.String,System.Single,System.Decimal)">
+        <member name="M:Sudoku.Painting.GridImageGenerator.GetFont(System.String,System.Single,System.Decimal,System.Nullable{System.Drawing.FontStyle})">
             <summary>
-            Get the font via name, size and the scale.
+            Get the font via name, size, scale and the font style.
             </summary>
             <param name="fontName">The font name.</param>
             <param name="size">The size.</param>
             <param name="scale">The scale.</param>
+            <param name="fontStyle">The font style. The default value is <see langword="null"/>.</param>
             <returns>The font.</returns>
         </member>
         <member name="M:Sudoku.Painting.GridImageGenerator.PaintBackground(System.Drawing.Graphics)">
@@ -546,6 +571,13 @@
             <param name="g">The graphics instance.</param>
             <param name="directLines">The direct lines specified in the presentation data.</param>
             <param name="offset">The offset.</param>
+        </member>
+        <member name="M:Sudoku.Painting.GridImageGenerator.PaintStepSketches(System.Drawing.Graphics,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{System.Int32,System.Char}}})">
+            <summary>
+            Draw step filling values.
+            </summary>
+            <param name="g">The graphics.</param>
+            <param name="stepSketch">The list of step filling values.</param>
         </member>
         <member name="F:Sudoku.Painting.GridImageGenerator.SquareRootOfTwo">
             <summary>
@@ -770,6 +802,12 @@
             </summary>
             <seealso cref="P:Sudoku.Painting.PresentationData.DirectLines"/>
         </member>
+        <member name="F:Sudoku.Painting.PresentationData._stepSketch">
+            <summary>
+            The back field of <see cref="P:Sudoku.Painting.PresentationData.StepSketch"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.StepSketch"/>
+        </member>
         <member name="P:Sudoku.Painting.PresentationData.Cells">
             <summary>
             The cell information.
@@ -800,6 +838,12 @@
             </summary>
             <value>The value you want to set.</value>
         </member>
+        <member name="P:Sudoku.Painting.PresentationData.StepSketch">
+            <summary>
+            The step sketch.
+            </summary>
+            <value>The value you want to set.</value>
+        </member>
         <member name="E:Sudoku.Painting.PresentationData.CellsChanged">
             <summary>
             Indicates the event triggered when the cell list is changed.
@@ -825,37 +869,43 @@
             Indicates the event triggered when the direct line list is changed.
             </summary>
         </member>
-        <member name="M:Sudoku.Painting.PresentationData.Deconstruct(System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{Sudoku.Data.Link}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}}@)">
+        <member name="E:Sudoku.Painting.PresentationData.StepSketchChanged">
+            <summary>
+            Indicates the event triggered when the step sketch list is changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Painting.PresentationData.Deconstruct(System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{Sudoku.Data.Link}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{System.Int32,System.Char}}}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="cells">The cells.</param>
             <param name="candidates">The candidates.</param>
             <param name="regions">The regions.</param>
             <param name="links">The links.</param>
             <param name="directLines">The direct lines.</param>
+            <param name="stepSketch">The step sketch.</param>
         </member>
-        <member name="M:Sudoku.Painting.PresentationData.Add``1(System.String,``0@)">
+        <member name="M:Sudoku.Painting.PresentationData.Add``1(Sudoku.Painting.PresentationDataItem,``0@)">
             <summary>
             Add a new instance into the collection.
             </summary>
             <typeparam name="T">The type of the value to add into.</typeparam>
-            <param name="propertyName">The property name.</param>
+            <param name="item">The property item.</param>
             <param name="value">The value to add into.</param>
         </member>
-        <member name="M:Sudoku.Painting.PresentationData.AddRange``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Sudoku.Painting.PresentationData.AddRange``1(Sudoku.Painting.PresentationDataItem,System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Add a series of elements into the collection.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="propertyName">The name of the property you want to add into.</param>
+            <param name="item">The property you want to add into.</param>
             <param name="values">The values you want to add.</param>
             <returns>The number of elements that is successful to add.</returns>
         </member>
-        <member name="M:Sudoku.Painting.PresentationData.Remove``1(System.String,``0@)">
+        <member name="M:Sudoku.Painting.PresentationData.Remove``1(Sudoku.Painting.PresentationDataItem,``0@)">
             <summary>
             Remove a new instance from the collection.
             </summary>
             <typeparam name="T">The type of the value to remove.</typeparam>
-            <param name="propertyName">The property name.</param>
+            <param name="item">The property item.</param>
             <param name="value">The value to remove.</param>
         </member>
         <member name="T:Sudoku.Painting.PresentationDataChangedEventHandler`1">
@@ -864,6 +914,47 @@
             </summary>
             <typeparam name="T">The type of the data.</typeparam>
             <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="T:Sudoku.Painting.PresentationDataItem">
+            <summary>
+            Indicates a presentation data item.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.CellList">
+            <summary>
+            Indicates the cell list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.Cells"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.Cells"/>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.CandidateList">
+            <summary>
+            Indicates the candidate list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.Candidates"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.RegionList">
+            <summary>
+            Indicates the region list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.Regions"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.Regions"/>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.LinkList">
+            <summary>
+            Indicates the link list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.Links"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.Links"/>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.DirectLineList">
+            <summary>
+            Indicates the direct line list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.DirectLines"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.DirectLines"/>
+        </member>
+        <member name="F:Sudoku.Painting.PresentationDataItem.StepSketchList">
+            <summary>
+            Indicates the step sketch list, which corresponds to <see cref="P:Sudoku.Painting.PresentationData.StepSketch"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Painting.PresentationData.StepSketch"/>
         </member>
         <member name="T:Sudoku.Painting.Settings">
             <summary>
@@ -980,6 +1071,12 @@
             The value is <c>"Fira Code"</c> in author-reserved environment,
             <c>"Arial"</c> in other ones.
             </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Painting.Settings.StepSketchFontName">
+            <summary>
+            <para>Indicates the step sketch font name.</para>
+            <para>The default value is <c>"Times New Roman"</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Painting.Settings.GivenColor">

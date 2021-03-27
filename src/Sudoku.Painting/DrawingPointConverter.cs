@@ -220,8 +220,9 @@ namespace Sudoku.Painting
 		{
 			var (cw, ch) = CandidateSize;
 			int min = map[0], max = map[^1];
-			var pt1 = GetMouseCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
-			var pt2 = GetMouseCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
+			PointF
+				pt1 = GetMouseCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2),
+				pt2 = GetMouseCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
 			return RectangleEx.CreateInstance(pt1, pt2);
 		}
 
@@ -230,34 +231,23 @@ namespace Sudoku.Painting
 		/// </summary>
 		/// <param name="region">The region.</param>
 		/// <returns>The rectangle.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">
+		/// Throws when the <paramref name="region"/> is less than 0 or greater than 26.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public RectangleF GetMouseRectangleViaRegion(int region)
+		public RectangleF GetMouseRectangleViaRegion(int region) => region switch
 		{
-			switch (region)
-			{
-				case >= 0 and < 9:
-				{
-					int v1 = region % 3, v2 = region / 3;
-					return RectangleEx.CreateInstance(
-						GridPoints[v1 * 9, v2 * 9],
-						GridPoints[v1 * 9 + 9, v2 * 9 + 9]
-					);
-				}
-				case >= 9 and < 18:
-				{
-					int v = region - 9;
-					return RectangleEx.CreateInstance(GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]);
-				}
-				case >= 18 and < 27:
-				{
-					int v = region - 18;
-					return RectangleEx.CreateInstance(GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]);
-				}
-				default:
-				{
-					throw new ArgumentOutOfRangeException(nameof(region));
-				}
-			}
-		}
+			>= 0 and < 9 when region % 3 is var v1 && region / 3 is var v2 => RectangleEx.CreateInstance(
+				GridPoints[v1 * 9, v2 * 9],
+				GridPoints[v1 * 9 + 9, v2 * 9 + 9]
+			),
+			>= 9 and < 18 when region - 9 is var v => RectangleEx.CreateInstance(
+				GridPoints[0, v * 3], GridPoints[27, v * 3 + 3]
+			),
+			>= 18 and < 27 when region - 18 is var v => RectangleEx.CreateInstance(
+				GridPoints[v * 3, 0], GridPoints[v * 3 + 3, 27]
+			),
+			_ => throw new ArgumentOutOfRangeException(nameof(region))
+		};
 	}
 }

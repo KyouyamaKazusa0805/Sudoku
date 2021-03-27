@@ -39,6 +39,12 @@ namespace Sudoku.Painting
 		/// <seealso cref="DirectLines"/>
 		private ICollection<PaintingPair<(Cells Start, Cells End)>>? _directLines;
 
+		/// <summary>
+		/// The back field of <see cref="StepSketch"/>.
+		/// </summary>
+		/// <seealso cref="StepSketch"/>
+		private ICollection<PaintingPair<(int Cell, char Character)>>? _stepSketch;
+
 
 		/// <summary>
 		/// The cell information.
@@ -120,6 +126,22 @@ namespace Sudoku.Painting
 			}
 		}
 
+		/// <summary>
+		/// The step sketch.
+		/// </summary>
+		/// <value>The value you want to set.</value>
+		public ICollection<PaintingPair<(int Cell, char Character)>>? StepSketch
+		{
+			get => _stepSketch;
+
+			set
+			{
+				_stepSketch = value;
+
+				StepSketchChanged?.Invoke(value);
+			}
+		}
+
 
 		/// <summary>
 		/// Indicates the event triggered when the cell list is changed.
@@ -146,6 +168,11 @@ namespace Sudoku.Painting
 		/// </summary>
 		public event PresentationDataChangedEventHandler<(Cells Start, Cells End)>? DirectLinesChanged;
 
+		/// <summary>
+		/// Indicates the event triggered when the step sketch list is changed.
+		/// </summary>
+		public event PresentationDataChangedEventHandler<(int Cell, char Character)>? StepSketchChanged;
+
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="cells">The cells.</param>
@@ -153,56 +180,65 @@ namespace Sudoku.Painting
 		/// <param name="regions">The regions.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="directLines">The direct lines.</param>
+		/// <param name="stepSketch">The step sketch.</param>
 		public void Deconstruct(
 			out ICollection<PaintingPair<int>>? cells, out ICollection<PaintingPair<int>>? candidates,
 			out ICollection<PaintingPair<int>>? regions, out ICollection<PaintingPair<Link>>? links,
-			out ICollection<PaintingPair<(Cells Start, Cells End)>>? directLines)
+			out ICollection<PaintingPair<(Cells Start, Cells End)>>? directLines,
+			out ICollection<PaintingPair<(int Cell, char Character)>>? stepSketch)
 		{
-			cells = Cells;
-			candidates = Candidates;
-			regions = Regions;
-			links = Links;
-			directLines = DirectLines;
+			cells = _cells;
+			candidates = _candidates;
+			regions = _regions;
+			links = _links;
+			directLines = _directLines;
+			stepSketch = _stepSketch;
 		}
 
 		/// <summary>
 		/// Add a new instance into the collection.
 		/// </summary>
 		/// <typeparam name="T">The type of the value to add into.</typeparam>
-		/// <param name="propertyName">The property name.</param>
+		/// <param name="item">The property item.</param>
 		/// <param name="value">The value to add into.</param>
-		public bool Add<T>(string propertyName, in T value) where T : unmanaged
+		public bool Add<T>(PresentationDataItem item, in T value) where T : unmanaged
 		{
-			switch (propertyName)
+			switch (item)
 			{
-				case nameof(Cells) when value is PaintingPair<int> i:
+				case PresentationDataItem.CellList when value is PaintingPair<int> i:
 				{
 					(Cells ??= new List<PaintingPair<int>>()).Add(i);
 					CellsChanged?.Invoke(Cells);
 					return true;
 				}
-				case nameof(Candidates) when value is PaintingPair<int> i:
+				case PresentationDataItem.CandidateList when value is PaintingPair<int> i:
 				{
 					(Candidates ??= new List<PaintingPair<int>>()).Add(i);
 					CandidatesChanged?.Invoke(Candidates);
 					return true;
 				}
-				case nameof(Regions) when value is PaintingPair<int> i:
+				case PresentationDataItem.RegionList when value is PaintingPair<int> i:
 				{
 					(Regions ??= new List<PaintingPair<int>>()).Add(i);
 					RegionsChanged?.Invoke(Regions);
 					return true;
 				}
-				case nameof(Links) when value is PaintingPair<Link> i:
+				case PresentationDataItem.LinkList when value is PaintingPair<Link> i:
 				{
 					(Links ??= new List<PaintingPair<Link>>()).Add(i);
 					LinksChanged?.Invoke(Links);
 					return true;
 				}
-				case nameof(DirectLines) when value is PaintingPair<(Cells, Cells)> i:
+				case PresentationDataItem.DirectLineList when value is PaintingPair<(Cells, Cells)> i:
 				{
 					(DirectLines ??= new List<PaintingPair<(Cells, Cells)>>()).Add(i);
 					DirectLinesChanged?.Invoke(DirectLines);
+					return true;
+				}
+				case PresentationDataItem.StepSketchList when value is PaintingPair<(int, char)> i:
+				{
+					(StepSketch ??= new List<PaintingPair<(int, char)>>()).Add(i);
+					StepSketchChanged?.Invoke(StepSketch);
 					return true;
 				}
 				default:
@@ -216,18 +252,18 @@ namespace Sudoku.Painting
 		/// Add a series of elements into the collection.
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
-		/// <param name="propertyName">The name of the property you want to add into.</param>
+		/// <param name="item">The property you want to add into.</param>
 		/// <param name="values">The values you want to add.</param>
 		/// <returns>The number of elements that is successful to add.</returns>
-		public int AddRange<T>(string propertyName, IEnumerable<T> values) where T : unmanaged
+		public int AddRange<T>(PresentationDataItem item, IEnumerable<T> values) where T : unmanaged
 		{
 			int result = 0;
 			byte tag = 0;
 			foreach (var value in values)
 			{
-				switch (propertyName)
+				switch (item)
 				{
-					case nameof(Cells) when value is PaintingPair<int> i:
+					case PresentationDataItem.CellList when value is PaintingPair<int> i:
 					{
 						(Cells ??= new List<PaintingPair<int>>()).Add(i);
 						if (tag == 0)
@@ -239,7 +275,7 @@ namespace Sudoku.Painting
 
 						break;
 					}
-					case nameof(Candidates) when value is PaintingPair<int> i:
+					case PresentationDataItem.CandidateList when value is PaintingPair<int> i:
 					{
 						(Candidates ??= new List<PaintingPair<int>>()).Add(i);
 						if (tag == 0)
@@ -251,7 +287,7 @@ namespace Sudoku.Painting
 
 						break;
 					}
-					case nameof(Regions) when value is PaintingPair<int> i:
+					case PresentationDataItem.RegionList when value is PaintingPair<int> i:
 					{
 						(Regions ??= new List<PaintingPair<int>>()).Add(i);
 						if (tag == 0)
@@ -263,7 +299,7 @@ namespace Sudoku.Painting
 
 						break;
 					}
-					case nameof(Links) when value is PaintingPair<Link> i:
+					case PresentationDataItem.LinkList when value is PaintingPair<Link> i:
 					{
 						(Links ??= new List<PaintingPair<Link>>()).Add(i);
 						if (tag == 0)
@@ -275,12 +311,24 @@ namespace Sudoku.Painting
 
 						break;
 					}
-					case nameof(DirectLines) when value is PaintingPair<(Cells, Cells)> i:
+					case PresentationDataItem.DirectLineList when value is PaintingPair<(Cells, Cells)> i:
 					{
 						(DirectLines ??= new List<PaintingPair<(Cells, Cells)>>()).Add(i);
 						if (tag == 0)
 						{
 							tag = 5;
+						}
+
+						result++;
+
+						break;
+					}
+					case PresentationDataItem.StepSketchList when value is PaintingPair<(int, char)> i:
+					{
+						(StepSketch ??= new List<PaintingPair<(int, char)>>()).Add(i);
+						if (tag == 0)
+						{
+							tag = 6;
 						}
 
 						result++;
@@ -298,6 +346,7 @@ namespace Sudoku.Painting
 				case 3: RegionsChanged?.Invoke(Regions); break;
 				case 4: LinksChanged?.Invoke(Links); break;
 				case 5: DirectLinesChanged?.Invoke(DirectLines); break;
+				case 6: StepSketchChanged?.Invoke(StepSketch); break;
 			}
 
 			return result;
@@ -307,40 +356,49 @@ namespace Sudoku.Painting
 		/// Remove a new instance from the collection.
 		/// </summary>
 		/// <typeparam name="T">The type of the value to remove.</typeparam>
-		/// <param name="propertyName">The property name.</param>
+		/// <param name="item">The property item.</param>
 		/// <param name="value">The value to remove.</param>
-		public bool Remove<T>(string propertyName, in T value) where T : unmanaged
+		public bool Remove<T>(PresentationDataItem item, in T value) where T : unmanaged
 		{
-			switch (propertyName)
+			switch (item)
 			{
-				case nameof(Cells) when value is PaintingPair<int> i && Cells is not null:
+				case PresentationDataItem.CellList when value is PaintingPair<int> i && Cells is not null:
 				{
 					Cells.Remove(i);
 					CellsChanged?.Invoke(Cells);
 					return true;
 				}
-				case nameof(Candidates) when value is PaintingPair<int> i && Candidates is not null:
+				case PresentationDataItem.CandidateList
+				when value is PaintingPair<int> i && Candidates is not null:
 				{
 					Candidates.Remove(i);
 					CandidatesChanged?.Invoke(Candidates);
 					return true;
 				}
-				case nameof(Regions) when value is PaintingPair<int> i && Regions is not null:
+				case PresentationDataItem.RegionList when value is PaintingPair<int> i && Regions is not null:
 				{
 					Regions.Remove(i);
 					RegionsChanged?.Invoke(Regions);
 					return true;
 				}
-				case nameof(Links) when value is PaintingPair<Link> i && Links is not null:
+				case PresentationDataItem.LinkList when value is PaintingPair<Link> i && Links is not null:
 				{
 					Links.Remove(i);
 					LinksChanged?.Invoke(Links);
 					return true;
 				}
-				case nameof(DirectLines) when value is PaintingPair<(Cells, Cells)> i && DirectLines is not null:
+				case PresentationDataItem.DirectLineList
+				when value is PaintingPair<(Cells, Cells)> i && DirectLines is not null:
 				{
 					DirectLines.Remove(i);
 					DirectLinesChanged?.Invoke(DirectLines);
+					return true;
+				}
+				case PresentationDataItem.StepSketchList
+				when value is PaintingPair<(int, char)> i && StepSketch is not null:
+				{
+					StepSketch.Remove(i);
+					StepSketchChanged?.Invoke(StepSketch);
 					return true;
 				}
 				default:

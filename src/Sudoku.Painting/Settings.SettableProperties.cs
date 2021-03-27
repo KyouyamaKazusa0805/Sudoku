@@ -98,6 +98,12 @@ namespace Sudoku.Painting
 #endif
 
 		/// <summary>
+		/// <para>Indicates the step sketch font name.</para>
+		/// <para>The default value is <c>"Times New Roman"</c>.</para>
+		/// </summary>
+		public string StepSketchFontName { get; set; } = "Times New Roman";
+
+		/// <summary>
 		/// <para>Indicates the given digits to render.</para>
 		/// <para>The value is <see cref="Color.Black"/> in default case.</para>
 		/// </summary>

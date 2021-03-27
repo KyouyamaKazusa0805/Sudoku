@@ -117,12 +117,10 @@ namespace Sudoku.Painting
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in PaintingPair<T> left, in PaintingPair<T> right) =>
-			left.Equals(right);
+		public static bool operator ==(in PaintingPair<T> left, in PaintingPair<T> right) => left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in PaintingPair<T> left, in PaintingPair<T> right) =>
-			!(left == right);
+		public static bool operator !=(in PaintingPair<T> left, in PaintingPair<T> right) => !(left == right);
 	}
 }

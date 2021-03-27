@@ -106,15 +106,16 @@ namespace Sudoku.Painting
 
 
 		/// <summary>
-		/// Get the font via name, size and the scale.
+		/// Get the font via name, size, scale and the font style.
 		/// </summary>
 		/// <param name="fontName">The font name.</param>
 		/// <param name="size">The size.</param>
 		/// <param name="scale">The scale.</param>
+		/// <param name="fontStyle">The font style. The default value is <see langword="null"/>.</param>
 		/// <returns>The font.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static Font GetFont(string fontName, float size, decimal scale) =>
-			new(fontName, size * (float)scale, FontStyle.Regular);
+		private static Font GetFont(string fontName, float size, decimal scale, FontStyle? fontStyle = null) =>
+			new(fontName, size * (float)scale, fontStyle ?? FontStyle.Regular);
 
 
 		partial void PaintBackground(Graphics g);
@@ -128,5 +129,6 @@ namespace Sudoku.Painting
 		partial void PaintRegions(Graphics g, ICollection<PaintingPair<int>>? regions, float offset);
 		partial void PaintLinks(Graphics g, ICollection<PaintingPair<Link>>? links, float offset);
 		partial void PaintDirectLines(Graphics g, ICollection<PaintingPair<(Cells, Cells)>>? directLines, float offset);
+		partial void PaintStepSketches(Graphics g, ICollection<PaintingPair<(int, char)>>? stepSketch);
 	}
 }
