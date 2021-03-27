@@ -4,7 +4,6 @@ using System.Extensions;
 using System.Linq;
 using System.Reflection;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Tracing;
 using static Sudoku.Resources.TextResources;
 
 namespace Sudoku.Solving.Manual
@@ -66,47 +65,5 @@ namespace Sudoku.Solving.Manual
 		/// <param name="accumulator">The accumulator to store technique information.</param>
 		/// <param name="grid">The grid to search for techniques.</param>
 		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
-
-
-		/// <summary>
-		/// To bind a step.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public void BindOne(TraceableGrid grid) => grid.BindStep(InternalOnBinding(grid)[0]);
-
-		/// <summary>
-		/// To bind all steps.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		public void BindAll(TraceableGrid grid) => ((ITraceable)grid).BindSteps(InternalOnBinding(grid));
-
-		/// <summary>
-		/// To bind all steps that satisfy the specified condition.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="condition">The condition.</param>
-		public void BindWhen(TraceableGrid grid, Predicate<StepInfo> condition)
-		{
-			foreach (var step in InternalOnBinding(grid))
-			{
-				if (condition(step))
-				{
-					grid.BindStep(step);
-				}
-			}
-		}
-
-		/// <summary>
-		/// The method that is called by binding ones.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <returns>All possible steps that may be bound.</returns>
-		private IReadOnlyList<StepInfo> InternalOnBinding(TraceableGrid grid)
-		{
-			var bag = new List<StepInfo>();
-			GetAll(bag, (SudokuGrid)grid);
-
-			return bag;
-		}
 	}
 }
