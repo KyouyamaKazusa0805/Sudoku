@@ -417,7 +417,7 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.#ctor(Sudoku.Data.Candidates@)">
             <summary>
-            (Copy constructor) Initializes an instance with another one.
+             Initializes an instance with another one.
             </summary>
             <param name="another">The another instance.</param>
         </member>
@@ -828,7 +828,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)">
             <summary>
-            (Copy constructor) Initializes an instance with the specified instance.
+             Initializes an instance with the specified instance.
             </summary>
             <param name="another">Another instance.</param>
         </member>

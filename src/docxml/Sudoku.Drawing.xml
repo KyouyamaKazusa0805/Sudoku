@@ -983,11 +983,11 @@
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.Settings.#ctor">
-            <inheritdoc	cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
         <member name="M:Sudoku.Drawing.Settings.#ctor(Sudoku.Drawing.Settings)">
             <summary>
-            (Copy constructor) Copies another settings instance.
+             Copies another settings instance.
             </summary>
             <param name="another">Another instance.</param>
         </member>

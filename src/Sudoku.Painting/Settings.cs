@@ -16,7 +16,7 @@ namespace Sudoku.Painting
 		}
 
 		/// <summary>
-		/// (Copy constructor) Copies another settings instance.
+		///  Copies another settings instance.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		public Settings(Settings another) => InternalCoverBy(another);

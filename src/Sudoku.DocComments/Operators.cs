@@ -1,4 +1,5 @@
-﻿#pragma warning disable CS0660
+﻿#pragma warning disable IDE0079
+#pragma warning disable CS0660
 #pragma warning disable CS0661
 #pragma warning disable IDE0060
 

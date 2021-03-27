@@ -144,7 +144,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// (Copy constructor) Initializes an instance with the specified instance.
+		///  Initializes an instance with the specified instance.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

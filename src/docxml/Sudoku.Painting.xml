@@ -966,7 +966,7 @@
         </member>
         <member name="M:Sudoku.Painting.Settings.#ctor(Sudoku.Painting.Settings)">
             <summary>
-            (Copy constructor) Copies another settings instance.
+             Copies another settings instance.
             </summary>
             <param name="another">Another instance.</param>
         </member>

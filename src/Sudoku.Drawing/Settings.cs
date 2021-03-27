@@ -10,13 +10,13 @@ namespace Sudoku.Drawing
 	/// </summary>
 	public partial class Settings : ICloneable<Settings>
 	{
-		/// <inheritdoc	cref="DefaultConstructor"/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public Settings()
 		{
 		}
 
 		/// <summary>
-		/// (Copy constructor) Copies another settings instance.
+		///  Copies another settings instance.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		public Settings(Settings another) => InternalCoverBy(another);
