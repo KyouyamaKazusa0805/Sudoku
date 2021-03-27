@@ -258,7 +258,9 @@ namespace Sudoku.Solving.Manual.Alses
 								map,
 								(region, coveredLine) is ( < 9, >= 9 and not Constants.InvalidFirstSet)
 								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
-								: tempMap - map));
+								: tempMap - map
+							)
+						);
 					}
 				}
 			}

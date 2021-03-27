@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Target">The target node.</param>
 	public sealed record AicStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled,
-		in Node Target)
-		: ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
+		in Node Target
+	) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => TechniqueCode switch
