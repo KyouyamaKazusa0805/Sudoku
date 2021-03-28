@@ -78,6 +78,43 @@
 			public const string Candidate = @"[Rr]([1-9])[Cc]([1-9])\(([1-9])\)";
 
 			/// <summary>
+			/// Indicates the candidate list string that matches the triplet form candidate list.
+			/// </summary>
+			public const string CandidateListShortForm = @"[1-9]{3}";
+
+			/// <summary>
+			/// Indicates the candidate list string that matches the bracket form candidate list.
+			/// </summary>
+			public const string CandidateListBracketForm = @"[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})";
+
+			/// <summary>
+			/// Indicates the candidate list string that matches the prepositional form candidate list.
+			/// </summary>
+			public const string CandidateListPrepositionalForm = @"\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)";
+
+			/// <summary>
+			/// Indicates a candidate list string.
+			/// </summary>
+			/// <remarks>
+			/// The regular expression can match the following formats:
+			/// <list type="table">
+			/// <item>
+			/// <term><c>312</c></term>
+			/// <description>The digit 3 in the cell row 1 column 2 (i.e. <c>r1c2</c>).</description>
+			/// </item>
+			/// <item>
+			/// <term><c>{r1c1, r9c4}(13)</c></term>
+			/// <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c4</c>.</description>
+			/// </item>
+			/// <item>
+			/// <term><c>13{r1c1, r9c3}</c></term>
+			/// <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c3</c>.</description>
+			/// </item>
+			/// </list>
+			/// </remarks>
+			public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListBracketForm + "|" + CandidateListPrepositionalForm + ")";
+
+			/// <summary>
 			/// Indicates the regular expression to match a digit.
 			/// </summary>
 			public const string Digit = @"\d";

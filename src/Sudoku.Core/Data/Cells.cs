@@ -854,6 +854,27 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly unsafe ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
+		/// <summary>
+		/// Expands the current instance, using the specified digit.
+		/// </summary>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The candidate list.</returns>
+		public readonly unsafe Candidates Expand(int digit)
+		{
+			var result = Candidates.Empty;
+			int[] cells = Offsets;
+			fixed (int* p = cells)
+			{
+				int* ptr = p;
+				for (int i = 0, length = cells.Length; i < length; ptr++)
+				{
+					result.AddAnyway(*ptr * 9 + digit);
+				}
+			}
+
+			return result;
+		}
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -1093,23 +1114,17 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <summary>
+		/// Expands via the specified digit.
+		/// </summary>
+		/// <param name="base">The base map.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The result instance.</returns>
+		public static Candidates operator *(in Cells @base, int digit) => @base.Expand(digit);
 
 		/// <summary>
-		/// <para>
 		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
 		/// eliminations.
-		/// </para>
-		/// <para>
-		/// The expression should be comprehended as those multiple steps:
-		/// <list type="number">
-		/// <item><c>a &amp; b</c>: Gets the intersection of two maps.</item>
-		/// <item><c>-(a &amp; b)</c>: Gets the peer intersection of the result map in the step 1.</item>
-		/// <item>
-		/// <c>-(a &amp; b) &amp; b</c>: Gets the cells in the step 2, which is included in the map <c>b</c>.
-		/// </item>
-		/// <item>Returns the map in the step 3.</item>
-		/// </list>
-		/// </para>
 		/// </summary>
 		/// <param name="base">The base map.</param>
 		/// <param name="limit">The limit map that the base map sees.</param>

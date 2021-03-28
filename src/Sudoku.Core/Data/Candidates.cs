@@ -7,9 +7,12 @@ using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
+using ParsingOptions = Sudoku.Data.CandidatesParsingOptions;
 
 namespace Sudoku.Data
 {
@@ -613,6 +616,134 @@ namespace Sudoku.Data
 						Count--;
 					}
 				}
+			}
+		}
+
+
+		/// <summary>
+		/// Parse a <see cref="string"/> and convert to the <see cref="Candidates"/> instance.
+		/// </summary>
+		/// <param name="str">The string text.</param>
+		/// <param name="options">
+		/// The options to parse. The default value is <see cref="ParsingOptions.All"/>.
+		/// </param>
+		/// <returns>The result cell instance.</returns>
+		/// <exception cref="ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
+		/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
+		/// <seealso cref="ParsingOptions.All"/>
+		public static unsafe Candidates Parse(string str, ParsingOptions options = ParsingOptions.All)
+		{
+			if (options is ParsingOptions.None or > ParsingOptions.All)
+			{
+				throw new ArgumentException("The option is invalid.", nameof(options));
+			}
+
+			var regex = new Regex(
+				RegularExpressions.CandidateOrCandidateList,
+				RegexOptions.ExplicitCapture,
+				TimeSpan.FromSeconds(5)
+			);
+
+			// Check whether the match is successful.
+			var matches = regex.Matches(str);
+			if (matches.Count == 0)
+			{
+				throw new FormatException("The specified string can't match any candidate instance.");
+			}
+
+			var result = Empty;
+
+			// Iterate on each match item.
+			int*
+				bufferRows = stackalloc int[9],
+				bufferColumns = stackalloc int[9],
+				bufferDigits = stackalloc int[9];
+			foreach (Match match in matches)
+			{
+				string value = match.Value;
+				if (
+					options.Flags(ParsingOptions.ShortForm)
+					&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm)
+				)
+				{
+					result.AddAnyway((value[1] - '1') * 81 + (value[2] - '1') * 9 + value[0] - '1');
+				}
+				else if (
+					options.Flags(ParsingOptions.BracketForm)
+					&& value.SatisfyPattern(RegularExpressions.CandidateListBracketForm)
+				)
+				{
+					int rowIndex = 0, columnIndex = 0, digitIndex = 0;
+					char* anchorR, anchorC, anchorBracket;
+					fixed (char* p = value)
+					{
+						anchorR = anchorC = anchorBracket = p + 1;
+						char* ptr = p + 1;
+						for (; *ptr != '\0'; ptr++)
+						{
+							if (*ptr == '(')
+							{
+								anchorBracket = ptr;
+								break;
+							}
+
+							if (*ptr is 'C' or 'c')
+							{
+								anchorC = ptr;
+								break;
+							}
+						}
+
+						ptr = p + 1;
+						for (; *ptr is not ('C' or 'c'); ptr++) bufferRows[rowIndex++] = *ptr - '1';
+						for (ptr++; *ptr != '('; ptr++) bufferColumns[columnIndex++] = *ptr - '1';
+						for (ptr++; *ptr != '\0'; ptr++) bufferDigits[digitIndex++] = *ptr - '1';
+					}
+
+					for (int i = 0; i < rowIndex; i++)
+					{
+						for (int j = 0; j < columnIndex; j++)
+						{
+							for (int k = 0; k < digitIndex; k++)
+							{
+								result.Add(bufferRows[i] * 81 + bufferColumns[j] * 9 + bufferDigits[k]);
+							}
+						}
+					}
+				}
+				else if (
+					options.Flags(ParsingOptions.PrepositionalForm)
+					&& value.SatisfyPattern(RegularExpressions.CandidateListPrepositionalForm)
+				)
+				{
+					// TODO: Implement this type.
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Try to parse the specified <see cref="string"/>, and convert it to the <see cref="Candidates"/>
+		/// instance.
+		/// </summary>
+		/// <param name="str">The string to parse.</param>
+		/// <param name="result">The result that converted.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result indicating whether the parsing operation
+		/// has been successfully executed.
+		/// </returns>
+		public static bool TryParse(string str, out Candidates result)
+		{
+			try
+			{
+				result = Parse(str);
+				return true;
+			}
+			catch (FormatException)
+			{
+				result = default;
+				return false;
 			}
 		}
 
