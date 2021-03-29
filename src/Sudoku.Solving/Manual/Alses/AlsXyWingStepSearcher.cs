@@ -127,7 +127,7 @@ namespace Sudoku.Solving.Manual.Alses
 							var conclusions = new List<Conclusion>();
 							foreach (int digit in digitsMask)
 							{
-								var elimMap = (aMap | bMap) * CandMaps[digit] - (aMap | bMap | cMap);
+								var elimMap = (aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap);
 								if (elimMap.IsEmpty)
 								{
 									continue;

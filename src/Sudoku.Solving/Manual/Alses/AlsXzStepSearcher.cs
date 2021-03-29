@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Alses
 					var conclusions = new List<Conclusion>();
 					foreach (int elimDigit in z)
 					{
-						var elimMap = map * CandMaps[elimDigit];
+						var elimMap = map % CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
 						{
 							continue;

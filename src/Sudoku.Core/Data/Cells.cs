@@ -658,7 +658,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>The result map.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this * limit;
+		public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -845,35 +845,21 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly unsafe Span<int> ToSpan() => Offsets.AsSpan();
+		public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
 		/// <summary>
 		/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
 		/// </summary>
 		/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly unsafe ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
+		public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
 		/// <summary>
 		/// Expands the current instance, using the specified digit.
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The candidate list.</returns>
-		public readonly unsafe Candidates Expand(int digit)
-		{
-			var result = Candidates.Empty;
-			int[] cells = Offsets;
-			fixed (int* p = cells)
-			{
-				int* ptr = p;
-				for (int i = 0, length = cells.Length; i < length; ptr++)
-				{
-					result.AddAnyway(*ptr * 9 + digit);
-				}
-			}
-
-			return result;
-		}
+		public readonly Candidates Expand(int digit) => this * digit;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1114,46 +1100,6 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <summary>
-		/// Expands via the specified digit.
-		/// </summary>
-		/// <param name="base">The base map.</param>
-		/// <param name="digit">The digit.</param>
-		/// <returns>The result instance.</returns>
-		public static Candidates operator *(in Cells @base, int digit) => @base.Expand(digit);
-
-		/// <summary>
-		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
-		/// eliminations.
-		/// </summary>
-		/// <param name="base">The base map.</param>
-		/// <param name="limit">The limit map that the base map sees.</param>
-		/// <returns>The result map.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator *(in Cells @base, in Cells limit) =>
-			(@base & limit).PeerIntersection & limit;
-
-		/// <summary>
-		/// Get the subview mask of this map.
-		/// </summary>
-		/// <param name="map">The map.</param>
-		/// <param name="region">The region.</param>
-		/// <returns>The mask.</returns>
-		public static short operator /(in Cells map, int region)
-		{
-			short p = 0, i = 0;
-			foreach (int cell in RegionCells[region])
-			{
-				if (map.Contains(cell))
-				{
-					p |= (short)(1 << i);
-				}
-
-				i++;
-			}
-
-			return p;
-		}
 
 		/// <summary>
 		/// Reverse status for all cells, which means all <see langword="true"/> bits
@@ -1235,6 +1181,61 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator ^(in Cells left, in Cells right) =>
 			new(left._high ^ right._high, left._low ^ right._low);
+
+		/// <summary>
+		/// Expands via the specified digit.
+		/// </summary>
+		/// <param name="base">The base map.</param>
+		/// <param name="digit">The digit.</param>
+		/// <returns>The result instance.</returns>
+		public static unsafe Candidates operator *(in Cells @base, int digit)
+		{
+			var result = Candidates.Empty;
+			int[] cells = @base.Offsets;
+			fixed (int* p = cells)
+			{
+				int* ptr = p;
+				for (int i = 0, length = cells.Length; i < length; ptr++)
+				{
+					result.AddAnyway(*ptr * 9 + digit);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Get the subview mask of this map.
+		/// </summary>
+		/// <param name="map">The map.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>The mask.</returns>
+		public static short operator /(in Cells map, int region)
+		{
+			short p = 0, i = 0;
+			foreach (int cell in RegionCells[region])
+			{
+				if (map.Contains(cell))
+				{
+					p |= (short)(1 << i);
+				}
+
+				i++;
+			}
+
+			return p;
+		}
+
+		/// <summary>
+		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
+		/// eliminations.
+		/// </summary>
+		/// <param name="base">The base map.</param>
+		/// <param name="limit">The limit map that the base map sees.</param>
+		/// <returns>The result map.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Cells operator %(in Cells @base, in Cells limit) =>
+			(@base & limit).PeerIntersection & limit;
 
 
 		/// <summary>

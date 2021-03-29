@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				}
 
 				int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-				var elimMap = pattern * CandMaps[extraDigit];
+				var elimMap = pattern % CandMaps[extraDigit];
 				if (elimMap.IsEmpty)
 				{
 					continue;

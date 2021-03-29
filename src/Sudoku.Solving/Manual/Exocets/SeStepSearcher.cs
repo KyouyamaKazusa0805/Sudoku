@@ -162,7 +162,7 @@ namespace Sudoku.Solving.Manual.Exocets
 					{
 						foreach (int digit in tbCands)
 						{
-							var elimMap = baseMap * CandMaps[digit];
+							var elimMap = baseMap % CandMaps[digit];
 							foreach (int cell in elimMap)
 							{
 								trueBaseElims.AddAnyway(cell * 9 + digit);

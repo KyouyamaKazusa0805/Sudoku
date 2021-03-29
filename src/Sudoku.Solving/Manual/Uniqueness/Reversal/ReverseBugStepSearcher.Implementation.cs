@@ -86,7 +86,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			}
 
 			int extraDigit = TrailingZeroCount(mask);
-			var elimMap = extraCells * CandMaps[extraDigit];
+			var elimMap = extraCells % CandMaps[extraDigit];
 			if (elimMap.IsEmpty)
 			{
 				return;

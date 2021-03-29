@@ -603,7 +603,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				{
 					elimMapIsolated =
 						(cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
-						* CandMaps[digitIsolated] & EmptyMap;
+						% CandMaps[digitIsolated] & EmptyMap;
 				}
 
 				if (currentInterMap.Count + i + j + 1 ==

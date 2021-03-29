@@ -166,7 +166,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 												cannibalMode
 												? (currentBlockMap | currentLineMap)
 												: currentInterMap
-											) * CandMaps[digitIsolated] & EmptyMap;
+											) % CandMaps[digitIsolated] & EmptyMap;
 										}
 
 										if (

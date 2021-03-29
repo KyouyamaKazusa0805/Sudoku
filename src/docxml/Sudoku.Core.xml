@@ -1324,31 +1324,6 @@
             has been successfully executed.
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Expands via the specified digit.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="digit">The digit.</param>
-            <returns>The result instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
-            eliminations.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="limit">The limit map that the base map sees.</param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Division(Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Get the subview mask of this map.
-            </summary>
-            <param name="map">The map.</param>
-            <param name="region">The region.</param>
-            <returns>The mask.</returns>
-        </member>
         <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
             <summary>
             Reverse status for all cells, which means all <see langword="true"/> bits
@@ -1416,6 +1391,31 @@
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The symmetrical difference result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Expands via the specified digit.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Division(Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Get the subview mask of this map.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="region">The region.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Modulus(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
+            eliminations.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="limit">The limit map that the base map sees.</param>
+            <returns>The result map.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Implicit(System.Int32[])~Sudoku.Data.Cells">
             <summary>
