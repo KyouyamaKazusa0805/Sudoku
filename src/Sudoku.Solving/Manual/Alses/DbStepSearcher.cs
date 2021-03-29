@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Alses
 			DisplayLevel = 3,
 #if OLD_ALGORITHM
 			IsEnabled = false,
-			DisabledReason = DisabledReason.TooSlow
+			DisabledReason = DisabledReason.TooSlow | DisabledReason.Unstable
 #endif
 		};
 
