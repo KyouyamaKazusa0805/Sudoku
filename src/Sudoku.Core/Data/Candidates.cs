@@ -654,10 +654,7 @@ namespace Sudoku.Data
 			var result = Empty;
 
 			// Iterate on each match item.
-			int*
-				bufferRows = stackalloc int[9],
-				bufferColumns = stackalloc int[9],
-				bufferDigits = stackalloc int[9];
+			int* bufferDigits = stackalloc int[9];
 			foreach (Match match in matches)
 			{
 				string value = match.Value;
@@ -670,53 +667,46 @@ namespace Sudoku.Data
 				}
 				else if (
 					options.Flags(ParsingOptions.BracketForm)
-					&& value.SatisfyPattern(RegularExpressions.CandidateListBracketForm)
+					&& value.SatisfyPattern(RegularExpressions.CandidateListPrepositionalForm)
 				)
 				{
-					int rowIndex = 0, columnIndex = 0, digitIndex = 0;
-					char* anchorR, anchorC, anchorBracket;
-					fixed (char* p = value)
+					var cells = Cells.Parse(value);
+					int digitsCount = 0;
+					fixed (char* pValue = value)
 					{
-						anchorR = anchorC = anchorBracket = p + 1;
-						char* ptr = p + 1;
-						for (; *ptr != '\0'; ptr++)
+						for (char* ptr = pValue; *ptr is not ('{' or 'R' or 'r'); ptr++)
 						{
-							if (*ptr == '(')
-							{
-								anchorBracket = ptr;
-								break;
-							}
-
-							if (*ptr is 'C' or 'c')
-							{
-								anchorC = ptr;
-								break;
-							}
+							bufferDigits[digitsCount++] = *ptr - '1';
 						}
-
-						ptr = p + 1;
-						for (; *ptr is not ('C' or 'c'); ptr++) bufferRows[rowIndex++] = *ptr - '1';
-						for (ptr++; *ptr != '('; ptr++) bufferColumns[columnIndex++] = *ptr - '1';
-						for (ptr++; *ptr != '\0'; ptr++) bufferDigits[digitIndex++] = *ptr - '1';
 					}
 
-					for (int i = 0; i < rowIndex; i++)
+					foreach (int cell in cells)
 					{
-						for (int j = 0; j < columnIndex; j++)
+						for (int i = 0; i < digitsCount; i++)
 						{
-							for (int k = 0; k < digitIndex; k++)
-							{
-								result.Add(bufferRows[i] * 81 + bufferColumns[j] * 9 + bufferDigits[k]);
-							}
+							result.AddAnyway(cell * 9 + bufferDigits[i]);
 						}
 					}
 				}
 				else if (
 					options.Flags(ParsingOptions.PrepositionalForm)
-					&& value.SatisfyPattern(RegularExpressions.CandidateListPrepositionalForm)
+					&& value.SatisfyPattern(RegularExpressions.CandidateListPostpositionalForm)
 				)
 				{
-					// TODO: Implement this type.
+					var cells = Cells.Parse(value);
+					int digitsCount = 0;
+					for (int i = value.IndexOf('(') + 1, length = value.Length; i < length; i++)
+					{
+						bufferDigits[digitsCount++] = value[i] - '1';
+					}
+
+					foreach (int cell in cells)
+					{
+						for (int i = 0; i < digitsCount; i++)
+						{
+							result.AddAnyway(cell * 9 + bufferDigits[i]);
+						}
+					}
 				}
 			}
 

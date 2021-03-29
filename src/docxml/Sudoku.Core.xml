@@ -159,6 +159,43 @@
             Indicates a candidate string.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListShortForm">
+            <summary>
+            Indicates the candidate list string that matches the triplet form candidate list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListPrepositionalForm">
+            <summary>
+            Indicates the candidate list string that matches the prepositional form candidate list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListPostpositionalForm">
+            <summary>
+            Indicates the candidate list string that matches the postpositional form candidate list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CandidateOrCandidateList">
+            <summary>
+            Indicates a candidate list string.
+            </summary>
+            <remarks>
+            The regular expression can match the following formats:
+            <list type="table">
+            <item>
+            <term><c>312</c></term>
+            <description>The digit 3 in the cell row 1 column 2 (i.e. <c>r1c2</c>).</description>
+            </item>
+            <item>
+            <term><c>{r1c1, r9c4}(13)</c></term>
+            <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c4</c>.</description>
+            </item>
+            <item>
+            <term><c>13{r1c1, r9c3}</c></term>
+            <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c3</c>.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Digit">
             <summary>
             Indicates the regular expression to match a digit.
@@ -649,6 +686,31 @@
             <param name="candidate">The candidate.</param>
             <param name="value">The value.</param>
         </member>
+        <member name="M:Sudoku.Data.Candidates.Parse(System.String,Sudoku.Data.CandidatesParsingOptions)">
+            <summary>
+            Parse a <see cref="T:System.String"/> and convert to the <see cref="T:Sudoku.Data.Candidates"/> instance.
+            </summary>
+            <param name="str">The string text.</param>
+            <param name="options">
+            The options to parse. The default value is <see cref="F:Sudoku.Data.CandidatesParsingOptions.All"/>.
+            </param>
+            <returns>The result cell instance.</returns>
+            <exception cref="T:System.ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
+            <exception cref="T:System.FormatException">Throws when the specified text is invalid to parse.</exception>
+            <seealso cref="F:Sudoku.Data.CandidatesParsingOptions.All"/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.TryParse(System.String,Sudoku.Data.Candidates@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/>, and convert it to the <see cref="T:Sudoku.Data.Candidates"/>
+            instance.
+            </summary>
+            <param name="str">The string to parse.</param>
+            <param name="result">The result that converted.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the parsing operation
+            has been successfully executed.
+            </returns>
+        </member>
         <member name="M:Sudoku.Data.Candidates.op_Equality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
@@ -729,6 +791,37 @@
             Explicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="map">The map.</param>
+        </member>
+        <member name="T:Sudoku.Data.CandidatesParsingOptions">
+            <summary>
+            Encapsulates an option that is specified to parse the <see cref="T:Sudoku.Data.Candidates"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Data.CandidatesParsingOptions.None">
+            <summary>
+            Indicates the empty option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CandidatesParsingOptions.ShortForm">
+            <summary>
+            Indicates the short form, such as <c>312</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CandidatesParsingOptions.BracketForm">
+            <summary>
+            Indicates the bracket form, such as <c>{ r1c1, r3c3 }(12)</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CandidatesParsingOptions.PrepositionalForm">
+            <summary>
+            Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.CandidatesParsingOptions.All">
+            <summary>
+            Indicates all forms.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Cells">
             <summary>
@@ -1121,6 +1214,13 @@
             </summary>
             <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.Expand(System.Int32)">
+            <summary>
+            Expands the current instance, using the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The candidate list.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -1224,23 +1324,18 @@
             has been successfully executed.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Expands via the specified digit.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result instance.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            <para>
             Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
             eliminations.
-            </para>
-            <para>
-            The expression should be comprehended as those multiple steps:
-            <list type="number">
-            <item><c>a &amp; b</c>: Gets the intersection of two maps.</item>
-            <item><c>-(a &amp; b)</c>: Gets the peer intersection of the result map in the step 1.</item>
-            <item>
-            <c>-(a &amp; b) &amp; b</c>: Gets the cells in the step 2, which is included in the map <c>b</c>.
-            </item>
-            <item>Returns the map in the step 3.</item>
-            </list>
-            </para>
             </summary>
             <param name="base">The base map.</param>
             <param name="limit">The limit map that the base map sees.</param>

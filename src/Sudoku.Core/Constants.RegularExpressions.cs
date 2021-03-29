@@ -83,14 +83,14 @@
 			public const string CandidateListShortForm = @"[1-9]{3}";
 
 			/// <summary>
-			/// Indicates the candidate list string that matches the bracket form candidate list.
-			/// </summary>
-			public const string CandidateListBracketForm = @"[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})";
-
-			/// <summary>
 			/// Indicates the candidate list string that matches the prepositional form candidate list.
 			/// </summary>
-			public const string CandidateListPrepositionalForm = @"\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)";
+			public const string CandidateListPrepositionalForm = @"[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})";
+
+			/// <summary>
+			/// Indicates the candidate list string that matches the postpositional form candidate list.
+			/// </summary>
+			public const string CandidateListPostpositionalForm = @"\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)";
 
 			/// <summary>
 			/// Indicates a candidate list string.
@@ -112,7 +112,7 @@
 			/// </item>
 			/// </list>
 			/// </remarks>
-			public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListBracketForm + "|" + CandidateListPrepositionalForm + ")";
+			public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListPrepositionalForm + "|" + CandidateListPostpositionalForm + ")";
 
 			/// <summary>
 			/// Indicates the regular expression to match a digit.
