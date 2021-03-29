@@ -129,22 +129,14 @@
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="hasSolved">
-            Indicates whether the puzzle has been solved.
-            </param>
-            <param name="solvingStepsCount">
-            The total number of all solving steps.
-            </param>
-            <param name="solvingSteps">
-            The all solving steps.
-            </param>
+            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+            <param name="solvingStepsCount">The total number of all solving steps.</param>
+            <param name="solvingSteps">The all solving steps.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid}@,System.Object@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="solverName">The solver name.</param>
-            <param name="hasSolved">
-            Indicates whether the solver has solved the puzzle.
-            </param>
+            <param name="hasSolved">Indicates whether the solver has solved the puzzle.</param>
             <param name="total">The total difficulty.</param>
             <param name="max">The maximum difficulty of all steps.</param>
             <param name="pearl">The pearl difficulty of the puzzle.</param>

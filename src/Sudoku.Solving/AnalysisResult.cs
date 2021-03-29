@@ -216,15 +216,9 @@ namespace Sudoku.Solving
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="hasSolved">
-		/// Indicates whether the puzzle has been solved.
-		/// </param>
-		/// <param name="solvingStepsCount">
-		/// The total number of all solving steps.
-		/// </param>
-		/// <param name="solvingSteps">
-		/// The all solving steps.
-		/// </param>
+		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
+		/// <param name="solvingStepsCount">The total number of all solving steps.</param>
+		/// <param name="solvingSteps">The all solving steps.</param>
 		public void Deconstruct(
 			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<StepInfo>? solvingSteps)
 		{
@@ -235,9 +229,7 @@ namespace Sudoku.Solving
 
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="solverName">The solver name.</param>
-		/// <param name="hasSolved">
-		/// Indicates whether the solver has solved the puzzle.
-		/// </param>
+		/// <param name="hasSolved">Indicates whether the solver has solved the puzzle.</param>
 		/// <param name="total">The total difficulty.</param>
 		/// <param name="max">The maximum difficulty of all steps.</param>
 		/// <param name="pearl">The pearl difficulty of the puzzle.</param>
