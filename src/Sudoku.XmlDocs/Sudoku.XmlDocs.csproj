@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Description>The project that provides the APIs about outputting doc comments.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<DocumentationFile>..\docxml\Sudoku.XmlDocs.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>DEBUG;CONSOLE</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>CONSOLE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.10.0-1.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0-1.final" />
+	</ItemGroup>
+
+</Project>

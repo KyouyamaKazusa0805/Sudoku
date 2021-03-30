@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.XmlDocs</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.XmlDocs.CustomAccessibility">
+            <summary>
+            Indicates the accessibility of the member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.None">
+            <summary>
+            Indicates the accessibility is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Public">
+            <summary>
+            Indicates the <see langword="public"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Internal">
+            <summary>
+            Indicates the <see langword="internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Protected">
+            <summary>
+            Indicates the <see langword="protected"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.ProtectedInternal">
+            <summary>
+            Indicates the <see langword="protected internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Private">
+            <summary>
+            Indicates the <see langword="private"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomAccessibility.PrivateProtected">
+            <summary>
+            Indicates the <see langword="private protected"/> modifier.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.CustomModifier">
+            <summary>
+            Indicates the custom modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.None">
+            <summary>
+            Indicates the modifier is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Abstract">
+            <summary>
+            Indicates the <see langword="abstract"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Async">
+            <summary>
+            Indicates the <see langword="async"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Const">
+            <summary>
+            Indicates the <see langword="const"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Extern">
+            <summary>
+            Indicates the <see langword="extern"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.In">
+            <summary>
+            Indicates the <see langword="in"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.New">
+            <summary>
+            Indicates the <see langword="new"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Out">
+            <summary>
+            Indicates the <see langword="out"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Override">
+            <summary>
+            Indicates the <see langword="override"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.ReadOnly">
+            <summary>
+            Indicates the <see langword="readonly"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Sealed">
+            <summary>
+            Indicates the <see langword="sealed"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Static">
+            <summary>
+            Indicates the <see langword="static"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Unsafe">
+            <summary>
+            Indicates the <see langword="unsafe"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Virtual">
+            <summary>
+            Indicates the <see langword="virtual"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Volatile">
+            <summary>
+            Indicates the <see langword="volatile"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.Ref">
+            <summary>
+            Indicates the <see langword="ref"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.CustomModifier.All">
+            <summary>
+            Indicates all modififers.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.DocumentEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Markdown.Document"/>.
+            </summary>
+            <seealso cref="T:System.Text.Markdown.Document"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendTitle(System.Text.Markdown.Document,Sudoku.XmlDocs.MemberKind,System.String)">
+            <summary>
+            Append the title with the specified member kind.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="memberKind">The member kind.</param>
+            <param name="title">The title.</param>
+            <returns>The document itself.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendSummary(System.Text.Markdown.Document,System.String)">
+            <summary>
+            Append "summary" section text. If the inner text is <see langword="null"/>, this method
+            will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="text">The inner text.</param>
+            <returns>The document itself.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendRemarks(System.Text.Markdown.Document,System.String)">
+            <summary>
+            Append "remarks" section text. If the inner text is <see langword="null"/>, this method
+            will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="text">The inner text.</param>
+            <returns>The document itself.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxTokenList"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxTokenList"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.GetCustomModifiers(Microsoft.CodeAnalysis.SyntaxTokenList@)">
+            <summary>
+            Get custom modifiers from the specified syntax token list.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The result modifiers.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.GetCustomAccessibilities(Microsoft.CodeAnalysis.SyntaxTokenList@)">
+            <summary>
+            Get custom accessibilities from the specified syntax token list.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The result accessibilities.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.CustomModifier)">
+            <summary>
+            Check whether the specified list contains the specified modifier.
+            </summary>
+            <param name="this">The list.</param>
+            <param name="customModifier">The custom modifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.CustomAccessibility)">
+            <summary>
+            Check whether the specified list contains the specified accessibility.
+            </summary>
+            <param name="this">The list.</param>
+            <param name="customAccessibility">The custom accessibility.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.MemberKind">
+            <summary>
+            Provides a member kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Field">
+            <summary>
+            Indicates the member is a field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Constructor">
+            <summary>
+            Indicates the member is a constructor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.PrimaryConstructor">
+            <summary>
+            Indicates the member is a primary constructor. This member now only appears
+            in the <see langword="record"/>s.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.StaticConstructor">
+            <summary>
+            Indicates the member is a <see langword="static"/> constructor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Property">
+            <summary>
+            Indicates the member is a property.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Indexer">
+            <summary>
+            Indicates the member is an indexer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Event">
+            <summary>
+            Indicates the member is an event.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Method">
+            <summary>
+            Indicates the member is a method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.Operator">
+            <summary>
+            Indicates the member is an operator overloading.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.ImplicitCast">
+            <summary>
+            Indicates the member is an implicit cast.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberKind.ExplicitCast">
+            <summary>
+            Indicates the member is an explicit cast.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.OutputService">
+            <summary>
+            Indicates the output service.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.OutputService.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.XmlDocs.OutputService"/> with the default instantiation behavior.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.OutputService.RootPath">
+            <summary>
+            Indicates the root path that stores all projects.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.OutputService.XmlDocDirectoryPath">
+            <summary>
+            Indicates the directory path that stores all documentation files about all possible assemblies.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.OutputService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Execute the service, and outputs the documentation files.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The task of the execution.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.OutputService.GetMemberSyntaxInfos(Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Get information from all members, and returns the list of those instances.
+            </summary>
+            <param name="typeDeclarationSyntax">The type declaration syntax node.</param>
+            <param name="semanticModel">The semantic model.</param>
+            <returns>The list of information instances.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo">
+            <summary>
+            Defines a field syntax information.
+            </summary>
+            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="CustomModifier">The custom modifier.</param>
+            <param name="Summary">The documentation comment for the section "summary".</param>
+            <param name="Remarks">The documentation comment for the section "remarks".</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String)">
+            <summary>
+            Defines a field syntax information.
+            </summary>
+            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="CustomModifier">The custom modifier.</param>
+            <param name="Summary">The documentation comment for the section "summary".</param>
+            <param name="Remarks">The documentation comment for the section "remarks".</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo">
+            <summary>
+            Defines a member syntax information.
+            </summary>
+            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="CustomModifier">The custom modifier.</param>
+            <param name="Summary">The documentation comment for the section "summary".</param>
+            <param name="Remarks">The documentation comment for the section "remarks".</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String)">
+            <summary>
+            Defines a member syntax information.
+            </summary>
+            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="CustomModifier">The custom modifier.</param>
+            <param name="Summary">The documentation comment for the section "summary".</param>
+            <param name="Remarks">The documentation comment for the section "remarks".</param>
+        </member>
+        <member name="T:Sudoku.XmlDocs.TypeKind">
+            <summary>
+            Indicates a type kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.TypeKind.Struct">
+            <summary>
+            Indicates the type is a <see langword="struct"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.TypeKind.Class">
+            <summary>
+            Indicates the type is a <see langword="class"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.TypeKind.RecordClass">
+            <summary>
+            Indicates the type is a <see langword="record class"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.TypeKind.RecordStruct">
+            <summary>
+            Indicates the type is a <see langword="record struct"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.TypeKind.Interface">
+            <summary>
+            Indicates the type is a <see langword="interface"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

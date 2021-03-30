@@ -81,6 +81,12 @@
             </summary>
             <returns>The result information.</returns>
         </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountUpAsync">
+            <summary>
+            Count up for all files in the specified root directory, and return the result asynchornizedly.
+            </summary>
+            <returns>The task of the operation.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.FileCounterResult">
             <summary>
             Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.

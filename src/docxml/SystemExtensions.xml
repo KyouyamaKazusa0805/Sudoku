@@ -1630,6 +1630,275 @@
         <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.Markdown.Document">
+            <summary>
+            Provides a markdown document.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.Document._innerBuilder">
+            <summary>
+            Indicates the inner builder.
+            </summary>
+        </member>
+        <member name="M:System.Text.Markdown.Document.#ctor">
+            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.Equals(System.Text.Markdown.Document)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.Create">
+            <summary>
+            Creates an empty document.
+            </summary>
+            <returns>The empty document instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.Document.op_Equality(System.Text.Markdown.Document,System.Text.Markdown.Document)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.op_Inequality(System.Text.Markdown.Document,System.Text.Markdown.Document)">
+            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendText(System.String)">
+            <summary>
+            Append plain text.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendParagraph(System.String)">
+            <summary>
+            Append a paragraph with a new line.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendInlineCodeBlock(System.String)">
+            <summary>
+            Append inline code block.
+            </summary>
+            <param name="text">The inner text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendCodeBlock(System.String,System.String)">
+            <summary>
+            Append the code block.
+            </summary>
+            <param name="code">The inner code.</param>
+            <param name="codelang">The code language. The default value is <c>"csharp"</c>.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendHeaderText(System.String)">
+            <summary>
+            Append header text.
+            </summary>
+            <param name="text">The inner text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendHeaderText(System.Int32,System.String)">
+            <summary>
+            Append header text, with the specified header level.
+            </summary>
+            <param name="level">The header level. The value should be between 1 and 6.</param>
+            <param name="text">The inner text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendNewLine">
+            <summary>
+            Append a new line.
+            </summary>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="T:System.Text.Markdown.MarkdownSymbols">
+            <summary>
+            Provides the symbols of the markdown symbols.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockStartSingle">
+            <summary>
+            Indicates the inline code block start character.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockEndSingle">
+            <summary>
+            Indicates the inline code block end character.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineLatexBlockStartSingle">
+            <summary>
+            Indicates the inline LaTeX block start character.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineLatexBlockEndSingle">
+            <summary>
+            Indicates the inline LaTeX block end character.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H1">
+            <summary>
+            The header 1.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H2">
+            <summary>
+            The header 2.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H3">
+            <summary>
+            The header 3.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H4">
+            <summary>
+            The header 4.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H5">
+            <summary>
+            The header 5.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.H6">
+            <summary>
+            The header 6.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockStart">
+            <summary>
+            Indicates the inline code block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockStartDouble">
+            <summary>
+            Indicates the inline code block start (double tildes).
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockEnd">
+            <summary>
+            Indicates the inline code block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineCodeBlockEndDouble">
+            <summary>
+            Indicates the inline code block end (double tildes).
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.CodeBlockStart">
+            <summary>
+            Indicates the code block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.CodeBlockEnd">
+            <summary>
+            Indicates the code block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.BoldBlockStart">
+            <summary>
+            Indicates the bold block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.BoldBlockEnd">
+            <summary>
+            Indicates the bold block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ItalicBlockStart">
+            <summary>
+            Indicates the italic block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ItalicBlockEnd">
+            <summary>
+            Indicates the italic block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.LatexBlockStart">
+            <summary>
+            Indicates the LaTeX block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.LatexBlockEnd">
+            <summary>
+            Indicates the LaTeX block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineLatexBlockStart">
+            <summary>
+            Indicates the inline LaTeX block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.InlineLatexBlockEnd">
+            <summary>
+            Indicates the inline LaTeX block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.DeleteBlockStart">
+            <summary>
+            Indicates the delete block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.DeleteBlockEnd">
+            <summary>
+            Indicates the delete block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockStart">
+            <summary>
+            Indicates the picture block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockMiddle">
+            <summary>
+            Indicates the picture block middle.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockEnd">
+            <summary>
+            Indicates the picture block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.HyperlinkBlockStart">
+            <summary>
+            Indicates the hyperlink block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.HyperlinkBlockMiddle">
+            <summary>
+            Indicates the hyperlink block middle.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.HyperlinkBlockEnd">
+            <summary>
+            Indicates the hyperlink block end.
+            </summary>
+        </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>
             Indicates an error for reporting a string is an invalid regular expression.
