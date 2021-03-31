@@ -158,14 +158,92 @@
             <param name="text">The inner text.</param>
             <returns>The document itself.</returns>
         </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendReturns(System.Text.Markdown.Document,System.String,Microsoft.CodeAnalysis.CSharp.Syntax.MemberDeclarationSyntax)">
+            <summary>
+            Append "returns" section text. If the inner text is <see langword="null"/>,
+            the specified node doesn't return any values (such as field, etc.), or
+            the node returns <see langword="void"/>, this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="text">The inner text.</param>
+            <param name="node">The node to check.</param>
+            <returns>The document itself.</returns>
+        </member>
         <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendRemarks(System.Text.Markdown.Document,System.String)">
             <summary>
-            Append "remarks" section text. If the inner text is <see langword="null"/>, this method
-            will do nothing.
+            Append "remarks" section text. If the inner text is <see langword="null"/>,
+            this method will do nothing.
             </summary>
             <param name="this">The document.</param>
             <param name="text">The inner text.</param>
             <returns>The document itself.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendException(System.Text.Markdown.Document,System.String[],System.String[])">
+            <summary>
+            Append "exception" section text. If the exceptions is <see langword="null"/>, it'll do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="exceptions">The exceptions.</param>
+            <param name="descriptions">The descriptions.</param>
+            <returns>The document itself.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendValue(System.Text.Markdown.Document,System.String,Microsoft.CodeAnalysis.CSharp.Syntax.BasePropertyDeclarationSyntax)">
+            <summary>
+            Append "value" section text. If the inner text is <see langword="null"/>, the member
+            isn't neither a property nor a indexer, or the member doesn't contain
+            neither <see langword="set"/>ter nor <see langword="init"/>er, this method will do
+            nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="text">The inner text.</param>
+            <param name="node">The property or indexer syntax node.</param>
+            <returns>The document itself.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.SyntaxListEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxList`1"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxList`1"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxListEx.All``1(Microsoft.CodeAnalysis.SyntaxList{``0}@,System.Predicate{``0})">
+            <summary>
+            Check whether all elements in the current list satisfied the specified condition.
+            </summary>
+            <typeparam name="TSyntaxNode">The type of the inner element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="condition">The condition to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxListEx.Any``1(Microsoft.CodeAnalysis.SyntaxList{``0}@,System.Predicate{``0})">
+            <summary>
+            Check whether the current list contains any syntax node that satisfied the specified condition.
+            </summary>
+            <typeparam name="TSyntaxNode">The type of the inner element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="condition">The condition to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxToken"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxToken"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenEx.IsKeyword(Microsoft.CodeAnalysis.SyntaxToken@,System.String)">
+            <summary>
+            Check whether the specified token is the keyword.
+            </summary>
+            <param name="this">The token.</param>
+            <param name="keyword">The keyword.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenEx.IsKeyword(Microsoft.CodeAnalysis.SyntaxToken@,System.String[])">
+            <summary>
+            Check whether the specified token is the specified keyword in the list <paramref name="keywords"/>.
+            </summary>
+            <param name="this">The token.</param>
+            <param name="keywords">The keywords to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx">
             <summary>
@@ -202,6 +280,31 @@
             <param name="this">The list.</param>
             <param name="customAccessibility">The custom accessibility.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Keywords">
+            <summary>
+            Provides keywords used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Keywords.VoidKeyword">
+            <summary>
+            Indicates the <see langword="void"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Keywords.GetKeyword">
+            <summary>
+            Indicates the <see langword="get"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Keywords.SetKeyword">
+            <summary>
+            Indicates the <see langword="set"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Keywords.InitKeyword">
+            <summary>
+            Indicates the <see langword="init"/> keyword.
+            </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.MemberKind">
             <summary>
@@ -303,21 +406,27 @@
             <summary>
             Defines a field syntax information.
             </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="SemanticModel">The current semantic model.</param>
             <param name="IdentifierName">The identifier name of this member.</param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
+            <param name="ExceptionList">The exception list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String)">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.ValueTuple{System.String[],System.String[]})">
             <summary>
             Defines a field syntax information.
             </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="SemanticModel">The current semantic model.</param>
             <param name="IdentifierName">The identifier name of this member.</param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
+            <param name="ExceptionList">The exception list.</param>
         </member>
         <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.ToString">
             <inheritdoc/>
@@ -326,21 +435,27 @@
             <summary>
             Defines a member syntax information.
             </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="SemanticModel">The current semantic model.</param>
             <param name="IdentifierName">The identifier name of this member.</param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
+            <param name="ExceptionList">The exception list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String)">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.ValueTuple{System.String[],System.String[]})">
             <summary>
             Defines a member syntax information.
             </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="SemanticModel">The current semantic model.</param>
             <param name="IdentifierName">The identifier name of this member.</param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
+            <param name="ExceptionList">The exception list.</param>
         </member>
         <member name="T:Sudoku.XmlDocs.TypeKind">
             <summary>

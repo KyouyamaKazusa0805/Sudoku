@@ -128,11 +128,14 @@ namespace Sudoku.XmlDocs
 							string text = fieldDeclarator.Identifier.ValueText;
 							result.Add(
 								new FieldSyntaxInfo(
+									fieldDeclaration,
+									semanticModel,
 									text,
 									CustomAccessibility.Public,
 									modifiers.GetCustomModifiers(),
 									null,
-									null
+									null,
+									(null, null)
 								)
 							);
 						}
