@@ -538,7 +538,7 @@ namespace Sudoku.Windows
 					DisableGeneratingControls();
 
 					// These two value should be assigned first, rather than 
-					// inlining in the asynchronized environment.
+					// inlining in the asynchronous environment.
 					var dialog = new ProgressWindow { CancellationTokenSource = cts };
 					dialog.Show();
 
@@ -802,7 +802,7 @@ namespace Sudoku.Windows
 					_textBoxInfo.Text = (string)LangSource["WhileSolving"];
 					DisableSolvingControls();
 
-					// Run the solver asynchronizedly, during solving you can do other work.
+					// Run the solver asynchronously, during solving you can do other work.
 					var dialog = new ProgressWindow { CancellationTokenSource = cts };
 					dialog.Show();
 

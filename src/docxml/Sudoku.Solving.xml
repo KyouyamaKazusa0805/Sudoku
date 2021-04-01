@@ -667,7 +667,7 @@
         </member>
         <member name="M:Sudoku.Solving.Checking.BackdoorSearcher.SearchForBackdoorsExactAsync(Sudoku.Data.SudokuGrid,System.Int32)">
             <summary>
-            Search all backdoors whose depth is exactly same as the argument asynchronizedly.
+            Search all backdoors whose depth is exactly same as the argument asynchronously.
             </summary>
             <param name="grid">The grid.</param>
             <param name="depth">
@@ -725,7 +725,7 @@
         <member name="M:Sudoku.Solving.Checking.BugChecker.GetAllTrueCandidatesAsync(System.Int32)">
             <summary>
             Get all true candidates when the number of empty cells
-            is below than the argument asynchronizedly.
+            is below than the argument asynchronously.
             </summary>
             <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
             <returns>The task to get all true candidates.</returns>
@@ -4086,7 +4086,7 @@
             an exception called <see cref="T:System.OperationCanceledException"/>.
             </para>
             <para>
-            However, please <b>don't</b> raise this exception here, because here is in the asynchronized
+            However, please <b>don't</b> raise this exception here, because here is in the asynchronous
             environment and we can't process and handle any exception here.
             </para>
             </remarks>

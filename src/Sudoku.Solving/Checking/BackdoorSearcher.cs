@@ -80,7 +80,7 @@ namespace Sudoku.Solving.Checking
 		}
 
 		/// <summary>
-		/// Search all backdoors whose depth is exactly same as the argument asynchronizedly.
+		/// Search all backdoors whose depth is exactly same as the argument asynchronously.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <param name="depth">

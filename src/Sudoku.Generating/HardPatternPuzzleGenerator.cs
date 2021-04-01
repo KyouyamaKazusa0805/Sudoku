@@ -127,7 +127,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <summary>
-		/// To generate a sudoku grid with a backdoor filter depth asynchronizedly.
+		/// To generate a sudoku grid with a backdoor filter depth asynchronously.
 		/// </summary>
 		/// <param name="backdoorFilterDepth">
 		/// The backdoor filter depth. When the value is -1, the generator won't check

@@ -203,7 +203,7 @@ namespace Sudoku.Solving.Checking
 
 		/// <summary>
 		/// Get all true candidates when the number of empty cells
-		/// is below than the argument asynchronizedly.
+		/// is below than the argument asynchronously.
 		/// </summary>
 		/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
 		/// <returns>The task to get all true candidates.</returns>

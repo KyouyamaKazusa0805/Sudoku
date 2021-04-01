@@ -64,7 +64,7 @@ namespace Sudoku.Recognition
 		}
 
 		/// <summary>
-		/// Recognize the image asynchronizedly.
+		/// Recognize the image asynchronously.
 		/// </summary>
 		/// <param name="image">The image.</param>
 		/// <returns>The task.</returns>

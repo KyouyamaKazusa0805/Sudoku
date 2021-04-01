@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual
 		/// an exception called <see cref="OperationCanceledException"/>.
 		/// </para>
 		/// <para>
-		/// However, please <b>don't</b> raise this exception here, because here is in the asynchronized
+		/// However, please <b>don't</b> raise this exception here, because here is in the asynchronous
 		/// environment and we can't process and handle any exception here.
 		/// </para>
 		/// </remarks>

@@ -308,7 +308,7 @@
         </member>
         <member name="M:Sudoku.Recognition.RecognitionServiceProvider.RecognizeAsync(System.Drawing.Bitmap)">
             <summary>
-            Recognize the image asynchronizedly.
+            Recognize the image asynchronously.
             </summary>
             <param name="image">The image.</param>
             <returns>The task.</returns>

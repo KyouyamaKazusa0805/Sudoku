@@ -24,7 +24,7 @@ namespace Sudoku.Generating
 		SudokuGrid? Generate();
 
 		/// <summary>
-		/// Generates a puzzle asynchronizedly.
+		/// Generates a puzzle asynchronously.
 		/// </summary>
 		/// <returns>The task.</returns>
 		public async Task<SudokuGrid?> GenerateAsync() => await Task.Run(Generate);

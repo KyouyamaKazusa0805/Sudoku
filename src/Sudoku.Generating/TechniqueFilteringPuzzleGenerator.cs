@@ -80,7 +80,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <summary>
-		/// To generate a puzzle that contains the specified technique code asynchronizedly.
+		/// To generate a puzzle that contains the specified technique code asynchronously.
 		/// </summary>
 		/// <param name="techniqueCodeFilter">
 		/// The technique codes to filter. If the parameter is <see langword="null"/>,

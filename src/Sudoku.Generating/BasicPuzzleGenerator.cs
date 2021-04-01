@@ -128,7 +128,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <summary>
-		/// Generate a puzzle with the specified information asynchronizedly.
+		/// Generate a puzzle with the specified information asynchronously.
 		/// </summary>
 		/// <param name="max">The maximum hints of the puzzle.</param>
 		/// <param name="symmetricalType">

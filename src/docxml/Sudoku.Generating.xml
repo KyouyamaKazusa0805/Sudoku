@@ -35,7 +35,7 @@
         </member>
         <member name="M:Sudoku.Generating.BasicPuzzleGenerator.GenerateAsync(System.Int32,Sudoku.Data.SymmetryType,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
-            Generate a puzzle with the specified information asynchronizedly.
+            Generate a puzzle with the specified information asynchronously.
             </summary>
             <param name="max">The maximum hints of the puzzle.</param>
             <param name="symmetricalType">
@@ -131,7 +131,7 @@
         </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Int32,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Solving.Manual.DifficultyLevel,Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
-            To generate a sudoku grid with a backdoor filter depth asynchronizedly.
+            To generate a sudoku grid with a backdoor filter depth asynchronously.
             </summary>
             <param name="backdoorFilterDepth">
             The backdoor filter depth. When the value is -1, the generator won't check
@@ -172,7 +172,7 @@
         </member>
         <member name="M:Sudoku.Generating.IPuzzleGenerator.GenerateAsync">
             <summary>
-            Generates a puzzle asynchronizedly.
+            Generates a puzzle asynchronously.
             </summary>
             <returns>The task.</returns>
         </member>
@@ -277,7 +277,7 @@
         </member>
         <member name="M:Sudoku.Generating.TechniqueFilteringPuzzleGenerator.GenerateAsync(Sudoku.Generating.TechniqueCodeFilter,System.IProgress{Sudoku.Models.IProgressResult},Sudoku.Globalization.CountryCode,System.Nullable{System.Threading.CancellationToken})">
             <summary>
-            To generate a puzzle that contains the specified technique code asynchronizedly.
+            To generate a puzzle that contains the specified technique code asynchronously.
             </summary>
             <param name="techniqueCodeFilter">
             The technique codes to filter. If the parameter is <see langword="null"/>,
