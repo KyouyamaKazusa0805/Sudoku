@@ -1,4 +1,5 @@
-﻿using System.Text.Markdown;
+﻿using System.Linq;
+using System.Text.Markdown;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.XmlDocs.Extensions
@@ -184,6 +185,206 @@ namespace Sudoku.XmlDocs.Extensions
 			}
 
 			@this.AppendHeaderText(3, "Value").AppendParagraph(text ?? string.Empty);
+
+		Returning:
+			return @this;
+		}
+
+		/// <summary>
+		/// Append "param" section text. If the parameter can't be found in the real parameter list,
+		/// this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="parameters">The parameter list.</param>
+		/// <param name="node">The node to check.</param>
+		/// <returns>The current document.</returns>
+		public static Document AppendParams(
+			this Document @this, (string ParamName, string? Description)[] parameters,
+			RecordDeclarationSyntax node)
+		{
+			if (node.ParameterList?.Parameters is not { } parameterList)
+			{
+				goto Returning;
+			}
+
+			if (parameterList.Count == 0)
+			{
+				goto Returning;
+			}
+
+			bool fastChecking = false;
+			foreach (var (paramName, description) in parameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					fastChecking = true;
+					break;
+				}
+			}
+			if (!fastChecking)
+			{
+				goto Returning;
+			}
+
+			@this.AppendHeaderText(3, "Parameter");
+
+			foreach (var (paramName, description) in parameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+				}
+			}
+
+		Returning:
+			return @this;
+		}
+
+		/// <summary>
+		/// Append "param" section text. If the parameter can't be found in the real parameter list,
+		/// this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="parameters">The parameter list.</param>
+		/// <param name="node">The node to check.</param>
+		/// <returns>The current document.</returns>
+		public static Document AppendParams(
+			this Document @this, (string ParamName, string? Description)[] parameters,
+			MethodDeclarationSyntax node)
+		{
+			if (node.ParameterList?.Parameters is not { } parameterList)
+			{
+				goto Returning;
+			}
+
+			if (parameterList.Count == 0)
+			{
+				goto Returning;
+			}
+
+			bool fastChecking = false;
+			foreach (var (paramName, description) in parameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					fastChecking = true;
+					break;
+				}
+			}
+			if (!fastChecking)
+			{
+				goto Returning;
+			}
+
+			@this.AppendHeaderText(3, "Parameter");
+
+			foreach (var (paramName, description) in parameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+				}
+			}
+
+		Returning:
+			return @this;
+		}
+
+		/// <summary>
+		/// Append "typeparam" section text. If the type parameter can't be found
+		/// in the real type parameter list, this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="typeParameters">The type parameter list.</param>
+		/// <param name="node">The node to check.</param>
+		/// <returns>The current document.</returns>
+		public static Document AppendTypeParams(
+			this Document @this, (string ParamName, string? Description)[] typeParameters,
+			TypeDeclarationSyntax node)
+		{
+			if (node.TypeParameterList?.Parameters is not { } parameterList)
+			{
+				goto Returning;
+			}
+
+			if (parameterList.Count == 0)
+			{
+				goto Returning;
+			}
+
+			bool fastChecking = false;
+			foreach (var (paramName, description) in typeParameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					fastChecking = true;
+					break;
+				}
+			}
+			if (!fastChecking)
+			{
+				goto Returning;
+			}
+
+			@this.AppendHeaderText(3, "Type Parameter");
+
+			foreach (var (paramName, description) in typeParameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+				}
+			}
+
+		Returning:
+			return @this;
+		}
+
+		/// <summary>
+		/// Append "typeparam" section text. If the type parameter can't be found
+		/// in the real type parameter list, this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="typeParameters">The type parameter list.</param>
+		/// <param name="node">The node to check.</param>
+		/// <returns>The current document.</returns>
+		public static Document AppendTypeParams(
+			this Document @this, (string ParamName, string? Description)[] typeParameters,
+			MethodDeclarationSyntax node)
+		{
+			if (node.TypeParameterList?.Parameters is not { } parameterList)
+			{
+				goto Returning;
+			}
+
+			if (parameterList.Count == 0)
+			{
+				goto Returning;
+			}
+
+			bool fastChecking = false;
+			foreach (var (paramName, description) in typeParameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					fastChecking = true;
+					break;
+				}
+			}
+			if (!fastChecking)
+			{
+				goto Returning;
+			}
+
+			@this.AppendHeaderText(3, "Type Parameter");
+
+			foreach (var (paramName, description) in typeParameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+				}
+			}
 
 		Returning:
 			return @this;

@@ -208,6 +208,46 @@
             <param name="node">The property or indexer syntax node.</param>
             <returns>The document itself.</returns>
         </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.RecordDeclarationSyntax)">
+            <summary>
+            Append "param" section text. If the parameter can't be found in the real parameter list,
+            this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="parameters">The parameter list.</param>
+            <param name="node">The node to check.</param>
+            <returns>The current document.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax)">
+            <summary>
+            Append "param" section text. If the parameter can't be found in the real parameter list,
+            this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="parameters">The parameter list.</param>
+            <param name="node">The node to check.</param>
+            <returns>The current document.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendTypeParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax)">
+            <summary>
+            Append "typeparam" section text. If the type parameter can't be found
+            in the real type parameter list, this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="typeParameters">The type parameter list.</param>
+            <param name="node">The node to check.</param>
+            <returns>The current document.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendTypeParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax)">
+            <summary>
+            Append "typeparam" section text. If the type parameter can't be found
+            in the real type parameter list, this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="typeParameters">The type parameter list.</param>
+            <param name="node">The node to check.</param>
+            <returns>The current document.</returns>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxListEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxList`1"/>.
