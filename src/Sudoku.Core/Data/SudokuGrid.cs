@@ -1040,7 +1040,7 @@ namespace Sudoku.Data
 			try
 			{
 				result = Parse(str);
-				return true;
+				return result != Undefined;
 			}
 			catch
 			{
