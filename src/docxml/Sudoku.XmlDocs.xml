@@ -134,6 +134,56 @@
             Indicates all modififers.
             </summary>
         </member>
+        <member name="T:Sudoku.XmlDocs.DocumentationBlockTitles">
+            <summary>
+            Provides the documentation block titles to display.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Summary">
+            <summary>
+            Indicates the "summary" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Remarks">
+            <summary>
+            Indicates the "remarks" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Returns">
+            <summary>
+            Indicates the "returns" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Example">
+            <summary>
+            Indicates the "example" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Exception">
+            <summary>
+            Indicates the "exception" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Value">
+            <summary>
+            Indicates the "value" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Parameter">
+            <summary>
+            Indicates the "param" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.TypeParameter">
+            <summary>
+            Indicates the "typeparam" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.SeeAlso">
+            <summary>
+            Indicates the "seealso" block.
+            </summary>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.DocumentEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Markdown.Document"/>.

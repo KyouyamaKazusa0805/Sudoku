@@ -48,7 +48,9 @@ namespace Sudoku.XmlDocs.Extensions
 		{
 			if (text is not null)
 			{
-				@this.AppendHeaderText(3, "Summary").AppendParagraph(text ?? string.Empty);
+				@this
+					.AppendHeaderText(3, DocumentationBlockTitles.Summary)
+					.AppendParagraph(text ?? string.Empty);
 			}
 
 			return @this;
@@ -88,7 +90,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Remarks").AppendParagraph(text ?? string.Empty);
+			@this.AppendHeaderText(3, DocumentationBlockTitles.Returns).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -105,7 +107,9 @@ namespace Sudoku.XmlDocs.Extensions
 		{
 			if (text is not null)
 			{
-				@this.AppendHeaderText(3, "Remarks").AppendParagraph(text ?? string.Empty);
+				@this
+					.AppendHeaderText(3, DocumentationBlockTitles.Remarks)
+					.AppendParagraph(text ?? string.Empty);
 			}
 
 			return @this;
@@ -122,7 +126,9 @@ namespace Sudoku.XmlDocs.Extensions
 		{
 			if (text is not null)
 			{
-				@this.AppendHeaderText(3, "Example").AppendParagraph(text ?? string.Empty);
+				@this
+					.AppendHeaderText(3, DocumentationBlockTitles.Example)
+					.AppendParagraph(text ?? string.Empty);
 			}
 
 			return @this;
@@ -135,11 +141,12 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="exceptions">The exceptions.</param>
 		/// <param name="descriptions">The descriptions.</param>
 		/// <returns>The document itself.</returns>
-		public static Document AppendException(this Document @this, string[]? exceptions, string?[]? descriptions)
+		public static Document AppendException(
+			this Document @this, string[]? exceptions, string?[]? descriptions)
 		{
 			if (exceptions is not null)
 			{
-				@this.AppendHeaderText(3, "Exception Throws");
+				@this.AppendHeaderText(3, DocumentationBlockTitles.Exception);
 
 				for (int i = 0; i < exceptions.Length; i++)
 				{
@@ -184,7 +191,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Value").AppendParagraph(text ?? string.Empty);
+			@this.AppendHeaderText(3, DocumentationBlockTitles.Value).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -226,7 +233,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Parameter");
+			@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
 
 			foreach (var (paramName, description) in parameters)
 			{
@@ -276,7 +283,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Parameter");
+			@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
 
 			foreach (var (paramName, description) in parameters)
 			{
@@ -326,7 +333,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Type Parameter");
+			@this.AppendHeaderText(3, DocumentationBlockTitles.TypeParameter);
 
 			foreach (var (paramName, description) in typeParameters)
 			{
@@ -376,7 +383,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, "Type Parameter");
+			@this.AppendHeaderText(3, DocumentationBlockTitles.TypeParameter);
 
 			foreach (var (paramName, description) in typeParameters)
 			{
