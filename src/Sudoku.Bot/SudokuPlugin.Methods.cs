@@ -152,12 +152,20 @@ namespace Sudoku.Bot
 					return false;
 				}
 
-				Settings.ShowCandidates = withCands;
-				var painter = new GridPainter(new(Size, Size), Settings, targetGrid);
-				using var image = painter.Draw();
-				await e.ReplyImageAsync(image, Desktop);
+				bool temp = Settings.ShowCandidates;
+				try
+				{
+					Settings.ShowCandidates = withCands;
+					var painter = new GridPainter(new(Size, Size), Settings, targetGrid);
+					using var image = painter.Draw();
+					await e.ReplyImageAsync(image, Desktop);
 
-				return true;
+					return true;
+				}
+				finally
+				{
+					Settings.ShowCandidates = temp;
+				}
 			}
 		}
 		private static async partial Task CleanAsync(string[] args, Session sender, GroupMessageReceivedEventArgs e)
@@ -372,11 +380,17 @@ namespace Sudoku.Bot
 					);
 
 					// Output the picture.
-					var painter = new GridPainter(
-						new(Size, Size), new(Settings) { ShowCandidates = showCandidates }, grid
-					);
-					using var image = painter.Draw();
-					await e.ReplyImageAsync(image, Desktop);
+					bool temp = Settings.ShowCandidates;
+					try
+					{
+						var painter = new GridPainter(new(Size, Size), Settings, grid);
+						using var image = painter.Draw();
+						await e.ReplyImageAsync(image, Desktop);
+					}
+					finally
+					{
+						Settings.ShowCandidates = temp;
+					}
 				}
 			}
 
