@@ -111,6 +111,23 @@ namespace Sudoku.XmlDocs.Extensions
 		}
 
 		/// <summary>
+		/// Append "example" section text. If the inner text is <see langword="null"/>,
+		/// this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="text">The inner text.</param>
+		/// <returns>The document itself.</returns>
+		public static Document AppendExample(this Document @this, string? text)
+		{
+			if (text is not null)
+			{
+				@this.AppendHeaderText(3, "Example").AppendParagraph(text ?? string.Empty);
+			}
+
+			return @this;
+		}
+
+		/// <summary>
 		/// Append "exception" section text. If the exceptions is <see langword="null"/>, it'll do nothing.
 		/// </summary>
 		/// <param name="this">The document.</param>
