@@ -1,4 +1,6 @@
-﻿namespace System.Text.Markdown
+﻿using System.Runtime.CompilerServices;
+
+namespace System.Text.Markdown
 {
 	partial class Document
 	{
@@ -10,15 +12,10 @@
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendText(string text)
 		{
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
-			}
-
-			_innerBuilder.Append(text);
-
+			_innerBuilder.AppendText(text);
 			return this;
 		}
 
@@ -30,15 +27,10 @@
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendParagraph(string text)
 		{
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
-			}
-
-			_innerBuilder.Append(text).AppendLine().AppendLine();
-
+			_innerBuilder.AppendParagraph(text);
 			return this;
 		}
 
@@ -56,59 +48,10 @@
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendInlineCodeBlock(string text, bool appendPaddingSpaces = false)
 		{
-			if (text.Contains(MarkdownSymbols.InlineCodeBlockStartDouble))
-			{
-				throw new FormatException(
-					$"The text can't contain double tilde mark \"{MarkdownSymbols.InlineCodeBlockStartDouble}\"."
-				);
-			}
-
-			switch ((text.Contains(MarkdownSymbols.InlineCodeBlockStartSingle), appendPaddingSpaces))
-			{
-				case (true, true):
-				{
-					_innerBuilder
-						.Append(' ')
-						.Append(MarkdownSymbols.InlineCodeBlockStartDouble)
-						.Append(text)
-						.Append(MarkdownSymbols.InlineCodeBlockEndDouble)
-						.Append(' ');
-
-					break;
-				}
-				case (true, false):
-				{
-					_innerBuilder
-						.Append(MarkdownSymbols.InlineCodeBlockStartDouble)
-						.Append(text)
-						.Append(MarkdownSymbols.InlineCodeBlockEndDouble);
-
-					break;
-				}
-				case (false, true):
-				{
-					_innerBuilder
-						.Append(' ')
-						.Append(MarkdownSymbols.InlineCodeBlockStartSingle)
-						.Append(text)
-						.Append(MarkdownSymbols.InlineCodeBlockEndSingle)
-						.Append(' ');
-
-					break;
-				}
-				case (false, false):
-				{
-					_innerBuilder
-						.Append(MarkdownSymbols.InlineCodeBlockStartSingle)
-						.Append(text)
-						.Append(MarkdownSymbols.InlineCodeBlockEndSingle);
-
-					break;
-				}
-			}
-
+			_innerBuilder.AppendInlineCodeBlock(text, appendPaddingSpaces);
 			return this;
 		}
 
@@ -118,13 +61,10 @@
 		/// <param name="code">The inner code.</param>
 		/// <param name="codelang">The code language. The default value is <c>"csharp"</c>.</param>
 		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendCodeBlock(string code, string? codelang = "csharp")
 		{
-			_innerBuilder
-				.Append(MarkdownSymbols.CodeBlockStart).Append(codelang ?? string.Empty).AppendLine()
-				.Append(code).AppendLine()
-				.Append(MarkdownSymbols.CodeBlockEnd).AppendLine().AppendLine();
-
+			_innerBuilder.AppendCodeBlock(code, codelang);
 			return this;
 		}
 
@@ -137,15 +77,10 @@
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
 		/// or only contains whitespace characters.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendHeaderText(string text)
 		{
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
-			}
-
-			_innerBuilder.Append(MarkdownSymbols.H1).Append(text).AppendLine().AppendLine();
-
+			_innerBuilder.AppendHeaderText(text);
 			return this;
 		}
 
@@ -159,23 +94,10 @@
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
 		/// or only contains whitespace characters.
 		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendHeaderText(int level, string text)
 		{
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
-			}
-
-			_innerBuilder.Append(level switch
-			{
-				1 => MarkdownSymbols.H1,
-				2 => MarkdownSymbols.H2,
-				3 => MarkdownSymbols.H3,
-				4 => MarkdownSymbols.H4,
-				5 => MarkdownSymbols.H5,
-				6 => MarkdownSymbols.H6
-			}).Append(text).AppendLine().AppendLine();
-
+			_innerBuilder.AppendHeaderText(level, text);
 			return this;
 		}
 
@@ -183,10 +105,10 @@
 		/// Append a new line.
 		/// </summary>
 		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendNewLine()
 		{
-			_innerBuilder.AppendLine().AppendLine();
-
+			_innerBuilder.AppendNewLine();
 			return this;
 		}
 	}
