@@ -134,52 +134,52 @@
             Indicates all modififers.
             </summary>
         </member>
-        <member name="T:Sudoku.XmlDocs.DocumentationBlockTitles">
+        <member name="T:Sudoku.XmlDocs.DocComments">
             <summary>
-            Provides the documentation block titles to display.
+            Provides the documentation comment blocks to display.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Summary">
+        <member name="F:Sudoku.XmlDocs.DocComments.Summary">
             <summary>
             Indicates the "summary" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Remarks">
+        <member name="F:Sudoku.XmlDocs.DocComments.Remarks">
             <summary>
             Indicates the "remarks" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Returns">
+        <member name="F:Sudoku.XmlDocs.DocComments.Returns">
             <summary>
             Indicates the "returns" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Example">
+        <member name="F:Sudoku.XmlDocs.DocComments.Example">
             <summary>
             Indicates the "example" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Exception">
+        <member name="F:Sudoku.XmlDocs.DocComments.Exception">
             <summary>
             Indicates the "exception" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Value">
+        <member name="F:Sudoku.XmlDocs.DocComments.Value">
             <summary>
             Indicates the "value" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.Parameter">
+        <member name="F:Sudoku.XmlDocs.DocComments.Parameter">
             <summary>
             Indicates the "param" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.TypeParameter">
+        <member name="F:Sudoku.XmlDocs.DocComments.TypeParameter">
             <summary>
             Indicates the "typeparam" block.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocumentationBlockTitles.SeeAlso">
+        <member name="F:Sudoku.XmlDocs.DocComments.SeeAlso">
             <summary>
             Indicates the "seealso" block.
             </summary>
@@ -447,6 +447,34 @@
             <param name="start">The range start value.</param>
             <param name="end">The range end value.</param>
             <param name="length">The length.</param>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.XmlElementEndTagSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementEndTagSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementEndTagSyntax"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.XmlElementEndTagSyntaxEx.IsMarkup(Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementEndTagSyntax,System.String)">
+            <summary>
+            Check whether the current tag is the specified markup.
+            </summary>
+            <param name="this">The node to check.</param>
+            <param name="textToCheck">The markup text to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.XmlElementStartTagSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementStartTagSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementStartTagSyntax"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.XmlElementStartTagSyntaxEx.IsMarkup(Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementStartTagSyntax,System.String)">
+            <summary>
+            Check whether the current tag is the specified markup.
+            </summary>
+            <param name="this">The node to check.</param>
+            <param name="textToCheck">The markup text to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.XmlDocs.Keywords">
             <summary>

@@ -1,9 +1,9 @@
 ﻿namespace Sudoku.XmlDocs
 {
 	/// <summary>
-	/// Provides the documentation block titles to display.
+	/// Provides the documentation comment blocks to display.
 	/// </summary>
-	internal static class DocumentationBlockTitles
+	internal static class DocComments
 	{
 		/// <summary>
 		/// Indicates the "summary" block.

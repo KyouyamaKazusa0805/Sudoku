@@ -126,12 +126,12 @@ foreach (var node in root.DescendantNodes().OfType<MethodDeclarationSyntax>())
 
 static bool p(XmlElementStartTagSyntax node) =>
 	node.Name.LocalName.ValueText.Equals(
-		DocumentationBlockTitles.Summary,
+		DocComments.Summary,
 		StringComparison.OrdinalIgnoreCase
 	);
 
 static bool q(XmlElementEndTagSyntax node) =>
 	node.Name.LocalName.ValueText.Equals(
-		DocumentationBlockTitles.Summary,
+		DocComments.Summary,
 		StringComparison.OrdinalIgnoreCase
 	);

@@ -50,7 +50,7 @@ namespace Sudoku.XmlDocs.Extensions
 			if (text is not null)
 			{
 				@this
-					.AppendHeaderText(3, DocumentationBlockTitles.Summary)
+					.AppendHeaderText(3, DocComments.Summary)
 					.AppendParagraph(text ?? string.Empty);
 			}
 
@@ -91,7 +91,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocumentationBlockTitles.Returns).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeaderText(3, DocComments.Returns).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -109,7 +109,7 @@ namespace Sudoku.XmlDocs.Extensions
 			if (text is not null)
 			{
 				@this
-					.AppendHeaderText(3, DocumentationBlockTitles.Remarks)
+					.AppendHeaderText(3, DocComments.Remarks)
 					.AppendParagraph(text ?? string.Empty);
 			}
 
@@ -128,7 +128,7 @@ namespace Sudoku.XmlDocs.Extensions
 			if (text is not null)
 			{
 				@this
-					.AppendHeaderText(3, DocumentationBlockTitles.Example)
+					.AppendHeaderText(3, DocComments.Example)
 					.AppendParagraph(text ?? string.Empty);
 			}
 
@@ -149,7 +149,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocumentationBlockTitles.Exception);
+			@this.AppendHeaderText(3, DocComments.Exception);
 
 			foreach (var (exceptionName, description) in exceptions)
 			{
@@ -192,7 +192,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocumentationBlockTitles.Value).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeaderText(3, DocComments.Value).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -231,7 +231,7 @@ namespace Sudoku.XmlDocs.Extensions
 					goto Returning;
 				}
 
-				@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
+				@this.AppendHeaderText(3, DocComments.Parameter);
 
 				foreach (var (paramName, description) in parameters)
 				{
@@ -283,7 +283,7 @@ namespace Sudoku.XmlDocs.Extensions
 					goto Returning;
 				}
 
-				@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
+				@this.AppendHeaderText(3, DocComments.Parameter);
 
 				foreach (var (paramName, description) in typeParameters)
 				{

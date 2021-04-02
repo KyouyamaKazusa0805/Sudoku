@@ -21,37 +21,49 @@ namespace Sudoku.XmlDocs.Extensions
 		public static string? GetSummary(this FieldDeclarationSyntax @this)
 		{
 			var sb = new StringBuilder();
+
+			// Iterate on all trivia.
 			foreach (var trivia in @this.GetLeadingTrivia())
 			{
+				// Check whether the curren trivia is the doc comment.
 				if (trivia.RawKind != (int)SyntaxKind.SingleLineDocumentationCommentTrivia)
 				{
 					continue;
 				}
 
+				// Now converts it to the structure (syntax nodes).
 				var docNodes = trivia.GetStructure();
 				if (docNodes is null)
 				{
 					continue;
 				}
 
-				var allPossibleNodes = docNodes.DescendantNodes();
-				var summaryMark = allPossibleNodes.OfType<XmlElementStartTagSyntax>().FirstOrDefault(p);
+				// Check whether the "summary" part exists.
+				// If so, get the start tag location.
+				var possibleNodes = docNodes.DescendantNodes();
+				var summaryMark = possibleNodes.OfType<XmlElementStartTagSyntax>().FirstOrDefault(startIsSummary);
 				if (summaryMark is null)
 				{
 					continue;
 				}
 
-				var endSummaryMark = allPossibleNodes.OfType<XmlElementEndTagSyntax>().FirstOrDefault(q);
+				// Get the end tag location.
+				var endSummaryMark = possibleNodes.OfType<XmlElementEndTagSyntax>().FirstOrDefault(endIsSummary);
 				if (endSummaryMark is null)
 				{
 					continue;
 				}
 
+				// Creates the location range ('TextSpan' structure instance).
 				var (rangeMin, rangeMax) = summaryMark.GetLocation().SourceSpan;
-				foreach (var possibleNode in allPossibleNodes)
+
+				// Iterate on each possible doc comment syntax node.
+				foreach (var possibleNode in possibleNodes)
 				{
+					// Use pattern matching to check the syntax node type and its inner values.
 					switch (possibleNode)
 					{
+						// XmlTextSyntax: Normal text.
 						case XmlTextSyntax { TextTokens: var textTokens } xmlText
 						when xmlText.GetLocation().IsInRange(rangeMin, rangeMax):
 						{
@@ -73,6 +85,9 @@ namespace Sudoku.XmlDocs.Extensions
 
 							break;
 						}
+
+						// XmlEmptyElementSyntax: The inline XML markup, with no value,
+						// such as '<seealso cref="A.B(ref int)" />'.
 						case XmlEmptyElementSyntax refOrSee
 						when refOrSee.GetLocation().IsInRange(rangeMin, rangeMax):
 						{
@@ -107,18 +122,12 @@ namespace Sudoku.XmlDocs.Extensions
 				}
 			}
 
+			// Returns the value.
 			return sb.ToString();
 
 
-			static bool p(XmlElementStartTagSyntax node) =>
-				node.Name.LocalName.ValueText.Equals(
-					DocumentationBlockTitles.Summary, StringComparison.OrdinalIgnoreCase
-				);
-
-			static bool q(XmlElementEndTagSyntax node) =>
-				node.Name.LocalName.ValueText.Equals(
-					DocumentationBlockTitles.Summary, StringComparison.OrdinalIgnoreCase
-				);
+			static bool startIsSummary(XmlElementStartTagSyntax node) => node.IsMarkup(DocComments.Summary);
+			static bool endIsSummary(XmlElementEndTagSyntax node) => node.IsMarkup(DocComments.Summary);
 		}
 
 		/// <summary>
