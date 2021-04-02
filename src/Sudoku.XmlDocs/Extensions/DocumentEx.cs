@@ -207,91 +207,43 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="node">The node to check.</param>
 		/// <returns>The current document.</returns>
 		public static Document AppendParams(
-			this Document @this, (string ParamName, string? Description)[] parameters,
-			RecordDeclarationSyntax node)
+			this Document @this, (string ParamName, string? Description)[]? parameters,
+			BaseMethodDeclarationSyntax node)
 		{
-			if (node.ParameterList?.Parameters is not { } parameterList)
+			if (node.ParameterList?.Parameters is { } parameterList)
 			{
-				goto Returning;
-			}
-
-			if (parameterList.Count == 0)
-			{
-				goto Returning;
-			}
-
-			bool fastChecking = false;
-			foreach (var (paramName, description) in parameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				if (parameters is null || parameterList.Count == 0)
 				{
-					fastChecking = true;
-					break;
+					goto Returning;
+				}
+
+				bool fastChecking = false;
+				foreach (var (paramName, description) in parameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						fastChecking = true;
+						break;
+					}
+				}
+				if (!fastChecking)
+				{
+					goto Returning;
+				}
+
+				@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
+
+				foreach (var (paramName, description) in parameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+					}
 				}
 			}
-			if (!fastChecking)
+			else if (parameters is not null)
 			{
 				goto Returning;
-			}
-
-			@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
-
-			foreach (var (paramName, description) in parameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
-				}
-			}
-
-		Returning:
-			return @this;
-		}
-
-		/// <summary>
-		/// Append "param" section text. If the parameter can't be found in the real parameter list,
-		/// this method will do nothing.
-		/// </summary>
-		/// <param name="this">The document.</param>
-		/// <param name="parameters">The parameter list.</param>
-		/// <param name="node">The node to check.</param>
-		/// <returns>The current document.</returns>
-		public static Document AppendParams(
-			this Document @this, (string ParamName, string? Description)[] parameters,
-			MethodDeclarationSyntax node)
-		{
-			if (node.ParameterList?.Parameters is not { } parameterList)
-			{
-				goto Returning;
-			}
-
-			if (parameterList.Count == 0)
-			{
-				goto Returning;
-			}
-
-			bool fastChecking = false;
-			foreach (var (paramName, description) in parameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					fastChecking = true;
-					break;
-				}
-			}
-			if (!fastChecking)
-			{
-				goto Returning;
-			}
-
-			@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
-
-			foreach (var (paramName, description) in parameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
-				}
 			}
 
 		Returning:
@@ -307,91 +259,43 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="node">The node to check.</param>
 		/// <returns>The current document.</returns>
 		public static Document AppendTypeParams(
-			this Document @this, (string ParamName, string? Description)[] typeParameters,
-			TypeDeclarationSyntax node)
-		{
-			if (node.TypeParameterList?.Parameters is not { } parameterList)
-			{
-				goto Returning;
-			}
-
-			if (parameterList.Count == 0)
-			{
-				goto Returning;
-			}
-
-			bool fastChecking = false;
-			foreach (var (paramName, description) in typeParameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					fastChecking = true;
-					break;
-				}
-			}
-			if (!fastChecking)
-			{
-				goto Returning;
-			}
-
-			@this.AppendHeaderText(3, DocumentationBlockTitles.TypeParameter);
-
-			foreach (var (paramName, description) in typeParameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
-				}
-			}
-
-		Returning:
-			return @this;
-		}
-
-		/// <summary>
-		/// Append "typeparam" section text. If the type parameter can't be found
-		/// in the real type parameter list, this method will do nothing.
-		/// </summary>
-		/// <param name="this">The document.</param>
-		/// <param name="typeParameters">The type parameter list.</param>
-		/// <param name="node">The node to check.</param>
-		/// <returns>The current document.</returns>
-		public static Document AppendTypeParams(
-			this Document @this, (string ParamName, string? Description)[] typeParameters,
+			this Document @this, (string ParamName, string? Description)[]? typeParameters,
 			MethodDeclarationSyntax node)
 		{
-			if (node.TypeParameterList?.Parameters is not { } parameterList)
+			if (node.TypeParameterList?.Parameters is { } parameterList)
 			{
-				goto Returning;
-			}
-
-			if (parameterList.Count == 0)
-			{
-				goto Returning;
-			}
-
-			bool fastChecking = false;
-			foreach (var (paramName, description) in typeParameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				if (typeParameters is null || parameterList.Count == 0)
 				{
-					fastChecking = true;
-					break;
+					goto Returning;
+				}
+
+				bool fastChecking = false;
+				foreach (var (paramName, description) in typeParameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						fastChecking = true;
+						break;
+					}
+				}
+				if (!fastChecking)
+				{
+					goto Returning;
+				}
+
+				@this.AppendHeaderText(3, DocumentationBlockTitles.Parameter);
+
+				foreach (var (paramName, description) in typeParameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+					}
 				}
 			}
-			if (!fastChecking)
+			else if (typeParameters is not null)
 			{
 				goto Returning;
-			}
-
-			@this.AppendHeaderText(3, DocumentationBlockTitles.TypeParameter);
-
-			foreach (var (paramName, description) in typeParameters)
-			{
-				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-				{
-					@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
-				}
 			}
 
 		Returning:

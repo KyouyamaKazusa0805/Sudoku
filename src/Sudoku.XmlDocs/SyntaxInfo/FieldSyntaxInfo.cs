@@ -8,7 +8,6 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 	/// Defines a field syntax information.
 	/// </summary>
 	/// <param name="SyntaxNode">The current syntax node.</param>
-	/// <param name="SemanticModel">The current semantic model.</param>
 	/// <param name="IdentifierName">The identifier name of this member.</param>
 	/// <param name="CustomAccessibility">The accessibility.</param>
 	/// <param name="CustomModifier">The custom modifier.</param>
@@ -16,15 +15,15 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 	/// <param name="Remarks">The documentation comment for the section "remarks".</param>
 	/// <param name="Example">The documentation comment for the section "example".</param>
 	/// <param name="ExceptionList">The <c>exception</c> list.</param>
-	/// <param name="SeeAlsos">The <c>seealso</c> list.</param>
+	/// <param name="SeeAlsoList">The <c>seealso</c> list.</param>
 	public sealed record FieldSyntaxInfo(
-		SyntaxNode SyntaxNode, SemanticModel SemanticModel, string IdentifierName,
+		SyntaxNode SyntaxNode, string IdentifierName,
 		CustomAccessibility CustomAccessibility, CustomModifier CustomModifier,
 		string? Summary, string? Remarks, string? Example,
-		(string Exception, string? Description)[]? ExceptionList, string[]? SeeAlsos
+		(string Exception, string? Description)[]? ExceptionList, string[]? SeeAlsoList
 	) : MemberSyntaxInfo(
-		SyntaxNode, SemanticModel, IdentifierName, CustomAccessibility, CustomModifier,
-		Summary, Remarks, Example, ExceptionList, SeeAlsos
+		SyntaxNode, IdentifierName, CustomAccessibility, CustomModifier,
+		Summary, Remarks, Example, ExceptionList, SeeAlsoList
 	)
 	{
 		/// <inheritdoc/>

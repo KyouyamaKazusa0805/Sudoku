@@ -122,6 +122,27 @@ namespace Sudoku.XmlDocs.Extensions
 		}
 
 		/// <summary>
+		/// Get param content.
+		/// </summary>
+		/// <param name="this">The node.</param>
+		/// <returns>The content.</returns>
+		public static (string Param, string? Description)[]? GetParamList(this ParameterListSyntax? @this)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Get typeparam content.
+		/// </summary>
+		/// <param name="this">The node.</param>
+		/// <returns>The content.</returns>
+		public static (string TypeParam, string? Description)[]? GetTypeParamList(
+			this TypeParameterListSyntax? @this)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
 		/// Get remarks content.
 		/// </summary>
 		/// <param name="this">The node.</param>
@@ -156,7 +177,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// </summary>
 		/// <param name="this">The node.</param>
 		/// <returns>The content.</returns>
-		public static string[]? GetSeeAlsos(this FieldDeclarationSyntax @this)
+		public static string[]? GetSeeAlsoList(this FieldDeclarationSyntax @this)
 		{
 			throw new NotImplementedException();
 		}

@@ -95,7 +95,7 @@ namespace Sudoku.XmlDocs
 				foreach (var typeDeclarationSyntax in typeDeclarationSyntaxes)
 				{
 					// Gather all member information.
-					var memberInfos = GetMemberSyntaxInfos(typeDeclarationSyntax, semanticModel);
+					var memberInfos = GetMemberSyntaxInfos(typeDeclarationSyntax);
 				}
 			}
 		}
@@ -105,10 +105,8 @@ namespace Sudoku.XmlDocs
 		/// Get information from all members, and returns the list of those instances.
 		/// </summary>
 		/// <param name="typeDeclarationSyntax">The type declaration syntax node.</param>
-		/// <param name="semanticModel">The semantic model.</param>
 		/// <returns>The list of information instances.</returns>
-		private IList<MemberSyntaxInfo> GetMemberSyntaxInfos(
-			TypeDeclarationSyntax typeDeclarationSyntax, SemanticModel semanticModel)
+		private IList<MemberSyntaxInfo> GetMemberSyntaxInfos(TypeDeclarationSyntax typeDeclarationSyntax)
 		{
 			var result = new List<MemberSyntaxInfo>();
 
@@ -125,19 +123,17 @@ namespace Sudoku.XmlDocs
 					{
 						foreach (var fieldDeclarator in variables)
 						{
-							string text = fieldDeclarator.Identifier.ValueText;
 							result.Add(
 								new FieldSyntaxInfo(
-									SyntaxNode: fieldDeclaration,
-									SemanticModel: semanticModel,
-									IdentifierName: text,
-									CustomAccessibility: CustomAccessibility.Public,
-									CustomModifier: modifiers.GetCustomModifiers(),
-									Summary: fieldDeclaration.GetSummary(),
-									Remarks: fieldDeclaration.GetRemarks(),
-									Example: fieldDeclaration.GetExample(),
-									ExceptionList: fieldDeclaration.GetExceptions(),
-									SeeAlsos: fieldDeclaration.GetSeeAlsos()
+									fieldDeclaration,
+									fieldDeclarator.Identifier.ValueText,
+									CustomAccessibility.Public,
+									modifiers.GetCustomModifiers(),
+									fieldDeclaration.GetSummary(),
+									fieldDeclaration.GetRemarks(),
+									fieldDeclaration.GetExample(),
+									fieldDeclaration.GetExceptions(),
+									fieldDeclaration.GetSeeAlsoList()
 								)
 							);
 						}
