@@ -428,6 +428,25 @@
             <param name="customAccessibility">The custom accessibility.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.TextSpanEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.TextSpanEx.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">The current instance.</param>
+            <param name="start">The range start value.</param>
+            <param name="end">The range end value.</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.TextSpanEx.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@,System.Int32@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">The current instance.</param>
+            <param name="start">The range start value.</param>
+            <param name="end">The range end value.</param>
+            <param name="length">The length.</param>
+        </member>
         <member name="T:Sudoku.XmlDocs.Keywords">
             <summary>
             Provides keywords used.

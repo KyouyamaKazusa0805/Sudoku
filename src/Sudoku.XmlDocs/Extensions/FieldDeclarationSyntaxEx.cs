@@ -47,8 +47,7 @@ namespace Sudoku.XmlDocs.Extensions
 					continue;
 				}
 
-				int rangeMin = summaryMark.GetLocation().SourceSpan.End;
-				int rangeMax = endSummaryMark.GetLocation().SourceSpan.Start;
+				var (rangeMin, rangeMax) = summaryMark.GetLocation().SourceSpan;
 				foreach (var possibleNode in allPossibleNodes)
 				{
 					switch (possibleNode)
