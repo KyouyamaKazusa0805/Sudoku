@@ -1748,6 +1748,86 @@
             <seealso cref="T:System.Text.StringBuilder"/>
             <seealso cref="T:System.Text.ValueStringBuilder"/>
         </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendText(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append plain text.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendParagraph(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append a paragraph with a new line.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineCodeBlock(System.Text.ValueStringBuilder@,System.String,System.Boolean)">
+            <summary>
+            Append inline code block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The inner text.</param>
+            <param name="appendPaddingSpaces">
+            Indicates whether the block will append padding spaces surrounded
+            the block. If <see langword="true"/>,
+            the method will append a trailing space and a leading space to the block.
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendCodeBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
+            <summary>
+            Append the code block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="code">The inner code.</param>
+            <param name="codelang">The code language.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append header text.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The inner text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.ValueStringBuilder@,System.Int32,System.String)">
+            <summary>
+            Append header text, with the specified header level.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="level">The header level. The value should be between 1 and 6.</param>
+            <param name="text">The inner text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.ValueStringBuilder@)">
+            <summary>
+            Append a new line.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>The current instance.</returns>
+        </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendText(System.Text.StringBuilder,System.String)">
             <summary>
             Append plain text.
