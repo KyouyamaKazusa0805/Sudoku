@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Text.Markdown;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -57,18 +58,18 @@ namespace Sudoku.XmlDocs.Extensions
 						{
 							foreach (var textToken in textTokens)
 							{
-								if (textToken.RawKind == (int)SyntaxKind.XmlTextLiteralNewLineToken)
+								if (
+									textToken is
+									{
+										RawKind: not (int)SyntaxKind.XmlTextLiteralNewLineToken,
+										ValueText: var valueText
+									}
+									&& valueText.Trim() is var text
+									&& !string.IsNullOrEmpty(text)
+								)
 								{
-									continue;
+									sb.Append(text);
 								}
-
-								var text = textToken.ValueText.Trim();
-								if (string.IsNullOrEmpty(text))
-								{
-									continue;
-								}
-
-								sb.Append(text);
 							}
 
 							break;
@@ -85,17 +86,17 @@ namespace Sudoku.XmlDocs.Extensions
 										Identifier: { Identifier: { ValueText: var text } }
 									}:
 									{
-										sb.Append($" `{text}` ");
+										sb.AppendInlineCodeBlock(text, true);
 										break;
 									}
 									case QualifiedCrefSyntax:
 									{
-										sb.Append($" `{crefNode}` ");
+										sb.AppendInlineCodeBlock(crefNode.ToString(), true);
 										break;
 									}
 									case NameMemberCrefSyntax:
 									{
-										sb.Append($" `{crefNode}` ");
+										sb.AppendInlineCodeBlock(crefNode.ToString(), true);
 										break;
 									}
 								}
