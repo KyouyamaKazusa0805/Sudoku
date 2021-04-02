@@ -150,5 +150,15 @@ namespace Sudoku.XmlDocs.Extensions
 		{
 			throw new NotImplementedException();
 		}
+
+		/// <summary>
+		/// Get see-also content.
+		/// </summary>
+		/// <param name="this">The node.</param>
+		/// <returns>The content.</returns>
+		public static string[]? GetSeeAlsos(this FieldDeclarationSyntax @this)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

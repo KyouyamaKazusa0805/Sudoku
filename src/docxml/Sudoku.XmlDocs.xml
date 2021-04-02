@@ -331,6 +331,13 @@
             <param name="this">The node.</param>
             <returns>The content.</returns>
         </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx.GetSeeAlsos(Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax)">
+            <summary>
+            Get see-also content.
+            </summary>
+            <param name="this">The node.</param>
+            <returns>The content.</returns>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.LocationEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Location"/>.
@@ -580,9 +587,10 @@
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
             <param name="Example">The documentation comment for the section "example".</param>
-            <param name="ExceptionList">The exception list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsos">The <c>seealso</c> list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[])">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[],System.String[])">
             <summary>
             Defines a field syntax information.
             </summary>
@@ -594,7 +602,8 @@
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
             <param name="Example">The documentation comment for the section "example".</param>
-            <param name="ExceptionList">The exception list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsos">The <c>seealso</c> list.</param>
         </member>
         <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.ToString">
             <inheritdoc/>
@@ -611,9 +620,10 @@
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
             <param name="Example">The documentation comment for the section "example".</param>
-            <param name="ExceptionList">The exception list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsos">The <c>seealso</c> list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[])">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[],System.String[])">
             <summary>
             Defines a member syntax information.
             </summary>
@@ -625,7 +635,8 @@
             <param name="Summary">The documentation comment for the section "summary".</param>
             <param name="Remarks">The documentation comment for the section "remarks".</param>
             <param name="Example">The documentation comment for the section "example".</param>
-            <param name="ExceptionList">The exception list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsos">The <c>seealso</c> list.</param>
         </member>
         <member name="T:Sudoku.XmlDocs.TypeKind">
             <summary>

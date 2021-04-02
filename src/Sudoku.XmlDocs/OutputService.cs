@@ -136,7 +136,8 @@ namespace Sudoku.XmlDocs
 									Summary: fieldDeclaration.GetSummary(),
 									Remarks: fieldDeclaration.GetRemarks(),
 									Example: fieldDeclaration.GetExample(),
-									ExceptionList: fieldDeclaration.GetExceptions()
+									ExceptionList: fieldDeclaration.GetExceptions(),
+									SeeAlsos: fieldDeclaration.GetSeeAlsos()
 								)
 							);
 						}
