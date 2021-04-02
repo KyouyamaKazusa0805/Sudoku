@@ -46,11 +46,17 @@
 		/// Append inline code block.
 		/// </summary>
 		/// <param name="text">The inner text.</param>
+		/// <param name="appendPaddingSpaces">
+		/// Indicates whether the block will append padding spaces surrounded
+		/// the block. If <see langword="true"/>,
+		/// the method will append a trailing space and a leading space to the block.
+		/// The default value is <see langword="false"/>.
+		/// </param>
 		/// <returns>The current instance.</returns>
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
 		/// </exception>
-		public Document AppendInlineCodeBlock(string text)
+		public Document AppendInlineCodeBlock(string text, bool appendPaddingSpaces = false)
 		{
 			if (text.Contains(MarkdownSymbols.InlineCodeBlockStartDouble))
 			{
@@ -59,17 +65,49 @@
 				);
 			}
 
-			_innerBuilder.Append(
-				text.Contains(MarkdownSymbols.InlineCodeBlockStartSingle)
-				? _innerBuilder
-				.Append(MarkdownSymbols.InlineCodeBlockStartDouble)
-				.Append(text)
-				.Append(MarkdownSymbols.InlineCodeBlockEndDouble)
-				: _innerBuilder
-				.Append(MarkdownSymbols.InlineCodeBlockStartSingle)
-				.Append(text)
-				.Append(MarkdownSymbols.InlineCodeBlockEndSingle)
-			);
+			switch ((text.Contains(MarkdownSymbols.InlineCodeBlockStartSingle), appendPaddingSpaces))
+			{
+				case (true, true):
+				{
+					_innerBuilder
+						.Append(' ')
+						.Append(MarkdownSymbols.InlineCodeBlockStartDouble)
+						.Append(text)
+						.Append(MarkdownSymbols.InlineCodeBlockEndDouble)
+						.Append(' ');
+
+					break;
+				}
+				case (true, false):
+				{
+					_innerBuilder
+						.Append(MarkdownSymbols.InlineCodeBlockStartDouble)
+						.Append(text)
+						.Append(MarkdownSymbols.InlineCodeBlockEndDouble);
+
+					break;
+				}
+				case (false, true):
+				{
+					_innerBuilder
+						.Append(' ')
+						.Append(MarkdownSymbols.InlineCodeBlockStartSingle)
+						.Append(text)
+						.Append(MarkdownSymbols.InlineCodeBlockEndSingle)
+						.Append(' ');
+
+					break;
+				}
+				case (false, false):
+				{
+					_innerBuilder
+						.Append(MarkdownSymbols.InlineCodeBlockStartSingle)
+						.Append(text)
+						.Append(MarkdownSymbols.InlineCodeBlockEndSingle);
+
+					break;
+				}
+			}
 
 			return this;
 		}

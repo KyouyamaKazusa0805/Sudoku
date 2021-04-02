@@ -20,7 +20,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 		SyntaxNode SyntaxNode, SemanticModel SemanticModel, string IdentifierName,
 		CustomAccessibility CustomAccessibility, CustomModifier CustomModifier,
 		string? Summary, string? Remarks, string? Example,
-		(string[]? Exceptions, string?[]? Descriptions) ExceptionList
+		(string Exceptions, string? Descriptions)[]? ExceptionList
 	) : MemberSyntaxInfo(
 		SyntaxNode, SemanticModel, IdentifierName, CustomAccessibility, CustomModifier,
 		Summary, Remarks, Example, ExceptionList
@@ -32,7 +32,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 			.AppendTitle(MemberKind.Field, IdentifierName)
 			.AppendSummary(Summary)
 			.AppendRemarks(Remarks)
-			.AppendException(ExceptionList.Exceptions, ExceptionList.Descriptions)
+			.AppendException(ExceptionList)
 			.ToString();
 	}
 }

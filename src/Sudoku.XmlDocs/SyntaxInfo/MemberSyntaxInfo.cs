@@ -18,6 +18,6 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 		SyntaxNode SyntaxNode, SemanticModel SemanticModel, string IdentifierName,
 		CustomAccessibility CustomAccessibility, CustomModifier CustomModifier,
 		string? Summary, string? Remarks, string? Example,
-		(string[]? Exceptions, string?[]? Descriptions) ExceptionList
+		(string Exceptions, string? Descriptions)[]? ExceptionList
 	);
 }

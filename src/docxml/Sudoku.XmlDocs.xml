@@ -237,13 +237,12 @@
             <param name="text">The inner text.</param>
             <returns>The document itself.</returns>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendException(System.Text.Markdown.Document,System.String[],System.String[])">
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendException(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[])">
             <summary>
             Append "exception" section text. If the exceptions is <see langword="null"/>, it'll do nothing.
             </summary>
             <param name="this">The document.</param>
             <param name="exceptions">The exceptions.</param>
-            <param name="descriptions">The descriptions.</param>
             <returns>The document itself.</returns>
         </member>
         <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendValue(System.Text.Markdown.Document,System.String,Microsoft.CodeAnalysis.CSharp.Syntax.BasePropertyDeclarationSyntax)">
@@ -297,6 +296,55 @@
             <param name="typeParameters">The type parameter list.</param>
             <param name="node">The node to check.</param>
             <returns>The current document.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx.GetSummary(Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax)">
+            <summary>
+            Get summary content.
+            </summary>
+            <param name="this">The node.</param>
+            <returns>The content.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx.GetRemarks(Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax)">
+            <summary>
+            Get remarks content.
+            </summary>
+            <param name="this">The node.</param>
+            <returns>The content.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx.GetExample(Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax)">
+            <summary>
+            Get example content.
+            </summary>
+            <param name="this">The node.</param>
+            <returns>The content.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.FieldDeclarationSyntaxEx.GetExceptions(Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax)">
+            <summary>
+            Get exceptions content.
+            </summary>
+            <param name="this">The node.</param>
+            <returns>The content.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.LocationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Location"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Location"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.LocationEx.IsInRange(Microsoft.CodeAnalysis.Location,System.Int32,System.Int32)">
+            <summary>
+            Indicates whether the current location is in the specified range.
+            </summary>
+            <param name="this">The location instance.</param>
+            <param name="min">The minimal value.</param>
+            <param name="max">The maximal value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxListEx">
             <summary>
@@ -515,7 +563,7 @@
             <param name="Example">The documentation comment for the section "example".</param>
             <param name="ExceptionList">The exception list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String[],System.String[]})">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.FieldSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[])">
             <summary>
             Defines a field syntax information.
             </summary>
@@ -546,7 +594,7 @@
             <param name="Example">The documentation comment for the section "example".</param>
             <param name="ExceptionList">The exception list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String[],System.String[]})">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.MemberSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[])">
             <summary>
             Defines a member syntax information.
             </summary>

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.Markdown;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.XmlDocs.Extensions
@@ -139,25 +140,25 @@ namespace Sudoku.XmlDocs.Extensions
 		/// </summary>
 		/// <param name="this">The document.</param>
 		/// <param name="exceptions">The exceptions.</param>
-		/// <param name="descriptions">The descriptions.</param>
 		/// <returns>The document itself.</returns>
 		public static Document AppendException(
-			this Document @this, string[]? exceptions, string?[]? descriptions)
+			this Document @this, (string Exception, string? Description)[]? exceptions)
 		{
-			if (exceptions is not null)
+			if (exceptions is null)
 			{
-				@this.AppendHeaderText(3, DocumentationBlockTitles.Exception);
-
-				for (int i = 0; i < exceptions.Length; i++)
-				{
-					string exception = exceptions[i];
-					string? description = descriptions?[i];
-					@this
-						.AppendHeaderText(4, exception)
-						.AppendParagraph(description ?? string.Empty);
-				}
+				goto Returning;
 			}
 
+			@this.AppendHeaderText(3, DocumentationBlockTitles.Exception);
+
+			foreach (var (exceptionName, description) in exceptions)
+			{
+				@this
+					.AppendHeaderText(4, exceptionName)
+					.AppendParagraph(description ?? string.Empty);
+			}
+
+		Returning:
 			return @this;
 		}
 
