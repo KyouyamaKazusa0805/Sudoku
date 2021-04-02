@@ -140,6 +140,29 @@ namespace Sudoku.XmlDocs
 
 						break;
 					}
+					//case ConstructorDeclarationSyntax
+					//{
+					//	Modifiers: var modifiers,
+					//	ParameterList: { Parameters: var parameterList }
+					//} constructorDeclaration when modifiers.Contains(CustomAccessibility.Public):
+					//{
+					//	result.Add(
+					//		new ConstructorSyntaxInfo(
+					//			constructorDeclaration,
+					//			constructorDeclaration.Identifier.ValueText,
+					//			CustomAccessibility.Public,
+					//			modifiers.GetCustomModifiers(),
+					//			constructorDeclaration.GetSummary(),
+					//			constructorDeclaration.GetRemarks(),
+					//			constructorDeclaration.GetExample(),
+					//			parameterList.ToSyntaxInfoItem(),
+					//			constructorDeclaration.GetExceptionList(),
+					//			constructorDeclaration.GetSeeAlsoList()
+					//		)
+					//	);
+					//
+					//	break;
+					//}
 				}
 			}
 
