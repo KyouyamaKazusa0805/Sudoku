@@ -22,8 +22,8 @@ namespace Sudoku.Recognition
 		{
 			Cell = cell;
 			Digit = digit;
-			Data.Add(nameof(Cell), new WeakBox<int>(cell));
-			Data.Add(nameof(Digit), new WeakBox<int>(digit));
+			Data.Add(nameof(Cell), cell);
+			Data.Add(nameof(Digit), digit);
 		}
 
 

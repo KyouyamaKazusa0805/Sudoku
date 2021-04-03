@@ -184,6 +184,21 @@
             Indicates the "seealso" block.
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.DocComments.ParagraphNodeName">
+            <summary>
+            Indicates the paragraph node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocComments.InlineCodeBlockNodeName">
+            <summary>
+            Indicates the inline code block node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocComments.CodeBlockNodeName">
+            <summary>
+            Indicates the code block node name.
+            </summary>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.DocumentEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Markdown.Document"/>.

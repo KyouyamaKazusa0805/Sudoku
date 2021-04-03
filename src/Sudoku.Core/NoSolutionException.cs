@@ -18,7 +18,7 @@ namespace Sudoku
 		public NoSolutionException(in SudokuGrid grid)
 		{
 			InvalidGrid = grid;
-			Data.Add(nameof(InvalidGrid), new WeakBox<SudokuGrid>(grid));
+			Data.Add(nameof(InvalidGrid), grid);
 		}
 
 		/// <inheritdoc/>

@@ -21,7 +21,7 @@ namespace Sudoku
 		{
 			InvalidGrid = grid;
 			Reason = reason;
-			Data.Add(nameof(InvalidGrid), new WeakBox<SudokuGrid>(grid));
+			Data.Add(nameof(InvalidGrid), grid);
 			Data.Add(nameof(Reason), reason);
 		}
 

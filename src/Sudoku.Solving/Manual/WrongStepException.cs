@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual
 		{
 			InvalidGrid = grid;
 			WrongStep = wrongStep;
-			Data.Add(nameof(InvalidGrid), new WeakBox<SudokuGrid>(grid));
+			Data.Add(nameof(InvalidGrid), grid);
 			Data.Add(nameof(WrongStep), wrongStep);
 		}
 

@@ -2748,19 +2748,5 @@
             </summary>
             <param name="s">The string.</param>
         </member>
-        <member name="T:System.WeakBox`1">
-            <summary>
-            Provides a data structure that stores a value type to avoid boxing and unboxing operations.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="Value">The value stored.</param>
-        </member>
-        <member name="M:System.WeakBox`1.#ctor(`0)">
-            <summary>
-            Provides a data structure that stores a value type to avoid boxing and unboxing operations.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="Value">The value stored.</param>
-        </member>
     </members>
 </doc>
