@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -72,7 +73,8 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The technique group that this technique instance belongs to.
 		/// </summary>
-		public abstract TechniqueGroup TechniqueGroup { get; }
+		public virtual TechniqueGroup TechniqueGroup =>
+			Enum.TryParse<TechniqueGroup>(TechniqueCode.ToString(), out var inst) ? inst : TechniqueGroup.None;
 
 		/// <summary>
 		/// The difficulty level of this step.
