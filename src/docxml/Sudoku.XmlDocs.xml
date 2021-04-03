@@ -257,7 +257,17 @@
             <param name="node">The property or indexer syntax node.</param>
             <returns>The document itself.</returns>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.BaseMethodDeclarationSyntax)">
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.BaseMethodDeclarationSyntax)">
+            <summary>
+            Append "param" section text. If the parameter can't be found in the real parameter list,
+            this method will do nothing.
+            </summary>
+            <param name="this">The document.</param>
+            <param name="parameters">The parameter list.</param>
+            <param name="node">The node to check.</param>
+            <returns>The current document.</returns>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendParams(System.Text.Markdown.Document,System.ValueTuple{System.String,System.String,System.String}[],Microsoft.CodeAnalysis.CSharp.Syntax.RecordDeclarationSyntax)">
             <summary>
             Append "param" section text. If the parameter can't be found in the real parameter list,
             this method will do nothing.
@@ -346,6 +356,18 @@
             <param name="min">The minimal value.</param>
             <param name="max">The maximal value.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.ParameterSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.ParameterSyntaxEx.Deconstruct(Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax@,Microsoft.CodeAnalysis.SyntaxToken@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">The current parameter syntax node.</param>
+            <param name="type">The type syntax node.</param>
+            <param name="identifier">The identifier syntax token.</param>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxListEx">
             <summary>
@@ -593,7 +615,7 @@
             <summary>
             Get information from all members, and returns the list of those instances.
             </summary>
-            <param name="typeDeclarationSyntax">The type declaration syntax node.</param>
+            <param name="typeDeclaration">The type declaration syntax node.</param>
             <returns>The list of information instances.</returns>
         </member>
         <member name="T:Sudoku.XmlDocs.SyntaxInfo.ConstructorSyntaxInfo">
@@ -611,7 +633,7 @@
             <param name="ExceptionList">The <c>exception</c> list.</param>
             <param name="SeeAlsoList">The <c>seealso</c> list.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.SyntaxInfo.ConstructorSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String}[],System.ValueTuple{System.String,System.String}[],System.String[])">
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.ConstructorSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,System.String,Sudoku.XmlDocs.CustomAccessibility,Sudoku.XmlDocs.CustomModifier,System.String,System.String,System.String,System.ValueTuple{System.String,System.String,System.String}[],System.ValueTuple{System.String,System.String}[],System.String[])">
             <summary>
             Defines a constructor syntax information.
             </summary>
@@ -665,7 +687,10 @@
             Defines a member syntax information.
             </summary>
             <param name="SyntaxNode">The current syntax node.</param>
-            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="IdentifierName">
+            The identifier name of this member. <see langword="null"/> if the member is the
+            <see langword="record"/>'s primary constructor; otherwise, not <see langword="null"/>.
+            </param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
@@ -679,7 +704,10 @@
             Defines a member syntax information.
             </summary>
             <param name="SyntaxNode">The current syntax node.</param>
-            <param name="IdentifierName">The identifier name of this member.</param>
+            <param name="IdentifierName">
+            The identifier name of this member. <see langword="null"/> if the member is the
+            <see langword="record"/>'s primary constructor; otherwise, not <see langword="null"/>.
+            </param>
             <param name="CustomAccessibility">The accessibility.</param>
             <param name="CustomModifier">The custom modifier.</param>
             <param name="Summary">The documentation comment for the section "summary".</param>
@@ -687,6 +715,29 @@
             <param name="Example">The documentation comment for the section "example".</param>
             <param name="ExceptionList">The <c>exception</c> list.</param>
             <param name="SeeAlsoList">The <c>seealso</c> list.</param>
+        </member>
+        <member name="T:Sudoku.XmlDocs.SyntaxInfo.PrimaryConstructorSyntaxInfo">
+            <summary>
+            Defines a primary constructor syntax information.
+            </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="ParamList">The <c>param</c> list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsoList">The <c>seealso</c> list.</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.PrimaryConstructorSyntaxInfo.#ctor(Microsoft.CodeAnalysis.SyntaxNode,Sudoku.XmlDocs.CustomAccessibility,System.ValueTuple{System.String,System.String,System.String}[],System.ValueTuple{System.String,System.String}[],System.String[])">
+            <summary>
+            Defines a primary constructor syntax information.
+            </summary>
+            <param name="SyntaxNode">The current syntax node.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="ParamList">The <c>param</c> list.</param>
+            <param name="ExceptionList">The <c>exception</c> list.</param>
+            <param name="SeeAlsoList">The <c>seealso</c> list.</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.SyntaxInfo.PrimaryConstructorSyntaxInfo.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.XmlDocs.TypeKind">
             <summary>

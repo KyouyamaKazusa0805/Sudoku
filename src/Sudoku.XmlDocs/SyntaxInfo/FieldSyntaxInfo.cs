@@ -28,7 +28,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 	{
 		/// <inheritdoc/>
 		public override string ToString() => Document.Create()
-			.AppendTitle(MemberKind.Field, IdentifierName)
+			.AppendTitle(MemberKind.Field, IdentifierName ?? string.Empty)
 			.AppendSummary(Summary)
 			.AppendRemarks(Remarks)
 			.AppendException(ExceptionList)

@@ -1734,6 +1734,39 @@
             or only contains whitespace characters.
             </exception>
         </member>
+        <member name="M:System.Text.Markdown.Document.AppendBoldBlock(System.String)">
+            <summary>
+            Append bold block.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendItalicBlock(System.String)">
+            <summary>
+            Append italic block.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendDeleteBlock(System.String)">
+            <summary>
+            Append delete block.
+            </summary>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+            or only contains whitespace characters.
+            </exception>
+        </member>
         <member name="M:System.Text.Markdown.Document.AppendNewLine">
             <summary>
             Append a new line.

@@ -102,6 +102,54 @@ namespace System.Text.Markdown
 		}
 
 		/// <summary>
+		/// Append bold block.
+		/// </summary>
+		/// <param name="text">The text.</param>
+		/// <returns>The current instance.</returns>
+		/// <exception cref="FormatException">
+		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+		/// or only contains whitespace characters.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendBoldBlock(string text)
+		{
+			_innerBuilder.AppendText($"**{text}**");
+			return this;
+		}
+
+		/// <summary>
+		/// Append italic block.
+		/// </summary>
+		/// <param name="text">The text.</param>
+		/// <returns>The current instance.</returns>
+		/// <exception cref="FormatException">
+		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+		/// or only contains whitespace characters.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendItalicBlock(string text)
+		{
+			_innerBuilder.AppendText($"*{text}*");
+			return this;
+		}
+
+		/// <summary>
+		/// Append delete block.
+		/// </summary>
+		/// <param name="text">The text.</param>
+		/// <returns>The current instance.</returns>
+		/// <exception cref="FormatException">
+		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
+		/// or only contains whitespace characters.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendDeleteBlock(string text)
+		{
+			_innerBuilder.AppendText($"~~{text}~~");
+			return this;
+		}
+
+		/// <summary>
 		/// Append a new line.
 		/// </summary>
 		/// <returns>The current instance.</returns>

@@ -22,7 +22,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 		SyntaxNode SyntaxNode, string IdentifierName,
 		CustomAccessibility CustomAccessibility, CustomModifier CustomModifier,
 		string? Summary, string? Remarks, string? Example,
-		(string Param, string? Description)[]? ParamList,
+		(string Param, string Type, string? Description)[]? ParamList,
 		(string Exception, string? Description)[]? ExceptionList, string[]? SeeAlsoList
 	) : MemberSyntaxInfo(
 		SyntaxNode, IdentifierName, CustomAccessibility, CustomModifier,
@@ -31,7 +31,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 	{
 		/// <inheritdoc/>
 		public override string ToString() => Document.Create()
-			.AppendTitle(MemberKind.Constructor, IdentifierName)
+			.AppendTitle(MemberKind.Constructor, IdentifierName ?? string.Empty)
 			.AppendSummary(Summary)
 			.AppendRemarks(Remarks)
 			.AppendParams(ParamList, (ConstructorDeclarationSyntax)SyntaxNode)

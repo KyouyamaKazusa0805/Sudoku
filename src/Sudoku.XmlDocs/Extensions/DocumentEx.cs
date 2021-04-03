@@ -207,7 +207,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="node">The node to check.</param>
 		/// <returns>The current document.</returns>
 		public static Document AppendParams(
-			this Document @this, (string ParamName, string? Description)[]? parameters,
+			this Document @this, (string ParamName, string Type, string? Description)[]? parameters,
 			BaseMethodDeclarationSyntax node)
 		{
 			if (node.ParameterList?.Parameters is { } parameterList)
@@ -218,7 +218,7 @@ namespace Sudoku.XmlDocs.Extensions
 				}
 
 				bool fastChecking = false;
-				foreach (var (paramName, description) in parameters)
+				foreach (var (paramName, _, description) in parameters)
 				{
 					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 					{
@@ -233,11 +233,75 @@ namespace Sudoku.XmlDocs.Extensions
 
 				@this.AppendHeaderText(3, DocComments.Parameter);
 
-				foreach (var (paramName, description) in parameters)
+				foreach (var (paramName, type, description) in parameters)
 				{
 					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 					{
-						@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+						@this
+							.AppendHeaderText(4, paramName)
+							.AppendBoldBlock("Type: ")
+							.AppendText(type)
+							.AppendBoldBlock("Description: ")
+							.AppendNewLine()
+							.AppendParagraph(description ?? string.Empty);
+					}
+				}
+			}
+			else if (parameters is not null)
+			{
+				goto Returning;
+			}
+
+		Returning:
+			return @this;
+		}
+
+		/// <summary>
+		/// Append "param" section text. If the parameter can't be found in the real parameter list,
+		/// this method will do nothing.
+		/// </summary>
+		/// <param name="this">The document.</param>
+		/// <param name="parameters">The parameter list.</param>
+		/// <param name="node">The node to check.</param>
+		/// <returns>The current document.</returns>
+		public static Document AppendParams(
+			this Document @this, (string ParamName, string Type, string? Description)[]? parameters,
+			RecordDeclarationSyntax node)
+		{
+			if (node.ParameterList?.Parameters is { } parameterList)
+			{
+				if (parameters is null || parameterList.Count == 0)
+				{
+					goto Returning;
+				}
+
+				bool fastChecking = false;
+				foreach (var (paramName, _, _) in parameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						fastChecking = true;
+						break;
+					}
+				}
+				if (!fastChecking)
+				{
+					goto Returning;
+				}
+
+				@this.AppendHeaderText(3, DocComments.Parameter);
+
+				foreach (var (paramName, type, description) in parameters)
+				{
+					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+					{
+						@this
+							.AppendHeaderText(4, paramName)
+							.AppendBoldBlock("Type: ")
+							.AppendText(type)
+							.AppendBoldBlock("Description: ")
+							.AppendNewLine()
+							.AppendParagraph(description ?? string.Empty);
 					}
 				}
 			}

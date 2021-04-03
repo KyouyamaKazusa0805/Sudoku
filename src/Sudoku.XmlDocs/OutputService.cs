@@ -92,10 +92,10 @@ namespace Sudoku.XmlDocs
 				var typeDeclarationSyntaxes = node.DescendantNodes().OfType<TypeDeclarationSyntax>();
 
 				// Iterate on each syntax node of declarations.
-				foreach (var typeDeclarationSyntax in typeDeclarationSyntaxes)
+				foreach (var typeDeclaration in typeDeclarationSyntaxes)
 				{
 					// Gather all member information.
-					var memberInfos = GetMemberSyntaxInfos(typeDeclarationSyntax);
+					var memberInfos = GetMemberSyntaxInfos(typeDeclaration);
 				}
 			}
 		}
@@ -104,14 +104,45 @@ namespace Sudoku.XmlDocs
 		/// <summary>
 		/// Get information from all members, and returns the list of those instances.
 		/// </summary>
-		/// <param name="typeDeclarationSyntax">The type declaration syntax node.</param>
+		/// <param name="typeDeclaration">The type declaration syntax node.</param>
 		/// <returns>The list of information instances.</returns>
-		private IList<MemberSyntaxInfo> GetMemberSyntaxInfos(TypeDeclarationSyntax typeDeclarationSyntax)
+		private IList<MemberSyntaxInfo> GetMemberSyntaxInfos(TypeDeclarationSyntax typeDeclaration)
 		{
 			var result = new List<MemberSyntaxInfo>();
 
+			// Check whether the type is a record. New we should extract its primary constructor.
+			if (typeDeclaration is RecordDeclarationSyntax { ParameterList: var paramList } recordDeclaration)
+			{
+				// The record doesn't contain the primary constructor.
+				if (paramList is not { Parameters: { Count: not 0 } parameters })
+				{
+					goto GatherMembers;
+				}
+
+				// The record contains the primary constructor. Now store them.
+				//var resultParamList = new List<(string ParamName, string Type, string? Description)>();
+				//foreach (var (type, identifier) in parameters)
+				//{
+				//	string descrption = recordDeclaration.GetParamDescription(identifier.ValueText);
+				//	resultParamList.Add((identifier.ValueText, type?.ToString() ?? string.Empty, descrption));
+				//}
+
+				//// Add into the result.
+				//result.Add(
+				//	new PrimaryConstructorSyntaxInfo(
+				//		recordDeclaration,
+				//		CustomAccessibility.Public,
+				//		resultParamList.ToArray(),
+				//		recordDeclaration.GetExceptionList(),
+				//		recordDeclaration.GetSeeAlsoList()
+				//	)
+				//);
+			}
+
+		GatherMembers:
+			// Normal type (class, struct or interface). Now we should check its members.
 			foreach (var memberDeclarationSyntax in
-				typeDeclarationSyntax.DescendantNodes().OfType<MemberDeclarationSyntax>())
+				typeDeclaration.DescendantNodes().OfType<MemberDeclarationSyntax>())
 			{
 				switch (memberDeclarationSyntax)
 				{
