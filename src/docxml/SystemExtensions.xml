@@ -1787,6 +1787,20 @@
             </param>
             <returns>The current instance.</returns>
         </member>
+        <member name="M:System.Text.Markdown.Document.AppendInlineLatexBlock(System.String)">
+            <summary>
+            Append inline LaTeX block.
+            </summary>
+            <param name="latex">The LaTeX expression.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendLatexBlock(System.String)">
+            <summary>
+            Append LaTeX block.
+            </summary>
+            <param name="latex">The LaTeX expression.</param>
+            <returns>The current instance.</returns>
+        </member>
         <member name="M:System.Text.Markdown.Document.AppendNewLine">
             <summary>
             Append a new line.
@@ -2047,6 +2061,34 @@
             <param name="this">The current instance.</param>
             <param name="description">The description of the hyperlink.</param>
             <param name="uri">The URI link.</param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append inline LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineLatexBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append inline LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendLatexBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.StringBuilder)">
             <summary>

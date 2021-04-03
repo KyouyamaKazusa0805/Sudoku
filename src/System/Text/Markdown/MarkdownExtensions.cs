@@ -522,6 +522,62 @@ namespace System.Text.Markdown
 		}
 
 		/// <summary>
+		/// Append inline LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[CLSCompliant(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AppendInlineLatexBlock(this ref ValueStringBuilder @this, string latex)
+		{
+			@this.Append(InlineLatexBlockStartSingle);
+			@this.Append(latex);
+			@this.Append(InlineLatexBlockEndSingle);
+		}
+
+		/// <summary>
+		/// Append LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[CLSCompliant(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AppendLatexBlock(this ref ValueStringBuilder @this, string latex)
+		{
+			@this.Append(LatexBlockStart);
+			@this.AppendLine();
+			@this.Append(latex);
+			@this.AppendLine();
+			@this.Append(LatexBlockEnd);
+			@this.AppendLine();
+			@this.AppendLine();
+		}
+
+		/// <summary>
+		/// Append inline LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static StringBuilder AppendInlineLatexBlock(this StringBuilder @this, string latex) =>
+			@this
+				.Append(InlineLatexBlockStartSingle)
+				.Append(latex)
+				.Append(InlineLatexBlockEndSingle);
+
+		/// <summary>
+		/// Append LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static StringBuilder AppendLatexBlock(this StringBuilder @this, string latex) =>
+			@this
+				.Append(LatexBlockStart).AppendLine()
+				.Append(latex).AppendLine()
+				.Append(LatexBlockEnd).AppendLine().AppendLine();
+
+		/// <summary>
 		/// Append a new line.
 		/// </summary>
 		/// <param name="this">The current instance.</param>

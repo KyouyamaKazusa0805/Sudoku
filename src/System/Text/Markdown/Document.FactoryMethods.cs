@@ -180,6 +180,30 @@ namespace System.Text.Markdown
 		}
 
 		/// <summary>
+		/// Append inline LaTeX block.
+		/// </summary>
+		/// <param name="latex">The LaTeX expression.</param>
+		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendInlineLatexBlock(string latex)
+		{
+			_innerBuilder.AppendInlineLatexBlock(latex);
+			return this;
+		}
+
+		/// <summary>
+		/// Append LaTeX block.
+		/// </summary>
+		/// <param name="latex">The LaTeX expression.</param>
+		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendLatexBlock(string latex)
+		{
+			_innerBuilder.AppendLatexBlock(latex);
+			return this;
+		}
+
+		/// <summary>
 		/// Append a new line.
 		/// </summary>
 		/// <returns>The current instance.</returns>
