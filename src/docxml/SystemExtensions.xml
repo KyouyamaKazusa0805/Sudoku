@@ -1767,6 +1767,26 @@
             or only contains whitespace characters.
             </exception>
         </member>
+        <member name="M:System.Text.Markdown.Document.AppendImageBlock(System.String,System.String)">
+            <summary>
+            Append image block.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="uri">The URI.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.Document.AppendHyperlink(System.String,System.String,System.Boolean)">
+            <summary>
+            Append hyperlink.
+            </summary>
+            <param name="description">The description.</param>
+            <param name="uri">The URI.</param>
+            <param name="appendNewLine">
+            A <see cref="T:System.Boolean"/> value indicates whether the method appends a new line
+            at the tail of the document. The default value is <see langword="false"/>.
+            </param>
+            <returns>The current instance.</returns>
+        </member>
         <member name="M:System.Text.Markdown.Document.AppendNewLine">
             <summary>
             Append a new line.
@@ -1854,6 +1874,53 @@
             or only contains whitespace characters.
             </exception>
         </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendBoldBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append bold block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendItalicBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append italic block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendDeleteBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append delete block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHyperlink(System.Text.ValueStringBuilder@,System.String,System.String,System.Boolean)">
+            <summary>
+            Append hyperlink.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="description">
+            The description of the hyperlink. If <see langword="null"/>, the description part will be replaced
+            by <paramref name="uri"/>.
+            </param>
+            <param name="uri">Thr URI link.</param>
+            <param name="withNewLine">
+            A <see cref="T:System.Boolean"/> value indicates whether the end appends a new line. The default value
+            is <see langword="false"/>.
+            </param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendImageBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
+            <summary>
+            Append image block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="description">The description of the hyperlink.</param>
+            <param name="uri">The URI link.</param>
+        </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.ValueStringBuilder@)">
             <summary>
             Append a new line.
@@ -1934,6 +2001,53 @@
             or only contains whitespace characters.
             </exception>
         </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendBoldBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append bold block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendItalicBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append italic block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendDeleteBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append delete block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHyperlink(System.Text.StringBuilder,System.String,System.String,System.Boolean)">
+            <summary>
+            Append hyperlink.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="description">
+            The description of the hyperlink. If <see langword="null"/>, the description part will be replaced
+            by <paramref name="uri"/>.
+            </param>
+            <param name="uri">Thr URI link.</param>
+            <param name="appendNewLine">
+            A <see cref="T:System.Boolean"/> value indicates whether the end appends a new line. The default value
+            is <see langword="false"/>.
+            </param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendImageBlock(System.Text.StringBuilder,System.String,System.String)">
+            <summary>
+            Append image block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="description">The description of the hyperlink.</param>
+            <param name="uri">The URI link.</param>
+        </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.StringBuilder)">
             <summary>
             Append a new line.
@@ -1964,6 +2078,31 @@
         <member name="F:System.Text.Markdown.MarkdownSymbols.InlineLatexBlockEndSingle">
             <summary>
             Indicates the inline LaTeX block end character.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ItalicBlockStartSingle">
+            <summary>
+            Indicates the italic block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ItalicBlockEndSingle">
+            <summary>
+            Indicates the italic block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ImageBlockEndSingle">
+            <summary>
+            Indicates the picture block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.HyperlinkBlockStartSingle">
+            <summary>
+            Indicates the hyperlink block start.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.HyperlinkBlockEndSingle">
+            <summary>
+            Indicates the hyperlink block end.
             </summary>
         </member>
         <member name="F:System.Text.Markdown.MarkdownSymbols.H1">
@@ -2076,17 +2215,17 @@
             Indicates the delete block end.
             </summary>
         </member>
-        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockStart">
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ImageBlockStart">
             <summary>
             Indicates the picture block start.
             </summary>
         </member>
-        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockMiddle">
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ImageBlockMiddle">
             <summary>
             Indicates the picture block middle.
             </summary>
         </member>
-        <member name="F:System.Text.Markdown.MarkdownSymbols.PictureBlockEnd">
+        <member name="F:System.Text.Markdown.MarkdownSymbols.ImageBlockEnd">
             <summary>
             Indicates the picture block end.
             </summary>

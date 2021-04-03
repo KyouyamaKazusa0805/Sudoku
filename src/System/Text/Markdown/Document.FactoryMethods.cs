@@ -113,7 +113,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendBoldBlock(string text)
 		{
-			_innerBuilder.AppendText($"**{text}**");
+			_innerBuilder.AppendBoldBlock(text);
 			return this;
 		}
 
@@ -129,7 +129,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendItalicBlock(string text)
 		{
-			_innerBuilder.AppendText($"*{text}*");
+			_innerBuilder.AppendItalicBlock(text);
 			return this;
 		}
 
@@ -145,7 +145,37 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendDeleteBlock(string text)
 		{
-			_innerBuilder.AppendText($"~~{text}~~");
+			_innerBuilder.AppendDeleteBlock(text);
+			return this;
+		}
+
+		/// <summary>
+		/// Append image block.
+		/// </summary>
+		/// <param name="description">The description.</param>
+		/// <param name="uri">The URI.</param>
+		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendImageBlock(string? description, string uri)
+		{
+			_innerBuilder.AppendImageBlock(description, uri);
+			return this;
+		}
+
+		/// <summary>
+		/// Append hyperlink.
+		/// </summary>
+		/// <param name="description">The description.</param>
+		/// <param name="uri">The URI.</param>
+		/// <param name="appendNewLine">
+		/// A <see cref="bool"/> value indicates whether the method appends a new line
+		/// at the tail of the document. The default value is <see langword="false"/>.
+		/// </param>
+		/// <returns>The current instance.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Document AppendHyperlink(string? description, string uri, bool appendNewLine = false)
+		{
+			_innerBuilder.AppendHyperlink(description, uri, appendNewLine);
 			return this;
 		}
 

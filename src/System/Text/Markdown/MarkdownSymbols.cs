@@ -26,6 +26,31 @@
 		public const char InlineLatexBlockEndSingle = '$';
 
 		/// <summary>
+		/// Indicates the italic block start.
+		/// </summary>
+		public const char ItalicBlockStartSingle = '*';
+
+		/// <summary>
+		/// Indicates the italic block end.
+		/// </summary>
+		public const char ItalicBlockEndSingle = '*';
+
+		/// <summary>
+		/// Indicates the picture block end.
+		/// </summary>
+		public const char ImageBlockEndSingle = ')';
+
+		/// <summary>
+		/// Indicates the hyperlink block start.
+		/// </summary>
+		public const char HyperlinkBlockStartSingle = '[';
+
+		/// <summary>
+		/// Indicates the hyperlink block end.
+		/// </summary>
+		public const char HyperlinkBlockEndSingle = ')';
+
+		/// <summary>
 		/// The header 1.
 		/// </summary>
 		public const string H1 = "# ";
@@ -138,17 +163,17 @@
 		/// <summary>
 		/// Indicates the picture block start.
 		/// </summary>
-		public const string PictureBlockStart = "![";
+		public const string ImageBlockStart = "![";
 
 		/// <summary>
 		/// Indicates the picture block middle.
 		/// </summary>
-		public const string PictureBlockMiddle = "](";
+		public const string ImageBlockMiddle = "](";
 
 		/// <summary>
 		/// Indicates the picture block end.
 		/// </summary>
-		public const string PictureBlockEnd = ")";
+		public const string ImageBlockEnd = ")";
 
 		/// <summary>
 		/// Indicates the hyperlink block start.
