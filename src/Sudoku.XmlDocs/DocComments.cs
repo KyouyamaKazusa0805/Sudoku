@@ -49,5 +49,20 @@
 		/// Indicates the "seealso" block.
 		/// </summary>
 		public const string SeeAlso = "See Also";
+
+		/// <summary>
+		/// Indicates the paragraph node name.
+		/// </summary>
+		public const string ParagraphNodeName = "para";
+
+		/// <summary>
+		/// Indicates the inline code block node name.
+		/// </summary>
+		public const string InlineCodeBlockNodeName = "c";
+
+		/// <summary>
+		/// Indicates the code block node name.
+		/// </summary>
+		public const string CodeBlockNodeName = "code";
 	}
 }

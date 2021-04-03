@@ -118,6 +118,35 @@ namespace Sudoku.XmlDocs.Extensions
 
 							break;
 						}
+
+						// XmlEmptyElementSyntax: The inline XML markup, with value,
+						// such as '<para>The inner text</para>'.
+						case XmlElementSyntax
+						{
+							StartTag: { Name: { LocalName: { ValueText: var nameStart } } },
+							EndTag: { Name: { LocalName: { ValueText: var nameEnd } } },
+							Content: var contentNodes
+						} otherPairNodes when otherPairNodes.GetLocation().IsInRange(rangeMin, rangeMax):
+						{
+							switch (nameStart)
+							{
+								case DocComments.ParagraphNodeName:
+								{
+									// Handle it recursively.
+									break;
+								}
+								case DocComments.InlineCodeBlockNodeName:
+								{
+									break;
+								}
+								case DocComments.CodeBlockNodeName:
+								{
+									break;
+								}
+							}
+
+							break;
+						}
 					}
 				}
 			}
