@@ -1711,7 +1711,7 @@
             <param name="codelang">The code language. The default value is <c>"csharp"</c>.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.Document.AppendHeaderText(System.String)">
+        <member name="M:System.Text.Markdown.Document.AppendHeader(System.String)">
             <summary>
             Append header text.
             </summary>
@@ -1722,7 +1722,7 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.Document.AppendHeaderText(System.Int32,System.String)">
+        <member name="M:System.Text.Markdown.Document.AppendHeader(System.Int32,System.String)">
             <summary>
             Append header text, with the specified header level.
             </summary>
@@ -1990,7 +1990,7 @@
             <param name="codelang">The code language.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeader(System.Text.StringBuilder,System.String)">
             <summary>
             Append header text.
             </summary>
@@ -2002,7 +2002,7 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.StringBuilder,System.Int32,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeader(System.Text.StringBuilder,System.Int32,System.String)">
             <summary>
             Append header text, with the specified header level.
             </summary>

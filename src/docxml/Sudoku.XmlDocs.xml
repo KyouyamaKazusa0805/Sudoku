@@ -569,14 +569,9 @@
             Indicates the member is an operator overloading.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.ImplicitCast">
+        <member name="F:Sudoku.XmlDocs.MemberKind.Cast">
             <summary>
-            Indicates the member is an implicit cast.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.ExplicitCast">
-            <summary>
-            Indicates the member is an explicit cast.
+            Indicates the member is an implicit or explicit cast.
             </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.OutputService">

@@ -50,13 +50,8 @@ namespace Sudoku.XmlDocs
 		Operator,
 
 		/// <summary>
-		/// Indicates the member is an implicit cast.
+		/// Indicates the member is an implicit or explicit cast.
 		/// </summary>
-		ImplicitCast,
-
-		/// <summary>
-		/// Indicates the member is an explicit cast.
-		/// </summary>
-		ExplicitCast,
+		Cast,
 	}
 }

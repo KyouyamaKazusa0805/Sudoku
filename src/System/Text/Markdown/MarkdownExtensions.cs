@@ -406,7 +406,7 @@ namespace System.Text.Markdown
 		/// or only contains whitespace characters.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static StringBuilder AppendHeaderText(this StringBuilder @this, string text) =>
+		public static StringBuilder AppendHeader(this StringBuilder @this, string text) =>
 			string.IsNullOrWhiteSpace(text)
 			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
 			: @this.Append(H1).Append(text).AppendLine().AppendLine();
@@ -423,7 +423,7 @@ namespace System.Text.Markdown
 		/// or only contains whitespace characters.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static StringBuilder AppendHeaderText(this StringBuilder @this, int level, string text) =>
+		public static StringBuilder AppendHeader(this StringBuilder @this, int level, string text) =>
 			string.IsNullOrWhiteSpace(text)
 			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
 			: @this

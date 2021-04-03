@@ -20,7 +20,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <returns>The document itself.</returns>
 		public static Document AppendTitle(this Document @this, MemberKind memberKind, string title)
 		{
-			@this.AppendHeaderText(2, $@"{memberKind switch
+			@this.AppendHeader(2, $@"{memberKind switch
 			{
 				MemberKind.Field => "Field ",
 				MemberKind.Constructor => "Constructor",
@@ -30,8 +30,7 @@ namespace Sudoku.XmlDocs.Extensions
 				MemberKind.Event => "Event",
 				MemberKind.Method => "Method",
 				MemberKind.Operator => "Operator",
-				MemberKind.ImplicitCast => "Implicit Cast",
-				MemberKind.ExplicitCast => "Explicit Cast"
+				MemberKind.Cast => "Type Conversion"
 			}} {title}");
 
 			return @this;
@@ -44,17 +43,10 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="this">The document.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The document itself.</returns>
-		public static Document AppendSummary(this Document @this, string? text)
-		{
-			if (text is not null)
-			{
-				@this
-					.AppendHeaderText(3, DocComments.Summary)
-					.AppendParagraph(text ?? string.Empty);
-			}
-
-			return @this;
-		}
+		public static Document AppendSummary(this Document @this, string? text) =>
+			text is not null
+			? @this.AppendHeader(3, DocComments.Summary).AppendParagraph(text ?? string.Empty)
+			: @this;
 
 		/// <summary>
 		/// Append "returns" section text. If the inner text is <see langword="null"/>,
@@ -74,11 +66,11 @@ namespace Sudoku.XmlDocs.Extensions
 				{
 					break;
 				}
-				case MethodDeclarationSyntax { ReturnType: PredefinedTypeSyntax { Keyword: var keyword } }
-				when keyword.IsKeyword(Keywords.VoidKeyword):
-				{
-					goto Returning;
-				}
+				//case MethodDeclarationSyntax { ReturnType: PredefinedTypeSyntax { Keyword: var keyword } }
+				//when keyword.IsKeyword(Keywords.VoidKeyword):
+				//{
+				//	goto Returning;
+				//}
 				default:
 				{
 					goto Returning;
@@ -90,7 +82,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocComments.Returns).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeader(3, DocComments.Returns).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -103,17 +95,10 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="this">The document.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The document itself.</returns>
-		public static Document AppendRemarks(this Document @this, string? text)
-		{
-			if (text is not null)
-			{
-				@this
-					.AppendHeaderText(3, DocComments.Remarks)
-					.AppendParagraph(text ?? string.Empty);
-			}
-
-			return @this;
-		}
+		public static Document AppendRemarks(this Document @this, string? text) =>
+			text is not null
+			? @this.AppendHeader(3, DocComments.Remarks).AppendParagraph(text ?? string.Empty)
+			: @this;
 
 		/// <summary>
 		/// Append "example" section text. If the inner text is <see langword="null"/>,
@@ -122,17 +107,10 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="this">The document.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The document itself.</returns>
-		public static Document AppendExample(this Document @this, string? text)
-		{
-			if (text is not null)
-			{
-				@this
-					.AppendHeaderText(3, DocComments.Example)
-					.AppendParagraph(text ?? string.Empty);
-			}
-
-			return @this;
-		}
+		public static Document AppendExample(this Document @this, string? text) =>
+			text is not null
+			? @this.AppendHeader(3, DocComments.Example).AppendParagraph(text ?? string.Empty)
+			: @this;
 
 		/// <summary>
 		/// Append "exception" section text. If the exceptions is <see langword="null"/>, it'll do nothing.
@@ -148,12 +126,12 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocComments.Exception);
+			@this.AppendHeader(3, DocComments.Exception);
 
 			foreach (var (exceptionName, description) in exceptions)
 			{
 				@this
-					.AppendHeaderText(4, exceptionName)
+					.AppendHeader(4, exceptionName)
 					.AppendParagraph(description ?? string.Empty);
 			}
 
@@ -191,7 +169,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeaderText(3, DocComments.Value).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeader(3, DocComments.Value).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -230,14 +208,14 @@ namespace Sudoku.XmlDocs.Extensions
 					goto Returning;
 				}
 
-				@this.AppendHeaderText(3, DocComments.Parameter);
+				@this.AppendHeader(3, DocComments.Parameter);
 
 				foreach (var (paramName, type, description) in parameters)
 				{
 					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 					{
 						@this
-							.AppendHeaderText(4, paramName)
+							.AppendHeader(4, paramName)
 							.AppendBoldBlock("Type: ")
 							.AppendText(type)
 							.AppendBoldBlock("Description: ")
@@ -288,14 +266,14 @@ namespace Sudoku.XmlDocs.Extensions
 					goto Returning;
 				}
 
-				@this.AppendHeaderText(3, DocComments.Parameter);
+				@this.AppendHeader(3, DocComments.Parameter);
 
 				foreach (var (paramName, type, description) in parameters)
 				{
 					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 					{
 						@this
-							.AppendHeaderText(4, paramName)
+							.AppendHeader(4, paramName)
 							.AppendBoldBlock("Type: ")
 							.AppendText(type)
 							.AppendBoldBlock("Description: ")
@@ -346,13 +324,13 @@ namespace Sudoku.XmlDocs.Extensions
 					goto Returning;
 				}
 
-				@this.AppendHeaderText(3, DocComments.Parameter);
+				@this.AppendHeader(3, DocComments.Parameter);
 
 				foreach (var (paramName, description) in typeParameters)
 				{
 					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 					{
-						@this.AppendHeaderText(4, paramName).AppendParagraph(description ?? string.Empty);
+						@this.AppendHeader(4, paramName).AppendParagraph(description ?? string.Empty);
 					}
 				}
 			}

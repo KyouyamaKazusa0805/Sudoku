@@ -78,9 +78,9 @@ namespace System.Text.Markdown
 		/// or only contains whitespace characters.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Document AppendHeaderText(string text)
+		public Document AppendHeader(string text)
 		{
-			_innerBuilder.AppendHeaderText(text);
+			_innerBuilder.AppendHeader(text);
 			return this;
 		}
 
@@ -95,9 +95,9 @@ namespace System.Text.Markdown
 		/// or only contains whitespace characters.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Document AppendHeaderText(int level, string text)
+		public Document AppendHeader(int level, string text)
 		{
-			_innerBuilder.AppendHeaderText(level, text);
+			_innerBuilder.AppendHeader(level, text);
 			return this;
 		}
 
