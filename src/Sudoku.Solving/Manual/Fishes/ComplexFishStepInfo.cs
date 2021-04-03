@@ -69,8 +69,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override decimal Difficulty => BaseDifficulty + SashimiExtraDifficulty + ShapeExtraDifficulty;
 
 		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel =>
-			Size is 2 or 3 or 4 ? DifficultyLevel.Fiendish : DifficultyLevel.Nightmare;
+		public override DifficultyLevel DifficultyLevel => Size switch
+		{
+			2 => DifficultyLevel.Hard,
+			3 or 4 => DifficultyLevel.Fiendish,
+			_ => DifficultyLevel.Nightmare
+		};
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>
