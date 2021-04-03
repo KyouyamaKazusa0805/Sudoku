@@ -65,6 +65,7 @@ namespace Sudoku.Solving.Manual
 					AllowIncompleteUniqueRectangles = CheckIncompleteUniquenessPatterns,
 					SearchForExtendedUniqueRectangles = SearchExtendedUniqueRectangles
 				},
+				new ComplexFishStepSearcher { MaxSize = 2 },
 				new XrStepSearcher(),
 				new UlStepSearcher(),
 				new ErStepSearcher(),
