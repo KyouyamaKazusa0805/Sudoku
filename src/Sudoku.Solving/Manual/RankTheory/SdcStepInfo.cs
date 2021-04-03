@@ -25,7 +25,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
 		bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,
-		in Cells IntersectionCells) : RankTheoryStepInfo(Conclusions, Views)
+		in Cells IntersectionCells
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.0M + IsolatedExtraDifficulty + CannibalismExtraDifficulty;
@@ -38,6 +39,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Als;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdc;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;

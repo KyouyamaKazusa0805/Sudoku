@@ -26,6 +26,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
 
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Xr;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

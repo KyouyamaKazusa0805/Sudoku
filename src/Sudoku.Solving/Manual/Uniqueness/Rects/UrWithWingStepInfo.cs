@@ -42,6 +42,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+
 		/// <summary>
 		/// Indicates the extra difficulty on whether the UR is an AR.
 		/// </summary>

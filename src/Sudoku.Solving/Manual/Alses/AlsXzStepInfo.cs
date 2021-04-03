@@ -39,7 +39,8 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </param>
 	public sealed record AlsXzStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
-		short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked) : AlsStepInfo(Conclusions, Views)
+		short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
@@ -49,6 +50,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

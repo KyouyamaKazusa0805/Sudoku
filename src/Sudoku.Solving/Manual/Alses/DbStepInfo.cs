@@ -29,6 +29,9 @@ namespace Sudoku.Solving.Manual.Alses
 		public override Technique TechniqueCode => Technique.DeathBlossom;
 
 		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 

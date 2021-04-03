@@ -31,6 +31,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Pom;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Pom;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

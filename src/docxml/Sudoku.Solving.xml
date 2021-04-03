@@ -1179,6 +1179,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -1229,6 +1232,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.DifficultyLevel">
@@ -1324,6 +1330,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -1369,6 +1378,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DbStepInfo.DifficultyLevel">
@@ -1442,6 +1454,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.EripStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.EripStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.EripStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -1489,6 +1504,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepInfo.DifficultyLevel">
@@ -1679,6 +1697,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -1714,6 +1735,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.DifficultyLevel">
@@ -2065,6 +2089,9 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.SortKey">
             <inheritdoc/>
         </member>
@@ -2107,6 +2134,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.FlatComplexity">
@@ -2474,6 +2504,9 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.MirrorDifficulty">
             <summary>
             Indicates extra difficulty on mirror eliminations.
@@ -2738,6 +2771,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeStepInfo.ToString">
@@ -3215,6 +3251,9 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.BaseDifficulty">
             <summary>
             Indicates the base difficulty.
@@ -3517,6 +3556,9 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.BaseDifficulty">
             <summary>
             Indicates the base difficulty.
@@ -3611,6 +3653,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepInfo.BaseDifficulty">
@@ -3709,6 +3754,9 @@
         <member name="P:Sudoku.Solving.Manual.Intersections.LcStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3744,6 +3792,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepInfo.ToString">
@@ -3810,6 +3861,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.ToString">
@@ -3943,6 +3997,9 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -3998,6 +4055,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepInfo.ToString">
@@ -4551,6 +4611,9 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
             <inheritdoc/>
         </member>
@@ -4745,6 +4808,9 @@
         <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -4832,6 +4898,9 @@
         <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -4895,6 +4964,9 @@
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -4946,6 +5018,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.DifficultyLevel">
@@ -5010,6 +5085,9 @@
         <member name="P:Sudoku.Solving.Manual.Sdps.ErStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.ErStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.ErStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -5060,6 +5138,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.DifficultyLevel">
@@ -5116,6 +5197,9 @@
             <param name="Digit">The digit used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.SdpStepInfo.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.SdpStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.SdpStepInfo.TechniqueTags">
@@ -5284,6 +5368,9 @@
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher">
             <summary>
             Encapsulates a <b>single</b> technique searcher.
@@ -5407,6 +5494,11 @@
         <member name="P:Sudoku.Solving.Manual.StepInfo.TechniqueTags">
             <summary>
             The technique tags of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.TechniqueGroup">
+            <summary>
+            The technique group that this technique instance belongs to.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.DifficultyLevel">
@@ -5618,6 +5710,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher">
@@ -5832,6 +5927,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryStepSearcher">
@@ -6149,6 +6247,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -6381,6 +6482,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.ToString">
@@ -6640,6 +6744,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.BaseDifficulty">
             <summary>
             Indicates the base difficulty.
@@ -6878,6 +6985,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.TechniqueCode">
@@ -7287,6 +7397,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7538,6 +7651,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7618,6 +7734,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7663,6 +7782,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -7701,6 +7823,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ToString">
@@ -8351,6 +8476,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8412,6 +8540,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.SdCDifficulty">
             <summary>
             The extra difficulty that assesses the size of SdC.
@@ -8470,6 +8601,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8524,6 +8658,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.AvoidableExtraDifficulty">
             <summary>
             Indicates the extra difficulty on whether the UR is an AR.
@@ -8559,6 +8696,9 @@
             <param name="Loop">All cells used.</param>
             <param name="Digit1">Indicates the digit 1.</param>
             <param name="Digit2">Indicates the digit 2.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.TechniqueGroup">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo)">
             <inheritdoc/>
@@ -8791,6 +8931,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.TechniqueCode">
@@ -9186,6 +9329,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.WingStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.WingStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingStepSearcher">

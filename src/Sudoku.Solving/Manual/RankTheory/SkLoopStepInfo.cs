@@ -27,6 +27,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 			base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.SkLoop;
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <inheritdoc/>

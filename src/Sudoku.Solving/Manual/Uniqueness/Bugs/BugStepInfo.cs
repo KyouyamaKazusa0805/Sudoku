@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -20,6 +21,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Bug;
 
 
 		/// <inheritdoc/>

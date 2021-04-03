@@ -17,7 +17,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Chains">The sub-chains.</param>
 	public sealed record BugMultipleWithFcStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates,
-		IReadOnlyDictionary<int, Node> Chains) : BugStepInfo(Conclusions, Views)
+		IReadOnlyDictionary<int, Node> Chains
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty for the number of true candidates.

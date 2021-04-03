@@ -34,6 +34,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();

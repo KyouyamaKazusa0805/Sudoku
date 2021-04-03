@@ -47,6 +47,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+
 		/// <summary>
 		/// The extra difficulty that assesses the size of SdC.
 		/// </summary>

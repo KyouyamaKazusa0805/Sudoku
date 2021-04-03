@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 {
@@ -17,6 +18,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2
 	) : UniquenessStepInfo(Conclusions, Views)
 	{
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.ReverseBug;
+
+
 		/// <inheritdoc/>
 		public virtual bool Equals(ReverseBugStepInfo? obj) =>
 			obj is not null && Loop == obj.Loop

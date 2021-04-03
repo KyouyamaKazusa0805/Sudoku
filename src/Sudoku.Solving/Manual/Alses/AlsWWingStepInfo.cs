@@ -34,6 +34,9 @@ namespace Sudoku.Solving.Manual.Alses
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+
+		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.AlsWWing;
 
 

@@ -26,7 +26,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;
+
+		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
+
 
 		/// <inheritdoc/>
 		public abstract override string ToString();

@@ -30,6 +30,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 		public override Technique TechniqueCode => Technique.Msls;
 
 		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Msls;
+
+		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 

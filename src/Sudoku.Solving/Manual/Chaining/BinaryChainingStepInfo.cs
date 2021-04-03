@@ -46,6 +46,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
+
 
 		/// <inheritdoc/>
 		public override string ToString() =>

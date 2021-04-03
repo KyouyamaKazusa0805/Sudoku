@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => ContainsExtraRegions ? Technique.ComplexSe : Technique.Se;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
+
 
 		/// <inheritdoc/>
 		public override string ToString() => ToStringInternal();

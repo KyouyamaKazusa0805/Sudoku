@@ -28,6 +28,9 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Lc;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

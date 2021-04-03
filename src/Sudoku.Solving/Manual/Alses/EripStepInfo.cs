@@ -18,13 +18,17 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Digit2">The digit 2.</param>
 	public sealed record EripStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
-		int Region, int Digit1, int Digit2) : AlsStepInfo(Conclusions, Views)
+		int Region, int Digit1, int Digit2
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Erip;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Erip;

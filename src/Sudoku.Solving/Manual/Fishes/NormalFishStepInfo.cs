@@ -46,6 +46,9 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override Technique TechniqueCode =>
 			Enum.Parse<Technique>(InternalName.Replace(" ", string.Empty).Replace("-", string.Empty));
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.NormalFish;
+
 		/// <summary>
 		/// Indicates the base difficulty.
 		/// </summary>

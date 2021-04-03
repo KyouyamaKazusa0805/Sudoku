@@ -20,7 +20,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 	public sealed record Sdc3dStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) : RankTheoryStepInfo(Conclusions, Views)
+		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;
@@ -30,6 +31,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Als;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdc;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

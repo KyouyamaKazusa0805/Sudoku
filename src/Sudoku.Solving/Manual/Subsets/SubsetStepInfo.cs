@@ -15,7 +15,8 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	public abstract record SubsetStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits) : StepInfo(Conclusions, Views)
+		int Region, in Cells Cells, IReadOnlyList<int> Digits
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates the size.
@@ -30,5 +31,8 @@ namespace Sudoku.Solving.Manual.Subsets
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Subsets;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Subset;
 	}
 }

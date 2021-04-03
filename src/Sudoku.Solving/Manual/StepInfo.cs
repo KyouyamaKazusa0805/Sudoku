@@ -70,6 +70,11 @@ namespace Sudoku.Solving.Manual
 		public abstract TechniqueTags TechniqueTags { get; }
 
 		/// <summary>
+		/// The technique group that this technique instance belongs to.
+		/// </summary>
+		public abstract TechniqueGroup TechniqueGroup { get; }
+
+		/// <summary>
 		/// The difficulty level of this step.
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }

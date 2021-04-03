@@ -30,12 +30,13 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>
-			IsXCycle
-			? Technique.FishyCycle
-			: IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
+			IsXCycle ? Technique.FishyCycle : IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Aic;
 
 		/// <inheritdoc/>
 		public override ChainingTypeCode SortKey => Enum.Parse<ChainingTypeCode>(TechniqueCode.ToString());

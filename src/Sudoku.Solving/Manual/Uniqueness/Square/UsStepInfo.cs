@@ -26,6 +26,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;
+
+		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
 
 

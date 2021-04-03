@@ -18,7 +18,8 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
 	public sealed record HiddenSingleStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit,
-		int Region, bool EnableAndIsLastDigit) : SingleStepInfo(Conclusions, Views, Cell, Digit)
+		int Region, bool EnableAndIsLastDigit
+	) : SingleStepInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

@@ -6466,69 +6466,94 @@
             Indicates the technique doesn't belong to any group.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Singles">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Single">
             <summary>
             Indicates the singles technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Intersections">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Lc">
             <summary>
-            Indicates the intersection technique.
+            Indicates the locked candidates (LC) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Subsets">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Subset">
             <summary>
             Indicates the subset technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Fishes">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.NormalFish">
             <summary>
             Indicates the normal fish technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.ComplexFishes">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.ComplexFish">
             <summary>
             Indicates the complex fish technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Wings">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Wing">
             <summary>
             Indicates the wing technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.SingleDigitPatterns">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.EmptyRectangle">
             <summary>
-            Indicates the single digit pattern technique.
+            Indicates the empty rectangle technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.AlternatingInferenceChaining">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Sdp">
             <summary>
-            Indicates the AIC technique.
+            Indicates the single digit pattern (SDP) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.ForcingChaining">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Erip">
             <summary>
-            Indicates the forcing chains technique.
+            Indicates the empty rectangle intersection pair (ERIP) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectangle">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Alc">
             <summary>
-            Indicates the unique rectangle technique.
+            Indicates the almost locked candidates (ALC) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectanglePlus">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Aic">
             <summary>
-            Indicates the unique rectangle (+) techique.
+            Indicates the alternating inference chain (AIC) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueLoop">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Fc">
             <summary>
-            Indicates the unique loop technique.
+            Indicates the forcing chains (FC) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.ExtendedRectangle">
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Ur">
             <summary>
-            Indicates the extended rectangle technique.
+            Indicates the unique rectangle (UR) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.UrPlus">
+            <summary>
+            Indicates the unique rectangle plus (UR+) techique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Ul">
+            <summary>
+            Indicates the unique loop (UL) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Xr">
+            <summary>
+            Indicates the extended rectangle (XR) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Bug">
+            <summary>
+            Indicates the bi-value universal grave (BUG) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.ReverseBug">
+            <summary>
+            Indicates the reverse bi-value universal grave (Reverse BUG) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.DeadlyPattern">
@@ -6536,14 +6561,34 @@
             Indicates the deadly pattern technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.BivalueOddagon">
+            <summary>
+            Indicates the bi-value oddagon technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Sdc">
+            <summary>
+            Indicates the sue de coq (SdC) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Guardian">
+            <summary>
+            Indicates the guardian technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.AlsChainingLike">
             <summary>
             Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.SkLoop">
+            <summary>
+            Indicates the SK-Loop technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.Msls">
             <summary>
-            Indicates the MSLS technique.
+            Indicates the multi-sector locked sets (MSLS) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.Exocet">
@@ -6559,6 +6604,26 @@
         <member name="F:Sudoku.Techniques.TechniqueGroup.RankTheory">
             <summary>
             Indicates the technique checked and searched relies on the rank theory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.BowmanBingo">
+            <summary>
+            Indicates the bowman bingo technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Pom">
+            <summary>
+            Indicates the pattern overlay method (POM) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Templating">
+            <summary>
+            Indicates the templating technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Bf">
+            <summary>
+            Indicates the brute force (BF) technique.
             </summary>
         </member>
         <member name="T:Sudoku.Techniques.TechniqueNaming">

@@ -29,6 +29,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public sealed override Technique TechniqueCode => TechniqueCode2;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Ur;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

@@ -43,6 +43,9 @@ namespace Sudoku.Solving.Manual.Intersections
 			4 => Technique.AlmostLockedQuadruple
 		};
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Alc;
+
 		/// <summary>
 		/// Indicates the base difficulty.
 		/// </summary>

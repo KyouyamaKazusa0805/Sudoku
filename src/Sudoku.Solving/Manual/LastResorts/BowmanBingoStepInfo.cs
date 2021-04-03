@@ -30,6 +30,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BowmanBingo;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.BowmanBingo;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

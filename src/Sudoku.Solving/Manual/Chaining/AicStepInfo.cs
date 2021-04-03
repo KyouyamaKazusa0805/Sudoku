@@ -17,8 +17,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 	/// <param name="Target">The target node.</param>
 	public sealed record AicStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled,
-		in Node Target
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		bool XEnabled, bool YEnabled, in Node Target
 	) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>
@@ -36,7 +36,20 @@ namespace Sudoku.Solving.Manual.Chaining
 		public override string? Acronym => "AIC";
 
 		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
+		public override TechniqueTags TechniqueTags => this switch
+		{
+			{ IsMWing: true } => TechniqueTags.Wings,
+			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueTags.Wings,
+			_ => TechniqueTags.LongChaining
+		};
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => this switch
+		{
+			{ IsMWing: true } => TechniqueGroup.Wing,
+			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueGroup.Wing,
+			_ => TechniqueGroup.Aic
+		};
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel =>

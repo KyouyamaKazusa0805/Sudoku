@@ -27,6 +27,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;
+
 
 		/// <inheritdoc/>
 		public abstract override string ToString();

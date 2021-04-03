@@ -19,7 +19,8 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="ZDigitsMask">The Z digits mask.</param>
 	public sealed record AlsXyWingStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
-		in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask) : AlsStepInfo(Conclusions, Views)
+		in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;
@@ -29,6 +30,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
+
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

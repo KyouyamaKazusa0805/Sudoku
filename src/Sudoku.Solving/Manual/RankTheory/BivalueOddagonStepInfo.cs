@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.RankTheory
 {
@@ -17,6 +18,10 @@ namespace Sudoku.Solving.Manual.RankTheory
 		in Cells Loop, int Digit1, int Digit2
 	) : RankTheoryStepInfo(Conclusions, Views)
 	{
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueOddagon;
+
+
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>
 			other is not null && Loop == other.Loop && Digit1 == other.Digit1 && Digit2 == other.Digit2;

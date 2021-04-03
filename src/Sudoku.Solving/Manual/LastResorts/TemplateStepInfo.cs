@@ -32,6 +32,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public override Technique TechniqueCode =>
 			IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Templating;
+
 
 		/// <inheritdoc/>
 		public override string ToString()

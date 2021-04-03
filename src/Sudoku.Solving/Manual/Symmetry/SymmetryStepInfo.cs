@@ -18,5 +18,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Symmetry;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Symmetry;
 	}
 }

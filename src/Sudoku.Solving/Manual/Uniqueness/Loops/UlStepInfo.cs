@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Loop">The loop.</param>
 	public abstract record UlStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop) : UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit1, int Digit2, in Cells Loop
+	) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.
@@ -43,6 +44,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 		/// <inheritdoc/>
 		public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type.ToString()}");
+
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Ul;
 
 		/// <summary>
 		/// Indicates the base difficulty.

@@ -24,5 +24,8 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Singles;
+
+		/// <inheritdoc/>
+		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Single;
 	}
 }

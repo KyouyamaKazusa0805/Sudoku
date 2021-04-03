@@ -30,6 +30,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Je;
 
+		/// <inheritdoc/>
+		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
+
 		/// <summary>
 		/// Indicates extra difficulty on mirror eliminations.
 		/// </summary>

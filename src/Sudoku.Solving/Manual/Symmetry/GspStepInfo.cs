@@ -20,8 +20,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// contains multiple different symmetry types.
 	/// </param>
 	public sealed record GspStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType,
-		int?[]? MappingTable) : SymmetryStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		SymmetryType SymmetryType, int?[]? MappingTable
+	) : SymmetryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 7.0M;
