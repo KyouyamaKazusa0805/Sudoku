@@ -6451,6 +6451,116 @@
             Indicates the brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.Techniques.TechniqueGroup">
+            <summary>
+            Indicates a technique group.
+            </summary>
+            <remarks>
+            Different with <see cref="T:Sudoku.Techniques.TechniqueTags"/>, this enumeration type contains
+            the real technique group that the technique belongs to. In addition, the value
+            of this type may effect the displaying of the analysis result.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.None">
+            <summary>
+            Indicates the technique doesn't belong to any group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Singles">
+            <summary>
+            Indicates the singles technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Intersections">
+            <summary>
+            Indicates the intersection technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Subsets">
+            <summary>
+            Indicates the subset technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Fishes">
+            <summary>
+            Indicates the normal fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.ComplexFishes">
+            <summary>
+            Indicates the complex fish technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Wings">
+            <summary>
+            Indicates the wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.SingleDigitPatterns">
+            <summary>
+            Indicates the single digit pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.AlternatingInferenceChaining">
+            <summary>
+            Indicates the AIC technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.ForcingChaining">
+            <summary>
+            Indicates the forcing chains technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectangle">
+            <summary>
+            Indicates the unique rectangle technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectanglePlus">
+            <summary>
+            Indicates the unique rectangle (+) techique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueLoop">
+            <summary>
+            Indicates the unique loop technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.ExtendedRectangle">
+            <summary>
+            Indicates the extended rectangle technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.DeadlyPattern">
+            <summary>
+            Indicates the deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.AlsChainingLike">
+            <summary>
+            Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Msls">
+            <summary>
+            Indicates the MSLS technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Exocet">
+            <summary>
+            Indicates the exocet technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.Symmetry">
+            <summary>
+            Indicates the symmetry technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Techniques.TechniqueGroup.RankTheory">
+            <summary>
+            Indicates the technique checked and searched relies on the rank theory.
+            </summary>
+        </member>
         <member name="T:Sudoku.Techniques.TechniqueNaming">
             <summary>
             Provides the methods that uses or handles about types <see cref="T:Sudoku.Techniques.Technique"/> and <see cref="T:System.String"/>.
