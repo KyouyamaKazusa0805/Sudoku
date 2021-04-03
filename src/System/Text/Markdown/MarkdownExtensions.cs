@@ -9,7 +9,7 @@ namespace System.Text.Markdown
 	/// </summary>
 	/// <seealso cref="StringBuilder"/>
 	/// <seealso cref="ValueStringBuilder"/>
-	internal static class MarkdownExtensions
+	public static class MarkdownExtensions
 	{
 		/// <summary>
 		/// Append plain text.
@@ -20,6 +20,7 @@ namespace System.Text.Markdown
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
 		/// </exception>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendText(this ref ValueStringBuilder @this, string text)
 		{
@@ -40,6 +41,7 @@ namespace System.Text.Markdown
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
 		/// </exception>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendParagraph(this ref ValueStringBuilder @this, string text)
 		{
@@ -68,6 +70,7 @@ namespace System.Text.Markdown
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
 		/// </exception>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendInlineCodeBlock(
 			this ref ValueStringBuilder @this, string text, bool appendPaddingSpaces)
@@ -127,6 +130,7 @@ namespace System.Text.Markdown
 		/// <param name="code">The inner code.</param>
 		/// <param name="codelang">The code language.</param>
 		/// <returns>The current instance.</returns>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendCodeBlock(this ref ValueStringBuilder @this, string code, string? codelang)
 		{
@@ -150,6 +154,7 @@ namespace System.Text.Markdown
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
 		/// or only contains whitespace characters.
 		/// </exception>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendHeaderText(this ref ValueStringBuilder @this, string text)
 		{
@@ -175,6 +180,7 @@ namespace System.Text.Markdown
 		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
 		/// or only contains whitespace characters.
 		/// </exception>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendHeaderText(this ref ValueStringBuilder @this, int level, string text)
 		{
@@ -195,6 +201,7 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendBoldBlock(this ref ValueStringBuilder @this, string text)
 		{
@@ -209,6 +216,7 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendItalicBlock(this ref ValueStringBuilder @this, string text)
 		{
@@ -223,6 +231,7 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendDeleteBlock(this ref ValueStringBuilder @this, string text)
 		{
@@ -244,6 +253,7 @@ namespace System.Text.Markdown
 		/// A <see cref="bool"/> value indicates whether the end appends a new line. The default value
 		/// is <see langword="false"/>.
 		/// </param>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendHyperlink(
 			this ref ValueStringBuilder @this, string? description, string uri, bool withNewLine = false)
@@ -269,6 +279,7 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="description">The description of the hyperlink.</param>
 		/// <param name="uri">The URI link.</param>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendImageBlock(this ref ValueStringBuilder @this, string? description, string uri)
 		{
@@ -286,6 +297,7 @@ namespace System.Text.Markdown
 		/// </summary>
 		/// <param name="this">The current instance.</param>
 		/// <returns>The current instance.</returns>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendNewLine(this ref ValueStringBuilder @this)
 		{

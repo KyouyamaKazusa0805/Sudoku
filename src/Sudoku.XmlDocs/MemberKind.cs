@@ -25,11 +25,6 @@ namespace Sudoku.XmlDocs
 		PrimaryConstructor,
 
 		/// <summary>
-		/// Indicates the member is a <see langword="static"/> constructor.
-		/// </summary>
-		StaticConstructor,
-
-		/// <summary>
 		/// Indicates the member is a property.
 		/// </summary>
 		Property,

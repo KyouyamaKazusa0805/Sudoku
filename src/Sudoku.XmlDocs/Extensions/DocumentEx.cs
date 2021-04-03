@@ -25,7 +25,6 @@ namespace Sudoku.XmlDocs.Extensions
 				MemberKind.Field => "Field ",
 				MemberKind.Constructor => "Constructor",
 				MemberKind.PrimaryConstructor => "Primary Constructor",
-				MemberKind.StaticConstructor => "Static Constructor",
 				MemberKind.Property => "Property",
 				MemberKind.Indexer => "Indexer",
 				MemberKind.Event => "Event",

@@ -544,11 +544,6 @@
             in the <see langword="record"/>s.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.StaticConstructor">
-            <summary>
-            Indicates the member is a <see langword="static"/> constructor.
-            </summary>
-        </member>
         <member name="F:Sudoku.XmlDocs.MemberKind.Property">
             <summary>
             Indicates the member is a property.
