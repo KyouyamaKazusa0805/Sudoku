@@ -69,7 +69,7 @@ foreach (var node in root.DescendantNodes().OfType<MethodDeclarationSyntax>())
 							continue;
 						}
 
-						var text = textToken.ValueText.Trim();
+						string text = textToken.ValueText.Trim();
 						if (string.IsNullOrEmpty(text))
 						{
 							continue;
