@@ -1014,7 +1014,7 @@ namespace Sudoku.Windows
 			{
 				_textBoxInfo.Text =
 					$"{_analyisResult.SolvingStepsCount.ToString()} " +
-					$@"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
+					$"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
 					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["Comma"]}" +
 					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
@@ -1027,17 +1027,14 @@ namespace Sudoku.Windows
 				foreach (var step in _analyisResult.Steps!)
 				{
 					var (fore, back) = ColorPalette.DifficultyLevelColors[step.DifficultyLevel];
-					var content =
-						new StepTriplet(
-							(Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
-							{
-								(true, true) => $"(#{(i + 1).ToString()}, {step.Difficulty.ToString()}) {step.ToSimpleString()}",
-								(true, false) => $"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
-								(false, true) => $"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
-								_ => step.ToSimpleString()
-							},
-							i++,
-							step);
+					var content = new StepTriplet((Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
+					{
+						(true, true) =>
+							$"(#{(i + 1).ToString()}, {step.Difficulty.ToString()}) {step.ToSimpleString()}",
+						(true, false) => $"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
+						(false, true) => $"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
+						_ => step.ToSimpleString()
+					}, i++, step);
 
 					pathList.Add(new()
 					{
@@ -1054,61 +1051,52 @@ namespace Sudoku.Windows
 				// Gather the information.
 				// GridView should list the instance with each property, not fields,
 				// even if fields are public.
-				// Therefore, here may use anonymous type is okay, but using value tuples
-				// is bad.
-				var puzzleDifficultyLevel = DifficultyLevel.Unknown;
+				// Therefore, here may use anonymous type, or using value tuples is bad.
+				var puzzleDifficulty = DifficultyLevel.Unknown;
 				var collection = new List<DifficultyInfo>();
 				decimal summary = 0, summaryMax = 0;
 				int summaryCount = 0;
-				foreach
-				(
+				foreach (
 					var techniqueGroup in
 						from step in _analyisResult.Steps!
 						orderby step.Difficulty
 						group step by (
 							Settings.DisplayAcronymRatherThanFullNameOfSteps
-							? step.Acronym ?? step.Name
+							? TextResources.Current[$"TechniqueGroup{step.TechniqueGroup.ToString()}"]
 							: step.Name
 						)
 				)
 				{
 					string name = techniqueGroup.Key;
 					int count = techniqueGroup.Count();
-					decimal total = 0, minimum = decimal.MaxValue, maximum = 0;
-					var minDifficultyLevel = DifficultyLevel.LastResort;
-					var maxDifficultyLevel = DifficultyLevel.Unknown;
+					decimal total = 0, min = decimal.MaxValue, max = 0;
+					DifficultyLevel
+						minDifficulty = DifficultyLevel.LastResort,
+						maxDifficulty = DifficultyLevel.Unknown;
 					foreach (var (_, difficulty, difficultyLevel) in techniqueGroup)
 					{
 						summary += difficulty;
 						summaryCount++;
 						total += difficulty;
-						minimum = Math.Min(difficulty, minimum);
-						maximum = Math.Max(difficulty, maximum);
-						minDifficultyLevel = EnumEx.Min(difficultyLevel, minDifficultyLevel);
-						maxDifficultyLevel = EnumEx.Max(difficultyLevel, maxDifficultyLevel);
+						min = Math.Min(difficulty, min);
+						max = Math.Max(difficulty, max);
+						minDifficulty = EnumEx.Min(difficultyLevel, minDifficulty);
+						maxDifficulty = EnumEx.Max(difficultyLevel, maxDifficulty);
 					}
 
-					summaryMax = Math.Max(summaryMax, maximum);
-					puzzleDifficultyLevel = EnumEx.Max(puzzleDifficultyLevel, maxDifficultyLevel);
+					summaryMax = Math.Max(summaryMax, max);
+					puzzleDifficulty = EnumEx.Max(puzzleDifficulty, maxDifficulty);
 
-					if (minimum == maximum)
-					{
-						collection.Add(
-							new(
-								name, count, total, minimum.ToString("0.0"),
-								minDifficultyLevel | maxDifficultyLevel));
-					}
-					else
-					{
-						collection.Add(
-							new(
-								name, count, total, $"{minimum.ToString("0.0")} - {maximum.ToString("0.0")}",
-								minDifficultyLevel | maxDifficultyLevel));
-					}
+					collection.Add(
+						new(
+							name, count, total,
+							min == max ? min.ToString("0.0") : $"{min.ToString("0.0")} - {max.ToString("0.0")}",
+							minDifficulty | maxDifficulty
+						)
+					);
 				}
 
-				collection.Add(
-					new(null, summaryCount, summary, summaryMax.ToString("0.0"), puzzleDifficultyLevel));
+				collection.Add(new(null, summaryCount, summary, summaryMax.ToString("0.0"), puzzleDifficulty));
 
 				_listViewSummary.ItemsSource = collection;
 			}

@@ -220,7 +220,7 @@
 	<sys:String x:Key="SettingsTextFormatPlaceholdersAreZero">Text format placeholders are '0'</sys:String>
 	<sys:String x:Key="SettingsPmCompatible">PM grid compatible</sys:String>
 	<sys:String x:Key="SettingsOnlyShowSameLevelStepsInFindAllSteps">Only shows same-level steps in Find All Steps</sys:String>
-	<sys:String x:Key="SettingsDisplayAbbrRatherThanFullNameOfSteps">Display Abbreviation rather than full technique name in steps</sys:String>
+	<sys:String x:Key="SettingsDisplayAbbrRatherThanFullNameOfSteps">Group all technique steps by its name before displaying the analysis result table</sys:String>
 	<sys:String x:Key="SettingsShowStepLabel">Show the label of each step in solving paths</sys:String>
 	<sys:String x:Key="SettingsShowStepDifficulty">Show the difficulty rating of each step in solving paths</sys:String>
 	<sys:String x:Key="SettingsShowLightRegion">Show light-style regions (only use a line to render a region)</sys:String>
