@@ -1,19 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Visitor = System.Action<
-	Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax>
->;
-using VisitorWithAttributes = System.Action<
-	Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax>,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax>
->;
-using VisitorWithoutValue = System.Action<
-	Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax>
->;
 
 namespace Sudoku.XmlDocs.Extensions
 {
@@ -28,42 +15,43 @@ namespace Sudoku.XmlDocs.Extensions
 		/// </summary>
 		/// <param name="this">The root node of the documentation comments.</param>
 		/// <param name="summaryNodeVisitor">
-		/// A delegated method that invokes while the summary node is visiting.
+		/// A delegated method that invokes while the "summary" node is visiting.
 		/// </param>
 		/// <param name="remarksNodeVisitor">
-		/// A delegated method that invokes while the remarks node is visiting.
+		/// A delegated method that invokes while the "remarks" node is visiting.
 		/// </param>
 		/// <param name="returnsNodeVisitor">
-		/// A delegated method that invokes while the returns node is visiting.
+		/// A delegated method that invokes while the "returns" node is visiting.
 		/// </param>
 		/// <param name="valueNodeVisitor">
-		/// A delegated method that invokes while the value node is visiting.
+		/// A delegated method that invokes while the "value" node is visiting.
 		/// </param>
 		/// <param name="exampleNodeVisitor">
-		/// A delegated method that invokes while the example node is visiting.
+		/// A delegated method that invokes while the "example" node is visiting.
 		/// </param>
 		/// <param name="paramNodeVisitor">
-		/// A delegated method that invokes while the param node is visiting.
+		/// A delegated method that invokes while the "param" node is visiting.
 		/// </param>
 		/// <param name="typeParamNodeVisitor">
-		/// A delegated method that invokes while the typeparam node is visiting.
+		/// A delegated method that invokes while the "typeparam" node is visiting.
 		/// </param>
 		/// <param name="seeAlsoNodeVisitor">
-		/// A delegated method that invokes while the seealso node is visiting.
+		/// A delegated method that invokes while the "seealso" node is visiting.
 		/// </param>
 		/// <param name="exceptionNodeVisitor">
-		/// A delegated method that invokes while the exception node is visiting.
+		/// A delegated method that invokes while the "exception" node is visiting.
 		/// </param>
 		/// <param name="inheritDocNodeVisitor">
-		/// A delegated method that invokes while the inheritdoc node is visiting.
+		/// A delegated method that invokes while the "inheritdoc" node is visiting.
 		/// </param>
 		public static void VisitDocDescendants(
-			this SyntaxNode @this, Visitor? summaryNodeVisitor = null, Visitor? remarksNodeVisitor = null,
-			Visitor? returnsNodeVisitor = null, Visitor? valueNodeVisitor = null,
-			Visitor? exampleNodeVisitor = null, Visitor? paramNodeVisitor = null,
-			Visitor? typeParamNodeVisitor = null, Visitor? seeAlsoNodeVisitor = null,
-			VisitorWithAttributes? exceptionNodeVisitor = null,
-			VisitorWithoutValue? inheritDocNodeVisitor = null)
+			this SyntaxNode @this,
+			SyntaxVisitor? summaryNodeVisitor = null, SyntaxVisitor? remarksNodeVisitor = null,
+			SyntaxVisitor? returnsNodeVisitor = null, SyntaxVisitor? valueNodeVisitor = null,
+			SyntaxVisitor? exampleNodeVisitor = null, SyntaxVisitor? paramNodeVisitor = null,
+			SyntaxVisitor? typeParamNodeVisitor = null, SyntaxVisitor? seeAlsoNodeVisitor = null,
+			AttributedSyntaxVisitor? exceptionNodeVisitor = null,
+			AttributedSyntaxVisitorWithoutDescendants? inheritDocNodeVisitor = null)
 		{
 			switch (@this)
 			{
@@ -104,10 +92,12 @@ namespace Sudoku.XmlDocs.Extensions
 
 
 			static void onVisiting(
-				SyntaxNode docRoot, Visitor? summaryNodeVisitor, Visitor? remarksNodeVisitor,
-				Visitor? returnsNodeVisitor, Visitor? valueNodeVisitor, Visitor? exampleNodeVisitor,
-				Visitor? paramNodeVisitor, Visitor? typeParamNodeVisitor, Visitor? seeAlsoNodeVisitor,
-				VisitorWithAttributes? exceptionNodeVisitor, VisitorWithoutValue? inheritDocNodeVisitor)
+				SyntaxNode docRoot, SyntaxVisitor? summaryNodeVisitor, SyntaxVisitor? remarksNodeVisitor,
+				SyntaxVisitor? returnsNodeVisitor, SyntaxVisitor? valueNodeVisitor,
+				SyntaxVisitor? exampleNodeVisitor, SyntaxVisitor? paramNodeVisitor,
+				SyntaxVisitor? typeParamNodeVisitor, SyntaxVisitor? seeAlsoNodeVisitor,
+				AttributedSyntaxVisitor? exceptionNodeVisitor,
+				AttributedSyntaxVisitorWithoutDescendants? inheritDocNodeVisitor)
 			{
 				foreach (var markup in docRoot.DescendantNodes())
 				{

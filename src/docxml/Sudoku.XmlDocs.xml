@@ -498,40 +498,40 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDocDescendants(Microsoft.CodeAnalysis.SyntaxNode,System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax},Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax}})">
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDocDescendants(Microsoft.CodeAnalysis.SyntaxNode,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.AttributedSyntaxVisitor,Sudoku.XmlDocs.AttributedSyntaxVisitorWithoutDescendants)">
             <summary>
             Visits all documentation comment XML nodes.
             </summary>
             <param name="this">The root node of the documentation comments.</param>
             <param name="summaryNodeVisitor">
-            A delegated method that invokes while the summary node is visiting.
+            A delegated method that invokes while the "summary" node is visiting.
             </param>
             <param name="remarksNodeVisitor">
-            A delegated method that invokes while the remarks node is visiting.
+            A delegated method that invokes while the "remarks" node is visiting.
             </param>
             <param name="returnsNodeVisitor">
-            A delegated method that invokes while the returns node is visiting.
+            A delegated method that invokes while the "returns" node is visiting.
             </param>
             <param name="valueNodeVisitor">
-            A delegated method that invokes while the value node is visiting.
+            A delegated method that invokes while the "value" node is visiting.
             </param>
             <param name="exampleNodeVisitor">
-            A delegated method that invokes while the example node is visiting.
+            A delegated method that invokes while the "example" node is visiting.
             </param>
             <param name="paramNodeVisitor">
-            A delegated method that invokes while the param node is visiting.
+            A delegated method that invokes while the "param" node is visiting.
             </param>
             <param name="typeParamNodeVisitor">
-            A delegated method that invokes while the typeparam node is visiting.
+            A delegated method that invokes while the "typeparam" node is visiting.
             </param>
             <param name="seeAlsoNodeVisitor">
-            A delegated method that invokes while the seealso node is visiting.
+            A delegated method that invokes while the "seealso" node is visiting.
             </param>
             <param name="exceptionNodeVisitor">
-            A delegated method that invokes while the exception node is visiting.
+            A delegated method that invokes while the "exception" node is visiting.
             </param>
             <param name="inheritDocNodeVisitor">
-            A delegated method that invokes while the inheritdoc node is visiting.
+            A delegated method that invokes while the "inheritdoc" node is visiting.
             </param>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenEx">
@@ -897,6 +897,33 @@
         </member>
         <member name="M:Sudoku.XmlDocs.SyntaxInfo.PrimaryConstructorSyntaxInfo.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.XmlDocs.SyntaxVisitor">
+            <summary>
+            Indicates the delegated methods that will be invoked while the specified node type is visiting.
+            </summary>
+            <param name="node">The doc comment node.</param>
+            <param name="descendants">All descendants.</param>
+        </member>
+        <member name="T:Sudoku.XmlDocs.AttributedSyntaxVisitor">
+            <summary>
+            Indicates the delegated methods that will be invoked while the specified node type is visiting.
+            Different with <see cref="T:Sudoku.XmlDocs.SyntaxVisitor"/>, this type contains a new parameter
+            named <paramref name="attributes"/>, which belongs to the markup.
+            </summary>
+            <param name="node">The doc comment node.</param>
+            <param name="attributes">The attributes of the node.</param>
+            <param name="descendants">All descendants.</param>
+            <seealso cref="T:Sudoku.XmlDocs.SyntaxVisitor"/>
+        </member>
+        <member name="T:Sudoku.XmlDocs.AttributedSyntaxVisitorWithoutDescendants">
+            <summary>
+            Indicates the delegated methods that will be invoked while the specified node type is visiting.
+            Different with <see cref="T:Sudoku.XmlDocs.AttributedSyntaxVisitor"/>, this type doesn't contain any descedants.
+            </summary>
+            <param name="node">The doc comment node.</param>
+            <param name="attributes">The attributes of the node.</param>
+            <seealso cref="T:Sudoku.XmlDocs.AttributedSyntaxVisitor"/>
         </member>
         <member name="T:Sudoku.XmlDocs.TypeKind">
             <summary>

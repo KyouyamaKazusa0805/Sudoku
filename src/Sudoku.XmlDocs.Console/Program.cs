@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.XmlDocs.Extensions;
@@ -42,19 +43,21 @@ var sb = new StringBuilder();
 
 foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 {
-	decl.VisitDocDescendants(summaryNodeVisitor: (node, descendants) =>
-	{
-		foreach (var descendant in descendants)
+	decl.VisitDocDescendants(
+		summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) =>
 		{
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.Write(descendant.GetType().Name);
-			Console.ResetColor();
-			Console.Write(": \"");
-			Console.ForegroundColor = ConsoleColor.Blue;
-			Console.Write(descendant);
-			Console.ResetColor();
-			Console.WriteLine("\"");
-			Console.WriteLine();
+			foreach (var descendant in descendants)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Write(descendant.GetType().Name);
+				Console.ResetColor();
+				Console.Write(": \"");
+				Console.ForegroundColor = ConsoleColor.Blue;
+				Console.Write(descendant);
+				Console.ResetColor();
+				Console.WriteLine("\"");
+				Console.WriteLine();
+			}
 		}
-	});
+	);
 }
