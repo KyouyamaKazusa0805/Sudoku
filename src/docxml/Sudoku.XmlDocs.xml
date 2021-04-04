@@ -139,19 +139,74 @@
             Indicates the documentation block names.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Paragraph">
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Summary">
             <summary>
-            Indicates the paragraph node name.
+            Indicates the "summary" node name.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.InlineCodeBlock">
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Remarks">
             <summary>
-            Indicates the inline code block node name.
+            Indicates the "remarks" node name.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.CodeBlock">
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Returns">
             <summary>
-            Indicates the code block node name.
+            Indicates the "returns" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Value">
+            <summary>
+            Indicates the "value" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Param">
+            <summary>
+            Indicates the "param" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.ParamRef">
+            <summary>
+            Indicates the "paramref" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.TypeParam">
+            <summary>
+            Indicates the "typeparam" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.TypeParamRef">
+            <summary>
+            Indicates the "typeparamref" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.InheritDoc">
+            <summary>
+            Indicates the "inheritdoc" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Para">
+            <summary>
+            Indicates the "para" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.C">
+            <summary>
+            Indicates the inline code block ("c") node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Code">
+            <summary>
+            Indicates the code block ("code") node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.See">
+            <summary>
+            Indicates the "see" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.SeeAlso">
+            <summary>
+            Indicates the "seealso" node name.
             </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.DocCommentHeaders">
@@ -426,6 +481,60 @@
             <param name="this">The list.</param>
             <param name="condition">The condition to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.SyntaxNodeEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDescedants(Microsoft.CodeAnalysis.SyntaxNode,System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax}})">
+            <summary>
+            Group all XML nodes.
+            </summary>
+            <param name="docRoot">The root node of the documentation comments.</param>
+            <param name="summaryNodeVisitor">
+            A delegated method that invokes while the summary node is visiting.
+            </param>
+            <param name="remarksNodeVisitor">
+            A delegated method that invokes while the remarks node is visiting.
+            </param>
+            <param name="returnsNodeVisitor">
+            A delegated method that invokes while the returns node is visiting.
+            </param>
+            <param name="valueNodeVisitor">
+            A delegated method that invokes while the value node is visiting.
+            </param>
+            <param name="paramNodeVisitor">
+            A delegated method that invokes while the param node is visiting.
+            </param>
+            <param name="typeParamNodeVisitor">
+            A delegated method that invokes while the typeparam node is visiting.
+            </param>
+            <param name="seeAlsoNodeVisitor">
+            A delegated method that invokes while the seealso node is visiting.
+            </param>
+            <param name="inheritDocNodeVisitor">
+            A delegated method that invokes while the inheritdoc node is visiting.
+            </param>
+            <returns>
+            All XML nodes grouped by it markup. This list stores a triplet, where:
+            <list type="table">
+            <item>
+            <term>The first element</term>
+            <description>The markup of the XML node.</description>
+            </item>
+            <item>
+            <term>The second element</term>
+            <description>The descendant XML nodes of this node.</description>
+            </item>
+            <item>
+            <term>The third element</term>
+            <description>The attributes of this XML node.</description>
+            </item>
+            </list>
+            If the node doesn't contain any descendants, the value will be an empty list.
+            </returns>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenEx">
             <summary>
