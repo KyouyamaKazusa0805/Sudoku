@@ -62,20 +62,7 @@ foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 		{
 			foreach (var descendant in descendants)
 			{
-				if (isWhiteOrTripleSlashOnly(descendant))
-				{
-					continue;
-				}
-
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.Write(descendant.GetType().Name);
-				Console.ResetColor();
-				Console.Write(": \"");
-				Console.ForegroundColor = ConsoleColor.Blue;
-				Console.Write(descendant);
-				Console.ResetColor();
-				Console.WriteLine("\"");
-				Console.WriteLine();
+				traverse(descendant);
 			}
 		}
 	);
@@ -91,22 +78,29 @@ foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 			{
 				foreach (var descendant in descendants)
 				{
-					if (isWhiteOrTripleSlashOnly(descendant))
-					{
-						continue;
-					}
-
-					Console.ForegroundColor = ConsoleColor.Red;
-					Console.Write(descendant.GetType().Name);
-					Console.ResetColor();
-					Console.Write(": \"");
-					Console.ForegroundColor = ConsoleColor.Blue;
-					Console.Write(descendant);
-					Console.ResetColor();
-					Console.WriteLine("\"");
-					Console.WriteLine();
+					traverse(descendant);
 				}
 			}
 		);
 	}
+}
+
+bool traverse(XmlNodeSyntax descendant)
+{
+	if (isWhiteOrTripleSlashOnly(descendant))
+	{
+		return false;
+	}
+
+	Console.ForegroundColor = ConsoleColor.Red;
+	Console.Write(descendant.GetType().Name);
+	Console.ResetColor();
+	Console.Write(": \"");
+	Console.ForegroundColor = ConsoleColor.Blue;
+	Console.Write(descendant);
+	Console.ResetColor();
+	Console.WriteLine("\"");
+	Console.WriteLine();
+
+	return true;
 }
