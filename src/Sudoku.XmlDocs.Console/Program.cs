@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -40,14 +41,32 @@ class C
 }";
 var root = CSharpSyntaxTree.ParseText(testCode).GetRoot();
 var sb = new StringBuilder();
+var emptyCharsRegex = new Regex(
+	pattern: @"\s*\r\n\s*///\s*",
+	options: RegexOptions.Compiled | RegexOptions.ExplicitCapture,
+	matchTimeout: TimeSpan.FromSeconds(5)
+);
+
+bool isWhiteOrTripleSlashOnly(XmlNodeSyntax node)
+{
+	string s = node.ToString();
+	var match = emptyCharsRegex.Match(s);
+	return match.Success && match.Value == s;
+}
 
 foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 {
+	// Get its docs.
 	decl.VisitDocDescendants(
 		summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) =>
 		{
 			foreach (var descendant in descendants)
 			{
+				if (isWhiteOrTripleSlashOnly(descendant))
+				{
+					continue;
+				}
+
 				Console.ForegroundColor = ConsoleColor.Red;
 				Console.Write(descendant.GetType().Name);
 				Console.ResetColor();
@@ -60,4 +79,34 @@ foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 			}
 		}
 	);
+
+	// Get all member docs.
+	foreach (var member in decl.GetMembers(checkNestedTypes: true))
+	{
+		Console.Write("Member ");
+		Console.WriteLine();
+
+		member.VisitDocDescendants(
+			summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) =>
+			{
+				foreach (var descendant in descendants)
+				{
+					if (isWhiteOrTripleSlashOnly(descendant))
+					{
+						continue;
+					}
+
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.Write(descendant.GetType().Name);
+					Console.ResetColor();
+					Console.Write(": \"");
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.Write(descendant);
+					Console.ResetColor();
+					Console.WriteLine("\"");
+					Console.WriteLine();
+				}
+			}
+		);
+	}
 }
