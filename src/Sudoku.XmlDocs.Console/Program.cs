@@ -9,10 +9,13 @@ using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Sudoku.XmlDocs;
 using Sudoku.XmlDocs.Extensions;
 
+const string langWordAttributeText = "langword";
 const string testCode = @"
 /// <summary>
+/// <para>
 /// This is an xml doc comment. <see cref=""T(ref int)""/>
 /// <code>
 /// foreach (var item in list)
@@ -21,6 +24,7 @@ const string testCode = @"
 /// }
 /// </code>
 /// This is a new line.
+/// </para>
 /// </summary>
 /// <remarks>
 /// Remarks.
@@ -85,6 +89,10 @@ foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 	}
 }
 
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine(sb.ToString());
+Console.ResetColor();
+
 bool traverse(XmlNodeSyntax descendant)
 {
 	if (isWhiteOrTripleSlashOnly(descendant))
@@ -92,6 +100,145 @@ bool traverse(XmlNodeSyntax descendant)
 		return false;
 	}
 
+	switch (descendant)
+	{
+		case XmlTextSyntax { TextTokens: var tokens }:
+		{
+			foreach (var token in tokens)
+			{
+				string text = token.ValueText;
+				if (!string.IsNullOrWhiteSpace(text) && text != Environment.NewLine)
+				{
+					sb.Append(text.TrimStart());
+				}
+			}
+
+			break;
+		}
+		case XmlEmptyElementSyntax
+		{
+			Name: { LocalName: { ValueText: var markup } },
+			Attributes: var attributes
+		} when attributes[0] is { Name: { LocalName: { ValueText: var xmlPrefixName } } } firstAttribute:
+		{
+			string attributeValueText = (SyntaxKind)firstAttribute.RawKind switch
+			{
+				SyntaxKind.XmlCrefAttribute when firstAttribute is XmlCrefAttributeSyntax
+				{
+					Cref: var crefNode
+				} => crefNode.ToString(),
+				SyntaxKind.XmlNameAttribute when firstAttribute is XmlNameAttributeSyntax
+				{
+					Identifier: { Identifier: { ValueText: var identifier } }
+				} => identifier,
+				SyntaxKind.XmlTextAttribute when firstAttribute is XmlTextAttributeSyntax
+				{
+					Name: { LocalName: { ValueText: langWordAttributeText } },
+					TextTokens: { Count: not 0 } tokenList
+				} && tokenList[0] is { ValueText: var firstTokenText } => firstTokenText
+			};
+
+			switch (markup)
+			{
+				case DocCommentBlocks.See:
+				{
+					attributeValueText = attributeValueText.Replace('{', '<').Replace('}', '>');
+					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
+					{
+						sb.Append(' ');
+					}
+
+					sb.Append($"`{attributeValueText}` ");
+					break;
+				}
+				case DocCommentBlocks.ParamRef:
+				{
+					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
+					{
+						sb.Append(' ');
+					}
+
+					sb.Append($"`{attributeValueText}` ");
+					break;
+				}
+				case DocCommentBlocks.TypeParamRef:
+				{
+					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
+					{
+						sb.Append(' ');
+					}
+
+					sb.Append($"`{attributeValueText}` ");
+					break;
+				}
+			}
+
+			break;
+		}
+		case XmlElementSyntax
+		{
+			StartTag:
+			{
+				Name: { LocalName: { ValueText: var markup } },
+				Attributes: { Count: 0 }
+			},
+			Content: var content
+		} when content.ToString() is var contentText:
+		{
+			switch (markup)
+			{
+				case DocCommentBlocks.Para:
+				{
+					foreach (var descendantInner in content)
+					{
+						// Handle it recursively.
+						traverse(descendantInner);
+					}
+
+					sb.AppendLine().AppendLine();
+
+					break;
+				}
+				case DocCommentBlocks.C:
+				{
+					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
+					{
+						sb.Append(' ');
+					}
+
+					sb.Append($"`{contentText}` ");
+
+					break;
+				}
+				case DocCommentBlocks.Code:
+				{
+					// Trimming. We should remove all unncessary text.
+					contentText = Regex
+						.Replace(contentText, @"(?<=\r\n)\s*(///\s+?)", static _ => string.Empty)
+						.Trim(new[] { '\r', '\n', ' ' });
+
+					if (sb.ToString() != string.Empty)
+					{
+						// If the context contains any characters, we should turn to a new line
+						// to output the code block.
+						sb.AppendLine().AppendLine();
+					}
+
+					sb
+						.AppendLine("```csharp")    // Code block start
+						.AppendLine(contentText)    // Code content
+						.AppendLine("```")          // Code block end
+						.AppendLine().AppendLine(); // New line
+
+					break;
+				}
+			}
+
+			break;
+		}
+	}
+
+#if DEBUG
 	Console.ForegroundColor = ConsoleColor.Red;
 	Console.Write(descendant.GetType().Name);
 	Console.ResetColor();
@@ -101,6 +248,7 @@ bool traverse(XmlNodeSyntax descendant)
 	Console.ResetColor();
 	Console.WriteLine("\"");
 	Console.WriteLine();
+#endif
 
 	return true;
 }
