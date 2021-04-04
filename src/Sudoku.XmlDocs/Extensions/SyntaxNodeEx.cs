@@ -69,20 +69,20 @@ namespace Sudoku.XmlDocs.Extensions
 			{
 				case MemberDeclarationSyntax:
 				{
-					foreach (var trivium in @this.GetLeadingTrivia())
+					foreach (var (kind, structured) in @this.GetLeadingTrivia())
 					{
-						if (trivium.RawKind != (int)SyntaxKind.SingleLineDocumentationCommentTrivia)
+						if (kind != SyntaxKind.SingleLineDocumentationCommentTrivia)
 						{
 							continue;
 						}
 
-						if (trivium.GetStructure() is not { } structuredDocComments)
+						if (structured is null)
 						{
 							continue;
 						}
 
 						onVisiting(
-							structuredDocComments, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
+							structured, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
 							valueNodeVisitor, exampleNodeVisitor, paramNodeVisitor, typeParamNodeVisitor,
 							seeAlsoNodeVisitor, exceptionNodeVisitor, inheritDocNodeVisitor
 						);

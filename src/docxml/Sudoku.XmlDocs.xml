@@ -592,6 +592,18 @@
             <param name="customAccessibility">The custom accessibility.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTriviaEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxTrivia"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxTrivia"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTriviaEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxTrivia@,Microsoft.CodeAnalysis.CSharp.SyntaxKind@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
+            <param name="this">The syntax trivia.</param>
+            <param name="kind">The syntax kind.</param>
+            <param name="structure">The strutured syntax node (used for doc comments).</param>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.TextSpanEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>.
