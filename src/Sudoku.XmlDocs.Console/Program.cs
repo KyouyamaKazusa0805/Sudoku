@@ -4,134 +4,57 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Sudoku.XmlDocs;
+using Sudoku.XmlDocs.Extensions;
 
-var z = CSharpSyntaxTree.ParseText(@"/// <summary>
+const string testCode = @"
+/// <summary>
 /// This is an xml doc comment. <see cref=""T(ref int)""/>
+/// <code>
+/// foreach (var item in list)
+/// {
+///     Console.WriteLine(item.ToString());
+/// }
+/// </code>
 /// This is a new line.
 /// </summary>
+/// <remarks>
+/// Remarks.
+/// </remarks>
 class C
 {
-	/// <summary>
-	/// <para><paramref name=""p""/> is a.</para>
-	/// <para><paramref name=""p""/> is b.</para>
-	/// <para><paramref name=""p""/> is c.</para>
-	/// </summary>
-	public void T(ref int p)
-	{
-		p += 2;
-	}
-}");
-var root = z.GetRoot();
+    /// <summary>
+    /// <para><paramref name=""p""/> is a.</para>
+    /// <para><paramref name=""p""/> is b.</para>
+    /// <para><paramref name=""p""/> is c.</para>
+    /// </summary>
+	/// <typeparam name=""TArg"">The type argument.</typeparam>
+	/// <example>Examples.</example>
+    public void T<TArg>(ref int p) where TArg : struct
+    {
+        p += 2;
+    }
+}";
+var root = CSharpSyntaxTree.ParseText(testCode).GetRoot();
+var sb = new StringBuilder();
 
-foreach (var node in root.DescendantNodes().OfType<MethodDeclarationSyntax>())
+foreach (var decl in root.DescendantNodes().OfType<TypeDeclarationSyntax>())
 {
-	foreach (var trivia in node.GetLeadingTrivia())
+	decl.VisitDocDescendants(summaryNodeVisitor: (node, descendants) =>
 	{
-		if (trivia.RawKind != (int)SyntaxKind.SingleLineDocumentationCommentTrivia)
+		foreach (var descendant in descendants)
 		{
-			continue;
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Write(descendant.GetType().Name);
+			Console.ResetColor();
+			Console.Write(": \"");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.Write(descendant);
+			Console.ResetColor();
+			Console.WriteLine("\"");
+			Console.WriteLine();
 		}
-
-		var docNodes = trivia.GetStructure();
-		if (docNodes is null)
-		{
-			continue;
-		}
-
-		var allPossibleNodes = docNodes.DescendantNodes();
-		var summaryMark = allPossibleNodes.OfType<XmlElementStartTagSyntax>().FirstOrDefault(p);
-		if (summaryMark is null)
-		{
-			continue;
-		}
-
-		var endSummaryMark = allPossibleNodes.OfType<XmlElementEndTagSyntax>().FirstOrDefault(q);
-		if (endSummaryMark is null)
-		{
-			continue;
-		}
-
-		int rangeMin = summaryMark.GetLocation().SourceSpan.End;
-		int rangeMax = endSummaryMark.GetLocation().SourceSpan.Start;
-		foreach (var possibleNode in allPossibleNodes)
-		{
-			switch (possibleNode)
-			{
-				case XmlTextSyntax { TextTokens: var textTokens } xmlText:
-				{
-					foreach (var textToken in textTokens)
-					{
-						if (textToken.RawKind == (int)SyntaxKind.XmlTextLiteralNewLineToken)
-						{
-							continue;
-						}
-
-						string text = textToken.ValueText.Trim();
-						if (string.IsNullOrEmpty(text))
-						{
-							continue;
-						}
-
-#if DEBUG
-						Console.WriteLine(text);
-#endif
-					}
-
-					break;
-				}
-				case XmlEmptyElementSyntax refOrSee:
-				{
-					foreach (var crefNode in refOrSee.DescendantNodes())
-					{
-						switch (crefNode)
-						{
-							case XmlNameAttributeSyntax { Identifier: { Identifier: { ValueText: var text } } }:
-							{
-#if DEBUG
-								Console.WriteLine($" `{text}` ");
-#endif
-
-								break;
-							}
-							case QualifiedCrefSyntax:
-							{
-#if DEBUG
-								Console.WriteLine($" `{crefNode}` ");
-#endif
-
-								break;
-							}
-							case NameMemberCrefSyntax:
-							{
-#if DEBUG
-								Console.WriteLine($" `{crefNode}` ");
-#endif
-
-								break;
-							}
-						}
-					}
-
-					break;
-				}
-				default:
-					break;
-			}
-		}
-	}
+	});
 }
-
-static bool p(XmlElementStartTagSyntax node) =>
-	node.Name.LocalName.ValueText.Equals(
-		DocCommentHeaders.Summary,
-		StringComparison.OrdinalIgnoreCase
-	);
-
-static bool q(XmlElementEndTagSyntax node) =>
-	node.Name.LocalName.ValueText.Equals(
-		DocCommentHeaders.Summary,
-		StringComparison.OrdinalIgnoreCase
-	);

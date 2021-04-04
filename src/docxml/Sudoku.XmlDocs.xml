@@ -611,6 +611,22 @@
             <param name="end">The range end value.</param>
             <param name="length">The length.</param>
         </member>
+        <member name="T:Sudoku.XmlDocs.Extensions.TypeDeclarationSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax"/>
+        </member>
+        <member name="M:Sudoku.XmlDocs.Extensions.TypeDeclarationSyntaxEx.GetMembers(Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,System.Boolean)">
+            <summary>
+            Like the method <see cref="M:System.Type.GetMembers"/>,
+            this method will get all members of this declared type, but from the syntax node view.
+            </summary>
+            <param name="this">The type declaration node.</param>
+            <param name="checkNestedTypes">Indicates whether the method will check nested type.</param>
+            <returns>All possible member declaration syntax nodes.</returns>
+            <seealso cref="M:System.Type.GetMembers"/>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.XmlElementEndTagSyntaxEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementEndTagSyntax"/>.

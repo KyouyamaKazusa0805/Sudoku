@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.XmlDocs.Extensions
@@ -18,17 +16,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <returns>The content.</returns>
 		public static string? GetSummary(this FieldDeclarationSyntax @this)
 		{
-			var sb = new StringBuilder();
-
-			@this.VisitDocDescendants(summaryNodeVisitor: s);
-
-			return sb.ToString();
-
-
-			void s(XmlElementSyntax node, SyntaxList<XmlNodeSyntax> descendants)
-			{
-
-			}
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
