@@ -1,11 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using XmlNodeTriplet = System.ValueTuple<
-	string,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax>?,
-	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax>?
+using Visitor = System.Action<
+	Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,
+	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax>
+>;
+using VisitorWithAttributes = System.Action<
+	Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,
+	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax>,
+	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax>
+>;
+using VisitorWithoutValue = System.Action<
+	Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,
+	Microsoft.CodeAnalysis.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax>
 >;
 
 namespace Sudoku.XmlDocs.Extensions
@@ -17,9 +24,9 @@ namespace Sudoku.XmlDocs.Extensions
 	public static class SyntaxNodeEx
 	{
 		/// <summary>
-		/// Group all XML nodes.
+		/// Visits all documentation comment XML nodes.
 		/// </summary>
-		/// <param name="docRoot">The root node of the documentation comments.</param>
+		/// <param name="this">The root node of the documentation comments.</param>
 		/// <param name="summaryNodeVisitor">
 		/// A delegated method that invokes while the summary node is visiting.
 		/// </param>
@@ -32,6 +39,9 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="valueNodeVisitor">
 		/// A delegated method that invokes while the value node is visiting.
 		/// </param>
+		/// <param name="exampleNodeVisitor">
+		/// A delegated method that invokes while the example node is visiting.
+		/// </param>
 		/// <param name="paramNodeVisitor">
 		/// A delegated method that invokes while the param node is visiting.
 		/// </param>
@@ -41,120 +51,149 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <param name="seeAlsoNodeVisitor">
 		/// A delegated method that invokes while the seealso node is visiting.
 		/// </param>
+		/// <param name="exceptionNodeVisitor">
+		/// A delegated method that invokes while the exception node is visiting.
+		/// </param>
 		/// <param name="inheritDocNodeVisitor">
 		/// A delegated method that invokes while the inheritdoc node is visiting.
 		/// </param>
-		/// <returns>
-		/// All XML nodes grouped by it markup. This list stores a triplet, where:
-		/// <list type="table">
-		/// <item>
-		/// <term>The first element</term>
-		/// <description>The markup of the XML node.</description>
-		/// </item>
-		/// <item>
-		/// <term>The second element</term>
-		/// <description>The descendant XML nodes of this node.</description>
-		/// </item>
-		/// <item>
-		/// <term>The third element</term>
-		/// <description>The attributes of this XML node.</description>
-		/// </item>
-		/// </list>
-		/// If the node doesn't contain any descendants, the value will be an empty list.
-		/// </returns>
-		public static IReadOnlyList<XmlNodeTriplet> VisitDescedants(
-			this SyntaxNode docRoot,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? summaryNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? remarksNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? returnsNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? valueNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? paramNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? typeParamNodeVisitor,
-			Action<XmlElementSyntax, SyntaxList<XmlNodeSyntax>>? seeAlsoNodeVisitor,
-			Action<XmlEmptyElementSyntax, SyntaxList<XmlAttributeSyntax>>? inheritDocNodeVisitor)
+		public static void VisitDocDescendants(
+			this SyntaxNode @this, Visitor? summaryNodeVisitor = null, Visitor? remarksNodeVisitor = null,
+			Visitor? returnsNodeVisitor = null, Visitor? valueNodeVisitor = null,
+			Visitor? exampleNodeVisitor = null, Visitor? paramNodeVisitor = null,
+			Visitor? typeParamNodeVisitor = null, Visitor? seeAlsoNodeVisitor = null,
+			VisitorWithAttributes? exceptionNodeVisitor = null,
+			VisitorWithoutValue? inheritDocNodeVisitor = null)
 		{
-			var result = new List<XmlNodeTriplet>();
-
-			foreach (var markup in docRoot.DescendantNodes())
+			switch (@this)
 			{
-				switch (markup)
+				case MemberDeclarationSyntax:
 				{
-					case XmlElementSyntax
+					foreach (var trivia in @this.GetLeadingTrivia())
 					{
-						StartTag: { Name: { LocalName: { ValueText: var tagName } } },
-						Content: var contentNodes
-					} element:
-					{
-						switch (tagName)
+						if (trivia.RawKind != (int)SyntaxKind.SingleLineDocumentationCommentTrivia)
 						{
-							case DocCommentBlocks.Summary:
-							{
-								summaryNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.Remarks:
-							{
-								remarksNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.Returns:
-							{
-								returnsNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.Value:
-							{
-								valueNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.Param:
-							{
-								paramNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.TypeParam:
-							{
-								typeParamNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
-							case DocCommentBlocks.SeeAlso:
-							{
-								seeAlsoNodeVisitor?.Invoke(element, contentNodes);
-								result.Add((tagName, contentNodes, null));
-								break;
-							}
+							continue;
 						}
 
-						break;
-					}
-					case XmlEmptyElementSyntax
-					{
-						Name: { LocalName: { ValueText: var tagName } },
-						Attributes: var attributes
-					} emptyElement:
-					{
-						switch (tagName)
+						if (trivia.GetStructure() is not { } z)
 						{
-							case DocCommentBlocks.InheritDoc:
-							{
-								inheritDocNodeVisitor?.Invoke(emptyElement, attributes);
-								result.Add((tagName, null, attributes));
-								break;
-							}
+							continue;
 						}
 
-						break;
+						onVisiting(
+							z, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
+							valueNodeVisitor, exampleNodeVisitor, paramNodeVisitor, typeParamNodeVisitor,
+							seeAlsoNodeVisitor, exceptionNodeVisitor, inheritDocNodeVisitor
+						);
 					}
+
+					break;
+				}
+				case XmlNodeSyntax:
+				{
+					onVisiting(
+						@this, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
+						valueNodeVisitor, exampleNodeVisitor, paramNodeVisitor, typeParamNodeVisitor,
+						seeAlsoNodeVisitor, exceptionNodeVisitor, inheritDocNodeVisitor
+					);
+
+					break;
 				}
 			}
 
-			return result;
+
+			static void onVisiting(
+				SyntaxNode docRoot, Visitor? summaryNodeVisitor, Visitor? remarksNodeVisitor,
+				Visitor? returnsNodeVisitor, Visitor? valueNodeVisitor, Visitor? exampleNodeVisitor,
+				Visitor? paramNodeVisitor, Visitor? typeParamNodeVisitor, Visitor? seeAlsoNodeVisitor,
+				VisitorWithAttributes? exceptionNodeVisitor, VisitorWithoutValue? inheritDocNodeVisitor)
+			{
+				foreach (var markup in docRoot.DescendantNodes())
+				{
+					switch (markup)
+					{
+						case XmlElementSyntax
+						{
+							StartTag:
+							{
+								Name: { LocalName: { ValueText: var tagName } },
+								Attributes: var attributes
+							},
+							Content: var contentNodes
+						} element:
+						{
+							switch (tagName)
+							{
+								case DocCommentBlocks.Summary:
+								{
+									summaryNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Remarks:
+								{
+									remarksNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Returns:
+								{
+									returnsNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Example:
+								{
+									exampleNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Exception:
+								{
+									exceptionNodeVisitor?.Invoke(element, attributes, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Value:
+								{
+									valueNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.Param:
+								{
+									paramNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.TypeParam:
+								{
+									typeParamNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+								case DocCommentBlocks.SeeAlso:
+								{
+									seeAlsoNodeVisitor?.Invoke(element, contentNodes);
+									break;
+								}
+							}
+
+							break;
+						}
+						case XmlEmptyElementSyntax
+						{
+							Name: { LocalName: { ValueText: var tagName } },
+							Attributes: var attributes
+						} emptyElement:
+						{
+							switch (tagName)
+							{
+								case DocCommentBlocks.InheritDoc:
+								{
+									inheritDocNodeVisitor?.Invoke(emptyElement, attributes);
+									break;
+								}
+							}
+
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
 }

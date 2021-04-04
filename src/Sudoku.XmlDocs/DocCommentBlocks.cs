@@ -21,6 +21,16 @@
 		public const string Returns = "returns";
 
 		/// <summary>
+		/// Indicates the "example" node name.
+		/// </summary>
+		public const string Example = "example";
+
+		/// <summary>
+		/// Indicates the "exception" node name.
+		/// </summary>
+		public const string Exception = "exception";
+
+		/// <summary>
 		/// Indicates the "value" node name.
 		/// </summary>
 		public const string Value = "value";

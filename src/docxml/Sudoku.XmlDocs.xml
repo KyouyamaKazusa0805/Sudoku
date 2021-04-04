@@ -154,6 +154,16 @@
             Indicates the "returns" node name.
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Example">
+            <summary>
+            Indicates the "example" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Exception">
+            <summary>
+            Indicates the "exception" node name.
+            </summary>
+        </member>
         <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Value">
             <summary>
             Indicates the "value" node name.
@@ -488,11 +498,11 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDescedants(Microsoft.CodeAnalysis.SyntaxNode,System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax}})">
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDocDescendants(Microsoft.CodeAnalysis.SyntaxNode,System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax},Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlNodeSyntax}},System.Action{Microsoft.CodeAnalysis.CSharp.Syntax.XmlEmptyElementSyntax,Microsoft.CodeAnalysis.SyntaxList{Microsoft.CodeAnalysis.CSharp.Syntax.XmlAttributeSyntax}})">
             <summary>
-            Group all XML nodes.
+            Visits all documentation comment XML nodes.
             </summary>
-            <param name="docRoot">The root node of the documentation comments.</param>
+            <param name="this">The root node of the documentation comments.</param>
             <param name="summaryNodeVisitor">
             A delegated method that invokes while the summary node is visiting.
             </param>
@@ -505,6 +515,9 @@
             <param name="valueNodeVisitor">
             A delegated method that invokes while the value node is visiting.
             </param>
+            <param name="exampleNodeVisitor">
+            A delegated method that invokes while the example node is visiting.
+            </param>
             <param name="paramNodeVisitor">
             A delegated method that invokes while the param node is visiting.
             </param>
@@ -514,27 +527,12 @@
             <param name="seeAlsoNodeVisitor">
             A delegated method that invokes while the seealso node is visiting.
             </param>
+            <param name="exceptionNodeVisitor">
+            A delegated method that invokes while the exception node is visiting.
+            </param>
             <param name="inheritDocNodeVisitor">
             A delegated method that invokes while the inheritdoc node is visiting.
             </param>
-            <returns>
-            All XML nodes grouped by it markup. This list stores a triplet, where:
-            <list type="table">
-            <item>
-            <term>The first element</term>
-            <description>The markup of the XML node.</description>
-            </item>
-            <item>
-            <term>The second element</term>
-            <description>The descendant XML nodes of this node.</description>
-            </item>
-            <item>
-            <term>The third element</term>
-            <description>The attributes of this XML node.</description>
-            </item>
-            </list>
-            If the node doesn't contain any descendants, the value will be an empty list.
-            </returns>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.SyntaxTokenEx">
             <summary>
