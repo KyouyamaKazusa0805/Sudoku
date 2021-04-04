@@ -13,9 +13,13 @@ namespace Sudoku.XmlDocs
 	public delegate void SyntaxVisitor(XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants);
 
 	/// <summary>
+	/// <para>
 	/// Indicates the delegated methods that will be invoked while the specified node type is visiting.
+	/// </para>
+	/// <para>
 	/// Different with <see cref="SyntaxVisitor"/>, this type contains a new parameter
 	/// named <paramref name="attributes"/>, which belongs to the markup.
+	/// </para>
 	/// </summary>
 	/// <param name="node">The doc comment node.</param>
 	/// <param name="attributes">The attributes of the node.</param>
@@ -24,8 +28,12 @@ namespace Sudoku.XmlDocs
 	public delegate void AttributedSyntaxVisitor(XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants);
 
 	/// <summary>
+	/// <para>
 	/// Indicates the delegated methods that will be invoked while the specified node type is visiting.
+	/// </para>
+	/// <para>
 	/// Different with <see cref="AttributedSyntaxVisitor"/>, this type doesn't contain any descedants.
+	/// </para>
 	/// </summary>
 	/// <param name="node">The doc comment node.</param>
 	/// <param name="attributes">The attributes of the node.</param>

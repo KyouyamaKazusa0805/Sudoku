@@ -907,9 +907,13 @@
         </member>
         <member name="T:Sudoku.XmlDocs.AttributedSyntaxVisitor">
             <summary>
+            <para>
             Indicates the delegated methods that will be invoked while the specified node type is visiting.
+            </para>
+            <para>
             Different with <see cref="T:Sudoku.XmlDocs.SyntaxVisitor"/>, this type contains a new parameter
             named <paramref name="attributes"/>, which belongs to the markup.
+            </para>
             </summary>
             <param name="node">The doc comment node.</param>
             <param name="attributes">The attributes of the node.</param>
@@ -918,8 +922,12 @@
         </member>
         <member name="T:Sudoku.XmlDocs.AttributedSyntaxVisitorWithoutDescendants">
             <summary>
+            <para>
             Indicates the delegated methods that will be invoked while the specified node type is visiting.
+            </para>
+            <para>
             Different with <see cref="T:Sudoku.XmlDocs.AttributedSyntaxVisitor"/>, this type doesn't contain any descedants.
+            </para>
             </summary>
             <param name="node">The doc comment node.</param>
             <param name="attributes">The attributes of the node.</param>
