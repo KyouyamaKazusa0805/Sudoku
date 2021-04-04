@@ -130,16 +130,16 @@ namespace Sudoku.XmlDocs.Extensions
 						{
 							switch (nameStart)
 							{
-								case DocComments.ParagraphNodeName:
+								case DocCommentBlocks.Paragraph:
 								{
 									// Handle it recursively.
 									break;
 								}
-								case DocComments.InlineCodeBlockNodeName:
+								case DocCommentBlocks.InlineCodeBlock:
 								{
 									break;
 								}
-								case DocComments.CodeBlockNodeName:
+								case DocCommentBlocks.CodeBlock:
 								{
 									break;
 								}
@@ -155,8 +155,8 @@ namespace Sudoku.XmlDocs.Extensions
 			return sb.ToString();
 
 
-			static bool startIsSummary(XmlElementStartTagSyntax node) => node.IsMarkup(DocComments.Summary);
-			static bool endIsSummary(XmlElementEndTagSyntax node) => node.IsMarkup(DocComments.Summary);
+			static bool startIsSummary(XmlElementStartTagSyntax node) => node.IsMarkup(DocCommentHeaders.Summary);
+			static bool endIsSummary(XmlElementEndTagSyntax node) => node.IsMarkup(DocCommentHeaders.Summary);
 		}
 
 		/// <summary>

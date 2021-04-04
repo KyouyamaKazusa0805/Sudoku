@@ -34,7 +34,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 			.AppendTitle(MemberKind.Constructor, IdentifierName ?? string.Empty)
 			.AppendSummary(Summary)
 			.AppendRemarks(Remarks)
-			.AppendParams(ParamList, (ConstructorDeclarationSyntax)SyntaxNode)
+			.AppendParams(ParamList, ((ConstructorDeclarationSyntax)SyntaxNode).ParameterList.Parameters)
 			.AppendException(ExceptionList)
 			.ToString();
 	}

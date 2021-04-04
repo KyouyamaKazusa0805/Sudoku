@@ -28,7 +28,7 @@ namespace Sudoku.XmlDocs.SyntaxInfo
 			.AppendTitle(MemberKind.PrimaryConstructor, string.Empty)
 			.AppendSummary(Summary)
 			.AppendRemarks(Remarks)
-			.AppendParams(ParamList, (RecordDeclarationSyntax)SyntaxNode)
+			.AppendParams(ParamList, ((RecordDeclarationSyntax)SyntaxNode).ParameterList?.Parameters)
 			.AppendException(ExceptionList)
 			.ToString();
 	}

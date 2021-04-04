@@ -45,7 +45,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <returns>The document itself.</returns>
 		public static Document AppendSummary(this Document @this, string? text) =>
 			text is not null
-			? @this.AppendHeader(3, DocComments.Summary).AppendParagraph(text ?? string.Empty)
+			? @this.AppendHeader(3, DocCommentHeaders.Summary).AppendParagraph(text ?? string.Empty)
 			: @this;
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeader(3, DocComments.Returns).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeader(3, DocCommentHeaders.Returns).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -97,7 +97,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <returns>The document itself.</returns>
 		public static Document AppendRemarks(this Document @this, string? text) =>
 			text is not null
-			? @this.AppendHeader(3, DocComments.Remarks).AppendParagraph(text ?? string.Empty)
+			? @this.AppendHeader(3, DocCommentHeaders.Remarks).AppendParagraph(text ?? string.Empty)
 			: @this;
 
 		/// <summary>
@@ -109,7 +109,7 @@ namespace Sudoku.XmlDocs.Extensions
 		/// <returns>The document itself.</returns>
 		public static Document AppendExample(this Document @this, string? text) =>
 			text is not null
-			? @this.AppendHeader(3, DocComments.Example).AppendParagraph(text ?? string.Empty)
+			? @this.AppendHeader(3, DocCommentHeaders.Example).AppendParagraph(text ?? string.Empty)
 			: @this;
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeader(3, DocComments.Exception);
+			@this.AppendHeader(3, DocCommentHeaders.Exception);
 
 			foreach (var (exceptionName, description) in exceptions)
 			{
@@ -169,7 +169,7 @@ namespace Sudoku.XmlDocs.Extensions
 				goto Returning;
 			}
 
-			@this.AppendHeader(3, DocComments.Value).AppendParagraph(text ?? string.Empty);
+			@this.AppendHeader(3, DocCommentHeaders.Value).AppendParagraph(text ?? string.Empty);
 
 		Returning:
 			return @this;
@@ -181,110 +181,45 @@ namespace Sudoku.XmlDocs.Extensions
 		/// </summary>
 		/// <param name="this">The document.</param>
 		/// <param name="parameters">The parameter list.</param>
-		/// <param name="node">The node to check.</param>
+		/// <param name="parameterNodesToCheck">The parameters to check.</param>
 		/// <returns>The current document.</returns>
 		public static Document AppendParams(
 			this Document @this, (string ParamName, string Type, string? Description)[]? parameters,
-			BaseMethodDeclarationSyntax node)
+			in SeparatedSyntaxList<ParameterSyntax>? parameterNodesToCheck)
 		{
-			if (node.ParameterList?.Parameters is { } parameterList)
-			{
-				if (parameters is null || parameterList.Count == 0)
-				{
-					goto Returning;
-				}
-
-				bool fastChecking = false;
-				foreach (var (paramName, _, description) in parameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						fastChecking = true;
-						break;
-					}
-				}
-				if (!fastChecking)
-				{
-					goto Returning;
-				}
-
-				@this.AppendHeader(3, DocComments.Parameter);
-
-				foreach (var (paramName, type, description) in parameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						@this
-							.AppendHeader(4, paramName)
-							.AppendBoldBlock("Type: ")
-							.AppendText(type)
-							.AppendBoldBlock("Description: ")
-							.AppendNewLine()
-							.AppendParagraph(description ?? string.Empty);
-					}
-				}
-			}
-			else if (parameters is not null)
+			if (parameters is null || parameterNodesToCheck is not { Count: not 0 } parameterList)
 			{
 				goto Returning;
 			}
 
-		Returning:
-			return @this;
-		}
-
-		/// <summary>
-		/// Append "param" section text. If the parameter can't be found in the real parameter list,
-		/// this method will do nothing.
-		/// </summary>
-		/// <param name="this">The document.</param>
-		/// <param name="parameters">The parameter list.</param>
-		/// <param name="node">The node to check.</param>
-		/// <returns>The current document.</returns>
-		public static Document AppendParams(
-			this Document @this, (string ParamName, string Type, string? Description)[]? parameters,
-			RecordDeclarationSyntax node)
-		{
-			if (node.ParameterList?.Parameters is { } parameterList)
+			bool fastChecking = false;
+			foreach (var (paramName, _, _) in parameters)
 			{
-				if (parameters is null || parameterList.Count == 0)
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
 				{
-					goto Returning;
-				}
-
-				bool fastChecking = false;
-				foreach (var (paramName, _, _) in parameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						fastChecking = true;
-						break;
-					}
-				}
-				if (!fastChecking)
-				{
-					goto Returning;
-				}
-
-				@this.AppendHeader(3, DocComments.Parameter);
-
-				foreach (var (paramName, type, description) in parameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						@this
-							.AppendHeader(4, paramName)
-							.AppendBoldBlock("Type: ")
-							.AppendText(type)
-							.AppendBoldBlock("Description: ")
-							.AppendNewLine()
-							.AppendParagraph(description ?? string.Empty);
-					}
+					fastChecking = true;
+					break;
 				}
 			}
-			else if (parameters is not null)
+			if (!fastChecking)
 			{
 				goto Returning;
+			}
+
+			@this.AppendHeader(3, DocCommentHeaders.Parameter);
+
+			foreach (var (paramName, type, description) in parameters)
+			{
+				if (parameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this
+						.AppendHeader(4, paramName)
+						.AppendBoldBlock("Type: ")
+						.AppendText(type)
+						.AppendBoldBlock("Description: ")
+						.AppendNewLine()
+						.AppendParagraph(description ?? string.Empty);
+				}
 			}
 
 		Returning:
@@ -297,46 +232,39 @@ namespace Sudoku.XmlDocs.Extensions
 		/// </summary>
 		/// <param name="this">The document.</param>
 		/// <param name="typeParameters">The type parameter list.</param>
-		/// <param name="node">The node to check.</param>
+		/// <param name="typeParameterListToCheck">The type parameters to check.</param>
 		/// <returns>The current document.</returns>
 		public static Document AppendTypeParams(
 			this Document @this, (string ParamName, string? Description)[]? typeParameters,
-			MethodDeclarationSyntax node)
+			in SeparatedSyntaxList<TypeParameterSyntax>? typeParameterListToCheck)
 		{
-			if (node.TypeParameterList?.Parameters is { } parameterList)
-			{
-				if (typeParameters is null || parameterList.Count == 0)
-				{
-					goto Returning;
-				}
-
-				bool fastChecking = false;
-				foreach (var (paramName, description) in typeParameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						fastChecking = true;
-						break;
-					}
-				}
-				if (!fastChecking)
-				{
-					goto Returning;
-				}
-
-				@this.AppendHeader(3, DocComments.Parameter);
-
-				foreach (var (paramName, description) in typeParameters)
-				{
-					if (parameterList.Any(param => param.Identifier.ValueText == paramName))
-					{
-						@this.AppendHeader(4, paramName).AppendParagraph(description ?? string.Empty);
-					}
-				}
-			}
-			else if (typeParameters is not null)
+			if (typeParameters is null || typeParameterListToCheck is not { Count: not 0 } typeParameterList)
 			{
 				goto Returning;
+			}
+
+			bool fastChecking = false;
+			foreach (var (paramName, _) in typeParameters)
+			{
+				if (typeParameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					fastChecking = true;
+					break;
+				}
+			}
+			if (!fastChecking)
+			{
+				goto Returning;
+			}
+
+			@this.AppendHeader(3, DocCommentHeaders.Parameter);
+
+			foreach (var (paramName, description) in typeParameters)
+			{
+				if (typeParameterList.Any(param => param.Identifier.ValueText == paramName))
+				{
+					@this.AppendHeader(4, paramName).AppendParagraph(description ?? string.Empty);
+				}
 			}
 
 		Returning:
