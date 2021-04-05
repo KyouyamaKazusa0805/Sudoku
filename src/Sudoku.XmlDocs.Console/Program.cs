@@ -24,9 +24,6 @@ const string testCode = @"
 /// </code>
 /// This is a new line.
 /// </para>
-/// </summary>
-/// <remarks>
-/// Remarks.
 /// <list type=""table"">
 /// <listheader>Detail table</listheader>
 /// <item>
@@ -42,6 +39,9 @@ const string testCode = @"
 /// <description>The value 3.</description>
 /// </item>
 /// </list>
+/// </summary>
+/// <remarks>
+/// Remarks.
 /// </remarks>
 class C
 {
@@ -237,7 +237,7 @@ bool traverse(XmlNodeSyntax descendant)
 													{
 														case XmlTextSyntax:
 														{
-															sb.Append(listHeaderContent.ToString());
+															listHeaderBuilder.Append(listHeaderContent.ToString());
 
 															break;
 														}
@@ -393,12 +393,14 @@ bool traverse(XmlNodeSyntax descendant)
 								}
 							}
 
+							sb.AppendLine();
+
 							if (listHeaderBuilder is not null)
 							{
 								sb.AppendLine(listHeaderBuilder.ToString());
 							}
 
-							sb.AppendLine().AppendLine();
+							sb.AppendLine();
 
 							break;
 						}
