@@ -1687,17 +1687,11 @@
             Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.Document.AppendInlineCodeBlock(System.String,System.Boolean)">
+        <member name="M:System.Text.Markdown.Document.AppendInlineCodeBlock(System.String)">
             <summary>
             Append inline code block.
             </summary>
             <param name="text">The inner text.</param>
-            <param name="appendPaddingSpaces">
-            Indicates whether the block will append padding spaces surrounded
-            the block. If <see langword="true"/>,
-            the method will append a trailing space and a leading space to the block.
-            The default value is <see langword="false"/>.
-            </param>
             <returns>The current instance.</returns>
             <exception cref="T:System.FormatException">
             Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
@@ -1815,7 +1809,7 @@
             <seealso cref="T:System.Text.StringBuilder"/>
             <seealso cref="T:System.Text.ValueStringBuilder"/>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendText(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownPlainText(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append plain text.
             </summary>
@@ -1826,7 +1820,7 @@
             Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendParagraph(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownParagraph(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append a paragraph with a new line.
             </summary>
@@ -1837,7 +1831,7 @@
             Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineCodeBlock(System.Text.ValueStringBuilder@,System.String,System.Boolean)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineCodeBlock(System.Text.ValueStringBuilder@,System.String,System.Boolean)">
             <summary>
             Append inline code block.
             </summary>
@@ -1854,7 +1848,7 @@
             Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendCodeBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownCodeBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
             <summary>
             Append the code block.
             </summary>
@@ -1863,7 +1857,7 @@
             <param name="codelang">The code language.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeaderText(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append header text.
             </summary>
@@ -1875,7 +1869,7 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeaderText(System.Text.ValueStringBuilder@,System.Int32,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeader(System.Text.ValueStringBuilder@,System.Int32,System.String)">
             <summary>
             Append header text, with the specified header level.
             </summary>
@@ -1888,7 +1882,7 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendBoldBlock(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownBoldBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append bold block.
             </summary>
@@ -1896,7 +1890,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendItalicBlock(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownItalicBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append italic block.
             </summary>
@@ -1904,7 +1898,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendDeleteBlock(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownDeleteBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append delete block.
             </summary>
@@ -1912,7 +1906,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHyperlink(System.Text.ValueStringBuilder@,System.String,System.String,System.Boolean)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHyperlink(System.Text.ValueStringBuilder@,System.String,System.String,System.Boolean)">
             <summary>
             Append hyperlink.
             </summary>
@@ -1927,7 +1921,7 @@
             is <see langword="false"/>.
             </param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendImageBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownImageBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
             <summary>
             Append image block.
             </summary>
@@ -1935,14 +1929,14 @@
             <param name="description">The description of the hyperlink.</param>
             <param name="uri">The URI link.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.ValueStringBuilder@)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownNewLine(System.Text.ValueStringBuilder@)">
             <summary>
             Append a new line.
             </summary>
             <param name="this">The current instance.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendText(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownPlainText(System.Text.StringBuilder,System.String)">
             <summary>
             Append plain text.
             </summary>
@@ -1953,7 +1947,7 @@
             Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendParagraph(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownParagraph(System.Text.StringBuilder,System.String)">
             <summary>
             Append a paragraph with a new line.
             </summary>
@@ -1964,24 +1958,18 @@
             Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineCodeBlock(System.Text.StringBuilder,System.String,System.Boolean)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineCodeBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append inline code block.
             </summary>
             <param name="this">The current instance.</param>
             <param name="text">The inner text.</param>
-            <param name="appendPaddingSpaces">
-            Indicates whether the block will append padding spaces surrounded
-            the block. If <see langword="true"/>,
-            the method will append a trailing space and a leading space to the block.
-            The default value is <see langword="false"/>.
-            </param>
             <returns>The current instance.</returns>
             <exception cref="T:System.FormatException">
             Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendCodeBlock(System.Text.StringBuilder,System.String,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownCodeBlock(System.Text.StringBuilder,System.String,System.String)">
             <summary>
             Append the code block.
             </summary>
@@ -1990,7 +1978,7 @@
             <param name="codelang">The code language.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeader(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeader(System.Text.StringBuilder,System.String)">
             <summary>
             Append header text.
             </summary>
@@ -2002,7 +1990,7 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHeader(System.Text.StringBuilder,System.Int32,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeader(System.Text.StringBuilder,System.Int32,System.String)">
             <summary>
             Append header text, with the specified header level.
             </summary>
@@ -2015,7 +2003,15 @@
             or only contains whitespace characters.
             </exception>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendBoldBlock(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownUnderlinedBlock(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append underlined block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="text">The text.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownBoldBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append bold block.
             </summary>
@@ -2023,7 +2019,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendItalicBlock(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownItalicBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append italic block.
             </summary>
@@ -2031,7 +2027,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendDeleteBlock(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownDeleteBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append delete block.
             </summary>
@@ -2039,7 +2035,7 @@
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendHyperlink(System.Text.StringBuilder,System.String,System.String,System.Boolean)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHyperlink(System.Text.StringBuilder,System.String,System.String,System.Boolean)">
             <summary>
             Append hyperlink.
             </summary>
@@ -2054,7 +2050,7 @@
             is <see langword="false"/>.
             </param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendImageBlock(System.Text.StringBuilder,System.String,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownImageBlock(System.Text.StringBuilder,System.String,System.String)">
             <summary>
             Append image block.
             </summary>
@@ -2062,35 +2058,35 @@
             <param name="description">The description of the hyperlink.</param>
             <param name="uri">The URI link.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineLatexBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append inline LaTeX block.
             </summary>
             <param name="this">The current instance.</param>
             <param name="latex">The LaTeX expression.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownLatexBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
             Append LaTeX block.
             </summary>
             <param name="this">The current instance.</param>
             <param name="latex">The LaTeX expression.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendInlineLatexBlock(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineLatexBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append inline LaTeX block.
             </summary>
             <param name="this">The current instance.</param>
             <param name="latex">The LaTeX expression.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendLatexBlock(System.Text.StringBuilder,System.String)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownLatexBlock(System.Text.StringBuilder,System.String)">
             <summary>
             Append LaTeX block.
             </summary>
             <param name="this">The current instance.</param>
             <param name="latex">The LaTeX expression.</param>
         </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendNewLine(System.Text.StringBuilder)">
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownNewLine(System.Text.StringBuilder)">
             <summary>
             Append a new line.
             </summary>
@@ -2225,6 +2221,16 @@
         <member name="F:System.Text.Markdown.MarkdownSymbols.ItalicBlockEnd">
             <summary>
             Indicates the italic block end.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.BulletListStart">
+            <summary>
+            Indicates the bullet list (unordered list) leading characters.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.MarkdownSymbols.NumberedListStart">
+            <summary>
+            Indicates the numbered list (ordered list) leading characters.
             </summary>
         </member>
         <member name="F:System.Text.Markdown.MarkdownSymbols.LatexBlockStart">

@@ -15,7 +15,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendText(string text)
 		{
-			_innerBuilder.AppendText(text);
+			_innerBuilder.AppendMarkdownPlainText(text);
 			return this;
 		}
 
@@ -30,7 +30,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendParagraph(string text)
 		{
-			_innerBuilder.AppendParagraph(text);
+			_innerBuilder.AppendMarkdownParagraph(text);
 			return this;
 		}
 
@@ -38,20 +38,14 @@ namespace System.Text.Markdown
 		/// Append inline code block.
 		/// </summary>
 		/// <param name="text">The inner text.</param>
-		/// <param name="appendPaddingSpaces">
-		/// Indicates whether the block will append padding spaces surrounded
-		/// the block. If <see langword="true"/>,
-		/// the method will append a trailing space and a leading space to the block.
-		/// The default value is <see langword="false"/>.
-		/// </param>
 		/// <returns>The current instance.</returns>
 		/// <exception cref="FormatException">
 		/// Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Document AppendInlineCodeBlock(string text, bool appendPaddingSpaces = false)
+		public Document AppendInlineCodeBlock(string text)
 		{
-			_innerBuilder.AppendInlineCodeBlock(text, appendPaddingSpaces);
+			_innerBuilder.AppendMarkdownInlineCodeBlock(text);
 			return this;
 		}
 
@@ -64,7 +58,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendCodeBlock(string code, string? codelang = "csharp")
 		{
-			_innerBuilder.AppendCodeBlock(code, codelang);
+			_innerBuilder.AppendMarkdownCodeBlock(code, codelang);
 			return this;
 		}
 
@@ -80,7 +74,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendHeader(string text)
 		{
-			_innerBuilder.AppendHeader(text);
+			_innerBuilder.AppendMarkdownHeader(text);
 			return this;
 		}
 
@@ -97,7 +91,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendHeader(int level, string text)
 		{
-			_innerBuilder.AppendHeader(level, text);
+			_innerBuilder.AppendMarkdownHeader(level, text);
 			return this;
 		}
 
@@ -113,7 +107,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendBoldBlock(string text)
 		{
-			_innerBuilder.AppendBoldBlock(text);
+			_innerBuilder.AppendMarkdownBoldBlock(text);
 			return this;
 		}
 
@@ -129,7 +123,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendItalicBlock(string text)
 		{
-			_innerBuilder.AppendItalicBlock(text);
+			_innerBuilder.AppendMarkdownItalicBlock(text);
 			return this;
 		}
 
@@ -145,7 +139,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendDeleteBlock(string text)
 		{
-			_innerBuilder.AppendDeleteBlock(text);
+			_innerBuilder.AppendMarkdownDeleteBlock(text);
 			return this;
 		}
 
@@ -158,7 +152,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendImageBlock(string? description, string uri)
 		{
-			_innerBuilder.AppendImageBlock(description, uri);
+			_innerBuilder.AppendMarkdownImageBlock(description, uri);
 			return this;
 		}
 
@@ -175,7 +169,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendHyperlink(string? description, string uri, bool appendNewLine = false)
 		{
-			_innerBuilder.AppendHyperlink(description, uri, appendNewLine);
+			_innerBuilder.AppendMarkdownHyperlink(description, uri, appendNewLine);
 			return this;
 		}
 
@@ -187,7 +181,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendInlineLatexBlock(string latex)
 		{
-			_innerBuilder.AppendInlineLatexBlock(latex);
+			_innerBuilder.AppendMarkdownInlineLatexBlock(latex);
 			return this;
 		}
 
@@ -199,7 +193,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendLatexBlock(string latex)
 		{
-			_innerBuilder.AppendLatexBlock(latex);
+			_innerBuilder.AppendMarkdownLatexBlock(latex);
 			return this;
 		}
 
@@ -210,7 +204,7 @@ namespace System.Text.Markdown
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Document AppendNewLine()
 		{
-			_innerBuilder.AppendNewLine();
+			_innerBuilder.AppendMarkdownNewLine();
 			return this;
 		}
 	}

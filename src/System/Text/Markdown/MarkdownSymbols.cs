@@ -131,6 +131,16 @@
 		public const string ItalicBlockEnd = "*";
 
 		/// <summary>
+		/// Indicates the bullet list (unordered list) leading characters.
+		/// </summary>
+		public const string BulletListStart = "* ";
+
+		/// <summary>
+		/// Indicates the numbered list (ordered list) leading characters.
+		/// </summary>
+		public const string NumberedListStart = "1. ";
+
+		/// <summary>
 		/// Indicates the LaTeX block start.
 		/// </summary>
 		public const string LatexBlockStart = "$$";
