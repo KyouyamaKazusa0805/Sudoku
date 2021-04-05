@@ -139,7 +139,8 @@ bool traverse(XmlNodeSyntax descendant)
 		{
 			Name: { LocalName: { ValueText: var markup } },
 			Attributes: var attributes
-		} when attributes[0] is { Name: { LocalName: { ValueText: var xmlPrefixName } } } firstAttribute:
+		}
+		when attributes[0] is { Name: { LocalName: { ValueText: var xmlPrefixName } } } firstAttribute:
 		{
 			string attributeValueText = (SyntaxKind)firstAttribute.RawKind switch
 			{
@@ -187,7 +188,8 @@ bool traverse(XmlNodeSyntax descendant)
 				Attributes: var attributes
 			},
 			Content: var content
-		} when content.ToString() is var contentText:
+		}
+		when content.ToString() is var contentText:
 		{
 			switch (markup)
 			{
@@ -208,6 +210,9 @@ bool traverse(XmlNodeSyntax descendant)
 							//   Allow <item> markup.
 							//   Allow nested <term> and <description> markup in the <item>.
 							//   Allow <item> markup only.
+
+							// Primt title.
+							sb.AppendLine("|---|---|").AppendLine("| Term | Description |");
 							foreach (var node in content)
 							{
 								// Leading syntax nodes shouldn't match.
@@ -291,7 +296,7 @@ bool traverse(XmlNodeSyntax descendant)
 													}
 													&& termContents[0] is XmlTextSyntax
 													{
-														TextTokens: var textTokens
+														TextTokens: var termTextTokens
 													}
 													&& termAndDescriptionPair[1] is XmlElementSyntax
 													{
@@ -310,20 +315,74 @@ bool traverse(XmlNodeSyntax descendant)
 												)
 												{
 													// Item block contains both term and description markups.
-												}
-												else if (
-													itemDescendants.OfType<XmlTextSyntax>().ToArray() is
+													// Now integrate term and description part, and print them.
+													var descriptionBuilder = new StringBuilder();
+													foreach (var descriptionContent in descriptionContents)
 													{
-														Length: 1
-													} plainItems
-													&& plainItems[0] is
-													{
-														TextTokens: var plainItemTextTokens
-													} plainItem
-												)
-												{
-													// Item block only contains the plain text.
+														switch (descriptionContent)
+														{
+															case XmlTextSyntax:
+															{
+																descriptionBuilder.Append(descriptionContent);
+																break;
+															}
+															case XmlEmptyElementSyntax
+															{
+																Name:
+																{
+																	LocalName:
+																	{
+																		ValueText: DocCommentBlocks.See
+																	}
+																},
+																Attributes:
+																{
+																	Count: 1
+																} langWordAttributeInDescription
+															}
+															when langWordAttributeInDescription[0] is XmlTextAttributeSyntax
+															{
+																Name:
+																{
+																	LocalName:
+																	{
+																		ValueText: DocCommentAttributes.LangWord
+																	}
+																},
+																TextTokens: var langwordInDescriptionTextTokens
+															}:
+															{
+																descriptionBuilder
+																	.Append(" `")
+																	.Append(langwordInDescriptionTextTokens)
+																	.Append("` ");
+
+																break;
+															}
+														}
+													}
+
+													sb
+														.Append("| ")
+														.Append(termTextTokens.ToString())
+														.Append(" | ")
+														.Append(descriptionBuilder)
+														.AppendLine(" |");
 												}
+												//else if (
+												//	itemDescendants.OfType<XmlTextSyntax>().ToArray() is
+												//	{
+												//		Length: 1
+												//	} plainItems
+												//	&& plainItems[0] is
+												//	{
+												//		TextTokens: var plainItemTextTokens
+												//	} plainItem
+												//)
+												//{
+												//	// Item block only contains the plain text.
+												//	// This case we don't consider.
+												//}
 
 												break;
 											}
@@ -333,6 +392,13 @@ bool traverse(XmlNodeSyntax descendant)
 									}
 								}
 							}
+
+							if (listHeaderBuilder is not null)
+							{
+								sb.AppendLine(listHeaderBuilder.ToString());
+							}
+
+							sb.AppendLine().AppendLine();
 
 							break;
 						}
