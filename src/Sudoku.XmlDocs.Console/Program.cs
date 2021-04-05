@@ -198,6 +198,7 @@ bool traverse(XmlNodeSyntax descendant)
 					TextTokens: { Count: not 0 } listTypeNameTextTokens
 				} && listTypeNameTextTokens[0] is { ValueText: var listTypeName }:
 				{
+					StringBuilder? listHeaderBuilder = null;
 					switch (listTypeName)
 					{
 						case DocCommentValues.Table:
@@ -223,7 +224,7 @@ bool traverse(XmlNodeSyntax descendant)
 										{
 											case DocCommentBlocks.ListHeader:
 											{
-												sb.Append("<center>");
+												(listHeaderBuilder ??= new()).Append("<center>");
 
 												foreach (var listHeaderContent in listHeaderContents)
 												{
@@ -265,12 +266,65 @@ bool traverse(XmlNodeSyntax descendant)
 													}
 												}
 
-												sb.AppendLine("</center>").AppendLine();
+												listHeaderBuilder.AppendLine("</center>").AppendLine();
 
 												break;
 											}
 											case DocCommentBlocks.Item:
 											{
+												var itemDescendants = node.DescendantNodes();
+												if (
+													itemDescendants.OfType<XmlElementSyntax>().ToArray() is
+													{
+														Length: 2
+													} termAndDescriptionPair
+													&& termAndDescriptionPair[0] is XmlElementSyntax
+													{
+														StartTag:
+														{
+															Name:
+															{
+																LocalName: { ValueText: DocCommentBlocks.Term }
+															}
+														},
+														Content: { Count: 1 } termContents
+													}
+													&& termContents[0] is XmlTextSyntax
+													{
+														TextTokens: var textTokens
+													}
+													&& termAndDescriptionPair[1] is XmlElementSyntax
+													{
+														StartTag:
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentBlocks.Description
+																}
+															}
+														},
+														Content: var descriptionContents
+													}
+												)
+												{
+													// Item block contains both term and description markups.
+												}
+												else if (
+													itemDescendants.OfType<XmlTextSyntax>().ToArray() is
+													{
+														Length: 1
+													} plainItems
+													&& plainItems[0] is
+													{
+														TextTokens: var plainItemTextTokens
+													} plainItem
+												)
+												{
+													// Item block only contains the plain text.
+												}
+
 												break;
 											}
 										}
