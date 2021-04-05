@@ -209,7 +209,7 @@ bool traverse(XmlNodeSyntax descendant)
 							//   Allow <listheader> markup.
 							//   Allow <item> markup.
 							//   Allow nested <term> and <description> markup in the <item>.
-							//   Allow <item> markup only.
+							//   Disallow <item> markup only.
 
 							// Primt title.
 							sb.AppendLine("|---|---|").AppendLine("| Term | Description |");
