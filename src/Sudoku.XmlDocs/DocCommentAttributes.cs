@@ -11,6 +11,11 @@
 		public const string Cref = "cref";
 
 		/// <summary>
+		/// Indicates the attribute "href".
+		/// </summary>
+		public const string Href = "href";
+
+		/// <summary>
 		/// Indicates the attribute "langword".
 		/// </summary>
 		public const string LangWord = "langword";

@@ -106,8 +106,33 @@
 		public const string Term = "term";
 
 		/// <summary>
-		/// Indicates the "v" node name.
+		/// Indicates the "description" node name.
 		/// </summary>
 		public const string Description = "description";
+
+		/// <summary>
+		/// Indicates the "u" node name.
+		/// </summary>
+		public const string U = "u";
+
+		/// <summary>
+		/// Indicates the "i" node name.
+		/// </summary>
+		public const string I = "i";
+
+		/// <summary>
+		/// Indicates the "b" node name.
+		/// </summary>
+		public const string B = "b";
+
+		/// <summary>
+		/// Indicates the "a" node name.
+		/// </summary>
+		public const string A = "a";
+
+		/// <summary>
+		/// Indicates the "del" node name.
+		/// </summary>
+		public const string Del = "del";
 	}
 }

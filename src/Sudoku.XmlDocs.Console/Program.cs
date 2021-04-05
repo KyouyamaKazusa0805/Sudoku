@@ -24,20 +24,10 @@ const string testCode = @"
 /// </code>
 /// This is a new line.
 /// </para>
-/// <list type=""table"">
-/// <listheader>Detail table</listheader>
-/// <item>
-/// <term>Key 1</term>
-/// <description>The value 1.</description>
-/// </item>
-/// <item>
-/// <term>Key 2</term>
-/// <description>The value 2.</description>
-/// </item>
-/// <item>
-/// <term>Key 3</term>
-/// <description>The value 3.</description>
-/// </item>
+/// <list type=""bullet"">
+/// <item>1</item>
+/// <item>2</item>
+/// <item>3</item>
 /// </list>
 /// </summary>
 /// <remarks>
@@ -209,7 +199,7 @@ bool traverse(XmlNodeSyntax descendant)
 							//   Allow <listheader> markup.
 							//   Allow <item> markup.
 							//   Allow nested <term> and <description> markup in the <item>.
-							//   Disallow <item> markup only.
+							//   Allow <item> markup only. (But don't consider)
 
 							// Primt title.
 							sb.AppendLine("|---|---|").AppendLine("| Term | Description |");
@@ -326,6 +316,92 @@ bool traverse(XmlNodeSyntax descendant)
 																descriptionBuilder.Append(descriptionContent);
 																break;
 															}
+															case XmlElementSyntax
+															{
+																StartTag:
+																{
+																	Name:
+																	{
+																		LocalName:
+																		{
+																			ValueText: var descriptionContentTypeName
+																		}
+																	},
+																	Attributes: var descriptionContentAttributes
+																},
+																Content: var descriptionContentInnerContent
+															}:
+															{
+																switch (descriptionContentTypeName)
+																{
+																	case DocCommentBlocks.U
+																	when descriptionContentAttributes.Count == 0:
+																	{
+																		descriptionBuilder
+																			.Append(" <u>")
+																			.Append(descriptionContentInnerContent)
+																			.Append("</u> ");
+
+																		break;
+																	}
+																	case DocCommentBlocks.I
+																	when descriptionContentAttributes.Count == 0:
+																	{
+																		descriptionBuilder
+																			.Append(" *")
+																			.Append(descriptionContentInnerContent)
+																			.Append("* ");
+
+																		break;
+																	}
+																	case DocCommentBlocks.B
+																	when descriptionContentAttributes.Count == 0:
+																	{
+																		descriptionBuilder
+																			.Append(" **")
+																			.Append(descriptionContentInnerContent)
+																			.Append("** ");
+
+																		break;
+																	}
+																	case DocCommentBlocks.A
+																	when descriptionContentAttributes.Count == 1
+																	&& descriptionContentAttributes[0] is XmlTextAttributeSyntax
+																	{
+																		Name:
+																		{
+																			LocalName:
+																			{
+																				ValueText:
+																					DocCommentAttributes.Href
+																			}
+																		},
+																		TextTokens: var descriptionContentAttributesInnerTextTokens
+																	}:
+																	{
+																		descriptionBuilder
+																			.Append(" [")
+																			.Append(descriptionContentInnerContent)
+																			.Append("](")
+																			.Append(descriptionContentAttributesInnerTextTokens.ToString())
+																			.Append(") ");
+
+																		break;
+																	}
+																	case DocCommentBlocks.Del
+																	when descriptionContentAttributes.Count == 0:
+																	{
+																		descriptionBuilder
+																			.Append(" ~~")
+																			.Append(descriptionContentInnerContent)
+																			.Append("~~ ");
+
+																		break;
+																	}
+																}
+
+																break;
+															}
 															case XmlEmptyElementSyntax
 															{
 																Name:
@@ -409,7 +485,171 @@ bool traverse(XmlNodeSyntax descendant)
 							// Items:
 							//   Disallow <listheader> markup.
 							//   Disallow nested <term> and <description> markup in the <item>.
-							//   Allow nested bullet list.
+							//   Allow nested bullet list. (But don't consider)
+							foreach (var node in content)
+							{
+								var bulletBuilder = new StringBuilder();
+
+								switch (node)
+								{
+									case XmlElementSyntax
+									{
+										StartTag: { Name: { LocalName: { ValueText: var tagName } } },
+										Content: var bulletContents
+									}:
+									{
+										sb.Append("* ");
+
+										switch (tagName)
+										{
+											case DocCommentBlocks.Item:
+											{
+												foreach (var bulletContent in bulletContents)
+												{
+													switch (bulletContent)
+													{
+														case XmlTextSyntax:
+														{
+															bulletBuilder.Append(bulletContent);
+															break;
+														}
+														case XmlElementSyntax
+														{
+															StartTag:
+															{
+																Name:
+																{
+																	LocalName:
+																	{
+																		ValueText: var descriptionContentTypeName
+																	}
+																},
+																Attributes: var descriptionContentAttributes
+															},
+															Content: var descriptionContentInnerContent
+														}:
+														{
+															switch (descriptionContentTypeName)
+															{
+																case DocCommentBlocks.U
+																when descriptionContentAttributes.Count == 0:
+																{
+																	bulletBuilder
+																		.Append(" <u>")
+																		.Append(descriptionContentInnerContent)
+																		.Append("</u> ");
+
+																	break;
+																}
+																case DocCommentBlocks.I
+																when descriptionContentAttributes.Count == 0:
+																{
+																	bulletBuilder
+																		.Append(" *")
+																		.Append(descriptionContentInnerContent)
+																		.Append("* ");
+
+																	break;
+																}
+																case DocCommentBlocks.B
+																when descriptionContentAttributes.Count == 0:
+																{
+																	bulletBuilder
+																		.Append(" **")
+																		.Append(descriptionContentInnerContent)
+																		.Append("** ");
+
+																	break;
+																}
+																case DocCommentBlocks.A
+																when descriptionContentAttributes.Count == 1
+																&& descriptionContentAttributes[0] is XmlTextAttributeSyntax
+																{
+																	Name:
+																	{
+																		LocalName:
+																		{
+																			ValueText:
+																				DocCommentAttributes.Href
+																		}
+																	},
+																	TextTokens: var descriptionContentAttributesInnerTextTokens
+																}:
+																{
+																	bulletBuilder
+																		.Append(" [")
+																		.Append(descriptionContentInnerContent)
+																		.Append("](")
+																		.Append(descriptionContentAttributesInnerTextTokens.ToString())
+																		.Append(") ");
+
+																	break;
+																}
+																case DocCommentBlocks.Del
+																when descriptionContentAttributes.Count == 0:
+																{
+																	bulletBuilder
+																		.Append(" ~~")
+																		.Append(descriptionContentInnerContent)
+																		.Append("~~ ");
+
+																	break;
+																}
+															}
+
+															break;
+														}
+														case XmlEmptyElementSyntax
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentBlocks.See
+																}
+															},
+															Attributes:
+															{
+																Count: 1
+															} langWordAttributeInDescription
+														}
+														when langWordAttributeInDescription[0] is XmlTextAttributeSyntax
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentAttributes.LangWord
+																}
+															},
+															TextTokens: var langwordInDescriptionTextTokens
+														}:
+														{
+															bulletBuilder
+																.Append(" `")
+																.Append(langwordInDescriptionTextTokens)
+																.Append("` ");
+
+															break;
+														}
+													}
+												}
+
+												break;
+											}
+										}
+
+										break;
+									}
+								}
+
+								if (bulletBuilder.ToString() is var bulletBuilderStr and not "")
+								{
+									sb.AppendLine(bulletBuilderStr);
+								}
+							}
+
+							sb.AppendLine().AppendLine();
 
 							break;
 						}
@@ -418,7 +658,171 @@ bool traverse(XmlNodeSyntax descendant)
 							// Items:
 							//   Disallow <listheader> markup.
 							//   Disallow nested <term> and <description> markup in the <item>.
-							//   Allow nested numbered list.
+							//   Allow nested numbered list. (But don't consider)
+							foreach (var node in content)
+							{
+								var numberBuilder = new StringBuilder();
+
+								switch (node)
+								{
+									case XmlElementSyntax
+									{
+										StartTag: { Name: { LocalName: { ValueText: var tagName } } },
+										Content: var bulletContents
+									}:
+									{
+										sb.Append("1. ");
+
+										switch (tagName)
+										{
+											case DocCommentBlocks.Item:
+											{
+												foreach (var bulletContent in bulletContents)
+												{
+													switch (bulletContent)
+													{
+														case XmlTextSyntax:
+														{
+															numberBuilder.Append(bulletContent);
+															break;
+														}
+														case XmlElementSyntax
+														{
+															StartTag:
+															{
+																Name:
+																{
+																	LocalName:
+																	{
+																		ValueText: var descriptionContentTypeName
+																	}
+																},
+																Attributes: var descriptionContentAttributes
+															},
+															Content: var descriptionContentInnerContent
+														}:
+														{
+															switch (descriptionContentTypeName)
+															{
+																case DocCommentBlocks.U
+																when descriptionContentAttributes.Count == 0:
+																{
+																	numberBuilder
+																		.Append(" <u>")
+																		.Append(descriptionContentInnerContent)
+																		.Append("</u> ");
+
+																	break;
+																}
+																case DocCommentBlocks.I
+																when descriptionContentAttributes.Count == 0:
+																{
+																	numberBuilder
+																		.Append(" *")
+																		.Append(descriptionContentInnerContent)
+																		.Append("* ");
+
+																	break;
+																}
+																case DocCommentBlocks.B
+																when descriptionContentAttributes.Count == 0:
+																{
+																	numberBuilder
+																		.Append(" **")
+																		.Append(descriptionContentInnerContent)
+																		.Append("** ");
+
+																	break;
+																}
+																case DocCommentBlocks.A
+																when descriptionContentAttributes.Count == 1
+																&& descriptionContentAttributes[0] is XmlTextAttributeSyntax
+																{
+																	Name:
+																	{
+																		LocalName:
+																		{
+																			ValueText:
+																				DocCommentAttributes.Href
+																		}
+																	},
+																	TextTokens: var descriptionContentAttributesInnerTextTokens
+																}:
+																{
+																	numberBuilder
+																		.Append(" [")
+																		.Append(descriptionContentInnerContent)
+																		.Append("](")
+																		.Append(descriptionContentAttributesInnerTextTokens.ToString())
+																		.Append(") ");
+
+																	break;
+																}
+																case DocCommentBlocks.Del
+																when descriptionContentAttributes.Count == 0:
+																{
+																	numberBuilder
+																		.Append(" ~~")
+																		.Append(descriptionContentInnerContent)
+																		.Append("~~ ");
+
+																	break;
+																}
+															}
+
+															break;
+														}
+														case XmlEmptyElementSyntax
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentBlocks.See
+																}
+															},
+															Attributes:
+															{
+																Count: 1
+															} langWordAttributeInDescription
+														}
+														when langWordAttributeInDescription[0] is XmlTextAttributeSyntax
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentAttributes.LangWord
+																}
+															},
+															TextTokens: var langwordInDescriptionTextTokens
+														}:
+														{
+															numberBuilder
+																.Append(" `")
+																.Append(langwordInDescriptionTextTokens)
+																.Append("` ");
+
+															break;
+														}
+													}
+												}
+
+												break;
+											}
+										}
+
+										break;
+									}
+								}
+
+								if (numberBuilder.ToString() is var numberBuilderStr and not "")
+								{
+									sb.AppendLine(numberBuilderStr);
+								}
+							}
+
+							sb.AppendLine().AppendLine();
 
 							break;
 						}
@@ -441,6 +845,41 @@ bool traverse(XmlNodeSyntax descendant)
 				case DocCommentBlocks.C when attributes.Count == 0:
 				{
 					sb.Append($" `{contentText}` ");
+
+					break;
+				}
+				case DocCommentBlocks.U when attributes.Count == 0:
+				{
+					sb.Append($" <u>{contentText}</u> ");
+
+					break;
+				}
+				case DocCommentBlocks.I when attributes.Count == 0:
+				{
+					sb.Append($" *{contentText}* ");
+
+					break;
+				}
+				case DocCommentBlocks.B when attributes.Count == 0:
+				{
+					sb.Append($" **{contentText}** ");
+
+					break;
+				}
+				case DocCommentBlocks.Del when attributes.Count == 0:
+				{
+					sb.Append($" ~~{contentText}~~ ");
+
+					break;
+				}
+				case DocCommentBlocks.A
+				when attributes is { Count: 1 } && attributes[0] is XmlTextAttributeSyntax
+				{
+					Name: { LocalName: { ValueText: DocCommentAttributes.Href } },
+					TextTokens: var hyperLinkTextTokens
+				}:
+				{
+					sb.Append($" [{hyperLinkTextTokens.ToString()}]({contentText}) ");
 
 					break;
 				}

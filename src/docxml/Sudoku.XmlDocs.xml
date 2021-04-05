@@ -144,6 +144,11 @@
             Indicates the attribute "cref".
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Href">
+            <summary>
+            Indicates the attribute "href".
+            </summary>
+        </member>
         <member name="F:Sudoku.XmlDocs.DocCommentAttributes.LangWord">
             <summary>
             Indicates the attribute "langword".
@@ -266,7 +271,32 @@
         </member>
         <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Description">
             <summary>
-            Indicates the "v" node name.
+            Indicates the "description" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.U">
+            <summary>
+            Indicates the "u" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.I">
+            <summary>
+            Indicates the "i" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.B">
+            <summary>
+            Indicates the "b" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.A">
+            <summary>
+            Indicates the "a" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Del">
+            <summary>
+            Indicates the "del" node name.
             </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.DocCommentHeaders">
