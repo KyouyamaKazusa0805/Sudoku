@@ -12,7 +12,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.XmlDocs;
 using Sudoku.XmlDocs.Extensions;
 
-const string langWordAttributeText = "langword";
 const string testCode = @"
 /// <summary>
 /// <para>
@@ -28,6 +27,21 @@ const string testCode = @"
 /// </summary>
 /// <remarks>
 /// Remarks.
+/// <list type=""table"">
+/// <listheader>Detail table</listheader>
+/// <item>
+/// <term>Key 1</term>
+/// <description>The value 1.</description>
+/// </item>
+/// <item>
+/// <term>Key 2</term>
+/// <description>The value 2.</description>
+/// </item>
+/// <item>
+/// <term>Key 3</term>
+/// <description>The value 3.</description>
+/// </item>
+/// </list>
 /// </remarks>
 class C
 {
@@ -43,10 +57,16 @@ class C
         p += 2;
     }
 }";
+char[] newLineCharacters = new[] { '\r', '\n', ' ' };
 var root = CSharpSyntaxTree.ParseText(testCode).GetRoot();
 var sb = new StringBuilder();
 var emptyCharsRegex = new Regex(
 	pattern: @"\s*\r\n\s*///\s*",
+	options: RegexOptions.Compiled | RegexOptions.ExplicitCapture,
+	matchTimeout: TimeSpan.FromSeconds(5)
+);
+var leadingTripleSlashRegex = new Regex(
+	pattern: @"(?<=\r\n)\s*(///\s+?)",
 	options: RegexOptions.Compiled | RegexOptions.ExplicitCapture,
 	matchTimeout: TimeSpan.FromSeconds(5)
 );
@@ -133,7 +153,7 @@ bool traverse(XmlNodeSyntax descendant)
 				} => identifier,
 				SyntaxKind.XmlTextAttribute when firstAttribute is XmlTextAttributeSyntax
 				{
-					Name: { LocalName: { ValueText: langWordAttributeText } },
+					Name: { LocalName: { ValueText: DocCommentAttributes.LangWord } },
 					TextTokens: { Count: not 0 } tokenList
 				} && tokenList[0] is { ValueText: var firstTokenText } => firstTokenText
 			};
@@ -142,33 +162,17 @@ bool traverse(XmlNodeSyntax descendant)
 			{
 				case DocCommentBlocks.See:
 				{
-					attributeValueText = attributeValueText.Replace('{', '<').Replace('}', '>');
-					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
-					{
-						sb.Append(' ');
-					}
-
-					sb.Append($"`{attributeValueText}` ");
+					sb.Append($" `{attributeValueText}` ");
 					break;
 				}
 				case DocCommentBlocks.ParamRef:
 				{
-					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
-					{
-						sb.Append(' ');
-					}
-
-					sb.Append($"`{attributeValueText}` ");
+					sb.Append($" `{attributeValueText}` ");
 					break;
 				}
 				case DocCommentBlocks.TypeParamRef:
 				{
-					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
-					{
-						sb.Append(' ');
-					}
-
-					sb.Append($"`{attributeValueText}` ");
+					sb.Append($" `{attributeValueText}` ");
 					break;
 				}
 			}
@@ -180,14 +184,127 @@ bool traverse(XmlNodeSyntax descendant)
 			StartTag:
 			{
 				Name: { LocalName: { ValueText: var markup } },
-				Attributes: { Count: 0 }
+				Attributes: var attributes
 			},
 			Content: var content
 		} when content.ToString() is var contentText:
 		{
 			switch (markup)
 			{
-				case DocCommentBlocks.Para:
+				case DocCommentBlocks.List
+				when attributes.Count != 0 && attributes[0] is XmlTextAttributeSyntax
+				{
+					Name: { LocalName: { ValueText: DocCommentAttributes.Type } },
+					TextTokens: { Count: not 0 } listTypeNameTextTokens
+				} && listTypeNameTextTokens[0] is { ValueText: var listTypeName }:
+				{
+					switch (listTypeName)
+					{
+						case DocCommentValues.Table:
+						{
+							// Items:
+							//   Allow <listheader> markup.
+							//   Allow <item> markup.
+							//   Allow nested <term> and <description> markup in the <item>.
+							//   Allow <item> markup only.
+							foreach (var node in content)
+							{
+								// Leading syntax nodes shouldn't match.
+								switch (node)
+								{
+									case XmlTextSyntax: { continue; }
+									case XmlElementSyntax
+									{
+										StartTag: { Name: { LocalName: { ValueText: var tagName } } },
+										Content: var listHeaderContents
+									}:
+									{
+										switch (tagName)
+										{
+											case DocCommentBlocks.ListHeader:
+											{
+												sb.Append("<center>");
+
+												foreach (var listHeaderContent in listHeaderContents)
+												{
+													switch (listHeaderContent)
+													{
+														case XmlTextSyntax:
+														{
+															sb.Append(listHeaderContent.ToString());
+
+															break;
+														}
+														case XmlEmptyElementSyntax
+														{
+															Name:
+															{
+																LocalName: { ValueText: DocCommentBlocks.See }
+															},
+															Attributes: { Count: 1 } langwordAttributes
+														}
+														when langwordAttributes[0] is XmlTextAttributeSyntax
+														{
+															Name:
+															{
+																LocalName:
+																{
+																	ValueText: DocCommentAttributes.LangWord
+																}
+															},
+															TextTokens: { Count: not 0 } langAttributeTextTokens
+														} && langAttributeTextTokens[0] is
+														{
+															ValueText: var listHeaderNestedKeywordText
+														}:
+														{
+															sb.Append($" `{listHeaderNestedKeywordText}` ");
+
+															break;
+														}
+													}
+												}
+
+												sb.AppendLine("</center>").AppendLine();
+
+												break;
+											}
+											case DocCommentBlocks.Item:
+											{
+												break;
+											}
+										}
+
+										break;
+									}
+								}
+							}
+
+							break;
+						}
+						case DocCommentValues.Bullet:
+						{
+							// Items:
+							//   Disallow <listheader> markup.
+							//   Disallow nested <term> and <description> markup in the <item>.
+							//   Allow nested bullet list.
+
+							break;
+						}
+						case DocCommentValues.Number:
+						{
+							// Items:
+							//   Disallow <listheader> markup.
+							//   Disallow nested <term> and <description> markup in the <item>.
+							//   Allow nested numbered list.
+
+							break;
+						}
+					}
+
+					break;
+				}
+				case DocCommentBlocks.Para when attributes.Count == 0:
 				{
 					foreach (var descendantInner in content)
 					{
@@ -199,23 +316,18 @@ bool traverse(XmlNodeSyntax descendant)
 
 					break;
 				}
-				case DocCommentBlocks.C:
+				case DocCommentBlocks.C when attributes.Count == 0:
 				{
-					if (!char.IsPunctuation(sb[^2]) || !char.IsWhiteSpace(sb[^1]))
-					{
-						sb.Append(' ');
-					}
-
-					sb.Append($"`{contentText}` ");
+					sb.Append($" `{contentText}` ");
 
 					break;
 				}
-				case DocCommentBlocks.Code:
+				case DocCommentBlocks.Code when attributes.Count == 0:
 				{
 					// Trimming. We should remove all unncessary text.
-					contentText = Regex
-						.Replace(contentText, @"(?<=\r\n)\s*(///\s+?)", static _ => string.Empty)
-						.Trim(new[] { '\r', '\n', ' ' });
+					contentText = leadingTripleSlashRegex
+						.Replace(contentText, removeMatchItems)
+						.Trim(newLineCharacters);
 
 					if (sb.ToString() != string.Empty)
 					{
@@ -231,6 +343,8 @@ bool traverse(XmlNodeSyntax descendant)
 						.AppendLine().AppendLine(); // New line
 
 					break;
+
+					static string removeMatchItems(Match _) => string.Empty;
 				}
 			}
 

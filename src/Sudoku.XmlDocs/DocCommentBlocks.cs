@@ -84,5 +84,30 @@
 		/// Indicates the "seealso" node name.
 		/// </summary>
 		public const string SeeAlso = "seealso";
+
+		/// <summary>
+		/// Indicates the "list" node name.
+		/// </summary>
+		public const string List = "list";
+
+		/// <summary>
+		/// Indicates the "listheader" node name.
+		/// </summary>
+		public const string ListHeader = "listheader";
+
+		/// <summary>
+		/// Indicates the "item" node name.
+		/// </summary>
+		public const string Item = "item";
+
+		/// <summary>
+		/// Indicates the "term" node name.
+		/// </summary>
+		public const string Term = "term";
+
+		/// <summary>
+		/// Indicates the "v" node name.
+		/// </summary>
+		public const string Description = "description";
 	}
 }

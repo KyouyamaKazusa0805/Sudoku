@@ -134,6 +134,31 @@
             Indicates all modififers.
             </summary>
         </member>
+        <member name="T:Sudoku.XmlDocs.DocCommentAttributes">
+            <summary>
+            Indicates the doc comment attributes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Cref">
+            <summary>
+            Indicates the attribute "cref".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.LangWord">
+            <summary>
+            Indicates the attribute "langword".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Type">
+            <summary>
+            Indicates the attribute "type".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Name">
+            <summary>
+            Indicates the attribute "name".
+            </summary>
+        </member>
         <member name="T:Sudoku.XmlDocs.DocCommentBlocks">
             <summary>
             Indicates the documentation block names.
@@ -219,6 +244,31 @@
             Indicates the "seealso" node name.
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.List">
+            <summary>
+            Indicates the "list" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.ListHeader">
+            <summary>
+            Indicates the "listheader" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Item">
+            <summary>
+            Indicates the "item" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Term">
+            <summary>
+            Indicates the "term" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Description">
+            <summary>
+            Indicates the "v" node name.
+            </summary>
+        </member>
         <member name="T:Sudoku.XmlDocs.DocCommentHeaders">
             <summary>
             Provides the documentation comment headers to display.
@@ -267,6 +317,26 @@
         <member name="F:Sudoku.XmlDocs.DocCommentHeaders.SeeAlso">
             <summary>
             Indicates the "seealso" block.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.DocCommentValues">
+            <summary>
+            Indicates the doc comment values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentValues.Table">
+            <summary>
+            Indicates the value "table".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentValues.Bullet">
+            <summary>
+            Indicates the value "bullet".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocCommentValues.Number">
+            <summary>
+            Indicates the value "number".
             </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.Extensions.DocumentEx">
