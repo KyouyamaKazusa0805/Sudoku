@@ -5512,11 +5512,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">The name.</param>
-            <param name="difficulty">The difficulty.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
             <param name="name">The name.</param>

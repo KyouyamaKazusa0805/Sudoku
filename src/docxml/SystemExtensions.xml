@@ -765,6 +765,14 @@
             </summary>
             <seealso cref="T:System.Enum"/>
         </member>
+        <member name="M:System.Extensions.EnumEx.IsFlag``1(``0)">
+            <summary>
+            Checks whether the current enumeration field is a flag.
+            </summary>
+            <typeparam name="TEnum">The type of the current field.</typeparam>
+            <param name="this">The current field to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:System.Extensions.EnumEx.Min``1(``0,``0)">
             <summary>
             Check which enumeration field is less.

@@ -8,6 +8,9 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
 using static Sudoku.Resources.TextResources;
+using Group = Sudoku.Techniques.TechniqueGroup;
+using Level = Sudoku.Solving.Manual.DifficultyLevel;
+using Tags = Sudoku.Techniques.TechniqueTags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -68,18 +71,18 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The technique tags of this instance.
 		/// </summary>
-		public abstract TechniqueTags TechniqueTags { get; }
+		public abstract Tags TechniqueTags { get; }
 
 		/// <summary>
 		/// The technique group that this technique instance belongs to.
 		/// </summary>
-		public virtual TechniqueGroup TechniqueGroup =>
-			Enum.TryParse<TechniqueGroup>(TechniqueCode.ToString(), out var inst) ? inst : TechniqueGroup.None;
+		public virtual Group TechniqueGroup =>
+			Enum.TryParse<Group>(TechniqueCode.ToString(), out var inst) ? inst : Group.None;
 
 		/// <summary>
 		/// The difficulty level of this step.
 		/// </summary>
-		public abstract DifficultyLevel DifficultyLevel { get; }
+		public abstract Level DifficultyLevel { get; }
 
 
 		/// <summary>
@@ -97,17 +100,8 @@ namespace Sudoku.Solving.Manual
 		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="name">The name.</param>
 		/// <param name="difficulty">The difficulty.</param>
-		public void Deconstruct(out string name, out decimal difficulty)
-		{
-			name = Name;
-			difficulty = Difficulty;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">The name.</param>
-		/// <param name="difficulty">The difficulty.</param>
 		/// <param name="difficultyLevel">The difficulty level.</param>
-		public void Deconstruct(out string name, out decimal difficulty, out DifficultyLevel difficultyLevel)
+		public void Deconstruct(out string name, out decimal difficulty, out Level difficultyLevel)
 		{
 			name = Name;
 			difficulty = Difficulty;
@@ -120,7 +114,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="difficultyLevel">The difficulty level.</param>
 		/// <param name="conclusions">All conclusions.</param>
 		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
+			out string name, out decimal difficulty, out Level difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions)
 		{
 			name = Name;
@@ -136,7 +130,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="conclusions">All conclusions.</param>
 		/// <param name="views">All views.</param>
 		public void Deconstruct(
-			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
+			out string name, out decimal difficulty, out Level difficultyLevel,
 			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views)
 		{
 			name = Name;
@@ -154,10 +148,9 @@ namespace Sudoku.Solving.Manual
 		/// one by one.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public unsafe bool HasTag(TechniqueTags flags)
+		public unsafe bool HasTag(Tags flags)
 		{
-			bool p = ((short)flags & (short)flags - 1) == 0;
-			delegate*<TechniqueTags, TechniqueTags, bool> func = p ? &EnumEx.Flags : &EnumEx.MultiFlags;
+			delegate*<Tags, Tags, bool> func = flags.IsFlag() ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
 			return func(TechniqueTags, flags);
 		}

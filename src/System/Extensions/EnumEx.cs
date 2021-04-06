@@ -10,6 +10,36 @@ namespace System.Extensions
 	public static class EnumEx
 	{
 		/// <summary>
+		/// Checks whether the current enumeration field is a flag.
+		/// </summary>
+		/// <typeparam name="TEnum">The type of the current field.</typeparam>
+		/// <param name="this">The current field to check.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static unsafe bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+		{
+			switch (sizeof(TEnum))
+			{
+				case 1:
+				case 2:
+				case 4:
+				{
+					int l = Unsafe.As<TEnum, int>(ref @this);
+					return (l & l - 1) == 0;
+				}
+				case 8:
+				{
+					long l = Unsafe.As<TEnum, long>(ref @this);
+					return (l & l - 1) == 0;
+				}
+				default:
+				{
+					return false;
+				}
+			}
+		}
+
+		/// <summary>
 		/// Check which enumeration field is less.
 		/// </summary>
 		/// <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
