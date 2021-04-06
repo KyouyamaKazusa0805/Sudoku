@@ -17,16 +17,13 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-		/// </exception>
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendMarkdownPlainText(this ref ValueStringBuilder @this, string text)
 		{
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
+				return;
 			}
 
 			@this.Append(text);
@@ -38,16 +35,13 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-		/// </exception>
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendMarkdownParagraph(this ref ValueStringBuilder @this, string text)
 		{
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
+				return;
 			}
 
 			@this.Append(text);
@@ -67,9 +61,6 @@ namespace System.Text.Markdown
 		/// The default value is <see langword="false"/>.
 		/// </param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
-		/// </exception>
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendMarkdownInlineCodeBlock(
@@ -77,9 +68,7 @@ namespace System.Text.Markdown
 		{
 			if (text.Contains(InlineCodeBlockStartDouble))
 			{
-				throw new FormatException(
-					$"The text can't contain double tilde mark \"{InlineCodeBlockStartDouble}\"."
-				);
+				return;
 			}
 
 			switch ((text.Contains(InlineCodeBlockStartSingle), appendPaddingSpaces))
@@ -151,17 +140,13 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-		/// or only contains whitespace characters.
-		/// </exception>
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendMarkdownHeaderText(this ref ValueStringBuilder @this, string text)
 		{
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
+				return;
 			}
 
 			@this.Append(H1);
@@ -177,17 +162,13 @@ namespace System.Text.Markdown
 		/// <param name="level">The header level. The value should be between 1 and 6.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-		/// or only contains whitespace characters.
-		/// </exception>
 		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void AppendMarkdownHeader(this ref ValueStringBuilder @this, int level, string text)
 		{
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				throw new FormatException("The text shouldn't be an empty string, whitespaces or null.");
+				return;
 			}
 
 			@this.Append(level switch { 1 => H1, 2 => H2, 3 => H3, 4 => H4, 5 => H5, 6 => H6 });
@@ -295,6 +276,38 @@ namespace System.Text.Markdown
 		}
 
 		/// <summary>
+		/// Append inline LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[CLSCompliant(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AppendMarkdownInlineLatexBlock(this ref ValueStringBuilder @this, string latex)
+		{
+			@this.Append(InlineLatexBlockStartSingle);
+			@this.Append(latex);
+			@this.Append(InlineLatexBlockEndSingle);
+		}
+
+		/// <summary>
+		/// Append LaTeX block.
+		/// </summary>
+		/// <param name="this">The current instance.</param>
+		/// <param name="latex">The LaTeX expression.</param>
+		[CLSCompliant(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AppendMarkdownLatexBlock(this ref ValueStringBuilder @this, string latex)
+		{
+			@this.Append(LatexBlockStart);
+			@this.AppendLine();
+			@this.Append(latex);
+			@this.AppendLine();
+			@this.Append(LatexBlockEnd);
+			@this.AppendLine();
+			@this.AppendLine();
+		}
+
+		/// <summary>
 		/// Append a new line.
 		/// </summary>
 		/// <param name="this">The current instance.</param>
@@ -313,14 +326,9 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownPlainText(this StringBuilder @this, string text) =>
-			string.IsNullOrWhiteSpace(text)
-			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
-			: @this.Append(text);
+			string.IsNullOrWhiteSpace(text) ? @this : @this.Append(text);
 
 		/// <summary>
 		/// Append a paragraph with a new line.
@@ -328,14 +336,9 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownParagraph(this StringBuilder @this, string text) =>
-			string.IsNullOrWhiteSpace(text)
-			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
-			: @this.Append(text).AppendLine().AppendLine();
+			string.IsNullOrWhiteSpace(text) ? @this : @this.Append(text).AppendLine().AppendLine();
 
 		/// <summary>
 		/// Append inline code block.
@@ -387,15 +390,9 @@ namespace System.Text.Markdown
 		/// <param name="this">The current instance.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-		/// or only contains whitespace characters.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownHeader(this StringBuilder @this, string text) =>
-			string.IsNullOrWhiteSpace(text)
-			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
-			: @this.Append(H1).Append(text).AppendLine().AppendLine();
+			string.IsNullOrWhiteSpace(text) ? @this : @this.Append(H1).Append(text).AppendLine().AppendLine();
 
 		/// <summary>
 		/// Append header text, with the specified header level.
@@ -404,19 +401,13 @@ namespace System.Text.Markdown
 		/// <param name="level">The header level. The value should be between 1 and 6.</param>
 		/// <param name="text">The inner text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-		/// or only contains whitespace characters.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownHeader(this StringBuilder @this, int level, string text) =>
 			string.IsNullOrWhiteSpace(text)
-			? throw new FormatException("The text shouldn't be an empty string, whitespaces or null.")
+			? @this
 			: @this
 				.Append(level switch { 1 => H1, 2 => H2, 3 => H3, 4 => H4, 5 => H5, 6 => H6 })
-				.Append(text)
-				.AppendLine()
-				.AppendLine();
+				.Append(text).AppendLine().AppendLine();
 
 		/// <summary>
 		/// Append underlined block.
@@ -426,10 +417,7 @@ namespace System.Text.Markdown
 		/// <returns>The current instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownUnderlinedBlock(this StringBuilder @this, string text) =>
-			@this
-				.Append(" <u>")
-				.Append(text)
-				.Append("</u> ");
+			@this.Append(" <u>").Append(text).Append("</u> ");
 
 		/// <summary>
 		/// Append bold block.
@@ -439,12 +427,7 @@ namespace System.Text.Markdown
 		/// <returns>The current instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownBoldBlock(this StringBuilder @this, string text) =>
-			@this
-				.Append(' ')
-				.Append(BoldBlockStart)
-				.Append(text)
-				.Append(BoldBlockEnd)
-				.Append(' ');
+			@this.Append(' ').Append(BoldBlockStart).Append(text).Append(BoldBlockEnd).Append(' ');
 
 		/// <summary>
 		/// Append italic block.
@@ -454,12 +437,7 @@ namespace System.Text.Markdown
 		/// <returns>The current instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownItalicBlock(this StringBuilder @this, string text) =>
-			@this
-				.Append(' ')
-				.Append(ItalicBlockStartSingle)
-				.Append(text)
-				.Append(ItalicBlockEndSingle)
-				.Append(' ');
+			@this.Append(' ').Append(ItalicBlockStartSingle).Append(text).Append(ItalicBlockEndSingle).Append(' ');
 
 		/// <summary>
 		/// Append delete block.
@@ -469,12 +447,7 @@ namespace System.Text.Markdown
 		/// <returns>The current instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static StringBuilder AppendMarkdownDeleteBlock(this StringBuilder @this, string text) =>
-			@this
-				.Append(' ')
-				.Append(DeleteBlockStart)
-				.Append(text)
-				.Append(DeleteBlockEnd)
-				.Append(' ');
+			@this.Append(' ').Append(DeleteBlockStart).Append(text).Append(DeleteBlockEnd).Append(' ');
 
 		/// <summary>
 		/// Append hyperlink.
@@ -525,38 +498,6 @@ namespace System.Text.Markdown
 					.Append(ImageBlockEndSingle)
 					.AppendLine()
 					.AppendLine();
-		}
-
-		/// <summary>
-		/// Append inline LaTeX block.
-		/// </summary>
-		/// <param name="this">The current instance.</param>
-		/// <param name="latex">The LaTeX expression.</param>
-		[CLSCompliant(false)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AppendMarkdownInlineLatexBlock(this ref ValueStringBuilder @this, string latex)
-		{
-			@this.Append(InlineLatexBlockStartSingle);
-			@this.Append(latex);
-			@this.Append(InlineLatexBlockEndSingle);
-		}
-
-		/// <summary>
-		/// Append LaTeX block.
-		/// </summary>
-		/// <param name="this">The current instance.</param>
-		/// <param name="latex">The LaTeX expression.</param>
-		[CLSCompliant(false)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AppendMarkdownLatexBlock(this ref ValueStringBuilder @this, string latex)
-		{
-			@this.Append(LatexBlockStart);
-			@this.AppendLine();
-			@this.Append(latex);
-			@this.AppendLine();
-			@this.Append(LatexBlockEnd);
-			@this.AppendLine();
-			@this.AppendLine();
 		}
 
 		/// <summary>

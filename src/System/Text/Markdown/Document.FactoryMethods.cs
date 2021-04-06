@@ -9,11 +9,8 @@ namespace System.Text.Markdown
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns>The current instance.</returns>
-		/// <exception cref="FormatException">
-		/// Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Document AppendText(string text)
+		public Document AppendPlainText(string text)
 		{
 			_innerBuilder.AppendMarkdownPlainText(text);
 			return this;

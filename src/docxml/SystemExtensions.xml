@@ -1655,11 +1655,25 @@
         <member name="M:System.Text.Markdown.Document.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:System.Text.Markdown.Document.Format">
+            <summary>
+            Format the document.
+            </summary>
+            <returns>The current document.</returns>
+        </member>
+        <member name="M:System.Text.Markdown.Document.SaveAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Save the file asynchronously.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="cancellationToken">The cancellation token that is used for cancelling the task.</param>
+            <returns>The task of the operation.</returns>
+        </member>
         <member name="M:System.Text.Markdown.Document.Create">
             <summary>
-            Creates an empty document.
+            Creates an empty markdown document.
             </summary>
-            <returns>The empty document instance.</returns>
+            <returns>The empty markdown document instance.</returns>
         </member>
         <member name="M:System.Text.Markdown.Document.op_Equality(System.Text.Markdown.Document,System.Text.Markdown.Document)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
@@ -1667,15 +1681,12 @@
         <member name="M:System.Text.Markdown.Document.op_Inequality(System.Text.Markdown.Document,System.Text.Markdown.Document)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:System.Text.Markdown.Document.AppendText(System.String)">
+        <member name="M:System.Text.Markdown.Document.AppendPlainText(System.String)">
             <summary>
             Append plain text.
             </summary>
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.Document.AppendParagraph(System.String)">
             <summary>
@@ -1816,9 +1827,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownParagraph(System.Text.ValueStringBuilder@,System.String)">
             <summary>
@@ -1827,9 +1835,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineCodeBlock(System.Text.ValueStringBuilder@,System.String,System.Boolean)">
             <summary>
@@ -1844,9 +1849,6 @@
             The default value is <see langword="false"/>.
             </param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> contains double tilde mark <c>"``"</c>.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownCodeBlock(System.Text.ValueStringBuilder@,System.String,System.String)">
             <summary>
@@ -1864,10 +1866,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The inner text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-            or only contains whitespace characters.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeader(System.Text.ValueStringBuilder@,System.Int32,System.String)">
             <summary>
@@ -1877,10 +1875,6 @@
             <param name="level">The header level. The value should be between 1 and 6.</param>
             <param name="text">The inner text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-            or only contains whitespace characters.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownBoldBlock(System.Text.ValueStringBuilder@,System.String)">
             <summary>
@@ -1929,6 +1923,20 @@
             <param name="description">The description of the hyperlink.</param>
             <param name="uri">The URI link.</param>
         </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append inline LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
+        </member>
+        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownLatexBlock(System.Text.ValueStringBuilder@,System.String)">
+            <summary>
+            Append LaTeX block.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="latex">The LaTeX expression.</param>
+        </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownNewLine(System.Text.ValueStringBuilder@)">
             <summary>
             Append a new line.
@@ -1943,9 +1951,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownParagraph(System.Text.StringBuilder,System.String)">
             <summary>
@@ -1954,9 +1959,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty or whitespaces.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineCodeBlock(System.Text.StringBuilder,System.String)">
             <summary>
@@ -1985,10 +1987,6 @@
             <param name="this">The current instance.</param>
             <param name="text">The inner text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-            or only contains whitespace characters.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownHeader(System.Text.StringBuilder,System.Int32,System.String)">
             <summary>
@@ -1998,10 +1996,6 @@
             <param name="level">The header level. The value should be between 1 and 6.</param>
             <param name="text">The inner text.</param>
             <returns>The current instance.</returns>
-            <exception cref="T:System.FormatException">
-            Throws when the <paramref name="text"/> is <see langword="null"/>, empty
-            or only contains whitespace characters.
-            </exception>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownUnderlinedBlock(System.Text.StringBuilder,System.String)">
             <summary>
@@ -2057,20 +2051,6 @@
             <param name="this">The current instance.</param>
             <param name="description">The description of the hyperlink.</param>
             <param name="uri">The URI link.</param>
-        </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineLatexBlock(System.Text.ValueStringBuilder@,System.String)">
-            <summary>
-            Append inline LaTeX block.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="latex">The LaTeX expression.</param>
-        </member>
-        <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownLatexBlock(System.Text.ValueStringBuilder@,System.String)">
-            <summary>
-            Append LaTeX block.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="latex">The LaTeX expression.</param>
         </member>
         <member name="M:System.Text.Markdown.MarkdownExtensions.AppendMarkdownInlineLatexBlock(System.Text.StringBuilder,System.String)">
             <summary>

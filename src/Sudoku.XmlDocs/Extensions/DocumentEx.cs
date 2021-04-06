@@ -215,7 +215,7 @@ namespace Sudoku.XmlDocs.Extensions
 					@this
 						.AppendHeader(4, paramName)
 						.AppendBoldBlock("Type: ")
-						.AppendText(type)
+						.AppendPlainText(type)
 						.AppendBoldBlock("Description: ")
 						.AppendNewLine()
 						.AppendParagraph(description ?? string.Empty);
