@@ -17,9 +17,10 @@ using Sudoku.XmlDocs.Extensions;
 namespace Sudoku.XmlDocs
 {
 	/// <summary>
-	/// Indicates the output service.
+	/// Indicates the service that outputs the solution-wide documentation comments, and converts them
+	/// into the markdown files.
 	/// </summary>
-	public sealed class OutputService
+	public sealed class DocumentationCommentOutputService
 	{
 		/// <summary>
 		/// Indicates the default options.
@@ -49,14 +50,13 @@ namespace Sudoku.XmlDocs
 
 
 		/// <summary>
-		/// Initializes an <see cref="OutputService"/> with the default instantiation behavior.
+		/// Initializes an <see cref="DocumentationCommentOutputService"/> with the default instantiation behavior.
 		/// </summary>
-		public OutputService() =>
-#nullable disable warnings
-			RootPath = new DirectoryInfo(
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-			).Parent.Parent.Parent.Parent.FullName;
-#nullable restore warnings
+		/// <param name="rootPath">
+		/// The root path of the solution. If you created the new folder to store all projects,
+		/// this folder will be suit for passing this parameter.
+		/// </param>
+		public DocumentationCommentOutputService(string rootPath) => RootPath = rootPath;
 
 
 		/// <summary>

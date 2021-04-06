@@ -369,6 +369,58 @@
             Indicates the value "number".
             </summary>
         </member>
+        <member name="T:Sudoku.XmlDocs.DocumentationCommentOutputService">
+            <summary>
+            Indicates the service that outputs the solution-wide documentation comments, and converts them
+            into the markdown files.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.Options">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.NewLineCharacters">
+            <summary>
+            Indicates the new line characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.TimeSpan">
+            <summary>
+            Indicates the default time span.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.EmptyChars">
+            <summary>
+            Indicates the empty chars regular expression instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.LeadingTripleSlashes">
+            <summary>
+            Indicates the leading triple slash characters "<c>///</c>" regular expression instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.DocumentationCommentOutputService.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.XmlDocs.DocumentationCommentOutputService"/> with the default instantiation behavior.
+            </summary>
+            <param name="rootPath">
+            The root path of the solution. If you created the new folder to store all projects,
+            this folder will be suit for passing this parameter.
+            </param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.DocumentationCommentOutputService.RootPath">
+            <summary>
+            Indicates the root path that stores all projects.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.DocumentationCommentOutputService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Execute the service, and outputs the documentation files, asynchronously.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The task of the execution.</returns>
+        </member>
         <member name="T:Sudoku.XmlDocs.Extensions.DocumentEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Markdown.Document"/>.
@@ -842,53 +894,6 @@
             <summary>
             Indicates the member is an implicit or explicit cast.
             </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.OutputService">
-            <summary>
-            Indicates the output service.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.OutputService.Options">
-            <summary>
-            Indicates the default options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.OutputService.NewLineCharacters">
-            <summary>
-            Indicates the new line characters.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.OutputService.TimeSpan">
-            <summary>
-            Indicates the default time span.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.OutputService.EmptyChars">
-            <summary>
-            Indicates the empty chars regular expression instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.OutputService.LeadingTripleSlashes">
-            <summary>
-            Indicates the leading triple slash characters "<c>///</c>" regular expression instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.XmlDocs.OutputService.#ctor">
-            <summary>
-            Initializes an <see cref="T:Sudoku.XmlDocs.OutputService"/> with the default instantiation behavior.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.OutputService.RootPath">
-            <summary>
-            Indicates the root path that stores all projects.
-            </summary>
-        </member>
-        <member name="M:Sudoku.XmlDocs.OutputService.ExecuteAsync(System.Threading.CancellationToken)">
-            <summary>
-            Execute the service, and outputs the documentation files, asynchronously.
-            </summary>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>The task of the execution.</returns>
         </member>
         <member name="T:Sudoku.XmlDocs.SyntaxInfo.ConstructorSyntaxInfo">
             <summary>
