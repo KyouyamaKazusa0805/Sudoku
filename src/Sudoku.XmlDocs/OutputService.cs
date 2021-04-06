@@ -66,7 +66,7 @@ namespace Sudoku.XmlDocs
 
 
 		/// <summary>
-		/// Execute the service, and outputs the documentation files.
+		/// Execute the service, and outputs the documentation files, asynchronously.
 		/// </summary>
 		/// <param name="cancellationToken">The cancellation token.</param>
 		/// <returns>The task of the execution.</returns>
@@ -78,9 +78,6 @@ namespace Sudoku.XmlDocs
 
 			// Try to get all possible files in this whole solution.
 			string[] files = (await new FileCounter(RootPath, "cs", false).CountUpAsync()).FileList.ToArray();
-
-			// Declares the result file collection to store the result.
-			var markdownFilesContent = new List<(string FileName, string Content)>();
 
 			// Store all possible compilations.
 			var compilations = new Dictionary<string, Compilation>();

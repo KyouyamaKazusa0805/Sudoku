@@ -885,7 +885,7 @@
         </member>
         <member name="M:Sudoku.XmlDocs.OutputService.ExecuteAsync(System.Threading.CancellationToken)">
             <summary>
-            Execute the service, and outputs the documentation files.
+            Execute the service, and outputs the documentation files, asynchronously.
             </summary>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>The task of the execution.</returns>
