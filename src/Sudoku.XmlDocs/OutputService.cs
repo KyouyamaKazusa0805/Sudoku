@@ -22,27 +22,47 @@ namespace Sudoku.XmlDocs
 	public sealed class OutputService
 	{
 		/// <summary>
+		/// Indicates the default options.
+		/// </summary>
+		private const RegexOptions Options = RegexOptions.Compiled | RegexOptions.ExplicitCapture;
+
+
+		/// <summary>
+		/// Indicates the new line characters.
+		/// </summary>
+		private static readonly char[] NewLineCharacters = new[] { '\r', '\n', ' ' };
+
+		/// <summary>
+		/// Indicates the default time span.
+		/// </summary>
+		private static readonly TimeSpan TimeSpan = TimeSpan.FromSeconds(5);
+
+		/// <summary>
+		/// Indicates the empty chars regular expression instance.
+		/// </summary>
+		private static readonly Regex EmptyChars = new(@"\s*\r\n\s*///\s*", Options, TimeSpan);
+
+		/// <summary>
+		/// Indicates the leading triple slash characters "<c>///</c>" regular expression instance.
+		/// </summary>
+		private static readonly Regex LeadingTripleSlashes = new(@"(?<=\r\n)\s*(///\s+?)", Options, TimeSpan);
+
+
+		/// <summary>
 		/// Initializes an <see cref="OutputService"/> with the default instantiation behavior.
 		/// </summary>
-		public OutputService()
-		{
-			var dirInfo = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
-				.Parent!.Parent!.Parent!.Parent!;
-
-			RootPath = dirInfo.FullName;
-			XmlDocDirectoryPath = $@"{RootPath}\docxml";
-		}
+		public OutputService() =>
+#nullable disable warnings
+			RootPath = new DirectoryInfo(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+			).Parent.Parent.Parent.Parent.FullName;
+#nullable restore warnings
 
 
 		/// <summary>
 		/// Indicates the root path that stores all projects.
 		/// </summary>
 		public string RootPath { get; }
-
-		/// <summary>
-		/// Indicates the directory path that stores all documentation files about all possible assemblies.
-		/// </summary>
-		public string XmlDocDirectoryPath { get; }
 
 
 		/// <summary>
@@ -56,29 +76,17 @@ namespace Sudoku.XmlDocs
 			Console.WriteLine("Start execution...");
 #endif
 
-			char[] newLineCharacters = new[] { '\r', '\n', ' ' };
-			var emptyCharsRegex = new Regex(
-				pattern: @"\s*\r\n\s*///\s*",
-				options: RegexOptions.Compiled | RegexOptions.ExplicitCapture,
-				matchTimeout: TimeSpan.FromSeconds(5)
-			);
-			var leadingTripleSlashRegex = new Regex(
-				pattern: @"(?<=\r\n)\s*(///\s+?)",
-				options: RegexOptions.Compiled | RegexOptions.ExplicitCapture,
-				matchTimeout: TimeSpan.FromSeconds(5)
-			);
-
 			// Try to get all possible files in this whole solution.
-			string[] filePaths = (await new FileCounter(RootPath, "cs", false).CountUpAsync()).FileList.ToArray();
+			string[] files = (await new FileCounter(RootPath, "cs", false).CountUpAsync()).FileList.ToArray();
 
 			// Declares the result file collection to store the result.
 			var markdownFilesContent = new List<(string FileName, string Content)>();
 
 			// Store all possible compilations.
 			var compilations = new Dictionary<string, Compilation>();
-			foreach (string path in filePaths)
+			foreach (string file in files)
 			{
-				string dirName = Path.GetDirectoryName(path)!;
+				string dirName = Path.GetDirectoryName(file)!;
 				string projectName = dirName[dirName.LastIndexOf('\\')..];
 				var compilation = CSharpCompilation.Create(projectName);
 
@@ -89,12 +97,13 @@ namespace Sudoku.XmlDocs
 			}
 
 			// Iterate on each file via the path.
-			for (int i = 0; i < filePaths.Length; i++)
+			for (int i = 0; i < files.Length; i++)
 			{
-				string path = filePaths[i];
+				string file = files[i];
 
 #if CONSOLE
-				Console.WriteLine($"Progress: {((i + 1) * 100F / filePaths.Length).ToString("0.00")}%");
+				double progress = (i + 1) * 100F / files.Length;
+				Console.WriteLine($"Progress: {progress.ToString("0.00")}%");
 #endif
 
 				StringBuilder
@@ -110,13 +119,13 @@ namespace Sudoku.XmlDocs
 					castBuilder = new();
 
 				// Try to get the code.
-				string text = await File.ReadAllTextAsync(path, cancellationToken);
+				string text = await File.ReadAllTextAsync(file, cancellationToken);
 
 				// Try to get the syntax tree.
 				var tree = CSharpSyntaxTree.ParseText(text, cancellationToken: cancellationToken);
 
 				// Try to get the semantic model.
-				string dirName = Path.GetDirectoryName(path)!;
+				string dirName = Path.GetDirectoryName(file)!;
 				string projectName = dirName[dirName.LastIndexOf('\\')..];
 
 				// Try to get the syntax node of the root.
@@ -135,11 +144,10 @@ namespace Sudoku.XmlDocs
 						// The record doesn't contain the primary constructor.
 						if (paramList is not { Parameters: { Count: not 0 } parameters })
 						{
-							goto GatherMembers;
+							goto IterateOnMembers;
 						}
 
 						// The record contains the primary constructor. Now store them.
-						// Get its docs.
 						typeDeclaration.VisitDocDescendants(
 							summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
 							remarksNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
@@ -149,12 +157,12 @@ namespace Sudoku.XmlDocs
 							paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
 							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
 							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)//,
-																																																	  //inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
+							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)
+						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
 						);
 					}
 
-				GatherMembers:
+				IterateOnMembers:
 					// Normal type (class, struct or interface). Now we should check its members.
 					foreach (var memberDeclarationSyntax in typeDeclaration.GetMembers(checkNestedTypes: true))
 					{
@@ -169,8 +177,8 @@ namespace Sudoku.XmlDocs
 							paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
 							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
 							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax))//,
-																																																							  //inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, getBuilder(memberDeclarationSyntax))
+							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax))
+						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, getBuilder(memberDeclarationSyntax))
 						);
 
 						getBuilder(memberDeclarationSyntax).AppendMarkdownNewLine();
@@ -218,11 +226,14 @@ namespace Sudoku.XmlDocs
 
 #if DEBUG
 						await document.SaveAsync(
-							path: $@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
-							cancellationToken: cancellationToken
+							$@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+							cancellationToken
 						);
 #else
-					
+						await document.SaveAsync(
+							$@"docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+							cancellationToken
+						);
 #endif
 					}
 					catch (FormatException)
@@ -264,7 +275,7 @@ namespace Sudoku.XmlDocs
 			bool isWhiteOrTripleSlashOnly(XmlNodeSyntax node)
 			{
 				string s = node.ToString();
-				var match = emptyCharsRegex.Match(s);
+				var match = EmptyChars.Match(s);
 				return match.Success && match.Value == s;
 			}
 
@@ -1011,9 +1022,9 @@ namespace Sudoku.XmlDocs
 							case DocCommentBlocks.Code when attributes.Count == 0:
 							{
 								// Trimming. We should remove all unncessary text.
-								contentText = leadingTripleSlashRegex
+								contentText = LeadingTripleSlashes
 									.Replace(contentText, removeMatchItems)
-									.Trim(newLineCharacters);
+									.Trim(NewLineCharacters);
 
 								if (sb.ToString() != string.Empty)
 								{

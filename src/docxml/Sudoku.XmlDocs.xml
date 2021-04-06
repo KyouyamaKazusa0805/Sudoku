@@ -848,6 +848,31 @@
             Indicates the output service.
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.OutputService.Options">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.OutputService.NewLineCharacters">
+            <summary>
+            Indicates the new line characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.OutputService.TimeSpan">
+            <summary>
+            Indicates the default time span.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.OutputService.EmptyChars">
+            <summary>
+            Indicates the empty chars regular expression instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.OutputService.LeadingTripleSlashes">
+            <summary>
+            Indicates the leading triple slash characters "<c>///</c>" regular expression instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.XmlDocs.OutputService.#ctor">
             <summary>
             Initializes an <see cref="T:Sudoku.XmlDocs.OutputService"/> with the default instantiation behavior.
@@ -856,11 +881,6 @@
         <member name="P:Sudoku.XmlDocs.OutputService.RootPath">
             <summary>
             Indicates the root path that stores all projects.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.OutputService.XmlDocDirectoryPath">
-            <summary>
-            Indicates the directory path that stores all documentation files about all possible assemblies.
             </summary>
         </member>
         <member name="M:Sudoku.XmlDocs.OutputService.ExecuteAsync(System.Threading.CancellationToken)">
