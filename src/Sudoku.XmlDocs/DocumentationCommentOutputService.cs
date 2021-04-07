@@ -299,6 +299,7 @@ namespace Sudoku.XmlDocs
 
 						break;
 					}
+					/*array-deconstruction-pattern*/
 					case XmlEmptyElementSyntax
 					{
 						Name: { LocalName: { ValueText: var markup } },
@@ -316,6 +317,7 @@ namespace Sudoku.XmlDocs
 							{
 								Identifier: { Identifier: { ValueText: var identifier } }
 							} => identifier,
+							/*array-deconstruction-pattern*/
 							SyntaxKind.XmlTextAttribute when firstAttribute is XmlTextAttributeSyntax
 							{
 								Name: { LocalName: { ValueText: DocCommentAttributes.LangWord } },
@@ -357,6 +359,7 @@ namespace Sudoku.XmlDocs
 					{
 						switch (markup)
 						{
+							/*array-deconstruction-pattern*/
 							case DocCommentBlocks.List
 							when attributes.Count != 0 && attributes[0] is XmlTextAttributeSyntax
 							{
@@ -1006,6 +1009,7 @@ namespace Sudoku.XmlDocs
 								sb.AppendMarkdownDeleteBlock(contentText);
 								break;
 							}
+							/*array-deconstruction-pattern*/
 							case DocCommentBlocks.A
 							when attributes is { Count: 1 } && attributes[0] is XmlTextAttributeSyntax
 							{

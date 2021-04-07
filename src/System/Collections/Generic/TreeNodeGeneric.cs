@@ -21,7 +21,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// Indicates whether the current node is the left node.
 		/// </summary>
-		public bool IsLeaf => Children is { Count: 0 };
+		public bool IsLeaf => Children.Count == 0;
 
 		/// <summary>
 		/// Indicates the content.

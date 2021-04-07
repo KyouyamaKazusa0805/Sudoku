@@ -76,18 +76,21 @@ namespace Sudoku.Resources
 		{
 			switch (binder.Name)
 			{
+				/*array-deconstruction-pattern*/
 				case nameof(Serialize)
 				when args is { Length: 2 } && (args[0], args[1]) is (string instanceName, string path):
 				{
 					result = null;
 					return Serialize(instanceName, path);
 				}
+				/*array-deconstruction-pattern*/
 				case nameof(Deserialize)
 				when args is { Length: 2 } && (args[0], args[1]) is (string instanceName, string path):
 				{
 					result = null;
 					return Deserialize(instanceName, path);
 				}
+				/*array-deconstruction-pattern*/
 				case nameof(ChangeLanguage) when args is { Length: 1 } && args[0] is CountryCode code:
 				{
 					result = null;

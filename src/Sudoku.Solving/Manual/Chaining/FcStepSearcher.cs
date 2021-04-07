@@ -183,7 +183,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Test 'p' is on.
 			onToOn.Add(pOn);
 			var absurdNodes = DoChaining(ref grid, onToOn, onToOff);
-			if (doContradiction && absurdNodes is { On: var on1, Off: var off1 })
+			if (doContradiction && absurdNodes is var (on1, off1))
 			{
 				// 'p' can't hold its value, otherwise it'd lead to a contradiction.
 				var hint = CreateChainingOffHint(on1, off1, pOn, pOn, true);
@@ -193,7 +193,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			// Test 'p' is off.
 			offToOff.Add(pOff);
 			absurdNodes = DoChaining(ref grid, offToOn, offToOff);
-			if (doContradiction && absurdNodes is { On: var on2, Off: var off2 })
+			if (doContradiction && absurdNodes is var (on2, off2))
 			{
 				// 'p' must hold its value, otherwise it'd lead to a contradiction.
 				var hint = CreateChainingOnHint(on2, off2, pOff, pOff, true);

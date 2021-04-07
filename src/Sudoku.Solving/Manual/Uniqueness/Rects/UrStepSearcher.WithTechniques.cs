@@ -1051,7 +1051,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					guardianDigit = d1;
 					targetGuardianMap = guardian1;
 				}
-				else if (!guardian2.IsEmpty && (guardian2.PeerIntersection & CandMaps[d2]) is { IsEmpty: false } b)
+				else if (
+					!guardian2.IsEmpty && (guardian2.PeerIntersection & CandMaps[d2]) is { IsEmpty: false } b
+				)
 				{
 					targetElimMap = b;
 					guardianDigit = d2;
