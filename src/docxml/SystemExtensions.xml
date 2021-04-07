@@ -588,6 +588,19 @@
         <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
             <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
         </member>
+        <member name="T:System.Extensions.CharEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Char"/>.
+            </summary>
+            <seealso cref="T:System.Char"/>
+        </member>
+        <member name="M:System.Extensions.CharEx.IsAsciiPuncuation(System.Char)">
+            <summary>
+            Checks whether the specified character is a punctuation that is in the range ASCII.
+            </summary>
+            <param name="this">The character.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.Extensions.CloneableEx">
             <summary>
             Provides extension methods on <see cref="T:System.ICloneable"/>.
@@ -1641,6 +1654,11 @@
         <member name="T:System.Text.Markdown.Document">
             <summary>
             Provides a markdown document.
+            </summary>
+        </member>
+        <member name="F:System.Text.Markdown.Document.DefaultCultureName">
+            <summary>
+            Indicates the default culture name.
             </summary>
         </member>
         <member name="F:System.Text.Markdown.Document._innerBuilder">

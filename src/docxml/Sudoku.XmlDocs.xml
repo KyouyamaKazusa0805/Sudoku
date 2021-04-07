@@ -656,6 +656,11 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>
         </member>
+        <member name="F:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.DocTrivia">
+            <summary>
+            Indicates the syntax kind of the doc trivia.
+            </summary>
+        </member>
         <member name="M:Sudoku.XmlDocs.Extensions.SyntaxNodeEx.VisitDocDescendants(Microsoft.CodeAnalysis.SyntaxNode,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor,Sudoku.XmlDocs.SyntaxVisitor)">
             <summary>
             Visits all documentation comment XML nodes.

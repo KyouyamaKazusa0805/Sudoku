@@ -11,6 +11,12 @@ namespace Sudoku.XmlDocs.Extensions
 	public static class SyntaxNodeEx
 	{
 		/// <summary>
+		/// Indicates the syntax kind of the doc trivia.
+		/// </summary>
+		private const SyntaxKind DocTrivia = SyntaxKind.SingleLineDocumentationCommentTrivia;
+
+
+		/// <summary>
 		/// Visits all documentation comment XML nodes.
 		/// </summary>
 		/// <param name="this">The root node of the documentation comments.</param>
@@ -45,34 +51,27 @@ namespace Sudoku.XmlDocs.Extensions
 		/// A delegated method that invokes while the "inheritdoc" node is visiting.
 		/// </param>
 		public static void VisitDocDescendants(
-			this SyntaxNode @this, SyntaxVisitor? summaryNodeVisitor = null,
-			SyntaxVisitor? remarksNodeVisitor = null, SyntaxVisitor? returnsNodeVisitor = null,
-			SyntaxVisitor? valueNodeVisitor = null, SyntaxVisitor? exampleNodeVisitor = null,
-			SyntaxVisitor? paramNodeVisitor = null, SyntaxVisitor? typeParamNodeVisitor = null,
-			SyntaxVisitor? seeAlsoNodeVisitor = null, SyntaxVisitor? exceptionNodeVisitor = null,
-			SyntaxVisitor? inheritDocNodeVisitor = null)
+			this SyntaxNode @this, SyntaxVisitor? summaryNodeVisitor,
+			SyntaxVisitor? remarksNodeVisitor, SyntaxVisitor? returnsNodeVisitor,
+			SyntaxVisitor? valueNodeVisitor, SyntaxVisitor? exampleNodeVisitor,
+			SyntaxVisitor? paramNodeVisitor, SyntaxVisitor? typeParamNodeVisitor,
+			SyntaxVisitor? seeAlsoNodeVisitor, SyntaxVisitor? exceptionNodeVisitor,
+			SyntaxVisitor? inheritDocNodeVisitor)
 		{
 			switch (@this)
 			{
 				case MemberDeclarationSyntax:
 				{
-					foreach (var (kind, structured) in @this.GetLeadingTrivia())
+					foreach (var trivia in @this.GetLeadingTrivia())
 					{
-						if (kind != SyntaxKind.SingleLineDocumentationCommentTrivia)
+						if (trivia is (kind: DocTrivia, structure: { } structured))
 						{
-							continue;
+							onVisiting(
+								structured, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
+								valueNodeVisitor, exampleNodeVisitor, paramNodeVisitor, typeParamNodeVisitor,
+								seeAlsoNodeVisitor, exceptionNodeVisitor, inheritDocNodeVisitor
+							);
 						}
-
-						if (structured is null)
-						{
-							continue;
-						}
-
-						onVisiting(
-							structured, summaryNodeVisitor, remarksNodeVisitor, returnsNodeVisitor,
-							valueNodeVisitor, exampleNodeVisitor, paramNodeVisitor, typeParamNodeVisitor,
-							seeAlsoNodeVisitor, exceptionNodeVisitor, inheritDocNodeVisitor
-						);
 					}
 
 					break;
@@ -91,11 +90,9 @@ namespace Sudoku.XmlDocs.Extensions
 
 
 			static void onVisiting(
-				SyntaxNode docRoot, SyntaxVisitor? summaryNodeVisitor, SyntaxVisitor? remarksNodeVisitor,
-				SyntaxVisitor? returnsNodeVisitor, SyntaxVisitor? valueNodeVisitor,
-				SyntaxVisitor? exampleNodeVisitor, SyntaxVisitor? paramNodeVisitor,
-				SyntaxVisitor? typeParamNodeVisitor, SyntaxVisitor? seeAlsoNodeVisitor,
-				SyntaxVisitor? exceptionNodeVisitor, SyntaxVisitor? inheritDocNodeVisitor)
+				SyntaxNode docRoot, SyntaxVisitor? summary, SyntaxVisitor? remarks, SyntaxVisitor? returns,
+				SyntaxVisitor? value, SyntaxVisitor? example, SyntaxVisitor? param, SyntaxVisitor? typeParam,
+				SyntaxVisitor? seeAlso, SyntaxVisitor? exception, SyntaxVisitor? inheritDoc)
 			{
 				foreach (var markup in docRoot.DescendantNodes())
 				{
@@ -110,15 +107,15 @@ namespace Sudoku.XmlDocs.Extensions
 							(
 								tagName switch
 								{
-									DocCommentBlocks.Summary => summaryNodeVisitor,
-									DocCommentBlocks.Remarks => remarksNodeVisitor,
-									DocCommentBlocks.Returns => returnsNodeVisitor,
-									DocCommentBlocks.Example => exampleNodeVisitor,
-									DocCommentBlocks.Exception => exceptionNodeVisitor,
-									DocCommentBlocks.Value => valueNodeVisitor,
-									DocCommentBlocks.Param => paramNodeVisitor,
-									DocCommentBlocks.TypeParam => typeParamNodeVisitor,
-									DocCommentBlocks.SeeAlso => seeAlsoNodeVisitor,
+									DocCommentBlocks.Summary => summary,
+									DocCommentBlocks.Remarks => remarks,
+									DocCommentBlocks.Returns => returns,
+									DocCommentBlocks.Example => example,
+									DocCommentBlocks.Exception => exception,
+									DocCommentBlocks.Value => value,
+									DocCommentBlocks.Param => param,
+									DocCommentBlocks.TypeParam => typeParam,
+									DocCommentBlocks.SeeAlso => seeAlso,
 									_ => null
 								}
 							)?.Invoke(contentNodes);
@@ -130,7 +127,7 @@ namespace Sudoku.XmlDocs.Extensions
 							(
 								tagName switch
 								{
-									DocCommentBlocks.InheritDoc => inheritDocNodeVisitor,
+									DocCommentBlocks.InheritDoc => inheritDoc,
 									_ => null
 								}
 							)?.Invoke(default);

@@ -175,7 +175,7 @@ namespace Sudoku.XmlDocs
 						typeParamNodeVisitor: d => q(d, typeParamBuilder),
 						seeAlsoNodeVisitor: d => q(d, seeAlsoBuilder),
 						exceptionNodeVisitor: d => q(d, exceptionBuilder),
-						inheritDocNodeVisitor: static d => { }
+						inheritDocNodeVisitor: null
 					);
 
 				IterateOnMembers:
@@ -194,7 +194,7 @@ namespace Sudoku.XmlDocs
 							typeParamNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
 							seeAlsoNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
 							exceptionNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							inheritDocNodeVisitor: static d => { }
+							inheritDocNodeVisitor: null
 						);
 
 						getBuilder(memberDeclarationSyntax).AppendMarkdownNewLine();

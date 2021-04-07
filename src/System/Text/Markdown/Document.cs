@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Extensions;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,12 @@ namespace System.Text.Markdown
 	/// </summary>
 	public sealed partial class Document : IEquatable<Document>
 	{
+		/// <summary>
+		/// Indicates the default culture name.
+		/// </summary>
+		private const string DefaultCultureName = "en-US";
+
+
 		/// <summary>
 		/// Indicates the inner builder.
 		/// </summary>
@@ -45,20 +52,18 @@ namespace System.Text.Markdown
 		/// <returns>The current document.</returns>
 		public Document Format(CultureInfo? cultureInfo)
 		{
-			cultureInfo ??= new("en-us");
+			cultureInfo ??= new(DefaultCultureName);
 
 			switch (cultureInfo.Name)
 			{
-				case "en-US":
+				case DefaultCultureName:
 				{
 					for (int index = 0; index < _innerBuilder.Length - 1; index++)
 					{
 						char currentChar = _innerBuilder[index], nextChar = _innerBuilder[index + 1];
-						if (char.IsPunctuation(currentChar) && !char.IsPunctuation(nextChar)
-							&& currentChar is not (' ' or '(' or '[' or '{' or '<' or '*' or '_' or '`'))
+						if (CharEx.IsAsciiPuncuation(currentChar) && !CharEx.IsAsciiPuncuation(nextChar))
 						{
-							_innerBuilder.Insert(index + 1, ' ');
-							index++;
+							_innerBuilder.Insert(++index, ' ');
 						}
 					}
 
