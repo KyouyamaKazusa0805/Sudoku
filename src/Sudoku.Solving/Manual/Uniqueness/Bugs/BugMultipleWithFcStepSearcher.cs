@@ -28,6 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			/*length-pattern*/
 			if (new BugChecker(grid).TrueCandidates is { Count: > 1 } trueCandidates)
 			{
 				CheckMultipleWithForcingChains(accumulator, grid, trueCandidates);

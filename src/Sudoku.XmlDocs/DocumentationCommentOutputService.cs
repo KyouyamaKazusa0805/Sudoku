@@ -408,6 +408,7 @@ namespace Sudoku.XmlDocs
 
 																		break;
 																	}
+																	/*array-deconstruction-pattern*/
 																	case XmlEmptyElementSyntax
 																	{
 																		Name:
@@ -447,6 +448,7 @@ namespace Sudoku.XmlDocs
 														case DocCommentBlocks.Item:
 														{
 															var itemDescendants = node.DescendantNodes();
+															/*array-deconstruction-pattern*/
 															if (
 																itemDescendants.OfType<XmlElementSyntax>().ToArray() is
 																{
@@ -575,6 +577,7 @@ namespace Sudoku.XmlDocs
 
 																			break;
 																		}
+																		/*array-deconstruction-pattern*/
 																		case XmlEmptyElementSyntax
 																		{
 																			Name:
@@ -750,6 +753,7 @@ namespace Sudoku.XmlDocs
 
 																		break;
 																	}
+																	/*array-deconstruction-pattern*/
 																	case XmlEmptyElementSyntax
 																	{
 																		Name:
@@ -881,6 +885,7 @@ namespace Sudoku.XmlDocs
 
 																				break;
 																			}
+																			/*array-deconstruction-pattern*/
 																			case DocCommentBlocks.A
 																			when numberContentAttributes.Count == 1
 																			&& numberContentAttributes[0] is XmlTextAttributeSyntax
@@ -915,6 +920,7 @@ namespace Sudoku.XmlDocs
 
 																		break;
 																	}
+																	/*array-deconstruction-pattern*/
 																	case XmlEmptyElementSyntax
 																	{
 																		Name:

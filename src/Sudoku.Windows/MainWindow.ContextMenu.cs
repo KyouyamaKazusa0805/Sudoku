@@ -92,9 +92,9 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: StepTriplet triplet })
+					if (_listBoxPaths.SelectedItem is ListBoxItem { Content: StepTriplet(_, _, var s, _) })
 					{
-						SystemClipboard.Text = triplet.Item3.ToFullString();
+						SystemClipboard.Text = s.ToFullString();
 					}
 				}
 				catch
@@ -134,17 +134,20 @@ namespace Sudoku.Windows
 		private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 		{
 			if (
-				sender is MenuItem
-				&& _listBoxTechniques is
+				sender is MenuItem && _listBoxTechniques is
 				{
-					SelectedItem: ListBoxItem { Content: InfoTriplet { Item3: true } triplet }
-				})
+					SelectedItem: ListBoxItem { Content: InfoTriplet(_, var info, true, _) triplet }
+				}
+			)
 			{
 				ref var valueGrid = ref _puzzle.InnerGrid;
-				var info = triplet.Item2;
-				if (!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
+				if (
+					!Settings.MainManualSolver.CheckConclusionValidityAfterSearched
 					|| CheckConclusionsValidity(
-						new UnsafeBitwiseSolver().Solve(valueGrid).Solution!.Value, info.Conclusions))
+						new UnsafeBitwiseSolver().Solve(valueGrid).Solution!.Value,
+						info.Conclusions
+					)
+				)
 				{
 					info.ApplyTo(ref valueGrid);
 					_currentPainter.Conclusions = null;

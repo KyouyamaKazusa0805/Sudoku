@@ -91,12 +91,14 @@ namespace Sudoku.Data
 		{
 			get
 			{
+				/*length-pattern*/
 				if (Parents is not { Count: not 0 })
 				{
 					return this;
 				}
 
 				var p = this;
+				/*length-pattern*/
 				while (p.Parents is { Count: not 0 } parents)
 				{
 					p = parents[0];

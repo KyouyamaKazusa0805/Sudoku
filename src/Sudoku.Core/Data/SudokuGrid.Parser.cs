@@ -526,6 +526,7 @@ namespace Sudoku.Data
 				else
 				{
 					var matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
+					/*length-pattern*/
 					if (matches is { Length: not 81 })
 					{
 						return Undefined;

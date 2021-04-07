@@ -54,7 +54,7 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty => Steps is { Count: not 0 }
+		public decimal MaxDifficulty => Steps is { Count: not 0 } /*length-pattern*/
 			? Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0)
 			: 20.0M;
 

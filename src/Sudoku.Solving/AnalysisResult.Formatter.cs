@@ -117,6 +117,7 @@ namespace Sudoku.Solving
 				sb.AppendLine(solverName);
 
 				// Print solving steps (if worth).
+				/*length-pattern*/
 				if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 				{
 					sb.AppendLine((string)Current.AnalysisResultSolvingSteps);
