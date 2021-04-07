@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,6 +21,11 @@ namespace Sudoku.XmlDocs
 	/// </summary>
 	public sealed class DocumentationCommentOutputService
 	{
+		/// <summary>
+		/// Indicates the name of the source root path.
+		/// </summary>
+		private const string SourceRootName = "src";
+
 		/// <summary>
 		/// Indicates the default options.
 		/// </summary>
@@ -81,17 +85,14 @@ namespace Sudoku.XmlDocs
 			string[] files = (await new FileCounter(RootPath, "cs", false).CountUpAsync()).FileList.ToArray();
 
 			// Store all possible compilations.
-			var compilations = new Dictionary<string, Compilation>();
-			foreach (string file in files)
+			var projectInfos = new (string FileName, string ProjectName)[files.Length];
+			for (int i = 0; i < files.Length; i++)
 			{
-				string dirName = Path.GetDirectoryName(file)!;
-				string projectName = dirName[dirName.LastIndexOf('\\')..];
-				var compilation = CSharpCompilation.Create(projectName);
+				string file = files[i], dirName = Path.GetDirectoryName(file)!;
+				int startIndex = dirName.IndexOf(SourceRootName) + SourceRootName.Length + 1;
+				int endIndex = dirName.IndexOf('\\', startIndex) is var r and not -1 ? r : dirName.Length;
 
-				if (!compilations.ContainsKey(projectName))
-				{
-					compilations.Add(projectName, compilation);
-				}
+				projectInfos[i] = (file, dirName[startIndex..endIndex]);
 			}
 
 			// Iterate on each file via the path.
@@ -145,20 +146,22 @@ namespace Sudoku.XmlDocs
 							goto IterateOnMembers;
 						}
 
-						// The record contains the primary constructor. Now store them.
-						typeDeclaration.VisitDocDescendants(
-							summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							remarksNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							returnsNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							valueNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							exampleNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)
-							//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
-						);
+						// Gather the primary constructor information.
 					}
+
+					// Gather the type doc comments.
+					typeDeclaration.VisitDocDescendants(
+						summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						remarksNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						returnsNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						valueNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						exampleNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
+						exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)
+						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
+					);
 
 				IterateOnMembers:
 					// Normal type (class, struct or interface). Now we should check its members.
@@ -187,50 +190,47 @@ namespace Sudoku.XmlDocs
 #endif
 
 					var document = Document.Create()
-							.AppendHeader(1, $"Type `{typeDeclaration.Identifier.ValueText}`")
-							.AppendPlainText(typeBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Fields")
-							.AppendPlainText(fieldBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Constructors")
-							.AppendPlainText(constructorBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Properties")
-							.AppendPlainText(propertyBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Indexers")
-							.AppendPlainText(indexerBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Events")
-							.AppendPlainText(eventBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Methods")
-							.AppendPlainText(methodBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Operators")
-							.AppendPlainText(operatorBuilder.ToString())
-							.AppendNewLine()
-							.AppendHeader(2, "Casts")
-							.AppendPlainText(castBuilder.ToString())
-							.AppendNewLine()
-							.Format(null);
+						.AppendHeader(1, $"Type `{typeDeclaration.Identifier.ValueText}`")
+						.AppendPlainText(typeBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Fields")
+						.AppendPlainText(fieldBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Constructors")
+						.AppendPlainText(constructorBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Properties")
+						.AppendPlainText(propertyBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Indexers")
+						.AppendPlainText(indexerBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Events")
+						.AppendPlainText(eventBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Methods")
+						.AppendPlainText(methodBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Operators")
+						.AppendPlainText(operatorBuilder.ToString())
+						.AppendNewLine()
+						.AppendHeader(2, "Casts")
+						.AppendPlainText(castBuilder.ToString())
+						.AppendNewLine()
+						.Format(null);
 
 #if CONSOLE
 					Console.WriteLine("Output...");
 #endif
 
+					await document.SaveAsync(
 #if DEBUG
-					await document.SaveAsync(
 						$@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
-						cancellationToken
-					);
 #else
-					await document.SaveAsync(
 						$@"docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+#endif
 						cancellationToken
 					);
-#endif
 
 #if CONSOLE
 					Console.Clear();

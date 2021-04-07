@@ -375,6 +375,11 @@
             into the markdown files.
             </summary>
         </member>
+        <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.SourceRootName">
+            <summary>
+            Indicates the name of the source root path.
+            </summary>
+        </member>
         <member name="F:Sudoku.XmlDocs.DocumentationCommentOutputService.Options">
             <summary>
             Indicates the default options.
