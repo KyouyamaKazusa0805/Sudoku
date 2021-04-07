@@ -1663,10 +1663,14 @@
         <member name="M:System.Text.Markdown.Document.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:System.Text.Markdown.Document.Format">
+        <member name="M:System.Text.Markdown.Document.Format(System.Globalization.CultureInfo)">
             <summary>
             Format the document.
             </summary>
+            <param name="cultureInfo">
+            The culture information instance. If <see langword="null"/>, the parameter will be
+            re-initialized by "en-us".
+            </param>
             <returns>The current document.</returns>
         </member>
         <member name="M:System.Text.Markdown.Document.SaveAsync(System.String,System.Threading.CancellationToken)">

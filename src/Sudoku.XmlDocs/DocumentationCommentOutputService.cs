@@ -216,7 +216,7 @@ namespace Sudoku.XmlDocs
 							.AppendHeader(2, "Casts")
 							.AppendPlainText(castBuilder.ToString())
 							.AppendNewLine()
-							.Format();
+							.Format(null);
 
 #if CONSOLE
 						Console.WriteLine("Output...");

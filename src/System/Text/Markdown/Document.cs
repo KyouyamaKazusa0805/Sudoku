@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.DocComments;
@@ -37,21 +38,38 @@ namespace System.Text.Markdown
 		/// <summary>
 		/// Format the document.
 		/// </summary>
+		/// <param name="cultureInfo">
+		/// The culture information instance. If <see langword="null"/>, the parameter will be
+		/// re-initialized by "en-us".
+		/// </param>
 		/// <returns>The current document.</returns>
-		public Document Format()
+		public Document Format(CultureInfo? cultureInfo)
 		{
-			for (int index = 0; index < _innerBuilder.Length - 1; index++)
+			cultureInfo ??= new("en-us");
+
+			switch (cultureInfo.Name)
 			{
-				char currentChar = _innerBuilder[index], nextChar = _innerBuilder[index + 1];
-				if (char.IsPunctuation(currentChar) && !char.IsPunctuation(nextChar)
-					&& currentChar is not (' ' or '(' or '[' or '{' or '<' or '*' or '_' or '`'))
+				case "en-US":
 				{
-					_innerBuilder.Insert(index + 1, ' ');
-					index++;
+					for (int index = 0; index < _innerBuilder.Length - 1; index++)
+					{
+						char currentChar = _innerBuilder[index], nextChar = _innerBuilder[index + 1];
+						if (char.IsPunctuation(currentChar) && !char.IsPunctuation(nextChar)
+							&& currentChar is not (' ' or '(' or '[' or '{' or '<' or '*' or '_' or '`'))
+						{
+							_innerBuilder.Insert(index + 1, ' ');
+							index++;
+						}
+					}
+
+					goto default;
+				}
+				default:
+				{
+					// Do nothing.
+					return this;
 				}
 			}
-
-			return this;
 		}
 
 		/// <summary>
