@@ -50,7 +50,8 @@ namespace Sudoku.XmlDocs
 
 
 		/// <summary>
-		/// Initializes an <see cref="DocumentationCommentOutputService"/> with the default instantiation behavior.
+		/// Initializes an <see cref="DocumentationCommentOutputService"/>
+		/// with the default instantiation behavior.
 		/// </summary>
 		/// <param name="rootPath">
 		/// The root path of the solution. If you created the new folder to store all projects,
@@ -155,7 +156,7 @@ namespace Sudoku.XmlDocs
 							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
 							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
 							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)
-						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
+							//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
 						);
 					}
 
@@ -175,7 +176,7 @@ namespace Sudoku.XmlDocs
 							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
 							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
 							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax))
-						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, getBuilder(memberDeclarationSyntax))
+							//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, getBuilder(memberDeclarationSyntax))
 						);
 
 						getBuilder(memberDeclarationSyntax).AppendMarkdownNewLine();

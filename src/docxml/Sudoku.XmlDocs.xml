@@ -402,7 +402,8 @@
         </member>
         <member name="M:Sudoku.XmlDocs.DocumentationCommentOutputService.#ctor(System.String)">
             <summary>
-            Initializes an <see cref="T:Sudoku.XmlDocs.DocumentationCommentOutputService"/> with the default instantiation behavior.
+            Initializes an <see cref="T:Sudoku.XmlDocs.DocumentationCommentOutputService"/>
+            with the default instantiation behavior.
             </summary>
             <param name="rootPath">
             The root path of the solution. If you created the new folder to store all projects,
