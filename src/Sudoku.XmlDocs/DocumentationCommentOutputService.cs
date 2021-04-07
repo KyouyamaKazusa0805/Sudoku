@@ -85,14 +85,16 @@ namespace Sudoku.XmlDocs
 			string[] files = (await new FileCounter(RootPath, "cs", false).CountUpAsync()).FileList.ToArray();
 
 			// Store all possible compilations.
-			var projectInfos = new (string FileName, string ProjectName)[files.Length];
+			var projectInfos = new (string FileName, string ProjectName, string Branch)[files.Length];
 			for (int i = 0; i < files.Length; i++)
 			{
 				string file = files[i], dirName = Path.GetDirectoryName(file)!;
 				int startIndex = dirName.IndexOf(SourceRootName) + SourceRootName.Length + 1;
 				int endIndex = dirName.IndexOf('\\', startIndex) is var r and not -1 ? r : dirName.Length;
 
-				projectInfos[i] = (file, dirName[startIndex..endIndex]);
+				string projectName = dirName[startIndex..endIndex];
+				string branch = dirName[file.IndexOf(projectName)..];
+				projectInfos[i] = (file, projectName, branch);
 			}
 
 			// Iterate on each file via the path.
@@ -123,10 +125,6 @@ namespace Sudoku.XmlDocs
 				// Try to get the syntax tree.
 				var tree = CSharpSyntaxTree.ParseText(text, cancellationToken: cancellationToken);
 
-				// Try to get the semantic model.
-				string dirName = Path.GetDirectoryName(file)!;
-				string projectName = dirName[dirName.LastIndexOf('\\')..];
-
 				// Try to get the syntax node of the root.
 				var node = await tree.GetRootAsync(cancellationToken);
 
@@ -138,7 +136,12 @@ namespace Sudoku.XmlDocs
 				{
 					// Gather all member information.
 					// Check whether the type is a record. New we should extract its primary constructor.
-					if (typeDeclaration is RecordDeclarationSyntax { ParameterList: var paramList } recordDeclaration)
+					if (
+						typeDeclaration is RecordDeclarationSyntax
+						{
+							ParameterList: var paramList
+						} recordDeclaration
+					)
 					{
 						// The record doesn't contain the primary constructor.
 						if (paramList is not { Parameters: { Count: not 0 } parameters })
@@ -150,17 +153,29 @@ namespace Sudoku.XmlDocs
 					}
 
 					// Gather the type doc comments.
+					StringBuilder
+						summaryBuilder = new(),
+						remarksBuilder = new(),
+						returnsBuilder = new(),
+						valueBuilder = new(),
+						exampleBuilder = new(),
+						paramBuilder = new(),
+						typeParamBuilder = new(),
+						seeAlsoBuilder = new(),
+						exceptionBuilder = new(),
+						inheritBuilder = new();
+
 					typeDeclaration.VisitDocDescendants(
-						summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						remarksNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						returnsNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						valueNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						exampleNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder),
-						exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, typeBuilder)
-						//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, typeBuilder)
+						summaryNodeVisitor: d => q(d, summaryBuilder),
+						remarksNodeVisitor: d => q(d, remarksBuilder),
+						returnsNodeVisitor: d => q(d, returnsBuilder),
+						valueNodeVisitor: d => q(d, valueBuilder),
+						exampleNodeVisitor: d => q(d, exampleBuilder),
+						paramNodeVisitor: d => q(d, paramBuilder),
+						typeParamNodeVisitor: d => q(d, typeParamBuilder),
+						seeAlsoNodeVisitor: d => q(d, seeAlsoBuilder),
+						exceptionNodeVisitor: d => q(d, exceptionBuilder),
+						inheritDocNodeVisitor: static d => { }
 					);
 
 				IterateOnMembers:
@@ -170,16 +185,16 @@ namespace Sudoku.XmlDocs
 						getBuilder(memberDeclarationSyntax).AppendMarkdownHeader(3, "Member");
 
 						memberDeclarationSyntax.VisitDocDescendants(
-							summaryNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							remarksNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							returnsNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							valueNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							exampleNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							paramNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							typeParamNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							seeAlsoNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax)),
-							exceptionNodeVisitor: (XmlElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes, in SyntaxList<XmlNodeSyntax> descendants) => q(node, descendants, getBuilder(memberDeclarationSyntax))
-							//,inheritDocNodeVisitor: (XmlEmptyElementSyntax node, in SyntaxList<XmlAttributeSyntax> attributes) => q(node, descendants, getBuilder(memberDeclarationSyntax))
+							summaryNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							remarksNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							returnsNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							valueNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							exampleNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							paramNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							typeParamNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							seeAlsoNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							exceptionNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							inheritDocNodeVisitor: static d => { }
 						);
 
 						getBuilder(memberDeclarationSyntax).AppendMarkdownNewLine();
@@ -217,7 +232,7 @@ namespace Sudoku.XmlDocs
 						.AppendHeader(2, "Casts")
 						.AppendPlainText(castBuilder.ToString())
 						.AppendNewLine()
-						.Format(null);
+						.Format(new("en-us"));
 
 #if CONSOLE
 					Console.WriteLine("Output...");
@@ -225,9 +240,9 @@ namespace Sudoku.XmlDocs
 
 					await document.SaveAsync(
 #if DEBUG
-						$@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+						$@"C:\Users\Howdy\Desktop\docs\{projectInfos[i].Branch}\{typeDeclaration.Identifier.ValueText}",
 #else
-						$@"docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+						$@"docs\{projectInfos[i].Branch}\{typeDeclaration.Identifier.ValueText}",
 #endif
 						cancellationToken
 					);
@@ -252,7 +267,7 @@ namespace Sudoku.XmlDocs
 				};
 			}
 
-			void q(XmlElementSyntax node, in SyntaxList<XmlNodeSyntax> descendants, StringBuilder sb)
+			void q(SyntaxList<XmlNodeSyntax> descendants, StringBuilder sb)
 			{
 				foreach (var descendant in descendants)
 				{

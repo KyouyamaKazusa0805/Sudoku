@@ -45,13 +45,12 @@ namespace Sudoku.XmlDocs.Extensions
 		/// A delegated method that invokes while the "inheritdoc" node is visiting.
 		/// </param>
 		public static void VisitDocDescendants(
-			this SyntaxNode @this,
-			SyntaxVisitor? summaryNodeVisitor = null, SyntaxVisitor? remarksNodeVisitor = null,
-			SyntaxVisitor? returnsNodeVisitor = null, SyntaxVisitor? valueNodeVisitor = null,
-			SyntaxVisitor? exampleNodeVisitor = null, SyntaxVisitor? paramNodeVisitor = null,
-			SyntaxVisitor? typeParamNodeVisitor = null, SyntaxVisitor? seeAlsoNodeVisitor = null,
-			AttributedSyntaxVisitor? exceptionNodeVisitor = null,
-			AttributedSyntaxVisitorWithoutDescendants? inheritDocNodeVisitor = null)
+			this SyntaxNode @this, SyntaxVisitor? summaryNodeVisitor = null,
+			SyntaxVisitor? remarksNodeVisitor = null, SyntaxVisitor? returnsNodeVisitor = null,
+			SyntaxVisitor? valueNodeVisitor = null, SyntaxVisitor? exampleNodeVisitor = null,
+			SyntaxVisitor? paramNodeVisitor = null, SyntaxVisitor? typeParamNodeVisitor = null,
+			SyntaxVisitor? seeAlsoNodeVisitor = null, SyntaxVisitor? exceptionNodeVisitor = null,
+			SyntaxVisitor? inheritDocNodeVisitor = null)
 		{
 			switch (@this)
 			{
@@ -96,8 +95,7 @@ namespace Sudoku.XmlDocs.Extensions
 				SyntaxVisitor? returnsNodeVisitor, SyntaxVisitor? valueNodeVisitor,
 				SyntaxVisitor? exampleNodeVisitor, SyntaxVisitor? paramNodeVisitor,
 				SyntaxVisitor? typeParamNodeVisitor, SyntaxVisitor? seeAlsoNodeVisitor,
-				AttributedSyntaxVisitor? exceptionNodeVisitor,
-				AttributedSyntaxVisitorWithoutDescendants? inheritDocNodeVisitor)
+				SyntaxVisitor? exceptionNodeVisitor, SyntaxVisitor? inheritDocNodeVisitor)
 			{
 				foreach (var markup in docRoot.DescendantNodes())
 				{
@@ -105,79 +103,37 @@ namespace Sudoku.XmlDocs.Extensions
 					{
 						case XmlElementSyntax
 						{
-							StartTag:
-							{
-								Name: { LocalName: { ValueText: var tagName } },
-								Attributes: var attributes
-							},
+							StartTag: { Name: { LocalName: { ValueText: var tagName } } },
 							Content: var contentNodes
-						} element:
+						}:
 						{
-							switch (tagName)
-							{
-								case DocCommentBlocks.Summary:
+							(
+								tagName switch
 								{
-									summaryNodeVisitor?.Invoke(element, contentNodes);
-									break;
+									DocCommentBlocks.Summary => summaryNodeVisitor,
+									DocCommentBlocks.Remarks => remarksNodeVisitor,
+									DocCommentBlocks.Returns => returnsNodeVisitor,
+									DocCommentBlocks.Example => exampleNodeVisitor,
+									DocCommentBlocks.Exception => exceptionNodeVisitor,
+									DocCommentBlocks.Value => valueNodeVisitor,
+									DocCommentBlocks.Param => paramNodeVisitor,
+									DocCommentBlocks.TypeParam => typeParamNodeVisitor,
+									DocCommentBlocks.SeeAlso => seeAlsoNodeVisitor,
+									_ => null
 								}
-								case DocCommentBlocks.Remarks:
-								{
-									remarksNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.Returns:
-								{
-									returnsNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.Example:
-								{
-									exampleNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.Exception:
-								{
-									exceptionNodeVisitor?.Invoke(element, attributes, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.Value:
-								{
-									valueNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.Param:
-								{
-									paramNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.TypeParam:
-								{
-									typeParamNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-								case DocCommentBlocks.SeeAlso:
-								{
-									seeAlsoNodeVisitor?.Invoke(element, contentNodes);
-									break;
-								}
-							}
+							)?.Invoke(contentNodes);
 
 							break;
 						}
-						case XmlEmptyElementSyntax
+						case XmlEmptyElementSyntax { Name: { LocalName: { ValueText: var tagName } } }:
 						{
-							Name: { LocalName: { ValueText: var tagName } },
-							Attributes: var attributes
-						} emptyElement:
-						{
-							switch (tagName)
-							{
-								case DocCommentBlocks.InheritDoc:
+							(
+								tagName switch
 								{
-									inheritDocNodeVisitor?.Invoke(emptyElement, attributes);
-									break;
+									DocCommentBlocks.InheritDoc => inheritDocNodeVisitor,
+									_ => null
 								}
-							}
+							)?.Invoke(default);
 
 							break;
 						}
