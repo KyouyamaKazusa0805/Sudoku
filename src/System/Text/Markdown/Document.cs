@@ -86,7 +86,13 @@ namespace System.Text.Markdown
 				Directory.CreateDirectory(dir);
 			}
 
-			if (File.Exists(path))
+			await File.WriteAllTextAsync(
+				path: File.Exists(path) ? getAvailablePath(path) : $"{path}.md",
+				contents: ToString(),
+				cancellationToken
+			);
+
+			static string getAvailablePath(string path)
 			{
 				int i = 1;
 				string fileNameToCheck;
@@ -95,11 +101,7 @@ namespace System.Text.Markdown
 					i++;
 				}
 
-				await File.WriteAllTextAsync(fileNameToCheck, ToString(), cancellationToken);
-			}
-			else
-			{
-				await File.WriteAllTextAsync($"{path}.md", ToString(), cancellationToken);
+				return fileNameToCheck;
 			}
 		}
 
