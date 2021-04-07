@@ -186,9 +186,7 @@ namespace Sudoku.XmlDocs
 					Console.WriteLine("Generate file...");
 #endif
 
-					try
-					{
-						var document = Document.Create()
+					var document = Document.Create()
 							.AppendHeader(1, $"Type `{typeDeclaration.Identifier.ValueText}`")
 							.AppendPlainText(typeBuilder.ToString())
 							.AppendNewLine()
@@ -219,28 +217,20 @@ namespace Sudoku.XmlDocs
 							.Format(null);
 
 #if CONSOLE
-						Console.WriteLine("Output...");
+					Console.WriteLine("Output...");
 #endif
 
 #if DEBUG
-						await document.SaveAsync(
-							$@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
-							cancellationToken
-						);
+					await document.SaveAsync(
+						$@"C:\Users\Howdy\Desktop\docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+						cancellationToken
+					);
 #else
-						await document.SaveAsync(
-							$@"docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
-							cancellationToken
-						);
+					await document.SaveAsync(
+						$@"docs\{projectName}\{typeDeclaration.Identifier.ValueText}",
+						cancellationToken
+					);
 #endif
-					}
-					catch (FormatException)
-					{
-#if CONSOLE
-						Console.Clear();
-#endif
-						continue;
-					}
 
 #if CONSOLE
 					Console.Clear();
