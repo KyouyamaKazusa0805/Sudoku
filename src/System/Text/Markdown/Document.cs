@@ -88,7 +88,14 @@ namespace System.Text.Markdown
 
 			if (File.Exists(path))
 			{
-				await File.WriteAllTextAsync($"{path}_.md", ToString(), cancellationToken);
+				int i = 1;
+				string fileNameToCheck;
+				while (File.Exists(fileNameToCheck = $"{path}_{i.ToString()}.md"))
+				{
+					i++;
+				}
+
+				await File.WriteAllTextAsync(fileNameToCheck, ToString(), cancellationToken);
 			}
 			else
 			{
