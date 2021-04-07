@@ -94,12 +94,8 @@ namespace System.Text.Markdown
 
 			static string getAvailablePath(string path)
 			{
-				int i = 1;
 				string fileNameToCheck;
-				while (File.Exists(fileNameToCheck = $"{path}_{i.ToString()}.md"))
-				{
-					i++;
-				}
+				for (int i = 1; File.Exists(fileNameToCheck = $"{path}_{i.ToString()}.md"); i++) ;
 
 				return fileNameToCheck;
 			}
