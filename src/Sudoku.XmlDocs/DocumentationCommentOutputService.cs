@@ -152,18 +152,18 @@ namespace Sudoku.XmlDocs
 						// Gather the primary constructor information.
 					}
 
-					// Gather the type doc comments.
+				IterateOnMembers:
 					StringBuilder
-						summaryBuilder = new(),
-						remarksBuilder = new(),
-						returnsBuilder = new(),
-						valueBuilder = new(),
-						exampleBuilder = new(),
-						paramBuilder = new(),
-						typeParamBuilder = new(),
-						seeAlsoBuilder = new(),
-						exceptionBuilder = new(),
-						inheritBuilder = new();
+						summaryBuilder = new StringBuilder().AppendMarkdownHeader(3, "Summary"),
+						remarksBuilder = new StringBuilder().AppendMarkdownHeader(3, "Remarks"),
+						returnsBuilder = new StringBuilder().AppendMarkdownHeader(3, "Returns"),
+						valueBuilder = new StringBuilder().AppendMarkdownHeader(3, "Value"),
+						exampleBuilder = new StringBuilder().AppendMarkdownHeader(3, "Example"),
+						paramBuilder = new StringBuilder().AppendMarkdownHeader(3, "Parameters"),
+						typeParamBuilder = new StringBuilder().AppendMarkdownHeader(3, "Type Parameters"),
+						seeAlsoBuilder = new StringBuilder().AppendMarkdownHeader(3, "See Also"),
+						exceptionBuilder = new StringBuilder().AppendMarkdownHeader(3, "Exceptions"),
+						inheritDocBuilder = new StringBuilder().AppendMarkdownHeader(3, "Inherit Docs");
 
 					typeDeclaration.VisitDocDescendants(
 						summaryNodeVisitor: d => q(d, summaryBuilder),
@@ -178,26 +178,61 @@ namespace Sudoku.XmlDocs
 						inheritDocNodeVisitor: null
 					);
 
-				IterateOnMembers:
+					typeBuilder
+						.Append(summaryBuilder).AppendMarkdownNewLine()
+						.Append(remarksBuilder).AppendMarkdownNewLine()
+						.Append(returnsBuilder).AppendMarkdownNewLine()
+						.Append(exampleBuilder).AppendMarkdownNewLine()
+						.Append(typeParamBuilder).AppendMarkdownNewLine()
+						.Append(inheritDocBuilder).AppendMarkdownNewLine()
+						.Append(seeAlsoBuilder).AppendMarkdownNewLine();
+
 					// Normal type (class, struct or interface). Now we should check its members.
 					foreach (var memberDeclarationSyntax in typeDeclaration.GetMembers(checkNestedTypes: true))
 					{
-						getBuilder(memberDeclarationSyntax).AppendMarkdownHeader(3, "Member");
+						var builderRef = getBuilder(memberDeclarationSyntax);
 
+						// Append member title.
+						builderRef.AppendMarkdownHeader(3, "Member");
+
+						// Clear inner values.
+						summaryBuilder.Clear().AppendMarkdownHeader(4, "Summary");
+						remarksBuilder.Clear().AppendMarkdownHeader(4, "Remarks");
+						returnsBuilder.Clear().AppendMarkdownHeader(4, "Returns");
+						valueBuilder.Clear().AppendMarkdownHeader(4, "Value");
+						exampleBuilder.Clear().AppendMarkdownHeader(4, "Example");
+						paramBuilder.Clear().AppendMarkdownHeader(4, "Parameters");
+						typeParamBuilder.Clear().AppendMarkdownHeader(4, "Type Parameters");
+						seeAlsoBuilder.Clear().AppendMarkdownHeader(4, "See Also");
+						exceptionBuilder.Clear().AppendMarkdownHeader(4, "Exceptions");
+						inheritDocBuilder.Clear().AppendMarkdownHeader(4, "Inherit Docs");
+
+						// Track values.
 						memberDeclarationSyntax.VisitDocDescendants(
-							summaryNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							remarksNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							returnsNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							valueNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							exampleNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							paramNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							typeParamNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							seeAlsoNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
-							exceptionNodeVisitor: d => q(d, getBuilder(memberDeclarationSyntax)),
+							summaryNodeVisitor: d => q(d, summaryBuilder),
+							remarksNodeVisitor: d => q(d, remarksBuilder),
+							returnsNodeVisitor: d => q(d, returnsBuilder),
+							valueNodeVisitor: d => q(d, valueBuilder),
+							exampleNodeVisitor: d => q(d, exampleBuilder),
+							paramNodeVisitor: d => q(d, paramBuilder),
+							typeParamNodeVisitor: d => q(d, typeParamBuilder),
+							seeAlsoNodeVisitor: d => q(d, seeAlsoBuilder),
+							exceptionNodeVisitor: d => q(d, exceptionBuilder),
 							inheritDocNodeVisitor: null
 						);
 
-						getBuilder(memberDeclarationSyntax).AppendMarkdownNewLine();
+						// Append to the builder.
+						builderRef
+							.Append(summaryBuilder).AppendMarkdownNewLine()
+							.Append(remarksBuilder).AppendMarkdownNewLine()
+							.Append(returnsBuilder).AppendMarkdownNewLine()
+							.Append(valueBuilder).AppendMarkdownNewLine()
+							.Append(exampleBuilder).AppendMarkdownNewLine()
+							.Append(paramBuilder).AppendMarkdownNewLine()
+							.Append(typeParamBuilder).AppendMarkdownNewLine()
+							.Append(exceptionBuilder).AppendMarkdownNewLine()
+							.Append(inheritDocBuilder).AppendMarkdownNewLine()
+							.Append(seeAlsoBuilder).AppendMarkdownNewLine();
 					}
 
 #if CONSOLE
@@ -206,6 +241,7 @@ namespace Sudoku.XmlDocs
 
 					var document = Document.Create()
 						.AppendHeader(1, $"Type `{typeDeclaration.Identifier.ValueText}`")
+						.AppendHeader(2, "Introduction")
 						.AppendPlainText(typeBuilder.ToString())
 						.AppendNewLine()
 						.AppendHeader(2, "Fields")
@@ -232,7 +268,7 @@ namespace Sudoku.XmlDocs
 						.AppendHeader(2, "Casts")
 						.AppendPlainText(castBuilder.ToString())
 						.AppendNewLine()
-						.Format(new("en-us"));
+						.Format(null);
 
 #if CONSOLE
 					Console.WriteLine("Output...");
