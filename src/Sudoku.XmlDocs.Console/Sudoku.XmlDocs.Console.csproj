@@ -11,8 +11,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Bot\Sudoku.Bot.csproj" />
-	  <ProjectReference Include="..\Sudoku.XmlDocs\Sudoku.XmlDocs.csproj" />
+		<ProjectReference Include="..\Sudoku.Bot\Sudoku.Bot.csproj" />
+		<ProjectReference Include="..\Sudoku.XmlDocs\Sudoku.XmlDocs.csproj" />
 	</ItemGroup>
 
 </Project>
