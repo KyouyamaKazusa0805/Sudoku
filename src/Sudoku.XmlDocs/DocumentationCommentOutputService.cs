@@ -303,7 +303,7 @@ namespace Sudoku.XmlDocs
 				};
 			}
 
-			void q(SyntaxList<XmlNodeSyntax> descendants, StringBuilder sb)
+			static void q(SyntaxList<XmlNodeSyntax> descendants, StringBuilder sb)
 			{
 				foreach (var descendant in descendants)
 				{
@@ -311,14 +311,14 @@ namespace Sudoku.XmlDocs
 				}
 			}
 
-			bool isWhiteOrTripleSlashOnly(XmlNodeSyntax node)
+			static bool isWhiteOrTripleSlashOnly(XmlNodeSyntax node)
 			{
 				string s = node.ToString();
 				var match = EmptyChars.Match(s);
 				return match.Success && match.Value == s;
 			}
 
-			bool traverse(XmlNodeSyntax descendant, StringBuilder sb)
+			static bool traverse(XmlNodeSyntax descendant, StringBuilder sb)
 			{
 				if (isWhiteOrTripleSlashOnly(descendant))
 				{
