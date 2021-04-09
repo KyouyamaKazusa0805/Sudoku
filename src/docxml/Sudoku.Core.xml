@@ -926,7 +926,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(Sudoku.Data.Cells@)">
             <summary>
-             Initializes an instance with the specified instance.
+            Initializes an instance with the specified instance.
             </summary>
             <param name="another">Another instance.</param>
         </member>

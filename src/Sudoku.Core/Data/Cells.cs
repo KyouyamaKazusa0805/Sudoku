@@ -146,7 +146,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		///  Initializes an instance with the specified instance.
+		/// Initializes an instance with the specified instance.
 		/// </summary>
 		/// <param name="another">Another instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -313,7 +313,7 @@ namespace Sudoku.Data
 		public readonly short BlockMask
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetFirst(BlockOffset, RowOffset);
+			get => CreateMask(BlockOffset, RowOffset);
 		}
 
 		/// <summary>
@@ -326,7 +326,7 @@ namespace Sudoku.Data
 		public readonly short RowMask
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetFirst(RowOffset, ColumnOffset);
+			get => CreateMask(RowOffset, ColumnOffset);
 		}
 
 		/// <summary>
@@ -339,7 +339,7 @@ namespace Sudoku.Data
 		public readonly short ColumnMask
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetFirst(ColumnOffset, Limit);
+			get => CreateMask(ColumnOffset, Limit);
 		}
 
 		/// <summary>
@@ -874,7 +874,7 @@ namespace Sudoku.Data
 		/// <seealso cref="RowMask"/>
 		/// <seealso cref="ColumnMask"/>
 		/// <seealso cref="BlockMask"/>
-		private readonly short GetFirst(int start, int end)
+		private readonly short CreateMask(int start, int end)
 		{
 			short result = 0;
 			for (int i = start; i < end; i++)
