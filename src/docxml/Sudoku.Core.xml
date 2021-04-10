@@ -1224,7 +1224,7 @@
         <member name="M:Sudoku.Data.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Cells.GetFirst(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Cells.CreateMask(System.Int32,System.Int32)">
             <summary>
             Being called by <see cref="P:Sudoku.Data.Cells.RowMask"/>, <see cref="P:Sudoku.Data.Cells.ColumnMask"/> and <see cref="P:Sudoku.Data.Cells.BlockMask"/>.
             </summary>

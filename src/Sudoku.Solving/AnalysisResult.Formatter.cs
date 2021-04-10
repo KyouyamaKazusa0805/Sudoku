@@ -168,12 +168,11 @@ namespace Sudoku.Solving
 				}
 
 				// Print solving step statistics (if worth).
-				if (Result.Steps is { } solvingSteps)
+				if (steps is not null)
 				{
 					var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
-						from step in solvingSteps
-						orderby step.Difficulty
-						group step by step.Name);
+						from step in steps orderby step.Difficulty group step by step.Name
+					);
 					sb.AppendLine((string)Current.AnalysisResultTechniqueUsed);
 					if (options.Flags(ShowStepDetail))
 					{
