@@ -855,6 +855,28 @@
             Indicates the <see langword="init"/> keyword.
             </summary>
         </member>
+        <member name="T:Sudoku.XmlDocs.MemberInfo.TypeInfo">
+            <summary>
+            Indicates the information to introduce a type.
+            </summary>
+            <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
+            <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
+            <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
+            <param name="Example">Indicates the "example" block in the documentation comments.</param>
+            <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
+            <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
+        </member>
+        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeInfo.#ctor(System.String,System.String,System.ValueTuple{System.String,System.String}[],System.String,System.ValueTuple{System.String,System.String}[],System.String[])">
+            <summary>
+            Indicates the information to introduce a type.
+            </summary>
+            <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
+            <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
+            <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
+            <param name="Example">Indicates the "example" block in the documentation comments.</param>
+            <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
+            <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
+        </member>
         <member name="T:Sudoku.XmlDocs.MemberKind">
             <summary>
             Provides a member kind.
