@@ -855,6 +855,91 @@
             Indicates the <see langword="init"/> keyword.
             </summary>
         </member>
+        <member name="T:Sudoku.XmlDocs.MemberInfo.Constraints">
+            <summary>
+            Indicates the type parameter constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.None">
+            <summary>
+            Indicates the type parameter doesn't contain any constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Base">
+            <summary>
+            Indicates the base <see langword="class"/>, <see langword="interface"/> or
+            type parameter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.ClassNotNull">
+            <summary>
+            Indicates the <see langword="class"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.ClassMaybeNull">
+            <summary>
+            Indicates the <see langword="class"/>? constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.StructNotNull">
+            <summary>
+            Indicates the <see langword="struct"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.StructMaybeNull">
+            <summary>
+            Indicates the <see langword="struct"/>? constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.NotNull">
+            <summary>
+            Indicates the <see langword="notnull"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Unmanaged">
+            <summary>
+            Indicates the <see langword="unmanaged"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Delegate">
+            <summary>
+            Indicates the <see cref="T:System.Delegate"/> constraint.
+            </summary>
+            <seealso cref="T:System.Delegate"/>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Enum">
+            <summary>
+            Indicates the <see cref="T:System.Enum"/> constraint.
+            </summary>
+            <seealso cref="T:System.Enum"/>
+        </member>
+        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Default">
+            <summary>
+            Indicates the <see langword="default"/> constraint.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.MemberInfo.ExceptionDetails">
+            <summary>
+            Indicates the type parameter details.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified exception name, and the description.
+            </summary>
+            <param name="exception">The exception.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.Exception">
+            <summary>
+            Indicates the exception name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.Description">
+            <summary>
+            Indicates the description.
+            </summary>
+        </member>
         <member name="T:Sudoku.XmlDocs.MemberInfo.TypeInfo">
             <summary>
             Indicates the information to introduce a type.
@@ -862,20 +947,73 @@
             <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
             <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
             <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
+            <param name="TypeParameterConstraints">Indicates the type parameter constraints.</param>
             <param name="Example">Indicates the "example" block in the documentation comments.</param>
             <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
             <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeInfo.#ctor(System.String,System.String,System.ValueTuple{System.String,System.String}[],System.String,System.ValueTuple{System.String,System.String}[],System.String[])">
+        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeInfo.#ctor(System.String,System.String,Sudoku.XmlDocs.MemberInfo.TypeParameterDetails[],Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails[],System.String,Sudoku.XmlDocs.MemberInfo.ExceptionDetails[],System.String[])">
             <summary>
             Indicates the information to introduce a type.
             </summary>
             <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
             <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
             <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
+            <param name="TypeParameterConstraints">Indicates the type parameter constraints.</param>
             <param name="Example">Indicates the "example" block in the documentation comments.</param>
             <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
             <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
+        </member>
+        <member name="T:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails">
+            <summary>
+            Indicates a type parameter constraint details.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.#ctor(System.String,System.String[],Sudoku.XmlDocs.MemberInfo.Constraints)">
+            <summary>
+            Initializes an instance with the specified type parameter name, base types or constraints.
+            </summary>
+            <param name="typeParameter">Indicates the type parameter name.</param>
+            <param name="base">Indicates the base types.</param>
+            <param name="constraints">Indicates the constraints.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.TypeParameter">
+            <summary>
+            Indicates the type parameter name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.BaseTypes">
+            <summary>
+            Indicates the base <see langword="class"/>es derived, <see langword="interface"/>s implemented
+            or generic type parameters.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.Constraints">
+            <summary>
+            Indicates the constraints.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails">
+            <summary>
+            Indicates the type parameter details.
+            </summary>
+        </member>
+        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified type parameter name, and the description.
+            </summary>
+            <param name="typeParameter">The type parameter.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.TypeParameter">
+            <summary>
+            Indicates the type parameter name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.Description">
+            <summary>
+            Indicates the description.
+            </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.MemberKind">
             <summary>
