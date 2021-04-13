@@ -80,12 +80,12 @@ namespace Sudoku.Solving.Manual
 			if (grid.IsValid(out var solution, out bool? sukaku))
 			{
 				// Solve the puzzle.
-				int emptyCellsCount = grid.EmptiesCount;
-				int candsCount = grid.CandidatesCount;
+				int emptyCellsCount = grid.EmptiesCount, candsCount = grid.CandidatesCount;
 				try
 				{
-					var defaultValue = new GridProgressResult();
-					var defaultPr = new GridProgressResult(candsCount, emptyCellsCount, candsCount, countryCode);
+					GridProgressResult
+						defaultValue = new(),
+						defaultPr = new(candsCount, emptyCellsCount, candsCount, countryCode);
 					ref var pr = ref progress is null ? ref defaultValue : ref defaultPr;
 					progress?.Report(defaultPr);
 
