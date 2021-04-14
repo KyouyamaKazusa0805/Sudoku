@@ -123,6 +123,9 @@
 					<MenuItem Header="{DynamicResource _menuItemEditCopyAsExcel}"
 							  x:Name="_menuItemEditCopyAsExcel"
 							  Click="MenuItemEditCopyAsExcel_Click"/>
+					<MenuItem Header="{DynamicResource _menuItemEditCopyAsOpenSudoku}"
+							  x:Name="menuItemEditCopyAsOpenSudoku"
+							  Click="MenuItemEditCopyAsOpenSudoku_Click"/>
 				</MenuItem>
 				<MenuItem Header="{DynamicResource _menuItemEditPaste}" InputGestureText="Ctrl + V"
 						  x:Name="_menuItemEditPaste"

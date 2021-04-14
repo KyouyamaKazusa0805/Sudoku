@@ -415,6 +415,9 @@ namespace Sudoku.Windows
 		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+		private void MenuItemEditCopyAsOpenSudoku_Click(object sender, RoutedEventArgs e) => InternalCopy("^");
+
+		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			if (SystemClipboard.Text is var puzzleStr)

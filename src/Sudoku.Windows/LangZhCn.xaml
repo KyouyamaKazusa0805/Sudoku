@@ -35,6 +35,7 @@
 	<sys:String x:Key="_menuItemEditCopyPmGrid">复制候选数盘面文本</sys:String>
 	<sys:String x:Key="_menuItemEditCopyAsSukaku">复制候选数数独格式文本</sys:String>
 	<sys:String x:Key="_menuItemEditCopyAsExcel">复制 Excel 专用文本</sys:String>
+	<sys:String x:Key="_menuItemEditCopyAsOpenSudoku">复制 Open-sudoku 格式文本</sys:String>
 	<sys:String x:Key="_menuItemEditPaste">粘贴</sys:String>
 	<sys:String x:Key="_menuItemEditPasteAsSukaku">粘贴为候选数数独</sys:String>
 	<sys:String x:Key="_menuItemEditFix">固定盘面</sys:String>
