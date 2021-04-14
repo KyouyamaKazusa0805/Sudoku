@@ -202,25 +202,20 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>All ALSes searched.</returns>
-		public static Als[] GetAllAlses(SudokuGrid grid)
+		public static Als[] GetAllAlses(in SudokuGrid grid)
 		{
-			var bivalueMap = BivalueMap;
-			var emptyMap = EmptyMap;
-
 			// Get all bi-value-cell ALSes.
 			var result = new List<Als>();
-			foreach (int cell in bivalueMap)
+			foreach (int cell in BivalueMap)
 			{
-				result.Add(new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & emptyMap));
+				result.Add(new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & EmptyMap));
 			}
 
 			// Get all non-bi-value-cell ALSes.
 			var list = new List<int>();
 			for (int region = 0; region < 27; region++)
 			{
-				var regionMap = RegionMaps[region];
-				var tempMap = regionMap & emptyMap;
-				if (tempMap.Count < 3)
+				if ((RegionMaps[region] & EmptyMap) is not { Count: >= 3 } tempMap)
 				{
 					continue;
 				}
@@ -230,10 +225,10 @@ namespace Sudoku.Solving.Manual.Alses
 				list.AddRange(emptyCells);
 				for (int size = 2; size <= emptyCells.Length - 1; size++)
 				{
-					foreach (int[] cells in list.GetSubsets(size))
+					foreach (Cells map in list.GetSubsets(size))
 					{
-						var map = new Cells(cells);
-						if (map.BlockMask != 0 && (map.BlockMask & map.BlockMask - 1) == 0 && region >= 9)
+						short blockMask = map.BlockMask;
+						if (blockMask != 0 && (blockMask & blockMask - 1) == 0 && region >= 9)
 						{
 							// All ALS cells lying on a box-row or a box-column
 							// will be processed as a block ALS.
@@ -242,7 +237,7 @@ namespace Sudoku.Solving.Manual.Alses
 
 						// Get all candidates in these cells.
 						short digitsMask = 0;
-						foreach (int cell in cells)
+						foreach (int cell in map)
 						{
 							digitsMask |= grid.GetCandidates(cell);
 						}
@@ -256,8 +251,8 @@ namespace Sudoku.Solving.Manual.Alses
 							new(
 								digitsMask,
 								map,
-								(region, coveredLine) is ( < 9, >= 9 and not Constants.InvalidFirstSet)
-								? ((regionMap | RegionMaps[coveredLine]) & emptyMap) - map
+								region < 9 && coveredLine is >= 9 and not Constants.InvalidFirstSet
+								? ((RegionMaps[region] | RegionMaps[coveredLine]) & EmptyMap) - map
 								: tempMap - map
 							)
 						);

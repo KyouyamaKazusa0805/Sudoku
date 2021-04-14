@@ -1090,7 +1090,7 @@
         <member name="M:Sudoku.Solving.Manual.Alses.Als.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.SudokuGrid)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.GetAllAlses(Sudoku.Data.SudokuGrid@)">
             <summary>
             To search for all ALSes in the specified grid.
             </summary>
