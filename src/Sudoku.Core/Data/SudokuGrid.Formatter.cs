@@ -30,7 +30,8 @@ namespace Sudoku.Data
 				subtleGridLines: false,
 				hodokuCompatible: false,
 				sukaku: false,
-				excel: false)
+				excel: false,
+				openSudoku: false)
 			{
 			}
 
@@ -40,8 +41,12 @@ namespace Sudoku.Data
 			/// <param name="placeholder">The placeholder.</param>
 			/// <param name="multiline">Indicates whether the formatter will use multiple lines mode.</param>
 			/// <param name="withModifiables">Indicates whether the formatter will output modifiables.</param>
-			/// <param name="withCandidates">Indicates whether the formatter will output candidates list.</param>
-			/// <param name="treatValueAsGiven">Indicates whether the formatter will treat values as givens always.</param>
+			/// <param name="withCandidates">
+			/// Indicates whether the formatter will output candidates list.
+			/// </param>
+			/// <param name="treatValueAsGiven">
+			/// Indicates whether the formatter will treat values as givens always.
+			/// </param>
 			/// <param name="subtleGridLines">
 			/// Indicates whether the formatter will process outline corner of the multiline grid.
 			/// </param>
@@ -50,9 +55,13 @@ namespace Sudoku.Data
 			/// </param>
 			/// <param name="sukaku">Indicates whether the formatter will output as sukaku.</param>
 			/// <param name="excel">Indicates whether the formatter will output as excel.</param>
+			/// <param name="openSudoku">
+			/// Indicates whether the formatter will output as open sudoku format.
+			/// </param>
 			private Formatter(
 				char placeholder, bool multiline, bool withModifiables, bool withCandidates,
-				bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku, bool excel)
+				bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku, bool excel,
+				bool openSudoku)
 			{
 				Placeholder = placeholder;
 				Multiline = multiline;
@@ -63,6 +72,7 @@ namespace Sudoku.Data
 				HodokuCompatible = hodokuCompatible;
 				Sukaku = sukaku;
 				Excel = excel;
+				OpenSudoku = openSudoku;
 			}
 
 
@@ -129,6 +139,11 @@ namespace Sudoku.Data
 			/// </summary>
 			public bool Excel { get; init; }
 
+			/// <summary>
+			/// Indicates whether the current output mode is aiming to open sudoku format.
+			/// </summary>
+			public bool OpenSudoku { get; init; }
+
 
 			/// <summary>
 			/// Represents a string value indicating this instance.
@@ -137,12 +152,18 @@ namespace Sudoku.Data
 			/// <returns>The string.</returns>
 			public string ToString(in SudokuGrid grid) =>
 				Sukaku
-				? ToSukakuString(grid)
-				: Multiline
-				? WithCandidates
-				? ToMultiLineStringCore(grid)
-				: Excel ? ToExcelString(grid) : ToMultiLineSimpleGridCore(grid)
-				: HodokuCompatible ? ToHodokuLibraryFormatString(grid) : ToSingleLineStringCore(grid);
+					? ToSukakuString(grid)
+					: Multiline
+						? WithCandidates
+							? ToMultiLineStringCore(grid)
+							: Excel
+								? ToExcelString(grid)
+								: ToMultiLineSimpleGridCore(grid)
+						: HodokuCompatible
+							? ToHodokuLibraryFormatString(grid)
+							: OpenSudoku
+								? ToOpenSudokuString(grid)
+								: ToSingleLineStringCore(grid);
 
 			/// <summary>
 			/// Represents a string value indicating this instance, with the specified format string.
@@ -178,6 +199,66 @@ namespace Sudoku.Data
 				}
 
 				return sb.ToString();
+			}
+
+			/// <summary>
+			/// To open sudoku format string.
+			/// </summary>
+			/// <param name="grid">The grid.</param>
+			/// <returns>The string.</returns>
+			/// <exception cref="InvalidPuzzleException">Throws when the specified grid is invalid.</exception>
+			private unsafe string ToOpenSudokuString(in SudokuGrid grid)
+			{
+				// Calculates the length of the result string.
+				const int length = 1 + (81 * 3 - 1 << 1);
+
+				// Creates a string instance as a buffer.
+				string result = new('\0', length);
+
+				// Modify the string value via pointers.
+				fixed (char* pResult = result)
+				{
+					// Replace the base character with the separator.
+					for (int pos = 1; pos < length; pos += 2)
+					{
+						pResult[pos] = '|';
+					}
+
+					// Now replace some positions with the specified values.
+					for (int i = 0, pos = 0; i < 81; i++, pos += 6)
+					{
+						switch (grid.GetStatus(i))
+						{
+							case CellStatus.Empty:
+							{
+								pResult[pos] = '0';
+								pResult[pos + 2] = '0';
+								pResult[pos + 4] = '1';
+
+								break;
+							}
+							case CellStatus.Modifiable:
+							case CellStatus.Given:
+							{
+								pResult[pos] = (char)(grid[i] + '1');
+								pResult[pos + 2] = '0';
+								pResult[pos + 4] = '0';
+
+								break;
+							}
+							default:
+							{
+								throw new InvalidPuzzleException(
+									grid,
+									"The specified grid is invalid to output the formatted string."
+								);
+							}
+						}
+					}
+				}
+
+				// Returns the result.
+				return result;
 			}
 
 			/// <summary>
@@ -554,6 +635,7 @@ namespace Sudoku.Data
 			public static Formatter Create(GridFormattingOptions gridOutputOption) => gridOutputOption switch
 			{
 				GridFormattingOptions.Excel => new(true) { Excel = true },
+				GridFormattingOptions.OpenSudoku => new(false) { OpenSudoku = true },
 				_ => new(gridOutputOption.Flags(GridFormattingOptions.Multiline))
 				{
 					WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
@@ -604,6 +686,7 @@ namespace Sudoku.Data
 				"@~0" or "@0~" or "~@0" or "~0@" => new(true) { Sukaku = true, Placeholder = '0' },
 				"@~." or "@.~" or "~@." or "~.@" => new(true) { Sukaku = true },
 				"%" => new(true) { Excel = true },
+				"^" => new(false) { OpenSudoku = true },
 				_ => throw new FormatException("The specified format is invalid.")
 			};
 		}

@@ -82,5 +82,16 @@ namespace Sudoku.Data
 		/// Indicates the output will be Excel format.
 		/// </summary>
 		Excel = 256,
+
+		/// <summary>
+		/// Indicates the open sudoku format.
+		/// </summary>
+		/// <remarks>
+		/// This format will use a triplet to describe a cell. If the cell has already been filled with
+		/// a value, it will be output at the first digit of that triplet. For example,
+		/// the triplet <c>900</c> means the cell is filled with the digit 9. In addition,
+		/// if the cell is empty, the triplet is always <c>001</c>.
+		/// </remarks>
+		OpenSudoku = 512,
 	}
 }

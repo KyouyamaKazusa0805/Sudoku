@@ -33,6 +33,11 @@
 			public const string Susser = @"[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?";
 
 			/// <summary>
+			/// Indicates the open sudoku format.
+			/// </summary>
+			public const string OpenSudoku = @"\d(\|\d){242}";
+
+			/// <summary>
 			/// Indicates the regular expression of a digit or empty cell placeholder.
 			/// </summary>
 			public const string DigitOrEmptyCell = @"(\+?\d|\.)";

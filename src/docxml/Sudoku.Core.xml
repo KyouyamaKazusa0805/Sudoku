@@ -114,6 +114,11 @@
             Indicates the susser format.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.OpenSudoku">
+            <summary>
+            Indicates the open sudoku format.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.DigitOrEmptyCell">
             <summary>
             Indicates the regular expression of a digit or empty cell placeholder.
@@ -2205,6 +2210,17 @@
             Indicates the output will be Excel format.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.OpenSudoku">
+            <summary>
+            Indicates the open sudoku format.
+            </summary>
+            <remarks>
+            This format will use a triplet to describe a cell. If the cell has already been filled with
+            a value, it will be output at the first digit of that triplet. For example,
+            the triplet <c>900</c> means the cell is filled with the digit 9. In addition,
+            if the cell is empty, the triplet is always <c>001</c>.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Data.GridIterators.GroupedIterator`1">
             <summary>
             Provides a grouped iterator that is used in <see langword="group"/>-<see langword="by"/> clause in LINQ.
@@ -2776,7 +2792,9 @@
             <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
             <para>
             For example:
+            <code>
             023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009
+            </code>
             </para>
             </summary>
         </member>
@@ -2800,6 +2818,19 @@
             </code>
             (Due to the rendering engine of IDE, all spaces will be displayed only once
             in this table.)
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParsingOption.OpenSudoku">
+            <summary>
+            <para>
+            Open sudoku format.
+            </para>
+            <para>
+            For example:
+            <code>
+            0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0
+            </code>
             </para>
             </summary>
         </member>
@@ -4055,15 +4086,19 @@
             be multi-line.
             </param>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Formatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Data.SudokuGrid.Formatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
             <param name="placeholder">The placeholder.</param>
             <param name="multiline">Indicates whether the formatter will use multiple lines mode.</param>
             <param name="withModifiables">Indicates whether the formatter will output modifiables.</param>
-            <param name="withCandidates">Indicates whether the formatter will output candidates list.</param>
-            <param name="treatValueAsGiven">Indicates whether the formatter will treat values as givens always.</param>
+            <param name="withCandidates">
+            Indicates whether the formatter will output candidates list.
+            </param>
+            <param name="treatValueAsGiven">
+            Indicates whether the formatter will treat values as givens always.
+            </param>
             <param name="subtleGridLines">
             Indicates whether the formatter will process outline corner of the multiline grid.
             </param>
@@ -4072,6 +4107,9 @@
             </param>
             <param name="sukaku">Indicates whether the formatter will output as sukaku.</param>
             <param name="excel">Indicates whether the formatter will output as excel.</param>
+            <param name="openSudoku">
+            Indicates whether the formatter will output as open sudoku format.
+            </param>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.Formatter.Placeholder">
             <summary>
@@ -4136,6 +4174,11 @@
             Indicates the output will be Excel format.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Formatter.OpenSudoku">
+            <summary>
+            Indicates whether the current output mode is aiming to open sudoku format.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Formatter.ToString(Sudoku.Data.SudokuGrid@)">
             <summary>
             Represents a string value indicating this instance.
@@ -4157,6 +4200,14 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Formatter.ToOpenSudokuString(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To open sudoku format string.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The string.</returns>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the specified grid is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Formatter.ToHodokuLibraryFormatString(Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -4359,6 +4410,13 @@
         <member name="M:Sudoku.Data.SudokuGrid.Parser.OnParsingExcel(Sudoku.Data.SudokuGrid.Parser@)">
             <summary>
             Parse the Excel format.
+            </summary>
+            <param name="parser">The parser.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parser.OnParsingOpenSudoku(Sudoku.Data.SudokuGrid.Parser@)">
+            <summary>
+            Parse the open sudoku format grid.
             </summary>
             <param name="parser">The parser.</param>
             <returns>The result.</returns>

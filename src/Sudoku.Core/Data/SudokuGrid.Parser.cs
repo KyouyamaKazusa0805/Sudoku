@@ -5,6 +5,7 @@ using System.Text;
 using Sudoku.DocComments;
 using static Sudoku.Constants;
 using static System.Numerics.BitOperations;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
@@ -56,6 +57,7 @@ namespace Sudoku.Data
 					&OnParsingPencilMarked,
 					&OnParsingSusser,
 					&OnParsingExcel,
+					&OnParsingOpenSudoku,
 					&OnParsingSukaku_1,
 					&OnParsingSukaku_2
 				};
@@ -145,7 +147,8 @@ namespace Sudoku.Data
 				GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
 				GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
 				GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
-				GridParsingOption.Excel => OnParsingExcel(ref this)
+				GridParsingOption.Excel => OnParsingExcel(ref this),
+				GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this)
 			};
 
 
@@ -244,6 +247,49 @@ namespace Sudoku.Data
 			}
 
 			/// <summary>
+			/// Parse the open sudoku format grid.
+			/// </summary>
+			/// <param name="parser">The parser.</param>
+			/// <returns>The result.</returns>
+			private static SudokuGrid OnParsingOpenSudoku(ref Parser parser)
+			{
+				if (parser.ParsingValue.Match(RegularExpressions.OpenSudoku) is not { } match)
+				{
+					return Undefined;
+				}
+
+				var result = Empty;
+				for (int i = 0; i < 81; i++)
+				{
+					switch (match[i * 6])
+					{
+						case '0' when whenClause(i * 6, match, "|0|1", "|0|1|"):
+						{
+							continue;
+						}
+						case not '0' and var ch when whenClause(i * 6, match, "|0|0", "|0|0|"):
+						{
+							result[i] = ch - '1';
+							result.SetStatus(i, CellStatus.Given);
+
+							break;
+						}
+						default:
+						{
+							// Invalid string status.
+							return Undefined;
+						}
+					}
+				}
+
+				return result;
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static bool whenClause(int i, string match, string pattern1, string pattern2) =>
+					i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
+			}
+
+			/// <summary>
 			/// Parse the PM grid.
 			/// </summary>
 			/// <param name="parser">The parser.</param>
@@ -252,8 +298,7 @@ namespace Sudoku.Data
 			{
 				// Older regular expression pattern:
 				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
-				string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit);
-				if (matches.Length != 81)
+				if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is not { Length: 81 } matches)
 				{
 					return Undefined;
 				}
