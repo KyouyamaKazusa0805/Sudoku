@@ -170,6 +170,7 @@ namespace Sudoku.Data
 					string currentMatch = matches[length - 81 + i];
 					switch (currentMatch.Length)
 					{
+						/*slice-pattern*/
 						case 1 when currentMatch[0] is var match and not ('.' or '0'):
 						{
 							result[i] = match - '1';
@@ -177,6 +178,11 @@ namespace Sudoku.Data
 
 							break;
 						}
+						case 1:
+						{
+							continue;
+						}
+						/*slice-pattern*/
 						case 2 when currentMatch[1] is var match:
 						{
 							if (match is '.' or '0')
@@ -191,10 +197,6 @@ namespace Sudoku.Data
 							}
 
 							break;
-						}
-						case 1:
-						{
-							continue;
 						}
 						default:
 						{
@@ -511,8 +513,7 @@ namespace Sudoku.Data
 
 				// Step 2: eliminates candidates if exist.
 				// If we have met the colon sign ':', this loop would not be executed.
-				var elimMatch = match.Match(RegularExpressions.ExtendedSusserEliminations);
-				if (elimMatch is not null)
+				if (match.Match(RegularExpressions.ExtendedSusserEliminations) is { } elimMatch)
 				{
 					foreach (string elimBlock in elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate))
 					{
