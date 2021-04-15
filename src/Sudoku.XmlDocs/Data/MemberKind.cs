@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Sudoku.XmlDocs
+namespace Sudoku.XmlDocs.Data
 {
 	/// <summary>
 	/// Provides a member kind.

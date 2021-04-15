@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Sudoku.XmlDocs
+namespace Sudoku.XmlDocs.Data
 {
 	/// <summary>
 	/// Indicates the accessibility of the member.

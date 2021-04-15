@@ -1,4 +1,4 @@
-﻿namespace Sudoku.XmlDocs
+﻿namespace Sudoku.XmlDocs.Values
 {
 	/// <summary>
 	/// Indicates the documentation block names.

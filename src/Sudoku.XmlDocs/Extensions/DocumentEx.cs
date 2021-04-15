@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using System.Text.Markdown;
+﻿using System.Text.Markdown;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Sudoku.XmlDocs.Data;
+using Sudoku.XmlDocs.Values;
 
 namespace Sudoku.XmlDocs.Extensions
 {

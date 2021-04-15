@@ -2,6 +2,8 @@
 using System.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Sudoku.XmlDocs.Data;
+using CustomModifier = Sudoku.XmlDocs.Data.CustomModifier;
 
 namespace Sudoku.XmlDocs.Extensions
 {

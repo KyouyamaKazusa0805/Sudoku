@@ -4,369 +4,351 @@
         <name>Sudoku.XmlDocs</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.XmlDocs.CustomAccessibility">
+        <member name="T:Sudoku.XmlDocs.Data.Constraints">
+            <summary>
+            Indicates the type parameter constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.None">
+            <summary>
+            Indicates the type parameter doesn't contain any constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.Base">
+            <summary>
+            Indicates the base <see langword="class"/>, <see langword="interface"/> or
+            type parameter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.ClassNotNull">
+            <summary>
+            Indicates the <see langword="class"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.ClassMaybeNull">
+            <summary>
+            Indicates the <see langword="class"/>? constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.StructNotNull">
+            <summary>
+            Indicates the <see langword="struct"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.StructMaybeNull">
+            <summary>
+            Indicates the <see langword="struct"/>? constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.NotNull">
+            <summary>
+            Indicates the <see langword="notnull"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.Unmanaged">
+            <summary>
+            Indicates the <see langword="unmanaged"/> constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.Delegate">
+            <summary>
+            Indicates the <see cref="T:System.Delegate"/> constraint.
+            </summary>
+            <seealso cref="T:System.Delegate"/>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.Enum">
+            <summary>
+            Indicates the <see cref="T:System.Enum"/> constraint.
+            </summary>
+            <seealso cref="T:System.Enum"/>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Data.Constraints.Default">
+            <summary>
+            Indicates the <see langword="default"/> constraint.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Data.CustomAccessibility">
             <summary>
             Indicates the accessibility of the member.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.None">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.None">
             <summary>
             Indicates the accessibility is none.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Public">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.Public">
             <summary>
             Indicates the <see langword="public"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Internal">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.Internal">
             <summary>
             Indicates the <see langword="internal"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Protected">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.Protected">
             <summary>
             Indicates the <see langword="protected"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.ProtectedInternal">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.ProtectedInternal">
             <summary>
             Indicates the <see langword="protected internal"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.Private">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.Private">
             <summary>
             Indicates the <see langword="private"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomAccessibility.PrivateProtected">
+        <member name="F:Sudoku.XmlDocs.Data.CustomAccessibility.PrivateProtected">
             <summary>
             Indicates the <see langword="private protected"/> modifier.
             </summary>
         </member>
-        <member name="T:Sudoku.XmlDocs.CustomModifier">
+        <member name="T:Sudoku.XmlDocs.Data.CustomModifier">
             <summary>
             Indicates the custom modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.None">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.None">
             <summary>
             Indicates the modifier is none.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Abstract">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Abstract">
             <summary>
             Indicates the <see langword="abstract"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Async">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Async">
             <summary>
             Indicates the <see langword="async"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Const">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Const">
             <summary>
             Indicates the <see langword="const"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Extern">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Extern">
             <summary>
             Indicates the <see langword="extern"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.In">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.In">
             <summary>
             Indicates the <see langword="in"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.New">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.New">
             <summary>
             Indicates the <see langword="new"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Out">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Out">
             <summary>
             Indicates the <see langword="out"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Override">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Override">
             <summary>
             Indicates the <see langword="override"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.ReadOnly">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.ReadOnly">
             <summary>
             Indicates the <see langword="readonly"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Sealed">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Sealed">
             <summary>
             Indicates the <see langword="sealed"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Static">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Static">
             <summary>
             Indicates the <see langword="static"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Unsafe">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Unsafe">
             <summary>
             Indicates the <see langword="unsafe"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Virtual">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Virtual">
             <summary>
             Indicates the <see langword="virtual"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Volatile">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Volatile">
             <summary>
             Indicates the <see langword="volatile"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.Ref">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.Ref">
             <summary>
             Indicates the <see langword="ref"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.CustomModifier.All">
+        <member name="F:Sudoku.XmlDocs.Data.CustomModifier.All">
             <summary>
             Indicates all modififers.
             </summary>
         </member>
-        <member name="T:Sudoku.XmlDocs.DocCommentAttributes">
+        <member name="T:Sudoku.XmlDocs.Data.ExceptionDetails">
             <summary>
-            Indicates the doc comment attributes.
+            Indicates the type parameter details.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Cref">
+        <member name="M:Sudoku.XmlDocs.Data.ExceptionDetails.#ctor(System.String,System.String)">
             <summary>
-            Indicates the attribute "cref".
+            Initializes an instance with the specified exception name, and the description.
+            </summary>
+            <param name="exception">The exception.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.Data.ExceptionDetails.Exception">
+            <summary>
+            Indicates the exception name.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Href">
+        <member name="P:Sudoku.XmlDocs.Data.ExceptionDetails.Description">
             <summary>
-            Indicates the attribute "href".
+            Indicates the description.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.LangWord">
+        <member name="T:Sudoku.XmlDocs.Data.MemberKind">
             <summary>
-            Indicates the attribute "langword".
+            Provides a member kind.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Type">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Field">
             <summary>
-            Indicates the attribute "type".
+            Indicates the member is a field.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentAttributes.Name">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Constructor">
             <summary>
-            Indicates the attribute "name".
+            Indicates the member is a constructor.
             </summary>
         </member>
-        <member name="T:Sudoku.XmlDocs.DocCommentBlocks">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.PrimaryConstructor">
             <summary>
-            Indicates the documentation block names.
+            Indicates the member is a primary constructor. This member now only appears
+            in the <see langword="record"/>s.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Summary">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Property">
             <summary>
-            Indicates the "summary" node name.
+            Indicates the member is a property.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Remarks">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Indexer">
             <summary>
-            Indicates the "remarks" node name.
+            Indicates the member is an indexer.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Returns">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Event">
             <summary>
-            Indicates the "returns" node name.
+            Indicates the member is an event.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Example">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Method">
             <summary>
-            Indicates the "example" node name.
+            Indicates the member is a method.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Exception">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Operator">
             <summary>
-            Indicates the "exception" node name.
+            Indicates the member is an operator overloading.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Value">
+        <member name="F:Sudoku.XmlDocs.Data.MemberKind.Cast">
             <summary>
-            Indicates the "value" node name.
+            Indicates the member is an implicit or explicit cast.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Param">
+        <member name="T:Sudoku.XmlDocs.Data.TypeKind">
             <summary>
-            Indicates the "param" node name.
+            Indicates a type kind.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.ParamRef">
+        <member name="F:Sudoku.XmlDocs.Data.TypeKind.Struct">
             <summary>
-            Indicates the "paramref" node name.
+            Indicates the type is a <see langword="struct"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.TypeParam">
+        <member name="F:Sudoku.XmlDocs.Data.TypeKind.Class">
             <summary>
-            Indicates the "typeparam" node name.
+            Indicates the type is a <see langword="class"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.TypeParamRef">
+        <member name="F:Sudoku.XmlDocs.Data.TypeKind.RecordClass">
             <summary>
-            Indicates the "typeparamref" node name.
+            Indicates the type is a <see langword="record class"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.InheritDoc">
+        <member name="F:Sudoku.XmlDocs.Data.TypeKind.RecordStruct">
             <summary>
-            Indicates the "inheritdoc" node name.
+            Indicates the type is a <see langword="record struct"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Para">
+        <member name="F:Sudoku.XmlDocs.Data.TypeKind.Interface">
             <summary>
-            Indicates the "para" node name.
+            Indicates the type is a <see langword="interface"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.C">
+        <member name="T:Sudoku.XmlDocs.Data.TypeParameterConstraintDetails">
             <summary>
-            Indicates the inline code block ("c") node name.
+            Indicates a type parameter constraint details.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Code">
+        <member name="M:Sudoku.XmlDocs.Data.TypeParameterConstraintDetails.#ctor(System.String,System.String[],Sudoku.XmlDocs.Data.Constraints)">
             <summary>
-            Indicates the code block ("code") node name.
+            Initializes an instance with the specified type parameter name, base types or constraints.
+            </summary>
+            <param name="typeParameter">Indicates the type parameter name.</param>
+            <param name="base">Indicates the base types.</param>
+            <param name="constraints">Indicates the constraints.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.Data.TypeParameterConstraintDetails.TypeParameter">
+            <summary>
+            Indicates the type parameter name.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.See">
+        <member name="P:Sudoku.XmlDocs.Data.TypeParameterConstraintDetails.BaseTypes">
             <summary>
-            Indicates the "see" node name.
+            Indicates the base <see langword="class"/>es derived, <see langword="interface"/>s implemented
+            or generic type parameters.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.SeeAlso">
+        <member name="P:Sudoku.XmlDocs.Data.TypeParameterConstraintDetails.Constraints">
             <summary>
-            Indicates the "seealso" node name.
+            Indicates the constraints.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.List">
+        <member name="T:Sudoku.XmlDocs.Data.TypeParameterDetails">
             <summary>
-            Indicates the "list" node name.
+            Indicates the type parameter details.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.ListHeader">
+        <member name="M:Sudoku.XmlDocs.Data.TypeParameterDetails.#ctor(System.String,System.String)">
             <summary>
-            Indicates the "listheader" node name.
+            Initializes an instance with the specified type parameter name, and the description.
+            </summary>
+            <param name="typeParameter">The type parameter.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:Sudoku.XmlDocs.Data.TypeParameterDetails.TypeParameter">
+            <summary>
+            Indicates the type parameter name.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Item">
+        <member name="P:Sudoku.XmlDocs.Data.TypeParameterDetails.Description">
             <summary>
-            Indicates the "item" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Term">
-            <summary>
-            Indicates the "term" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Description">
-            <summary>
-            Indicates the "description" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.U">
-            <summary>
-            Indicates the "u" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.I">
-            <summary>
-            Indicates the "i" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.B">
-            <summary>
-            Indicates the "b" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.A">
-            <summary>
-            Indicates the "a" node name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentBlocks.Del">
-            <summary>
-            Indicates the "del" node name.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.DocCommentHeaders">
-            <summary>
-            Provides the documentation comment headers to display.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Summary">
-            <summary>
-            Indicates the "summary" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Remarks">
-            <summary>
-            Indicates the "remarks" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Returns">
-            <summary>
-            Indicates the "returns" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Example">
-            <summary>
-            Indicates the "example" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Exception">
-            <summary>
-            Indicates the "exception" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Value">
-            <summary>
-            Indicates the "value" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.Parameter">
-            <summary>
-            Indicates the "param" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.TypeParameter">
-            <summary>
-            Indicates the "typeparam" block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentHeaders.SeeAlso">
-            <summary>
-            Indicates the "seealso" block.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.DocCommentValues">
-            <summary>
-            Indicates the doc comment values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentValues.Table">
-            <summary>
-            Indicates the value "table".
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentValues.Bullet">
-            <summary>
-            Indicates the value "bullet".
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.DocCommentValues.Number">
-            <summary>
-            Indicates the value "number".
+            Indicates the description.
             </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.DocumentationCommentOutputService">
@@ -433,7 +415,7 @@
             </summary>
             <seealso cref="T:System.Text.Markdown.Document"/>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendTitle(System.Text.Markdown.Document,Sudoku.XmlDocs.MemberKind,System.String)">
+        <member name="M:Sudoku.XmlDocs.Extensions.DocumentEx.AppendTitle(System.Text.Markdown.Document,Sudoku.XmlDocs.Data.MemberKind,System.String)">
             <summary>
             Append the title with the specified member kind.
             </summary>
@@ -739,7 +721,7 @@
             <param name="this">The list.</param>
             <returns>The result accessibilities.</returns>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.CustomModifier)">
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.Data.CustomModifier)">
             <summary>
             Check whether the specified list contains the specified modifier.
             </summary>
@@ -747,7 +729,7 @@
             <param name="customModifier">The custom modifier.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.CustomAccessibility)">
+        <member name="M:Sudoku.XmlDocs.Extensions.SyntaxTokenListEx.Contains(Microsoft.CodeAnalysis.SyntaxTokenList@,Sudoku.XmlDocs.Data.CustomAccessibility)">
             <summary>
             Check whether the specified list contains the specified accessibility.
             </summary>
@@ -830,120 +812,13 @@
             <param name="textToCheck">The markup text to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.XmlDocs.Keywords">
-            <summary>
-            Provides keywords used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.Keywords.VoidKeyword">
-            <summary>
-            Indicates the <see langword="void"/> keyword.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.Keywords.GetKeyword">
-            <summary>
-            Indicates the <see langword="get"/> keyword.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.Keywords.SetKeyword">
-            <summary>
-            Indicates the <see langword="set"/> keyword.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.Keywords.InitKeyword">
-            <summary>
-            Indicates the <see langword="init"/> keyword.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.MemberInfo.Constraints">
-            <summary>
-            Indicates the type parameter constraints.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.None">
-            <summary>
-            Indicates the type parameter doesn't contain any constraints.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Base">
-            <summary>
-            Indicates the base <see langword="class"/>, <see langword="interface"/> or
-            type parameter.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.ClassNotNull">
-            <summary>
-            Indicates the <see langword="class"/> constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.ClassMaybeNull">
-            <summary>
-            Indicates the <see langword="class"/>? constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.StructNotNull">
-            <summary>
-            Indicates the <see langword="struct"/> constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.StructMaybeNull">
-            <summary>
-            Indicates the <see langword="struct"/>? constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.NotNull">
-            <summary>
-            Indicates the <see langword="notnull"/> constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Unmanaged">
-            <summary>
-            Indicates the <see langword="unmanaged"/> constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Delegate">
-            <summary>
-            Indicates the <see cref="T:System.Delegate"/> constraint.
-            </summary>
-            <seealso cref="T:System.Delegate"/>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Enum">
-            <summary>
-            Indicates the <see cref="T:System.Enum"/> constraint.
-            </summary>
-            <seealso cref="T:System.Enum"/>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberInfo.Constraints.Default">
-            <summary>
-            Indicates the <see langword="default"/> constraint.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.MemberInfo.ExceptionDetails">
-            <summary>
-            Indicates the type parameter details.
-            </summary>
-        </member>
-        <member name="M:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.#ctor(System.String,System.String)">
-            <summary>
-            Initializes an instance with the specified exception name, and the description.
-            </summary>
-            <param name="exception">The exception.</param>
-            <param name="description">The description.</param>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.Exception">
-            <summary>
-            Indicates the exception name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.ExceptionDetails.Description">
-            <summary>
-            Indicates the description.
-            </summary>
-        </member>
         <member name="T:Sudoku.XmlDocs.MemberInfo.TypeInfo">
             <summary>
             Indicates the information to introduce a type.
             </summary>
+            <param name="CustomModifiers">The custom modifiers.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="TypeName">The type name.</param>
             <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
             <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
             <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
@@ -952,10 +827,13 @@
             <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
             <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
         </member>
-        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeInfo.#ctor(System.String,System.String,Sudoku.XmlDocs.MemberInfo.TypeParameterDetails[],Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails[],System.String,Sudoku.XmlDocs.MemberInfo.ExceptionDetails[],System.String[])">
+        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeInfo.#ctor(Sudoku.XmlDocs.Data.CustomModifier,Sudoku.XmlDocs.Data.CustomAccessibility,System.String,System.String,System.String,Sudoku.XmlDocs.Data.TypeParameterDetails[],Sudoku.XmlDocs.Data.TypeParameterConstraintDetails[],System.String,Sudoku.XmlDocs.Data.ExceptionDetails[],System.String[])">
             <summary>
             Indicates the information to introduce a type.
             </summary>
+            <param name="CustomModifiers">The custom modifiers.</param>
+            <param name="CustomAccessibility">The accessibility.</param>
+            <param name="TypeName">The type name.</param>
             <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
             <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
             <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
@@ -963,108 +841,6 @@
             <param name="Example">Indicates the "example" block in the documentation comments.</param>
             <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
             <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
-        </member>
-        <member name="T:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails">
-            <summary>
-            Indicates a type parameter constraint details.
-            </summary>
-        </member>
-        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.#ctor(System.String,System.String[],Sudoku.XmlDocs.MemberInfo.Constraints)">
-            <summary>
-            Initializes an instance with the specified type parameter name, base types or constraints.
-            </summary>
-            <param name="typeParameter">Indicates the type parameter name.</param>
-            <param name="base">Indicates the base types.</param>
-            <param name="constraints">Indicates the constraints.</param>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.TypeParameter">
-            <summary>
-            Indicates the type parameter name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.BaseTypes">
-            <summary>
-            Indicates the base <see langword="class"/>es derived, <see langword="interface"/>s implemented
-            or generic type parameters.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterConstraintDetails.Constraints">
-            <summary>
-            Indicates the constraints.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails">
-            <summary>
-            Indicates the type parameter details.
-            </summary>
-        </member>
-        <member name="M:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.#ctor(System.String,System.String)">
-            <summary>
-            Initializes an instance with the specified type parameter name, and the description.
-            </summary>
-            <param name="typeParameter">The type parameter.</param>
-            <param name="description">The description.</param>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.TypeParameter">
-            <summary>
-            Indicates the type parameter name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.XmlDocs.MemberInfo.TypeParameterDetails.Description">
-            <summary>
-            Indicates the description.
-            </summary>
-        </member>
-        <member name="T:Sudoku.XmlDocs.MemberKind">
-            <summary>
-            Provides a member kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Field">
-            <summary>
-            Indicates the member is a field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Constructor">
-            <summary>
-            Indicates the member is a constructor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.PrimaryConstructor">
-            <summary>
-            Indicates the member is a primary constructor. This member now only appears
-            in the <see langword="record"/>s.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Property">
-            <summary>
-            Indicates the member is a property.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Indexer">
-            <summary>
-            Indicates the member is an indexer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Event">
-            <summary>
-            Indicates the member is an event.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Method">
-            <summary>
-            Indicates the member is a method.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Operator">
-            <summary>
-            Indicates the member is an operator overloading.
-            </summary>
-        </member>
-        <member name="F:Sudoku.XmlDocs.MemberKind.Cast">
-            <summary>
-            Indicates the member is an implicit or explicit cast.
-            </summary>
         </member>
         <member name="T:Sudoku.XmlDocs.SyntaxVisitor">
             <summary>
@@ -1072,34 +848,264 @@
             </summary>
             <param name="descendants">All descendants.</param>
         </member>
-        <member name="T:Sudoku.XmlDocs.TypeKind">
+        <member name="T:Sudoku.XmlDocs.Values.DocCommentAttributes">
             <summary>
-            Indicates a type kind.
+            Indicates the doc comment attributes.
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.TypeKind.Struct">
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentAttributes.Cref">
             <summary>
-            Indicates the type is a <see langword="struct"/>.
+            Indicates the attribute "cref".
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.TypeKind.Class">
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentAttributes.Href">
             <summary>
-            Indicates the type is a <see langword="class"/>.
+            Indicates the attribute "href".
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.TypeKind.RecordClass">
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentAttributes.LangWord">
             <summary>
-            Indicates the type is a <see langword="record class"/>.
+            Indicates the attribute "langword".
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.TypeKind.RecordStruct">
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentAttributes.Type">
             <summary>
-            Indicates the type is a <see langword="record struct"/>.
+            Indicates the attribute "type".
             </summary>
         </member>
-        <member name="F:Sudoku.XmlDocs.TypeKind.Interface">
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentAttributes.Name">
             <summary>
-            Indicates the type is a <see langword="interface"/>.
+            Indicates the attribute "name".
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Values.DocCommentBlocks">
+            <summary>
+            Indicates the documentation block names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Summary">
+            <summary>
+            Indicates the "summary" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Remarks">
+            <summary>
+            Indicates the "remarks" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Returns">
+            <summary>
+            Indicates the "returns" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Example">
+            <summary>
+            Indicates the "example" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Exception">
+            <summary>
+            Indicates the "exception" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Value">
+            <summary>
+            Indicates the "value" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Param">
+            <summary>
+            Indicates the "param" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.ParamRef">
+            <summary>
+            Indicates the "paramref" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.TypeParam">
+            <summary>
+            Indicates the "typeparam" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.TypeParamRef">
+            <summary>
+            Indicates the "typeparamref" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.InheritDoc">
+            <summary>
+            Indicates the "inheritdoc" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Para">
+            <summary>
+            Indicates the "para" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.C">
+            <summary>
+            Indicates the inline code block ("c") node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Code">
+            <summary>
+            Indicates the code block ("code") node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.See">
+            <summary>
+            Indicates the "see" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.SeeAlso">
+            <summary>
+            Indicates the "seealso" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.List">
+            <summary>
+            Indicates the "list" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.ListHeader">
+            <summary>
+            Indicates the "listheader" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Item">
+            <summary>
+            Indicates the "item" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Term">
+            <summary>
+            Indicates the "term" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Description">
+            <summary>
+            Indicates the "description" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.U">
+            <summary>
+            Indicates the "u" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.I">
+            <summary>
+            Indicates the "i" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.B">
+            <summary>
+            Indicates the "b" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.A">
+            <summary>
+            Indicates the "a" node name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentBlocks.Del">
+            <summary>
+            Indicates the "del" node name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Values.DocCommentHeaders">
+            <summary>
+            Provides the documentation comment headers to display.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Summary">
+            <summary>
+            Indicates the "summary" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Remarks">
+            <summary>
+            Indicates the "remarks" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Returns">
+            <summary>
+            Indicates the "returns" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Example">
+            <summary>
+            Indicates the "example" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Exception">
+            <summary>
+            Indicates the "exception" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Value">
+            <summary>
+            Indicates the "value" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.Parameter">
+            <summary>
+            Indicates the "param" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.TypeParameter">
+            <summary>
+            Indicates the "typeparam" block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentHeaders.SeeAlso">
+            <summary>
+            Indicates the "seealso" block.
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Values.DocCommentValues">
+            <summary>
+            Indicates the doc comment values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentValues.Table">
+            <summary>
+            Indicates the value "table".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentValues.Bullet">
+            <summary>
+            Indicates the value "bullet".
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.DocCommentValues.Number">
+            <summary>
+            Indicates the value "number".
+            </summary>
+        </member>
+        <member name="T:Sudoku.XmlDocs.Values.Keywords">
+            <summary>
+            Provides keywords used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.Keywords.VoidKeyword">
+            <summary>
+            Indicates the <see langword="void"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.Keywords.GetKeyword">
+            <summary>
+            Indicates the <see langword="get"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.Keywords.SetKeyword">
+            <summary>
+            Indicates the <see langword="set"/> keyword.
+            </summary>
+        </member>
+        <member name="F:Sudoku.XmlDocs.Values.Keywords.InitKeyword">
+            <summary>
+            Indicates the <see langword="init"/> keyword.
             </summary>
         </member>
     </members>

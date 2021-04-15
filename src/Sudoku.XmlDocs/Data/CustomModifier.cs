@@ -1,8 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Sudoku.XmlDocs
+namespace Sudoku.XmlDocs.Data
 {
 	/// <summary>
 	/// Indicates the custom modifier.

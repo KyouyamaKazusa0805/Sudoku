@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Sudoku.XmlDocs.MemberInfo
+namespace Sudoku.XmlDocs.Data
 {
 	/// <summary>
 	/// Indicates the type parameter constraints.

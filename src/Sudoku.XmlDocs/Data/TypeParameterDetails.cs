@@ -1,4 +1,4 @@
-﻿namespace Sudoku.XmlDocs.MemberInfo
+﻿namespace Sudoku.XmlDocs.Data
 {
 	/// <summary>
 	/// Indicates the type parameter details.

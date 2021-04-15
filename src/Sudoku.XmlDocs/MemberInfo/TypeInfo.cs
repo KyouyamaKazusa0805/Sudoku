@@ -1,8 +1,13 @@
-﻿namespace Sudoku.XmlDocs.MemberInfo
+﻿using Sudoku.XmlDocs.Data;
+
+namespace Sudoku.XmlDocs.MemberInfo
 {
 	/// <summary>
 	/// Indicates the information to introduce a type.
 	/// </summary>
+	/// <param name="CustomModifiers">The custom modifiers.</param>
+	/// <param name="CustomAccessibility">The accessibility.</param>
+	/// <param name="TypeName">The type name.</param>
 	/// <param name="Summary">Indicates the "summary" block in the documentation comments.</param>
 	/// <param name="Remarks">Indicates the "remarks" block in the documentation comments.</param>
 	/// <param name="TypeParameters">Indicates the "typeparam" block in the documentation comments.</param>
@@ -11,12 +16,9 @@
 	/// <param name="Exceptions">Indicates the "exception" block in the documentation comments.</param>
 	/// <param name="SeeAlsos">Indicates the "seealso" block in the documentation comments.</param>
 	public sealed record TypeInfo(
-		string Summary,
-		string? Remarks,
-		TypeParameterDetails[]? TypeParameters,
-		TypeParameterConstraintDetails[]? TypeParameterConstraints,
-		string? Example,
-		ExceptionDetails[]? Exceptions,
-		string[]? SeeAlsos
+		CustomModifier CustomModifiers, CustomAccessibility CustomAccessibility,
+		string TypeName, string Summary, string? Remarks, TypeParameterDetails[]? TypeParameters,
+		TypeParameterConstraintDetails[]? TypeParameterConstraints, string? Example,
+		ExceptionDetails[]? Exceptions, string[]? SeeAlsos
 	);
 }

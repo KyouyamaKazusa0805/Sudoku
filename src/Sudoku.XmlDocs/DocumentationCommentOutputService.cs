@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.Diagnostics;
 using Sudoku.XmlDocs.Extensions;
+using Sudoku.XmlDocs.Values;
 
 namespace Sudoku.XmlDocs
 {
