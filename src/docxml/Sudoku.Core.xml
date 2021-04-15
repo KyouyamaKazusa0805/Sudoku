@@ -5131,17 +5131,17 @@
         </member>
         <member name="F:Sudoku.Techniques.Technique.HiddenSingleBlock">
             <summary>
-            Indicates the hidden single.
+            Indicates the hidden single (in block).
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.HiddenSingleRow">
             <summary>
-            Indicates the hidden single.
+            Indicates the hidden single (in row).
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.HiddenSingleColumn">
             <summary>
-            Indicates the hidden single.
+            Indicates the hidden single (in column).
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.NakedSingle">

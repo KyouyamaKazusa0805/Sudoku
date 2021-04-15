@@ -24,17 +24,17 @@ namespace Sudoku.Techniques
 		LastDigit,
 
 		/// <summary>
-		/// Indicates the hidden single.
+		/// Indicates the hidden single (in block).
 		/// </summary>
 		HiddenSingleBlock,
 
 		/// <summary>
-		/// Indicates the hidden single.
+		/// Indicates the hidden single (in row).
 		/// </summary>
 		HiddenSingleRow,
 
 		/// <summary>
-		/// Indicates the hidden single.
+		/// Indicates the hidden single (in column).
 		/// </summary>
 		HiddenSingleColumn,
 
