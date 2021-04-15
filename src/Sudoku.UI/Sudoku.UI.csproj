@@ -6,14 +6,15 @@
 		<UseWPF>true</UseWPF>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Version>0.0.1</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Painting\Sudoku.Painting.csproj" />
+		<ProjectReference Include="..\Sudoku.Painting\Sudoku.Painting.csproj" />
 	</ItemGroup>
 
 </Project>

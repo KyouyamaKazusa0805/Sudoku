@@ -8,6 +8,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>The project that generates and outputs the result file to display XML doc comments.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

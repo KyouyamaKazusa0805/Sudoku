@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Painting.xml</DocumentationFile>
+		<Version>0.3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

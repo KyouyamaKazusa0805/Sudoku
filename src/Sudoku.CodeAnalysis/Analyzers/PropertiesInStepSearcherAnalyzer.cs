@@ -1,8 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-#if DEBUG && SOURCE_GENERATOR_DEBUG
-using System.Diagnostics;
-#endif
 
 namespace Sudoku.CodeAnalysis.Analyzers
 {
@@ -77,12 +74,6 @@ namespace Sudoku.CodeAnalysis.Analyzers
 		/// <inheritdoc/>
 		public void Initialize(GeneratorInitializationContext context)
 		{
-#if DEBUG && SOURCE_GENERATOR_DEBUG
-			if (!Debugger.IsAttached)
-			{
-				Debugger.Launch();
-			}
-#endif
 		}
 
 		partial void CheckSudoku001(GeneratorExecutionContext context, ClassDeclarationSyntax classNode);

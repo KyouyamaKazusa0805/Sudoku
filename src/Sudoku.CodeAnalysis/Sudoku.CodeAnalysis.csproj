@@ -7,10 +7,11 @@
 		<Authors>Sunnie</Authors>
 		<Description>The project that uses source generator to analyze some files.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG<!--;SOURCE_GENERATOR_DEBUG--></DefineConstants>
+		<DefineConstants>DEBUG</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

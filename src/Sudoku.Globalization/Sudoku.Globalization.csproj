@@ -8,6 +8,7 @@
 		<Description>This project encapsulates the operation and constants for globalization interactions.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.Globalization.xml</DocumentationFile>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

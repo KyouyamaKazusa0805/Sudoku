@@ -5,6 +5,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>The project that uses source generator to generate some dynamic code files.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

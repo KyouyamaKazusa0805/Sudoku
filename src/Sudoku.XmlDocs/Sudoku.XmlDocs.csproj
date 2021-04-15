@@ -8,6 +8,7 @@
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.XmlDocs.xml</DocumentationFile>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

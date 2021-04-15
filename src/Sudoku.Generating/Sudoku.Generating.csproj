@@ -9,6 +9,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Generating.xml</DocumentationFile>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

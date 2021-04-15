@@ -20,6 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Windows.xml</DocumentationFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
+		<Version>0.5</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
