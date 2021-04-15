@@ -95,11 +95,6 @@ namespace Sudoku.Data
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="cell">The cell offset.</param>
-		/// <remarks>
-		/// If you don't want to set itself, you may use <see cref="PeerMaps"/>
-		/// instead.
-		/// </remarks>
-		/// <seealso cref="PeerMaps"/>
 		public Cells(int cell) : this(cell, true)
 		{
 		}
@@ -268,6 +263,7 @@ namespace Sudoku.Data
 		private Cells(int cell, bool setItself)
 		{
 			// Don't merge those two to one.
+			//(this = PeerMaps[cell]).InternalAdd(cell, setItself);
 			this = PeerMaps[cell];
 			InternalAdd(cell, setItself);
 		}
@@ -279,7 +275,7 @@ namespace Sudoku.Data
 		public readonly bool IsEmpty
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _high == 0 && _low == 0;
+			get => Count == 0;
 		}
 
 		/// <summary>

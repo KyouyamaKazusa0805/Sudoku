@@ -29,9 +29,9 @@ namespace System.Extensions
 		/// </code>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasFormatted<T>(
-			this IFormatProvider? @this, T obj, string? format, [NotNullWhen(true)] out string? result)
-			where T : notnull
+		public static bool HasFormatted<TNotNull>(
+			this IFormatProvider? @this, in TNotNull obj, string? format, [NotNullWhen(true)] out string? result)
+			where TNotNull : notnull
 		{
 			if (@this?.GetFormat(obj.GetType()) is ICustomFormatter customFormatter)
 			{

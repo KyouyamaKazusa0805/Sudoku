@@ -733,7 +733,7 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.op_BitwiseAnd(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
             <summary>
-            Get all candidates that two <see cref="T:Sudoku.Data.Candidates"/>s both contain.
+            Get all candidates that two <see cref="T:Sudoku.Data.Candidates"/>'s both contain.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -899,11 +899,6 @@
             (Sets itself and all peers).
             </summary>
             <param name="cell">The cell offset.</param>
-            <remarks>
-            If you don't want to set itself, you may use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/>
-            instead.
-            </remarks>
-            <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32*,System.Int32)">
             <summary>

@@ -849,7 +849,7 @@
             </summary>
             <seealso cref="T:System.IFormatProvider"/>
         </member>
-        <member name="M:System.Extensions.FormatProviderEx.HasFormatted``1(System.IFormatProvider,``0,System.String,System.String@)">
+        <member name="M:System.Extensions.FormatProviderEx.HasFormatted``1(System.IFormatProvider,``0@,System.String,System.String@)">
             <summary>
             To check whether the format provider has defined the format rule.
             If the rule is defined, this method will return the string representation

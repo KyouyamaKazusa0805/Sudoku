@@ -215,7 +215,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates whether the map has no set bits.
 		/// </summary>
-		public readonly bool IsEmpty => Count == 0;
+		public readonly bool IsEmpty
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Count == 0;
+		}
 
 		/// <summary>
 		/// Indicates how many bits are set <see langword="true"/>.
@@ -774,7 +778,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Get all candidates that two <see cref="Candidates"/>s both contain.
+		/// Get all candidates that two <see cref="Candidates"/>'s both contain.
 		/// </summary>
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
