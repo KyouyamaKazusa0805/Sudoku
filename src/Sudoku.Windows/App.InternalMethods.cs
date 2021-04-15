@@ -16,7 +16,7 @@ namespace Sudoku.Windows
 				_ => SudokuGrid.Undefined
 			};
 
-			return targetGrid == SudokuGrid.Undefined ? null : new MainWindow(targetGrid);
+			return targetGrid.IsUndefined ? null : new MainWindow(targetGrid);
 		}
 	}
 }

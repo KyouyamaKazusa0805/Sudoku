@@ -351,7 +351,7 @@ namespace Sudoku.Data
 				for (int c = 0; c < 81; c++)
 				{
 					var status = grid.GetStatus(c);
-					if (status == CellStatus.Empty && originalGrid != Undefined && WithCandidates)
+					if (status == CellStatus.Empty && !originalGrid.IsUndefined && WithCandidates)
 					{
 						// Check if the value has been set 'true'
 						// and the value has already deleted at the grid

@@ -202,6 +202,84 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid
+		/// holds totally same value with <see cref="Undefined"/>.
+		/// </summary>
+		/// <seealso cref="Undefined"/>
+		public readonly bool IsUndefined
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => this == Undefined;
+		}
+
+		/// <summary>
+		/// Indicates whether the grid is <see cref="Empty"/>, which means the grid
+		/// holds totally same value with <see cref="Empty"/>.
+		/// </summary>
+		/// <seealso cref="Empty"/>
+		public readonly bool IsEmpty
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => this == Empty;
+		}
+
+#if DEBUG
+		/// <summary>
+		/// Indicates whether the grid is as same behaviors as <see cref="Undefined"/>
+		/// in debugging mode.
+		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// This property checks whether all non-first masks are all 0. This checking behavior
+		/// is aiming to the debugger because the debugger can't recognize the fixed buffer.
+		/// </para>
+		/// <para>
+		/// The debugger can't recognize fixed buffer.
+		/// The fixed buffer whose code is like:
+		/// <code>
+		/// private fixed short _values[81];
+		/// </code>
+		/// However, internally, the field <c>_values</c> is implemented
+		/// with a fixed buffer using a inner struct, which is just like:
+		/// <code>
+		/// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
+		/// private struct FixedBuffer
+		/// {
+		///     public short _internalValue;
+		/// }
+		/// </code>
+		/// And that field:
+		/// <code>
+		/// private FixedBuffer _fixedField;
+		/// </code>
+		/// From the code we can learn that only 2 bytes of the inner struct can be detected,
+		/// because the buffer struct only contains 2 bytes data.
+		/// </para>
+		/// </remarks>
+		/// <see cref="Undefined"/>
+		public readonly bool IsDebuggerUndefined
+		{
+			get
+			{
+				fixed (short* pGrid = _values)
+				{
+					int i = 1;
+					short* p = pGrid + 1;
+					while (i < Length)
+					{
+						if (p++[i++] != 0)
+						{
+							return false;
+						}
+					}
+
+					return true;
+				}
+			}
+		}
+#endif
+
+		/// <summary>
 		/// Indicates the number of total candidates.
 		/// </summary>
 		public readonly int CandidatesCount
@@ -577,8 +655,12 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly int GetHashCode() =>
-			this == Undefined ? 0 : this == Empty ? 1 : ToString("#").GetHashCode();
+		public override readonly int GetHashCode() => this switch
+		{
+			{ IsUndefined: true } => 0,
+			{ IsEmpty: true } => 1,
+			_ => ToString("#").GetHashCode()
+		};
 
 		/// <summary>
 		/// Serializes this instance to an array, where all digit value will be stored.
@@ -714,80 +796,24 @@ namespace Sudoku.Data
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
-		public readonly string ToString(string? format, IFormatProvider? formatProvider)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly string ToString(string? format, IFormatProvider? formatProvider) => this switch
 		{
-			if (this == Empty)
-			{
-				return "<Empty>";
-			}
-
-			if (this == Undefined)
-			{
-				return "<Undefined>";
-			}
-
+			{ IsEmpty: true } => "<Empty>",
+			{ IsUndefined: true } => "<Undefined>",
 #if DEBUG
-			// The debugger can't recognize fixed buffer.
-			// The fixed buffer whose code is like:
-			//
-			// private fixed short _values[81];
-			//
-			// However, internally, the field '_values' is implemented
-			// with a fixed buffer using a inner struct, which is just like:
-			//
-			// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-			// private struct FixedBuffer
-			// {
-			//     public short _internalValue;
-			// }
-			//
-			// And that field:
-			//
-			// private FixedBuffer _fixedField;
-			//
-			// From the code we can learn that only 2 bytes of the inner struct can be detected,
-			// because the buffer struct only contains 2 bytes data.
-			if (debuggerUndefined(this))
-			{
-				return "<Debugger can't recognize the fixed buffer>";
-			}
+			{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
 #endif
-
-			if (formatProvider.HasFormatted(this, format, out string? result))
-			{
-				return result;
-			}
-
-			var f = Formatter.Create(format);
-			return format switch
+			_ when formatProvider.HasFormatted(this, format, out string? result) => result,
+			_ when Formatter.Create(format) is var f => format switch
 			{
 				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
 				"!" => f.ToString(this).Replace("+", string.Empty),
 				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
 				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
 				_ => f.ToString(this)
-			};
-
-#if DEBUG
-			static bool debuggerUndefined(in SudokuGrid grid)
-			{
-				fixed (short* pGrid = grid)
-				{
-					int i = 1;
-					short* p = pGrid + 1;
-					while (i < Length)
-					{
-						if (p++[i++] != 0)
-						{
-							return false;
-						}
-					}
-
-					return true;
-				}
 			}
-#endif
-		}
+		};
 
 		/// <summary>
 		/// Get the cell status at the specified cell.
@@ -1040,7 +1066,7 @@ namespace Sudoku.Data
 			try
 			{
 				result = Parse(str);
-				return result != Undefined;
+				return !result.IsUndefined;
 			}
 			catch
 			{
@@ -1068,7 +1094,7 @@ namespace Sudoku.Data
 				result = Parse(str, option);
 				return true;
 			}
-			catch
+			catch (FormatException)
 			{
 				result = Undefined;
 				return false;

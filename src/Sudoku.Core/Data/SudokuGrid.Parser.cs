@@ -84,50 +84,47 @@ namespace Sudoku.Data
 			/// To parse the value.
 			/// </summary>
 			/// <returns>The grid.</returns>
-			/// <exception cref="ArgumentException">Throws when failed to parse.</exception>
 			public SudokuGrid Parse()
 			{
 				// Optimization: We can check some concrete type to reduce the unncessary parsing.
-				if (ParsingValue.Length == 729)
+				switch (ParsingValue)
 				{
-					// The sukaku should be of length 729.
-					var grid = OnParsingExcel(ref this);
-					if (grid != Undefined)
+					case { Length: 729 } when OnParsingExcel(ref this) is { IsUndefined: false } grid:
 					{
+						// The sukaku should be of length 729.
 						return grid;
 					}
-				}
-				else if (ParsingValue.Contains("-+-"))
-				{
-					// The multi-line grid should be with the mark '-' and '+'.
-					for (int trial = 1; trial <= 3; trial++)
+					case var _ when ParsingValue.Contains("-+-"):
 					{
-						var grid = ParseFunctions[trial](ref this);
-						if (grid != Undefined)
+						// The multi-line grid should be with the mark '-' and '+'.
+						for (int trial = 1; trial <= 3; trial++)
 						{
-							return grid;
+							if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
+							{
+								return grid;
+							}
 						}
+
+						break;
 					}
-				}
-				else if (ParsingValue.Contains('\t'))
-				{
-					// The excel grid should be with '\t'.
-					var grid = OnParsingExcel(ref this);
-					if (grid != Undefined)
+					case var _
+					when ParsingValue.Contains('\t') && OnParsingExcel(ref this) is { IsUndefined: false } grid:
 					{
+						// The excel grid should be with '\t'.
 						return grid;
 					}
-				}
-				else
-				{
-					// Other cases.
-					for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
+					default:
 					{
-						var grid = ParseFunctions[trial](ref this);
-						if (grid != Undefined)
+						// Other cases.
+						for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
 						{
-							return grid;
+							if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
+							{
+								return grid;
+							}
 						}
+
+						break;
 					}
 				}
 
