@@ -72,9 +72,8 @@ namespace Sudoku.Data.Collections
 				{
 					var links = _collection.ToArray();
 					var sb = new ValueStringBuilder(stackalloc char[100]);
-					for (int i = 0, length = links.Length; i < length; i++)
+					foreach (var (start, _, type) in links)
 					{
-						var (start, _, type) = links[i];
 						sb.Append(new Candidates { start }.ToString());
 						sb.Append(type.GetNotation());
 					}
