@@ -16,6 +16,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
+		<ProjectReference Include="..\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 </Project>
