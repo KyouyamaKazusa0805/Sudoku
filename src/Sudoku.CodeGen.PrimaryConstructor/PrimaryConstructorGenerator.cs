@@ -111,8 +111,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 					.Append(string.Join(Separator, arguments))
 					.Append(PrintClosedBraceToken())
 					.AppendLine(baseCtorInheritance)
-					.Append(PrintOpenBracketToken(2))
-				;
+					.Append(PrintOpenBracketToken(2));
 
 				foreach (var item in members)
 				{
