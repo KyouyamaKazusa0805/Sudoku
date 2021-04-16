@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
@@ -74,7 +75,7 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor
 
 				context.AddSource(
 					$"{name}.ParameterlessConstructor.g.cs",
-					getParameterlessCtorCode(structSymbol)
+					SourceText.From(getParameterlessCtorCode(structSymbol), Encoding.UTF8)
 				);
 			}
 
