@@ -1068,7 +1068,7 @@ namespace Sudoku.Data
 				result = Parse(str);
 				return !result.IsUndefined;
 			}
-			catch
+			catch (FormatException)
 			{
 				result = Undefined;
 				return false;
