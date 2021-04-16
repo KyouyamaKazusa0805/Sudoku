@@ -29,7 +29,8 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 		private static readonly bool UsingTabsAsIndentingCharacters = true;
 
 		/// <summary>
-		/// Indicates whether the project outputs "this." as the member access expression.
+		/// Indicates whether the project outputs "<c><see langword="this"/>.</c>"
+		/// as the member access expression.
 		/// </summary>
 		private static readonly bool OutputThisReference = false;
 
