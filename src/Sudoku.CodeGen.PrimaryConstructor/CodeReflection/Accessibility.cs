@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.CodeReflection
+namespace Sudoku.CodeGen.PrimaryConstructor.CodeReflection
 {
 	/// <summary>
 	/// Indicates the accessibility of a member.

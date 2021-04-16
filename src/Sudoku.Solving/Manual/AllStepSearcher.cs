@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Sudoku.CodeGen.Annotations;
+using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;

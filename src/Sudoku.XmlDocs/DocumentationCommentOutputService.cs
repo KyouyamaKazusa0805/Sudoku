@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Sudoku.CodeGen.Annotations;
+using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.Diagnostics;
 using Sudoku.XmlDocs.Extensions;
 using Sudoku.XmlDocs.Values;

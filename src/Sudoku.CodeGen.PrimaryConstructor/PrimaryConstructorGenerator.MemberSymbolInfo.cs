@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
-namespace Sudoku.CodeGen
+namespace Sudoku.CodeGen.PrimaryConstructor
 {
 	partial class PrimaryConstructorGenerator
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using Sudoku.CodeGen.Annotations;
+using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using PointConverter = Sudoku.Drawing.PointConverter;

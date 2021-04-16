@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Sudoku.CodeGen
+namespace Sudoku.CodeGen.PrimaryConstructor
 {
 	partial class PrimaryConstructorGenerator
 	{

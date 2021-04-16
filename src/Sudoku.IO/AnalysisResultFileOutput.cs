@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NPOI.XWPF.UserModel;
-using Sudoku.CodeGen.Annotations;
+using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.Drawing;
 using Sudoku.Solving;
 

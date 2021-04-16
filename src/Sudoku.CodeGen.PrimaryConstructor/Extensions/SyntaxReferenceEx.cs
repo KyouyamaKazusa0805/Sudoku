@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Sudoku.CodeGen.Extensions
+namespace Sudoku.CodeGen.PrimaryConstructor.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="SyntaxReference"/>.

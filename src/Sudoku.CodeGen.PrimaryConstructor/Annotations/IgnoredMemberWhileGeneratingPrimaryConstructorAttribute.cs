@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.Annotations
+namespace Sudoku.CodeGen.PrimaryConstructor.Annotations
 {
 	/// <summary>
 	/// Indicates the member should be ignored while generating primary constructors.

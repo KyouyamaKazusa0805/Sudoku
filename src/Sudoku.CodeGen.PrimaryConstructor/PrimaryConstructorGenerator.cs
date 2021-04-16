@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Sudoku.CodeGen.Annotations;
-using Sudoku.CodeGen.Extensions;
+using Sudoku.CodeGen.PrimaryConstructor.Annotations;
+using Sudoku.CodeGen.PrimaryConstructor.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
+using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
 using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
 using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
-namespace Sudoku.CodeGen
+namespace Sudoku.CodeGen.PrimaryConstructor
 {
 	/// <summary>
 	/// Indicates a generator that generates primary constructors for <see langword="class"/>es
@@ -26,7 +27,7 @@ namespace Sudoku.CodeGen
 		/// </summary>
 		private static readonly SymbolDisplayFormat
 			TypeFormat = new(
-				globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
+				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
 				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
 				genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
 				miscellaneousOptions:
@@ -35,7 +36,7 @@ namespace Sudoku.CodeGen
 					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
 			),
 			PropertyTypeFormat = new(
-				globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
+				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
 				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
 				genericsOptions: GenericsOptions.IncludeTypeParameters,
 				miscellaneousOptions:
