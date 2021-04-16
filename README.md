@@ -10,7 +10,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-> In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, robot on common online platforms (QQ, Bilibili and so on).
+> In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 >
 > 以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
@@ -18,19 +18,23 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 ## Basic Information (基本信息)
 
-| Solution sites<br />项目地址 |                                                             |
-| ---------------------------- | ----------------------------------------------------------- |
-| GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |
-| Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  |
+| Solution sites<br />项目地址 |                                                             | P.S.<br />备注                                               |
+| ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                              |
+| Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This project is copied & sync'd from GitHub as a backup.<br />这个项目从 GitHub 拷贝和同步过来的，是一个备份项目。 |
 
 | Intro about how to compile the solution<br />关于如何编译解决方案的介绍 |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Bilingual<br />中英双语介绍                                  | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
+| Chinese & English<br />中英双语介绍                          | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
 | Chinese only<br />中文介绍                                   | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
 
 | Wiki<br />百科页面         |                                                           |
 | -------------------------- | --------------------------------------------------------- |
 | Chinese only<br />中文介绍 | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
+
+> I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
+>
+> 我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
 
 | Coding Information<br />编码信息                     |                                                              |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
@@ -53,7 +57,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 ## Author (作者)
 
-Sunnie, from Chengdu, is a normal undergraduate from normal university.
+Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University.
 
-小向，来自成都的一名普通（辣鸡）本科大学生。
+小向，来自成都的一名四川<del>普通大学</del>师范大学的本科大学生。
 
