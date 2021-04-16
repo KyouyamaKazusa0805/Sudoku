@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Painting.Extensions;
 
@@ -11,7 +11,7 @@ namespace Sudoku.Painting
 	/// Provides an instance for converting drawing points (i.e. <see cref="PointF"/>)
 	/// to an element in sudoku grid.
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct DrawingPointConverter
 	{
 		/// <summary>

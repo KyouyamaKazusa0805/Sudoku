@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 </Project>

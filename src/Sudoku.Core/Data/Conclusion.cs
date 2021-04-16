@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -7,7 +7,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
 	{
 		/// <summary>

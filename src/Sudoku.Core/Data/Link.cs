@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 
@@ -9,7 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a link used for drawing.
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct Link : IValueEquatable<Link>
 	{
 		/// <summary>

@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -19,7 +19,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a map that contains 729 positions to represent a candidate.
 	/// </summary>
-	[DisableParameterlessConstructor(nameof(Empty))]
+	[DisallowParameterlessConstructor(nameof(Empty))]
 	public unsafe struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>

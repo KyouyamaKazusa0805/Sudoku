@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -9,7 +9,7 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a chain node.
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public struct Node : IValueEquatable<Node>
 	{
 		/// <summary>

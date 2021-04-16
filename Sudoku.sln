@@ -65,7 +65,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.CodeGen", "Sudoku.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.PrimaryConstructor", "src\Sudoku.CodeGen.PrimaryConstructor\Sudoku.CodeGen.PrimaryConstructor.csproj", "{BCAC5838-6213-4736-945F-286B9C11D86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CodeGen.KeyedTuple", "src\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj", "{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.KeyedTuple", "src\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj", "{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CodeGen.StructParameterlessConstructor", "src\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj", "{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -495,6 +497,26 @@ Global
 		{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}.Release|x64.Build.0 = Release|Any CPU
 		{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}.Release|x86.ActiveCfg = Release|Any CPU
 		{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}.Release|x86.Build.0 = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|ARM.Build.0 = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|ARM64.Build.0 = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x64.Build.0 = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -513,6 +535,7 @@ Global
 		{B3C6074E-B127-400D-BD2C-BBAFDF99EBAC} = {83E3F4CF-F257-4BAB-A39F-054F562F8A9A}
 		{BCAC5838-6213-4736-945F-286B9C11D86E} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 		{EBEECF89-3AD1-4968-85C7-9388B89A6B8B} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
+		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}

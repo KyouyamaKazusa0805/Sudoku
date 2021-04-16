@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -12,7 +12,7 @@ namespace Sudoku.Data
 	/// these two candidates is in the same region where all cells has only
 	/// two position can fill this candidate.
 	/// </remarks>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct ConjugatePair : IValueEquatable<ConjugatePair>
 	{
 		/// <summary>

@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -21,7 +22,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
-	[DisableParameterlessConstructor(nameof(Empty))]
+	[DisallowParameterlessConstructor(nameof(Empty))]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>

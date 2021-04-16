@@ -566,29 +566,6 @@
             instead of any calculations.
             </remarks>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute">
-            <summary>
-            Marks on a <see langword="struct"/>, to tell the users the parameterless constructor is disabled
-            and can't be called or used.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified recommend member name.
-            </summary>
-            <param name="recommendMemberName">The recommend member name.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.DisableParameterlessConstructorAttribute.RecommendMemberName">
-            <summary>
-            Indicates the recommend member name.
-            </summary>
-            <remarks>
-            This property holds the value that tells users which member they should use and replace with.
-            </remarks>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.FunctionPointerExposeOnlyAttribute">
             <summary>
             <para>

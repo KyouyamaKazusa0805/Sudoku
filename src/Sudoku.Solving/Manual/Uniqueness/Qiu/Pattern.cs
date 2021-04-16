@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -8,7 +8,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <summary>
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 
@@ -13,7 +13,7 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates a region collection.
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly ref struct RegionCollection
 	{
 		/// <summary>

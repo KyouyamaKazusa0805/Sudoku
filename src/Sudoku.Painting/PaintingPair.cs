@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Painting
@@ -10,7 +10,7 @@ namespace Sudoku.Painting
 	/// Encapsulates a painting pair that contains the base color to paint and the value.
 	/// </summary>
 	/// <typeparam name="T">The type of the value.</typeparam>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>

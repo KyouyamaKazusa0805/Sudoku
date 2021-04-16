@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
 
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// and the lines of two target cells lying on can't contain any base digits.
 	/// </para>
 	/// </summary>
-	[DisableParameterlessConstructor]
+	[DisallowParameterlessConstructor]
 	public readonly struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
