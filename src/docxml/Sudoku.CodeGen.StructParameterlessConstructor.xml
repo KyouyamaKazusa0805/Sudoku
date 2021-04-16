@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.StructParameterlessConstructor</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute">
+            <summary>
+            Marks on a <see langword="struct"/>, to tell the users the parameterless constructor is disabled
+            and can't be called or used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute"/> instance
+            with the default instantiation behavior.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute.RecommendMemberName">
+            <summary>
+            Indicates the recommend member name.
+            </summary>
+            <remarks>
+            This property holds the value that tells users which member they should use and replace with.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator">
+            <summary>
+            Defines a generator that controls generating parameterless constructor
+            in <see langword="struct"/>s automatically.
+            </summary>
+            <remarks>
+            C# 10 or later supports the feature "parameterless constructor in <see langword="struct"/>s",
+            which allows us customize a parameterless constructor in a <see langword="struct"/>
+            that don't effect on <see langword="default"/> expression
+            (e.g. <see langword="default"/>(<see langword="int"/>)).
+            </remarks>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>

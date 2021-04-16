@@ -5,6 +5,7 @@
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<Version>0.1</Version>
+		<DocumentationFile>..\docxml\Sudoku.CodeGen.PrimaryConstructor.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.PrimaryConstructor</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute">
+            <summary>
+            Indicates the marked <see langword="class"/> should generate primary constructor automatically.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.PrimaryConstructorIgnoredMemberAttribute">
+            <summary>
+            Indicates the member should be ignored while generating primary constructors.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.PrimaryConstructorIncludedMemberAttribute">
+            <summary>
+            Indicates the member should be included while generating primary constructors.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility">
+            <summary>
+            Indicates the accessibility of a member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.None">
+            <summary>
+            Indicates the accessibility is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.Public">
+            <summary>
+            Indicates the <see langword="public"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.Internal">
+            <summary>
+            Indicates the <see langword="internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.Protected">
+            <summary>
+            Indicates the <see langword="protected"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the <see langword="protected internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.Private">
+            <summary>
+            Indicates the <see langword="private"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.CodeReflection.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the <see langword="private protected"/> modifier.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.Extensions.ISymbolEx.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the specified symbol (should be property or field members)
+            has an initializer.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <summary>
+            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <param name="this">The current syntax reference instance.</param>
+            <param name="textSpan">The text span.</param>
+            <param name="syntaxNode">The syntax node.</param>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator">
+            <summary>
+            Indicates a generator that generates primary constructors for <see langword="class"/>es
+            when they're marked <see cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Separator">
+            <summary>
+            Indicates the separator used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.UsingTabsAsIndentingCharacters">
+            <summary>
+            Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.OutputThisReference">
+            <summary>
+            Indicates whether the project outputs "<c><see langword="this"/>.</c>"
+            as the member access expression.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Try to get all possible fields or properties in the specified <see langword="class"/> type.
+            </summary>
+            <param name="classSymbol">The specified class symbol.</param>
+            <param name="handleRecursively">
+            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
+            <returns>The result list that contains all member symbols.</returns>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.PropertyTypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SymbolInfo">
+            <summary>
+            Indicates the inner member symbol information quadruple.
+            </summary>
+            <param name="Type">Indicates the type name.</param>
+            <param name="ParameterName">Indicates the parameter name.</param>
+            <param name="Name">Indicates the name.</param>
+            <param name="Attributes">Indicates all attributes that the type has marked.</param>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SymbolInfo.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">
+            <summary>
+            Indicates the inner member symbol information quadruple.
+            </summary>
+            <param name="Type">Indicates the type name.</param>
+            <param name="ParameterName">Indicates the parameter name.</param>
+            <param name="Name">Indicates the name.</param>
+            <param name="Attributes">Indicates all attributes that the type has marked.</param>
+        </member>
+        <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SyntaxReceiver.CandidateClasses">
+            <summary>
+            Indicates all possible candidate <see langword="class"/>es used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>
