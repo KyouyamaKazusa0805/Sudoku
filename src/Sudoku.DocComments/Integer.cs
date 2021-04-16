@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 
 namespace Sudoku.DocComments
 {
@@ -12,106 +11,6 @@ namespace Sudoku.DocComments
 	/// </summary>
 	public readonly ref struct Integer
 	{
-		/// <summary>
-		///	Indicates whether the specified value is the power of two.
-		/// </summary>
-		///	<param name="this">The value.</param>
-		///	<returns>A <see cref="bool"/> value indicating that.</returns>
-		///	<remarks>
-		///	The equivalent code: <c>x != 0 &amp;&amp; (x &amp; (x - 1)) != 0</c>.
-		/// </remarks>
-		public static bool IsPowerOfTwo(Integer @this) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Indicates whether the current value is an odd.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		///	The equivalent code: <c>(x &amp; 1) != 0</c>.
-		/// </remarks>
-		public static bool IsOdd(Integer @this) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Indicates whether the current value is an even.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		///	The equivalent code: <c>(x &amp; 1) == 0</c>.
-		/// </remarks>
-		public static bool IsEven(Integer @this) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Indicates whether the current value contains the bit specified as <paramref name="bitPosition"/>.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <param name="bitPosition">The position of that bit to check.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		///	The equivalent code: <c>(x &gt;&gt; i &amp; 1) != 0</c>.
-		/// </remarks>
-		public static bool ContainsBit(Integer @this, int bitPosition) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Determine whether the current value overlaps the specified value.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <param name="other">The other value to check.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		///	The equivalent code: <c>(x &amp; y) != 0</c>.
-		/// </remarks>
-		public static bool Overlaps(Integer @this, Integer other) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Determine whether the current value overlaps the negation of the specified value.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <param name="other">The other value to check.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		///	The equivalent code: <c>(x &amp; ~y) != 0</c>.
-		/// </remarks>
-		public static bool ExceptOverlaps(Integer @this, Integer other) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Determine whether the bits of the current value fully covers the ones of the specified value.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <param name="other">The other value to check.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		/// <remarks>
-		/// The equivalent code: <c>(x &amp; y) == y</c>.
-		/// </remarks>
-		public static bool Covers(Integer @this, Integer other) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Find the first offset of set bit of the binary representation
-		/// of the specified value.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <returns>
-		/// <para>An <see cref="int"/> value indicating that.</para>
-		/// <para>
-		/// Please note that if the value is 0,
-		/// the return value will be always 32 (for <see cref="int"/>) or 64 (for <see cref="long"/>).
-		/// The method simply calls the method <see cref="BitOperations.TrailingZeroCount(int)"/>
-		/// or <see cref="BitOperations.TrailingZeroCount(long)"/>.
-		/// </para>
-		/// </returns>
-		/// <seealso cref="BitOperations.TrailingZeroCount(int)"/>
-		/// <seealso cref="BitOperations.TrailingZeroCount(long)"/>
-		public static int FindFirstSet(Integer @this) => throw new NotImplementedException();
-
-		/// <summary>
-		/// Get the total number of set bits of the binary representation of a specified value.
-		/// </summary>
-		/// <param name="this">The value.</param>
-		/// <returns>An <see cref="int"/> value indicating that.</returns>
-		public static int PopCount(Integer @this) => throw new NotImplementedException();
-
-
 		/// <summary>
 		/// Find a index of the binary representation of a value after the specified index,
 		/// whose bit is set <see langword="true"/>.
