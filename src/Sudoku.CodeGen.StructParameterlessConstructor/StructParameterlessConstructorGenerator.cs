@@ -63,13 +63,17 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor
 				return;
 			}
 
-			var classNameDic = new Dictionary<string, int>();
-			foreach (var classSymbol in g(context, receiver))
+			var structNameDic = new Dictionary<string, int>();
+			foreach (var structSymbol in g(context, receiver))
 			{
-				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
-				var name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{i + 1}";
-				classNameDic[classSymbol.Name] = i + 1;
-				context.AddSource($"{name}.PrimaryConstructor.g.cs", getParameterlessCtorCode(classSymbol));
+				_ = structNameDic.TryGetValue(structSymbol.Name, out int i);
+				var name = i == 0 ? structSymbol.Name : $"{structSymbol.Name}{i + 1}";
+				structNameDic[structSymbol.Name] = i + 1;
+
+				context.AddSource(
+					$"{name}.ParameterlessConstructor.g.cs",
+					getParameterlessCtorCode(structSymbol)
+				);
 			}
 
 
