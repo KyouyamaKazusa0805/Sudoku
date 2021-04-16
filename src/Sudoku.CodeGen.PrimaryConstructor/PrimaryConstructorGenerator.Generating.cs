@@ -1,10 +1,8 @@
 ﻿#pragma warning disable IDE0057
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.CodeGen.PrimaryConstructor.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
@@ -41,15 +39,6 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 
 
 		/// <summary>
-		/// To determine whether the symbol has marked the specified attribute.
-		/// </summary>
-		/// <typeparam name="TAttribute">The type of that attribute.</typeparam>
-		/// <param name="symbol">The symbol.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		private static partial bool HasMarked<TAttribute>(ISymbol symbol) where TAttribute : Attribute =>
-			symbol.GetAttributes().Any(static x => x.AttributeClass?.Name == typeof(TAttribute).Name);
-
-		/// <summary>
 		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
 		/// </summary>
 		/// <param name="classSymbol">The specified class symbol.</param>
@@ -65,10 +54,10 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 					where x is { CanBeReferencedByName: true, IsStatic: false }
 						&& (
 							x.IsReadOnly
-							&& !hasInitializer(x)
-							|| HasMarked<PrimaryConstructorIncludedMemberAttribute>(x)
+							&& !x.HasInitializer()
+							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
 						)
-						&& !HasMarked<PrimaryConstructorIgnoredMemberAttribute>(x)
+						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
 					select new SymbolInfo(
 						x.Type.ToDisplayString(PropertyTypeFormat),
 						toCamelCase(x.Name),
@@ -80,10 +69,10 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 					where x is { CanBeReferencedByName: true, IsStatic: false }
 						&& (
 							x.IsReadOnly
-							&&
-							!hasInitializer(x)
-							|| HasMarked<PrimaryConstructorIncludedMemberAttribute>(x)
-						) && !HasMarked<PrimaryConstructorIgnoredMemberAttribute>(x)
+							&& !x.HasInitializer()
+							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
+						)
+						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
 					select new SymbolInfo(
 						x.Type.ToDisplayString(PropertyTypeFormat),
 						toCamelCase(x.Name),
@@ -95,7 +84,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 
 			if (handleRecursively
 				&& classSymbol.BaseType is { } baseType
-				&& HasMarked<AutoGeneratePrimaryConstructorAttribute>(baseType))
+				&& baseType.Marks<AutoGeneratePrimaryConstructorAttribute>())
 			{
 				result.AddRange(GetMembers(baseType, true));
 			}
@@ -108,11 +97,6 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 				name = name.TrimStart('_');
 				return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
 			}
-
-			static bool hasInitializer(ISymbol symbol) =>
-				/*length-pattern*/
-				symbol is { DeclaringSyntaxReferences: { Length: not 0 } list }
-				&& list[0] is (_, syntaxNode: VariableDeclaratorSyntax { Initializer: not null });
 		}
 	}
 }

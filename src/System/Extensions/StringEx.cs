@@ -57,6 +57,23 @@ namespace System.Extensions
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
+		/// Slices the current <see cref="string"/> instance, via the specified character.
+		/// If the string contains that character, we'll slice the string to get the segment.
+		/// </summary>
+		/// <remarks>
+		/// Please note that even if the character exists in the string, we won't get the segment
+		/// containing that character.
+		/// </remarks>
+		/// <param name="this">The string.</param>
+		/// <param name="ch">The character to check.</param>
+		/// <returns>
+		/// The slice result. If the character doesn't exist in the string,
+		/// <see langword="null"/> will be returned.
+		/// </returns>
+		public static string? SliceViaCharacter(this string @this, char ch) =>
+			@this.IndexOf(ch) is var i and not -1 ? @this[..i] : null;
+
+		/// <summary>
 		/// Searches the specified input string for the first occurrence of
 		/// the specified regular expression pattern.
 		/// </summary>
