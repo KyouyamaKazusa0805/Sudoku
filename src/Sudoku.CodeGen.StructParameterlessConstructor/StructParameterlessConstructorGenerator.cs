@@ -23,7 +23,9 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor
 	/// that don't effect on <see langword="default"/> expression
 	/// (e.g. <see langword="default"/>(<see langword="int"/>)).
 	/// </remarks>
+#if NET6_0
 	[Generator]
+#endif
 	public sealed partial class StructParameterlessConstructorGenerator : ISourceGenerator
 	{
 		/// <summary>
