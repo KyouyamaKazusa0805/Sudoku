@@ -20,19 +20,19 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Provides operations for analysis result formatting.
 		/// </summary>
-		private sealed class Formatter : IFormattable
+		private sealed partial class Formatter : IFormattable
 		{
-			/// <summary>
-			/// Initializes an instance with the specified analysis result and format.
-			/// </summary>
-			/// <param name="result">The analysis result.</param>
-			public Formatter(AnalysisResult result) => Result = result;
-
-
 			/// <summary>
 			/// Indicates the analysis result.
 			/// </summary>
 			public AnalysisResult Result { get; }
+
+
+			/// <summary>
+			/// Initializes an instance with the specified result.
+			/// </summary>
+			/// <param name="result">The analysis result instance.</param>
+			public Formatter(AnalysisResult result) => Result = result;
 
 
 			/// <inheritdoc/>

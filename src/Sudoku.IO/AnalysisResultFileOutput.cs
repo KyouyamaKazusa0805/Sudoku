@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using NPOI.XWPF.UserModel;
+using Sudoku.CodeGen.Annotations;
 using Sudoku.Drawing;
 using Sudoku.Solving;
 
@@ -8,7 +9,8 @@ namespace Sudoku.IO
 	/// <summary>
 	/// Encapsulates a instance for saving analysis result.
 	/// </summary>
-	public sealed class AnalysisResultFileOutput
+	[AutoGeneratePrimaryConstructor]
+	public sealed partial class AnalysisResultFileOutput
 	{
 		/// <summary>
 		/// Indicates the target size of an image to draw into the document.
@@ -19,18 +21,6 @@ namespace Sudoku.IO
 		/// The converter from pixels to real output size.
 		/// </summary>
 		private const int Emu = 9525;
-
-
-		/// <summary>
-		/// Initializes an instance with the analysis result instance.
-		/// </summary>
-		/// <param name="result">The result.</param>
-		/// <param name="settings">The settings.</param>
-		public AnalysisResultFileOutput(AnalysisResult result, Settings settings)
-		{
-			AnalysisResult = result;
-			Settings = settings;
-		}
 
 
 		/// <summary>

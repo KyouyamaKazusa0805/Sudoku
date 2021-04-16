@@ -58,7 +58,7 @@ namespace Sudoku.CodeGen
 				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
 				var name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{i + 1}";
 				classNameDic[classSymbol.Name] = i + 1;
-				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(classSymbol));
+				context.AddSource($"{name}.PrimaryConstructor.PrimaryConstructor.cs", getPrimaryConstructorCode(classSymbol));
 			}
 
 
@@ -80,7 +80,7 @@ namespace Sudoku.CodeGen
 				var baseClassConstructorArgs =
 					classSymbol.BaseType is { } baseType
 					&& HasMarked(baseType, nameof(AutoGeneratePrimaryConstructorAttribute))
-					? GetMembers(baseType, true)
+					? GetMembers(baseType, handleRecursively: true)
 					: null;
 				string baseConstructorInheritance = baseClassConstructorArgs is { Count: not 0 }
 					? $" : base({string.Join(", ", from x in baseClassConstructorArgs select x.ParameterName)})"
@@ -98,7 +98,9 @@ namespace Sudoku.CodeGen
 				// Code generating.
 				// Here the code may be ugly...
 				var source = new StringBuilder(
-					$@"using System.Runtime.CompilerServices;
+					$@"#pragma warning disable 1591
+
+using System.Runtime.CompilerServices;
 
 #nullable enable
 

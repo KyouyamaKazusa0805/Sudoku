@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Sudoku.CodeGen.Annotations;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using PointConverter = Sudoku.Drawing.PointConverter;
@@ -100,7 +101,8 @@ namespace Sudoku.IO
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public sealed class BatchExecutor
+	[AutoGeneratePrimaryConstructor]
+	public sealed partial class BatchExecutor
 	{
 		/// <summary>
 		/// Indicates the empty handler.
@@ -128,13 +130,6 @@ namespace Sudoku.IO
 		/// The list of methods that should be executed.
 		/// </summary>
 		private BatchExecutingEventHandler? _batchExecuting;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified settings.
-		/// </summary>
-		/// <param name="settings">The settings.</param>
-		public BatchExecutor(Settings settings) => _settings = settings;
 
 
 		/// <summary>

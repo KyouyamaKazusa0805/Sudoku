@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Sudoku.CodeGen.Annotations;
 using Sudoku.Diagnostics;
 using Sudoku.XmlDocs.Extensions;
 using Sudoku.XmlDocs.Values;
@@ -20,7 +21,8 @@ namespace Sudoku.XmlDocs
 	/// Indicates the service that outputs the solution-wide documentation comments, and converts them
 	/// into the markdown files.
 	/// </summary>
-	public sealed class DocumentationCommentOutputService
+	[AutoGeneratePrimaryConstructor]
+	public sealed partial class DocumentationCommentOutputService
 	{
 		/// <summary>
 		/// Indicates the name of the source root path.
@@ -52,17 +54,6 @@ namespace Sudoku.XmlDocs
 		/// Indicates the leading triple slash characters "<c>///</c>" regular expression instance.
 		/// </summary>
 		private static readonly Regex LeadingTripleSlashes = new(@"(?<=\r\n)\s*(///\s+?)", Options, TimeSpan);
-
-
-		/// <summary>
-		/// Initializes an <see cref="DocumentationCommentOutputService"/>
-		/// with the default instantiation behavior.
-		/// </summary>
-		/// <param name="rootPath">
-		/// The root path of the solution. If you created the new folder to store all projects,
-		/// this folder will be suit for passing this parameter.
-		/// </param>
-		public DocumentationCommentOutputService(string rootPath) => RootPath = rootPath;
 
 
 		/// <summary>

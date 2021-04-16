@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Sudoku.CodeGen.Annotations;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;
@@ -25,22 +26,13 @@ namespace Sudoku.Solving.Manual
 	/// </remarks>
 	/// <seealso cref="StepSearcher"/>
 	/// <seealso cref="ManualSolver"/>
-	public sealed class AllStepSearcher
+	[AutoGeneratePrimaryConstructor]
+	public sealed partial class AllStepSearcher
 	{
 		/// <summary>
 		/// Indicates the inner solver.
 		/// </summary>
 		private readonly ManualSolver _solver;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified solver.
-		/// </summary>
-		/// <param name="solver">The solver.</param>
-		/// <remarks>
-		/// This solver will provide the settings of the searching operation.
-		/// </remarks>
-		public AllStepSearcher(ManualSolver solver) => _solver = solver;
 
 
 		/// <summary>

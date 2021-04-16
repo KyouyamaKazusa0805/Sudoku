@@ -67,12 +67,14 @@ namespace Sudoku.Windows.CustomControls
 			BuiltInColors.Clear();
 			BuiltInColors.AddRange(
 				from color in ColorPalette.PaletteColors
-				select new ColorInfo() { Color = color, HexString = color.ToHexString() });
+				select new ColorInfo() { Color = color, HexString = color.ToHexString() }
+			);
 
 			CustomColors.Clear();
 			CustomColors.AddRange(
 				from color in Enumerable.Repeat(Colors.White, NumColorsCustomSwatch)
-				select new ColorInfo() { Color = color, HexString = color.ToHexString() });
+				select new ColorInfo() { Color = color, HexString = color.ToHexString() }
+			);
 		}
 
 		/// <summary>

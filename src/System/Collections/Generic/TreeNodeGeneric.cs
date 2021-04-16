@@ -41,17 +41,10 @@ namespace System.Collections.Generic
 		public bool Equals(TreeNode<T>? other) => CompareTo(other) == 0;
 
 		/// <inheritdoc/>
-		public override int GetHashCode()
-		{
-			if (Content is not null)
-			{
-				return HashCode.Combine(Id, ParentId, IsLeaf, Content);
-			}
-			else
-			{
-				return HashCode.Combine(Id, ParentId, IsLeaf);
-			}
-		}
+		public override int GetHashCode() =>
+			Content is not null
+			? HashCode.Combine(Id, ParentId, IsLeaf, Content)
+			: HashCode.Combine(Id, ParentId, IsLeaf);
 
 		/// <inheritdoc/>
 		public int CompareTo(TreeNode<T>? other) => InternalCompare(this, other);
