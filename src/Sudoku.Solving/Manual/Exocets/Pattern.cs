@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </para>
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Pattern : IValueEquatable<Pattern>
+	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified cells.

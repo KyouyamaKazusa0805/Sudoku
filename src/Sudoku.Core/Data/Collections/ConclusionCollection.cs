@@ -13,7 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Provides a collection that contains the conclusions.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly ref struct ConclusionCollection
+	public readonly ref partial struct ConclusionCollection
 	{
 		/// <summary>
 		/// The internal collection.

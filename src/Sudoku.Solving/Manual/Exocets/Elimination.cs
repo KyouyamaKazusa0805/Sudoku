@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates an instance to represent a series of eliminations in JE or SE.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Elimination : IValueEquatable<Elimination>
+	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
 		/// Initializes an instance with the eliminations and the reason.

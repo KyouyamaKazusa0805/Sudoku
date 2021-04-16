@@ -10,7 +10,7 @@ namespace Sudoku.Data
 	/// Encapsulates a chain node.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public struct Node : IValueEquatable<Node>
+	public partial struct Node : IValueEquatable<Node>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified digit, cell and a <see cref="bool"/> value.

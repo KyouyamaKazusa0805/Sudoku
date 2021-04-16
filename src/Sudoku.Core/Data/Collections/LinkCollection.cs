@@ -13,7 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Provides a collection that contains the chain links.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly ref struct LinkCollection
+	public readonly ref partial struct LinkCollection
 	{
 		/// <summary>
 		/// The internal collection.

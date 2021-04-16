@@ -10,7 +10,7 @@ namespace Sudoku.Data
 	/// Encapsulates a link used for drawing.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Link : IValueEquatable<Link>
+	public readonly partial struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified start and end candidate, and a link type.

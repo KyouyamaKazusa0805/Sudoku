@@ -14,7 +14,7 @@ namespace Sudoku.Data.Collections
 	/// Indicates a region collection.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly ref struct RegionCollection
+	public readonly ref partial struct RegionCollection
 	{
 		/// <summary>
 		/// The inner mask.

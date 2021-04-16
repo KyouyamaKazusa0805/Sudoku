@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// Indicates the borescoper's deadly pattern.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Pattern : IValueEquatable<Pattern>
+	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Indicates the internal structure.

@@ -8,7 +8,7 @@ namespace Sudoku.Data
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
+	public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
 	{
 		/// <summary>
 		/// Initializes an instance with a conclusion type, a cell offset and a digit.

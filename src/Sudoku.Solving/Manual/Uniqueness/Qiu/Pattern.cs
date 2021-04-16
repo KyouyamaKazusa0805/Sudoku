@@ -9,7 +9,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct Pattern : IValueEquatable<Pattern>
+	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified maps.

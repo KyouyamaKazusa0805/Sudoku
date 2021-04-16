@@ -6,7 +6,6 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -23,7 +22,6 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	[DisallowParameterlessConstructor(nameof(Empty))]
 	public struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>

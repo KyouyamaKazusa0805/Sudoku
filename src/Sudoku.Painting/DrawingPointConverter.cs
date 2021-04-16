@@ -12,7 +12,7 @@ namespace Sudoku.Painting
 	/// to an element in sudoku grid.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly struct DrawingPointConverter
+	public readonly partial struct DrawingPointConverter
 	{
 		/// <summary>
 		/// Indicates the width of the gap between the picture box outline

@@ -13,7 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Indicates a collection that contains the several digits.
 	/// </summary>
 	[DisallowParameterlessConstructor]
-	public readonly ref struct DigitCollection
+	public readonly ref partial struct DigitCollection
 	{
 		/// <summary>
 		/// Indicates the inner mask.

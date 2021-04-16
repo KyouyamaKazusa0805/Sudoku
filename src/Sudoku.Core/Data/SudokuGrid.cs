@@ -169,7 +169,7 @@ namespace Sudoku.Data
 		static SudokuGrid()
 		{
 			// Initializes the empty grid.
-			Empty = new();
+			Empty = default;
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
 				int i = 0;

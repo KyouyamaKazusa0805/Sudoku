@@ -13,7 +13,7 @@ namespace Sudoku.Data
 	/// two position can fill this candidate.
 	/// </remarks>
 	[DisallowParameterlessConstructor]
-	public readonly struct ConjugatePair : IValueEquatable<ConjugatePair>
+	public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>
 	{
 		/// <summary>
 		/// Initializes an instance with from and to cell offset

@@ -11,7 +11,7 @@ namespace Sudoku.Painting
 	/// </summary>
 	/// <typeparam name="T">The type of the value.</typeparam>
 	[DisallowParameterlessConstructor]
-	public readonly struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
+	public readonly partial struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>
 		/// Initializes an instance with the color palette index and the value.
