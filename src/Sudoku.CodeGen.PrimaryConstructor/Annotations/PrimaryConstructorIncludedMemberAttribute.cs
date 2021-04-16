@@ -6,7 +6,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor.Annotations
 	/// Indicates the member should be included while generating primary constructors.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-	public sealed class IncludedMemberWhileGeneratingPrimaryConstructorAttribute : Attribute
+	public sealed class PrimaryConstructorIncludedMemberAttribute : Attribute
 	{
 	}
 }

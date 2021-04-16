@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0057
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,7 +59,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 				return from candidateClass in receiver.CandidateClasses
 					   let model = compilation.GetSemanticModel(candidateClass.SyntaxTree)
 					   select model.GetDeclaredSymbol(candidateClass)! into classSymbol
-					   where HasMarked(classSymbol, nameof(AutoGeneratePrimaryConstructorAttribute))
+					   where HasMarked<AutoGeneratePrimaryConstructorAttribute>(classSymbol)
 					   select (INamedTypeSymbol)classSymbol;
 			}
 
@@ -68,7 +69,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 
 				var baseClassCtorArgs =
 					classSymbol.BaseType is { } baseType
-					&& HasMarked(baseType, nameof(AutoGeneratePrimaryConstructorAttribute))
+					&& HasMarked<AutoGeneratePrimaryConstructorAttribute>(baseType)
 					? GetMembers(baseType, handleRecursively: true)
 					: null;
 				string? baseCtorInheritance = baseClassCtorArgs is { Count: not 0 }
@@ -81,7 +82,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 					select $"{x.Type} {x.ParameterName}";
 				string fullTypeName = classSymbol.ToDisplayString(TypeFormat);
 				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i < 0 ? string.Empty : fullTypeName.Substring(i);
+				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 
 #pragma warning disable IDE0055
 				// Code generating.
@@ -166,7 +167,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 		private static partial string PrintIndenting(int indentingCount = 0);
 		private static partial string PrintCompilerGenerated(int indentingCount = 0);
 
-		private static partial bool HasMarked(ISymbol symbol, string name);
+		private static partial bool HasMarked<TAttribute>(ISymbol symbol) where TAttribute : Attribute;
 		private static partial IReadOnlyList<SymbolInfo> GetMembers(INamedTypeSymbol classSymbol, bool handleRecursively);
 	}
 }

@@ -43,11 +43,11 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 		/// <summary>
 		/// To determine whether the symbol has marked the specified attribute.
 		/// </summary>
+		/// <typeparam name="TAttribute">The type of that attribute.</typeparam>
 		/// <param name="symbol">The symbol.</param>
-		/// <param name="name">The attribute name marked.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static partial bool HasMarked(ISymbol symbol, string name) =>
-			symbol.GetAttributes().Any(x => x.AttributeClass?.Name == name);
+		private static partial bool HasMarked<TAttribute>(ISymbol symbol) where TAttribute : Attribute =>
+			symbol.GetAttributes().Any(static x => x.AttributeClass?.Name == typeof(TAttribute).Name);
 
 		/// <summary>
 		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
@@ -66,9 +66,9 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 						&& (
 							x.IsReadOnly
 							&& !hasInitializer(x)
-							|| HasMarked(x, nameof(IncludedMemberWhileGeneratingPrimaryConstructorAttribute))
+							|| HasMarked<PrimaryConstructorIncludedMemberAttribute>(x)
 						)
-						&& !HasMarked(x, nameof(IgnoredMemberWhileGeneratingPrimaryConstructorAttribute))
+						&& !HasMarked<PrimaryConstructorIgnoredMemberAttribute>(x)
 					select new SymbolInfo(
 						x.Type.ToDisplayString(PropertyTypeFormat),
 						toCamelCase(x.Name),
@@ -82,8 +82,8 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 							x.IsReadOnly
 							&&
 							!hasInitializer(x)
-							|| HasMarked(x, nameof(IncludedMemberWhileGeneratingPrimaryConstructorAttribute))
-						) && !HasMarked(x, nameof(IgnoredMemberWhileGeneratingPrimaryConstructorAttribute))
+							|| HasMarked<PrimaryConstructorIncludedMemberAttribute>(x)
+						) && !HasMarked<PrimaryConstructorIgnoredMemberAttribute>(x)
 					select new SymbolInfo(
 						x.Type.ToDisplayString(PropertyTypeFormat),
 						toCamelCase(x.Name),
@@ -95,7 +95,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 
 			if (handleRecursively
 				&& classSymbol.BaseType is { } baseType
-				&& HasMarked(baseType, nameof(AutoGeneratePrimaryConstructorAttribute)))
+				&& HasMarked<AutoGeneratePrimaryConstructorAttribute>(baseType))
 			{
 				result.AddRange(GetMembers(baseType, true));
 			}
