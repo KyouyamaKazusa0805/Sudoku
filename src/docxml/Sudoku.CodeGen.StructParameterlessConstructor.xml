@@ -24,6 +24,43 @@
             This property holds the value that tells users which member they should use and replace with.
             </remarks>
         </member>
+        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.ISymbolEx.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the specified symbol (should be property or field members)
+            has an initializer.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <summary>
+            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <param name="this">The current syntax reference instance.</param>
+            <param name="textSpan">The text span.</param>
+            <param name="syntaxNode">The syntax node.</param>
+        </member>
         <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator">
             <summary>
             Defines a generator that controls generating parameterless constructor
@@ -36,10 +73,38 @@
             (e.g. <see langword="default"/>(<see langword="int"/>)).
             </remarks>
         </member>
+        <member name="F:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.UsingTabsAsIndentingCharacters">
+            <summary>
+            Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.PropertyTypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.SyntaxReceiver.CandidateStructs">
+            <summary>
+            Indicates all possible candidate <see langword="class"/>es used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
