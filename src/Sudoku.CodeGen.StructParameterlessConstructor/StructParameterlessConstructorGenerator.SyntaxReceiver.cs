@@ -14,16 +14,15 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor
 			/// <summary>
 			/// Indicates all possible candidate <see langword="class"/>es used.
 			/// </summary>
-			public IList<ClassDeclarationSyntax> CandidateStructs { get; } = new List<ClassDeclarationSyntax>();
+			public IList<StructDeclarationSyntax> CandidateStructs { get; } = new List<StructDeclarationSyntax>();
 
 
 			/// <inheritdoc/>
 			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 			{
-				// Any field with at least one attribute is a candidate for property generation.
-				if (syntaxNode is ClassDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
+				if (syntaxNode is StructDeclarationSyntax { AttributeLists: { Count: not 0 } } structDeclaration)
 				{
-					CandidateStructs.Add(classDeclaration);
+					CandidateStructs.Add(structDeclaration);
 				}
 			}
 		}
