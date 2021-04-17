@@ -13,6 +13,9 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 	/// Indicates a generator that generates primary constructors for <see langword="class"/>es
 	/// when they're marked <see cref="AutoGeneratePrimaryConstructorAttribute"/>.
 	/// </summary>
+	/// <remarks>
+	/// This generator can <b>only</b> support non-nested <see langword="class"/>es.
+	/// </remarks>
 	/// <seealso cref="AutoGeneratePrimaryConstructorAttribute"/>
 	[Generator]
 	public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
