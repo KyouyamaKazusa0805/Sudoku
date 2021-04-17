@@ -730,6 +730,9 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="pinnedItem">The item you want to fix. If </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when the <paramref name="pinnedItem"/> isn't defined in the type.
+		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem)
 		{

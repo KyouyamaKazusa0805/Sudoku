@@ -3855,6 +3855,9 @@
             </summary>
             <param name="pinnedItem">The item you want to fix. If </param>
             <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the <paramref name="pinnedItem"/> isn't defined in the type.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
             <summary>
