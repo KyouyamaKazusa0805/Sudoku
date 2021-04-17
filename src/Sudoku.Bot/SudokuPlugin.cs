@@ -123,6 +123,7 @@ namespace Sudoku.Bot
 		{
 			// Check the validity.
 			var complexMessage = e.Message.Content;
+			/*complex-pattern*/
 			if (complexMessage is not { Count: not 0 } || complexMessage[0] is not PlainText pl)
 			{
 				return;
