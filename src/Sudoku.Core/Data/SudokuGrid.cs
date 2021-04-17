@@ -36,19 +36,12 @@ namespace Sudoku.Data
 		public const short MaxCandidatesMask = 0b111_111_111;
 
 		/// <summary>
-		/// Indicates the empty mask.
+		/// Indicates the empty mask, modifiable mask and given mask.
 		/// </summary>
-		public const short EmptyMask = (int)CellStatus.Empty << 9;
-
-		/// <summary>
-		/// Indicates the modifiable mask.
-		/// </summary>
-		public const short ModifiableMask = (int)CellStatus.Modifiable << 9;
-
-		/// <summary>
-		/// Indicates the given mask.
-		/// </summary>
-		public const short GivenMask = (int)CellStatus.Given << 9;
+		public const short
+			EmptyMask = (int)CellStatus.Empty << 9,
+			ModifiableMask = (int)CellStatus.Modifiable << 9,
+			GivenMask = (int)CellStatus.Given << 9;
 
 		/// <summary>
 		/// Indicates the size of each grid.

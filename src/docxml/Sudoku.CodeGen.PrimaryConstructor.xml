@@ -101,6 +101,9 @@
             Indicates a generator that generates primary constructors for <see langword="class"/>es
             when they're marked <see cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>.
             </summary>
+            <remarks>
+            This generator can <b>only</b> support non-nested <see langword="class"/>es.
+            </remarks>
             <seealso cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>
         </member>
         <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Separator">

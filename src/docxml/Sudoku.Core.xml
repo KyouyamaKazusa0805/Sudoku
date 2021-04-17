@@ -3445,17 +3445,17 @@
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.EmptyMask">
             <summary>
-            Indicates the empty mask.
+            Indicates the empty mask, modifiable mask and given mask.
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.ModifiableMask">
             <summary>
-            Indicates the modifiable mask.
+            Indicates the empty mask, modifiable mask and given mask.
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.GivenMask">
             <summary>
-            Indicates the given mask.
+            Indicates the empty mask, modifiable mask and given mask.
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Length">
