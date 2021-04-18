@@ -162,15 +162,13 @@ namespace Sudoku.Solving.Manual
 				else
 				{
 					// If the searcher is only used in the fast mode, just skip it.
-
-					var step =
-					(
-						OptimizedApplyingOrder
-						? from info in bag orderby info.Difficulty select info
-						: bag.AsEnumerable()
-					).FirstOrDefault();
-
-					if (step is null)
+					if (
+						(
+							OptimizedApplyingOrder
+							? from info in bag orderby info.Difficulty select info
+							: bag.AsEnumerable()
+						).FirstOrDefault() is not { } step
+					)
 					{
 						// If current step can't find any steps,
 						// we will turn to the next step finder to

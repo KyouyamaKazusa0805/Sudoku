@@ -87,7 +87,8 @@ namespace Sudoku.Windows.CustomControls
 			g.TextRenderingHint = AntiAlias;
 			g.DrawString(
 				SampleText, SelectedFont, _brush, bitmap.Width >> 1, bitmap.Height >> 1,
-				new() { Alignment = Center, LineAlignment = Center });
+				new() { Alignment = Center, LineAlignment = Center }
+			);
 
 			_imagePreview.Source = bitmap.ToImageSource();
 		}
@@ -159,7 +160,8 @@ namespace Sudoku.Windows.CustomControls
 		/// <inheritdoc cref="Events.PreviewKeyDown(object?, EventArgs)"/>
 		private void TextBoxSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
-			if (sender is not TextBox textBox || !e.Key.IsDigit(false) || Keyboard.Modifiers != ModifierKeys.None)
+			if (sender is not TextBox textBox || !e.Key.IsDigit(false)
+				|| Keyboard.Modifiers != ModifierKeys.None)
 			{
 				e.Handled = true;
 				return;

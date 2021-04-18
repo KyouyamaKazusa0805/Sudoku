@@ -5,6 +5,7 @@ using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Resources;
+using static System.Math;
 
 namespace Sudoku.Solving.BruteForces
 {
@@ -46,28 +47,48 @@ namespace Sudoku.Solving.BruteForces
 		/// <returns>The result strings (i.e. All solutions).</returns>
 		private static IReadOnlyList<string> SolveStrings(string puzzle)
 		{
-			const string values = "123456789";
+			const string digits = "123456789";
 			var result = new List<string> { puzzle };
 
+			/*length-pattern*/
 			while (result.Count > 0 && result[0].IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
 			{
+#pragma warning disable IDE0055
 				result = (
+					// Iterate on each possible intermediate grid.
 					from solution in result
-					let index = solution.IndexOf('0', StringComparison.OrdinalIgnoreCase)
-					let column = index % 9
-					let block = index - index % 27 + column - index % 3
-					from value in values
-					where !query(solution, index, column, block, value).Any()
-					select $"{solution[..index]}{value.ToString()}{solution[(index + 1)..]}"
-				).ToList();
 
-				IEnumerable<int> query(string solution, int index, int column, int block, char value) =>
-					from i in Enumerable.Range(0, 9)
-					let inRow = solution[index - column + i] == value
-					let inColumn = solution[column + i * 9] == value
-					let inBlock = solution[block + i % 3 + (int)Math.Floor(i / 3F) * 9] == value
-					where inRow || inColumn || inBlock
-					select i;
+					// Find empty cells.
+					let index = solution.IndexOf('0', StringComparison.OrdinalIgnoreCase)
+
+					// Get the current column, and current block.
+					// Here we don't use the row value.
+					let pair = (Column: index % 9, Block: index - index % 27 + index % 9 - index % 3)
+
+					// Iterate on each possible digit.
+					from digit in digits
+
+					// Find any duplicate cases (in the current row, column or block).
+					// Here we should make a nested query to find all duplicates.
+					let duplicateCases =
+
+						// Iterate on each region number.
+						from i in Enumerable.Range(0, 9)
+
+						// Check whether the current region contains any duplicate digits.
+						// If so, store this digit into the list.
+						let duplicatesInRow = solution[index - pair.Column + i] == digit
+						let duplicatesInColumn = solution[pair.Column + i * 9] == digit
+						let duplicatesInBlock = solution[pair.Block + i % 3 + (int)Floor(i / 3F) * 9] == digit
+						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
+						select i
+
+					// Then check whether the duplicat list contains any elements.
+					// If so, the grid is invalid.
+					where !duplicateCases.Any()
+					select $"{solution[..index]}{digit.ToString()}{solution[(index + 1)..]}"
+				).ToList();
+#pragma warning restore IDE0055
 			}
 
 			return result;

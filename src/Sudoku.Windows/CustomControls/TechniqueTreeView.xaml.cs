@@ -43,10 +43,12 @@ namespace Sudoku.Windows.CustomControls
 					technique,
 					(int)technique,
 					TextResources.Current[technique.ToString()],
-					Category: nullableCategory);
+					Category: nullableCategory
+				);
 
-			var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());
-
+			var categories = new List<string>(
+				(from quadruple in selection select quadruple.Category).Distinct()
+			);
 
 		Start:
 			// Iterate on each category, and add the missing nodes.
@@ -119,13 +121,13 @@ namespace Sudoku.Windows.CustomControls
 
 			// The last step: get all techniques.
 			var allNodes = new List<TreeNode<string>>(list);
-			foreach (var node in list)
+			foreach (var (nodeId, _, _, content, _) in list)
 			{
 				foreach (var (_, techId, name, category) in selection)
 				{
-					if (node.Content == category)
+					if (content == category)
 					{
-						allNodes.Add(new() { Content = name, Id = techId + 1000, ParentId = node.Id });
+						allNodes.Add(new() { Content = name, Id = techId + 1000, ParentId = nodeId });
 					}
 				}
 			}

@@ -34,6 +34,23 @@ namespace System.Collections.Generic
 		public ICollection<TreeNode<T>> Children { get; set; } = new List<TreeNode<T>>();
 
 
+		/// <inheritdoc cref="DeconstructMethod"/>
+		/// <param name="id">The ID.</param>
+		/// <param name="parentId">The parent ID.</param>
+		/// <param name="isLeaf">Indicates whether the node is leaf.</param>
+		/// <param name="content">The content.</param>
+		/// <param name="children">All children.</param>
+		public void Deconstruct(
+			out int id, out int parentId, out bool isLeaf, out T? content, out ICollection<TreeNode<T>> children)
+		{
+			id = Id;
+			parentId = ParentId;
+			isLeaf = IsLeaf;
+			content = Content;
+			children = Children;
+		}
+
+
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => CompareTo(obj as TreeNode<T>) == 0;
 

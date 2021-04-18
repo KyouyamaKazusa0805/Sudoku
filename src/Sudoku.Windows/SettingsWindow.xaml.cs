@@ -214,11 +214,15 @@ namespace Sudoku.Windows
 			setters.Add(
 				new EventSetter(
 					PreviewMouseLeftButtonDownEvent,
-					new MouseButtonEventHandler(PriorityControl_PreviewMouseLeftButtonDown)));
+					new MouseButtonEventHandler(PriorityControl_PreviewMouseLeftButtonDown)
+				)
+			);
 			setters.Add(
 				new EventSetter(
 					DropEvent,
-					new DragEventHandler(PriorityControl_Drop)));
+					new DragEventHandler(PriorityControl_Drop)
+				)
+			);
 			_listBoxPriority.ItemContainerStyle = itemContainerStyle;
 
 			// Set the controls.

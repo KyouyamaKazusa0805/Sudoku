@@ -49,16 +49,16 @@ namespace Sudoku.Windows.CustomControls
 
 				box.CheckingChanged += (sender, _) =>
 				{
-					if (sender is CheckBox { Content: KeyedTuple<string, Technique> pair } box)
+					if (sender is CheckBox { Content: KeyedTuple<string, Technique>(_, var item, _) } box)
 					{
-						Func<Technique, TechniqueCodeFilter?> f = box.IsChecked switch
+						Func<Technique, TechniqueCodeFilter?>? f = box.IsChecked switch
 						{
 							true => ChosenTechniques.Add,
 							false => ChosenTechniques.Remove,
-							_ => static _ => default
+							_ => null
 						};
 
-						f(pair.Item2);
+						f?.Invoke(item);
 					}
 				};
 
