@@ -119,29 +119,16 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="ConclusionType"/>
-		public decimal DiamondDifficulty
+		public decimal DiamondDifficulty => this switch
 		{
-			get
+			{ Steps: null } or { IsSolved: false } => 20.0M,
+			_ => Steps.FindIndexOf(static info => info.HasTag(TechniqueTags.Singles)) switch
 			{
-				if (Steps is null)
-				{
-					return 20.0M;
-				}
-
-				if (IsSolved)
-				{
-					int index = Steps.FindIndexOf(static info => info.HasTag(TechniqueTags.Singles));
-					return index switch
-					{
-						-1 => 20.0M,
-						0 => Steps[0].Difficulty,
-						_ => Steps.Slice(0, index).Max(static step => step.Difficulty)
-					};
-				}
-
-				return 20.0M;
+				-1 => 20.0M,
+				0 => Steps[0].Difficulty,
+				var index => Steps.Slice(0, index).Max(static step => step.Difficulty)
 			}
-		}
+		};
 
 		/// <summary>
 		/// Indicates the number of all solving steps recorded.
