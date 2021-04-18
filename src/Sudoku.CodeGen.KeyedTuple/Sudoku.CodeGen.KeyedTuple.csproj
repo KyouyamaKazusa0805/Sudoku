@@ -6,6 +6,9 @@
 		<Nullable>enable</Nullable>
 		<Version>0.3</Version>
 		<DocumentationFile>..\docxml\Sudoku.CodeGen.KeyedTuple.xml</DocumentationFile>
+		<Authors>Sunnie</Authors>
+		<Description>A source generator project that generates keyed tuple 'KeyedTuple&lt;&gt;' to store multiple values and only shows one.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>

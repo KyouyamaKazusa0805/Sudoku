@@ -6,6 +6,9 @@
 		<Nullable>enable</Nullable>
 		<Version>0.1</Version>
 		<DocumentationFile>..\docxml\Sudoku.CodeGen.PrimaryConstructor.xml</DocumentationFile>
+		<Authors>Sunnie</Authors>
+		<Description>A source generator project that generates the code about the primary constructors of a class.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
