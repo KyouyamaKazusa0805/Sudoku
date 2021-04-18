@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.Deconstruction</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute">
+            <summary>
+            To mark on a <see langword="class"/>, <see langword="struct"/> or a <see langword="interface"/>,
+            to describe this type is deconstructable.
+            </summary>
+            <remarks>
+            Please note that all <see langword="record"/>s have already contained a deconstruction method
+            that deconstruct all members declared in the primary constructor.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an instance with the specified members.
+            </summary>
+            <param name="members">The members to deconstruct.</param>
+        </member>
+        <member name="P:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute.FieldsOrProperties">
+            <summary>
+            Indicates the field or property names of this type to deconstruct.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -67,7 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.PrimaryConst
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.KeyedTuple", "src\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj", "{EBEECF89-3AD1-4968-85C7-9388B89A6B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CodeGen.StructParameterlessConstructor", "src\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj", "{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.StructParameterlessConstructor", "src\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj", "{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.Deconstruction", "src\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj", "{28163CEF-4D4E-4476-9B9A-169DF619EAFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -517,6 +519,26 @@ Global
 		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x64.Build.0 = Release|Any CPU
 		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x86.ActiveCfg = Release|Any CPU
 		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0}.Release|x86.Build.0 = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|x64.Build.0 = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Debug|x86.Build.0 = Debug|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|ARM.Build.0 = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|ARM64.Build.0 = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|x64.ActiveCfg = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|x64.Build.0 = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|x86.ActiveCfg = Release|Any CPU
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -536,6 +558,7 @@ Global
 		{BCAC5838-6213-4736-945F-286B9C11D86E} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 		{EBEECF89-3AD1-4968-85C7-9388B89A6B8B} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 		{5666D3B4-3043-4AF1-8A9F-481B9738E0B0} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
+		{28163CEF-4D4E-4476-9B9A-169DF619EAFC} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
