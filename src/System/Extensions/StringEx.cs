@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace System.Extensions
 {
@@ -55,6 +56,18 @@ namespace System.Extensions
 		public static bool IsMatch(this string @this, string pattern) => pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+
+		/// <summary>
+		/// Concatenate two strings to one. The string <paramref name="strToInsert"/>
+		/// should be inserted into the base string from the index <paramref name="index"/>.
+		/// </summary>
+		/// <param name="this">The current string.</param>
+		/// <param name="index">The index.</param>
+		/// <param name="strToInsert">The string to insert.</param>
+		/// <returns>The result string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static string SliceConcat(this string @this, int index, string strToInsert) =>
+			$"{@this[..index]}{strToInsert}{@this[(index + 1)..]}";
 
 		/// <summary>
 		/// Slices the current <see cref="string"/> instance, via the specified character.

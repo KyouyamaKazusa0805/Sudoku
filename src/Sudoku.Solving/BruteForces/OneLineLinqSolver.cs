@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Extensions;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Resources;
@@ -31,11 +31,15 @@ namespace Sudoku.Solving.BruteForces
 			var results = SolveStrings(grid.ToString("0"));
 			stopwatch.Stop();
 
-			return results.Count switch
+			return results switch
 			{
-				0 => throw new NoSolutionException(grid),
-				1 => new(SolverName, grid, true, stopwatch.Elapsed) { Solution = SudokuGrid.Parse(results[0]) },
-				_ => throw new MultipleSolutionsException(grid)
+				{ Count: 0 } => throw new NoSolutionException(grid),
+				/*length-pattern*/
+				{ Count: 1 } => new(SolverName, grid, true, stopwatch.Elapsed)
+				{
+					Solution = SudokuGrid.Parse(results[0])
+				},
+				{ Count: not (0 or 1) } => throw new MultipleSolutionsException(grid)
 			};
 		}
 
@@ -86,7 +90,7 @@ namespace Sudoku.Solving.BruteForces
 					// Then check whether the duplicat list contains any elements.
 					// If so, the grid is invalid.
 					where !duplicateCases.Any()
-					select $"{solution[..index]}{digit.ToString()}{solution[(index + 1)..]}"
+					select solution.SliceConcat(index, digit.ToString())
 				).ToList();
 #pragma warning restore IDE0055
 			}
