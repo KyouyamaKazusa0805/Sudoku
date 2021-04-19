@@ -188,9 +188,11 @@ namespace System.Text
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(ValueStringBuilder left, ValueStringBuilder right) => left.Equals(right);
+		public static bool operator ==(in ValueStringBuilder left, in ValueStringBuilder right) =>
+			left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(ValueStringBuilder left, ValueStringBuilder right) => !(left == right);
+		public static bool operator !=(in ValueStringBuilder left, in ValueStringBuilder right) =>
+			!(left == right);
 	}
 }
