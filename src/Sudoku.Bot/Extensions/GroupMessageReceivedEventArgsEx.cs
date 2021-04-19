@@ -20,7 +20,8 @@ namespace Sudoku.Bot.Extensions
 		/// <param name="this">The event arguments.</param>
 		/// <param name="message">The message to send.</param>
 		/// <returns>The task.</returns>
-		public static async Task NormalSendAsync(this GroupMessageReceivedEventArgs @this, MessageElement message) =>
+		public static async Task NormalSendAsync(
+			this GroupMessageReceivedEventArgs @this, MessageElement message) =>
 			await @this.Source.SendAsync(message);
 
 		/// <summary>

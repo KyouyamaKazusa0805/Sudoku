@@ -348,7 +348,8 @@ namespace Sudoku.Bot
 						// Base condition: if the file has already been finished, skip it.
 						basicCondition(finishedPath, exists, str)
 						// Custom condition: specified in the file.
-						&& customCondition(groupNumber, grid, out analysisResult, fastSearch))
+						&& customCondition(groupNumber, grid, out analysisResult, fastSearch)
+					)
 					{
 						break;
 					}
@@ -398,6 +399,7 @@ namespace Sudoku.Bot
 				exists && File.ReadLines(finishedPath).All(
 					l =>
 					{
+						/*length-pattern*/
 						string[] z = l.Split('\t', StringSplitOptions.RemoveEmptyEntries);
 						return z.Length >= 1 && z[0] is var s && s != str;
 					}
@@ -470,10 +472,11 @@ namespace Sudoku.Bot
 					return false;
 				}
 
-				bool? containFcs =
-					currentLineSplits[10] == X.SettingsTextWith
+				bool? containFcs = currentLineSplits[10] == X.SettingsTextWith
 					? true
-					: currentLineSplits[10] == X.SettingsTextWithout ? false : null;
+					: currentLineSplits[10] == X.SettingsTextWithout
+					? false
+					: null;
 
 				bool realContainFcs = analysisResult.Steps!.Any(isFc);
 				switch (containFcs)
@@ -492,11 +495,10 @@ namespace Sudoku.Bot
 			}
 
 			static bool isFc(StepInfo step) => step.HasTag(TechniqueTags.ForcingChains);
-			static bool isChaining(StepInfo step) =>
-				step.HasTag(
-					TechniqueTags.Als | TechniqueTags.Wings | TechniqueTags.ShortChaining
-					| TechniqueTags.LongChaining | TechniqueTags.ForcingChains
-				);
+			static bool isChaining(StepInfo step) => step.HasTag(
+				TechniqueTags.Als | TechniqueTags.Wings | TechniqueTags.ShortChaining
+				| TechniqueTags.LongChaining | TechniqueTags.ForcingChains
+			);
 		}
 	}
 }
