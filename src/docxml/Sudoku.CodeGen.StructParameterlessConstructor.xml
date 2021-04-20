@@ -10,20 +10,6 @@
             and can't be called or used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute"/> instance
-            with the default instantiation behavior.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute.RecommendMemberName">
-            <summary>
-            Indicates the recommend member name.
-            </summary>
-            <remarks>
-            This property holds the value that tells users which member they should use and replace with.
-            </remarks>
-        </member>
         <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.ISymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.

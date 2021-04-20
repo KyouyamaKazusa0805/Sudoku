@@ -1,5 +1,4 @@
 ﻿using System;
-using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 
 namespace Sudoku.CodeGen.StructParameterlessConstructor.Annotations
 {
@@ -8,24 +7,7 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor.Annotations
 	/// and can't be called or used.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Struct)]
-	[AutoGeneratePrimaryConstructor]
-	public sealed partial class DisallowParameterlessConstructorAttribute : Attribute
+	public sealed class DisallowParameterlessConstructorAttribute : Attribute
 	{
-		/// <summary>
-		/// Initializes a <see cref="DisallowParameterlessConstructorAttribute"/> instance
-		/// with the default instantiation behavior.
-		/// </summary>
-		public DisallowParameterlessConstructorAttribute()
-		{
-		}
-
-
-		/// <summary>
-		/// Indicates the recommend member name.
-		/// </summary>
-		/// <remarks>
-		/// This property holds the value that tells users which member they should use and replace with.
-		/// </remarks>
-		public string? RecommendMemberName { get; }
 	}
 }

@@ -22,7 +22,7 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
-	[DisallowParameterlessConstructor(nameof(Empty))]
+	[DisallowParameterlessConstructor]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
