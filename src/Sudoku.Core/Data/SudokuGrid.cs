@@ -119,21 +119,19 @@ namespace Sudoku.Data
 		/// <param name="creatingOption">The grid creating option.</param>
 		public SudokuGrid(int[] gridValues, CreatingOption creatingOption)
 		{
-			var result = Empty;
+			this = Empty;
 			for (int i = 0; i < Length; i++)
 			{
 				if (gridValues[i] is var value and not 0)
 				{
 					// Calls the indexer to trigger the event
 					// (Clear the candidates in peer cells).
-					result[i] = creatingOption == CreatingOption.MinusOne ? value - 1 : value;
+					this[i] = creatingOption == CreatingOption.MinusOne ? value - 1 : value;
 
 					// Set the status to 'CellStatus.Given'.
-					result.SetStatus(i, CellStatus.Given);
+					SetStatus(i, CellStatus.Given);
 				}
 			}
-
-			this = result;
 		}
 
 		/// <summary>
@@ -356,7 +354,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid @this, int cell, int digit) => @this.Exists(cell, digit) is true;
+				static bool p(in SudokuGrid g, int cell, int digit) => g.Exists(cell, digit) is true;
 			}
 		}
 
@@ -381,8 +379,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid @this, int cell, int digit) =>
-					(@this.GetCandidates(cell) >> digit & 1) != 0;
+				static bool p(in SudokuGrid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 			}
 		}
 
@@ -407,7 +404,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid @this, int cell, int digit) => @this[cell] == digit;
+				static bool p(in SudokuGrid g, int cell, int digit) => g[cell] == digit;
 			}
 		}
 
@@ -719,9 +716,9 @@ namespace Sudoku.Data
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public readonly ref readonly short GetPinnableReference()
 		{
-			fixed (SudokuGrid* @this = &this)
+			fixed (SudokuGrid* pThis = &this)
 			{
-				return ref @this->_values[0];
+				return ref pThis->_values[0];
 			}
 		}
 
@@ -744,9 +741,9 @@ namespace Sudoku.Data
 				}
 				case PinnedItem.InitialGrid:
 				{
-					fixed (SudokuGrid* @this = &this)
+					fixed (SudokuGrid* pThis = &this)
 					{
-						return ref @this->_initialValues[0];
+						return ref pThis->_initialValues[0];
 					}
 				}
 				default:
