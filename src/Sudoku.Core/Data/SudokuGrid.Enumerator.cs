@@ -84,10 +84,12 @@ namespace Sudoku.Data
 				}
 
 			MovePointer:
-				do _currentIndex++;
-				while (MaskGetStatus(_start[_currentIndex + 1]) != CellStatus.Empty && _currentIndex != 82);
+				do _currentIndex++; while (
+					MaskGetStatus(_start[_currentIndex + 1]) != CellStatus.Empty
+					&& _currentIndex != Length + 1
+				);
 
-				if (_currentIndex == 82)
+				if (_currentIndex == Length + 1)
 				{
 					return false;
 				}
