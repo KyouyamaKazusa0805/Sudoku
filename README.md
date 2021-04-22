@@ -1,22 +1,52 @@
+# Sunnie's Sudoku Solution (向向的数独解决方案)
+
+## Bulletin for Specials (特殊公告)
+
 > Recently I can't connect to GitHub. Updates may be slower than normal cases.
 >
 > 最近我连不上 GitHub，可能更新就比平常慢一些了。
 
-# Sunnie's Sudoku Solution (向向的数独解决方案)
+## Content (正文)
 
-## Introduction (简介)
+### Introduction (简介)
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
-> In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
->
-> 以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
+For example, you can use the code like this to solve a puzzle:
 
+```csharp
+using System;
+using Sudoku.Data;
+using Sudoku.Solving.Manual;
 
+// Parse a puzzle from the string text.
+var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
-## Basic Information (基本信息)
+// Declare a manual solver that uses techniques used by humans to solve a puzzle.
+var solver = new ManualSolver();
+
+// To solve a puzzle synchonously.
+var analysisResult = solver.Solve(grid);
+// If you want to solve the puzzle asynchonously, just change the code to:
+//var analysisResult = await solver.SolveAsync(grid, null);
+
+// Output the analysis result.
+Console.WriteLine(analysisResult.ToString());
+```
+
+比如说，你可以使用如上的代码来解一道题。
+
+In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
+
+以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
+
+If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into the section "Bulletin for Specials".
+
+如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到上方的特殊公告栏里。
+
+### Basic Information (基本信息)
 
 | Solution sites<br />项目地址 |                                                             | P.S.<br />备注                                               |
 | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -53,9 +83,7 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 >
 > 另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
 
-
-
-## Author (作者)
+### Author (作者)
 
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University.
 
