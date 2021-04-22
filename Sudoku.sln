@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Test", "src\Sudoku.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Gdi+", "Sudoku.Gdi+", "{6CCEF747-E0AB-4A13-8079-3656C66215EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.XmlDocs", "Sudoku.XmlDocs", "{83E3F4CF-F257-4BAB-A39F-054F562F8A9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Documentation", "Sudoku.Documentation", "{83E3F4CF-F257-4BAB-A39F-054F562F8A9A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.XmlDocs", "src\Sudoku.XmlDocs\Sudoku.XmlDocs.csproj", "{76C28BF4-85C6-47E7-B38D-FF1C88522B3C}"
 EndProject
