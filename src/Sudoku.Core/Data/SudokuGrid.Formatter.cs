@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data.Extensions;
 using static System.Numerics.BitOperations;
@@ -384,7 +385,7 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">The grid.</param>
 			/// <returns>The result.</returns>
-			private string ToMultiLineStringCore(in SudokuGrid grid)
+			private unsafe string ToMultiLineStringCore(in SudokuGrid grid)
 			{
 				// Step 1: gets the candidates information grouped by columns.
 				Dictionary<int, IList<short>> valuesByColumn = new()
@@ -420,12 +421,13 @@ namespace Sudoku.Data
 
 				// Step 2: gets the maximal number of candidates in a cell,
 				// which is used for aligning by columns.
-				var maxLengths = (stackalloc int[9]);
-				maxLengths.Fill(0);
+				const int bufferLength = 9;
+				int* maxLengths = stackalloc int[bufferLength];
+				Unsafe.InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
 
 				foreach (var (i, _) in valuesByColumn)
 				{
-					ref int maxLength = ref maxLengths[i];
+					int* maxLength = maxLengths + i;
 
 					// Iteration on row index.
 					for (int j = 0; j < 9; j++)
@@ -448,10 +450,10 @@ namespace Sudoku.Data
 								CellStatus.Modifiable => Math.Max(candidatesCount, 3),
 								// Normal output: 'series' (at least 1 character).
 								_ => candidatesCount,
-							}) is var comparer && comparer > maxLength
+							}) is var comparer && comparer > *maxLength
 						)
 						{
-							maxLength = comparer;
+							*maxLength = comparer;
 						}
 					}
 				}
@@ -496,7 +498,7 @@ namespace Sudoku.Data
 
 							void p(
 								in Formatter formatter, IList<short> valuesByRow, char c1, char c2,
-								in Span<int> maxLengths)
+								int* maxLengths)
 							{
 								sb.Append(c1);
 								printValues(formatter, valuesByRow, 0, 2, maxLengths);
@@ -508,7 +510,7 @@ namespace Sudoku.Data
 
 								void printValues(
 									in Formatter formatter, IList<short> valuesByRow,
-									int start, int end, in Span<int> maxLengths)
+									int start, int end, int* maxLengths)
 								{
 									sb.Append(' ');
 									for (int i = start; i <= end; i++)
@@ -560,13 +562,13 @@ namespace Sudoku.Data
 				// The last step: returns the value.
 				return sb.ToString();
 
-				void printTabLines(char c1, char c2, char fillingChar, in Span<int> maxLengths) => sb
+				void printTabLines(char c1, char c2, char fillingChar, int* m) => sb
 					.Append(c1)
-					.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
+					.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar))
 					.Append(c2)
-					.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
+					.Append(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar))
 					.Append(c2)
-					.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
+					.Append(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar))
 					.AppendLine(c1);
 			}
 
