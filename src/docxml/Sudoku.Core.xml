@@ -1950,6 +1950,19 @@
             <param name="separators">All separators.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Data.Extensions.Int16Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int16"/>.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.Int16Ex.MaskToStatus(System.Int16)">
+            <summary>
+            To get the cell status through a mask.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns>The cell status.</returns>
+        </member>
         <member name="T:Sudoku.Data.Extensions.LinkTypeEx">
             <summary>
             Provides extension methods for <see cref="T:Sudoku.Data.LinkType"/>.
@@ -3592,13 +3605,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.MaskGetStatus(System.Int16)">
-            <summary>
-            To get the cell status through a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
             <summary>

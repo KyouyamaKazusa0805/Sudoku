@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
+using Sudoku.Data.Extensions;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
@@ -60,8 +61,8 @@ namespace Sudoku.Data
 			/// </param>
 			private Formatter(
 				char placeholder, bool multiline, bool withModifiables, bool withCandidates,
-				bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku, bool excel,
-				bool openSudoku)
+				bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku,
+				bool excel, bool openSudoku)
 			{
 				Placeholder = placeholder;
 				Multiline = multiline;
@@ -150,20 +151,19 @@ namespace Sudoku.Data
 			/// </summary>
 			/// <param name="grid">The grid.</param>
 			/// <returns>The string.</returns>
-			public string ToString(in SudokuGrid grid) =>
-				Sukaku
-					? ToSukakuString(grid)
-					: Multiline
-						? WithCandidates
-							? ToMultiLineStringCore(grid)
-							: Excel
-								? ToExcelString(grid)
-								: ToMultiLineSimpleGridCore(grid)
-						: HodokuCompatible
-							? ToHodokuLibraryFormatString(grid)
-							: OpenSudoku
-								? ToOpenSudokuString(grid)
-								: ToSingleLineStringCore(grid);
+			public string ToString(in SudokuGrid grid) => Sukaku
+				? ToSukakuString(grid)
+				: Multiline
+					? WithCandidates
+						? ToMultiLineStringCore(grid)
+						: Excel
+							? ToExcelString(grid)
+							: ToMultiLineSimpleGridCore(grid)
+					: HodokuCompatible
+						? ToHodokuLibraryFormatString(grid)
+						: OpenSudoku
+							? ToOpenSudokuString(grid)
+							: ToSingleLineStringCore(grid);
 
 			/// <summary>
 			/// Represents a string value indicating this instance, with the specified format string.
@@ -439,9 +439,8 @@ namespace Sudoku.Data
 						candidatesCount += PopCount((uint)value);
 
 						// Compares the values.
-						int comparer = Math.Max(
-							candidatesCount,
-							MaskGetStatus(value) switch
+						if (
+							Math.Max(candidatesCount, value.MaskToStatus() switch
 							{
 								// The output will be '<digit>' and consist of 3 characters.
 								CellStatus.Given => Math.Max(candidatesCount, 3),
@@ -449,9 +448,8 @@ namespace Sudoku.Data
 								CellStatus.Modifiable => Math.Max(candidatesCount, 3),
 								// Normal output: 'series' (at least 1 character).
 								_ => candidatesCount,
-							}
-						);
-						if (comparer > maxLength)
+							}) is var comparer && comparer > maxLength
+						)
 						{
 							maxLength = comparer;
 						}
@@ -517,15 +515,14 @@ namespace Sudoku.Data
 									{
 										// Get digit.
 										short value = valuesByRow[i];
-										var cellStatus = MaskGetStatus(value);
+										var status = value.MaskToStatus();
 
 										value &= MaxCandidatesMask;
-										int d =
-											value == 0
+										int d = value == 0
 											? -1
-											: (cellStatus != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
+											: (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
 										string s;
-										switch (cellStatus)
+										switch (status)
 										{
 											case CellStatus.Given:
 											case CellStatus.Modifiable when formatter.TreatValueAsGiven:
@@ -563,15 +560,14 @@ namespace Sudoku.Data
 				// The last step: returns the value.
 				return sb.ToString();
 
-				void printTabLines(char c1, char c2, char fillingChar, in Span<int> maxLengths) =>
-					sb
-						.Append(c1)
-						.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
-						.Append(c2)
-						.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
-						.Append(c2)
-						.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
-						.AppendLine(c1);
+				void printTabLines(char c1, char c2, char fillingChar, in Span<int> maxLengths) => sb
+					.Append(c1)
+					.Append(string.Empty.PadRight(maxLengths[0] + maxLengths[1] + maxLengths[2] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(maxLengths[3] + maxLengths[4] + maxLengths[5] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(maxLengths[6] + maxLengths[7] + maxLengths[8] + 6, fillingChar))
+					.AppendLine(c1);
 			}
 
 			/// <summary>

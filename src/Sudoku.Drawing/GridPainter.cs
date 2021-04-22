@@ -7,6 +7,7 @@ using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
 using Sudoku.Models;
@@ -146,7 +147,7 @@ namespace Sudoku.Drawing
 			for (int cell = 0; cell < 81; cell++)
 			{
 				short mask = grid.GetMask(cell);
-				var status = SudokuGrid.MaskGetStatus(mask);
+				var status = mask.MaskToStatus();
 				switch (status)
 				{
 					case CellStatus.Empty when Preferences.ShowCandidates:

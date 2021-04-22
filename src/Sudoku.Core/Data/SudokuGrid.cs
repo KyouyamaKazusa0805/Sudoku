@@ -7,6 +7,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -319,7 +320,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid @this, int cell) => @this.GetStatus(cell) == CellStatus.Empty;
+				static bool p(in SudokuGrid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
 			}
 		}
 
@@ -336,7 +337,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid @this, int cell) => PopCount((uint)@this.GetCandidates(cell)) == 2;
+				static bool p(in SudokuGrid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
 			}
 		}
 
@@ -815,7 +816,7 @@ namespace Sudoku.Data
 		/// <param name="cell">The cell.</param>
 		/// <returns>The cell status.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly CellStatus GetStatus(int cell) => MaskGetStatus(_values[cell]);
+		public readonly CellStatus GetStatus(int cell) => _values[cell].MaskToStatus();
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1094,14 +1095,6 @@ namespace Sudoku.Data
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// To get the cell status through a mask.
-		/// </summary>
-		/// <param name="mask">The mask.</param>
-		/// <returns>The cell status.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static CellStatus MaskGetStatus(short mask) => (CellStatus)(mask >> 9 & (int)CellStatus.All);
 
 		/// <summary>
 		/// The method that is pointed by the function pointer <see cref="ValueChanged"/>.

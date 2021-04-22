@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Sudoku.Data.Extensions;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
@@ -89,7 +90,7 @@ namespace Sudoku.Data
 
 			MovePointer:
 				do _currentIndex++; while (
-					MaskGetStatus(_start[_currentIndex + 1]) != CellStatus.Empty
+					_start[_currentIndex + 1].MaskToStatus() != CellStatus.Empty
 					&& _currentIndex != Length + 1
 				);
 

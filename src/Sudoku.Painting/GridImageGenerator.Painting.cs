@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Extensions;
 using Sudoku.Painting.Extensions;
 
 namespace Sudoku.Painting
@@ -170,7 +171,7 @@ namespace Sudoku.Painting
 			for (int cell = 0; cell < 81; cell++)
 			{
 				short mask = Grid.GetMask(cell);
-				var status = SudokuGrid.MaskGetStatus(mask);
+				var status = mask.MaskToStatus();
 				switch (status)
 				{
 					case CellStatus.Empty when Preferences.ShowCandidates:
