@@ -315,6 +315,12 @@ dotnet_diagnostic.CS3008.severity = error
 # CS3010: CLS-compliant interfaces must have only CLS-compliant members
 dotnet_diagnostic.CS3010.severity = error
 
+# CS3015: Type has no accessible constructors which use only CLS-compliant types
+dotnet_diagnostic.CS3015.severity = error
+
+# CS3016: Arrays as attribute arguments is not CLS-compliant
+dotnet_diagnostic.CS3016.severity = error
+
 # CS3024: Constraint type is not CLS-compliant
 dotnet_diagnostic.CS3024.severity = error
 
