@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#if SUDOKU_GRID_LINQ
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,3 +27,5 @@ namespace Sudoku.Data.GridIterators
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }
+
+#endif

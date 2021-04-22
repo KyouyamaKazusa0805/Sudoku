@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_GRID_LINQ
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using static Sudoku.Data.SudokuGrid;
@@ -33,7 +35,7 @@ namespace Sudoku.Data.GridIterators
 
 			while (enumerator.MoveNext())
 			{
-				var value = enumerator.Current;
+				int value = enumerator.Current;
 				var key = keySelector(value);
 				if (!_innerDictionary.ContainsKey(key))
 				{
@@ -103,7 +105,7 @@ namespace Sudoku.Data.GridIterators
 
 			while (enumerator.MoveNext())
 			{
-				var value = enumerator.Current;
+				int value = enumerator.Current;
 				var key = keySelector(value);
 				if (!_innerDictionary.ContainsKey(key))
 				{
@@ -135,3 +137,5 @@ namespace Sudoku.Data.GridIterators
 		public bool MoveNext() => _enumerator.MoveNext();
 	}
 }
+
+#endif

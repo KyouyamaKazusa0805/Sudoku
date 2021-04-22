@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data.GridIterators
+﻿#if SUDOKU_GRID_LINQ
+
+namespace Sudoku.Data.GridIterators
 {
 	/// <summary>
 	/// Provides a grouped iterator that is used in
@@ -39,3 +41,5 @@
 		public bool MoveNext() => _enumerator.MoveNext();
 	}
 }
+
+#endif

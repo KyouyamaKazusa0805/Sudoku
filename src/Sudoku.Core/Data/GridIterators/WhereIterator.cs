@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_GRID_LINQ
+
+using System;
 using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.GridIterators
@@ -50,3 +52,5 @@ namespace Sudoku.Data.GridIterators
 		}
 	}
 }
+
+#endif

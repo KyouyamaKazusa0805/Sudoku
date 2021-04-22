@@ -9,7 +9,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		public unsafe /*ref*/ struct Enumerator
+#if SUDOKU_GRID_LINQ
+		public unsafe struct Enumerator
+#else
+		public unsafe ref struct Enumerator
+#endif
 		{
 			/// <summary>
 			/// The pointer to the start value.

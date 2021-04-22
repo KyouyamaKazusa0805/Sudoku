@@ -1,4 +1,6 @@
-﻿#pragma warning disable CA1816
+﻿#if SUDOKU_GRID_LINQ
+
+#pragma warning disable CA1816
 
 using System;
 using System.Collections;
@@ -33,3 +35,5 @@ namespace Sudoku.Data.GridIterators
 		}
 	}
 }
+
+#endif

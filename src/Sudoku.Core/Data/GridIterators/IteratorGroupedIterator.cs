@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if SUDOKU_GRID_LINQ
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -143,3 +145,5 @@ namespace Sudoku.Data.GridIterators
 		public bool MoveNext() => _enumerator.MoveNext();
 	}
 }
+
+#endif
