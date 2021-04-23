@@ -70,7 +70,7 @@ namespace Sudoku.CodeGen.StructParameterlessConstructor
 			foreach (var structSymbol in g(context, receiver))
 			{
 				_ = structNameDic.TryGetValue(structSymbol.Name, out int i);
-				var name = i == 0 ? structSymbol.Name : $"{structSymbol.Name}{i + 1}";
+				string name = i == 0 ? structSymbol.Name : $"{structSymbol.Name}{i + 1}";
 				structNameDic[structSymbol.Name] = i + 1;
 
 				context.AddSource(
