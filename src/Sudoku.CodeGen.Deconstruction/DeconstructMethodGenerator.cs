@@ -109,6 +109,7 @@ namespace Sudoku.CodeGen.Deconstruction
 
 				var source = new StringBuilder()
 					.AppendLine(PrintHeader())
+					.AppendLine(PrintPragmaWarningDisableCS0618())
 					.AppendLine(PrintPragmaWarningDisableCS1591())
 					.AppendLine()
 					.AppendLine(PrintUsingDirectives())
@@ -257,6 +258,7 @@ namespace Sudoku.CodeGen.Deconstruction
 		private static partial string PrintDotToken();
 		private static partial string PrintOpenBracketToken(int indentingCount = 0);
 		private static partial string PrintClosedBracketToken(int indentingCount = 0);
+		private static partial string PrintPragmaWarningDisableCS0618();
 		private static partial string PrintPragmaWarningDisableCS1591();
 		private static partial string PrintUsingDirectives();
 		private static partial string PrintNullableEnable();

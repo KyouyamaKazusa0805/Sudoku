@@ -58,6 +58,8 @@ namespace Sudoku.CodeGen.Deconstruction
 		private static partial string PrintClosedBracketToken(int indentingCount) =>
 			indentingCount == 0 ? "}" : $"{PrintIndenting(indentingCount)}}}";
 
+		private static partial string PrintPragmaWarningDisableCS0618() => "#pragma warning disable 618";
+
 		private static partial string PrintPragmaWarningDisableCS1591() => "#pragma warning disable 1591";
 
 		private static partial string PrintUsingDirectives() => "using System.Runtime.CompilerServices;";
