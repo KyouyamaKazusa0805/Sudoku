@@ -8,7 +8,7 @@ namespace Sudoku.CodeGen.Deconstruction
 #if false
 	[Generator]
 #endif
-	public sealed class DeconstructMethodGenerator : ISourceGenerator
+	public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
