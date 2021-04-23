@@ -379,14 +379,6 @@
             Indicates its children nodes.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.TreeNode`1.Deconstruct(System.Int32@,System.Int32@,System.Boolean@,`0@,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{`0}}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="id">The ID.</param>
-            <param name="parentId">The parent ID.</param>
-            <param name="isLeaf">Indicates whether the node is leaf.</param>
-            <param name="content">The content.</param>
-            <param name="children">All children.</param>
-        </member>
         <member name="M:System.Collections.Generic.TreeNode`1.Equals(System.Object)">
             <inheritdoc/>
         </member>

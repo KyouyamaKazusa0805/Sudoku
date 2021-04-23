@@ -74,7 +74,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="candidates">The pointer points to an array of elements.</param>
 		/// <param name="length">The length of the array.</param>
-		[CLSCompliant(false)]
 		public Candidates(int* candidates, int length) : this()
 		{
 			for (int i = 0; i < length; i++)
@@ -154,7 +153,6 @@ namespace Sudoku.Data
 		/// <param name="binary">The pointer to the binary array.</param>
 		/// <param name="length">The length.</param>
 		/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
-		[CLSCompliant(false)]
 		public Candidates(long* binary, int length)
 		{
 			if (length != Len)
@@ -304,7 +302,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 		/// <param name="length">The length of that array.</param>
-		[CLSCompliant(false)]
 		public readonly void CopyTo(int* arr, int length)
 		{
 			if (IsEmpty)
@@ -346,7 +343,6 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is Candidates comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public readonly bool Equals(in Candidates other) =>
 			_0 == other._0 && _1 == other._1 && _2 == other._2
 			&& _3 == other._3 && _4 == other._4 && _5 == other._5
@@ -435,7 +431,7 @@ namespace Sudoku.Data
 						select digitGroups)
 					{
 						var cells = Cells.Empty;
-						foreach (var candidate in digitGroup)
+						foreach (int candidate in digitGroup)
 						{
 							cells.AddAnyway(candidate / 9);
 						}

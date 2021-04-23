@@ -14,7 +14,6 @@ namespace Sudoku.Data.Stepping
 	/// </remarks>
 	/// <seealso cref="IntPtr"/>
 	[Obsolete("In the future, this type won't be used.", false)]
-	[CLSCompliant(false)]
 	public sealed unsafe record ResetStep(IntPtr OldMasks, IntPtr NewMasks) : IStep
 	{
 		/// <inheritdoc/>

@@ -6,7 +6,6 @@ namespace System.Extensions
 	partial class BitOperationsEx
 	{
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int> GetAllSets(this sbyte @this)
 		{
 			if (@this == 0)
@@ -70,7 +69,6 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int> GetAllSets(this ushort @this)
 		{
 			if (@this == 0)
@@ -113,7 +111,6 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int> GetAllSets(this uint @this)
 		{
 			if (@this == 0)
@@ -156,7 +153,6 @@ namespace System.Extensions
 		}
 
 		/// <inheritdoc cref="Integer.GetAllSets(Integer)"/>
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int> GetAllSets(this ulong @this)
 		{
 			if (@this == 0)

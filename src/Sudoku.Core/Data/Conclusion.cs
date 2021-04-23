@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -8,6 +9,7 @@ namespace Sudoku.Data
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 	public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
 	{
 		/// <summary>
@@ -83,29 +85,16 @@ namespace Sudoku.Data
 			candidate = Cell * 9 + Digit;
 		}
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="conclusionType">The type of this conclusion.</param>
-		/// <param name="cell">The cell.</param>
-		/// <param name="digit">The digit.</param>
-		public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
-		{
-			conclusionType = ConclusionType;
-			cell = Cell;
-			digit = Digit;
-		}
-
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Conclusion comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
 
 		/// <inheritdoc cref="object.ToString"/>

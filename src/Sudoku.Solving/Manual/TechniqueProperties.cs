@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Extensions;
 using System.Reflection;
-using Sudoku.DocComments;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 
 namespace Sudoku.Solving.Manual
 {
@@ -9,7 +9,11 @@ namespace Sudoku.Solving.Manual
 	/// Indicates the properties while searching aiming to <see cref="StepSearcher"/>s.
 	/// </summary>
 	/// <seealso cref="StepSearcher"/>
-	public sealed class TechniqueProperties
+	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly))]
+	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority))]
+	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
+	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
+	public sealed partial class TechniqueProperties
 	{
 		/// <summary>
 		/// Initializes an instance with the specified priority.
@@ -86,95 +90,6 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <seealso cref="DisabledReason.None"/>
 		public DisabledReason DisabledReason { get; set; }
-
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isEnabled">
-		/// Indicates whether the technique is enabled.
-		/// </param>
-		/// <param name="isReadOnly">
-		/// Indicates whether the technique can't modify the priority.
-		/// </param>
-		public void Deconstruct(out bool isEnabled, out bool isReadOnly)
-		{
-			isEnabled = IsEnabled;
-			isReadOnly = IsReadOnly;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isEnabled">
-		/// Indicates whether the technique is enabled.
-		/// </param>
-		/// <param name="isReadOnly">
-		/// Indicates whether the technique can't modify the priority.
-		/// </param>
-		/// <param name="priority">
-		/// Indicates the priority of the technique.
-		/// </param>
-		public void Deconstruct(out bool isEnabled, out bool isReadOnly, out int priority)
-		{
-			isEnabled = IsEnabled;
-			isReadOnly = IsReadOnly;
-			priority = Priority;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isEnabled">
-		/// Indicates whether the technique is enabled.
-		/// </param>
-		/// <param name="isReadOnly">
-		/// Indicates whether the technique can't modify the priority.
-		/// </param>
-		/// <param name="priority">
-		/// Indicates the priority of the technique.
-		/// </param>
-		/// <param name="disabledReason">
-		/// Indicates why this technique is disabled.
-		/// </param>
-		public void Deconstruct(
-			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason)
-		{
-			isEnabled = IsEnabled;
-			isReadOnly = IsReadOnly;
-			priority = Priority;
-			disabledReason = DisabledReason;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isEnabled">
-		/// Indicates whether the technique is enabled.
-		/// </param>
-		/// <param name="isReadOnly">
-		/// Indicates whether the technique can't modify the priority.
-		/// </param>
-		/// <param name="priority">
-		/// Indicates the priority of the technique.
-		/// </param>
-		/// <param name="disabledReason">
-		/// Indicates why this technique is disabled.
-		/// </param>
-		/// <param name="onlyEnableInAnalysis">
-		/// Indicates whether the searcher is enabled only in traversing mode.
-		/// </param>
-		/// <param name="displayLevel">
-		/// Indicates the display level.
-		/// </param>
-		/// <param name="displayLabel">
-		/// Indicates the display label.
-		/// </param>
-		public void Deconstruct(
-			out bool isEnabled, out bool isReadOnly, out int priority, out DisabledReason disabledReason,
-			out bool onlyEnableInAnalysis, out int displayLevel,
-			out string displayLabel)
-		{
-			isEnabled = IsEnabled;
-			isReadOnly = IsReadOnly;
-			priority = Priority;
-			disabledReason = DisabledReason;
-			onlyEnableInAnalysis = OnlyEnableInAnalysis;
-			displayLevel = DisplayLevel;
-			displayLabel = DisplayLabel;
-		}
 
 
 		/// <summary>

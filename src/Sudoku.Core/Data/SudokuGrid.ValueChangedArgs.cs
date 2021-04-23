@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Data
@@ -9,6 +10,9 @@ namespace Sudoku.Data
 		/// Provides arguments for the event <see cref="ValueChanged"/>.
 		/// </summary>
 		/// <seealso cref="ValueChanged"/>
+#if false
+		[AutoDeconstruct(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
+#endif
 		public readonly struct ValueChangedArgs : IValueEquatable<ValueChangedArgs>
 		{
 			/// <summary>
@@ -51,6 +55,7 @@ namespace Sudoku.Data
 			public int SetValue { get; }
 
 
+#if !false
 			/// <inheritdoc cref="DeconstructMethod"/>
 			/// <param name="cell">The cell offset.</param>
 			/// <param name="oldMask">The old mask.</param>
@@ -63,6 +68,7 @@ namespace Sudoku.Data
 				newMask = NewMask;
 				setValue = SetValue;
 			}
+#endif
 
 			/// <inheritdoc cref="object.Equals(object?)"/>
 			public override bool Equals(object? obj) => obj is ValueChangedArgs comparer && Equals(comparer);
@@ -71,7 +77,6 @@ namespace Sudoku.Data
 			public override int GetHashCode() => HashCode.Combine(Cell, OldMask, NewMask, SetValue);
 
 			/// <inheritdoc/>
-			[CLSCompliant(false)]
 			public bool Equals(in ValueChangedArgs other) =>
 				Cell == other.Cell && OldMask == other.OldMask && NewMask == other.NewMask
 				&& SetValue == other.SetValue;

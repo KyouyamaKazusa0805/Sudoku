@@ -6,6 +6,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -22,7 +23,8 @@ namespace Sudoku.Data
 	/// and the <see langword="false"/> bit (0) is for the cell not containing
 	/// the digit.
 	/// </remarks>
-	public struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
+	[AutoDeconstruct(nameof(_high), nameof(_low))]
+	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
 		/// The cover table.
@@ -102,7 +104,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="cells">The pointer points to an array of elements.</param>
 		/// <param name="length">The length of the array.</param>
-		[CLSCompliant(false)]
 		public unsafe Cells(int* cells, int length) : this()
 		{
 			for (int i = 0; i < length; i++)
@@ -522,22 +523,11 @@ namespace Sudoku.Data
 		}
 
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="high">Higher 40 bits.</param>
-		/// <param name="low">Lower 41 bits.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly void Deconstruct(out long high, out long low)
-		{
-			high = _high;
-			low = _low;
-		}
-
 		/// <summary>
 		/// Copies the current instance to the tagret array specified as an <see cref="int"/>*.
 		/// </summary>
 		/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 		/// <param name="length">The length of that array.</param>
-		[CLSCompliant(false)]
 		public readonly unsafe void CopyTo(int* arr, int length)
 		{
 			if (IsEmpty)
@@ -594,7 +584,6 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is Cells comparer && Equals(comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		[CLSCompliant(false)]
 		public readonly bool Equals(in Cells other) => _high == other._high && _low == other._low;
 
 		/// <summary>

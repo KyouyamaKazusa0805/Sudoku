@@ -7,7 +7,6 @@ namespace System.Extensions
 	{
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this sbyte @this) =>
 			@this.GetAllSets().GetEnumerator();
 
@@ -23,7 +22,6 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this ushort @this) =>
 			@this.GetAllSets().GetEnumerator();
 
@@ -34,7 +32,6 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this uint @this) =>
 			@this.GetAllSets().GetEnumerator();
 
@@ -45,7 +42,6 @@ namespace System.Extensions
 
 		/// <inheritdoc cref="Integer.GetEnumerator(Integer)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[CLSCompliant(false)]
 		public static ReadOnlySpan<int>.Enumerator GetEnumerator(this ulong @this) =>
 			@this.GetAllSets().GetEnumerator();
 	}

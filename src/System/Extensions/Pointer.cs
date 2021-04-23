@@ -8,7 +8,6 @@ namespace System.Extensions
 	/// <remarks>
 	/// Different with other types, pointers can't be as <see langword="this"/> parameter.
 	/// </remarks>
-	[CLSCompliant(false)]
 	public static unsafe class Pointer
 	{
 		/// <summary>
@@ -17,7 +16,6 @@ namespace System.Extensions
 		/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
 		/// <param name="left">The left variable.</param>
 		/// <param name="right">The right variable.</param>
-		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static unsafe void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right)
 			where TUnmanaged : unmanaged

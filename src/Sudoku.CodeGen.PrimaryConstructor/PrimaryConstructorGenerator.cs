@@ -6,6 +6,10 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.CodeGen.PrimaryConstructor.Extensions;
+using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
+using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
+using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
+using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 namespace Sudoku.CodeGen.PrimaryConstructor
 {
@@ -37,6 +41,29 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 		/// </summary>
 		private static readonly bool OutputThisReference = false;
 
+		/// <summary>
+		/// Indicates the type format, and the property type format.
+		/// </summary>
+		private static readonly SymbolDisplayFormat
+			TypeFormat = new(
+				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
+				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+				genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
+				miscellaneousOptions:
+					MiscellaneousOptions.UseSpecialTypes
+					| MiscellaneousOptions.EscapeKeywordIdentifiers
+					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
+			),
+			PropertyTypeFormat = new(
+				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
+				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+				genericsOptions: GenericsOptions.IncludeTypeParameters,
+				miscellaneousOptions:
+					MiscellaneousOptions.UseSpecialTypes
+					| MiscellaneousOptions.EscapeKeywordIdentifiers
+					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
+			);
+
 
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
@@ -50,7 +77,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 			foreach (var classSymbol in g(context, receiver))
 			{
 				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
-				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{i + 1}";
+				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
 				classNameDic[classSymbol.Name] = i + 1;
 				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(classSymbol));
 			}

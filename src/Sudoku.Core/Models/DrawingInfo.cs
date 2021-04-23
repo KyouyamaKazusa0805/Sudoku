@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Models
@@ -9,7 +10,8 @@ namespace Sudoku.Models
 	/// candidates and regions.
 	/// </summary>
 	[Obsolete("Please use Sudoku.Drawing.PaintingPair`1 instead.", false)]
-	public readonly struct DrawingInfo : IValueEquatable<DrawingInfo>
+	[AutoDeconstruct(nameof(Id), nameof(Value))]
+	public readonly partial struct DrawingInfo : IValueEquatable<DrawingInfo>
 	{
 		/// <summary>
 		/// Initializes an instance with ID and value.
@@ -38,7 +40,6 @@ namespace Sudoku.Models
 		public override bool Equals(object? obj) => obj is DrawingInfo comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in DrawingInfo other) => Id == other.Id && Value == other.Value;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
@@ -46,15 +47,6 @@ namespace Sudoku.Models
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => (Id, Value).ToString();
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="id">The ID.</param>
-		/// <param name="value">The value.</param>
-		public void Deconstruct(out long id, out int value)
-		{
-			id = Id;
-			value = Value;
-		}
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

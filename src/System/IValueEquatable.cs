@@ -4,7 +4,6 @@
 	/// <typeparam name="TStruct">
 	/// The type of objects to compare. Here it should be a <see langword="struct"/>.
 	/// </typeparam>
-	[CLSCompliant(false)]
 	public interface IValueEquatable<TStruct> : IEquatable<TStruct> where TStruct : struct
 	{
 		/// <summary>

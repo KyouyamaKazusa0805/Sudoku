@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -39,6 +40,9 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </para>
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
+	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2))]
+	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -128,76 +132,21 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		public Cells MirrorR2 { get; }
 
+		/// <summary>
+		/// Indicates the base cells.
+		/// </summary>
+		private Cells BaseCellsMap => new() { Base1, Base2 };
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="baseCellsMap">The base cells.</param>
-		/// <param name="targetCellsMap">The target cells.</param>
-		/// <param name="crosslineMap">The cross-line cells.</param>
-		public void Deconstruct(out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
-		{
-			baseCellsMap = new() { Base1, Base2 };
-			targetCellsMap = new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
-			crosslineMap = CrossLine;
-		}
+		/// <summary>
+		/// Indicates the target cells.
+		/// </summary>
+		private Cells TargetCellsMap => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="base1">The base cell 1.</param>
-		/// <param name="base2">The base cell 2.</param>
-		/// <param name="tq1">The target Q1 cell.</param>
-		/// <param name="tq2">The target Q2 cell.</param>
-		/// <param name="tr1">The target R1 cell.</param>
-		/// <param name="tr2">The target R2 cell.</param>
-		public void Deconstruct(out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2)
-		{
-			base1 = Base1;
-			base2 = Base2;
-			tq1 = TargetQ1;
-			tq2 = TargetQ2;
-			tr1 = TargetR1;
-			tr2 = TargetR2;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="base1">The base cell 1.</param>
-		/// <param name="base2">The base cell 2.</param>
-		/// <param name="tq1">The target Q1 cell.</param>
-		/// <param name="tq2">The target Q2 cell.</param>
-		/// <param name="tr1">The target R1 cell.</param>
-		/// <param name="tr2">The target R2 cell.</param>
-		/// <param name="crossline">The cross line cells.</param>
-		/// <param name="mq1">The mirror Q1 cell.</param>
-		/// <param name="mq2">The mirror Q2 cell.</param>
-		/// <param name="mr1">The mirror R1 cell.</param>
-		/// <param name="mr2">The mirror R2 cell.</param>
-		/// <param name="baseCellsMap">The base cells.</param>
-		/// <param name="targetCellsMap">The target cells.</param>
-		/// <param name="crosslineMap">The cross-line cells.</param>
-		public void Deconstruct(
-			out int base1, out int base2, out int tq1, out int tq2, out int tr1, out int tr2,
-			out Cells crossline, out Cells mq1, out Cells mq2, out Cells mr1, out Cells mr2,
-			out Cells baseCellsMap, out Cells targetCellsMap, out Cells crosslineMap)
-		{
-			base1 = Base1;
-			base2 = Base2;
-			tq1 = TargetQ1;
-			tq2 = TargetQ2;
-			tr1 = TargetR1;
-			tr2 = TargetR2;
-			crossline = CrossLine;
-			mq1 = MirrorQ1;
-			mq2 = MirrorQ2;
-			mr1 = MirrorR1;
-			mr2 = MirrorR2;
-			baseCellsMap = new() { Base1, Base2 };
-			targetCellsMap = new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
-			crosslineMap = CrossLine;
-		}
 
 		/// <inheritdoc cref="object.Equals(object?)"/>
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Pattern other) =>
 			Base1 == other.Base1 && Base2 == other.Base2
 			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2

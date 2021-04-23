@@ -129,30 +129,6 @@
             </exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-            <param name="solvingStepsCount">The total number of all solving steps.</param>
-            <param name="solvingSteps">The all solving steps.</param>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid}@,System.Object@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="solverName">The solver name.</param>
-            <param name="hasSolved">Indicates whether the solver has solved the puzzle.</param>
-            <param name="total">The total difficulty.</param>
-            <param name="max">The maximum difficulty of all steps.</param>
-            <param name="pearl">The pearl difficulty of the puzzle.</param>
-            <param name="diamond">The diamond difficulty of the puzzle.</param>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">The solution.</param>
-            <param name="elasped">The time elapsed.</param>
-            <param name="stepCount">The number of all steps.</param>
-            <param name="steps">The steps.</param>
-            <param name="stepGrids">
-            The grids corresponding to the steps.
-            </param>
-            <param name="additional">The additional message.</param>
-        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
             <summary>
             <para>Returns an enumerator that iterates through the collection.</para>
@@ -1036,23 +1012,6 @@
             Indicates all strong links in this ALS. The result will be represented
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="region">The region.</param>
-            <param name="digitsMask">The digits mask.</param>
-            <param name="map">The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isBivalueCell">
-            Indicates whether the specified ALS is bi-value.
-            </param>
-            <param name="region">The region.</param>
-            <param name="digitsMask">The digits mask.</param>
-            <param name="map">The map.</param>
-            <param name="possibleEliminations">The possible eliminations.</param>
-            <param name="strongLinksMask">The strong links mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
             <inheritdoc/>
@@ -2333,13 +2292,6 @@
             Indicates the header of the reason.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="eliminations">The eliminations.</param>
-            <param name="reason">
-            The reason why the eliminations should be removed.
-            </param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -2676,37 +2628,15 @@
             Indicates the mirror R2 cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="baseCellsMap">The base cells.</param>
-            <param name="targetCellsMap">The target cells.</param>
-            <param name="crosslineMap">The cross-line cells.</param>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Pattern.BaseCellsMap">
+            <summary>
+            Indicates the base cells.
+            </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="base1">The base cell 1.</param>
-            <param name="base2">The base cell 2.</param>
-            <param name="tq1">The target Q1 cell.</param>
-            <param name="tq2">The target Q2 cell.</param>
-            <param name="tr1">The target R1 cell.</param>
-            <param name="tr2">The target R2 cell.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="base1">The base cell 1.</param>
-            <param name="base2">The base cell 2.</param>
-            <param name="tq1">The target Q1 cell.</param>
-            <param name="tq2">The target Q2 cell.</param>
-            <param name="tr1">The target R1 cell.</param>
-            <param name="tr2">The target R2 cell.</param>
-            <param name="crossline">The cross line cells.</param>
-            <param name="mq1">The mirror Q1 cell.</param>
-            <param name="mq2">The mirror Q2 cell.</param>
-            <param name="mr1">The mirror R1 cell.</param>
-            <param name="mr2">The mirror R2 cell.</param>
-            <param name="baseCellsMap">The base cells.</param>
-            <param name="targetCellsMap">The target cells.</param>
-            <param name="crosslineMap">The cross-line cells.</param>
+        <member name="P:Sudoku.Solving.Manual.Exocets.Pattern.TargetCellsMap">
+            <summary>
+            Indicates the target cells.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -5501,27 +5431,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">The name.</param>
-            <param name="difficulty">The difficulty.</param>
-            <param name="difficultyLevel">The difficulty level.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">The name.</param>
-            <param name="difficulty">The difficulty.</param>
-            <param name="difficultyLevel">The difficulty level.</param>
-            <param name="conclusions">All conclusions.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="name">The name.</param>
-            <param name="difficulty">The difficulty.</param>
-            <param name="difficultyLevel">The difficulty level.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="views">All views.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.HasTag(Sudoku.Techniques.TechniqueTags)">
             <summary>
             Determine whether the current step information instance with the specified flags.
@@ -5997,66 +5906,6 @@
             The default value is <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>.
             </summary>
             <seealso cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            Indicates whether the technique can't modify the priority.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            Indicates the priority of the technique.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            Indicates the priority of the technique.
-            </param>
-            <param name="disabledReason">
-            Indicates why this technique is disabled.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="isEnabled">
-            Indicates whether the technique is enabled.
-            </param>
-            <param name="isReadOnly">
-            Indicates whether the technique can't modify the priority.
-            </param>
-            <param name="priority">
-            Indicates the priority of the technique.
-            </param>
-            <param name="disabledReason">
-            Indicates why this technique is disabled.
-            </param>
-            <param name="onlyEnableInAnalysis">
-            Indicates whether the searcher is enabled only in traversing mode.
-            </param>
-            <param name="displayLevel">
-            Indicates the display level.
-            </param>
-            <param name="displayLabel">
-            Indicates the display label.
-            </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.FromSearcher(Sudoku.Solving.Manual.StepSearcher)">
             <summary>
@@ -7301,12 +7150,6 @@
             <summary>
             Indicates the full map.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="pair">The pair map.</param>
-            <param name="square">The square map.</param>
-            <param name="baseLine">The base line map.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
             <inheritdoc/>

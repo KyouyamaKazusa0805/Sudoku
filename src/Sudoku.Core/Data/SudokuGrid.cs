@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -24,6 +25,7 @@ namespace Sudoku.Data
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
@@ -536,31 +538,6 @@ namespace Sudoku.Data
 			}
 		}
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="empty">The map of all empty cells.</param>
-		/// <param name="bivalue">The map of all bi-value cells.</param>
-		/// <param name="candidates">
-		/// The map of all cells that contain the candidate of that digit.
-		/// </param>
-		/// <param name="digits">
-		/// The map of all cells that contain the candidate of that digit
-		/// or that value in given or modifiable.
-		/// </param>
-		/// <param name="values">
-		/// The map of all cells that is the given or modifiable value,
-		/// and the digit is the specified one.
-		/// </param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly void Deconstruct(
-			out Cells empty, out Cells bivalue, out Cells[] candidates, out Cells[] digits, out Cells[] values)
-		{
-			empty = EmptyCells;
-			bivalue = BivalueCells;
-			candidates = CandidateMap;
-			digits = DigitsMap;
-			values = ValuesMap;
-		}
-
 		/// <summary>
 		/// Check whether the current grid is valid (no duplicate values on same row, column or block).
 		/// </summary>
@@ -604,7 +581,6 @@ namespace Sudoku.Data
 		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly bool Equals(in SudokuGrid other) => Equals(this, other);
 

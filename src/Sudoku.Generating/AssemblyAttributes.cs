@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 
 [module: SkipLocalsInit]

@@ -151,7 +151,6 @@ namespace Sudoku.Solving.BruteForces
 		/// <param name="limit">The limit.</param>
 		/// <returns>The number of all solutions.</returns>
 		/// <seealso cref="ValueStringBuilder"/>
-		[CLSCompliant(false)]
 		public long Solve(string puzzle, ref ValueStringBuilder solution, int limit)
 		{
 			fixed (char* p = puzzle)

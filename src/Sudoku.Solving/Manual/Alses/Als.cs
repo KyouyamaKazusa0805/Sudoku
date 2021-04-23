@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
@@ -14,7 +15,9 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <summary>
 	/// Encapsulates a normal ALS.
 	/// </summary>
-	public readonly struct Als : IValueEquatable<Als>
+	[AutoDeconstruct(nameof(Region), nameof(DigitsMask), nameof(Map))]
+	[AutoDeconstruct(nameof(IsBivalueCell), nameof(Region), nameof(DigitsMask), nameof(Map), nameof(PossibleEliminationSet), nameof(StrongLinksMask))]
+	public readonly partial struct Als : IValueEquatable<Als>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified digit mask and the map of cells.
@@ -77,7 +80,7 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			get
 			{
-				var digits = DigitsMask.GetAllSets().ToArray();
+				int[] digits = DigitsMask.GetAllSets().ToArray();
 				for (int i = 0, length = digits.Length; i < length - 1; i++)
 				{
 					for (int j = i + 1; j < length; j++)
@@ -88,38 +91,6 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 		}
 
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="region">The region.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="map">The map.</param>
-		public void Deconstruct(out int region, out short digitsMask, out Cells map)
-		{
-			region = Region;
-			digitsMask = DigitsMask;
-			map = Map;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="isBivalueCell">
-		/// Indicates whether the specified ALS is bi-value.
-		/// </param>
-		/// <param name="region">The region.</param>
-		/// <param name="digitsMask">The digits mask.</param>
-		/// <param name="map">The map.</param>
-		/// <param name="possibleEliminations">The possible eliminations.</param>
-		/// <param name="strongLinksMask">The strong links mask.</param>
-		public void Deconstruct(
-			out bool isBivalueCell, out int region, out short digitsMask,
-			out Cells map, out Cells possibleEliminations, out IEnumerable<short> strongLinksMask)
-		{
-			isBivalueCell = IsBivalueCell;
-			region = Region;
-			digitsMask = DigitsMask;
-			map = Map;
-			possibleEliminations = PossibleEliminationSet;
-			strongLinksMask = StrongLinksMask;
-		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);
@@ -146,7 +117,6 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 		/// <inheritdoc cref="object.GetHashCode"/>

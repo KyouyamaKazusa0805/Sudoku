@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Painting
 {
 	/// <summary>
 	/// This is a data structure that stores the presentation data when drawing onto a picture.
 	/// </summary>
-	public sealed class PresentationData
+	[AutoDeconstruct(nameof(Cells), nameof(Candidates), nameof(Regions), nameof(Links), nameof(DirectLines), nameof(StepSketch))]
+	public sealed partial class PresentationData
 	{
 		/// <summary>
 		/// The back field of <see cref="Cells"/>.
@@ -173,27 +174,6 @@ namespace Sudoku.Painting
 		/// </summary>
 		public event PresentationDataChangedEventHandler<(int Cell, char Character)>? StepSketchChanged;
 
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="cells">The cells.</param>
-		/// <param name="candidates">The candidates.</param>
-		/// <param name="regions">The regions.</param>
-		/// <param name="links">The links.</param>
-		/// <param name="directLines">The direct lines.</param>
-		/// <param name="stepSketch">The step sketch.</param>
-		public void Deconstruct(
-			out ICollection<PaintingPair<int>>? cells, out ICollection<PaintingPair<int>>? candidates,
-			out ICollection<PaintingPair<int>>? regions, out ICollection<PaintingPair<Link>>? links,
-			out ICollection<PaintingPair<(Cells Start, Cells End)>>? directLines,
-			out ICollection<PaintingPair<(int Cell, char Character)>>? stepSketch)
-		{
-			cells = _cells;
-			candidates = _candidates;
-			regions = _regions;
-			links = _links;
-			directLines = _directLines;
-			stepSketch = _stepSketch;
-		}
 
 		/// <summary>
 		/// Add a new instance into the collection.

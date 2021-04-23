@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using static Sudoku.Resources.TextResources;
 using Group = Sudoku.Techniques.TechniqueGroup;
 using Level = Sudoku.Solving.Manual.DifficultyLevel;
@@ -20,7 +20,10 @@ namespace Sudoku.Solving.Manual
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+	[AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel))]
+	[AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel), nameof(Conclusions))]
+	[AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel), nameof(Conclusions), nameof(Views))]
+	public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	{
 		/// <summary>
 		/// <para>
@@ -95,49 +98,6 @@ namespace Sudoku.Solving.Manual
 			{
 				conclusion.ApplyTo(ref grid);
 			}
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">The name.</param>
-		/// <param name="difficulty">The difficulty.</param>
-		/// <param name="difficultyLevel">The difficulty level.</param>
-		public void Deconstruct(out string name, out decimal difficulty, out Level difficultyLevel)
-		{
-			name = Name;
-			difficulty = Difficulty;
-			difficultyLevel = DifficultyLevel;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">The name.</param>
-		/// <param name="difficulty">The difficulty.</param>
-		/// <param name="difficultyLevel">The difficulty level.</param>
-		/// <param name="conclusions">All conclusions.</param>
-		public void Deconstruct(
-			out string name, out decimal difficulty, out Level difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions)
-		{
-			name = Name;
-			difficulty = Difficulty;
-			difficultyLevel = DifficultyLevel;
-			conclusions = Conclusions;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="name">The name.</param>
-		/// <param name="difficulty">The difficulty.</param>
-		/// <param name="difficultyLevel">The difficulty level.</param>
-		/// <param name="conclusions">All conclusions.</param>
-		/// <param name="views">All views.</param>
-		public void Deconstruct(
-			out string name, out decimal difficulty, out Level difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views)
-		{
-			name = Name;
-			difficulty = Difficulty;
-			difficultyLevel = DifficultyLevel;
-			conclusions = Conclusions;
-			views = Views;
 		}
 
 		/// <summary>

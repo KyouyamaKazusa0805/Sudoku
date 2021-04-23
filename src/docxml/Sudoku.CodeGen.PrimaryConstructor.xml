@@ -122,6 +122,16 @@
             as the member access expression.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.PropertyTypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
@@ -136,16 +146,6 @@
             <param name="handleRecursively">
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
             <returns>The result list that contains all member symbols.</returns>
-        </member>
-        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.TypeFormat">
-            <summary>
-            Indicates the type format, and the property type format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.PropertyTypeFormat">
-            <summary>
-            Indicates the type format, and the property type format.
-            </summary>
         </member>
         <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.SymbolInfo">
             <summary>

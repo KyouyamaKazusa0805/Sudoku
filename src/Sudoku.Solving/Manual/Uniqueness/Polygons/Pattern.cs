@@ -95,7 +95,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Pattern other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>

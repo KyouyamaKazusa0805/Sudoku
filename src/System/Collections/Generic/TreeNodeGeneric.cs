@@ -1,4 +1,5 @@
-﻿using Sudoku.DocComments;
+﻿using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.DocComments;
 
 namespace System.Collections.Generic
 {
@@ -6,7 +7,8 @@ namespace System.Collections.Generic
 	/// Encapsulates a tree node.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class TreeNode<T> : IComparable<TreeNode<T>?>, IEquatable<TreeNode<T>?>
+	[AutoDeconstruct(nameof(Id), nameof(ParentId), nameof(IsLeaf), nameof(Content), nameof(Children))]
+	public sealed partial class TreeNode<T> : IComparable<TreeNode<T>?>, IEquatable<TreeNode<T>?>
 	{
 		/// <summary>
 		/// Indicates the current ID.
@@ -32,23 +34,6 @@ namespace System.Collections.Generic
 		/// Indicates its children nodes.
 		/// </summary>
 		public ICollection<TreeNode<T>> Children { get; set; } = new List<TreeNode<T>>();
-
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="id">The ID.</param>
-		/// <param name="parentId">The parent ID.</param>
-		/// <param name="isLeaf">Indicates whether the node is leaf.</param>
-		/// <param name="content">The content.</param>
-		/// <param name="children">All children.</param>
-		public void Deconstruct(
-			out int id, out int parentId, out bool isLeaf, out T? content, out ICollection<TreeNode<T>> children)
-		{
-			id = Id;
-			parentId = ParentId;
-			isLeaf = IsLeaf;
-			content = Content;
-			children = Children;
-		}
 
 
 		/// <inheritdoc/>

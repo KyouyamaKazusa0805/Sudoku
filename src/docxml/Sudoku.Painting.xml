@@ -733,22 +733,6 @@
             Indicates the value used.
             </summary>
         </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.Deconstruct(System.Boolean@,System.Int32@,System.Drawing.Color@,`0@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="usePaletteColor">
-            Indicates whether the instance stores the index
-            rather than color value.
-            </param>
-            <param name="paletteIndex">
-            The palette color index. The value should be valid
-            to use when the value <paramref name="usePaletteColor"/> is <see langword="true"/>.
-            </param>
-            <param name="color">
-            The color. The palette color index. The value should be valid
-            to use when the value <paramref name="usePaletteColor"/> is <see langword="false"/>.
-            </param>
-            <param name="value">The value.</param>
-        </member>
         <member name="M:Sudoku.Painting.PaintingPair`1.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -873,15 +857,6 @@
             <summary>
             Indicates the event triggered when the step sketch list is changed.
             </summary>
-        </member>
-        <member name="M:Sudoku.Painting.PresentationData.Deconstruct(System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.Int32}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{Sudoku.Data.Link}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}}}@,System.Collections.Generic.ICollection{Sudoku.Painting.PaintingPair{System.ValueTuple{System.Int32,System.Char}}}@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cells">The cells.</param>
-            <param name="candidates">The candidates.</param>
-            <param name="regions">The regions.</param>
-            <param name="links">The links.</param>
-            <param name="directLines">The direct lines.</param>
-            <param name="stepSketch">The step sketch.</param>
         </member>
         <member name="M:Sudoku.Painting.PresentationData.Add``1(Sudoku.Painting.PresentationDataItem,``0@)">
             <summary>

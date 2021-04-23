@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces;
 using static Sudoku.Constants.Tables;
@@ -23,7 +22,6 @@ namespace Sudoku.Generating
 		/// </summary>
 		/// <param name="puzzle">The puzzle string.</param>
 		/// <param name="solution">The solution string.</param>
-		[CLSCompliant(false)]
 		protected virtual void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
 		{
 			do

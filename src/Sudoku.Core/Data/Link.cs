@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -10,6 +11,7 @@ namespace Sudoku.Data
 	/// Encapsulates a link used for drawing.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 	public readonly partial struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
@@ -43,17 +45,6 @@ namespace Sudoku.Data
 
 
 		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="startCandidate">The start candidate.</param>
-		/// <param name="endCandidate">The end candidate.</param>
-		/// <param name="linkType">The link type.</param>
-		public void Deconstruct(out int startCandidate, out int endCandidate, out LinkType linkType)
-		{
-			startCandidate = StartCandidate;
-			endCandidate = EndCandidate;
-			linkType = LinkType;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
 		/// <param name="startCell">The start cell.</param>
 		/// <param name="startDigit">The start digit.</param>
 		/// <param name="endCell">The end cell.</param>
@@ -84,7 +75,6 @@ namespace Sudoku.Data
 		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Link other)
 		{
 			var (a, b, c) = this;

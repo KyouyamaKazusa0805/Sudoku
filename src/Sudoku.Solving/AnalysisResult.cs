@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Globalization;
@@ -18,6 +19,8 @@ namespace Sudoku.Solving
 	/// <param name="Puzzle">Indicates the puzzle.</param>
 	/// <param name="IsSolved">Indicates whether the puzzle has been solved.</param>
 	/// <param name="ElapsedTime">The elapsed time.</param>
+	[AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
+	[AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
 	public sealed partial record AnalysisResult(
 		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime
 	) : IEnumerable<StepInfo>, IFormattable
@@ -202,56 +205,6 @@ namespace Sudoku.Solving
 			: index >= Steps.Count || index < 0
 			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
 			: Steps[index];
-
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="hasSolved">Indicates whether the puzzle has been solved.</param>
-		/// <param name="solvingStepsCount">The total number of all solving steps.</param>
-		/// <param name="solvingSteps">The all solving steps.</param>
-		public void Deconstruct(
-			out bool hasSolved, out int solvingStepsCount, out IReadOnlyList<StepInfo>? solvingSteps)
-		{
-			hasSolved = IsSolved;
-			solvingStepsCount = SolvingStepsCount;
-			solvingSteps = Steps;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="solverName">The solver name.</param>
-		/// <param name="hasSolved">Indicates whether the solver has solved the puzzle.</param>
-		/// <param name="total">The total difficulty.</param>
-		/// <param name="max">The maximum difficulty of all steps.</param>
-		/// <param name="pearl">The pearl difficulty of the puzzle.</param>
-		/// <param name="diamond">The diamond difficulty of the puzzle.</param>
-		/// <param name="puzzle">The puzzle.</param>
-		/// <param name="solution">The solution.</param>
-		/// <param name="elasped">The time elapsed.</param>
-		/// <param name="stepCount">The number of all steps.</param>
-		/// <param name="steps">The steps.</param>
-		/// <param name="stepGrids">
-		/// The grids corresponding to the steps.
-		/// </param>
-		/// <param name="additional">The additional message.</param>
-		public void Deconstruct(
-			out string solverName, out bool hasSolved, out decimal total, out decimal max, out decimal pearl,
-			out decimal diamond, out SudokuGrid puzzle, out SudokuGrid? solution, out TimeSpan elasped,
-			out int stepCount, out IReadOnlyList<StepInfo>? steps, out IReadOnlyList<SudokuGrid>? stepGrids,
-			out object? additional)
-		{
-			solverName = SolverName;
-			hasSolved = IsSolved;
-			total = TotalDifficulty;
-			max = MaxDifficulty;
-			pearl = PearlDifficulty;
-			diamond = DiamondDifficulty;
-			puzzle = Puzzle;
-			solution = Solution;
-			elasped = ElapsedTime;
-			stepCount = SolvingStepsCount;
-			steps = Steps;
-			stepGrids = StepGrids;
-			additional = Additional;
-		}
 
 
 		/// <summary>

@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.CodeGen.Deconstruction
 {
-	public sealed partial class DeconstructMethodGenerator
+	partial class DeconstructMethodGenerator
 	{
 		/// <summary>
 		/// Defines the syntax receiver.

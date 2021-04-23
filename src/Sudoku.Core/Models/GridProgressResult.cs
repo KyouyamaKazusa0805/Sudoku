@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Resources;
@@ -9,7 +10,9 @@ namespace Sudoku.Models
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.
 	/// </summary>
-	public struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
+	[AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount))]
+	[AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount))]
+	public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
 	{
 		/// <summary>
 		/// Initializes an instance with the specified current point and the total point.
@@ -56,33 +59,6 @@ namespace Sudoku.Models
 			(double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
 
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="current">The number of unsolved candidates.</param>
-		/// <param name="unsolvedCells">The number of unsolved cells.</param>
-		public readonly void Deconstruct(out int current, out int unsolvedCells)
-		{
-			current = CurrentCandidatesCount;
-			unsolvedCells = CurrentCellsCount;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="currentCandidatesCount">
-		/// The number of unsolved candidates.
-		/// </param>
-		/// <param name="currentCellsCount">
-		/// The number of unsolved cells.
-		/// </param>
-		/// <param name="initialCandidatesCount">
-		/// The number of unsolved candidates in the initial grid.
-		/// </param>
-		public readonly void Deconstruct(
-			out int currentCandidatesCount, out int currentCellsCount, out int initialCandidatesCount)
-		{
-			currentCandidatesCount = CurrentCandidatesCount;
-			currentCellsCount = CurrentCellsCount;
-			initialCandidatesCount = InitialCandidatesCount;
-		}
-
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
@@ -100,7 +76,6 @@ namespace Sudoku.Models
 			obj is GridProgressResult comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public readonly bool Equals(in GridProgressResult other) =>
 			CurrentCellsCount == other.CurrentCellsCount
 			&& CurrentCandidatesCount == other.CurrentCandidatesCount

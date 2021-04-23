@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using static System.Numerics.BitOperations;
 
@@ -45,7 +44,6 @@ namespace Sudoku.Data
 			/// <remarks>
 			/// Note here we should point at the one-unit-lengthed memory before the array start.
 			/// </remarks>
-			[CLSCompliant(false)]
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public Enumerator(short* arr) : this()
 			{

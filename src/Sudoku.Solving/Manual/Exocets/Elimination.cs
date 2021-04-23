@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -12,6 +13,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// Encapsulates an instance to represent a series of eliminations in JE or SE.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
@@ -62,24 +64,11 @@ namespace Sudoku.Solving.Manual.Exocets
 		};
 
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="eliminations">The eliminations.</param>
-		/// <param name="reason">
-		/// The reason why the eliminations should be removed.
-		/// </param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Deconstruct(out Candidates eliminations, out EliminatedReason reason)
-		{
-			eliminations = Eliminations;
-			reason = Reason;
-		}
-
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object? obj) => obj is Elimination comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(in Elimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
 

@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			foreach (var exocet in Patterns)
 			{
-				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2, _, targetMap, _) = exocet;
+				var (b1, b2, tq1, tq2, tr1, tr2, s, mq1, mq2, mr1, mr2, _, targetMap) = exocet;
 
 				// Base cells should be empty:
 				// {567} and {267} are empty cells.

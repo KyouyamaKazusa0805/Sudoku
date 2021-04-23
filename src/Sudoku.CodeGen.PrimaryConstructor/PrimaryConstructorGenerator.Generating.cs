@@ -5,39 +5,11 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.CodeGen.PrimaryConstructor.Extensions;
-using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
-using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
-using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
-using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 namespace Sudoku.CodeGen.PrimaryConstructor
 {
 	partial class PrimaryConstructorGenerator
 	{
-		/// <summary>
-		/// Indicates the type format, and the property type format.
-		/// </summary>
-		private static readonly SymbolDisplayFormat
-			TypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			),
-			PropertyTypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			);
-
-
 		/// <summary>
 		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
 		/// </summary>

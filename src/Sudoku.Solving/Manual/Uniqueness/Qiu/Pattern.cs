@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -9,6 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -46,22 +48,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		public Cells FullMap => Square | BaseLine | Pair;
 
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="pair">The pair map.</param>
-		/// <param name="square">The square map.</param>
-		/// <param name="baseLine">The base line map.</param>
-		public void Deconstruct(out Cells pair, out Cells square, out Cells baseLine)
-		{
-			pair = Pair;
-			square = Square;
-			baseLine = BaseLine;
-		}
-
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Pattern other && Equals(other);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		public bool Equals(in Pattern other) =>
 			Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 

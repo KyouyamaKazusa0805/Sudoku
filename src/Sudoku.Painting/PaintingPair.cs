@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -11,6 +12,7 @@ namespace Sudoku.Painting
 	/// </summary>
 	/// <typeparam name="T">The type of the value.</typeparam>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(UsePaletteColor), nameof(PaletteColorIndex), nameof(Color), nameof(Value))]
 	public readonly partial struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>
@@ -70,35 +72,11 @@ namespace Sudoku.Painting
 		public T Value { get; }
 
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="usePaletteColor">
-		/// Indicates whether the instance stores the index
-		/// rather than color value.
-		/// </param>
-		/// <param name="paletteIndex">
-		/// The palette color index. The value should be valid
-		/// to use when the value <paramref name="usePaletteColor"/> is <see langword="true"/>.
-		/// </param>
-		/// <param name="color">
-		/// The color. The palette color index. The value should be valid
-		/// to use when the value <paramref name="usePaletteColor"/> is <see langword="false"/>.
-		/// </param>
-		/// <param name="value">The value.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Deconstruct(out bool usePaletteColor, out int paletteIndex, out Color color, out T value)
-		{
-			usePaletteColor = UsePaletteColor;
-			paletteIndex = PaletteColorIndex;
-			color = Color;
-			value = Value;
-		}
-
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override bool Equals(object? obj) => obj is PaintingPair<T> comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(in PaintingPair<T> other)
 		{

@@ -26,7 +26,6 @@ namespace System.Text
 	/// </code>
 	/// </example>
 	/// <seealso cref="ValueStringBuilder()"/>
-	[CLSCompliant(false)]
 	[DisallowParameterlessConstructor]
 	public ref partial struct ValueStringBuilder
 	{
