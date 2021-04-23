@@ -50,7 +50,7 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 			foreach (var classSymbol in g(context, receiver))
 			{
 				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
-				var name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{i + 1}";
+				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{i + 1}";
 				classNameDic[classSymbol.Name] = i + 1;
 				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(classSymbol));
 			}
