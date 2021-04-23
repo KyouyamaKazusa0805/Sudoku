@@ -145,9 +145,9 @@ namespace Sudoku.Solving
 			get
 			{
 				var maxLevel = DifficultyLevel.Unknown;
-				if (IsSolved && Steps is not null)
+				if (IsSolved)
 				{
-					foreach (var step in Steps)
+					foreach (var step in Steps!)
 					{
 						if (step.ShowDifficulty && step.DifficultyLevel > maxLevel)
 						{
@@ -193,12 +193,14 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The step information.</returns>
-		/// <exception cref="InvalidOperationException">Throws when the result list is null.</exception>
-		/// <exception cref="ArgumentOutOfRangeException">Throws when the index is out of range.</exception>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the result list is <see langword="null"/>.
+		/// </exception>
+		/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 		public StepInfo this[int index] => Steps is not { Count: not 0 }
 			? throw new InvalidOperationException("You can't extract any elements because of being null.")
 			: index >= Steps.Count || index < 0
-			? throw new ArgumentOutOfRangeException(nameof(index))
+			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
 			: Steps[index];
 
 

@@ -124,8 +124,10 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The step information.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the result list is null.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the index is out of range.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the result list is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
             <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
@@ -190,17 +192,13 @@
             <summary>
             Provides operations for analysis result formatting.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.AnalysisResult.Formatter.Result">
-            <summary>
-            Indicates the analysis result.
-            </summary>
+            <param name="Result">Indicates the analysis result.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Formatter.#ctor(Sudoku.Solving.AnalysisResult)">
             <summary>
-            Initializes an instance with the specified result.
+            Provides operations for analysis result formatting.
             </summary>
-            <param name="result">The analysis result instance.</param>
+            <param name="Result">Indicates the analysis result.</param>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.Formatter.ToString">
             <inheritdoc/>
