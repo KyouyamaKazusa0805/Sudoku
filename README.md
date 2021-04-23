@@ -16,6 +16,8 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 
 For example, you can use the code like this to solve a puzzle:
 
+比如说，你可以使用如下的代码来解一道题：
+
 ```csharp
 using System;
 using Sudoku.Data;
@@ -35,8 +37,6 @@ var analysisResult = solver.Solve(grid);
 // Output the analysis result.
 Console.WriteLine(analysisResult.ToString());
 ```
-
-比如说，你可以使用如上的代码来解一道题。
 
 In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
