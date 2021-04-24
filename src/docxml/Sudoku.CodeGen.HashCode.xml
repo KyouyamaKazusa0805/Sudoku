@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.HashCode</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator">
+            <summary>
+            Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
