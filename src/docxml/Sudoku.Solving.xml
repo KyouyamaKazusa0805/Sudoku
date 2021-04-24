@@ -2298,9 +2298,6 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(Sudoku.Solving.Manual.Exocets.Elimination@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.ToString">
             <inheritdoc/>
         </member>
@@ -2643,9 +2640,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -3204,9 +3198,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.Equals(Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.ToString">
@@ -4533,10 +4524,12 @@
         <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Code">
+            <summary>
+            Indicates the code.
+            </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.GetHashCode">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher">
@@ -5066,9 +5059,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.Equals(Sudoku.Solving.Manual.Sdps.GuardianStepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.ToString">
@@ -6591,9 +6581,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher">
             <summary>
             Encapsulates a <b>unique loop</b> (UL) technique searcher.
@@ -7155,9 +7142,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">

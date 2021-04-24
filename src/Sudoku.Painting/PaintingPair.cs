@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -13,6 +14,7 @@ namespace Sudoku.Painting
 	/// <typeparam name="T">The type of the value.</typeparam>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(UsePaletteColor), nameof(PaletteColorIndex), nameof(Color), nameof(Value))]
+	[AutoHashCode]
 	public readonly partial struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>
@@ -48,6 +50,7 @@ namespace Sudoku.Painting
 		/// <remarks>
 		/// The property contains value if <see cref="UsePaletteColor"/> is <see langword="true"/>.
 		/// </remarks>
+		[HashCodeIgnoredMember]
 		public int PaletteColorIndex { get; }
 
 		/// <summary>
@@ -56,6 +59,7 @@ namespace Sudoku.Painting
 		/// <remarks>
 		/// If <see langword="true"/>, we won't assign the property <see cref="Color"/>.
 		/// </remarks>
+		[HashCodeIgnoredMember]
 		public bool UsePaletteColor { get; }
 
 		/// <summary>
@@ -83,10 +87,6 @@ namespace Sudoku.Painting
 			T l = Value, r = other.Value;
 			return Color == other.Color && Unsafe.AreSame(ref l, ref r);
 		}
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override int GetHashCode() => HashCode.Combine(Value, Color);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

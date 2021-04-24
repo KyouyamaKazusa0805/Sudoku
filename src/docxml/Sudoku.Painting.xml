@@ -739,9 +739,6 @@
         <member name="M:Sudoku.Painting.PaintingPair`1.Equals(Sudoku.Painting.PaintingPair{`0}@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Painting.PaintingPair`1.ToString">
             <inheritdoc/>
         </member>

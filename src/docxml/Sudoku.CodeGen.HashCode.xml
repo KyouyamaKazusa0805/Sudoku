@@ -4,17 +4,65 @@
         <name>Sudoku.CodeGen.HashCode</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.CodeGen.HashCode.Annotations.AutoHashCodeAttribute">
+            <summary>
+            Indicates an attribute that marks a <see langword="class"/> or a <see langword="struct"/>
+            that tells the compiler the type should generate a default <c>GetHashCode</c> method.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.HashCode.Annotations.HashCodeIgnoredMemberAttribute">
+            <summary>
+            Indicates an attribute that marks a field or a property that tells the compiler the member
+            will be ignored in the hash code calculation.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.HashCode.Annotations.HashCodeIncludedMemberAttribute">
+            <summary>
+            Indicates an attribute that marks a field or a property that tells the compiler the member
+            will participate in the hash code calculation.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator">
             <summary>
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
             </summary>
             <seealso cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="F:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.UsingTabsAsIndentingCharacters">
+            <summary>
+            Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.OutputThisReference">
+            <summary>
+            Indicates whether the project outputs "<c><see langword="this"/>.</c>"
+            as the member access expression.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.PropertyTypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Try to get all possible fields or properties in the specified <see langword="class"/> type.
+            </summary>
+            <param name="symbol">The specified class symbol.</param>
+            <param name="handleRecursively">
+            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
+            <returns>The result list that contains all member symbols.</returns>
         </member>
         <member name="T:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.SyntaxReceiver">
             <summary>
@@ -28,6 +76,35 @@
         </member>
         <member name="M:Sudoku.CodeGen.HashCode.AutoGetHashCodeGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.HashCode.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.HashCode.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.HashCode.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <summary>
+            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <param name="this">The current syntax reference instance.</param>
+            <param name="textSpan">The text span.</param>
+            <param name="syntaxNode">The syntax node.</param>
         </member>
     </members>
 </doc>

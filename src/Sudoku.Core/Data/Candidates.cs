@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -18,7 +19,8 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a map that contains 729 positions to represent a candidate.
 	/// </summary>
-	public unsafe struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
+	[AutoHashCode]
+	public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>
 		/// Indicates the size of each unit.
@@ -373,10 +375,6 @@ namespace Sudoku.Data
 				11 => _11
 			} >> candidate % Shifting & 1
 		) != 0;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		public override readonly int GetHashCode() =>
-			(int)((0xDECADE ^ _0 ^ _1 ^ _2 ^ _3 ^ _4 ^ _5 ^ _6 ^ _7 ^ _8 ^ _9 ^ _10 ^ _11) & int.MaxValue);
 
 		/// <summary>
 		/// Get all cell offsets whose bits are set <see langword="true"/>.

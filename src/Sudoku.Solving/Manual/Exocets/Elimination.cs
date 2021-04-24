@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -14,6 +15,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
+	[AutoHashCode]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
@@ -32,6 +34,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates how many eliminations the instance contains.
 		/// </summary>
+		[HashCodeIgnoredMember]
 		public int Count
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -71,10 +74,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals(in Elimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override int GetHashCode() => Eliminations.GetHashCode() ^ (int)Reason << 17 & 0x135246;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -15,33 +15,36 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Digit">The digit used.</param>
 	/// <param name="Loop">The loop.</param>
 	/// <param name="Guardians">All guardians.</param>
-	public sealed record GuardianStepInfo(
+	[AutoHashCode]
+	public sealed partial record GuardianStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, in Cells Loop,
 		in Cells Guardians
 	) : SdpStepInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override Technique TechniqueCode => Technique.Guardian;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Guardian;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 
 		/// <inheritdoc/>
 		public bool Equals(GuardianStepInfo? other) =>
 			other is not null && (Loop, Guardians, Digit) == (other.Loop, other.Guardians, other.Digit);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => HashCode.Combine(Loop, Guardians, Digit);
 
 
 		/// <inheritdoc/>

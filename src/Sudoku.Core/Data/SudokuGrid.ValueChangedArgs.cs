@@ -1,6 +1,9 @@
 ﻿using System;
-using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.DocComments;
+#if false
+using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
+#endif
 
 namespace Sudoku.Data
 {
@@ -12,8 +15,9 @@ namespace Sudoku.Data
 		/// <seealso cref="ValueChanged"/>
 #if false
 		[AutoDeconstruct(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
+		[AutoHashCode]
 #endif
-		public readonly struct ValueChangedArgs : IValueEquatable<ValueChangedArgs>
+		public readonly partial struct ValueChangedArgs : IValueEquatable<ValueChangedArgs>
 		{
 			/// <summary>
 			/// Initializes the instance with some data.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -14,7 +15,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Loop">The loop.</param>
-	public abstract record UlStepInfo(
+	[AutoHashCode]
+	public abstract partial record UlStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		int Digit1, int Digit2, in Cells Loop
 	) : UniquenessStepInfo(Conclusions, Views)
@@ -31,21 +33,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public abstract int Type { get; }
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override decimal Difficulty => BaseDifficulty + ExtraDifficulty[Loop.Count >> 1];
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override string Name => base.Name;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override string? Acronym => "UL";
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type.ToString()}");
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Ul;
 
 		/// <summary>
@@ -71,8 +79,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				Digit1 == other.Digit1 && Digit2 == other.Digit2
 				|| Digit1 == other.Digit2 && Digit2 == other.Digit1
 			);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => HashCode.Combine(Type, Loop, Digit1, Digit2);
 	}
 }

@@ -28,6 +28,7 @@
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\Sudoku.CodeGen.HashCode\Sudoku.CodeGen.HashCode.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.PrimaryConstructor\Sudoku.CodeGen.PrimaryConstructor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>

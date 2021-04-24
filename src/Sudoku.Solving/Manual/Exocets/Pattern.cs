@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -43,6 +44,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[AutoDeconstruct(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2))]
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
+	[AutoHashCode]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -154,24 +156,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			&& MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
 			&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
 			&& CrossLine == other.CrossLine;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode()
-		{
-			var hashCode = new HashCode();
-			hashCode.Add(Base1);
-			hashCode.Add(Base2);
-			hashCode.Add(TargetQ1);
-			hashCode.Add(TargetQ2);
-			hashCode.Add(MirrorR1);
-			hashCode.Add(MirrorR2);
-			hashCode.Add(MirrorQ1);
-			hashCode.Add(MirrorQ2);
-			hashCode.Add(MirrorR1);
-			hashCode.Add(MirrorR2);
-			hashCode.Add(CrossLine);
-			return hashCode.ToHashCode();
-		}
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()

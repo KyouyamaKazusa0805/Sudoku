@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -33,6 +34,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </item>
 	/// </list>
 	/// </param>
+	[AutoHashCode]
 	public sealed partial record ComplexFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,
@@ -66,9 +68,11 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override decimal Difficulty => BaseDifficulty + SashimiExtraDifficulty + ShapeExtraDifficulty;
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override DifficultyLevel DifficultyLevel => Size switch
 		{
 			2 => DifficultyLevel.Hard,
@@ -77,10 +81,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		};
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override Technique TechniqueCode =>
 			TechniqueNaming.GetComplexFishTechniqueCodeFromName(InternalName);
 
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.ComplexFish;
 
 		/// <summary>
@@ -157,18 +163,6 @@ namespace Sudoku.Solving.Manual.Fishes
 			}
 
 			return true;
-		}
-
-		/// <inheritdoc/>
-		public override int GetHashCode()
-		{
-			int result = Digit << 17 & 0xABC0DEF;
-			result ^= new RegionCollection(BaseSets).GetHashCode();
-			result ^= new RegionCollection(CoverSets).GetHashCode();
-			result ^= Exofins.GetHashCode();
-			result ^= Endofins.GetHashCode();
-
-			return result;
 		}
 
 		/// <inheritdoc/>

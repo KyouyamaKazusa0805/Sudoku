@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -11,6 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
+	[AutoHashCode]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -30,16 +32,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// Indicates the square.
 		/// </summary>
+		[HashCodeIgnoredMember]
 		public Cells Square { get; }
 
 		/// <summary>
 		/// Indicates the base line.
 		/// </summary>
+		[HashCodeIgnoredMember]
 		public Cells BaseLine { get; }
 
 		/// <summary>
 		/// Indicates the pair.
 		/// </summary>
+		[HashCodeIgnoredMember]
 		public Cells Pair { get; }
 
 		/// <summary>
@@ -54,9 +59,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public bool Equals(in Pattern other) =>
 			Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => FullMap.GetHashCode();
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => FullMap.ToString();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -13,21 +14,25 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="Loop">The loop used.</param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
-	public abstract record BivalueOddagonStepInfo(
+	[AutoHashCode]
+	public abstract partial record BivalueOddagonStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		in Cells Loop, int Digit1, int Digit2
 	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
+		[HashCodeIgnoredMember]
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueOddagon;
+
+		/// <summary>
+		/// Indicates the code.
+		/// </summary>
+		[HashCodeIncludedMember]
+		private Technique Code => TechniqueCode;
 
 
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>
 			other is not null && Loop == other.Loop && Digit1 == other.Digit1 && Digit2 == other.Digit2;
-
-		/// <inheritdoc/>
-		public override int GetHashCode() =>
-			((int)TechniqueCode << 17) + 0x123456 ^ (1 << Digit1 | 1 << Digit2) ^ Loop.GetHashCode();
 	}
 }
