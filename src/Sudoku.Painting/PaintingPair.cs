@@ -14,7 +14,7 @@ namespace Sudoku.Painting
 	/// <typeparam name="T">The type of the value.</typeparam>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(UsePaletteColor), nameof(PaletteColorIndex), nameof(Color), nameof(Value))]
-	[AutoHashCode]
+	[AutoHashCode(nameof(Color), nameof(Value))]
 	public readonly partial struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
 	{
 		/// <summary>
@@ -50,7 +50,6 @@ namespace Sudoku.Painting
 		/// <remarks>
 		/// The property contains value if <see cref="UsePaletteColor"/> is <see langword="true"/>.
 		/// </remarks>
-		[HashCodeIgnoredMember]
 		public int PaletteColorIndex { get; }
 
 		/// <summary>
@@ -59,7 +58,6 @@ namespace Sudoku.Painting
 		/// <remarks>
 		/// If <see langword="true"/>, we won't assign the property <see cref="Color"/>.
 		/// </remarks>
-		[HashCodeIgnoredMember]
 		public bool UsePaletteColor { get; }
 
 		/// <summary>

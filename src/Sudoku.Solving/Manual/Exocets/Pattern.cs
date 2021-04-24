@@ -44,7 +44,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[AutoDeconstruct(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2))]
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
-	[AutoHashCode]
+	[AutoHashCode(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>

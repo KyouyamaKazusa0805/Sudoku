@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </item>
 	/// </list>
 	/// </param>
-	[AutoHashCode]
+	[AutoHashCode(nameof(BaseHashCode), nameof(BaseSetHashCode), nameof(CoverSetHashCode), nameof(Exofins), nameof(Endofins))]
 	public sealed partial record ComplexFishStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,
@@ -68,11 +68,9 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		[HashCodeIgnoredMember]
 		public override decimal Difficulty => BaseDifficulty + SashimiExtraDifficulty + ShapeExtraDifficulty;
 
 		/// <inheritdoc/>
-		[HashCodeIgnoredMember]
 		public override DifficultyLevel DifficultyLevel => Size switch
 		{
 			2 => DifficultyLevel.Hard,
@@ -81,12 +79,10 @@ namespace Sudoku.Solving.Manual.Fishes
 		};
 
 		/// <inheritdoc/>
-		[HashCodeIgnoredMember]
 		public override Technique TechniqueCode =>
 			TechniqueNaming.GetComplexFishTechniqueCodeFromName(InternalName);
 
 		/// <inheritdoc/>
-		[HashCodeIgnoredMember]
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.ComplexFish;
 
 		/// <summary>
@@ -105,6 +101,21 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		private decimal ShapeExtraDifficulty =>
 			IsFranken ? FrankenShapeDiffExtra[Size] : MutantShapeDiffExtra[Size];
+
+		/// <summary>
+		/// Indicates the base hash code.
+		/// </summary>
+		private int BaseHashCode => Digit << 17 & 0xABC0DEF;
+
+		/// <summary>
+		/// Indicates the base set hash code.
+		/// </summary>
+		private int BaseSetHashCode => new RegionCollection(BaseSets).GetHashCode();
+
+		/// <summary>
+		/// Indicates the cover set hash code.
+		/// </summary>
+		private int CoverSetHashCode => new RegionCollection(CoverSets).GetHashCode();
 
 		/// <summary>
 		/// The internal name.

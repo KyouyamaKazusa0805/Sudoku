@@ -21,15 +21,9 @@ namespace Sudoku.CodeGen.HashCode
 			var result = new List<string>(
 				(
 					from x in symbol.GetMembers().OfType<IFieldSymbol>()
-					where x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (x.IsReadOnly || x.Marks<HashCodeIncludedMemberAttribute>())
-						&& !x.Marks<HashCodeIgnoredMemberAttribute>()
 					select x.Name
 				).Concat(
 					from x in symbol.GetMembers().OfType<IPropertySymbol>()
-					where x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (x.IsReadOnly || x.Marks<HashCodeIncludedMemberAttribute>())
-						&& !x.Marks<HashCodeIgnoredMemberAttribute>()
 					select x.Name
 				)
 			);

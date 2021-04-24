@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0057
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,12 @@ namespace Sudoku.CodeGen.HashCode
 		/// as the member access expression.
 		/// </summary>
 		private static readonly bool OutputThisReference = false;
+
+		/// <summary>
+		/// Indicates whetehr the project outputs <c>[MethodImpl(MethodImplOptions.AggressiveInlining)]</c>
+		/// as the inlining mark.
+		/// </summary>
+		private static readonly bool OutputAggressiveInliningMark = true;
 
 		/// <summary>
 		/// Indicates the type format, and the property type format.
@@ -63,13 +70,17 @@ namespace Sudoku.CodeGen.HashCode
 				return;
 			}
 
-			var classNameDic = new Dictionary<string, int>();
+			var nameDic = new Dictionary<string, int>();
 			foreach (var classSymbol in g(context, receiver))
 			{
-				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
+				_ = nameDic.TryGetValue(classSymbol.Name, out int i);
 				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
-				classNameDic[classSymbol.Name] = i + 1;
-				context.AddSource($"{name}.GetHashCode.g.cs", getGetHashCodeCode(classSymbol));
+				nameDic[classSymbol.Name] = i + 1;
+
+				if (getGetHashCodeCode(classSymbol) is { } c)
+				{
+					context.AddSource($"{name}.GetHashCode.g.cs", c);
+				}
 			}
 
 			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
@@ -84,10 +95,9 @@ namespace Sudoku.CodeGen.HashCode
 					select (INamedTypeSymbol)symbol;
 			}
 
-			static string getGetHashCodeCode(INamedTypeSymbol symbol)
+			static string? getGetHashCodeCode(INamedTypeSymbol symbol)
 			{
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				var members = GetMembers(symbol, handleRecursively: false);
 				string fullTypeName = symbol.ToDisplayString(TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
@@ -109,7 +119,14 @@ namespace Sudoku.CodeGen.HashCode
 					.Append(symbol.Name)
 					.AppendLine(genericParametersList)
 					.AppendLine(PrintOpenBracketToken(1))
-					.AppendLine(PrintCompilerGenerated(2))
+					.AppendLine(PrintCompilerGenerated(2));
+
+				if (OutputAggressiveInliningMark)
+				{
+					source.AppendLine(PrintAggressiveInlining(2));
+				}
+
+				source
 					.Append(PrintIndenting(2))
 					.Append(PrintPublicKeywordToken())
 					.Append(PrintOverrideKeywordToken());
@@ -127,7 +144,34 @@ namespace Sudoku.CodeGen.HashCode
 					.Append(PrintClosedBraceToken())
 					.Append(PrintLambdaOperatorToken());
 
-				foreach (string item in members)
+				string attributeStr = (
+					from attribute in symbol.GetAttributes()
+					where attribute.AttributeClass?.Name == nameof(AutoHashCodeAttribute)
+					select attribute
+				).ToArray()[0].ToString();
+				int tokenStartIndex = attributeStr.IndexOf("({");
+				if (tokenStartIndex == -1)
+				{
+					// Error.
+
+					return null;
+				}
+
+				string[] members = (
+					from parameterValue in attributeStr.Substring(
+						tokenStartIndex,
+						attributeStr.Length - tokenStartIndex - 2
+					).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+					select parameterValue.Substring(1, parameterValue.Length - 2)
+				).ToArray(); // Remove quote token '"'.
+				if (members is not { Length: not 0 })
+				{
+					return null;
+				}
+
+				members[0] = members[0].Substring(2); // Remove token '{"'.
+
+				foreach (string member in members)
 				{
 					if (OutputThisReference)
 					{
@@ -137,7 +181,7 @@ namespace Sudoku.CodeGen.HashCode
 					}
 
 					source
-						.Append(item)
+						.Append(member)
 						.Append(PrintDotToken())
 						.Append(PrintGetHashCode())
 						.Append(PrintOpenBraceToken())
@@ -179,6 +223,7 @@ namespace Sudoku.CodeGen.HashCode
 		private static partial string PrintLambdaOperatorToken();
 		private static partial string PrintOpenBracketToken(int indentingCount = 0);
 		private static partial string PrintClosedBracketToken(int indentingCount = 0);
+		private static partial string PrintAggressiveInlining(int indentingCount = 0);
 		private static partial string PrintPragmaWarningDisableCS1591();
 		private static partial string PrintUsingDirectives();
 		private static partial string PrintNullableEnable();

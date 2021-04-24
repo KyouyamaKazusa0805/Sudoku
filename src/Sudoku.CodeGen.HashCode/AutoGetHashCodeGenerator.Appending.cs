@@ -64,6 +64,9 @@ namespace Sudoku.CodeGen.HashCode
 		private static partial string PrintClosedBracketToken(int indentingCount) =>
 			indentingCount == 0 ? "}" : $"{PrintIndenting(indentingCount)}}}";
 
+		private static partial string PrintAggressiveInlining(int indentingCount) =>
+			$"{PrintIndenting(indentingCount)}[MethodImpl(MethodImplOptions.AggressiveInlining)]";
+
 		private static partial string PrintPragmaWarningDisableCS1591() => "#pragma warning disable 1591";
 
 		private static partial string PrintUsingDirectives() => "using System.Runtime.CompilerServices;";

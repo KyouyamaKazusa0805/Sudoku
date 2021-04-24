@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
-	[AutoHashCode]
+	[AutoHashCode(nameof(FullMap))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -32,19 +32,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// Indicates the square.
 		/// </summary>
-		[HashCodeIgnoredMember]
 		public Cells Square { get; }
 
 		/// <summary>
 		/// Indicates the base line.
 		/// </summary>
-		[HashCodeIgnoredMember]
 		public Cells BaseLine { get; }
 
 		/// <summary>
 		/// Indicates the pair.
 		/// </summary>
-		[HashCodeIgnoredMember]
 		public Cells Pair { get; }
 
 		/// <summary>

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
-	[AutoHashCode]
+	[AutoHashCode(nameof(Eliminations), nameof(Reason))]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
@@ -34,7 +34,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates how many eliminations the instance contains.
 		/// </summary>
-		[HashCodeIgnoredMember]
 		public int Count
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

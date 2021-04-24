@@ -3182,6 +3182,21 @@
             Indicates the extra difficulty on shape.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.BaseHashCode">
+            <summary>
+            Indicates the base hash code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.BaseSetHashCode">
+            <summary>
+            Indicates the base set hash code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.CoverSetHashCode">
+            <summary>
+            Indicates the cover set hash code.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.InternalName">
             <summary>
             The internal name.

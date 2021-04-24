@@ -134,7 +134,6 @@ namespace Sudoku.CodeGen.Deconstruction
 
 				foreach (var attribute in attributeData)
 				{
-					var methodSymbol = attribute.AttributeConstructor;
 					string attributeStr = attribute.ToString();
 					int tokenStartIndex = attributeStr.IndexOf("({");
 					if (tokenStartIndex == -1)

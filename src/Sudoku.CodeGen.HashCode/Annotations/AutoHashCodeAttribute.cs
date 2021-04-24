@@ -9,5 +9,16 @@ namespace Sudoku.CodeGen.HashCode.Annotations
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 	public sealed class AutoHashCodeAttribute : Attribute
 	{
+		/// <summary>
+		/// Initializes an instance with the specified member list.
+		/// </summary>
+		/// <param name="members">The members.</param>
+		public AutoHashCodeAttribute(params string[] members) => FieldOrPropertyList = members;
+
+
+		/// <summary>
+		/// All members to generate.
+		/// </summary>
+		public string[] FieldOrPropertyList { get; }
 	}
 }
