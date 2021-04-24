@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -687,6 +689,30 @@ namespace Sudoku.Data
 				"^" => new(false) { OpenSudoku = true },
 				_ => throw new FormatException("The specified format is invalid.")
 			};
+
+			#region Default overrides
+#pragma warning disable CS1591
+#pragma warning disable CS0809
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly bool Equals(object? other) => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly int GetHashCode() => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly string? ToString() => throw new NotSupportedException();
+#pragma warning restore CS0809
+#pragma warning restore CS1591
+			#endregion
 		}
 	}
 }

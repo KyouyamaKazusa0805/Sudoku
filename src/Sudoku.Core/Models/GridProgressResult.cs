@@ -65,7 +65,7 @@ namespace Sudoku.Models
 		/// <summary>
 		/// Indicates the base hash code.
 		/// </summary>
-		private int BaseHashCode => CurrentCellsCount * 729 + CurrentCandidatesCount;
+		private readonly int BaseHashCode => CurrentCellsCount * 729 + CurrentCandidatesCount;
 
 
 		/// <inheritdoc cref="object.ToString"/>

@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace System.Text
 {
@@ -56,6 +59,30 @@ namespace System.Text
 				_ptr++;
 				return true;
 			}
+
+			#region Default overrides
+#pragma warning disable CS1591
+#pragma warning disable CS0809
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly bool Equals(object? other) => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly int GetHashCode() => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly string? ToString() => throw new NotSupportedException();
+#pragma warning restore CS0809
+#pragma warning restore CS1591
+			#endregion
 		}
 	}
 }

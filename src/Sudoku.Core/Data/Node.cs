@@ -154,7 +154,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the candidate.
 		/// </summary>
-		private int Candidate => Cell * 9 + Digit;
+		private readonly int Candidate => Cell * 9 + Digit;
 
 
 		/// <summary>

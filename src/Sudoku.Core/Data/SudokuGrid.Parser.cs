@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -431,7 +433,7 @@ namespace Sudoku.Data
 			/// <returns>The result.</returns>
 			private static SudokuGrid OnParsingSusser(ref Parser parser)
 			{
-				var match = parser.ParsingValue.Match(RegularExpressions.Susser);
+				string? match = parser.ParsingValue.Match(RegularExpressions.Susser);
 				if (match is not { Length: <= 405 })
 				{
 					return Undefined;
@@ -568,7 +570,7 @@ namespace Sudoku.Data
 				}
 				else
 				{
-					var matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
+					string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
 					/*length-pattern*/
 					if (matches is { Length: not 81 })
 					{
@@ -614,6 +616,30 @@ namespace Sudoku.Data
 					return result;
 				}
 			}
+
+			#region Default overrides
+#pragma warning disable CS1591
+#pragma warning disable CS0809
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly bool Equals(object? other) => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly int GetHashCode() => throw new NotSupportedException();
+
+			[CompilerGenerated]
+			[DoesNotReturn]
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
+			public override readonly string? ToString() => throw new NotSupportedException();
+#pragma warning restore CS0809
+#pragma warning restore CS1591
+			#endregion
 		}
 	}
 }

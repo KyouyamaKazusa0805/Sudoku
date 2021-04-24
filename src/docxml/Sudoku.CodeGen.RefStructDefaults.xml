@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.RefStructDefaults</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator">
+            <summary>
+            Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.SyntaxReceiver.CandidateRefStructs">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.RefStructDefaults.RefStructDefaultImplGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

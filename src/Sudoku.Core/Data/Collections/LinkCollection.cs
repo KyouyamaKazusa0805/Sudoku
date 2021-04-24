@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
@@ -35,25 +34,8 @@ namespace Sudoku.Data.Collections
 			_collection = collection.ToArray().AsSpan();
 
 
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override bool Equals(object? obj) => false;
-
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in LinkCollection other) => _collection == other._collection;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override int GetHashCode()
-		{
-			int result = 0;
-			foreach (var link in _collection)
-			{
-				result ^= 246813579 ^ link.GetHashCode();
-			}
-
-			return result;
-		}
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()

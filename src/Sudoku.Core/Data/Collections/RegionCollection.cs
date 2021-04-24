@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -69,58 +68,57 @@ namespace Sudoku.Data.Collections
 		public bool this[int region] => (_mask >> region & 1) != 0;
 
 
-		/// <inheritdoc/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override bool Equals(object? obj) => false;
-
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
 		public override int GetHashCode() => _mask;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			if (Count == 0)
+			switch (Count)
 			{
-				return string.Empty;
-			}
-
-			if (Count == 1)
-			{
-				int region = TrailingZeroCount(_mask);
-				return $"{GetLabel(region / 9)}{(region % 9 + 1).ToString()}";
-			}
-
-			var dic = new Dictionary<int, ICollection<int>>();
-			foreach (int region in this)
-			{
-				if (!dic.ContainsKey(region / 9))
+				case 0:
 				{
-					dic.Add(region / 9, new List<int>());
+					return string.Empty;
 				}
-
-				dic[region / 9].Add(region % 9);
-			}
-
-			var sb = new ValueStringBuilder(stackalloc char[30]);
-			for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
-			{
-				if (!dic.ContainsKey(i))
+				case 1:
 				{
-					continue;
+					int region = TrailingZeroCount(_mask);
+					return $"{GetLabel(region / 9)}{(region % 9 + 1).ToString()}";
 				}
-
-				sb.Append(GetLabel(i));
-				foreach (int z in dic[i])
+				default:
 				{
-					sb.Append(z + 1);
+					var dic = new Dictionary<int, ICollection<int>>();
+					foreach (int region in this)
+					{
+						if (!dic.ContainsKey(region / 9))
+						{
+							dic.Add(region / 9, new List<int>());
+						}
+
+						dic[region / 9].Add(region % 9);
+					}
+
+					var sb = new ValueStringBuilder(stackalloc char[30]);
+					for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
+					{
+						if (!dic.ContainsKey(i))
+						{
+							continue;
+						}
+
+						sb.Append(GetLabel(i));
+						foreach (int z in dic[i])
+						{
+							sb.Append(z + 1);
+						}
+					}
+
+					return sb.ToString();
 				}
 			}
-
-			return sb.ToString();
 		}
 
 		/// <summary>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 
 namespace Sudoku.Data
@@ -33,18 +32,6 @@ namespace Sudoku.Data
 		/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
 		public BitSubsetsGenerator(int bitCount, int oneCount) => _enumerator = new(bitCount, oneCount);
 
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override bool Equals(object? obj) => false;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override int GetHashCode() => 0;
-
-		/// <inheritdoc cref="object.ToString"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override string ToString() => nameof(BitSubsetsGenerator);
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		public Enumerator GetEnumerator() => _enumerator;

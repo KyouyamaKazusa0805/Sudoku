@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Extensions;
 using System.Text;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
@@ -58,10 +57,6 @@ namespace Sudoku.Data.Collections
 		public int Count => PopCount((uint)_mask);
 
 
-		/// <inheritdoc/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override bool Equals(object? obj) => false;
-
 		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
 		public bool Equals(in DigitCollection other) => _mask == other._mask;
 
@@ -71,10 +66,6 @@ namespace Sudoku.Data.Collections
 		/// <param name="digit">The digit.</param>
 		/// <returns>A <see cref="bool"/> value.</returns>
 		public bool Contains(int digit) => (_mask >> digit & 1) != 0;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override int GetHashCode() => _mask;
 
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");

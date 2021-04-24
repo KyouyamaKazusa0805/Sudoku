@@ -18,6 +18,7 @@
 		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.KeyedTuple\Sudoku.CodeGen.KeyedTuple.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Sudoku.CodeGen.RefStructDefaults\Sudoku.CodeGen.RefStructDefaults.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 

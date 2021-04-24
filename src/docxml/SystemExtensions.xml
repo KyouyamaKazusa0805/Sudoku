@@ -2624,12 +2624,6 @@
         <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Text.ValueStringBuilder.Dispose">
             <summary>
             To dispose the collection, all fields and properties will be cleared. In other words,

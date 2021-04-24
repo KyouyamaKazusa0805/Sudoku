@@ -1,5 +1,7 @@
 ﻿#pragma warning disable IDE0079
 #pragma warning disable IDE0060
+#pragma warning disable CA1716
+#pragma warning disable CA1720
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ namespace Sudoku.DocComments
 	/// <summary>
 	/// Provides with doc comments for checking methods around integers.
 	/// </summary>
-	public readonly ref struct Integer
+	public readonly struct Integer
 	{
 		/// <summary>
 		/// Find a index of the binary representation of a value after the specified index,
