@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<Version>0.1</Version>
+		<Authors>Sunnie</Authors>
+		<Description>A source generator project that generates the code about overriden methods in a ref struct.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>..\docxml\Sudoku.CodeGen.RefStructDefaults.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.10.0-2.final" />
+	</ItemGroup>
+
+</Project>
