@@ -20,7 +20,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.10.0-1.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.10.0-2.final" />
 	</ItemGroup>
 
 </Project>
