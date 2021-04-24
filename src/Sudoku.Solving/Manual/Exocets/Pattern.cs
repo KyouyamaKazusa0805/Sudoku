@@ -1,5 +1,6 @@
 ﻿using System;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
@@ -45,6 +46,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2))]
 	[AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
 	[AutoHashCode(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
+	[AutoEquality(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -144,18 +146,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		private Cells TargetCellsMap => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
 
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(in Pattern other) =>
-			Base1 == other.Base1 && Base2 == other.Base2
-			&& TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
-			&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
-			&& MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
-			&& MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
-			&& CrossLine == other.CrossLine;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()

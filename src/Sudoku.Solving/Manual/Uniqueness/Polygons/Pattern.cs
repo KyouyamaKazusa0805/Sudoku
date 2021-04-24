@@ -1,4 +1,5 @@
 ﻿using System;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.DocComments;
@@ -9,6 +10,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// Indicates the borescoper's deadly pattern.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoEquality(nameof(_mask))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{
 		/// <summary>
@@ -90,12 +92,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// </summary>
 		public Cells Map => Pair1Map | Pair2Map | CenterCellsMap;
 
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override bool Equals(object? obj) => obj is Pattern comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(in Pattern other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)_mask;

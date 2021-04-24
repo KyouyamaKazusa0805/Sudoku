@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.DocComments;
@@ -17,6 +18,7 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	[AutoDeconstruct(nameof(Region), nameof(DigitsMask), nameof(Map))]
 	[AutoDeconstruct(nameof(IsBivalueCell), nameof(Region), nameof(DigitsMask), nameof(Map), nameof(PossibleEliminationSet), nameof(StrongLinksMask))]
+	[AutoEquality(nameof(DigitsMask), nameof(Map))]
 	public readonly partial struct Als : IValueEquatable<Als>
 	{
 		/// <summary>
@@ -92,9 +94,6 @@ namespace Sudoku.Solving.Manual.Alses
 		}
 
 
-		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Als comparer && Equals(comparer);
-
 		/// <summary>
 		/// Indicates whether the specified grid contains the digit.
 		/// </summary>
@@ -115,9 +114,6 @@ namespace Sudoku.Solving.Manual.Alses
 
 			return !result.IsEmpty;
 		}
-
-		/// <inheritdoc/>
-		public bool Equals(in Als other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		/// <remarks>

@@ -1013,9 +1013,6 @@
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.ContainsDigit(Sudoku.Data.SudokuGrid@,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Indicates whether the specified grid contains the digit.
@@ -1024,9 +1021,6 @@
             <param name="digit">The digit.</param>
             <param name="result">The result.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -2292,12 +2286,6 @@
             Indicates the header of the reason.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(Sudoku.Solving.Manual.Exocets.Elimination@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.ToString">
             <inheritdoc/>
         </member>
@@ -2634,12 +2622,6 @@
             <summary>
             Indicates the target cells.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -7102,12 +7084,6 @@
             The map.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -7152,12 +7128,6 @@
             <summary>
             Indicates the full map.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8527,9 +8497,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">

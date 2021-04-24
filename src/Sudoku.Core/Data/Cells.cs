@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -24,6 +25,7 @@ namespace Sudoku.Data
 	/// the digit.
 	/// </remarks>
 	[AutoDeconstruct(nameof(_high), nameof(_low))]
+	[AutoEquality(nameof(_high), nameof(_low))]
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
@@ -578,13 +580,6 @@ namespace Sudoku.Data
 				CopyTo(arr, span.Length);
 			}
 		}
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly bool Equals(object? obj) => obj is Cells comparer && Equals(comparer);
-
-		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-		public readonly bool Equals(in Cells other) => _high == other._high && _low == other._low;
 
 		/// <summary>
 		/// Indicates whether all cells in this instance are in one region.

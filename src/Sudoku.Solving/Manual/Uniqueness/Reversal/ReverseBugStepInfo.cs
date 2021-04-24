@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -14,7 +15,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	/// <param name="Loop">All cells used.</param>
 	/// <param name="Digit1">Indicates the digit 1.</param>
 	/// <param name="Digit2">Indicates the digit 2.</param>
-	public abstract record ReverseBugStepInfo(
+	[AutoHashCode(nameof(Loop), nameof(Digit1), nameof(Digit2), nameof(TechniqueCode))]
+	public abstract partial record ReverseBugStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2
 	) : UniquenessStepInfo(Conclusions, Views)
 	{
@@ -26,8 +28,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		public virtual bool Equals(ReverseBugStepInfo? obj) =>
 			obj is not null && Loop == obj.Loop
 			&& Digit1 == obj.Digit1 && Digit2 == obj.Digit2 && TechniqueCode == obj.TechniqueCode;
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => HashCode.Combine(Loop, Digit1, Digit2, TechniqueCode);
 	}
 }

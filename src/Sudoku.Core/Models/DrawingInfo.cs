@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.DocComments;
 
 namespace Sudoku.Models
@@ -11,6 +12,7 @@ namespace Sudoku.Models
 	/// </summary>
 	[Obsolete("Please use Sudoku.Drawing.PaintingPair`1 instead.", false)]
 	[AutoDeconstruct(nameof(Id), nameof(Value))]
+	[AutoEquality(nameof(Id), nameof(Value))]
 	public readonly partial struct DrawingInfo : IValueEquatable<DrawingInfo>
 	{
 		/// <summary>
@@ -35,12 +37,6 @@ namespace Sudoku.Models
 		/// </summary>
 		public int Value { get; }
 
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override bool Equals(object? obj) => obj is DrawingInfo comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(in DrawingInfo other) => Id == other.Id && Value == other.Value;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => (int)((Id * 10000L + Value) % int.MaxValue);

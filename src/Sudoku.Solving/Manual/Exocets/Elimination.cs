@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
@@ -16,6 +17,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 	[AutoHashCode(nameof(Eliminations), nameof(Reason))]
+	[AutoEquality(nameof(Eliminations), nameof(Reason))]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
@@ -65,14 +67,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			EliminatedReason.CompatibilityTest => "Compatibility test"
 		};
 
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => obj is Elimination comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(in Elimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
-namespace Sudoku.CodeGen.HashCode.Extensions
+namespace Sudoku.CodeGen.Equality.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ISymbol"/>.

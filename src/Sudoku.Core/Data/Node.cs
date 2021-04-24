@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -10,6 +12,9 @@ namespace Sudoku.Data
 	/// Encapsulates a chain node.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoDeconstruct(nameof(Candidate), nameof(IsOn))]
+	[AutoDeconstruct(nameof(Candidate), nameof(IsOn), nameof(Parents))]
+	[AutoEquality(nameof(Cell), nameof(Digit), nameof(IsOn))]
 	public partial struct Node : IValueEquatable<Node>
 	{
 		/// <summary>
@@ -146,38 +151,16 @@ namespace Sudoku.Data
 			}
 		}
 
+		/// <summary>
+		/// Indicates the candidate.
+		/// </summary>
+		private int Candidate => Cell * 9 + Digit;
+
 
 		/// <summary>
 		/// Clear all parent nodes.
 		/// </summary>
 		public void ClearParents() => Parents = null;
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="candidate">The candidate.</param>
-		/// <param name="isOn">Indicates whether the candidate is on.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn)
-		{
-			candidate = Cell * 9 + Digit;
-			isOn = IsOn;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="candidate">The candidate.</param>
-		/// <param name="isOn">Indicates whether the candidate is on.</param>
-		/// <param name="parents">All parents of this node.</param>
-		public readonly void Deconstruct(out int candidate, out bool isOn, out IList<Node>? parents)
-		{
-			candidate = Cell * 9 + Digit;
-			isOn = IsOn;
-			parents = Parents;
-		}
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) => obj is Node comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public readonly bool Equals(in Node other) =>
-			Cell == other.Cell && Digit == other.Digit && IsOn == other.IsOn;
 
 		/// <summary>
 		/// Determine whether the node is the parent of the specified node.

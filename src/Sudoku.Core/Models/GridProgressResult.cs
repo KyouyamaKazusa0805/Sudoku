@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Resources;
@@ -12,6 +14,8 @@ namespace Sudoku.Models
 	/// </summary>
 	[AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount))]
 	[AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount))]
+	[AutoHashCode(nameof(BaseHashCode), nameof(InitialCandidatesCount), nameof(CountryCode))]
+	[AutoEquality(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount), nameof(CountryCode))]
 	public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
 	{
 		/// <summary>
@@ -58,6 +62,11 @@ namespace Sudoku.Models
 		public readonly double Percentage =>
 			(double)(InitialCandidatesCount - CurrentCandidatesCount) / InitialCandidatesCount * 100;
 
+		/// <summary>
+		/// Indicates the base hash code.
+		/// </summary>
+		private int BaseHashCode => CurrentCellsCount * 729 + CurrentCandidatesCount;
+
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
@@ -70,22 +79,6 @@ namespace Sudoku.Models
 
 			return sb.ToString();
 		}
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) =>
-			obj is GridProgressResult comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public readonly bool Equals(in GridProgressResult other) =>
-			CurrentCellsCount == other.CurrentCellsCount
-			&& CurrentCandidatesCount == other.CurrentCandidatesCount
-			&& InitialCandidatesCount == other.InitialCandidatesCount
-			&& CountryCode == other.CountryCode;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		public override readonly int GetHashCode() =>
-			CurrentCellsCount * 729 + CurrentCandidatesCount ^ InitialCandidatesCount
-			^ CountryCode.GetHashCode();
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

@@ -1,4 +1,6 @@
 ﻿using System;
+using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -13,6 +15,8 @@ namespace Sudoku.Data
 	/// two position can fill this candidate.
 	/// </remarks>
 	[DisallowParameterlessConstructor]
+	[AutoHashCode(nameof(BaseHashCode), nameof(Map))]
+	[AutoEquality(nameof(Map), nameof(Digit))]
 	public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>
 	{
 		/// <summary>
@@ -78,15 +82,11 @@ namespace Sudoku.Data
 		/// </summary>
 		public Cells Map { get; }
 
+		/// <summary>
+		/// Indicates the base hash code.
+		/// </summary>
+		private int BaseHashCode => Digit << 17;
 
-		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is ConjugatePair comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(in ConjugatePair other) => Map == other.Map && Digit == other.Digit;
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode() => Map.GetHashCode() ^ Digit << 17;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>

@@ -1,7 +1,10 @@
-﻿using System;
+﻿#undef SUPPORTED_NESTED_ANNOTATION
+
+using System;
 using Sudoku.DocComments;
 #if false
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 #endif
 
@@ -13,9 +16,10 @@ namespace Sudoku.Data
 		/// Provides arguments for the event <see cref="ValueChanged"/>.
 		/// </summary>
 		/// <seealso cref="ValueChanged"/>
-#if false
+#if SUPPORTED_NESTED_ANNOTATION
 		[AutoDeconstruct(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
-		[AutoHashCode]
+		[AutoHashCode(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
+		[AutoEquality(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
 #endif
 		public readonly partial struct ValueChangedArgs : IValueEquatable<ValueChangedArgs>
 		{
@@ -59,7 +63,7 @@ namespace Sudoku.Data
 			public int SetValue { get; }
 
 
-#if !false
+#if !SUPPORTED_NESTED_ANNOTATION
 			/// <inheritdoc cref="DeconstructMethod"/>
 			/// <param name="cell">The cell offset.</param>
 			/// <param name="oldMask">The old mask.</param>
@@ -72,7 +76,6 @@ namespace Sudoku.Data
 				newMask = NewMask;
 				setValue = SetValue;
 			}
-#endif
 
 			/// <inheritdoc cref="object.Equals(object?)"/>
 			public override bool Equals(object? obj) => obj is ValueChangedArgs comparer && Equals(comparer);
@@ -84,6 +87,7 @@ namespace Sudoku.Data
 			public bool Equals(in ValueChangedArgs other) =>
 				Cell == other.Cell && OldMask == other.OldMask && NewMask == other.NewMask
 				&& SetValue == other.SetValue;
+#endif
 
 
 			/// <inheritdoc cref="Operators.operator =="/>

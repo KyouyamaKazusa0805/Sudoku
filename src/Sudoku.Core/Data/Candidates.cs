@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
@@ -20,6 +21,7 @@ namespace Sudoku.Data
 	/// Encapsulates a map that contains 729 positions to represent a candidate.
 	/// </summary>
 	[AutoHashCode(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
+	[AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 	public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>
@@ -340,16 +342,6 @@ namespace Sudoku.Data
 			}
 		}
 
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override readonly bool Equals(object? obj) => obj is Candidates comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public readonly bool Equals(in Candidates other) =>
-			_0 == other._0 && _1 == other._1 && _2 == other._2
-			&& _3 == other._3 && _4 == other._4 && _5 == other._5
-			&& _6 == other._6 && _7 == other._7 && _8 == other._8
-			&& _9 == other._9 && _10 == other._10 && _11 == other._11;
 
 		/// <summary>
 		/// Check whether the specified candidate is in the current list.
