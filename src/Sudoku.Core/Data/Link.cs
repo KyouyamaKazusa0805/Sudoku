@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -12,6 +14,9 @@ namespace Sudoku.Data
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
+	[AutoDeconstruct(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
+	[AutoHashCode(nameof(EigenValue))]
+	[AutoEquality(nameof(EigenValue))]
 	public readonly partial struct Link : IValueEquatable<Link>
 	{
 		/// <summary>
@@ -43,22 +48,31 @@ namespace Sudoku.Data
 		/// </summary>
 		public LinkType LinkType { get; }
 
+		/// <summary>
+		/// Indicates the start cell.
+		/// </summary>
+		private int StartCell => StartCandidate / 9;
 
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="startCell">The start cell.</param>
-		/// <param name="startDigit">The start digit.</param>
-		/// <param name="endCell">The end cell.</param>
-		/// <param name="endDigit">The end digit.</param>
-		/// <param name="linkType">The link type.</param>
-		public void Deconstruct(
-			out int startCell, out int startDigit, out int endCell, out int endDigit, out LinkType linkType)
-		{
-			startCell = StartCandidate / 9;
-			startDigit = StartCandidate % 9;
-			endCell = EndCandidate / 9;
-			endDigit = EndCandidate % 9;
-			linkType = LinkType;
-		}
+		/// <summary>
+		/// Indicates the start digit.
+		/// </summary>
+		private int StartDigit => StartCandidate % 9;
+
+		/// <summary>
+		/// Indicates the end cell.
+		/// </summary>
+		private int EndCell => EndCandidate / 9;
+
+		/// <summary>
+		/// Indicates the end digit.
+		/// </summary>
+		private int EndDigit => EndCandidate % 9;
+
+		/// <summary>
+		/// Indicates the eigen value.
+		/// </summary>
+		private int EigenValue => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
+
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
@@ -70,21 +84,6 @@ namespace Sudoku.Data
 
 			return sb.ToString();
 		}
-
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		public override bool Equals(object? obj) => obj is Link comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(in Link other)
-		{
-			var (a, b, c) = this;
-			var (d, e, f) = other;
-			return (int)c << 20 == (int)f << 20 && a << 10 == d << 10 && b == e
-				|| (int)c << 20 == (int)f << 20 && b << 10 == e << 10 && a == d;
-		}
-
-		/// <inheritdoc cref="object.GetHashCode"/>
-		public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 
 		/// <inheritdoc cref="Operators.operator =="/>

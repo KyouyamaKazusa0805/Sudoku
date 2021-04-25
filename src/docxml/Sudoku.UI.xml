@@ -96,6 +96,11 @@
             Indicates the number of file formats the instance recorded.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Extensions.Filter.ResultStr">
+            <summary>
+            Indicates the result string value.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Extensions.Filter.WithJpg">
             <summary>
             Append the JPG format filter into the list.
@@ -167,15 +172,6 @@
             Append the all-file format filter into the list.
             </summary>
             <returns>The reference of <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Extensions.Filter.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Extensions.Filter.Equals(Sudoku.UI.Extensions.Filter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Extensions.Filter.GetHashCode">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Extensions.Filter.ToString">
             <inheritdoc/>

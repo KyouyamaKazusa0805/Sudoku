@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.DocComments;
 using Sudoku.UI.ResourceDictionaries;
 
@@ -8,7 +10,9 @@ namespace Sudoku.UI.Extensions
 	/// <summary>
 	/// Encapsulates a filter that stores a several of file formats.
 	/// </summary>
-	public sealed class Filter : IEquatable<Filter?>
+	[AutoEquality(nameof(ResultStr))]
+	[AutoHashCode(nameof(ResultStr))]
+	public sealed partial class Filter : IEquatable<Filter?>
 	{
 		/// <summary>
 		/// Indicates the inner string builder.
@@ -24,6 +28,11 @@ namespace Sudoku.UI.Extensions
 		/// Indicates the number of file formats the instance recorded.
 		/// </summary>
 		public int Count { get; private set; }
+
+		/// <summary>
+		/// Indicates the result string value.
+		/// </summary>
+		private string ResultStr => _sb.ToString();
 
 
 		/// <summary>
@@ -159,16 +168,7 @@ namespace Sudoku.UI.Extensions
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Filter comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(Filter? other) => other is not null && _sb.ToString() == other._sb.ToString();
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => _sb.ToString().GetHashCode();
-
-		/// <inheritdoc/>
-		public override string ToString() => _sb.ToString();
+		public override string ToString() => ResultStr;
 
 		/// <summary>
 		/// Add the format.

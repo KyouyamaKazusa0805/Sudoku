@@ -3,6 +3,8 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.DocComments;
 
 namespace System.Text.Markdown
@@ -10,6 +12,8 @@ namespace System.Text.Markdown
 	/// <summary>
 	/// Provides a markdown document.
 	/// </summary>
+	[AutoHashCode(nameof(ResultStr))]
+	[AutoEquality(nameof(ResultStr))]
 	public sealed partial class Document : IEquatable<Document>
 	{
 		/// <summary>
@@ -30,17 +34,14 @@ namespace System.Text.Markdown
 		}
 
 
-		/// <inheritdoc/>
-		public override bool Equals(object? obj) => Equals(obj as Document);
+		/// <summary>
+		/// Indicates the result string.
+		/// </summary>
+		private string ResultStr => _innerBuilder.ToString();
+
 
 		/// <inheritdoc/>
-		public bool Equals(Document? other) => other is not null && _innerBuilder.Equals(other._innerBuilder);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => _innerBuilder.ToString().GetHashCode();
-
-		/// <inheritdoc/>
-		public override string ToString() => _innerBuilder.ToString();
+		public override string ToString() => ResultStr;
 
 		/// <summary>
 		/// Format the document.

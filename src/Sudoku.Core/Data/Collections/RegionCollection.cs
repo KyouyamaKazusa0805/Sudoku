@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
@@ -13,6 +14,7 @@ namespace Sudoku.Data.Collections
 	/// Indicates a region collection.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoEquality(nameof(_mask))]
 	public readonly ref partial struct RegionCollection
 	{
 		/// <summary>
@@ -67,9 +69,6 @@ namespace Sudoku.Data.Collections
 		[IndexerName("Region")]
 		public bool this[int region] => (_mask >> region & 1) != 0;
 
-
-		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
-		public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 		/// <inheritdoc cref="object.GetHashCode"/>
 		public override int GetHashCode() => _mask;

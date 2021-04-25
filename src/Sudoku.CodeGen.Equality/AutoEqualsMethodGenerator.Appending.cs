@@ -58,6 +58,10 @@ namespace Sudoku.CodeGen.Equality
 
 		private static partial string PrintIsKeywordToken() => "is ";
 
+		private static partial string PrintNotKeywordToken() => "not ";
+
+		private static partial string PrintNullKeywordToken() => "null ";
+
 		private static partial string PrintInKeywordToken() => "in ";
 
 		private static partial string PrintSemicolonToken() => ";";

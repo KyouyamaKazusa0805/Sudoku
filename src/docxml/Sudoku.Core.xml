@@ -1489,9 +1489,6 @@
             Indicates all digits used in this conclusions list, represented as a mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection@)">
-            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
-        </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1541,9 +1538,6 @@
             <summary>
             Get the number of digits in the collection.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(Sudoku.Data.Collections.DigitCollection@)">
-            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.Contains(System.Int32)">
             <summary>
@@ -1601,9 +1595,6 @@
             </summary>
             <param name="collection">The collection.</param>
         </member>
-        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection@)">
-            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
-        </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1653,9 +1644,6 @@
             </summary>
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection@)">
-            <inheritdoc cref="M:System.IValueEquatable`1.Equals(`0@)"/>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -2361,25 +2349,33 @@
             The link type.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="startCell">The start cell.</param>
-            <param name="startDigit">The start digit.</param>
-            <param name="endCell">The end cell.</param>
-            <param name="endDigit">The end digit.</param>
-            <param name="linkType">The link type.</param>
+        <member name="P:Sudoku.Data.Link.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.StartDigit">
+            <summary>
+            Indicates the start digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EndDigit">
+            <summary>
+            Indicates the end digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EigenValue">
+            <summary>
+            Indicates the eigen value.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Link.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Link.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Link.op_Equality(Sudoku.Data.Link@,Sudoku.Data.Link@)">
             <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>

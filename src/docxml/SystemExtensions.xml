@@ -1801,14 +1801,10 @@
         <member name="M:System.Text.Markdown.Document.#ctor">
             <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
         </member>
-        <member name="M:System.Text.Markdown.Document.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.Markdown.Document.Equals(System.Text.Markdown.Document)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.Markdown.Document.GetHashCode">
-            <inheritdoc/>
+        <member name="P:System.Text.Markdown.Document.ResultStr">
+            <summary>
+            Indicates the result string.
+            </summary>
         </member>
         <member name="M:System.Text.Markdown.Document.ToString">
             <inheritdoc/>

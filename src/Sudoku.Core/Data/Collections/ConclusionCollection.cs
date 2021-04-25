@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using System.Text;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 
@@ -12,6 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Provides a collection that contains the conclusions.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoEquality(nameof(_collection))]
 	public readonly ref partial struct ConclusionCollection
 	{
 		/// <summary>
@@ -68,9 +70,6 @@ namespace Sudoku.Data.Collections
 			}
 		}
 
-
-		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
-		public bool Equals(in ConclusionCollection other) => _collection == other._collection;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => ToString(true, ", ");

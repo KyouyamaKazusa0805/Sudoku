@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
@@ -12,6 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Indicates a collection that contains the several digits.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoEquality(nameof(_mask))]
 	public readonly ref partial struct DigitCollection
 	{
 		/// <summary>
@@ -56,9 +58,6 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		public int Count => PopCount((uint)_mask);
 
-
-		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
-		public bool Equals(in DigitCollection other) => _mask == other._mask;
 
 		/// <summary>
 		/// Indicates whether the specified collection contains the digit.

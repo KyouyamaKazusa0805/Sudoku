@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -12,6 +13,7 @@ namespace Sudoku.Data.Collections
 	/// Provides a collection that contains the chain links.
 	/// </summary>
 	[DisallowParameterlessConstructor]
+	[AutoEquality(nameof(_collection))]
 	public readonly ref partial struct LinkCollection
 	{
 		/// <summary>
@@ -33,9 +35,6 @@ namespace Sudoku.Data.Collections
 		public LinkCollection(IEnumerable<Link> collection) : this() =>
 			_collection = collection.ToArray().AsSpan();
 
-
-		/// <inheritdoc cref="IValueEquatable{TStruct}.Equals(in TStruct)"/>
-		public bool Equals(in LinkCollection other) => _collection == other._collection;
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()

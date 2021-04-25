@@ -119,47 +119,52 @@ namespace Sudoku.CodeGen.Equality
 					.Append(PrintTypeKeywordToken(symbol.IsRecord ? true : null, symbol.TypeKind))
 					.Append(symbol.Name)
 					.AppendLine(genericParametersList)
-					.AppendLine(PrintOpenBracketToken(1))
-					.AppendLine(PrintCompilerGenerated(2));
+					.AppendLine(PrintOpenBracketToken(1));
 
-				if (OutputAggressiveInliningMark)
+				if (symbol is { IsRefLikeType: false })
 				{
-					source.AppendLine(PrintAggressiveInlining(2));
+					source.AppendLine(PrintCompilerGenerated(2));
+
+					if (OutputAggressiveInliningMark)
+					{
+						source.AppendLine(PrintAggressiveInlining(2));
+					}
+
+					source
+						.Append(PrintIndenting(2))
+						.Append(PrintPublicKeywordToken())
+						.Append(PrintOverrideKeywordToken());
+
+					// Not 'ref struct' and not 'readonly struct'.
+					if (symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false })
+					{
+						source.Append(PrintReadOnlyKeywordToken());
+					}
+
+					source
+						.Append(PrintBoolKeywordToken())
+						.Append(PrintEquals())
+						.Append(PrintOpenBraceToken())
+						.Append(PrintNullableObjectKeywordToken())
+						.Append(PrintOther())
+						.Append(PrintClosedBraceToken())
+						.Append(PrintLambdaOperatorToken())
+						.Append(PrintOther())
+						.Append(PrintSpace())
+						.Append(PrintIsKeywordToken())
+						.Append(fullTypeName)
+						.Append(PrintSpace())
+						.Append(PrintComparer())
+						.Append(PrintLogicalAndOperatorToken())
+						.Append(PrintEquals())
+						.Append(PrintOpenBraceToken())
+						.Append(PrintComparer())
+						.Append(PrintClosedBraceToken())
+						.AppendLine(PrintSemicolonToken())
+						.AppendLine();
 				}
 
-				source
-					.Append(PrintIndenting(2))
-					.Append(PrintPublicKeywordToken())
-					.Append(PrintOverrideKeywordToken());
-
-				// Not 'ref struct' and not 'readonly struct'.
-				if (symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false })
-				{
-					source.Append(PrintReadOnlyKeywordToken());
-				}
-
-				source
-					.Append(PrintBoolKeywordToken())
-					.Append(PrintEquals())
-					.Append(PrintOpenBraceToken())
-					.Append(PrintNullableObjectKeywordToken())
-					.Append(PrintOther())
-					.Append(PrintClosedBraceToken())
-					.Append(PrintLambdaOperatorToken())
-					.Append(PrintOther())
-					.Append(PrintSpace())
-					.Append(PrintIsKeywordToken())
-					.Append(fullTypeName)
-					.Append(PrintSpace())
-					.Append(PrintComparer())
-					.Append(PrintLogicalAndOperatorToken())
-					.Append(PrintEquals())
-					.Append(PrintOpenBraceToken())
-					.Append(PrintComparer())
-					.Append(PrintClosedBraceToken())
-					.AppendLine(PrintSemicolonToken())
-					.AppendLine()
-					.AppendLine(PrintCompilerGenerated(2));
+				source.AppendLine(PrintCompilerGenerated(2));
 
 				if (OutputAggressiveInliningMark)
 				{
@@ -181,28 +186,44 @@ namespace Sudoku.CodeGen.Equality
 					.Append(PrintEquals())
 					.Append(PrintOpenBraceToken());
 
-				if (symbol is { TypeKind: TypeKind.Struct })
+				if (symbol.TypeKind == TypeKind.Struct)
 				{
 					source.Append(PrintInKeywordToken());
 				}
 
+				source.Append(fullTypeName);
+
+				if (symbol.TypeKind == TypeKind.Class)
+				{
+					source.Append("?");
+				}
+
 				source
-					.Append(fullTypeName)
 					.Append(PrintSpace())
 					.Append(PrintOther())
 					.Append(PrintClosedBraceToken())
 					.Append(PrintLambdaOperatorToken());
 
+				if (symbol.TypeKind == TypeKind.Class)
+				{
+					source
+						.Append(PrintOther())
+						.Append(PrintSpace())
+						.Append(PrintIsKeywordToken())
+						.Append(PrintNotKeywordToken())
+						.Append(PrintNullKeywordToken())
+						.Remove(source.Length - 1, 1) // Remove the last ' '.
+						.Append(PrintLogicalAndOperatorToken());
+				}
+
 				string attributeStr = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(AutoEqualityAttribute)
 					select attribute
-				).ToArray()[0].ToString();
+				).First().ToString();
 				int tokenStartIndex = attributeStr.IndexOf("({");
 				if (tokenStartIndex == -1)
 				{
-					// Error.
-
 					return null;
 				}
 
@@ -270,6 +291,8 @@ namespace Sudoku.CodeGen.Equality
 		private static partial string PrintSpace();
 		private static partial string PrintComparer();
 		private static partial string PrintIsKeywordToken();
+		private static partial string PrintNotKeywordToken();
+		private static partial string PrintNullKeywordToken();
 		private static partial string PrintInKeywordToken();
 		private static partial string PrintSemicolonToken();
 		private static partial string PrintLogicalAndOperatorToken();
