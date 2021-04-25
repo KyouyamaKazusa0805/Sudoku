@@ -152,7 +152,7 @@ namespace Sudoku.CodeGen.Equality
 						.Append(PrintOther())
 						.Append(PrintSpace())
 						.Append(PrintIsKeywordToken())
-						.Append(fullTypeName)
+						.Append(symbol.Name)
 						.Append(PrintSpace())
 						.Append(PrintComparer())
 						.Append(PrintLogicalAndOperatorToken())
@@ -191,7 +191,7 @@ namespace Sudoku.CodeGen.Equality
 					source.Append(PrintInKeywordToken());
 				}
 
-				source.Append(fullTypeName);
+				source.Append(symbol.Name);
 
 				if (symbol.TypeKind == TypeKind.Class)
 				{
