@@ -183,9 +183,7 @@ namespace System.Extensions
 		/// all indices of set bits.
 		/// </para>
 		/// </summary>
-		/// <param name=""this"">
-		/// The value.
-		/// </param>
+		/// <param name=""this"">The value.</param>
 		/// <returns>All indices of set bits.</returns>
 		/// <remarks>
 		/// This implementation will allow you use <see langword=""foreach""/> loop:
@@ -259,21 +257,16 @@ namespace System.Extensions
 		{{")
 				.AppendLine();
 
+			string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
 			for (int z = 1, t = 0; z < size; z <<= 1, t++)
 			{
 				string q = defaults[size][t];
-				sb.AppendLine($@"			@this = ({typeName})(@this >> {z} & {q} | (@this & {q}) << {z});");
+				sb.AppendLine($"\t\t\t@this = {conversion}(@this >> {z} & {q} | (@this & {q}) << {z});");
 			}
 
 			return sb
-				.AppendLine($@"@this = {typeName switch
-				{
-					"byte" => "(byte)",
-					"short" => "(short)",
-					_ => string.Empty
-				}
-				}(@this >> {size} | @this << {size});")
-				.Append(@"		}")
+				.AppendLine($"\t\t\t@this = {conversion}(@this >> {size} | @this << {size});")
+				.Append("\t\t}")
 				.ToString();
 		}
 
