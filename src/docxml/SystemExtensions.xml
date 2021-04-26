@@ -592,108 +592,6 @@
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
-        <member name="T:System.Extensions.BitOperationsEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
-            </summary>
-            <seealso cref="T:System.Numerics.BitOperations"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.SByte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Byte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetAllSets(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.SByte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Byte)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt16)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt64)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetEnumerator(Sudoku.DocComments.Integer)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Byte,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int64,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.GetNextSet(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Byte@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int16@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int32@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int64@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.ReverseBits(Sudoku.DocComments.Integer@)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Byte,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int64,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SetAt(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Byte,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
-            <inheritdoc cref="M:Sudoku.DocComments.Integer.SkipSetBit(Sudoku.DocComments.Integer,System.Int32)"/>
-        </member>
         <member name="T:System.Extensions.CharEx">
             <summary>
             Provides extension methods on <see cref="T:System.Char"/>.
@@ -1701,6 +1599,436 @@
             <param name="values">Values to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
+        </member>
+        <member name="T:System.Extensions.BitOperationsEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
+            </summary>
+            <seealso cref="T:System.Numerics.BitOperations"/>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.SByte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Byte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.SByte)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.SByte"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Byte)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Byte"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int16)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int16"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt16)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt16"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int32)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int32"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt32)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt32"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int64)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int64"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt64)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt64"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">
+            The value.
+            </param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Byte,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int16,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int32,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int64,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Byte@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int16@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int32@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int64@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Byte,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int16,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int32,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int64,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Byte,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The byte value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int16,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The short value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int32,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The int value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The long value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
         </member>
         <member name="T:System.IO.DirectoryEx">
             <summary>
