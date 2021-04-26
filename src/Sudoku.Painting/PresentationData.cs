@@ -178,10 +178,10 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Add a new instance into the collection.
 		/// </summary>
-		/// <typeparam name="T">The type of the value to add into.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of the value to add into.</typeparam>
 		/// <param name="item">The property item.</param>
 		/// <param name="value">The value to add into.</param>
-		public bool Add<T>(PresentationDataItem item, in T value) where T : unmanaged
+		public bool Add<TUnmanaged>(PresentationDataItem item, in TUnmanaged value) where TUnmanaged : unmanaged
 		{
 			switch (item)
 			{
@@ -231,11 +231,12 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Add a series of elements into the collection.
 		/// </summary>
-		/// <typeparam name="T">The type of each element.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
 		/// <param name="item">The property you want to add into.</param>
 		/// <param name="values">The values you want to add.</param>
 		/// <returns>The number of elements that is successful to add.</returns>
-		public int AddRange<T>(PresentationDataItem item, IEnumerable<T> values) where T : unmanaged
+		public int AddRange<TUnmanaged>(PresentationDataItem item, IEnumerable<TUnmanaged> values)
+			where TUnmanaged : unmanaged
 		{
 			int result = 0;
 			byte tag = 0;
@@ -335,10 +336,11 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Remove a new instance from the collection.
 		/// </summary>
-		/// <typeparam name="T">The type of the value to remove.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of the value to remove.</typeparam>
 		/// <param name="item">The property item.</param>
 		/// <param name="value">The value to remove.</param>
-		public bool Remove<T>(PresentationDataItem item, in T value) where T : unmanaged
+		public bool Remove<TUnmanaged>(PresentationDataItem item, in TUnmanaged value)
+			where TUnmanaged : unmanaged
 		{
 			switch (item)
 			{

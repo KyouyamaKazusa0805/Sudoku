@@ -11,11 +11,12 @@ namespace Sudoku.Painting
 	/// <summary>
 	/// Encapsulates a painting pair that contains the base color to paint and the value.
 	/// </summary>
-	/// <typeparam name="T">The type of the value.</typeparam>
+	/// <typeparam name="TUnmanaged">The type of the value.</typeparam>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(UsePaletteColor), nameof(PaletteColorIndex), nameof(Color), nameof(Value))]
 	[AutoHashCode(nameof(Color), nameof(Value))]
-	public readonly partial struct PaintingPair<T> : IValueEquatable<PaintingPair<T>> where T : unmanaged
+	public readonly partial struct PaintingPair<TUnmanaged> : IValueEquatable<PaintingPair<TUnmanaged>>
+		where TUnmanaged : unmanaged
 	{
 		/// <summary>
 		/// Initializes an instance with the color palette index and the value.
@@ -23,7 +24,7 @@ namespace Sudoku.Painting
 		/// <param name="paletteIndex">The palette index.</param>
 		/// <param name="value">The value used.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PaintingPair(int paletteIndex, in T value) : this()
+		public PaintingPair(int paletteIndex, in TUnmanaged value) : this()
 		{
 			UsePaletteColor = true;
 			PaletteColorIndex = paletteIndex;
@@ -36,7 +37,7 @@ namespace Sudoku.Painting
 		/// <param name="color">The color used.</param>
 		/// <param name="value">The value used.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public PaintingPair(in Color color, in T value) : this()
+		public PaintingPair(in Color color, in TUnmanaged value) : this()
 		{
 			UsePaletteColor = false;
 			Color = color;
@@ -71,18 +72,18 @@ namespace Sudoku.Painting
 		/// <summary>
 		/// Indicates the value used.
 		/// </summary>
-		public T Value { get; }
+		public TUnmanaged Value { get; }
 
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => obj is PaintingPair<T> comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is PaintingPair<TUnmanaged> comparer && Equals(comparer);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(in PaintingPair<T> other)
+		public bool Equals(in PaintingPair<TUnmanaged> other)
 		{
-			T l = Value, r = other.Value;
+			TUnmanaged l = Value, r = other.Value;
 			return Color == other.Color && Unsafe.AreSame(ref l, ref r);
 		}
 
@@ -93,10 +94,12 @@ namespace Sudoku.Painting
 
 		/// <inheritdoc cref="Operators.operator =="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in PaintingPair<T> left, in PaintingPair<T> right) => left.Equals(right);
+		public static bool operator ==(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right) =>
+			left.Equals(right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in PaintingPair<T> left, in PaintingPair<T> right) => !(left == right);
+		public static bool operator !=(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right) =>
+			!(left == right);
 	}
 }

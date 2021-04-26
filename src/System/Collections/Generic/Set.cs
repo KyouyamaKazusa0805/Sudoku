@@ -7,13 +7,14 @@ namespace System.Collections.Generic
 	/// <summary>
 	/// Indicates a set which contains the different elements.
 	/// </summary>
-	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class Set<T> : IEnumerable<T>, IEquatable<Set<T>?>, ISet<T> where T : IEquatable<T>
+	/// <typeparam name="TEquatable">The type of the element.</typeparam>
+	public sealed class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>?>, ISet<TEquatable>
+		where TEquatable : IEquatable<TEquatable>
 	{
 		/// <summary>
 		/// The inner list.
 		/// </summary>
-		private readonly IList<T> _list = new List<T>();
+		private readonly IList<TEquatable> _list = new List<TEquatable>();
 
 
 		/// <inheritdoc cref="DefaultConstructor"/>
@@ -25,7 +26,7 @@ namespace System.Collections.Generic
 		/// Add a series of elements.
 		/// </summary>
 		/// <param name="elements">The elements.</param>
-		public Set(IEnumerable<T> elements)
+		public Set(IEnumerable<TEquatable> elements)
 		{
 			foreach (var element in elements)
 			{
@@ -40,7 +41,7 @@ namespace System.Collections.Generic
 		public int Count => _list.Count;
 
 		/// <inheritdoc/>
-		bool ICollection<T>.IsReadOnly => false;
+		bool ICollection<TEquatable>.IsReadOnly => false;
 
 
 		/// <summary>
@@ -48,31 +49,31 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="element">The element.</param>
 		/// <returns>The first element to satisfy the condition.</returns>
-		public T? this[T element] => _list.FirstOrDefault(e => e.Equals(element));
+		public TEquatable? this[TEquatable element] => _list.FirstOrDefault(e => e.Equals(element));
 
 
 		/// <inheritdoc/>
 		public void Clear() => _list.Clear();
 
 		/// <inheritdoc/>
-		public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
+		public void CopyTo(TEquatable[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
 
 		/// <summary>
 		/// Sort the list.
 		/// </summary>
-		public void Sort() => ((List<T>)_list).Sort();
+		public void Sort() => ((List<TEquatable>)_list).Sort();
 
 		/// <summary>
 		/// Sort the list with the specified comparison.
 		/// </summary>
 		/// <param name="comparison">The comparison.</param>
-		public void Sort(Comparison<T> comparison) => ((List<T>)_list).Sort(comparison);
+		public void Sort(Comparison<TEquatable> comparison) => ((List<TEquatable>)_list).Sort(comparison);
 
 		/// <summary>
 		/// Add an element into the set.
 		/// </summary>
 		/// <param name="item">The item.</param>
-		public bool Add(T item)
+		public bool Add(TEquatable item)
 		{
 			if (_list.Contains(item))
 			{
@@ -94,7 +95,7 @@ namespace System.Collections.Generic
 		/// Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
 		/// The comparison is decided by the implementation of its <c>Equals</c> method.
 		/// </remarks>
-		public bool TryGetValue(T other, out T? result)
+		public bool TryGetValue(TEquatable other, out TEquatable? result)
 		{
 			foreach (var value in _list)
 			{
@@ -113,14 +114,14 @@ namespace System.Collections.Generic
 		/// Remove the last element out of the list.
 		/// </summary>
 		/// <returns>The element removed.</returns>
-		public T Remove() => RemoveAt(^1);
+		public TEquatable Remove() => RemoveAt(^1);
 
 		/// <summary>
 		/// Remove the element at the specified index.
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The element removed.</returns>
-		public T RemoveAt(int index)
+		public TEquatable RemoveAt(int index)
 		{
 			var result = _list[index];
 			_list.RemoveAt(index);
@@ -132,7 +133,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The element removed.</returns>
-		public T RemoveAt(in Index index)
+		public TEquatable RemoveAt(in Index index)
 		{
 			var result = _list[index];
 			_list.RemoveAt(index.GetOffset(Count));
@@ -140,16 +141,16 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Set<T> comparer && Equals(comparer);
+		public override bool Equals(object? obj) => obj is Set<TEquatable> comparer && Equals(comparer);
 
 		/// <inheritdoc/>
-		public bool Equals(Set<T>? other) => SetEquals(this, other);
+		public bool Equals(Set<TEquatable>? other) => SetEquals(this, other);
 
 		/// <inheritdoc/>
-		public bool Contains(T item) => _list.Contains(item);
+		public bool Contains(TEquatable item) => _list.Contains(item);
 
 		/// <inheritdoc/>
-		public bool Remove(T item) => _list.Remove(item);
+		public bool Remove(TEquatable item) => _list.Remove(item);
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
@@ -164,9 +165,9 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public void ExceptWith(IEnumerable<T> other)
+		public void ExceptWith(IEnumerable<TEquatable> other)
 		{
-			foreach (var element in new List<T>(_list)) // Should not use lonely '_list'.
+			foreach (var element in new List<TEquatable>(_list)) // Should not use lonely '_list'.
 			{
 				if (other.Contains(element))
 				{
@@ -176,9 +177,9 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public void IntersectWith(IEnumerable<T> other)
+		public void IntersectWith(IEnumerable<TEquatable> other)
 		{
-			foreach (var element in new List<T>(_list)) // Should not use lonely '_list'.
+			foreach (var element in new List<TEquatable>(_list)) // Should not use lonely '_list'.
 			{
 				if (!other.Contains(element))
 				{
@@ -188,15 +189,15 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public bool IsProperSubsetOf(IEnumerable<T> other) =>
+		public bool IsProperSubsetOf(IEnumerable<TEquatable> other) =>
 			IsSubsetOf(other) && other.Take(Count + 1).Count() != Count;
 
 		/// <inheritdoc/>
-		public bool IsProperSupersetOf(IEnumerable<T> other) =>
+		public bool IsProperSupersetOf(IEnumerable<TEquatable> other) =>
 			IsSupersetOf(other) && other.Take(Count + 1).Count() != Count;
 
 		/// <inheritdoc/>
-		public bool IsSubsetOf(IEnumerable<T> other)
+		public bool IsSubsetOf(IEnumerable<TEquatable> other)
 		{
 			foreach (var element in _list)
 			{
@@ -210,7 +211,7 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public bool IsSupersetOf(IEnumerable<T> other)
+		public bool IsSupersetOf(IEnumerable<TEquatable> other)
 		{
 			foreach (var element in other)
 			{
@@ -224,13 +225,13 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public bool Overlaps(IEnumerable<T> other) => other.Any(element => _list.Contains(element));
+		public bool Overlaps(IEnumerable<TEquatable> other) => other.Any(element => _list.Contains(element));
 
 		/// <inheritdoc/>
-		public bool SetEquals(IEnumerable<T> other) => other.All(element => _list.Contains(element));
+		public bool SetEquals(IEnumerable<TEquatable> other) => other.All(element => _list.Contains(element));
 
 		/// <inheritdoc/>
-		public void SymmetricExceptWith(IEnumerable<T> other)
+		public void SymmetricExceptWith(IEnumerable<TEquatable> other)
 		{
 			var elements = _list.Except(other).Union(other.Except(_list));
 			_list.Clear();
@@ -238,7 +239,7 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public void UnionWith(IEnumerable<T> other)
+		public void UnionWith(IEnumerable<TEquatable> other)
 		{
 			foreach (var element in other)
 			{
@@ -253,10 +254,10 @@ namespace System.Collections.Generic
 		public override string ToString() => $"Set (Count = {Count.ToString()})";
 
 		/// <inheritdoc/>
-		public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
+		public IEnumerator<TEquatable> GetEnumerator() => _list.GetEnumerator();
 
 		/// <inheritdoc/>
-		void ICollection<T>.Add(T item) => Add(item);
+		void ICollection<TEquatable>.Add(TEquatable item) => Add(item);
 
 		/// <inheritdoc/>
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -268,7 +269,7 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static bool InternalEquals(Set<T>? left, Set<T>? right) => (left, right) switch
+		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
 		{
 			(null, null) => true,
 			(not null, not null) => SetEquals(left, right),
@@ -281,7 +282,7 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static bool SetEquals(Set<T>? left, Set<T>? right)
+		private static bool SetEquals(Set<TEquatable>? left, Set<TEquatable>? right)
 		{
 			switch ((left, right))
 			{
@@ -310,62 +311,62 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Set<T>? left, Set<T>? right) => InternalEquals(left, right);
+		public static bool operator ==(Set<TEquatable>? left, Set<TEquatable>? right) => InternalEquals(left, right);
 
 		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Set<T>? left, Set<T>? right) => !(left == right);
+		public static bool operator !=(Set<TEquatable>? left, Set<TEquatable>? right) => !(left == right);
 
 		/// <summary>
-		/// Calls the method <see cref="IntersectWith(IEnumerable{T})"/>, and returns the
+		/// Calls the method <see cref="IntersectWith(IEnumerable{TEquatable})"/>, and returns the
 		/// reference of the <paramref name="left"/> parameter.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The intersection result.</returns>
-		/// <seealso cref="IntersectWith(IEnumerable{T})"/>
-		public static Set<T> operator &(Set<T> left, IEnumerable<T> right)
+		/// <seealso cref="IntersectWith(IEnumerable{TEquatable})"/>
+		public static Set<TEquatable> operator &(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.IntersectWith(right);
 			return left;
 		}
 
 		/// <summary>
-		/// Calls the method <see cref="UnionWith(IEnumerable{T})"/>, and returns the
+		/// Calls the method <see cref="UnionWith(IEnumerable{TEquatable})"/>, and returns the
 		/// reference of the <paramref name="left"/> parameter.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The union result.</returns>
-		/// <seealso cref="UnionWith(IEnumerable{T})"/>
-		public static Set<T> operator |(Set<T> left, IEnumerable<T> right)
+		/// <seealso cref="UnionWith(IEnumerable{TEquatable})"/>
+		public static Set<TEquatable> operator |(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.UnionWith(right);
 			return left;
 		}
 
 		/// <summary>
-		/// Calls the method <see cref="SymmetricExceptWith(IEnumerable{T})"/>, and returns the
+		/// Calls the method <see cref="SymmetricExceptWith(IEnumerable{TEquatable})"/>, and returns the
 		/// reference of the <paramref name="left"/> parameter.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The symmetric exception result.</returns>
-		/// <seealso cref="SymmetricExceptWith(IEnumerable{T})"/>
-		public static Set<T> operator ^(Set<T> left, IEnumerable<T> right)
+		/// <seealso cref="SymmetricExceptWith(IEnumerable{TEquatable})"/>
+		public static Set<TEquatable> operator ^(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.SymmetricExceptWith(right);
 			return left;
 		}
 
 		/// <summary>
-		/// Calls the method <see cref="ExceptWith(IEnumerable{T})"/>, and returns the
+		/// Calls the method <see cref="ExceptWith(IEnumerable{TEquatable})"/>, and returns the
 		/// reference of the <paramref name="left"/> parameter.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The exception result.</returns>
-		/// <seealso cref="ExceptWith(IEnumerable{T})"/>
-		public static Set<T> operator -(Set<T> left, IEnumerable<T> right)
+		/// <seealso cref="ExceptWith(IEnumerable{TEquatable})"/>
+		public static Set<TEquatable> operator -(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.ExceptWith(right);
 			return left;

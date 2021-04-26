@@ -142,7 +142,7 @@
             <summary>
             Indicates a set which contains the different elements.
             </summary>
-            <typeparam name="T">The type of the element.</typeparam>
+            <typeparam name="TEquatable">The type of the element.</typeparam>
         </member>
         <member name="F:System.Collections.Generic.Set`1._list">
             <summary>
@@ -163,7 +163,7 @@
             The number of elements.
             </summary>
         </member>
-        <member name="P:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{T}#IsReadOnly">
+        <member name="P:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{TEquatable}#IsReadOnly">
             <inheritdoc/>
         </member>
         <member name="P:System.Collections.Generic.Set`1.Item(`0)">
@@ -280,7 +280,7 @@
         <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{T}#Add(`0)">
+        <member name="M:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{TEquatable}#Add(`0)">
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.Set`1.System#Collections#IEnumerable#GetEnumerator">
@@ -749,7 +749,7 @@
             <summary>
             Check whether the list contains the element that is in the specified array.
             </summary>
-            <typeparam name="T">The type of the element to check.</typeparam>
+            <typeparam name="TEquatable">The type of the element to check.</typeparam>
             <param name="this">The list.</param>
             <param name="elements">
             The array that contains the target elements.
@@ -898,7 +898,7 @@
             <summary>
             Remove duplicate items in the specified list.
             </summary>
-            <typeparam name="T">The type of each elements.</typeparam>
+            <typeparam name="TEquatable">The type of each elements.</typeparam>
             <param name="this">The list.</param>
             <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
         </member>
@@ -906,7 +906,7 @@
             <summary>
             Remove duplicate items in the specified list.
             </summary>
-            <typeparam name="T">The type of each elements.</typeparam>
+            <typeparam name="TEquatable">The type of each elements.</typeparam>
             <param name="this">The list.</param>
             <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
         </member>
@@ -2034,7 +2034,7 @@
         </member>
         <member name="T:System.ICloneable`1">
             <inheritdoc cref="T:System.ICloneable"/>
-            <typeparam name="T">
+            <typeparam name="TClass">
             The type of this instance. This type should be only a class because the cloning
             operation is needed only in reference types, while the value types will be passed
             by value, at this time all value members (fields and properties) will be copied

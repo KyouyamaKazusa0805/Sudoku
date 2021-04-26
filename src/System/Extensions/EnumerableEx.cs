@@ -44,13 +44,14 @@ namespace System.Extensions
 		/// <summary>
 		/// Check whether the list contains the element that is in the specified array.
 		/// </summary>
-		/// <typeparam name="T">The type of the element to check.</typeparam>
+		/// <typeparam name="TEquatable">The type of the element to check.</typeparam>
 		/// <param name="this">The list.</param>
 		/// <param name="elements">
 		/// The array that contains the target elements.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool Contains<T>(this IEnumerable<T> @this, params T[] elements) where T : IEquatable<T>
+		public static bool Contains<TEquatable>(this IEnumerable<TEquatable> @this, params TEquatable[] elements)
+			where TEquatable : IEquatable<TEquatable>
 		{
 			if (elements.Length == 1)
 			{

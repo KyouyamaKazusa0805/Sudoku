@@ -12,12 +12,13 @@ namespace System.Extensions
 		/// <summary>
 		/// Remove duplicate items in the specified list.
 		/// </summary>
-		/// <typeparam name="T">The type of each elements.</typeparam>
+		/// <typeparam name="TEquatable">The type of each elements.</typeparam>
 		/// <param name="this">The list.</param>
 		/// <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
-		public static List<T> RemoveDuplicateItems<T>(this List<T> @this) where T : IEquatable<T>
+		public static List<TEquatable> RemoveDuplicateItems<TEquatable>(this List<TEquatable> @this)
+			where TEquatable : IEquatable<TEquatable>
 		{
-			var set = new Set<T>(@this);
+			var set = new Set<TEquatable>(@this);
 			@this.Clear();
 			@this.AddRange(set);
 
@@ -27,12 +28,13 @@ namespace System.Extensions
 		/// <summary>
 		/// Remove duplicate items in the specified list.
 		/// </summary>
-		/// <typeparam name="T">The type of each elements.</typeparam>
+		/// <typeparam name="TEquatable">The type of each elements.</typeparam>
 		/// <param name="this">The list.</param>
 		/// <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
-		public static IList<T> RemoveDuplicateItems<T>(this IList<T> @this) where T : IEquatable<T>
+		public static IList<TEquatable> RemoveDuplicateItems<TEquatable>(this IList<TEquatable> @this)
+			where TEquatable : IEquatable<TEquatable>
 		{
-			var set = new Set<T>(@this);
+			var set = new Set<TEquatable>(@this);
 			@this.Clear();
 			@this.AddRange(set);
 

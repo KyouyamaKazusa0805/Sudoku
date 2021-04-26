@@ -11,18 +11,19 @@ namespace Sudoku.Painting.JsonConverters
 		/// <summary>
 		/// Indicates the inner converter.
 		/// </summary>
-		/// <typeparam name="T">The type of the value used.</typeparam>
-		private sealed class PaintingPairConverterInner<T> : JsonConverter<PaintingPair<T>> where T : unmanaged
+		/// <typeparam name="TUnmanaged">The type of the value used.</typeparam>
+		private sealed class PaintingPairConverterInner<TUnmanaged> : JsonConverter<PaintingPair<TUnmanaged>>
+			where TUnmanaged : unmanaged
 		{
 			/// <summary>
 			/// Indicates the string value representation of the property name <c>Color</c>.
 			/// </summary>
-			private const string ColorString = nameof(PaintingPair<T>.Color);
+			private const string ColorString = nameof(PaintingPair<TUnmanaged>.Color);
 
 			/// <summary>
 			/// Indicates the string value representation of the property name <c>Value</c>.
 			/// </summary>
-			private const string ValueString = nameof(PaintingPair<T>.Value);
+			private const string ValueString = nameof(PaintingPair<TUnmanaged>.Value);
 
 
 			/// <summary>
@@ -33,7 +34,7 @@ namespace Sudoku.Painting.JsonConverters
 			/// <summary>
 			/// Indicates the JSON converter of the value (If need).
 			/// </summary>
-			private readonly JsonConverter<T>? _valueConverter;
+			private readonly JsonConverter<TUnmanaged>? _valueConverter;
 
 			/// <summary>
 			/// Indicates the real type token of the value.
@@ -49,10 +50,10 @@ namespace Sudoku.Painting.JsonConverters
 			{
 				// For performance, use the existing converter if available.
 				_colorConverter = new ColorJsonConverter();
-				_valueConverter = options.GetConverter(typeof(T)) as JsonConverter<T>;
+				_valueConverter = options.GetConverter(typeof(TUnmanaged)) as JsonConverter<TUnmanaged>;
 
 				// Cache the key and value types.
-				_valueType = typeof(T);
+				_valueType = typeof(TUnmanaged);
 			}
 
 
@@ -66,7 +67,7 @@ namespace Sudoku.Painting.JsonConverters
 			/// <item>Failed to deserialize.</item>
 			/// </list>
 			/// </exception>
-			public override unsafe PaintingPair<T> Read(
+			public override unsafe PaintingPair<TUnmanaged> Read(
 				ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				if (reader.TokenType != JsonTokenType.StartObject)
@@ -75,7 +76,7 @@ namespace Sudoku.Painting.JsonConverters
 				}
 
 				Color color = default;
-				T value;
+				TUnmanaged value;
 				while (reader.Read())
 				{
 					if (reader.TokenType == JsonTokenType.EndObject)
@@ -113,7 +114,7 @@ namespace Sudoku.Painting.JsonConverters
 
 			/// <inheritdoc/>
 			public override void Write(
-				Utf8JsonWriter writer, PaintingPair<T> value, JsonSerializerOptions options)
+				Utf8JsonWriter writer, PaintingPair<TUnmanaged> value, JsonSerializerOptions options)
 			{
 				writer.WriteStartObject();
 				writer.WritePropertyName(ColorString);
