@@ -8,7 +8,9 @@ namespace Sudoku.CodeGen.BitOperations
 		/// <summary>
 		/// Indicates the leading text.
 		/// </summary>
-		private const string LeadingText = @"using System;
+		private const string LeadingText = @"#pragma warning disable 1591
+
+using System;
 using System.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 
@@ -85,7 +87,9 @@ namespace System.Extensions
 			const string baseModifiers = "		public static partial";
 
 			var sb = new StringBuilder();
-			sb.AppendLine(@"using System;
+			sb.AppendLine(@"#pragma warning disable 1591
+
+using System;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
