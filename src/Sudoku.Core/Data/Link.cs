@@ -5,7 +5,6 @@ using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
-using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -84,12 +83,5 @@ namespace Sudoku.Data
 
 			return sb.ToString();
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Link left, in Link right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Link left, in Link right) => !(left == right);
 	}
 }

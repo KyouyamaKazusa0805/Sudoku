@@ -190,13 +190,6 @@ namespace Sudoku.UI.Extensions
 		}
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Filter left, Filter right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Filter left, Filter right) => !(left == right);
-
-
 		/// <summary>
 		/// Implicit cast from <see cref="Filter"/> to <see cref="string"/>.
 		/// </summary>

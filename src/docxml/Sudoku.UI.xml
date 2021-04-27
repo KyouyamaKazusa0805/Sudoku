@@ -188,12 +188,6 @@
             Add a separator if need.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Extensions.Filter.op_Equality(Sudoku.UI.Extensions.Filter,Sudoku.UI.Extensions.Filter)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.UI.Extensions.Filter.op_Inequality(Sudoku.UI.Extensions.Filter,Sudoku.UI.Extensions.Filter)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
         <member name="M:Sudoku.UI.Extensions.Filter.op_Implicit(Sudoku.UI.Extensions.Filter)~System.String">
             <summary>
             Implicit cast from <see cref="T:Sudoku.UI.Extensions.Filter"/> to <see cref="T:System.String"/>.

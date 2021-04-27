@@ -109,11 +109,5 @@ namespace Sudoku.Data.Collections
 		/// <param name="collection">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		public static DigitCollection operator ~(in DigitCollection collection) => new((short)~collection._mask);
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in DigitCollection left, in DigitCollection right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in DigitCollection left, in DigitCollection right) => !(left == right);
 	}
 }

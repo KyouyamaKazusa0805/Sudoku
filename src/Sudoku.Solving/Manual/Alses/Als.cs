@@ -6,7 +6,6 @@ using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
@@ -228,12 +227,5 @@ namespace Sudoku.Solving.Manual.Alses
 
 			return result.ToArray();
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Als left, in Als right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Als left, in Als right) => !(left == right);
 	}
 }

@@ -2,7 +2,6 @@
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
@@ -98,12 +97,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => Map.ToString();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }

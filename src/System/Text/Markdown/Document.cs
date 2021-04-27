@@ -113,12 +113,5 @@ namespace System.Text.Markdown
 		/// </summary>
 		/// <returns>The empty markdown document instance.</returns>
 		public static Document Create() => new();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Document left, Document right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Document left, Document right) => !(left == right);
 	}
 }

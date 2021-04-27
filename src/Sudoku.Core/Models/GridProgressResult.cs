@@ -3,7 +3,6 @@ using System.Text;
 using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
-using Sudoku.DocComments;
 using Sudoku.Globalization;
 using Sudoku.Resources;
 
@@ -79,14 +78,5 @@ namespace Sudoku.Models
 
 			return sb.ToString();
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in GridProgressResult left, in GridProgressResult right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in GridProgressResult left, in GridProgressResult right) =>
-			!(left == right);
 	}
 }

@@ -87,7 +87,6 @@ namespace Sudoku.Data
 			public bool Equals(in ValueChangedArgs other) =>
 				Cell == other.Cell && OldMask == other.OldMask && NewMask == other.NewMask
 				&& SetValue == other.SetValue;
-#endif
 
 
 			/// <inheritdoc cref="Operators.operator =="/>
@@ -95,6 +94,7 @@ namespace Sudoku.Data
 
 			/// <inheritdoc cref="Operators.operator !="/>
 			public static bool operator !=(ValueChangedArgs left, ValueChangedArgs right) => !(left == right);
+#endif
 		}
 	}
 }

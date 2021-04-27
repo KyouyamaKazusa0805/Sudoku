@@ -7,7 +7,6 @@ using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -94,14 +93,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ReadOnlySpan<Conclusion>.Enumerator GetEnumerator() => AsSpan().GetEnumerator();
 
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in Elimination left, in Elimination right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in Elimination left, in Elimination right) => !(left == right);
 
 		/// <summary>
 		/// To merge two different instances, and return the merged result.

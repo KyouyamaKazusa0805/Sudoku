@@ -4,7 +4,6 @@ using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -154,12 +153,5 @@ namespace Sudoku.Solving.Manual.Exocets
 			string targetCellsStr = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
 			return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }

@@ -77,7 +77,7 @@ namespace Sudoku.CodeGen.Equality
 				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
 				nameDic[classSymbol.Name] = i + 1;
 
-				if (getEqualityMethodsCode(classSymbol) is { } c)
+				if (getEqualityMethodsCode(context, classSymbol) is { } c)
 				{
 					context.AddSource($"{name}.Equality.g.cs", c);
 				}
@@ -89,20 +89,21 @@ namespace Sudoku.CodeGen.Equality
 				var compilation = context.Compilation;
 
 				return
-					from candidateClass in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateClass.SyntaxTree)
-					select model.GetDeclaredSymbol(candidateClass)! into symbol
+					from candidate in receiver.Candidates
+					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
+					select model.GetDeclaredSymbol(candidate)! into symbol
 					where symbol.Marks<AutoEqualityAttribute>()
 					select (INamedTypeSymbol)symbol;
 			}
 
-			static string? getEqualityMethodsCode(INamedTypeSymbol symbol)
+			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
 				string fullTypeName = symbol.ToDisplayString(TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 
+				#region Output method Equals
 				var source = new StringBuilder()
 					.AppendLine(PrintHeader())
 					.AppendLine(PrintPragmaWarningDisableCS1591())
@@ -261,9 +262,127 @@ namespace Sudoku.CodeGen.Equality
 
 				source
 					.Remove(source.Length - 4, 4) // Remove last '&&'.
-					.AppendLine(PrintSemicolonToken())
+					.AppendLine(PrintSemicolonToken());
+				#endregion
+
+				#region Output operator == and !=
+				var tempSb = new StringBuilder();
+				var methods = symbol.GetMembers().OfType<IMethodSymbol>();
+				if (methods.All(static m => m.Name != "op_Equality"))
+				{
+					tempSb.AppendLine(PrintCompilerGenerated(2));
+
+					if (OutputAggressiveInliningMark)
+					{
+						tempSb.AppendLine(PrintAggressiveInlining(2));
+					}
+
+					tempSb
+						.Append(PrintIndenting(2))
+						.Append(PrintPublicKeywordToken())
+						.Append(PrintStaticKeywordToken())
+						.Append(PrintBoolKeywordToken())
+						.Append(PrintOperatorKeywordToken())
+						.Append(PrintOpEqualityOperatorToken())
+						.Append(PrintOpenBraceToken());
+
+					if (symbol.TypeKind == TypeKind.Struct)
+					{
+						tempSb.Append(PrintInKeywordToken());
+					}
+
+					tempSb
+						.Append(symbol.Name)
+						.Append(PrintSpace())
+						.Append(PrintLeft())
+						.Append(PrintColonToken())
+						.Append(PrintSpace());
+
+					if (symbol.TypeKind == TypeKind.Struct)
+					{
+						tempSb.Append(PrintInKeywordToken());
+					}
+
+					tempSb
+						.Append(symbol.Name)
+						.Append(PrintSpace())
+						.Append(PrintRight())
+						.Append(PrintClosedBraceToken())
+						.Append(PrintLambdaOperatorToken())
+						.Append(PrintLeft())
+						.Append(PrintDotToken())
+						.Append(PrintEquals())
+						.Append(PrintOpenBraceToken())
+						.Append(PrintRight())
+						.Append(PrintClosedBraceToken())
+						.AppendLine(PrintSemicolonToken());
+				}
+
+				if (methods.All(static m => m.Name != "op_Inequality"))
+				{
+					if (tempSb.Length != 0)
+					{
+						tempSb.AppendLine();
+					}
+
+					tempSb.AppendLine(PrintCompilerGenerated(2));
+
+					if (OutputAggressiveInliningMark)
+					{
+						tempSb.AppendLine(PrintAggressiveInlining(2));
+					}
+
+					tempSb
+						.Append(PrintIndenting(2))
+						.Append(PrintPublicKeywordToken())
+						.Append(PrintStaticKeywordToken())
+						.Append(PrintBoolKeywordToken())
+						.Append(PrintOperatorKeywordToken())
+						.Append(PrintOpInEqualityOperatorToken())
+						.Append(PrintOpenBraceToken());
+
+					if (symbol.TypeKind == TypeKind.Struct)
+					{
+						tempSb.Append(PrintInKeywordToken());
+					}
+
+					tempSb
+						.Append(symbol.Name)
+						.Append(PrintSpace())
+						.Append(PrintLeft())
+						.Append(PrintColonToken())
+						.Append(PrintSpace());
+
+					if (symbol.TypeKind == TypeKind.Struct)
+					{
+						tempSb.Append(PrintInKeywordToken());
+					}
+
+					tempSb
+						.Append(symbol.Name)
+						.Append(PrintSpace())
+						.Append(PrintRight())
+						.Append(PrintClosedBraceToken())
+						.Append(PrintLambdaOperatorToken())
+						.Append(PrintBangOperatorToken())
+						.Append(PrintOpenBraceToken())
+						.Append(PrintLeft())
+						.Append(PrintEqualsOperatorToken())
+						.Append(PrintRight())
+						.Append(PrintClosedBraceToken())
+						.AppendLine(PrintSemicolonToken());
+				}
+
+				if (tempSb.Length != 0)
+				{
+					source.AppendLine().Append(tempSb.ToString());
+				}
+				#endregion
+
+				source
 					.AppendLine(PrintClosedBracketToken(1))
-					.AppendLine(PrintClosedBracketToken());
+					.AppendLine(PrintClosedBracketToken())
+					.AppendLine();
 
 				return source.ToString();
 			}
@@ -281,8 +400,10 @@ namespace Sudoku.CodeGen.Equality
 		private static partial string PrintPartialKeywordToken();
 		private static partial string PrintTypeKeywordToken(bool? isRecord, TypeKind typeKind);
 		private static partial string PrintPublicKeywordToken();
+		private static partial string PrintStaticKeywordToken();
 		private static partial string PrintReadOnlyKeywordToken();
 		private static partial string PrintBoolKeywordToken();
+		private static partial string PrintOperatorKeywordToken();
 		private static partial string PrintNullableObjectKeywordToken();
 		private static partial string PrintOverrideKeywordToken();
 		private static partial string PrintEquals();
@@ -297,7 +418,13 @@ namespace Sudoku.CodeGen.Equality
 		private static partial string PrintSemicolonToken();
 		private static partial string PrintLogicalAndOperatorToken();
 		private static partial string PrintThisKeywordToken();
+		private static partial string PrintOpEqualityOperatorToken();
+		private static partial string PrintOpInEqualityOperatorToken();
+		private static partial string PrintBangOperatorToken();
+		private static partial string PrintColonToken();
 		private static partial string PrintDotToken();
+		private static partial string PrintLeft();
+		private static partial string PrintRight();
 		private static partial string PrintEqualsOperatorToken();
 		private static partial string PrintLambdaOperatorToken();
 		private static partial string PrintOpenBracketToken(int indentingCount = 0);

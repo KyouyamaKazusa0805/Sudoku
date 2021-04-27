@@ -38,9 +38,13 @@ namespace Sudoku.CodeGen.Equality
 
 		private static partial string PrintPublicKeywordToken() => "public ";
 
+		private static partial string PrintStaticKeywordToken() => "static ";
+
 		private static partial string PrintReadOnlyKeywordToken() => "readonly ";
 
 		private static partial string PrintBoolKeywordToken() => "bool ";
+
+		private static partial string PrintOperatorKeywordToken() => "operator ";
 
 		private static partial string PrintOverrideKeywordToken() => "override ";
 
@@ -72,9 +76,21 @@ namespace Sudoku.CodeGen.Equality
 
 		private static partial string PrintThisKeywordToken() => "this ";
 
+		private static partial string PrintOpEqualityOperatorToken() => "==";
+
+		private static partial string PrintOpInEqualityOperatorToken() => "!=";
+
+		private static partial string PrintBangOperatorToken() => "!";
+
+		private static partial string PrintColonToken() => ",";
+
 		private static partial string PrintDotToken() => ".";
 
 		private static partial string PrintLambdaOperatorToken() => " => ";
+
+		private static partial string PrintLeft() => "left";
+
+		private static partial string PrintRight() => "right";
 
 		private static partial string PrintOpenBracketToken(int indentingCount) =>
 			indentingCount == 0 ? "{" : $"{PrintIndenting(indentingCount)}{{";

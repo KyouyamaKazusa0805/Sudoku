@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -217,14 +215,5 @@ namespace Sudoku.Data
 				return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()}), Parent(s): {nodes.ToString()}";
 			}
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in Node left, in Node right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in Node left, in Node right) => !(left == right);
 	}
 }

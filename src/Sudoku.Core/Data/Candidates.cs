@@ -9,7 +9,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -725,12 +724,6 @@ namespace Sudoku.Data
 			}
 		}
 
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
 		/// <summary>
 		/// Reverse status for all candidates, which means all <see langword="true"/> bits

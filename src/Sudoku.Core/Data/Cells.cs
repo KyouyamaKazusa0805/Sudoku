@@ -1095,14 +1095,6 @@ namespace Sudoku.Data
 		public static Cells operator ~(in Cells gridMap) =>
 			new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low & 0x1FFFFFFFFFFL);
 
-		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in Cells left, in Cells right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in Cells left, in Cells right) => !(left == right);
-
 		/// <summary>
 		/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
 		/// </summary>

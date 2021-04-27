@@ -1,7 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections.Generic;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace System.Text
 {
@@ -184,14 +183,5 @@ namespace System.Text
 				Dispose();
 			}
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in ValueStringBuilder left, in ValueStringBuilder right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in ValueStringBuilder left, in ValueStringBuilder right) =>
-			!(left == right);
 	}
 }

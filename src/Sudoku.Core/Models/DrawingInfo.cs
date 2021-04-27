@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.DocComments;
 
 namespace Sudoku.Models
 {
@@ -43,13 +42,6 @@ namespace Sudoku.Models
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => (Id, Value).ToString();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in DrawingInfo left, in DrawingInfo right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in DrawingInfo left, in DrawingInfo right) => !(left == right);
 
 
 		/// <summary>

@@ -2,7 +2,6 @@
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
@@ -91,12 +90,5 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() =>
 			$"{new Cells { From }.ToString()} == {new Cells { To }.ToString()}({(Digit + 1).ToString()})";
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in ConjugatePair left, in ConjugatePair right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in ConjugatePair left, in ConjugatePair right) => !(left == right);
 	}
 }

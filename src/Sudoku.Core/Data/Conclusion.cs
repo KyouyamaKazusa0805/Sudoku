@@ -99,12 +99,6 @@ namespace Sudoku.Data
 			}} {(Digit + 1).ToString()}";
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Conclusion left, in Conclusion right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Conclusion left, in Conclusion right) => !(left == right);
-
 		/// <inheritdoc cref="Operators.operator &gt;"/>
 		public static bool operator <(in Conclusion left, in Conclusion right) => left.CompareTo(right) < 0;
 

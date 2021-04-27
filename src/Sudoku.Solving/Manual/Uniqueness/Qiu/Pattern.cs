@@ -4,7 +4,6 @@ using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -54,12 +53,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString() => FullMap.ToString();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
 	}
 }

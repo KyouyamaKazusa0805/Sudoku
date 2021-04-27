@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace Sudoku.Data.Collections
 {
@@ -145,14 +144,5 @@ namespace Sudoku.Data.Collections
 
 			static int cmp(in Conclusion left, in Conclusion right) => left.CompareTo(right);
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in ConclusionCollection left, in ConclusionCollection right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in ConclusionCollection left, in ConclusionCollection right) =>
-			!(left == right);
 	}
 }

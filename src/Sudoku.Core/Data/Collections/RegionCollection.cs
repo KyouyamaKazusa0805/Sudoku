@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data.Collections
@@ -147,14 +146,5 @@ namespace Sudoku.Data.Collections
 		/// <param name="index">The index.</param>
 		/// <returns>The label.</returns>
 		private char GetLabel(int index) => index switch { 0 => 'b', 1 => 'r', 2 => 'c' };
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in RegionCollection left, in RegionCollection right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in RegionCollection left, in RegionCollection right) =>
-			!(left == right);
 	}
 }
