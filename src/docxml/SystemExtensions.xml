@@ -229,12 +229,6 @@
             <param name="index">The index.</param>
             <returns>The element removed.</returns>
         </member>
-        <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Collections.Generic.Set`1.Equals(System.Collections.Generic.Set{`0})">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Collections.Generic.Set`1.Contains(`0)">
             <inheritdoc/>
         </member>
@@ -301,12 +295,6 @@
             <param name="left">The left.</param>
             <param name="right">The right.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_BitwiseAnd(System.Collections.Generic.Set{`0},System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -2887,11 +2875,12 @@
             means you can use the return value to re-assign a new value.
             </remarks>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
+        <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
             <summary>
-            Determines whether the current instance has same values with the other instance.
+            Determines whether two instances has same values with the other instance.
             </summary>
-            <param name="other">The other instance.</param>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
@@ -2919,12 +2908,6 @@
             </list>
             </para>
             </remarks>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Dispose">
             <summary>

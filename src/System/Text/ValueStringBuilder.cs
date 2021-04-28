@@ -1,7 +1,7 @@
 ﻿using System.Buffers;
 using System.Collections.Generic;
+using Sudoku.CodeGen.DelegatedEquality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace System.Text
 {
@@ -123,21 +123,23 @@ namespace System.Text
 
 
 		/// <summary>
-		/// Determines whether the current instance has same values with the other instance.
+		/// Determines whether two instances has same values with the other instance.
 		/// </summary>
-		/// <param name="other">The other instance.</param>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public readonly unsafe bool Equals(in ValueStringBuilder other)
+		[DelegatedEqualityMethod]
+		public static unsafe bool Equals(in ValueStringBuilder left, in ValueStringBuilder right)
 		{
-			if (Length != other.Length)
+			if (left.Length != right.Length)
 			{
 				return false;
 			}
 
-			fixed (char* pThis = _chars, pOther = other._chars)
+			fixed (char* pThis = left._chars, pOther = right._chars)
 			{
 				int i = 0;
-				for (char* p = pThis, q = pOther; i < Length; i++)
+				for (char* p = pThis, q = pOther; i < left.Length; i++)
 				{
 					if (*p++ != *q++)
 					{
@@ -184,13 +186,5 @@ namespace System.Text
 				Dispose();
 			}
 		}
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(in ValueStringBuilder left, in ValueStringBuilder right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(in ValueStringBuilder left, in ValueStringBuilder right) =>
-			!(left == right);
 	}
 }

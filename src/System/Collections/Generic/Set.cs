@@ -1,5 +1,6 @@
 ﻿using System.Extensions;
 using System.Linq;
+using Sudoku.CodeGen.DelegatedEquality.Annotations;
 using Sudoku.DocComments;
 
 namespace System.Collections.Generic
@@ -8,7 +9,7 @@ namespace System.Collections.Generic
 	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="TEquatable">The type of the element.</typeparam>
-	public sealed class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>?>, ISet<TEquatable>
+	public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>>, ISet<TEquatable>
 		where TEquatable : IEquatable<TEquatable>
 	{
 		/// <summary>
@@ -141,12 +142,6 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
-		public override bool Equals(object? obj) => obj is Set<TEquatable> comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		public bool Equals(Set<TEquatable>? other) => SetEquals(this, other);
-
-		/// <inheritdoc/>
 		public bool Contains(TEquatable item) => _list.Contains(item);
 
 		/// <inheritdoc/>
@@ -269,6 +264,7 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
+		[DelegatedEqualityMethod]
 		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
 		{
 			(null, null) => true,
@@ -309,12 +305,6 @@ namespace System.Collections.Generic
 			}
 		}
 
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		public static bool operator ==(Set<TEquatable>? left, Set<TEquatable>? right) => InternalEquals(left, right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		public static bool operator !=(Set<TEquatable>? left, Set<TEquatable>? right) => !(left == right);
 
 		/// <summary>
 		/// Calls the method <see cref="IntersectWith(IEnumerable{TEquatable})"/>, and returns the

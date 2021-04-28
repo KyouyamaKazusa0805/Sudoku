@@ -733,20 +733,16 @@
             Indicates the value used.
             </summary>
         </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.Equals(Sudoku.Painting.PaintingPair{`0}@)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Painting.PaintingPair`1.Equals(Sudoku.Painting.PaintingPair{`0}@,Sudoku.Painting.PaintingPair{`0}@)">
+            <summary>
+            Check whether two instances contain the same value.
+            </summary>
+            <param name="left">The left instance to check.</param>
+            <param name="right">The right instance to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Painting.PaintingPair`1.ToString">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.op_Equality(Sudoku.Painting.PaintingPair{`0}@,Sudoku.Painting.PaintingPair{`0}@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Painting.PaintingPair`1.op_Inequality(Sudoku.Painting.PaintingPair{`0}@,Sudoku.Painting.PaintingPair{`0}@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Painting.PresentationData">
             <summary>

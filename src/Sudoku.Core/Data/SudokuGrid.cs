@@ -7,6 +7,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.DelegatedEquality.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
@@ -576,14 +577,6 @@ namespace Sudoku.Data
 			return true;
 		}
 
-		/// <inheritdoc cref="object.Equals(object?)"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly bool Equals(object? obj) => obj is SudokuGrid other && Equals(other);
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly bool Equals(in SudokuGrid other) => Equals(this, other);
-
 		/// <summary>
 		/// Indicates whether the current grid contains the digit in the specified cell.
 		/// </summary>
@@ -942,6 +935,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
 		/// <returns>The <see cref="bool"/> result indicating that.</returns>
+		[DelegatedEqualityMethod]
 		public static bool Equals(in SudokuGrid left, in SudokuGrid right)
 		{
 			fixed (short* pThis = left, pOther = right)
@@ -1120,14 +1114,5 @@ namespace Sudoku.Data
 				}
 			}
 		}
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in SudokuGrid left, in SudokuGrid right) => Equals(left, right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in SudokuGrid left, in SudokuGrid right) => !(left == right);
 	}
 }

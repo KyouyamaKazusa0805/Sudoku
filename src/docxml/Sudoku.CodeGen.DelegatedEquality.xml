@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.DelegatedEquality</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.Annotations.DelegatedEqualityMethodAttribute">
+            <summary>
+            Indicates an attribute instance which is marked on a method,
+            to tell the users and the compiler that this method is an equality
+            method to judge whether two instances contain the same value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator">
+            <summary>
+            Indicates a generator that generates the code about the equality method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.TypeFormat">
+            <summary>
+            Indicates the type format, and the property type format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver">
+            <summary>
+            Indicates the inner syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates the result types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <summary>
+            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <param name="this">The current syntax reference instance.</param>
+            <param name="textSpan">The text span.</param>
+            <param name="syntaxNode">The syntax node.</param>
+        </member>
+    </members>
+</doc>

@@ -3163,12 +3163,6 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Exists(System.Int32,System.Int32)">
             <summary>
             Indicates whether the current grid contains the digit in the specified cell.
@@ -3456,12 +3450,6 @@
             </summary>
             <param name="this">The sudoku grid.</param>
             <seealso cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.op_Inequality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.Enumerator">
             <summary>

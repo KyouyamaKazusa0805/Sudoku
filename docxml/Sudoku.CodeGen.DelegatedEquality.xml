@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.DelegatedEquality</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.Annotations.DelegatedEqualityMethodAttribute">
+            <summary>
+            Indicates an attribute instance which is marked on a method,
+            to tell the users and the compiler that this method is an equality
+            method to judge whether two instances contain the same value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator">
+            <summary>
+            Indicates a generator that generates the code about the equality method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

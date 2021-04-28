@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen.DelegatedEquality.Annotations;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
-using Sudoku.DocComments;
 
 namespace Sudoku.Painting
 {
@@ -75,31 +75,22 @@ namespace Sudoku.Painting
 		public TUnmanaged Value { get; }
 
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Check whether two instances contain the same value.
+		/// </summary>
+		/// <param name="left">The left instance to check.</param>
+		/// <param name="right">The right instance to check.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		[DelegatedEqualityMethod]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override bool Equals(object? obj) => obj is PaintingPair<TUnmanaged> comparer && Equals(comparer);
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals(in PaintingPair<TUnmanaged> other)
+		public static bool Equals(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right)
 		{
-			TUnmanaged l = Value, r = other.Value;
-			return Color == other.Color && Unsafe.AreSame(ref l, ref r);
+			TUnmanaged l = left.Value, r = right.Value;
+			return left.Color == right.Color && Unsafe.AreSame(ref l, ref r);
 		}
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override string ToString() => (Color, Value).ToString();
-
-
-		/// <inheritdoc cref="Operators.operator =="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right) =>
-			left.Equals(right);
-
-		/// <inheritdoc cref="Operators.operator !="/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right) =>
-			!(left == right);
 	}
 }
