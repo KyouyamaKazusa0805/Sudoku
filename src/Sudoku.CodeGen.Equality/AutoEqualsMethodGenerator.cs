@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.Equality.Extensions;
@@ -21,23 +20,6 @@ namespace Sudoku.CodeGen.Equality
 	[Generator]
 	public sealed partial class AutoEqualsMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-		/// </summary>
-		private static readonly bool UsingTabsAsIndentingCharacters = true;
-
-		/// <summary>
-		/// Indicates whether the project outputs "<c><see langword="this"/>.</c>"
-		/// as the member access expression.
-		/// </summary>
-		private static readonly bool OutputThisReference = false;
-
-		/// <summary>
-		/// Indicates whetehr the project outputs <c>[MethodImpl(MethodImplOptions.AggressiveInlining)]</c>
-		/// as the inlining mark.
-		/// </summary>
-		private static readonly bool OutputAggressiveInliningMark = true;
-
 		/// <summary>
 		/// Indicates the type format, and the property type format.
 		/// </summary>
@@ -98,125 +80,6 @@ namespace Sudoku.CodeGen.Equality
 
 			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-
-				#region Output method Equals
-				var source = new StringBuilder()
-					.AppendLine(PrintHeader())
-					.AppendLine(PrintPragmaWarningDisableCS1591())
-					.AppendLine()
-					.AppendLine(PrintUsingDirectives())
-					.AppendLine()
-					.AppendLine(PrintNullableEnable())
-					.AppendLine()
-					.Append(PrintNamespaceKeywordToken())
-					.AppendLine(namespaceName)
-					.AppendLine(PrintOpenBracketToken())
-					.Append(PrintIndenting(1))
-					.Append(PrintPartialKeywordToken())
-					.Append(PrintTypeKeywordToken(symbol.IsRecord ? true : null, symbol.TypeKind))
-					.Append(symbol.Name)
-					.AppendLine(genericParametersList)
-					.AppendLine(PrintOpenBracketToken(1));
-
-				if (symbol is { IsRefLikeType: false })
-				{
-					source.AppendLine(PrintCompilerGenerated(2));
-
-					if (OutputAggressiveInliningMark)
-					{
-						source.AppendLine(PrintAggressiveInlining(2));
-					}
-
-					source
-						.Append(PrintIndenting(2))
-						.Append(PrintPublicKeywordToken())
-						.Append(PrintOverrideKeywordToken());
-
-					// Not 'ref struct' and not 'readonly struct'.
-					if (symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false })
-					{
-						source.Append(PrintReadOnlyKeywordToken());
-					}
-
-					source
-						.Append(PrintBoolKeywordToken())
-						.Append(PrintEquals())
-						.Append(PrintOpenBraceToken())
-						.Append(PrintNullableObjectKeywordToken())
-						.Append(PrintOther())
-						.Append(PrintClosedBraceToken())
-						.Append(PrintLambdaOperatorToken())
-						.Append(PrintOther())
-						.Append(PrintSpace())
-						.Append(PrintIsKeywordToken())
-						.Append(symbol.Name)
-						.Append(PrintSpace())
-						.Append(PrintComparer())
-						.Append(PrintLogicalAndOperatorToken())
-						.Append(PrintEquals())
-						.Append(PrintOpenBraceToken())
-						.Append(PrintComparer())
-						.Append(PrintClosedBraceToken())
-						.AppendLine(PrintSemicolonToken())
-						.AppendLine();
-				}
-
-				source.AppendLine(PrintCompilerGenerated(2));
-
-				if (OutputAggressiveInliningMark)
-				{
-					source.AppendLine(PrintAggressiveInlining(2));
-				}
-
-				source
-					.Append(PrintIndenting(2))
-					.Append(PrintPublicKeywordToken());
-
-				// Not 'ref struct' and not 'readonly struct'.
-				if (symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false })
-				{
-					source.Append(PrintReadOnlyKeywordToken());
-				}
-
-				source
-					.Append(PrintBoolKeywordToken())
-					.Append(PrintEquals())
-					.Append(PrintOpenBraceToken());
-
-				if (symbol.TypeKind == TypeKind.Struct)
-				{
-					source.Append(PrintInKeywordToken());
-				}
-
-				source.Append(symbol.Name);
-
-				if (symbol.TypeKind == TypeKind.Class)
-				{
-					source.Append("?");
-				}
-
-				source
-					.Append(PrintSpace())
-					.Append(PrintOther())
-					.Append(PrintClosedBraceToken())
-					.Append(PrintLambdaOperatorToken());
-
-				if (symbol.TypeKind == TypeKind.Class)
-				{
-					source
-						.Append(PrintOther())
-						.Append(PrintSpace())
-						.Append(PrintIsKeywordToken())
-						.Append(PrintNotKeywordToken())
-						.Append(PrintNullKeywordToken())
-						.Remove(source.Length - 1, 1) // Remove the last ' '.
-						.Append(PrintLogicalAndOperatorToken());
-				}
-
 				string attributeStr = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(AutoEqualityAttribute)
@@ -242,149 +105,70 @@ namespace Sudoku.CodeGen.Equality
 
 				members[0] = members[0].Substring(2); // Remove token '{"'.
 
-				foreach (string member in members)
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				int i = fullTypeName.IndexOf('<');
+				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				int j = fullTypeName.IndexOf('>');
+				string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
+
+				string typeKind = symbol switch
 				{
-					if (OutputThisReference)
-					{
-						source
-							.Append(PrintThisKeywordToken())
-							.Append(PrintDotToken());
-					}
+					{ IsRecord: true } => "record",
+					{ TypeKind: TypeKind.Class } => "class",
+					{ TypeKind: TypeKind.Struct } => "struct"
+				};
 
-					source
-						.Append(member)
-						.Append(PrintEqualsOperatorToken())
-						.Append(PrintOther())
-						.Append(PrintDotToken())
-						.Append(member)
-						.Append(PrintLogicalAndOperatorToken());
-				}
+				string readonlyKeyword = symbol is { TypeKind: TypeKind.Struct, IsReadOnly: false } ? "readonly " : string.Empty;
+				string inKeyword = symbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
+				string nullableAnnotation = symbol.TypeKind == TypeKind.Class ? "?" : string.Empty;
+				string nullCheck = symbol.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
+				string memberCheck = string.Join(" && ", from member in members select $"{member} == other.{member}");
 
-				source
-					.Remove(source.Length - 4, 4) // Remove last '&&'.
-					.AppendLine(PrintSemicolonToken());
-				#endregion
+				string objectEqualsMethod = symbol.IsRefLikeType
+					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
+					: $@"[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override {readonlyKeyword}bool Equals(object? other) => other is {symbol.Name}{genericParametersList} comparer && Equals(comparer);";
 
-				#region Output operator == and !=
-				var tempSb = new StringBuilder();
-				var methods = symbol.GetMembers().OfType<IMethodSymbol>();
-				if (methods.All(static m => m.Name != "op_Equality"))
-				{
-					tempSb.AppendLine(PrintCompilerGenerated(2));
+				string specifyEqualsMethod = $@"[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public {readonlyKeyword}bool Equals({inKeyword}{symbol.Name}{genericParametersListWithoutConstraint}{nullableAnnotation} other) => {nullCheck}{memberCheck};";
 
-					if (OutputAggressiveInliningMark)
-					{
-						tempSb.AppendLine(PrintAggressiveInlining(2));
-					}
+				string opEqualityMethod = symbol.GetMembers().OfType<IMethodSymbol>().All(static m => m.Name != "op_Equality")
+					? $@"[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool operator ==({inKeyword}{symbol.Name}{genericParametersListWithoutConstraint} left, {inKeyword}{symbol.Name}{genericParametersListWithoutConstraint} right) => left.Equals(right);"
+					: "// 'operator ==' does exist in the type.";
 
-					tempSb
-						.Append(PrintIndenting(2))
-						.Append(PrintPublicKeywordToken())
-						.Append(PrintStaticKeywordToken())
-						.Append(PrintBoolKeywordToken())
-						.Append(PrintOperatorKeywordToken())
-						.Append(PrintOpEqualityOperatorToken())
-						.Append(PrintOpenBraceToken());
+				string opInequalityMethod = symbol.GetMembers().OfType<IMethodSymbol>().All(static m => m.Name != "op_Inequality")
+					? $@"[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool operator !=({inKeyword}{symbol.Name}{genericParametersListWithoutConstraint} left, {inKeyword}{symbol.Name}{genericParametersListWithoutConstraint} right) => !(left == right);"
+					: "// 'operator !=' does exist in the type.";
 
-					if (symbol.TypeKind == TypeKind.Struct)
-					{
-						tempSb.Append(PrintInKeywordToken());
-					}
+				return $@"#pragma warning disable 1591
 
-					tempSb
-						.Append(symbol.Name)
-						.Append(PrintSpace())
-						.Append(PrintLeft())
-						.Append(PrintColonToken())
-						.Append(PrintSpace());
+using System.Runtime.CompilerServices;
 
-					if (symbol.TypeKind == TypeKind.Struct)
-					{
-						tempSb.Append(PrintInKeywordToken());
-					}
+#nullable enable
 
-					tempSb
-						.Append(symbol.Name)
-						.Append(PrintSpace())
-						.Append(PrintRight())
-						.Append(PrintClosedBraceToken())
-						.Append(PrintLambdaOperatorToken())
-						.Append(PrintLeft())
-						.Append(PrintDotToken())
-						.Append(PrintEquals())
-						.Append(PrintOpenBraceToken())
-						.Append(PrintRight())
-						.Append(PrintClosedBraceToken())
-						.AppendLine(PrintSemicolonToken());
-				}
+namespace {namespaceName}
+{{
+	partial {typeKind} {symbol.Name}{genericParametersList}
+	{{
+		{objectEqualsMethod}
 
-				if (methods.All(static m => m.Name != "op_Inequality"))
-				{
-					if (tempSb.Length != 0)
-					{
-						tempSb.AppendLine();
-					}
+		{specifyEqualsMethod}
 
-					tempSb.AppendLine(PrintCompilerGenerated(2));
 
-					if (OutputAggressiveInliningMark)
-					{
-						tempSb.AppendLine(PrintAggressiveInlining(2));
-					}
+		{opEqualityMethod}
 
-					tempSb
-						.Append(PrintIndenting(2))
-						.Append(PrintPublicKeywordToken())
-						.Append(PrintStaticKeywordToken())
-						.Append(PrintBoolKeywordToken())
-						.Append(PrintOperatorKeywordToken())
-						.Append(PrintOpInEqualityOperatorToken())
-						.Append(PrintOpenBraceToken());
+		{opInequalityMethod}
+	}}
+}}";
 
-					if (symbol.TypeKind == TypeKind.Struct)
-					{
-						tempSb.Append(PrintInKeywordToken());
-					}
 
-					tempSb
-						.Append(symbol.Name)
-						.Append(PrintSpace())
-						.Append(PrintLeft())
-						.Append(PrintColonToken())
-						.Append(PrintSpace());
-
-					if (symbol.TypeKind == TypeKind.Struct)
-					{
-						tempSb.Append(PrintInKeywordToken());
-					}
-
-					tempSb
-						.Append(symbol.Name)
-						.Append(PrintSpace())
-						.Append(PrintRight())
-						.Append(PrintClosedBraceToken())
-						.Append(PrintLambdaOperatorToken())
-						.Append(PrintBangOperatorToken())
-						.Append(PrintOpenBraceToken())
-						.Append(PrintLeft())
-						.Append(PrintEqualsOperatorToken())
-						.Append(PrintRight())
-						.Append(PrintClosedBraceToken())
-						.AppendLine(PrintSemicolonToken());
-				}
-
-				if (tempSb.Length != 0)
-				{
-					source.AppendLine().Append(tempSb.ToString());
-				}
-				#endregion
-
-				source
-					.AppendLine(PrintClosedBracketToken(1))
-					.AppendLine(PrintClosedBracketToken())
-					.AppendLine();
-
-				return source.ToString();
 			}
 		}
 
@@ -393,49 +177,31 @@ namespace Sudoku.CodeGen.Equality
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
 
-		private static partial string PrintHeader();
-		private static partial string PrintOpenBraceToken();
-		private static partial string PrintClosedBraceToken();
-		private static partial string PrintNamespaceKeywordToken();
-		private static partial string PrintPartialKeywordToken();
-		private static partial string PrintTypeKeywordToken(bool? isRecord, TypeKind typeKind);
-		private static partial string PrintPublicKeywordToken();
-		private static partial string PrintStaticKeywordToken();
-		private static partial string PrintReadOnlyKeywordToken();
-		private static partial string PrintBoolKeywordToken();
-		private static partial string PrintOperatorKeywordToken();
-		private static partial string PrintNullableObjectKeywordToken();
-		private static partial string PrintOverrideKeywordToken();
-		private static partial string PrintEquals();
-		private static partial string PrintReturnKeywordToken();
-		private static partial string PrintOther();
-		private static partial string PrintSpace();
-		private static partial string PrintComparer();
-		private static partial string PrintIsKeywordToken();
-		private static partial string PrintNotKeywordToken();
-		private static partial string PrintNullKeywordToken();
-		private static partial string PrintInKeywordToken();
-		private static partial string PrintSemicolonToken();
-		private static partial string PrintLogicalAndOperatorToken();
-		private static partial string PrintThisKeywordToken();
-		private static partial string PrintOpEqualityOperatorToken();
-		private static partial string PrintOpInEqualityOperatorToken();
-		private static partial string PrintBangOperatorToken();
-		private static partial string PrintColonToken();
-		private static partial string PrintDotToken();
-		private static partial string PrintLeft();
-		private static partial string PrintRight();
-		private static partial string PrintEqualsOperatorToken();
-		private static partial string PrintLambdaOperatorToken();
-		private static partial string PrintOpenBracketToken(int indentingCount = 0);
-		private static partial string PrintClosedBracketToken(int indentingCount = 0);
-		private static partial string PrintAggressiveInlining(int indentingCount = 0);
-		private static partial string PrintPragmaWarningDisableCS1591();
-		private static partial string PrintUsingDirectives();
-		private static partial string PrintNullableEnable();
-		private static partial string PrintIndenting(int indentingCount = 0);
-		private static partial string PrintCompilerGenerated(int indentingCount = 0);
+		/// <summary>
+		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
+		/// </summary>
+		/// <param name="symbol">The specified class symbol.</param>
+		/// <param name="handleRecursively">
+		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
+		/// <returns>The result list that contains all member symbols.</returns>
+		private static IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
+		{
+			var result = new List<string>(
+				(
+					from x in symbol.GetMembers().OfType<IFieldSymbol>()
+					select x.Name
+				).Concat(
+					from x in symbol.GetMembers().OfType<IPropertySymbol>()
+					select x.Name
+				)
+			);
 
-		private static partial IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively);
+			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoEqualityAttribute>())
+			{
+				result.AddRange(GetMembers(baseType, handleRecursively: true));
+			}
+
+			return result;
+		}
 	}
 }

@@ -81,20 +81,6 @@ namespace Sudoku.CodeGen.DelegatedEquality
 
 			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				int j = fullTypeName.IndexOf('>');
-				string genericParametersListWithoutConstraint = j == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string typeName = symbol.Name;
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct"
-				};
-
 				var methodSymbol = (
 					from member in symbol.GetMembers().OfType<IMethodSymbol>()
 					where member.Marks<DelegatedEqualityMethodAttribute>()
@@ -112,6 +98,20 @@ namespace Sudoku.CodeGen.DelegatedEquality
 					return null;
 				}
 
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				int i = fullTypeName.IndexOf('<');
+				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				int j = fullTypeName.IndexOf('>');
+				string genericParametersListWithoutConstraint = j == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
+				string typeName = symbol.Name;
+				string typeKind = symbol switch
+				{
+					{ IsRecord: true } => "record",
+					{ TypeKind: TypeKind.Class } => "class",
+					{ TypeKind: TypeKind.Struct } => "struct"
+				};
+
 				string readonlyModifier = methodSymbol.IsReadOnly && !symbol.IsReadOnly
 					? "readonly "
 					: string.Empty;
@@ -119,12 +119,10 @@ namespace Sudoku.CodeGen.DelegatedEquality
 				string inModifier = symbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
 				string nullableMark = symbol.TypeKind == TypeKind.Class || symbol.IsRecord ? "?" : string.Empty;
 				string objectEqualityMethod = symbol.IsRefLikeType
-					? string.Empty
+					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
 					: $@"[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override {readonlyModifier}bool Equals(object? obj) => obj is {typeName}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);
-
-		";
+		public override {readonlyModifier}bool Equals(object? obj) => obj is {typeName}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 				return $@"#pragma warning disable 1591
 
@@ -136,7 +134,9 @@ namespace {namespaceName}
 {{
 	partial {typeKind} {symbol.Name}{genericParametersList}
 	{{
-		{objectEqualityMethod}[CompilerGenerated]
+		{objectEqualityMethod}
+
+		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Equals({inModifier}{typeName}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
 
