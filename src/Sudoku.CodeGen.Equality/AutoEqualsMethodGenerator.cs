@@ -10,7 +10,7 @@ using Sudoku.CodeGen.Equality.Extensions;
 namespace Sudoku.CodeGen.Equality
 {
 	/// <summary>
-	/// Indicates the generator that generates the methods about the equality checking. All methods below
+	/// Indicates the generator that generates the methods about the equality checking. The methods below
 	/// will be generated:
 	/// <list type="bullet">
 	/// <item><c>bool Equals(object? obj)</c></item>
