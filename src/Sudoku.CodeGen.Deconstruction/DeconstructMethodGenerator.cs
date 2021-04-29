@@ -2,8 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Sudoku.CodeGen.Deconstruction.Annotations;
@@ -21,29 +22,6 @@ namespace Sudoku.CodeGen.Deconstruction
 	[Generator]
 	public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the separator used.
-		/// </summary>
-		private const string Separator = ", ";
-
-
-		/// <summary>
-		/// Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-		/// </summary>
-		private static readonly bool UsingTabsAsIndentingCharacters = true;
-
-		/// <summary>
-		/// Indicates whether the project outputs "<c><see langword="this"/>.</c>"
-		/// as the member access expression.
-		/// </summary>
-		private static readonly bool OutputThisReference = false;
-
-		/// <summary>
-		/// Indicates whetehr the project outputs <c>[MethodImpl(MethodImplOptions.AggressiveInlining)]</c>
-		/// as the inlining mark.
-		/// </summary>
-		private static readonly bool OutputAggressiveInliningMark = true;
-
 		/// <summary>
 		/// Indicates the type format, and the property type format.
 		/// </summary>
@@ -101,138 +79,80 @@ namespace Sudoku.CodeGen.Deconstruction
 			static string getDeconstructionCode(INamedTypeSymbol symbol)
 			{
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				var members = GetMembers(symbol, handleRecursively: false);
-				var possibleArgs = from x in members select (Info: x, Param: $"out {x.Type} {x.ParameterName}");
+				var possibleArgs =
+					from x in GetMembers(symbol, handleRecursively: false)
+					select (Info: x, Param: $"out {x.Type} {x.ParameterName}");
 				string fullTypeName = symbol.ToDisplayString(TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				string typeKind = symbol switch
+				{
+					{ IsRecord: true } => "record ",
+					{ TypeKind: TypeKind.Class } => "class ",
+					{ TypeKind: TypeKind.Struct } => "struct "
+				};
 
-				var source = new StringBuilder()
-					.AppendLine(PrintHeader())
-					.AppendLine(PrintPragmaWarningDisableCS0618())
-					.AppendLine(PrintPragmaWarningDisableCS1591())
-					.AppendLine()
-					.AppendLine(PrintUsingDirectives())
-					.AppendLine()
-					.AppendLine(PrintNullableEnable())
-					.AppendLine()
-					.Append(PrintNamespaceKeywordToken())
-					.AppendLine(namespaceName)
-					.AppendLine(PrintOpenBracketToken())
-					.Append(PrintIndenting(1))
-					.Append(PrintPartialKeywordToken())
-					.Append(PrintTypeKeywordToken(symbol.IsRecord ? true : null, symbol.TypeKind))
-					.Append(symbol.Name)
-					.AppendLine(genericParametersList)
-					.AppendLine(PrintOpenBracketToken(1));
-
-				var attributeData = (
+				string methods = string.Join(
+					"\r\n\r\n\t\t",
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(AutoDeconstructAttribute)
-					select attribute
-				).ToArray();
+					let attributeStr = attribute.ToString()
+					let tokenStartIndex = attributeStr.IndexOf("({")
+					where tokenStartIndex != -1
+					let memberStrs = getMemberValues(attributeStr, tokenStartIndex)
+					where !memberStrs.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
+					let readonlyKeyword = isNonReadonlyStruct(symbol) ? "readonly " : string.Empty
+					let parameterList = string.Join(
+						", ",
+						from memberStr in memberStrs
+						select possibleArgs.First(p => p.Info.Name == memberStr).Param
+					)
+					let assignments = string.Join(
+						"\r\n\t\t\t",
+						from member in memberStrs
+						let paramName = possibleArgs.First(p => p.Info.Name == member).Info.ParameterName
+						select $"{paramName} = {member};"
+					)
+					select $@"[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public {readonlyKeyword}void Deconstruct({parameterList})
+		{{
+			{assignments}
+		}}"
+				);
 
-				foreach (var attribute in attributeData)
+				return $@"#pragma warning disable 618
+#pragma warning disable 1591
+
+using System.Runtime.CompilerServices;
+
+#nullable enable
+
+namespace {namespaceName}
+{{
+	partial {typeKind}{symbol.Name}{genericParametersList}
+	{{
+		{methods}
+	}}
+}}";
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static bool isNonReadonlyStruct(INamedTypeSymbol symbol) =>
+					symbol is { TypeKind: TypeKind.Struct, IsReadOnly: false };
+
+				static string[] getMemberValues(string attributeStr, int tokenStartIndex)
 				{
-					string attributeStr = attribute.ToString();
-					int tokenStartIndex = attributeStr.IndexOf("({");
-					if (tokenStartIndex == -1)
-					{
-						// Error.
-
-						continue;
-					}
-
-					string[] memberValues = (
+					string[] result = (
 						from parameterValue in attributeStr.Substring(
 							tokenStartIndex,
 							attributeStr.Length - tokenStartIndex - 2
 						).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
 						select parameterValue.Substring(1, parameterValue.Length - 2)
-					).ToArray(); // Remove quote token '"'.
+					).ToArray();
 
-					memberValues[0] = memberValues[0].Substring(2); // Remove token '{"'.
-
-					bool isError = false;
-					foreach (string member in memberValues)
-					{
-						string name = member;
-						if (possibleArgs.All(pair => pair.Info.Name != name))
-						{
-							// TODO: Raise an error to tell the user the name can't be referenced and parsed.
-
-							isError = true;
-							break;
-						}
-					}
-					if (isError)
-					{
-						continue;
-					}
-
-					if (OutputAggressiveInliningMark)
-					{
-						source.AppendLine(PrintAggressiveInlining(2));
-					}
-
-					source
-						.AppendLine(PrintCompilerGenerated(2))
-						.Append(PrintIndenting(2))
-						.Append(PrintPublicKeywordToken());
-
-					if (symbol is { TypeKind: TypeKind.Struct, IsReadOnly: false })
-					{
-						source.Append(PrintReadOnlyKeywordToken());
-					}
-
-					source
-						.Append(PrintVoidKeywordToken())
-						.Append(PrintDeconstructName())
-						.Append(PrintOpenBraceToken())
-						.Append(
-							string.Join(
-								Separator,
-								from member in memberValues
-								select possibleArgs.First(p => p.Info.Name == member).Param
-							)
-						)
-						.AppendLine(PrintClosedBraceToken())
-						.Append(PrintOpenBracketToken(2));
-
-					foreach (string member in memberValues)
-					{
-						string paramName = possibleArgs.First(p => p.Info.Name == member).Info.ParameterName;
-
-						source
-							.AppendLine()
-							.Append(PrintIndenting(3))
-							.Append(paramName)
-							.Append(PrintEqualsToken());
-
-						if (OutputThisReference)
-						{
-							source
-								.Append(PrintThisKeywordToken())
-								.Append(PrintDotToken());
-						}
-
-						source
-							.Append(member)
-							.Append(PrintSemicolonToken());
-					}
-
-					source.AppendLine().AppendLine(PrintClosedBracketToken(2)).AppendLine();
+					result[0] = result[0].Substring(2);
+					return result;
 				}
-
-				if (attributeData.Length != 0)
-				{
-					source.Remove(source.Length - 2, 2); // Remove the last '\r\n'.
-				}
-
-				return source
-					.AppendLine(PrintClosedBracketToken(1))
-					.AppendLine(PrintClosedBracketToken())
-					.ToString();
 			}
 		}
 
@@ -240,32 +160,50 @@ namespace Sudoku.CodeGen.Deconstruction
 		public void Initialize(GeneratorInitializationContext context) =>
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
+		/// <summary>
+		/// Try to get all possible fields or properties in the specified type.
+		/// </summary>
+		/// <param name="symbol">The specified symbol.</param>
+		/// <param name="handleRecursively">
+		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.
+		/// </param>
+		/// <returns>The result list that contains all member symbols.</returns>
+		private static IReadOnlyList<(string Type, string ParameterName, string Name, ImmutableArray<AttributeData> Attributes)> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
+		{
+			var result = new List<(string, string, string, ImmutableArray<AttributeData>)>(
+				(
+					from x in symbol.GetMembers().OfType<IFieldSymbol>()
+					select (
+						x.Type.ToDisplayString(PropertyTypeFormat),
+						toCamelCase(x.Name),
+						x.Name,
+						x.GetAttributes()
+					)
+				).Concat(
+					from x in symbol.GetMembers().OfType<IPropertySymbol>()
+					select (
+						x.Type.ToDisplayString(PropertyTypeFormat),
+						toCamelCase(x.Name),
+						x.Name,
+						x.GetAttributes()
+					)
+				)
+			);
 
-		private static partial string PrintHeader();
-		private static partial string PrintOpenBraceToken();
-		private static partial string PrintClosedBraceToken();
-		private static partial string PrintNamespaceKeywordToken();
-		private static partial string PrintPartialKeywordToken();
-		private static partial string PrintTypeKeywordToken(bool? isRecord, TypeKind typeKind);
-		private static partial string PrintVoidKeywordToken();
-		private static partial string PrintDeconstructName();
-		private static partial string PrintReadOnlyKeywordToken();
-		private static partial string PrintPublicKeywordToken();
-		private static partial string PrintSemicolonToken();
-		private static partial string PrintEqualsToken();
-		private static partial string PrintThisKeywordToken();
-		private static partial string PrintDotToken();
-		private static partial string PrintOpenBracketToken(int indentingCount = 0);
-		private static partial string PrintClosedBracketToken(int indentingCount = 0);
-		private static partial string PrintPragmaWarningDisableCS0618();
-		private static partial string PrintPragmaWarningDisableCS1591();
-		private static partial string PrintUsingDirectives();
-		private static partial string PrintNullableEnable();
-		private static partial string PrintIndenting(int indentingCount = 0);
-		private static partial string PrintAggressiveInlining(int indentingCount = 0);
-		private static partial string PrintCompilerGenerated(int indentingCount = 0);
+			if (handleRecursively
+				&& symbol.BaseType is { } baseType && baseType.Marks<AutoDeconstructAttribute>())
+			{
+				result.AddRange(GetMembers(baseType, true));
+			}
+
+			return result;
 
 
-		private static partial IReadOnlyList<SymbolInfo> GetMembers(INamedTypeSymbol symbol, bool handleRecursively);
+			static string toCamelCase(string name)
+			{
+				name = name.TrimStart('_');
+				return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
+			}
+		}
 	}
 }
