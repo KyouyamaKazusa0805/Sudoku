@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.CodeGen.DelegatedEquality
 {
-	partial class AutoEqualityMethodGenerator
+	partial class AutoEqualsMethodGenerator
 	{
 		/// <summary>
 		/// Indicates the inner syntax receiver.

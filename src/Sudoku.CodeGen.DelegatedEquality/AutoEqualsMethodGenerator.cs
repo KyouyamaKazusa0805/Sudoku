@@ -16,7 +16,7 @@ namespace Sudoku.CodeGen.DelegatedEquality
 	/// Indicates a generator that generates the code about the equality method.
 	/// </summary>
 	[Generator]
-	public sealed partial class AutoEqualityMethodGenerator : ISourceGenerator
+	public sealed partial class AutoEqualsMethodGenerator : ISourceGenerator
 	{
 		/// <summary>
 		/// Indicates the type format, and the property type format.

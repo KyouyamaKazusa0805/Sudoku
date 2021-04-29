@@ -11,33 +11,33 @@
             method to judge whether two instances contain the same value.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator">
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator">
             <summary>
             Indicates a generator that generates the code about the equality method.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.TypeFormat">
+        <member name="F:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.TypeFormat">
             <summary>
             Indicates the type format, and the property type format.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.SyntaxReceiver">
             <summary>
             Indicates the inner syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates the result types.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualityMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGen.DelegatedEquality.AutoEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGen.DelegatedEquality.Extensions.ISymbolEx">
