@@ -6,44 +6,26 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.Equality.Extensions;
-using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
-using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
-using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
-using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 namespace Sudoku.CodeGen.Equality
 {
 	/// <summary>
-	/// Indicates the generator that generates the override of <see cref="object.Equals(object)"/>.
+	/// Indicates the generator that generates the methods about the equality checking. All methods below
+	/// will be generated:
+	/// <list type="bullet">
+	/// <item><c>bool Equals(object? obj)</c></item>
+	/// <item><c>bool Equals(T comparer)</c></item>
+	/// <item><c>bool ==(T left, T right)</c></item>
+	/// <item><c>bool !=(T left, T right)</c></item>
+	/// </list>
 	/// </summary>
-	/// <seealso cref="object.Equals(object)"/>
+	/// <remarks>
+	/// Please note that if the type is a <see langword="ref struct"/>, the first one won't be generated
+	/// because this method is useless in the by-ref-like types.
+	/// </remarks>
 	[Generator]
 	public sealed partial class AutoEqualsMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the type format, and the property type format.
-		/// </summary>
-		private static readonly SymbolDisplayFormat
-			TypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			),
-			PropertyTypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			);
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -106,7 +88,7 @@ namespace Sudoku.CodeGen.Equality
 				members[0] = members[0].Substring(2); // Remove token '{"'.
 
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				int j = fullTypeName.IndexOf('>');
@@ -167,8 +149,6 @@ namespace {namespaceName}
 		{opInequalityMethod}
 	}}
 }}";
-
-
 			}
 		}
 
