@@ -8,10 +8,6 @@ using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Sudoku.CodeGen.Deconstruction.Extensions;
-using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
-using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
-using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
-using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 namespace Sudoku.CodeGen.Deconstruction
 {
@@ -21,30 +17,6 @@ namespace Sudoku.CodeGen.Deconstruction
 	[Generator]
 	public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the type format, and the property type format.
-		/// </summary>
-		private static readonly SymbolDisplayFormat
-			TypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			),
-			PropertyTypeFormat = new(
-				globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-				typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-				genericsOptions: GenericsOptions.IncludeTypeParameters,
-				miscellaneousOptions:
-					MiscellaneousOptions.UseSpecialTypes
-					| MiscellaneousOptions.EscapeKeywordIdentifiers
-					| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-			);
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -81,7 +53,7 @@ namespace Sudoku.CodeGen.Deconstruction
 				var possibleArgs =
 					from x in GetMembers(symbol, handleRecursively: false)
 					select (Info: x, Param: $"out {x.Type} {x.ParameterName}");
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				string typeKind = symbol switch
@@ -173,7 +145,7 @@ namespace {namespaceName}
 				(
 					from x in symbol.GetMembers().OfType<IFieldSymbol>()
 					select (
-						x.Type.ToDisplayString(PropertyTypeFormat),
+						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
 						toCamelCase(x.Name),
 						x.Name,
 						x.GetAttributes()
@@ -181,7 +153,7 @@ namespace {namespaceName}
 				).Concat(
 					from x in symbol.GetMembers().OfType<IPropertySymbol>()
 					select (
-						x.Type.ToDisplayString(PropertyTypeFormat),
+						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
 						toCamelCase(x.Name),
 						x.Name,
 						x.GetAttributes()
