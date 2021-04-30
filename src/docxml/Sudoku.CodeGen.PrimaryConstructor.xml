@@ -106,22 +106,6 @@
             </remarks>
             <seealso cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>
         </member>
-        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.Separator">
-            <summary>
-            Indicates the separator used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.UsingTabsAsIndentingCharacters">
-            <summary>
-            Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.OutputThisReference">
-            <summary>
-            Indicates whether the project outputs "<c><see langword="this"/>.</c>"
-            as the member access expression.
-            </summary>
-        </member>
         <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.TypeFormat">
             <summary>
             Indicates the type format, and the property type format.

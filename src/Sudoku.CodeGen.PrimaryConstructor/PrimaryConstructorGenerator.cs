@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.PrimaryConstructor.Annotations;
 using Sudoku.CodeGen.PrimaryConstructor.Extensions;
@@ -24,23 +23,6 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 	[Generator]
 	public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the separator used.
-		/// </summary>
-		private const string Separator = ", ";
-
-
-		/// <summary>
-		/// Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-		/// </summary>
-		private static readonly bool UsingTabsAsIndentingCharacters = true;
-
-		/// <summary>
-		/// Indicates whether the project outputs "<c><see langword="this"/>.</c>"
-		/// as the member access expression.
-		/// </summary>
-		private static readonly bool OutputThisReference = false;
-
 		/// <summary>
 		/// Indicates the type format, and the property type format.
 		/// </summary>
@@ -73,13 +55,13 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 				return;
 			}
 
-			var classNameDic = new Dictionary<string, int>();
-			foreach (var classSymbol in g(context, receiver))
+			var nameDic = new Dictionary<string, int>();
+			foreach (var symbol in g(context, receiver))
 			{
-				_ = classNameDic.TryGetValue(classSymbol.Name, out int i);
-				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
-				classNameDic[classSymbol.Name] = i + 1;
-				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(classSymbol));
+				_ = nameDic.TryGetValue(symbol.Name, out int i);
+				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
+				nameDic[symbol.Name] = i + 1;
+				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(symbol));
 			}
 
 
@@ -87,20 +69,23 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 			{
 				var compilation = context.Compilation;
 
-				return from candidateClass in receiver.CandidateClasses
-					   let model = compilation.GetSemanticModel(candidateClass.SyntaxTree)
-					   select model.GetDeclaredSymbol(candidateClass)! into classSymbol
-					   where classSymbol.Marks<AutoGeneratePrimaryConstructorAttribute>()
-					   select (INamedTypeSymbol)classSymbol;
+				return
+					from candidate in receiver.CandidateClasses
+					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
+					select model.GetDeclaredSymbol(candidate)! into symbol
+					where symbol.Marks<AutoGeneratePrimaryConstructorAttribute>()
+					select (INamedTypeSymbol)symbol;
 			}
 
-			static string getPrimaryConstructorCode(INamedTypeSymbol classSymbol)
+			static string getPrimaryConstructorCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = classSymbol.ContainingNamespace.ToDisplayString();
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				int i = fullTypeName.IndexOf('<');
+				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 
 				var baseClassCtorArgs =
-					classSymbol.BaseType is { } baseType
-					&& baseType.Marks<AutoGeneratePrimaryConstructorAttribute>()
+					symbol.BaseType is { } baseType && baseType.Marks<AutoGeneratePrimaryConstructorAttribute>()
 					? GetMembers(baseType, handleRecursively: true)
 					: null;
 				/*length-pattern*/
@@ -108,67 +93,30 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 					? null
 					: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 
-				var members = GetMembers(classSymbol, handleRecursively: false);
+				var members = GetMembers(symbol, handleRecursively: false);
 				var arguments =
 					from x in baseClassCtorArgs is null ? members : members.Concat(baseClassCtorArgs)
 					select $"{x.Type} {x.ParameterName}";
-				string fullTypeName = classSymbol.ToDisplayString(TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				string parameterList = string.Join(", ", arguments);
+				string memberAssignments = string.Join("\r\n\t\t\t", from member in members select $"{member.Name} = {member.ParameterName};");
 
-				var source = new StringBuilder()
-					.AppendLine(PrintHeader())
-					.AppendLine(PrintPragmaWarningDisableCS1591())
-					.AppendLine()
-					.AppendLine(PrintUsingDirectives())
-					.AppendLine()
-					.AppendLine(PrintNullableEnable())
-					.AppendLine()
-					.Append(PrintNamespaceKeywordToken())
-					.AppendLine(namespaceName)
-					.AppendLine(PrintOpenBracketToken())
-					.Append(PrintIndenting(1))
-					.Append(PrintPartialKeywordToken())
-					.Append(PrintClassKeywordToken())
-					.Append(classSymbol.Name)
-					.AppendLine(genericParametersList)
-					.AppendLine(PrintOpenBracketToken(1))
-					.AppendLine(PrintCompilerGenerated(2))
-					.Append(PrintIndenting(2))
-					.Append(PrintPublicKeywordToken())
-					.Append(classSymbol.Name)
-					.Append(PrintOpenBraceToken())
-					.Append(string.Join(Separator, arguments))
-					.Append(PrintClosedBraceToken())
-					.AppendLine(baseCtorInheritance)
-					.Append(PrintOpenBracketToken(2));
+				return $@"#pragma warning disable 1591
 
-				foreach (var item in members)
-				{
-					source
-						.AppendLine()
-						.Append(PrintIndenting(3));
+using System.Runtime.CompilerServices;
 
-					if (OutputThisReference)
-					{
-						source.Append(PrintThisKeywordToken());
-						source.Append(PrintDotToken());
-					}
+#nullable enable
 
-					source
-						.Append(item.Name)
-						.Append(PrintEqualsToken())
-						.Append(item.ParameterName)
-						.Append(PrintSemicolonToken());
-				}
-
-				source
-					.AppendLine()
-					.AppendLine(PrintClosedBracketToken(2))
-					.AppendLine(PrintClosedBracketToken(1))
-					.AppendLine(PrintClosedBracketToken());
-
-				return source.ToString();
+namespace {namespaceName}
+{{
+	partial class {symbol.Name}{genericParametersList}
+	{{
+		[CompilerGenerated]
+		public {symbol.Name}({parameterList}){baseCtorInheritance}
+		{{
+			{memberAssignments}
+		}}
+	}}
+}}";
 			}
 		}
 
@@ -177,25 +125,64 @@ namespace Sudoku.CodeGen.PrimaryConstructor
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
 
-		private static partial string PrintHeader();
-		private static partial string PrintOpenBraceToken();
-		private static partial string PrintClosedBraceToken();
-		private static partial string PrintNamespaceKeywordToken();
-		private static partial string PrintPartialKeywordToken();
-		private static partial string PrintClassKeywordToken();
-		private static partial string PrintPublicKeywordToken();
-		private static partial string PrintSemicolonToken();
-		private static partial string PrintEqualsToken();
-		private static partial string PrintThisKeywordToken();
-		private static partial string PrintDotToken();
-		private static partial string PrintOpenBracketToken(int indentingCount = 0);
-		private static partial string PrintClosedBracketToken(int indentingCount = 0);
-		private static partial string PrintPragmaWarningDisableCS1591();
-		private static partial string PrintUsingDirectives();
-		private static partial string PrintNullableEnable();
-		private static partial string PrintIndenting(int indentingCount = 0);
-		private static partial string PrintCompilerGenerated(int indentingCount = 0);
+		/// <summary>
+		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
+		/// </summary>
+		/// <param name="classSymbol">The specified class symbol.</param>
+		/// <param name="handleRecursively">
+		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
+		/// <returns>The result list that contains all member symbols.</returns>
+		private static IReadOnlyList<SymbolInfo> GetMembers(INamedTypeSymbol classSymbol, bool handleRecursively)
+		{
+			var result = new List<SymbolInfo>(
+				(
+					from x in classSymbol.GetMembers().OfType<IFieldSymbol>()
+					where x is { CanBeReferencedByName: true, IsStatic: false }
+						&& (
+							x.IsReadOnly
+							&& !x.HasInitializer()
+							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
+						)
+						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
+					select new SymbolInfo(
+						x.Type.ToDisplayString(PropertyTypeFormat),
+						toCamelCase(x.Name),
+						x.Name,
+						x.GetAttributes()
+					)
+				).Concat(
+					from x in classSymbol.GetMembers().OfType<IPropertySymbol>()
+					where x is { CanBeReferencedByName: true, IsStatic: false }
+						&& (
+							x.IsReadOnly
+							&& !x.HasInitializer()
+							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
+						)
+						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
+					select new SymbolInfo(
+						x.Type.ToDisplayString(PropertyTypeFormat),
+						toCamelCase(x.Name),
+						x.Name,
+						x.GetAttributes()
+					)
+				)
+			);
 
-		private static partial IReadOnlyList<SymbolInfo> GetMembers(INamedTypeSymbol classSymbol, bool handleRecursively);
+			if (handleRecursively
+				&& classSymbol.BaseType is { } baseType
+				&& baseType.Marks<AutoGeneratePrimaryConstructorAttribute>())
+			{
+				result.AddRange(GetMembers(baseType, true));
+			}
+
+			return result;
+
+
+			static string toCamelCase(string name)
+			{
+				name = name.TrimStart('_');
+				return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
+			}
+		}
 	}
 }
