@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
 
 namespace Sudoku.CodeGen.KeyedTuple
 {
@@ -9,70 +8,82 @@ namespace Sudoku.CodeGen.KeyedTuple
 	/// Define a keyed tuple generator.
 	/// </summary>
 	[Generator]
-	public sealed partial class KeyedTupleGenerator : ISourceGenerator
+	public sealed class KeyedTupleGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the separator that is used for separating multiple values.
-		/// </summary>
-		private const string CommaToken = ", ";
-
-
-		/// <summary>
-		/// Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-		/// </summary>
-		private static readonly bool UsingTabsAsIndentingCharacters = true;
-
-		/// <summary>
-		/// Indicates the new line character in this current environment.
-		/// </summary>
-		private static readonly string NewLine = Environment.NewLine;
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var sb = new StringBuilder();
 			for (int length = 2; length <= 4; length++)
 			{
-				sb.Clear();
-				sb.AppendLine(PrintHeader());
-				sb.AppendLine(PrintPragmaWarningDisableCS8509());
-				sb.AppendLine();
-				sb.AppendLine(PrintNullableEnable());
-				sb.AppendLine();
-				sb.AppendLine(PrintUsingDirectives());
-				sb.AppendLine();
-				sb.AppendLine(PrintNamespace());
-				sb.AppendLine(PrintOpenBracketToken());
-				sb.AppendLine(PrintRecordDocComment(length));
-				sb.AppendLine(PrintCompilerGenerated());
-				sb.AppendLine(PrintRecordStatement(length));
-				sb.AppendLine(PrintOpenBracketToken(1));
-				sb.AppendLine(PrintUserDefinedConstructorDocComment(length));
-				sb.AppendLine(PrintUserDefinedConstructor(length));
-				sb.AppendLine(PrintOpenBracketToken(2));
-				sb.AppendLine(PrintClosedBracketToken(2));
-				sb.AppendLine();
-				sb.AppendLine();
-				sb.AppendLine(PrintInheritDoc());
-				sb.AppendLine(PrintLength(length));
-				sb.AppendLine();
-				sb.AppendLine();
-				sb.AppendLine(PrintInheritDoc());
-				sb.AppendLine(PrintIndexerWithValue(length));
-				sb.AppendLine();
-				sb.AppendLine();
-				sb.AppendLine(PrintInheritDoc());
-				sb.AppendLine(PrintToStringWithValue());
-				sb.AppendLine(PrintClosedBracketToken(1));
-				sb.AppendLine(PrintClosedBracketToken());
+				int[] values = Enumerable.Range(1, length).ToArray();
+				string generics = string.Join(", ", from i in values select $"T{i}");
+				string commentsForGenericTypeParams = string.Join(
+					"\r\n\t",
+					from i in values
+					select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{generics}}}.Item{i}""/>.</typeparam>"
+				);
+				string commentsForParams = string.Join(
+					"\r\n\t",
+					from i in values
+					let p = i switch
+					{
+						1 when i / 10 != 1 => "st",
+						2 when i / 10 != 1 => "nd",
+						3 when i / 10 != 1 => "rd",
+						_ => "th"
+					}
+					select $@"/// <param name=""Item{i}"">The {i}{p} item.</param>"
+				);
+				string typeParams = string.Join(", ", from i in values select $"T{i}");
+				string primaryConstructorParamListWithoutPriorKey = string.Join(", ", from i in values select $"T{i} Item{i}");
+				string primaryConstructorParamList = $"{primaryConstructorParamListWithoutPriorKey}, int PriorKey";
+				string constructorParamList = string.Join(", ", from i in values select $"T{i} item{i}");
+				string constructorParamListWithoutType = string.Join(", ", from i in values select $"item{i}");
+				string commentsForConstructorParams = string.Join(
+					"\r\n\t\t",
+					from i in values select $@"/// <param name=""item{i}"">The item {i}.</param>"
+				);
+				string indexerValues = string.Join(", ", from i in values select $@"{i} => Item{i}");
 
 				context.AddSource(
-					hintName: $"KeyedTuple_{length.ToString()}.cs",
-					sourceText: SourceText.From(
-						text: sb.ToString(),
-						encoding: Encoding.UTF8
-					)
+					$"KeyedTuple_{length}.cs",
+					$@"#pragma warning disable 8509
+
+using System.Runtime.CompilerServices;
+
+#nullable enable
+
+namespace System.Collections.Generic
+{{
+	/// <summary>
+	///	Provides a tuple with a primary element, which means the tuple contains multiple items,
+	///	but the only specified item can be output as <see cref=""string""/> text.
+	///	</summary>
+	{commentsForGenericTypeParams}
+	{commentsForParams}
+	/// <param name=""PriorKey"">The prior key.</param>
+	[CompilerGenerated]
+	public sealed record KeyedTuple<{typeParams}>({primaryConstructorParamList}) : ITuple
+	{{
+		/// <summary>
+		/// Initializes an instance with the specified {length} items, and the first one is the prior key.
+		/// </summary>
+		{commentsForConstructorParams}
+		public KeyedTuple({constructorParamList}) : this({constructorParamListWithoutType}, 1)
+		{{
+		}}
+
+		/// <inheritdoc/>
+		int ITuple.Length => {length};
+
+		/// <inheritdoc/>
+		object? ITuple.this[int index] => index switch {{ {indexerValues} }};
+
+		/// <inheritdoc/>
+		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
+	}}
+}}"
 				);
 			}
 		}
@@ -81,24 +92,5 @@ namespace Sudoku.CodeGen.KeyedTuple
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
-
-
-		private static partial string PrintOpenBracketToken(int indentingCount = 0);
-		private static partial string PrintClosedBracketToken(int indentingCount = 0);
-		private static partial string PrintHeader();
-		private static partial string PrintPragmaWarningDisableCS8509();
-		private static partial string PrintUsingDirectives();
-		private static partial string PrintNullableEnable();
-		private static partial string PrintNamespace();
-		private static partial string PrintCompilerGenerated();
-		private static partial string PrintRecordDocComment(int length);
-		private static partial string PrintRecordStatement(int length);
-		private static partial string PrintUserDefinedConstructorDocComment(int length);
-		private static partial string PrintUserDefinedConstructor(int length);
-		private static partial string PrintInheritDoc();
-		private static partial string PrintLength(int length);
-		private static partial string PrintIndexerWithValue(int length);
-		private static partial string PrintIndexerValue(bool withIndent, int length);
-		private static partial string PrintToStringWithValue();
 	}
 }

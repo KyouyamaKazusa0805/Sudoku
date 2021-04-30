@@ -9,21 +9,6 @@
             Define a keyed tuple generator.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGen.KeyedTuple.KeyedTupleGenerator.CommaToken">
-            <summary>
-            Indicates the separator that is used for separating multiple values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.KeyedTuple.KeyedTupleGenerator.UsingTabsAsIndentingCharacters">
-            <summary>
-            Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.KeyedTuple.KeyedTupleGenerator.NewLine">
-            <summary>
-            Indicates the new line character in this current environment.
-            </summary>
-        </member>
         <member name="M:Sudoku.CodeGen.KeyedTuple.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
