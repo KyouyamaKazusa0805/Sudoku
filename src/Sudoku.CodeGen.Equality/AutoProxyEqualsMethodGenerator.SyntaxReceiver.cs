@@ -2,9 +2,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Sudoku.CodeGen.DelegatedEquality
+namespace Sudoku.CodeGen.Equality
 {
-	partial class AutoEqualsMethodGenerator
+	partial class AutoProxyEqualsMethodGenerator
 	{
 		/// <summary>
 		/// Indicates the inner syntax receiver.

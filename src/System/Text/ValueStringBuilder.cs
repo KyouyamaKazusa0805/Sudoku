@@ -127,7 +127,7 @@ namespace System.Text
 		/// <param name="left">The left instance.</param>
 		/// <param name="right">The right instance.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		[DelegatedEqualityMethod]
+		[ProxyEquality]
 		public static unsafe bool Equals(in ValueStringBuilder left, in ValueStringBuilder right)
 		{
 			if (left.Length != right.Length)

@@ -3,34 +3,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Sudoku.CodeGen.DelegatedEquality.Extensions;
-using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
-using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
-using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
-using TypeQualificationStyle = Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
+using Sudoku.CodeGen.Equality.Extensions;
 
-namespace Sudoku.CodeGen.DelegatedEquality
+namespace Sudoku.CodeGen.Equality
 {
 	/// <summary>
 	/// Indicates a generator that generates the code about the equality method.
 	/// </summary>
 	[Generator]
-	public sealed partial class AutoEqualsMethodGenerator : ISourceGenerator
+	public sealed partial class AutoProxyEqualsMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the type format, and the property type format.
-		/// </summary>
-		private static readonly SymbolDisplayFormat TypeFormat = new(
-			globalNamespaceStyle: GlobalNamespaceStyle.OmittedAsContaining,
-			typeQualificationStyle: TypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-			genericsOptions: GenericsOptions.IncludeTypeParameters | GenericsOptions.IncludeTypeConstraints,
-			miscellaneousOptions:
-				MiscellaneousOptions.UseSpecialTypes
-				| MiscellaneousOptions.EscapeKeywordIdentifiers
-				| MiscellaneousOptions.IncludeNullableReferenceTypeModifier
-		);
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -54,7 +36,7 @@ namespace Sudoku.CodeGen.DelegatedEquality
 
 				if (getEqualityMethodsCode(context, symbol) is { } c)
 				{
-					context.AddSource($"{name}.Equality.g.cs", c);
+					context.AddSource($"{name}.ProxyEquality.g.cs", c);
 
 					processedList.Add(symbol);
 				}
@@ -69,7 +51,7 @@ namespace Sudoku.CodeGen.DelegatedEquality
 					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
 					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into symbol
 					from member in symbol.GetMembers().OfType<IMethodSymbol>()
-					where member.Marks<DelegatedEqualityMethodAttribute>()
+					where member.Marks<ProxyEqualityAttribute>()
 					let boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean)
 					let returnTypeSymbol = member.ReturnType
 					where SymbolEqualityComparer.Default.Equals(returnTypeSymbol, boolSymbol)
@@ -82,7 +64,7 @@ namespace Sudoku.CodeGen.DelegatedEquality
 			{
 				var methodSymbol = (
 					from member in symbol.GetMembers().OfType<IMethodSymbol>()
-					where member.Marks<DelegatedEqualityMethodAttribute>()
+					where member.Marks<ProxyEqualityAttribute>()
 					select member
 				).First();
 
@@ -98,7 +80,7 @@ namespace Sudoku.CodeGen.DelegatedEquality
 				}
 
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				int j = fullTypeName.IndexOf('>');

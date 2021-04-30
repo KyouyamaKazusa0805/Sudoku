@@ -92,7 +92,6 @@ namespace Sudoku.CodeGen.Equality
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				int j = fullTypeName.IndexOf('>');
 				string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-
 				string typeKind = symbol switch
 				{
 					{ IsRecord: true } => "record",

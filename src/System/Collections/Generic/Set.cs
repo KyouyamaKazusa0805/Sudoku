@@ -264,7 +264,7 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		[DelegatedEqualityMethod]
+		[ProxyEquality]
 		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
 		{
 			(null, null) => true,

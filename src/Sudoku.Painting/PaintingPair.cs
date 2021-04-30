@@ -78,7 +78,7 @@ namespace Sudoku.Painting
 		/// <param name="left">The left instance to check.</param>
 		/// <param name="right">The right instance to check.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		[DelegatedEqualityMethod]
+		[ProxyEquality]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Equals(in PaintingPair<TUnmanaged> left, in PaintingPair<TUnmanaged> right)
 		{

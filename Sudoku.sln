@@ -79,8 +79,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.RefStructDef
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.BitOperations", "src\Sudoku.CodeGen.BitOperations\Sudoku.CodeGen.BitOperations.csproj", "{991A39F1-387A-4935-BAB5-BE460417F7A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.DelegatedEquality", "src\Sudoku.CodeGen.DelegatedEquality\Sudoku.CodeGen.DelegatedEquality.csproj", "{71E993EA-9015-436E-95C8-3EC4758C64A6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -629,26 +627,6 @@ Global
 		{991A39F1-387A-4935-BAB5-BE460417F7A0}.Release|x64.Build.0 = Release|Any CPU
 		{991A39F1-387A-4935-BAB5-BE460417F7A0}.Release|x86.ActiveCfg = Release|Any CPU
 		{991A39F1-387A-4935-BAB5-BE460417F7A0}.Release|x86.Build.0 = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|ARM.Build.0 = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|x64.Build.0 = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Debug|x86.Build.0 = Debug|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|ARM.ActiveCfg = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|ARM.Build.0 = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|ARM64.Build.0 = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|x64.ActiveCfg = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|x64.Build.0 = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|x86.ActiveCfg = Release|Any CPU
-		{71E993EA-9015-436E-95C8-3EC4758C64A6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -673,7 +651,6 @@ Global
 		{74FCC094-6148-42E1-A30D-C5F72AFAA652} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 		{E6325A7B-514E-46A6-807A-F820C5634D3D} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 		{991A39F1-387A-4935-BAB5-BE460417F7A0} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
-		{71E993EA-9015-436E-95C8-3EC4758C64A6} = {6B2F20BD-B91E-4FFF-9DFF-D4E444D94C17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}

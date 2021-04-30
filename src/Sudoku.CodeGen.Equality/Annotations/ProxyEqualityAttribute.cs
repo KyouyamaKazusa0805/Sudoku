@@ -13,7 +13,7 @@ namespace Sudoku.CodeGen
 	/// that isn't a <see langword="static"/> method, the source generator will do nothing.
 	/// </remarks>
 	[AttributeUsage(AttributeTargets.Method)]
-	public sealed class DelegatedEqualityMethodAttribute : Attribute
+	public sealed class ProxyEqualityAttribute : Attribute
 	{
 	}
 }

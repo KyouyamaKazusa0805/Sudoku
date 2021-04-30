@@ -933,7 +933,7 @@ namespace Sudoku.Data
 		/// <param name="left">The left one.</param>
 		/// <param name="right">The right one.</param>
 		/// <returns>The <see cref="bool"/> result indicating that.</returns>
-		[DelegatedEqualityMethod]
+		[ProxyEquality]
 		public static bool Equals(in SudokuGrid left, in SudokuGrid right)
 		{
 			fixed (short* pThis = left, pOther = right)
