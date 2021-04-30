@@ -59,13 +59,13 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
-		[CLSCompliant(false), FunctionPointerExposeOnly]
+		[FunctionPointerExposeOnly]
 		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		[CLSCompliant(false), FunctionPointerExposeOnly]
+		[FunctionPointerExposeOnly]
 		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
 
 		/// <summary>
