@@ -23,7 +23,7 @@ namespace Sudoku.CodeGen.Equality
 	/// because this method is useless in the by-ref-like types.
 	/// </remarks>
 	[Generator]
-	public sealed partial class AutoEqualsMethodGenerator : ISourceGenerator
+	public sealed partial class EqualsMethodGenerator : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)

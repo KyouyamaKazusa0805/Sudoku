@@ -11,7 +11,7 @@ namespace Sudoku.CodeGen.Equality
 	/// Indicates a generator that generates the code about the equality method.
 	/// </summary>
 	[Generator]
-	public sealed partial class AutoProxyEqualsMethodGenerator : ISourceGenerator
+	public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 	{
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)

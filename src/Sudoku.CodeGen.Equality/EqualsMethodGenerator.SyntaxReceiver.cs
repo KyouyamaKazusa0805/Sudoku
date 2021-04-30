@@ -4,15 +4,15 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.CodeGen.Equality
 {
-	partial class AutoProxyEqualsMethodGenerator
+	partial class EqualsMethodGenerator
 	{
 		/// <summary>
-		/// Indicates the inner syntax receiver.
+		/// Defines the syntax receiver.
 		/// </summary>
 		private sealed class SyntaxReceiver : ISyntaxReceiver
 		{
 			/// <summary>
-			/// Indicates the result types.
+			/// Indicates all possible candidate types used.
 			/// </summary>
 			public IList<TypeDeclarationSyntax> Candidates { get; } = new List<TypeDeclarationSyntax>();
 
@@ -20,9 +20,10 @@ namespace Sudoku.CodeGen.Equality
 			/// <inheritdoc/>
 			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 			{
-				if (syntaxNode is TypeDeclarationSyntax type and not InterfaceDeclarationSyntax)
+				// Any field with at least one attribute is a candidate for property generation.
+				if (syntaxNode is TypeDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
 				{
-					Candidates.Add(type);
+					Candidates.Add(classDeclaration);
 				}
 			}
 		}

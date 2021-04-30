@@ -33,7 +33,7 @@
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
         </member>
-        <member name="T:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator">
+        <member name="T:Sudoku.CodeGen.Equality.EqualsMethodGenerator">
             <summary>
             Indicates the generator that generates the methods about the equality checking. The methods below
             will be generated:
@@ -49,13 +49,13 @@
             because this method is useless in the by-ref-like types.
             </remarks>
         </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGen.Equality.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGen.Equality.EqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+        <member name="M:Sudoku.CodeGen.Equality.EqualsMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
             <summary>
             Try to get all possible fields or properties in the specified <see langword="class"/> type.
             </summary>
@@ -64,41 +64,17 @@
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
             <returns>The result list that contains all member symbols.</returns>
         </member>
-        <member name="T:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGen.Equality.EqualsMethodGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGen.Equality.EqualsMethodGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator">
-            <summary>
-            Indicates a generator that generates the code about the equality method.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator.SyntaxReceiver">
-            <summary>
-            Indicates the inner syntax receiver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates the result types.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGen.Equality.AutoProxyEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGen.Equality.EqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGen.Equality.Extensions.ISymbolEx">
@@ -144,6 +120,30 @@
             <summary>
             Indicates the property format.
             </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator">
+            <summary>
+            Indicates a generator that generates the code about the equality method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator.SyntaxReceiver">
+            <summary>
+            Indicates the inner syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates the result types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Equality.ProxyEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>
