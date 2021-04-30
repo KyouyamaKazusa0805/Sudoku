@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.HashCode.Annotations;
 using Sudoku.CodeGen.HashCode.Extensions;
@@ -21,23 +20,6 @@ namespace Sudoku.CodeGen.HashCode
 	[Generator]
 	public sealed partial class AutoGetHashCodeGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates whether the project uses tabs <c>'\t'</c> as indenting characters.
-		/// </summary>
-		private static readonly bool UsingTabsAsIndentingCharacters = true;
-
-		/// <summary>
-		/// Indicates whether the project outputs "<c><see langword="this"/>.</c>"
-		/// as the member access expression.
-		/// </summary>
-		private static readonly bool OutputThisReference = false;
-
-		/// <summary>
-		/// Indicates whetehr the project outputs <c>[MethodImpl(MethodImplOptions.AggressiveInlining)]</c>
-		/// as the inlining mark.
-		/// </summary>
-		private static readonly bool OutputAggressiveInliningMark = true;
-
 		/// <summary>
 		/// Indicates the type format, and the property type format.
 		/// </summary>
@@ -97,53 +79,6 @@ namespace Sudoku.CodeGen.HashCode
 
 			static string? getGetHashCodeCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-
-				var source = new StringBuilder()
-					.AppendLine(PrintHeader())
-					.AppendLine(PrintPragmaWarningDisableCS1591())
-					.AppendLine()
-					.AppendLine(PrintUsingDirectives())
-					.AppendLine()
-					.AppendLine(PrintNullableEnable())
-					.AppendLine()
-					.Append(PrintNamespaceKeywordToken())
-					.AppendLine(namespaceName)
-					.AppendLine(PrintOpenBracketToken())
-					.Append(PrintIndenting(1))
-					.Append(PrintPartialKeywordToken())
-					.Append(PrintTypeKeywordToken(symbol.IsRecord ? true : null, symbol.TypeKind))
-					.Append(symbol.Name)
-					.AppendLine(genericParametersList)
-					.AppendLine(PrintOpenBracketToken(1))
-					.AppendLine(PrintCompilerGenerated(2));
-
-				if (OutputAggressiveInliningMark)
-				{
-					source.AppendLine(PrintAggressiveInlining(2));
-				}
-
-				source
-					.Append(PrintIndenting(2))
-					.Append(PrintPublicKeywordToken())
-					.Append(PrintOverrideKeywordToken());
-
-				// Not 'ref struct' and not 'readonly struct'.
-				if (symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false })
-				{
-					source.Append(PrintReadOnlyKeywordToken());
-				}
-
-				source
-					.Append(PrintIntKeywordToken())
-					.Append(PrintGetHashCode())
-					.Append(PrintOpenBraceToken())
-					.Append(PrintClosedBraceToken())
-					.Append(PrintLambdaOperatorToken());
-
 				string attributeStr = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(AutoHashCodeAttribute)
@@ -171,31 +106,34 @@ namespace Sudoku.CodeGen.HashCode
 
 				members[0] = members[0].Substring(2); // Remove token '{"'.
 
-				foreach (string member in members)
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+				string fullTypeName = symbol.ToDisplayString(TypeFormat);
+				int i = fullTypeName.IndexOf('<');
+				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				string typeKind = symbol switch
 				{
-					if (OutputThisReference)
-					{
-						source
-							.Append(PrintThisKeywordToken())
-							.Append(PrintDotToken());
-					}
+					{ IsRecord: true } => "record",
+					{ TypeKind: TypeKind.Class } => "class",
+					{ TypeKind: TypeKind.Struct } => "struct"
+				};
+				string readonlyKeyword = symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false } ? "readonly " : string.Empty;
+				string hashCodeStr = string.Join(" ^ ", from member in members select $"{member}.GetHashCode()");
 
-					source
-						.Append(member)
-						.Append(PrintDotToken())
-						.Append(PrintGetHashCode())
-						.Append(PrintOpenBraceToken())
-						.Append(PrintClosedBraceToken())
-						.Append(PrintExclusiveOrOperatorToken());
-				}
+				return $@"#pragma warning disable 1591
 
-				source
-					.Remove(source.Length - 3, 3) // Remove last '^'.
-					.AppendLine(PrintSemicolonToken())
-					.AppendLine(PrintClosedBracketToken(1))
-					.AppendLine(PrintClosedBracketToken());
+using System.Runtime.CompilerServices;
 
-				return source.ToString();
+#nullable enable
+
+namespace {namespaceName}
+{{
+	partial {typeKind} {symbol.Name}{genericParametersList}
+	{{
+		[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};
+	}}
+}}";
 			}
 		}
 
@@ -204,32 +142,31 @@ namespace Sudoku.CodeGen.HashCode
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
 
-		private static partial string PrintHeader();
-		private static partial string PrintOpenBraceToken();
-		private static partial string PrintClosedBraceToken();
-		private static partial string PrintNamespaceKeywordToken();
-		private static partial string PrintPartialKeywordToken();
-		private static partial string PrintTypeKeywordToken(bool? isRecord, TypeKind typeKind);
-		private static partial string PrintPublicKeywordToken();
-		private static partial string PrintReadOnlyKeywordToken();
-		private static partial string PrintIntKeywordToken();
-		private static partial string PrintOverrideKeywordToken();
-		private static partial string PrintGetHashCode();
-		private static partial string PrintReturnKeywordToken();
-		private static partial string PrintSemicolonToken();
-		private static partial string PrintExclusiveOrOperatorToken();
-		private static partial string PrintThisKeywordToken();
-		private static partial string PrintDotToken();
-		private static partial string PrintLambdaOperatorToken();
-		private static partial string PrintOpenBracketToken(int indentingCount = 0);
-		private static partial string PrintClosedBracketToken(int indentingCount = 0);
-		private static partial string PrintAggressiveInlining(int indentingCount = 0);
-		private static partial string PrintPragmaWarningDisableCS1591();
-		private static partial string PrintUsingDirectives();
-		private static partial string PrintNullableEnable();
-		private static partial string PrintIndenting(int indentingCount = 0);
-		private static partial string PrintCompilerGenerated(int indentingCount = 0);
+		/// <summary>
+		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
+		/// </summary>
+		/// <param name="symbol">The specified class symbol.</param>
+		/// <param name="handleRecursively">
+		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
+		/// <returns>The result list that contains all member symbols.</returns>
+		private static IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
+		{
+			var result = new List<string>(
+				(
+					from x in symbol.GetMembers().OfType<IFieldSymbol>()
+					select x.Name
+				).Concat(
+					from x in symbol.GetMembers().OfType<IPropertySymbol>()
+					select x.Name
+				)
+			);
 
-		private static partial IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively);
+			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoHashCodeAttribute>())
+			{
+				result.AddRange(GetMembers(baseType, handleRecursively: true));
+			}
+
+			return result;
+		}
 	}
 }
