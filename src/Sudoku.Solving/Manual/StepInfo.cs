@@ -6,7 +6,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
-using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen;
 using static Sudoku.Resources.TextResources;
 using Group = Sudoku.Techniques.TechniqueGroup;
 using Level = Sudoku.Solving.Manual.DifficultyLevel;

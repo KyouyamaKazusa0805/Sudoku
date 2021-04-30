@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.HashCode.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Indicates an attribute that marks a <see langword="class"/> or a <see langword="struct"/>

@@ -1,7 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections.Generic;
-using Sudoku.CodeGen.DelegatedEquality.Annotations;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 
 namespace System.Text
 {

@@ -4,19 +4,19 @@
         <name>Sudoku.CodeGen.HashCode</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.HashCode.Annotations.AutoHashCodeAttribute">
+        <member name="T:Sudoku.CodeGen.AutoHashCodeAttribute">
             <summary>
             Indicates an attribute that marks a <see langword="class"/> or a <see langword="struct"/>
             that tells the compiler the type should generate a default <c>GetHashCode</c> method.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.HashCode.Annotations.AutoHashCodeAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.CodeGen.AutoHashCodeAttribute.#ctor(System.String[])">
             <summary>
             Initializes an instance with the specified member list.
             </summary>
             <param name="members">The members.</param>
         </member>
-        <member name="P:Sudoku.CodeGen.HashCode.Annotations.AutoHashCodeAttribute.FieldOrPropertyList">
+        <member name="P:Sudoku.CodeGen.AutoHashCodeAttribute.FieldOrPropertyList">
             <summary>
             All members to generate.
             </summary>

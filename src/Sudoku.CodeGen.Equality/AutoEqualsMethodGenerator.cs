@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Sudoku.CodeGen.Equality.Annotations;
 using Sudoku.CodeGen.Equality.Extensions;
 
 namespace Sudoku.CodeGen.Equality

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.Painting.Extensions;
 

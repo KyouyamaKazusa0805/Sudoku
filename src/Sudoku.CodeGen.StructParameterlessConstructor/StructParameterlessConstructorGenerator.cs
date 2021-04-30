@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
 using Sudoku.CodeGen.StructParameterlessConstructor.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
 using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;

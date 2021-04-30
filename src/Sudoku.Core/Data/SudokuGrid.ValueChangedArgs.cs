@@ -1,11 +1,9 @@
-﻿#undef SUPPORTED_NESTED_ANNOTATION
+﻿#undef NESTED_ANNOTATION
 
 using System;
 using Sudoku.DocComments;
 #if false
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
+using Sudoku.CodeGen;
 #endif
 
 namespace Sudoku.Data
@@ -16,7 +14,7 @@ namespace Sudoku.Data
 		/// Provides arguments for the event <see cref="ValueChanged"/>.
 		/// </summary>
 		/// <seealso cref="ValueChanged"/>
-#if SUPPORTED_NESTED_ANNOTATION
+#if NESTED_ANNOTATION
 		[AutoDeconstruct(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
 		[AutoHashCode(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
 		[AutoEquality(nameof(Cell), nameof(OldMask), nameof(NewMask), nameof(SetValue))]
@@ -63,7 +61,7 @@ namespace Sudoku.Data
 			public int SetValue { get; }
 
 
-#if !SUPPORTED_NESTED_ANNOTATION
+#if !NESTED_ANNOTATION
 			/// <inheritdoc cref="DeconstructMethod"/>
 			/// <param name="cell">The cell offset.</param>
 			/// <param name="oldMask">The old mask.</param>

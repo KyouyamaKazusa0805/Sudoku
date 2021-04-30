@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sudoku.CodeGen.HashCode.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;

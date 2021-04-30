@@ -4,19 +4,19 @@
         <name>Sudoku.CodeGen.Equality</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.Equality.Annotations.AutoEqualityAttribute">
+        <member name="T:Sudoku.CodeGen.AutoEqualityAttribute">
             <summary>
             Indicates an attribute to mark a type, to indicate the type will be generated a default method
             called <c>Equals</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.Equality.Annotations.AutoEqualityAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.CodeGen.AutoEqualityAttribute.#ctor(System.String[])">
             <summary>
             Initializes an instance with the specified members.
             </summary>
             <param name="members">The members.</param>
         </member>
-        <member name="P:Sudoku.CodeGen.Equality.Annotations.AutoEqualityAttribute.FieldOrPropertyList">
+        <member name="P:Sudoku.CodeGen.AutoEqualityAttribute.FieldOrPropertyList">
             <summary>
             Indicates the field of property list.
             </summary>

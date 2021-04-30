@@ -4,17 +4,17 @@
         <name>Sudoku.CodeGen.PrimaryConstructor</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute">
+        <member name="T:Sudoku.CodeGen.AutoGeneratePrimaryConstructorAttribute">
             <summary>
             Indicates the marked <see langword="class"/> should generate primary constructor automatically.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.PrimaryConstructorIgnoredMemberAttribute">
+        <member name="T:Sudoku.CodeGen.PrimaryConstructorIgnoredMemberAttribute">
             <summary>
             Indicates the member should be ignored while generating primary constructors.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.PrimaryConstructorIncludedMemberAttribute">
+        <member name="T:Sudoku.CodeGen.PrimaryConstructorIncludedMemberAttribute">
             <summary>
             Indicates the member should be included while generating primary constructors.
             </summary>
@@ -99,12 +99,12 @@
         <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator">
             <summary>
             Indicates a generator that generates primary constructors for <see langword="class"/>es
-            when they're marked <see cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>.
+            when they're marked <see cref="T:Sudoku.CodeGen.AutoGeneratePrimaryConstructorAttribute"/>.
             </summary>
             <remarks>
             This generator can <b>only</b> support non-nested <see langword="class"/>es.
             </remarks>
-            <seealso cref="T:Sudoku.CodeGen.PrimaryConstructor.Annotations.AutoGeneratePrimaryConstructorAttribute"/>
+            <seealso cref="T:Sudoku.CodeGen.AutoGeneratePrimaryConstructorAttribute"/>
         </member>
         <member name="F:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator.TypeFormat">
             <summary>

@@ -1,4 +1,4 @@
-﻿using Sudoku.CodeGen.Deconstruction.Annotations;
+﻿using Sudoku.CodeGen;
 using Sudoku.DocComments;
 
 namespace System.Collections.Generic

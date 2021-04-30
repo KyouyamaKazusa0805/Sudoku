@@ -1,6 +1,6 @@
 ﻿using System.Extensions;
 using System.Linq;
-using Sudoku.CodeGen.DelegatedEquality.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.DocComments;
 
 namespace System.Collections.Generic

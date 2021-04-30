@@ -7,7 +7,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Sudoku.CodeGen.Deconstruction.Annotations;
 using Sudoku.CodeGen.Deconstruction.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
 using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;

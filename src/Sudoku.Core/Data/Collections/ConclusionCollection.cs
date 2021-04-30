@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using System.Text;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Data.Collections
 {

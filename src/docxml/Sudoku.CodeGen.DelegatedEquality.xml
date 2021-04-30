@@ -4,7 +4,7 @@
         <name>Sudoku.CodeGen.DelegatedEquality</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.DelegatedEquality.Annotations.DelegatedEqualityMethodAttribute">
+        <member name="T:Sudoku.CodeGen.DelegatedEqualityMethodAttribute">
             <summary>
             Indicates an attribute instance which is marked on a method,
             to tell the users and the compiler that this method is an equality

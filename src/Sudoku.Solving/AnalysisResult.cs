@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
-using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Globalization;

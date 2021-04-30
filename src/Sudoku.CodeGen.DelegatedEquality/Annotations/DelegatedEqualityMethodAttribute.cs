@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.DelegatedEquality.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Indicates an attribute instance which is marked on a method,

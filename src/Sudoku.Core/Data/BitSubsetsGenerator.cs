@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Data
 {

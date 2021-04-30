@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
-using Sudoku.CodeGen.DelegatedEquality.Annotations;
 using Sudoku.CodeGen.DelegatedEquality.Extensions;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
 using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using static System.Numerics.BitOperations;

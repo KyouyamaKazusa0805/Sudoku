@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.DelegatedEquality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Painting
 {

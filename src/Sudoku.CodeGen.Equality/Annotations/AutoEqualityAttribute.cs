@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.Equality.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Indicates an attribute to mark a type, to indicate the type will be generated a default method

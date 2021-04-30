@@ -1,12 +1,11 @@
 ﻿using System;
-using static System.AttributeTargets;
 
-namespace Sudoku.CodeGen.Deconstruction.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Allows the type can be deconstructed to multiple elements.
 	/// </summary>
-	[AttributeUsage(Class | Struct | Interface, AllowMultiple = true)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
 	public sealed class AutoDeconstructAttribute : Attribute
 	{
 		/// <summary>

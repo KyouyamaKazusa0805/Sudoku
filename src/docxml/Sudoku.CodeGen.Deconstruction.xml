@@ -4,18 +4,18 @@
         <name>Sudoku.CodeGen.Deconstruction</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute">
+        <member name="T:Sudoku.CodeGen.AutoDeconstructAttribute">
             <summary>
             Allows the type can be deconstructed to multiple elements.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.CodeGen.AutoDeconstructAttribute.#ctor(System.String[])">
             <summary>
             Initializes an instance with the specified member list.
             </summary>
             <param name="members">The members.</param>
         </member>
-        <member name="P:Sudoku.CodeGen.Deconstruction.Annotations.AutoDeconstructAttribute.FieldOrPropertyList">
+        <member name="P:Sudoku.CodeGen.AutoDeconstructAttribute.FieldOrPropertyList">
             <summary>
             All members to deconstruct.
             </summary>

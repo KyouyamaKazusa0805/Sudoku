@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 

@@ -3,8 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.DocComments;
 
 namespace System.Text.Markdown

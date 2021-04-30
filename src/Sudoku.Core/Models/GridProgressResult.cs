@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Text;
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Globalization;
 using Sudoku.Resources;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.PrimaryConstructor.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Indicates the member should be included while generating primary constructors.

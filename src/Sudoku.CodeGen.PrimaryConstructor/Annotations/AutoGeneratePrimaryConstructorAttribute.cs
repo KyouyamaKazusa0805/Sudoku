@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sudoku.CodeGen.PrimaryConstructor.Annotations
+namespace Sudoku.CodeGen
 {
 	/// <summary>
 	/// Indicates the marked <see langword="class"/> should generate primary constructor automatically.

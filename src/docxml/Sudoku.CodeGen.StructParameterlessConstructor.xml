@@ -4,7 +4,7 @@
         <name>Sudoku.CodeGen.StructParameterlessConstructor</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.Annotations.DisallowParameterlessConstructorAttribute">
+        <member name="T:Sudoku.CodeGen.DisallowParameterlessConstructorAttribute">
             <summary>
             Marks on a <see langword="struct"/>, to tell the users the parameterless constructor is disabled
             and can't be called or used.

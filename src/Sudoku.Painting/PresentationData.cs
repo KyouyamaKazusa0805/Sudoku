@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 
 namespace Sudoku.Painting

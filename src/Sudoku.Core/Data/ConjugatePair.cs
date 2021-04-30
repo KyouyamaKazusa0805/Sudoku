@@ -1,7 +1,5 @@
 ﻿using System;
-using Sudoku.CodeGen.Equality.Annotations;
-using Sudoku.CodeGen.HashCode.Annotations;
-using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Data
 {

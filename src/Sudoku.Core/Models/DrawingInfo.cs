@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen.Deconstruction.Annotations;
-using Sudoku.CodeGen.Equality.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Models
 {

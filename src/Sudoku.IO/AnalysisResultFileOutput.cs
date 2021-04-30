@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NPOI.XWPF.UserModel;
-using Sudoku.CodeGen.PrimaryConstructor.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Drawing;
 using Sudoku.Solving;
 
@@ -121,7 +121,7 @@ namespace Sudoku.IO
 					if (!saveStepGridPictures)
 					{
 						bool dirExists = true;
-						foreach (var file in Directory.GetFiles(directoryPath))
+						foreach (string file in Directory.GetFiles(directoryPath))
 						{
 							try
 							{

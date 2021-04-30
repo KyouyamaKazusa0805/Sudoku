@@ -1,4 +1,4 @@
-﻿using Sudoku.CodeGen.StructParameterlessConstructor.Annotations;
+﻿using Sudoku.CodeGen;
 
 namespace Sudoku.Bot.CommandLines
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Sudoku.CodeGen.HashCode.Annotations;
+using Sudoku.CodeGen;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Extensions;
 using System.Reflection;
-using Sudoku.CodeGen.Deconstruction.Annotations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Solving.Manual
 {
