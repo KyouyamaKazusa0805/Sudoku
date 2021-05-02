@@ -117,16 +117,7 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context)
-		{
+		public void Initialize(GeneratorInitializationContext context) =>
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
-
-			//#if DEBUG
-			//			if (!System.Diagnostics.Debugger.IsAttached)
-			//			{
-			//				System.Diagnostics.Debugger.Launch();
-			//			}
-			//#endif
-		}
 	}
 }
