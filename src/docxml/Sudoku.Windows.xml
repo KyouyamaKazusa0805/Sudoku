@@ -987,18 +987,6 @@
             <param name="this">The color.</param>
             <returns>The target color.</returns>
         </member>
-        <member name="T:Sudoku.Windows.Extensions.ImageEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Controls.Image"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Controls.Image"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.ImageEx.Deconstruct(System.Windows.Controls.Image,System.Double@,System.Double@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The image.</param>
-            <param name="width">The width.</param>
-            <param name="height">The height.</param>
-        </member>
         <member name="T:Sudoku.Windows.Extensions.KeyEx">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Input.Key"/>.
@@ -1061,12 +1049,6 @@
             <seealso cref="T:System.Windows.Point"/>
             <seealso cref="T:System.Drawing.Point"/>
             <seealso cref="T:System.Drawing.PointF"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.PointEx.Deconstruct(System.Windows.Point@,System.Double@,System.Double@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The instance.</param>
-            <param name="x">The x component.</param>
-            <param name="y">The y component.</param>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointEx.ToWPoint(System.Drawing.Point@)">
             <summary>
@@ -1137,14 +1119,6 @@
             <param name="this">The color.</param>
             <returns>A <see cref="T:System.Single"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.Deconstruct(System.Windows.Media.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The color.</param>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color@)">
             <summary>
             Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
@@ -1199,12 +1173,6 @@
             Provides extension methods on <see cref="T:System.Windows.Size"/>.
             </summary>
             <seealso cref="T:System.Windows.Size"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.Deconstruct(System.Windows.Size@,System.Double@,System.Double@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The size.</param>
-            <param name="width">The width.</param>
-            <param name="height">The height.</param>
         </member>
         <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSizeF(System.Windows.Size)">
             <summary>

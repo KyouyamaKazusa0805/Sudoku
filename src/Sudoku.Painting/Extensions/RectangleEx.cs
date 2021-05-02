@@ -8,7 +8,7 @@ namespace Sudoku.Painting.Extensions
 	/// </summary>
 	/// <seealso cref="Rectangle"/>
 	/// <seealso cref="RectangleF"/>
-	public static class RectangleEx
+	public static partial class RectangleEx
 	{
 		/// <summary>
 		/// Create an instance with two points.
@@ -61,21 +61,6 @@ namespace Sudoku.Painting.Extensions
 		{
 			point = new(@this.X, @this.Y);
 			size = new(@this.Size);
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The rectangle.</param>
-		/// <param name="x">The x.</param>
-		/// <param name="y">The y.</param>
-		/// <param name="width">The width.</param>
-		/// <param name="height">The height.</param>
-		public static void Deconstruct(
-			this in RectangleF @this, out float x, out float y, out float width, out float height)
-		{
-			x = @this.X;
-			y = @this.Y;
-			width = @this.Width;
-			height = @this.Height;
 		}
 	}
 }

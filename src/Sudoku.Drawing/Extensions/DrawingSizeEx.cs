@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Runtime.CompilerServices;
-using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Extensions
 {
@@ -9,30 +8,8 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <seealso cref="Size"/>
 	/// <seealso cref="SizeF"/>
-	public static class DrawingSizeEx
+	public static partial class DrawingSizeEx
 	{
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The size instance.</param>
-		/// <param name="width">The width.</param>
-		/// <param name="height">The height.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Deconstruct(this in Size @this, out int width, out int height)
-		{
-			width = @this.Width;
-			height = @this.Height;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The size instance.</param>
-		/// <param name="width">The width.</param>
-		/// <param name="height">The height.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Deconstruct(this in SizeF @this, out float width, out float height)
-		{
-			width = @this.Width;
-			height = @this.Height;
-		}
-
 		/// <summary>
 		/// To truncate the size.
 		/// </summary>

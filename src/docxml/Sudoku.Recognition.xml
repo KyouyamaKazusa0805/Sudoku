@@ -123,18 +123,6 @@
             <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="T:Sudoku.Recognition.Extensions.RotateRectEx">
-            <summary>
-            Provides extension methods for <see cref="T:Emgu.CV.Structure.RotatedRect"/>.
-            </summary>
-            <seealso cref="T:Emgu.CV.Structure.RotatedRect"/>
-        </member>
-        <member name="M:Sudoku.Recognition.Extensions.RotateRectEx.Deconstruct(Emgu.CV.Structure.RotatedRect,System.Drawing.PointF@,System.Drawing.SizeF@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The rectangle.</param>
-            <param name="center">The center.</param>
-            <param name="size">The size.</param>
-        </member>
         <member name="T:Sudoku.Recognition.FailedToFillValueException">
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.

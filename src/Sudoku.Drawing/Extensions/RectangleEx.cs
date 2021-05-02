@@ -57,25 +57,10 @@ namespace Sudoku.Drawing.Extensions
 		/// <param name="this">The rectangle.</param>
 		/// <param name="point">The point.</param>
 		/// <param name="size">The size.</param>
-		public static void Deconstruct(this RectangleF @this, out PointF point, out SizeF size)
+		public static void Deconstruct(this in RectangleF @this, out PointF point, out SizeF size)
 		{
 			point = new(@this.X, @this.Y);
 			size = new(@this.Size);
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The rectangle.</param>
-		/// <param name="x">The x.</param>
-		/// <param name="y">The y.</param>
-		/// <param name="width">The width.</param>
-		/// <param name="height">The height.</param>
-		public static void Deconstruct(
-			this in RectangleF @this, out float x, out float y, out float width, out float height)
-		{
-			x = @this.X;
-			y = @this.Y;
-			width = @this.Width;
-			height = @this.Height;
 		}
 	}
 }

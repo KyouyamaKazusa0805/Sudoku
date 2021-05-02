@@ -156,20 +156,6 @@
             <param name="newHeight">The new height.</param>
             <returns>The new bitmap instance that has been zoomed.</returns>
         </member>
-        <member name="T:Sudoku.Painting.Extensions.ColorEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Color"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Color"/>
-        </member>
-        <member name="M:Sudoku.Painting.Extensions.ColorEx.Deconstruct(System.Drawing.Color,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The color.</param>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
         <member name="T:Sudoku.Painting.Extensions.GraphicsEx">
             <summary>
             Provides extension methods for <see cref="T:System.Drawing.Graphics"/>.
@@ -278,18 +264,6 @@
             <seealso cref="T:System.Drawing.Point"/>
             <seealso cref="T:System.Drawing.PointF"/>
         </member>
-        <member name="M:Sudoku.Painting.Extensions.PointEx.Deconstruct(System.Drawing.Point@,System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The instance.</param>
-            <param name="x">The x component.</param>
-            <param name="y">The y component.</param>
-        </member>
-        <member name="M:Sudoku.Painting.Extensions.PointEx.Deconstruct(System.Drawing.PointF@,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The instance.</param>
-            <param name="x">The x component.</param>
-            <param name="y">The y component.</param>
-        </member>
         <member name="M:Sudoku.Painting.Extensions.PointEx.Truncate(System.Drawing.PointF@)">
             <summary>
             To truncate the point.
@@ -365,32 +339,12 @@
             <param name="point">The point.</param>
             <param name="size">The size.</param>
         </member>
-        <member name="M:Sudoku.Painting.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The rectangle.</param>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
-            <param name="width">The width.</param>
-            <param name="height">The height.</param>
-        </member>
         <member name="T:Sudoku.Painting.Extensions.SizeEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.
             </summary>
             <seealso cref="T:System.Drawing.Size"/>
             <seealso cref="T:System.Drawing.SizeF"/>
-        </member>
-        <member name="M:Sudoku.Painting.Extensions.SizeEx.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The size instance.</param>
-            <param name="width">The width.</param>
-            <param name="height">The height.</param>
-        </member>
-        <member name="M:Sudoku.Painting.Extensions.SizeEx.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The size instance.</param>
-            <param name="width">The width.</param>
-            <param name="height">The height.</param>
         </member>
         <member name="M:Sudoku.Painting.Extensions.SizeEx.Truncate(System.Drawing.SizeF@)">
             <summary>

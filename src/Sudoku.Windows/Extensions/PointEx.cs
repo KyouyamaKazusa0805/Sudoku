@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku.DocComments;
 using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 using WPoint = System.Windows.Point;
@@ -13,19 +12,8 @@ namespace Sudoku.Windows.Extensions
 	/// <seealso cref="WPoint"/>
 	/// <seealso cref="DPoint"/>
 	/// <seealso cref="DPointF"/>
-	public static class PointEx
+	public static partial class PointEx
 	{
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The instance.</param>
-		/// <param name="x">The x component.</param>
-		/// <param name="y">The y component.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Deconstruct(this in WPoint @this, out double x, out double y)
-		{
-			x = @this.X;
-			y = @this.Y;
-		}
-
 		/// <summary>
 		/// Convert a <see cref="DPoint"/> to <see cref="WPoint"/>.
 		/// </summary>

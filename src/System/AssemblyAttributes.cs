@@ -6,4 +6,4 @@ using Sudoku.CodeGen;
 
 [assembly: InternalsVisibleTo("Sudoku.Core")]
 
-[module: AutoDeconstructExtension(typeof(Index), nameof(Index.IsFromEnd), nameof(Index.Value))]
+[assembly: AutoDeconstructExtension(typeof(Index), nameof(Index.IsFromEnd), nameof(Index.Value))]

@@ -862,20 +862,6 @@
             </code>
             </remarks>
         </member>
-        <member name="T:System.Extensions.IndexEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Index"/>.
-            </summary>
-            <seealso cref="T:System.Index"/>
-        </member>
-        <member name="M:System.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The index.</param>
-            <param name="isFromEnd">
-            Indicates whether the current index is from end.
-            </param>
-            <param name="value">Indicates the value.</param>
-        </member>
         <member name="T:System.Extensions.ListEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Sudoku.DocComments;
 using static System.Convert;
 using DColor = System.Drawing.Color;
 using WColor = System.Windows.Media.Color;
@@ -12,7 +11,7 @@ namespace Sudoku.Windows.Extensions
 	/// Provides extension methods on <see cref="WColor"/>.
 	/// </summary>
 	/// <seealso cref="WColor"/>
-	public static class WindowsColorEx
+	public static partial class WindowsColorEx
 	{
 		/// <summary>
 		/// Get the hue from the specified <see cref="WColor"/>.
@@ -40,21 +39,6 @@ namespace Sudoku.Windows.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float GetSaturation(this in WColor @this) =>
 			DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetSaturation();
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The color.</param>
-		/// <param name="a">The alpha value.</param>
-		/// <param name="r">The red value.</param>
-		/// <param name="g">The green value.</param>
-		/// <param name="b">The blue value.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Deconstruct(this in WColor @this, out byte a, out byte r, out byte g, out byte b)
-		{
-			a = @this.A;
-			r = @this.R;
-			g = @this.G;
-			b = @this.B;
-		}
 
 		/// <summary>
 		/// Convert <see cref="WColor"/> to <see cref="DColor"/>.

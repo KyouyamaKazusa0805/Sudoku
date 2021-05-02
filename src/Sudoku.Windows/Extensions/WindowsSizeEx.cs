@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku.DocComments;
 using DSize = System.Drawing.Size;
 using DSizeF = System.Drawing.SizeF;
 using WSize = System.Windows.Size;
@@ -10,19 +9,8 @@ namespace Sudoku.Windows.Extensions
 	/// Provides extension methods on <see cref="WSize"/>.
 	/// </summary>
 	/// <seealso cref="WSize"/>
-	public static class WindowsSizeEx
+	public static partial class WindowsSizeEx
 	{
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The size.</param>
-		/// <param name="width">The width.</param>
-		/// <param name="height">The height.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Deconstruct(this in WSize @this, out double width, out double height)
-		{
-			width = @this.Width;
-			height = @this.Height;
-		}
-
 		/// <summary>
 		/// Convert the current size instance to another instance of type <see cref="DSizeF"/>.
 		/// </summary>

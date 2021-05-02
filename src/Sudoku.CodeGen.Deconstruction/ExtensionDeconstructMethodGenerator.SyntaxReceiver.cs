@@ -25,7 +25,7 @@ namespace Sudoku.CodeGen.Deconstruction
 					syntaxNode is not AttributeListSyntax
 					{
 						Attributes: { Count: not 0 } attributes,
-						Target: { Identifier: { ValueText: "module" } }
+						Target: { Identifier: { ValueText: "assembly" } }
 					}
 					|| attributes.Any(static attribute => attribute is
 					{

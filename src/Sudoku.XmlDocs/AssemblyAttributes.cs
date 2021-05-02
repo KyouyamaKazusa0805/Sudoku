@@ -8,6 +8,6 @@ using Sudoku.CodeGen;
 
 [assembly: CLSCompliant(false)]
 
-[module: AutoDeconstructExtension(typeof(TextSpan), nameof(TextSpan.Start), nameof(TextSpan.End))]
-[module: AutoDeconstructExtension(typeof(TextSpan), nameof(TextSpan.Start), nameof(TextSpan.End), nameof(TextSpan.Length))]
-[module: AutoDeconstructExtension(typeof(ParameterSyntax), nameof(ParameterSyntax.Type), nameof(ParameterSyntax.Identifier))]
+[assembly: AutoDeconstructExtension(typeof(TextSpan), nameof(TextSpan.Start), nameof(TextSpan.End), Namespace = "Sudoku.XmlDocs.Extensions")]
+[assembly: AutoDeconstructExtension(typeof(TextSpan), nameof(TextSpan.Start), nameof(TextSpan.End), nameof(TextSpan.Length), Namespace = "Sudoku.XmlDocs.Extensions")]
+[assembly: AutoDeconstructExtension(typeof(ParameterSyntax), nameof(ParameterSyntax.Type), nameof(ParameterSyntax.Identifier), Namespace = "Sudoku.XmlDocs.Extensions")]

@@ -1,5 +1,4 @@
-﻿using Sudoku.DocComments;
-using DPoint = System.Drawing.Point;
+﻿using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 
 namespace Sudoku.Drawing.Extensions
@@ -9,28 +8,8 @@ namespace Sudoku.Drawing.Extensions
 	/// </summary>
 	/// <seealso cref="DPoint"/>
 	/// <seealso cref="DPointF"/>
-	public static class DrawingPointEx
+	public static partial class DrawingPointEx
 	{
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The instance.</param>
-		/// <param name="x">The x component.</param>
-		/// <param name="y">The y component.</param>
-		public static void Deconstruct(this in DPoint @this, out int x, out int y)
-		{
-			x = @this.X;
-			y = @this.Y;
-		}
-
-		/// <inheritdoc cref="DeconstructMethod"/>
-		/// <param name="this">The instance.</param>
-		/// <param name="x">The x component.</param>
-		/// <param name="y">The y component.</param>
-		public static void Deconstruct(this in DPointF @this, out float x, out float y)
-		{
-			x = @this.X;
-			y = @this.Y;
-		}
-
 		/// <summary>
 		/// To truncate the point.
 		/// </summary>

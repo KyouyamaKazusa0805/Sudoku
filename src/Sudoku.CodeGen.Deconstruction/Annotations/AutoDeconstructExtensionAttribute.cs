@@ -3,13 +3,13 @@
 namespace Sudoku.CodeGen
 {
 	/// <summary>
-	/// Used on a module, to tell the compiler this assembly will generate
+	/// Used on an assembly, to tell the compiler this assembly will generate
 	/// a extension method called <c>Deconstruct</c>.
 	/// </summary>
 	/// <remarks>
 	/// For example, if you write the code like:
 	/// <code>
-	/// [module: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
+	/// [assembly: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
 	/// </code>
 	/// then you'll get the generated code:
 	/// <code>
@@ -28,7 +28,7 @@ namespace Sudoku.CodeGen
 	/// }
 	/// </code>
 	/// </remarks>
-	[AttributeUsage(AttributeTargets.Module, AllowMultiple = true)]
+	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
 	public sealed class AutoDeconstructExtensionAttribute : Attribute
 	{
 		/// <summary>
@@ -43,6 +43,12 @@ namespace Sudoku.CodeGen
 			MemberNames = memberNames;
 		}
 
+
+		/// <summary>
+		/// Indicates the namespace that the output extension class stored. If the value is
+		/// <see langword="null"/>, the namespace will use the basic namespace of the type itself.
+		/// </summary>
+		public string? Namespace { get; init; }
 
 		/// <summary>
 		/// Indicates the member names.

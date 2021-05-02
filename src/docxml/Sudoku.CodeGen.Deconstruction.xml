@@ -20,19 +20,61 @@
             All members to deconstruct.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGen.AutoDeconstructExtensionAttribute">
+            <summary>
+            Used on an assembly, to tell the compiler this assembly will generate
+            a extension method called <c>Deconstruct</c>.
+            </summary>
+            <remarks>
+            For example, if you write the code like:
+            <code>
+            [assembly: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
+            </code>
+            then you'll get the generated code:
+            <code>
+            using System.Runtime.CompilerServices;
+            
+            public static class ClassEx
+            {
+                [CompilerGenerated]
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                public static void Deconstruct(this Class @this, out int a, out int b, out int c)
+                {
+                    a = @this.A;
+                    b = @this.B;
+                    c = @this.C;
+                }
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.CodeGen.AutoDeconstructExtensionAttribute.#ctor(System.Type,System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CodeGen.AutoDeconstructAttribute"/> instance with the specified type
+            and the members.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.CodeGen.AutoDeconstructExtensionAttribute.Namespace">
+            <summary>
+            Indicates the namespace that the output extension class stored. If the value is
+            <see langword="null"/>, the namespace will use the basic namespace of the type itself.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.AutoDeconstructExtensionAttribute.MemberNames">
+            <summary>
+            Indicates the member names.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.AutoDeconstructExtensionAttribute.TypeToGenerate">
+            <summary>
+            Indicates the type to generate the "<c>Deconstruct</c>" method.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGen.Deconstruction.DeconstructMethodGenerator">
             <summary>
             Provides a generator that generates the deconstruction methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.Deconstruction.DeconstructMethodGenerator.TypeFormat">
-            <summary>
-            Indicates the type format, and the property type format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGen.Deconstruction.DeconstructMethodGenerator.PropertyTypeFormat">
-            <summary>
-            Indicates the type format, and the property type format.
             </summary>
         </member>
         <member name="M:Sudoku.CodeGen.Deconstruction.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
@@ -64,6 +106,43 @@
         <member name="M:Sudoku.CodeGen.Deconstruction.DeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator">
+            <summary>
+            Provides a generator that generates the deconstruction methods that are extension methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.SyntaxReceiver">
+            <summary>
+            Indicates the inner syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.SyntaxReceiver.ModuleAttributes">
+            <summary>
+            Indicates the attributes result that targets to a module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Deconstruction.Extensions.ExpressionSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGen.Deconstruction.Extensions.ExpressionSyntaxEx"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.Extensions.ExpressionSyntaxEx.IsNameOfExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            To check whether the specified expression is a <see langword="nameof"/> expression.
+            </summary>
+            <param name="this">The expression node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.CodeGen.Deconstruction.Extensions.ISymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
@@ -86,6 +165,19 @@
             <param name="this">The symbol to check.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:Sudoku.CodeGen.Deconstruction.Extensions.ITypeSymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Deconstruction.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all members that belongs to the type and its base types (but interfaces don't check).
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>All members.</returns>
+        </member>
         <member name="T:Sudoku.CodeGen.Deconstruction.Extensions.SyntaxReferenceEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
@@ -100,6 +192,21 @@
             <param name="this">The current syntax reference instance.</param>
             <param name="textSpan">The text span.</param>
             <param name="syntaxNode">The syntax node.</param>
+        </member>
+        <member name="T:Sudoku.CodeGen.Deconstruction.FormatOptions">
+            <summary>
+            Provides the format options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.Deconstruction.FormatOptions.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.Deconstruction.FormatOptions.PropertyTypeFormat">
+            <summary>
+            Indicates the property format.
+            </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
