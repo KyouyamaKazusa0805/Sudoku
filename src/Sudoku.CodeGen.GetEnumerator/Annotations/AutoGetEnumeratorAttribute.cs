@@ -15,14 +15,6 @@ namespace Sudoku.CodeGen
 		/// <param name="memberName">The member name.</param>
 		public AutoGetEnumeratorAttribute(string memberName) => MemberName = memberName;
 
-		/// <summary>
-		/// Initializes an instance with the specified member name, and the member conversion clause.
-		/// </summary>
-		/// <param name="memberName">The member name.</param>
-		/// <param name="memberConversion">Indicates the member conversion clause.</param>
-		public AutoGetEnumeratorAttribute(string memberName, string memberConversion) : this(memberName) =>
-			MemberConversion = memberConversion;
-
 
 		/// <summary>
 		/// Indicates the member name.
@@ -41,9 +33,9 @@ namespace Sudoku.CodeGen
 		/// Where the placeholder symbol '<c>@</c>' means the member name that creates and converts to the result.
 		/// </para>
 		///	<para>
-		///	The default conversion is "<c>@.GetEnumerator</c>".
+		///	The default conversion is "<c>@</c>".
 		/// </para>
 		/// </remarks>
-		public string MemberConversion { get; init; } = "@.GetEnumerator()";
+		public string MemberConversion { get; init; } = "@";
 	}
 }

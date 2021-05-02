@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Extensions;
@@ -20,6 +19,7 @@ namespace Sudoku.Data
 	/// </summary>
 	[AutoHashCode(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 	[AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
+	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).GetEnumerator()")]
 	public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
 	{
 		/// <summary>
@@ -468,12 +468,6 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
 		public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
-
-		/// <inheritdoc/>
-		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
-
-		/// <inheritdoc/>
-		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
 		/// Set the specified cell as <see langword="true"/> or <see langword="false"/> value.

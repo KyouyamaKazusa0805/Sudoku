@@ -120,9 +120,6 @@
         <member name="M:System.Collections.Generic.NotifyChangedList`1.CopyTo(`0[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Collections.Generic.NotifyChangedList`1.GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Collections.Generic.NotifyChangedList`1.IndexOf(`0)">
             <inheritdoc/>
         </member>
@@ -133,9 +130,6 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.NotifyChangedList`1.RemoveAt(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Collections.Generic.NotifyChangedList`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:System.Collections.Generic.Set`1">
@@ -271,13 +265,7 @@
         <member name="M:System.Collections.Generic.Set`1.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Collections.Generic.Set`1.System#Collections#Generic#ICollection{TEquatable}#Add(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Collections.Generic.Set`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.Set`1.InternalEquals(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">

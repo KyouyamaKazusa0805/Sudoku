@@ -68,21 +68,31 @@ namespace Sudoku.CodeGen.GetEnumerator
 
 			static string? getGetEnumeratorCode(INamedTypeSymbol symbol, AttributeSyntax attribute)
 			{
-				string namespaceName = symbol.ContainingNamespace.Name;
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
 				string typeName = symbol.Name;
 				string fullTypeName = symbol.ToDisplayString(TypeFormat);
 				int i = fullTypeName.IndexOf('<');
-				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i + 1);
+				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				string readonlyKeyword = symbol.TypeKind == TypeKind.Struct ? "readonly " : string.Empty;
-				string? genericType = symbol.Interfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].Name;
+				string? genericType = symbol
+					.AllInterfaces
+					.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?
+					.TypeArguments[0]
+					.ToDisplayString(TypeFormat);
 
-				if (attribute.ArgumentList is null)
+				if (attribute.ArgumentList is null || genericType is null)
 				{
 					return null;
 				}
 
+				string typeKind = symbol switch
+				{
+					{ TypeKind: TypeKind.Class } => "class",
+					{ TypeKind: TypeKind.Struct } => "struct",
+					{ IsRecord: true } => "record"
+				};
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
-				string memberName = memberNameStr.Substring(1, memberNameStr.Length - 2);
+				string memberName = memberNameStr.Substring(7, memberNameStr.Length - 8);
 				string exprStr = attribute.ArgumentList.Arguments[1].Expression.ToString();
 				string memberConversion = exprStr.Substring(1, exprStr.Length - 2).Replace("@", memberName);
 
@@ -96,9 +106,9 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial {typeName}{genericParameterList}
+	partial {typeKind} {typeName}{genericParameterList}
 	{{
-		public {readonlyKeyword}IEnumerator<{genericType}> GetEnumerator() => {memberConversion}
+		public {readonlyKeyword}IEnumerator<{genericType}> GetEnumerator() => {memberConversion};
 
 		{readonlyKeyword}IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}}
@@ -107,7 +117,16 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
+		public void Initialize(GeneratorInitializationContext context)
+		{
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+
+			//#if DEBUG
+			//			if (!System.Diagnostics.Debugger.IsAttached)
+			//			{
+			//				System.Diagnostics.Debugger.Launch();
+			//			}
+			//#endif
+		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Extensions;
@@ -25,6 +24,7 @@ namespace Sudoku.Data
 	/// </remarks>
 	[AutoDeconstruct(nameof(_high), nameof(_low))]
 	[AutoEquality(nameof(_high), nameof(_low))]
+	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).GetEnumerator()")]
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
@@ -637,10 +637,6 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly IEnumerator<int> GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
-
 		/// <inheritdoc cref="object.GetHashCode"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly int GetHashCode() => ToString("b").GetHashCode();
@@ -838,10 +834,6 @@ namespace Sudoku.Data
 		/// <param name="digit">The digit.</param>
 		/// <returns>The candidate list.</returns>
 		public readonly Candidates Expand(int digit) => this * digit;
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 		/// <summary>
 		/// Being called by <see cref="RowMask"/>, <see cref="ColumnMask"/> and <see cref="BlockMask"/>.

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Sudoku.CodeGen;
 
 namespace System.Collections.Generic
 {
@@ -6,7 +7,8 @@ namespace System.Collections.Generic
 	/// Encapsulates the list that notifies the users while adding an element.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	public sealed class NotifyChangedList<T> : IList<T>, IReadOnlyCollection<T>
+	[AutoGetEnumerator(nameof(_innerList), MemberConversion = "@.GetEnumerator()")]
+	public sealed partial class NotifyChangedList<T> : IList<T>, IReadOnlyCollection<T>
 	{
 		/// <summary>
 		/// Indicates the inner list.
@@ -68,10 +70,6 @@ namespace System.Collections.Generic
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public IEnumerator<T> GetEnumerator() => _innerList.GetEnumerator();
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int IndexOf(T item) => _innerList.IndexOf(item);
 
 		/// <inheritdoc/>
@@ -85,9 +83,5 @@ namespace System.Collections.Generic
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void RemoveAt(int index) => _innerList.RemoveAt(index);
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_innerList).GetEnumerator();
 	}
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable IDE0057
+
+using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -33,13 +35,13 @@ namespace Sudoku.CodeGen.GetEnumerator
 						foreach (var attribute in attributeList.Attributes)
 						{
 							if (
-								attribute is
-								{
-									Name: IdentifierNameSyntax
-									{
-										Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute) }
-									}
-								}
+								attribute.Name is IdentifierNameSyntax identifierName
+								&& identifierName.Identifier.ValueText is var t
+								&& nameof(AutoGetEnumeratorAttribute) is var attributeName
+								&& (
+									t == attributeName
+									|| t == attributeName.Substring(0, attributeName.Length - 9)
+								)
 							)
 							{
 								Candidates.Add((declaration, attribute));

@@ -611,12 +611,6 @@
             </summary>
             <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Candidates.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.Candidates.Add(System.Int32)">
             <summary>
             Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
@@ -1145,9 +1139,6 @@
             </param>
             <returns>The result map.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.Cells.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -1185,9 +1176,6 @@
             </summary>
             <param name="digit">The digit.</param>
             <returns>The candidate list.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.CreateMask(System.Int32,System.Int32)">
             <summary>

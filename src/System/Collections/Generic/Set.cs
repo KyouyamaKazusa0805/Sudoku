@@ -9,6 +9,7 @@ namespace System.Collections.Generic
 	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="TEquatable">The type of the element.</typeparam>
+	[AutoGetEnumerator(nameof(_list), MemberConversion = "@.GetEnumerator()")]
 	public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>>, ISet<TEquatable>
 		where TEquatable : IEquatable<TEquatable>
 	{
@@ -249,13 +250,7 @@ namespace System.Collections.Generic
 		public override string ToString() => $"Set (Count = {Count.ToString()})";
 
 		/// <inheritdoc/>
-		public IEnumerator<TEquatable> GetEnumerator() => _list.GetEnumerator();
-
-		/// <inheritdoc/>
 		void ICollection<TEquatable>.Add(TEquatable item) => Add(item);
-
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
 
 		/// <summary>
