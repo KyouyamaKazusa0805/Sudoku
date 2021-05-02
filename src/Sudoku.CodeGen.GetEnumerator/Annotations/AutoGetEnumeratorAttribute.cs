@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sudoku.CodeGen
 {
@@ -37,5 +38,12 @@ namespace Sudoku.CodeGen
 		/// </para>
 		/// </remarks>
 		public string MemberConversion { get; init; } = "@";
+
+		/// <summary>
+		/// Indicates the return type. If <see langword="null"/>, the value of type <see cref="IEnumerable{T}"/>
+		/// of <see cref="int"/> will be returned.
+		/// </summary>
+		/// <seealso cref="IEnumerable{T}"/>
+		public Type? ReturnType { get; init; }
 	}
 }

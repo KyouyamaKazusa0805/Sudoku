@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Operations;
 using GenericsOptions = Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
 using GlobalNamespaceStyle = Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
 using MiscellaneousOptions = Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
@@ -39,6 +40,7 @@ namespace Sudoku.CodeGen.GetEnumerator
 				return;
 			}
 
+			var compilation = context.Compilation;
 			var nameDic = new Dictionary<string, int>();
 			foreach (var (symbol, attribute) in g(context, receiver))
 			{
@@ -46,7 +48,9 @@ namespace Sudoku.CodeGen.GetEnumerator
 				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
 				nameDic[symbol.Name] = i + 1;
 
-				if (getGetEnumeratorCode(symbol, attribute) is { } c)
+				var syntaxTree = attribute.SyntaxTree;
+				var semanticModel = compilation.GetSemanticModel(syntaxTree);
+				if (getGetEnumeratorCode(symbol, attribute, semanticModel) is { } c)
 				{
 					context.AddSource($"{name}.GetEnumerator.g.cs", c);
 				}
@@ -66,7 +70,35 @@ namespace Sudoku.CodeGen.GetEnumerator
 					);
 			}
 
-			static string? getGetEnumeratorCode(INamedTypeSymbol symbol, AttributeSyntax attribute)
+			static ITypeSymbol? getReturnType(
+				AttributeArgumentListSyntax attributeArgumentList, SemanticModel semanticModel)
+			{
+				foreach (var attributeArg in attributeArgumentList.Arguments)
+				{
+					if (
+						attributeArg is
+						{
+							NameEquals:
+							{
+								Name:
+								{
+									Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.ReturnType) }
+								}
+							},
+							Expression: var expr
+						}
+						&& semanticModel.GetOperation(expr) is ITypeOfOperation { TypeOperand: var operand }
+					)
+					{
+						return operand;
+					}
+				}
+
+				return null;
+			}
+
+			static string? getGetEnumeratorCode(
+				INamedTypeSymbol symbol, AttributeSyntax attribute, SemanticModel semanticModel)
 			{
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
 				string typeName = symbol.Name;
@@ -74,13 +106,17 @@ namespace Sudoku.CodeGen.GetEnumerator
 				int i = fullTypeName.IndexOf('<');
 				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				string readonlyKeyword = symbol.TypeKind == TypeKind.Struct ? "readonly " : string.Empty;
-				string? genericType = symbol
+				string? typeArguments = symbol
 					.AllInterfaces
 					.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?
 					.TypeArguments[0]
 					.ToDisplayString(TypeFormat);
+				var typeSymbol = getReturnType(attribute.ArgumentList, semanticModel);
+				string returnType = typeSymbol is null
+					? $"System.Collections.Generic.IEnumerator<{typeArguments}>"
+					: typeSymbol.ToDisplayString(TypeFormat);
 
-				if (attribute.ArgumentList is null || genericType is null)
+				if (attribute.ArgumentList is null || typeSymbol is null && typeArguments is null)
 				{
 					return null;
 				}
@@ -95,6 +131,11 @@ namespace Sudoku.CodeGen.GetEnumerator
 				string memberName = memberNameStr.Substring(7, memberNameStr.Length - 8);
 				string exprStr = attribute.ArgumentList.Arguments[1].Expression.ToString();
 				string memberConversion = exprStr.Substring(1, exprStr.Length - 2).Replace("@", memberName);
+				string interfaceExplicitlyImpl = symbol.IsRefLikeType ? string.Empty : $@"
+
+		[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		{readonlyKeyword}System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();";
 
 				return $@"#pragma warning disable 1591
 
@@ -108,9 +149,9 @@ namespace {namespaceName}
 {{
 	partial {typeKind} {typeName}{genericParameterList}
 	{{
-		public {readonlyKeyword}IEnumerator<{genericType}> GetEnumerator() => {memberConversion};
-
-		{readonlyKeyword}IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+		[CompilerGenerated]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public {readonlyKeyword}{returnType} GetEnumerator() => {memberConversion};{interfaceExplicitlyImpl}
 	}}
 }}";
 			}

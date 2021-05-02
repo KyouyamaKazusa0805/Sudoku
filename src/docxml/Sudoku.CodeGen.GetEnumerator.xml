@@ -38,6 +38,13 @@
             </para>
             </remarks>
         </member>
+        <member name="P:Sudoku.CodeGen.AutoGetEnumeratorAttribute.ReturnType">
+            <summary>
+            Indicates the return type. If <see langword="null"/>, the value of type <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            of <see cref="T:System.Int32"/> will be returned.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
         <member name="T:Sudoku.CodeGen.GetEnumerator.GetEnumeratorGenerator">
             <summary>
             Indicates a source generator that generates the code for the method <c>GetEnumerator</c>.
