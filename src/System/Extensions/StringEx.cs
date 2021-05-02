@@ -129,16 +129,14 @@ namespace System.Extensions
 		/// expression pattern.
 		/// </exception>
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
-		public static string? Match(this string @this, string pattern, RegexOptions regexOption)
-		{
-			if (!pattern.IsRegexPattern())
+		public static string? Match(this string @this, string pattern, RegexOptions regexOption) =>
+			pattern.IsRegexPattern()
+			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is
 			{
-				throw new InvalidRegexStringException { WrongRegexString = pattern };
-			}
-
-			var match = Regex.Match(@this, pattern, regexOption, MatchingTimeSpan);
-			return match.Success ? match.Value : null;
-		}
+				Success: true,
+				Value: var value
+			} match ? value : null
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
 		/// Searches the specified input string for all occurrences of a
