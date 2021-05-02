@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
 using System.Text;
 using Sudoku.CodeGen;
 using Sudoku.DocComments;
@@ -13,6 +12,7 @@ namespace Sudoku.Data.Collections
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_mask))]
+	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.GetEnumerator()", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
 	public readonly ref partial struct DigitCollection
 	{
 		/// <summary>
@@ -92,12 +92,6 @@ namespace Sudoku.Data.Collections
 			sb.RemoveFromEnd(separator.Length);
 			return sb.ToString();
 		}
-
-		/// <summary>
-		/// Get the enumerator.
-		/// </summary>
-		/// <returns>The enumerator.</returns>
-		public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 
 		/// <summary>

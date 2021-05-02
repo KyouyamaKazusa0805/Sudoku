@@ -320,9 +320,6 @@
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
-        <member name="M:Sudoku.Data.BitSubsetsGenerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator.Enumerator">
             <summary>
             Indicates the enumerator of the current instance.
@@ -1522,12 +1519,6 @@
         <member name="M:Sudoku.Data.Collections.DigitCollection.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.DocComments.Formattable.ToString(System.String)"/>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.GetEnumerator">
-            <summary>
-            Get the enumerator.
-            </summary>
-            <returns>The enumerator.</returns>
-        </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection@)">
             <summary>
             Reverse all statuses, which means all <see langword="true"/> bits
@@ -1614,9 +1605,6 @@
             To string but only output the labels ('r', 'c' or 'b').
             </summary>
             <returns>The labels.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetLabel(System.Int32)">
             <summary>

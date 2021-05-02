@@ -2857,9 +2857,6 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="M:System.Text.ValueStringBuilder.ToString">
             <summary>
             Returns the string result that is combined and constructed from the current instance.

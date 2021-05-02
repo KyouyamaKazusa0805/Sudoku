@@ -1,5 +1,4 @@
 ﻿using System.Buffers;
-using System.Collections.Generic;
 using Sudoku.CodeGen;
 
 namespace System.Text
@@ -26,6 +25,7 @@ namespace System.Text
 	/// </example>
 	/// <seealso cref="ValueStringBuilder()"/>
 	[DisallowParameterlessConstructor]
+	[AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 	public ref partial struct ValueStringBuilder
 	{
 		/// <summary>
@@ -149,9 +149,6 @@ namespace System.Text
 
 			return true;
 		}
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		public readonly Enumerator GetEnumerator() => new(this);
 
 		/// <summary>
 		/// Returns the string result that is combined and constructed from the current instance.

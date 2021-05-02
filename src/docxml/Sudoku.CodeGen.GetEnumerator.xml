@@ -14,7 +14,9 @@
             <summary>
             Initializes an instance with the specified member name.
             </summary>
-            <param name="memberName">The member name.</param>
+            <param name="memberName">
+            The member name. If you want to pass "this" as the reference, just input "<c>@</c>".
+            </param>
         </member>
         <member name="P:Sudoku.CodeGen.AutoGetEnumeratorAttribute.MemberName">
             <summary>
@@ -37,6 +39,11 @@
             The default conversion is "<c>@</c>".
             </para>
             </remarks>
+        </member>
+        <member name="P:Sudoku.CodeGen.AutoGetEnumeratorAttribute.ExtraNamespaces">
+            <summary>
+            Indicates the extra namespace should be imported.
+            </summary>
         </member>
         <member name="P:Sudoku.CodeGen.AutoGetEnumeratorAttribute.ReturnType">
             <summary>

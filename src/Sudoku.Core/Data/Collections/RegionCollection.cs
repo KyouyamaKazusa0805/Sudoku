@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen;
@@ -13,6 +12,7 @@ namespace Sudoku.Data.Collections
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_mask))]
+	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.GetEnumerator()", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
 	public readonly ref partial struct RegionCollection
 	{
 		/// <summary>
@@ -135,9 +135,6 @@ namespace Sudoku.Data.Collections
 
 			return sb.ToString();
 		}
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 		/// <summary>
 		/// Get the label of each region.

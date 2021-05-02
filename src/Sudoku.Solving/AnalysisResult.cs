@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
@@ -21,6 +20,7 @@ namespace Sudoku.Solving
 	/// <param name="ElapsedTime">The elapsed time.</param>
 	[AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
 	[AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
+	[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).GetEnumerator()")]
 	public sealed partial record AnalysisResult(
 		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime
 	) : IEnumerable<StepInfo>, IFormattable
@@ -207,15 +207,6 @@ namespace Sudoku.Solving
 			: Steps[index];
 
 
-		/// <summary>
-		/// <para>Returns an enumerator that iterates through the collection.</para>
-		/// <para>Note that this method won't return <see langword="null"/> anytime.</para>
-		/// </summary>
-		/// <returns>
-		/// An enumerator that can be used to iterate through the collection.
-		/// </returns>
-		public IEnumerator<StepInfo> GetEnumerator() => (Steps ?? Array.Empty<StepInfo>()).GetEnumerator();
-
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);
 
@@ -242,8 +233,5 @@ namespace Sudoku.Solving
 		/// <inheritdoc cref="Formatter.ToString(AnalysisResultFormattingOptions, CountryCode)"/>
 		public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode) =>
 			new Formatter(this).ToString(options, countryCode);
-
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }

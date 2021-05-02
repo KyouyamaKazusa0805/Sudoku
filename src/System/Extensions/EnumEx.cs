@@ -146,14 +146,11 @@ namespace System.Extensions
 		/// <returns>All flags.</returns>
 		public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 		{
-			if (!typeof(TEnum).IsDefined<FlagsAttribute>())
-			{
-				return ((IEnumerable<TEnum>)Array.Empty<TEnum>()).GetEnumerator();
-			}
-
 			unsafe
 			{
-				return inner(@this, sizeof(TEnum));
+				return typeof(TEnum).IsDefined<FlagsAttribute>()
+					? inner(@this, sizeof(TEnum))
+					: ((IEnumerable<TEnum>)Array.Empty<TEnum>()).GetEnumerator();
 			}
 
 			static IEnumerator<TEnum> inner(TEnum @this, int size)

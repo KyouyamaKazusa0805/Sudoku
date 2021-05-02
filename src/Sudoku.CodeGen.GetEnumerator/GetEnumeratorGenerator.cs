@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0057
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -97,6 +98,57 @@ namespace Sudoku.CodeGen.GetEnumerator
 				return null;
 			}
 
+			static string getExtraNamespaces(
+				in SeparatedSyntaxList<AttributeArgumentSyntax> attributeArguments, SemanticModel semanticModel)
+			{
+				string p = string.Join(
+					"\r\n",
+					from attributeArgument in attributeArguments
+					let nameEqualsNode = attributeArgument.NameEquals
+					where nameEqualsNode is not null && nameEqualsNode.Name.Identifier.ValueText == nameof(AutoGetEnumeratorAttribute.ExtraNamespaces)
+					let array = attributeArgument.Expression
+					let op = semanticModel.GetOperation(array) as IArrayCreationOperation
+					where op is not null
+					from element in op.Initializer.ElementValues
+					let literalOp = element as ILiteralOperation
+					where literalOp is { ConstantValue: { HasValue: true } }
+					select $"using {literalOp.ConstantValue.Value};"
+				);
+
+				return p == string.Empty ? string.Empty : $"\r\n{p}";
+			}
+
+			static string getConversion(in SeparatedSyntaxList<AttributeArgumentSyntax> attributeArguments)
+			{
+				foreach (var attributeArgument in attributeArguments)
+				{
+					if (
+						attributeArgument is
+						{
+							NameEquals:
+							{
+								Name:
+								{
+									Identifier:
+									{
+										ValueText: nameof(AutoGetEnumeratorAttribute.MemberConversion)
+									}
+								}
+							},
+							Expression: LiteralExpressionSyntax
+							{
+								Token: { ValueText: var text }
+							}
+						}
+					)
+					{
+						return text;
+					}
+				}
+
+				return "@";
+			}
+
 			static string? getGetEnumeratorCode(
 				INamedTypeSymbol symbol, AttributeSyntax attribute, SemanticModel semanticModel)
 			{
@@ -106,15 +158,9 @@ namespace Sudoku.CodeGen.GetEnumerator
 				int i = fullTypeName.IndexOf('<');
 				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				string readonlyKeyword = symbol.TypeKind == TypeKind.Struct ? "readonly " : string.Empty;
-				string? typeArguments = symbol
-					.AllInterfaces
-					.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?
-					.TypeArguments[0]
-					.ToDisplayString(TypeFormat);
+				string? typeArguments = symbol.AllInterfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].ToDisplayString(TypeFormat);
 				var typeSymbol = getReturnType(attribute.ArgumentList, semanticModel);
-				string returnType = typeSymbol is null
-					? $"System.Collections.Generic.IEnumerator<{typeArguments}>"
-					: typeSymbol.ToDisplayString(TypeFormat);
+				string returnType = typeSymbol is null ? $"System.Collections.Generic.IEnumerator<{typeArguments}>" : typeSymbol.ToDisplayString(TypeFormat);
 
 				if (attribute.ArgumentList is null || typeSymbol is null && typeArguments is null)
 				{
@@ -123,15 +169,17 @@ namespace Sudoku.CodeGen.GetEnumerator
 
 				string typeKind = symbol switch
 				{
+					{ IsRecord: true } => "record",
 					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct",
-					{ IsRecord: true } => "record"
+					{ TypeKind: TypeKind.Struct } => "struct"
 				};
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
-				string memberName = memberNameStr.Substring(7, memberNameStr.Length - 8);
-				string exprStr = attribute.ArgumentList.Arguments[1].Expression.ToString();
-				string memberConversion = exprStr.Substring(1, exprStr.Length - 2).Replace("@", memberName);
-				string interfaceExplicitlyImpl = symbol.IsRefLikeType ? string.Empty : $@"
+				string memberName = memberNameStr == @"""@""" ? "this" : memberNameStr.Substring(7, memberNameStr.Length - 8);
+				string exprStr = getConversion(attribute.ArgumentList.Arguments);
+				string memberConversion = exprStr.Replace("@", memberName);
+				string extraNamespaces = getExtraNamespaces(attribute.ArgumentList.Arguments, semanticModel);
+				bool implementsIEnumerableNongeneric = symbol.AllInterfaces.Any(static i => i is { Name: nameof(IEnumerable), IsGenericType: false });
+				string interfaceExplicitlyImplementation = symbol.IsRefLikeType || !implementsIEnumerableNongeneric ? string.Empty : $@"
 
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -141,7 +189,7 @@ namespace Sudoku.CodeGen.GetEnumerator
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;{extraNamespaces}
 
 #nullable enable
 
@@ -151,7 +199,7 @@ namespace {namespaceName}
 	{{
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public {readonlyKeyword}{returnType} GetEnumerator() => {memberConversion};{interfaceExplicitlyImpl}
+		public {readonlyKeyword}{returnType} GetEnumerator() => {memberConversion};{interfaceExplicitlyImplementation}
 	}}
 }}";
 			}

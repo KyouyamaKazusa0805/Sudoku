@@ -13,7 +13,9 @@ namespace Sudoku.CodeGen
 		/// <summary>
 		/// Initializes an instance with the specified member name.
 		/// </summary>
-		/// <param name="memberName">The member name.</param>
+		/// <param name="memberName">
+		/// The member name. If you want to pass "this" as the reference, just input "<c>@</c>".
+		/// </param>
 		public AutoGetEnumeratorAttribute(string memberName) => MemberName = memberName;
 
 
@@ -38,6 +40,11 @@ namespace Sudoku.CodeGen
 		/// </para>
 		/// </remarks>
 		public string MemberConversion { get; init; } = "@";
+
+		/// <summary>
+		/// Indicates the extra namespace should be imported.
+		/// </summary>
+		public string[]? ExtraNamespaces { get; init; }
 
 		/// <summary>
 		/// Indicates the return type. If <see langword="null"/>, the value of type <see cref="IEnumerable{T}"/>

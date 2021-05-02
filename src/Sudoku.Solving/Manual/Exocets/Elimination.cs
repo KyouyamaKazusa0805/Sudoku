@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen;
 using Sudoku.Data;
@@ -14,6 +13,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 	[AutoHashCode(nameof(Eliminations), nameof(Reason))]
 	[AutoEquality(nameof(Eliminations), nameof(Reason))]
+	[AutoGetEnumerator("@", MemberConversion = "@.AsSpan().GetEnumerator()", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>
@@ -85,10 +85,6 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			return result;
 		}
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public ReadOnlySpan<Conclusion>.Enumerator GetEnumerator() => AsSpan().GetEnumerator();
 
 
 		/// <summary>

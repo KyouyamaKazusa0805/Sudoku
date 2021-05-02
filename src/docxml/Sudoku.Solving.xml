@@ -129,15 +129,6 @@
             </exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
-            <summary>
-            <para>Returns an enumerator that iterates through the collection.</para>
-            <para>Note that this method won't return <see langword="null"/> anytime.</para>
-            </summary>
-            <returns>
-            An enumerator that can be used to iterate through the collection.
-            </returns>
-        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
@@ -160,9 +151,6 @@
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
             <inheritdoc cref="M:Sudoku.Solving.AnalysisResult.Formatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
-        </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.AnalysisResult.Formatter">
             <summary>
@@ -2290,9 +2278,6 @@
             <returns>The <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:Sudoku.Data.Conclusion"/>.</returns>
             <seealso cref="T:System.ReadOnlySpan`1"/>
             <seealso cref="T:Sudoku.Data.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_BitwiseOr(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
             <summary>

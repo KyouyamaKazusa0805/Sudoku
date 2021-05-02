@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Sudoku.CodeGen;
+﻿using Sudoku.CodeGen;
 
 namespace Sudoku.Data
 {
@@ -16,6 +15,7 @@ namespace Sudoku.Data
 	/// </code>
 	/// </remarks>
 	[DisallowParameterlessConstructor]
+	[AutoGetEnumerator(nameof(_enumerator), ReturnType = typeof(Enumerator))]
 	public readonly ref partial struct BitSubsetsGenerator
 	{
 		/// <summary>
@@ -31,9 +31,5 @@ namespace Sudoku.Data
 		/// <param name="bitCount">The number of bits.</param>
 		/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
 		public BitSubsetsGenerator(int bitCount, int oneCount) => _enumerator = new(bitCount, oneCount);
-
-
-		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-		public Enumerator GetEnumerator() => _enumerator;
 	}
 }
