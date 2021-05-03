@@ -1,6 +1,7 @@
 ﻿#pragma warning disable CS0626
 #pragma warning disable CS8618
 
+using System.Collections.Generic;
 using Sudoku.Globalization;
 
 namespace Sudoku.Resources
@@ -52,5 +53,24 @@ namespace Sudoku.Resources
 		/// Indicates the current country code.
 		/// </summary>
 		public extern CountryCode CountryCode { get; }
+
+		/// <summary>
+		/// The language source for the globalization string "<c>en-us</c>".
+		/// </summary>
+		public extern IDictionary<string, string>? LangSourceEnUs { get; }
+
+		/// <summary>
+		/// The language source for the globalization string "<c>zh-cn</c>".
+		/// </summary>
+		public extern IDictionary<string, string>? LangSourceZhCn { get; }
+
+
+		/// <summary>
+		/// Try to deserialize the file specified as a file path, and converts it to the instance.
+		/// </summary>
+		/// <param name="instanceNameToDeserialize">The instance to covert to.</param>
+		/// <param name="path">The file path.</param>
+		/// <returns>The <see cref="bool"/> value indicating whether the operation is successful.</returns>
+		internal static extern bool Deserialize(string instanceNameToDeserialize, string path);
 	}
 }
