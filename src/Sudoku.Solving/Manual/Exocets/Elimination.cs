@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 	[AutoHashCode(nameof(Eliminations), nameof(Reason))]
 	[AutoEquality(nameof(Eliminations), nameof(Reason))]
-	[AutoGetEnumerator("@", MemberConversion = "@.AsSpan().GetEnumerator()", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
+	[AutoGetEnumerator("@", MemberConversion = "@.AsSpan().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
 	public readonly partial struct Elimination : IValueEquatable<Elimination>
 	{
 		/// <summary>

@@ -12,7 +12,7 @@ namespace Sudoku.Data.Collections
 	/// </summary>
 	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_mask))]
-	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.GetEnumerator()", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
+	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
 	public readonly ref partial struct DigitCollection
 	{
 		/// <summary>

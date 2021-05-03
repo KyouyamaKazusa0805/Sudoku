@@ -20,7 +20,7 @@ namespace Sudoku.Solving
 	/// <param name="ElapsedTime">The elapsed time.</param>
 	[AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
 	[AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
-	[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).GetEnumerator()")]
+	[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).*")]
 	public sealed partial record AnalysisResult(
 		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime
 	) : IEnumerable<StepInfo>, IFormattable

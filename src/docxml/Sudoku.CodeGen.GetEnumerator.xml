@@ -31,9 +31,19 @@
             <para>
             This property should be stored a lambda body. One of possible syntaxes is:
             <code>
-            [AutoGetEnumerator(nameof(MemberName), "((IEnumerable&lt;int&gt;)@).GetEnumerator()")]
+            [AutoGetEnumerator(nameof(MemberName), "((IEnumerable&lt;int&gt;)@).*")]
             </code>
-            Where the placeholder symbol '<c>@</c>' means the member name that creates and converts to the result.
+            Where:
+            <list type="table">
+            <item>
+            <term>'<c>@</c>'</term>
+            <description>Equivalent to the member.</description>
+            </item>
+            <item>
+            <term>'<c>*</c>'</term>
+            <description>Equivalent to the code <c>GetEnumerator()</c>.</description>
+            </item>
+            </list>
             </para>
             <para>
             The default conversion is "<c>@</c>".

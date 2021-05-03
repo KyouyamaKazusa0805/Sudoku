@@ -7,7 +7,7 @@ namespace System.Collections.Generic
 	/// Encapsulates the list that notifies the users while adding an element.
 	/// </summary>
 	/// <typeparam name="T">The type of the element.</typeparam>
-	[AutoGetEnumerator(nameof(_innerList), MemberConversion = "@.GetEnumerator()")]
+	[AutoGetEnumerator(nameof(_innerList), MemberConversion = "@.*")]
 	public sealed partial class NotifyChangedList<T> : IList<T>, IReadOnlyCollection<T>
 	{
 		/// <summary>

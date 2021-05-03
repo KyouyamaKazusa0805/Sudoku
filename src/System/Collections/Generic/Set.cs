@@ -9,7 +9,7 @@ namespace System.Collections.Generic
 	/// Indicates a set which contains the different elements.
 	/// </summary>
 	/// <typeparam name="TEquatable">The type of the element.</typeparam>
-	[AutoGetEnumerator(nameof(_list), MemberConversion = "@.GetEnumerator()")]
+	[AutoGetEnumerator(nameof(_list), MemberConversion = "@.*")]
 	public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>>, ISet<TEquatable>
 		where TEquatable : IEquatable<TEquatable>
 	{

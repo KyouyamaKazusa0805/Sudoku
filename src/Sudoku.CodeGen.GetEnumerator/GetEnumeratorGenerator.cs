@@ -176,7 +176,7 @@ namespace Sudoku.CodeGen.GetEnumerator
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
 				string memberName = memberNameStr == @"""@""" ? "this" : memberNameStr.Substring(7, memberNameStr.Length - 8);
 				string exprStr = getConversion(attribute.ArgumentList.Arguments);
-				string memberConversion = exprStr.Replace("@", memberName);
+				string memberConversion = exprStr.Replace("@", memberName).Replace("*", "GetEnumerator()");
 				string extraNamespaces = getExtraNamespaces(attribute.ArgumentList.Arguments, semanticModel);
 				bool implementsIEnumerableNongeneric = symbol.AllInterfaces.Any(static i => i is { Name: nameof(IEnumerable), IsGenericType: false });
 				string interfaceExplicitlyImplementation = symbol.IsRefLikeType || !implementsIEnumerableNongeneric ? string.Empty : $@"

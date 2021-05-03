@@ -24,7 +24,7 @@ namespace Sudoku.Data
 	/// </remarks>
 	[AutoDeconstruct(nameof(_high), nameof(_low))]
 	[AutoEquality(nameof(_high), nameof(_low))]
-	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).GetEnumerator()")]
+	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
