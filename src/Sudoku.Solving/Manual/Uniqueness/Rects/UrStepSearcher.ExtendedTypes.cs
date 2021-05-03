@@ -232,7 +232,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											candidateOffsets.Add(
 												new(
 													urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
-													urCell * 9 + d1));
+													urCell * 9 + d1
+												)
+											);
 										}
 									}
 									if (grid.Exists(urCell, d2) is true)
@@ -242,7 +244,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											candidateOffsets.Add(
 												new(
 													urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
-													urCell * 9 + d2));
+													urCell * 9 + d2
+												)
+											);
 										}
 									}
 								}
@@ -314,7 +318,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				foreach (int otherCell in otherCellsMap)
 				{
-					if (!IsSameRegionCell(cell, otherCell, out var regions))
+					if (!IsSameRegionCell(cell, otherCell, out int regions))
 					{
 						continue;
 					}
