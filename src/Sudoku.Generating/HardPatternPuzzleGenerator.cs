@@ -105,20 +105,21 @@ namespace Sudoku.Generating
 						progress.Report(progressResult);
 					}
 
-					if (FastSolver.CheckValidity(solution.ToString()))
-					{
-						var grid = SudokuGrid.Parse(solution.ToString());
-						if ((
+					if (
+						FastSolver.CheckValidity(solution.ToString())
+						&& SudokuGrid.Parse(solution.ToString()) is var grid
+						&& (
 							backdoorFilterDepth != -1
 							&& !BackdoorSearcher.SearchForBackdoors(grid, backdoorFilterDepth).Any()
-							|| backdoorFilterDepth == -1)
-							&& (
+							|| backdoorFilterDepth == -1
+						) && (
 							difficultyLevel != DifficultyLevel.Unknown
 							&& grid.GetDifficultyLevel() == difficultyLevel
-							|| difficultyLevel == DifficultyLevel.Unknown))
-						{
-							return grid;
-						}
+							|| difficultyLevel == DifficultyLevel.Unknown
+						)
+					)
+					{
+						return grid;
 					}
 
 					RecreatePattern(holeCells);
