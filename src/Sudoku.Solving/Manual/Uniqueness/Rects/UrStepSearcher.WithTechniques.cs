@@ -732,7 +732,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			// abcy   |     abc
 
 			checkType1(grid);
-			checkType2(grid);
+			//checkType2(grid);
 
 			void checkType1(in SudokuGrid grid)
 			{
