@@ -34,4 +34,17 @@
 		<ProjectReference Include="..\Sudoku.CodeGen.StructParameterlessConstructor\Sudoku.CodeGen.StructParameterlessConstructor.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Remove="Resources\TextResources.RealImpl.cs" Visible="false" />
+		<Compile Remove="Resources\TextResources.NonpublicStaticMembers.cs" Visible="false" />
+	</ItemGroup>
+
+	<Target Name="ResourceHandlingMethods" BeforeTargets="BeforeBuild">
+		<ItemGroup>
+			<Compile Remove="Resources\TextResources.cs" Visible="false" />
+			<Compile Include="Resources\TextResources.RealImpl.cs" Visible="false" />
+			<Compile Include="Resources\TextResources.NonpublicStaticMembers.cs" Visible="false" />
+		</ItemGroup>
+	</Target>
+
 </Project>

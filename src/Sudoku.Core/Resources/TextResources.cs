@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
+﻿#pragma warning disable CS0626
+#pragma warning disable CS8618
+
 using Sudoku.Globalization;
 
 namespace Sudoku.Resources
@@ -7,7 +8,14 @@ namespace Sudoku.Resources
 	/// <summary>
 	/// Provides a way to get the local text resources, and save the resources to the local path.
 	/// </summary>
-	public sealed partial class TextResources : DynamicObject
+	/// <remarks>
+	/// <i>
+	/// Please note that this type is implemented in another file which is invisible for us. The only way
+	/// to see them is to find and open them in the file explorer. They're in the real folders but not
+	/// in this solution.
+	/// </i>
+	/// </remarks>
+	public sealed class TextResources
 	{
 		/// <summary>
 		/// Indicates the singleton to get items and method invokes.
@@ -37,106 +45,12 @@ namespace Sudoku.Resources
 		/// </list>
 		/// </para>
 		/// </remarks>
-		public static readonly dynamic Current = new TextResources();
+		public static readonly dynamic Current;
 
 
 		/// <summary>
 		/// Indicates the current country code.
 		/// </summary>
-		public CountryCode CountryCode
-		{
-			get => CurrentCountryCode;
-
-			private set => CurrentCountryCode = value;
-		}
-
-		/// <summary>
-		/// The language source for the globalization string "<c>en-us</c>".
-		/// </summary>
-		public IDictionary<string, string>? LangSourceEnUs
-		{
-			get => CurrentLangSourceEnUs;
-
-			internal set => CurrentLangSourceEnUs = value;
-		}
-
-		/// <summary>
-		/// The language source for the globalization string "<c>zh-cn</c>".
-		/// </summary>
-		public IDictionary<string, string>? LangSourceZhCn
-		{
-			get => CurrentLangSourceZhCn;
-
-			internal set => CurrentLangSourceZhCn = value;
-		}
-
-
-		/// <inheritdoc/>
-		public override bool TryInvokeMember(InvokeMemberBinder binder, object?[]? args, out object? result)
-		{
-			switch (binder.Name)
-			{
-				/*array-deconstruction-pattern*/
-				case nameof(Serialize)
-				when args is { Length: 2 } && (args[0], args[1]) is (string instanceName, string path):
-				{
-					result = null;
-					return Serialize(instanceName, path);
-				}
-				/*array-deconstruction-pattern*/
-				case nameof(Deserialize)
-				when args is { Length: 2 } && (args[0], args[1]) is (string instanceName, string path):
-				{
-					result = null;
-					return Deserialize(instanceName, path);
-				}
-				/*array-deconstruction-pattern*/
-				case nameof(ChangeLanguage) when args is { Length: 1 } && args[0] is CountryCode code:
-				{
-					result = null;
-					ChangeLanguage(code);
-					return true;
-				}
-				default:
-				{
-					result = null;
-					return false;
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public override bool TryGetMember(GetMemberBinder binder, out object? result)
-		{
-			switch (binder.Name)
-			{
-				case nameof(LangSourceEnUs):
-				{
-					result = CurrentLangSourceEnUs;
-					return true;
-				}
-				case nameof(LangSourceZhCn):
-				{
-					result = CurrentLangSourceZhCn;
-					return true;
-				}
-				default:
-				{
-					return (result = TryGetValue(binder.Name)) is not null;
-				}
-			}
-		}
-
-		/// <inheritdoc/>
-		public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object? result)
-		{
-			if (indexes is null || indexes.Length == 0 || indexes[0] is not string index)
-			{
-				result = null;
-				return false;
-			}
-
-			return (result = TryGetValue(index)) is not null;
-		}
+		public extern CountryCode CountryCode { get; }
 	}
 }
