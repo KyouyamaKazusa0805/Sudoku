@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces;
 using static Sudoku.Constants.Tables;
@@ -62,7 +63,7 @@ namespace Sudoku.Generating
 		/// To create the pattern.
 		/// </summary>
 		/// <param name="pattern">The pattern array.</param>
-		protected abstract void CreatePattern(int[] pattern);
+		protected abstract void CreatePattern(ref Span<int> pattern);
 
 		/// <summary>
 		/// Check whether the digit in its peer cells has duplicate ones.

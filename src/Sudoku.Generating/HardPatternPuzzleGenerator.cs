@@ -71,14 +71,16 @@ namespace Sudoku.Generating
 				solution = new() { Length = 81 },
 				emptyGridStr = new(SudokuGrid.EmptyString);
 
+			var holeCells = (stackalloc int[81]);
+
 			while (true)
 			{
 				emptyGridStr.CopyTo(puzzle);
 				emptyGridStr.CopyTo(solution);
 				GenerateAnswerGrid(puzzle, solution);
 
-				int[] holeCells = new int[81];
-				CreatePattern(holeCells);
+				holeCells.Fill(0);
+				CreatePattern(ref holeCells);
 				for (int trial = 0; trial < 1000; trial++)
 				{
 					if (cancellationToken is { IsCancellationRequested: true })
@@ -122,7 +124,7 @@ namespace Sudoku.Generating
 						return grid;
 					}
 
-					RecreatePattern(holeCells);
+					RecreatePattern(ref holeCells);
 				}
 			}
 		}
@@ -160,7 +162,7 @@ namespace Sudoku.Generating
 		}
 
 		/// <inheritdoc/>
-		protected sealed override unsafe void CreatePattern(int[] pattern)
+		protected sealed override unsafe void CreatePattern(ref Span<int> pattern)
 		{
 			int a = 54, b = 0;
 			for (int i = 0; i < 9; i++)
@@ -201,7 +203,7 @@ namespace Sudoku.Generating
 		/// To re-create the pattern.
 		/// </summary>
 		/// <param name="pattern">The pattern array.</param>
-		private static unsafe void RecreatePattern(int[] pattern)
+		private static unsafe void RecreatePattern(ref Span<int> pattern)
 		{
 			fixed (int* pPattern = pattern)
 			{

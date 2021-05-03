@@ -52,7 +52,7 @@
             <returns>The task.</returns>
             <seealso cref="T:Sudoku.Data.SymmetryType"/>
         </member>
-        <member name="M:Sudoku.Generating.BasicPuzzleGenerator.CreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Generating.BasicPuzzleGenerator.CreatePattern(System.Span{System.Int32}@)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
@@ -77,7 +77,7 @@
         <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.Generate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.CreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.CreatePattern(System.Span{System.Int32}@)">
             <summary>
             To create the pattern.
             </summary>
@@ -143,10 +143,10 @@
             <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
             <returns>The task.</returns>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Span{System.Int32}@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32[])">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Span{System.Int32}@)">
             <summary>
             To re-create the pattern.
             </summary>

@@ -166,6 +166,6 @@ namespace Sudoku.Generating
 		/// <inheritdoc/>
 		/// <exception cref="NotImplementedException">Always throws.</exception>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		protected override void CreatePattern(int[] pattern) => throw new NotImplementedException();
+		protected override void CreatePattern(ref Span<int> pattern) => throw new NotImplementedException();
 	}
 }
