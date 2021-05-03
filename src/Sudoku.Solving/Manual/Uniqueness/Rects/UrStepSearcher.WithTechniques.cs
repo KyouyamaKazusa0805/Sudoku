@@ -715,6 +715,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer,
 			int d1, int d2, int index)
 		{
+			// Type 1:
 			//      ↓urCellInSameBlock
 			// ab  abc      abc  ←anotherCell
 			//
@@ -722,282 +723,302 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			//           c
 			//      ↑targetCell
 			// Where the digit 'a' and 'b' in the down-left cell 'abcx' can be removed.
+			//
+			// Type 2:
+			// abcx   | ab  abc
+			//  |     |
+			//  | c   |
+			//  |     |
+			// abcy   |     abc
 
-			var cells = new Cells(urCells);
+			checkType1(grid);
+			checkType2(grid);
 
-			// Check all cells are ampty.
-			bool containsValueCells = false;
-			foreach (int cell in cells)
+			void checkType1(in SudokuGrid grid)
 			{
-				if (grid.GetStatus(cell) != CellStatus.Empty)
+				var cells = new Cells(urCells);
+
+				// Check all cells are ampty.
+				bool containsValueCells = false;
+				foreach (int cell in cells)
 				{
-					containsValueCells = true;
-					break;
+					if (grid.GetStatus(cell) != CellStatus.Empty)
+					{
+						containsValueCells = true;
+						break;
+					}
 				}
-			}
-			if (containsValueCells)
-			{
-				return;
-			}
-
-			// Iterate on each cell.
-			foreach (int targetCell in cells)
-			{
-				int block = targetCell.ToRegion(RegionLabel.Block);
-				var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
-				if (bivalueCellsToCheck.IsEmpty)
+				if (containsValueCells)
 				{
-					continue;
+					return;
 				}
 
-				// Check all bivalue cells.
-				foreach (int bivalueCellToCheck in bivalueCellsToCheck)
+				// Iterate on each cell.
+				foreach (int targetCell in cells)
 				{
-					if (new Cells { bivalueCellToCheck, targetCell }.CoveredLine != Constants.InvalidFirstSet)
+					int block = targetCell.ToRegion(RegionLabel.Block);
+					var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
+					if (bivalueCellsToCheck.IsEmpty)
 					{
-						// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 						continue;
 					}
 
-					if (grid.GetCandidates(bivalueCellToCheck) != comparer)
+					// Check all bivalue cells.
+					foreach (int bivalueCellToCheck in bivalueCellsToCheck)
 					{
-						// 'bivalueCell' must contain both 'd1' and 'd2'.
-						continue;
-					}
-
-					int urCellInSameBlock = new Cells(RegionMaps[block] & cells) { ~targetCell }[0];
-					int coveredLine = new Cells { bivalueCellToCheck, urCellInSameBlock }.CoveredLine;
-					if (coveredLine == Constants.InvalidFirstSet)
-					{
-						// The bi-value cell 'bivalueCellToCheck' should be lie on a same region
-						// as 'urCellInSameBlock'.
-						continue;
-					}
-
-					int anotherCell = (new Cells(cells) { ~urCellInSameBlock } & RegionMaps[coveredLine])[0];
-					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
-					{
-						short abcMask = (short)(comparer | (short)(1 << extraDigit));
-
-						if (grid.GetCandidates(anotherCell) != abcMask)
+						if (new Cells { bivalueCellToCheck, targetCell }.CoveredLine != Constants.InvalidFirstSet)
 						{
+							// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 							continue;
 						}
 
-						// Check the conjugate pair of the extra digit.
-						int resultCell = new Cells(cells) { ~urCellInSameBlock, ~anotherCell, ~targetCell }[0];
-						var map = new Cells { targetCell, resultCell };
-						int line = map.CoveredLine;
-						if (!IsConjugatePair(extraDigit, map, line))
+						if (grid.GetCandidates(bivalueCellToCheck) != comparer)
 						{
+							// 'bivalueCell' must contain both 'd1' and 'd2'.
 							continue;
 						}
 
-						#region Subtype 1
-						if (grid.GetCandidates(urCellInSameBlock) != abcMask)
+						int urCellInSameBlock = new Cells(RegionMaps[block] & cells) { ~targetCell }[0];
+						int coveredLine = new Cells { bivalueCellToCheck, urCellInSameBlock }.CoveredLine;
+						if (coveredLine == Constants.InvalidFirstSet)
 						{
-							goto SubType2;
+							// The bi-value cell 'bivalueCellToCheck' should be lie on a same region
+							// as 'urCellInSameBlock'.
+							continue;
 						}
 
-						// Here, is the basic sub-type having passed the checking.
-						// Gather conclusions.
-						var conclusions = new List<Conclusion>();
-						foreach (int digit in grid.GetCandidates(targetCell))
+						int anotherCell = (new Cells(cells) { ~urCellInSameBlock } & RegionMaps[coveredLine])[0];
+						foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
 						{
-							if (digit == d1 || digit == d2)
+							short abcMask = (short)(comparer | (short)(1 << extraDigit));
+
+							if (grid.GetCandidates(anotherCell) != abcMask)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, targetCell, digit));
+								continue;
 							}
-						}
-						if (conclusions.Count == 0)
-						{
-							goto SubType2;
-						}
 
-						// Gather views.
-						var candidateOffsets = new List<DrawingInfo> { new(1, targetCell * 9 + extraDigit) };
-						if (grid.Exists(resultCell, d1) is true)
-						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d1));
-						}
-						if (grid.Exists(resultCell, d2) is true)
-						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d2));
-						}
-						if (grid.Exists(resultCell, extraDigit) is true)
-						{
-							candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
-						}
+							// Check the conjugate pair of the extra digit.
+							int resultCell = new Cells(cells) { ~urCellInSameBlock, ~anotherCell, ~targetCell }[0];
+							var map = new Cells { targetCell, resultCell };
+							int line = map.CoveredLine;
+							if (!IsConjugatePair(extraDigit, map, line))
+							{
+								continue;
+							}
 
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
-						{
-							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
-						}
-						foreach (int digit in grid.GetCandidates(anotherCell))
-						{
-							candidateOffsets.Add(new(0, anotherCell * 9 + digit));
-						}
-						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
-						{
-							candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
-						}
+							#region Subtype 1
+							if (grid.GetCandidates(urCellInSameBlock) != abcMask)
+							{
+								goto SubType2;
+							}
 
-						// Add into the list.
-						accumulator.Add(
-							new UrWithUnknownCoveringStepInfo(
-								conclusions,
-								new View[]
+							// Here, is the basic sub-type having passed the checking.
+							// Gather conclusions.
+							var conclusions = new List<Conclusion>();
+							foreach (int digit in grid.GetCandidates(targetCell))
+							{
+								if (digit == d1 || digit == d2)
 								{
-									new()
+									conclusions.Add(new(ConclusionType.Elimination, targetCell, digit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								goto SubType2;
+							}
+
+							// Gather views.
+							var candidateOffsets = new List<DrawingInfo> { new(1, targetCell * 9 + extraDigit) };
+							if (grid.Exists(resultCell, d1) is true)
+							{
+								candidateOffsets.Add(new(0, resultCell * 9 + d1));
+							}
+							if (grid.Exists(resultCell, d2) is true)
+							{
+								candidateOffsets.Add(new(0, resultCell * 9 + d2));
+							}
+							if (grid.Exists(resultCell, extraDigit) is true)
+							{
+								candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
+							}
+
+							foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
+							{
+								candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
+							}
+							foreach (int digit in grid.GetCandidates(anotherCell))
+							{
+								candidateOffsets.Add(new(0, anotherCell * 9 + digit));
+							}
+							foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+							{
+								candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
+							}
+
+							// Add into the list.
+							accumulator.Add(
+								new UrWithUnknownCoveringStepInfo(
+									conclusions,
+									new View[]
 									{
-										Cells = new DrawingInfo[] { new(0, targetCell) },
-										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, block), new(1, line) }
-									},
-									new()
-									{
-										Candidates = new DrawingInfo[]
+										new()
 										{
-											new(1, resultCell * 9 + extraDigit),
-											new(1, targetCell * 9 + extraDigit)
+											Cells = new DrawingInfo[] { new(0, targetCell) },
+											Candidates = candidateOffsets,
+											Regions = new DrawingInfo[] { new(0, block), new(1, line) }
 										},
-										StepFilling = new (int, char)[]
+										new()
 										{
-											(bivalueCellToCheck, 'y'),
-											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '1')),
-											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '1'))
+											Candidates = new DrawingInfo[]
+											{
+												new(1, resultCell * 9 + extraDigit),
+												new(1, targetCell * 9 + extraDigit)
+											},
+											StepFilling = new (int, char)[]
+											{
+												(bivalueCellToCheck, 'y'),
+												(targetCell, 'x'),
+												(urCellInSameBlock, (char)(extraDigit + '1')),
+												(anotherCell, 'x'),
+												(resultCell, (char)(extraDigit + '1'))
+											}
 										}
-									}
-								},
-								d1,
-								d2,
-								targetCell,
-								extraDigit,
-								urCells,
-								index));
-					#endregion
+									},
+									d1,
+									d2,
+									targetCell,
+									extraDigit,
+									urCells,
+									index));
+							#endregion
 
 #pragma warning disable IDE0055
-						#region Subtype 2
+							#region Subtype 2
 #pragma warning restore IDE0055
-					SubType2:
-						// The extra digit should form a conjugate pair in that line.
-						var anotherMap = new Cells { urCellInSameBlock, anotherCell };
-						int anotherLine = anotherMap.CoveredLine;
-						if (!IsConjugatePair(extraDigit, anotherMap, anotherLine))
-						{
-							continue;
-						}
+						SubType2:
+							// The extra digit should form a conjugate pair in that line.
+							var anotherMap = new Cells { urCellInSameBlock, anotherCell };
+							int anotherLine = anotherMap.CoveredLine;
+							if (!IsConjugatePair(extraDigit, anotherMap, anotherLine))
+							{
+								continue;
+							}
 
-						// Gather conclusions.
-						var conclusionsAnotherSubType = new List<Conclusion>();
-						foreach (int digit in grid.GetCandidates(targetCell))
-						{
-							if (digit == d1 || digit == d2)
+							// Gather conclusions.
+							var conclusionsAnotherSubType = new List<Conclusion>();
+							foreach (int digit in grid.GetCandidates(targetCell))
 							{
-								conclusionsAnotherSubType.Add(
-									new(ConclusionType.Elimination, targetCell, digit));
-							}
-						}
-						if (conclusionsAnotherSubType.Count == 0)
-						{
-							continue;
-						}
-
-						// Gather views.
-						var candidateOffsetsAnotherSubtype = new List<DrawingInfo>
-						{
-							new(1, targetCell * 9 + extraDigit)
-						};
-						if (grid.Exists(resultCell, d1) is true)
-						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
-						}
-						if (grid.Exists(resultCell, d2) is true)
-						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
-						}
-						if (grid.Exists(resultCell, extraDigit) is true)
-						{
-							candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
-						}
-
-						var candidateOffsetsAnotherSubtypeLighter = new List<DrawingInfo>
-						{
-							new(1, resultCell * 9 + extraDigit),
-							new(1, targetCell * 9 + extraDigit)
-						};
-						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
-						{
-							if (digit == extraDigit)
-							{
-								candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
-							}
-							else
-							{
-								candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
-							}
-						}
-						foreach (int digit in grid.GetCandidates(anotherCell))
-						{
-							if (digit == extraDigit)
-							{
-								candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
-							}
-							else
-							{
-								candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
-							}
-						}
-						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
-						{
-							candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
-						}
-
-						// Add into the list.
-						accumulator.Add(
-							new UrWithUnknownCoveringStepInfo(
-								conclusionsAnotherSubType,
-								new View[]
+								if (digit == d1 || digit == d2)
 								{
-									new()
+									conclusionsAnotherSubType.Add(
+										new(ConclusionType.Elimination, targetCell, digit));
+								}
+							}
+							if (conclusionsAnotherSubType.Count == 0)
+							{
+								continue;
+							}
+
+							// Gather views.
+							var candidateOffsetsAnotherSubtype = new List<DrawingInfo>
+							{
+								new(1, targetCell * 9 + extraDigit)
+							};
+							if (grid.Exists(resultCell, d1) is true)
+							{
+								candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
+							}
+							if (grid.Exists(resultCell, d2) is true)
+							{
+								candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
+							}
+							if (grid.Exists(resultCell, extraDigit) is true)
+							{
+								candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
+							}
+
+							var candidateOffsetsAnotherSubtypeLighter = new List<DrawingInfo>
+							{
+								new(1, resultCell * 9 + extraDigit),
+								new(1, targetCell * 9 + extraDigit)
+							};
+							foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
+							{
+								if (digit == extraDigit)
+								{
+									candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
+									candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
+								}
+								else
+								{
+									candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
+								}
+							}
+							foreach (int digit in grid.GetCandidates(anotherCell))
+							{
+								if (digit == extraDigit)
+								{
+									candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
+									candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
+								}
+								else
+								{
+									candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
+								}
+							}
+							foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+							{
+								candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
+							}
+
+							// Add into the list.
+							accumulator.Add(
+								new UrWithUnknownCoveringStepInfo(
+									conclusionsAnotherSubType,
+									new View[]
 									{
-										Cells = new DrawingInfo[] { new(0, targetCell) },
-										Candidates = candidateOffsetsAnotherSubtype,
-										Regions = new DrawingInfo[]
+										new()
 										{
-											new(0, block),
-											new(1, line),
-											new(1, anotherLine)
+											Cells = new DrawingInfo[] { new(0, targetCell) },
+											Candidates = candidateOffsetsAnotherSubtype,
+											Regions = new DrawingInfo[]
+											{
+												new(0, block),
+												new(1, line),
+												new(1, anotherLine)
+											}
+										},
+										new()
+										{
+											Candidates = candidateOffsetsAnotherSubtypeLighter,
+											StepFilling = new (int, char)[]
+											{
+												(bivalueCellToCheck, 'y'),
+												(targetCell, 'x'),
+												(urCellInSameBlock, (char)(extraDigit + '1')),
+												(anotherCell, 'x'),
+												(resultCell, (char)(extraDigit + '1'))
+											}
 										}
 									},
-									new()
-									{
-										Candidates = candidateOffsetsAnotherSubtypeLighter,
-										StepFilling = new (int, char)[]
-										{
-											(bivalueCellToCheck, 'y'),
-											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '1')),
-											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '1'))
-										}
-									}
-								},
-								d1,
-								d2,
-								targetCell,
-								extraDigit,
-								urCells,
-								index));
-						#endregion
+									d1,
+									d2,
+									targetCell,
+									extraDigit,
+									urCells,
+									index));
+							#endregion
+						}
 					}
 				}
 			}
+
+#pragma warning disable
+			void checkType2(in SudokuGrid grid)
+			{
+				// TODO: Check type 2.
+			}
+#pragma warning restore
 		}
 
 		/// <summary>
