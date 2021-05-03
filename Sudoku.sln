@@ -79,7 +79,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.RefStructDef
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.BitOperations", "src\Sudoku.CodeGen.BitOperations\Sudoku.CodeGen.BitOperations.csproj", "{991A39F1-387A-4935-BAB5-BE460417F7A0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Analysis", "Sudoku.Analysis", "{E40A3B24-06EA-48AA-8377-94BBD52C1557}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.SolvingOrTechniqueAnalysis", "Sudoku.SolvingOrTechniqueAnalysis", "{E40A3B24-06EA-48AA-8377-94BBD52C1557}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.GetEnumerator", "src\Sudoku.CodeGen.GetEnumerator\Sudoku.CodeGen.GetEnumerator.csproj", "{B7CE3ECD-7CC3-4D85-AF1C-81FE46EAAD3A}"
 EndProject
