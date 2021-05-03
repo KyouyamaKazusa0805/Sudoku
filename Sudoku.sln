@@ -81,7 +81,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.BitOperation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Analysis", "Sudoku.Analysis", "{E40A3B24-06EA-48AA-8377-94BBD52C1557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CodeGen.GetEnumerator", "src\Sudoku.CodeGen.GetEnumerator\Sudoku.CodeGen.GetEnumerator.csproj", "{B7CE3ECD-7CC3-4D85-AF1C-81FE46EAAD3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.GetEnumerator", "src\Sudoku.CodeGen.GetEnumerator\Sudoku.CodeGen.GetEnumerator.csproj", "{B7CE3ECD-7CC3-4D85-AF1C-81FE46EAAD3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
