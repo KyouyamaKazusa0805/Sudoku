@@ -1,5 +1,4 @@
-﻿#pragma warning disable CS0626
-#pragma warning disable CS8618
+﻿#pragma warning disable 626
 
 using System.Collections.Generic;
 using Sudoku.Globalization;
@@ -46,7 +45,7 @@ namespace Sudoku.Resources
 		/// </list>
 		/// </para>
 		/// </remarks>
-		public static readonly dynamic Current;
+		public static readonly dynamic Current = null!;
 
 
 		/// <summary>
