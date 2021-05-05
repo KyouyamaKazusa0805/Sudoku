@@ -456,7 +456,6 @@ namespace Sudoku.Data
 		/// </item>
 		/// </list>
 		/// </returns>
-		[IndexerName("Value")]
 		public int this[int cell]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -510,7 +509,6 @@ namespace Sudoku.Data
 		/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 		/// </value>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		[IndexerName("Value")]
 		public bool this[int cell, int digit]
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

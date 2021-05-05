@@ -540,7 +540,7 @@
             Indicates all indices of set bits.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Candidates.Candidate(System.Int32)">
+        <member name="P:Sudoku.Data.Candidates.Item(System.Int32)">
             <summary>
             Gets the result set candidate at the specified index.
             </summary>
@@ -1071,7 +1071,7 @@
             Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Cells.SetOffset(System.Int32)">
+        <member name="P:Sudoku.Data.Cells.Item(System.Int32)">
             <summary>
             Get the cell offset at the specified position index.
             </summary>
@@ -1586,7 +1586,7 @@
             Indicates the number of regions that contain in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Collections.RegionCollection.Region(System.Int32)">
+        <member name="P:Sudoku.Data.Collections.RegionCollection.Item(System.Int32)">
             <summary>
             Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
             is set <see langword="true"/>.
@@ -3092,7 +3092,7 @@
             The triplet of three main information.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.SudokuGrid.Value(System.Int32)">
+        <member name="P:Sudoku.Data.SudokuGrid.Item(System.Int32)">
             <summary>
             Gets or sets the value in the specified cell.
             </summary>
@@ -3121,7 +3121,7 @@
             </list>
             </returns>
         </member>
-        <member name="P:Sudoku.Data.SudokuGrid.Value(System.Int32,System.Int32)">
+        <member name="P:Sudoku.Data.SudokuGrid.Item(System.Int32,System.Int32)">
             <summary>
             Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
             </summary>

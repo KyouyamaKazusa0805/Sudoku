@@ -281,7 +281,6 @@ namespace Sudoku.Data
 		/// <returns>
 		/// The candidate at that index. If the index is invalid, the return value will be -1.
 		/// </returns>
-		[IndexerName("Candidate")]
 		public readonly int this[int index]
 		{
 			get

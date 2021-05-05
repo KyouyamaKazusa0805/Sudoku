@@ -486,7 +486,6 @@ namespace Sudoku.Data
 		/// This cell offset at the specified position index. If the value is invalid,
 		/// the return value will be <c>-1</c>.
 		/// </returns>
-		[IndexerName("SetOffset")]
 		public readonly int this[int index]
 		{
 			get
