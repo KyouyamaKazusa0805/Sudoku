@@ -1,6 +1,5 @@
-﻿#pragma warning disable 626
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Globalization;
 
 namespace Sudoku.Resources
@@ -45,23 +44,35 @@ namespace Sudoku.Resources
 		/// </list>
 		/// </para>
 		/// </remarks>
-		public static readonly dynamic Current = null!;
+		public static readonly dynamic Current = default!;
 
 
 		/// <summary>
 		/// Indicates the current country code.
 		/// </summary>
-		public extern CountryCode CountryCode { get; }
+		public extern CountryCode CountryCode
+		{
+			[MethodImpl(MethodImplOptions.InternalCall)]
+			get;
+		}
 
 		/// <summary>
 		/// The language source for the globalization string "<c>en-us</c>".
 		/// </summary>
-		public extern IDictionary<string, string>? LangSourceEnUs { get; }
+		public extern IDictionary<string, string>? LangSourceEnUs
+		{
+			[MethodImpl(MethodImplOptions.InternalCall)]
+			get;
+		}
 
 		/// <summary>
 		/// The language source for the globalization string "<c>zh-cn</c>".
 		/// </summary>
-		public extern IDictionary<string, string>? LangSourceZhCn { get; }
+		public extern IDictionary<string, string>? LangSourceZhCn
+		{
+			[MethodImpl(MethodImplOptions.InternalCall)]
+			get;
+		}
 
 
 		/// <summary>
@@ -70,6 +81,7 @@ namespace Sudoku.Resources
 		/// <param name="instanceNameToDeserialize">The instance to covert to.</param>
 		/// <param name="path">The file path.</param>
 		/// <returns>The <see cref="bool"/> value indicating whether the operation is successful.</returns>
+		[MethodImpl(MethodImplOptions.InternalCall)]
 		internal static extern bool Deserialize(string instanceNameToDeserialize, string path);
 	}
 }
