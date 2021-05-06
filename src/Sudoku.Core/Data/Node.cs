@@ -205,9 +205,9 @@ namespace Sudoku.Data
 			else
 			{
 				var nodes = new Candidates();
-				foreach (var node in Parents)
+				foreach (var (cand, _) in Parents)
 				{
-					nodes.Add(node.Cell * 9 + node.Digit);
+					nodes.Add(cand);
 				}
 
 				return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()}), Parent(s): {nodes.ToString()}";
