@@ -59,8 +59,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <param name="yEnabled">
 		/// Indicates whether the strong links in cells are enabled to search for.
 		/// </param>
-		private void GetAll(
-			IList<ChainingStepInfo> accumulator, in SudokuGrid grid, bool xEnabled, bool yEnabled)
+		private void GetAll(IList<ChainingStepInfo> accumulator, in SudokuGrid grid, bool xEnabled, bool yEnabled)
 		{
 			foreach (int cell in EmptyMap)
 			{

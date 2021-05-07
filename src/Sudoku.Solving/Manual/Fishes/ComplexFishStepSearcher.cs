@@ -391,7 +391,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 									// Gather eliminations, views and step information.
 									var conclusions = new List<Conclusion>();
-									foreach (var elimCell in elimMap)
+									foreach (int elimCell in elimMap)
 									{
 										conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 									}

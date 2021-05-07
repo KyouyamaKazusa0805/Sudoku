@@ -41,7 +41,7 @@ namespace Sudoku.Solving.Manual
 	/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
 	/// <seealso cref="DirectSearcherAttribute"/>
 	/// <seealso cref="SudokuGrid"/>
-	internal static class FastProperties
+	internal static partial class FastProperties
 	{
 		/// <summary>
 		/// The empty cells map.
