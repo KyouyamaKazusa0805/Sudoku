@@ -23,7 +23,7 @@ namespace Sudoku.Windows
 		/// </remarks>
 		private static readonly string CachePath = Path.Combine(
 			Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-			"Temp"
+			"Sudoku_Temp"
 		);
 
 		/// <summary>
@@ -34,6 +34,7 @@ namespace Sudoku.Windows
 		/// </remarks>
 		private static readonly string TempFilePath = Path.Combine(CachePath, "TempFilling.cache");
 #endif
+
 
 #if AUTHOR_RESERVED && DEBUG
 		/// <summary>

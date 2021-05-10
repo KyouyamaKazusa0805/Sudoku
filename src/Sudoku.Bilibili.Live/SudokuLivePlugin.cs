@@ -67,7 +67,7 @@ namespace Sudoku.Bilibili.Live
 				return;
 			}
 
-			string cachePath = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "Temp");
+			string cachePath = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "Sudoku_Temp");
 			if (!Directory.Exists(cachePath))
 			{
 				Directory.CreateDirectory(cachePath);
