@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net461</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Description>A project that handles the live room in BiliBili and interoperate with this sudoku solution.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<DocumentationFile>..\docxml\Sudoku.Bilibili.Live.xml</DocumentationFile>
+		<LangVersion>9.0</LangVersion>
+		<Version>0.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="WindowsBase_Core.STW" Version="4.0.30319.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="BilibiliDM_PluginFramework">
+	    <HintPath>BilibiliDM_PluginFramework.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Newtonsoft.Json">
+	    <HintPath>Newtonsoft.Json.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	
+</Project>

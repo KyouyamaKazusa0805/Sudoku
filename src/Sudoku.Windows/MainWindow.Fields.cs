@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Input;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;
@@ -12,6 +14,35 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
+#if AUTHOR_RESERVED && DEBUG
+		/// <summary>
+		/// Indicates the cache path.
+		/// </summary>
+		/// <remarks>
+		/// <i>Please don't re-order the two fields in this <c>#if</c> block.</i>
+		/// </remarks>
+		private static readonly string CachePath = Path.Combine(
+			Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+			"Temp"
+		);
+
+		/// <summary>
+		/// Indicates the temporary file path.
+		/// </summary>
+		/// <remarks>
+		/// <i>Please don't re-order the two fields in this <c>#if</c> block.</i>
+		/// </remarks>
+		private static readonly string TempFilePath = Path.Combine(CachePath, "TempFilling.cache");
+#endif
+
+#if AUTHOR_RESERVED && DEBUG
+		/// <summary>
+		/// Indicates whether the program will automatically check the local path, and imports the info
+		/// all the time.
+		/// </summary>
+		private readonly bool _enableDynamicChecking;
+#endif
+
 		/// <summary>
 		/// The custom view.
 		/// </summary>

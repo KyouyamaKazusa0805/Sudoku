@@ -18,5 +18,7 @@ namespace Sudoku.Windows
 
 			return targetGrid.IsUndefined ? null : new MainWindow(targetGrid);
 		}
+
+		private partial Window ShowMainWindowWithDynamic() => new MainWindow(true);
 	}
 }

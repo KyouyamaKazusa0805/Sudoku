@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +45,118 @@ namespace Sudoku.Windows
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		public MainWindow(in SudokuGrid grid) : this() => Puzzle = grid;
+
+#if AUTHOR_RESERVED && DEBUG
+		/// <summary>
+		/// Initializes an instance with a <see cref="bool"/> value indicating whether
+		/// the program enables the dynamic value checking from local path.
+		/// </summary>
+		/// <param name="enableDynamicChecking">A <see cref="bool"/> value indicating that.</param>
+		public MainWindow(bool enableDynamicChecking) : this()
+		{
+			if (!(_enableDynamicChecking = enableDynamicChecking))
+			{
+				return;
+			}
+
+			new Thread(endlessReadingTemporaryFileFromCacheFolder)
+			{
+				IsBackground = true,
+				Priority = ThreadPriority.Normal
+			}.Start(this);
+
+			static void endlessReadingTemporaryFileFromCacheFolder(object? @this)
+			{
+				if (@this is not MainWindow mainWindow)
+				{
+					return;
+				}
+
+				while (true)
+				{
+					if (!Directory.Exists(CachePath))
+					{
+						goto Delay;
+					}
+
+					if (!File.Exists(TempFilePath))
+					{
+						goto Delay;
+					}
+
+					var regex = new Regex(@"[\+\-][1-9]{3}");
+					string[]? lines = null;
+
+					do
+					{
+						try
+						{
+							lines = File.ReadLines(TempFilePath).ToArray();
+							if (lines.Length == 0)
+							{
+								goto Delay;
+							}
+
+							break;
+						}
+						catch (IOException ex) when (ex.HResult == unchecked(-2147024864))
+						{
+							// File has been used in another process. Just wait.
+							// Now we should use an infinity loop to wait.
+							// Although it seems an infinity loop, it'll skip out of the loop when the file
+							// is successful to be read.
+						}
+					} while (true);
+
+					string? command = lines[
+						Enumerable.Range(0, lines.Length).Reverse().FirstOrDefault(i => regex.IsMatch(lines[i]))
+					];
+
+					if (command is null)
+					{
+						goto Delay;
+					}
+
+					if (command[0] is '-' or '+' && command.Length == 4)
+					{
+						int cell = (command[2] - '1') * 9 + command[3] - '1';
+						int digit = command[1] - '1';
+
+						mainWindow.Dispatcher.Invoke(() =>
+						{
+							if (command[0] == '-')
+							{
+								mainWindow._puzzle[cell, digit] = false;
+							}
+							else
+							{
+								mainWindow._puzzle[cell] = digit;
+							}
+
+							mainWindow.UpdateUndoRedoControls();
+							mainWindow.UpdateImageGrid();
+						});
+					}
+					else if (command[0] is >= '1' and <= '9' && command.Length == 3)
+					{
+						int cell = (command[1] - '1') * 9 + command[2] - '1';
+						int digit = command[0] - '1';
+
+						mainWindow.Dispatcher.Invoke(() =>
+						{
+							mainWindow._puzzle[cell] = digit;
+
+							mainWindow.UpdateUndoRedoControls();
+							mainWindow.UpdateImageGrid();
+						});
+					}
+
+				Delay:
+					Thread.Sleep(3000);
+				}
+			}
+		}
+#endif
 		#endregion
 
 
@@ -103,6 +216,20 @@ namespace Sudoku.Windows
 
 			// Save the configuration file.
 			SaveConfig();
+
+#if AUTHOR_RESERVED && DEBUG
+			// Remove the temporary file.
+			if (_enableDynamicChecking && Directory.Exists(CachePath) && File.Exists(TempFilePath))
+			{
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 
 #if SUDOKU_RECOGNITION
 			// Dispose the OCR tools.
@@ -285,7 +412,8 @@ namespace Sudoku.Windows
 				_recognition = new();
 			}
 #if !MUST_DOWNLOAD_TRAINED_DATA
-			catch (FileNotFoundException ex) when (ex.FileName?.EndsWith(Paths.TrainedDataFileName) ?? false)
+			catch (FileNotFoundException ex)
+			when (ex.FileName?.EndsWith(Paths.TrainedDataFileName, StringComparison.Ordinal) ?? false)
 			{
 				// Trained data file can't be found.
 				Messagings.FailedToLoadRecognitionTool(ex);
@@ -661,6 +789,26 @@ namespace Sudoku.Windows
 
 				_menuItemEditUndo.IsEnabled = _menuItemEditRedo.IsEnabled = false;
 				UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+#endif
 			}
 			catch (ArgumentException)
 			{
@@ -961,6 +1109,26 @@ namespace Sudoku.Windows
 
 				UpdateUndoRedoControls();
 				UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+#endif
 			}
 		}
 

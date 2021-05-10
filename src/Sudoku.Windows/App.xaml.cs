@@ -14,7 +14,11 @@ namespace Sudoku.Windows
 			var current = args.Length switch
 			{
 				0 => ShowMainWindowDefault(),
-				1 => ShowMainWindowWithGridCode(args[0]),
+				1 => args[0] switch
+				{
+					"-d" or "--dynamic" => ShowMainWindowWithDynamic(),
+					var p => ShowMainWindowWithGridCode(p)
+				},
 				2 => args[0] switch
 				{
 					"-g" or "--grid" => ShowMainWindowWithGridCode(args[1]),
@@ -29,5 +33,6 @@ namespace Sudoku.Windows
 
 		private partial Window ShowMainWindowDefault();
 		private partial Window? ShowMainWindowWithGridCode(string str);
+		private partial Window ShowMainWindowWithDynamic();
 	}
 }

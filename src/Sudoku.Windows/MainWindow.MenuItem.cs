@@ -339,6 +339,29 @@ namespace Sudoku.Windows
 			}
 
 			UpdateUndoRedoControls();
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -351,6 +374,29 @@ namespace Sudoku.Windows
 			}
 
 			UpdateUndoRedoControls();
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -377,6 +423,29 @@ namespace Sudoku.Windows
 
 			UpdateImageGrid();
 			UpdateUndoRedoControls();
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -449,6 +518,29 @@ namespace Sudoku.Windows
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listBoxTechniques.ClearValue(ItemsControl.ItemsSourceProperty);
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -459,6 +551,29 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -469,6 +584,29 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -479,6 +617,29 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 			_listBoxPaths.ClearValue(ItemsControl.ItemsSourceProperty);
 			_listViewSummary.ClearValue(ItemsControl.ItemsSourceProperty);
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -490,6 +651,29 @@ namespace Sudoku.Windows
 				_puzzle.ClearStack();
 
 				UpdateUndoRedoControls();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (_enableDynamicChecking)
+				{
+					if (!Directory.Exists(CachePath))
+					{
+						return;
+					}
+
+					if (!File.Exists(TempFilePath))
+					{
+						return;
+					}
+
+					try
+					{
+						File.Delete(TempFilePath);
+					}
+					catch
+					{
+					}
+				}
+#endif
 			}
 		}
 
@@ -507,6 +691,29 @@ namespace Sudoku.Windows
 			_tabControlInfo.SelectedIndex = 0;
 
 			UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+			if (_enableDynamicChecking)
+			{
+				if (!Directory.Exists(CachePath))
+				{
+					return;
+				}
+
+				if (!File.Exists(TempFilePath))
+				{
+					return;
+				}
+
+				try
+				{
+					File.Delete(TempFilePath);
+				}
+				catch
+				{
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
@@ -559,6 +766,29 @@ namespace Sudoku.Windows
 					SwitchOnGeneratingComboBoxesDisplaying();
 					ClearItemSourcesWhenGeneratedOrSolving();
 					UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+					if (_enableDynamicChecking)
+					{
+						if (!Directory.Exists(CachePath))
+						{
+							return;
+						}
+
+						if (!File.Exists(TempFilePath))
+						{
+							return;
+						}
+
+						try
+						{
+							File.Delete(TempFilePath);
+						}
+						catch
+						{
+						}
+					}
+#endif
 				}
 			}
 		}
@@ -618,6 +848,29 @@ namespace Sudoku.Windows
 					SwitchOnGeneratingComboBoxesDisplaying();
 					ClearItemSourcesWhenGeneratedOrSolving();
 					UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+					if (_enableDynamicChecking)
+					{
+						if (!Directory.Exists(CachePath))
+						{
+							return;
+						}
+
+						if (!File.Exists(TempFilePath))
+						{
+							return;
+						}
+
+						try
+						{
+							File.Delete(TempFilePath);
+						}
+						catch
+						{
+						}
+					}
+#endif
 				}
 			}
 		}
@@ -672,6 +925,29 @@ namespace Sudoku.Windows
 				SwitchOnGeneratingComboBoxesDisplaying();
 				ClearItemSourcesWhenGeneratedOrSolving();
 				UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (_enableDynamicChecking)
+				{
+					if (!Directory.Exists(CachePath))
+					{
+						return;
+					}
+
+					if (!File.Exists(TempFilePath))
+					{
+						return;
+					}
+
+					try
+					{
+						File.Delete(TempFilePath);
+					}
+					catch
+					{
+					}
+				}
+#endif
 			}
 		}
 
@@ -704,6 +980,30 @@ namespace Sudoku.Windows
 
 				Puzzle = grid;
 				UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (_enableDynamicChecking)
+				{
+					if (!Directory.Exists(CachePath))
+					{
+						goto Return;
+					}
+
+					if (!File.Exists(TempFilePath))
+					{
+						goto Return;
+					}
+
+					try
+					{
+						File.Delete(TempFilePath);
+					}
+					catch
+					{
+					}
+				}
+#endif
+			Return:
 				return true;
 			}
 
@@ -747,6 +1047,30 @@ namespace Sudoku.Windows
 
 				Puzzle = SudokuGrid.Parse(newSb.ToString());
 				UpdateImageGrid();
+
+#if AUTHOR_RESERVED && DEBUG
+				if (_enableDynamicChecking)
+				{
+					if (!Directory.Exists(CachePath))
+					{
+						goto Return;
+					}
+
+					if (!File.Exists(TempFilePath))
+					{
+						goto Return;
+					}
+
+					try
+					{
+						File.Delete(TempFilePath);
+					}
+					catch
+					{
+					}
+				}
+#endif
+			Return:
 				return true;
 			}
 		}

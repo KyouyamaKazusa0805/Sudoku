@@ -1421,6 +1421,28 @@
         <member name="M:Sudoku.Windows.MainWindow.ContextMenuTechniquesApply_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
+        <member name="F:Sudoku.Windows.MainWindow.CachePath">
+            <summary>
+            Indicates the cache path.
+            </summary>
+            <remarks>
+            <i>Please don't re-order the two fields in this <c>#if</c> block.</i>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Windows.MainWindow.TempFilePath">
+            <summary>
+            Indicates the temporary file path.
+            </summary>
+            <remarks>
+            <i>Please don't re-order the two fields in this <c>#if</c> block.</i>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Windows.MainWindow._enableDynamicChecking">
+            <summary>
+            Indicates whether the program will automatically check the local path, and imports the info
+            all the time.
+            </summary>
+        </member>
         <member name="F:Sudoku.Windows.MainWindow._view">
             <summary>
             The custom view.
@@ -1817,6 +1839,13 @@
             Initializes an instance with the specified grid.
             </summary>
             <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Windows.MainWindow.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance with a <see cref="T:System.Boolean"/> value indicating whether
+            the program enables the dynamic value checking from local path.
+            </summary>
+            <param name="enableDynamicChecking">A <see cref="T:System.Boolean"/> value indicating that.</param>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.OnInitialized(System.EventArgs)">
             <inheritdoc/>
@@ -2997,6 +3026,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
