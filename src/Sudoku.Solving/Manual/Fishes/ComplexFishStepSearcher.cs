@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		private const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
 
 		/// <summary>
-		/// Indictes the mask that means all regions.
+		/// Indicates the mask that means all regions.
 		/// </summary>
 		private const int AllRegions = 0b111_111_111__111_111_111__111_111_111;
 
@@ -186,7 +186,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 							// We can't hold any endo-fins at present. The algorithm limits
 							// the whole technique structure can't contain endo-fins now.
-							// We just assume the possible elimination is true, then the last imcomplete
+							// We just assume the possible elimination is true, then the last incomplete
 							// structure can't contain any fins; otherwise, kraken fishes.
 							// Do you know why we only check endo-fins instead of checking both exo-fins
 							// and endo-fins? Because here the incomplete structure don't contain

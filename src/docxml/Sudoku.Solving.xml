@@ -3256,7 +3256,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllRegions">
             <summary>
-            Indictes the mask that means all regions.
+            Indicates the mask that means all regions.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.MaxSize">
@@ -5943,7 +5943,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.LengthDifficulty">
             <summary>
-            The length difficluty.
+            The length difficulty.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.Difficulty">

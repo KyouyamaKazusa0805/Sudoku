@@ -738,7 +738,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			{
 				var cells = new Cells(urCells);
 
-				// Check all cells are ampty.
+				// Check all cells are empty.
 				bool containsValueCells = false;
 				foreach (int cell in cells)
 				{

@@ -95,7 +95,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				default:
 				{
-					// Here the null suppression operator is unncessary, but Roslyn don't think so.
+					// Here the null suppression operator is unnecessary, but Roslyn don't think so.
 					// Here either 'left' or 'right' isn't null, so the expression can't be null.
 					return new((left ?? right)!);
 				}

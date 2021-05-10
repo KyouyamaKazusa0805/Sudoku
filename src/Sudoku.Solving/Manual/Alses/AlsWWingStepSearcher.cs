@@ -60,7 +60,7 @@ namespace Sudoku.Solving.Manual.Alses
 						continue;
 					}
 
-					// Then merge masks from two ALSes' into one using the opeartor &.
+					// Then merge masks from two ALSes' into one using the operator &.
 					short mask = (short)(mask1 & mask2);
 					if (PopCount((uint)mask) < 2)
 					{

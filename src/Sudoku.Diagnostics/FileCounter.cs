@@ -164,7 +164,7 @@ namespace Sudoku.Diagnostics
 		}
 
 		/// <summary>
-		/// Count up for all files in the specified root directory, and return the result asynchornizedly.
+		/// Count up for all files in the specified root directory, and return the result asynchronously.
 		/// </summary>
 		/// <returns>The task of the operation.</returns>
 		public async Task<FileCounterResult> CountUpAsync() => await Task.Run(CountUp);

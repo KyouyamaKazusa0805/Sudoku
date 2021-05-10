@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public decimal CountDifficulty => Math.Floor((decimal)Math.Sqrt(2 * Candidates.Count + .5)) / 10;
 
 		/// <summary>
-		/// The length difficluty.
+		/// The length difficulty.
 		/// </summary>
 		public decimal LengthDifficulty
 		{

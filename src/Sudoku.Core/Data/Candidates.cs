@@ -299,7 +299,7 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Copies the current instance to the tagret array specified as an <see cref="int"/>*.
+		/// Copies the current instance to the target array specified as an <see cref="int"/>*.
 		/// </summary>
 		/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 		/// <param name="length">The length of that array.</param>
@@ -325,7 +325,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Copies the current instance to the tagret <see cref="Span{T}"/> instance.
+		/// Copies the current instance to the target <see cref="Span{T}"/> instance.
 		/// </summary>
 		/// <param name="span">
 		/// The target <see cref="Span{T}"/> instance.

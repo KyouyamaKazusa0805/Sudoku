@@ -524,7 +524,7 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Copies the current instance to the tagret array specified as an <see cref="int"/>*.
+		/// Copies the current instance to the target array specified as an <see cref="int"/>*.
 		/// </summary>
 		/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 		/// <param name="length">The length of that array.</param>

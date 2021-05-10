@@ -40,9 +40,9 @@ namespace Sudoku.Bilibili.Live
 		{
 			base.Stop();
 
-			Console.WriteLine("Plugin Stoped!");
-			Log("Plugin Stoped!");
-			//AddDM("Plugin Stoped!", true);
+			Console.WriteLine("Plugin Stopped!");
+			Log("Plugin Stopped!");
+			//AddDM("Plugin Stopped!", true);
 		}
 
 		/// <inheritdoc/>

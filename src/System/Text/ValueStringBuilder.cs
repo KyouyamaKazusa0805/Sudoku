@@ -35,7 +35,7 @@ namespace System.Text
 		private char[]? _chunk;
 
 		/// <summary>
-		/// INdicates the character pool.
+		/// Indicates the character pool.
 		/// </summary>
 		private Span<char> _chars;
 

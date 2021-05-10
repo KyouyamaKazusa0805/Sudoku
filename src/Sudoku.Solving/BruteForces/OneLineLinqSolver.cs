@@ -87,7 +87,7 @@ namespace Sudoku.Solving.BruteForces
 						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
 						select i
 
-					// Then check whether the duplicat list contains any elements.
+					// Then check whether the duplicate list contains any elements.
 					// If so, the grid is invalid.
 					where !duplicateCases.Any()
 					select solution.SliceConcat(index, digit.ToString())

@@ -2782,7 +2782,7 @@
         </member>
         <member name="F:System.Text.ValueStringBuilder._chars">
             <summary>
-            INdicates the character pool.
+            Indicates the character pool.
             </summary>
         </member>
         <member name="M:System.Text.ValueStringBuilder.#ctor(System.String)">
@@ -3052,7 +3052,7 @@
         </member>
         <member name="M:System.Text.ValueStringBuilder.AppendLine(System.Char)">
             <summary>
-            Append a character, and then apped a new line string.
+            Append a character, and then append a new line string.
             </summary>
             <param name="c">The character.</param>
         </member>

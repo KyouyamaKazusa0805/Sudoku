@@ -10,7 +10,7 @@ namespace Sudoku.DocComments
 	/// </code>
 	/// or like
 	/// <code>
-	/// (int variable1, double variable2, string? variabl3) = instance;
+	/// (int variable1, double variable2, string? variable3) = instance;
 	/// </code>
 	/// </summary>
 	/// <remarks>

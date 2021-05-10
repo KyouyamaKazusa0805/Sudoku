@@ -59,11 +59,11 @@ namespace Sudoku.CodeAnalysis.Analyzers
 				// Iterate on each dynamically called location.
 				foreach (var (node, value) in collector.Collection)
 				{
-					var jsonProprtyNameRegex = new Regex($@"""{value}""(?=\:\s""[^""]+"",?)");
+					var jsonPropertyNameRegex = new Regex($@"""{value}""(?=\:\s""[^""]+"",?)");
 
 					// Check all dictionaries. If all dictionaries don't contain that key,
 					// we'll report on this.
-					if (texts.Any(text => jsonProprtyNameRegex.Match(text).Success))
+					if (texts.Any(text => jsonPropertyNameRegex.Match(text).Success))
 					{
 						continue;
 					}

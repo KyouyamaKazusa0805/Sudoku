@@ -88,7 +88,7 @@ namespace Sudoku.Data
 			/// <returns>The grid.</returns>
 			public SudokuGrid Parse()
 			{
-				// Optimization: We can check some concrete type to reduce the unncessary parsing.
+				// Optimization: We can check some concrete type to reduce the unnecessary parsing.
 				switch (ParsingValue)
 				{
 					case { Length: 729 } when OnParsingExcel(ref this) is { IsUndefined: false } grid:
@@ -456,7 +456,7 @@ namespace Sudoku.Data
 								if (match[i + 1] is var nextChar and >= '1' and <= '9')
 								{
 									// Set value.
-									// Note that the subtracter is character '1', not '0'.
+									// Note that the subtractor is character '1', not '0'.
 									result[realPos] = nextChar - '1';
 
 									// Add 2 on iteration variable to skip 2 characters

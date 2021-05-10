@@ -195,11 +195,11 @@ namespace Sudoku.Solving.Manual.Exocets
 								&& (grid.GetCandidates(p) & ~mask) != 0
 								&& p != pos1 && p != pos2)
 							{
-								// The conditon passed when:
+								// The condition passed when:
 								// 1) Can't be target cells.
 								// 2) Can't be value cells (given or modifiable).
 								// 3) Must contain base candidates.
-								// 4) Must contain non-base candiates.
+								// 4) Must contain non-base candidates.
 								ahsOrConjugatePairCands = mask;
 								return true;
 							}

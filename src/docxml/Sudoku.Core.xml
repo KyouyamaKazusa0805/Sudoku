@@ -551,14 +551,14 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.CopyTo(System.Int32*,System.Int32)">
             <summary>
-            Copies the current instance to the tagret array specified as an <see cref="T:System.Int32"/>*.
+            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
             </summary>
             <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
             <param name="length">The length of that array.</param>
         </member>
         <member name="M:Sudoku.Data.Candidates.CopyTo(System.Span{System.Int32}@)">
             <summary>
-            Copies the current instance to the tagret <see cref="T:System.Span`1"/> instance.
+            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
             </summary>
             <param name="span">
             The target <see cref="T:System.Span`1"/> instance.
@@ -1083,7 +1083,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.CopyTo(System.Int32*,System.Int32)">
             <summary>
-            Copies the current instance to the tagret array specified as an <see cref="T:System.Int32"/>*.
+            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
             </summary>
             <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
             <param name="length">The length of that array.</param>
@@ -3027,7 +3027,7 @@
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.EmptyCells">
             <summary>
-            Indicates the cells that correspoinding position in this grid is empty.
+            Indicates the cells that corresponding position in this grid is empty.
             </summary>
             <remarks>
             Note that this property isn't a promptly one because the value won't be calculated
@@ -3274,7 +3274,7 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Unfix">
             <summary>
-            To unfix the current grid (all given values will be chanegd to modifiable ones).
+            To unfix the current grid (all given values will be changed to modifiable ones).
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Reset">
@@ -5890,7 +5890,7 @@
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.UrPlus">
             <summary>
-            Indicates the unique rectangle plus (UR+) techique.
+            Indicates the unique rectangle plus (UR+) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.Ul">

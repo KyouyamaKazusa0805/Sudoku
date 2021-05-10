@@ -88,7 +88,7 @@ namespace Sudoku.Techniques
 		Ur,
 
 		/// <summary>
-		/// Indicates the unique rectangle plus (UR+) techique.
+		/// Indicates the unique rectangle plus (UR+) technique.
 		/// </summary>
 		UrPlus,
 

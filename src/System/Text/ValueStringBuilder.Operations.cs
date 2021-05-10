@@ -57,7 +57,7 @@ namespace System.Text
 				for (char* p = pThis + startIndex; i < Length; i++, p++)
 				{
 					// Assign the value.
-					// Please note that 'p[a]' is equi to '*(p + a)'.
+					// Please note that 'p[a]' is equivalent to '*(p + a)'.
 					*p = p[length];
 				}
 			}
@@ -226,7 +226,7 @@ namespace System.Text
 		public void AppendLine(object instance) => AppendLine(instance.ToString());
 
 		/// <summary>
-		/// Append a character, and then apped a new line string.
+		/// Append a character, and then append a new line string.
 		/// </summary>
 		/// <param name="c">The character.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

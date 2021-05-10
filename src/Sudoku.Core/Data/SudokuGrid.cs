@@ -309,7 +309,7 @@ namespace Sudoku.Data
 		public readonly int EmptiesCount => Triplet.A;
 
 		/// <summary>
-		/// Indicates the cells that correspoinding position in this grid is empty.
+		/// Indicates the cells that corresponding position in this grid is empty.
 		/// </summary>
 		/// <remarks>
 		/// Note that this property isn't a promptly one because the value won't be calculated
@@ -810,7 +810,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// To unfix the current grid (all given values will be chanegd to modifiable ones).
+		/// To unfix the current grid (all given values will be changed to modifiable ones).
 		/// </summary>
 		public void Unfix()
 		{
