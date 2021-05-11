@@ -2,7 +2,7 @@
 
 using System;
 using Sudoku.DocComments;
-#if false
+#if NESTED_ANNOTATION
 using Sudoku.CodeGen;
 #endif
 
