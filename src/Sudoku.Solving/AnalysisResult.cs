@@ -74,24 +74,8 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="Steps"/>
-		public decimal TotalDifficulty
-		{
-			get
-			{
-				if (Steps is null)
-				{
-					return 0;
-				}
-
-				decimal result = 0;
-				foreach (var step in Steps)
-				{
-					result += step.ShowDifficulty ? step.Difficulty : 0;
-				}
-
-				return result;
-			}
-		}
+		public decimal TotalDifficulty =>
+			Steps is null ? 0 : Steps.Sum(static step => step.ShowDifficulty ? step.Difficulty : 0);
 
 		/// <summary>
 		/// <para>
