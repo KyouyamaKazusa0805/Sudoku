@@ -91,7 +91,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Bilibili", "Sudoku.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bilibili.Live", "src\Sudoku.Bilibili.Live\Sudoku.Bilibili.Live.csproj", "{7A835345-1692-4541-8CF9-686A9B0E3DBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bilibili.Live.Danmaku", "src\Sudoku.Bilibili.Live.Danmaku\Sudoku.Bilibili.Live.Danmaku.csproj", "{001A83C6-DFE4-478C-83FC-9A5ECFF88EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bilibili.Live.Danmaku", "src\Sudoku.Bilibili.Live.Danmaku\Sudoku.Bilibili.Live.Danmaku.csproj", "{001A83C6-DFE4-478C-83FC-9A5ECFF88EF2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bilibili.Live.Plugin", "src\Sudoku.Bilibili.Live.Plugin\Sudoku.Bilibili.Live.Plugin.csproj", "{8CA909EC-FFAC-4009-B08F-4CE7DCD5F047}"
 EndProject
