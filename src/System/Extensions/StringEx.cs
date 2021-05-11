@@ -131,11 +131,9 @@ namespace System.Extensions
 		/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 		public static string? Match(this string @this, string pattern, RegexOptions regexOption) =>
 			pattern.IsRegexPattern()
-			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is
-			{
-				Success: true,
-				Value: var value
-			} match ? value : null
+			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
+			? value
+			: null
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
