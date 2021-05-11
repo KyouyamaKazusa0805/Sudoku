@@ -808,10 +808,10 @@
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
             <param name="this">The current enumeration type instance.</param>
             <param name="other">The other instance to check.</param>
-            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
             <remarks>
             This method is same as <see cref="M:System.Enum.HasFlag(System.Enum)"/>, but without boxing and unboxing operations.
             </remarks>
+            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
             <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
         </member>
         <member name="M:System.Extensions.EnumEx.MultiFlags``1(``0,``0)">

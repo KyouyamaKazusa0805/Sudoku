@@ -187,10 +187,10 @@ namespace System.Extensions
 		/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 		/// <param name="this">The current enumeration type instance.</param>
 		/// <param name="other">The other instance to check.</param>
-		/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 		/// <remarks>
 		/// This method is same as <see cref="Enum.HasFlag(Enum)"/>, but without boxing and unboxing operations.
 		/// </remarks>
+		/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 		/// <seealso cref="Enum.HasFlag(Enum)"/>
 		public static unsafe bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 		{
