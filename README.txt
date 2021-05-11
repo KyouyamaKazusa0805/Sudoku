@@ -1,11 +1,9 @@
-The solution folder contains two projects:
+The solution folder contains those projects:
 
-* `Sudoku.Bot`
-* `Sudoku.Bot.Console`
+* `Sudoku.Bilibili.Live`
+* `Sudoku.Bilibili.Live.Danmaku`
+* `Sudoku.Bilibili.Live.Plugin`
 
-Those two projects are used for a social media application called QICQ.
-
-If you want to compile those two projects, please import the NuGet package 'huajitech.mirai.http.0.14.0.nupkg'
-in the 'required' folder into those two projects.
+Those projects are used for a web video platform called BiliBili.
 
 If you don't want to compile them, just delete them.

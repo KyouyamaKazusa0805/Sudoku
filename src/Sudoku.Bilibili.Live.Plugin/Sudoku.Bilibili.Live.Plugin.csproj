@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Nullable>enable</Nullable>
+		<Authors>Sunnie</Authors>
+		<Description>A project that provides the base types for the live plugin.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<Version>0.1</Version>
+		<LangVersion>9.0</LangVersion>
+		<DocumentationFile>..\docxml\Sudoku.Bilibili.Live.Plugin.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+</Project>

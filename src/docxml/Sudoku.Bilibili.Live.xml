@@ -14,9 +14,6 @@
             Initializes an instance with the default instantiation behavior.
             </summary>
         </member>
-        <member name="M:Sudoku.Bilibili.Live.SudokuLivePlugin.Admin">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Bilibili.Live.SudokuLivePlugin.Stop">
             <inheritdoc/>
         </member>

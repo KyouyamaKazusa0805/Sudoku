@@ -1,0 +1,662 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Bilibili.Live.Danmaku</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader">
+            <summary>
+            Encapsulates a danmaku loader.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.HttpClient">
+            <summary>
+            Encapsulates a <see cref="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.HttpClient"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.Rng">
+            <summary>
+            Indicates the random number generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._lastRoomId">
+            <summary>
+            Indicates the last live room ID.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._lastServer">
+            <summary>
+            Indicates the last server that connected.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._debuglog">
+            <summary>
+            Indicates whether the instance will save the log in the debug mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._protocolversion">
+            <summary>
+            Indicates the protocol version.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._cidInfoUri">
+            <summary>
+            Indicates the URI that gets the inner value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._defaultHosts">
+            <summary>
+            Indicates the default hosts.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._connected">
+            <summary>
+            Indicates whether the current client has connected to the server.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._chatPort">
+            <summary>
+            Indicates the chat port.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._chatHost">
+            <summary>
+            Indicates the chat host.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._client">
+            <summary>
+            Indicates the client.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._netStream">
+            <summary>
+            Indicates the net stream.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._error">
+            <summary>
+            Indicates the inner error.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.ReceivedDanmaku">
+            <summary>
+            Indicates the event to be triggered while receiving a danmaku.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.Disconnected">
+            <summary>
+            Indicates the event to be triggered while disconnecting.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.ReceivedRoomCount">
+            <summary>
+            Indicates the event to be triggered while receiving the room count.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.LogMessage">
+            <summary>
+            Indicates the event to be triggered while logging the message.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.ConnectAsync(System.Int32)">
+            <summary>
+            Connects to the server, with the specified live room ID.
+            </summary>
+            <param name="roomId">The room ID.</param>
+            <returns>A task that handles that operation.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the room has already connected, or the chat host <see cref="F:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader._chatHost"/>
+            keeps <see langword="null"/> or empty value.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.ReceiveMessageLoopAsync">
+            <summary>
+            Receive the message loop.
+            </summary>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.Disconnect">
+            <summary>
+            To disconnect the client.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.InnerDisconnect">
+            <summary>
+            The inner method to disconnect the client.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.SendHeartbeatAsync">
+            <summary>
+            Send the heartbeat asynchronously.
+            </summary>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.SendSocketDataAsync(System.Int32,System.String)">
+            <summary>
+            Send the socket data asynchronously.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="body">The body.</param>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.SendSocketDataAsync(System.Int32,System.Int16,System.Int16,System.Int32,System.Int32,System.String)">
+            <summary>
+            Send the socket data asynchronously.
+            </summary>
+            <param name="packetlength">The packet length.</param>
+            <param name="magic">The magic number.</param>
+            <param name="version">The version.</param>
+            <param name="action">The action.</param>
+            <param name="param">The parameter.</param>
+            <param name="body">The real body.</param>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuLoader.SendJoinChannelAsync(System.Int32,System.String)">
+            <summary>
+            Send join channel.
+            </summary>
+            <param name="channelId">The channel ID.</param>
+            <param name="token">The token.</param>
+            <returns>The task of this operation.</returns>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol">
+            <summary>
+            Encapsulates a danmaku protocol.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.#ctor(System.Int32,System.Int16,System.Int16,System.Int32,System.Int32)">
+            <summary>
+            Initializes an instance with the packet length, header length, version, action and the parameter.
+            </summary>
+            <param name="packetLength">The packet length.</param>
+            <param name="headerLength">The header length.</param>
+            <param name="version">The version.</param>
+            <param name="action">The action.</param>
+            <param name="parameter">The parameter.</param>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.PacketLength">
+            <summary>
+            Indicates the total length of the message.
+            The value is always the sum of the header length, and the data length.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.HeaderLength">
+            <summary>
+            Indicates the total length of the header.
+            The value is always <c><see langword="sizeof"/>(<see cref="T:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol"/>)</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.Version">
+            <summary>
+            Indicates the version of the message.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.Action">
+            <summary>
+            Indicates the message type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.Parameter">
+            <summary>
+            Indicates the parameter value. The value always keeps the value <c>1</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol.FromBuffer(System.Byte[])">
+            <summary>
+            Creates a <see cref="T:Sudoku.Bilibili.Live.Danmaku.DanmakuProtocol"/> with the specified buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns>The instance.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the buffer length is lower than 16.</exception>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter">
+            <summary>
+            A big-endian BitConverter that converts base data types to an array of bytes,
+            and an array of bytes to base data types. All conversions are in
+            big-endian format regardless of machine architecture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.IsLittleEndian">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.GetBytes(System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.GetBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.GetBytes(System.Int64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.ToInt16(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.ToInt32(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter.ToInt64(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter">
+            <summary>
+            A BitConverter with a specific endianness that converts base data types to an array of bytes,
+            and an array of bytes to base data types, regardless of
+            machine architecture. Access the little-endian and
+            big-endian converters with their respective properties.
+            </summary>
+            <remarks>
+            The EndianBitConverter implementations provide the same interface as <see cref="T:System.BitConverter"/>,
+            but exclude those methods which perform the same on both big-endian and little-endian machines
+            (such as <see cref="M:System.BitConverter.ToString(System.Byte[])"/>).
+            However, <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Boolean)"/> is included for consistency.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.LittleEndian">
+            <summary>
+            Get an instance of a <see cref="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter"/>,
+            a <see cref="T:System.BitConverter"/> which performs all conversions in little-endian format regardless of
+            machine architecture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.BigEndian">
+            <summary>
+            Get an instance of a <see cref="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.BigEndianBitConverter"/>, a BitConverter which performs all conversions in big-endian format regardless of
+            machine architecture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.IsLittleEndian">
+            <summary>
+            Indicates the byte order ("endianness") in which data should be converted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Boolean)">
+            <summary>
+            Returns the specified Boolean value as a byte array.
+            </summary>
+            <param name="value">A Boolean value.</param>
+            <returns>A byte array with length 1.</returns>
+            <remarks>You can convert a byte array back to a <see cref="T:System.Boolean"/> value by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToBoolean(System.Byte[],System.Int32)"/> method.</remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Char)">
+            <summary>
+            Returns the specified Unicode character value as an array of bytes.
+            </summary>
+            <param name="value">A character to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.Char"/> value
+            by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToChar(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Double)">
+            <summary>
+            Returns the specified double-precision floating point value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.Double"/> value
+            by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToDouble(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Int16)">
+            <summary>
+            Returns the specified 16-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 2.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.Int16"/>
+            value by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt16(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Int32)">
+            <summary>
+            Returns the specified 32-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+            <remarks>You can convert a byte array back to a <see cref="T:System.Int32"/>
+            value by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt32(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Int64)">
+            <summary>
+            Returns the specified 64-bit signed integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.Int64"/> value
+            by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt64(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.Single)">
+            <summary>
+            Returns the specified single-precision floating point value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.Single"/> value
+            by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToSingle(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.UInt16)">
+            <summary>
+            Returns the specified 16-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert. </param>
+            <returns>An array of bytes with length 2.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.UInt16"/> value
+            by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt16(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.UInt32)">
+            <summary>
+            Returns the specified 32-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 4.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.UInt32"/>
+            value by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt32(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.GetBytes(System.UInt64)">
+            <summary>
+            Returns the specified 64-bit unsigned integer value as an array of bytes.
+            </summary>
+            <param name="value">The number to convert.</param>
+            <returns>An array of bytes with length 8.</returns>
+            <remarks>
+            You can convert a byte array back to a <see cref="T:System.UInt64"/>
+            value by calling the <see cref="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt64(System.Byte[],System.Int32)"/> method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToBoolean(System.Byte[],System.Int32)">
+            <summary>
+            Returns a Boolean value converted from the byte at a specified position in a byte array.
+            </summary>
+            <param name="value">A byte array.</param>
+            <param name="startIndex">The index of the byte within <paramref name="value"/>.</param>
+            <returns>
+            true if the byte at <paramref name="startIndex"/> in <paramref name="value"/> is nonzero; otherwise, false.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 1.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToChar(System.Byte[],System.Int32)">
+            <summary>
+            Returns a Unicode character converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array.</param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A character formed by two bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToChar method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 1 to a <see cref="T:System.Char"/> value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 2.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToDouble(System.Byte[],System.Int32)">
+            <summary>
+            Returns a double-precision floating point number converted from eight bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A double precision floating point number formed by eight bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToDouble method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 7 to a <see cref="T:System.Double"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 8.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt16(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 16-bit signed integer converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 16-bit signed integer formed by two bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToInt16 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 1 to an <see cref="T:System.Int16"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 2.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt32(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 32-bit signed integer converted from four bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes. </param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 32-bit signed integer formed by four bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToInt32 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 3 to an <see cref="T:System.Int32"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 4.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToInt64(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 64-bit signed integer converted from eight bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 64-bit signed integer formed by eight bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToInt64 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 7 to an <see cref="T:System.Int64"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 8.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToSingle(System.Byte[],System.Int32)">
+            <summary>
+            Returns a single-precision floating point number converted from four bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes.</param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A single-precision floating point number formed by four bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToSingle method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 3 to a <see cref="T:System.Single"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 4.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt16(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 16-bit unsigned integer converted from two bytes at a specified position in a byte array.
+            </summary>
+            <param name="value"></param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 16-bit unsigned integer formed by two bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToUInt16 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 1 to a <see cref="T:System.UInt16"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 2.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt32(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 32-bit unsigned integer converted from four bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes. </param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 32-bit unsigned integer formed by four bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToUInt32 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 3 to a <see cref="T:System.UInt32"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 4.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.ToUInt64(System.Byte[],System.Int32)">
+            <summary>
+            Returns a 64-bit unsigned integer converted from eight bytes at a specified position in a byte array.
+            </summary>
+            <param name="value">An array of bytes. </param>
+            <param name="startIndex">The starting position within <paramref name="value"/>.</param>
+            <returns>A 64-bit unsigned integer formed by the eight bytes beginning at <paramref name="startIndex"/>.</returns>
+            <remarks>
+            The ToUInt64 method converts the bytes from index <paramref name="startIndex"/> to <paramref name="startIndex"/> + 7 to a <see cref="T:System.UInt64"/>
+            value.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="startIndex"/> is less than zero or greater than the length of <paramref name="value"/> minus 8.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.EndianBitConverter.CheckArguments(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            To check arguments.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="byteLength">The byte length.</param>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter">
+            <summary>
+            A little-endian BitConverter that converts base data types to an array of bytes,
+            and an array of bytes to base data types. All conversions are in
+            little-endian format regardless of machine architecture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.IsLittleEndian">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.GetBytes(System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.GetBytes(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.GetBytes(System.Int64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.ToInt16(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.ToInt32(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.LittleEndianBitConverter.ToInt64(System.Byte[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter">
+            <summary>
+            Converts between Single (float) and Int32 (int), as <see cref="T:System.BitConverter"/>
+            doesn't have a method to do this in all .NET versions.
+            A union is used instead of an unsafe pointer cast
+            so we don't have to worry about the trusted environment implications.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter._intValue">
+            <summary>
+            Maps to an <see cref="T:System.Int32"/> value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter._floatValue">
+            <summary>
+            Maps to an <see cref="T:System.Single"/> value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter.#ctor(System.Int32)">
+            <summary>
+            Initializes an instance with the specified <see cref="T:System.Int32"/> value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter.#ctor(System.Single)">
+            <summary>
+            Initializes an instance with the specified <see cref="T:System.Single"/> value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter.GetIntValue">
+            <summary>
+            Gets the <see cref="T:System.Int32"/> value.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.EndianBitConverters.SingleConverter.GetFloatValue">
+            <summary>
+            Gets the <see cref="T:System.Single"/> value.
+            </summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.Extensions.StreamEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <seealso cref="T:System.IO.Stream"/>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.Extensions.StreamEx.ReadBAsync(System.IO.Stream,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Read the buffer asynchronously.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+            <returns>The task of the operation.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when <paramref name="count"/> isn't a positive integer.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the offset, count and the buffer length has an invalid relation.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">Throws when the stream has already disposed.</exception>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.LogMessageEventArgs">
+            <summary>
+            Provides event arguments for <see cref="T:Sudoku.Bilibili.Live.Danmaku.LogMessageEventHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Bilibili.Live.Danmaku.LogMessageEventHandler"/>
+        </member>
+        <member name="P:Sudoku.Bilibili.Live.Danmaku.LogMessageEventArgs.Message">
+            <summary>
+            Indicates the inner message.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bilibili.Live.Danmaku.LogMessageEventArgs.op_Implicit(System.String)~Sudoku.Bilibili.Live.Danmaku.LogMessageEventArgs">
+            <summary>
+            Implicit cast from <see cref="T:System.String"/>? to <see cref="T:Sudoku.Bilibili.Live.Danmaku.LogMessageEventArgs"/>.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Sudoku.Bilibili.Live.Danmaku.LogMessageEventHandler">
+            <summary>
+            Indicates the methods to trigger while logging the message.
+            </summary>
+            <param name="sender">The object to trigger that event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+    </members>
+</doc>
