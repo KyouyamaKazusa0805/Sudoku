@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeAnalysis</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">
+            <summary>
+            Provides diagnostic IDs.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.HelpLinks">
+            <summary>
+            Provides help links.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Categories">
+            <summary>
+            Provides the categories.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Requirements">
+            <summary>
+            Indicates the category is the requirement.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Usage">
+            <summary>
+            Indicates the category is the usage.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.ResourceDictionary">
+            <summary>
+            Indicates the category is the resource dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Model">
+            <summary>
+            Indicates the category is the model (data structure implementation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Performance">
+            <summary>
+            Indicates the category is the performance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Style">
+            <summary>
+            Indicates the category is the style.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Titles">
+            <summary>
+            Provides the titles.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Messages">
+            <summary>
+            Provides the messages.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx.DerivedFrom(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Check whether the current symbol derives from the specified type symbol.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <param name="type">The type.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx.WithTypeArguments(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.SpecialType[])">
+            <summary>
+            Creates an <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/> with specified type arguments.
+            </summary>
+            <param name="this">The base symbol.</param>
+            <param name="compilation">The compilation.</param>
+            <param name="specialTypes">All special types to create.</param>
+            <returns>Result symbol.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx.DerivedFrom(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation,System.String)">
+            <summary>
+            Check whether the current symbol derives from the specified type.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <param name="compilation">The compilation.</param>
+            <param name="typeName">The type name.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertySymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertySymbolEx.FindMatchingNode(Microsoft.CodeAnalysis.IPropertySymbol,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            To find the node by the specified property symbol.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="syntaxNode">The syntax node.</param>
+            <param name="semanticModel">The semantic model.</param>
+            <returns>The property node.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes the code for the <see langword="static"/> property
+            named <c>Properties</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.TargetPropertyName">
+            <summary>
+            Indicates the target property name to check (i.e. <c>Properties</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.StepSearcherTypeFullName">
+            <summary>
+            Indicates the full name of the type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.TechniquePropertiesTypeFullName">
+            <summary>
+            Indicates the full name of the type of the property technique properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.AnalyzeSymbol(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
+            <summary>
+            To analyze this symbol.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku001">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599824&amp;doc_id=633030">
+            SUDOKU001
+            </a>
+            diagnostic result (A property named 'Properties' expected).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku002">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599808&amp;doc_id=633030">
+            SUDOKU002
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="public"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku003">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3621783&amp;doc_id=633030">
+            SUDOKU003
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="static"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku004">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599816&amp;doc_id=633030">
+            SUDOKU004
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="readonly"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku005">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599818&amp;doc_id=633030">
+            SUDOKU005
+            </a>
+            diagnostic result (The property 'Properties' has a wrong type).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku006">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599826&amp;doc_id=633030">
+            SUDOKU006
+            </a>
+            diagnostic result (The property 'Properties' can't be <see langword="null"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku007">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3602787&amp;doc_id=633030">
+            SUDOKU007
+            </a>
+            diagnostic result (The property 'Properties' must contain an initializer).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku008">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3607697&amp;doc_id=633030">
+            SUDOKU008
+            </a>
+            diagnostic result (The property 'Properties' must be initialized by a new clause).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
