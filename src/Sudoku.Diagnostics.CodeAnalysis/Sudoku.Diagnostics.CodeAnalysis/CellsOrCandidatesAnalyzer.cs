@@ -54,17 +54,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				AnalyzeEqualityAndNonequalityOperatorExpressions,
+				static context =>
+				{
+					CheckSudoku018(context);
+					CheckSudoku021(context);
+				},
 				new SyntaxKind[] { SyntaxKind.InvocationExpression }
 			);
 		}
 
-
-		private static void AnalyzeEqualityAndNonequalityOperatorExpressions(SyntaxNodeAnalysisContext context)
-		{
-			CheckSudoku018(context);
-			CheckSudoku021(context);
-		}
 
 		private static void CheckSudoku018(SyntaxNodeAnalysisContext context)
 		{

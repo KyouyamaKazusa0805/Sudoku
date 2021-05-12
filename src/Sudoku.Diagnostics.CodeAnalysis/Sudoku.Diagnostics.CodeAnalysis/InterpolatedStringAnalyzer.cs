@@ -20,17 +20,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				AnalyzeInterpolatedString,
+				static context =>
+				{
+					CheckSudoku016(context);
+					CheckSudoku020(context);
+				},
 				new SyntaxKind[] { SyntaxKind.Interpolation, SyntaxKind.InterpolatedStringExpression }
 			);
 		}
 
-
-		private static void AnalyzeInterpolatedString(SyntaxNodeAnalysisContext context)
-		{
-			CheckSudoku016(context);
-			CheckSudoku020(context);
-		}
 
 		private static void CheckSudoku016(SyntaxNodeAnalysisContext context)
 		{

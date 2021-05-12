@@ -302,6 +302,36 @@
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes the interpolated strings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Sudoku016">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">
+            SUDOKU016
+            </a>
+            diagnostic result (Please add 'ToString' method invocation to the interpolation part
+            in order to prevent any box and unbox operations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Sudoku020">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">
+            SUDOKU020
+            </a>
+            diagnostic result (Unnecessary interpolation leading character <c>'$'</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer">
             <summary>
             Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
