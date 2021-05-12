@@ -50,134 +50,118 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterOperationAction(
-				AnalyzeDynamicInvocationOperation,
-				new OperationKind[] { OperationKind.DynamicInvocation }
-			);
+			context.RegisterCodeBlockAction(AnalyzeDynamicInvocation);
 		}
 
-		private static void AnalyzeDynamicInvocationOperation(OperationAnalysisContext context)
+		private static void AnalyzeDynamicInvocation(CodeBlockAnalysisContext context)
 		{
-			if (context.Compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
+			var semanticModel = context.SemanticModel;
+			var compilation = semanticModel.Compilation;
+			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
 			{
 				// We don't check on those two WPF projects, because those two projects has already used
 				// their own resource dictionary called 'MergedDictionary'.
 				return;
 			}
 
-			var semanticModel = context.Operation.SemanticModel;
-			if (semanticModel is null)
+			if (
+				context.CodeBlock is not InvocationExpressionSyntax
+				{
+					Expression: MemberAccessExpressionSyntax
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+						Expression: MemberAccessExpressionSyntax
+						{
+							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+							Expression: IdentifierNameSyntax
+							{
+								Identifier: { ValueText: TextResourcesClassName }
+							},
+							Name: IdentifierNameSyntax
+							{
+								Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
+							}
+						},
+						Name: IdentifierNameSyntax
+						{
+							Identifier: { ValueText: var methodName }
+						} identifierNameNode
+					},
+					ArgumentList: var argumentListNode
+				} node
+			)
 			{
 				return;
 			}
 
-			var compilation = context.Compilation;
-			var symbol = context.ContainingSymbol;
-			foreach (var syntaxReference in symbol.DeclaringSyntaxReferences)
+			int actualParamsCount = argumentListNode.Arguments.Count;
+			int requiredParamsCount = methodName switch
 			{
-				if (
-					syntaxReference.GetSyntax() is not InvocationExpressionSyntax
-					{
-						Expression: MemberAccessExpressionSyntax
-						{
-							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-							Expression: MemberAccessExpressionSyntax
-							{
-								RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-								Expression: IdentifierNameSyntax
-								{
-									Identifier: { ValueText: TextResourcesClassName }
-								},
-								Name: IdentifierNameSyntax
-								{
-									Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
-								}
-							},
-							Name: IdentifierNameSyntax
-							{
-								Identifier: { ValueText: var methodName }
-							} identifierNameNode
-						},
-						ArgumentList: var argumentListNode
-					} node
-				)
-				{
-					continue;
-				}
+				ChangeLanguageMethodName => 1,
+				SerializeMethodName => 2,
+				DeserializeMethodName => 2,
+				_ => -1
+			};
+			if (requiredParamsCount != -1 && actualParamsCount != requiredParamsCount)
+			{
+				ReportSudoku010(context, methodName, identifierNameNode, actualParamsCount, requiredParamsCount);
 
-				if (
-					methodName is not (
-						ChangeLanguageMethodName or SerializeMethodName or DeserializeMethodName
+				goto CheckSudoku012;
+			}
+
+			switch (methodName)
+			{
+				case ChangeLanguageMethodName:
+				{
+					if (
+						!SymbolEqualityComparer.Default.Equals(
+							semanticModel.GetOperation(argumentListNode.Arguments[0].Expression)!.Type,
+							compilation.GetTypeByMetadataName(CountryCodeTypeName)
+						)
 					)
-				)
-				{
-					ReportSudoku009(context, identifierNameNode, methodName);
+					{
+						ReportSudoku011_Case1(context, semanticModel, identifierNameNode, methodName, argumentListNode);
+					}
 
-					goto CheckSudoku012;
+					break;
 				}
-
-				int actualParamsCount = argumentListNode.Arguments.Count;
-				int requiredParamsCount = methodName switch
+				case SerializeMethodName:
+				case DeserializeMethodName:
 				{
-					ChangeLanguageMethodName => 1,
-					SerializeMethodName => 2,
-					DeserializeMethodName => 2
-				};
-				if (actualParamsCount != requiredParamsCount)
-				{
-					ReportSudoku010(context, methodName, identifierNameNode, actualParamsCount, requiredParamsCount);
-
-					goto CheckSudoku012;
-				}
-
-				switch (methodName)
-				{
-					case ChangeLanguageMethodName:
+					var expectedTypeSymbol = compilation.GetSpecialType(SpecialType.System_String);
+					for (int i = 0; i < 2; i++)
 					{
 						if (
 							!SymbolEqualityComparer.Default.Equals(
-								semanticModel.GetOperation(argumentListNode.Arguments[0].Expression)!.Type,
-								compilation.GetTypeByMetadataName(CountryCodeTypeName)
+								semanticModel.GetOperation(argumentListNode.Arguments[i].Expression)!.Type,
+								expectedTypeSymbol
 							)
 						)
 						{
-							ReportSudoku011_Case1(context, semanticModel, identifierNameNode, methodName, argumentListNode);
+							ReportSudoku011_Case2(context, semanticModel, methodName, argumentListNode, i);
 						}
-
-						break;
 					}
-					case SerializeMethodName:
-					case DeserializeMethodName:
-					{
-						var expectedTypeSymbol = compilation.GetSpecialType(SpecialType.System_String);
-						for (int i = 0; i < 2; i++)
-						{
-							if (
-								!SymbolEqualityComparer.Default.Equals(
-									semanticModel.GetOperation(argumentListNode.Arguments[i].Expression)!.Type,
-									expectedTypeSymbol
-								)
-							)
-							{
-								ReportSudoku011_Case2(context, semanticModel, methodName, argumentListNode, i);
-							}
-						}
 
-						break;
-					}
+					break;
 				}
-
-			CheckSudoku012:
-				if (node.Parent is not ExpressionStatementSyntax)
+				default:
 				{
-					ReportSudoku012(context, node, methodName);
+					ReportSudoku009(context, identifierNameNode, methodName);
+
+					break;
 				}
+			}
+
+		CheckSudoku012:
+			if (node.Parent is not ExpressionStatementSyntax)
+			{
+				ReportSudoku012(context, node, methodName);
 			}
 		}
 
 
 		private static void ReportSudoku009(
-			OperationAnalysisContext context, IdentifierNameSyntax identifierNameNode, string methodName) =>
+			CodeBlockAnalysisContext context, IdentifierNameSyntax identifierNameNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
@@ -195,7 +179,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku010(
-			OperationAnalysisContext context, string methodName, IdentifierNameSyntax nameNode,
+			CodeBlockAnalysisContext context, string methodName, IdentifierNameSyntax nameNode,
 			int actualParamsCount, int requiredParamsCount) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
@@ -214,7 +198,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku011_Case1(
-			OperationAnalysisContext context, SemanticModel semanticModel,
+			CodeBlockAnalysisContext context, SemanticModel semanticModel,
 			IdentifierNameSyntax identifierNameNode, string? methodName,
 			ArgumentListSyntax argListNode) =>
 			context.ReportDiagnostic(
@@ -239,7 +223,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku011_Case2(
-			OperationAnalysisContext context, SemanticModel semanticModel, string? methodName,
+			CodeBlockAnalysisContext context, SemanticModel semanticModel, string? methodName,
 			ArgumentListSyntax argListNode, int i) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
@@ -263,7 +247,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku012(
-			OperationAnalysisContext context, InvocationExpressionSyntax invocationNode, string methodName) =>
+			CodeBlockAnalysisContext context, InvocationExpressionSyntax invocationNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(

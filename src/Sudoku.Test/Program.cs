@@ -1,4 +1,6 @@
-﻿#pragma warning disable CA1050
+﻿#pragma warning disable IDE0079
+#pragma warning disable CA1050
+#pragma warning disable CS1591
 
 using System;
 using System.Collections.Generic;
@@ -8,18 +10,14 @@ using Sudoku.Solving.Manual;
 
 Console.WriteLine("Hello, world!");
 
-Console.WriteLine((string)TextResources.Current.Hello);
+TextResources.Current.Hello();
+TextResources.Current.Serialize();
+TextResources.Current.Deserialize(30, 100);
 
-/// <summary>
-/// Default
-/// </summary>
-public sealed class StepSearcher1 : StepSearcher
+public sealed class StepSearcher100 : StepSearcher
 {
-	/// <summary>
-	/// Default
-	/// </summary>
 	public static TechniqueProperties Properties { get; } = new(20, "");
 
-	/// <inheritdoc/>
+
 	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) => throw new NotImplementedException();
 }
