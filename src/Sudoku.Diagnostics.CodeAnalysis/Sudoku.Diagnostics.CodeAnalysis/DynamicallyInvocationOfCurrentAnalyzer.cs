@@ -50,10 +50,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterCodeBlockAction(AnalyzeDynamicInvocation);
+			context.RegisterSyntaxNodeAction(
+				AnalyzeDynamicInvocation,
+				new SyntaxKind[] { SyntaxKind.InvocationExpression }
+			);
 		}
 
-		private static void AnalyzeDynamicInvocation(CodeBlockAnalysisContext context)
+		private static void AnalyzeDynamicInvocation(SyntaxNodeAnalysisContext context)
 		{
 			var semanticModel = context.SemanticModel;
 			var compilation = semanticModel.Compilation;
@@ -65,7 +68,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			}
 
 			if (
-				context.CodeBlock is not InvocationExpressionSyntax
+				context.Node is not InvocationExpressionSyntax
 				{
 					Expression: MemberAccessExpressionSyntax
 					{
@@ -161,7 +164,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 
 		private static void ReportSudoku009(
-			CodeBlockAnalysisContext context, IdentifierNameSyntax identifierNameNode, string methodName) =>
+			SyntaxNodeAnalysisContext context, IdentifierNameSyntax identifierNameNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
@@ -179,7 +182,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku010(
-			CodeBlockAnalysisContext context, string methodName, IdentifierNameSyntax nameNode,
+			SyntaxNodeAnalysisContext context, string methodName, IdentifierNameSyntax nameNode,
 			int actualParamsCount, int requiredParamsCount) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
@@ -198,7 +201,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku011_Case1(
-			CodeBlockAnalysisContext context, SemanticModel semanticModel,
+			SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
 			IdentifierNameSyntax identifierNameNode, string? methodName,
 			ArgumentListSyntax argListNode) =>
 			context.ReportDiagnostic(
@@ -223,7 +226,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku011_Case2(
-			CodeBlockAnalysisContext context, SemanticModel semanticModel, string? methodName,
+			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, string? methodName,
 			ArgumentListSyntax argListNode, int i) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
@@ -247,7 +250,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 		private static void ReportSudoku012(
-			CodeBlockAnalysisContext context, InvocationExpressionSyntax invocationNode, string methodName) =>
+			SyntaxNodeAnalysisContext context, InvocationExpressionSyntax invocationNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
