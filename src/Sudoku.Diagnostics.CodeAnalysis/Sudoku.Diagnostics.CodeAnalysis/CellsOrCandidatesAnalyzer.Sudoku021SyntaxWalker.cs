@@ -6,76 +6,17 @@ using Microsoft.CodeAnalysis.Operations;
 using ExplicitNew = Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax;
 using ImplicitNew = Microsoft.CodeAnalysis.CSharp.Syntax.ImplicitObjectCreationExpressionSyntax;
 using New = Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax;
-using Pair = System.ValueTuple<string, Microsoft.CodeAnalysis.SyntaxNode>;
 
-namespace Sudoku.CodeAnalysis.Analyzers
+namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	partial class CellsOrCandidatesAnalyzer
 	{
-		partial void CheckSudoku021(
-			GeneratorExecutionContext context, SyntaxNode root,
-			Compilation compilation, SemanticModel semanticModel)
-		{
-			var collector = new InnerWalker_NewClause(semanticModel, compilation);
-			collector.Visit(root);
-
-			// If the syntax tree doesn't contain any dynamically called clause,
-			// just skip it.
-			if (collector.Collection is null)
-			{
-				return;
-			}
-
-			// Iterate on each dynamically called location.
-			foreach (var (typeName, node) in collector.Collection)
-			{
-				// You can't invoke them.
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: new(
-							id: DiagnosticIds.Sudoku021,
-							title: Titles.Sudoku021,
-							messageFormat: Messages.Sudoku021,
-							category: Categories.Performance,
-							defaultSeverity: DiagnosticSeverity.Warning,
-							isEnabledByDefault: true,
-							helpLinkUri: HelpLinks.Sudoku021
-						),
-						location: node.GetLocation(),
-						messageArgs: new[] { typeName, "Empty" }
-					)
-				);
-			}
-		}
-
-
 		/// <summary>
 		/// Bound by <see cref="CheckSudoku021"/>.
 		/// </summary>
 		/// <seealso cref="CheckSudoku021"/>
-		private sealed class InnerWalker_NewClause : CSharpSyntaxWalker
+		private sealed class Sudoku021SyntaxWalker : CSharpSyntaxWalker
 		{
-			/// <summary>
-			/// Indicates the cells type name.
-			/// </summary>
-			private const string CellsTypeName = "Cells";
-
-			/// <summary>
-			/// Indicates the candidates type name.
-			/// </summary>
-			private const string CandidatesTypeName = "Candidates";
-
-			/// <summary>
-			/// Indicates the full type name of the cells.
-			/// </summary>
-			private const string CellsFullTypeName = "Sudoku.Data.Cells";
-
-			/// <summary>
-			/// Indicates the full type name of the candidates.
-			/// </summary>
-			private const string CandidatesFullTypeName = "Sudoku.Data.Candidates";
-
-
 			/// <summary>
 			/// Indicates the semantic model.
 			/// </summary>
@@ -92,7 +33,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// </summary>
 			/// <param name="semanticModel">The semantic model.</param>
 			/// <param name="compilation">The compilation.</param>
-			public InnerWalker_NewClause(SemanticModel semanticModel, Compilation compilation)
+			public Sudoku021SyntaxWalker(SemanticModel semanticModel, Compilation compilation)
 			{
 				_semanticModel = semanticModel;
 				_compilation = compilation;
@@ -102,7 +43,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 			/// <summary>
 			/// Indicates the collection that stores all possible and valid information.
 			/// </summary>
-			public IList<Pair>? Collection { get; private set; }
+			public IList<(string, SyntaxNode)>? Collection { get; private set; }
 
 
 			/// <inheritdoc/>
@@ -140,7 +81,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					return;
 				}
 
-				Collection ??= new List<Pair>();
+				Collection ??= new List<(string, SyntaxNode)>();
 
 				Collection.Add((isTypeCells ? CellsTypeName : CandidatesTypeName, node));
 			}
@@ -179,7 +120,7 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					return;
 				}
 
-				Collection ??= new List<Pair>();
+				Collection ??= new List<(string, SyntaxNode)>();
 
 				Collection.Add((isTypeCells ? CellsTypeName : CandidatesTypeName, node));
 			}
@@ -212,24 +153,22 @@ namespace Sudoku.CodeAnalysis.Analyzers
 					return;
 				}
 
-				bool isTypeCells = SymbolEqualityComparer.Default.Equals(
+				bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
 					typeSymbol,
 					_compilation.GetTypeByMetadataName(CellsFullTypeName)
 				);
-				if (
-					!isTypeCells
-					&& !SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						_compilation.GetTypeByMetadataName(CandidatesFullTypeName)
-					)
-				)
+				bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(
+					typeSymbol,
+					_compilation.GetTypeByMetadataName(CandidatesFullTypeName)
+				);
+				if (!isOfTypeCells && !isOfTypeCandidates)
 				{
 					return;
 				}
 
-				Collection ??= new List<Pair>();
+				Collection ??= new List<(string, SyntaxNode)>();
 
-				Collection.Add((isTypeCells ? CellsTypeName : CandidatesTypeName, node));
+				Collection.Add((isOfTypeCells ? CellsTypeName : CandidatesTypeName, node));
 			}
 		}
 	}

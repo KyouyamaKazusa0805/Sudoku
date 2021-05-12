@@ -5,14 +5,10 @@
 using System;
 using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual;
 
-Console.WriteLine("Hello, world!");
-
-TextResources.Current.Hello();
-TextResources.Current.Serialize();
-TextResources.Current.Deserialize(30, 100);
+SudokuGrid grid = default;
+Console.WriteLine(grid.ToString("#"));
 
 public sealed class StepSearcher100 : StepSearcher
 {
