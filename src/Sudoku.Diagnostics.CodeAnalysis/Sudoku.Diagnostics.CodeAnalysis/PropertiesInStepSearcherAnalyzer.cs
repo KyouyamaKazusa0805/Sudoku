@@ -1,6 +1,4 @@
-﻿#pragma warning disable RS1030
-
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,8 +8,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Indicates the analyzer that analyzes the code for the <see langword="static"/> property
-	/// named <c>Properties</c>.
+	/// Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
 	public sealed partial class PropertiesInStepSearcherAnalyzer : DiagnosticAnalyzer
@@ -79,14 +76,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					CheckSudoku005(context, propertySymbol);
 					CheckSudoku006(context, propertySymbol);
 
-					var matchingNode = propertySymbol.FindMatchingNode(
-						propertySymbol.ContainingType.DeclaringSyntaxReferences[0].GetSyntax(),
-						context.Compilation.GetSemanticModel(
-							propertySymbol.DeclaringSyntaxReferences[0].SyntaxTree
-						)
-					);
-					CheckSudoku007(context, matchingNode);
-					CheckSudoku008(context, matchingNode);
+					var node = (PropertyDeclarationSyntax)propertySymbol.DeclaringSyntaxReferences[0].GetSyntax();
+					CheckSudoku007(context, node);
+					CheckSudoku008(context, node);
 				}
 			}
 			else

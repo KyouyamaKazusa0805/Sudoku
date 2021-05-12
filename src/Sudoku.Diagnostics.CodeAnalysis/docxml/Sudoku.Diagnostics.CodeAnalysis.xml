@@ -59,6 +59,107 @@
             Provides the messages.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer">
+            <summary>
+            Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
+            field <c>TextResources.Current</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.ChangeLanguageMethodName">
+            <summary>
+            Indicates the method name that is called in order to change the language of that resource dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.SerializeMethodName">
+            <summary>
+            Indicates the method name that is called in order to serialize the object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.DeserializeMethodName">
+            <summary>
+            Indicates the method name that is called in order to deserialize the object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.CountryCodeTypeName">
+            <summary>
+            Indicates the country code type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesClassName">
+            <summary>
+            Indicates the text resources class name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesStaticReadOnlyFieldName">
+            <summary>
+            Indicates that field dynamically bound.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku009">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
+            SUDOKU009
+            </a>
+            diagnostic result (The specified key can't be found in the resource dictionary).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku010">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610020&amp;doc_id=633030">
+            SUDOKU010
+            </a>
+            diagnostic result (The specified method can't be found and called).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku011">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610022&amp;doc_id=633030">
+            SUDOKU011
+            </a>
+            diagnostic result (The number of arguments dismatched in this dynamically invocation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku012">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610347&amp;doc_id=633030">
+            SUDOKU012
+            </a>
+            diagnostic result (The argument type dismatched in this dynamically invocation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku013">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610364&amp;doc_id=633030">
+            SUDOKU013
+            </a>
+            diagnostic result (The method returns void, but you make it an rvalue expression).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ArgumentSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentSyntax"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ArgumentSyntaxEx.GetParamFullName(Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentSyntax,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Gets the full name of the parameter.
+            </summary>
+            <param name="this">The argument syntax node.</param>
+            <param name="semanticModel">The semantic model.</param>
+            <returns>The full name.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
@@ -91,25 +192,9 @@
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertySymbolEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertySymbolEx.FindMatchingNode(Microsoft.CodeAnalysis.IPropertySymbol,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel)">
-            <summary>
-            To find the node by the specified property symbol.
-            </summary>
-            <param name="this">The symbol.</param>
-            <param name="syntaxNode">The syntax node.</param>
-            <param name="semanticModel">The semantic model.</param>
-            <returns>The property node.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes the code for the <see langword="static"/> property
-            named <c>Properties</c>.
+            Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.TargetPropertyName">

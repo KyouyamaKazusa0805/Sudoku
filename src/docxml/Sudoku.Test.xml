@@ -14,5 +14,18 @@
             To count all files, and output the result using the <see cref="T:System.Console"/>.
             </summary>
         </member>
+        <member name="T:StepSearcher1">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="P:StepSearcher1.Properties">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="M:StepSearcher1.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

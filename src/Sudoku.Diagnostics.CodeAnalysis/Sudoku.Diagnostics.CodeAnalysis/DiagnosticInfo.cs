@@ -122,25 +122,25 @@
 	/// </summary>
 	internal static class Messages
 	{
-		public const string Sudoku001 = "A property named 'Properties' expected.";
-		public const string Sudoku002 = "The property 'Properties' must be public.";
-		public const string Sudoku003 = "The property 'Properties' must be static.";
-		public const string Sudoku004 = "The property 'Properties' must be read-only.";
-		public const string Sudoku005 = "The property 'Properties' must be of type 'Sudoku.Solving.Manual.TechiqueProperties'.";
-		public const string Sudoku006 = "The property 'Properties' can't be null; try to remove the nullable annotation '?'.";
-		public const string Sudoku007 = "The property 'Properties' must contain an initializer.";
-		public const string Sudoku008 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead.";
-		public const string Sudoku009 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid.";
-		public const string Sudoku010 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'.";
-		public const string Sudoku011 = "The method '{0}' expects {1} argument(s), but your input contains {2} argument(s).";
-		public const string Sudoku012 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'.";
-		public const string Sudoku013 = "The method '{0}' returns void, but you make it a rvalue expression.";
-		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved.";
-		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.";
-		public const string Sudoku017 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods.";
-		public const string Sudoku018 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.";
-		public const string Sudoku019 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'.";
-		public const string Sudoku020 = "Unnecessary interpolation leading character '$'.";
-		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation.";
+		public const string Sudoku001 = "A property named 'Properties' expected";
+		public const string Sudoku002 = "The property 'Properties' must be public";
+		public const string Sudoku003 = "The property 'Properties' must be static";
+		public const string Sudoku004 = "The property 'Properties' must be read-only";
+		public const string Sudoku005 = "The property 'Properties' must be of type 'Sudoku.Solving.Manual.TechiqueProperties'";
+		public const string Sudoku006 = "The property 'Properties' can't be null; try to remove the nullable annotation '?'";
+		public const string Sudoku007 = "The property 'Properties' must contain an initializer";
+		public const string Sudoku008 = "The property 'Properties' must be initialized by a new clause; try to initialize it with 'new(...)' or 'new TechniqueProperties(...)' instead";
+		public const string Sudoku009 = "The specified key '{0}' can't be found in the resource dictionary; please check whether your input is valid";
+		public const string Sudoku010 = "The specified method '{0}' can't be found and called; all supported methods are 'Serialize', 'Deserialize' and 'ChangeLanguage'";
+		public const string Sudoku011 = "The method '{0}' expects {1} argument(s), but your input contains {2} argument(s)";
+		public const string Sudoku012 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'";
+		public const string Sudoku013 = "The method '{0}' returns void, but you make it a rvalue expression";
+		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved";
+		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
+		public const string Sudoku017 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods";
+		public const string Sudoku018 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'";
+		public const string Sudoku019 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'";
+		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
+		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
 	}
 }

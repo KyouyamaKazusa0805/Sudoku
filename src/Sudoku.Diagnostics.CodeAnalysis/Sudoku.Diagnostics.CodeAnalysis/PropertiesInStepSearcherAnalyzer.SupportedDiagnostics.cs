@@ -1,6 +1,4 @@
-﻿#pragma warning disable RS1032
-
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
