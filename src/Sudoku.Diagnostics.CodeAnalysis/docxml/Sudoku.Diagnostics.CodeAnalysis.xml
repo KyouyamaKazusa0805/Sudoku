@@ -4,96 +4,36 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>.
+            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
+            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CellsTypeName">
-            <summary>
-            Indicates the cells type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CandidatesTypeName">
-            <summary>
-            Indicates the candidates type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.ZeroString">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.ZeroString">
             <summary>
             Indicates the zero string.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CountPropertyName">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CountPropertyName">
             <summary>
             Indicates the property name of <c>Count</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CellsFullTypeName">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CellsFullTypeName">
             <summary>
             Indicates the full type name of <c>Cells</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CandidatesFullTypeName">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CandidatesFullTypeName">
             <summary>
             Indicates the full type name of <c>Candidates</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.EmptyPropertyName">
-            <summary>
-            Indicates the property name to check in the diagnostic result <c>SUDOKU021</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker">
-            <summary>
-            Bound by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CheckSudoku021(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)"/>.
-            </summary>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.CheckSudoku021(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)"/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker._semanticModel">
-            <summary>
-            Indicates the semantic model.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker._compilation">
-            <summary>
-            Indicates the compilation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.#ctor(Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            Initializes an instance with the specified semantic model and the compilation.
-            </summary>
-            <param name="semanticModel">The semantic model.</param>
-            <param name="compilation">The compilation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.Collection">
-            <summary>
-            Indicates the collection that stores all possible and valid information.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitImplicitObjectCreationExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ImplicitObjectCreationExpressionSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitObjectCreationExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitDefaultExpression(Microsoft.CodeAnalysis.CSharp.Syntax.DefaultExpressionSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitLiteralExpression(Microsoft.CodeAnalysis.CSharp.Syntax.LiteralExpressionSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitNewClause(Microsoft.CodeAnalysis.CSharp.Syntax.BaseObjectCreationExpressionSyntax)">
-            <summary>
-            Bound by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitImplicitObjectCreationExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ImplicitObjectCreationExpressionSyntax)"/>
-            and <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021SyntaxWalker.VisitObjectCreationExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ObjectCreationExpressionSyntax)"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku018">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.Sudoku018">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">
@@ -102,7 +42,44 @@
             diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.Sudoku021">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
+            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.CellsTypeName">
+            <summary>
+            Indicates the cells type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.CandidatesTypeName">
+            <summary>
+            Indicates the candidates type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.CellsFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.CandidatesFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.EmptyPropertyName">
+            <summary>
+            Indicates the property name to check in the diagnostic result <c>SUDOKU021</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.Sudoku021">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">
@@ -111,7 +88,7 @@
             diagnostic result (Please use the field <c>Empty</c> to avoid instantiation).
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesAnalyzer.SupportedDiagnostics">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">

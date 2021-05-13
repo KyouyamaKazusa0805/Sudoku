@@ -6,21 +6,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>.
+	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
+	/// to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	public sealed partial class CellsOrCandidatesAnalyzer : DiagnosticAnalyzer
+	public sealed partial class CellsOrCandidatesCountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the cells type name.
-		/// </summary>
-		private const string CellsTypeName = "Cells";
-
-		/// <summary>
-		/// Indicates the candidates type name.
-		/// </summary>
-		private const string CandidatesTypeName = "Candidates";
-
 		/// <summary>
 		/// Indicates the zero string.
 		/// </summary>
@@ -41,11 +32,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// </summary>
 		private const string CandidatesFullTypeName = "Sudoku.Data.Candidates";
 
-		/// <summary>
-		/// Indicates the property name to check in the diagnostic result <c>SUDOKU021</c>.
-		/// </summary>
-		private const string EmptyPropertyName = "Empty";
-
 
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
@@ -54,11 +40,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context =>
-				{
-					CheckSudoku018(context);
-					CheckSudoku021(context);
-				},
+				static context => CheckSudoku018(context),
 				new[]
 				{
 					SyntaxKind.EqualsExpression,
@@ -140,41 +122,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					}
 				)
 			);
-		}
-
-		private static void CheckSudoku021(SyntaxNodeAnalysisContext context)
-		{
-			var syntaxTree = context.Node.SyntaxTree;
-			var walker = new Sudoku021SyntaxWalker(context.SemanticModel, context.Compilation);
-			walker.Visit(syntaxTree.GetRoot());
-
-			// If the syntax tree doesn't contain any dynamically called clause,
-			// just skip it.
-			if (walker.Collection is null)
-			{
-				return;
-			}
-
-			// Iterate on each dynamically called location.
-			foreach (var (typeName, node) in walker.Collection)
-			{
-				// You can't invoke them.
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: new(
-							id: DiagnosticIds.Sudoku021,
-							title: Titles.Sudoku021,
-							messageFormat: Messages.Sudoku021,
-							category: Categories.Performance,
-							defaultSeverity: DiagnosticSeverity.Warning,
-							isEnabledByDefault: true,
-							helpLinkUri: HelpLinks.Sudoku021
-						),
-						location: node.GetLocation(),
-						messageArgs: new[] { typeName, EmptyPropertyName }
-					)
-				);
-			}
 		}
 	}
 }

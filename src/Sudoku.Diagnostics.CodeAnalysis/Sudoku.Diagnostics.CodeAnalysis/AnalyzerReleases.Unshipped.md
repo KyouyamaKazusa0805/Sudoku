@@ -21,4 +21,4 @@ SUDOKU016 | Performance | Warning | InterpolatedStringAnalyzer, [Documentation](
 SUDOKU017 | Performance | Warning | SpanOrReadOnlySpanAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127)
 SUDOKU018 | Usage | Warning | CellsOrCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575)
 SUDOKU020 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641)
-SUDOKU021 | Performance | Warning | CellsOrCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107)
+SUDOKU021 | Performance | Warning | CellsOrCandidatesInstantiationCanBeReplacedBySpecifiedFieldAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107)
