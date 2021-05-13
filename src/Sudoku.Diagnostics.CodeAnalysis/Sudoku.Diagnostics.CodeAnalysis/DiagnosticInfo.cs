@@ -14,7 +14,7 @@
 		public const string Sudoku007 = "SUDOKU007";
 		public const string Sudoku008 = "SUDOKU008";
 		public const string Sudoku009 = "SUDOKU009";
-		public const string Sudoku010 = "SUDOUK010";
+		public const string Sudoku010 = "SUDOKU010";
 		public const string Sudoku011 = "SUDOKU011";
 		public const string Sudoku012 = "SUDOKU012";
 		public const string Sudoku013 = "SUDOKU013";
