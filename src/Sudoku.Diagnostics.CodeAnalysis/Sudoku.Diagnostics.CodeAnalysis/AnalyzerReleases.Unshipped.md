@@ -17,6 +17,7 @@ SUDOKU011 | ResourceDictionary | Error | DynamicallyInvocationOfCurrentAnalyzer,
 SUDOKU012 | Usage | Error | DynamicallyInvocationOfCurrentAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU012?sort_id=3610347)
 SUDOKU013 | Usage | Error | DynamicallyInvocationOfCurrentAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU013?sort_id=3610364)
 SUDOKU016 | Performance | Warning | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115)
+SUDOKU017 | Performance | Warning | SpanOrReadOnlySpanAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127)
 SUDOKU018 | Usage | Warning | CellsOrCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575)
 SUDOKU020 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641)
 SUDOKU021 | Performance | Warning | CellsOrCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107)

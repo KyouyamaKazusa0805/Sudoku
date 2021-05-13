@@ -270,6 +270,20 @@
             <param name="semanticModel">The semantic model.</param>
             <returns>The full name.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx.GetPointerTypeSymbol(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.SpecialType)">
+            <summary>
+            Creates a pointer type symbol by the specified special type.
+            </summary>
+            <param name="this">The compilation.</param>
+            <param name="specialType">The special type.</param>
+            <returns>The result symbol.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
@@ -434,6 +448,46 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.SpanTypeFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.ReadOnlySpanTypeFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.InternalVisit(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Visit methods.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="node">The root node of the function.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.Sudoku017">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622127&amp;doc_id=633030">
+            SUDOKU017
+            </a>
+            diagnostic result (The result of the expression '.ctor(<see langword="void"/>*, <see cref="T:System.Int32"/>)'
+            can't be the return value as any methods).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
     </members>
