@@ -2,9 +2,9 @@
 
 ## Bulletin for Specials (特殊公告)
 
-> Recently I can't connect to GitHub. Updates may be slower than normal cases.
+> No items here. Wait for appending.
 >
-> 最近我连不上 GitHub，可能更新就比平常慢一些了。
+> 暂无。等待添加。
 
 ## Content (正文)
 
