@@ -59,7 +59,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					CheckSudoku018(context);
 					CheckSudoku021(context);
 				},
-				new SyntaxKind[] { SyntaxKind.InvocationExpression }
+				new[]
+				{
+					SyntaxKind.EqualsExpression,
+					SyntaxKind.NotEqualsExpression,
+					SyntaxKind.DefaultExpression,
+					SyntaxKind.DefaultLiteralExpression
+				}
 			);
 		}
 
@@ -69,9 +75,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			if (
 				context.Node is not BinaryExpressionSyntax
 				{
-					RawKind: var kind and (
-						(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-					),
+					RawKind: var kind,
 					Left: MemberAccessExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,

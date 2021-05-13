@@ -37,7 +37,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 			context.RegisterSyntaxNodeAction(
 				static context => CheckSudoku017(context),
-				new SyntaxKind[] { SyntaxKind.InvocationExpression }
+				new[] { SyntaxKind.MethodDeclaration, SyntaxKind.LocalFunctionStatement }
 			);
 		}
 
@@ -61,12 +61,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					{
 						InternalVisit(context, body);
 					}
-
-					break;
-				}
-				case GlobalStatementSyntax node:
-				{
-					InternalVisit(context, node);
 
 					break;
 				}
@@ -132,6 +126,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 				// Check parameters.
 				var @params = constructorSymbol.Parameters;
+				/*length-pattern*/
 				if (@params.Length != 2)
 				{
 					continue;
@@ -185,30 +180,27 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					continue;
 				}
 
-				ReportSudoku017(
-					context,
-					SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol),
-					newClauseNode
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: new(
+							id: DiagnosticIds.Sudoku017,
+							title: Titles.Sudoku017,
+							messageFormat: Messages.Sudoku017,
+							category: Categories.Performance,
+							defaultSeverity: DiagnosticSeverity.Warning,
+							isEnabledByDefault: true,
+							helpLinkUri: HelpLinks.Sudoku017
+						),
+						location: newClauseNode.GetLocation(),
+						messageArgs: new[]
+						{
+							SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol)
+							? "Span"
+							: "ReadOnlySpan"
+						}
+					)
 				);
 			}
 		}
-
-		private static void ReportSudoku017(
-			SyntaxNodeAnalysisContext context, bool fromSpan, BaseObjectCreationExpressionSyntax node) =>
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.Sudoku017,
-						title: Titles.Sudoku017,
-						messageFormat: Messages.Sudoku017,
-						category: Categories.Performance,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku017
-					),
-					location: node.GetLocation(),
-					messageArgs: new[] { fromSpan ? "Span" : "ReadOnlySpan" }
-				)
-			);
 	}
 }

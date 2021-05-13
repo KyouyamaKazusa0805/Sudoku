@@ -2,8 +2,11 @@
 using System.Numerics;
 using Sudoku.Data;
 
+var cells = new Cells();
+
 SudokuGrid grid = default;
 Console.WriteLine(grid.ToString("#"));
+Console.WriteLine(cells.Count != 0);
 
 Console.WriteLine(GetAllSets(3).ToString());
 
@@ -24,5 +27,5 @@ static unsafe ReadOnlySpan<int> GetAllSets(byte val)
 		}
 	}
 
-	return new(ptrArrResult, length); // SUDOKU017 raised.
+	return new(ptrArrResult, length);
 }

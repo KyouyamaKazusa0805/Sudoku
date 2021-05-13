@@ -25,7 +25,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 					CheckSudoku016(context);
 					CheckSudoku020(context);
 				},
-				new SyntaxKind[] { SyntaxKind.Interpolation, SyntaxKind.InterpolatedStringExpression }
+				new[] { SyntaxKind.Interpolation, SyntaxKind.InterpolatedStringExpression }
 			);
 		}
 

@@ -52,7 +52,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 			context.RegisterSyntaxNodeAction(
 				AnalyzeDynamicInvocation,
-				new SyntaxKind[] { SyntaxKind.InvocationExpression }
+				new[] { SyntaxKind.InvocationExpression }
 			);
 		}
 
