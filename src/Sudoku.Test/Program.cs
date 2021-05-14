@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Resources;
+using Sudoku.Solving.Manual;
 
-var grid = new SudokuGrid();
-Console.WriteLine(grid);
-SudokuGrid.ValueChanged(ref grid, new());
+Console.WriteLine("");
 
-Console.WriteLine(TextResources.Current.Hello);
-Console.WriteLine(TextResources.Current.KeyToGet);
+internal sealed class S : StepSearcher
+{
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	{
+	}
+}

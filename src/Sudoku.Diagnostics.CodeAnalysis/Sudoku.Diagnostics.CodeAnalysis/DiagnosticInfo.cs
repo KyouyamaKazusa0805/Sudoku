@@ -19,6 +19,7 @@
 		public const string Sudoku012 = "SUDOKU012";
 		public const string Sudoku013 = "SUDOKU013";
 		public const string Sudoku014 = "SUDOKU014";
+		public const string Sudoku015 = "SUDOKU015";
 		public const string Sudoku016 = "SUDOKU016";
 		public const string Sudoku017 = "SUDOKU017";
 		public const string Sudoku018 = "SUDOKU018";
@@ -46,6 +47,7 @@
 		public const string Sudoku012 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU012?sort_id=3610347";
 		public const string Sudoku013 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU013?sort_id=3610364";
 		public const string Sudoku014 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU014?sort_id=3614979";
+		public const string Sudoku015 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU015?sort_id=4018391";
 		public const string Sudoku016 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115";
 		public const string Sudoku017 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127";
 		public const string Sudoku018 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575";
@@ -109,6 +111,7 @@
 		public const string Sudoku012 = "The argument type dismatched in this dynamically invocation";
 		public const string Sudoku013 = "The method returns void, but you make it an rvalue expression";
 		public const string Sudoku014 = "The member can't be invoked because they are reserved";
+		public const string Sudoku015 = "The specified dynamic invocation method doesn't exist";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
 		public const string Sudoku017 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
 		public const string Sudoku018 = "Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'";
@@ -136,6 +139,7 @@
 		public const string Sudoku012 = "This argument in the method '{0}' must be of type '{1}', but the actual type is '{2}'";
 		public const string Sudoku013 = "The method '{0}' returns void, but you make it a rvalue expression";
 		public const string Sudoku014 = "The member '{0}' can't be invoked because they are reserved";
+		public const string Sudoku015 = "The dynamic invocation method name '{0}' doesn't exist";
 		public const string Sudoku016 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
 		public const string Sudoku017 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods";
 		public const string Sudoku018 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'";

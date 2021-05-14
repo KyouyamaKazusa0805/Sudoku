@@ -1,67 +1,250 @@
-﻿#if false
-
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using System.Composition;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Extensions;
+using Microsoft.CodeAnalysis.Text.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
 	/// Indicates the code fixer.
 	/// </summary>
-	//[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SudokuDiagnosticsCodeAnalysisTempCodeFixProvider)), Shared]
+	[ExportCodeFixProvider(LanguageNames.CSharp)]
+	[Shared]
 	public sealed class Sudoku001CodeFixProvider : CodeFixProvider
 	{
+		/// <summary>
+		/// To provide a way to insert property into the document, via the current order.
+		/// </summary>
+		private static readonly SyntaxKind[] OrderOfMemberKinds = new[]
+		{
+			SyntaxKind.FieldDeclaration,
+			SyntaxKind.ConstructorDeclaration
+		};
+
+		#region NodesToAppend
+		/// <summary>
+		/// Indicates the node to append.
+		/// </summary>
+		private static readonly SyntaxList<SyntaxNode> NodesToAppend =
+			SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
+				SyntaxFactory.PropertyDeclaration(
+					SyntaxFactory.IdentifierName("TechniqueProperties"),
+					SyntaxFactory.Identifier("Properties")
+				)
+				.WithModifiers(
+					SyntaxFactory.TokenList(
+						new[]
+						{
+							SyntaxFactory.Token(
+								SyntaxFactory.TriviaList(
+									SyntaxFactory.Trivia(
+										SyntaxFactory.DocumentationCommentTrivia(
+											SyntaxKind.SingleLineDocumentationCommentTrivia,
+											SyntaxFactory.List(
+												new XmlNodeSyntax[]
+												{
+													SyntaxFactory.XmlText()
+													.WithTextTokens(
+														SyntaxFactory.TokenList(
+															SyntaxFactory.XmlTextLiteral(
+																SyntaxFactory.TriviaList(
+																	SyntaxFactory.DocumentationCommentExterior("///")
+																),
+																" ",
+																" ",
+																SyntaxFactory.TriviaList()
+															)
+														)
+													),
+													SyntaxFactory.XmlNullKeywordElement()
+													.WithName(
+														SyntaxFactory.XmlName(
+															SyntaxFactory.Identifier("inheritdoc")
+														)
+													)
+													.WithAttributes(
+														SyntaxFactory.SingletonList<XmlAttributeSyntax>(
+															SyntaxFactory.XmlCrefAttribute(
+																SyntaxFactory.NameMemberCref(
+																	SyntaxFactory.IdentifierName("SearchingProperties")
+																)
+															)
+														)
+													),
+													SyntaxFactory.XmlText()
+													.WithTextTokens(
+														SyntaxFactory.TokenList(
+															SyntaxFactory.XmlTextNewLine(
+																SyntaxFactory.TriviaList(),
+																Environment.NewLine,
+																Environment.NewLine,
+																SyntaxFactory.TriviaList()
+															)
+														)
+													)
+												}
+											)
+										)
+									)
+								),
+								SyntaxKind.PublicKeyword,
+								SyntaxFactory.TriviaList()
+							),
+							SyntaxFactory.Token(SyntaxKind.StaticKeyword)
+						}
+					)
+				)
+				.WithAccessorList(
+					SyntaxFactory.AccessorList(
+						SyntaxFactory.SingletonList(
+							SyntaxFactory.AccessorDeclaration(
+								SyntaxKind.GetAccessorDeclaration
+							)
+							.WithSemicolonToken(
+								SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+							)
+						)
+					)
+				)
+				.WithInitializer(
+					SyntaxFactory.EqualsValueClause(
+						SyntaxFactory.ImplicitObjectCreationExpression()
+						.WithArgumentList(
+							SyntaxFactory.ArgumentList(
+								SyntaxFactory.SeparatedList<ArgumentSyntax>(
+									new SyntaxNodeOrToken[]{
+										SyntaxFactory.Argument(
+											SyntaxFactory.LiteralExpression(
+												SyntaxKind.DefaultLiteralExpression,
+												SyntaxFactory.Token(SyntaxKind.DefaultKeyword)
+											)
+										)
+										.WithNameColon(
+											SyntaxFactory.NameColon(
+												SyntaxFactory.IdentifierName("priority")
+											)
+										),
+										SyntaxFactory.Token(SyntaxKind.CommaToken),
+										SyntaxFactory.Argument(
+											SyntaxFactory.MemberAccessExpression(
+												SyntaxKind.SimpleMemberAccessExpression,
+												SyntaxFactory.PredefinedType(
+													SyntaxFactory.Token(SyntaxKind.StringKeyword)
+												),
+												SyntaxFactory.IdentifierName("Empty")
+											)
+										)
+										.WithNameColon(
+											SyntaxFactory.NameColon(
+												SyntaxFactory.IdentifierName("displayLabel")
+											)
+										)
+									}
+								)
+							)
+						)
+						.WithInitializer(
+							SyntaxFactory.InitializerExpression(
+								SyntaxKind.ObjectInitializerExpression,
+								SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+									SyntaxFactory.AssignmentExpression(
+										SyntaxKind.SimpleAssignmentExpression,
+										SyntaxFactory.IdentifierName("DisplayLevel"),
+										SyntaxFactory.LiteralExpression(
+											SyntaxKind.DefaultLiteralExpression,
+											SyntaxFactory.Token(
+												SyntaxFactory.TriviaList(),
+												SyntaxKind.DefaultKeyword,
+												SyntaxFactory.TriviaList(
+													SyntaxFactory.Comment("// Please check and replace this value.")
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+				.WithSemicolonToken(
+					SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+				)
+				.NormalizeWhitespace()
+			);
+		#endregion
+
+
 		/// <inheritdoc/>
-		public override ImmutableArray<string> FixableDiagnosticIds =>
-			ImmutableArray.Create(DiagnosticIds.Sudoku001);
+		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
+			DiagnosticIds.Sudoku001
+		);
 
 		/// <inheritdoc/>
 		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
 
 		/// <inheritdoc/>
-		public override Task RegisterCodeFixesAsync(CodeFixContext context)
+		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
-			throw new NotImplementedException();
-			//var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-			//
-			//var diagnostic = context.Diagnostics.First();
-			//var diagnosticSpan = diagnostic.Location.SourceSpan;
-			//
-			//// Find the type declaration identified by the diagnostic.
-			//var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
-			//
-			//// Register a code action that will invoke the fix.
-			//context.RegisterCodeFix(
-			//	CodeAction.Create(
-			//		title: CodeFixResources.CodeFixTitle,
-			//		createChangedSolution: c => MakeUppercaseAsync(context.Document, declaration, c),
-			//		equivalenceKey: nameof(CodeFixResources.CodeFixTitle)),
-			//	diagnostic);
+			var document = context.Document;
+			var diagnostic = context.Diagnostics.First();
+			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
+			var (location, _) = diagnostic;
+			var (start, _) = location.SourceSpan;
+			var typeDeclaration = root.FindToken(start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
+
+			context.RegisterCodeFix(
+				CodeAction.Create(
+					title: CodeFixTitles.Sudoku001,
+					createChangedDocument: c => AppendTechniquePropertyAsync(
+						document: document,
+						typeDeclaration: typeDeclaration,
+						cancellationToken: c
+					),
+					equivalenceKey: nameof(CodeFixTitles.Sudoku001)
+				),
+				diagnostic
+			);
 		}
 
-		//private async Task<Solution> MakeUppercaseAsync(
-		//	Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
-		//{
-		//	// Compute new uppercase name.
-		//	var identifierToken = typeDecl.Identifier;
-		//	string newName = identifierToken.Text.ToUpperInvariant();
-		//
-		//	// Get the symbol representing the type to be renamed.
-		//	var semanticModel = await document.GetSemanticModelAsync(cancellationToken);
-		//	var typeSymbol = semanticModel.GetDeclaredSymbol(typeDecl, cancellationToken);
-		//
-		//	// Produce a new solution that has all references to that type renamed, including the declaration.
-		//	var originalSolution = document.Project.Solution;
-		//	var optionSet = originalSolution.Workspace.Options;
-		//	var newSolution = await Renamer.RenameSymbolAsync(document.Project.Solution, typeSymbol, newName, optionSet, cancellationToken).ConfigureAwait(false);
-		//
-		//	// Return the new solution with the now-uppercase type name.
-		//	return newSolution;
-		//}
+
+		/// <summary>
+		/// Delegated method that is invoked by <see cref="RegisterCodeFixesAsync(CodeFixContext)"/> above.
+		/// </summary>
+		/// <param name="document">The current document to fix.</param>
+		/// <param name="typeDeclaration">The type declarartion node that the diagnostic result occurs.</param>
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns>A task that handles this operation.</returns>
+		/// <seealso cref="RegisterCodeFixesAsync(CodeFixContext)"/>
+		private static async Task<Document> AppendTechniquePropertyAsync(
+			Document document, TypeDeclarationSyntax typeDeclaration, CancellationToken cancellationToken)
+		{
+			var root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
+			var declarations = typeDeclaration.DescendantNodes().OfType<MemberDeclarationSyntax>();
+
+			int i = Enumerable.Range(1, OrderOfMemberKinds.Length).Reverse().FirstOrDefault(
+				i => declarations.Any(d => d.RawKind == (int)OrderOfMemberKinds[i - 1])
+			) - 1;
+			var descendants = typeDeclaration.DescendantNodes();
+			var newRoot = root.InsertNodesAfter(
+				i switch
+				{
+					-1 when descendants.First() is var firstDescendant => firstDescendant,
+					_ when descendants.Last(n => n.IsKind(OrderOfMemberKinds[i])) is var lastMember => lastMember
+				},
+				NodesToAppend
+			);
+
+			return document.WithSyntaxRoot(newRoot);
+		}
 	}
 }
-
-#endif

@@ -200,15 +200,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku009">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
-            SUDOKU009
-            </a>
-            diagnostic result (The specified key can't be found in the resource dictionary).
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku010">
             <summary>
             Indicates the
@@ -243,6 +234,15 @@
             SUDOKU013
             </a>
             diagnostic result (The method returns void, but you make it an rvalue expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku015">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4018391&amp;doc_id=633030">
+            SUDOKU015
+            </a>
+            diagnostic result (The specified key can't be found in the resource dictionary).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.SupportedDiagnostics">
