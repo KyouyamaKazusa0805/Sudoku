@@ -427,6 +427,37 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer">
+            <summary>
+            Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
+            store in the folder <c>..\required\lang</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.TextResourcesClassName">
+            <summary>
+            Indicates the text resources class name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.TextResourcesStaticReadOnlyFieldName">
+            <summary>
+            Indicates that field dynamically bound.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.Sudoku009">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
+            SUDOKU009
+            </a>
+            diagnostic result (The specified key can't be found in the resource dictionary).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer">
             <summary>
             Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.

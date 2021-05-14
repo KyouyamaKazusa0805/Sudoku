@@ -9,33 +9,13 @@
 		<Description>The debugging project.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<Version>0.5</Version>
-		<!--
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-		<CompilerGeneratedFilesOutputPath>$(MSBuildProjectDirectory)/sourceGeneratorGenerated</CompilerGeneratedFilesOutputPath>
-		-->
-	</PropertyGroup>
-
-	<!--
-	<Target Name="ExcludeGenerated" BeforeTargets="AssignTargetPaths">
-		<ItemGroup>
-			<Generated Include="sourceGeneratorGenerated/**/*.g.cs" />
-			<Compile Remove="@(Generated)" />
-		</ItemGroup>
-		<Delete Files="@(Generated)" />
-	</Target>
-	-->
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Test.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.CodeAnalysis\Sudoku.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>
 
