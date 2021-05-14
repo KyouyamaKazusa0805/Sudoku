@@ -14,7 +14,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.CodeAnalysis\Sudoku.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 	</ItemGroup>

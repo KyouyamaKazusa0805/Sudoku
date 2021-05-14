@@ -21,5 +21,6 @@ SUDOKU014 | Usage | Error | SudokuGridAnalyzer, [Documentation](https://gitee.co
 SUDOKU016 | Performance | Warning | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU016?sort_id=3622115)
 SUDOKU017 | Performance | Warning | SpanOrReadOnlySpanAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU017?sort_id=3622127)
 SUDOKU018 | Usage | Warning | CellsOrCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU018?sort_id=3625575)
+SUDOKU019 | Performance | Info | LinqAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU019?sort_id=3625073)
 SUDOKU020 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641)
 SUDOKU021 | Performance | Warning | CellsCandidatesSudokuGridDefaultExpressionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107) 

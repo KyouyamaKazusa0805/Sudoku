@@ -356,6 +356,48 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes LINQ nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.TakeMethodName">
+            <summary>
+            Indicates the method name <c>Take</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.CountMethodName">
+            <summary>
+            Indicates the method name <c>Count</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.EnumerableClassFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Linq.Enumerable"/>.
+            </summary>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.IEnumerableFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.Sudoku019">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625073&amp;doc_id=633030">
+            SUDOKU019
+            </a>
+            diagnostic result (Replace <c>Count() >= n</c> with <c>Take(n).Count() >= n</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer">
             <summary>
             Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
