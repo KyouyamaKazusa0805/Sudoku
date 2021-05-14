@@ -10,7 +10,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>A project that fixes the code errors.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<DocumentationFile>..\docxml\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.xml</DocumentationFile>
+		<DocumentationFile>..\..\docxml\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

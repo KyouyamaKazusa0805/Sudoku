@@ -10,7 +10,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>A project that analyzes the code for the solution.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<DocumentationFile>..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>
+		<DocumentationFile>..\..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
