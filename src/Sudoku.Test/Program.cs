@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 
-Console.WriteLine("");
-
-internal sealed class S : StepSearcher
-{
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
-	{
-	}
-}
+var grid = SudokuGrid.Parse("080070003000600000009003800050760090608001007900080320400007000003090000010000002");
+Console.WriteLine(grid);
+Console.WriteLine(grid.EigenString);
+Console.WriteLine(grid.Token);

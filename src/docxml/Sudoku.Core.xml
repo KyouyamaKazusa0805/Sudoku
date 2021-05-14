@@ -3025,6 +3025,16 @@
             Indicates the total number of empty cells.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Token">
+            <summary>
+            Gets the token of this sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.EigenString">
+            <summary>
+            Indicates the eigen string value that can introduce the current sudoku grid.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.SudokuGrid.EmptyCells">
             <summary>
             Indicates the cells that corresponding position in this grid is empty.

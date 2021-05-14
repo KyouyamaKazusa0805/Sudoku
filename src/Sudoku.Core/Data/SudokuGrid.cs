@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen;
@@ -307,6 +308,31 @@ namespace Sudoku.Data
 		/// Indicates the total number of empty cells.
 		/// </summary>
 		public readonly int EmptiesCount => Triplet.A;
+
+		/// <summary>
+		/// Gets the token of this sudoku grid.
+		/// </summary>
+		public readonly string Token
+		{
+			get
+			{
+				const string @base = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.";
+
+				// The maximum grid as the base 64 is of length 45.
+				var sb = new ValueStringBuilder(stackalloc char[45]);
+				for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= @base.Length)
+				{
+					sb.Append(@base[(int)(temp % @base.Length)]);
+				}
+
+				return sb.ToString();
+			}
+		}
+
+		/// <summary>
+		/// Indicates the eigen string value that can introduce the current sudoku grid.
+		/// </summary>
+		public readonly string EigenString => ToString("0").TrimStart('0');
 
 		/// <summary>
 		/// Indicates the cells that corresponding position in this grid is empty.
