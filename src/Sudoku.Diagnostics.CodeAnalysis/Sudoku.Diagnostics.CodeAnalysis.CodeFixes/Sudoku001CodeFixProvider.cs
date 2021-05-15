@@ -199,17 +199,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			var diagnostic = context.Diagnostics.First();
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var (location, _) = diagnostic;
-			var (start, _) = location.SourceSpan;
-			var typeDeclaration = root.FindToken(start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
+			var typeDeclaration = root
+				.FindToken(location.SourceSpan.Start)
+				.Parent!
+				.AncestorsAndSelf()
+				.OfType<TypeDeclarationSyntax>()
+				.First();
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.Sudoku001,
-					createChangedDocument: c => AppendTechniquePropertyAsync(
-						document: document,
-						typeDeclaration: typeDeclaration,
-						cancellationToken: c
-					),
+					createChangedDocument: c => AppendTechniquePropertyAsync(document, typeDeclaration, c),
 					equivalenceKey: nameof(CodeFixTitles.Sudoku001)
 				),
 				diagnostic

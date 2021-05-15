@@ -26,6 +26,10 @@
 		<StartAction>Program</StartAction>
 		<StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
 		<StartArguments>/rootsuffix $(VSSDKTargetPlatformRegRootSuffix)</StartArguments>
+		<Authors>Sunnie</Authors>
+		<Description>A vsix project to export the analyzer and fixers as a plugin file (*.vsix).</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<Version>0.1</Version>
 	</PropertyGroup>
 
 	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
