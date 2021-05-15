@@ -15,15 +15,15 @@ using Microsoft.CodeAnalysis.Text.Extensions;
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Indicates the code fixer.
+	/// Indicates the code fixer for solving the diagnostic result <c>SUDOKU020</c>.
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp)]
 	[Shared]
-	public sealed class Sudoku016CodeFixProvider : CodeFixProvider
+	public sealed class Sudoku020CodeFixProvider : CodeFixProvider
 	{
 		/// <inheritdoc/>
 		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.Sudoku016
+			DiagnosticIds.Sudoku020
 		);
 
 		/// <inheritdoc/>
@@ -34,16 +34,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
 			var document = context.Document;
-			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.Sudoku016);
+			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.Sudoku020);
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var (location, _) = diagnostic;
 			var node = (InterpolatedStringExpressionSyntax)root.FindNode(location.SourceSpan);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
-					title: CodeFixTitles.Sudoku016,
+					title: CodeFixTitles.Sudoku020,
 					createChangedDocument: c => RemoveRedundantDollarMarkAsync(document, root, node, c),
-					equivalenceKey: nameof(CodeFixTitles.Sudoku016)
+					equivalenceKey: nameof(CodeFixTitles.Sudoku020)
 				),
 				diagnostic
 			);
