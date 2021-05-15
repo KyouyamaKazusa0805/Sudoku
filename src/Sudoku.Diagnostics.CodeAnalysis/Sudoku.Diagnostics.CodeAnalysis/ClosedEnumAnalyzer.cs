@@ -80,7 +80,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 				case PrefixUnaryExpressionSyntax
 				{
 					RawKind: var kind,
-					Operand: { RawKind: (int)SyntaxKind.SimpleMemberAccessExpression } operand
+					Operand:
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression or (int)SyntaxKind.IdentifierName
+					} operand
 				} node
 				when condition(semanticModel, operand):
 				{
@@ -91,7 +94,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 				case PostfixUnaryExpressionSyntax
 				{
 					RawKind: var kind,
-					Operand: { RawKind: (int)SyntaxKind.SimpleMemberAccessExpression } operand
+					Operand:
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression or (int)SyntaxKind.IdentifierName
+					} operand
 				} node
 				when condition(semanticModel, operand):
 				{
@@ -101,7 +107,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 				}
 				case BinaryExpressionSyntax
 				{
-					Left: { RawKind: (int)SyntaxKind.SimpleMemberAccessExpression } operand,
+					Left:
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression or (int)SyntaxKind.IdentifierName
+					} operand,
 					OperatorToken: { RawKind: var kind }
 				} node
 				when condition(semanticModel, operand):
