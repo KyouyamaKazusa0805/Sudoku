@@ -26,6 +26,7 @@
 		public const string Sudoku019 = "SUDOKU019";
 		public const string Sudoku020 = "SUDOKU020";
 		public const string Sudoku021 = "SUDOKU021";
+		public const string Sudoku022 = "SUDOKU022";
 	}
 
 	/// <summary>
@@ -54,6 +55,7 @@
 		public const string Sudoku019 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU019?sort_id=3625073";
 		public const string Sudoku020 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641";
 		public const string Sudoku021 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107";
+		public const string Sudoku022 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214";
 	}
 
 	/// <summary>
@@ -118,6 +120,7 @@
 		public const string Sudoku019 = "Replace 'Count() >= value' with 'Take(value).Count() >= value'";
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
 		public const string Sudoku021 = "Please use the default-value field to avoid instantiation";
+		public const string Sudoku022 = "Can't apply the operator here because the type is closed enum";
 	}
 
 	/// <summary>
@@ -146,5 +149,6 @@
 		public const string Sudoku019 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'";
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
 		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
+		public const string Sudoku022 = "Can't apply 'operator {0}' here because the type is closed enum";
 	}
 }

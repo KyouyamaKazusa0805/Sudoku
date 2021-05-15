@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Numerics;
@@ -66,13 +65,11 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
-		[FunctionPointerExposeOnly]
 		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		[FunctionPointerExposeOnly]
 		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
 
 		/// <summary>

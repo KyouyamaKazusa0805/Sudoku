@@ -106,6 +106,53 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ClosedAttribute">
+            <summary>
+            Marks on a enumeration type, which means the enumeration type is a closed enumeration type.
+            </summary>
+            <remarks>
+            A closed enumeration type is a type that only holds the value in the enumeration declaration field
+            (i.e. the curly bracket). For example, the code
+            <code>
+            [Closed] public enum Gender { Boy; Girl; }
+            </code>
+            Which means the type <c>Gender</c> is a closed enumeration type, and you can't use arithmetic operators
+            (such as <c>operator +</c>) to get the fields that don't appear
+            in the declaration <c>{ Boy; Girl; }</c> (e.g. <c>Gender.Boy + Gender.Girl</c>,
+            <c>Gender.Boy + 1</c>, etc.). In other words, you can only use those fields as the references
+            instead of any calculations.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.ClosedAttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the closed attribute.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.Sudoku022">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4019214&amp;doc_id=633030">
+            SUDOKU022
+            </a>
+            diagnostic result (Can't apply the operator here because the type is closed enum).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">
             <summary>
             Provides diagnostic IDs.

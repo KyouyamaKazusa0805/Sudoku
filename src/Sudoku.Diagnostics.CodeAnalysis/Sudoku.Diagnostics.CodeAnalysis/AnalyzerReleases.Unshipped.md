@@ -25,3 +25,4 @@ SUDOKU018 | Usage | Warning | CellsOrCandidatesAnalyzer, [Documentation](https:/
 SUDOKU019 | Performance | Info | LinqAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU019?sort_id=3625073)
 SUDOKU020 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641)
 SUDOKU021 | Performance | Warning | CellsCandidatesSudokuGridDefaultExpressionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107) 
+SUDOKU022 | Usage | Error | ClosedEnumAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214)
