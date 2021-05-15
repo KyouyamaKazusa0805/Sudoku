@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
+using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -45,6 +46,11 @@ namespace Sudoku.Data
 			EmptyMask = (int)CellStatus.Empty << 9,
 			ModifiableMask = (int)CellStatus.Modifiable << 9,
 			GivenMask = (int)CellStatus.Given << 9;
+
+		/// <summary>
+		/// The list of 64-based characters.
+		/// </summary>
+		private const string Base64List = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.";
 
 		/// <summary>
 		/// Indicates the size of each grid.
@@ -89,6 +95,11 @@ namespace Sudoku.Data
 		/// </remarks>
 		/// <seealso cref="DefaultMask"/>
 		public static readonly SudokuGrid Empty;
+
+		/// <summary>
+		/// The lookup table.
+		/// </summary>
+		private static readonly IReadOnlyDictionary<char, int> Lookup;
 
 
 		/// <summary>
@@ -138,6 +149,21 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Try to parse a token, and converts the token to the sudoku grid instance.
+		/// </summary>
+		/// <param name="token">The token.</param>
+		public SudokuGrid(string token)
+		{
+			var bi = BigInteger.Zero;
+			for (int i = 0; i < token.Length; i++)
+			{
+				bi += Lookup[token[i]] * BigInteger.Pow(64, i);
+			}
+
+			this = Parse(bi.ToString().PadLeft(81, '0'));
+		}
+
+		/// <summary>
 		/// Initializes an instance with the specified mask array.
 		/// </summary>
 		/// <param name="masks">The masks.</param>
@@ -169,6 +195,12 @@ namespace Sudoku.Data
 				int i = 0;
 				for (short* ptrP = p, ptrQ = q; i < Length; *ptrP++ = *ptrQ++ = DefaultMask, i++) ;
 			}
+
+			// Lookup table.
+			Lookup = new Dictionary<char, int>(
+				from i in Enumerable.Range(0, 64)
+				select new KeyValuePair<char, int>(Base64List[i], i)
+			);
 
 			// Initializes events.
 			ValueChanged = &OnValueChanged;
@@ -316,13 +348,11 @@ namespace Sudoku.Data
 		{
 			get
 			{
-				const string @base = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.";
-
 				// The maximum grid as the base 64 is of length 45.
 				var sb = new ValueStringBuilder(stackalloc char[45]);
-				for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= @base.Length)
+				for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= 64)
 				{
-					sb.Append(@base[(int)(temp % @base.Length)]);
+					sb.Append(Base64List[(int)(temp % 64)]);
 				}
 
 				return sb.ToString();

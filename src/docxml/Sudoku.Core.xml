@@ -2856,6 +2856,11 @@
             Indicates the empty mask, modifiable mask and given mask.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Base64List">
+            <summary>
+            The list of 64-based characters.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.SudokuGrid.Length">
             <summary>
             Indicates the size of each grid.
@@ -2896,6 +2901,11 @@
             This field is initialized by the static constructor of this structure.
             </remarks>
             <seealso cref="F:Sudoku.Data.SudokuGrid.DefaultMask"/>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Lookup">
+            <summary>
+            The lookup table.
+            </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid._values">
             <summary>
@@ -2939,6 +2949,12 @@
             </summary>
             <param name="gridValues">The array of grid values.</param>
             <param name="creatingOption">The grid creating option.</param>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.String)">
+            <summary>
+            Try to parse a token, and converts the token to the sudoku grid instance.
+            </summary>
+            <param name="token">The token.</param>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.#ctor(System.Int16[])">
             <summary>
