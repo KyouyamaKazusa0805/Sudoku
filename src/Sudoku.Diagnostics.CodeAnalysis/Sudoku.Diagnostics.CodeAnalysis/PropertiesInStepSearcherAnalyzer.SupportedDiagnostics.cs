@@ -13,7 +13,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (A property named 'Properties' expected).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku001 = new(
-			DiagnosticIds.Sudoku001, Titles.Sudoku001, Messages.Sudoku001, Categories.Usage,
+			DiagnosticIds.Sudoku001, Titles.Sudoku001, Messages.Sudoku001, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku001
 		);
 
@@ -25,7 +25,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' must be <see langword="public"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku002 = new(
-			DiagnosticIds.Sudoku002, Titles.Sudoku002, Messages.Sudoku002, Categories.Usage,
+			DiagnosticIds.Sudoku002, Titles.Sudoku002, Messages.Sudoku002, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku002
 		);
 
@@ -37,7 +37,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' must be <see langword="static"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku003 = new(
-			DiagnosticIds.Sudoku003, Titles.Sudoku003, Messages.Sudoku003, Categories.Usage,
+			DiagnosticIds.Sudoku003, Titles.Sudoku003, Messages.Sudoku003, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku003
 		);
 
@@ -49,7 +49,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' must be <see langword="readonly"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku004 = new(
-			DiagnosticIds.Sudoku004, Titles.Sudoku004, Messages.Sudoku004, Categories.Usage,
+			DiagnosticIds.Sudoku004, Titles.Sudoku004, Messages.Sudoku004, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku004
 		);
 
@@ -61,7 +61,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' has a wrong type).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku005 = new(
-			DiagnosticIds.Sudoku005, Titles.Sudoku005, Messages.Sudoku005, Categories.Usage,
+			DiagnosticIds.Sudoku005, Titles.Sudoku005, Messages.Sudoku005, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku005
 		);
 
@@ -73,7 +73,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' can't be <see langword="null"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku006 = new(
-			DiagnosticIds.Sudoku006, Titles.Sudoku006, Messages.Sudoku006, Categories.Usage,
+			DiagnosticIds.Sudoku006, Titles.Sudoku006, Messages.Sudoku006, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku006
 		);
 
@@ -85,7 +85,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' must contain an initializer).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku007 = new(
-			DiagnosticIds.Sudoku007, Titles.Sudoku007, Messages.Sudoku007, Categories.Usage,
+			DiagnosticIds.Sudoku007, Titles.Sudoku007, Messages.Sudoku007, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku007
 		);
 
@@ -97,7 +97,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// diagnostic result (The property 'Properties' must be initialized by a new clause).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku008 = new(
-			DiagnosticIds.Sudoku008, Titles.Sudoku008, Messages.Sudoku008, Categories.Usage,
+			DiagnosticIds.Sudoku008, Titles.Sudoku008, Messages.Sudoku008, Categories.StaticTechniqueProperties,
 			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku008
 		);
 

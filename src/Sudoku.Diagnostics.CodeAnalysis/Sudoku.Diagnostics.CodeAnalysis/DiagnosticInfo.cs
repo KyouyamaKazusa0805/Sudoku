@@ -92,6 +92,11 @@
 		/// Indicates the category is the style.
 		/// </summary>
 		public const string Style = nameof(Style);
+
+		/// <summary>
+		/// Indicates the category is about the static technique property named <c>Properties</c>.
+		/// </summary>
+		public const string StaticTechniqueProperties = nameof(StaticTechniqueProperties);
 	}
 
 	/// <summary>

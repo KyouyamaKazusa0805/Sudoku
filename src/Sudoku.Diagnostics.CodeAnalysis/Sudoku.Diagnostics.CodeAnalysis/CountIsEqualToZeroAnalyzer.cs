@@ -10,7 +10,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	/// to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	public sealed partial class CellsOrCandidatesCountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
+	public sealed partial class CountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
 		/// Indicates the zero string.
@@ -108,7 +108,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 						id: DiagnosticIds.Sudoku018,
 						title: Titles.Sudoku018,
 						messageFormat: Messages.Sudoku018,
-						category: Categories.Usage,
+						category: Categories.StaticTechniqueProperties,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
 						helpLinkUri: HelpLinks.Sudoku018

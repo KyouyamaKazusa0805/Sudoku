@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
-	partial class CellsOrCandidatesCountIsEqualToZeroAnalyzer
+	partial class CountIsEqualToZeroAnalyzer
 	{
 		/// <summary>
 		/// Indicates the

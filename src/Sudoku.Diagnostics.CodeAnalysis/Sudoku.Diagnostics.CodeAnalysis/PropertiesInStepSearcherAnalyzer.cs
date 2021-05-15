@@ -91,7 +91,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku001,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku001,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -114,7 +114,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku002,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku002,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -138,7 +138,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku003,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku003,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -162,7 +162,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku004,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku004,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -193,7 +193,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku005,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku005,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -216,7 +216,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku006,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku006,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -240,7 +240,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku007,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku007,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
@@ -278,7 +278,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					id: DiagnosticIds.Sudoku008,
-					category: Categories.Usage,
+					category: Categories.StaticTechniqueProperties,
 					message: Messages.Sudoku008,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,

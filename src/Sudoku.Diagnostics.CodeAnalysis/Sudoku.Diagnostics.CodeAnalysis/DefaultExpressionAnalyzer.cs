@@ -12,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	/// to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	public sealed partial class CellsCandidatesSudokuGridDefaultExpressionAnalyzer : DiagnosticAnalyzer
+	public sealed partial class DefaultExpressionAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
 		/// Indicates the cells type name.

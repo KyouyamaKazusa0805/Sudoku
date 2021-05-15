@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
-	partial class CellsCandidatesSudokuGridDefaultExpressionAnalyzer
+	partial class DefaultExpressionAnalyzer
 	{
 		/// <summary>
 		/// Indicates the

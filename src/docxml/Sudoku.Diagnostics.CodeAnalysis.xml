@@ -4,108 +4,6 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
-            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.CellsTypeName">
-            <summary>
-            Indicates the cells type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.CandidatesTypeName">
-            <summary>
-            Indicates the candidates type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.SudokuGridTypeName">
-            <summary>
-            Indicates the sudoku grid type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.CellsFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Cells</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.CandidatesFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Candidates</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.SudokuGridFullTypeName">
-            <summary>
-            Indicates the full type name of the sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.EmptyPropertyName">
-            <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.SudokuGridEmptyPropertyName">
-            <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.Sudoku021">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">
-            SUDOKU021
-            </a>
-            diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsCandidatesSudokuGridDefaultExpressionAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.ZeroString">
-            <summary>
-            Indicates the zero string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CountPropertyName">
-            <summary>
-            Indicates the property name of <c>Count</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CellsFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Cells</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.CandidatesFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Candidates</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.Sudoku018">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">
-            SUDOKU018
-            </a>
-            diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesCountIsEqualToZeroAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.ClosedAttribute">
             <summary>
             Marks on a enumeration type, which means the enumeration type is a closed enumeration type.
@@ -153,6 +51,108 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
+            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.ZeroString">
+            <summary>
+            Indicates the zero string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CountPropertyName">
+            <summary>
+            Indicates the property name of <c>Count</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CellsFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CandidatesFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Sudoku018">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">
+            SUDOKU018
+            </a>
+            diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
+            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CellsTypeName">
+            <summary>
+            Indicates the cells type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CandidatesTypeName">
+            <summary>
+            Indicates the candidates type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridTypeName">
+            <summary>
+            Indicates the sudoku grid type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CellsFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CandidatesFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridFullTypeName">
+            <summary>
+            Indicates the full type name of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.EmptyPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridEmptyPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Sudoku021">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">
+            SUDOKU021
+            </a>
+            diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">
             <summary>
             Provides diagnostic IDs.
@@ -196,6 +196,11 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Style">
             <summary>
             Indicates the category is the style.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.StaticTechniqueProperties">
+            <summary>
+            Indicates the category is about the static technique property named <c>Properties</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Titles">
