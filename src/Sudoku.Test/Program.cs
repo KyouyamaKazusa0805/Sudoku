@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-string t = $"12341";
+Console.WriteLine($"12341");
 
 for (var f = TestEnum.A; f < TestEnum.C; f++)
 {

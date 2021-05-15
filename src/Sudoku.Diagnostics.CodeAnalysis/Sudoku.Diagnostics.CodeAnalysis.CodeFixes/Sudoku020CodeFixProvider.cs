@@ -17,7 +17,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result <c>SUDOKU020</c>.
 	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp)]
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(Sudoku020CodeFixProvider))]
 	[Shared]
 	public sealed class Sudoku020CodeFixProvider : CodeFixProvider
 	{

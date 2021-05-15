@@ -11,7 +11,7 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Sudoku001CodeFixProvider">
             <summary>
-            Indicates the code fixer.
+            Indicates the code fixer for solving the diagnostic result <c>SUDOKU001</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Sudoku001CodeFixProvider.OrderOfMemberKinds">

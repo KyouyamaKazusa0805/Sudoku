@@ -15,9 +15,9 @@ using Microsoft.CodeAnalysis.Text.Extensions;
 namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Indicates the code fixer.
+	/// Indicates the code fixer for solving the diagnostic result <c>SUDOKU001</c>.
 	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp)]
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(Sudoku001CodeFixProvider))]
 	[Shared]
 	public sealed class Sudoku001CodeFixProvider : CodeFixProvider
 	{
