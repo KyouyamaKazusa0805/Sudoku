@@ -5594,6 +5594,11 @@
             Indicates the bi-value oddagon type 3.
             </summary>
         </member>
+        <member name="F:Sudoku.Techniques.Technique.GroupedBivalueOddagon">
+            <summary>
+            Indicates the grouped bi-value oddagon.
+            </summary>
+        </member>
         <member name="F:Sudoku.Techniques.Technique.XChain">
             <summary>
             Indicates the X-Chain.

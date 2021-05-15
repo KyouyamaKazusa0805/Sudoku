@@ -4656,6 +4656,46 @@
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo">
+            <summary>
+            Provides a usage of <b>grouped bi-value oddagon</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigits">The extra digits.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Provides a usage of <b>grouped bi-value oddagon</b> technique.
+            </summary>
+            <param name="Conclusions">All conclusions.</param>
+            <param name="Views">All views.</param>
+            <param name="Loop">The loop used.</param>
+            <param name="Digit1">The digit 1.</param>
+            <param name="Digit2">The digit 2.</param>
+            <param name="ExtraDigits">The extra digits.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.MslsStepInfo">
             <summary>
             Provides a usage of <b>multi-sector locked sets</b> technique.

@@ -1159,6 +1159,11 @@ namespace Sudoku.Techniques
 		BivalueOddagonType3,
 
 		/// <summary>
+		/// Indicates the grouped bi-value oddagon.
+		/// </summary>
+		GroupedBivalueOddagon,
+
+		/// <summary>
 		/// Indicates the X-Chain.
 		/// </summary>
 		XChain,
