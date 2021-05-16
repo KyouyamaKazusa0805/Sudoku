@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that analyzes LINQ nodes.

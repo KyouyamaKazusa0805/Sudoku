@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.

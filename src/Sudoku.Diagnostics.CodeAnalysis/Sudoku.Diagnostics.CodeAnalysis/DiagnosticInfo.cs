@@ -156,4 +156,13 @@
 		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
 		public const string Sudoku022 = "Can't apply 'operator {0}' here because the type is closed enum";
 	}
+
+	/// <summary>
+	/// Provides the titles for the code fix solutions.
+	/// </summary>
+	internal static class CodeFixTitles
+	{
+		public const string Sudoku001 = "Append default technique property";
+		public const string Sudoku020 = "Remove redundant '$'";
+	}
 }

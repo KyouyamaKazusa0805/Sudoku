@@ -14,8 +14,6 @@
 	<Assets>
 		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Sudoku.Diagnostics.CodeAnalysis" Path="|Sudoku.Diagnostics.CodeAnalysis|"/>
 		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Sudoku.Diagnostics.CodeAnalysis" Path="|Sudoku.Diagnostics.CodeAnalysis|"/>
-		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Sudoku.Diagnostics.CodeAnalysis.CodeFixes" Path="|Sudoku.Diagnostics.CodeAnalysis.CodeFixes|"/>
-		<Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Sudoku.Diagnostics.CodeAnalysis.CodeFixes" Path="|Sudoku.Diagnostics.CodeAnalysis.CodeFixes|"/>
 	</Assets>
 	<Prerequisites>
 		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,)" DisplayName="Visual Studio core editor" />

@@ -4,6 +4,507 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.ClosedAttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the closed attribute.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.Sudoku022">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4019214&amp;doc_id=633030">
+            SUDOKU022
+            </a>
+            diagnostic result (Can't apply the operator here because the type is closed enum).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
+            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.ZeroString">
+            <summary>
+            Indicates the zero string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.CountPropertyName">
+            <summary>
+            Indicates the property name of <c>Count</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.CellsFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.CandidatesFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.Sudoku018">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">
+            SUDOKU018
+            </a>
+            diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
+            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CellsTypeName">
+            <summary>
+            Indicates the cells type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CandidatesTypeName">
+            <summary>
+            Indicates the candidates type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SudokuGridTypeName">
+            <summary>
+            Indicates the sudoku grid type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CellsFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CandidatesFullTypeName">
+            <summary>
+            Indicates the full type name of <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SudokuGridFullTypeName">
+            <summary>
+            Indicates the full type name of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.EmptyPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SudokuGridEmptyPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.Sudoku021">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">
+            SUDOKU021
+            </a>
+            diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer">
+            <summary>
+            Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
+            field <c>TextResources.Current</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.ChangeLanguageMethodName">
+            <summary>
+            Indicates the method name that is called in order to change the language of that resource dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SerializeMethodName">
+            <summary>
+            Indicates the method name that is called in order to serialize the object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.DeserializeMethodName">
+            <summary>
+            Indicates the method name that is called in order to deserialize the object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.CountryCodeTypeName">
+            <summary>
+            Indicates the country code type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesClassName">
+            <summary>
+            Indicates the text resources class name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesStaticReadOnlyFieldName">
+            <summary>
+            Indicates that field dynamically bound.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Sudoku010">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610020&amp;doc_id=633030">
+            SUDOKU010
+            </a>
+            diagnostic result (The specified method can't be found and called).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Sudoku011">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610022&amp;doc_id=633030">
+            SUDOKU011
+            </a>
+            diagnostic result (The number of arguments dismatched in this dynamically invocation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Sudoku012">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610347&amp;doc_id=633030">
+            SUDOKU012
+            </a>
+            diagnostic result (The argument type dismatched in this dynamically invocation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Sudoku013">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610364&amp;doc_id=633030">
+            SUDOKU013
+            </a>
+            diagnostic result (The method returns void, but you make it an rvalue expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Sudoku015">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4018391&amp;doc_id=633030">
+            SUDOKU015
+            </a>
+            diagnostic result (The specified key can't be found in the resource dictionary).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes the interpolated strings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Sudoku016">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">
+            SUDOKU016
+            </a>
+            diagnostic result (Please add 'ToString' method invocation to the interpolation part
+            in order to prevent any box and unbox operations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Sudoku020">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">
+            SUDOKU020
+            </a>
+            diagnostic result (Unnecessary interpolation leading character <c>'$'</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes LINQ nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.TakeMethodName">
+            <summary>
+            Indicates the method name <c>Take</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.CountMethodName">
+            <summary>
+            Indicates the method name <c>Count</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.EnumerableClassFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Linq.Enumerable"/>.
+            </summary>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.IEnumerableFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.Sudoku019">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625073&amp;doc_id=633030">
+            SUDOKU019
+            </a>
+            diagnostic result (Replace <c>Count() >= n</c> with <c>Take(n).Count() >= n</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
+            <summary>
+            Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.TargetPropertyName">
+            <summary>
+            Indicates the target property name to check (i.e. <c>Properties</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.StepSearcherTypeFullName">
+            <summary>
+            Indicates the full name of the type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.TechniquePropertiesTypeFullName">
+            <summary>
+            Indicates the full name of the type of the property technique properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.AnalyzeSymbol(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
+            <summary>
+            To analyze this symbol.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku001">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599824&amp;doc_id=633030">
+            SUDOKU001
+            </a>
+            diagnostic result (A property named 'Properties' expected).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku002">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599808&amp;doc_id=633030">
+            SUDOKU002
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="public"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku003">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3621783&amp;doc_id=633030">
+            SUDOKU003
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="static"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku004">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599816&amp;doc_id=633030">
+            SUDOKU004
+            </a>
+            diagnostic result (The property 'Properties' must be <see langword="readonly"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku005">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599818&amp;doc_id=633030">
+            SUDOKU005
+            </a>
+            diagnostic result (The property 'Properties' has a wrong type).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku006">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599826&amp;doc_id=633030">
+            SUDOKU006
+            </a>
+            diagnostic result (The property 'Properties' can't be <see langword="null"/>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku007">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3602787&amp;doc_id=633030">
+            SUDOKU007
+            </a>
+            diagnostic result (The property 'Properties' must contain an initializer).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.Sudoku008">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3607697&amp;doc_id=633030">
+            SUDOKU008
+            </a>
+            diagnostic result (The property 'Properties' must be initialized by a new clause).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer">
+            <summary>
+            Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
+            store in the folder <c>..\required\lang</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.TextResourcesClassName">
+            <summary>
+            Indicates the text resources class name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.TextResourcesStaticReadOnlyFieldName">
+            <summary>
+            Indicates that field dynamically bound.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.Sudoku009">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
+            SUDOKU009
+            </a>
+            diagnostic result (The specified key can't be found in the resource dictionary).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer">
+            <summary>
+            Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SpanTypeFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.ReadOnlySpanTypeFullName">
+            <summary>
+            Indicates the full type name of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.InternalVisit(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Visit methods.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="node">The root node of the function.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.Sudoku017">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622127&amp;doc_id=633030">
+            SUDOKU017
+            </a>
+            diagnostic result (The result of the expression '.ctor(<see langword="void"/>*, <see cref="T:System.Int32"/>)'
+            can't be the return value as any methods).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer">
+            <summary>
+            Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SudokuGridTypeName">
+            <summary>
+            Indicates the type name of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.RefreshingCandidatesFuncPtrName">
+            <summary>
+            Indicates the field name "<c>RefreshingCandidates</c>".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.ValueChangedFuncPtrName">
+            <summary>
+            Indicates the field name "<c>ValueChanged</c>".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.Sudoku014">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">
+            SUDOKU014
+            </a>
+            diagnostic result (The member can't be invoked because they are reserved).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.ClosedAttribute">
             <summary>
             Marks on a enumeration type, which means the enumeration type is a closed enumeration type.
@@ -21,137 +522,66 @@
             instead of any calculations.
             </remarks>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider">
             <summary>
-            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            Indicates the code fixer for solving the diagnostic result <c>SUDOKU001</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.ClosedAttributeFullTypeName">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.OrderOfMemberKinds">
             <summary>
-            Indicates the full type name of the closed attribute.
+            To provide a way to insert property into the document, via the current order.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.TypeFormat">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.NodesToAppend">
             <summary>
-            Indicates the type format.
+            Indicates the node to append.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.FixableDiagnosticIds">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.Sudoku022">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4019214&amp;doc_id=633030">
-            SUDOKU022
-            </a>
-            diagnostic result (Can't apply the operator here because the type is closed enum).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.ClosedEnumAnalyzer.SupportedDiagnostics">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.ZeroString">
-            <summary>
-            Indicates the zero string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CountPropertyName">
-            <summary>
-            Indicates the property name of <c>Count</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CellsFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Cells</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CandidatesFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Candidates</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Sudoku018">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.AppendTechniquePropertyAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,System.Threading.CancellationToken)">
             <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625575&amp;doc_id=633030">
-            SUDOKU018
-            </a>
-            diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="typeDeclaration">The type declarartion node that the diagnostic result occurs.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result <c>SUDOKU020</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.SupportedDiagnostics">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.FixableDiagnosticIds">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
-            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CellsTypeName">
-            <summary>
-            Indicates the cells type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CandidatesTypeName">
-            <summary>
-            Indicates the candidates type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridTypeName">
-            <summary>
-            Indicates the sudoku grid type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CellsFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Cells</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CandidatesFullTypeName">
-            <summary>
-            Indicates the full type name of <c>Candidates</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridFullTypeName">
-            <summary>
-            Indicates the full type name of the sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.EmptyPropertyName">
-            <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SudokuGridEmptyPropertyName">
-            <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Sudoku021">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3630107&amp;doc_id=633030">
-            SUDOKU021
-            </a>
-            diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SupportedDiagnostics">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.RemoveRedundantDollarMarkAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.CSharp.Syntax.InterpolatedStringExpressionSyntax,System.Threading.CancellationToken)">
+            <summary>
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="root">The syntax root node.</param>
+            <param name="node">
+            The interpolted string expression node that the diagnostic result occurs.
+            </param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.Sudoku020CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">
             <summary>
@@ -213,92 +643,10 @@
             Provides the messages.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixTitles">
             <summary>
-            Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
-            field <c>TextResources.Current</c>.
+            Provides the titles for the code fix solutions.
             </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.ChangeLanguageMethodName">
-            <summary>
-            Indicates the method name that is called in order to change the language of that resource dictionary.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.SerializeMethodName">
-            <summary>
-            Indicates the method name that is called in order to serialize the object.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.DeserializeMethodName">
-            <summary>
-            Indicates the method name that is called in order to deserialize the object.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.CountryCodeTypeName">
-            <summary>
-            Indicates the country code type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesClassName">
-            <summary>
-            Indicates the text resources class name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesStaticReadOnlyFieldName">
-            <summary>
-            Indicates that field dynamically bound.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku010">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610020&amp;doc_id=633030">
-            SUDOKU010
-            </a>
-            diagnostic result (The specified method can't be found and called).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku011">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610022&amp;doc_id=633030">
-            SUDOKU011
-            </a>
-            diagnostic result (The number of arguments dismatched in this dynamically invocation).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku012">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610347&amp;doc_id=633030">
-            SUDOKU012
-            </a>
-            diagnostic result (The argument type dismatched in this dynamically invocation).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku013">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3610364&amp;doc_id=633030">
-            SUDOKU013
-            </a>
-            diagnostic result (The method returns void, but you make it an rvalue expression).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.Sudoku015">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4018391&amp;doc_id=633030">
-            SUDOKU015
-            </a>
-            diagnostic result (The specified key can't be found in the resource dictionary).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DynamicallyInvocationOfCurrentAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ArgumentSyntaxEx">
             <summary>
@@ -377,288 +725,6 @@
             the node that used in traversing the iteration.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes the interpolated strings.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Sudoku016">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">
-            SUDOKU016
-            </a>
-            diagnostic result (Please add 'ToString' method invocation to the interpolation part
-            in order to prevent any box and unbox operations).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.Sudoku020">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">
-            SUDOKU020
-            </a>
-            diagnostic result (Unnecessary interpolation leading character <c>'$'</c>).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.InterpolatedStringAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes LINQ nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.TakeMethodName">
-            <summary>
-            Indicates the method name <c>Take</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.CountMethodName">
-            <summary>
-            Indicates the method name <c>Count</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.EnumerableClassFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.Linq.Enumerable"/>.
-            </summary>
-            <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.IEnumerableFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.Sudoku019">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625073&amp;doc_id=633030">
-            SUDOKU019
-            </a>
-            diagnostic result (Replace <c>Count() >= n</c> with <c>Take(n).Count() >= n</c>).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.LinqAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer">
-            <summary>
-            Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.TargetPropertyName">
-            <summary>
-            Indicates the target property name to check (i.e. <c>Properties</c>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.StepSearcherTypeFullName">
-            <summary>
-            Indicates the full name of the type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.TechniquePropertiesTypeFullName">
-            <summary>
-            Indicates the full name of the type of the property technique properties.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.AnalyzeSymbol(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext)">
-            <summary>
-            To analyze this symbol.
-            </summary>
-            <param name="context">The context.</param>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku001">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599824&amp;doc_id=633030">
-            SUDOKU001
-            </a>
-            diagnostic result (A property named 'Properties' expected).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku002">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599808&amp;doc_id=633030">
-            SUDOKU002
-            </a>
-            diagnostic result (The property 'Properties' must be <see langword="public"/>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku003">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3621783&amp;doc_id=633030">
-            SUDOKU003
-            </a>
-            diagnostic result (The property 'Properties' must be <see langword="static"/>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku004">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599816&amp;doc_id=633030">
-            SUDOKU004
-            </a>
-            diagnostic result (The property 'Properties' must be <see langword="readonly"/>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku005">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599818&amp;doc_id=633030">
-            SUDOKU005
-            </a>
-            diagnostic result (The property 'Properties' has a wrong type).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku006">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599826&amp;doc_id=633030">
-            SUDOKU006
-            </a>
-            diagnostic result (The property 'Properties' can't be <see langword="null"/>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku007">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3602787&amp;doc_id=633030">
-            SUDOKU007
-            </a>
-            diagnostic result (The property 'Properties' must contain an initializer).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.Sudoku008">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3607697&amp;doc_id=633030">
-            SUDOKU008
-            </a>
-            diagnostic result (The property 'Properties' must be initialized by a new clause).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.PropertiesInStepSearcherAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer">
-            <summary>
-            Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
-            store in the folder <c>..\required\lang</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.TextResourcesClassName">
-            <summary>
-            Indicates the text resources class name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.TextResourcesStaticReadOnlyFieldName">
-            <summary>
-            Indicates that field dynamically bound.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.Sudoku009">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
-            SUDOKU009
-            </a>
-            diagnostic result (The specified key can't be found in the resource dictionary).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.ResourceDictionaryAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer">
-            <summary>
-            Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.SpanTypeFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.ReadOnlySpanTypeFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.InternalVisit(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.SyntaxNode)">
-            <summary>
-            Visit methods.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="node">The root node of the function.</param>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.Sudoku017">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622127&amp;doc_id=633030">
-            SUDOKU017
-            </a>
-            diagnostic result (The result of the expression '.ctor(<see langword="void"/>*, <see cref="T:System.Int32"/>)'
-            can't be the return value as any methods).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SpanOrReadOnlySpanAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer">
-            <summary>
-            Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.SudokuGridTypeName">
-            <summary>
-            Indicates the type name of the sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.RefreshingCandidatesFuncPtrName">
-            <summary>
-            Indicates the field name "<c>RefreshingCandidates</c>".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.ValueChangedFuncPtrName">
-            <summary>
-            Indicates the field name "<c>ValueChanged</c>".
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.Sudoku014">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3614979&amp;doc_id=633030">
-            SUDOKU014
-            </a>
-            diagnostic result (The member can't be invoked because they are reserved).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SudokuGridAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
         </member>
     </members>
 </doc>

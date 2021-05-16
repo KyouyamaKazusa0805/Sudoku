@@ -27,7 +27,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Diagnostics.CodeAnalysis.CodeFixes\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.csproj" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj" />
 	</ItemGroup>
 
@@ -38,7 +37,6 @@
 	<Target Name="_AddAnalyzersToOutput">
 		<ItemGroup>
 			<TfmSpecificPackageFile Include="$(OutputPath)\Sudoku.Diagnostics.CodeAnalysis.dll" PackagePath="analyzers/dotnet/cs" />
-			<TfmSpecificPackageFile Include="$(OutputPath)\Sudoku.Diagnostics.CodeAnalysis.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
 		</ItemGroup>
 	</Target>
 

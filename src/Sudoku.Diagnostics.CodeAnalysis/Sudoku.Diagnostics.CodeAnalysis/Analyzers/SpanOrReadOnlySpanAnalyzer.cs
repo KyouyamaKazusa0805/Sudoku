@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that analyzes the type <see cref="Span{T}"/> or <see cref="ReadOnlySpan{T}"/>.
