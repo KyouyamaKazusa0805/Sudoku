@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -58,8 +59,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeDynamicInvocation(SyntaxNodeAnalysisContext context)
 		{
-			var semanticModel = context.SemanticModel;
-			var compilation = semanticModel.Compilation;
+			var (semanticModel, compilation, n) = context;
 			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
 			{
 				// We don't check on those two WPF projects, because those two projects has already used
@@ -68,7 +68,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				context.Node is not InvocationExpressionSyntax
+				n is not InvocationExpressionSyntax
 				{
 					Expression: MemberAccessExpressionSyntax
 					{

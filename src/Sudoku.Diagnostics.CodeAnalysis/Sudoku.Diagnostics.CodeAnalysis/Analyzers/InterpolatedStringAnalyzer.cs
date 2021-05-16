@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -32,8 +33,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSudoku016(SyntaxNodeAnalysisContext context)
 		{
+			var (semanticModel, _) = context;
 			if (
-				context.SemanticModel.GetOperation(context.Node) is not IInterpolationOperation
+				semanticModel.GetOperation(context.Node) is not IInterpolationOperation
 				{
 					Kind: OperationKind.Interpolation,
 					Expression: { Type: { IsValueType: true } }
@@ -62,8 +64,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSudoku020(SyntaxNodeAnalysisContext context)
 		{
-			var node = context.Node;
-			if (node is not InterpolatedStringExpressionSyntax)
+			if (context.Node is not InterpolatedStringExpressionSyntax node)
 			{
 				return;
 			}

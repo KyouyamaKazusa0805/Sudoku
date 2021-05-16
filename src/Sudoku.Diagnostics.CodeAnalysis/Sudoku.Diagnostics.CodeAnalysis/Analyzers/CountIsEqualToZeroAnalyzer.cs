@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -54,8 +55,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSudoku018(SyntaxNodeAnalysisContext context)
 		{
+			var (semanticModel, compilation, n) = context;
 			if (
-				context.Node is not BinaryExpressionSyntax
+				n is not BinaryExpressionSyntax
 				{
 					RawKind: var kind,
 					Left: MemberAccessExpressionSyntax
@@ -76,7 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				context.SemanticModel.GetOperation(exprNode) is not
+				semanticModel.GetOperation(exprNode) is not
 				{
 					Kind: OperationKind.LocalReference,
 					Type: var typeSymbol
@@ -86,7 +88,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			var compilation = context.Compilation;
 			if (
 				!SymbolEqualityComparer.Default.Equals(
 					typeSymbol,

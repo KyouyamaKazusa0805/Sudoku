@@ -46,21 +46,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			switch (context.Node)
 			{
-				case MethodDeclarationSyntax node:
+				case MethodDeclarationSyntax { Body: { } body }:
 				{
-					if (node.Body is { } body)
-					{
-						InternalVisit(context, body);
-					}
+					InternalVisit(context, body);
 
 					break;
 				}
-				case LocalFunctionStatementSyntax node:
+				case LocalFunctionStatementSyntax { Body: { } body }:
 				{
-					if (node.Body is { } body)
-					{
-						InternalVisit(context, body);
-					}
+					InternalVisit(context, body);
 
 					break;
 				}
