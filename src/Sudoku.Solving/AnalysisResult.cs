@@ -57,9 +57,7 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal MaxDifficulty => Steps is { Count: not 0 } /*length-pattern*/
-			? Steps.Max(static info => info.ShowDifficulty ? info.Difficulty : 0)
-			: 20.0M;
+		public unsafe decimal MaxDifficulty => DifficultyExecutor(&Enumerable.Max<StepInfo>, 20.0M);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -74,8 +72,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="Steps"/>
-		public decimal TotalDifficulty =>
-			Steps is null ? 0 : Steps.Sum(static step => step.ShowDifficulty ? step.Difficulty : 0);
+		public unsafe decimal TotalDifficulty => DifficultyExecutor(&Enumerable.Sum<StepInfo>, 0);
 
 		/// <summary>
 		/// <para>
@@ -217,5 +214,20 @@ namespace Sudoku.Solving
 		/// <inheritdoc cref="Formatter.ToString(AnalysisResultFormattingOptions, CountryCode)"/>
 		public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode) =>
 			new Formatter(this).ToString(options, countryCode);
+
+		/// <summary>
+		/// The inner executor to get the difficulty value (total, average).
+		/// </summary>
+		/// <param name="funcExecutor">The execute method.</param>
+		/// <param name="defaultValue">
+		/// The default value when <see cref="Steps"/> is <see langword="null"/> or empty.
+		/// </param>
+		/// <returns>The result.</returns>
+		/// <seealso cref="Steps"/>
+		private unsafe decimal DifficultyExecutor(
+			delegate*<IEnumerable<StepInfo>, Func<StepInfo, decimal>, decimal> funcExecutor,
+			decimal defaultValue) => Steps is { Count: not 0 }
+			? funcExecutor(Steps!, static step => step.ShowDifficulty ? step.Difficulty : 0)
+			: defaultValue; /*length-pattern*/
 	}
 }
