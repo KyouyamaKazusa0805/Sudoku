@@ -169,7 +169,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: new(
 						id: DiagnosticIds.Sudoku019,
-						title: Titles.Sudoku016,
+						title: Titles.Sudoku019,
 						messageFormat: Messages.Sudoku019,
 						category: Categories.Performance,
 						defaultSeverity: DiagnosticSeverity.Warning,

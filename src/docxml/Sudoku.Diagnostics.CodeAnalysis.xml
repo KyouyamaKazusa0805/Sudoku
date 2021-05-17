@@ -4,6 +4,65 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructAttributeFullTypeName">
+            <summary>
+            Indicates the full type names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructExtensionAttributeFullTypeName">
+            <summary>
+            Indicates the full type names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoEqualityAttributeFullTypeName">
+            <summary>
+            Indicates the full type names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoGetEnumeratorAttributeFullTypeName">
+            <summary>
+            Indicates the full type names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoHashCodeAttributeFullTypeName">
+            <summary>
+            Indicates the full type names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.Sudoku023">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4021986&amp;doc_id=633030">
+            SUDOKU023
+            </a>
+            diagnostic result (Please use nameof expression instead of string literal).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.Sudoku024">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4024928&amp;doc_id=633030">
+            SUDOKU024
+            </a>
+            diagnostic result (This attribute must contain the specified number of parameters).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.

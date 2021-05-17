@@ -122,7 +122,7 @@
             Indicates the inner syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.SyntaxReceiver.ModuleAttributes">
+        <member name="P:Sudoku.CodeGen.Deconstruction.ExtensionDeconstructMethodGenerator.SyntaxReceiver.Attributes">
             <summary>
             Indicates the attributes result that targets to a module.
             </summary>

@@ -42,7 +42,7 @@ namespace Sudoku.CodeGen.Deconstruction
 
 			static IEnumerable<IGrouping<string, (AttributeArgumentListSyntax, ITypeSymbol)>> g(
 				SyntaxReceiver syntaxReceiver, Compilation compilation) =>
-				from attribute in syntaxReceiver.ModuleAttributes
+				from attribute in syntaxReceiver.Attributes
 				let argList = attribute.ArgumentList
 				where argList is { Arguments: { Count: >= 2 } }
 				let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax

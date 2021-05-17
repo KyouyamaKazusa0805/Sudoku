@@ -26,3 +26,5 @@ SUDOKU019 | Performance | Info | LinqAnalyzer, [Documentation](https://gitee.com
 SUDOKU020 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641)
 SUDOKU021 | Performance | Warning | DefaultExpressionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107) 
 SUDOKU022 | Usage | Error | ClosedEnumAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214)
+SUDOKU023 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU023?sort_id=4021986)
+SUDOKU024 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU024?sort_id=4024928)

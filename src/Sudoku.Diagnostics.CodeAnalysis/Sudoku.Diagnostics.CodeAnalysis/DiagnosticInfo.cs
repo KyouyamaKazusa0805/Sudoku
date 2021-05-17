@@ -27,6 +27,8 @@
 		public const string Sudoku020 = "SUDOKU020";
 		public const string Sudoku021 = "SUDOKU021";
 		public const string Sudoku022 = "SUDOKU022";
+		public const string Sudoku023 = "SUDOKU023";
+		public const string Sudoku024 = "SUDOKU024";
 	}
 
 	/// <summary>
@@ -56,6 +58,8 @@
 		public const string Sudoku020 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU020?sort_id=3629641";
 		public const string Sudoku021 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU021?sort_id=3630107";
 		public const string Sudoku022 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214";
+		public const string Sudoku023 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU023?sort_id=4021986";
+		public const string Sudoku024 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU024?sort_id=4024928";
 	}
 
 	/// <summary>
@@ -126,6 +130,8 @@
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
 		public const string Sudoku021 = "Please use the default-value field to avoid instantiation";
 		public const string Sudoku022 = "Can't apply the operator here because the type is closed enum";
+		public const string Sudoku023 = "Please use nameof expression instead";
+		public const string Sudoku024 = "This attribute must contain the specified number of parameters";
 	}
 
 	/// <summary>
@@ -155,6 +161,8 @@
 		public const string Sudoku020 = "Unnecessary interpolation leading character '$'";
 		public const string Sudoku021 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
 		public const string Sudoku022 = "Can't apply 'operator {0}' here because the type is closed enum";
+		public const string Sudoku023 = "Please use nameof expression instead";
+		public const string Sudoku024 = "'{0}' must contain at least {1} parameters";
 	}
 
 	/// <summary>

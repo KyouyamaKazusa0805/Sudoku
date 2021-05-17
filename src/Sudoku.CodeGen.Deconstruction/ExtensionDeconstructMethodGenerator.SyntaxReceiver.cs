@@ -15,7 +15,7 @@ namespace Sudoku.CodeGen.Deconstruction
 			/// <summary>
 			/// Indicates the attributes result that targets to a module.
 			/// </summary>
-			public IList<AttributeSyntax> ModuleAttributes { get; } = new List<AttributeSyntax>();
+			public IList<AttributeSyntax> Attributes { get; } = new List<AttributeSyntax>();
 
 
 			/// <inheritdoc/>
@@ -41,7 +41,7 @@ namespace Sudoku.CodeGen.Deconstruction
 
 				foreach (var attribute in attributes)
 				{
-					ModuleAttributes.Add(attribute);
+					Attributes.Add(attribute);
 				}
 			}
 		}
