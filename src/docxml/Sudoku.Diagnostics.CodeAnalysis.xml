@@ -129,6 +129,62 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Sudoku025">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025282&amp;doc_id=633030">
+            SUDOKU025
+            </a>
+            diagnostic result (Deconstruction methods should contain at least 2 parameters).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Sudoku026">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025301&amp;doc_id=633030">
+            SUDOKU026
+            </a>
+            diagnostic result (Deconstruction methods must be instance ones).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Sudoku027">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025305&amp;doc_id=633030">
+            SUDOKU027
+            </a>
+            diagnostic result (Deconstruction methods must return void).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Sudoku028">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025793&amp;doc_id=633030">
+            SUDOKU028
+            </a>
+            diagnostic result (Deconstruction methods must be public).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Sudoku029">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025794&amp;doc_id=633030">
+            SUDOKU029
+            </a>
+            diagnostic result (All parameters in deconstruction methods should be out parameters).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer">
             <summary>
             Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
@@ -680,6 +736,11 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Style">
             <summary>
             Indicates the category is the style.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Design">
+            <summary>
+            Indicates the category is the design.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.StaticTechniqueProperties">

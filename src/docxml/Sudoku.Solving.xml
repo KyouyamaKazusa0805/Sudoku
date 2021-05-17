@@ -152,6 +152,17 @@
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
             <inheritdoc cref="M:Sudoku.Solving.AnalysisResult.Formatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.DifficultyExecutor(,System.Decimal)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="funcExecutor">The execute method.</param>
+            <param name="defaultValue">
+            The default value when <see cref="P:Sudoku.Solving.AnalysisResult.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.Steps"/>
+        </member>
         <member name="T:Sudoku.Solving.AnalysisResult.Formatter">
             <summary>
             Provides operations for analysis result formatting.

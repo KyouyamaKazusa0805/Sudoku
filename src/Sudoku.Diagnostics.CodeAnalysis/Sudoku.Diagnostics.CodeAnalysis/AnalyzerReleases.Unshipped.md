@@ -28,3 +28,8 @@ SUDOKU021 | Performance | Warning | DefaultExpressionAnalyzer, [Documentation](h
 SUDOKU022 | Usage | Error | ClosedEnumAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214)
 SUDOKU023 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU023?sort_id=4021986)
 SUDOKU024 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU024?sort_id=4024928)
+SUDOKU025 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU025?sort_id=4025282)
+SUDOKU026 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU026?sort_id=4025301)
+SUDOKU027 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU027?sort_id=4025305)
+SUDOKU028 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU028?sort_id=4025793)
+SUDOKU029 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU029?sort_id=4025794)

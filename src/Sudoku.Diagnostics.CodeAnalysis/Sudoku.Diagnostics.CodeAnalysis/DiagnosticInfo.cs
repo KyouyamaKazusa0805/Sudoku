@@ -29,6 +29,11 @@
 		public const string Sudoku022 = "SUDOKU022";
 		public const string Sudoku023 = "SUDOKU023";
 		public const string Sudoku024 = "SUDOKU024";
+		public const string Sudoku025 = "SUDOKU025";
+		public const string Sudoku026 = "SUDOKU026";
+		public const string Sudoku027 = "SUDOKU027";
+		public const string Sudoku028 = "SUDOKU028";
+		public const string Sudoku029 = "SUDOKU029";
 	}
 
 	/// <summary>
@@ -60,6 +65,11 @@
 		public const string Sudoku022 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU022?sort_id=4019214";
 		public const string Sudoku023 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU023?sort_id=4021986";
 		public const string Sudoku024 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU024?sort_id=4024928";
+		public const string Sudoku025 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU025?sort_id=4025282";
+		public const string Sudoku026 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU026?sort_id=4025301";
+		public const string Sudoku027 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU027?sort_id=4025305";
+		public const string Sudoku028 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU028?sort_id=4025793";
+		public const string Sudoku029 = "https://gitee.com/SunnieShine/Sudoku/wikis/SUDOKU029?sort_id=4025794";
 	}
 
 	/// <summary>
@@ -98,6 +108,11 @@
 		public const string Style = nameof(Style);
 
 		/// <summary>
+		/// Indicates the category is the design.
+		/// </summary>
+		public const string Design = nameof(Design);
+
+		/// <summary>
 		/// Indicates the category is about the static technique property named <c>Properties</c>.
 		/// </summary>
 		public const string StaticTechniqueProperties = nameof(StaticTechniqueProperties);
@@ -132,6 +147,11 @@
 		public const string Sudoku022 = "Can't apply the operator here because the type is closed enum";
 		public const string Sudoku023 = "Please use nameof expression instead";
 		public const string Sudoku024 = "This attribute must contain the specified number of parameters";
+		public const string Sudoku025 = "Deconstruction methods should contain at least 2 parameters";
+		public const string Sudoku026 = "Deconstruction methods must be instance ones";
+		public const string Sudoku027 = "Deconstruction methods must return void";
+		public const string Sudoku028 = "Deconstruction methods must be public";
+		public const string Sudoku029 = "All parameters in deconstruction methods should be out parameters";
 	}
 
 	/// <summary>
@@ -163,6 +183,11 @@
 		public const string Sudoku022 = "Can't apply 'operator {0}' here because the type is closed enum";
 		public const string Sudoku023 = "Please use nameof expression instead";
 		public const string Sudoku024 = "'{0}' must contain at least {1} parameters";
+		public const string Sudoku025 = "Deconstruction methods should contain at least 2 parameters";
+		public const string Sudoku026 = "Deconstruction methods must be instance ones";
+		public const string Sudoku027 = "Deconstruction methods must return void";
+		public const string Sudoku028 = "Deconstruction methods must be public";
+		public const string Sudoku029 = "All parameters in deconstruction methods should be out parameters";
 	}
 
 	/// <summary>
