@@ -34,11 +34,6 @@
             Indicates the full type names.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.TypeFormat">
-            <summary>
-            Indicates the type format.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>

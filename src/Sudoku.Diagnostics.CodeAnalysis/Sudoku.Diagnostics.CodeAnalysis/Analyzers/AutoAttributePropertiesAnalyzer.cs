@@ -23,20 +23,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			AutoGetEnumeratorAttributeFullTypeName = "AutoGetEnumeratorAttribute",
 			AutoHashCodeAttributeFullTypeName = "AutoHashCodeAttribute";
 
-		/// <summary>
-		/// Indicates the type format.
-		/// </summary>
-		public static readonly SymbolDisplayFormat TypeFormat = new(
-			SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
-			SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-			SymbolDisplayGenericsOptions.IncludeTypeParameters
-			| SymbolDisplayGenericsOptions.IncludeTypeConstraints,
-			miscellaneousOptions:
-				SymbolDisplayMiscellaneousOptions.UseSpecialTypes
-				| SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
-				| SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier
-		);
-
 
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
