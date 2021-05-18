@@ -14,3 +14,4 @@ using Sudoku.CodeGen;
 [assembly: AutoDeconstructExtension(typeof(Diagnostic), nameof(Diagnostic.Location), nameof(Diagnostic.Descriptor))]
 [assembly: AutoDeconstructExtension(typeof(Diagnostic), nameof(Diagnostic.Location), nameof(Diagnostic.Descriptor), nameof(Diagnostic.Severity))]
 [assembly: AutoDeconstructExtension(typeof(Diagnostic), nameof(Diagnostic.Location), nameof(Diagnostic.Descriptor), nameof(Diagnostic.Severity), nameof(Diagnostic.DefaultSeverity))]
+[assembly: AutoDeconstructExtension(typeof(DiagnosticDescriptor), nameof(DiagnosticDescriptor.Id), nameof(DiagnosticDescriptor.Title), nameof(DiagnosticDescriptor.Description), nameof(DiagnosticDescriptor.HelpLinkUri), nameof(DiagnosticDescriptor.MessageFormat), nameof(DiagnosticDescriptor.Category), nameof(DiagnosticDescriptor.DefaultSeverity), nameof(DiagnosticDescriptor.IsEnabledByDefault), nameof(DiagnosticDescriptor.CustomTags))]

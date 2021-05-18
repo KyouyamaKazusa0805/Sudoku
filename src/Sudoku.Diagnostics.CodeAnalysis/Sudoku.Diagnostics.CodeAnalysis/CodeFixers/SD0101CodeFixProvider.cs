@@ -20,8 +20,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 	/// SD0101
 	/// </a>.
 	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SD0101CodeFixProvider))]
-	[Shared]
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SD0101CodeFixProvider)), Shared]
 	public sealed class SD0101CodeFixProvider : CodeFixProvider
 	{
 		/// <summary>
