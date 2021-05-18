@@ -83,6 +83,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			{
 				case BaseObjectCreationExpressionSyntax
 				{
+					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax },
 					ArgumentList: { Arguments: { Count: 0 } },
 					Initializer: null
 				} node
@@ -116,7 +117,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case DefaultExpressionSyntax node
+				case DefaultExpressionSyntax
+				{
+					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax }
+				} node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
 				{
 					Kind: OperationKind.DefaultValue,
@@ -147,7 +151,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case LiteralExpressionSyntax { RawKind: (int)SyntaxKind.DefaultLiteralExpression } node
+				case LiteralExpressionSyntax
+				{
+					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax },
+					RawKind: (int)SyntaxKind.DefaultLiteralExpression
+				} node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
 				{
 					Kind: OperationKind.DefaultValue,
