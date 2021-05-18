@@ -1,7 +1,17 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Sudoku.Data;
 
-Console.WriteLine($"12341");
+if (
+	SudokuGrid.TryParse(
+		"5.782...9.81.....2....716...93.12...............59.36...218....8.....71.1...642.8",
+		out var grid
+	) && grid == default(SudokuGrid)
+)
+{
+	Console.WriteLine(grid);
+}
+
 
 for (var f = TestEnum.A; f < TestEnum.C; f++)
 {

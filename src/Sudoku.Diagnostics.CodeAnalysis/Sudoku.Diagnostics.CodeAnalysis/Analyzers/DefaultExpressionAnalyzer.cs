@@ -147,7 +147,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case LiteralExpressionSyntax { RawKind: (int)SyntaxKind.ImplicitObjectCreationExpression } node
+				case LiteralExpressionSyntax { RawKind: (int)SyntaxKind.DefaultLiteralExpression } node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
 				{
 					Kind: OperationKind.DefaultValue,
