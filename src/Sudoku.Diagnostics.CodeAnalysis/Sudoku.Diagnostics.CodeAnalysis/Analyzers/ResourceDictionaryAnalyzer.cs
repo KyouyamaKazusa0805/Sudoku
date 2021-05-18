@@ -39,10 +39,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSD0201(SyntaxNodeAnalysisContext context)
 		{
-			if (
-				(from file in context.Options.AdditionalFiles select File.ReadAllText(file.Path)).ToArray()
-				is not { Length: not 0 } texts
-			)
+			string[]? texts = (
+				from file in context.Options.AdditionalFiles
+				select File.ReadAllText(file.Path)
+			).ToArray();
+			if (texts.Length != 0)
 			{
 				// Check all syntax trees if available.
 				return;
@@ -56,6 +57,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			CheckWithUsingDirective(context, texts, semanticModel, node);
+		}
+
+		private static void CheckWithUsingDirective(
+			SyntaxNodeAnalysisContext context, string[] texts, SemanticModel semanticModel, SyntaxNode node)
+		{
 			if (semanticModel.GetOperation(node) is not { Kind: OperationKind.DynamicMemberReference })
 			{
 				return;
@@ -78,10 +85,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
 						}
 					},
-					Name: IdentifierNameSyntax
-					{
-						Identifier: { ValueText: var key }
-					} nameNode
+					Name: IdentifierNameSyntax { Identifier: { ValueText: var key } } nameNode
 				}
 			)
 			{
@@ -113,8 +117,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					messageArgs: new[] { key }
 				)
 			);
-
-			// TODO: Implement another case that is with a using static directive.
 		}
 	}
 }
