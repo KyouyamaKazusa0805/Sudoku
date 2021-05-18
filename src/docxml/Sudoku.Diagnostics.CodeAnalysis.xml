@@ -243,6 +243,15 @@
             diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SD0304">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4035455&amp;doc_id=633030">
+            SD0304
+            </a>
+            diagnostic result (Please use the property '{0}.{1}' to simplify the invocation).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>

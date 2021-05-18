@@ -22,6 +22,7 @@
 		public const string SD0301 = nameof(SD0301);
 		public const string SD0302 = nameof(SD0302);
 		public const string SD0303 = nameof(SD0303);
+		public const string SD0304 = nameof(SD0304);
 		public const string SD0401 = nameof(SD0401);
 		public const string SD0402 = nameof(SD0402);
 
@@ -59,6 +60,7 @@
 		public const string SD0301 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0301?sort_id=3614979";
 		public const string SD0302 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575";
 		public const string SD0303 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107";
+		public const string SD0304 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455";
 		public const string SD0401 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986";
 		public const string SD0402 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928";
 
@@ -96,6 +98,7 @@
 		public const string SD0301 = "The member can't be invoked because they are reserved";
 		public const string SD0302 = "Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'";
 		public const string SD0303 = "Please use the default-value field to avoid instantiation";
+		public const string SD0304 = "Please use the specific property to simplify the invocation";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
@@ -133,6 +136,7 @@
 		public const string SD0301 = "The member '{0}' can't be invoked because they are reserved";
 		public const string SD0302 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'";
 		public const string SD0303 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
+		public const string SD0304 = "Please use the property '{0}.{1}' to simplify the invocation";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 

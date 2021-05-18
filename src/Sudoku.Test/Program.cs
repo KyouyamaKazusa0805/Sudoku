@@ -12,14 +12,6 @@ if (
 	Console.WriteLine(grid);
 }
 
-p();
-
-static void p(SudokuGrid s = default, SudokuGrid q = new(), SudokuGrid r = new())
-{
-	Console.WriteLine(s);
-	Console.WriteLine(q);
-	Console.WriteLine(r);
-}
 
 
 for (var f = TestEnum.A; f < TestEnum.C; f++)

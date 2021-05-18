@@ -79,11 +79,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var (semanticModel, compilation, originalNode) = context;
 			string typeName;
 			bool isOfTypeSudokuGrid;
+			SyntaxNode? parent;
 			switch (originalNode)
 			{
 				case BaseObjectCreationExpressionSyntax
 				{
-					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax },
+					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax },
 					ArgumentList: { Arguments: { Count: 0 } },
 					Initializer: null
 				} node
@@ -111,6 +112,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						return;
 					}
 
+					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
 						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
@@ -119,7 +121,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				case DefaultExpressionSyntax
 				{
-					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax }
+					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax }
 				} node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
 				{
@@ -145,6 +147,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						return;
 					}
 
+					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
 						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
@@ -153,7 +156,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				case LiteralExpressionSyntax
 				{
-					Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax },
+					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax },
 					RawKind: (int)SyntaxKind.DefaultLiteralExpression
 				} node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
@@ -180,6 +183,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						return;
 					}
 
+					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
 						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
@@ -192,18 +196,32 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
-			// You can't invoke them.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0303,
-						title: Titles.SD0303,
-						messageFormat: Messages.SD0303,
-						category: Categories.Performance,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0303
-					),
+					descriptor: parent switch
+					{
+						BinaryExpressionSyntax
+						{
+							RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+						} => new(
+							id: DiagnosticIds.SD0304,
+							title: Titles.SD0304,
+							messageFormat: Messages.SD0304,
+							category: Categories.Usage,
+							defaultSeverity: DiagnosticSeverity.Info,
+							isEnabledByDefault: true,
+							helpLinkUri: HelpLinks.SD0304
+						),
+						_ => new(
+							id: DiagnosticIds.SD0303,
+							title: Titles.SD0303,
+							messageFormat: Messages.SD0303,
+							category: Categories.Performance,
+							defaultSeverity: DiagnosticSeverity.Warning,
+							isEnabledByDefault: true,
+							helpLinkUri: HelpLinks.SD0303
+						)
+					},
 					location: originalNode.GetLocation(),
 					messageArgs: new[]
 					{
