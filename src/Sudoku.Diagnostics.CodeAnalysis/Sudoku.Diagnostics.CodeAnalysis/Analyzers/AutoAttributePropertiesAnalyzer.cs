@@ -78,15 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
-										descriptor: new(
-											id: DiagnosticIds.SD0402,
-											title: Titles.SD0402,
-											messageFormat: Messages.SD0402,
-											category: Categories.Usage,
-											defaultSeverity: DiagnosticSeverity.Warning,
-											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.SD0402
-										),
+										descriptor: SD0402,
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
@@ -110,15 +102,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
-										descriptor: new(
-											id: DiagnosticIds.SD0402,
-											title: Titles.SD0402,
-											messageFormat: Messages.SD0402,
-											category: Categories.Usage,
-											defaultSeverity: DiagnosticSeverity.Warning,
-											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.SD0402
-										),
+										descriptor: SD0402,
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
@@ -140,15 +124,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
-										descriptor: new(
-											id: DiagnosticIds.SD0402,
-											title: Titles.SD0402,
-											messageFormat: Messages.SD0402,
-											category: Categories.Usage,
-											defaultSeverity: DiagnosticSeverity.Warning,
-											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.SD0402
-										),
+										descriptor: SD0402,
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
@@ -173,15 +149,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
-										descriptor: new(
-											id: DiagnosticIds.SD0401,
-											title: Titles.SD0401,
-											messageFormat: Messages.SD0401,
-											category: Categories.Usage,
-											defaultSeverity: DiagnosticSeverity.Warning,
-											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.SD0401
-										),
+										descriptor: SD0401,
 										location: argument.GetLocation(),
 										messageArgs: null
 									)
@@ -204,15 +172,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								{
 									context.ReportDiagnostic(
 										Diagnostic.Create(
-											descriptor: new(
-												id: DiagnosticIds.SD0401,
-												title: Titles.SD0401,
-												messageFormat: Messages.SD0401,
-												category: Categories.Usage,
-												defaultSeverity: DiagnosticSeverity.Warning,
-												isEnabledByDefault: true,
-												helpLinkUri: HelpLinks.SD0401
-											),
+											descriptor: SD0401,
 											location: argument.GetLocation(),
 											messageArgs: null
 										)
@@ -237,15 +197,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								{
 									context.ReportDiagnostic(
 										Diagnostic.Create(
-											descriptor: new(
-												id: DiagnosticIds.SD0401,
-												title: Titles.SD0401,
-												messageFormat: Messages.SD0401,
-												category: Categories.Usage,
-												defaultSeverity: DiagnosticSeverity.Warning,
-												isEnabledByDefault: true,
-												helpLinkUri: HelpLinks.SD0401
-											),
+											descriptor: SD0401,
 											location: argument.GetLocation(),
 											messageArgs: null
 										)

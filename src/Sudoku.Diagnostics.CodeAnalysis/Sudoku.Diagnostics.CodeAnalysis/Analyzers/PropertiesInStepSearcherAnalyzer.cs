@@ -90,16 +90,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void CheckSD0101(SymbolAnalysisContext context, INamedTypeSymbol namedTypeSymbol) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0101,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0101,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0101,
-					helpLink: HelpLinks.SD0101,
-					location: namedTypeSymbol.Locations[0]
+					descriptor: SD0101,
+					location: namedTypeSymbol.Locations[0],
+					messageArgs: null
 				)
 			);
 
@@ -113,16 +106,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property must be public (expose to outside).
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0102,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0102,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0102,
-					helpLink: HelpLinks.SD0102,
-					location: propertySymbol.Locations[0]
+					descriptor: SD0102,
+					location: propertySymbol.Locations[0],
+					messageArgs: null
 				)
 			);
 		}
@@ -137,16 +123,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property must be static.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0103,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0103,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0103,
-					helpLink: HelpLinks.SD0103,
-					location: propertySymbol.Locations[0]
+					descriptor: SD0103,
+					location: propertySymbol.Locations[0],
+					messageArgs: null
 				)
 			);
 		}
@@ -161,18 +140,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property shouldn't settable.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0104,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0104,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0104,
-					helpLink: HelpLinks.SD0104,
+					descriptor: SD0104,
 					location: (
-						propertySymbol.SetMethod is { } setMethodSymbol ? (ISymbol)setMethodSymbol : propertySymbol
-					).Locations[0]
+						propertySymbol.SetMethod is { } setMethodSymbol
+						? (ISymbol)setMethodSymbol
+						: propertySymbol
+					).Locations[0],
+					messageArgs: null
 				)
 			);
 		}
@@ -191,16 +165,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0105,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0105,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0105,
-					helpLink: HelpLinks.SD0105,
-					location: propertySymbol.Locations[0]
+					descriptor: SD0105,
+					location: propertySymbol.Locations[0],
+					messageArgs: null
 				)
 			);
 		}
@@ -214,16 +181,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0106,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0106,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0106,
-					helpLink: HelpLinks.SD0106,
-					location: propertySymbol.Locations[0]
+					descriptor: SD0106,
+					location: propertySymbol.Locations[0],
+					messageArgs: null
 				)
 			);
 		}
@@ -237,16 +197,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0107,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0107,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0107,
-					helpLink: HelpLinks.SD0107,
-					location: propertyNode.GetLocation()
+					descriptor: SD0107,
+					location: propertyNode.GetLocation(),
+					messageArgs: null
 				)
 			);
 		}
@@ -274,16 +227,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.SD0108,
-					category: Categories.StaticTechniqueProperties,
-					message: Messages.SD0108,
-					severity: DiagnosticSeverity.Error,
-					defaultSeverity: DiagnosticSeverity.Error,
-					isEnabledByDefault: true,
-					warningLevel: 0,
-					title: Titles.SD0108,
-					helpLink: HelpLinks.SD0108,
-					location: propertyNode.GetLocation()
+					descriptor: SD0108,
+					location: propertyNode.GetLocation(),
+					messageArgs: null
 				)
 			);
 		}

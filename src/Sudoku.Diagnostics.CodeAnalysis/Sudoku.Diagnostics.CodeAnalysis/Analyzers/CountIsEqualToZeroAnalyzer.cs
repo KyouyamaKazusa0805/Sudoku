@@ -105,15 +105,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			string equalityToken = kind == (int)SyntaxKind.NotEqualsExpression ? "!=" : "==";
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0302,
-						title: Titles.SD0302,
-						messageFormat: Messages.SD0302,
-						category: Categories.StaticTechniqueProperties,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0302
-					),
+					descriptor: SD0302,
 					location: node.GetLocation(),
 					messageArgs: new[]
 					{

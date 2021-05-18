@@ -217,15 +217,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				} binaryExpr:
 				{
 					Diagnostic.Create(
-						descriptor: new(
-							id: DiagnosticIds.SD0304,
-							title: Titles.SD0304,
-							messageFormat: Messages.SD0304,
-							category: Categories.Performance,
-							defaultSeverity: DiagnosticSeverity.Warning,
-							isEnabledByDefault: true,
-							helpLinkUri: HelpLinks.SD0304
-						),
+						descriptor: SD0304,
 						location: binaryExpr.GetLocation(),
 						messageArgs: new[]
 						{
@@ -241,15 +233,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: new(
-								id: DiagnosticIds.SD0303,
-								title: Titles.SD0303,
-								messageFormat: Messages.SD0303,
-								category: Categories.Performance,
-								defaultSeverity: DiagnosticSeverity.Warning,
-								isEnabledByDefault: true,
-								helpLinkUri: HelpLinks.SD0303
-							),
+							descriptor: SD0303,
 							location: originalNode.GetLocation(),
 							messageArgs: new[]
 							{

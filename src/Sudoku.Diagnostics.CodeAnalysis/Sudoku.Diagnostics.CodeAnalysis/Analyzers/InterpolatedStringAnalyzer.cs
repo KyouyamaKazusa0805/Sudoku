@@ -47,15 +47,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SS0101,
-						title: Titles.SS0101,
-						messageFormat: Messages.SS0101,
-						category: Categories.Performance,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0101
-					),
+					descriptor: SS0101,
 					location: context.Node.GetLocation(),
 					messageArgs: null
 				)
@@ -76,15 +68,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SS0102,
-						title: Titles.SS0102,
-						messageFormat: Messages.SS0102,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0102
-					),
+					descriptor: SS0102,
 					location: node.GetLocation(),
 					messageArgs: null
 				)

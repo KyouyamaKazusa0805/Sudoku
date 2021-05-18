@@ -104,15 +104,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// Report the diagnostic result.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0201,
-						title: Titles.SD0201,
-						messageFormat: Messages.SD0201,
-						category: Categories.ResourceDictionary,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0201
-					),
+					descriptor: SD0201,
 					location: nameNode.GetLocation(),
 					messageArgs: new[] { key }
 				)

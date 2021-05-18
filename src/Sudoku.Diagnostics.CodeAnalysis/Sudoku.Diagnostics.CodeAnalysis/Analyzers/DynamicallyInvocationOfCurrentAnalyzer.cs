@@ -149,7 +149,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				default:
 				{
-					ReportSD0201(context, identifierNameNode, methodName);
+					ReportSD0206(context, identifierNameNode, methodName);
 
 					break;
 				}
@@ -163,19 +163,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void ReportSD0201(
+		private static void ReportSD0206(
 			SyntaxNodeAnalysisContext context, IdentifierNameSyntax identifierNameNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0201,
-						title: Titles.SD0201,
-						messageFormat: Messages.SD0201,
-						category: Categories.ResourceDictionary,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0201
-					),
+					descriptor: SD0206,
 					location: identifierNameNode.GetLocation(),
 					messageArgs: new[] { methodName }
 				)
@@ -186,15 +178,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			int actualParamsCount, int requiredParamsCount) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0202,
-						title: Titles.SD0202,
-						messageFormat: Messages.SD0202,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0202
-					),
+					descriptor: SD0202,
 					location: nameNode.GetLocation(),
 					messageArgs: new object[] { methodName, requiredParamsCount, actualParamsCount }
 				)
@@ -203,18 +187,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void ReportSD0203_Case1(
 			SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
 			IdentifierNameSyntax identifierNameNode, string? methodName,
-			ArgumentListSyntax argListNode) =>
-			context.ReportDiagnostic(
+			ArgumentListSyntax argListNode) => context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0203,
-						title: Titles.SD0203,
-						messageFormat: Messages.SD0203,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0203
-					),
+					descriptor: SD0203,
 					location: identifierNameNode.GetLocation(),
 					messageArgs: new object?[]
 					{
@@ -230,15 +205,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			ArgumentListSyntax argListNode, int i) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0203,
-						title: Titles.SD0203,
-						messageFormat: Messages.SD0203,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0203
-					),
+					descriptor: SD0203,
 					location: argListNode.Arguments[i].GetLocation(),
 					messageArgs: new object?[]
 					{
@@ -253,15 +220,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			SyntaxNodeAnalysisContext context, InvocationExpressionSyntax invocationNode, string methodName) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0204,
-						title: Titles.SD0204,
-						messageFormat: Messages.SD0204,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0204
-					),
+					descriptor: SD0204,
 					location: invocationNode.GetLocation(),
 					messageArgs: new[] { methodName }
 				)

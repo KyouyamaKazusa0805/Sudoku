@@ -78,15 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// You can't invoke them.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SD0301,
-						title: Titles.SD0301,
-						messageFormat: Messages.SD0301,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SD0301
-					),
+					descriptor: SD0301,
 					location: node.GetLocation(),
 					messageArgs: new[] { fieldName }
 				)

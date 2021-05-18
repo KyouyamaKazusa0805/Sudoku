@@ -137,15 +137,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SS0401,
-						title: Titles.SS0401,
-						messageFormat: Messages.SS0401,
-						category: Categories.Usage,
-						defaultSeverity: DiagnosticSeverity.Error,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0401
-					),
+					descriptor: SS0401,
 					location: node.GetLocation(),
 					messageArgs: new[] { p((SyntaxKind)kind) }
 				)

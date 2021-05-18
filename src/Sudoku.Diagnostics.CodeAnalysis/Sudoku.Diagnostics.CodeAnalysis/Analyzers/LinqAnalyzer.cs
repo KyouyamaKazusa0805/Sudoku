@@ -164,15 +164,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// No calling conversion.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					descriptor: new(
-						id: DiagnosticIds.SS0301,
-						title: Titles.SS0301,
-						messageFormat: Messages.SS0301,
-						category: Categories.Performance,
-						defaultSeverity: DiagnosticSeverity.Warning,
-						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0301
-					),
+					descriptor: SS0301,
 					location: node.GetLocation(),
 					messageArgs: new[] { rightNode.ToString() }
 				)
