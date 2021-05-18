@@ -136,7 +136,7 @@
 		public const string SD0301 = "The member '{0}' can't be invoked because they are reserved";
 		public const string SD0302 = "Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'";
 		public const string SD0303 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
-		public const string SD0304 = "Please use the property '{0}.{1}' to simplify the invocation";
+		public const string SD0304 = "Please use the property '{2}{0}.{1}' to simplify the invocation";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 
@@ -159,6 +159,7 @@
 	{
 		public const string SD0101 = "Append default technique property";
 		public const string SD0303 = "Use default field instead";
+		public const string SD0304 = "Use default field instead";
 
 		public const string SS0102 = "Remove redundant '$'";
 	}

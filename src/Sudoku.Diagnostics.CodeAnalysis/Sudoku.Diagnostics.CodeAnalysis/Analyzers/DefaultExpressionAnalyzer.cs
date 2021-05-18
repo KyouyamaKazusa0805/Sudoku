@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				CheckSD0303,
+				AnalyzeSyntaxNode,
 				new[]
 				{
 					SyntaxKind.ObjectCreationExpression,
@@ -74,7 +74,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void CheckSD0303(SyntaxNodeAnalysisContext context)
+		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, originalNode) = context;
 			string typeName;
@@ -196,40 +196,62 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: parent switch
-					{
-						BinaryExpressionSyntax
-						{
-							RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-						} => new(
+			switch (parent)
+			{
+				case BinaryExpressionSyntax
+				{
+					Left: var expressionOrVariable,
+					RawKind: var kind and (
+						(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+					)
+				} binaryExpr:
+				{
+					Diagnostic.Create(
+						descriptor: new(
 							id: DiagnosticIds.SD0304,
 							title: Titles.SD0304,
 							messageFormat: Messages.SD0304,
-							category: Categories.Usage,
+							category: Categories.Performance,
 							defaultSeverity: DiagnosticSeverity.Info,
 							isEnabledByDefault: true,
 							helpLinkUri: HelpLinks.SD0304
 						),
-						_ => new(
-							id: DiagnosticIds.SD0303,
-							title: Titles.SD0303,
-							messageFormat: Messages.SD0303,
-							category: Categories.Performance,
-							defaultSeverity: DiagnosticSeverity.Warning,
-							isEnabledByDefault: true,
-							helpLinkUri: HelpLinks.SD0303
+						location: binaryExpr.GetLocation(),
+						messageArgs: new object[]
+						{
+							expressionOrVariable,
+							isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName,
+							kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!"
+						}
+					);
+
+					break;
+				}
+				default:
+				{
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: new(
+								id: DiagnosticIds.SD0303,
+								title: Titles.SD0303,
+								messageFormat: Messages.SD0303,
+								category: Categories.Performance,
+								defaultSeverity: DiagnosticSeverity.Warning,
+								isEnabledByDefault: true,
+								helpLinkUri: HelpLinks.SD0303
+							),
+							location: originalNode.GetLocation(),
+							messageArgs: new[]
+							{
+								typeName,
+								isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName
+							}
 						)
-					},
-					location: originalNode.GetLocation(),
-					messageArgs: new[]
-					{
-						typeName,
-						isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName
-					}
-				)
-			);
+					);
+
+					break;
+				}
+			}
 		}
 	}
 }

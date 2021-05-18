@@ -22,10 +22,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4035455&amp;doc_id=633030">
 		/// SD0304
 		/// </a>
-		/// diagnostic result (Please use the property '{0}.{1}' to simplify the invocation).
+		/// diagnostic result (Please use the specific property to simplify the invocation).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0304 = new(
-			DiagnosticIds.SD0304, Titles.SD0304, Messages.SD0304, Categories.Usage,
+			DiagnosticIds.SD0304, Titles.SD0304, Messages.SD0304, Categories.Performance,
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0304
 		);
 

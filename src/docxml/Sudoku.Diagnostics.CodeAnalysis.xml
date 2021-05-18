@@ -249,7 +249,7 @@
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4035455&amp;doc_id=633030">
             SD0304
             </a>
-            diagnostic result (Please use the property '{0}.{1}' to simplify the invocation).
+            diagnostic result (Please use the specific property to simplify the invocation).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SupportedDiagnostics">
@@ -681,7 +681,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3629641">
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107">
             SD0303
             </a>.
             </summary>
@@ -709,6 +709,42 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A task that handles this operation.</returns>
             <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455">
+            SD0304
+            </a>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.UseDefaultFieldInsteadAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="root">The syntax root node.</param>
+            <param name="node">
+            The interpolted string expression node that the diagnostic result occurs.
+            </param>
+            <param name="left">The left-side expression or variable.</param>
+            <param name="notEqualsToken">
+            The string that stores the symbol <c>!</c> or <see cref="F:System.String.Empty"/> to indicate
+            the which kind of the expression is, equals expression or not equals expression.
+            </param>
+            <param name="fieldName">The member name.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider">
             <summary>
