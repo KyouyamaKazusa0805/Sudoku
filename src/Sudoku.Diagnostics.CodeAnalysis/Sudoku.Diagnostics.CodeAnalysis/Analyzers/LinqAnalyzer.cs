@@ -45,11 +45,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(CheckSS0201, new[] { SyntaxKind.ExpressionStatement });
+			context.RegisterSyntaxNodeAction(CheckSS0301, new[] { SyntaxKind.ExpressionStatement });
 		}
 
 
-		private static void CheckSS0201(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0301(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, node) = context;
 			if (
@@ -165,13 +165,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.SS0201,
-						title: Titles.SS0201,
-						messageFormat: Messages.SS0201,
+						id: DiagnosticIds.SS0301,
+						title: Titles.SS0301,
+						messageFormat: Messages.SS0301,
 						category: Categories.Performance,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0201
+						helpLinkUri: HelpLinks.SS0301
 					),
 					location: node.GetLocation(),
 					messageArgs: new[] { rightNode.ToString() }

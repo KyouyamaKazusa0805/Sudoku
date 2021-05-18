@@ -341,7 +341,7 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Sudoku016">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SS0101">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">
@@ -351,11 +351,11 @@
             in order to prevent any box and unbox operations).
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Sudoku020">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SS0102">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">
-            SS0301
+            SS0102
             </a>
             diagnostic result (Unnecessary interpolation leading character <c>'$'</c>).
             </summary>
@@ -393,11 +393,11 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SS0201">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SS0301">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3625073&amp;doc_id=633030">
-            SS0201
+            SS0301
             </a>
             diagnostic result (Replace <c>Count() >= n</c> with <c>Take(n).Count() >= n</c>).
             </summary>
@@ -567,11 +567,11 @@
             <param name="context">The context.</param>
             <param name="node">The root node of the function.</param>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SS0102">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SS0201">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622127&amp;doc_id=633030">
-            SS0102
+            SS0201
             </a>
             diagnostic result (The result of the expression '.ctor(<see langword="void"/>*, <see cref="T:System.Int32"/>)'
             can't be the return value as any methods).

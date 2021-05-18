@@ -24,7 +24,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				static context =>
 				{
 					CheckSS0101(context);
-					CheckSS0301(context);
+					CheckSS0102(context);
 				},
 				new[] { SyntaxKind.Interpolation, SyntaxKind.InterpolatedStringExpression }
 			);
@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			);
 		}
 
-		private static void CheckSS0301(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0102(SyntaxNodeAnalysisContext context)
 		{
 			if (context.Node is not InterpolatedStringExpressionSyntax node)
 			{
@@ -77,13 +77,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.SS0301,
-						title: Titles.SS0301,
-						messageFormat: Messages.SS0301,
+						id: DiagnosticIds.SS0102,
+						title: Titles.SS0102,
+						messageFormat: Messages.SS0102,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.SS0301
+						helpLinkUri: HelpLinks.SS0102
 					),
 					location: node.GetLocation(),
 					messageArgs: null

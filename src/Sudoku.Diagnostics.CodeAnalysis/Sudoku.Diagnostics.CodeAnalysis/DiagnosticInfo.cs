@@ -63,9 +63,9 @@
 		public const string SD0402 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928";
 
 		public const string SS0101 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0101?sort_id=3622115";
-		public const string SS0102 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3622127";
-		public const string SS0201 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0201?sort_id=3625073";
-		public const string SS0301 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0301?sort_id=3629641";
+		public const string SS0102 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3629641";
+		public const string SS0201 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0201?sort_id=3622127";
+		public const string SS0301 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0301?sort_id=3625073";
 		public const string SS0401 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0401?sort_id=4019214";
 		public const string SS0501 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0501?sort_id=4025282";
 		public const string SS0502 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_id=4025301";
@@ -100,9 +100,9 @@
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
 		public const string SS0101 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
-		public const string SS0102 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
-		public const string SS0201 = "Replace 'Count() >= value' with 'Take(value).Count() >= value'";
-		public const string SS0301 = "Unnecessary interpolation leading character '$'";
+		public const string SS0102 = "Unnecessary interpolation leading character '$'";
+		public const string SS0201 = "The result of the expression '.ctor(void*, int)' can't be the return value as any methods";
+		public const string SS0301 = "Replace 'Count() >= value' with 'Take(value).Count() >= value'";
 		public const string SS0401 = "Can't apply the operator here because the type is closed enum";
 		public const string SS0501 = "Deconstruction methods should contain at least 2 parameters";
 		public const string SS0502 = "Deconstruction methods must be instance ones";
@@ -137,9 +137,9 @@
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 
 		public const string SS0101 = "Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations";
-		public const string SS0102 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods";
-		public const string SS0201 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'";
-		public const string SS0301 = "Unnecessary interpolation leading character '$'";
+		public const string SS0102 = "Unnecessary interpolation leading character '$'";
+		public const string SS0201 = "The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods";
+		public const string SS0301 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'";
 		public const string SS0401 = "Can't apply 'operator {0}' here because the type is closed enum";
 		public const string SS0501 = "Deconstruction methods should contain at least 2 parameters";
 		public const string SS0502 = "Deconstruction methods must be instance ones";
