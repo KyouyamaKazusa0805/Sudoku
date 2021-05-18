@@ -90,15 +90,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void CheckSudoku001(SymbolAnalysisContext context, INamedTypeSymbol namedTypeSymbol) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku001,
+					id: DiagnosticIds.SD0101,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku001,
+					message: Messages.SD0101,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku001,
-					helpLink: HelpLinks.Sudoku001,
+					title: Titles.SD0101,
+					helpLink: HelpLinks.SD0101,
 					location: namedTypeSymbol.Locations[0]
 				)
 			);
@@ -113,15 +113,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property must be public (expose to outside).
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku002,
+					id: DiagnosticIds.SD0102,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku002,
+					message: Messages.SD0102,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku002,
-					helpLink: HelpLinks.Sudoku002,
+					title: Titles.SD0102,
+					helpLink: HelpLinks.SD0102,
 					location: propertySymbol.Locations[0]
 				)
 			);
@@ -137,15 +137,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property must be static.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku003,
+					id: DiagnosticIds.SD0103,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku003,
+					message: Messages.SD0103,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku003,
-					helpLink: HelpLinks.Sudoku003,
+					title: Titles.SD0103,
+					helpLink: HelpLinks.SD0103,
 					location: propertySymbol.Locations[0]
 				)
 			);
@@ -161,15 +161,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// The property shouldn't settable.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku004,
+					id: DiagnosticIds.SD0104,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku004,
+					message: Messages.SD0104,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku004,
-					helpLink: HelpLinks.Sudoku004,
+					title: Titles.SD0104,
+					helpLink: HelpLinks.SD0104,
 					location: (
 						propertySymbol.SetMethod is { } setMethodSymbol ? (ISymbol)setMethodSymbol : propertySymbol
 					).Locations[0]
@@ -192,15 +192,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku005,
+					id: DiagnosticIds.SD0105,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku005,
+					message: Messages.SD0105,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku005,
-					helpLink: HelpLinks.Sudoku005,
+					title: Titles.SD0105,
+					helpLink: HelpLinks.SD0105,
 					location: propertySymbol.Locations[0]
 				)
 			);
@@ -215,15 +215,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku006,
+					id: DiagnosticIds.SD0106,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku006,
+					message: Messages.SD0106,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku006,
-					helpLink: HelpLinks.Sudoku006,
+					title: Titles.SD0106,
+					helpLink: HelpLinks.SD0106,
 					location: propertySymbol.Locations[0]
 				)
 			);
@@ -239,15 +239,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku007,
+					id: DiagnosticIds.SD0107,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku007,
+					message: Messages.SD0107,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku007,
-					helpLink: HelpLinks.Sudoku007,
+					title: Titles.SD0107,
+					helpLink: HelpLinks.SD0107,
 					location: propertyNode.GetLocation()
 				)
 			);
@@ -277,15 +277,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.ReportDiagnostic(
 				Diagnostic.Create(
-					id: DiagnosticIds.Sudoku008,
+					id: DiagnosticIds.SD0108,
 					category: Categories.StaticTechniqueProperties,
-					message: Messages.Sudoku008,
+					message: Messages.SD0108,
 					severity: DiagnosticSeverity.Error,
 					defaultSeverity: DiagnosticSeverity.Error,
 					isEnabledByDefault: true,
 					warningLevel: 0,
-					title: Titles.Sudoku008,
-					helpLink: HelpLinks.Sudoku008,
+					title: Titles.SD0108,
+					helpLink: HelpLinks.SD0108,
 					location: propertyNode.GetLocation()
 				)
 			);

@@ -8,19 +8,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4019214&amp;doc_id=633030">
-		/// SUDOKU022
+		/// SS0401
 		/// </a>
 		/// diagnostic result (Can't apply the operator here because the type is closed enum).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku022 = new(
-			DiagnosticIds.Sudoku022, Titles.Sudoku022, Messages.Sudoku022, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku022
+		private static readonly DiagnosticDescriptor SS0401 = new(
+			DiagnosticIds.SS0401, Titles.SS0401, Messages.SS0401, Categories.Usage,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SS0401
 		);
 
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			Sudoku022
+			SS0401
 		);
 	}
 }

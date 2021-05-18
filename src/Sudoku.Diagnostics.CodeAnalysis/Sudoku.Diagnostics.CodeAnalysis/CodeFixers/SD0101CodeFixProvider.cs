@@ -15,11 +15,14 @@ using Microsoft.CodeAnalysis.Text.Extensions;
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
 	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result <c>SUDOKU001</c>.
+	/// Indicates the code fixer for solving the diagnostic result
+	/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0101?sort_id=3599824">
+	/// SD0101
+	/// </a>.
 	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(Sudoku001CodeFixProvider))]
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SD0101CodeFixProvider))]
 	[Shared]
-	public sealed class Sudoku001CodeFixProvider : CodeFixProvider
+	public sealed class SD0101CodeFixProvider : CodeFixProvider
 	{
 		/// <summary>
 		/// To provide a way to insert property into the document, via the current order.
@@ -185,7 +188,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 		/// <inheritdoc/>
 		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.Sudoku001
+			DiagnosticIds.SD0101
 		);
 
 		/// <inheritdoc/>
@@ -208,9 +211,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
-					title: CodeFixTitles.Sudoku001,
+					title: CodeFixTitles.SD0101,
 					createChangedDocument: c => AppendTechniquePropertyAsync(document, typeDeclaration, c),
-					equivalenceKey: nameof(CodeFixTitles.Sudoku001)
+					equivalenceKey: nameof(CodeFixTitles.SD0101)
 				),
 				diagnostic
 			);

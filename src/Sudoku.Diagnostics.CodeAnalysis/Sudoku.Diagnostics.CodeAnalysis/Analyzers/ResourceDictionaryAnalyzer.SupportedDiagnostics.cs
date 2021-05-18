@@ -8,19 +8,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3608009&amp;doc_id=633030">
-		/// SUDOKU009
+		/// SD0201
 		/// </a>
 		/// diagnostic result (The specified key can't be found in the resource dictionary).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku009 = new(
-			DiagnosticIds.Sudoku009, Titles.Sudoku009, Messages.Sudoku009, Categories.ResourceDictionary,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku009
+		private static readonly DiagnosticDescriptor SD0201 = new(
+			DiagnosticIds.SD0201, Titles.SD0201, Messages.SD0201, Categories.ResourceDictionary,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0201
 		);
 
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			Sudoku009
+			SD0201
 		);
 	}
 }

@@ -48,13 +48,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku016,
-						title: Titles.Sudoku016,
-						messageFormat: Messages.Sudoku016,
+						id: DiagnosticIds.SS0101,
+						title: Titles.SS0101,
+						messageFormat: Messages.SS0101,
 						category: Categories.Performance,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku016
+						helpLinkUri: HelpLinks.SS0101
 					),
 					location: context.Node.GetLocation(),
 					messageArgs: null
@@ -77,13 +77,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku020,
-						title: Titles.Sudoku020,
-						messageFormat: Messages.Sudoku020,
+						id: DiagnosticIds.SS0301,
+						title: Titles.SS0301,
+						messageFormat: Messages.SS0301,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku020
+						helpLinkUri: HelpLinks.SS0301
 					),
 					location: node.GetLocation(),
 					messageArgs: null

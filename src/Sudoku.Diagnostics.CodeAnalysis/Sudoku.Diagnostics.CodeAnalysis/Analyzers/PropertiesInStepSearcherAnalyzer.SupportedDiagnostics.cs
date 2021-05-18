@@ -8,103 +8,103 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599824&amp;doc_id=633030">
-		/// SUDOKU001
+		/// SD0101
 		/// </a>
 		/// diagnostic result (A property named 'Properties' expected).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku001 = new(
-			DiagnosticIds.Sudoku001, Titles.Sudoku001, Messages.Sudoku001, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku001
+		private static readonly DiagnosticDescriptor SD0101 = new(
+			DiagnosticIds.SD0101, Titles.SD0101, Messages.SD0101, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0101
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599808&amp;doc_id=633030">
-		/// SUDOKU002
+		/// SD0102
 		/// </a>
 		/// diagnostic result (The property 'Properties' must be <see langword="public"/>).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku002 = new(
-			DiagnosticIds.Sudoku002, Titles.Sudoku002, Messages.Sudoku002, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku002
+		private static readonly DiagnosticDescriptor SD0102 = new(
+			DiagnosticIds.SD0102, Titles.SD0102, Messages.SD0102, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0102
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3621783&amp;doc_id=633030">
-		/// SUDOKU003
+		/// SD0103
 		/// </a>
 		/// diagnostic result (The property 'Properties' must be <see langword="static"/>).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku003 = new(
-			DiagnosticIds.Sudoku003, Titles.Sudoku003, Messages.Sudoku003, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku003
+		private static readonly DiagnosticDescriptor SD0103 = new(
+			DiagnosticIds.SD0103, Titles.SD0103, Messages.SD0103, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0103
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599816&amp;doc_id=633030">
-		/// SUDOKU004
+		/// SD0104
 		/// </a>
 		/// diagnostic result (The property 'Properties' must be <see langword="readonly"/>).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku004 = new(
-			DiagnosticIds.Sudoku004, Titles.Sudoku004, Messages.Sudoku004, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku004
+		private static readonly DiagnosticDescriptor SD0104 = new(
+			DiagnosticIds.SD0104, Titles.SD0104, Messages.SD0104, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0104
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599818&amp;doc_id=633030">
-		/// SUDOKU005
+		/// SD0105
 		/// </a>
 		/// diagnostic result (The property 'Properties' has a wrong type).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku005 = new(
-			DiagnosticIds.Sudoku005, Titles.Sudoku005, Messages.Sudoku005, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku005
+		private static readonly DiagnosticDescriptor SD0105 = new(
+			DiagnosticIds.SD0105, Titles.SD0105, Messages.SD0105, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0105
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3599826&amp;doc_id=633030">
-		/// SUDOKU006
+		/// SD0106
 		/// </a>
 		/// diagnostic result (The property 'Properties' can't be <see langword="null"/>).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku006 = new(
-			DiagnosticIds.Sudoku006, Titles.Sudoku006, Messages.Sudoku006, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku006
+		private static readonly DiagnosticDescriptor SD0106 = new(
+			DiagnosticIds.SD0106, Titles.SD0106, Messages.SD0106, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0106
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3602787&amp;doc_id=633030">
-		/// SUDOKU007
+		/// SD0107
 		/// </a>
 		/// diagnostic result (The property 'Properties' must contain an initializer).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku007 = new(
-			DiagnosticIds.Sudoku007, Titles.Sudoku007, Messages.Sudoku007, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku007
+		private static readonly DiagnosticDescriptor SD0107 = new(
+			DiagnosticIds.SD0107, Titles.SD0107, Messages.SD0107, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0107
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3607697&amp;doc_id=633030">
-		/// SUDOKU008
+		/// SD0108
 		/// </a>
 		/// diagnostic result (The property 'Properties' must be initialized by a new clause).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku008 = new(
-			DiagnosticIds.Sudoku008, Titles.Sudoku008, Messages.Sudoku008, Categories.StaticTechniqueProperties,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.Sudoku008
+		private static readonly DiagnosticDescriptor SD0108 = new(
+			DiagnosticIds.SD0108, Titles.SD0108, Messages.SD0108, Categories.StaticTechniqueProperties,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0108
 		);
 
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			Sudoku001, Sudoku002, Sudoku003, Sudoku004, Sudoku005, Sudoku006, Sudoku007, Sudoku008
+			SD0101, SD0102, SD0103, SD0104, SD0105, SD0106, SD0107, SD0108
 		);
 	}
 }

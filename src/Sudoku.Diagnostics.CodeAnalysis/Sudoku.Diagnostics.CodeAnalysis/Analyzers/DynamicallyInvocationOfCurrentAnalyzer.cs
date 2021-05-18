@@ -168,13 +168,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku009,
-						title: Titles.Sudoku009,
-						messageFormat: Messages.Sudoku009,
+						id: DiagnosticIds.SD0201,
+						title: Titles.SD0201,
+						messageFormat: Messages.SD0201,
 						category: Categories.ResourceDictionary,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku009
+						helpLinkUri: HelpLinks.SD0201
 					),
 					location: identifierNameNode.GetLocation(),
 					messageArgs: new[] { methodName }
@@ -187,13 +187,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku010,
-						title: Titles.Sudoku010,
-						messageFormat: Messages.Sudoku010,
+						id: DiagnosticIds.SD0202,
+						title: Titles.SD0202,
+						messageFormat: Messages.SD0202,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku010
+						helpLinkUri: HelpLinks.SD0202
 					),
 					location: nameNode.GetLocation(),
 					messageArgs: new object[] { methodName, requiredParamsCount, actualParamsCount }
@@ -207,13 +207,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku011,
-						title: Titles.Sudoku011,
-						messageFormat: Messages.Sudoku011,
+						id: DiagnosticIds.SD0203,
+						title: Titles.SD0203,
+						messageFormat: Messages.SD0203,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku011
+						helpLinkUri: HelpLinks.SD0203
 					),
 					location: identifierNameNode.GetLocation(),
 					messageArgs: new object?[]
@@ -231,13 +231,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku011,
-						title: Titles.Sudoku011,
-						messageFormat: Messages.Sudoku011,
+						id: DiagnosticIds.SD0203,
+						title: Titles.SD0203,
+						messageFormat: Messages.SD0203,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku011
+						helpLinkUri: HelpLinks.SD0203
 					),
 					location: argListNode.Arguments[i].GetLocation(),
 					messageArgs: new object?[]
@@ -254,13 +254,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku012,
-						title: Titles.Sudoku012,
-						messageFormat: Messages.Sudoku012,
+						id: DiagnosticIds.SD0204,
+						title: Titles.SD0204,
+						messageFormat: Messages.SD0204,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku012
+						helpLinkUri: HelpLinks.SD0204
 					),
 					location: invocationNode.GetLocation(),
 					messageArgs: new[] { methodName }

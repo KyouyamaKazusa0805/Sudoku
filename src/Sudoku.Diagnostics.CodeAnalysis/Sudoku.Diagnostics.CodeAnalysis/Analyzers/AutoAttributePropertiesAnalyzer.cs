@@ -74,13 +74,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: new(
-											id: DiagnosticIds.Sudoku024,
-											title: Titles.Sudoku024,
-											messageFormat: Messages.Sudoku024,
+											id: DiagnosticIds.SD0402,
+											title: Titles.SD0402,
+											messageFormat: Messages.SD0402,
 											category: Categories.Usage,
 											defaultSeverity: DiagnosticSeverity.Warning,
 											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.Sudoku024
+											helpLinkUri: HelpLinks.SD0402
 										),
 										location: node.GetLocation(),
 										messageArgs: new object[]
@@ -106,13 +106,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: new(
-											id: DiagnosticIds.Sudoku024,
-											title: Titles.Sudoku024,
-											messageFormat: Messages.Sudoku024,
+											id: DiagnosticIds.SD0402,
+											title: Titles.SD0402,
+											messageFormat: Messages.SD0402,
 											category: Categories.Usage,
 											defaultSeverity: DiagnosticSeverity.Warning,
 											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.Sudoku024
+											helpLinkUri: HelpLinks.SD0402
 										),
 										location: node.GetLocation(),
 										messageArgs: new object[]
@@ -136,13 +136,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: new(
-											id: DiagnosticIds.Sudoku024,
-											title: Titles.Sudoku024,
-											messageFormat: Messages.Sudoku024,
+											id: DiagnosticIds.SD0402,
+											title: Titles.SD0402,
+											messageFormat: Messages.SD0402,
 											category: Categories.Usage,
 											defaultSeverity: DiagnosticSeverity.Warning,
 											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.Sudoku024
+											helpLinkUri: HelpLinks.SD0402
 										),
 										location: node.GetLocation(),
 										messageArgs: new object[]
@@ -169,13 +169,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: new(
-											id: DiagnosticIds.Sudoku023,
-											title: Titles.Sudoku023,
-											messageFormat: Messages.Sudoku023,
+											id: DiagnosticIds.SD0401,
+											title: Titles.SD0401,
+											messageFormat: Messages.SD0401,
 											category: Categories.Usage,
 											defaultSeverity: DiagnosticSeverity.Warning,
 											isEnabledByDefault: true,
-											helpLinkUri: HelpLinks.Sudoku023
+											helpLinkUri: HelpLinks.SD0401
 										),
 										location: argument.GetLocation(),
 										messageArgs: null
@@ -200,13 +200,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									context.ReportDiagnostic(
 										Diagnostic.Create(
 											descriptor: new(
-												id: DiagnosticIds.Sudoku023,
-												title: Titles.Sudoku023,
-												messageFormat: Messages.Sudoku023,
+												id: DiagnosticIds.SD0401,
+												title: Titles.SD0401,
+												messageFormat: Messages.SD0401,
 												category: Categories.Usage,
 												defaultSeverity: DiagnosticSeverity.Warning,
 												isEnabledByDefault: true,
-												helpLinkUri: HelpLinks.Sudoku023
+												helpLinkUri: HelpLinks.SD0401
 											),
 											location: argument.GetLocation(),
 											messageArgs: null
@@ -233,13 +233,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									context.ReportDiagnostic(
 										Diagnostic.Create(
 											descriptor: new(
-												id: DiagnosticIds.Sudoku023,
-												title: Titles.Sudoku023,
-												messageFormat: Messages.Sudoku023,
+												id: DiagnosticIds.SD0401,
+												title: Titles.SD0401,
+												messageFormat: Messages.SD0401,
 												category: Categories.Usage,
 												defaultSeverity: DiagnosticSeverity.Warning,
 												isEnabledByDefault: true,
-												helpLinkUri: HelpLinks.Sudoku023
+												helpLinkUri: HelpLinks.SD0401
 											),
 											location: argument.GetLocation(),
 											messageArgs: null

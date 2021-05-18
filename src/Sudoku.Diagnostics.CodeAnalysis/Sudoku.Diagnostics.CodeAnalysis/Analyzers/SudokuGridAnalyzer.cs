@@ -82,13 +82,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku014,
-						title: Titles.Sudoku014,
-						messageFormat: Messages.Sudoku014,
+						id: DiagnosticIds.SD0301,
+						title: Titles.SD0301,
+						messageFormat: Messages.SD0301,
 						category: Categories.Usage,
 						defaultSeverity: DiagnosticSeverity.Error,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku014
+						helpLinkUri: HelpLinks.SD0301
 					),
 					location: node.GetLocation(),
 					messageArgs: new[] { fieldName }

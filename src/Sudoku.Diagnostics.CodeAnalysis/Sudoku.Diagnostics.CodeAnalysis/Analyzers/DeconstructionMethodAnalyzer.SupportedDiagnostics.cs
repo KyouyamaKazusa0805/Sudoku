@@ -8,67 +8,67 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025282&amp;doc_id=633030">
-		/// SUDOKU025
+		/// SS0501
 		/// </a>
 		/// diagnostic result (Deconstruction methods should contain at least 2 parameters).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku025 = new(
-			DiagnosticIds.Sudoku025, Titles.Sudoku025, Messages.Sudoku025, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku025
+		private static readonly DiagnosticDescriptor SS0501 = new(
+			DiagnosticIds.SS0501, Titles.SS0501, Messages.SS0501, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0501
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025301&amp;doc_id=633030">
-		/// SUDOKU026
+		/// SS0502
 		/// </a>
 		/// diagnostic result (Deconstruction methods must be instance ones).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku026 = new(
-			DiagnosticIds.Sudoku026, Titles.Sudoku026, Messages.Sudoku026, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku026
+		private static readonly DiagnosticDescriptor SS0502 = new(
+			DiagnosticIds.SS0502, Titles.SS0502, Messages.SS0502, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0502
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025305&amp;doc_id=633030">
-		/// SUDOKU027
+		/// SS0503
 		/// </a>
 		/// diagnostic result (Deconstruction methods must return void).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku027 = new(
-			DiagnosticIds.Sudoku027, Titles.Sudoku027, Messages.Sudoku027, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku027
+		private static readonly DiagnosticDescriptor SS0503 = new(
+			DiagnosticIds.SS0503, Titles.SS0503, Messages.SS0503, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0503
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025793&amp;doc_id=633030">
-		/// SUDOKU028
+		/// SS0504
 		/// </a>
 		/// diagnostic result (Deconstruction methods must be public).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku028 = new(
-			DiagnosticIds.Sudoku028, Titles.Sudoku028, Messages.Sudoku028, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku028
+		private static readonly DiagnosticDescriptor SS0504 = new(
+			DiagnosticIds.SS0504, Titles.SS0504, Messages.SS0504, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0504
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025794&amp;doc_id=633030">
-		/// SUDOKU029
+		/// SS0505
 		/// </a>
 		/// diagnostic result (All parameters in deconstruction methods should be out parameters).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku029 = new(
-			DiagnosticIds.Sudoku029, Titles.Sudoku029, Messages.Sudoku029, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku029
+		private static readonly DiagnosticDescriptor SS0505 = new(
+			DiagnosticIds.SS0505, Titles.SS0505, Messages.SS0505, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0505
 		);
 
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			Sudoku025, Sudoku026, Sudoku027, Sudoku028, Sudoku029
+			SS0501, SS0502, SS0503, SS0504, SS0505
 		);
 	}
 }

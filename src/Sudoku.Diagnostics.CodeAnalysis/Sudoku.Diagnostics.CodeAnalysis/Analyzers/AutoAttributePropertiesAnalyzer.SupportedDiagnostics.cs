@@ -8,31 +8,31 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4021986&amp;doc_id=633030">
-		/// SUDOKU023
+		/// SD0401
 		/// </a>
 		/// diagnostic result (Please use nameof expression instead of string literal).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku023 = new(
-			DiagnosticIds.Sudoku023, Titles.Sudoku023, Messages.Sudoku023, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku023
+		private static readonly DiagnosticDescriptor SD0401 = new(
+			DiagnosticIds.SD0401, Titles.SD0401, Messages.SD0401, Categories.Usage,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0401
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4024928&amp;doc_id=633030">
-		/// SUDOKU024
+		/// SD0402
 		/// </a>
 		/// diagnostic result (This attribute must contain the specified number of parameters).
 		/// </summary>
-		private static readonly DiagnosticDescriptor Sudoku024 = new(
-			DiagnosticIds.Sudoku024, Titles.Sudoku024, Messages.Sudoku024, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku024
+		private static readonly DiagnosticDescriptor SD0402 = new(
+			DiagnosticIds.SD0402, Titles.SD0402, Messages.SD0402, Categories.Usage,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0402
 		);
 
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			Sudoku023, Sudoku024
+			SD0401, SD0402
 		);
 	}
 }

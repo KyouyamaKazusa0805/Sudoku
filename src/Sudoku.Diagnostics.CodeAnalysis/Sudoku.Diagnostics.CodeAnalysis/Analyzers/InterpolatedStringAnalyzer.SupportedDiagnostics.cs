@@ -8,26 +8,26 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3622115&amp;doc_id=633030">
-		/// SUDOKU016
+		/// SS0101
 		/// </a>
 		/// diagnostic result (Please add 'ToString' method invocation to the interpolation part
 		/// in order to prevent any box and unbox operations).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku016 = new(
-			DiagnosticIds.Sudoku016, Titles.Sudoku016, Messages.Sudoku016, Categories.Performance,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.Sudoku016
+			DiagnosticIds.SS0101, Titles.SS0101, Messages.SS0101, Categories.Performance,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0101
 		);
 
 		/// <summary>
 		/// Indicates the
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3629641&amp;doc_id=633030">
-		/// SUDOKU020
+		/// SS0301
 		/// </a>
 		/// diagnostic result (Unnecessary interpolation leading character <c>'$'</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor Sudoku020 = new(
-			DiagnosticIds.Sudoku020, Titles.Sudoku020, Messages.Sudoku020, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.Sudoku020
+			DiagnosticIds.SS0301, Titles.SS0301, Messages.SS0301, Categories.Usage,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0301
 		);
 
 

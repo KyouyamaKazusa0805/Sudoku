@@ -188,13 +188,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: new(
-						id: DiagnosticIds.Sudoku021,
-						title: Titles.Sudoku021,
-						messageFormat: Messages.Sudoku021,
+						id: DiagnosticIds.SD0303,
+						title: Titles.SD0303,
+						messageFormat: Messages.SD0303,
 						category: Categories.Performance,
 						defaultSeverity: DiagnosticSeverity.Warning,
 						isEnabledByDefault: true,
-						helpLinkUri: HelpLinks.Sudoku021
+						helpLinkUri: HelpLinks.SD0303
 					),
 					location: originalNode.GetLocation(),
 					messageArgs: new[]
