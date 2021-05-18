@@ -23,15 +23,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.RegisterSyntaxNodeAction(
 				static context =>
 				{
-					CheckSudoku016(context);
-					CheckSudoku020(context);
+					CheckSS0101(context);
+					CheckSS0301(context);
 				},
 				new[] { SyntaxKind.Interpolation, SyntaxKind.InterpolatedStringExpression }
 			);
 		}
 
 
-		private static void CheckSudoku016(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0101(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _) = context;
 			if (
@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			);
 		}
 
-		private static void CheckSudoku020(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0301(SyntaxNodeAnalysisContext context)
 		{
 			if (context.Node is not InterpolatedStringExpressionSyntax node)
 			{

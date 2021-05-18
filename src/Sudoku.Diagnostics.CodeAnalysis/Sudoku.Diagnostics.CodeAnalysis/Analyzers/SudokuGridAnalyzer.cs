@@ -34,14 +34,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku014(context),
-				new[] { SyntaxKind.InvocationExpression }
-			);
+			context.RegisterSyntaxNodeAction(CheckSD0301, new[] { SyntaxKind.InvocationExpression });
 		}
 
 
-		private static void CheckSudoku014(SyntaxNodeAnalysisContext context)
+		private static void CheckSD0301(SyntaxNodeAnalysisContext context)
 		{
 			if (
 				context.Node is not InvocationExpressionSyntax

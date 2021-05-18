@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku021(context),
+				CheckSD0303,
 				new[]
 				{
 					SyntaxKind.ObjectCreationExpression,
@@ -74,7 +74,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void CheckSudoku021(SyntaxNodeAnalysisContext context)
+		private static void CheckSD0303(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, originalNode) = context;
 			string typeName;

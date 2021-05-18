@@ -45,14 +45,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku019(context),
-				new[] { SyntaxKind.ExpressionStatement }
-			);
+			context.RegisterSyntaxNodeAction(CheckSS0201, new[] { SyntaxKind.ExpressionStatement });
 		}
 
 
-		private static void CheckSudoku019(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0201(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, node) = context;
 			if (

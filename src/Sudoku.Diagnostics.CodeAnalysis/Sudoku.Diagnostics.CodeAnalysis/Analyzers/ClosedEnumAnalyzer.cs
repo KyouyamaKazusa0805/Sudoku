@@ -41,7 +41,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku022(context),
+				static context => CheckSS0401(context),
 				new[]
 				{
 					SyntaxKind.UnaryPlusExpression,
@@ -72,7 +72,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void CheckSudoku022(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0401(SyntaxNodeAnalysisContext context)
 		{
 			var semanticModel = context.SemanticModel;
 			switch (context.Node)
@@ -87,7 +87,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				} node
 				when condition(semanticModel, operand):
 				{
-					ReportSudoku022(context, kind, node);
+					ReportSS0401(context, kind, node);
 
 					break;
 				}
@@ -101,7 +101,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				} node
 				when condition(semanticModel, operand):
 				{
-					ReportSudoku022(context, kind, node);
+					ReportSS0401(context, kind, node);
 
 					break;
 				}
@@ -115,7 +115,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				} node
 				when condition(semanticModel, operand):
 				{
-					ReportSudoku022(context, kind, node);
+					ReportSS0401(context, kind, node);
 
 					break;
 				}
@@ -133,7 +133,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				);
 		}
 
-		private static void ReportSudoku022(SyntaxNodeAnalysisContext context, int kind, SyntaxNode node)
+		private static void ReportSS0401(SyntaxNodeAnalysisContext context, int kind, SyntaxNode node)
 		{
 			context.ReportDiagnostic(
 				Diagnostic.Create(

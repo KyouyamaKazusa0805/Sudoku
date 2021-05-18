@@ -33,14 +33,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku009(context),
-				new[] { SyntaxKind.SimpleMemberAccessExpression }
-			);
+			context.RegisterSyntaxNodeAction(CheckSD0201, new[] { SyntaxKind.SimpleMemberAccessExpression });
 		}
 
 
-		private static void CheckSudoku009(SyntaxNodeAnalysisContext context)
+		private static void CheckSD0201(SyntaxNodeAnalysisContext context)
 		{
 			if (
 				(from file in context.Options.AdditionalFiles select File.ReadAllText(file.Path)).ToArray()

@@ -31,13 +31,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku023(context),
-				new[] { SyntaxKind.ClassDeclaration, SyntaxKind.StructDeclaration, SyntaxKind.RecordDeclaration }
+				CheckSD0402,
+				new[]
+				{
+					SyntaxKind.ClassDeclaration,
+					SyntaxKind.StructDeclaration,
+					SyntaxKind.RecordDeclaration
+				}
 			);
 		}
 
 
-		private static void CheckSudoku023(SyntaxNodeAnalysisContext context)
+		private static void CheckSD0402(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, node) = context;
 			if (node is not MemberDeclarationSyntax { AttributeLists: { Count: not 0 } attributeLists })

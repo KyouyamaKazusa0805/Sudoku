@@ -41,7 +41,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku018(context),
+				CheckSD0302,
 				new[]
 				{
 					SyntaxKind.EqualsExpression,
@@ -53,7 +53,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void CheckSudoku018(SyntaxNodeAnalysisContext context)
+		private static void CheckSD0302(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, n) = context;
 			if (

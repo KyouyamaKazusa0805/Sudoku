@@ -18,10 +18,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				AnalyzeSyntaxNode,
-				new[] { SyntaxKind.MethodDeclaration }
-			);
+			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.MethodDeclaration });
 		}
 
 
@@ -40,13 +37,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			CheckSudoku025And029(context, parameters, identifier);
-			CheckSudoku026And028(context, modifiers, identifier);
-			CheckSudoku027(context, returnType);
+			CheckSS0501AndSS0505(context, parameters, identifier);
+			CheckSudokuSS0502AndSS0504(context, modifiers, identifier);
+			CheckSS0503(context, returnType);
 		}
 
 
-		private static void CheckSudoku025And029(
+		private static void CheckSS0501AndSS0505(
 			SyntaxNodeAnalysisContext context, SeparatedSyntaxList<ParameterSyntax> parameters,
 			SyntaxToken identifier)
 		{
@@ -92,7 +89,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 		}
 
-		private static void CheckSudoku026And028(
+		private static void CheckSudokuSS0502AndSS0504(
 			SyntaxNodeAnalysisContext context, SyntaxTokenList modifiers, SyntaxToken identifier)
 		{
 			if (modifiers.Any(MustBeStatic))
@@ -134,7 +131,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 		}
 
-		private static void CheckSudoku027(SyntaxNodeAnalysisContext context, TypeSyntax returnType)
+		private static void CheckSS0503(SyntaxNodeAnalysisContext context, TypeSyntax returnType)
 		{
 			if (
 				context.SemanticModel.GetOperation(returnType) is { Type: { } type }

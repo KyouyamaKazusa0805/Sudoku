@@ -36,13 +36,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSudoku017(context),
+				CheckSS0102,
 				new[] { SyntaxKind.MethodDeclaration, SyntaxKind.LocalFunctionStatement }
 			);
 		}
 
 
-		private static void CheckSudoku017(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0102(SyntaxNodeAnalysisContext context)
 		{
 			switch (context.Node)
 			{
