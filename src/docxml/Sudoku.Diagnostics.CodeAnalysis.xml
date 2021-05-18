@@ -223,12 +223,22 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.EmptyPropertyName">
             <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            Indicates the field name to check in the diagnostic result <c>SD0303</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SudokuGridEmptyPropertyName">
             <summary>
-            Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+            Indicates the field name to check in the diagnostic result <c>SD0303</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.IsEmptyPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SD0304</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.IsUndefinedPropertyName">
+            <summary>
+            Indicates the field name to check in the diagnostic result <c>SD0304</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">

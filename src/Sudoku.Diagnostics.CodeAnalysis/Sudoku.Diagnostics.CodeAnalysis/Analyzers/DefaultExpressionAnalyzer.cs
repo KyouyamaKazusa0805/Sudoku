@@ -45,14 +45,24 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
 
 		/// <summary>
-		/// Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+		/// Indicates the field name to check in the diagnostic result <c>SD0303</c>.
 		/// </summary>
 		private const string EmptyPropertyName = "Empty";
 
 		/// <summary>
-		/// Indicates the field name to check in the diagnostic result <c>SUDOKU021</c>.
+		/// Indicates the field name to check in the diagnostic result <c>SD0303</c>.
 		/// </summary>
 		private const string SudokuGridEmptyPropertyName = "Undefined";
+
+		/// <summary>
+		/// Indicates the field name to check in the diagnostic result <c>SD0304</c>.
+		/// </summary>
+		private const string IsEmptyPropertyName = "IsEmpty";
+
+		/// <summary>
+		/// Indicates the field name to check in the diagnostic result <c>SD0304</c>.
+		/// </summary>
+		private const string IsUndefinedPropertyName = "IsUndefined";
 
 
 		/// <inheritdoc/>
@@ -212,15 +222,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							title: Titles.SD0304,
 							messageFormat: Messages.SD0304,
 							category: Categories.Performance,
-							defaultSeverity: DiagnosticSeverity.Info,
+							defaultSeverity: DiagnosticSeverity.Warning,
 							isEnabledByDefault: true,
 							helpLinkUri: HelpLinks.SD0304
 						),
 						location: binaryExpr.GetLocation(),
-						messageArgs: new object[]
+						messageArgs: new[]
 						{
-							expressionOrVariable,
-							isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName,
+							expressionOrVariable.ToString(),
+							isOfTypeSudokuGrid ? IsUndefinedPropertyName : IsEmptyPropertyName,
 							kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!"
 						}
 					);
