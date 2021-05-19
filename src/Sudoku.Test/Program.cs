@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Sudoku.Data;
 
 var s = new SudokuGrid();
@@ -15,14 +14,7 @@ if (
 	Console.WriteLine(grid);
 }
 
-
-
-for (var f = TestEnum.A; f < TestEnum.C; f++)
-{
-	Console.WriteLine(f);
-}
-
-[Flags, Closed]
+[Flags]
 enum TestEnum
 {
 	A = 1,
