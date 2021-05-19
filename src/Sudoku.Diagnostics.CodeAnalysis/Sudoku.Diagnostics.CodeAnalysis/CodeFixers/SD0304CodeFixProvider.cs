@@ -39,7 +39,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var (location, descriptor) = diagnostic;
 			var node = root.FindNode(location.SourceSpan);
-			string[] tags = descriptor.CustomTags.ToArray();
+			var tags = diagnostic.Properties;
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
@@ -48,9 +48,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						document: document,
 						root: root,
 						node: node,
-						left: tags[2],
-						notEqualsToken: tags[0],
-						fieldName: tags[1],
+						left: tags["Operator"]!,
+						notEqualsToken: tags["Variable"]!,
+						fieldName: tags["PropertyName"]!,
 						cancellationToken: c
 					),
 					equivalenceKey: nameof(CodeFixTitles.SD0304)

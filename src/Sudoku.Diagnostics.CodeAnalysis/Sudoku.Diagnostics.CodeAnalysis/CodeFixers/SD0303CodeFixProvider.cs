@@ -39,7 +39,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var (location, descriptor) = diagnostic;
 			var node = root.FindNode(location.SourceSpan);
-			string[] tags = descriptor.CustomTags.ToArray();
+			var tags = diagnostic.Properties;
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
@@ -48,8 +48,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						document: document,
 						root: root,
 						node: node,
-						typeName: tags[0],
-						fieldName: tags[1],
+						typeName: tags["TypeName"]!,
+						fieldName: tags["PropertyName"]!,
 						cancellationToken: c
 					),
 					equivalenceKey: nameof(CodeFixTitles.SD0303)
@@ -79,15 +79,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			{
 				var newRoot = root.ReplaceNode(
 					node,
-					SyntaxFactory.ExpressionStatement(
-						SyntaxFactory.MemberAccessExpression(
-							SyntaxKind.SimpleMemberAccessExpression,
-							SyntaxFactory.IdentifierName(typeName),
-							SyntaxFactory.IdentifierName(fieldName)
-						)
-					)
-					.WithSemicolonToken(
-						SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken)
+					SyntaxFactory.MemberAccessExpression(
+						SyntaxKind.SimpleMemberAccessExpression,
+						SyntaxFactory.IdentifierName(typeName),
+						SyntaxFactory.IdentifierName(fieldName)
 					)
 				);
 

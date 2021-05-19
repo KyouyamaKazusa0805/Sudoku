@@ -107,11 +107,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				case BinaryExpressionSyntax
 				{
+					RawKind: var kind,
 					Left:
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression or (int)SyntaxKind.IdentifierName
-					} operand,
-					OperatorToken: { RawKind: var kind }
+					} operand
 				} node
 				when condition(semanticModel, operand):
 				{

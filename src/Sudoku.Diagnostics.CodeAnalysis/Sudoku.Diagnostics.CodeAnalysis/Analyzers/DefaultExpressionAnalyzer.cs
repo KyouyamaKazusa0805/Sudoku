@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -87,6 +89,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, originalNode) = context;
+
 			string typeName;
 			bool isOfTypeSudokuGrid;
 			SyntaxNode? parent;
@@ -94,7 +97,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			{
 				case BaseObjectCreationExpressionSyntax
 				{
-					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax },
+					Parent: var parentNode,
 					ArgumentList: { Arguments: { Count: 0 } },
 					Initializer: null
 				} node
@@ -129,10 +132,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case DefaultExpressionSyntax
-				{
-					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax }
-				} node
+				case DefaultExpressionSyntax { Parent: var parentNode } node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
 				{
 					Kind: OperationKind.DefaultValue,
@@ -166,7 +166,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				case LiteralExpressionSyntax
 				{
-					Parent: var parentNode and not EqualsValueClauseSyntax { Parent: ParameterSyntax },
+					Parent: var parentNode,
 					RawKind: (int)SyntaxKind.DefaultLiteralExpression
 				} node
 				when semanticModel.GetOperation(node) is IDefaultValueOperation
@@ -216,30 +216,39 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					)
 				} binaryExpr:
 				{
+					string propertyName = isOfTypeSudokuGrid ? IsUndefinedPropertyName : IsEmptyPropertyName;
+					string @operator = kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!";
 					Diagnostic.Create(
 						descriptor: SD0304,
 						location: binaryExpr.GetLocation(),
-						messageArgs: new[]
-						{
-							expressionOrVariable.ToString(),
-							isOfTypeSudokuGrid ? IsUndefinedPropertyName : IsEmptyPropertyName,
-							kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!"
-						}
+						properties: ImmutableDictionary.CreateRange(
+							new KeyValuePair<string, string?>[]
+							{
+								new("Variable", expressionOrVariable.ToString()),
+								new("PropertyName", propertyName),
+								new("Operator", @operator)
+							}
+						),
+						messageArgs: new[] { expressionOrVariable.ToString(), propertyName, @operator }
 					);
 
 					break;
 				}
 				default:
 				{
+					string propertyName = isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName;
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SD0303,
 							location: originalNode.GetLocation(),
-							messageArgs: new[]
-							{
-								typeName,
-								isOfTypeSudokuGrid ? SudokuGridEmptyPropertyName : EmptyPropertyName
-							}
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("TypeName", typeName),
+									new("PropertyName", propertyName)
+								}
+							),
+							messageArgs: new[] { typeName, propertyName }
 						)
 					);
 
