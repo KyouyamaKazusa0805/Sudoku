@@ -32,6 +32,7 @@
 		public const string SS0301 = nameof(SS0301);
 		public const string SS0401 = nameof(SS0401);
 		public const string SS0402 = nameof(SS0402);
+		public const string SS0403 = nameof(SS0403);
 		public const string SS0501 = nameof(SS0501);
 		public const string SS0502 = nameof(SS0502);
 		public const string SS0503 = nameof(SS0503);
@@ -71,6 +72,7 @@
 		public const string SS0301 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0301?sort_id=3625073";
 		public const string SS0401 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0401?sort_id=4019214";
 		public const string SS0402 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0402?sort_id=4038390";
+		public const string SS0403 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0403?sort_id=4038535";
 		public const string SS0501 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0501?sort_id=4025282";
 		public const string SS0502 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_id=4025301";
 		public const string SS0503 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305";
@@ -110,6 +112,7 @@
 		public const string SS0301 = "Replace 'Count() >= value' with 'Take(value).Count() >= value'";
 		public const string SS0401 = "Can't apply the operator here because the type is closed enum";
 		public const string SS0402 = "The enum field must holds a flag value if the enum is marked 'FlagsAttribute'";
+		public const string SS0403 = "The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'";
 		public const string SS0501 = "Deconstruction methods should contain at least 2 parameters";
 		public const string SS0502 = "Deconstruction methods must be instance ones";
 		public const string SS0503 = "Deconstruction methods must return void";
@@ -149,6 +152,7 @@
 		public const string SS0301 = "Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'";
 		public const string SS0401 = "Can't apply 'operator {0}' here because the type is closed enum";
 		public const string SS0402 = "The enum field must holds a flag value if the enum is marked 'FlagsAttribute'";
+		public const string SS0403 = "The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'";
 		public const string SS0501 = "Deconstruction methods should contain at least 2 parameters";
 		public const string SS0502 = "Deconstruction methods must be instance ones";
 		public const string SS0503 = "Deconstruction methods must return void";

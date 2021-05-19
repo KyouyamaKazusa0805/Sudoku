@@ -29,6 +29,8 @@ SS0102 | Usage | Info | InterpolatedStringAnalyzer, [Documentation](https://gite
 SS0201 | Performance | Warning | SpanOrReadOnlySpanAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0201?sort_id=3622127) 
 SS0301 | Performance | Warning | LinqAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0301?sort_id=3625073)
 SS0401 | Usage | Error | ClosedEnumAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0401?sort_id=4019214)
+SS0402 | Design | Warning | FlaggedEnumFieldAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0402?sort_id=4038390)
+SS0403 | Design | Info | FlaggedEnumFieldAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0403?sort_id=4038535)
 SS0501 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0501?sort_id=4025282)
 SS0502 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_id=4025301)
 SS0503 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305)

@@ -19,5 +19,10 @@ for (var f = TestEnum.A; f < TestEnum.C; f++)
 	Console.WriteLine(f);
 }
 
-[Closed]
-enum TestEnum { A, B, C }
+[Flags, Closed]
+enum TestEnum
+{
+	A = 1,
+	B = A,
+	C = A + 1
+}

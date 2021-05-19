@@ -352,6 +352,41 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for <see langword="enum"/> types
+            marked <see cref="T:System.FlagsAttribute"/>.
+            </summary>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SS0402">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4038390&amp;doc_id=633030">
+            SS0402
+            </a>
+            diagnostic result (The enum field must holds a flag value if the enum
+            is marked <see cref="T:System.FlagsAttribute"/>).
+            </summary>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SS0403">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4038535&amp;doc_id=633030">
+            SS0403
+            </a>
+            diagnostic result (The enum field must holds a explicitly-wroten value if the enum
+            is marked <see cref="T:System.FlagsAttribute"/>).
+            </summary>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer">
             <summary>
             Indicates the analyzer that analyzes the interpolated strings.
