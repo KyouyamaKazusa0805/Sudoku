@@ -124,26 +124,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			static bool condition(SemanticModel semanticModel, ExpressionSyntax operand) =>
 				semanticModel.GetOperation(operand) switch
 				{
-					IFieldReferenceOperation { Type: { } type } =>
-						/*length-pattern*/
-						type.GetAttributes() is { Length: not 0 } attributes
-						&& attributes.Any(
-							static attributeData => attributeData is
-							{
-								AttributeClass: { } attributeClass
-							} && attributeClass.ToDisplayString(TypeFormat) == ClosedAttributeFullTypeName
-						),
-					ILocalReferenceOperation { Local: { Type: var type } } =>
-						/*length-pattern*/
-						type.GetAttributes() is { Length: not 0 } attributes
-						&& attributes.Any(
-							static attributeData => attributeData is
-							{
-								AttributeClass: { } attributeClass
-							} && attributeClass.ToDisplayString(TypeFormat) == ClosedAttributeFullTypeName
-						),
+					IFieldReferenceOperation { Type: { } type } => innerCondition(type),
+					ILocalReferenceOperation { Local: { Type: var type } } => innerCondition(type),
 					_ => false
 				};
+
+			static bool innerCondition(ITypeSymbol type) =>
+				/*length-pattern*/
+				type.GetAttributes() is { Length: not 0 } attributes &&
+				attributes.Any(
+					static attributeData => attributeData is
+					{
+						AttributeClass: { } attributeClass
+					} && attributeClass.ToDisplayString(TypeFormat) == ClosedAttributeFullTypeName
+				);
 		}
 
 		private static void ReportSS0401(SyntaxNodeAnalysisContext context, int kind, SyntaxNode node)
