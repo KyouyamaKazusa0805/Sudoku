@@ -7,23 +7,16 @@ Console.WriteLine(s.ToString("0"));
 
 
 
-var cells = new Cells { 1, 10, 100 };
-Console.WriteLine(cells.ToString());
+var p = new Cells(stackalloc[] { 1, 10 });
+var q = new Candidates(stackalloc[] { 1, 200 });
+var r = new Cells(new[] { 0, 10 });
+var t = new Candidates(new int[] { 3 });
+var u = new Cells(stackalloc[] { 19 }) { 20 };
+Console.WriteLine(p.ToString());
+Console.WriteLine(q.ToString());
+Console.WriteLine(r.ToString());
+Console.WriteLine(t.ToString());
 
-var candidates = new Candidates { 1, 10, 100, 1000 };
-Console.WriteLine(candidates.ToString());
-
-var cells2 = new Cells(cells) { ~107 };
-Console.WriteLine(cells2.ToString());
-
-var cells3 = new Cells { ~10 };
-Console.WriteLine(cells3.ToString());
-
-var cells4 = new Cells { -10 };
-Console.WriteLine(cells4.ToString());
-
-var cells5 = new Cells { +10 };
-Console.WriteLine(cells5.ToString());
 
 
 

@@ -114,7 +114,7 @@
 		public const string SD0305 = "The input value in this initializer is invalid";
 		public const string SD0306 = "The remove expression in the initializer following with the current constructor has no effect";
 		public const string SD0307 = "The expression can be simplified";
-		public const string SD0308 = "'stackalloc' or 'new' expression is unnecessary";
+		public const string SD0308 = "'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
@@ -158,7 +158,7 @@
 		public const string SD0305 = "The input value in this initializer is invalid";
 		public const string SD0306 = "The remove expression in the initializer following with the constructor '{0}.{0}()' has no effect";
 		public const string SD0307 = "The expression can be simplified to '{0}'";
-		public const string SD0308 = "'{0}' expression is unnecessary";
+		public const string SD0308 = "'{0}' expression is unnecessary; Please use object initializer instead";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 
