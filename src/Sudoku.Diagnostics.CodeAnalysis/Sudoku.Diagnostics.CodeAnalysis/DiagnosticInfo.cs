@@ -108,7 +108,7 @@
 		public const string SD0303 = "Please use the default-value field to avoid instantiation";
 		public const string SD0304 = "Please use the specific property to simplify the invocation";
 		public const string SD0305 = "The input value in this initializer is invalid";
-		public const string SD0306 = "'stackalloc' expression is unnecessary";
+		public const string SD0306 = "'stackalloc' or 'new' expression is unnecessary";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
@@ -150,7 +150,7 @@
 		public const string SD0303 = "Please use the read-only field '{0}.{1}' to avoid instantiation";
 		public const string SD0304 = "Please use the property '{2}{0}.{1}' to simplify the invocation";
 		public const string SD0305 = "The input value in this initializer is invalid";
-		public const string SD0306 = "'stackalloc' expression is unnecessary";
+		public const string SD0306 = "'{0}' expression is unnecessary";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 
