@@ -48,8 +48,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						document: document,
 						root: root,
 						node: node,
-						left: tags["Operator"]!,
-						notEqualsToken: tags["Variable"]!,
+						left: tags["Variable"]!,
+						notEqualsToken: tags["Operator"]!,
 						fieldName: tags["PropertyName"]!,
 						cancellationToken: c
 					),
@@ -90,14 +90,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 				var newRoot = root.ReplaceNode(
 					node,
-					SyntaxFactory.ExpressionStatement(
-						notEqualsToken == string.Empty
-						? invocationExpr
-						: SyntaxFactory.PrefixUnaryExpression(SyntaxKind.LogicalNotExpression, invocationExpr)
-					)
-					.WithSemicolonToken(
-						SyntaxFactory.MissingToken(SyntaxKind.SemicolonToken)
-					)
+					notEqualsToken == string.Empty
+					? invocationExpr
+					: SyntaxFactory.PrefixUnaryExpression(SyntaxKind.LogicalNotExpression, invocationExpr)
 				);
 
 				return document.WithSyntaxRoot(newRoot);

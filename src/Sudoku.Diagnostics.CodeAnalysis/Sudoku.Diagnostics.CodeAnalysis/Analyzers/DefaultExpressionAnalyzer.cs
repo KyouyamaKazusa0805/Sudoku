@@ -93,6 +93,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			string typeName;
 			bool isOfTypeSudokuGrid;
 			SyntaxNode? parent;
+
 			switch (originalNode)
 			{
 				case BaseObjectCreationExpressionSyntax
@@ -133,11 +134,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					break;
 				}
 				case DefaultExpressionSyntax { Parent: var parentNode } node
-				when semanticModel.GetOperation(node) is IDefaultValueOperation
-				{
-					Kind: OperationKind.DefaultValue,
-					Type: var typeSymbol
-				}:
+				when semanticModel.GetOperation(node) is { Type: var typeSymbol }:
 				{
 					bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
 						typeSymbol,
@@ -169,11 +166,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Parent: var parentNode,
 					RawKind: (int)SyntaxKind.DefaultLiteralExpression
 				} node
-				when semanticModel.GetOperation(node) is IDefaultValueOperation
-				{
-					Kind: OperationKind.DefaultValue,
-					Type: var typeSymbol
-				}:
+				when semanticModel.GetOperation(node) is { Type: var typeSymbol }:
 				{
 					bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
 						typeSymbol,
@@ -218,18 +211,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					string propertyName = isOfTypeSudokuGrid ? IsUndefinedPropertyName : IsEmptyPropertyName;
 					string @operator = kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!";
-					Diagnostic.Create(
-						descriptor: SD0304,
-						location: binaryExpr.GetLocation(),
-						properties: ImmutableDictionary.CreateRange(
-							new KeyValuePair<string, string?>[]
-							{
-								new("Variable", expressionOrVariable.ToString()),
-								new("PropertyName", propertyName),
-								new("Operator", @operator)
-							}
-						),
-						messageArgs: new[] { expressionOrVariable.ToString(), propertyName, @operator }
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: SD0304,
+							location: binaryExpr.GetLocation(),
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("Variable", expressionOrVariable.ToString()),
+									new("PropertyName", propertyName),
+									new("Operator", @operator)
+								}
+							),
+							messageArgs: new[] { expressionOrVariable.ToString(), propertyName, @operator }
+						)
 					);
 
 					break;

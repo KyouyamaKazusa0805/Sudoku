@@ -71,27 +71,25 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 				var newRoot = root.ReplaceNode(
 					node,
-					SyntaxFactory.ExpressionStatement(
-						SyntaxFactory.InterpolatedStringExpression(
-							SyntaxFactory.Token(SyntaxKind.InterpolatedStringStartToken),
-							SyntaxFactory.SingletonList<InterpolatedStringContentSyntax>(
-								SyntaxFactory.InterpolatedStringText()
-								.WithTextToken(
-									SyntaxFactory.Token(
-										SyntaxFactory.TriviaList(),
-										SyntaxKind.InterpolatedStringTextToken,
-										innerToken.Count == 0
-										? string.Empty
-										: ((InterpolatedStringTextSyntax)innerToken[0]).TextToken.Text,
-										innerToken.Count == 0
-										? string.Empty
-										: ((InterpolatedStringTextSyntax)innerToken[0]).TextToken.ValueText,
-										SyntaxFactory.TriviaList()
-									)
+					SyntaxFactory.InterpolatedStringExpression(
+						SyntaxFactory.Token(SyntaxKind.InterpolatedStringStartToken),
+						SyntaxFactory.SingletonList<InterpolatedStringContentSyntax>(
+							SyntaxFactory.InterpolatedStringText()
+							.WithTextToken(
+								SyntaxFactory.Token(
+									SyntaxFactory.TriviaList(),
+									SyntaxKind.InterpolatedStringTextToken,
+									innerToken.Count == 0
+									? string.Empty
+									: ((InterpolatedStringTextSyntax)innerToken[0]).TextToken.Text,
+									innerToken.Count == 0
+									? string.Empty
+									: ((InterpolatedStringTextSyntax)innerToken[0]).TextToken.ValueText,
+									SyntaxFactory.TriviaList()
 								)
-							),
-							SyntaxFactory.Token(SyntaxKind.InterpolatedStringEndToken)
-						)
+							)
+						),
+						SyntaxFactory.Token(SyntaxKind.InterpolatedStringEndToken)
 					)
 				);
 
