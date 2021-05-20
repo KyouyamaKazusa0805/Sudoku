@@ -79,9 +79,21 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						return;
 					}
 
+					int i = 0;
+					int count = expressions.Count;
+					var values = new (int ConstantValue, SyntaxNode Node)[count];
 					int limit = isOfTypeCells ? 81 : 729;
 					foreach (var expression in expressions)
 					{
+						values[i++] = (
+							semanticModel.GetOperation(expression)?.ConstantValue is
+							{
+								HasValue: true,
+								Value: int value
+							} ? value : -1,
+							expression
+						);
+
 						switch (expression)
 						{
 							case LiteralExpressionSyntax
@@ -208,6 +220,26 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								}
 
 								break;
+							}
+						}
+					}
+
+					// Check whether the initialize contains the same value.
+					for (i = 0; i < count - 1; i++)
+					{
+						for (int j = i + 1; j < count; j++)
+						{
+							var (value1, currentNode) = values[i];
+							var (value2, _) = values[j];
+							if (value1 == value2)
+							{
+								context.ReportDiagnostic(
+									Diagnostic.Create(
+										descriptor: SD0308,
+										location: currentNode.GetLocation(),
+										messageArgs: new[] { value1.ToString() }
+									)
+								);
 							}
 						}
 					}

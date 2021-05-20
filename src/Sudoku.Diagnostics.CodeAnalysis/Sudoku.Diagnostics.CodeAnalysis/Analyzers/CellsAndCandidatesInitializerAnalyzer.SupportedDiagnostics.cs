@@ -42,10 +42,22 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0307
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4042333&amp;doc_id=633030">
+		/// SD0308
+		/// </a>
+		/// diagnostic result (The initializer contains the duplicate value).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SD0308 = new(
+			DiagnosticIds.SD0308, Titles.SD0308, Messages.SD0308, Categories.Usage,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0308
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SD0305, SD0306, SD0307
+			SD0305, SD0306, SD0307, SD0308
 		);
 	}
 }

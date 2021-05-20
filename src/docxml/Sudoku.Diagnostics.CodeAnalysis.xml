@@ -115,6 +115,15 @@
             diagnostic result (The expression can be simplified).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0308">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4042333&amp;doc_id=633030">
+            SD0308
+            </a>
+            diagnostic result (The initializer contains the duplicate value).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
