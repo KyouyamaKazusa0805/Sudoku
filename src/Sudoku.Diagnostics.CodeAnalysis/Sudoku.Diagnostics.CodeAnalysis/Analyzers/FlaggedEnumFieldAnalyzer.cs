@@ -66,15 +66,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					case null when semanticModel.GetDeclaredSymbol(fieldDeclaration) is
 					{
 						ConstantValue: { } v
-					} && Unsafe.Unbox<long>(v) is var value && (value == 0 || (value & value - 1) == 0):
+					}:
 					{
-						context.ReportDiagnostic(
-							Diagnostic.Create(
-								descriptor: SS0403,
-								location: fieldDeclaration.GetLocation(),
-								messageArgs: null
-							)
-						);
+						long value = Unsafe.As<object, long>(ref v);
+						if (value != 0 && (value & value - 1) != 0)
+						{
+							context.ReportDiagnostic(
+								Diagnostic.Create(
+									descriptor: SS0403,
+									location: fieldDeclaration.GetLocation(),
+									messageArgs: null
+								)
+							);
+						}
 
 						break;
 					}

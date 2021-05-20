@@ -1,8 +1,20 @@
 ﻿using System;
 using Sudoku.Data;
 
-var cells = new Cells { 1, 20, 40 };
-Console.WriteLine(cells.Count == 0);
+var s = new SudokuGrid();
+Console.WriteLine(s.ToString("0"));
+
+
+
+
+
+
+
+
+
+
+
+Console.WriteLine(nameof(TestEnum.A));
 
 [Flags]
 enum TestEnum
