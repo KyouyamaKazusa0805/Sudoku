@@ -14,7 +14,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0302 = new(
 			DiagnosticIds.SD0302, Titles.SD0302, Messages.SD0302, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0302
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0302
 		);
 
 

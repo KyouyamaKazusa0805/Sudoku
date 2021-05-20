@@ -19,7 +19,7 @@ SD0204 | Usage | Error | DynamicallyInvocationOfCurrentAnalyzer, [Documentation]
 SD0205 | Usage | Error | DynamicallyInvocationOfCurrentAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0205?sort_id=3610364)
 SD0206 | ResourceDictionary | Error | DynamicallyInvocationOfCurrentAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0206?sort_id=4018391)
 SD0301 | Usage | Error | SudokuGridAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0301?sort_id=3614979)
-SD0302 | Usage | Warning | CountIsEqualToZeroAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575)
+SD0302 | Usage | Info | CountIsEqualToZeroAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575)
 SD0303 | Performance | Warning | DefaultExpressionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107)
 SD0304 | Performance | Warning | DefaultExpressionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455)
 SD0401 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986)

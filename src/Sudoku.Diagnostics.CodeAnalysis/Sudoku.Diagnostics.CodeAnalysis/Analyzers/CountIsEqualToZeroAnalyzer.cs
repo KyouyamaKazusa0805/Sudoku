@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -103,15 +105,24 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			string equalityToken = kind == (int)SyntaxKind.NotEqualsExpression ? "!=" : "==";
+			string nodeStr = exprNode.ToString();
+			string @operator = equalityToken == "==" ? string.Empty : "!";
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SD0302,
 					location: node.GetLocation(),
+					properties: ImmutableDictionary.CreateRange(
+						new KeyValuePair<string, string?>[]
+						{
+							new("NodeName", nodeStr),
+							new("Operator", @operator)
+						}
+					),
 					messageArgs: new[]
 					{
-						exprNode.ToString(),
+						nodeStr,
 						equalityToken,
-						equalityToken == "==" ? string.Empty : "!"
+						@operator
 					}
 				)
 			);

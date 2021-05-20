@@ -1,18 +1,8 @@
 ﻿using System;
 using Sudoku.Data;
 
-var s = new SudokuGrid();
-Console.WriteLine(s.ToString("0"));
-
-if (
-	SudokuGrid.TryParse(
-		"5.782...9.81.....2....716...93.12...............59.36...218....8.....71.1...642.8",
-		out var grid
-	) && grid != default(SudokuGrid)
-)
-{
-	Console.WriteLine(grid);
-}
+var cells = new Cells { 1, 20, 40 };
+Console.WriteLine(cells.Count == 0);
 
 [Flags]
 enum TestEnum

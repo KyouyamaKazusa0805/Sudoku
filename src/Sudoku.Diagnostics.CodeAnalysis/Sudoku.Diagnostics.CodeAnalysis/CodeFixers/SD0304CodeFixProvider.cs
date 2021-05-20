@@ -38,7 +38,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0304);
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var (location, descriptor) = diagnostic;
-			var node = root.FindNode(location.SourceSpan);
+			var node = root.FindNode(location.SourceSpan, getInnermostNodeForTie: true);
 			var tags = diagnostic.Properties;
 
 			context.RegisterCodeFix(
@@ -82,7 +82,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			string notEqualsToken, string fieldName, CancellationToken cancellationToken = default) =>
 			await Task.Run(() =>
 			{
-				var invocationExpr = SyntaxFactory.MemberAccessExpression(
+				var accessExpr = SyntaxFactory.MemberAccessExpression(
 					SyntaxKind.SimpleMemberAccessExpression,
 					SyntaxFactory.IdentifierName(left),
 					SyntaxFactory.IdentifierName(fieldName)
@@ -91,8 +91,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 				var newRoot = root.ReplaceNode(
 					node,
 					notEqualsToken == string.Empty
-					? invocationExpr
-					: SyntaxFactory.PrefixUnaryExpression(SyntaxKind.LogicalNotExpression, invocationExpr)
+					? accessExpr
+					: SyntaxFactory.PrefixUnaryExpression(SyntaxKind.LogicalNotExpression, accessExpr)
 				);
 
 				return document.WithSyntaxRoot(newRoot);
