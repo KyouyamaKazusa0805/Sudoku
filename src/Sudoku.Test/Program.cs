@@ -6,6 +6,7 @@ Console.WriteLine(s.ToString("0"));
 
 
 
+
 var cells = new Cells { 1, 10, 100 };
 Console.WriteLine(cells.ToString());
 
@@ -14,6 +15,18 @@ Console.WriteLine(candidates.ToString());
 
 var cells2 = new Cells(cells) { ~107 };
 Console.WriteLine(cells2.ToString());
+
+var cells3 = new Cells { ~10 };
+Console.WriteLine(cells3.ToString());
+
+var cells4 = new Cells { -10 };
+Console.WriteLine(cells4.ToString());
+
+var cells5 = new Cells { +10 };
+Console.WriteLine(cells5.ToString());
+
+
+
 
 
 Console.WriteLine(nameof(TestEnum.A));

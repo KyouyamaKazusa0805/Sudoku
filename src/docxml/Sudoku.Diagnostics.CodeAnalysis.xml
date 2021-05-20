@@ -64,6 +64,16 @@
             to check whether the input value in the initializer is invalid.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.CellsTypeName">
+            <summary>
+            Indicates the cells type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.CandidatesTypeName">
+            <summary>
+            Indicates the candidates type name.
+            </summary>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.CellsFullTypeName">
             <summary>
             Indicates the full type name of <c>Cells</c>.
@@ -84,6 +94,25 @@
             SD0305
             </a>
             diagnostic result (The input value in this initializer is invalid).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0306">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4041904&amp;doc_id=633030">
+            SD0306
+            </a>
+            diagnostic result (The remove expression in the initializer
+            following with the constructor has no effect).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0307">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4042004&amp;doc_id=633030">
+            SD0307
+            </a>
+            diagnostic result (The expression can be simplified).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SupportedDiagnostics">

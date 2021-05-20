@@ -16,6 +16,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
+		/// Indicates the cells type name.
+		/// </summary>
+		private const string CellsTypeName = "Cells";
+
+		/// <summary>
+		/// Indicates the candidates type name.
+		/// </summary>
+		private const string CandidatesTypeName = "Candidates";
+
+		/// <summary>
 		/// Indicates the full type name of <c>Cells</c>.
 		/// </summary>
 		private const string CellsFullTypeName = "Sudoku.Data.Cells";
@@ -45,7 +55,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (originalNode)
 			{
-				case BaseObjectCreationExpressionSyntax { Initializer: { Expressions: var expressions } } node
+				case BaseObjectCreationExpressionSyntax
+				{
+					ArgumentList: var argumentList,
+					Initializer: { Expressions: var expressions }
+				} node
 				when semanticModel.GetOperation(node) is IObjectCreationOperation
 				{
 					Kind: OperationKind.ObjectCreation,
@@ -65,6 +79,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						return;
 					}
 
+					int limit = isOfTypeCells ? 81 : 729;
 					foreach (var expression in expressions)
 					{
 						switch (expression)
@@ -74,7 +89,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								RawKind: (int)SyntaxKind.NumericLiteralExpression,
 								Token: { ValueText: var v } token
 							}
-							when int.Parse(v) >= (isOfTypeCells ? 81 : 729):
+							when int.TryParse(v, out int realValue) && realValue >= limit:
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
@@ -88,6 +103,77 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							}
 							case PrefixUnaryExpressionSyntax
 							{
+								RawKind: (int)SyntaxKind.UnaryPlusExpression,
+								Operand: LiteralExpressionSyntax
+								{
+									RawKind: (int)SyntaxKind.NumericLiteralExpression,
+									Token: { ValueText: var v }
+								}
+							} expr
+							when int.TryParse(v, out int realValue):
+							{
+								if (realValue < 0 || realValue >= 81)
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0305,
+											location: expr.GetLocation(),
+											messageArgs: null
+										)
+									);
+								}
+								else
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0307,
+											location: expr.GetLocation(),
+											messageArgs: new[] { realValue.ToString() }
+										)
+									);
+								}
+
+								break;
+							}
+							case PrefixUnaryExpressionSyntax
+							{
+								RawKind: (int)SyntaxKind.UnaryMinusExpression,
+								Operand: LiteralExpressionSyntax
+								{
+									RawKind: (int)SyntaxKind.NumericLiteralExpression,
+									Token: { ValueText: var v }
+								}
+							} expr
+							when int.TryParse(v, out int realValue):
+							{
+								// -1 is ~0, -2 is ~1, -3 is ~2, ..., -81 is ~80.
+								// From the sequence we can learn that the maximum valid value
+								// in this unary minus expression is 81.
+								if (realValue <= 0 || realValue >= limit + 1)
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0305,
+											location: expr.GetLocation(),
+											messageArgs: null
+										)
+									);
+								}
+								else
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0307,
+											location: expr.GetLocation(),
+											messageArgs: new[] { $"~{realValue - 1}" }
+										)
+									);
+								}
+
+								break;
+							}
+							case PrefixUnaryExpressionSyntax
+							{
 								RawKind: (int)SyntaxKind.BitwiseNotExpression,
 								Operand: LiteralExpressionSyntax
 								{
@@ -95,15 +181,31 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									Token: { ValueText: var v }
 								}
 							} expr
-							when int.Parse(v) >= (isOfTypeCells ? 81 : 729):
+							when int.TryParse(v, out int realValue):
 							{
-								context.ReportDiagnostic(
-									Diagnostic.Create(
-										descriptor: SD0305,
-										location: expr.GetLocation(),
-										messageArgs: null
-									)
-								);
+								if (realValue >= limit)
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0305,
+											location: expr.GetLocation(),
+											messageArgs: null
+										)
+									);
+								}
+								else if (argumentList is not { Arguments: { Count: not 0 } })
+								{
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SD0306,
+											location: expr.GetLocation(),
+											messageArgs: new[]
+											{
+												isOfTypeCells ? CellsTypeName : CandidatesTypeName
+											}
+										)
+									);
+								}
 
 								break;
 							}
