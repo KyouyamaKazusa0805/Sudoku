@@ -26,7 +26,7 @@
 		public const string SD0305 = nameof(SD0305);
 		public const string SD0306 = nameof(SD0306);
 		public const string SD0307 = nameof(SD0307);
-		public const string SD0308 = nameof(SD0308);
+		public const string SD0309 = nameof(SD0309);
 		public const string SD0401 = nameof(SD0401);
 		public const string SD0402 = nameof(SD0402);
 
@@ -70,7 +70,7 @@
 		public const string SD0305 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0305?sort_id=4041611";
 		public const string SD0306 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0306?sort_id=4041904";
 		public const string SD0307 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4041633";
-		public const string SD0308 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633";
+		public const string SD0309 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633";
 		public const string SD0401 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986";
 		public const string SD0402 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928";
 
@@ -114,7 +114,7 @@
 		public const string SD0305 = "The input value in this initializer is invalid";
 		public const string SD0306 = "The remove expression in the initializer following with the current constructor has no effect";
 		public const string SD0307 = "The expression can be simplified";
-		public const string SD0308 = "'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead";
+		public const string SD0309 = "'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
@@ -158,7 +158,7 @@
 		public const string SD0305 = "The input value in this initializer is invalid";
 		public const string SD0306 = "The remove expression in the initializer following with the constructor '{0}.{0}()' has no effect";
 		public const string SD0307 = "The expression can be simplified to '{0}'";
-		public const string SD0308 = "'{0}' expression is unnecessary; Please use object initializer instead";
+		public const string SD0309 = "'{0}' expression is unnecessary; Please use object initializer instead";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 

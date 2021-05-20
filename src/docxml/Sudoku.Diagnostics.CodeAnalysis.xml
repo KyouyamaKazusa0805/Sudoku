@@ -713,11 +713,11 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.SD0308">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.SD0309">
             <summary>
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4041633&amp;doc_id=633030">
-            SD0308
+            SD0309
             </a>
             diagnostic result (<see langword="stackalloc"/> or <see langword="new"/> expression is unnecessary).
             </summary>

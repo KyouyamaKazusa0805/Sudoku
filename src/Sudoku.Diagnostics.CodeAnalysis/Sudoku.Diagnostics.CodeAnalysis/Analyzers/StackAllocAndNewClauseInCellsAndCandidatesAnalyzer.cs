@@ -89,7 +89,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: SD0308,
+							descriptor: SD0309,
 							location: newExpression.GetLocation(),
 							messageArgs: new[] { "new" }
 						)
@@ -101,7 +101,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: SD0308,
+							descriptor: SD0309,
 							location: implicitNewExpression.GetLocation(),
 							messageArgs: new[] { "new" }
 						)
@@ -113,7 +113,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: SD0308,
+							descriptor: SD0309,
 							location: stackAllocExpression.GetLocation(),
 							messageArgs: new[] { "stackalloc" }
 						)
@@ -125,7 +125,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: SD0308,
+							descriptor: SD0309,
 							location: implicitStackAllocExpression.GetLocation(),
 							messageArgs: new[] { "stackalloc" }
 						)
