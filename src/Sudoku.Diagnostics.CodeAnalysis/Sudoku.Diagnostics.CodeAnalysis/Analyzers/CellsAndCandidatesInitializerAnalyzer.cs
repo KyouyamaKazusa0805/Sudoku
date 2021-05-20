@@ -229,15 +229,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						for (int j = i + 1; j < count; j++)
 						{
-							var (value1, currentNode) = values[i];
-							var (value2, _) = values[j];
-							if (value1 == value2)
+							var (v1, currentNode) = values[i];
+							var (v2, _) = values[j];
+							if (v1 == v2)
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: SD0308,
 										location: currentNode.GetLocation(),
-										messageArgs: new[] { value1.ToString() }
+										messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{-v1 - 1}" }
 									)
 								);
 							}
