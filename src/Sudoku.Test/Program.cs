@@ -6,7 +6,7 @@ var s = new SudokuGrid();
 Console.WriteLine(s.ToString("0"));
 #endregion
 
-var p = new Cells { 1, 10, -9, -11, 20, 1, ~8 };
+var p = new Cells { 10, ~29, 7, ~8 };
 Console.WriteLine(p.ToString());
 
 Console.WriteLine(nameof(TestEnum.A));
