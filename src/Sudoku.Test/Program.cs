@@ -6,7 +6,7 @@ var s = new SudokuGrid();
 Console.WriteLine(s.ToString("0"));
 #endregion
 
-var p = new Cells { 10, 10, 20, 9, 10 };
+var p = new Cells(stackalloc[] { 5, 10, 20, 40, 80 });
 Console.WriteLine(p.ToString());
 
 Console.WriteLine(nameof(TestEnum.A));
