@@ -1088,20 +1088,6 @@
             <param name="semanticModel">The semantic model.</param>
             <returns>The full name.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx.GetPointerTypeSymbol(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.SpecialType)">
-            <summary>
-            Creates a pointer type symbol by the specified special type.
-            </summary>
-            <param name="this">The compilation.</param>
-            <param name="specialType">The special type.</param>
-            <returns>The result symbol.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.

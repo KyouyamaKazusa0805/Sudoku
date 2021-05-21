@@ -43,6 +43,7 @@
 		public const string SS0503 = nameof(SS0503);
 		public const string SS0504 = nameof(SS0504);
 		public const string SS0505 = nameof(SS0505);
+		public const string SS9001 = nameof(SS9001);
 	}
 
 	/// <summary>
@@ -88,6 +89,7 @@
 		public const string SS0503 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305";
 		public const string SS0504 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793";
 		public const string SS0505 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794";
+		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
 	}
 
 	/// <summary>
@@ -133,6 +135,7 @@
 		public const string SS0503 = "Deconstruction methods must return void";
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
+		public const string SS9001 = "Available prepositional iteration condition expression";
 	}
 
 	/// <summary>
@@ -178,6 +181,7 @@
 		public const string SS0503 = "Deconstruction methods must return void";
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
+		public const string SS9001 = "Available prepositional iteration condition expression";
 	}
 
 	/// <summary>

@@ -6,7 +6,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
-using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -129,7 +128,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				if (
 					!SymbolEqualityComparer.Default.Equals(
 						@params[0].Type,
-						compilation.GetPointerTypeSymbol(SpecialType.System_Void)
+						compilation.CreatePointerTypeSymbol(compilation.GetSpecialType(SpecialType.System_Void))
 					)
 					|| !SymbolEqualityComparer.Default.Equals(
 						@params[1].Type,
