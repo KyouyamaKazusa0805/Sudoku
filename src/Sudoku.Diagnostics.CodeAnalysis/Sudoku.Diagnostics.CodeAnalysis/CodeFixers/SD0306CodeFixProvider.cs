@@ -2,7 +2,6 @@
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
@@ -45,12 +44,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0306_1,
-					createChangedDocument: c => RemoveOperatorBitwiseNotAsync(
-						document: document,
-						root: root,
-						node: node,
-						cancellationToken: c
-					),
+					createChangedDocument: async c => await Task.Run(() =>
+					{
+						if (
+							node is not PrefixUnaryExpressionSyntax
+							{
+								RawKind: (int)SyntaxKind.BitwiseNotExpression,
+								Operand: var operand
+							}
+						)
+						{
+							throw new InvalidOperationException("The specified node is invalid to fix.");
+						}
+
+						var newRoot = root.ReplaceNode(node, operand);
+
+						return document.WithSyntaxRoot(newRoot);
+					}, c),
 					equivalenceKey: nameof(CodeFixTitles.SD0306_1)
 				),
 				diagnostic
@@ -59,71 +69,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0306_2,
-					createChangedDocument: c => RemoveExpressionAsync(
-						document: document,
-						root: root,
-						node: node,
-						cancellationToken: c
-					),
+					createChangedDocument: async c => await Task.Run(() =>
+					{
+						var newRoot = root.RemoveNode(node, SyntaxRemoveOptions.KeepTrailingTrivia)!;
+
+						return document.WithSyntaxRoot(newRoot);
+					}, c),
 					equivalenceKey: nameof(CodeFixTitles.SD0306_2)
 				),
 				diagnostic
 			);
 		}
-
-
-		/// <summary>
-		/// Delegated method that is invoked by <see cref="RegisterCodeFixesAsync(CodeFixContext)"/> above.
-		/// </summary>
-		/// <param name="document">The current document to fix.</param>
-		/// <param name="root">The syntax root node.</param>
-		/// <param name="node">
-		/// The interpolted string expression node that the diagnostic result occurs.
-		/// </param>
-		/// <param name="cancellationToken">The cancellation token.</param>
-		/// <returns>A task that handles this operation.</returns>
-		/// <seealso cref="RegisterCodeFixesAsync(CodeFixContext)"/>
-		/// <exception cref="InvalidOperationException">
-		/// Throws when the current node is invalid to fix.
-		/// </exception>
-		private static async Task<Document> RemoveOperatorBitwiseNotAsync(
-			Document document, SyntaxNode root, SyntaxNode node,
-			CancellationToken cancellationToken = default) => await Task.Run(() =>
-			{
-				if (
-					node is not PrefixUnaryExpressionSyntax
-					{
-						RawKind: (int)SyntaxKind.BitwiseNotExpression,
-						Operand: var operand
-					}
-				)
-				{
-					throw new InvalidOperationException("The specified node is invalid to fix.");
-				}
-
-				var newRoot = root.ReplaceNode(node, operand);
-
-				return document.WithSyntaxRoot(newRoot);
-			}, cancellationToken);
-
-		/// <summary>
-		/// Delegated method that is invoked by <see cref="RegisterCodeFixesAsync(CodeFixContext)"/> above.
-		/// </summary>
-		/// <param name="document">The current document to fix.</param>
-		/// <param name="root">The syntax root node.</param>
-		/// <param name="node">
-		/// The interpolted string expression node that the diagnostic result occurs.
-		/// </param>
-		/// <param name="cancellationToken">The cancellation token.</param>
-		/// <returns>A task that handles this operation.</returns>
-		/// <seealso cref="RegisterCodeFixesAsync(CodeFixContext)"/>
-		private static async Task<Document> RemoveExpressionAsync(
-			Document document, SyntaxNode root, SyntaxNode node,
-			CancellationToken cancellationToken = default) => await Task.Run(() =>
-			{
-				var newRoot = root.RemoveNode(node, SyntaxRemoveOptions.KeepTrailingTrivia)!;
-
-				return document.WithSyntaxRoot(newRoot);
-			}, cancellationToken);
 	}
 }
