@@ -8,6 +8,7 @@
 		<IsPackable>false</IsPackable>
 		<PackageId>*$(MSBuildProjectFile)*</PackageId>
 		<Authors>Sunnie</Authors>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>A project that analyzes the code for the solution.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<DocumentationFile>..\..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>

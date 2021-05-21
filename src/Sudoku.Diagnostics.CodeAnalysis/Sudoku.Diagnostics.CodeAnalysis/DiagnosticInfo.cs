@@ -200,6 +200,7 @@
 		public const string SD0309 = "Use object initializer instead";
 
 		public const string SS0102 = "Remove redundant '$'";
+		public const string SS9001 = "Move the expression to the initializer";
 	}
 
 	/// <summary>
