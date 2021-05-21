@@ -456,6 +456,26 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.SS9001">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4042356&amp;doc_id=633030">
+            SS9001
+            </a>
+            diagnostic result (Available prepositional iteration condition expression).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer">
             <summary>
             Indicates the analyzer that analyzes the interpolated strings.
