@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
@@ -43,100 +44,106 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0309,
-					createChangedDocument: async c => await Task.Run(() =>
-					{
-						switch (node)
-						{
-							case ImplicitArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
-								Initializer: var initializer
-							}:
-							{
-								SyntaxNode replaceNode = parent switch
-								{
-									ObjectCreationExpressionSyntax { Type: var typeName } =>
-										SyntaxFactory.ObjectCreationExpression(typeName)
-										.WithInitializer(initializer),
-									ImplicitObjectCreationExpressionSyntax =>
-										SyntaxFactory.ImplicitObjectCreationExpression()
-										.WithInitializer(initializer)
-								};
-
-								var newRoot = root.ReplaceNode(parent, replaceNode);
-
-								return document.WithSyntaxRoot(newRoot);
-							}
-							case ArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
-								Initializer: var initializer
-							}:
-							{
-								SyntaxNode replaceNode = parent switch
-								{
-									ObjectCreationExpressionSyntax { Type: var typeName } =>
-										SyntaxFactory.ObjectCreationExpression(typeName)
-										.WithInitializer(initializer),
-									ImplicitObjectCreationExpressionSyntax =>
-										SyntaxFactory.ImplicitObjectCreationExpression()
-										.WithInitializer(initializer)
-								};
-
-								var newRoot = root.ReplaceNode(parent, replaceNode);
-
-								return document.WithSyntaxRoot(newRoot);
-							}
-							case ImplicitStackAllocArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
-								Initializer: var initializer
-							}:
-							{
-								SyntaxNode replaceNode = parent switch
-								{
-									ObjectCreationExpressionSyntax { Type: var typeName } =>
-										SyntaxFactory.ObjectCreationExpression(typeName)
-										.WithInitializer(initializer),
-									ImplicitObjectCreationExpressionSyntax =>
-										SyntaxFactory.ImplicitObjectCreationExpression()
-										.WithInitializer(initializer)
-								};
-
-								var newRoot = root.ReplaceNode(parent, replaceNode);
-
-								return document.WithSyntaxRoot(newRoot);
-							}
-							case StackAllocArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
-								Initializer: var initializer
-							}:
-							{
-								SyntaxNode replaceNode = parent switch
-								{
-									ObjectCreationExpressionSyntax { Type: var typeName } =>
-										SyntaxFactory.ObjectCreationExpression(typeName)
-										.WithInitializer(initializer),
-									ImplicitObjectCreationExpressionSyntax =>
-										SyntaxFactory.ImplicitObjectCreationExpression()
-										.WithInitializer(initializer)
-								};
-
-								var newRoot = root.ReplaceNode(parent, replaceNode);
-
-								return document.WithSyntaxRoot(newRoot);
-							}
-							default:
-							{
-								throw new InvalidOperationException("The specified node is invalid.");
-							}
-						}
-					}, c),
+					createChangedDocument: c => UseObjectInitializerAsync(document, root, node, c),
 					equivalenceKey: nameof(CodeFixTitles.SD0309)
 				),
 				diagnostic
 			);
 		}
+
+
+		private static async Task<Document> UseObjectInitializerAsync(
+			Document document, SyntaxNode root, SyntaxNode node,
+			CancellationToken cancellationToken = default) =>
+			await Task.Run(() =>
+			{
+				switch (node)
+				{
+					case ImplicitArrayCreationExpressionSyntax
+					{
+						Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
+						Initializer: var initializer
+					}:
+					{
+						SyntaxNode replaceNode = parent switch
+						{
+							ObjectCreationExpressionSyntax { Type: var typeName } =>
+								SyntaxFactory.ObjectCreationExpression(typeName)
+								.WithInitializer(initializer),
+							ImplicitObjectCreationExpressionSyntax =>
+								SyntaxFactory.ImplicitObjectCreationExpression()
+								.WithInitializer(initializer)
+						};
+
+						var newRoot = root.ReplaceNode(parent, replaceNode);
+
+						return document.WithSyntaxRoot(newRoot);
+					}
+					case ArrayCreationExpressionSyntax
+					{
+						Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
+						Initializer: var initializer
+					}:
+					{
+						SyntaxNode replaceNode = parent switch
+						{
+							ObjectCreationExpressionSyntax { Type: var typeName } =>
+								SyntaxFactory.ObjectCreationExpression(typeName)
+								.WithInitializer(initializer),
+							ImplicitObjectCreationExpressionSyntax =>
+								SyntaxFactory.ImplicitObjectCreationExpression()
+								.WithInitializer(initializer)
+						};
+
+						var newRoot = root.ReplaceNode(parent, replaceNode);
+
+						return document.WithSyntaxRoot(newRoot);
+					}
+					case ImplicitStackAllocArrayCreationExpressionSyntax
+					{
+						Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
+						Initializer: var initializer
+					}:
+					{
+						SyntaxNode replaceNode = parent switch
+						{
+							ObjectCreationExpressionSyntax { Type: var typeName } =>
+								SyntaxFactory.ObjectCreationExpression(typeName)
+								.WithInitializer(initializer),
+							ImplicitObjectCreationExpressionSyntax =>
+								SyntaxFactory.ImplicitObjectCreationExpression()
+								.WithInitializer(initializer)
+						};
+
+						var newRoot = root.ReplaceNode(parent, replaceNode);
+
+						return document.WithSyntaxRoot(newRoot);
+					}
+					case StackAllocArrayCreationExpressionSyntax
+					{
+						Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var parent } },
+						Initializer: var initializer
+					}:
+					{
+						SyntaxNode replaceNode = parent switch
+						{
+							ObjectCreationExpressionSyntax { Type: var typeName } =>
+								SyntaxFactory.ObjectCreationExpression(typeName)
+								.WithInitializer(initializer),
+							ImplicitObjectCreationExpressionSyntax =>
+								SyntaxFactory.ImplicitObjectCreationExpression()
+								.WithInitializer(initializer)
+						};
+
+						var newRoot = root.ReplaceNode(parent, replaceNode);
+
+						return document.WithSyntaxRoot(newRoot);
+					}
+					default:
+					{
+						throw new InvalidOperationException("The specified node is invalid.");
+					}
+				}
+			}, cancellationToken);
 	}
 }
