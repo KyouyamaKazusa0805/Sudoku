@@ -1,52 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis
 {
 	/// <summary>
-	/// Provides diagnostic IDs.
-	/// </summary>
-	internal static class DiagnosticIds
-	{
-		public const string SD0101 = nameof(SD0101);
-		public const string SD0102 = nameof(SD0102);
-		public const string SD0103 = nameof(SD0103);
-		public const string SD0104 = nameof(SD0104);
-		public const string SD0105 = nameof(SD0105);
-		public const string SD0106 = nameof(SD0106);
-		public const string SD0107 = nameof(SD0107);
-		public const string SD0108 = nameof(SD0108);
-		public const string SD0201 = nameof(SD0201);
-		public const string SD0202 = nameof(SD0202);
-		public const string SD0203 = nameof(SD0203);
-		public const string SD0204 = nameof(SD0204);
-		public const string SD0205 = nameof(SD0205);
-		public const string SD0206 = nameof(SD0206);
-		public const string SD0301 = nameof(SD0301);
-		public const string SD0302 = nameof(SD0302);
-		public const string SD0303 = nameof(SD0303);
-		public const string SD0304 = nameof(SD0304);
-		public const string SD0305 = nameof(SD0305);
-		public const string SD0306 = nameof(SD0306);
-		public const string SD0307 = nameof(SD0307);
-		public const string SD0308 = nameof(SD0308);
-		public const string SD0309 = nameof(SD0309);
-		public const string SD0401 = nameof(SD0401);
-		public const string SD0402 = nameof(SD0402);
-
-		public const string SS0101 = nameof(SS0101);
-		public const string SS0102 = nameof(SS0102);
-		public const string SS0201 = nameof(SS0201);
-		public const string SS0301 = nameof(SS0301);
-		public const string SS0401 = nameof(SS0401);
-		public const string SS0402 = nameof(SS0402);
-		public const string SS0403 = nameof(SS0403);
-		public const string SS0501 = nameof(SS0501);
-		public const string SS0502 = nameof(SS0502);
-		public const string SS0503 = nameof(SS0503);
-		public const string SS0504 = nameof(SS0504);
-		public const string SS0505 = nameof(SS0505);
-		public const string SS9001 = nameof(SS9001);
-	}
-
-	/// <summary>
 	/// Provides help links.
 	/// </summary>
 	internal static class HelpLinks
@@ -201,51 +155,5 @@
 
 		public const string SS0102 = "Remove redundant '$'";
 		public const string SS9001 = "Move the expression to the initializer";
-	}
-
-	/// <summary>
-	/// Provides the categories.
-	/// </summary>
-	internal static class Categories
-	{
-		/// <summary>
-		/// Indicates the category is the requirement.
-		/// </summary>
-		public const string Requirements = nameof(Requirements);
-
-		/// <summary>
-		/// Indicates the category is the usage.
-		/// </summary>
-		public const string Usage = nameof(Usage);
-
-		/// <summary>
-		/// Indicates the category is the resource dictionary.
-		/// </summary>
-		public const string ResourceDictionary = nameof(ResourceDictionary);
-
-		/// <summary>
-		/// Indicates the category is the model (data structure implementation).
-		/// </summary>
-		public const string Model = nameof(Model);
-
-		/// <summary>
-		/// Indicates the category is the performance.
-		/// </summary>
-		public const string Performance = nameof(Performance);
-
-		/// <summary>
-		/// Indicates the category is the style.
-		/// </summary>
-		public const string Style = nameof(Style);
-
-		/// <summary>
-		/// Indicates the category is the design.
-		/// </summary>
-		public const string Design = nameof(Design);
-
-		/// <summary>
-		/// Indicates the category is about the static technique property named <c>Properties</c>.
-		/// </summary>
-		public const string StaticTechniqueProperties = nameof(StaticTechniqueProperties);
 	}
 }

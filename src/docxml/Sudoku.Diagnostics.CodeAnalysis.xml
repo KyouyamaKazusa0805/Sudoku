@@ -1065,11 +1065,6 @@
             Throws when <paramref name="forLoop"/> is invalid.
             </exception>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DiagnosticIds">
-            <summary>
-            Provides diagnostic IDs.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.HelpLinks">
             <summary>
             Provides help links.
@@ -1088,51 +1083,6 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixTitles">
             <summary>
             Provides the titles for the code fix solutions.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Categories">
-            <summary>
-            Provides the categories.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Requirements">
-            <summary>
-            Indicates the category is the requirement.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Usage">
-            <summary>
-            Indicates the category is the usage.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.ResourceDictionary">
-            <summary>
-            Indicates the category is the resource dictionary.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Model">
-            <summary>
-            Indicates the category is the model (data structure implementation).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Performance">
-            <summary>
-            Indicates the category is the performance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Style">
-            <summary>
-            Indicates the category is the style.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.Design">
-            <summary>
-            Indicates the category is the design.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Categories.StaticTechniqueProperties">
-            <summary>
-            Indicates the category is about the static technique property named <c>Properties</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ArgumentSyntaxEx">

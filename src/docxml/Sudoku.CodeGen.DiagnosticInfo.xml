@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.DiagnosticInfo</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator">
+            <summary>
+            Indicates the generator that generates the diagnostic information used in code analysis.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.IdTableName">
+            <summary>
+            Indicates the name that stores the diagnostic IDs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.CategoriesTableName">
+            <summary>
+            Indicates the name that stores the diagnostic categories.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

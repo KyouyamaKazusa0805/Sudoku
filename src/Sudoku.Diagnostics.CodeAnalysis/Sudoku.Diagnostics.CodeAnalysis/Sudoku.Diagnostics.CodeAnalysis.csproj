@@ -17,6 +17,8 @@
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\..\required\lang\Resources.en-us.dic" />
 		<AdditionalFiles Include="..\..\..\required\lang\Resources.zh-cn.dic" />
+		<AdditionalFiles Include="SupportedDiagnosticIds.txt" />
+		<AdditionalFiles Include="SupportedDiagnosticCategories.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -30,6 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\..\Sudoku.CodeGen.DiagnosticInfo\Sudoku.CodeGen.DiagnosticInfo.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 </Project>
