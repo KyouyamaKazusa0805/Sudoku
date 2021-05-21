@@ -923,34 +923,22 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RemoveOperatorBitwiseNotAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider">
             <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4042004">
+            SD0307
+            </a>.
             </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current node is invalid to fix.
-            </exception>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RemoveExpressionAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider">
             <summary>

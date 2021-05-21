@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -140,6 +142,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										Diagnostic.Create(
 											descriptor: SD0307,
 											location: expr.GetLocation(),
+											properties: ImmutableDictionary.CreateRange(
+												new KeyValuePair<string, string?>[]
+												{
+													new("RealValue", realValue.ToString())
+												}
+											),
 											messageArgs: new[] { realValue.ToString() }
 										)
 									);
@@ -177,6 +185,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										Diagnostic.Create(
 											descriptor: SD0307,
 											location: expr.GetLocation(),
+											properties: ImmutableDictionary.CreateRange(
+												new KeyValuePair<string, string?>[]
+												{
+													new("RealValue", (realValue - 1).ToString())
+												}
+											),
 											messageArgs: new[] { $"~{realValue - 1}" }
 										)
 									);

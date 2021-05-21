@@ -191,6 +191,7 @@
 		public const string SD0304 = "Use property instead";
 		public const string SD0306_1 = "Remove operator ~";
 		public const string SD0306_2 = "Remove the whole expression";
+		public const string SD0307 = "Simplify the initialization expression";
 
 		public const string SS0102 = "Remove redundant '$'";
 	}
