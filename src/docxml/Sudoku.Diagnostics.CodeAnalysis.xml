@@ -1181,6 +1181,19 @@
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String)">
+            <summary>
+            Converts the current name into the camel case.
+            </summary>
+            <param name="this">The name.</param>
+            <returns>The result name.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxNodeEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.

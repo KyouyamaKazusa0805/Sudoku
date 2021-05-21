@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -77,7 +77,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								new KeyValuePair<string, string?>[]
 								{
 									new("VariableName", anotherNode.ToString()),
-									new("SuggestedName", ToLowerCase(suggestedName))
+									new("SuggestedName", suggestedName?.ToCamelCase())
 								}
 							),
 							additionalLocations: new[] { node.GetLocation() },
@@ -92,24 +92,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			static bool isSimpleExpression(ExpressionSyntax expression) =>
 				expression is LiteralExpressionSyntax or DefaultExpressionSyntax or IdentifierNameSyntax;
-		}
-
-		private static unsafe string? ToLowerCase(string? s)
-		{
-			if (s is null)
-			{
-				return null;
-			}
-
-			char* ptr = stackalloc char[s.Length];
-			fixed (char* pString = s)
-			{
-				Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * s.Length));
-			}
-
-			ptr[0] = (char)(ptr[0] + ' ');
-
-			return new string(ptr);
 		}
 	}
 }
