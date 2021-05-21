@@ -51,7 +51,7 @@ namespace Sudoku.CodeGen.DiagnosticInfo
 				"\r\n\t\t",
 				from idOrEmptyLine in idOrEmptyLines
 				select string.IsNullOrWhiteSpace(idOrEmptyLine)
-					? "\r\n"
+					? string.Empty
 					: $"public const string {idOrEmptyLine} = nameof({idOrEmptyLine});"
 			);
 
@@ -78,7 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 				"\r\n\t\t",
 				from categoryOrEmptyLine in categoryOrEmptyLines
 				select string.IsNullOrWhiteSpace(categoryOrEmptyLine)
-					? "\r\n"
+					? string.Empty
 					: $"public const string {categoryOrEmptyLine} = nameof({categoryOrEmptyLine});"
 			);
 
