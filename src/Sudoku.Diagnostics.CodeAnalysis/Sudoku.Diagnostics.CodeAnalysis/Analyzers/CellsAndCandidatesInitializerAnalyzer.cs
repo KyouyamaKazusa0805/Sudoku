@@ -241,16 +241,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					// Check whether the initialize contains the same value.
 					for (i = 0; i < count - 1; i++)
 					{
+						var (v1, _) = values[i];
+
 						for (int j = i + 1; j < count; j++)
 						{
-							var (v1, currentNode) = values[i];
-							var (v2, _) = values[j];
+							var (v2, comparisonNode) = values[j];
 							if (v1 == v2)
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: SD0308,
-										location: currentNode.GetLocation(),
+										location: comparisonNode.GetLocation(),
+										additionalLocations: new Location[] { comparisonNode.GetLocation() },
 										messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{-v1 - 1}" }
 									)
 								);
