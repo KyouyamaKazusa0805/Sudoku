@@ -4,6 +4,26 @@
         <name>Sudoku.Diagnostics.CodeAnalysis</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for array creation clause.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.SS9002">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4047679&amp;doc_id=633030">
+            SS9002
+            </a>
+            diagnostic result (Redundant array creation statement).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
@@ -1060,6 +1080,35 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when <paramref name="forLoop"/> is invalid.
             </exception>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356">
+            SS9002
+            </a>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RemoveRedundantArrayTypeSyntaxAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.CSharp.Syntax.InitializerExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Threading.CancellationToken)">
+            <summary>
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="root">The root of the syntax tree.</param>
+            <param name="initializerNode">The initializer node.</param>
+            <param name="valueNode"></param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.HelpLinks">
             <summary>

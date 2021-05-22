@@ -45,8 +45,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							Value: ArrayCreationExpressionSyntax
 							{
 								Type: var type,
-								Initializer: { }
-							}
+								Initializer: { } initializer
+							} value
 						}
 					}
 				)
@@ -58,6 +58,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Diagnostic.Create(
 						descriptor: SS9002,
 						location: type.GetLocation(),
+						additionalLocations: new[] { initializer.GetLocation(), value.GetLocation() },
 						messageArgs: null
 					)
 				);
