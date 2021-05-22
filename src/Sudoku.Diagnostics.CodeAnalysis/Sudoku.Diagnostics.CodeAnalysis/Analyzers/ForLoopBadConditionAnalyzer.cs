@@ -30,68 +30,112 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.ForStatement });
+			context.RegisterSyntaxNodeAction(
+				static context => AnalyzeSyntaxNodeRecursively(context, context.Node),
+				new[] { SyntaxKind.ForStatement }
+			);
 		}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		private static void AnalyzeSyntaxNodeRecursively(
+			in SyntaxNodeAnalysisContext context, SyntaxNode originalNode)
 		{
-			if (
-				context.Node is not ForStatementSyntax
-				{
-					Condition: BinaryExpressionSyntax
-					{
-						RawKind:
-							(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-							or (int)SyntaxKind.GreaterThanExpression or (int)SyntaxKind.GreaterThanEqualsToken
-							or (int)SyntaxKind.LessThanExpression or (int)SyntaxKind.LessThanEqualsToken,
-						Left: var leftExpr,
-						Right: var rightExpr
-					}
-				} node
-			)
+			if (originalNode is not ForStatementSyntax node)
 			{
 				return;
 			}
 
-			// Many times we write complex expression and place them right, such as the following expression:
-			//   i > arr.Length
-			// where the expression 'arr.Length' is a complex expression that is at the right side.
-			// Therefore, the analyzer will check the right expression at first.
-			foreach (var (expressionNode, anotherNode) in new[] { (rightExpr, leftExpr), (leftExpr, rightExpr) })
+			switch (node)
 			{
-				if (!isSimpleExpression(expressionNode))
+				case
 				{
-					string? suggestedName = MemberAccessExpressionRegex.Match(expressionNode.ToString()) is
+					Condition: BinaryExpressionSyntax
 					{
-						Success: true
-					} match && match.ToString() is var matchStr && matchStr.LastIndexOf('.') is var pos
-						? matchStr.Substring(pos + 1)
-						: null;
-
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS9001,
-							location: expressionNode.GetLocation(),
-							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
+						RawKind: var kind,
+						Left: var leftExpr,
+						Right: var rightExpr
+					}
+				}:
+				{
+					switch (kind)
+					{
+						case (int)SyntaxKind.EqualsExpression:
+						case (int)SyntaxKind.NotEqualsExpression:
+						case (int)SyntaxKind.GreaterThanExpression:
+						case (int)SyntaxKind.GreaterThanEqualsToken:
+						case (int)SyntaxKind.LessThanExpression:
+						case (int)SyntaxKind.LessThanEqualsToken:
+						{
+							foreach (var (expressionNode, anotherNode) in
+								new[] { (rightExpr, leftExpr), (leftExpr, rightExpr) })
+							{
+								if (!expressionNode.IsSimpleExpression())
 								{
-									new("VariableName", anotherNode.ToString()),
-									new("SuggestedName", suggestedName?.ToCamelCase())
+									string exprStr = expressionNode.ToString();
+									string? suggestedName = MemberAccessExpressionRegex.Match(exprStr) is
+									{
+										Success: true
+									} match
+									&& match.ToString() is var matchStr
+									&& matchStr.LastIndexOf('.') is var pos ? matchStr.Substring(pos + 1) : null;
+
+									context.ReportDiagnostic(
+										Diagnostic.Create(
+											descriptor: SS9001,
+											location: expressionNode.GetLocation(),
+											properties: ImmutableDictionary.CreateRange(
+												new KeyValuePair<string, string?>[]
+												{
+													new("VariableName", anotherNode.ToString()),
+													new("SuggestedName", suggestedName?.ToCamelCase())
+												}
+											),
+											additionalLocations: new[] { node.GetLocation() },
+											messageArgs: null
+										)
+									);
+
+									break;
 								}
-							),
-							additionalLocations: new[] { node.GetLocation() },
-							messageArgs: null
-						)
-					);
+							}
+
+							break;
+						}
+						case (int)SyntaxKind.LogicalAndExpression:
+						case (int)SyntaxKind.LogicalOrExpression:
+						{
+							foreach (var subExpression in leftExpr.DescendantNodes())
+							{
+								AnalyzeSyntaxNodeRecursively(context, subExpression);
+							}
+							foreach (var subExpression in rightExpr.DescendantNodes())
+							{
+								AnalyzeSyntaxNodeRecursively(context, subExpression);
+							}
+
+							break;
+						}
+					}
+
+					break;
+				}
+				case
+				{
+					Condition: PrefixUnaryExpressionSyntax
+					{
+						RawKind: (int)SyntaxKind.LogicalNotExpression,
+						Operand: var operand
+					}
+				}:
+				{
+					foreach (var subExpression in operand.DescendantNodes())
+					{
+						AnalyzeSyntaxNodeRecursively(context, subExpression);
+					}
 
 					break;
 				}
 			}
-
-
-			static bool isSimpleExpression(ExpressionSyntax expression) =>
-				expression is LiteralExpressionSyntax or DefaultExpressionSyntax or IdentifierNameSyntax;
 		}
 	}
 }
