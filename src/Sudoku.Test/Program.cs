@@ -1,10 +1,13 @@
 ﻿using System;
 using Sudoku.Data;
 
-#region Test item
 var s = new SudokuGrid();
 Console.WriteLine(s.ToString("0"));
-#endregion
+
+
+
+
+
 
 Console.WriteLine(nameof(TestEnum.A));
 
