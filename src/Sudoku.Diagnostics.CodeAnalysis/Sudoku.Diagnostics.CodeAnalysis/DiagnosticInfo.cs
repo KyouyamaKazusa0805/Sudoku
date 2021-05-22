@@ -44,6 +44,7 @@
 		public const string SS0504 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793";
 		public const string SS0505 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794";
 		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
+		public const string SS9002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679";
 	}
 
 	/// <summary>
@@ -90,6 +91,7 @@
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
 		public const string SS9001 = "Available prepositional iteration condition expression";
+		public const string SS9002 = "Redundant array creation statement";
 	}
 
 	/// <summary>
@@ -136,6 +138,7 @@
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
 		public const string SS9001 = "Available prepositional iteration condition expression";
+		public const string SS9002 = "Redundant array creation statement";
 	}
 
 	/// <summary>
@@ -155,5 +158,6 @@
 
 		public const string SS0102 = "Remove redundant '$'";
 		public const string SS9001 = "Move the expression to the initializer";
+		public const string SS9002 = "Remove redundant array creation statement";
 	}
 }

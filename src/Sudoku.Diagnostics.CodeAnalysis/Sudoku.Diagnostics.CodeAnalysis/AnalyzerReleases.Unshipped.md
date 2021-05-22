@@ -42,3 +42,4 @@ SS0503 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https:
 SS0504 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793)
 SS0505 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794)
 SS9001 | Performance | Info | ForLoopBadConditionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356)
+SS9002 | Usage | Info | ArrayCreationClauseAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679)
