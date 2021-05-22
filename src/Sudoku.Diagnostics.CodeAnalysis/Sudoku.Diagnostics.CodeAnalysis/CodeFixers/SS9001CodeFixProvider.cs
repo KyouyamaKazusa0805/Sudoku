@@ -121,7 +121,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 					}
 				}
 			}
-			
+
 			// Now we can change and replace the syntax nodes.
 			var editor = await DocumentEditor.CreateAsync(document, cancellationToken);
 			editor.ReplaceNode(
