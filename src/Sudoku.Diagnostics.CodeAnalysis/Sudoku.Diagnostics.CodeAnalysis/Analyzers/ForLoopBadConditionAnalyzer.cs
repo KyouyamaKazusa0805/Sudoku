@@ -30,32 +30,24 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				static context => AnalyzeSyntaxNodeRecursively(context, context.Node),
-				new[] { SyntaxKind.ForStatement }
-			);
+			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.ForStatement });
 		}
 
 
-		private static void AnalyzeSyntaxNodeRecursively(
-			in SyntaxNodeAnalysisContext context, SyntaxNode originalNode)
+		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			if (originalNode is not ForStatementSyntax node)
+			if (context is { Node: ForStatementSyntax { Condition: { } conditionNode } node })
 			{
-				return;
+				AnalyzeSyntaxNodeRecursively(context, node, conditionNode);
 			}
+		}
 
-			switch (node)
+		private static void AnalyzeSyntaxNodeRecursively(
+			in SyntaxNodeAnalysisContext context, ForStatementSyntax forStatement, SyntaxNode originalNode)
+		{
+			switch (originalNode)
 			{
-				case
-				{
-					Condition: BinaryExpressionSyntax
-					{
-						RawKind: var kind,
-						Left: var leftExpr,
-						Right: var rightExpr
-					}
-				}:
+				case BinaryExpressionSyntax { RawKind: var kind, Left: var leftExpr, Right: var rightExpr }:
 				{
 					switch (kind)
 					{
@@ -66,52 +58,55 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						case (int)SyntaxKind.LessThanExpression:
 						case (int)SyntaxKind.LessThanEqualsToken:
 						{
-							foreach (var (expressionNode, anotherNode) in
-								new[] { (rightExpr, leftExpr), (leftExpr, rightExpr) })
+							foreach (var possibleExpressions in new[] { rightExpr, leftExpr })
 							{
-								if (!expressionNode.IsSimpleExpression())
+								if (possibleExpressions.IsSimpleExpression())
 								{
-									string exprStr = expressionNode.ToString();
-									string? suggestedName = MemberAccessExpressionRegex.Match(exprStr) is
-									{
-										Success: true
-									} match
-									&& match.ToString() is var matchStr
-									&& matchStr.LastIndexOf('.') is var pos ? matchStr.Substring(pos + 1) : null;
-
-									context.ReportDiagnostic(
-										Diagnostic.Create(
-											descriptor: SS9001,
-											location: expressionNode.GetLocation(),
-											properties: ImmutableDictionary.CreateRange(
-												new KeyValuePair<string, string?>[]
-												{
-													new("VariableName", anotherNode.ToString()),
-													new("SuggestedName", suggestedName?.ToCamelCase())
-												}
-											),
-											additionalLocations: new[] { node.GetLocation() },
-											messageArgs: null
-										)
-									);
-
-									break;
+									continue;
 								}
+
+								string exprStr = possibleExpressions.ToString();
+								var match = MemberAccessExpressionRegex.Match(exprStr);
+								string? suggestedName;
+								if (match.Success)
+								{
+									string matchStr = match.ToString();
+									suggestedName = matchStr.Substring(matchStr.LastIndexOf('.') + 1);
+								}
+								else
+								{
+									suggestedName = null;
+								}
+
+								context.ReportDiagnostic(
+									Diagnostic.Create(
+										descriptor: SS9001,
+										location: possibleExpressions.GetLocation(),
+										properties: ImmutableDictionary.CreateRange(
+											new KeyValuePair<string, string?>[]
+											{
+												new("SuggestedName", suggestedName?.ToCamelCase())
+											}
+										),
+										additionalLocations: new[] { forStatement.GetLocation() },
+										messageArgs: null
+									)
+								);
+
+								// This algorithm only analyzes for one side.
+								// if the condition is like "a.Length > b.Length",
+								// the analyzer will do nothing.
+								break;
 							}
 
 							break;
 						}
 						case (int)SyntaxKind.LogicalAndExpression:
 						case (int)SyntaxKind.LogicalOrExpression:
+						//case (int)SyntaxKind.ExclusiveOrExpression:
 						{
-							foreach (var subExpression in leftExpr.DescendantNodes())
-							{
-								AnalyzeSyntaxNodeRecursively(context, subExpression);
-							}
-							foreach (var subExpression in rightExpr.DescendantNodes())
-							{
-								AnalyzeSyntaxNodeRecursively(context, subExpression);
-							}
+							AnalyzeSyntaxNodeRecursively(context, forStatement, leftExpr);
+							AnalyzeSyntaxNodeRecursively(context, forStatement, rightExpr);
 
 							break;
 						}
@@ -119,19 +114,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case
+				case PrefixUnaryExpressionSyntax
 				{
-					Condition: PrefixUnaryExpressionSyntax
-					{
-						RawKind: (int)SyntaxKind.LogicalNotExpression,
-						Operand: var operand
-					}
+					RawKind: (int)SyntaxKind.LogicalNotExpression,
+					Operand: var operand
 				}:
 				{
-					foreach (var subExpression in operand.DescendantNodes())
-					{
-						AnalyzeSyntaxNodeRecursively(context, subExpression);
-					}
+					AnalyzeSyntaxNodeRecursively(context, forStatement, operand);
 
 					break;
 				}

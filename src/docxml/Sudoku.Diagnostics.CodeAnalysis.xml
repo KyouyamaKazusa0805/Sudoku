@@ -1046,17 +1046,13 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.ExtractVariableAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.ExtractVariableAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.Threading.CancellationToken)">
             <summary>
             Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
             </summary>
             <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="badExpression">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
+            <param name="badExpression">The expression node that the diagnostic result occurs.</param>
             <param name="forLoop">The syntax node for that <see langword="for"/> loop.</param>
-            <param name="variableName">The variable name to assign.</param>
             <param name="suggestedName">Indicates the suggested name.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A task that handles this operation.</returns>

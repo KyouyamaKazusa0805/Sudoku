@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Editing;
+using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
-using System.Collections.Generic;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
@@ -49,10 +50,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 					title: CodeFixTitles.SS9001,
 					createChangedDocument: c => ExtractVariableAsync(
 						document: document,
-						root: root,
 						badExpression: badExpression,
 						forLoop: forLoop,
-						variableName: diagnostic.Properties["VariableName"]!,
 						suggestedName: diagnostic.Properties["SuggestedName"]!,
 						cancellationToken: c
 					),
@@ -67,12 +66,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		/// Delegated method that is invoked by <see cref="RegisterCodeFixesAsync(CodeFixContext)"/> above.
 		/// </summary>
 		/// <param name="document">The current document to fix.</param>
-		/// <param name="root">The syntax root node.</param>
-		/// <param name="badExpression">
-		/// The interpolted string expression node that the diagnostic result occurs.
-		/// </param>
+		/// <param name="badExpression">The expression node that the diagnostic result occurs.</param>
 		/// <param name="forLoop">The syntax node for that <see langword="for"/> loop.</param>
-		/// <param name="variableName">The variable name to assign.</param>
 		/// <param name="suggestedName">Indicates the suggested name.</param>
 		/// <param name="cancellationToken">The cancellation token.</param>
 		/// <returns>A task that handles this operation.</returns>
@@ -81,57 +76,76 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		/// Throws when <paramref name="forLoop"/> is invalid.
 		/// </exception>
 		private static async Task<Document> ExtractVariableAsync(
-			Document document, SyntaxNode root, ExpressionSyntax badExpression, SyntaxNode forLoop,
-			string variableName, string suggestedName, CancellationToken cancellationToken = default) =>
-			await Task.Run(() =>
-			{
-				if (
-					forLoop is not ForStatementSyntax
-					{
-						Declaration: { Type: var declarationType, Variables: var variableDeclarators },
-						Condition: { RawKind: var conditionKind },
-						Incrementors: var incrementors,
-						Statement: var statement,
-					}
-				)
+			Document document, ExpressionSyntax badExpression, SyntaxNode forLoop,
+			string suggestedName, CancellationToken cancellationToken = default)
+		{
+			// Check the for loop statement node is valid to replace.
+			if (
+				forLoop is not ForStatementSyntax
 				{
-					throw new InvalidOperationException("The specified syntax node is invalid.");
+					Declaration: { Type: var declarationType, Variables: var variableDeclarators } declaration
 				}
+			)
+			{
+				throw new InvalidOperationException("The specified syntax node is invalid.");
+			}
 
-				const string systemSuggestedDefaultVariableName = "variableName";
-				string resultDefaultVariableName = suggestedName ?? systemSuggestedDefaultVariableName;
+			// Now define a temporary name to be replaced.
+			const string systemSuggestedDefaultVariableName = "variableName";
+			string resultDefaultVariableName = suggestedName ?? systemSuggestedDefaultVariableName;
 
-				var newRoot = root.ReplaceNode(
-					forLoop,
-					SyntaxFactory.ForStatement(statement)
-					.WithDeclaration(
-						SyntaxFactory.VariableDeclaration(declarationType)
-						.WithVariables(
-							SyntaxFactory.SeparatedList(
-								new List<VariableDeclaratorSyntax>(variableDeclarators)
-								{
-									SyntaxFactory.VariableDeclarator(
-										SyntaxFactory.Identifier(resultDefaultVariableName)
-									)
-									.WithInitializer(
-										SyntaxFactory.EqualsValueClause(badExpression)
-									)
-								}
+			// Check whether the result variable name is duplicate in the old variable declarator list.
+			if (
+				variableDeclarators.Any(
+					variableDeclarator => variableDeclarator.Identifier.ValueText == resultDefaultVariableName
+				)
+			)
+			{
+				for (uint trial = 1; ; trial++)
+				{
+					bool exists = false;
+					string currentPossibleName = $"{resultDefaultVariableName}{trial}";
+					foreach (var variableDeclarator in variableDeclarators)
+					{
+						if (variableDeclarator.Identifier.ValueText == currentPossibleName)
+						{
+							exists = true;
+							break;
+						}
+					}
+
+					if (!exists)
+					{
+						resultDefaultVariableName = currentPossibleName;
+						break;
+					}
+				}
+			}
+			
+			// Now we can change and replace the syntax nodes.
+			var editor = await DocumentEditor.CreateAsync(document, cancellationToken);
+			editor.ReplaceNode(
+				declaration,
+				SyntaxFactory.VariableDeclaration(declarationType)
+				.WithVariables(
+					SyntaxFactory.SeparatedList(
+						new List<VariableDeclaratorSyntax>(variableDeclarators)
+						{
+							SyntaxFactory.VariableDeclarator(
+								SyntaxFactory.Identifier(resultDefaultVariableName)
 							)
-						)
+							.WithInitializer(
+								SyntaxFactory.EqualsValueClause(badExpression)
+							)
+							.NormalizeWhitespace(indentation: "\t")
+						}
 					)
-					.WithCondition(
-						SyntaxFactory.BinaryExpression(
-							(SyntaxKind)conditionKind,
-							SyntaxFactory.IdentifierName(variableName),
-							SyntaxFactory.IdentifierName(resultDefaultVariableName)
-						)
-					)
-					.WithIncrementors(incrementors)
-					.NormalizeWhitespace()
-				);
+				)
+			);
+			editor.ReplaceNode(badExpression, SyntaxFactory.IdentifierName(resultDefaultVariableName));
 
-				return document.WithSyntaxRoot(newRoot);
-			}, cancellationToken);
+			// Returns the changed document.
+			return editor.GetChangedDocument();
+		}
 	}
 }
