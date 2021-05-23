@@ -27,6 +27,7 @@ SD0306 | Usage | Warning | CellsAndCandidatesInitializerAnalyzer, [Documentation
 SD0307 | Usage | Info | CellsAndCandidatesInitializerAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4041633)
 SD0308 | Usage | Warning | CellsAndCandidatesInitializerAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4042333)
 SD0309 | Usage | Info | StackAllocAndNewClauseInCellsAndCandidatesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633)
+SD0310 | Usage | Info | SudokuGridFormatStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0310?sort_id=4050196)
 SD0401 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986)
 SD0402 | Usage | Warning | AutoAttributePropertiesAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928)
 SS0101 | Performance | Warning | InterpolatedStringAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0101?sort_id=3622115)

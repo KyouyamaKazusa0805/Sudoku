@@ -10,6 +10,7 @@ using System.Text;
 using Sudoku.CodeGen;
 using Sudoku.Data.Extensions;
 using Sudoku.DocComments;
+using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -802,14 +803,17 @@ namespace Sudoku.Data
 
 		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[NonVersionable]
 		public override readonly string ToString() => ToString(null, null);
 
 		/// <inheritdoc cref="Formattable.ToString(string?)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[NonVersionable]
 		public readonly string ToString(string? format) => ToString(format, null);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[NonVersionable]
 		public readonly string ToString(string? format, IFormatProvider? formatProvider) => this switch
 		{
 			{ IsEmpty: true } => "<Empty>",
