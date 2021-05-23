@@ -44,5 +44,6 @@ SS0505 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https:
 SS0601 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130)
 SS0602 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132)
 SS0603 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133)
+SS0604 | Design | Info | BuiltInTypesConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0604?sort_id=4049877)
 SS9001 | Performance | Info | ForLoopBadConditionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356)
 SS9002 | Usage | Info | ArrayCreationClauseAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679)

@@ -78,6 +78,26 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the constant pattern matching of built-in types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.SS0604">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049877&amp;doc_id=633030">
+            SS0604
+            </a>
+            diagnostic result (Unnecessary constant pattern for the variable of the same type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer">
             <summary>
             Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,

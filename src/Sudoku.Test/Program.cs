@@ -4,13 +4,14 @@ using Sudoku.Data;
 var s = new SudokuGrid();
 Console.WriteLine(s.ToString("0"));
 
-
-Console.WriteLine(nameof(TestEnum.A));
-
-[Flags]
-enum TestEnum
+int v = 20;
+v += 10;
+if (v is 30)
 {
-	A = 1,
-	B = A,
-	C = A + 1
+	Console.WriteLine(v);
+}
+
+if (v is not 100)
+{
+	Console.WriteLine(v);
 }
