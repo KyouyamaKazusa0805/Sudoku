@@ -151,7 +151,7 @@
 		public const string SS0602 = "The pattern can be simplify to 'is null'";
 		public const string SS0603 = "The pattern can be simplify to 'is not null'";
 		public const string SS0604 = "Unnecessary constant pattern for the variable of the same type; try to use '{0} {1} {2}' instead";
-		public const string SS0605 = "The nullable value type checking expression will be suggested to convert to constant pattern";
+		public const string SS0605 = "The nullable value type checking expression will be suggested to convert to constant pattern: '{0} {1} {2}'";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}

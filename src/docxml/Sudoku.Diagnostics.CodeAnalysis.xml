@@ -593,6 +593,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the constant pattern matching
+            of <see cref="T:System.Nullable`1"/>.
+            </summary>
+            <seealso cref="T:System.Nullable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SS0605">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049882&amp;doc_id=633030">
+            SS0605
+            </a>
+            diagnostic result (The nullable value type checking expression
+            will be suggested to convert to constant pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
             <summary>
             Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
