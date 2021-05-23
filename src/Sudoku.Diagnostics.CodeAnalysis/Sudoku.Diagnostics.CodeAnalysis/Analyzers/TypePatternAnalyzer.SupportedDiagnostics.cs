@@ -17,10 +17,34 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0601
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049132&amp;doc_id=633030">
+		/// SS0602
+		/// </a>
+		/// diagnostic result (The pattern can be simplify to <c>is null</c>).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0602 = new(
+			DiagnosticIds.SS0602, Titles.SS0602, Messages.SS0602, Categories.Design,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0602
+		);
+
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049133&amp;doc_id=633030">
+		/// SS0603
+		/// </a>
+		/// diagnostic result (The pattern can be simplify to <c>is not null</c>).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0603 = new(
+			DiagnosticIds.SS0603, Titles.SS0603, Messages.SS0603, Categories.Design,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0603
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0601
+			SS0601, SS0602, SS0603
 		);
 	}
 }

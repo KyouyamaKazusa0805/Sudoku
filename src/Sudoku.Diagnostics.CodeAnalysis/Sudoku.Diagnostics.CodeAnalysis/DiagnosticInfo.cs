@@ -44,6 +44,8 @@
 		public const string SS0504 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793";
 		public const string SS0505 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794";
 		public const string SS0601 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130";
+		public const string SS0602 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132";
+		public const string SS0603 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133";
 		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
 		public const string SS9002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679";
 	}
@@ -92,6 +94,8 @@
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
 		public const string SS0601 = "Unnecessary explicit type pattern";
+		public const string SS0602 = "The pattern can be simplify to 'is null'";
+		public const string SS0603 = "The pattern can be simplify to 'is not null'";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}
@@ -140,6 +144,8 @@
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
 		public const string SS0601 = "Unnecessary explicit type pattern";
+		public const string SS0602 = "The pattern can be simplify to 'is null'";
+		public const string SS0603 = "The pattern can be simplify to 'is not null'";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}

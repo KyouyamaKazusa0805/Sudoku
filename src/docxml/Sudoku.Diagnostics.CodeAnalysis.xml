@@ -831,6 +831,24 @@
             diagnostic result (Unnecessary explicit type pattern).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0602">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049132&amp;doc_id=633030">
+            SS0602
+            </a>
+            diagnostic result (The pattern can be simplify to <c>is null</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0603">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049133&amp;doc_id=633030">
+            SS0603
+            </a>
+            diagnostic result (The pattern can be simplify to <c>is not null</c>).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
