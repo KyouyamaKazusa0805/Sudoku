@@ -4,12 +4,14 @@ using Sudoku.Data;
 var s = new SudokuGrid();
 Console.WriteLine(s.ToString("0"));
 
-
-int[] arr = new int[10] { 3, 8, 1, 6, 5, 4, 7, 2, 9, 0 };
-foreach (int element in arr)
+int p = 3;
+if (p is int q)
 {
-	Console.WriteLine(element);
+	Console.WriteLine(q);
 }
+
+
+
 
 
 Console.WriteLine(nameof(TestEnum.A));

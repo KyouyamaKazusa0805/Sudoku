@@ -814,6 +814,26 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for <see langword="is"/> pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0601">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4049130&amp;doc_id=633030">
+            SS0601
+            </a>
+            diagnostic result (Unnecessary explicit type pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
