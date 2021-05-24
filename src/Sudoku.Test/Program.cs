@@ -1,7 +1,11 @@
 ﻿using System;
 
 var r = new R(1, 3);
-if (r._a == 4 && r._b == 4)
+if (r._a == 4 && r._b == 4) // SS0606.
+{
+	Console.WriteLine(r);
+}
+if (r._a == 3) // SS0606 (Maybe use discard).
 {
 	Console.WriteLine(r);
 }
@@ -9,7 +13,7 @@ if (r is (a: 4, b: 4))
 {
 	Console.WriteLine(r);
 }
-if (r._a == 1 && r._b == 3)
+if (r._a == 1 && r._b == 3) // SS0606.
 {
 	Console.WriteLine(r);
 }
