@@ -173,7 +173,8 @@
         </member>
         <member name="M:Sudoku.CodeGen.Deconstruction.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
-            Get all members that belongs to the type and its base types (but interfaces don't check).
+            Get all members that belongs to the type and its base types
+            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
             </summary>
             <param name="this">The symbol.</param>
             <returns>All members.</returns>

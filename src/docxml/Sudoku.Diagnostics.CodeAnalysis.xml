@@ -1312,6 +1312,30 @@
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx.IsDeconstructionMethod(Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax,System.Boolean,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Determine whether the specified method syntax node is an valid deconstruction method
+            declaration of a type.
+            </summary>
+            <param name="this">The node to check.</param>
+            <param name="checkMemberExistence">
+            A <see cref="T:System.Boolean"/> value indicating whether the all parameters can be corresponding
+            to the members in that type.
+            </param>
+            <param name="semanticModel">
+            The corresponding semantic model to check and get type symbol. This argument shouldn't be
+            <see langword="null"/> when <paramref name="checkMemberExistence"/> is <see langword="true"/>;
+            otherwise, the method can't infer the correct result, so always returns <see langword="false"/>
+            for this case.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.
@@ -1321,6 +1345,13 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String)">
             <summary>
             Converts the current name into the camel case.
+            </summary>
+            <param name="this">The name.</param>
+            <returns>The result name.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)">
+            <summary>
+            Converts the current name into the pascal case.
             </summary>
             <param name="this">The name.</param>
             <returns>The result name.</returns>

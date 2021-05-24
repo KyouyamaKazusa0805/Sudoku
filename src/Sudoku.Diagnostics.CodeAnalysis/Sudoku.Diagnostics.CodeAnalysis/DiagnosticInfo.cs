@@ -50,6 +50,7 @@
 		public const string SS0603 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133";
 		public const string SS0604 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0604?sort_id=4049877";
 		public const string SS0605 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0605?sort_id=4049882";
+		public const string SS0606 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0606?sort_id=4052320";
 		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
 		public const string SS9002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679";
 	}
@@ -104,6 +105,7 @@
 		public const string SS0603 = "The pattern can be simplify to 'is not null'";
 		public const string SS0604 = "Unnecessary constant pattern for the variable of the same type";
 		public const string SS0605 = "The nullable value type checking expression will be suggested to convert to constant pattern";
+		public const string SS0606 = "The code can be simplifiy via using positional pattern matching";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}
@@ -158,6 +160,7 @@
 		public const string SS0603 = "The pattern can be simplify to 'is not null'";
 		public const string SS0604 = "Unnecessary constant pattern for the variable of the same type; try to use '{0} {1} {2}' instead";
 		public const string SS0605 = "The nullable value type checking expression will be suggested to convert to constant pattern: '{0} {1} {2}'";
+		public const string SS0606 = "The code can be simplifiy to the positional pattern matching: '{0}'";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}
