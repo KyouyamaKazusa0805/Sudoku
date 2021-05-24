@@ -59,6 +59,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				return false;
 			}
 
+			// Check whether the deconstruction method is a public method.
+			/*slice-pattern*/
+			if (modifiers.All(static modifier => modifier is not { RawKind: (int)SyntaxKind.PublicKeyword }))
+			{
+				return false;
+			}
+
 			// Check whether the deconstruction method is an instance method.
 			/*slice-pattern*/
 			if (modifiers.Any(static modifier => modifier is { RawKind: (int)SyntaxKind.StaticKeyword }))
