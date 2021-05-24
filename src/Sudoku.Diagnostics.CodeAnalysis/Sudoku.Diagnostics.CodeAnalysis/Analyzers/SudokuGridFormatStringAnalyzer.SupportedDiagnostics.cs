@@ -19,10 +19,22 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0310
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4050414&amp;doc_id=633030">
+		/// SD0311
+		/// </a>
+		/// diagnostic result (Invalid format string in <c>SudokuGrid.ToString</c>).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SD0311 = new(
+			DiagnosticIds.SD0311, Titles.SD0311, Messages.SD0311, Categories.Usage,
+			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0311
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SD0310
+			SD0310, SD0311
 		);
 	}
 }

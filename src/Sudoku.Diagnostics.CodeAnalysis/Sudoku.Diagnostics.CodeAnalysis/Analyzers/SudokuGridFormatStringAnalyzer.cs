@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -17,6 +18,21 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// Indicates the full type name of the sudoku grid.
 		/// </summary>
 		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
+
+
+		/// <summary>
+		/// All possible format strings to check.
+		/// </summary>
+		private static readonly string[] PossibleFormats = new[]
+		{
+			".", "+", ".+", "+.", "0", ":", "!", ".!", "!.", "0!", "!0",
+			".:", "0:", "0+", "+0", "+:", "+.:", ".+:", "#", "#.", "0+:",
+			"+0:", "#0", ".!:", "!.:", "0!:", "!0:", "@", "@.", "@0", "@!",
+			"@.!", "@!.", "@0!", "@!0", "@*", "@*.", "@.*", "@0*", "@*0",
+			"@!*", "@*!", "@:", "@:!", "@!:", "@*:", "@:*", "@!*:", "@*!:",
+			"@!:*", "@:!*", "@:!*", "@:*!", "~", "~0", "~.", "@~", "~@", "@~0",
+			"@0~", "~@0", "~0@", "@~.", "@.~", "~@.", "~.@", "%", "^"
+		};
 
 
 		/// <inheritdoc/>
@@ -43,13 +59,31 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Expression: var expression,
 						Name: { Identifier: { ValueText: "ToString" } } nameNode
 					},
-					ArgumentList: { Arguments: { Count: 0 } }
+					ArgumentList: { Arguments: { Count: var count } arguments }
 				} node
 			)
 			{
 				return;
 			}
 
+			if (count == 0)
+			{
+				CheckSD0310(context, semanticModel, compilation, expression, nameNode);
+			}
+			else if (
+				/*slice-pattern*/
+				arguments[0] is { Expression: var expr } argument
+				&& semanticModel.GetOperation(expr) is { ConstantValue: { HasValue: true, Value: string value } }
+			)
+			{
+				CheckSD0311(context, argument, value);
+			}
+		}
+
+		private static void CheckSD0310(
+			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, Compilation compilation,
+			ExpressionSyntax expression, SimpleNameSyntax nameNode)
+		{
 			if (semanticModel.GetOperation(expression) is not { Type: var possibleSudokuGridType })
 			{
 				return;
@@ -65,6 +99,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SD0310,
 					location: nameNode.GetLocation(),
+					messageArgs: null
+				)
+			);
+		}
+
+		private static void CheckSD0311(
+			SyntaxNodeAnalysisContext context, ArgumentSyntax argument, string format)
+		{
+			if (Array.IndexOf(PossibleFormats, format) != -1)
+			{
+				return;
+			}
+
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SD0311,
+					location: argument.GetLocation(),
 					messageArgs: null
 				)
 			);

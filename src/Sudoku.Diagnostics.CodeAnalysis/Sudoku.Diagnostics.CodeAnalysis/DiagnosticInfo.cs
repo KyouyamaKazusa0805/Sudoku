@@ -29,6 +29,7 @@
 		public const string SD0308 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4042333";
 		public const string SD0309 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633";
 		public const string SD0310 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0310?sort_id=4050196";
+		public const string SD0311 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0311?sort_id=4050414";
 		public const string SD0401 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986";
 		public const string SD0402 = "https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928";
 
@@ -82,6 +83,7 @@
 		public const string SD0308 = "The initializer contains the duplicate value";
 		public const string SD0309 = "'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead";
 		public const string SD0310 = "Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case";
+		public const string SD0311 = "Invalid format string in 'SudokuGrid.ToString'";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "This attribute must contain the specified number of parameters";
 
@@ -135,6 +137,7 @@
 		public const string SD0308 = "The initializer contains the duplicate value '{0}'";
 		public const string SD0309 = "'{0}' expression is unnecessary; Please use object initializer instead";
 		public const string SD0310 = "Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case";
+		public const string SD0311 = "Invalid format string in SudokuGrid.ToString";
 		public const string SD0401 = "Please use nameof expression instead";
 		public const string SD0402 = "'{0}' must contain at least {1} parameters";
 

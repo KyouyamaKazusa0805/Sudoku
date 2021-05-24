@@ -2,4 +2,4 @@
 using Sudoku.Data;
 
 var s = new SudokuGrid();
-Console.WriteLine(s.ToString());
+Console.WriteLine(s.ToString("!+"));

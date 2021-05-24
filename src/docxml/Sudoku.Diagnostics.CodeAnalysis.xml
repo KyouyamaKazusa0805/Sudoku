@@ -868,6 +868,11 @@
             Indicates the full type name of the sudoku grid.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.PossibleFormats">
+            <summary>
+            All possible format strings to check.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
@@ -880,6 +885,15 @@
             diagnostic result (Please add the format string as the argument into the method invocation
             of <c>SudokuGrid</c>, such as <c>"."</c> for default case, or <c>"#"</c> for
             intelligent-handling case).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SD0311">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4050414&amp;doc_id=633030">
+            SD0311
+            </a>
+            diagnostic result (Invalid format string in <c>SudokuGrid.ToString</c>).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SupportedDiagnostics">
