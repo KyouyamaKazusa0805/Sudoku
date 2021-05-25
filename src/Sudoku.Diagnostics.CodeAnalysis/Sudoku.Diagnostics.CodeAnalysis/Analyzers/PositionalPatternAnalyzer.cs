@@ -56,10 +56,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			static bool tryGetLocals(
 				SemanticModel semanticModel, SyntaxNode node, out ImmutableArray<ILocalSymbol> locals)
 			{
-				/*length-pattern*/
 				if (
 					semanticModel.GetOperation(node) is IMethodBodyOperation
 					{
+						/*length-pattern*/
 						BlockBody: { Locals: { Length: not 0 } l }
 					}
 				)
