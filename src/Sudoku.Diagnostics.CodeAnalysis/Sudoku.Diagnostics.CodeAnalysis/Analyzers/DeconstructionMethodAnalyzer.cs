@@ -27,11 +27,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			if (
 				context.Node is not MethodDeclarationSyntax
 				{
+					Parent: var parentNode,
 					Identifier: { ValueText: "Deconstruct" } identifier,
 					ParameterList: { Parameters: var parameters },
 					Modifiers: var modifiers,
 					ReturnType: var returnType
 				}
+				/*slice-pattern*/
+				|| parentNode is ClassDeclarationSyntax { Modifiers: var classModifiers }
+				&& classModifiers.Any(SyntaxKind.StaticKeyword)
 			)
 			{
 				return;
@@ -76,7 +80,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void CheckSudokuSS0502AndSS0504(
 			SyntaxNodeAnalysisContext context, SyntaxTokenList modifiers, SyntaxToken identifier)
 		{
-			if (modifiers.Any(MustBeStatic))
+			if (modifiers.Any(SyntaxKind.StaticKeyword))
 			{
 				context.ReportDiagnostic(
 					Diagnostic.Create(
@@ -120,7 +124,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 		private static bool DoesNotContainPublicKeyword(SyntaxToken token) => token.RawKind != (int)SyntaxKind.PublicKeyword;
-		private static bool MustBeStatic(SyntaxToken token) => token.RawKind == (int)SyntaxKind.StaticKeyword;
 		private static bool DoesNotContainOutKeyword(SyntaxToken token) => token.RawKind != (int)SyntaxKind.OutKeyword;
 	}
 }
