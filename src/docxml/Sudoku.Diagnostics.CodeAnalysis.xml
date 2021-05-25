@@ -616,6 +616,26 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the positional pattern matching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.SS0606">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4052320&amp;doc_id=633030">
+            SS0606
+            </a>
+            diagnostic result (The expression can be simplifiy via using positional pattern matching).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
             <summary>
             Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
@@ -1278,6 +1298,19 @@
             To check whether the expression is a simple expression.
             </summary>
             <param name="this">The node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IMethodSymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.IMethodSymbolEx.IsDeconstructionMethod(Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            To determine whether the specified method symbol is referenced to a deconstruction method.
+            </summary>
+            <param name="this">The symbol to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.INamedTypeSymbolEx">
