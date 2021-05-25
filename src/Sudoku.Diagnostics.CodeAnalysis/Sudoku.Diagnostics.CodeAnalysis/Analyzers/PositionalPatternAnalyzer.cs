@@ -78,7 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			{
 				foreach (var descendant in
 					from descendant in node.DescendantNodes().OfType<BinaryExpressionSyntax>()
-					where descendant is not BinaryExpressionSyntax
+					where descendant is
 					{
 						RawKind: (int)SyntaxKind.LogicalAndExpression,
 						Parent: not BinaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalAndExpression }
@@ -126,11 +126,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			while (
 				currentNode is
 				{
-					Left: BinaryExpressionSyntax
-					{
-						RawKind: not ((int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression)
-					} leftSubexpr,
 					RawKind: (int)SyntaxKind.LogicalAndExpression,
+					Left: BinaryExpressionSyntax leftSubexpr,
 					Right: BinaryExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
@@ -139,6 +136,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			)
 			{
 				recursiveSubexprs.Add(currentNode);
+
+				if (
+					leftSubexpr is
+					{
+						RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+					}
+				)
+				{
+					recursiveSubexprs.Add(leftSubexpr);
+					break;
+				}
+
 				currentNode = leftSubexpr;
 			}
 
@@ -148,30 +157,45 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			//                  Here:
 			//         A          A: operator &&
 			//        / \         B: operator &&
-			//       /   \        C: r._c == 1
-			//      B     C       D: r._a == 2
-			//     / \            E: r._b == 3
+			//       /   \        C: r._c == 3
+			//      B     C       D: r._a == 1
+			//     / \            E: r._b == 2
 			//    /   \
 			//   D     E          The whole expression: r._a == 1 && r._b == 2 && r._c == 3
-			//
-			// We should get all right-side expressions, and the left-side expression from the leaf node.
-			var subexprs = new List<BinaryExpressionSyntax>();
+
+			// Gather expressions.
+			var subexprs = new BinaryExpressionSyntax[recursiveSubexprs.Count];
 			for (int i = 0, count = recursiveSubexprs.Count; i < count; i++)
 			{
-				if (recursiveSubexprs[i] is { Left: var leftExpr, Right: var rightExpr })
+				var n = recursiveSubexprs[i];
+				if (i != count - 1)
 				{
-					subexprs.Add((BinaryExpressionSyntax)rightExpr);
-					if (i == count - 1)
+					if (
+						n is not
+						{
+							Left: BinaryExpressionSyntax leftExpr,
+							Right: BinaryExpressionSyntax rightExpr
+						}
+					)
 					{
-						subexprs.Add((BinaryExpressionSyntax)leftExpr);
+						return;
 					}
+
+					subexprs[i] = rightExpr;
+				}
+				else
+				{
+					subexprs[i] = n;
 				}
 			}
 
+			Array.Reverse(subexprs);
+
+			/*slice-pattern*/
 			if (
-				subexprs.All(static subexpr => subexpr is
+				subexprs.Any(static subexpr => subexpr is
 				{
-					RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+					RawKind: not ((int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression)
 				})
 			)
 			{
@@ -189,12 +213,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			>();
 			foreach (var subexpr in subexprs)
 			{
+				// Deconstruct the sub-expression to left and right those two expressions.
 				if (subexpr is not { Left: var leftExpr, Right: var rightExpr })
 				{
-					phase1Flag = true;
+					phase1Flag = false;
 					break;
 				}
 
+				// Here we should check one should be a simple member access expression,
+				// and another is a constant expression.
 				var pair = new[] { (leftExpr, rightExpr), (rightExpr, leftExpr) };
 				bool success = false;
 				for (int i = 0; i < 2; i++)
@@ -207,7 +234,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							Expression: IdentifierNameSyntax
 							{
 								Identifier: { ValueText: var identifierName }
-							},
+							} identifierNameNode,
 							Name: { Identifier: { ValueText: var fieldOrPropertyName } }
 						}
 					)
@@ -215,16 +242,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						continue;
 					}
 
-					if (
-						semanticModel.GetOperation(constant) is not
-						{
-							Type: { } type,
-							ConstantValue: { HasValue: true }
-						}
-					)
+					if (semanticModel.GetOperation(constant) is not { ConstantValue: { HasValue: true } })
 					{
 						continue;
 					}
+
+					var type = semanticModel.GetOperation(identifierNameNode)!.Type!;
 
 					info.Add(
 						(
@@ -316,7 +339,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 				// Checks whether all member reference and be corresponded to the parameters.
 				bool matchFlag = true;
-				foreach (string memberName in from triplet in info select triplet.MemberName.ToCamelCase())
+				foreach (string memberName in from tuple in info select tuple.MemberName.ToCamelCase())
 				{
 					if (parameters.All(parameter => parameter.Name != memberName))
 					{

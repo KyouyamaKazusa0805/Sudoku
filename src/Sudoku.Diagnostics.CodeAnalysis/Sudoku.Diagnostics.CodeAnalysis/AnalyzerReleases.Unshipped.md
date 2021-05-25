@@ -48,6 +48,6 @@ SS0602 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/
 SS0603 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133)
 SS0604 | Design | Info | BuiltInTypesConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0604?sort_id=4049877)
 SS0605 | Design | Info | NullableValueTypeConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0605?sort_id=4049882)
-SS0606 | Design | Hidden | PositionalPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0606?sort_id=4052320)
+SS0606 | Design | Info | PositionalPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0606?sort_id=4052320)
 SS9001 | Performance | Info | ForLoopBadConditionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356)
 SS9002 | Usage | Info | ArrayCreationClauseAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679)

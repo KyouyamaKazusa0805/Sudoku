@@ -9,28 +9,9 @@ if (r._a == 3) // SS0606 (Maybe use discard).
 {
 	Console.WriteLine(r);
 }
-if (r is (a: 4, b: 4, c: _))
+if (!(r._a == 1 && r._b != 3)) // SS0606 (Logical not).
 {
 	Console.WriteLine(r);
-}
-if (r._a != 1 || r._b != 3) // SS0606 (Logical not).
-{
-	Console.WriteLine(r);
-}
-if (r is (a: 1, b: 3, sum: 4, product: 3))
-{
-	Console.WriteLine(r);
-}
-
-static class REx
-{
-	public static void Deconstruct(this in R @this, out int a, out int b, out int sum, out int product)
-	{
-		a = @this._a;
-		b = @this._b;
-		sum = a + b;
-		product = a * b;
-	}
 }
 
 readonly struct R

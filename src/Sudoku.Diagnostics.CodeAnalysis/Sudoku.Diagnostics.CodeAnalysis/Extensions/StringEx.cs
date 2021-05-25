@@ -50,7 +50,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 					}
 					else
 					{
-						return @this;
+						return @this.Substring(1);
 					}
 				}
 				default:
