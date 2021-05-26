@@ -348,13 +348,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// Now we should check the type symbol, and get all possible deconstruction methods
 			// and determine whether the all referenced members can be referenced to one deconstruct method
 			// parameters.
-			var possibleDeconstructionMethods =
-				from methodSymbol in localType.GetMembers().OfType<IMethodSymbol>()
-				where methodSymbol.IsDeconstructionMethod()
-				let parameters = methodSymbol.Parameters
-				orderby parameters.Length
-				select methodSymbol;
-
+			var possibleDeconstructionMethods = localType.GetAllDeconstructionMethods();
 			if (!possibleDeconstructionMethods.Any())
 			{
 				return;
