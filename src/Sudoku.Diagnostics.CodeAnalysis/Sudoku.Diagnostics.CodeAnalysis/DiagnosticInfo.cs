@@ -45,6 +45,8 @@
 		public const string SS0503 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305";
 		public const string SS0504 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793";
 		public const string SS0505 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794";
+		public const string SS0506 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0506?sort_id=4056812";
+		public const string SS0507 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0507?sort_id=4056821";
 		public const string SS0601 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130";
 		public const string SS0602 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132";
 		public const string SS0603 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133";
@@ -100,6 +102,8 @@
 		public const string SS0503 = "Deconstruction methods must return void";
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
+		public const string SS0506 = "The assignment statement isn't a simple variable one, but an expression";
+		public const string SS0507 = "The parameter should be corresponded to a certain instance field or instance property in this type";
 		public const string SS0601 = "Unnecessary explicit type pattern";
 		public const string SS0602 = "The pattern can be simplify to 'is null'";
 		public const string SS0603 = "The pattern can be simplify to 'is not null'";
@@ -155,6 +159,8 @@
 		public const string SS0503 = "Deconstruction methods must return void";
 		public const string SS0504 = "Deconstruction methods must be public";
 		public const string SS0505 = "All parameters in deconstruction methods should be out parameters";
+		public const string SS0506 = "The expression '{0}' should be a simple variable in deconstruction method assignments";
+		public const string SS0507 = "The parameter '{0}' should be corresponded to a certain instance field or instance property in this type";
 		public const string SS0601 = "Unnecessary explicit type pattern";
 		public const string SS0602 = "The pattern can be simplify to 'is null'";
 		public const string SS0603 = "The pattern can be simplify to 'is not null'";

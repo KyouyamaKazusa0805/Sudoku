@@ -65,10 +65,35 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0505
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4056812&amp;doc_id=633030">
+		/// SS0506
+		/// </a>
+		/// diagnostic result (The assignment statement isn't a simple variable one, but an expression).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0506 = new(
+			DiagnosticIds.SS0506, Titles.SS0506, Messages.SS0506, Categories.Usage,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0506
+		);
+
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4056821&amp;doc_id=633030">
+		/// SS0507
+		/// </a>
+		/// diagnostic result (The parameter should be corresponded to a certain instance field
+		/// or instance property in this type).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0507 = new(
+			DiagnosticIds.SS0507, Titles.SS0507, Messages.SS0507, Categories.Usage,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0507
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0501, SS0502, SS0503, SS0504, SS0505
+			SS0501, SS0502, SS0503, SS0504, SS0505, SS0506, SS0507
 		);
 	}
 }

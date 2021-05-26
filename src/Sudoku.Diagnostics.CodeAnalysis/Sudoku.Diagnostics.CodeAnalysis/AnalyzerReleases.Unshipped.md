@@ -43,6 +43,8 @@ SS0502 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https:
 SS0503 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305)
 SS0504 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793)
 SS0505 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794)
+SS0506 | Usage | Info | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0506?sort_id=4056812)
+SS0507 | Usage | Info | DeconstructionMethodAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0507?sort_id=4056821)
 SS0601 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130)
 SS0602 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132)
 SS0603 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133)

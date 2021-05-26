@@ -291,6 +291,25 @@
             diagnostic result (All parameters in deconstruction methods should be out parameters).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0506">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4056812&amp;doc_id=633030">
+            SS0506
+            </a>
+            diagnostic result (The assignment statement isn't a simple variable one, but an expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0507">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4056821&amp;doc_id=633030">
+            SS0507
+            </a>
+            diagnostic result (The parameter should be corresponded to a certain instance field
+            or instance property in this type).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
