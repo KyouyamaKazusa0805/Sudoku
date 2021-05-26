@@ -359,28 +359,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				var positionalPatternExprSb = new StringBuilder()
-					.Append(identifier)
-					.Append(" is (")
-					.Append(
-						string.Join(
-							", ",
-							from tuple in info
-							let parameterName = tuple.Item2.ToCamelCase()
-							let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
-							let notKeyword = tuple.Item7 ? "not " : string.Empty
-							select $"{parameterName}: {notKeyword}{constantExpr}"
-						)
-					)
-					.Append(")");
-
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: SS0606,
-						location: node.GetLocation(),
-						messageArgs: new[] { positionalPatternExprSb.ToString() }
-					)
-				);
+				ReportSS0606(context, node, info, identifier);
 
 				return;
 			}
@@ -426,34 +405,41 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				var positionalPatternExprSb = new StringBuilder()
-					.Append(identifier)
-					.Append(" is (")
-					.Append(
-						string.Join(
-							", ",
-							from tuple in info
-							let parameterName = tuple.Item2.ToCamelCase()
-							let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
-							let notKeyword = tuple.Item7 ? "not " : string.Empty
-							select $"{parameterName}: {notKeyword}{constantExpr}"
-						)
-					)
-					.Append(")");
-
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: SS0606,
-						location: node.GetLocation(),
-						messageArgs: new[] { positionalPatternExprSb.ToString() }
-					)
-				);
+				ReportSS0606(context, node, info, identifier);
 
 				// Only find one is okay.
 				// Here we sort the whole method symbols by the number of parameters,
 				// so the first found one holds the lowest number of parameters, which is the best case.
 				return;
 			}
+		}
+
+		private static void ReportSS0606(
+			SyntaxNodeAnalysisContext context, SyntaxNode node,
+			IReadOnlyList<InfoTuple> info, string identifier)
+		{
+			var positionalPatternExprSb = new StringBuilder()
+				.Append(identifier)
+				.Append(" is (")
+				.Append(
+					string.Join(
+						", ",
+						from tuple in info
+						let parameterName = tuple.Item2.ToCamelCase()
+						let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
+						let notKeyword = tuple.Item7 ? "not " : string.Empty
+						select $"{parameterName}: {notKeyword}{constantExpr}"
+					)
+				)
+				.Append(")");
+
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SS0606,
+					location: node.GetLocation(),
+					messageArgs: new[] { positionalPatternExprSb.ToString() }
+				)
+			);
 		}
 	}
 }
