@@ -34,54 +34,38 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				AnalyzeSyntaxNode,
-				new[] { SyntaxKind.MethodDeclaration, SyntaxKind.CompilationUnit }
-			);
+			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.LogicalAndExpression });
 		}
 
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, originalNode) = context;
-			if (tryGetLocals(semanticModel, originalNode, out var locals))
+
+			if (
+				originalNode is not BinaryExpressionSyntax
+				{
+					Parent: not BinaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalAndExpression }
+				} node
+			)
 			{
-				traverseDescendants(originalNode, locals);
+				return;
 			}
 
-			static bool tryGetLocals(
-				SemanticModel semanticModel, SyntaxNode node, out ImmutableArray<ILocalSymbol> locals)
+			// Then checks its ancestors.
+			foreach (var currentNode in originalNode.Ancestors())
 			{
 				if (
-					semanticModel.GetOperation(node) is IMethodBodyOperation
+					semanticModel.GetOperation(currentNode) is IMethodBodyOperation
 					{
 						/*length-pattern*/
-						BlockBody: { Locals: { Length: not 0 } l }
+						BlockBody: { Locals: { Length: not 0 } locals }
 					}
 				)
 				{
-					locals = l;
-					return true;
-				}
-				else
-				{
-					locals = default;
-					return false;
-				}
-			}
+					AnalyzeSyntaxNode(context, semanticModel, node, locals);
 
-			void traverseDescendants(SyntaxNode node, ImmutableArray<ILocalSymbol> locals)
-			{
-				foreach (var descendant in
-					from descendant in node.DescendantNodes().OfType<BinaryExpressionSyntax>()
-					where descendant is
-					{
-						RawKind: (int)SyntaxKind.LogicalAndExpression,
-						Parent: not BinaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalAndExpression }
-					}
-					select descendant)
-				{
-					AnalyzeSyntaxNode(context, semanticModel, descendant, locals);
+					return;
 				}
 			}
 		}
@@ -346,9 +330,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				ReportSS0606(context, node, info, identifier);
-
-				return;
+				// Only find one is okay.
+				// Here we sort the whole method symbols by the number of parameters,
+				// so the first found one holds the lowest number of parameters, which is the best case.
+				if (ReportSS0606(context, node, info, identifier))
+				{
+					return;
+				}
 			}
 		}
 
@@ -392,16 +380,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				ReportSS0606(context, node, info, identifier);
-
 				// Only find one is okay.
 				// Here we sort the whole method symbols by the number of parameters,
 				// so the first found one holds the lowest number of parameters, which is the best case.
-				return;
+				if (ReportSS0606(context, node, info, identifier))
+				{
+					return;
+				}
 			}
 		}
 
-		private static void ReportSS0606(
+		private static bool ReportSS0606(
 			SyntaxNodeAnalysisContext context, SyntaxNode node,
 			IReadOnlyList<InfoTuple> info, string identifier)
 		{
@@ -427,6 +416,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					messageArgs: new[] { positionalPatternExprSb.ToString() }
 				)
 			);
+
+			return true;
 		}
 	}
 }
