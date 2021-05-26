@@ -44,22 +44,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, originalNode) = context;
-			switch (originalNode)
+			if (tryGetLocals(semanticModel, originalNode, out var locals))
 			{
-				case MethodDeclarationSyntax methodDeclaration
-				when tryGetLocals(semanticModel, methodDeclaration, out var locals):
-				{
-					traverseDescendants(methodDeclaration, locals);
-
-					break;
-				}
-				case CompilationUnitSyntax compilationUnit
-				when tryGetLocals(semanticModel, compilationUnit, out var locals):
-				{
-					traverseDescendants(compilationUnit, locals);
-
-					break;
-				}
+				traverseDescendants(originalNode, locals);
 			}
 
 			static bool tryGetLocals(
