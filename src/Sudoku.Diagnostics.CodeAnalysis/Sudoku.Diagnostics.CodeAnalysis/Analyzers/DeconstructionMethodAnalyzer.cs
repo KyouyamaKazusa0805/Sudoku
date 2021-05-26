@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGen.Deconstruction.Extensions;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -161,7 +162,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				foreach (var parameter in parameters)
 				{
 					string text = parameter.Identifier.ValueText;
-					if (members.Any(member => member.Name == text))
+					if (
+						members.Any(
+							member => member.Name is var n && (
+								n == text.ToCamelCase()
+								|| n == $"_{text.ToCamelCase()}"
+								|| n == text.ToPascalCase()
+							)
+						)
+					)
 					{
 						continue;
 					}
