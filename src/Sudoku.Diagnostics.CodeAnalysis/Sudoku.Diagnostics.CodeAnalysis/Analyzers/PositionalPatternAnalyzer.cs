@@ -321,20 +321,70 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			CheckNormalDeconstructionMethod(context, node, localType, info, identifier);
-			//CheckRecordPrimaryConstructor(context, node, localType, info, identifier);
+			CheckRecordPrimaryConstructor(context, node, localType, info, identifier);
 		}
 
-		//private static void CheckRecordPrimaryConstructor(
-		//	SyntaxNodeAnalysisContext context, BinaryExpressionSyntax node, ITypeSymbol localType,
-		//	IReadOnlyList<InfoTuple> info, string identifier)
-		//{
-		//	if (localType is not { IsRecord: true })
-		//	{
-		//		return;
-		//	}
-		//
-		//	// TODO: Check primary constructor in record.
-		//}
+		private static void CheckRecordPrimaryConstructor(
+			SyntaxNodeAnalysisContext context, BinaryExpressionSyntax node, ITypeSymbol localType,
+			IReadOnlyList<InfoTuple> info, string identifier)
+		{
+			if (localType is not { IsRecord: true })
+			{
+				return;
+			}
+
+			// Check primary constructor in record.
+			var ctors = localType.GetMembers().OfType<IMethodSymbol>();
+			foreach (var ctor in ctors)
+			{
+				if (ctor.Name is not ("" or ".ctor"))
+				{
+					continue;
+				}
+
+				var parameters = ctor.Parameters;
+
+				// Checks whether all member reference and be corresponded to the parameters.
+				bool matchFlag = true;
+				foreach (string memberName in from tuple in info select tuple.Item2)
+				{
+					if (parameters.All(parameter => parameter.Name != memberName))
+					{
+						matchFlag = false;
+						break;
+					}
+				}
+				if (!matchFlag)
+				{
+					continue;
+				}
+
+				var positionalPatternExprSb = new StringBuilder()
+					.Append(identifier)
+					.Append(" is (")
+					.Append(
+						string.Join(
+							", ",
+							from tuple in info
+							let parameterName = tuple.Item2.ToCamelCase()
+							let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
+							let notKeyword = tuple.Item7 ? "not " : string.Empty
+							select $"{parameterName}: {notKeyword}{constantExpr}"
+						)
+					)
+					.Append(")");
+
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0606,
+						location: node.GetLocation(),
+						messageArgs: new[] { positionalPatternExprSb.ToString() }
+					)
+				);
+
+				return;
+			}
+		}
 
 		private static void CheckNormalDeconstructionMethod(
 			SyntaxNodeAnalysisContext context, SyntaxNode node, ITypeSymbol localType,
