@@ -10,6 +10,15 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
+using InfoTuple = System.ValueTuple<
+	string, // Local
+	string, // MemberName
+	Microsoft.CodeAnalysis.ITypeSymbol, // Type
+	string, // LeftExpr
+	string, // RightExpr
+	bool, // IsConstantExprLeft
+	bool // IsNotEquals
+>;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -205,12 +214,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// Checks all sub-expression are simple member access expression,
 			// and another-side expression is a constant one.
 			bool phase1Flag = true;
-			var info = new List<
-				(
-					string Local, string MemberName, ITypeSymbol Type,
-					string LeftExpr, string RightExpr, bool IsConstantExprLeft, bool IsNotEquals
-				)
-			>();
+			var info = new List<InfoTuple>();
 			foreach (var subexpr in subexprs)
 			{
 				// Deconstruct the sub-expression to left and right those two expressions.
@@ -316,6 +320,26 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			CheckNormalDeconstructionMethod(context, node, localType, info, identifier);
+			//CheckRecordPrimaryConstructor(context, node, localType, info, identifier);
+		}
+
+		//private static void CheckRecordPrimaryConstructor(
+		//	SyntaxNodeAnalysisContext context, BinaryExpressionSyntax node, ITypeSymbol localType,
+		//	IReadOnlyList<InfoTuple> info, string identifier)
+		//{
+		//	if (localType is not { IsRecord: true })
+		//	{
+		//		return;
+		//	}
+		//
+		//	// TODO: Check primary constructor in record.
+		//}
+
+		private static void CheckNormalDeconstructionMethod(
+			SyntaxNodeAnalysisContext context, SyntaxNode node, ITypeSymbol localType,
+			IReadOnlyList<InfoTuple> info, string identifier)
+		{
 			// Same type, same variable, and satistied equals or not equals expression, and variable matched.
 			// Now we should check the type symbol, and get all possible deconstruction methods
 			// and determine whether the all referenced members can be referenced to one deconstruct method
@@ -339,7 +363,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 				// Checks whether all member reference and be corresponded to the parameters.
 				bool matchFlag = true;
-				foreach (string memberName in from tuple in info select tuple.MemberName.ToCamelCase())
+				foreach (string memberName in from tuple in info select tuple.Item2.ToCamelCase())
 				{
 					if (parameters.All(parameter => parameter.Name != memberName))
 					{
@@ -359,9 +383,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						string.Join(
 							", ",
 							from tuple in info
-							let parameterName = tuple.MemberName.ToCamelCase()
-							let constantExpr = tuple.IsConstantExprLeft ? tuple.LeftExpr : tuple.RightExpr
-							let notKeyword = tuple.IsNotEquals ? "not " : string.Empty
+							let parameterName = tuple.Item2.ToCamelCase()
+							let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
+							let notKeyword = tuple.Item7 ? "not " : string.Empty
 							select $"{parameterName}: {notKeyword}{constantExpr}"
 						)
 					)
@@ -376,6 +400,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				);
 
 				// Only find one is okay.
+				// Here we sort the whole method symbols by the number of parameters,
+				// so the first found one holds the lowest number of parameters, which is the best case.
 				return;
 			}
 		}
