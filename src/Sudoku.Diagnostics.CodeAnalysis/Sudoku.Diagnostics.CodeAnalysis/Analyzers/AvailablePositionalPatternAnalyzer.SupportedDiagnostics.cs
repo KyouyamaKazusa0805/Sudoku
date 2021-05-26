@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	partial class PositionalPatternAnalyzer
+	partial class AvailablePositionalPatternAnalyzer
 	{
 		/// <summary>
 		/// Indicates the
