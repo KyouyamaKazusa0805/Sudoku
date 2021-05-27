@@ -45,5 +45,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool IsNullableReferenceType(this ITypeSymbol @this) =>
 			@this.NullableAnnotation == NullableAnnotation.Annotated;
+
+		/// <summary>
+		/// Determine whether the current type symbol is a nullable type. The nullable types
+		/// are:
+		/// <list type="number">
+		/// <item>Nullable value type (abbr. NVT), i.e. a <see cref="Nullable{T}"/> instance.</item>
+		/// <item>Nullable reference type (abbr. NRT).</item>
+		/// </list>
+		/// </summary>
+		/// <param name="this">The symbol to check.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Nullable{T}"/>
+		public static bool IsNullableType(this ITypeSymbol @this) =>
+			@this.ToString() is var str && str[str.Length - 1] == '?';
 	}
 }

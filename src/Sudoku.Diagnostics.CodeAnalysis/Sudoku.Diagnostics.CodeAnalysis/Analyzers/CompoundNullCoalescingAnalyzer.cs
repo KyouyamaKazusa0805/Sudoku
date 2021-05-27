@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
 using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
 using PRef = Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation;
@@ -81,8 +82,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				string typeStr = leftExprType.ToString();
-				if (typeStr[typeStr.Length - 1] != '?')
+				if (!leftExprType.IsNullableType())
 				{
 					return;
 				}

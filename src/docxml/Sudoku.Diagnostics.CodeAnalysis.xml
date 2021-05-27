@@ -217,6 +217,27 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for available simplification for <c>operator ??=</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SS0701">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4053857&amp;doc_id=633030">
+            SS0701
+            </a>
+            diagnostic result (The expression can be simplified to using
+            compound null-coalesce operator <c>??=</c>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer">
             <summary>
             Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
@@ -655,25 +676,24 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for available simplification for <c>operator ??</c>.
+            Indicates an analyzer that analyzes the code.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.SS0701">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer.SS0702">
             <summary>
             Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4053857&amp;doc_id=633030">
-            SS0701
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4059064&amp;doc_id=633030">
+            SS0702
             </a>
-            diagnostic result (The expression can be simplified to using
-            compound null-coalesce operator <c>??=</c>).
+            diagnostic result (The expression can be simplified to using null-coalescing expression <c>??</c>).
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.SupportedDiagnostics">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
@@ -1415,6 +1435,19 @@
             </summary>
             <param name="this">The symbol.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableType(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Determine whether the current type symbol is a nullable type. The nullable types
+            are:
+            <list type="number">
+            <item>Nullable value type (abbr. NVT), i.e. a <see cref="T:System.Nullable`1"/> instance.</item>
+            <item>Nullable reference type (abbr. NRT).</item>
+            </list>
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="T:System.Nullable`1"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx">
             <summary>
