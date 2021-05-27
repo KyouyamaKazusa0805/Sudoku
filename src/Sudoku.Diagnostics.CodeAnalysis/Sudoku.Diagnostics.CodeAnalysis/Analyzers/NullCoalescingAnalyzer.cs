@@ -11,7 +11,8 @@ using PRef = Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation;
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
-	/// Indicates an analyzer that analyzes the code.
+	/// Indicates an analyzer that analyzes the code for the <see langword="null"/> coalescing operator
+	/// <c>??</c> usages.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
 	public sealed partial class NullCoalescingAnalyzer : DiagnosticAnalyzer

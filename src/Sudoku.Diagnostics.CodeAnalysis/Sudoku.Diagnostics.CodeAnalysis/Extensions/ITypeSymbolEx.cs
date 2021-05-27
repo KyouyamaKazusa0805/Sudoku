@@ -56,6 +56,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// </summary>
 		/// <param name="this">The symbol to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <remarks>
+		/// This method also checks the nullable state when the type is a nullable reference type.
+		/// For example, if the code is like <c>var p = new Class();</c>, p is always corresponds to
+		/// nullable type <c>Class?</c>; however, because the initialization clause is a <see langword="new"/>
+		/// clause, so the type result will be <c>Class</c> instead of <c>Class?</c>, because current state is
+		/// not <see langword="null"/>.
+		/// </remarks>
 		/// <seealso cref="Nullable{T}"/>
 		public static bool IsNullableType(this ITypeSymbol @this) =>
 			@this.ToString() is var str && str[str.Length - 1] == '?';

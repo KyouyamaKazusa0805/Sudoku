@@ -1,7 +1,15 @@
 ﻿using System;
 
-int? p = 30;
-int q = 40;
+P? a = new();
+P? b = null;
+string? x = a?.ToString();
+string? y = b?.ToString();
+string z = a!.ToString();
+Console.WriteLine(x);
+Console.WriteLine(y);
+Console.WriteLine(z);
 
-int? r = p is null ? q : p;
-Console.WriteLine(r);
+class P
+{
+	public override string ToString() => string.Empty;
+}

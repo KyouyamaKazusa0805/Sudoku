@@ -11,7 +11,7 @@ using PRef = Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation;
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
-	/// Indicates an analyzer that analyzes the code for available simplification for <c>operator ??=</c>.
+	/// Indicates an analyzer that analyzes the code for available simplification for the <c>operator ??=</c>.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
 	public sealed partial class CompoundNullCoalescingAnalyzer : DiagnosticAnalyzer
