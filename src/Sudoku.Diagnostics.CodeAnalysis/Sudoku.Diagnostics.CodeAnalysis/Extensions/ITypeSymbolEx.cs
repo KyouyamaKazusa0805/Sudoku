@@ -50,7 +50,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// Determine whether the current type symbol is a nullable type. The nullable types
 		/// are:
 		/// <list type="number">
-		/// <item>Nullable value type (abbr. NVT), i.e. a <see cref="Nullable{T}"/> instance.</item>
+		/// <item>Nullable value type (abbr. NVT), i.e. <see cref="Nullable{T}"/>.</item>
 		/// <item>Nullable reference type (abbr. NRT).</item>
 		/// </list>
 		/// </summary>

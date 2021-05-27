@@ -51,7 +51,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Right: LiteralExpressionSyntax { RawKind: (int)SyntaxKind.NullLiteralExpression }
 				}:
 				{
-					innerCheck_Phase1(semanticModel, statement, leftExpr);
+					innerCheck(semanticModel, statement, leftExpr);
 
 					break;
 				}
@@ -64,14 +64,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					}
 				}:
 				{
-					innerCheck_Phase1(semanticModel, statement, leftExpr);
+					innerCheck(semanticModel, statement, leftExpr);
 
 					break;
 				}
 			}
 
-			void innerCheck_Phase1(
-				SemanticModel semanticModel, StatementSyntax statement, ExpressionSyntax leftExpr)
+			void innerCheck(SemanticModel semanticModel, StatementSyntax statement, ExpressionSyntax leftExpr)
 			{
 				if (
 					semanticModel.GetOperation(leftExpr) is not (

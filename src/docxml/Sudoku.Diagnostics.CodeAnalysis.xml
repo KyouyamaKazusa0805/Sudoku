@@ -1360,6 +1360,34 @@
             <param name="this">The node.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IFieldReferenceOperationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.IFieldReferenceOperationEx.SameReferenceWith(Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation,Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation)">
+            <summary>
+            Checks whether the current instance has the same reference with the specified one.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="other">Another instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ILocalReferenceOperationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ILocalReferenceOperationEx.SameReferenceWith(Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation,Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation)">
+            <summary>
+            Checks whether the current instance has the same reference with the specified one.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="other">Another instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IMethodSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/>.
@@ -1405,6 +1433,20 @@
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertyReferenceOperationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.IPropertyReferenceOperationEx.SameReferenceWith(Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation,Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation)">
+            <summary>
+            Checks whether the current instance has the same reference with the specified one.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="other">Another instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
@@ -1441,7 +1483,7 @@
             Determine whether the current type symbol is a nullable type. The nullable types
             are:
             <list type="number">
-            <item>Nullable value type (abbr. NVT), i.e. a <see cref="T:System.Nullable`1"/> instance.</item>
+            <item>Nullable value type (abbr. NVT), i.e. <see cref="T:System.Nullable`1"/>.</item>
             <item>Nullable reference type (abbr. NRT).</item>
             </list>
             </summary>
