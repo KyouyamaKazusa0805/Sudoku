@@ -1,15 +1,20 @@
 ﻿using System;
 
-P? a = new();
-P? b = null;
-string? x = a?.ToString();
-string? y = b?.ToString();
-string z = a!.ToString();
-Console.WriteLine(x);
-Console.WriteLine(y);
-Console.WriteLine(z);
-
-class P
+var s = new S(1, 2, 3);
+if (s is (a: 1, b: 2, c: _))
 {
-	public override string ToString() => string.Empty;
+	Console.WriteLine(nameof(s));
+}
+
+readonly struct S
+{
+	readonly int _a, _b, _c;
+	readonly double _d;
+
+	public S(int a, int b, int c) : this() { _a = a; _b = b; _c = c; }
+
+	public void Deconstruct(out int a, out int b) { a = _a; b = _b; }
+	public void Deconstruct(out int a, out double d) { a = _a; d = _d; }
+	public void Deconstruct(out int a) { a = _a; }
+	public void Deconstruct(out int a, out int b, out int c) { a = _a; b = _b; c = _c; }
 }

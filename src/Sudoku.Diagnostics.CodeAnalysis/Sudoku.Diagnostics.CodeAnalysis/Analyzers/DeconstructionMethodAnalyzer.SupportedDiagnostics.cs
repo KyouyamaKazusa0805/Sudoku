@@ -90,10 +90,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0507
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4064196&amp;doc_id=633030">
+		/// SS0508
+		/// </a>
+		/// diagnostic result (The type has already contained a deconstruction method that
+		/// holds the same number of parameters of this method, so this method won't work).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0508 = new(
+			DiagnosticIds.SS0508, Titles.SS0508, Messages.SS0508, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0508
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0501, SS0502, SS0503, SS0504, SS0505, SS0506, SS0507
+			SS0501, SS0502, SS0503, SS0504, SS0505, SS0506, SS0507, SS0508
 		);
 	}
 }

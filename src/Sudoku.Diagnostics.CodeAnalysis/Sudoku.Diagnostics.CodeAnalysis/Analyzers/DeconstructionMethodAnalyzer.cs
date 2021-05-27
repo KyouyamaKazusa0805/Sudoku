@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -6,7 +7,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
-using Sudoku.CodeGen.Deconstruction.Extensions;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -29,18 +29,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, _, originalNode) = context;
+			var (semanticModel, compilation, originalNode) = context;
 			if (
 				originalNode is not MethodDeclarationSyntax
 				{
 					Parent: var parentNode,
 					Identifier: { ValueText: "Deconstruct" } identifier,
-					ParameterList: { Parameters: var parameters },
+					ParameterList: { Parameters: { Count: var parametersCount } parameters },
 					Modifiers: var modifiers,
 					ReturnType: var returnType,
 					Body: var body,
 					ExpressionBody: var expressionBody
-				}
+				} node
 				/*slice-pattern*/
 				|| parentNode is ClassDeclarationSyntax { Modifiers: var classModifiers }
 				&& classModifiers.Any(SyntaxKind.StaticKeyword)
@@ -49,9 +49,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			if (semanticModel.GetOperation(returnType) is not { Type: { } type })
+			{
+				return;
+			}
+
 			CheckSS0501AndSS0505(context, parameters, identifier);
 			CheckSudokuSS0502AndSS0504(context, modifiers, identifier);
-			CheckSS0503(context, returnType);
+			CheckSS0503(context, returnType, type, compilation);
 
 			var members =
 				from member in semanticModel.GetDeclaredSymbol(originalNode)!.ContainingType.GetAllMembers()
@@ -63,8 +68,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				select member;
 			CheckSS0506AndSS0507(context, parameters, body, expressionBody, members);
+			CheckSS0508(context, semanticModel, node, identifier, type, parametersCount);
 		}
-
 
 		private static void CheckSS0501AndSS0505(
 			SyntaxNodeAnalysisContext context, SeparatedSyntaxList<ParameterSyntax> parameters,
@@ -122,24 +127,27 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 		}
 
-		private static void CheckSS0503(SyntaxNodeAnalysisContext context, TypeSyntax returnType)
+		private static void CheckSS0503(
+			SyntaxNodeAnalysisContext context, TypeSyntax returnType, ITypeSymbol type,
+			Compilation compilation)
 		{
 			if (
-				context.SemanticModel.GetOperation(returnType) is { Type: { } type }
-				&& SymbolEqualityComparer.Default.Equals(
+				!SymbolEqualityComparer.Default.Equals(
 					type,
-					context.Compilation.GetSpecialType(SpecialType.System_Void)
+					compilation.GetSpecialType(SpecialType.System_Void)
 				)
 			)
 			{
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: SS0503,
-						location: returnType.GetLocation(),
-						messageArgs: null
-					)
-				);
+				return;
 			}
+
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SS0503,
+					location: returnType.GetLocation(),
+					messageArgs: null
+				)
+			);
 		}
 
 		private static void CheckSS0506AndSS0507(
@@ -217,6 +225,36 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 					}
 				}
+			}
+		}
+
+		private static void CheckSS0508(
+			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, SyntaxNode node,
+			SyntaxToken identifier, ITypeSymbol type, int parametersCount)
+		{
+			var methodSymbol = (IMethodSymbol)semanticModel.GetDeclaredSymbol(node)!;
+			foreach (var deconstructionMethod in type.GetAllDeconstructionMethods())
+			{
+				if (deconstructionMethod.ToDisplayString() == methodSymbol.ToDisplayString())
+				{
+					continue;
+				}
+
+				if (deconstructionMethod.Parameters.Length != parametersCount)
+				{
+					continue;
+				}
+
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0508,
+						location: identifier.GetLocation(),
+						messageArgs: null
+					)
+				);
+
+				// Only reports once is okay.
+				return;
 			}
 		}
 

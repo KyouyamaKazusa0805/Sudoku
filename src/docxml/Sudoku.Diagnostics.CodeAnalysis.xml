@@ -351,6 +351,16 @@
             or instance property in this type).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0508">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4064196&amp;doc_id=633030">
+            SS0508
+            </a>
+            diagnostic result (The type has already contained a deconstruction method that
+            holds the same number of parameters of this method, so this method won't work).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
@@ -1483,6 +1493,14 @@
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all members that belongs to the type and its base types
+            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>All members.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllDeconstructionMethods(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
