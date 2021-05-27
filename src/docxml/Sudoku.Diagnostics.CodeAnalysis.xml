@@ -78,6 +78,26 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the available positional pattern matching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer.SS0606">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4052320&amp;doc_id=633030">
+            SS0606
+            </a>
+            diagnostic result (The expression can be simplifiy via using positional pattern matching).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the constant pattern matching of built-in types.
@@ -635,24 +655,25 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the positional pattern matching.
+            Indicates an analyzer that analyzes the code for available simplification for <c>operator ??</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.SS0606">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.SS0701">
             <summary>
             Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4052320&amp;doc_id=633030">
-            SS0606
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4053857&amp;doc_id=633030">
+            SS0701
             </a>
-            diagnostic result (The expression can be simplifiy via using positional pattern matching).
+            diagnostic result (The expression can be simplified to using
+            compound null-coalesce operator <c>??=</c>).
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PositionalPatternAnalyzer.SupportedDiagnostics">
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingSimplificationAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
@@ -1363,6 +1384,37 @@
             <param name="compilation">The compilation.</param>
             <param name="typeName">The type name.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllDeconstructionMethods(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all deconstruction methods in this current type.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>All possible deconstruction methods.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableValueType(Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            To determine whether the specified symbol is a nullable value type (i.e. <see cref="T:System.Nullable`1"/>).
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="compilation">
+            The compilation that is used for constructing a nullable value type.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="T:System.Nullable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableReferenceType(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            To determine whether the specified symbol is a nullable reference type.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx">
             <summary>

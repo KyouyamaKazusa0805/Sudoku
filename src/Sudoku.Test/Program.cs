@@ -1,17 +1,18 @@
 ﻿using System;
 
-var r = new R(1, 3, 5);
-if (r.A == 4 && r.B == 4 && r.C == 4) // SS0606.
+int? i = 20;
+if (i is null)
+	i = 100;
+
+double? j = 3D;
+if (j == null)
+	j = 100D;
+
+object? o = new();
+if (o is null)
 {
-	Console.WriteLine(r);
-}
-if (r.A == 3) // Don't raise SS0606 because only one expression.
-{
-	Console.WriteLine(r);
-}
-if (!(r.A == 1 && r.B != 3)) // SS0606 (Logical not).
-{
-	Console.WriteLine(r);
+	o = new();
 }
 
-record R(int A, int B, int C);
+Console.WriteLine(i);
+Console.WriteLine(j);

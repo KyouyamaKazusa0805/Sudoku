@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.Deconstruction.Extensions;
@@ -21,5 +22,28 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			where method.IsDeconstructionMethod()
 			orderby method.Parameters.Length
 			select method;
+
+		/// <summary>
+		/// To determine whether the specified symbol is a nullable value type (i.e. <see cref="Nullable{T}"/>).
+		/// </summary>
+		/// <param name="this">The symbol.</param>
+		/// <param name="compilation">
+		/// The compilation that is used for constructing a nullable value type.
+		/// </param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Nullable{T}"/>
+		public static bool IsNullableValueType(this ITypeSymbol @this, Compilation compilation) =>
+			SymbolEqualityComparer.Default.Equals(
+				compilation.GetTypeByMetadataName("System.Nullable`1"),
+				@this.OriginalDefinition
+			);
+
+		/// <summary>
+		/// To determine whether the specified symbol is a nullable reference type.
+		/// </summary>
+		/// <param name="this">The symbol.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool IsNullableReferenceType(this ITypeSymbol @this) =>
+			@this.NullableAnnotation == NullableAnnotation.Annotated;
 	}
 }
