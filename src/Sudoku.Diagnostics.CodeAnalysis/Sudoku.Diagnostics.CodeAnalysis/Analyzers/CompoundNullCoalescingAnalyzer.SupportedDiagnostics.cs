@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	partial class NullCoalescingSimplificationAnalyzer
+	partial class CompoundNullCoalescingAnalyzer
 	{
 		/// <summary>
 		/// Indicates the
