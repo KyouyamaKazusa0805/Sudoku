@@ -45,7 +45,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SS0610,
 					location: node.GetLocation(),
-					messageArgs: new[] { node.ToString() }
+					messageArgs: new[] { node.ToString(), "is { }", "is not null" }
 				)
 			);
 		}

@@ -1,10 +1,6 @@
 ﻿using System;
 
 var s = new S(1, 2, 3);
-if (s is (a: 10, b: _) and (a: 10, b: 30, c: 50))
-{
-	Console.WriteLine(nameof(s));
-}
 if (s is (_, _) and (10, 30, 50))
 {
 	Console.WriteLine(nameof(s));
