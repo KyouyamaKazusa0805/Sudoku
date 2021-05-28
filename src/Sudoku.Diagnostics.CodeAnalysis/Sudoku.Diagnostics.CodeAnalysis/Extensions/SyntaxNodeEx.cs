@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
@@ -19,17 +20,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// the node that used in traversing the iteration.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool ContainingTypeIs(this SyntaxNode @this, Predicate<SyntaxNode> predicate)
-		{
-			for (var currentNode = @this; currentNode is not null; currentNode = currentNode.Parent)
-			{
-				if (predicate(currentNode))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
+		public static bool ContainingTypeIs(this SyntaxNode @this, Predicate<SyntaxNode> predicate) =>
+			@this.Ancestors().Any(currentNode => predicate(currentNode));
 	}
 }

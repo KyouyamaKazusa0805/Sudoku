@@ -63,6 +63,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			/*slice-pattern*/
 			if (
 				node.ContainingTypeIs(
 					static nodeTraversing => nodeTraversing is StructDeclarationSyntax
