@@ -13,8 +13,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// Converts the current name into the camel case.
 		/// </summary>
 		/// <param name="this">The name.</param>
+		/// <param name="caseConvertingOption">The option that decides the result.</param>
 		/// <returns>The result name.</returns>
-		public static unsafe string ToCamelCase(this string @this)
+		public static unsafe string ToCamelCase(
+			this string @this, CaseConvertingOption caseConvertingOption = CaseConvertingOption.None)
 		{
 			switch (@this[0])
 			{
@@ -26,7 +28,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 						Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
 					}
 
-					ptr[0] = (char)(ptr[0] + ' ');
+					ptr[0] += ' ';
 
 					return new string(ptr);
 				}
@@ -44,13 +46,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 							Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
 						}
 
-						ptr[1] = (char)(ptr[1] + ' ');
+						ptr[1] += ' ';
 
 						return new string(ptr);
 					}
 					else
 					{
-						return @this.Substring(1);
+						return caseConvertingOption switch
+						{
+							CaseConvertingOption.None => @this.Substring(1),
+							CaseConvertingOption.ReserveLeadingUnderscore => @this
+						};
 					}
 				}
 				default:
@@ -84,7 +90,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 						Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
 					}
 
-					ptr[0] = (char)(ptr[0] - ' ');
+					ptr[0] -= ' ';
 
 					return new string(ptr);
 				}
@@ -98,7 +104,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 
 					if (ptr[0] is >= 'a' and <= 'z')
 					{
-						ptr[0] = (char)(ptr[0] - ' ');
+						ptr[0] -= ' ';
 					}
 
 					return new string(ptr);

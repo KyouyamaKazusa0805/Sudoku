@@ -1058,6 +1058,25 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption">
+            <summary>
+            Defines an option that uses and specifies the case converting, which is used in
+            <see cref="!:StringEx.ToCamelCase(string)"/> or <see cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)"/>.
+            </summary>
+            <seealso cref="!:StringEx.ToCamelCase(string)"/>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)"/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption.None">
+            <summary>
+            Indicates the option is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption.ReserveLeadingUnderscore">
+            <summary>
+            Indicates the option will specify that the leading underscore in the identifier will be reserved
+            after conversion from a case to another case, e.g. Camel case to pascal case.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1577,11 +1596,12 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String,Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption)">
             <summary>
             Converts the current name into the camel case.
             </summary>
             <param name="this">The name.</param>
+            <param name="caseConvertingOption">The option that decides the result.</param>
             <returns>The result name.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)">
