@@ -520,6 +520,33 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for unncessary discard pattern.
+            </summary>
+            <remarks>
+            All possible patterns will be analyzed:
+            <list type="bullet">
+            <item>Discard in positional pattern: <c>(a: <see langword="_"/>)</c>.</item>
+            <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0607">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4060446&amp;doc_id=633030">
+            SS0607
+            </a>
+            diagnostic result (This discard can be omitted in the current positional pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
@@ -1077,33 +1104,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for unncessary discard pattern.
-            </summary>
-            <remarks>
-            All possible patterns will be analyzed:
-            <list type="bullet">
-            <item>Discard in positional pattern: <c>(a: <see langword="_"/>)</c>.</item>
-            <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0607">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4060446&amp;doc_id=633030">
-            SS0607
-            </a>
-            diagnostic result (This discard can be omitted in the current positional pattern).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption">
