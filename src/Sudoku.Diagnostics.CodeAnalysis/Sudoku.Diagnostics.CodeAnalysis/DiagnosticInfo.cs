@@ -123,7 +123,7 @@
 		public const string SS0607 = "This discard can be omitted in the current positional pattern";
 		public const string SS0608 = "The positional pattern may not allow because bounded deconstruction method is a parameterless or single-parameter one";
 		public const string SS0609 = "The positional subpattern is redundant";
-		public const string SS0610 = "The positional pattern judges nothing. If you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead";
+		public const string SS0610 = "The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce operator '??='";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator '??'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
@@ -189,7 +189,7 @@
 		public const string SS0607 = "This discard '{0}: _' can be omitted in the current positional pattern";
 		public const string SS0608 = "The positional pattern '{0}' may not allow because bounded deconstruction method is a parameterless or single-parameter one";
 		public const string SS0609 = "The positional subpattern '{0}' is redundant";
-		public const string SS0610 = "The positional pattern '{0}' judges nothing. If you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead";
+		public const string SS0610 = "The positional pattern '{0}' judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
