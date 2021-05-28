@@ -39,7 +39,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-
 			if (semanticModel.GetOperation(expressionToCheck) is not { Type: var typeSymbol })
 			{
 				return;
