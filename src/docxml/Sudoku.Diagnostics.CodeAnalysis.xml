@@ -1707,20 +1707,14 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.Deconstruct(Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@,System.Boolean@,System.Boolean@)">
             <summary>
-            Get all members that belongs to the type and its base types
-            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
+            Deconstruct the instance to three values that specifies and indicates the details of that type.
             </summary>
             <param name="this">The symbol.</param>
-            <returns>All members.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllDeconstructionMethods(Microsoft.CodeAnalysis.ITypeSymbol)">
-            <summary>
-            Get all deconstruction methods in this current type.
-            </summary>
-            <param name="this">The type.</param>
-            <returns>All possible deconstruction methods.</returns>
+            <param name="isValueType">Indicates whether the type is a value type.</param>
+            <param name="isReferenceType">Indicates whether the type is a reference type.</param>
+            <param name="isNullable">Indicates whether the type is a nullable type.</param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableType(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
@@ -1742,14 +1736,20 @@
             </remarks>
             <seealso cref="T:System.Nullable`1"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.Deconstruct(Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@,System.Boolean@,System.Boolean@)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
-            Deconstruct the instance to three values that specifies and indicates the details of that type.
+            Get all members that belongs to the type and its base types
+            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
             </summary>
             <param name="this">The symbol.</param>
-            <param name="isValueType">Indicates whether the type is a value type.</param>
-            <param name="isReferenceType">Indicates whether the type is a reference type.</param>
-            <param name="isNullable">Indicates whether the type is a nullable type.</param>
+            <returns>All members.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.GetAllDeconstructionMethods(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all deconstruction methods in this current type.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>All possible deconstruction methods.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx">
             <summary>

@@ -82,14 +82,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				//             ↑ whenTrueExpr
 				if (
 					semanticModel.GetOperation(leftExpr) is not (
-						var referenceOperation and (FRef or LRef or PRef) and { Type: { } leftExprType }
+						(FRef or LRef or PRef) and { Type: (_, _, true) leftExprType } referenceOperation
 					)
 				)
-				{
-					return;
-				}
-
-				if (!leftExprType.IsNullableType())
 				{
 					return;
 				}

@@ -45,8 +45,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				if (
 					semanticModel.GetOperation(recursivePattern) is IRecursivePatternOperation
 					{
-						InputType: var type
-					} && !type.IsNullableType()
+						InputType: (_, _, false) type
+					}
 				)
 				{
 					context.ReportDiagnostic(
@@ -90,8 +90,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						case 0 when semanticModel.GetOperation(pattern) is IRecursivePatternOperation
 						{
-							InputType: var type
-						} && !type.IsNullableType():
+							InputType: (_, _, false) type
+						}:
 						{
 							context.ReportDiagnostic(
 								Diagnostic.Create(
