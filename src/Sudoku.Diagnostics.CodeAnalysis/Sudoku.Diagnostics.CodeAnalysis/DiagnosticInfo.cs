@@ -61,6 +61,7 @@
 		public const string SS0611 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0611?sort_id=4068043";
 		public const string SS0612 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0612?sort_id=4068075";
 		public const string SS0613 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0613?sort_id=4067865";
+		public const string SS0614 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0614?sort_id=4068077";
 		public const string SS0701 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857";
 		public const string SS0702 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064";
 		public const string SS0703 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883";
@@ -130,6 +131,7 @@
 		public const string SS0611 = "The discard in the 'var' pattern may not take any effects";
 		public const string SS0612 = "It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern";
 		public const string SS0613 = "The discard pattern in this property pattern doesn't judge anything; please remove this clause";
+		public const string SS0614 = "The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce operator '??='";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator '??'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
@@ -199,6 +201,7 @@
 		public const string SS0611 = "The discard in the 'var' pattern '{0}' may not take any effects";
 		public const string SS0612 = "It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern";
 		public const string SS0613 = "The discard pattern in this property pattern '{0}' doesn't judge anything; please remove this clause";
+		public const string SS0614 = "The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";

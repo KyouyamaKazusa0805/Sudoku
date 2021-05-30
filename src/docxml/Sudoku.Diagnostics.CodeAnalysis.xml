@@ -639,6 +639,28 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the unncessary empty-brace pattern <c>{ }</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SS0614">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4068077&amp;doc_id=633030">
+            SS0614
+            </a>
+            diagnostic result (The empty-brace property pattern <see langword="{ }"/> will take effects
+            only in nullable types, so we don't suggest you use the pattern to judge non-nullable types;
+            please change the clause to var pattern or other valid patterns, or just remove it).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
