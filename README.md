@@ -2,9 +2,9 @@
 
 ## Bulletin for Specials (特殊公告)
 
-> Something happened. Only miss for today.
-> 
-> 有事情，今天不更新。 
+> Wait for adding.
+>
+> 等待添加。
 
 ## Content (正文)
 
