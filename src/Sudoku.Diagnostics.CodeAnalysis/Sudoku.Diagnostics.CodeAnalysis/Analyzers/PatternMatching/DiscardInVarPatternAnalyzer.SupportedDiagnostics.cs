@@ -18,10 +18,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0611
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4068075&amp;doc_id=633030">
+		/// SS0612
+		/// </a>
+		/// diagnostic result (It doesn't take any effects that all subpatterns use
+		/// discards <see langword="_"/> in a <see langword="var"/> deconstruction pattern).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0612 = new(
+			DiagnosticIds.SS0612, Titles.SS0612, Messages.SS0612, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0612
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0611
+			SS0611, SS0612
 		);
 	}
 }

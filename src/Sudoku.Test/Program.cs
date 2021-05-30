@@ -1,7 +1,7 @@
 ﻿using System;
 
 var s = new S(1, 2, 3);
-if (s is var _ and (10, 30, 50))
+if (s is var (_, _, _) and var (_, _) and (10, 30, 50))
 {
 	Console.WriteLine(nameof(s));
 }
