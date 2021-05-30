@@ -1,27 +1,9 @@
 ﻿using System;
 
-var s = new S(1, 2, 3);
-if (s is var (_, _, _) and var (_, _) and (10, 30, 50))
+object o = new R(1, 2D, 3F, "4");
+if (o is R { A: 1, B: _, C: 3F, D: _ })
 {
-	Console.WriteLine(nameof(s));
+	Console.WriteLine(o);
 }
 
-_ = S.TryParse(string.Empty, out var _);
-_ = S.TryParse(string.Empty, out _);
-
-readonly struct S
-{
-	readonly int _a, _b, _c;
-
-	public S(int a, int b, int c) { _a = a; _b = b; _c = c; }
-
-	public void Deconstruct(out int a, out int b) { a = _a; b = _b; }
-	public void Deconstruct(out int a, out int b, out int c) { a = _a; b = _b; c = _c; }
-
-	public static bool TryParse(string s, out S result)
-	{
-		_ = s;
-		result = new();
-		return true;
-	}
-}
+record R(int A, double B, float C, string D);

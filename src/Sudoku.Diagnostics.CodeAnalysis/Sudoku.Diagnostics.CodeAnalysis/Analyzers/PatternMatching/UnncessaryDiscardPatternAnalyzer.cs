@@ -16,7 +16,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <remarks>
 	/// All possible patterns will be analyzed:
 	/// <list type="bullet">
-	/// <item>Discard in positional pattern: <c>(a: <see langword="_"/>)</c>.</item>
+	/// <item>Discard in positional pattern: <c>(DeconstructionMember: <see langword="_"/>)</c>.</item>
 	/// <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
 	/// </list>
 	/// </remarks>
@@ -29,11 +29,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.PositionalPatternClause });
+			context.RegisterSyntaxNodeAction(
+				AnalyzeSyntaxNode,
+				new[] { SyntaxKind.PropertyPatternClause, SyntaxKind.PositionalPatternClause }
+			);
 		}
 
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		{
+			CheckSS0607(context);
+			CheckSS0613(context);
+		}
+
+		private static void CheckSS0607(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, originalNode) = context;
 
@@ -138,6 +147,55 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 				// Only reports once is okay.
 				return;
+			}
+		}
+
+		private static void CheckSS0613(SyntaxNodeAnalysisContext context)
+		{
+			/*length-pattern*/
+			if (context.Node is not PropertyPatternClauseSyntax { Subpatterns: { Count: >= 1 } subpatterns })
+			{
+				return;
+			}
+
+			checkSS0613Recursively(context, subpatterns);
+
+
+			static void checkSS0613Recursively(
+				in SyntaxNodeAnalysisContext context, in SeparatedSyntaxList<SubpatternSyntax> subpatterns)
+			{
+				foreach (var subpattern in subpatterns)
+				{
+					if (subpattern is not { NameColon: { }, Pattern: var pattern })
+					{
+						continue;
+					}
+
+					switch (pattern)
+					{
+						case DiscardPatternSyntax:
+						{
+							context.ReportDiagnostic(
+								Diagnostic.Create(
+									descriptor: SS0613,
+									location: subpattern.GetLocation(),
+									messageArgs: new[] { subpattern.ToString() }
+								)
+							);
+
+							break;
+						}
+						case RecursivePatternSyntax
+						{
+							PropertyPatternClause: { Subpatterns: { Count: >= 1 } nestedSubpatterns }
+						}:
+						{
+							checkSS0613Recursively(context, nestedSubpatterns);
+
+							break;
+						}
+					}
+				}
 			}
 		}
 	}

@@ -17,10 +17,22 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0607
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4067865&amp;doc_id=633030">
+		/// SS0613
+		/// </a>
+		/// diagnostic result (This discard can be omitted in the current positional pattern).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0613 = new(
+			DiagnosticIds.SS0613, Titles.SS0613, Messages.SS0613, Categories.Design,
+			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0613
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0607
+			SS0607, SS0613
 		);
 	}
 }

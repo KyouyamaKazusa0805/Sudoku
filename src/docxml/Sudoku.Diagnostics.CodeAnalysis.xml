@@ -610,7 +610,7 @@
             <remarks>
             All possible patterns will be analyzed:
             <list type="bullet">
-            <item>Discard in positional pattern: <c>(a: <see langword="_"/>)</c>.</item>
+            <item>Discard in positional pattern: <c>(DeconstructionMember: <see langword="_"/>)</c>.</item>
             <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
             </list>
             </remarks>
@@ -623,6 +623,15 @@
             Indicates the
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4060446&amp;doc_id=633030">
             SS0607
+            </a>
+            diagnostic result (This discard can be omitted in the current positional pattern).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0613">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4067865&amp;doc_id=633030">
+            SS0613
             </a>
             diagnostic result (This discard can be omitted in the current positional pattern).
             </summary>
