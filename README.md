@@ -2,9 +2,9 @@
 
 ## Bulletin for Specials (特殊公告)
 
-> No items here. Wait for appending.
->
-> 暂无。等待添加。
+> Something happened. Only miss for today.
+> 
+> 有事情，今天不更新。 
 
 ## Content (正文)
 
