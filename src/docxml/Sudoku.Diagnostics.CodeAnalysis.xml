@@ -484,6 +484,28 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for those discards <see langword="_"/> in the
+            <see langword="var"/> pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer.SS0611">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4068043&amp;doc_id=633030">
+            SS0611
+            </a>
+            diagnostic result (The discard <see langword="_"/> in the <see langword="var"/> pattern
+            may not take any effects).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the incorrect positional pattern.

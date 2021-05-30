@@ -56,6 +56,7 @@ SS0607 | Design | Info | UnncessaryDiscardPatternAnalyzer, [Documentation](https
 SS0608 | Design | Warning | IncorrectDiscardPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0608?sort_id=4066334)
 SS0609 | Design | Warning | DiscardedPositionalPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0609?sort_id=4067681)
 SS0610 | Design | Warning | DiscardedPositionalPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0610?sort_id=4067685)
+SS0611 | Design | Warning | DiscardInVarPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0611?sort_id=4068043)
 SS0701 | Design | Info | CompoundNullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857) 
 SS0702 | Design | Info | NullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064)
 SS0703 | Design | Info | NullConditionalAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883)
