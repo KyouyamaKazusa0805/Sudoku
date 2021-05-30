@@ -60,6 +60,8 @@ SS0611 | Design | Warning | DiscardInVarPatternAnalyzer, [Documentation](https:/
 SS0612 | Design | Warning | DiscardInVarPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0612?sort_id=4068075)
 SS0613 | Design | Warning | UnncessaryDiscardPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0613?sort_id=4067865)
 SS0614 | Design | Warning | UnncessaryEmptyBracePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0614?sort_id=4068077)
+SS0615 | Design | Warning | NullableTypesPatternMatchingSuggestionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0615?sort_id=4068113)
+SS0616 | Design | Warning | NullableTypesPatternMatchingSuggestionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0616?sort_id=4068091)
 SS0701 | Design | Info | CompoundNullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857) 
 SS0702 | Design | Info | NullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064)
 SS0703 | Design | Info | NullConditionalAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883)

@@ -545,6 +545,38 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for nullable types pattern matching (i.e. <c>{ }</c> here)
+            suggestion checking.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0615">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4068113&amp;doc_id=633030">
+            SS0615
+            </a>
+            diagnostic result (Please use <c>{ }</c> instead of <c>!= <see langword="null"/></c>,
+            <c><see langword="not null"/></c> or <c>HasValue</c> in nullable value types).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0616">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4068091&amp;doc_id=633030">
+            SS0616
+            </a>
+            diagnostic result (Please use <c>{ }</c> or <c><see langword="not null"/></c> instead of
+            <c>!= <see langword="null"/></c> in nullable reference types).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the redundant subpattern.
@@ -1690,24 +1722,6 @@
             <param name="this">The type.</param>
             <returns>All possible deconstruction methods.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableValueType(Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            To determine whether the specified symbol is a nullable value type (i.e. <see cref="T:System.Nullable`1"/>).
-            </summary>
-            <param name="this">The symbol.</param>
-            <param name="compilation">
-            The compilation that is used for constructing a nullable value type.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="T:System.Nullable`1"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableReferenceType(Microsoft.CodeAnalysis.ITypeSymbol)">
-            <summary>
-            To determine whether the specified symbol is a nullable reference type.
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableType(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
             Determine whether the current type symbol is a nullable type. The nullable types
@@ -1727,6 +1741,15 @@
             not <see langword="null"/>.
             </remarks>
             <seealso cref="T:System.Nullable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.Deconstruct(Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance to three values that specifies and indicates the details of that type.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="isValueType">Indicates whether the type is a value type.</param>
+            <param name="isReferenceType">Indicates whether the type is a reference type.</param>
+            <param name="isNullable">Indicates whether the type is a nullable type.</param>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.MethodDeclarationSyntaxEx">
             <summary>

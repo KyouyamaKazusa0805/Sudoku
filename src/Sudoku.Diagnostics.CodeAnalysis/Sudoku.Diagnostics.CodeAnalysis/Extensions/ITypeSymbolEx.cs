@@ -60,29 +60,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			select method;
 
 		/// <summary>
-		/// To determine whether the specified symbol is a nullable value type (i.e. <see cref="Nullable{T}"/>).
-		/// </summary>
-		/// <param name="this">The symbol.</param>
-		/// <param name="compilation">
-		/// The compilation that is used for constructing a nullable value type.
-		/// </param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		/// <seealso cref="Nullable{T}"/>
-		public static bool IsNullableValueType(this ITypeSymbol @this, Compilation compilation) =>
-			SymbolEqualityComparer.Default.Equals(
-				compilation.GetTypeByMetadataName("System.Nullable`1"),
-				@this.OriginalDefinition
-			);
-
-		/// <summary>
-		/// To determine whether the specified symbol is a nullable reference type.
-		/// </summary>
-		/// <param name="this">The symbol.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool IsNullableReferenceType(this ITypeSymbol @this) =>
-			@this.NullableAnnotation == NullableAnnotation.Annotated;
-
-		/// <summary>
 		/// Determine whether the current type symbol is a nullable type. The nullable types
 		/// are:
 		/// <list type="number">
@@ -102,5 +79,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// <seealso cref="Nullable{T}"/>
 		public static bool IsNullableType(this ITypeSymbol @this) =>
 			@this.ToString() is var str && str[str.Length - 1] == '?';
+
+		/// <summary>
+		/// Deconstruct the instance to three values that specifies and indicates the details of that type.
+		/// </summary>
+		/// <param name="this">The symbol.</param>
+		/// <param name="isValueType">Indicates whether the type is a value type.</param>
+		/// <param name="isReferenceType">Indicates whether the type is a reference type.</param>
+		/// <param name="isNullable">Indicates whether the type is a nullable type.</param>
+		public static void Deconstruct(
+			this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
+		{
+			isValueType = @this.IsValueType;
+			isReferenceType = @this.IsReferenceType;
+			isNullable = @this.IsNullableType();
+		}
 	}
 }
