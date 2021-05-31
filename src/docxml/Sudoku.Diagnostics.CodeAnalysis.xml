@@ -756,6 +756,28 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for unncessary <see langword="not"/> keyword
+            in a relation pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer.SS0620">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070582&amp;doc_id=633030">
+            SS0620
+            </a>
+            diagnostic result (Keyword <see langword="not"/> followed with relation pattern is redundant;
+            please negate the operator directly instead).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
