@@ -1252,6 +1252,27 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the unncessary <c>operator <see langword="is"/></c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SS0617">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070575&amp;doc_id=633030">
+            SS0617
+            </a>
+            diagnostic result (Unncessary <c>operator <see langword="is"/></c> to determine the range
+            of that value of same type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption">
             <summary>
             Defines an option that uses and specifies the case converting, which is used in
@@ -1774,6 +1795,25 @@
             for this case.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.SemanticModelEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SemanticModel"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SemanticModel"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SemanticModelEx.TypeEquals(Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.Boolean)">
+            <summary>
+            Checks whether the two <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>s hold the same type.
+            </summary>
+            <param name="this">The semantic model.</param>
+            <param name="left">The left comparer.</param>
+            <param name="right">The right comparer.</param>
+            <param name="includeNullableAnnotation">
+            Indicates whether the comparer uses advanced one to check nullable type.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the type can't be inferred.</exception>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx">
             <summary>
