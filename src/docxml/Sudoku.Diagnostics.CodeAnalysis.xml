@@ -421,6 +421,38 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for available <see langword="and"/> or
+            <see langword="or"/> patterns to merge.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0621">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070766&amp;doc_id=633030">
+            SS0621
+            </a>
+            diagnostic result (Available simplification for property patterns connected
+            with keyword <see langword="and"/> to a single property pattern).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0622">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070772&amp;doc_id=633030">
+            SS0622
+            </a>
+            diagnostic result (Available simplification for property patterns connected
+            with keyword <see langword="or"/> to a single property pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the available positional pattern matching.

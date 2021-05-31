@@ -1,7 +1,16 @@
 ﻿using System;
 
-var s = new S(1, 2);
-if (s is { A: not > 3 }) Console.WriteLine(s);
-if (s.A is not < 3) Console.WriteLine(s);
+var s = new S(1, 2, new(1, 2, null));
 
-record S(int A, int B);
+Console.WriteLine(s);
+
+if (s is { Property1: 1 } and { Property2: 20 } and { NestedMember: null })
+	Console.WriteLine(s); // SS9005.
+if (s is { Property1: 1 } or { Property2: 20 } or { NestedMember: null })
+	Console.WriteLine(s); // SS9005.
+if (s is { Property1: 1 } and { Property2: 20 } or { NestedMember: null })
+	Console.WriteLine(s); // SS9005.
+if (s is ({ Property1: 1 } or { Property2: 20 }) and { NestedMember: null })
+	Console.WriteLine(s); // SS9005.
+
+record S(int Property1, double Property2, S? NestedMember);
