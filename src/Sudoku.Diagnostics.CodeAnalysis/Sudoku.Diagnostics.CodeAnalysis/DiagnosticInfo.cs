@@ -70,6 +70,8 @@
 		public const string SS0620 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0620?sort_id=4070582";
 		public const string SS0621 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0621?sort_id=4070766";
 		public const string SS0622 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0622?sort_id=4070772";
+		public const string SS0623 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0623?sort_id=4071853";
+		public const string SS0625 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0625?sort_id=4071856";
 		public const string SS0701 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857";
 		public const string SS0702 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064";
 		public const string SS0703 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883";
@@ -148,6 +150,8 @@
 		public const string SS0620 = "Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead";
 		public const string SS0621 = "Available simplification for property patterns connected with keyword 'and' to a single property pattern";
 		public const string SS0622 = "Available simplification for property patterns connected with keyword 'or' to a single property pattern";
+		public const string SS0623 = "Repeated property path; try to integrate to one using keyword 'and' as the connection";
+		public const string SS0625 = "Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce operator '??='";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator '??'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
@@ -226,6 +230,8 @@
 		public const string SS0620 = "Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead";
 		public const string SS0621 = "Available simplification for property patterns connected with keyword 'and' to a single property pattern";
 		public const string SS0622 = "Available simplification for property patterns connected with keyword 'or' to a single property pattern";
+		public const string SS0623 = "Repeated property path; try to integrate to one using keyword 'and' as the connection";
+		public const string SS0625 = "Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";

@@ -671,6 +671,42 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for repeated property paths.
+            </summary>
+            <remarks>
+            All kinds to analyze are:
+            <list type="bullet">
+            <item>Property pattern: <c>{ Prop: 1 }</c>.</item>
+            <item>Extended property pattern: <c>{ Prop.NestedProp: 1 }</c>.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SS0623">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4071853&amp;doc_id=633030">
+            SS0623
+            </a>
+            diagnostic result (Repeated property path).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SS0625">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4071856&amp;doc_id=633030">
+            SS0625
+            </a>
+            diagnostic result (Repeated property path in extended property pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for <see langword="is"/> pattern.
