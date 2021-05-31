@@ -545,6 +545,48 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for:
+            <list type="bullet">
+            <item><c><see langword="not null and"/></c></item>
+            <item><c><see langword="null or"/></c></item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.Recursion">
+            <summary>
+            Delegates a method that invokes to handle the sub-patterns in an <see langword="and"/>
+            or <see langword="or"/> pattern recursively.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="nestedPatterns">The nested patterns to iterate.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.SS0618">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070577&amp;doc_id=633030">
+            SS0618
+            </a>
+            diagnostic result (Pattern <c><see langword="not null"/></c> is redundant; please remove it).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.SS0619">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070578&amp;doc_id=633030">
+            SS0619
+            </a>
+            diagnostic result (Combination constant pattern <c><see langword="null"/></c> and
+            the keyword <see langword="or"/> is redundant; please remove it).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for nullable types pattern matching (i.e. <c>{ }</c> here)
