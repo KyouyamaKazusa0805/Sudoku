@@ -49,7 +49,7 @@ SS0508 | Design | Warning | DeconstructionMethodAnalyzer, [Documentation](https:
 SS0601 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130)
 SS0602 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132)
 SS0603 | Design | Info | TypePatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133)
-SS0604 | Design | Info | BuiltInTypesConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0604?sort_id=4049877)
+SS0604 | Design | Warning | BuiltInTypesConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0604?sort_id=4049877)
 SS0605 | Design | Info | NullableValueTypeConstantPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0605?sort_id=4049882)
 SS0606 | Design | Info | AvailablePositionalPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0606?sort_id=4052320) 
 SS0607 | Design | Info | UnncessaryDiscardPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0607?sort_id=4060446)

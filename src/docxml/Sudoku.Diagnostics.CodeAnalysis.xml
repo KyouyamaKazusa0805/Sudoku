@@ -693,6 +693,27 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the unncessary <c>operator <see langword="is"/></c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SS0617">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070575&amp;doc_id=633030">
+            SS0617
+            </a>
+            diagnostic result (Unncessary <c>operator <see langword="is"/></c> to determine the range
+            of that value of same type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
@@ -1250,27 +1271,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the unncessary <c>operator <see langword="is"/></c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SS0617">
-            <summary>
-            Indicates the
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4070575&amp;doc_id=633030">
-            SS0617
-            </a>
-            diagnostic result (Unncessary <c>operator <see langword="is"/></c> to determine the range
-            of that value of same type).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption">

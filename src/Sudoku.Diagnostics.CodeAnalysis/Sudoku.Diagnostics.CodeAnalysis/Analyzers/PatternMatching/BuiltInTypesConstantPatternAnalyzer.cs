@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -39,25 +40,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (semanticModel.GetOperation(expressionToCheck) is not { Type: var typeSymbol })
-			{
-				return;
-			}
-
 			switch (pattern)
 			{
-				case ConstantPatternSyntax { Expression: var constantExpression }:
+				case ConstantPatternSyntax { Expression: var constantExpression }
+				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
 				{
-					if (semanticModel.GetOperation(constantExpression) is not { Type: var constantTypeSymbol })
-					{
-						return;
-					}
-
-					if (!SymbolEqualityComparer.Default.Equals(typeSymbol, constantTypeSymbol))
-					{
-						return;
-					}
-
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0604,
@@ -77,18 +64,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					RawKind: (int)SyntaxKind.NotPattern,
 					Pattern: ConstantPatternSyntax { Expression: var constantExpression }
-				}:
+				}
+				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
 				{
-					if (semanticModel.GetOperation(constantExpression) is not { Type: var constantTypeSymbol })
-					{
-						return;
-					}
-
-					if (!SymbolEqualityComparer.Default.Equals(typeSymbol, constantTypeSymbol))
-					{
-						return;
-					}
-
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0604,
@@ -105,8 +83,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					break;
 				}
 			}
-
-
 		}
 	}
 }
