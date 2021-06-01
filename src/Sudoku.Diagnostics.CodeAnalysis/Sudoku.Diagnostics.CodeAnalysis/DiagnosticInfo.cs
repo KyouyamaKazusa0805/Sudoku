@@ -80,6 +80,8 @@
 		public const string SS0705 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0705?sort_id=4077126";
 		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
 		public const string SS9002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679";
+		public const string SS9003 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9003?sort_id=4067861";
+		public const string SS9004 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9005?sort_id=4071700";
 	}
 
 	/// <summary>
@@ -162,6 +164,8 @@
 		public const string SS0705 = "Using compound null-coalesce operator '??=' is unncessary";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
+		public const string SS9003 = "Unncessary discards";
+		public const string SS9004 = "Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing";
 	}
 
 	/// <summary>
@@ -244,6 +248,8 @@
 		public const string SS0705 = "Using compound null-coalesce operator '??=' is unncessary, because the left-side expression '{0}' is not null here";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
+		public const string SS9003 = "Unncessary discards";
+		public const string SS9004 = "Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing";
 	}
 
 	/// <summary>

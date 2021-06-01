@@ -1,7 +1,5 @@
 ﻿using System;
 
-int? q = 10;
+_ = _ = _ = _ = _ = _ = 10;
 
-q ??= 100;
-
-Console.WriteLine(q);
+Console.WriteLine();

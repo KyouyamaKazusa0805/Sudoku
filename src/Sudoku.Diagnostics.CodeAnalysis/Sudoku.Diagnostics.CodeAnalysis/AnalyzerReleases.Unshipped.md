@@ -78,3 +78,5 @@ SS0704 | Design | Info | NullConditionalAnalyzer, [Documentation](https://gitee.
 SS0705 | Design | Info | CompoundNullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0705?sort_id=4077126)
 SS9001 | Performance | Info | ForLoopBadConditionAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356)
 SS9002 | Usage | Info | ArrayCreationClauseAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679)
+SS9003 | Design | Warning | DiscardAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9003?sort_id=4067861)
+SS9004 | Design | Warning | DiscardAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS9004?sort_id=4067864)
