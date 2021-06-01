@@ -1,8 +1,19 @@
 ﻿using System;
 
-var s = new S(1, 2, new(1, 2, null));
+var zhangSan = new Person("Zhang san", 25, Gender.Male, new("Li si", 50, Gender.Male));
 
-if (s is { Property1: >= 1, Property2: 20D, NestedMember: null, Property1: < 100 })
-	Console.WriteLine(s); // SS9005.
+if (
+	zhangSan is
+	{
+		Name: "Zhang San",
+		Age: 24,
+		Father: { Father: { Name: "Zhang 'er" } },
+		Mother: { Name: "Li si", Gender: Gender.Female }
+	}
+)
+{
+	Console.WriteLine("Zhang san does satisfy that condition.");
+}
 
-record S(int Property1, double Property2, S? NestedMember);
+record Person(string Name, int Age, Gender Gender, Person? Father = null, Person? Mother = null);
+enum Gender { Male, Female }

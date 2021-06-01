@@ -360,6 +360,9 @@ dotnet_diagnostic.CS8643.severity = error
 # CS8653: A default expression introduces a null value for a type parameter.
 dotnet_diagnostic.CS8653.severity = error
 
+# CS8655: The switch expression does not handle some null inputs.
+dotnet_diagnostic.CS8655.severity = silent
+
 # CS8656: Call to non-readonly member from a 'readonly' member results in an implicit copy.
 dotnet_diagnostic.CS8656.severity = error
 
