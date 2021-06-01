@@ -926,6 +926,27 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer.SS9004">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4052320&amp;doc_id=633030">
+            SS9004
+            </a>
+            diagnostic result (Due to recursive member in the <see langword="record"/> type,
+            invoking synthesized method ToString will cause stack overflowing).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer">
             <summary>
             Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.
