@@ -77,6 +77,7 @@
 		public const string SS0702 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064";
 		public const string SS0703 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883";
 		public const string SS0704 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0704?sort_id=4053867";
+		public const string SS0705 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0705?sort_id=4077126";
 		public const string SS9001 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356";
 		public const string SS9002 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679";
 	}
@@ -158,6 +159,7 @@
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator '??'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
 		public const string SS0704 = "Unncessary null-forgiving operator '!'";
+		public const string SS0705 = "Using compound null-coalesce operator '??=' is unncessary";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}
@@ -239,6 +241,7 @@
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
 		public const string SS0704 = "Unncessary null-forgiving operator '!'";
+		public const string SS0705 = "Using compound null-coalesce operator '??=' is unncessary, because the left-side expression '{0}' is not null here";
 		public const string SS9001 = "Available prepositional iteration condition expression";
 		public const string SS9002 = "Redundant array creation statement";
 	}

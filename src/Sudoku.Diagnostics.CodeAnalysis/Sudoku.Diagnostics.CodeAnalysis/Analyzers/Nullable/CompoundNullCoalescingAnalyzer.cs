@@ -22,11 +22,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.IfStatement });
+			context.RegisterSyntaxNodeAction(
+				static context =>
+				{
+					CheckSS0701(context);
+					CheckSS0705(context);
+				},
+				new[] { SyntaxKind.IfStatement, SyntaxKind.CoalesceAssignmentExpression }
+			);
 		}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0701(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, originalNode) = context;
 
@@ -74,7 +81,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			{
 				if (
 					semanticModel.GetOperation(leftExpr) is not (
-						(FRef or LRef or PRef) and { Type: (_, _, true) leftExprType } referenceOperation
+						(FRef or LRef or PRef) and { Type: (_, _, isNullable: true) leftExprType } refOperation
 					)
 				)
 				{
@@ -110,7 +117,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				switch ((operandReferenceOperation, referenceOperation))
+				switch ((operandReferenceOperation, refOperation))
 				{
 					case (FRef { Field: var field }, FRef { Field: var fieldOperand })
 					when field.ToDisplayString() == fieldOperand.ToDisplayString():
@@ -135,6 +142,45 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					)
 				);
 			}
+		}
+
+		private static void CheckSS0705(SyntaxNodeAnalysisContext context)
+		{
+			var (semanticModel, _, originalNode) = context;
+
+			if (
+				originalNode is not AssignmentExpressionSyntax
+				{
+					RawKind: (int)SyntaxKind.CoalesceAssignmentExpression,
+					Left: var leftExpr
+				}
+			)
+			{
+				return;
+			}
+
+			if (
+				semanticModel.GetOperation(leftExpr) is not (
+					(FRef or LRef)
+					and { Type: (_, var isReferenceType, var isNullable) } referenceOperation
+				)
+			)
+			{
+				return;
+			}
+
+			if (!isReferenceType || isNullable)
+			{
+				return;
+			}
+
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SS0705,
+					location: originalNode.GetLocation(),
+					messageArgs: new[] { leftExpr.ToString() }
+				)
+			);
 		}
 	}
 }

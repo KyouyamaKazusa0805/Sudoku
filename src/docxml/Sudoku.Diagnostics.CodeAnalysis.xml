@@ -344,6 +344,15 @@
             compound null-coalesce operator <c>??=</c>).
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SS0705">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4077126&amp;doc_id=633030">
+            SS0705
+            </a>
+            diagnostic result (Using compound null-coalesce operator <c>??=</c> is unncessary).
+            </summary>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>

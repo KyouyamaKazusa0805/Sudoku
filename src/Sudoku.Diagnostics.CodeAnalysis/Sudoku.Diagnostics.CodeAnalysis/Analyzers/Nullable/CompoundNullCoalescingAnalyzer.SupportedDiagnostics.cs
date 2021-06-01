@@ -18,10 +18,22 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0701
 		);
 
+		/// <summary>
+		/// Indicates the
+		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4077126&amp;doc_id=633030">
+		/// SS0705
+		/// </a>
+		/// diagnostic result (Using compound null-coalesce operator <c>??=</c> is unncessary).
+		/// </summary>
+		private static readonly DiagnosticDescriptor SS0705 = new(
+			DiagnosticIds.SS0705, Titles.SS0705, Messages.SS0705, Categories.Design,
+			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0705
+		);
+
 
 		/// <inheritdoc/>
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-			SS0701
+			SS0701, SS0705
 		);
 	}
 }
