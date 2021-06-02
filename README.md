@@ -61,6 +61,7 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 | Wiki<br />百科页面         |                                                           |
 | -------------------------- | --------------------------------------------------------- |
 | Chinese only<br />中文介绍 | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
+| Chinese only<br />中文介绍 | [GitHub](https://github.com/SunnieShine/Sudoku/wiki)      |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
