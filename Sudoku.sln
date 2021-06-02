@@ -34,9 +34,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Generating", "src\Sudoku.Generating\Sudoku.Generating.csproj", "{23CB06A5-C43F-40CC-9BB1-90937E89D0E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Bot", "Sudoku.Bot", "{4C49BD80-DE87-4C3E-A04F-0EC9D07EF4AC}"
-	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot", "src\Sudoku.Bot\Sudoku.Bot.csproj", "{31ECDCC4-1107-4AE2-BADA-EC44EF5C259B}"
 EndProject
@@ -79,9 +76,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Diagnostics", "Sudoku.Diagnostics", "{D6ABE417-292C-4AFF-B1C2-2831597C3ED7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.Bilibili", "Sudoku.Bilibili", "{924A472F-9FFA-4178-B89A-0EC8B0B5EDF2}"
-	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bilibili.Live", "src\Sudoku.Bilibili.Live\Sudoku.Bilibili.Live.csproj", "{7A835345-1692-4541-8CF9-686A9B0E3DBF}"
 EndProject
