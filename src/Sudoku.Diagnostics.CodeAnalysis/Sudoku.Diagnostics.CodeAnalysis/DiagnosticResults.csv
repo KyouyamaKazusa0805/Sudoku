@@ -1,5 +1,5 @@
 ID,Level,Category,Has Code Fix,Help Link,Title,Message Format
-SD0101,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0101?sort_id=3599824,A property named 'Properties' expected.,
+SD0101,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0101?sort_id=3599824,A property named 'Properties' expected.,
 SD0102,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0102?sort_id=3599808,The property 'Properties' must be public.,
 SD0103,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0103?sort_id=3621783,The property 'Properties' must be static.,
 SD0104,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0104?sort_id=3599816,The property 'Properties' must be read-only.,
@@ -14,20 +14,20 @@ SD0204,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0204?sort_id=3610347,The
 SD0205,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0205?sort_id=3610364,"The method returns void, but you make it an rvalue expression".,"The method '{0}' returns void, but you make it a rvalue expression".
 SD0206,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0206?sort_id=4018391,The specified dynamic invocation method doesn't exist.,The dynamic invocation method name '{0}' doesn't exist.
 SD0301,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0301?sort_id=3614979,The member can't be invoked because they are reserved.,The member '{0}' can't be invoked because they are reserved.
-SD0302,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575,Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'.,Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.
-SD0303,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107,Please use the default-value field to avoid instantiation.,Please use the read-only field '{0}.{1}' to avoid instantiation.
-SD0304,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455,Please use the specific property to simplify the invocation.,Please use the property '{2}{0}.{1}' to simplify the invocation.
+SD0302,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575,Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'.,Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.
+SD0303,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107,Please use the default-value field to avoid instantiation.,Please use the read-only field '{0}.{1}' to avoid instantiation.
+SD0304,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455,Please use the specific property to simplify the invocation.,Please use the property '{2}{0}.{1}' to simplify the invocation.
 SD0305,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0305?sort_id=4041611,The input value in this initializer is invalid.,
-SD0306,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0306?sort_id=4041904,The remove expression in the initializer following with the current constructor has no effect.,The remove expression in the initializer following with the constructor '{0}.{0}()' has no effect.
-SD0307,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4041633,The expression can be simplified.,The expression can be simplified to '{0}'.
-SD0308,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4042333,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.
-SD0309,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633,'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead.,'{0}' expression is unnecessary; Please use object initializer instead.
+SD0306,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0306?sort_id=4041904,The remove expression in the initializer following with the current constructor has no effect.,The remove expression in the initializer following with the constructor '{0}.{0}()' has no effect.
+SD0307,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4041633,The expression can be simplified.,The expression can be simplified to '{0}'.
+SD0308,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4042333,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.
+SD0309,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4041633,'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead.,'{0}' expression is unnecessary; Please use object initializer instead.
 SD0310,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0310?sort_id=4050196,"Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case".,
 SD0311,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0311?sort_id=4050414,Invalid format string in 'SudokuGrid.ToString'.,Invalid format string in SudokuGrid.ToString.
 SD0401,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0401?sort_id=4021986,Please use nameof expression instead.,
 SD0402,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0402?sort_id=4024928,This attribute must contain the specified number of parameters.,'{0}' must contain at least {1} parameters.
 SS0101,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0101?sort_id=3622115,Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.,
-SS0102,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3629641,Unnecessary interpolation leading character '$'.,
+SS0102,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3629641,Unnecessary interpolation leading character '$'.,
 SS0201,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0201?sort_id=3622127,"The result of the expression '.ctor(void*, int)' can't be the return value as any methods".,"The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods".
 SS0301,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0301?sort_id=3625073,Replace 'Count() >= value' with 'Take(value).Count() >= value'.,Replace 'Count() >= {0}' with 'Take({0}).Count() >= {0}'.
 SS0401,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0401?sort_id=4019214,Can't apply the operator here because the type is closed enum.,Can't apply 'operator {0}' here because the type is closed enum.
@@ -72,7 +72,7 @@ SS0702,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064,The
 SS0703,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883,Unncessary null-conditional operator '?'.,
 SS0704,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0704?sort_id=4053867,Unncessary null-forgiving operator '!'.,
 SS0705,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0705?sort_id=4077126,Using compound null-coalesce operator '??=' is unncessary.,"Using compound null-coalesce operator '??=' is unncessary, because the left-side expression '{0}' is not null here".
-SS9001,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356,Available prepositional iteration condition expression.,
-SS9002,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679,Redundant array creation statement.,
+SS9001,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356,Available prepositional iteration condition expression.,
+SS9002,,,,https://gitee.com/SunnieShine/Sudoku/wikis/SS9002?sort_id=4047679,Redundant array creation statement.,
 SS9003,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS9003?sort_id=4067861,Unncessary discards.,
 SS9004,,,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS9005?sort_id=4071700,"Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing".,
