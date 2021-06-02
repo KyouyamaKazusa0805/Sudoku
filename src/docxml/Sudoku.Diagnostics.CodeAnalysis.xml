@@ -2070,39 +2070,5 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.IO.DiagnosticResultOutput">
-            <summary>
-            Defines a diagnostic result output.
-            </summary>
-            <remarks>
-            Please note that this class is only available in debug environment and .NET 5.0 or
-            .NET standard 2.0 enviornment; otherwise, an compiler error.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.IO.DiagnosticResultOutput.HelpLinkType">
-            <summary>
-            The type information instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.IO.DiagnosticResultOutput.TitleType">
-            <summary>
-            The type information instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.IO.DiagnosticResultOutput.MessageType">
-            <summary>
-            The type information instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.IO.DiagnosticResultOutput.Output(System.String,System.String)">
-            <summary>
-            Output the diagnostic information and converts it to <c>*.csv</c> format.
-            </summary>
-            <param name="diagnosticResultIdPath">The diagnostic reusult ID path.</param>
-            <param name="outputPath">The path that stores the output file.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the <paramref name="outputPath"/> doesn't end with <c>csv</c>.
-            </exception>
-        </member>
     </members>
 </doc>
