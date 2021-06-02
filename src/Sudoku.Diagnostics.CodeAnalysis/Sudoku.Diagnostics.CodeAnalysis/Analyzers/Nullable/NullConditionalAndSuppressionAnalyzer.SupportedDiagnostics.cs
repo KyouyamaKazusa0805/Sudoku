@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Unncessary null-conditional operator <c>?</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0703 = new(
-			DiagnosticIds.SS0703, Titles.SS0703, Messages.SS0703, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0703
+			DiagnosticIds.SS0703, Titles.SS0703, Messages.SS0703, Categories.SS0703,
+			DiagnosticSeverities.SS0703, true, helpLinkUri: HelpLinks.SS0703
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Unncessary null-forgiving operator <c>!</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0704 = new(
-			DiagnosticIds.SS0704, Titles.SS0704, Messages.SS0704, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0704
+			DiagnosticIds.SS0704, Titles.SS0704, Messages.SS0704, Categories.SS0704,
+			DiagnosticSeverities.SS0704, true, helpLinkUri: HelpLinks.SS0704
 		);
 
 

@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (<see langword="stackalloc"/> or <see langword="new"/> expression is unnecessary).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0309 = new(
-			DiagnosticIds.SD0309, Titles.SD0309, Messages.SD0309, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0309
+			DiagnosticIds.SD0309, Titles.SD0309, Messages.SD0309, Categories.SD0309,
+			DiagnosticSeverities.SD0309, true, helpLinkUri: HelpLinks.SD0309
 		);
 
 

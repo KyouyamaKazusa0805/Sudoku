@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The member can't be invoked because they are reserved).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0301 = new(
-			DiagnosticIds.SD0301, Titles.SD0301, Messages.SD0301, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0301
+			DiagnosticIds.SD0301, Titles.SD0301, Messages.SD0301, Categories.SD0301,
+			DiagnosticSeverities.SD0301, true, helpLinkUri: HelpLinks.SD0301
 		);
 
 

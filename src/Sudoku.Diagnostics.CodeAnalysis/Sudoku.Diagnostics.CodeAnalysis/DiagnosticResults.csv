@@ -1,4 +1,4 @@
-ID,Level,Category,Has Code Fix,Help Link,Title,Message Format
+ID,Severity,Category,Has Code Fix,Help Link,Title,Message Format
 SD0101,Error,StaticTechniqueProperties,,https://gitee.com/SunnieShine/Sudoku/wikis/SD0101?sort_id=3599824,A property named 'Properties' expected.,
 SD0102,Error,StaticTechniqueProperties,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0102?sort_id=3599808,The property 'Properties' must be public.,
 SD0103,Error,StaticTechniqueProperties,x,https://gitee.com/SunnieShine/Sudoku/wikis/SD0103?sort_id=3621783,The property 'Properties' must be static.,
@@ -38,9 +38,9 @@ SS0502,Warning,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_i
 SS0503,Warning,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0503?sort_id=4025305,Deconstruction methods must return void.,
 SS0504,Warning,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793,Deconstruction methods must be public.,
 SS0505,Warning,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794,All parameters in deconstruction methods should be out parameters.,
-SS0506,Warning,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0506?sort_id=4056812,"The assignment statement isn't a simple variable one, but an expression".,The expression '{0}' should be a simple variable in deconstruction method assignments.
+SS0506,Warning,Usage,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0506?sort_id=4056812,"The assignment statement isn't a simple variable one, but an expression".,The expression '{0}' should be a simple variable in deconstruction method assignments.
 SS0507,Info,Usage,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0507?sort_id=4056821,The parameter should be corresponded to a certain instance field or instance property in this type.,The parameter '{0}' should be corresponded to a certain instance field or instance property in this type.
-SS0508,Info,Usage,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0508?sort_id=4064196,"The type has already contained a deconstruction method that holds the same number of parameters of this method, so this method won't work".,
+SS0508,Info,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0508?sort_id=4064196,"The type has already contained a deconstruction method that holds the same number of parameters of this method, so this method won't work".,
 SS0601,Info,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0601?sort_id=4049130,Unnecessary explicit type pattern.,
 SS0602,Info,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0602?sort_id=4049132,The pattern can be simplify to 'is null'.,
 SS0603,Info,Design,x,https://gitee.com/SunnieShine/Sudoku/wikis/SS0603?sort_id=4049133,The pattern can be simplify to 'is not null'.,

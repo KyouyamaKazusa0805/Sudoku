@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (This discard can be omitted in the current positional pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0607 = new(
-			DiagnosticIds.SS0607, Titles.SS0607, Messages.SS0607, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0607
+			DiagnosticIds.SS0607, Titles.SS0607, Messages.SS0607, Categories.SS0607,
+			DiagnosticSeverities.SS0607, true, helpLinkUri: HelpLinks.SS0607
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (This discard can be omitted in the current positional pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0613 = new(
-			DiagnosticIds.SS0613, Titles.SS0613, Messages.SS0613, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0613
+			DiagnosticIds.SS0613, Titles.SS0613, Messages.SS0613, Categories.SS0613,
+			DiagnosticSeverities.SS0613, true, helpLinkUri: HelpLinks.SS0613
 		);
 
 

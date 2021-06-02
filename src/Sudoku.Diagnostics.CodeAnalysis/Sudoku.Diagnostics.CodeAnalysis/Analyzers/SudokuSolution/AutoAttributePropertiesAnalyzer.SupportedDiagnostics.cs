@@ -10,11 +10,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4021986&amp;doc_id=633030">
 		/// SD0401
 		/// </a>
-		/// diagnostic result (Please use nameof expression instead of string literal).
+		/// diagnostic result (Please use <see langword="nameof"/> expression instead of string literal).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0401 = new(
-			DiagnosticIds.SD0401, Titles.SD0401, Messages.SD0401, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0401
+			DiagnosticIds.SD0401, Titles.SD0401, Messages.SD0401, Categories.SD0401,
+			DiagnosticSeverities.SD0401, true, helpLinkUri: HelpLinks.SD0401
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (This attribute must contain the specified number of parameters).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0402 = new(
-			DiagnosticIds.SD0402, Titles.SD0402, Messages.SD0402, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0402
+			DiagnosticIds.SD0402, Titles.SD0402, Messages.SD0402, Categories.SD0402,
+			DiagnosticSeverities.SD0402, true, helpLinkUri: HelpLinks.SD0402
 		);
 
 

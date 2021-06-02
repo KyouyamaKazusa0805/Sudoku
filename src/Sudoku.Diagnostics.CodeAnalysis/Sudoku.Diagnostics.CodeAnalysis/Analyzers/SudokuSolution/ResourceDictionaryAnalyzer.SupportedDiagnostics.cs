@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The specified key can't be found in the resource dictionary).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0201 = new(
-			DiagnosticIds.SD0201, Titles.SD0201, Messages.SD0201, Categories.ResourceDictionary,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0201
+			DiagnosticIds.SD0201, Titles.SD0201, Messages.SD0201, Categories.SD0201,
+			DiagnosticSeverities.SD0201, true, helpLinkUri: HelpLinks.SD0201
 		);
 
 

@@ -14,8 +14,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// compound null-coalesce operator <c>??=</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0701 = new(
-			DiagnosticIds.SS0701, Titles.SS0701, Messages.SS0701, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0701
+			DiagnosticIds.SS0701, Titles.SS0701, Messages.SS0701, Categories.SS0701,
+			DiagnosticSeverities.SS0701, true, helpLinkUri: HelpLinks.SS0701
 		);
 
 		/// <summary>
@@ -26,8 +26,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Using compound null-coalesce operator <c>??=</c> is unncessary).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0705 = new(
-			DiagnosticIds.SS0705, Titles.SS0705, Messages.SS0705, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0705
+			DiagnosticIds.SS0705, Titles.SS0705, Messages.SS0705, Categories.SS0705,
+			DiagnosticSeverities.SS0705, true, helpLinkUri: HelpLinks.SS0705
 		);
 
 

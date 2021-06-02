@@ -14,8 +14,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// can be omitted).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0626 = new(
-			DiagnosticIds.SS0626, Titles.SS0626, Messages.SS0626, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0626
+			DiagnosticIds.SS0626, Titles.SS0626, Messages.SS0626, Categories.SS0626,
+			DiagnosticSeverities.SS0626, true, helpLinkUri: HelpLinks.SS0626
 		);
 
 

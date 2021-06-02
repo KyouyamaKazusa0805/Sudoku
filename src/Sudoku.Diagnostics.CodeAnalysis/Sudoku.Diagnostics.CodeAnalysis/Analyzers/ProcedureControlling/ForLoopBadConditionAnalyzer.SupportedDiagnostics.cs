@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Available prepositional iteration condition expression).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS9001 = new(
-			DiagnosticIds.SS9001, Titles.SS9001, Messages.SS9001, Categories.Performance,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS9001
+			DiagnosticIds.SS9001, Titles.SS9001, Messages.SS9001, Categories.SS9001,
+			DiagnosticSeverities.SS9001, true, helpLinkUri: HelpLinks.SS9001
 		);
 
 

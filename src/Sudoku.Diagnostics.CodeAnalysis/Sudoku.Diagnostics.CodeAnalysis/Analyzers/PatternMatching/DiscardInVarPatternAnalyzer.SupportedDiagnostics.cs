@@ -14,8 +14,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// may not take any effects).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0611 = new(
-			DiagnosticIds.SS0611, Titles.SS0611, Messages.SS0611, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0611
+			DiagnosticIds.SS0611, Titles.SS0611, Messages.SS0611, Categories.SS0611,
+			DiagnosticSeverities.SS0611, true, helpLinkUri: HelpLinks.SS0611
 		);
 
 		/// <summary>
@@ -27,8 +27,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// discards <see langword="_"/> in a <see langword="var"/> deconstruction pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0612 = new(
-			DiagnosticIds.SS0612, Titles.SS0612, Messages.SS0612, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0612
+			DiagnosticIds.SS0612, Titles.SS0612, Messages.SS0612, Categories.SS0612,
+			DiagnosticSeverities.SS0612, true, helpLinkUri: HelpLinks.SS0612
 		);
 
 

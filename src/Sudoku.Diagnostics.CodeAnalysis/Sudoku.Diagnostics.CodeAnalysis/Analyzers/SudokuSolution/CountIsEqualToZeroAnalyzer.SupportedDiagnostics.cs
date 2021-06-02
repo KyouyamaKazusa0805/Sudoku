@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Replace <c>Count == 0</c> with <c>IsEmpty</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0302 = new(
-			DiagnosticIds.SD0302, Titles.SD0302, Messages.SD0302, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0302
+			DiagnosticIds.SD0302, Titles.SD0302, Messages.SD0302, Categories.SD0302,
+			DiagnosticSeverities.SD0302, true, helpLinkUri: HelpLinks.SD0302
 		);
 
 

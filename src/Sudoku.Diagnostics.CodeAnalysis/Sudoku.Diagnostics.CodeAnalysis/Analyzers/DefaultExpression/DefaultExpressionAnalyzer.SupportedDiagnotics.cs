@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Please use the field <c>Empty</c> or <c>Undefined</c> to avoid instantiation).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0303 = new(
-			DiagnosticIds.SD0303, Titles.SD0303, Messages.SD0303, Categories.Performance,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0303
+			DiagnosticIds.SD0303, Titles.SD0303, Messages.SD0303, Categories.SD0303,
+			DiagnosticSeverities.SD0303, true, helpLinkUri: HelpLinks.SD0303
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Please use the specific property to simplify the invocation).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0304 = new(
-			DiagnosticIds.SD0304, Titles.SD0304, Messages.SD0304, Categories.Performance,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0304
+			DiagnosticIds.SD0304, Titles.SD0304, Messages.SD0304, Categories.SD0304,
+			DiagnosticSeverities.SD0304, true, helpLinkUri: HelpLinks.SD0304
 		);
 
 

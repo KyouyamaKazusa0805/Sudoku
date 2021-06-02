@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Redundant array creation statement).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS9002 = new(
-			DiagnosticIds.SS9002, Titles.SS9002, Messages.SS9002, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS9002
+			DiagnosticIds.SS9002, Titles.SS9002, Messages.SS9002, Categories.SS9002,
+			DiagnosticSeverities.SS9002, true, helpLinkUri: HelpLinks.SS9002
 		);
 
 

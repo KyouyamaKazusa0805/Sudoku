@@ -14,8 +14,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// with keyword <see langword="and"/> to a single property pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0621 = new(
-			DiagnosticIds.SS0621, Titles.SS0621, Messages.SS0621, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0621
+			DiagnosticIds.SS0621, Titles.SS0621, Messages.SS0621, Categories.SS0621,
+			DiagnosticSeverities.SS0621, true, helpLinkUri: HelpLinks.SS0621
 		);
 
 		/// <summary>
@@ -27,8 +27,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// with keyword <see langword="or"/> to a single property pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0622 = new(
-			DiagnosticIds.SS0622, Titles.SS0622, Messages.SS0622, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0622
+			DiagnosticIds.SS0622, Titles.SS0622, Messages.SS0622, Categories.SS0622,
+			DiagnosticSeverities.SS0622, true, helpLinkUri: HelpLinks.SS0622
 		);
 
 

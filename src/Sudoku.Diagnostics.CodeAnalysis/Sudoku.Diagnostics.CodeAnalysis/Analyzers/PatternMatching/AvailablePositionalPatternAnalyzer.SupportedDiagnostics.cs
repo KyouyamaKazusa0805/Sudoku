@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The expression can be simplifiy via using positional pattern matching).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0606 = new(
-			DiagnosticIds.SS0606, Titles.SS0606, Messages.SS0606, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0606
+			DiagnosticIds.SS0606, Titles.SS0606, Messages.SS0606, Categories.SS0606,
+			DiagnosticSeverities.SS0606, true, helpLinkUri: HelpLinks.SS0606
 		);
 
 

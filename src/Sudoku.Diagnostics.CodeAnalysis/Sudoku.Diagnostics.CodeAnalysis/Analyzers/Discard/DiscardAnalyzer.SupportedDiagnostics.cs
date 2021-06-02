@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Unnecessary discards).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS9003 = new(
-			DiagnosticIds.SS9003, Titles.SS9003, Messages.SS9003, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS9003
+			DiagnosticIds.SS9003, Titles.SS9003, Messages.SS9003, Categories.SS9003,
+			DiagnosticSeverities.SS9003, true, helpLinkUri: HelpLinks.SS9003
 		);
 
 

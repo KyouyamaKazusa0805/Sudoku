@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Pattern <c><see langword="not null"/></c> is redundant; please remove it).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0618 = new(
-			DiagnosticIds.SS0618, Titles.SS0618, Messages.SS0618, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0618
+			DiagnosticIds.SS0618, Titles.SS0618, Messages.SS0618, Categories.SS0618,
+			DiagnosticSeverities.SS0618, true, helpLinkUri: HelpLinks.SS0618
 		);
 
 		/// <summary>
@@ -26,8 +26,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// the keyword <see langword="or"/> is redundant; please remove it).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0619 = new(
-			DiagnosticIds.SS0619, Titles.SS0619, Messages.SS0619, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0619
+			DiagnosticIds.SS0619, Titles.SS0619, Messages.SS0619, Categories.SS0619,
+			DiagnosticSeverities.SS0619, true, helpLinkUri: HelpLinks.SS0619
 		);
 
 

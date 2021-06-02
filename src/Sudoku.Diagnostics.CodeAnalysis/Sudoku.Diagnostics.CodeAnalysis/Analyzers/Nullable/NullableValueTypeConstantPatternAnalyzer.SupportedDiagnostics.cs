@@ -14,8 +14,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// will be suggested to convert to constant pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0605 = new(
-			DiagnosticIds.SS0605, Titles.SS0605, Messages.SS0605, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0605
+			DiagnosticIds.SS0605, Titles.SS0605, Messages.SS0605, Categories.SS0605,
+			DiagnosticSeverities.SS0605, true, helpLinkUri: HelpLinks.SS0605
 		);
 
 

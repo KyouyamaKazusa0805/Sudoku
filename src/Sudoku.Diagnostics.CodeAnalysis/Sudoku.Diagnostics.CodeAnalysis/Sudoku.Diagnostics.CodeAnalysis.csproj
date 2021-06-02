@@ -17,7 +17,6 @@
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\..\required\lang\Resources.en-us.dic" />
 		<AdditionalFiles Include="..\..\..\required\lang\Resources.zh-cn.dic" />
-		<AdditionalFiles Include="SupportedDiagnosticCategories.txt" />
 		<AdditionalFiles Include="DiagnosticResults.csv" />
 	</ItemGroup>
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Text;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -18,8 +16,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// </summary>
 		/// <seealso cref="FlagsAttribute"/>
 		private static readonly DiagnosticDescriptor SS0402 = new(
-			DiagnosticIds.SS0402, Titles.SS0402, Messages.SS0402, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0402
+			DiagnosticIds.SS0402, Titles.SS0402, Messages.SS0402, Categories.SS0402,
+			DiagnosticSeverities.SS0402, true, helpLinkUri: HelpLinks.SS0402
 		);
 
 		/// <summary>
@@ -32,8 +30,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// </summary>
 		/// <seealso cref="FlagsAttribute"/>
 		private static readonly DiagnosticDescriptor SS0403 = new(
-			DiagnosticIds.SS0403, Titles.SS0403, Messages.SS0403, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0403
+			DiagnosticIds.SS0403, Titles.SS0403, Messages.SS0403, Categories.SS0403,
+			DiagnosticSeverities.SS0403, true, helpLinkUri: HelpLinks.SS0403
 		);
 
 

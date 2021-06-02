@@ -11,11 +11,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// SS9004
 		/// </a>
 		/// diagnostic result (Due to recursive member in the <see langword="record"/> type,
-		/// invoking synthesized method ToString will cause stack overflowing).
+		/// invoking synthesized method <c>ToString</c> will cause stack overflowing).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS9004 = new(
-			DiagnosticIds.SS9004, Titles.SS9004, Messages.SS9004, Categories.Design,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SS9004
+			DiagnosticIds.SS9004, Titles.SS9004, Messages.SS9004, Categories.SS9004,
+			DiagnosticSeverities.SS9004, true, helpLinkUri: HelpLinks.SS9004
 		);
 
 

@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The input value in this initializer is invalid).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0305 = new(
-			DiagnosticIds.SD0305, Titles.SD0305, Messages.SD0305, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0305
+			DiagnosticIds.SD0305, Titles.SD0305, Messages.SD0305, Categories.SD0305,
+			DiagnosticSeverities.SD0305, true, helpLinkUri: HelpLinks.SD0305
 		);
 
 		/// <summary>
@@ -26,8 +26,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// following with the constructor has no effect).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0306 = new(
-			DiagnosticIds.SD0306, Titles.SD0306, Messages.SD0306, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0306
+			DiagnosticIds.SD0306, Titles.SD0306, Messages.SD0306, Categories.SD0306,
+			DiagnosticSeverities.SD0306, true, helpLinkUri: HelpLinks.SD0306
 		);
 
 		/// <summary>
@@ -38,8 +38,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The expression can be simplified).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0307 = new(
-			DiagnosticIds.SD0307, Titles.SD0307, Messages.SD0307, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0307
+			DiagnosticIds.SD0307, Titles.SD0307, Messages.SD0307, Categories.SD0307,
+			DiagnosticSeverities.SD0307, true, helpLinkUri: HelpLinks.SD0307
 		);
 
 		/// <summary>
@@ -50,8 +50,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The initializer contains the duplicate value).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0308 = new(
-			DiagnosticIds.SD0308, Titles.SD0308, Messages.SD0308, Categories.Usage,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SD0308
+			DiagnosticIds.SD0308, Titles.SD0308, Messages.SD0308, Categories.SD0308,
+			DiagnosticSeverities.SD0308, true, helpLinkUri: HelpLinks.SD0308
 		);
 
 

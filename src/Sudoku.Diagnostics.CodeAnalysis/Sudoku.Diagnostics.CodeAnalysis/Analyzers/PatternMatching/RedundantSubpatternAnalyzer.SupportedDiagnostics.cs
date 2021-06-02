@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The positional subpattern is redundant).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0609 = new(
-			DiagnosticIds.SS0609, Titles.SS0609, Messages.SS0609, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0609
+			DiagnosticIds.SS0609, Titles.SS0609, Messages.SS0609, Categories.SS0609,
+			DiagnosticSeverities.SS0609, true, helpLinkUri: HelpLinks.SS0609
 		);
 
 

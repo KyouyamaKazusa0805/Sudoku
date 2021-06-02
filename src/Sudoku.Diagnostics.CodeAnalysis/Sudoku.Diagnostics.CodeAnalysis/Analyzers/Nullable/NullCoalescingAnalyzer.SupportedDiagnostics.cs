@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The expression can be simplified to using null-coalescing expression <c>??</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0702 = new(
-			DiagnosticIds.SS0702, Titles.SS0702, Messages.SS0702, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0702
+			DiagnosticIds.SS0702, Titles.SS0702, Messages.SS0702, Categories.SS0702,
+			DiagnosticSeverities.SS0702, true, helpLinkUri: HelpLinks.SS0702
 		);
 
 

@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Replace <c>Count() >= n</c> with <c>Take(n).Count() >= n</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0301 = new(
-			DiagnosticIds.SS0301, Titles.SS0301, Messages.SS0301, Categories.Performance,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0301
+			DiagnosticIds.SS0301, Titles.SS0301, Messages.SS0301, Categories.SS0301,
+			DiagnosticSeverities.SS0301, true, helpLinkUri: HelpLinks.SS0301
 		);
 
 

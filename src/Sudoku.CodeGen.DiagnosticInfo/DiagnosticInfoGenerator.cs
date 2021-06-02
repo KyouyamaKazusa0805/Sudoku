@@ -16,40 +16,15 @@ namespace Sudoku.CodeGen.DiagnosticInfo
 		/// <summary>
 		/// Indicates the name that stores the diagnostic information.
 		/// </summary>
-		private const string CsvTableName = "DiagnosticResults";
-
-		/// <summary>
-		/// Indicates the name that stores the diagnostic categories.
-		/// </summary>
-		private const string CategoriesTableName = "SupportedDiagnosticCategories";
+		private const string CsvTableName = "DiagnosticResults.csv";
 
 
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			var additionalFiles = context.AdditionalFiles;
+			string csvTableFilePath = context.AdditionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 
-			string
-				csvTableFilePath = additionalFiles.First(
-					static file => file.Path.Contains(CsvTableName)
-				).Path,
-				categoriesTableFilePath = additionalFiles.First(
-					static file => file.Path.Contains(CategoriesTableName)
-				).Path;
-
-			GenerateDiagnosticInfoList(context, csvTableFilePath);
-			GenerateDiagnosticCategories(context, categoriesTableFilePath);
-		}
-
-		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context)
-		{
-		}
-
-
-		private static void GenerateDiagnosticInfoList(GeneratorExecutionContext context, string path)
-		{
-			string[] list = File.ReadAllLines(path);
+			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 
 			string[][] info = (from line in withoutHeader select SplitInfo(line)).ToArray();
@@ -58,6 +33,18 @@ namespace Sudoku.CodeGen.DiagnosticInfo
 				from line in info
 				let diagnosticId = line[0]
 				select $"public const string {diagnosticId} = nameof({diagnosticId});"
+			);
+			string severitiesClause = string.Join(
+				"\r\n\t\t",
+				from line in info
+				let pair = (Id: line[0], Severity: line[1])
+				select $@"public const DiagnosticSeverity {pair.Id} = DiagnosticSeverity.{pair.Severity};"
+			);
+			string categoryClause = string.Join(
+				"\r\n\t\t",
+				from line in info
+				let pair = (Id: line[0], Category: line[2])
+				select $@"public const string {pair.Id} = ""{pair.Category}"";"
 			);
 			string helpLinkClause = string.Join(
 				"\r\n\t\t",
@@ -91,6 +78,38 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 	internal static class DiagnosticIds
 	{{
 		{diagnosticIdClause}
+	}}
+}}"
+			);
+
+			context.AddSource(
+				"DiagnosticSeverities.g.cs",
+				$@"#pragma warning disable 1591
+
+using Microsoft.CodeAnalysis;
+
+#nullable enable
+
+namespace Sudoku.Diagnostics.CodeAnalysis
+{{
+	internal static class DiagnosticSeverities
+	{{
+		{severitiesClause}
+	}}
+}}"
+			);
+
+			context.AddSource(
+				"Categories.g.cs",
+				$@"#pragma warning disable 1591
+
+#nullable enable
+
+namespace Sudoku.Diagnostics.CodeAnalysis
+{{
+	internal static class Categories
+	{{
+		{categoryClause}
 	}}
 }}"
 			);
@@ -141,32 +160,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 		}
 
-		private static void GenerateDiagnosticCategories(GeneratorExecutionContext context, string path)
+		/// <inheritdoc/>
+		public void Initialize(GeneratorInitializationContext context)
 		{
-			string[] categoryOrEmptyLines = File.ReadAllLines(path);
-			string resultList = string.Join(
-				"\r\n\t\t",
-				from categoryOrEmptyLine in categoryOrEmptyLines
-				select string.IsNullOrWhiteSpace(categoryOrEmptyLine)
-					? string.Empty
-					: $"public const string {categoryOrEmptyLine} = nameof({categoryOrEmptyLine});"
-			);
-
-			context.AddSource(
-				"Categories.g.cs",
-				$@"#pragma warning disable 1591
-
-#nullable enable
-
-namespace Sudoku.Diagnostics.CodeAnalysis
-{{
-	internal static class Categories
-	{{
-		{resultList}
-	}}
-}}"
-			);
 		}
+
 
 		private static unsafe string[] SplitInfo(string line)
 		{

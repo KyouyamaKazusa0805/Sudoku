@@ -15,8 +15,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// please change the clause to var pattern or other valid patterns, or just remove it).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0614 = new(
-			DiagnosticIds.SS0614, Titles.SS0614, Messages.SS0614, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0614
+			DiagnosticIds.SS0614, Titles.SS0614, Messages.SS0614, Categories.SS0614,
+			DiagnosticSeverities.SS0614, true, helpLinkUri: HelpLinks.SS0614
 		);
 
 

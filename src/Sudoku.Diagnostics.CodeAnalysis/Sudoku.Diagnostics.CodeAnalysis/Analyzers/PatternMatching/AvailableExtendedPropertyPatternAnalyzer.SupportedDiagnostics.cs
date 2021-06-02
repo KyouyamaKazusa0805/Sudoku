@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Available simplification for extended property patterns).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0624 = new(
-			DiagnosticIds.SS0624, Titles.SS0624, Messages.SS0624, Categories.Design,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SS0624
+			DiagnosticIds.SS0624, Titles.SS0624, Messages.SS0624, Categories.SS0624,
+			DiagnosticSeverities.SS0624, true, helpLinkUri: HelpLinks.SS0624
 		);
 
 

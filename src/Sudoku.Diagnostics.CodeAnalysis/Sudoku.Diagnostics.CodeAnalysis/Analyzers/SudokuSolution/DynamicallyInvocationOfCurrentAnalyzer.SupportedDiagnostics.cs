@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The specified method can't be found and called).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0202 = new(
-			DiagnosticIds.SD0202, Titles.SD0202, Messages.SD0202, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0202
+			DiagnosticIds.SD0202, Titles.SD0202, Messages.SD0202, Categories.SD0202,
+			DiagnosticSeverities.SD0202, true, helpLinkUri: HelpLinks.SD0202
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The number of arguments dismatched in this dynamically invocation).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0203 = new(
-			DiagnosticIds.SD0203, Titles.SD0203, Messages.SD0203, Categories.ResourceDictionary,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0203
+			DiagnosticIds.SD0203, Titles.SD0203, Messages.SD0203, Categories.SD0203,
+			DiagnosticSeverities.SD0203, true, helpLinkUri: HelpLinks.SD0203
 		);
 
 		/// <summary>
@@ -37,8 +37,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The argument type dismatched in this dynamically invocation).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0204 = new(
-			DiagnosticIds.SD0204, Titles.SD0204, Messages.SD0204, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0204
+			DiagnosticIds.SD0204, Titles.SD0204, Messages.SD0204, Categories.SD0204,
+			DiagnosticSeverities.SD0204, true, helpLinkUri: HelpLinks.SD0204
 		);
 
 		/// <summary>
@@ -49,8 +49,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The method returns void, but you make it an rvalue expression).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0205 = new(
-			DiagnosticIds.SD0205, Titles.SD0205, Messages.SD0205, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0205
+			DiagnosticIds.SD0205, Titles.SD0205, Messages.SD0205, Categories.SD0205,
+			DiagnosticSeverities.SD0205, true, helpLinkUri: HelpLinks.SD0205
 		);
 
 		/// <summary>
@@ -61,8 +61,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (The specified key can't be found in the resource dictionary).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0206 = new(
-			DiagnosticIds.SD0206, Titles.SD0206, Messages.SD0206, Categories.ResourceDictionary,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0206
+			DiagnosticIds.SD0206, Titles.SD0206, Messages.SD0206, Categories.SD0206,
+			DiagnosticSeverities.SD0206, true, helpLinkUri: HelpLinks.SD0206
 		);
 
 

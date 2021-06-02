@@ -8,7 +8,8 @@ using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
-	/// Indicates an analyzer that analyzes the code.
+	/// Indicates an analyzer that analyzes the code for <see langword="record"/> <c>ToString</c> invocation,
+	/// and the type is recursive.
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
 	public sealed partial class RecordToStringAnalyzer : DiagnosticAnalyzer

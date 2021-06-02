@@ -14,11 +14,6 @@
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.CategoriesTableName">
-            <summary>
-            Indicates the name that stores the diagnostic categories.
-            </summary>
-        </member>
         <member name="M:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>

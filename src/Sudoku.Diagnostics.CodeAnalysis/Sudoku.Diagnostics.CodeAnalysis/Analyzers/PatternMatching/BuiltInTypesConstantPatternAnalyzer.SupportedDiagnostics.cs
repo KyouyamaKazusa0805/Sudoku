@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Unnecessary constant pattern for the variable of the same type).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0604 = new(
-			DiagnosticIds.SS0604, Titles.SS0604, Messages.SS0604, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0604
+			DiagnosticIds.SS0604, Titles.SS0604, Messages.SS0604, Categories.SS0604,
+			DiagnosticSeverities.SS0604, true, helpLinkUri: HelpLinks.SS0604
 		);
 
 

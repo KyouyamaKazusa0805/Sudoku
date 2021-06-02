@@ -13,8 +13,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Repeated property path).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0623 = new(
-			DiagnosticIds.SS0623, Titles.SS0623, Messages.SS0623, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0623
+			DiagnosticIds.SS0623, Titles.SS0623, Messages.SS0623, Categories.SS0623,
+			DiagnosticSeverities.SS0623, true, helpLinkUri: HelpLinks.SS0623
 		);
 
 		/// <summary>
@@ -25,8 +25,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Repeated property path in extended property pattern).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0625 = new(
-			DiagnosticIds.SS0625, Titles.SS0625, Messages.SS0625, Categories.Design,
-			DiagnosticSeverity.Warning, true, helpLinkUri: HelpLinks.SS0625
+			DiagnosticIds.SS0625, Titles.SS0625, Messages.SS0625, Categories.SS0625,
+			DiagnosticSeverities.SS0625, true, helpLinkUri: HelpLinks.SS0625
 		);
 
 

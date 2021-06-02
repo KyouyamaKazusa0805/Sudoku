@@ -15,8 +15,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// intelligent-handling case).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0310 = new(
-			DiagnosticIds.SD0310, Titles.SD0310, Messages.SD0310, Categories.Usage,
-			DiagnosticSeverity.Info, true, helpLinkUri: HelpLinks.SD0310
+			DiagnosticIds.SD0310, Titles.SD0310, Messages.SD0310, Categories.SD0310,
+			DiagnosticSeverities.SD0310, true, helpLinkUri: HelpLinks.SD0310
 		);
 
 		/// <summary>
@@ -27,8 +27,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// diagnostic result (Invalid format string in <c>SudokuGrid.ToString</c>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SD0311 = new(
-			DiagnosticIds.SD0311, Titles.SD0311, Messages.SD0311, Categories.Usage,
-			DiagnosticSeverity.Error, true, helpLinkUri: HelpLinks.SD0311
+			DiagnosticIds.SD0311, Titles.SD0311, Messages.SD0311, Categories.SD0311,
+			DiagnosticSeverities.SD0311, true, helpLinkUri: HelpLinks.SD0311
 		);
 
 
