@@ -9,9 +9,9 @@
             Indicates the generator that generates the diagnostic information used in code analysis.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.IdTableName">
+        <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.CsvTableName">
             <summary>
-            Indicates the name that stores the diagnostic IDs.
+            Indicates the name that stores the diagnostic information.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGen.DiagnosticInfo.DiagnosticInfoGenerator.CategoriesTableName">

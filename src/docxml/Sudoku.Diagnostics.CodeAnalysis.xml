@@ -1505,9 +1505,10 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption">
             <summary>
             Defines an option that uses and specifies the case converting, which is used in
-            <see cref="!:StringEx.ToCamelCase(string)"/> or <see cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)"/>.
+            <see cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String,Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption)"/>
+            or <see cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)"/>.
             </summary>
-            <seealso cref="!:StringEx.ToCamelCase(string)"/>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String,Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption)"/>
             <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)"/>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption.None">
@@ -1816,21 +1817,6 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A task that handles this operation.</returns>
             <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.HelpLinks">
-            <summary>
-            Provides help links.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Titles">
-            <summary>
-            Provides the titles.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Messages">
-            <summary>
-            Provides the messages.
-            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixTitles">
             <summary>
