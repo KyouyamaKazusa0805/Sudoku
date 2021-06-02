@@ -1,8 +1,12 @@
-﻿using System;
+﻿#if DEBUG && (NET5_0 || NETSTANDARD2_0)
 
-object? o = 13;
+using System.IO;
+using Sudoku.Diagnostics.CodeAnalysis.IO;
+using static System.Environment;
 
-if (o is not not not not not 3)
-{
-	Console.WriteLine(o);
-}
+DiagnosticResultOutput.Output(
+	"SupportedDiagnosticIds.txt",
+	Path.Combine(GetFolderPath(SpecialFolder.Desktop), "Result.csv")
+);
+
+#endif
