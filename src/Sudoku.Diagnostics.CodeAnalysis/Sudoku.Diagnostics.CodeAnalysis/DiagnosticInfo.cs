@@ -73,6 +73,7 @@
 		public const string SS0623 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0623?sort_id=4071853";
 		public const string SS0624 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0624?sort_id=4071684";
 		public const string SS0625 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0625?sort_id=4071856";
+		public const string SS0626 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0626?sort_id=4079250";
 		public const string SS0701 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857";
 		public const string SS0702 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064";
 		public const string SS0703 = "https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883";
@@ -157,6 +158,7 @@
 		public const string SS0623 = "Repeated property path; try to integrate to one using keyword 'and' as the connection";
 		public const string SS0624 = "Available simplification for extended property patterns";
 		public const string SS0625 = "Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection";
+		public const string SS0626 = "Keyword 'not' repeats; A pair of keyword 'not' can be omitted";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce operator '??='";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator '??'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";
@@ -241,6 +243,7 @@
 		public const string SS0623 = "Repeated property path; try to integrate to one using keyword 'and' as the connection";
 		public const string SS0624 = "Available simplification for extended property patterns: '{0}'";
 		public const string SS0625 = "Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection";
+		public const string SS0626 = "Keyword 'not' repeats; A pair of keyword 'not' can be omitted";
 		public const string SS0701 = "The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'";
 		public const string SS0702 = "The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'";
 		public const string SS0703 = "Unncessary null-conditional operator '?'";

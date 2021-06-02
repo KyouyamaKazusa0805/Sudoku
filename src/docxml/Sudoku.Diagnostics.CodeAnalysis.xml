@@ -706,6 +706,27 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the pair of the keyword <see langword="not"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer.SS0626">
+            <summary>
+            Indicates the
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4079250&amp;doc_id=633030">
+            SS0626
+            </a>
+            diagnostic result (Keyword <see langword="not"/> repeats; A pair of keyword <see langword="not"/>
+            can be omitted).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the redundant subpattern.

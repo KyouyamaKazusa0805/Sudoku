@@ -1,15 +1,8 @@
 ﻿using System;
 
-var c = new C();
-c.Inner = c;
+object? o = 13;
 
-Console.WriteLine(c.ToString());
-
-record C
+if (o is not not not not not 3)
 {
-	public int X { get; init; }
-	public int Y { get; init; }
-	public int Z { get; init; }
-
-	public C? Inner { get; set; }
+	Console.WriteLine(o);
 }

@@ -71,6 +71,7 @@ SS0622 | Design | Info | AvailableAndOrPatternsToMergeAnalyzer, [Documentation](
 SS0623 | Design | Warning | RepeatedPropertyPathAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0623?sort_id=4071853)
 SS0624 | Design | Info | AvailableExtendedPropertyPatternAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0624?sort_id=4071684)
 SS0625 | Design | Warning | RepeatedPropertyPathAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0625?sort_id=4071856)
+SS0626 | Design | Warning | PairKeywordNotAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0626?sort_id=4079250)
 SS0701 | Design | Info | CompoundNullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0701?sort_id=4053857) 
 SS0702 | Design | Info | NullCoalescingAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0702?sort_id=4059064)
 SS0703 | Design | Info | NullConditionalAnalyzer, [Documentation](https://gitee.com/SunnieShine/Sudoku/wikis/SS0703?sort_id=4053883)
