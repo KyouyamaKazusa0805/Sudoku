@@ -33,7 +33,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			if (
 				originalNode is not MethodDeclarationSyntax
 				{
-					Parent: var parentNode,
+					Parent: { } parentNode,
 					Identifier: { ValueText: "Deconstruct" } identifier,
 					ParameterList: { Parameters: { Count: var parametersCount } parameters },
 					Modifiers: var modifiers,
@@ -41,15 +41,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Body: var body,
 					ExpressionBody: var expressionBody
 				} node
-				/*slice-pattern*/
-				|| parentNode is ClassDeclarationSyntax { Modifiers: var classModifiers }
-				&& classModifiers.Any(SyntaxKind.StaticKeyword)
 			)
 			{
 				return;
 			}
 
-			if (semanticModel.GetOperation(returnType) is not { Type: { } type })
+			if (semanticModel.GetDeclaredSymbol(parentNode) is { IsStatic: true })
+			{
+				return;
+			}
+
+			if (semanticModel.GetTypeInfo(returnType).Type is not { } type)
 			{
 				return;
 			}
@@ -104,7 +106,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void CheckSudokuSS0502AndSS0504(
 			SyntaxNodeAnalysisContext context, SyntaxTokenList modifiers, SyntaxToken identifier)
 		{
-			if (modifiers.Any(SyntaxKind.StaticKeyword))
+			if (modifiers.Any(ContainsStaticKeyword))
 			{
 				context.ReportDiagnostic(
 					Diagnostic.Create(
@@ -133,7 +135,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			Compilation compilation)
 		{
 			if (
-				!SymbolEqualityComparer.Default.Equals(
+				SymbolEqualityComparer.Default.Equals(
 					type,
 					compilation.GetSpecialType(SpecialType.System_Void)
 				)
@@ -259,6 +261,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 		}
 
+		private static bool ContainsStaticKeyword(SyntaxToken token) => token.RawKind == (int)SyntaxKind.StaticKeyword;
 		private static bool DoesNotContainPublicKeyword(SyntaxToken token) => token.RawKind != (int)SyntaxKind.PublicKeyword;
 		private static bool DoesNotContainOutKeyword(SyntaxToken token) => token.RawKind != (int)SyntaxKind.OutKeyword;
 	}
