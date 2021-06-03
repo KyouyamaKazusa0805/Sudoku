@@ -110,7 +110,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Diagnostic.Create(
 						descriptor: SS0502,
 						location: identifier.GetLocation(),
-						messageArgs: null
+						messageArgs: null,
+						additionalLocations: new[] { context.Node.GetLocation() }
 					)
 				);
 			}

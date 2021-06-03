@@ -56,7 +56,7 @@
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025305&amp;doc_id=633030">
             SS0503
             </a>
-            diagnostic result (Deconstruction methods must return void).
+            diagnostic result (Deconstruction methods must return <see langword="void"/>).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0504">
@@ -65,7 +65,7 @@
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025793&amp;doc_id=633030">
             SS0504
             </a>
-            diagnostic result (Deconstruction methods must be public).
+            diagnostic result (Deconstruction methods must be <see langword="public"/>).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0505">
@@ -74,7 +74,8 @@
             <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025794&amp;doc_id=633030">
             SS0505
             </a>
-            diagnostic result (All parameters in deconstruction methods should be out parameters).
+            diagnostic result (All parameters in deconstruction methods should use
+            <see langword="out"/> parameters).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0506">
@@ -1757,6 +1758,35 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A task that handles this operation.</returns>
             <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_id=4025301">
+            SD0502
+            </a>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RemoveStaticKeywordAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax,System.Threading.CancellationToken)">
+            <summary>
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="methodDeclaration">
+            The method declarartion node that the diagnostic result occurs.
+            </param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider">
             <summary>

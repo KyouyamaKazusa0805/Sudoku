@@ -34,7 +34,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025305&amp;doc_id=633030">
 		/// SS0503
 		/// </a>
-		/// diagnostic result (Deconstruction methods must return void).
+		/// diagnostic result (Deconstruction methods must return <see langword="void"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0503 = new(
 			DiagnosticIds.SS0503, Titles.SS0503, Messages.SS0503, Categories.SS0503,
@@ -46,7 +46,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025793&amp;doc_id=633030">
 		/// SS0504
 		/// </a>
-		/// diagnostic result (Deconstruction methods must be public).
+		/// diagnostic result (Deconstruction methods must be <see langword="public"/>).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0504 = new(
 			DiagnosticIds.SS0504, Titles.SS0504, Messages.SS0504, Categories.SS0504,
@@ -58,7 +58,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=4025794&amp;doc_id=633030">
 		/// SS0505
 		/// </a>
-		/// diagnostic result (All parameters in deconstruction methods should be out parameters).
+		/// diagnostic result (All parameters in deconstruction methods should use
+		/// <see langword="out"/> parameters).
 		/// </summary>
 		private static readonly DiagnosticDescriptor SS0505 = new(
 			DiagnosticIds.SS0505, Titles.SS0505, Messages.SS0505, Categories.SS0505,
