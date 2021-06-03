@@ -69,7 +69,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					_ => false
 				}
 				select member;
-			CheckSS0506AndSS0507(context, parameters, body, expressionBody, members);
+			CheckSS0506AndSS0507(context, parameters, semanticModel, body, expressionBody, members);
 			CheckSS0508(context, semanticModel, node, identifier, type, parametersCount);
 		}
 
@@ -155,17 +155,24 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSS0506AndSS0507(
 			SyntaxNodeAnalysisContext context, SeparatedSyntaxList<ParameterSyntax> parameters,
-			BlockSyntax? body, ArrowExpressionClauseSyntax? expressionBody, IEnumerable<ISymbol> members)
+			SemanticModel semanticModel, BlockSyntax? body, ArrowExpressionClauseSyntax? expressionBody,
+			IEnumerable<ISymbol> members)
 		{
 			checkSS0507();
 
 			if (body is not null)
 			{
-				checkSS0506(body);
+				foreach (var statement in body.Statements)
+				{
+					if (statement is ExpressionStatementSyntax { Expression: var expr })
+					{
+						checkSS0506(expr);
+					}
+				}
 			}
-			else if (expressionBody is not null)
+			else if (expressionBody is { Expression: var expr })
 			{
-				checkSS0506(expressionBody);
+				checkSS0506(expr);
 			}
 
 			void checkSS0507()
@@ -196,38 +203,27 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
-			void checkSS0506(SyntaxNode body)
+			void checkSS0506(ExpressionSyntax expression)
 			{
-				foreach (var descendant in
-					from descendant in body.DescendantNodes().OfType<BinaryExpressionSyntax>()
-					where descendant.RawKind == (int)SyntaxKind.SimpleAssignmentExpression
-					select descendant)
+				if (expression is not AssignmentExpressionSyntax { Right: var rightExpr })
 				{
-					var rightExpr = descendant.Right;
-					switch (rightExpr)
-					{
-						case IdentifierNameSyntax
-						{
-							Identifier: { ValueText: var possibleDataMemberName }
-						} identifierName
-						when context.SemanticModel.GetOperation(identifierName) is IFieldReferenceOperation:
-						{
-							continue;
-						}
-						default:
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									descriptor: SS0506,
-									location: rightExpr.GetLocation(),
-									messageArgs: new[] { rightExpr.ToString() }
-								)
-							);
-
-							break;
-						}
-					}
+					return;
 				}
+
+				if (rightExpr is IdentifierNameSyntax identifierName
+					&& semanticModel.GetOperation(identifierName) is var operation
+					&& operation is IFieldReferenceOperation or IPropertyReferenceOperation)
+				{
+					return;
+				}
+
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0506,
+						location: rightExpr.GetLocation(),
+						messageArgs: new[] { rightExpr.ToString() }
+					)
+				);
 			}
 		}
 
