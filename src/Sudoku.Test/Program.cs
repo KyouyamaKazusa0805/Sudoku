@@ -11,7 +11,7 @@ Console.WriteLine();
 public sealed class TempStepSearcher : StepSearcher
 {
 	/// <summary></summary>
-	public TechniqueProperties Properties { get; init; } = new(default, "");
+	public static TechniqueProperties Properties { get; set; } = new(default, "");
 
 
 	/// <inheritdoc/>

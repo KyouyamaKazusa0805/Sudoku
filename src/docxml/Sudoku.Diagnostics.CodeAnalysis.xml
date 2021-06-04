@@ -1569,6 +1569,21 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0103CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0104CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0104">SD0104</a>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0104CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0104CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0104CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result

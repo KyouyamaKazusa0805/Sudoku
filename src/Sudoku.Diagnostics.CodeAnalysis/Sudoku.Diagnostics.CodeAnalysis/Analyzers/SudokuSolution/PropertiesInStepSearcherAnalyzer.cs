@@ -146,7 +146,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						? (ISymbol)setMethodSymbol
 						: propertySymbol
 					).Locations[0],
-					messageArgs: null
+					messageArgs: null,
+					additionalLocations: new[] { propertySymbol.Locations[0] }
 				)
 			);
 		}
