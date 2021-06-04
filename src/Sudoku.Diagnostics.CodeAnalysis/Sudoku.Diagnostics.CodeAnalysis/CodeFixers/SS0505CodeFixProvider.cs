@@ -38,12 +38,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(CodeFixTitles.SS0505));
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var ((_, span), _) = diagnostic;
-			var methodDeclaration = (ParameterSyntax)root.FindNode(span, getInnermostNodeForTie: true);
+			var parameter = (ParameterSyntax)root.FindNode(span, getInnermostNodeForTie: true);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SS0505,
-					createChangedDocument: c => AppendOrChangeAccessibilityAsync(document, methodDeclaration, c),
+					createChangedDocument: c => AppendOrChangeAccessibilityAsync(document, parameter, c),
 					equivalenceKey: nameof(CodeFixTitles.SS0505)
 				),
 				diagnostic

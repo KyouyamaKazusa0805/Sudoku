@@ -85,6 +85,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				case >= 'a' and <= 'z':
 				{
 					char* ptr = stackalloc char[@this.Length];
+					Unsafe.InitBlock(ptr, 0, (uint)(sizeof(char) * @this.Length));
+
 					fixed (char* pString = @this)
 					{
 						Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
@@ -97,6 +99,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				case '_' when @this.Length >= 2 && @this[1] is >= 'A' and <= 'Z' or >= 'a' and <= 'z':
 				{
 					char* ptr = stackalloc char[@this.Length - 1];
+					Unsafe.InitBlock(ptr, 0, (uint)(sizeof(char) * (@this.Length - 1)));
+
 					fixed (char* pString = @this)
 					{
 						Unsafe.CopyBlock(ptr, pString + 1, (uint)(sizeof(char) * (@this.Length - 1)));

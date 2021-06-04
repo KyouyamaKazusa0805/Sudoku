@@ -194,11 +194,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						continue;
 					}
 
+					var typeDeclaration = parameter.Parent!.Parent!.Parent!;
+
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0507,
 							location: parameter.GetLocation(),
-							messageArgs: new[] { text }
+							messageArgs: new[] { text },
+							additionalLocations: new[] { typeDeclaration.GetLocation() }
 						)
 					);
 				}

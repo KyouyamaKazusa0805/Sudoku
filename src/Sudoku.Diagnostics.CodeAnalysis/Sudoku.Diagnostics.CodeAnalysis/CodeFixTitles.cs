@@ -19,6 +19,8 @@
 		public const string SS0502 = "Remove keyword 'static'";
 		public const string SS0504 = "Append or change accessibility";
 		public const string SS0505 = "Use 'out' as parameter modifier";
+		public const string SS0507_1 = "Append field";
+		public const string SS0507_2 = "Append property";
 		public const string SS9001 = "Move the expression to the initializer";
 		public const string SS9002 = "Remove redundant array creation statement";
 	}
