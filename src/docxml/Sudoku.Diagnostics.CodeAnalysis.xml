@@ -1530,11 +1530,6 @@
             <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.OrderOfMemberKinds">
-            <summary>
-            To provide a way to insert property into the document, via the current order.
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.FixableDiagnosticIds">
             <inheritdoc/>
         </member>
@@ -1543,16 +1538,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.AppendTechniquePropertyAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="typeDeclaration">The type declarartion node that the diagnostic result occurs.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider">
             <summary>
@@ -1568,18 +1553,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.AppendOrChangeAccessibilityAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="propertyDeclaration">
-            The method declarartion node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0103CodeFixProvider">
             <summary>
@@ -1611,21 +1584,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider.UseDefaultFieldInsteadAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="nodeName">The type name.</param>
-            <param name="operator">The operator string.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1641,21 +1599,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.UseDefaultFieldInsteadAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="typeName">The type name.</param>
-            <param name="fieldName">The member name.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1670,25 +1613,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.UseDefaultFieldInsteadAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.String,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="left">The left-side expression or variable.</param>
-            <param name="notEqualsToken">
-            The string that stores the symbol <c>!</c> or <see cref="F:System.String.Empty"/> to indicate
-            the which kind of the expression is, equals expression or not equals expression.
-            </param>
-            <param name="fieldName">The member name.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider">
             <summary>
@@ -1765,19 +1689,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.RemoveRedundantDollarMarkAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.CSharp.Syntax.InterpolatedStringExpressionSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The syntax root node.</param>
-            <param name="node">
-            The interpolted string expression node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1792,18 +1703,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RemoveStaticKeywordAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="methodDeclaration">
-            The method declarartion node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider">
             <summary>
@@ -1820,18 +1719,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider.AppendOrChangeAccessibilityAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="methodDeclaration">
-            The method declarartion node that the diagnostic result occurs.
-            </param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1846,16 +1733,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider.AppendOrChangeAccessibilityAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="parameter">The parameter node that the diagnostic result occurs.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider">
             <summary>
@@ -1872,28 +1749,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.AppendFieldAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="parameter">The parameter node that the diagnostic result occurs.</param>
-            <param name="typeDeclaration">The type declaration.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.AppendPropertyAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="parameter">The parameter node that the diagnostic result occurs.</param>
-            <param name="typeDeclaration">The type declaration.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1909,21 +1764,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.ExtractVariableAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.SyntaxNode,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="badExpression">The expression node that the diagnostic result occurs.</param>
-            <param name="forLoop">The syntax node for that <see langword="for"/> loop.</param>
-            <param name="suggestedName">Indicates the suggested name.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <paramref name="forLoop"/> is invalid.
-            </exception>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -1938,18 +1778,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RemoveRedundantArrayTypeSyntaxAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.CSharp.Syntax.InitializerExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Threading.CancellationToken)">
-            <summary>
-            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
-            </summary>
-            <param name="document">The current document to fix.</param>
-            <param name="root">The root of the syntax tree.</param>
-            <param name="initializerNode">The initializer node.</param>
-            <param name="valueNode"></param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A task that handles this operation.</returns>
-            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixTitles">
             <summary>

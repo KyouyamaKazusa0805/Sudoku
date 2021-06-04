@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
 
@@ -35,23 +36,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var document = context.Document;
 			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0307);
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var (location, descriptor) = diagnostic;
-			var node = root.FindNode(location.SourceSpan, getInnermostNodeForTie: true);
+			var ((_, span), descriptor) = diagnostic;
+			var node = (PrefixUnaryExpressionSyntax)root.FindNode(span, getInnermostNodeForTie: true);
 			var tags = diagnostic.Properties;
-			string realValueStr = tags["RealValue"]!;
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0307,
-					createChangedDocument: async c => await Task.Run(() =>
+					createChangedDocument: async c =>
 					{
-						if (node is not PrefixUnaryExpressionSyntax { RawKind: var kind })
-						{
-							throw new InvalidOperationException("The specified node is invalid to fix.");
-						}
-
-						int realValueToFix = int.Parse(realValueStr);
-						ExpressionSyntax operand = kind switch
+						int realValueToFix = int.Parse(tags["RealValue"]!);
+						ExpressionSyntax operand = node.RawKind switch
 						{
 							(int)SyntaxKind.UnaryPlusExpression =>
 								SyntaxFactory.LiteralExpression(
@@ -68,10 +63,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 								)
 						};
 
-						var newRoot = root.ReplaceNode(node, operand);
+						var editor = await DocumentEditor.CreateAsync(document, c);
+						editor.ReplaceNode(node, operand);
 
-						return document.WithSyntaxRoot(newRoot);
-					}, c),
+						return document.WithSyntaxRoot(editor.GetChangedRoot());
+					},
 					equivalenceKey: nameof(CodeFixTitles.SD0307)
 				),
 				diagnostic

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
+using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
 
@@ -33,20 +34,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var document = context.Document;
 			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0308);
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var (location, descriptor) = diagnostic;
-			var node = root.FindNode(location.SourceSpan, getInnermostNodeForTie: true);
-			var duplicatedLocation = diagnostic.AdditionalLocations[0];
-			var nodeToRemove = root.FindNode(location.SourceSpan, getInnermostNodeForTie: true);
+			var ((_, span), descriptor) = diagnostic;
+			var node = root.FindNode(span, getInnermostNodeForTie: true);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0308,
-					createChangedDocument: async c => await Task.Run(() =>
+					createChangedDocument: async c =>
 					{
-						var newRoot = root.RemoveNode(nodeToRemove, SyntaxRemoveOptions.KeepTrailingTrivia)!;
+						var editor = await DocumentEditor.CreateAsync(document, c);
+						editor.RemoveNode(node, SyntaxRemoveOptions.KeepTrailingTrivia);
 
-						return document.WithSyntaxRoot(newRoot);
-					}, c),
+						return document.WithSyntaxRoot(editor.GetChangedRoot());
+					},
 					equivalenceKey: nameof(CodeFixTitles.SD0308)
 				),
 				diagnostic

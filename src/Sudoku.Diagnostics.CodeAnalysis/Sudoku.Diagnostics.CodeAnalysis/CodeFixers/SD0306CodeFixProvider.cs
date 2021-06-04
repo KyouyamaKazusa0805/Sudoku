@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
 
@@ -35,30 +36,25 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var document = context.Document;
 			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0306);
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var (location, descriptor) = diagnostic;
-			var node = root.FindNode(location.SourceSpan, getInnermostNodeForTie: true);
+			var ((_, span), descriptor) = diagnostic;
+			var node = (PrefixUnaryExpressionSyntax)root.FindNode(span, getInnermostNodeForTie: true);
 			var tags = diagnostic.Properties;
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0306_1,
-					createChangedDocument: async c => await Task.Run(() =>
+					createChangedDocument: async c =>
 					{
-						if (
-							node is not PrefixUnaryExpressionSyntax
-							{
-								RawKind: (int)SyntaxKind.BitwiseNotExpression,
-								Operand: var operand
-							}
-						)
+						if (node is not { RawKind: (int)SyntaxKind.BitwiseNotExpression, Operand: var operand })
 						{
 							throw new InvalidOperationException("The specified node is invalid to fix.");
 						}
 
-						var newRoot = root.ReplaceNode(node, operand);
+						var editor = await DocumentEditor.CreateAsync(document);
+						editor.ReplaceNode(node, operand);
 
-						return document.WithSyntaxRoot(newRoot);
-					}, c),
+						return document.WithSyntaxRoot(editor.GetChangedRoot());
+					},
 					equivalenceKey: nameof(CodeFixTitles.SD0306_1)
 				),
 				diagnostic
@@ -67,12 +63,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			context.RegisterCodeFix(
 				CodeAction.Create(
 					title: CodeFixTitles.SD0306_2,
-					createChangedDocument: async c => await Task.Run(() =>
+					createChangedDocument: async c =>
 					{
-						var newRoot = root.RemoveNode(node, SyntaxRemoveOptions.KeepTrailingTrivia)!;
+						var editor = await DocumentEditor.CreateAsync(document, c);
+						editor.RemoveNode(node, SyntaxRemoveOptions.KeepTrailingTrivia);
 
-						return document.WithSyntaxRoot(newRoot);
-					}, c),
+						return document.WithSyntaxRoot(editor.GetChangedRoot());
+					},
 					equivalenceKey: nameof(CodeFixTitles.SD0306_2)
 				),
 				diagnostic
