@@ -11,5 +11,6 @@ Console.WriteLine();
 public sealed class TempStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) => throw new NotImplementedException();
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) =>
+		throw new NotImplementedException();
 }

@@ -75,7 +75,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			Document document, TypeDeclarationSyntax typeDeclaration, CancellationToken cancellationToken)
 		{
 			var root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
-			var compilationUnit = root.DescendantNodes().OfType<CompilationUnitSyntax>().First(); // BUG: Can't find any compilation unit syntax nodes.
+			var compilationUnit = root.DescendantNodesAndSelf().OfType<CompilationUnitSyntax>().First();
 			var usings = compilationUnit.Usings;
 			bool needAppendUsingDirective = true;
 			if (usings.Any(static @using => @using.Name.ToString() == "Sudoku.Solving.Manual"))
