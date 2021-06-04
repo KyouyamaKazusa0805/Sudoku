@@ -15,9 +15,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793">
-	/// SD0504
-	/// </a>.
+	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a>.
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SS0504CodeFixProvider)), Shared]
 	public sealed class SS0504CodeFixProvider : CodeFixProvider

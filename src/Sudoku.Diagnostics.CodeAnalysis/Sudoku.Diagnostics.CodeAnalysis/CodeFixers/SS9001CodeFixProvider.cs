@@ -18,9 +18,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356">
-	/// SS9001
-	/// </a>.
+	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a>.
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SS9001CodeFixProvider)), Shared]
 	public sealed class SS9001CodeFixProvider : CodeFixProvider

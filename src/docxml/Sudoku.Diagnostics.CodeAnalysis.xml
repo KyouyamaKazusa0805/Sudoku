@@ -1527,9 +1527,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0101?sort_id=3599824">
-            SD0101
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a>.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.OrderOfMemberKinds">
@@ -1586,9 +1584,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0302?sort_id=3625575">
-            SD0302
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0302">SD0302</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider.FixableDiagnosticIds">
@@ -1618,9 +1614,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0303?sort_id=3630107">
-            SD0303
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0303">SD0303</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider.FixableDiagnosticIds">
@@ -1650,9 +1644,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0304?sort_id=4035455">
-            SD0304
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0304">SD0304</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider.FixableDiagnosticIds">
@@ -1686,9 +1678,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0306?sort_id=4041904">
-            SD0306
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0306">SD0306</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider.FixableDiagnosticIds">
@@ -1703,9 +1693,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0307?sort_id=4042004">
-            SD0307
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider.FixableDiagnosticIds">
@@ -1720,9 +1708,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0308CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0308?sort_id=4042333">
-            SD0308
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0308">SD0308</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0308CodeFixProvider.FixableDiagnosticIds">
@@ -1737,9 +1723,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0309CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SD0309?sort_id=4041633">
-            SD0309
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0309">SD0309</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0309CodeFixProvider.FixableDiagnosticIds">
@@ -1754,9 +1738,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0102?sort_id=3629641">
-            SS0102
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0102">SS0102</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider.FixableDiagnosticIds">
@@ -1784,9 +1766,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0502?sort_id=4025301">
-            SD0502
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0502">SS0502</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider.FixableDiagnosticIds">
@@ -1813,9 +1793,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0504?sort_id=4025793">
-            SD0504
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider.FixableDiagnosticIds">
@@ -1842,9 +1820,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0505?sort_id=4025794">
-            SD0505
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider.FixableDiagnosticIds">
@@ -1869,9 +1845,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS0507?sort_id=4056821">
-            SD0507
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0507">SS0507</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider.FixableDiagnosticIds">
@@ -1908,9 +1882,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356">
-            SS9001
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.FixableDiagnosticIds">
@@ -1940,9 +1912,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://gitee.com/SunnieShine/Sudoku/wikis/SS9001?sort_id=4042356">
-            SS9002
-            </a>.
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider.FixableDiagnosticIds">
