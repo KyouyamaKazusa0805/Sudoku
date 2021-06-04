@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.CodeAnalyzerDefaults</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerAttribute">
+            <summary>
+            To mark on a code analyzer type, to tell the compiler and the source generator that
+            the type should generate the default values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGen.CodeAnalyzerAttribute"/> class instance using the specified
+            ID list.
+            </summary>
+            <param name="supportedDiagnosticIds">The ID list of all supported diagnostic results.</param>
+        </member>
+        <member name="P:Sudoku.CodeGen.CodeAnalyzerAttribute.SupportedDiagnosticIds">
+            <summary>
+            Indicates the supported diagnostic IDs.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeFixProviderAttribute">
+            <summary>
+            To mark on a code fixer type, to tell the compiler and the source generator that
+            generates the code for the code fix defaults.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeFixProviderAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGen.CodeFixProviderAttribute"/> class instance using the specified
+            ID list.
+            </summary>
+            <param name="supportedDiagnosticIds">The ID list of all supported diagnostic results.</param>
+        </member>
+        <member name="P:Sudoku.CodeGen.CodeFixProviderAttribute.SupportedDiagnosticIds">
+            <summary>
+            Indicates the supported diagnostic IDs.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator">
+            <summary>
+            A generator that generates the code for code analyzer and fix defaults.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver">
+            <summary>
+            Defines a syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions.ISymbolEx.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the specified symbol (should be property or field members)
+            has an initializer.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
+            <summary>
+            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
+            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
+            </summary>
+            <param name="this">The current syntax reference instance.</param>
+            <param name="textSpan">The text span.</param>
+            <param name="syntaxNode">The syntax node.</param>
+        </member>
+        <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.FormatOptions">
+            <summary>
+            Provides the format options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.CodeAnalyzerDefaults.FormatOptions.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.CodeAnalyzerDefaults.FormatOptions.PropertyTypeFormat">
+            <summary>
+            Indicates the property format.
+            </summary>
+        </member>
+    </members>
+</doc>
