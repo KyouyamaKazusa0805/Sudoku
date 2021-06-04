@@ -23,20 +23,21 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 			}
 
 			var nameDic = new Dictionary<string, int>();
-			foreach (var typeSymbol in g(context, receiver))
+			foreach (var typeSymbol in analyzerAttributeCheck(context, receiver))
 			{
 				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
 				nameDic[typeSymbol.Name] = i + 1;
 
-				if (getCode(typeSymbol) is { } generatedCode)
+				if (getAnalyzerCode(typeSymbol) is { } generatedCode)
 				{
 					context.AddSource($"{name}.SupportedDiagnostics.g.cs", generatedCode);
 				}
 			}
 
 
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
+			static IEnumerable<INamedTypeSymbol> analyzerAttributeCheck(
+				in GeneratorExecutionContext context, SyntaxReceiver receiver)
 			{
 				var compilation = context.Compilation;
 
@@ -48,7 +49,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					select typeSymbol;
 			}
 
-			string? getCode(INamedTypeSymbol symbol)
+			string? getAnalyzerCode(INamedTypeSymbol symbol)
 			{
 				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
@@ -73,7 +74,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					select getMemberValues(attributeStr, tokenStartIndex);
+					select GetMemberValues(attributeStr, tokenStartIndex);
 
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
@@ -115,25 +116,34 @@ namespace {namespaceName}
 		);
 	}}
 }}";
-
-				static string[] getMemberValues(string attributeStr, int tokenStartIndex)
-				{
-					string[] result = (
-						from parameterValue in attributeStr.Substring(
-							tokenStartIndex,
-							attributeStr.Length - tokenStartIndex - 2
-						).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-						select parameterValue.Substring(1, parameterValue.Length - 2)
-					).ToArray();
-
-					result[0] = result[0].Substring(2);
-					return result;
-				}
 			}
 		}
 
 		/// <inheritdoc/>
 		public void Initialize(GeneratorInitializationContext context) =>
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+
+
+		/// <summary>
+		/// Get member values via attribute arguments.
+		/// </summary>
+		/// <param name="attributeStr">
+		/// The <see cref="string"/> result that is called <c>ToString</c> from an attribute instance.
+		/// </param>
+		/// <param name="tokenStartIndex">A token start index.</param>
+		/// <returns>The result list.</returns>
+		private static string[] GetMemberValues(string attributeStr, int tokenStartIndex)
+		{
+			string[] result = (
+				from parameterValue in attributeStr.Substring(
+					tokenStartIndex,
+					attributeStr.Length - tokenStartIndex - 2
+				).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+				select parameterValue.Substring(1, parameterValue.Length - 2)
+			).ToArray();
+
+			result[0] = result[0].Substring(2);
+			return result;
+		}
 	}
 }

@@ -51,6 +51,16 @@
         <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.GetMemberValues(System.String,System.Int32)">
+            <summary>
+            Get member values via attribute arguments.
+            </summary>
+            <param name="attributeStr">
+            The <see cref="T:System.String"/> result that is called <c>ToString</c> from an attribute instance.
+            </param>
+            <param name="tokenStartIndex">A token start index.</param>
+            <returns>The result list.</returns>
+        </member>
         <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver">
             <summary>
             Defines a syntax receiver.
