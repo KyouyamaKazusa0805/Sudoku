@@ -35,7 +35,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
 			var document = context.Document;
-			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(CodeFixTitles.SS0504));
+			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SS0504));
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var ((_, span), _) = diagnostic;
 			var methodDeclaration = (MethodDeclarationSyntax)root.FindNode(span, getInnermostNodeForTie: true);
