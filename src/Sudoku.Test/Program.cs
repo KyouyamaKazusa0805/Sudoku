@@ -10,7 +10,9 @@ Console.WriteLine();
 /// <summary></summary>
 public sealed class TempStepSearcher : StepSearcher
 {
-	public TechniqueProperties Properties { get; } = new(default, "");
+	/// <summary></summary>
+	public TechniqueProperties Properties { get; init; } = new(default, "");
+
 
 	/// <inheritdoc/>
 	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) =>
