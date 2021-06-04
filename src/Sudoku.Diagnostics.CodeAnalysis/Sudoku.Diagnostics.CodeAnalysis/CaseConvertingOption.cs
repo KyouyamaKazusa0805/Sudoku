@@ -18,7 +18,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 		/// <summary>
 		/// Indicates the option will specify that the leading underscore in the identifier will be reserved
-		/// after conversion from a case to another case, e.g. Camel case to pascal case.
+		/// after conversion from a case to another case, e.g. Pascal case to camel case.
 		/// </summary>
 		ReserveLeadingUnderscore
 	}

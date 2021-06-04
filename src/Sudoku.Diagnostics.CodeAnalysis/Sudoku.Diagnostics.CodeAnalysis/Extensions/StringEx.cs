@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 {
@@ -22,33 +22,32 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			{
 				case >= 'A' and <= 'Z':
 				{
-					char* ptr = stackalloc char[@this.Length];
-					fixed (char* pString = @this)
+					var sb = new StringBuilder(@this);
+					sb[0] += ' ';
+
+					return caseConvertingOption switch
 					{
-						Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
-					}
-
-					ptr[0] += ' ';
-
-					return new string(ptr);
+						CaseConvertingOption.None => sb.ToString(),
+						CaseConvertingOption.ReserveLeadingUnderscore => $"_{sb}"
+					};
 				}
 				case >= 'a' and <= 'z':
 				{
-					return @this;
+					return caseConvertingOption switch
+					{
+						CaseConvertingOption.None => @this,
+						CaseConvertingOption.ReserveLeadingUnderscore => $"_{@this}"
+					};
 				}
+				/*indexer-pattern*/
 				case '_' when @this.Length >= 2 && @this[1] is >= 'A' and <= 'Z' or >= 'a' and <= 'z':
 				{
 					if (@this[1] is >= 'A' and <= 'Z')
 					{
-						char* ptr = stackalloc char[@this.Length];
-						fixed (char* pString = @this)
-						{
-							Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
-						}
+						var sb = new StringBuilder(@this.Substring(1));
+						sb[0] += ' ';
 
-						ptr[1] += ' ';
-
-						return new string(ptr);
+						return sb.ToString();
 					}
 					else
 					{
@@ -84,34 +83,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				}
 				case >= 'a' and <= 'z':
 				{
-					char* ptr = stackalloc char[@this.Length];
-					Unsafe.InitBlock(ptr, 0, (uint)(sizeof(char) * @this.Length));
+					var sb = new StringBuilder(@this);
+					sb[0] -= ' ';
 
-					fixed (char* pString = @this)
-					{
-						Unsafe.CopyBlock(ptr, pString, (uint)(sizeof(char) * @this.Length));
-					}
-
-					ptr[0] -= ' ';
-
-					return new string(ptr);
+					return sb.ToString();
 				}
 				case '_' when @this.Length >= 2 && @this[1] is >= 'A' and <= 'Z' or >= 'a' and <= 'z':
 				{
-					char* ptr = stackalloc char[@this.Length - 1];
-					Unsafe.InitBlock(ptr, 0, (uint)(sizeof(char) * (@this.Length - 1)));
-
-					fixed (char* pString = @this)
+					var sb = new StringBuilder(@this.Substring(1));
+					if (sb[0] is >= 'a' and <= 'z')
 					{
-						Unsafe.CopyBlock(ptr, pString + 1, (uint)(sizeof(char) * (@this.Length - 1)));
+						sb[0] -= ' ';
 					}
 
-					if (ptr[0] is >= 'a' and <= 'z')
-					{
-						ptr[0] -= ' ';
-					}
-
-					return new string(ptr);
+					return sb.ToString();
 				}
 				default:
 				{
