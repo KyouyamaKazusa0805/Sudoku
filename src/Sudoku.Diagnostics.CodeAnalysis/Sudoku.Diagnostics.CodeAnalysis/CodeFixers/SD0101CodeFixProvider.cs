@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
 
@@ -32,158 +33,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			SyntaxKind.ConstructorDeclaration
 		};
 
-		#region NodesToAppend
-		/// <summary>
-		/// Indicates the node to append.
-		/// </summary>
-		private static readonly SyntaxList<SyntaxNode> NodesToAppend =
-			SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
-				SyntaxFactory.PropertyDeclaration(
-					SyntaxFactory.IdentifierName("TechniqueProperties"),
-					SyntaxFactory.Identifier("Properties")
-				)
-				.WithModifiers(
-					SyntaxFactory.TokenList(
-						new[]
-						{
-							SyntaxFactory.Token(
-								SyntaxFactory.TriviaList(
-									SyntaxFactory.Trivia(
-										SyntaxFactory.DocumentationCommentTrivia(
-											SyntaxKind.SingleLineDocumentationCommentTrivia,
-											SyntaxFactory.List(
-												new XmlNodeSyntax[]
-												{
-													SyntaxFactory.XmlText()
-													.WithTextTokens(
-														SyntaxFactory.TokenList(
-															SyntaxFactory.XmlTextLiteral(
-																SyntaxFactory.TriviaList(
-																	SyntaxFactory.DocumentationCommentExterior("///")
-																),
-																" ",
-																" ",
-																SyntaxFactory.TriviaList()
-															)
-														)
-													),
-													SyntaxFactory.XmlNullKeywordElement()
-													.WithName(
-														SyntaxFactory.XmlName(
-															SyntaxFactory.Identifier("inheritdoc")
-														)
-													)
-													.WithAttributes(
-														SyntaxFactory.SingletonList<XmlAttributeSyntax>(
-															SyntaxFactory.XmlCrefAttribute(
-																SyntaxFactory.NameMemberCref(
-																	SyntaxFactory.IdentifierName("SearchingProperties")
-																)
-															)
-														)
-													),
-													SyntaxFactory.XmlText()
-													.WithTextTokens(
-														SyntaxFactory.TokenList(
-															SyntaxFactory.XmlTextNewLine(
-																SyntaxFactory.TriviaList(),
-																Environment.NewLine,
-																Environment.NewLine,
-																SyntaxFactory.TriviaList()
-															)
-														)
-													)
-												}
-											)
-										)
-									)
-								),
-								SyntaxKind.PublicKeyword,
-								SyntaxFactory.TriviaList()
-							),
-							SyntaxFactory.Token(SyntaxKind.StaticKeyword)
-						}
-					)
-				)
-				.WithAccessorList(
-					SyntaxFactory.AccessorList(
-						SyntaxFactory.SingletonList(
-							SyntaxFactory.AccessorDeclaration(
-								SyntaxKind.GetAccessorDeclaration
-							)
-							.WithSemicolonToken(
-								SyntaxFactory.Token(SyntaxKind.SemicolonToken)
-							)
-						)
-					)
-				)
-				.WithInitializer(
-					SyntaxFactory.EqualsValueClause(
-						SyntaxFactory.ImplicitObjectCreationExpression()
-						.WithArgumentList(
-							SyntaxFactory.ArgumentList(
-								SyntaxFactory.SeparatedList<ArgumentSyntax>(
-									new SyntaxNodeOrToken[]{
-										SyntaxFactory.Argument(
-											SyntaxFactory.LiteralExpression(
-												SyntaxKind.DefaultLiteralExpression,
-												SyntaxFactory.Token(SyntaxKind.DefaultKeyword)
-											)
-										)
-										.WithNameColon(
-											SyntaxFactory.NameColon(
-												SyntaxFactory.IdentifierName("priority")
-											)
-										),
-										SyntaxFactory.Token(SyntaxKind.CommaToken),
-										SyntaxFactory.Argument(
-											SyntaxFactory.MemberAccessExpression(
-												SyntaxKind.SimpleMemberAccessExpression,
-												SyntaxFactory.PredefinedType(
-													SyntaxFactory.Token(SyntaxKind.StringKeyword)
-												),
-												SyntaxFactory.IdentifierName("Empty")
-											)
-										)
-										.WithNameColon(
-											SyntaxFactory.NameColon(
-												SyntaxFactory.IdentifierName("displayLabel")
-											)
-										)
-									}
-								)
-							)
-						)
-						.WithInitializer(
-							SyntaxFactory.InitializerExpression(
-								SyntaxKind.ObjectInitializerExpression,
-								SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
-									SyntaxFactory.AssignmentExpression(
-										SyntaxKind.SimpleAssignmentExpression,
-										SyntaxFactory.IdentifierName("DisplayLevel"),
-										SyntaxFactory.LiteralExpression(
-											SyntaxKind.DefaultLiteralExpression,
-											SyntaxFactory.Token(
-												SyntaxFactory.TriviaList(),
-												SyntaxKind.DefaultKeyword,
-												SyntaxFactory.TriviaList(
-													SyntaxFactory.Comment("// Please check and replace this value.")
-												)
-											)
-										)
-									)
-								)
-							)
-						)
-					)
-				)
-				.WithSemicolonToken(
-					SyntaxFactory.Token(SyntaxKind.SemicolonToken)
-				)
-				.NormalizeWhitespace()
-			);
-		#endregion
-
 
 		/// <inheritdoc/>
 		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
@@ -198,15 +47,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
 			var document = context.Document;
-			var diagnostic = context.Diagnostics.First();
+			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SD0101));
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var (location, _) = diagnostic;
-			var typeDeclaration = root
-				.FindToken(location.SourceSpan.Start)
-				.Parent!
-				.AncestorsAndSelf()
-				.OfType<TypeDeclarationSyntax>()
-				.First();
+			var ((_, span), _) = diagnostic;
+			var typeDeclaration = (TypeDeclarationSyntax)root.FindNode(span, getInnermostNodeForTie: true);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
@@ -231,22 +75,95 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			Document document, TypeDeclarationSyntax typeDeclaration, CancellationToken cancellationToken)
 		{
 			var root = (await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false))!;
-			var declarations = typeDeclaration.DescendantNodes().OfType<MemberDeclarationSyntax>();
+			var compilationUnit = root.DescendantNodes().OfType<CompilationUnitSyntax>().First(); // BUG: Can't find any compilation unit syntax nodes.
+			var usings = compilationUnit.Usings;
+			bool needAppendUsingDirective = true;
+			if (usings.Any(static @using => @using.Name.ToString() == "Sudoku.Solving.Manual"))
+			{
+				needAppendUsingDirective = false;
+			}
 
-			int i = Enumerable.Range(1, OrderOfMemberKinds.Length).Reverse().FirstOrDefault(
-				i => declarations.Any(d => d.RawKind == (int)OrderOfMemberKinds[i - 1])
-			) - 1;
-			var descendants = typeDeclaration.DescendantNodes();
-			var newRoot = root.InsertNodesAfter(
-				i switch
-				{
-					-1 when descendants.First() is var firstDescendant => firstDescendant,
-					_ when descendants.Last(n => n.IsKind(OrderOfMemberKinds[i])) is var lastMember => lastMember
-				},
-				NodesToAppend
+			var editor = await DocumentEditor.CreateAsync(document, cancellationToken);
+			if (needAppendUsingDirective)
+			{
+				editor.ReplaceNode(
+					compilationUnit,
+					compilationUnit.WithUsings(
+						usings.Add(
+							SyntaxFactory.UsingDirective(
+								SyntaxFactory.QualifiedName(
+									SyntaxFactory.QualifiedName(
+										SyntaxFactory.IdentifierName("Sudoku"),
+										SyntaxFactory.IdentifierName("Solving")
+									),
+									SyntaxFactory.IdentifierName("Manual")
+								)
+							)
+						)
+					)
+				);
+			}
+
+			editor.AddMember(
+				typeDeclaration,
+				SyntaxFactory.PropertyDeclaration(
+					SyntaxFactory.IdentifierName("TechniqueProperties"),
+					SyntaxFactory.Identifier("Properties")
+				)
+				.WithModifiers(
+					SyntaxFactory.TokenList(
+						new[]
+						{
+							SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+							SyntaxFactory.Token(SyntaxKind.StaticKeyword)
+						}
+					)
+				)
+				.WithAccessorList(
+					SyntaxFactory.AccessorList(
+						SyntaxFactory.SingletonList(
+							SyntaxFactory.AccessorDeclaration(
+								SyntaxKind.GetAccessorDeclaration
+							)
+							.WithSemicolonToken(
+								SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+							)
+						)
+					)
+				)
+				.WithInitializer(
+					SyntaxFactory.EqualsValueClause(
+						SyntaxFactory.ImplicitObjectCreationExpression()
+						.WithArgumentList(
+							SyntaxFactory.ArgumentList(
+								SyntaxFactory.SeparatedList<ArgumentSyntax>(
+									new SyntaxNodeOrToken[]
+									{
+										SyntaxFactory.Argument(
+											SyntaxFactory.LiteralExpression(
+												SyntaxKind.DefaultLiteralExpression,
+												SyntaxFactory.Token(SyntaxKind.DefaultKeyword)
+											)
+										),
+										SyntaxFactory.Token(SyntaxKind.CommaToken),
+										SyntaxFactory.Argument(
+											SyntaxFactory.LiteralExpression(
+												SyntaxKind.StringLiteralExpression,
+												SyntaxFactory.Literal(string.Empty)
+											)
+										)
+									}
+								)
+							)
+						)
+					)
+				)
+				.WithSemicolonToken(
+					SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+				)
 			);
 
-			return document.WithSyntaxRoot(newRoot);
+			return document.WithSyntaxRoot(editor.GetChangedRoot());
 		}
 	}
 }

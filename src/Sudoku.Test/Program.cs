@@ -1,14 +1,15 @@
-﻿using System;
+﻿#pragma warning disable CA1050
+
+using System;
+using System.Collections.Generic;
+using Sudoku.Data;
+using Sudoku.Solving.Manual;
 
 Console.WriteLine();
 
-class Temp
+/// <summary></summary>
+public sealed class TempStepSearcher : StepSearcher
 {
-	private readonly int _a = 1;
-
-	public void Deconstruct(out int a, out string text)
-	{
-		a = _a;
-		text = "";
-	}
+	/// <inheritdoc/>
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) => throw new NotImplementedException();
 }

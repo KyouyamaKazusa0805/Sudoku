@@ -1537,11 +1537,6 @@
             To provide a way to insert property into the document, via the current order.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.NodesToAppend">
-            <summary>
-            Indicates the node to append.
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.FixableDiagnosticIds">
             <inheritdoc/>
         </member>
