@@ -1556,6 +1556,33 @@
             <returns>A task that handles this operation.</returns>
             <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0102">SD0102</a>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.AppendOrChangeAccessibilityAsync(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax,System.Threading.CancellationToken)">
+            <summary>
+            Delegated method that is invoked by <see cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/> above.
+            </summary>
+            <param name="document">The current document to fix.</param>
+            <param name="propertyDeclaration">
+            The method declarartion node that the diagnostic result occurs.
+            </param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that handles this operation.</returns>
+            <seealso cref="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)"/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result

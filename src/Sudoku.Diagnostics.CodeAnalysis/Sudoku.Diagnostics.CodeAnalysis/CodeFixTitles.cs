@@ -6,6 +6,7 @@
 	internal static class CodeFixTitles
 	{
 		public const string SD0101 = "Append default technique property";
+		public const string SD0102 = "Append or change accessibility";
 		public const string SD0302 = "Use property 'IsEmpty' property";
 		public const string SD0303 = "Use default field instead";
 		public const string SD0304 = "Use property instead";
