@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using InfoTuple = System.ValueTuple<
 	string, // Local
@@ -25,7 +26,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for the available positional pattern matching.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0606")]
 	public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

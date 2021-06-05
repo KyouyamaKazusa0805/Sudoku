@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -18,7 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// </item>
 	/// </list>
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0611", "SS0612")]
 	public sealed partial class DiscardInVarPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

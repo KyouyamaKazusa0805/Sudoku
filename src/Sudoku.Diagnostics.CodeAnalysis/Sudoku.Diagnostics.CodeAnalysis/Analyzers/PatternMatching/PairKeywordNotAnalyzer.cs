@@ -2,13 +2,14 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for the pair of the keyword <see langword="not"/>.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0626")]
 	public sealed partial class PairKeywordNotAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

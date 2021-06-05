@@ -1,34 +1,19 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a>.
-	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SS0505CodeFixProvider)), Shared]
-	public sealed class SS0505CodeFixProvider : CodeFixProvider
+	[CodeFixProvider("SS0505")]
+	public sealed partial class SS0505CodeFixProvider : CodeFixProvider
 	{
-		/// <inheritdoc/>
-		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.SS0505
-		);
-
-		/// <inheritdoc/>
-		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-
-
 		/// <inheritdoc/>
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{

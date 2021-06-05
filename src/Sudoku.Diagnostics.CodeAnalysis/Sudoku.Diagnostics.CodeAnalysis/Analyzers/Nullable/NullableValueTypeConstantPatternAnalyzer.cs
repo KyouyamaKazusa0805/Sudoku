@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -12,7 +13,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// of <see cref="Nullable{T}"/>.
 	/// </summary>
 	/// <seealso cref="Nullable{T}"/>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0605")]
 	public sealed partial class NullableValueTypeConstantPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

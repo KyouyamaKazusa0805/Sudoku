@@ -32,6 +32,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\..\Sudoku.CodeGen.DiagnosticInfo\Sudoku.CodeGen.DiagnosticInfo.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\..\Sudoku.CodeGen.CodeAnalyzerDefaults\Sudoku.CodeGen.CodeAnalyzerDefaults.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 </Project>

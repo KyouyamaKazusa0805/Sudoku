@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -10,7 +11,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0101", "SD0102", "SD0103", "SD0104", "SD0105", "SD0106", "SD0107", "SD0108")]
 	public sealed partial class PropertiesInStepSearcherAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

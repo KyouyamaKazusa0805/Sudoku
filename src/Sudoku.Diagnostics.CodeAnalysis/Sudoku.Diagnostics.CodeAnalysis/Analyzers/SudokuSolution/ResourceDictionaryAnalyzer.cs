@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -13,7 +14,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
 	/// store in the folder <c>..\required\lang</c>.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0201")]
 	public sealed partial class ResourceDictionaryAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

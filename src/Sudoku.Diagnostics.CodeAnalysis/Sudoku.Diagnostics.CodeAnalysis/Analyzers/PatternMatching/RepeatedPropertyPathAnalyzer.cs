@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -18,7 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <item>Extended property pattern: <c>{ Prop.NestedProp: 1 }</c>.</item>
 	/// </list>
 	/// </remarks>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0623", "SS0625")]
 	public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

@@ -45,6 +45,11 @@
             A generator that generates the code for code analyzer and fix defaults.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
+            <summary>
+            Indicates the regular expression for extraction of the information.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>

@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -15,7 +16,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <item><c><see langword="null or"/></c></item>
 	/// </list>
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0618", "SS0619")]
 	public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

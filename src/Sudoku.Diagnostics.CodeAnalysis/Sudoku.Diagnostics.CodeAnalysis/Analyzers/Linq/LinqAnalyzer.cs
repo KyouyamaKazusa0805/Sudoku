@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -13,7 +14,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates the analyzer that analyzes LINQ nodes.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0301")]
 	public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

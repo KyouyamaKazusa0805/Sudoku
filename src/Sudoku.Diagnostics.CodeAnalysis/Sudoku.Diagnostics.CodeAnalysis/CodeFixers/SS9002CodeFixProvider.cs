@@ -1,33 +1,18 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a>.
-	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SS9002CodeFixProvider)), Shared]
-	public sealed class SS9002CodeFixProvider : CodeFixProvider
+	[CodeFixProvider("SS9002")]
+	public sealed partial class SS9002CodeFixProvider : CodeFixProvider
 	{
-		/// <inheritdoc/>
-		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.SS9002
-		);
-
-		/// <inheritdoc/>
-		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-
-
 		/// <inheritdoc/>
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{

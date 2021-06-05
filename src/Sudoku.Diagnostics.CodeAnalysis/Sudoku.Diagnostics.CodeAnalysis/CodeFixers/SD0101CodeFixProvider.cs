@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -11,37 +9,13 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a>.
-	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SD0101CodeFixProvider)), Shared]
-	public sealed class SD0101CodeFixProvider : CodeFixProvider
+	[CodeFixProvider("SD0101")]
+	public sealed partial class SD0101CodeFixProvider : CodeFixProvider
 	{
-		private static readonly UsingDirectiveSyntax AdditionalUsingDiretive =
-			SyntaxFactory.UsingDirective(
-				SyntaxFactory.QualifiedName(
-					SyntaxFactory.QualifiedName(
-						SyntaxFactory.IdentifierName("Sudoku"),
-						SyntaxFactory.IdentifierName("Solving")
-					),
-					SyntaxFactory.IdentifierName("Manual")
-				)
-			);
-
-
-		/// <inheritdoc/>
-		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.SD0101
-		);
-
-		/// <inheritdoc/>
-		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-
-
 		/// <inheritdoc/>
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
@@ -71,7 +45,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						{
 							editor.ReplaceNode(
 								compilationUnit,
-								compilationUnit.WithUsings(usings.Add(AdditionalUsingDiretive))
+								compilationUnit.WithUsings(
+									usings.Add(
+										SyntaxFactory.UsingDirective(
+											SyntaxFactory.QualifiedName(
+												SyntaxFactory.QualifiedName(
+													SyntaxFactory.IdentifierName("Sudoku"),
+													SyntaxFactory.IdentifierName("Solving")
+												),
+												SyntaxFactory.IdentifierName("Manual")
+											)
+										)
+									)
+								)
 							);
 						}
 

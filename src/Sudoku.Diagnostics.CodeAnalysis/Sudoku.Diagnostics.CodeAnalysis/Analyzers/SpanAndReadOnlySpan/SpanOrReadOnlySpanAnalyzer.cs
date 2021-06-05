@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -14,7 +15,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// </summary>
 	/// <seealso cref="Span{T}"/>
 	/// <seealso cref="ReadOnlySpan{T}"/>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0201")]
 	public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

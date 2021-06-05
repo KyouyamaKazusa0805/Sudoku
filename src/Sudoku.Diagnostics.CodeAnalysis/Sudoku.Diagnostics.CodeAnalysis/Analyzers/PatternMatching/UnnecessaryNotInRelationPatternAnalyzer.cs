@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -9,7 +10,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates an analyzer that analyzes the code for unncessary <see langword="not"/> keyword
 	/// in a relation pattern.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0620")]
 	public sealed partial class UnnecessaryNotInRelationPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

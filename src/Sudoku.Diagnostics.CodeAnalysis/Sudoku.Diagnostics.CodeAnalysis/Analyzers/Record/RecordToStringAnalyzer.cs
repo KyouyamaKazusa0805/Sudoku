@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -11,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates an analyzer that analyzes the code for <see langword="record"/> <c>ToString</c> invocation,
 	/// and the type is recursive.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS9004")]
 	public sealed partial class RecordToStringAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

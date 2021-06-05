@@ -4,13 +4,14 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0401", "SD0402")]
 	public sealed partial class AutoAttributePropertiesAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

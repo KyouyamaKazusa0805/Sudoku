@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -11,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
 	/// field <c>TextResources.Current</c>.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0202", "SD0203", "SD0204", "SD0205", "SD0206")]
 	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

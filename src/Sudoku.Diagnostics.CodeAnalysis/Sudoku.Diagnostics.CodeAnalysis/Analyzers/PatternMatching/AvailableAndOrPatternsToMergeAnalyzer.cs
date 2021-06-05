@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -9,7 +10,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates an analyzer that analyzes the code for available <see langword="and"/> or
 	/// <see langword="or"/> patterns to merge.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0621", "SS0622")]
 	public sealed partial class AvailableAndOrPatternsToMergeAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

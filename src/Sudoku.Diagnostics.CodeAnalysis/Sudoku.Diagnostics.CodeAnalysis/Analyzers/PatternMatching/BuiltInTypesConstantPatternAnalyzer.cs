@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -11,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for the constant pattern matching of built-in types.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0604")]
 	public sealed partial class BuiltInTypesConstantPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

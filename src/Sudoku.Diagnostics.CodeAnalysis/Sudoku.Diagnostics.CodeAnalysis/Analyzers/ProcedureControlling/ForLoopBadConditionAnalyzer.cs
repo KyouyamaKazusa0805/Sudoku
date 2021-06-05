@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -13,7 +14,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS9001")]
 	public sealed partial class ForLoopBadConditionAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -14,7 +15,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// marked <see cref="FlagsAttribute"/>.
 	/// </summary>
 	/// <seealso cref="FlagsAttribute"/>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0402", "SS0403")]
 	public sealed partial class FlaggedEnumFieldAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

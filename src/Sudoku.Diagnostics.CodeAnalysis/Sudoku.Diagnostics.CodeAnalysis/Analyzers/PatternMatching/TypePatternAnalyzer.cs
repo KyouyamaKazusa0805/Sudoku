@@ -4,13 +4,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for <see langword="is"/> pattern.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0601", "SS0602", "SS0603")]
 	public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

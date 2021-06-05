@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -11,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
 	/// to check whether the input value in the initializer is invalid.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0309")]
 	public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

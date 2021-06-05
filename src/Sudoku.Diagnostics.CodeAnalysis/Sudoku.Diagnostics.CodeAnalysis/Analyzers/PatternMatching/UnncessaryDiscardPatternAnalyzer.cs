@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -20,7 +21,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
 	/// </list>
 	/// </remarks>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0607", "SS0613")]
 	public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

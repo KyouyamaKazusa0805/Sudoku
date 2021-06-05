@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
 using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
@@ -13,7 +14,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for available simplification for the <c>operator ??=</c>.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0701", "SS0705")]
 	public sealed partial class CompoundNullCoalescingAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

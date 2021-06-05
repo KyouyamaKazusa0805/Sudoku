@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -11,7 +12,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates an analyzer that analyzes the code for the <see langword="null"/>-conditional
 	/// operator <c>?</c> and <see langword="null"/>-forgiving operator <c>!</c> usages.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0703", "SS0704")]
 	public sealed partial class NullConditionalAndSuppressionAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

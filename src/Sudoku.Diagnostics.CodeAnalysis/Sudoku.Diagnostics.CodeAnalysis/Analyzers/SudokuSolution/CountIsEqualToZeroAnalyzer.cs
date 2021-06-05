@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -12,7 +13,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
 	/// to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SD0302")]
 	public sealed partial class CountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

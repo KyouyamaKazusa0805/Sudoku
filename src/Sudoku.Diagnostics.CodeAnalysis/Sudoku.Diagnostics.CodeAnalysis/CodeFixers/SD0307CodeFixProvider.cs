@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,25 +8,13 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a>.
-	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(SD0307CodeFixProvider)), Shared]
-	public sealed class SD0307CodeFixProvider : CodeFixProvider
+	[CodeFixProvider("SD0307")]
+	public sealed partial class SD0307CodeFixProvider : CodeFixProvider
 	{
-		/// <inheritdoc/>
-		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
-			DiagnosticIds.SD0307
-		);
-
-		/// <inheritdoc/>
-		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-
-
 		/// <inheritdoc/>
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{

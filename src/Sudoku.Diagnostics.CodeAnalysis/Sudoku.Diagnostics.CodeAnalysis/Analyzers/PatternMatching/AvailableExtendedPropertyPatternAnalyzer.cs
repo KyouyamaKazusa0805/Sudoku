@@ -4,13 +4,14 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates an analyzer that analyzes the code for available extended property pattern.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0624")]
 	public sealed partial class AvailableExtendedPropertyPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

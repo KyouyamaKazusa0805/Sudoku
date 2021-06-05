@@ -5,13 +5,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	/// <summary>
 	/// Indicates the analyzer that analyzes the interpolated strings.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0101", "SS0102")]
 	public sealed partial class InterpolatedStringAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

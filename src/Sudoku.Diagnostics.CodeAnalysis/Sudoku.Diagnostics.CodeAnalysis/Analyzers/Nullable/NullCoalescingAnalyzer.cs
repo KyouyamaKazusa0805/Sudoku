@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
 using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
@@ -14,7 +15,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	/// Indicates an analyzer that analyzes the code for the <see langword="null"/> coalescing operator
 	/// <c>??</c> usages.
 	/// </summary>
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[CodeAnalyzer("SS0702")]
 	public sealed partial class NullCoalescingAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGen.CodeAnalyzerDefaults.Extensions;
 
@@ -14,6 +15,12 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 	[Generator]
 	public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenerator
 	{
+		/// <summary>
+		/// Indicates the regular expression for extraction of the information.
+		/// </summary>
+		private static readonly Regex InfoRegex = new(@"(?<=\("")[A-Za-z]{2}\d{4}(?=""\))");
+
+
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -82,13 +89,14 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					return null;
 				}
 
-				var diagnosticIds =
+				string[] diagnosticIds = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(CodeAnalyzerAttribute)
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					select GetMemberValues(attributeStr, tokenStartIndex);
+					select GetMemberValues(attributeStr, tokenStartIndex)
+				).First();
 
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
@@ -155,10 +163,9 @@ namespace {namespaceName}
 				string id = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(CodeFixProviderAttribute)
-					let attributeStr = attribute.ToString()
-					let tokenStartIndex = attributeStr.IndexOf('(')
-					where tokenStartIndex != -1
-					select attributeStr.Substring(tokenStartIndex)
+					let match = InfoRegex.Match(attribute.ToString())
+					where match.Success
+					select match.Value
 				).First();
 
 				return $@"#pragma warning disable 1591
