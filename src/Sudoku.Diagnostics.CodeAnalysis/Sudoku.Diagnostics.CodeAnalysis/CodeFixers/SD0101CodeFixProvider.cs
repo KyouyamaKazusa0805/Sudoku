@@ -30,7 +30,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 					title: CodeFixTitles.SD0101,
 					createChangedDocument: async c =>
 					{
-						var root = (await document.GetSyntaxRootAsync(c).ConfigureAwait(false))!;
 						var descendantAndItself = root.DescendantNodesAndSelf();
 						var compilationUnit = descendantAndItself.OfType<CompilationUnitSyntax>().First();
 						var usings = compilationUnit.Usings;
