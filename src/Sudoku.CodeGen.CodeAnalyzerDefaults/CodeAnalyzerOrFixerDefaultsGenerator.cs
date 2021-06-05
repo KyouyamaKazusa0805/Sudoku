@@ -132,7 +132,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 		);"
 				);
 
-				string supportedInstances = string.Join(",", diagnosticIds);
+				string supportedInstances = string.Join(", ", diagnosticIds);
 
 				return $@"#pragma warning disable 1591
 
