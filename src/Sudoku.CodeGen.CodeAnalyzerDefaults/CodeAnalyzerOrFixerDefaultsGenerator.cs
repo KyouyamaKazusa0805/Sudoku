@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
@@ -16,6 +17,12 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 	public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenerator
 	{
 		/// <summary>
+		/// Indicates the name that stores the diagnostic information.
+		/// </summary>
+		private const string CsvTableName = "DiagnosticResults.csv";
+
+
+		/// <summary>
 		/// Indicates the regular expression for extraction of the information.
 		/// </summary>
 		private static readonly Regex InfoRegex = new(@"(?<=\("")[A-Za-z]{2}\d{4}(?=""\))");
@@ -28,6 +35,16 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 			{
 				return;
 			}
+
+			if (context.AdditionalFiles is not { Length: not 0 } additionalFiles)
+			{
+				return;
+			}
+
+			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
+			string[] list = File.ReadAllLines(csvTableFilePath);
+			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
+			string[][] info = (from line in withoutHeader select splitInfo(line)).ToArray();
 
 			var analyzerNameDic = new Dictionary<string, int>();
 			foreach (var typeSymbol in attributeCheck<CodeAnalyzerAttribute>(context, receiver))
@@ -95,15 +112,18 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					select GetMemberValues(attributeStr, tokenStartIndex)
+					select getMemberValues(attributeStr, tokenStartIndex)
 				).First();
 
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
 					from id in diagnosticIds
+					let description = (
+						from line in info select (Id: line[0], Title: line[5])
+					).First(pair => pair.Id == id).Title
 					select $@"/// <summary>
 		/// Indicates the <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
-		/// diagnostic result.
+		/// diagnostic result ({description}).
 		/// </summary>
 		[CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
@@ -168,6 +188,10 @@ namespace {namespaceName}
 					select match.Value
 				).First();
 
+				string description = (
+					from line in info select (Id: line[0], Title: line[5])
+				).First(pair => pair.Id == id).Title;
+
 				return $@"#pragma warning disable 1591
 
 using System.Collections.Immutable;
@@ -183,7 +207,8 @@ namespace {namespaceName}
 {{
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>.
+	/// <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
+	/// ({description}).
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({className})), Shared]
 	partial class {className}
@@ -200,33 +225,75 @@ namespace {namespaceName}
 	}}
 }}";
 			}
+
+			static string[] getMemberValues(string attributeStr, int tokenStartIndex)
+			{
+				string[] result = (
+					from parameterValue in attributeStr.Substring(
+						tokenStartIndex,
+						attributeStr.Length - tokenStartIndex - 2
+					).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+					select parameterValue.Substring(1, parameterValue.Length - 2)
+				).ToArray();
+
+				result[0] = result[0].Substring(2);
+				return result;
+			}
+
+			static unsafe string[] splitInfo(string line)
+			{
+				if ((line.Count(static c => c == '"') & 1) != 0)
+				{
+					throw new ArgumentException("The specified string is invalid to split.", nameof(line));
+				}
+
+				fixed (char* pLine = line)
+				{
+					for (int i = 0; i < line.Length - 1;)
+					{
+						if (pLine[i++] != '"')
+						{
+							continue;
+						}
+
+						for (int j = i + 1; j < line.Length; j++)
+						{
+							if (pLine[j] != '"')
+							{
+								continue;
+							}
+
+							for (int p = i + 1; p <= j - 1; p++)
+							{
+								if (pLine[p] == ',')
+								{
+									// Change to the temporary character.
+									pLine[p] = '，';
+								}
+							}
+
+							i = j + 1 + 1;
+							break;
+						}
+					}
+				}
+
+				string[] result = line.Split(',');
+				for (int i = 0; i < result.Length; i++)
+				{
+					string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
+
+					result[i] = i == result.Length - 1 || i == result.Length - 2
+						? string.IsNullOrEmpty(temp) ? string.Empty : temp.Substring(0, temp.Length - 1)
+						: temp;
+				}
+
+				return result;
+			}
 		}
 
 		/// <inheritdoc/>
 		public void Initialize(GeneratorInitializationContext context) =>
 			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
-
-
-		/// <summary>
-		/// Get member values via attribute arguments.
-		/// </summary>
-		/// <param name="attributeStr">
-		/// The <see cref="string"/> result that is called <c>ToString</c> from an attribute instance.
-		/// </param>
-		/// <param name="tokenStartIndex">A token start index.</param>
-		/// <returns>The result list.</returns>
-		private static string[] GetMemberValues(string attributeStr, int tokenStartIndex)
-		{
-			string[] result = (
-				from parameterValue in attributeStr.Substring(
-					tokenStartIndex,
-					attributeStr.Length - tokenStartIndex - 2
-				).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-				select parameterValue.Substring(1, parameterValue.Length - 2)
-			).ToArray();
-
-			result[0] = result[0].Substring(2);
-			return result;
-		}
 	}
 }
