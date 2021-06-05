@@ -1,4 +1,6 @@
-﻿#pragma warning disable CA1050
+﻿#nullable disable
+
+#pragma warning disable CA1050
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ Console.WriteLine();
 public sealed class TempStepSearcher : StepSearcher
 {
 	/// <summary></summary>
-	public static TechniqueProperties Properties { get; set; } = new(default, "");
+	public static TechniqueProperties Properties { get; }
 
 
 	/// <inheritdoc/>
