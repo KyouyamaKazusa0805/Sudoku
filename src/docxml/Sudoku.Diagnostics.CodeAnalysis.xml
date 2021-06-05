@@ -1487,6 +1487,26 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0309CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0310CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a>.
+            </summary>
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a>
+            (Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0310CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0310CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0310CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result

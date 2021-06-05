@@ -69,7 +69,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			if (count == 0)
 			{
-				CheckSD0310(context, semanticModel, compilation, expression, nameNode);
+				CheckSD0310(context, semanticModel, compilation, expression, nameNode, node);
 			}
 			else if (
 				/*slice-pattern*/
@@ -82,8 +82,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 		private static void CheckSD0310(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, Compilation compilation,
-			ExpressionSyntax expression, SimpleNameSyntax nameNode)
+			SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
+			Compilation compilation, ExpressionSyntax expression, SimpleNameSyntax nameNode,
+			InvocationExpressionSyntax invocationNode)
 		{
 			if (semanticModel.GetOperation(expression) is not { Type: var possibleSudokuGridType })
 			{
@@ -100,7 +101,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SD0310,
 					location: nameNode.GetLocation(),
-					messageArgs: null
+					messageArgs: null,
+					additionalLocations: new[] { invocationNode.GetLocation() }
 				)
 			);
 		}

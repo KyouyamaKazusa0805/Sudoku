@@ -20,6 +20,7 @@
 		public const string SD0307 = "Simplify the initialization expression";
 		public const string SD0308 = "Remove duplicate items";
 		public const string SD0309 = "Use object initializer instead";
+		public const string SD0310 = "Add default format";
 
 		public const string SS0102 = "Remove redundant '$'";
 		public const string SS0502 = "Remove keyword 'static'";

@@ -1,22 +1,6 @@
-﻿#nullable disable
-
-#pragma warning disable CA1050
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
 
-Console.WriteLine();
+var grid = SudokuGrid.Parse("400050060010400007008000300100040700003000005060870000600000070009010400070003001");
 
-/// <summary></summary>
-public sealed class TempStepSearcher : StepSearcher
-{
-	/// <summary></summary>
-	public static TechniqueProperties Properties { get; }
-
-
-	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid) =>
-		throw new NotImplementedException();
-}
+Console.WriteLine(grid.ToString());
