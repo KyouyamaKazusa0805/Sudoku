@@ -58,10 +58,9 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 | Chinese & English<br />中英双语介绍                          | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83)    |
 | Chinese only<br />中文介绍                                   | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E5%92%8C%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE?sort_id=3330593) |
 
-| Wiki<br />百科页面         |                                                           |
-| -------------------------- | --------------------------------------------------------- |
-| Chinese only<br />中文介绍 | [Gitee](https://gitee.com/SunnieShine/Sudoku/wikis/pages) |
-| Chinese only<br />中文介绍 | [GitHub](https://github.com/SunnieShine/Sudoku/wiki)      |
+| Wiki<br />百科页面         |                                                      |
+| -------------------------- | ---------------------------------------------------- |
+| Chinese only<br />中文介绍 | [GitHub](https://github.com/SunnieShine/Sudoku/wiki) |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
