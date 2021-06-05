@@ -28,16 +28,16 @@
             generates the code for the code fix defaults.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGen.CodeFixProviderAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.CodeGen.CodeFixProviderAttribute.#ctor(System.String)">
             <summary>
             Initializes a <see cref="T:Sudoku.CodeGen.CodeFixProviderAttribute"/> class instance using the specified
-            ID list.
+            ID.
             </summary>
-            <param name="supportedDiagnosticIds">The ID list of all supported diagnostic results.</param>
+            <param name="supportedDiagnosticId">The ID of all supported diagnostic result.</param>
         </member>
-        <member name="P:Sudoku.CodeGen.CodeFixProviderAttribute.SupportedDiagnosticIds">
+        <member name="P:Sudoku.CodeGen.CodeFixProviderAttribute.SupportedDiagnosticId">
             <summary>
-            Indicates the supported diagnostic IDs.
+            Indicates the supported diagnostic ID.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGen.CodeAnalyzerDefaults.CodeAnalyzerOrFixerDefaultsGenerator">

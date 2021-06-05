@@ -22,12 +22,12 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 				return;
 			}
 
-			var nameDic = new Dictionary<string, int>();
-			foreach (var typeSymbol in analyzerAttributeCheck(context, receiver))
+			var analyzerNameDic = new Dictionary<string, int>();
+			foreach (var typeSymbol in attributeCheck<CodeAnalyzerAttribute>(context, receiver))
 			{
-				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
+				_ = analyzerNameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
-				nameDic[typeSymbol.Name] = i + 1;
+				analyzerNameDic[typeSymbol.Name] = i + 1;
 
 				if (getAnalyzerCode(typeSymbol) is { } generatedCode)
 				{
@@ -35,9 +35,23 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 				}
 			}
 
+			var fixerNameDic = new Dictionary<string, int>();
+			foreach (var typeSymbol in attributeCheck<CodeFixProviderAttribute>(context, receiver))
+			{
+				_ = analyzerNameDic.TryGetValue(typeSymbol.Name, out int i);
+				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
+				analyzerNameDic[typeSymbol.Name] = i + 1;
 
-			static IEnumerable<INamedTypeSymbol> analyzerAttributeCheck(
+				if (getFixerCode(typeSymbol) is { } generatedCode)
+				{
+					context.AddSource($"{name}.SupportedDiagnostics.g.cs", generatedCode);
+				}
+			}
+
+
+			static IEnumerable<INamedTypeSymbol> attributeCheck<TAttribute>(
 				in GeneratorExecutionContext context, SyntaxReceiver receiver)
+				where TAttribute : Attribute
 			{
 				var compilation = context.Compilation;
 
@@ -45,7 +59,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					from candidateType in receiver.Candidates
 					let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
 					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateType)! into typeSymbol
-					where typeSymbol.Marks<CodeAnalyzerAttribute>()
+					where typeSymbol.Marks<TAttribute>()
 					select typeSymbol;
 			}
 
@@ -114,6 +128,68 @@ namespace {namespaceName}
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
 			{supportedInstances}
 		);
+	}}
+}}";
+			}
+
+			string? getFixerCode(INamedTypeSymbol symbol)
+			{
+				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
+				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
+				int i = fullTypeName.IndexOf('<');
+				if (i != -1)
+				{
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							"SG0001", "SourceGenerator", "The type can't be generic one.",
+							DiagnosticSeverity.Error, DiagnosticSeverity.Error, true, 0,
+							null, null, helpLink: null, location: symbol.Locations[0],
+							additionalLocations: null, null, null
+						)
+					);
+
+					return null;
+				}
+
+				string className = symbol.Name;
+				string id = (
+					from attribute in symbol.GetAttributes()
+					where attribute.AttributeClass?.Name == nameof(CodeFixProviderAttribute)
+					let attributeStr = attribute.ToString()
+					let tokenStartIndex = attributeStr.IndexOf('(')
+					where tokenStartIndex != -1
+					select attributeStr.Substring(tokenStartIndex)
+				).First();
+
+				return $@"#pragma warning disable 1591
+
+using System.Collections.Immutable;
+using System.Composition;
+using System.Runtime.CompilerServices;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeFixes;
+using Microsoft.CodeAnalysis.Diagnostics;
+
+#nullable enable
+
+namespace {namespaceName}
+{{
+	/// <summary>
+	/// Indicates the code fixer for solving the diagnostic result
+	/// <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>.
+	/// </summary>
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({className})), Shared]
+	partial class {className}
+	{{
+		/// <inheritdoc/>
+		[CompilerGenerated]
+		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
+			DiagnosticIds.{id}
+		);
+
+		/// <inheritdoc/>
+		[CompilerGenerated]
+		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 	}}
 }}";
 			}

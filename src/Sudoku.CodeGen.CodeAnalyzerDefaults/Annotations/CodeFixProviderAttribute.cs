@@ -11,16 +11,16 @@ namespace Sudoku.CodeGen
 	{
 		/// <summary>
 		/// Initializes a <see cref="CodeFixProviderAttribute"/> class instance using the specified
-		/// ID list.
+		/// ID.
 		/// </summary>
-		/// <param name="supportedDiagnosticIds">The ID list of all supported diagnostic results.</param>
-		public CodeFixProviderAttribute(params string[] supportedDiagnosticIds) =>
-			SupportedDiagnosticIds = supportedDiagnosticIds;
+		/// <param name="supportedDiagnosticId">The ID of all supported diagnostic result.</param>
+		public CodeFixProviderAttribute(string supportedDiagnosticId) =>
+			SupportedDiagnosticId = supportedDiagnosticId;
 
 
 		/// <summary>
-		/// Indicates the supported diagnostic IDs.
+		/// Indicates the supported diagnostic ID.
 		/// </summary>
-		public string[] SupportedDiagnosticIds { get; }
+		public string SupportedDiagnosticId { get; }
 	}
 }
