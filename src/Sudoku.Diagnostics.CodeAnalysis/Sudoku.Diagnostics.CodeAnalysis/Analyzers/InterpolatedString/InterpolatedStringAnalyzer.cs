@@ -34,25 +34,44 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSS0101(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, _) = context;
+			var (semanticModel, _, orginalNode) = context;
+			if (orginalNode is not InterpolatedStringExpressionSyntax node)
+			{
+				return;
+			}
+
+			/*length-pattern*/
 			if (
-				semanticModel.GetOperation(context.Node) is not IInterpolationOperation
+				node.DescendantNodes().OfType<InterpolationSyntax>().ToArray() is not
 				{
-					Kind: OperationKind.Interpolation,
-					Expression: { Type: { IsValueType: true } }
-				}
+					Length: not 0
+				} interpolationParts
 			)
 			{
 				return;
 			}
 
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SS0101,
-					location: context.Node.GetLocation(),
-					messageArgs: null
+			foreach (var interpolation in interpolationParts)
+			{
+				if (
+					semanticModel.GetOperation(interpolation) is not IInterpolationOperation
+					{
+						Kind: OperationKind.Interpolation,
+						Expression: { Type: { IsValueType: true } }
+					}
 				)
-			);
+				{
+					return;
+				}
+
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0101,
+						location: interpolation.Expression.GetLocation(),
+						messageArgs: null
+					)
+				);
+			}
 		}
 
 		private static void CheckSS0102(SyntaxNodeAnalysisContext context)

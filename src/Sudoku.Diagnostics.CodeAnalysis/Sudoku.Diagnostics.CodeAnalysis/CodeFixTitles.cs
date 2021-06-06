@@ -23,6 +23,7 @@
 		public const string SD0310 = "Add default format";
 		public const string SD0401 = "Use 'nameof' expression instead";
 
+		public const string SS0101 = "Append '.ToString()' invocation";
 		public const string SS0102 = "Remove redundant '$'";
 		public const string SS0402 = "Replace value";
 		public const string SS0403 = "Append flag";
