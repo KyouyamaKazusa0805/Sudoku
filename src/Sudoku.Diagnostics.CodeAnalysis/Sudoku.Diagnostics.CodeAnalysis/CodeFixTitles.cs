@@ -23,6 +23,8 @@
 		public const string SD0310 = "Add default format";
 
 		public const string SS0102 = "Remove redundant '$'";
+		public const string SS0402 = "Replace value";
+		public const string SS0403 = "Append flag";
 		public const string SS0502 = "Remove keyword 'static'";
 		public const string SS0504 = "Append or change accessibility";
 		public const string SS0505 = "Use 'out' as parameter modifier";
