@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -18,26 +17,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
-		/// Indicates the method name <c>Take</c>.
-		/// </summary>
-		private const string TakeMethodName = "Take";
-
-		/// <summary>
-		/// Indicates the method name <c>Count</c>.
-		/// </summary>
-		private const string CountMethodName = "Count";
-
-		/// <summary>
 		/// Indicates the full type name of <see cref="Enumerable"/>.
 		/// </summary>
 		/// <seealso cref="Enumerable"/>
 		private const string EnumerableClassFullName = "System.Linq.Enumerable";
-
-		/// <summary>
-		/// Indicates the full type name of <see cref="IEnumerable{T}"/>.
-		/// </summary>
-		/// <seealso cref="IEnumerable{T}"/>
-		private const string IEnumerableFullName = "System.Collections.Generic.IEnumerable`1";
 
 
 		/// <inheritdoc/>
@@ -47,8 +30,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				CheckSS0301,
-				new[] { SyntaxKind.GreaterThanExpression/*, SyntaxKind.GreaterThanOrEqualExpression*/ }
+				static context =>
+				{
+					CheckSS0301(context);
+				},
+				new[] { SyntaxKind.GreaterThanExpression, SyntaxKind.GreaterThanOrEqualExpression }
 			);
 		}
 
@@ -56,30 +42,27 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void CheckSS0301(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, node) = context;
+
+			// Check whether the node is valid:
+			//
+			//   1) expr.Count() > a
+			//   2) expr.Count() >= a
+			//
+			// Note that 'Take()' method invocation can't exist here.
 			if (
+				/*length-pattern*/
 				node is not BinaryExpressionSyntax
 				{
-					RawKind:
-						(int)SyntaxKind.GreaterThanOrEqualExpression/* or (int)SyntaxKind.GreaterThanExpression*/,
+					RawKind: var kind and (
+						(int)SyntaxKind.GreaterThanOrEqualExpression or (int)SyntaxKind.GreaterThanExpression
+					),
 					Left: InvocationExpressionSyntax
 					{
 						Expression: MemberAccessExpressionSyntax
 						{
 							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-							Expression:
-								var potentialTakeMethodInvocationNode
-								and not InvocationExpressionSyntax
-								{
-									Expression: MemberAccessExpressionSyntax
-									{
-										RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-										Expression: IdentifierNameSyntax
-										{
-											Identifier: { ValueText: TakeMethodName }
-										}
-									}
-								},
-							Name: IdentifierNameSyntax { Identifier: { ValueText: CountMethodName } },
+							Expression: var potentialNotTakeMethodInvocationNode,
+							Name: IdentifierNameSyntax { Identifier: { ValueText: "Count" } },
 						},
 						ArgumentList: { Arguments: { Count: 0 } }
 					} invocationNode,
@@ -90,15 +73,48 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			// If the invocation is 'Take' method, check whether the method has been passed an argument
+			// of type 'int'.
+			var int32 = compilation.GetSpecialType(SpecialType.System_Int32);
+			if (
+				/*indexer-pattern*/
+				potentialNotTakeMethodInvocationNode is InvocationExpressionSyntax
+				{
+					Expression: MemberAccessExpressionSyntax
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+						Expression: IdentifierNameSyntax { Identifier: { ValueText: "Take" } }
+					},
+					ArgumentList: { Arguments: { Count: 1 } arguments }
+				}
+				&& semanticModel.GetOperation(arguments[0]) is { Type: { } takeMethodArgumentType }
+				&& SymbolEqualityComparer.Default.Equals(takeMethodArgumentType, int32)
+			)
+			{
+				return;
+			}
+
+			// Because of 'Take' method invocation, we can judge that the expression to invoke
+			// must be of type 'IEnumerable<int>'. Therefore, we don't need to check it.
+			#region Unncessary
+			//// Check the left-side expression is of type 'IEnumerable<int>'.
+			//var ienumerableOfInt32 = compilation
+			//	.GetTypeByMetadataName(IEnumerableFullName)!
+			//	.WithTypeArguments(compilation, SpecialType.System_Int32);
+			//if (semanticModel.GetOperation(potentialNotTakeMethodInvocationNode) is not { Type: { } type }
+			//	|| !SymbolEqualityComparer.Default.Equals(type, ienumerableOfInt32))
+			//{
+			//	return;
+			//}
+			#endregion
+
+			// Check the method invocation is from type 'System.Linq.Enumerable'.
 			if (
 				semanticModel.GetOperation(invocationNode) is not IInvocationOperation
 				{
-					Kind: OperationKind.Invocation,
 					TargetMethod:
 					{
 						ContainingType: var containingTypeSymbol,
-						Parameters: { Length: 1 } parameterSymbols,
-						ReturnType: var returnTypeSymbol,
 						IsExtensionMethod: true,
 						IsGenericMethod: true
 					}
@@ -109,70 +125,29 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				semanticModel.GetOperation(potentialTakeMethodInvocationNode) is IInvocationOperation
-				{
-					Kind: OperationKind.Invocation,
-					TargetMethod:
-					{
-						ContainingType: var containingTypeSymbolTakeMethod,
-						Parameters: { Length: 2 } parameterSymbolsTakeMethod,
-						ReturnType: var returnTypeSymbolTakeMethod,
-						IsExtensionMethod: true,
-						IsGenericMethod: true
-					}
-				} possibleTakeMethodInvocationOperation
-				&& SymbolEqualityComparer.Default.Equals(
-					containingTypeSymbolTakeMethod,
-					compilation.GetTypeByMetadataName(EnumerableClassFullName)
-				)
-				&& SymbolEqualityComparer.Default.Equals(
-					returnTypeSymbolTakeMethod,
-					compilation
-					.GetTypeByMetadataName(IEnumerableFullName)!
-					.WithTypeArguments(compilation, SpecialType.System_Int32)
-				)
-				&& SymbolEqualityComparer.Default.Equals(
-					parameterSymbolsTakeMethod[0].Type,
-					compilation
-					.GetTypeByMetadataName(IEnumerableFullName)!
-					.WithTypeArguments(compilation, SpecialType.System_Int32)
-				)
-				&& SymbolEqualityComparer.Default.Equals(
-					parameterSymbolsTakeMethod[1].Type,
-					compilation.GetSpecialType(SpecialType.System_Int32)
-				)
-			)
-			{
-				return;
-			}
-
-			if (
 				!SymbolEqualityComparer.Default.Equals(
 					containingTypeSymbol,
 					compilation.GetTypeByMetadataName(EnumerableClassFullName)
 				)
-				|| !SymbolEqualityComparer.Default.Equals(
-					returnTypeSymbol,
-					compilation.GetSpecialType(SpecialType.System_Int32)
-				)
-				|| !SymbolEqualityComparer.Default.Equals(
-					parameterSymbols[0].Type,
-					compilation
-					.GetTypeByMetadataName(IEnumerableFullName)!
-					.WithTypeArguments(compilation, SpecialType.System_Int32)
-				)
 			)
 			{
 				return;
 			}
 
-			// No calling conversion.
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SS0301,
 					location: node.GetLocation(),
-					messageArgs: new[] { rightNode.ToString() },
-					additionalLocations: new[] { invocationNode.GetLocation(), rightNode.GetLocation() }
+					messageArgs: new[]
+					{
+						rightNode.ToString(),
+						kind == (int)SyntaxKind.GreaterThanExpression ? ">" : ">="
+					},
+					additionalLocations: new[]
+					{
+						potentialNotTakeMethodInvocationNode.GetLocation(),
+						rightNode.GetLocation()
+					}
 				)
 			);
 		}

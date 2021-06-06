@@ -257,27 +257,11 @@
             Indicates the analyzer that analyzes LINQ nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.TakeMethodName">
-            <summary>
-            Indicates the method name <c>Take</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.CountMethodName">
-            <summary>
-            Indicates the method name <c>Count</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.EnumerableClassFullName">
             <summary>
             Indicates the full type name of <see cref="T:System.Linq.Enumerable"/>.
             </summary>
             <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.IEnumerableFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
@@ -285,7 +269,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SS0301">
             <summary>
             Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a>
-            diagnostic result (Replace 'Count() >= value' with 'Take(value).Count() >= value').
+            diagnostic result (Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value').
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SupportedDiagnostics">
@@ -1559,7 +1543,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a>
-            (Replace 'Count() >= value' with 'Take(value).Count() >= value').
+            (Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value').
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0301CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
