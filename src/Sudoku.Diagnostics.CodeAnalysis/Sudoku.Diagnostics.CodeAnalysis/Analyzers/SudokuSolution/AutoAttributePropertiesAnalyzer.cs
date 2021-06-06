@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -32,7 +34,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				CheckSD0402,
+				AnalyzeSyntaxNode,
 				new[]
 				{
 					SyntaxKind.ClassDeclaration,
@@ -43,7 +45,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void CheckSD0402(SyntaxNodeAnalysisContext context)
+		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, node) = context;
 			if (node is not MemberDeclarationSyntax { AttributeLists: { Count: not 0 } attributeLists })
@@ -63,6 +65,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					if (
 						attribute is not
 						{
+							Parent: AttributeListSyntax
+							{
+								Parent: TypeDeclarationSyntax
+								{
+									Identifier: { ValueText: var typeName }
+								} typeDeclaration
+							},
 							Name: IdentifierNameSyntax { Identifier: { ValueText: var text } } identifierName,
 							ArgumentList: { Arguments: var arguments }
 						}
@@ -73,7 +82,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					switch (text)
 					{
-						case AutoDeconstructAttributeFullTypeName:
+						case AutoDeconstructAttributeFullTypeName or "AutoDeconstruct":
 						{
 							if (arguments.Count < 2)
 							{
@@ -83,7 +92,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											"Sudoku.CodeGen.AutoDeconstructAttributeFullTypeName",
+											$"Sudoku.CodeGen.{AutoDeconstructAttributeFullTypeName}",
 											2,
 											" at least"
 										}
@@ -97,6 +106,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 						case var name and (
 							AutoEqualityAttributeFullTypeName or AutoHashCodeAttributeFullTypeName
+							or "AutoEquality" or "AutoHashCode"
 						):
 						{
 							if (arguments.Count < 1)
@@ -119,7 +129,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case1;
 						}
-						case AutoDeconstructExtensionAttributeFullTypeName:
+						case AutoDeconstructExtensionAttributeFullTypeName or "AutoDeconstructExtension":
 						{
 							if (arguments.Count < 3)
 							{
@@ -129,7 +139,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											"Sudoku.CodeGen.AutoDeconstructExtensionAttributeFullTypeName",
+											$"Sudoku.CodeGen.{AutoDeconstructExtensionAttributeFullTypeName}",
 											3,
 											" at least"
 										}
@@ -141,18 +151,29 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case2;
 						}
-						case AutoGetEnumeratorAttributeFullTypeName:
+						case AutoGetEnumeratorAttributeFullTypeName or "AutoGetEnumerator":
 						{
 							/*slice-pattern*/
 							if (
 								arguments[0] is { Expression: var expr } argument
-								&& semanticModel.GetOperation(expr) is not { Kind: OperationKind.NameOf })
+								&& semanticModel.GetOperation(expr) is
+								{
+									Kind: not OperationKind.NameOf,
+									ConstantValue: { HasValue: true, Value: string exprValue }
+								}
+							)
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: SD0401,
 										location: argument.GetLocation(),
-										messageArgs: null
+										messageArgs: null,
+										properties: ImmutableDictionary.CreateRange(
+											new KeyValuePair<string, string?>[]
+											{
+												new("ExpressionValue", exprValue)
+											}
+										)
 									)
 								);
 							}
@@ -165,9 +186,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							foreach (var argument in arguments)
 							{
 								if (
-									semanticModel.GetOperation(argument.Expression) is not
+									semanticModel.GetOperation(argument.Expression) is
 									{
-										Kind: OperationKind.NameOf
+										Kind: not OperationKind.NameOf,
+										ConstantValue: { HasValue: true, Value: string exprValue }
 									}
 								)
 								{
@@ -175,7 +197,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										Diagnostic.Create(
 											descriptor: SD0401,
 											location: argument.GetLocation(),
-											messageArgs: null
+											messageArgs: null,
+											properties: ImmutableDictionary.CreateRange(
+												new KeyValuePair<string, string?>[]
+												{
+													new("ExpressionValue", exprValue)
+												}
+											)
 										)
 									);
 								}
@@ -190,9 +218,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							{
 								var argument = arguments[i];
 								if (
-									semanticModel.GetOperation(argument.Expression) is not
+									semanticModel.GetOperation(argument.Expression) is
 									{
-										Kind: OperationKind.NameOf
+										Kind: not OperationKind.NameOf,
+										ConstantValue: { HasValue: true, Value: string exprValue }
 									}
 								)
 								{
@@ -200,7 +229,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										Diagnostic.Create(
 											descriptor: SD0401,
 											location: argument.GetLocation(),
-											messageArgs: null
+											messageArgs: null,
+											properties: ImmutableDictionary.CreateRange(
+												new KeyValuePair<string, string?>[]
+												{
+													new("ExpressionValue", exprValue)
+												}
+											)
 										)
 									);
 								}

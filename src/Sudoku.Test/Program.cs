@@ -1,13 +1,13 @@
 ﻿using System;
+using Sudoku.CodeGen;
 
 Console.WriteLine();
 
-[Flags]
-enum TestEnum
+[AutoDeconstruct("_a", "_b", "_c")]
+partial class Temp
 {
-	A = 1,
-	B = 2,
-	C = A | B,
-	D,
-	E = 14
+	private readonly int _a, _b, _c;
+
+
+	public Temp(int a, int b, int c) => (_a, _b, _c) = (a, b, c);
 }
