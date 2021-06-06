@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -24,11 +24,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(CheckSS0402, new[] { SyntaxKind.EnumDeclaration });
+			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.EnumDeclaration });
 		}
 
 
-		private static void CheckSS0402(SyntaxNodeAnalysisContext context)
+		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, n) = context;
 
@@ -59,33 +59,33 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			{
 				switch (fieldDeclaration.EqualsValue)
 				{
-					case null when semanticModel.GetDeclaredSymbol(fieldDeclaration) is
+					case null:
 					{
-						ConstantValue: { } v
-					}:
-					{
-						long value = Unsafe.As<object, long>(ref v);
-						if (value != 0 && (value & value - 1) != 0)
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									descriptor: SS0403,
-									location: fieldDeclaration.GetLocation(),
-									messageArgs: null
-								)
-							);
-						}
+						context.ReportDiagnostic(
+							Diagnostic.Create(
+								descriptor: SS0403,
+								location: fieldDeclaration.GetLocation(),
+								messageArgs: null
+							)
+						);
 
 						break;
 					}
-					case { Value: var expression } when expression.DescendantNodes().Any(static expr =>
-						expr.RawKind is not (
-							(int)SyntaxKind.BitwiseAndExpression or (int)SyntaxKind.BitwiseNotExpression
-							or (int)SyntaxKind.BitwiseOrExpression or (int)SyntaxKind.ExclusiveOrExpression
-							or (int)SyntaxKind.IdentifierName or (int)SyntaxKind.NumericLiteralExpression
-						)
-					):
+					case { Value: var expression }
+					when semanticModel.GetOperation(expression) is ILiteralOperation
 					{
+						ConstantValue: { HasValue: true, Value: var value and (int or long) }
+					}:
+					{
+						switch (value)
+						{
+							case int i when (i & i - 1) == 0:
+							case long l when (l & l - 1) == 0:
+							{
+								continue;
+							}
+						}
+
 						context.ReportDiagnostic(
 							Diagnostic.Create(
 								descriptor: SS0402,
