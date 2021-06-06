@@ -46,7 +46,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(CheckSS0301, new[] { SyntaxKind.ExpressionStatement });
+			context.RegisterSyntaxNodeAction(
+				CheckSS0301,
+				new[] { SyntaxKind.GreaterThanExpression/*, SyntaxKind.GreaterThanOrEqualExpression*/ }
+			);
 		}
 
 
@@ -56,7 +59,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			if (
 				node is not BinaryExpressionSyntax
 				{
-					RawKind: (int)SyntaxKind.GreaterThanOrEqualExpression,
+					RawKind:
+						(int)SyntaxKind.GreaterThanOrEqualExpression/* or (int)SyntaxKind.GreaterThanExpression*/,
 					Left: InvocationExpressionSyntax
 					{
 						Expression: MemberAccessExpressionSyntax
@@ -167,7 +171,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SS0301,
 					location: node.GetLocation(),
-					messageArgs: new[] { rightNode.ToString() }
+					messageArgs: new[] { rightNode.ToString() },
+					additionalLocations: new[] { invocationNode.GetLocation(), rightNode.GetLocation() }
 				)
 			);
 		}
