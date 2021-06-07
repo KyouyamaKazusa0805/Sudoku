@@ -95,11 +95,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			// Because of 'Take' method invocation, we can judge that the expression to invoke
-			// must be of type 'IEnumerable<int>'. Therefore, we don't need to check it.
-			// So we don't check whether the expression node is a normal expression.
-			// A query expression with a bracket is also okay.
-
 			// Check the method invocation is from type 'System.Linq.Enumerable'.
 			if (
 				semanticModel.GetOperation(invocationNode) is not IInvocationOperation
@@ -116,6 +111,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			// Because of 'Take' method invocation, we can judge that the expression to invoke
+			// must be of type 'IEnumerable<int>'. Therefore, we don't need to check it.
+			// So we don't check whether the expression node is a normal expression.
+			// A query expression with a bracket is also okay.
 			if (
 				!SymbolEqualityComparer.Default.Equals(
 					containingTypeSymbol,
