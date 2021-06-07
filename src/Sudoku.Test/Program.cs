@@ -1,10 +1,7 @@
 ﻿using System;
 
-object? o = null;
+int? p = 30;
+int q = 40;
 
-if (o is null)
-{
-	o = new();
-}
-
-Console.WriteLine(o);
+int? r = p is null ? q : p;
+Console.WriteLine(r);

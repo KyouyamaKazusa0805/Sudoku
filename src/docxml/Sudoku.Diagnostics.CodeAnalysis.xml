@@ -392,29 +392,6 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a></term>
-            <description>The nullable value type checking expression will be suggested to convert to constant pattern</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SS0605">
-            <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a>
-            diagnostic result (The nullable value type checking expression will be suggested to convert to constant pattern).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -724,6 +701,29 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a></term>
+            <description>The nullable value type checking expression will be suggested to convert to constant pattern</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SS0605">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a>
+            diagnostic result (The nullable value type checking expression will be suggested to convert to constant pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer">
@@ -2007,6 +2007,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0701CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0702CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0702">SS0702</a>
+            (The expression can be simplified to using null-coalescing operator '??').
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0702CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0702CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0702CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider">

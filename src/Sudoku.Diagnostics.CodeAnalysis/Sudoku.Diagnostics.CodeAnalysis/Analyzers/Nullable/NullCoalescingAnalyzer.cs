@@ -113,7 +113,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Diagnostic.Create(
 						descriptor: SS0702,
 						location: originalNode.GetLocation(),
-						messageArgs: new[] { whenFalseExpr.ToString(), whenTrueExpr.ToString() }
+						messageArgs: new[] { whenFalseExpr.ToString(), whenTrueExpr.ToString() },
+						additionalLocations: new[] { whenFalseExpr.GetLocation(), whenTrueExpr.GetLocation() }
 					)
 				);
 			}

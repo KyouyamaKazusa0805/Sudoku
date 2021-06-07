@@ -32,6 +32,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			{
 				((int)SyntaxKind.NullLiteralExpression, _, _, { IsReferenceType: true }) => true,
 				(_, (int)SyntaxKind.NullLiteralExpression, { IsReferenceType: true }, _) => true,
+				((int)SyntaxKind.NullLiteralExpression, _, _, { IsValueType: true }) => false,
+				(_, (int)SyntaxKind.NullLiteralExpression, { IsValueType: true }, _) => false,
 				(_, _, null, _) => throw new ArgumentException("The type can't be inferred.", nameof(left)),
 				(_, _, _, null) => throw new ArgumentException("The type can't be inferred.", nameof(right)),
 				(_, _, var l, var r) => (withNullableChecking ? IncludeNullability : Default).Equals(l, r)
