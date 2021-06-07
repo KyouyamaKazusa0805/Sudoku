@@ -66,6 +66,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									continue;
 								}
 
+								if (
+									context.SemanticModel.GetOperation(rightExpr) is
+									{
+										ConstantValue: { HasValue: true }
+									}
+								)
+								{
+									continue;
+								}
+
 								string exprStr = possibleExpressions.ToString();
 								var match = MemberAccessExpressionRegex.Match(exprStr);
 								string? suggestedName;
