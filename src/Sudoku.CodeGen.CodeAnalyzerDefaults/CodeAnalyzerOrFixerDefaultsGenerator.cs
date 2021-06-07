@@ -205,7 +205,7 @@ namespace {namespaceName}
 				).First();
 
 				string description = (
-					from line in info select (Id: line[0], Title: line[5])
+					from line in info select (Id: line[0], Title: line[4])
 				).First(pair => pair.Id == id).Title;
 
 				return $@"#pragma warning disable 1591
@@ -244,7 +244,7 @@ namespace {namespaceName}
 
 			string getDescription(string id) =>
 			(
-				from line in info select (Id: line[0], Title: line[5])
+				from line in info select (Id: line[0], Title: line[4])
 			).First(pair => pair.Id == id).Title;
 
 			static string[] getMemberValues(string attributeStr, int tokenStartIndex)
