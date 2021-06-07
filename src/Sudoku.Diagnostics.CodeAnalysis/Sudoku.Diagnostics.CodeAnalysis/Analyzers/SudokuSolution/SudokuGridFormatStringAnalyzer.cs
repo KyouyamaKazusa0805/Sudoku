@@ -8,10 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the method invocation <c>ToString</c>
-	/// of type <c>SudokuGrid</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0310", "SD0311")]
 	public sealed partial class SudokuGridFormatStringAnalyzer : DiagnosticAnalyzer
 	{

@@ -8,9 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for <see langword="is"/> pattern.
-	/// </summary>
 	[CodeAnalyzer("SS0601", "SS0602", "SS0603")]
 	public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 	{

@@ -119,15 +119,20 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 				}
 
 				string[] diagnosticIds = selection.First();
+				string diagnosticResults = string.Join(
+					"\r\n\t",
+					from id in diagnosticIds
+					select $@"/// <item>
+	/// <term><a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a></term>
+	/// <description>{getDescription(id)}</description>
+	/// </item>"
+				);
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
 					from id in diagnosticIds
-					let description = (
-						from line in info select (Id: line[0], Title: line[5])
-					).First(pair => pair.Id == id).Title
 					select $@"/// <summary>
 		/// Indicates the <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
-		/// diagnostic result ({description}).
+		/// diagnostic result ({getDescription(id)}).
 		/// </summary>
 		[CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
@@ -137,6 +142,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 				);
 
 				string supportedInstances = string.Join(", ", diagnosticIds);
+				string typeName = symbol.Name;
 
 				return $@"#pragma warning disable 1591
 
@@ -149,8 +155,14 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace {namespaceName}
 {{
+	/// <summary>
+	/// Indicates an analyzer that analyzes the code for the following diagnostic results:
+	/// <list type=""table"">
+	{diagnosticResults}
+	/// </list>
+	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	partial class {symbol.Name}
+	partial class {typeName}
 	{{
 		{descriptors}
 
@@ -183,7 +195,7 @@ namespace {namespaceName}
 					return null;
 				}
 
-				string className = symbol.Name;
+				string typeName = symbol.Name;
 				string id = (
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(CodeFixProviderAttribute)
@@ -214,8 +226,8 @@ namespace {namespaceName}
 	/// <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
 	/// ({description}).
 	/// </summary>
-	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({className})), Shared]
-	partial class {className}
+	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({typeName})), Shared]
+	partial class {typeName}
 	{{
 		/// <inheritdoc/>
 		[CompilerGenerated]
@@ -229,6 +241,11 @@ namespace {namespaceName}
 	}}
 }}";
 			}
+
+			string getDescription(string id) =>
+			(
+				from line in info select (Id: line[0], Title: line[5])
+			).First(pair => pair.Id == id).Title;
 
 			static string[] getMemberValues(string attributeStr, int tokenStartIndex)
 			{

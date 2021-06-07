@@ -8,11 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the constant pattern matching
-	/// of <see cref="Nullable{T}"/>.
-	/// </summary>
-	/// <seealso cref="Nullable{T}"/>
 	[CodeAnalyzer("SS0605")]
 	public sealed partial class NullableValueTypeConstantPatternAnalyzer : DiagnosticAnalyzer
 	{

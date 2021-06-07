@@ -11,16 +11,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for unncessary discard pattern.
-	/// </summary>
-	/// <remarks>
-	/// All possible patterns will be analyzed:
-	/// <list type="bullet">
-	/// <item>Discard in positional pattern: <c>(DeconstructionMember: <see langword="_"/>)</c>.</item>
-	/// <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
-	/// </list>
-	/// </remarks>
 	[CodeAnalyzer("SS0607", "SS0613")]
 	public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyzer
 	{

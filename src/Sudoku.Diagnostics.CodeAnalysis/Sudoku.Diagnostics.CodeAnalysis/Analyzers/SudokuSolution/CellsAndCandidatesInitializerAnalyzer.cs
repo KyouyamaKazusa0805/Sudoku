@@ -11,10 +11,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-	/// to check whether the input value in the initializer is invalid.
-	/// </summary>
 	[CodeAnalyzer("SD0305", "SD0306", "SD0307", "SD0308")]
 	public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAnalyzer
 	{

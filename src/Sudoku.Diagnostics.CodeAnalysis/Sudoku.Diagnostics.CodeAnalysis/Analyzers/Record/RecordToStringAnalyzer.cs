@@ -8,10 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for <see langword="record"/> <c>ToString</c> invocation,
-	/// and the type is recursive.
-	/// </summary>
 	[CodeAnalyzer("SS9004")]
 	public sealed partial class RecordToStringAnalyzer : DiagnosticAnalyzer
 	{

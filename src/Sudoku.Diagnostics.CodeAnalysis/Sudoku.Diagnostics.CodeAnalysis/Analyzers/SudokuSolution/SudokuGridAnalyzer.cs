@@ -7,9 +7,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0301")]
 	public sealed partial class SudokuGridAnalyzer : DiagnosticAnalyzer
 	{

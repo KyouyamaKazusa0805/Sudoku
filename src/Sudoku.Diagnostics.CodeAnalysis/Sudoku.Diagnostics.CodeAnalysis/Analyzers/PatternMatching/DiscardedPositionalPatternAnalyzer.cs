@@ -7,10 +7,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the empty-judged positional pattern.
-	/// The pattern is like <c>(<see langword="_"/>, <see langword="_"/>)</c>.
-	/// </summary>
 	[CodeAnalyzer("SS0610")]
 	public sealed partial class DiscardedPositionalPatternAnalyzer : DiagnosticAnalyzer
 	{

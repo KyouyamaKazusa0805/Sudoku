@@ -8,10 +8,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
-	/// field <c>TextResources.Current</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0202", "SD0203", "SD0204", "SD0205", "SD0206")]
 	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticAnalyzer
 	{

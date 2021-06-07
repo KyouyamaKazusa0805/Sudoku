@@ -10,9 +10,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
-	/// </summary>
 	[CodeAnalyzer("SD0401", "SD0402")]
 	public sealed partial class AutoAttributePropertiesAnalyzer : DiagnosticAnalyzer
 	{
@@ -65,13 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					if (
 						attribute is not
 						{
-							Parent: AttributeListSyntax
-							{
-								Parent: TypeDeclarationSyntax
-								{
-									Identifier: { ValueText: var typeName }
-								} typeDeclaration
-							},
+							Parent: AttributeListSyntax,
 							Name: IdentifierNameSyntax { Identifier: { ValueText: var text } } identifierName,
 							ArgumentList: { Arguments: var arguments }
 						}

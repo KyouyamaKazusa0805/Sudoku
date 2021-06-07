@@ -23,9 +23,6 @@ using InfoTuple = System.ValueTuple<
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the available positional pattern matching.
-	/// </summary>
 	[CodeAnalyzer("SS0606")]
 	public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnalyzer
 	{

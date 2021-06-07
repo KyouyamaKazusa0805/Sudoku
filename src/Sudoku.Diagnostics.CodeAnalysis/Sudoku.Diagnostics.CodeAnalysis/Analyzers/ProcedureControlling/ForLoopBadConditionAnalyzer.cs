@@ -11,9 +11,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
-	/// </summary>
 	[CodeAnalyzer("SS9001")]
 	public sealed partial class ForLoopBadConditionAnalyzer : DiagnosticAnalyzer
 	{

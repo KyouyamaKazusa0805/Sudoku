@@ -8,9 +8,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the unncessary <c>operator <see langword="is"/></c>.
-	/// </summary>
 	[CodeAnalyzer("SS0617")]
 	public sealed partial class UnnecessaryIsOperatorAnalyzer : DiagnosticAnalyzer
 	{

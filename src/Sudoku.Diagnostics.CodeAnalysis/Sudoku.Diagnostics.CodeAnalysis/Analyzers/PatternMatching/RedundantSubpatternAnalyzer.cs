@@ -10,9 +10,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the redundant subpattern.
-	/// </summary>
 	[CodeAnalyzer("SS0609")]
 	public sealed partial class RedundantSubpatternAnalyzer : DiagnosticAnalyzer
 	{

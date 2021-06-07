@@ -9,13 +9,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for:
-	/// <list type="bullet">
-	/// <item><c><see langword="not null and"/></c></item>
-	/// <item><c><see langword="null or"/></c></item>
-	/// </list>
-	/// </summary>
 	[CodeAnalyzer("SS0618", "SS0619")]
 	public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 	{

@@ -9,9 +9,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the constant pattern matching of built-in types.
-	/// </summary>
 	[CodeAnalyzer("SS0604")]
 	public sealed partial class BuiltInTypesConstantPatternAnalyzer : DiagnosticAnalyzer
 	{

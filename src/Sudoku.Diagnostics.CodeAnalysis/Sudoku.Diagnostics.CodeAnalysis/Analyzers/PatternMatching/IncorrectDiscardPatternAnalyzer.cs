@@ -6,9 +6,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the incorrect positional pattern.
-	/// </summary>
 	[CodeAnalyzer("SS0608")]
 	public sealed partial class IncorrectDiscardPatternAnalyzer : DiagnosticAnalyzer
 	{

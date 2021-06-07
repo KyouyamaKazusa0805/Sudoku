@@ -8,10 +8,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for nullable types pattern matching (i.e. <c>{ }</c> here)
-	/// suggestion checking.
-	/// </summary>
 	[CodeAnalyzer("SS0615", "SS0616")]
 	public sealed partial class NullableTypesPatternMatchingSuggestionAnalyzer : DiagnosticAnalyzer
 	{

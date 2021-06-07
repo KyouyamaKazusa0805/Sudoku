@@ -12,9 +12,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for deconstruction methods.
-	/// </summary>
 	[CodeAnalyzer("SS0501", "SS0502", "SS0503", "SS0504", "SS0505", "SS0506", "SS0507", "SS0508")]
 	public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	{

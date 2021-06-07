@@ -8,10 +8,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the <see langword="null"/>-conditional
-	/// operator <c>?</c> and <see langword="null"/>-forgiving operator <c>!</c> usages.
-	/// </summary>
 	[CodeAnalyzer("SS0703", "SS0704")]
 	public sealed partial class NullConditionalAndSuppressionAnalyzer : DiagnosticAnalyzer
 	{

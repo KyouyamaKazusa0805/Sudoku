@@ -14,11 +14,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for <see langword="enum"/> types
-	/// marked <see cref="FlagsAttribute"/>.
-	/// </summary>
-	/// <seealso cref="FlagsAttribute"/>
 	[CodeAnalyzer("SS0402", "SS0403")]
 	public sealed partial class FlaggedEnumFieldAnalyzer : DiagnosticAnalyzer
 	{

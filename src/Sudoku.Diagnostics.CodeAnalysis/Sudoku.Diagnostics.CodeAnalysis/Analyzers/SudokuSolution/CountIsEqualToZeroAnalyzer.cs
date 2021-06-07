@@ -9,10 +9,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-	/// to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0302")]
 	public sealed partial class CountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
 	{

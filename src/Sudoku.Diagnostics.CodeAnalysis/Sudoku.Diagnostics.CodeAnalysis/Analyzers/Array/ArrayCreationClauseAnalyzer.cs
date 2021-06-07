@@ -6,9 +6,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for array creation clause.
-	/// </summary>
 	[CodeAnalyzer("SS9002")]
 	public sealed partial class ArrayCreationClauseAnalyzer : DiagnosticAnalyzer
 	{

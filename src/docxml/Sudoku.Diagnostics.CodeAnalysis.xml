@@ -6,7 +6,13 @@
     <members>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for array creation clause.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a></term>
+            <description>Redundant array creation statement</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -23,7 +29,41 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for deconstruction methods.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0501">SS0501</a></term>
+            <description>Deconstruction methods should contain at least 2 parameters</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0502">SS0502</a></term>
+            <description>Deconstruction methods must be instance ones</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0503">SS0503</a></term>
+            <description>Deconstruction methods must return void</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a></term>
+            <description>Deconstruction methods must be public</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a></term>
+            <description>All parameters in deconstruction methods should be out parameters</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0506">SS0506</a></term>
+            <description>The assignment statement isn't a simple variable one, but an expression</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0507">SS0507</a></term>
+            <description>The parameter should be corresponded to a certain instance field or instance property in this type</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0508">SS0508</a></term>
+            <description>The type has already contained a deconstruction method that holds the same number of parameters of this method, so this method won't work</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -82,8 +122,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
-            to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0303">SD0303</a></term>
+            <description>Please use the default-value field to avoid instantiation</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0304">SD0304</a></term>
+            <description>Please use the specific property to simplify the invocation</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CellsTypeName">
@@ -156,8 +205,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the repeated or unncessary
-            discards <c><see langword="_"/></c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9003">SS9003</a></term>
+            <description>Unncessary discards</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardAnalyzer.Discard">
@@ -179,7 +233,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0401">SS0401</a></term>
+            <description>Can't apply the operator here because the type is closed enum</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.ClosedAttributeFullTypeName">
@@ -206,10 +266,18 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for <see langword="enum"/> types
-            marked <see cref="T:System.FlagsAttribute"/>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0402">SS0402</a></term>
+            <description>The enum field must holds a flag value if the enum is marked 'FlagsAttribute'</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0403">SS0403</a></term>
+            <description>The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'</description>
+            </item>
+            </list>
             </summary>
-            <seealso cref="T:System.FlagsAttribute"/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
@@ -231,7 +299,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes the interpolated strings.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0101">SS0101</a></term>
+            <description>Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0102">SS0102</a></term>
+            <description>Unnecessary interpolation leading character '$'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -254,7 +332,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes LINQ nodes.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a></term>
+            <description>Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.EnumerableClassFullName">
@@ -277,7 +361,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for available simplification for the <c>operator ??=</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0701">SS0701</a></term>
+            <description>The expression can be simplified to using compound null-coalesce operator '??='</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0705">SS0705</a></term>
+            <description>Using compound null-coalesce operator '??=' is unncessary</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -300,10 +394,14 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the constant pattern matching
-            of <see cref="T:System.Nullable`1"/>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a></term>
+            <description>The nullable value type checking expression will be suggested to convert to constant pattern</description>
+            </item>
+            </list>
             </summary>
-            <seealso cref="T:System.Nullable`1"/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
@@ -319,8 +417,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the <see langword="null"/> coalescing operator
-            <c>??</c> usages.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0702">SS0702</a></term>
+            <description>The expression can be simplified to using null-coalescing operator '??'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -337,8 +440,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the <see langword="null"/>-conditional
-            operator <c>?</c> and <see langword="null"/>-forgiving operator <c>!</c> usages.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0703">SS0703</a></term>
+            <description>Unncessary null-conditional operator '?'</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0704">SS0704</a></term>
+            <description>Unncessary null-forgiving operator '!'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -361,8 +473,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for available <see langword="and"/> or
-            <see langword="or"/> patterns to merge.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0621">SS0621</a></term>
+            <description>Available simplification for property patterns connected with keyword 'and' to a single property pattern</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0622">SS0622</a></term>
+            <description>Available simplification for property patterns connected with keyword 'or' to a single property pattern</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -385,7 +506,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableExtendedPropertyPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for available extended property pattern.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0624">SS0624</a></term>
+            <description>Available simplification for extended property patterns</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableExtendedPropertyPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -402,7 +529,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the available positional pattern matching.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0606">SS0606</a></term>
+            <description>The expression can be simplifiy via using positional pattern matching</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -419,7 +552,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the constant pattern matching of built-in types.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0604">SS0604</a></term>
+            <description>Unnecessary constant pattern for the variable of the same type</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -436,8 +575,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the empty-judged positional pattern.
-            The pattern is like <c>(<see langword="_"/>, <see langword="_"/>)</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0610">SS0610</a></term>
+            <description>The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -454,14 +598,15 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for:
-            <list type="bullet">
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
             <item>
-            Discards <see langword="_"/> in the <see langword="var"/> pattern, e.g.
-            <c><see langword="is var _"/></c>.
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0611">SS0611</a></term>
+            <description>The discard in the 'var' pattern may not take any effects</description>
             </item>
             <item>
-            Deconstruction discards, e.g.<c><see langword="is var"/> (<see langword="_"/>, <see langword="_"/>)</c>.
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0612">SS0612</a></term>
+            <description>It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern</description>
             </item>
             </list>
             </summary>
@@ -486,7 +631,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the incorrect positional pattern.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0608">SS0608</a></term>
+            <description>The positional pattern may not allow because bounded deconstruction method is a parameterless or single-parameter one</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -503,10 +654,16 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for:
-            <list type="bullet">
-            <item><c><see langword="not null and"/></c></item>
-            <item><c><see langword="null or"/></c></item>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0618">SS0618</a></term>
+            <description>Pattern 'not null' is redundant; please remove it</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0619">SS0619</a></term>
+            <description>Combination constant pattern 'null' and the keyword 'or' is redundant; please remove it</description>
+            </item>
             </list>
             </summary>
         </member>
@@ -538,8 +695,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for nullable types pattern matching (i.e. <c>{ }</c> here)
-            suggestion checking.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0615">SS0615</a></term>
+            <description>Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0616">SS0616</a></term>
+            <description>Please use '{ }' or 'not null' instead of '!= null' in nullable reference types</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -562,7 +728,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the pair of the keyword <see langword="not"/>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0626">SS0626</a></term>
+            <description>Keyword 'not' repeats; A pair of keyword 'not' can be omitted</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -579,7 +751,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the redundant subpattern.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0609">SS0609</a></term>
+            <description>The positional subpattern is redundant</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -596,15 +774,18 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for repeated property paths.
-            </summary>
-            <remarks>
-            All kinds to analyze are:
-            <list type="bullet">
-            <item>Property pattern: <c>{ Prop: 1 }</c>.</item>
-            <item>Extended property pattern: <c>{ Prop.NestedProp: 1 }</c>.</item>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0623">SS0623</a></term>
+            <description>Repeated property path; try to integrate to one using keyword 'and' as the connection</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0625">SS0625</a></term>
+            <description>Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection</description>
+            </item>
             </list>
-            </remarks>
+            </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
@@ -626,7 +807,21 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for <see langword="is"/> pattern.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0601">SS0601</a></term>
+            <description>Unnecessary explicit type pattern</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0602">SS0602</a></term>
+            <description>The pattern can be simplify to 'is null'</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0603">SS0603</a></term>
+            <description>The pattern can be simplify to 'is not null'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -655,15 +850,18 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for unncessary discard pattern.
-            </summary>
-            <remarks>
-            All possible patterns will be analyzed:
-            <list type="bullet">
-            <item>Discard in positional pattern: <c>(DeconstructionMember: <see langword="_"/>)</c>.</item>
-            <item>Discard in property pattern: <c>{ Property: <see langword="_"/> }</c>.</item>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a></term>
+            <description>This discard can be omitted in the current positional pattern</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0613">SS0613</a></term>
+            <description>The discard pattern in this property pattern doesn't judge anything; please remove this clause</description>
+            </item>
             </list>
-            </remarks>
+            </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
@@ -685,7 +883,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the unncessary empty-brace pattern <c>{ }</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0614">SS0614</a></term>
+            <description>The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -702,7 +906,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the unncessary <c>operator <see langword="is"/></c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0617">SS0617</a></term>
+            <description>Unncessary operator 'is' to determine the range of that value of same type</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -719,8 +929,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for unncessary <see langword="not"/> keyword
-            in a relation pattern.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0620">SS0620</a></term>
+            <description>Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -737,7 +952,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a></term>
+            <description>Available prepositional iteration condition expression</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.MemberAccessExpressionRegex">
@@ -759,8 +980,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for <see langword="record"/> <c>ToString</c> invocation,
-            and the type is recursive.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9004">SS9004</a></term>
+            <description>Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
@@ -777,10 +1003,14 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes the type <see cref="T:System.Span`1"/> or <see cref="T:System.ReadOnlySpan`1"/>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0201">SS0201</a></term>
+            <description>The result of the expression '.ctor(void*, int)' can't be the return value as any methods</description>
+            </item>
+            </list>
             </summary>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SpanTypeFullName">
             <summary>
@@ -813,7 +1043,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for closed <see langword="enum"/> types.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0401">SD0401</a></term>
+            <description>Please use nameof expression instead</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0402">SD0402</a></term>
+            <description>This attribute must contain the specified number of parameters</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructAttributeFullTypeName">
@@ -861,8 +1101,25 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-            to check whether the input value in the initializer is invalid.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0305">SD0305</a></term>
+            <description>The input value in this initializer is invalid</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0306">SD0306</a></term>
+            <description>The remove expression in the initializer following with the current constructor has no effect</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a></term>
+            <description>The expression can be simplified</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0308">SD0308</a></term>
+            <description>The initializer contains the duplicate value</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.CellsTypeName">
@@ -917,8 +1174,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-            to check whether the user wrote the code like <c>cells.Count == 0</c> or <c>candidateList.Count != 0</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0302">SD0302</a></term>
+            <description>Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.ZeroString">
@@ -955,8 +1217,29 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer">
             <summary>
-            Indicates the analyzer that checks the dynamically invocation of the <see langword="dynamic"/>
-            field <c>TextResources.Current</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0202">SD0202</a></term>
+            <description>The specified method can't be found and called</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0203">SD0203</a></term>
+            <description>The number of arguments mismatched in this dynamically invocation</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0204">SD0204</a></term>
+            <description>The argument type mismatched in this dynamically invocation</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0205">SD0205</a></term>
+            <description>The method returns void, but you make it an rvalue expression</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0206">SD0206</a></term>
+            <description>The specified dynamic invocation method doesn't exist</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.ChangeLanguageMethodName">
@@ -1027,7 +1310,41 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer">
             <summary>
-            Indicates the analyzer that check the property named '<c>Properties</c>' in a step searcher.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a></term>
+            <description>A property named 'Properties' expected</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0102">SD0102</a></term>
+            <description>The property 'Properties' must be public</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0103">SD0103</a></term>
+            <description>The property 'Properties' must be static</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0104">SD0104</a></term>
+            <description>The property 'Properties' must be read-only</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0105">SD0105</a></term>
+            <description>The property 'Properties' has a wrong type</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0106">SD0106</a></term>
+            <description>The property 'Properties' can't be null</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0107">SD0107</a></term>
+            <description>The property 'Properties' must contain an initializer</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0108">SD0108</a></term>
+            <description>The property 'Properties' must be initialized by a new clause</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.TargetPropertyName">
@@ -1107,8 +1424,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer">
             <summary>
-            Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
-            store in the folder <c>..\required\lang</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0201">SD0201</a></term>
+            <description>The specified key can't be found in the resource dictionary</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.TextResourcesClassName">
@@ -1135,8 +1457,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer">
             <summary>
-            Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-            to check whether the input value in the initializer is invalid.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0309">SD0309</a></term>
+            <description>'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CellsFullTypeName">
@@ -1163,7 +1490,13 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer">
             <summary>
-            Indicates the analyzer that checks the usage of the type <c>SudokuGrid</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0301">SD0301</a></term>
+            <description>The member can't be invoked because they are reserved</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SudokuGridTypeName">
@@ -1195,8 +1528,17 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer">
             <summary>
-            Indicates an analyzer that analyzes the code for the method invocation <c>ToString</c>
-            of type <c>SudokuGrid</c>.
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a></term>
+            <description>Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case</description>
+            </item>
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0311">SD0311</a></term>
+            <description>Invalid format string in 'SudokuGrid.ToString'</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SudokuGridFullTypeName">

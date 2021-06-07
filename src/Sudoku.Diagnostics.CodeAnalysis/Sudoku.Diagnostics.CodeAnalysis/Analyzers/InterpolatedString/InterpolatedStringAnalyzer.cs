@@ -9,9 +9,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes the interpolated strings.
-	/// </summary>
 	[CodeAnalyzer("SS0101", "SS0102")]
 	public sealed partial class InterpolatedStringAnalyzer : DiagnosticAnalyzer
 	{

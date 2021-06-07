@@ -8,10 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the repeated or unncessary
-	/// discards <c><see langword="_"/></c>.
-	/// </summary>
 	[CodeAnalyzer("SS9003")]
 	public sealed partial class DiscardAnalyzer : DiagnosticAnalyzer
 	{

@@ -10,11 +10,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes the type <see cref="Span{T}"/> or <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
-	/// <seealso cref="Span{T}"/>
-	/// <seealso cref="ReadOnlySpan{T}"/>
 	[CodeAnalyzer("SS0201")]
 	public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 	{

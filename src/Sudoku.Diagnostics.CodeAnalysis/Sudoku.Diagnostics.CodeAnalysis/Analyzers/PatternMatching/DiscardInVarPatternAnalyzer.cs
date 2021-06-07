@@ -7,18 +7,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for:
-	/// <list type="bullet">
-	/// <item>
-	/// Discards <see langword="_"/> in the <see langword="var"/> pattern, e.g.
-	/// <c><see langword="is var _"/></c>.
-	/// </item>
-	/// <item>
-	/// Deconstruction discards, e.g.<c><see langword="is var"/> (<see langword="_"/>, <see langword="_"/>)</c>.
-	/// </item>
-	/// </list>
-	/// </summary>
 	[CodeAnalyzer("SS0611", "SS0612")]
 	public sealed partial class DiscardInVarPatternAnalyzer : DiagnosticAnalyzer
 	{

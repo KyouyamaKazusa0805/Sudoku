@@ -8,10 +8,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c> and <c>Candidates</c>,
-	/// to check whether the input value in the initializer is invalid.
-	/// </summary>
 	[CodeAnalyzer("SD0309")]
 	public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer : DiagnosticAnalyzer
 	{

@@ -10,10 +10,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes on types <c>Cells</c>, <c>Candidates</c> and <c>SudokuGrid</c>,
-	/// to check whether the user wrote the code like <c>new Cells()</c> or <c>default(Candidates)</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0303", "SD0304")]
 	public sealed partial class DefaultExpressionAnalyzer : DiagnosticAnalyzer
 	{

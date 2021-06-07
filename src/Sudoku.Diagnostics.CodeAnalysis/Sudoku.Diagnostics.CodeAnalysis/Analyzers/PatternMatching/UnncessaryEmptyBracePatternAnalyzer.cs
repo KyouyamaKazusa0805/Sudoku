@@ -9,9 +9,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for the unncessary empty-brace pattern <c>{ }</c>.
-	/// </summary>
 	[CodeAnalyzer("SS0614")]
 	public sealed partial class UnncessaryEmptyBracePatternAnalyzer : DiagnosticAnalyzer
 	{

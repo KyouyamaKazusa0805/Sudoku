@@ -6,10 +6,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for unncessary <see langword="not"/> keyword
-	/// in a relation pattern.
-	/// </summary>
 	[CodeAnalyzer("SS0620")]
 	public sealed partial class UnnecessaryNotInRelationPatternAnalyzer : DiagnosticAnalyzer
 	{

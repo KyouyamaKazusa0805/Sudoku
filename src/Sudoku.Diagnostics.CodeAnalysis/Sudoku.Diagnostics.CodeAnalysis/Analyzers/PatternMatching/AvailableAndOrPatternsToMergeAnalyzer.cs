@@ -6,10 +6,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for available <see langword="and"/> or
-	/// <see langword="or"/> patterns to merge.
-	/// </summary>
 	[CodeAnalyzer("SS0621", "SS0622")]
 	public sealed partial class AvailableAndOrPatternsToMergeAnalyzer : DiagnosticAnalyzer
 	{

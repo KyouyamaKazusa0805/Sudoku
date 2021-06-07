@@ -10,9 +10,6 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that analyzes LINQ nodes.
-	/// </summary>
 	[CodeAnalyzer("SS0301")]
 	public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 	{

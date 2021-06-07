@@ -10,10 +10,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates the analyzer that is called the resource dictionary values. Both two resource dictionaries
-	/// store in the folder <c>..\required\lang</c>.
-	/// </summary>
 	[CodeAnalyzer("SD0201")]
 	public sealed partial class ResourceDictionaryAnalyzer : DiagnosticAnalyzer
 	{

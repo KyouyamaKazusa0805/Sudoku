@@ -9,16 +9,6 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	/// <summary>
-	/// Indicates an analyzer that analyzes the code for repeated property paths.
-	/// </summary>
-	/// <remarks>
-	/// All kinds to analyze are:
-	/// <list type="bullet">
-	/// <item>Property pattern: <c>{ Prop: 1 }</c>.</item>
-	/// <item>Extended property pattern: <c>{ Prop.NestedProp: 1 }</c>.</item>
-	/// </list>
-	/// </remarks>
 	[CodeAnalyzer("SS0623", "SS0625")]
 	public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
 	{
