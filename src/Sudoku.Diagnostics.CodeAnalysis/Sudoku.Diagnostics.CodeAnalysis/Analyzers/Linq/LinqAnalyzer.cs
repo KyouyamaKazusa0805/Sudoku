@@ -97,17 +97,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			// Because of 'Take' method invocation, we can judge that the expression to invoke
 			// must be of type 'IEnumerable<int>'. Therefore, we don't need to check it.
-			#region Unncessary
-			//// Check the left-side expression is of type 'IEnumerable<int>'.
-			//var ienumerableOfInt32 = compilation
-			//	.GetTypeByMetadataName(IEnumerableFullName)!
-			//	.WithTypeArguments(compilation, SpecialType.System_Int32);
-			//if (semanticModel.GetOperation(potentialNotTakeMethodInvocationNode) is not { Type: { } type }
-			//	|| !SymbolEqualityComparer.Default.Equals(type, ienumerableOfInt32))
-			//{
-			//	return;
-			//}
-			#endregion
+			// So we don't check whether the expression node is a normal expression.
+			// A query expression with a bracket is also okay.
 
 			// Check the method invocation is from type 'System.Linq.Enumerable'.
 			if (
