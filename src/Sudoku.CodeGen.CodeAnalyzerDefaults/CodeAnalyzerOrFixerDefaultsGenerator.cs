@@ -106,15 +106,19 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					return null;
 				}
 
-				string[] diagnosticIds = (
+				var selection =
 					from attribute in symbol.GetAttributes()
 					where attribute.AttributeClass?.Name == nameof(CodeAnalyzerAttribute)
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					select getMemberValues(attributeStr, tokenStartIndex)
-				).First();
+					select getMemberValues(attributeStr, tokenStartIndex);
+				if (!selection.Any())
+				{
+					return null;
+				}
 
+				string[] diagnosticIds = selection.First();
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
 					from id in diagnosticIds

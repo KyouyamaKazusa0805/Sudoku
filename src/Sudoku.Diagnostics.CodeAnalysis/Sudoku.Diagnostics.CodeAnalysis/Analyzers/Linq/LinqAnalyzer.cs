@@ -77,18 +77,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// of type 'int'.
 			var int32 = compilation.GetSpecialType(SpecialType.System_Int32);
 			if (
-				/*indexer-pattern*/
 				potentialNotTakeMethodInvocationNode is InvocationExpressionSyntax
 				{
 					Expression: MemberAccessExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-						Expression: IdentifierNameSyntax { Identifier: { ValueText: "Take" } }
+						Name: { Identifier: { ValueText: "Take" } }
 					},
 					ArgumentList: { Arguments: { Count: 1 } arguments }
 				}
-				&& semanticModel.GetOperation(arguments[0]) is { Type: { } takeMethodArgumentType }
-				&& SymbolEqualityComparer.Default.Equals(takeMethodArgumentType, int32)
+				/*indexer-pattern*/
+				&& arguments[0] is { Expression: var expr }
+				&& semanticModel.GetOperation(expr) is { Type: { } type }
+				&& SymbolEqualityComparer.Default.Equals(type, int32)
 			)
 			{
 				return;
@@ -118,7 +119,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						IsExtensionMethod: true,
 						IsGenericMethod: true
 					}
-				} operation
+				}
 			)
 			{
 				return;
