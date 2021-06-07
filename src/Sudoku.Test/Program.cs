@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-var list = new List<int> { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 };
-if ((from item in list where (item & 1) != 0 select item).Take(5).Count() > 5 && list.Count >= 5)
+for (var f = TestEnum.A; f < TestEnum.C; f++)
 {
-	Console.WriteLine(list[4]);
+	Console.WriteLine(f);
 }
+
+[Closed]
+enum TestEnum { A, B, C }

@@ -19,6 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// </summary>
 		private const string ClosedAttributeFullTypeName = "System.Diagnostics.CodeAnalysis.ClosedAttribute";
 
+
 		/// <summary>
 		/// Indicates the type format.
 		/// </summary>
@@ -42,7 +43,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				static context => CheckSS0401(context),
+				static context =>
+				{
+					CheckSS0401(context);
+				},
 				new[]
 				{
 					SyntaxKind.UnaryPlusExpression,
