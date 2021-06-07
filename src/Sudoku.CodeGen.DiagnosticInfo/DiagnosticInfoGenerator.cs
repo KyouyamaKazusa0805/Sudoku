@@ -49,19 +49,19 @@ namespace Sudoku.CodeGen.DiagnosticInfo
 			string helpLinkClause = string.Join(
 				"\r\n\t\t",
 				from line in info
-				let pair = (Id: line[0], HelpLink: line[3])
-				select $@"public const string {pair.Id} = ""{pair.HelpLink}"";"
+				let id = line[0]
+				select $@"public const string {id} = ""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"";"
 			);
 			string titleClause = string.Join(
 				"\r\n\t\t",
 				from line in info
-				let pair = (Id: line[0], Title: line[4])
+				let pair = (Id: line[0], Title: line[3])
 				select $@"public const string {pair.Id} = ""{pair.Title}"";"
 			);
 			string messageClause = string.Join(
 				"\r\n\t\t",
 				from line in info
-				let pair = (Id: line[0], Title: line[4], Message: line[5])
+				let pair = (Id: line[0], Title: line[3], Message: line[4])
 				select $@"public const string {pair.Id} = ""{
 					(pair.Message == string.Empty ? pair.Title : pair.Message)
 				}"";"

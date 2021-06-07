@@ -203,10 +203,7 @@ namespace {namespaceName}
 					where match.Success
 					select match.Value
 				).First();
-
-				string description = (
-					from line in info select (Id: line[0], Title: line[4])
-				).First(pair => pair.Id == id).Title;
+				string description = getDescription(id);
 
 				return $@"#pragma warning disable 1591
 
@@ -244,7 +241,7 @@ namespace {namespaceName}
 
 			string getDescription(string id) =>
 			(
-				from line in info select (Id: line[0], Title: line[4])
+				from line in info select (Id: line[0], Title: line[3])
 			).First(pair => pair.Id == id).Title;
 
 			static string[] getMemberValues(string attributeStr, int tokenStartIndex)
