@@ -2242,12 +2242,16 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SemanticModelEx.TypeEquals(Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.Boolean)">
             <summary>
-            Checks whether the two <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>s hold the same type.
+            <para>Checks whether the two <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>s hold the same type.</para>
+            <para>
+            If <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>-literal expression
+            and another node is of reference type, the method also return <see langword="true"/>.
+            </para>
             </summary>
             <param name="this">The semantic model.</param>
             <param name="left">The left comparer.</param>
             <param name="right">The right comparer.</param>
-            <param name="includeNullableAnnotation">
+            <param name="withNullableChecking">
             Indicates whether the comparer uses advanced one to check nullable type.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>

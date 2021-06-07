@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
@@ -42,6 +43,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 									rightExpr
 								)
 							)
+							.NormalizeWhitespace()
 						);
 
 						return document.WithSyntaxRoot(editor.GetChangedRoot());
