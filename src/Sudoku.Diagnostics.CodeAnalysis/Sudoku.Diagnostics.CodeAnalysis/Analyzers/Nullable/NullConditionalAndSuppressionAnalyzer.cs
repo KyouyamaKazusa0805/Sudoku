@@ -52,7 +52,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (semanticModel.GetOperation(expr) is not { Type: (_, _, false) type })
+			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) type })
 			{
 				return;
 			}
@@ -85,7 +85,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (semanticModel.GetOperation(expr) is not { Type: (_, _, false) type })
+			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) type })
 			{
 				return;
 			}
