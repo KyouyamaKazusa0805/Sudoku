@@ -136,7 +136,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Diagnostic.Create(
 						descriptor: SS0701,
 						location: originalNode.GetLocation(),
-						messageArgs: new[] { leftOperand.ToString(), rightOperand.ToString() }
+						messageArgs: new[] { leftOperand.ToString(), rightOperand.ToString() },
+						additionalLocations: new[] { leftOperand.GetLocation(), rightOperand.GetLocation() }
 					)
 				);
 			}

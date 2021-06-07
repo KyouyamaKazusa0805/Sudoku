@@ -1,3 +1,10 @@
 ﻿using System;
 
-Console.WriteLine();
+object? o = null;
+
+if (o is null)
+{
+	o = new();
+}
+
+Console.WriteLine(o);
