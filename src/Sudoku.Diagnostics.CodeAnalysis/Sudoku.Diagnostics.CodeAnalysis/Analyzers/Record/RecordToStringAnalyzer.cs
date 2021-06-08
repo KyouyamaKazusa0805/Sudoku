@@ -47,10 +47,25 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			/*slice-pattern*/
+			var members = type.GetMembers();
 			if (
-				!type.GetMembers().OfType<IMethodSymbol>().Any(
+				!members.OfType<IMethodSymbol>().Any(
 					static method => method is { IsImplicitlyDeclared: true, Name: "ToString" }
 				)
+			)
+			{
+				return;
+			}
+
+			if (
+				members.Any(member => member switch
+				{
+					IFieldSymbol { CanBeReferencedByName: true, Type: var fieldType } =>
+						SymbolEqualityComparer.Default.Equals(type, fieldType),
+					IPropertySymbol { CanBeReferencedByName: true, Type: var propertyType } =>
+						SymbolEqualityComparer.Default.Equals(type, propertyType),
+					_ => false
+				})
 			)
 			{
 				return;
