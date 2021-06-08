@@ -36,6 +36,7 @@
 		public const string SS0601 = "Use 'var' instead";
 		public const string SS0602 = "Use 'is null' instead";
 		public const string SS0603 = "Use 'is not null' instead";
+		public const string SS0634 = "Use empty-brace property pattern instead";
 		public const string SS0701 = "Use operator '??='";
 		public const string SS0702 = "Use operator '??'";
 		public const string SS0703 = "Remove '?'";

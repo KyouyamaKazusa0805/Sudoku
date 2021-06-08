@@ -481,6 +481,39 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0634">SS0634</a></term>
+            <description>The expression can be simplified to use empty-brace property pattern</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.VariableNamePropertyName">
+            <summary>
+            Indicates the property name that is used in <see cref="P:System.Collections.Generic.KeyValuePair`2.Key"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.EmptyBrace">
+            <summary>
+            Indicates a pair of braces (i.e. <c>{ }</c>).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.SS0634">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0634">SS0634</a>
+            diagnostic result (The expression can be simplified to use empty-brace property pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableExtendedPropertyPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

@@ -108,6 +108,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 
 				// obj is T variable
+				// obj is object _
 				case IsPatternExpressionSyntax
 				{
 					Expression: var expression,
@@ -120,7 +121,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						{
 							Parent: { Parent: not ParenthesizedExpressionSyntax },
 							Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword }
-						}:
+						}
+						when designation is DiscardDesignationSyntax:
 						{
 							context.ReportDiagnostic(
 								Diagnostic.Create(
@@ -130,7 +132,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								)
 							);
 
-							// BUG: Code fixer would like to use '{ } variable' pattern instead of 'not null'.
 							break;
 						}
 						default:

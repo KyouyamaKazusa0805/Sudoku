@@ -67,6 +67,7 @@ SS0623,Warning,Design,Repeated property path; try to integrate to one using keyw
 SS0624,Info,Design,Available simplification for extended property patterns.,Available simplification for extended property patterns: '{0}'.
 SS0625,Warning,Design,Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection.,
 SS0626,Warning,Design,Keyword 'not' repeats; A pair of keyword 'not' can be omitted.,
+SS0634,Info,Design,The expression can be simplified to use empty-brace property pattern.,The expression can be simplified to '{0} is {2} {1}'.
 SS0701,Info,Design,The expression can be simplified to using compound null-coalesce operator '??='.,The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'.
 SS0702,Info,Design,The expression can be simplified to using null-coalescing operator '??'.,The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'.
 SS0703,Info,Design,Unncessary null-conditional operator '?'.,
