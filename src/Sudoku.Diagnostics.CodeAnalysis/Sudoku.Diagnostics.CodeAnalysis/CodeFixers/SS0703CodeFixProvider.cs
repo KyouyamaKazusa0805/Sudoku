@@ -85,7 +85,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 							{
 								Parent: VariableDeclarationSyntax
 								{
-									Type: NullableTypeSyntax { ElementType: var innerType } innerTypeNode
+									Type: NullableTypeSyntax { ElementType: var innerType } innerTypeNode,
+									Variables: { Count: 1 }
 								}
 							}
 						}

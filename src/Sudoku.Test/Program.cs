@@ -1,13 +1,13 @@
 ﻿using System;
 
 P p = new();
-string? q = p?.ToString();
+string q = p!.ToString();
 
 P a = new();
-int? r = a?.A;
+int r = a!.A;
 
 P b = new();
-int? s = b?[3];
+int s = b![3];
 
 Console.WriteLine(q);
 Console.WriteLine(r);
