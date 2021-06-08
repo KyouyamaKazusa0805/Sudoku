@@ -42,7 +42,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				case BinaryExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.IsExpression,
-					Left: var expression,
+					Left: var expr,
 					Right: var type
 				} node:
 				{
@@ -54,7 +54,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								Diagnostic.Create(
 									descriptor: SS0603,
 									location: node.GetLocation(),
-									messageArgs: null
+									messageArgs: null,
+									additionalLocations: new[] { expr.GetLocation() }
 								)
 							);
 
@@ -62,7 +63,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 						//case PredefinedTypeSyntax:
 						//{
-						//	// CS0183 has already covered this case. Please visit
+						//	// CS0183 has already covered this case (SS0601). Please visit
 						//	//
 						//	//     https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0183
 						//	//
@@ -71,7 +72,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						//}
 						case TypeSyntax:
 						{
-							if (semanticModel.GetOperation(expression) is not { Type: var definedType })
+							if (semanticModel.GetOperation(expr) is not { Type: var definedType })
 							{
 								return;
 							}
@@ -129,6 +130,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								)
 							);
 
+							// BUG: Code fixer would like to use '{ } variable' pattern instead of 'not null'.
 							break;
 						}
 						default:

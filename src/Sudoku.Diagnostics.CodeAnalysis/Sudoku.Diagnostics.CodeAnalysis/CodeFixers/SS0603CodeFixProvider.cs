@@ -11,23 +11,28 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	[CodeFixProvider("SS0602")]
-	public sealed partial class SS0602CodeFixProvider : CodeFixProvider
+	[CodeFixProvider("SS0603")]
+	public sealed partial class SS0603CodeFixProvider : CodeFixProvider
 	{
 		/// <inheritdoc/>
 		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 		{
 			var document = context.Document;
-			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SS0602));
+			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SS0603));
+			if (diagnostic.AdditionalLocations.Count == 0)
+			{
+				return;
+			}
+
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var ((_, span), _) = diagnostic;
 			var node = root.FindNode(span, getInnermostNodeForTie: true);
-			var (_, expressionSpan) = diagnostic.AdditionalLocations[0];
-			var expr = (ExpressionSyntax)root.FindNode(expressionSpan, getInnermostNodeForTie: true);
+			var (_, exprSpan) = diagnostic.AdditionalLocations[0];
+			var expr = (ExpressionSyntax)root.FindNode(exprSpan, getInnermostNodeForTie: true);
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
-					title: CodeFixTitles.SS0602,
+					title: CodeFixTitles.SS0603,
 					createChangedDocument: async c =>
 					{
 						var editor = await DocumentEditor.CreateAsync(document, c);
@@ -35,9 +40,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 							node,
 							SyntaxFactory.IsPatternExpression(
 								expr,
-								SyntaxFactory.ConstantPattern(
-									SyntaxFactory.LiteralExpression(
-										SyntaxKind.NullLiteralExpression
+								SyntaxFactory.UnaryPattern(
+									SyntaxFactory.ConstantPattern(
+										SyntaxFactory.LiteralExpression(
+											SyntaxKind.NullLiteralExpression
+										)
 									)
 								)
 							)
@@ -45,7 +52,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 						return document.WithSyntaxRoot(editor.GetChangedRoot());
 					},
-					equivalenceKey: nameof(CodeFixTitles.SS0602)
+					equivalenceKey: nameof(CodeFixTitles.SS0603)
 				),
 				diagnostic
 			);
