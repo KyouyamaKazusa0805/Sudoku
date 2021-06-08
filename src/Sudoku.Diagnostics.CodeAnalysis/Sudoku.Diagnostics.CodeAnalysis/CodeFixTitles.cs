@@ -33,6 +33,7 @@
 		public const string SS0505 = "Use 'out' as parameter modifier";
 		public const string SS0507_1 = "Append field";
 		public const string SS0507_2 = "Append property";
+		public const string SS0601 = "Use 'var' instead";
 		public const string SS0701 = "Use operator '??='";
 		public const string SS0702 = "Use operator '??'";
 		public const string SS0703 = "Remove '?'";

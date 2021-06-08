@@ -42,6 +42,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			switch (originalNode)
 			{
+				// obj is T
 				case BinaryExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.IsExpression,
@@ -63,6 +64,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							break;
 						}
+						//case PredefinedTypeSyntax:
+						//{
+						//	// CS0183 has already covered this case. Please visit
+						//	//
+						//	//     https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0183
+						//	//
+						//	// for more information.
+						//	return;
+						//}
 						case TypeSyntax:
 						{
 							if (semanticModel.GetOperation(expression) is not { Type: var definedType })
@@ -99,10 +109,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
+
+				// obj is T variable
 				case IsPatternExpressionSyntax
 				{
 					Expression: var expression,
-					Pattern: DeclarationPatternSyntax { Type: var type } pattern
+					Pattern: DeclarationPatternSyntax { Type: var type, Designation: var designation } pattern
 				} node:
 				{
 					switch (type)
@@ -123,7 +135,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							break;
 						}
-						case var _:
+						default:
 						{
 							if (semanticModel.GetOperation(expression) is not { Type: var definedType })
 							{
@@ -149,7 +161,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								Diagnostic.Create(
 									descriptor: SS0601,
 									location: type.GetLocation(),
-									messageArgs: null
+									messageArgs: null,
+									additionalLocations: new[]
+									{
+										pattern.GetLocation(),
+										designation.GetLocation()
+									}
 								)
 							);
 
