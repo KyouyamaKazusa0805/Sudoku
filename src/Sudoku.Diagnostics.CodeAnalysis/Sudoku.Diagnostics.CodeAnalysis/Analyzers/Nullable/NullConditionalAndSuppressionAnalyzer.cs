@@ -18,32 +18,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				AnalyzeSyntaxNode,
+				static context =>
+				{
+					CheckSS0703(context);
+					CheckSS0704(context);
+				},
 				new[] { SyntaxKind.ConditionalAccessExpression, SyntaxKind.SuppressNullableWarningExpression }
 			);
 		}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0703(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, originalNode) = context;
 
-			CheckSS0703(context, semanticModel, originalNode);
-			CheckSS0704(context, semanticModel, originalNode);
-		}
-
-		private static void CheckSS0703(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, SyntaxNode originalNode)
-		{
 			if (
 				originalNode is not ConditionalAccessExpressionSyntax
 				{
-					Parent: not (
-						ConditionalAccessExpressionSyntax or MemberAccessExpressionSyntax
-						{
-							RawKind: (int)SyntaxKind.SimpleAssignmentExpression
-						}
-					),
 					Expression: var expr,
 					OperatorToken: var token
 				}
@@ -52,7 +43,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) type })
+			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) })
 			{
 				return;
 			}
@@ -61,22 +52,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SS0703,
 					location: token.GetLocation(),
-					messageArgs: null
+					messageArgs: null,
+					additionalLocations: new[] { originalNode.GetLocation() }
 				)
 			);
 		}
 
-		private static void CheckSS0704(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, SyntaxNode originalNode)
+		private static void CheckSS0704(SyntaxNodeAnalysisContext context)
 		{
+			var (semanticModel, _, originalNode) = context;
+
 			if (
 				originalNode is not PostfixUnaryExpressionSyntax
 				{
-					Parent: not (
-						ConditionalAccessExpressionSyntax
-						or InvocationExpressionSyntax
-						or MemberAccessExpressionSyntax { RawKind: (int)SyntaxKind.SimpleAssignmentExpression }
-					),
 					Operand: var expr,
 					OperatorToken: var token
 				}
@@ -85,7 +73,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) type })
+			if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: false) })
 			{
 				return;
 			}
@@ -94,7 +82,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SS0704,
 					location: token.GetLocation(),
-					messageArgs: null
+					messageArgs: null,
+					additionalLocations: new[] { originalNode.GetLocation() }
 				)
 			);
 		}

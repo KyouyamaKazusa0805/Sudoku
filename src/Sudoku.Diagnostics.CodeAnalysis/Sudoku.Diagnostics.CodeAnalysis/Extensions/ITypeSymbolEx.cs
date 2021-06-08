@@ -45,7 +45,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// </remarks>
 		/// <seealso cref="Nullable{T}"/>
 		public static bool IsNullableType(this ITypeSymbol @this) =>
-			@this.ToString() is var str && str[str.Length - 1] == '?';
+			@this.ToDisplayString() is var str && str[str.Length - 1] == '?';
 
 		/// <summary>
 		/// Get all members that belongs to the type and its base types
