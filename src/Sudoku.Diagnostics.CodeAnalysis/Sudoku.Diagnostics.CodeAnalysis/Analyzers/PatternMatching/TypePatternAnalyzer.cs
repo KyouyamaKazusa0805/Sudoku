@@ -18,7 +18,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.EnableConcurrentExecution();
 
 			context.RegisterSyntaxNodeAction(
-				AnalyzeSyntaxNode,
+				static context =>
+				{
+					CheckSS0601AndSS0603(context);
+					CheckSS0602(context);
+				},
 				new[]
 				{
 					SyntaxKind.LogicalNotExpression,
@@ -29,17 +33,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		private static void CheckSS0601AndSS0603(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
-
-			CheckSS0601AndSS0603(context, semanticModel, originalNode);
-			CheckSS0602(context, semanticModel, compilation, originalNode);
-		}
-
-		private static void CheckSS0601AndSS0603(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, SyntaxNode originalNode)
-		{
+			var (semanticModel, _, originalNode) = context;
 			switch (originalNode)
 			{
 				// obj is T
@@ -179,76 +175,56 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 		}
 
-		private static void CheckSS0602(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, Compilation compilation,
-			SyntaxNode originalNode)
+		private static void CheckSS0602(SyntaxNodeAnalysisContext context)
 		{
-			switch (originalNode)
+			switch (context.Node)
 			{
+				// !(o is object)
 				case PrefixUnaryExpressionSyntax
 				{
 					Operand: ParenthesizedExpressionSyntax
 					{
-						Expression: BinaryExpressionSyntax expression
+						Expression: BinaryExpressionSyntax
+						{
+							RawKind: (int)SyntaxKind.IsExpression,
+							Left: var expr,
+							Right: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
+						} expression
 					}
 				} node:
 				{
-					if (
-						semanticModel.GetOperation(expression) is not IIsTypeOperation
-						{
-							TypeOperand: var possibleObjectType
-						}
-					)
-					{
-						return;
-					}
-
-					var objectType = compilation.GetSpecialType(SpecialType.System_Object);
-					if (!SymbolEqualityComparer.Default.Equals(possibleObjectType, objectType))
-					{
-						return;
-					}
-
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0602,
 							location: node.GetLocation(),
-							messageArgs: null
+							messageArgs: null,
+							additionalLocations: new[] { expr.GetLocation() }
 						)
 					);
 
 					break;
 				}
+
+				// o is not object
 				case IsPatternExpressionSyntax
 				{
+					Expression: var expr,
 					Pattern: UnaryPatternSyntax
 					{
 						RawKind: (int)SyntaxKind.NotPattern,
-						Pattern: TypePatternSyntax typePattern
+						Pattern: TypePatternSyntax
+						{
+							Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
+						}
 					}
 				} pattern:
 				{
-					if (
-						semanticModel.GetOperation(typePattern) is not ITypePatternOperation
-						{
-							MatchedType: { } possibleObjectType
-						}
-					)
-					{
-						return;
-					}
-
-					var objectType = compilation.GetSpecialType(SpecialType.System_Object);
-					if (!SymbolEqualityComparer.Default.Equals(possibleObjectType, objectType))
-					{
-						return;
-					}
-
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0602,
 							location: pattern.GetLocation(),
-							messageArgs: null
+							messageArgs: null,
+							additionalLocations: new[] { expr.GetLocation() }
 						)
 					);
 

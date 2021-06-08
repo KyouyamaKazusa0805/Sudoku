@@ -1,12 +1,8 @@
 ﻿using System;
 
-var r = new R(1);
-var s = new S();
-Console.WriteLine(r.ToString());
-Console.WriteLine(s.ToString());
+object o = 3;
 
-record R(int A);
-record S
+if (o is not object)
 {
-	public S InnerMember { get; init; } = new();
+	Console.WriteLine(o);
 }
