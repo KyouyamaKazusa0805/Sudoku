@@ -571,6 +571,16 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.EqualsToken">
+            <summary>
+            Indicates the equals token and not equals token.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.NotEqualsToken">
+            <summary>
+            Indicates the equals token and not equals token.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
@@ -2072,6 +2082,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0603CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0604CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0604">SS0604</a>
+            (Unnecessary constant pattern for the variable of the same type).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0604CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0604CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0604CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0634CodeFixProvider">

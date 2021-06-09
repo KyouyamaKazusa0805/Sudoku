@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -12,6 +14,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SS0604")]
 	public sealed partial class BuiltInTypesConstantPatternAnalyzer : DiagnosticAnalyzer
 	{
+		/// <summary>
+		/// Indicates the equals token and not equals token.
+		/// </summary>
+		private const string EqualsToken = "==", NotEqualsToken = "!=";
+
+
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -30,7 +38,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				originalNode is not IsPatternExpressionSyntax
 				{
 					Expression: var expressionToCheck,
-					IsKeyword: var token,
 					Pattern: var pattern
 				}
 			)
@@ -40,24 +47,38 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (pattern)
 			{
+				// o is constantValue
 				case ConstantPatternSyntax { Expression: var constantExpression }
 				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0604,
-							location: token.GetLocation(),
+							location: originalNode.GetLocation(),
 							messageArgs: new[]
 							{
 								expressionToCheck.ToString(),
-								"==",
+								EqualsToken,
 								constantExpression.ToString()
+							},
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("EqualityToken", EqualsToken)
+								}
+							),
+							additionalLocations: new[]
+							{
+								expressionToCheck.GetLocation(),
+								constantExpression.GetLocation()
 							}
 						)
 					);
 
 					break;
 				}
+
+				// o is not constantValue
 				case UnaryPatternSyntax
 				{
 					RawKind: (int)SyntaxKind.NotPattern,
@@ -68,12 +89,23 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0604,
-							location: token.GetLocation(),
+							location: originalNode.GetLocation(),
 							messageArgs: new[]
 							{
 								expressionToCheck.ToString(),
-								"!=",
+								NotEqualsToken,
 								constantExpression.ToString()
+							},
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("EqualityToken", NotEqualsToken)
+								}
+							),
+							additionalLocations: new[]
+							{
+								expressionToCheck.GetLocation(),
+								constantExpression.GetLocation()
 							}
 						)
 					);
