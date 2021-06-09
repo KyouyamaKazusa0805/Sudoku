@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -29,8 +31,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				originalNode is not IsPatternExpressionSyntax
 				{
 					Expression: var expr,
-					IsKeyword: var isKeywordToken,
-					Pattern: RelationalPatternSyntax { Expression: var constantExpr }
+					Pattern: RelationalPatternSyntax
+					{
+						OperatorToken: { RawKind: var kind },
+						Expression: var constantExpr
+					}
 				}
 			)
 			{
@@ -45,8 +50,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SS0617,
-					location: isKeywordToken.GetLocation(),
-					messageArgs: null
+					location: originalNode.GetLocation(),
+					messageArgs: null,
+					properties: ImmutableDictionary.CreateRange(
+						new KeyValuePair<string, string?>[] { new("OperatorToken", kind.ToString()) }
+					),
+					additionalLocations: new[] { expr.GetLocation(), constantExpr.GetLocation() }
 				)
 			);
 		}
