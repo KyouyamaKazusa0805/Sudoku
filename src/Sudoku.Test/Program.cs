@@ -1,12 +1,7 @@
 ﻿using System;
 
-int? i = 30;
-
-if (i == 30)
+object? o = 13;
+if (o is not >= 3)
 {
-	Console.WriteLine(i);
-}
-if (i != 30)
-{
-	Console.WriteLine(i);
+	Console.WriteLine(o);
 }
