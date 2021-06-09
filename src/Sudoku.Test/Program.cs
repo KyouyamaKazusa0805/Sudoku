@@ -1,12 +1,12 @@
 ﻿using System;
 
-int i = 30;
+int? i = 30;
 
-if (i is 20)
+if (i == 30)
 {
 	Console.WriteLine(i);
 }
-if (i is not 100)
+if (i != 30)
 {
 	Console.WriteLine(i);
 }

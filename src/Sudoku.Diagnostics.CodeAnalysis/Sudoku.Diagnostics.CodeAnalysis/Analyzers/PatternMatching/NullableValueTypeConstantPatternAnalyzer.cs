@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGen;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -31,15 +34,21 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			if (
 				originalNode is not BinaryExpressionSyntax
 				{
+					RawKind: var kind,
 					Left: var leftExpr,
-					OperatorToken: var token,
 					Right: var rightExpr
-				} binaryExpression)
+				}
+			)
 			{
 				return;
 			}
 
-			if (semanticModel.GetOperation(leftExpr) is not { Type: { IsValueType: true } leftExprType })
+			if (
+				semanticModel.GetOperation(leftExpr) is not
+				{
+					Type: (isValueType: true, _, isNullable: true) leftExprType
+				}
+			)
 			{
 				return;
 			}
@@ -57,7 +66,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			string leftType = leftExprType.ToDisplayString();
 			string rightType = rightExprType.ToDisplayString();
-			if (leftType[leftType.Length - 1] != '?' || leftType.Substring(0, leftType.Length - 1) != rightType)
+			if (leftType.Substring(0, leftType.Length - 1) != rightType)
 			{
 				return;
 			}
@@ -65,13 +74,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SS0605,
-					location: token.GetLocation(),
+					location: originalNode.GetLocation(),
 					messageArgs: new[]
 					{
 						leftExpr.ToString(),
-						binaryExpression.RawKind == (int)SyntaxKind.EqualsExpression ? "is" : "is not",
+						kind == (int)SyntaxKind.EqualsExpression ? "is" : "is not",
 						rightExpr.ToString()
-					}
+					},
+					properties: ImmutableDictionary.CreateRange(
+						new KeyValuePair<string, string?>[]
+						{
+							new("OperatorToken", kind == (int)SyntaxKind.EqualsExpression ? "==" : "!=")
+						}
+					),
+					additionalLocations: new[] { leftExpr.GetLocation(), rightExpr.GetLocation() }
 				)
 			);
 		}
