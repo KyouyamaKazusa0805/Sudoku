@@ -2144,6 +2144,22 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0609">SS0609</a>
+            (The positional subpattern is redundant).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0617CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
