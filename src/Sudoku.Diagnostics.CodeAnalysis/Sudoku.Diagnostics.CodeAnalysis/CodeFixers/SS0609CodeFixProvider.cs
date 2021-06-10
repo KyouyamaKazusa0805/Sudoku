@@ -36,7 +36,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			{
 				context.RegisterCodeFix(
 					CodeAction.Create(
-						title: CodeFixTitles.SS0609_2,
+						title: CodeFixTitles.SS0609_1,
 						createChangedDocument: async c =>
 						{
 							var editor = await DocumentEditor.CreateAsync(document, c);
@@ -53,7 +53,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 							return document.WithSyntaxRoot(editor.GetChangedRoot());
 						},
-						equivalenceKey: nameof(CodeFixTitles.SS0609_2)
+						equivalenceKey: nameof(CodeFixTitles.SS0609_1)
 					),
 					diagnostic
 				);
@@ -61,7 +61,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 			context.RegisterCodeFix(
 				CodeAction.Create(
-					title: CodeFixTitles.SS0609_1,
+					title: CodeFixTitles.SS0609_2,
 					createChangedDocument: async c =>
 					{
 						var editor = await DocumentEditor.CreateAsync(document, c);
@@ -74,7 +74,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 
 						return document.WithSyntaxRoot(editor.GetChangedRoot());
 					},
-					equivalenceKey: nameof(CodeFixTitles.SS0609_1)
+					equivalenceKey: nameof(CodeFixTitles.SS0609_2)
 				),
 				diagnostic
 			);
