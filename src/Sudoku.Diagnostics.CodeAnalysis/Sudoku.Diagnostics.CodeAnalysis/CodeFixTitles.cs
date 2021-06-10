@@ -41,6 +41,7 @@
 		public const string SS0607 = "Remove discard";
 		public const string SS0609_1 = "Use discard (And remove name and colon)";
 		public const string SS0609_2 = "Use discard (Don't remove name and colon)";
+		public const string SS0610 = "Use simplified pattern matching";
 		public const string SS0617 = "Remove keyword 'is'";
 		public const string SS0620 = "Remove keyword 'not'";
 		public const string SS0634 = "Use empty-brace property pattern instead";

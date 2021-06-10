@@ -2160,6 +2160,22 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0610">SS0610</a>
+            (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0617CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -2540,6 +2556,27 @@
             </summary>
             <param name="this">The name.</param>
             <returns>The result name.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx">
+            <summary>
+            Provides the additional operations for <see cref="T:Microsoft.CodeAnalysis.CSharp.SyntaxFactory"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.SyntaxFactory"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Creates a syntax node that represents a <c>expr <see langword="is"/> { }</c> syntax.
+            </summary>
+            <param name="expression">The expression <c>expr</c> node.</param>
+            <returns>The syntax node.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.String)">
+            <summary>
+            Creates a syntax node that represents a <c>expr <see langword="is"/> { } variable</c> syntax.
+            </summary>
+            <param name="expression">The expression <c>expr</c> node.</param>
+            <param name="variableName">The variable name of the part <c>variable</c>.</param>
+            <returns>The syntax node.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxNodeEx">
             <summary>

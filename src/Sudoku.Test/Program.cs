@@ -1,18 +1,42 @@
 ﻿using System;
 
-var s = new S(1, 2, 3, 4);
-if (s is (a: 10, b: _) and (a: 100, b: 30, c: 50))
+var v1 = new S(1, 2);
+if (v1 is (_, _))
 {
-	Console.WriteLine(nameof(s));
+	Console.WriteLine(nameof(v1));
+}
+
+var v2 = new S(1, 2);
+if (v2 is (_, _) v5)
+{
+	Console.WriteLine(nameof(v5));
+}
+
+R? v3 = null;
+if (v3 is (_, _) v6)
+{
+	Console.WriteLine(nameof(v6));
+}
+
+T? v4 = null;
+if (v4 is (_, _))
+{
+	Console.WriteLine(nameof(v4));
 }
 
 readonly struct S
 {
-	private readonly int _a, _b, _c, _d;
+	private readonly int _a, _b;
 
-	public S(int a, int b, int c, int d) { _a = a; _b = b; _c = c; _d = d; }
+	public S(int a, int b) { _a = a; _b = b; }
 
 	public void Deconstruct(out int a, out int b) { a = _a; b = _b; }
-	public void Deconstruct(out int a, out int b, out int c) { a = _a; b = _b; c = _c; }
-	public void Deconstruct(out int a, out int b, out int c, out int d) { a = _a; b = _b; c = _c; d = _d; }
+}
+
+record R(int A, int B);
+record T(int A)
+{
+	public int B { get; set; }
+
+	public void Deconstruct(out int a, out int b) { a = A; b = B; }
 }

@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Sudoku.CodeGen;
+using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
@@ -35,46 +35,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						var editor = await DocumentEditor.CreateAsync(document, c);
 						editor.ReplaceNode(
 							node,
-							SyntaxFactory.IsPatternExpression(
+							SyntaxFactoryEx.IsEmptyPropertyPatternExpression(
 								expr,
-								SyntaxFactory.RecursivePattern()
-								.WithPropertyPatternClause(
-									SyntaxFactory.PropertyPatternClause()
-									.WithOpenBraceToken(
-										SyntaxFactory.Token(
-											SyntaxFactory.TriviaList(),
-											SyntaxKind.OpenBraceToken,
-											SyntaxFactory.TriviaList(
-												SyntaxFactory.Space
-											)
-										)
-									)
-									.WithCloseBraceToken(
-										SyntaxFactory.Token(
-											SyntaxFactory.TriviaList(),
-											SyntaxKind.CloseBraceToken,
-											SyntaxFactory.TriviaList(
-												SyntaxFactory.Space
-											)
-										)
-									)
-								)
-								.WithDesignation(
-									SyntaxFactory.SingleVariableDesignation(
-										SyntaxFactory.Identifier(
-											variableName
-										)
-									)
-								)
-							)
-							.WithIsKeyword(
-								SyntaxFactory.Token(
-									SyntaxFactory.TriviaList(),
-									SyntaxKind.IsKeyword,
-									SyntaxFactory.TriviaList(
-										SyntaxFactory.Space
-									)
-								)
+								variableName
 							)
 						);
 
