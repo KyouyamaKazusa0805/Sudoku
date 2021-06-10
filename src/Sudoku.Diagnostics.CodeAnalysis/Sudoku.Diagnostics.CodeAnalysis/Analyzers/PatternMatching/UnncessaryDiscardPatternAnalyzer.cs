@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -37,6 +38,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			var (semanticModel, _, originalNode) = context;
 
+			// Get basic information.
 			/*length-pattern*/
 			if (
 				originalNode is not PositionalPatternClauseSyntax
@@ -49,6 +51,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			// Get the type information, to get all possible deconstruction methods.
 			if (
 				semanticModel.GetOperation(parentNode) is not IRecursivePatternOperation
 				{
@@ -60,8 +63,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
+			// Try to record the information about the sub-patterns.
 			var nameLookup = new List<string>();
-			var discards = new List<(SubpatternSyntax Pattern, string BoundParameterName)>();
+			var discards = new HashSet<(SubpatternSyntax Pattern, string BoundParameterName, int Index)>(
+				new TripletComparer()
+			);
+
 			for (int i = 0; i < subpatterns.Count; i++)
 			{
 				switch (subpatterns[i])
@@ -74,7 +81,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							case DiscardPatternSyntax:
 							//case DeclarationPatternSyntax { Designation: DiscardDesignationSyntax }:
 							{
-								discards.Add((subpattern, boundParameterName));
+								discards.Add((subpattern, boundParameterName, i));
 								break;
 							}
 							default:
@@ -99,7 +106,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							case DiscardPatternSyntax:
 							//case DeclarationPatternSyntax { Designation: DiscardDesignationSyntax }:
 							{
-								discards.Add((subpattern, parameterName));
+								discards.Add((subpattern, parameterName, i));
 								break;
 							}
 							default:
@@ -114,6 +121,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
+			// Iterate on each deconstruction method, and get the minimum method that holds
+			// the least number of parameters that can pass the values without the discard
+			// in the current pattern.
 			foreach (var deconstructionMethod in
 				from deconstructionMethod in type.GetAllDeconstructionMethods()
 				where deconstructionMethod.Parameters.Length < subpatterns.Count
@@ -125,13 +135,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				foreach (var (discardNodeToReport, boundParameterName) in discards)
+				foreach (var (discardNodeToReport, boundParameterName, index) in discards)
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0607,
 							location: discardNodeToReport.GetLocation(),
-							messageArgs: new[] { boundParameterName }
+							messageArgs: new[] { boundParameterName },
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("BoundParameterIndex", index.ToString())
+								}
+							)
 						)
 					);
 				}

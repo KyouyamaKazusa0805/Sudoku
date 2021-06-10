@@ -38,6 +38,7 @@
 		public const string SS0603 = "Use 'is not null' instead";
 		public const string SS0604 = "Use elementary equality comparison";
 		public const string SS0605 = "Use pattern matching";
+		public const string SS0607 = "Remove discard";
 		public const string SS0617 = "Remove keyword 'is'";
 		public const string SS0620 = "Remove keyword 'not'";
 		public const string SS0634 = "Use empty-brace property pattern instead";

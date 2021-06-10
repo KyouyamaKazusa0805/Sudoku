@@ -909,6 +909,18 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.TripletComparer">
+            <summary>
+            Defines a comparer that allows a triplet of <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.SubpatternSyntax"/>, <see cref="T:System.String"/>
+            and <see cref="T:System.Int32"/> participating in this comparison.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.TripletComparer.Equals(System.ValueTuple{Microsoft.CodeAnalysis.CSharp.Syntax.SubpatternSyntax,System.String,System.Int32},System.ValueTuple{Microsoft.CodeAnalysis.CSharp.Syntax.SubpatternSyntax,System.String,System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.TripletComparer.GetHashCode(System.ValueTuple{Microsoft.CodeAnalysis.CSharp.Syntax.SubpatternSyntax,System.String,System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0607">
             <summary>
             Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a>
@@ -2114,6 +2126,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0605CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a>
+            (This discard can be omitted in the current positional pattern).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0617CodeFixProvider">
