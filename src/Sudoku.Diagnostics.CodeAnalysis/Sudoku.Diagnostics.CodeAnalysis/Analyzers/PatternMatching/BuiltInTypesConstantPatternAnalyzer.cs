@@ -48,7 +48,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			switch (pattern)
 			{
 				// o is constantValue
-				case ConstantPatternSyntax { Expression: var constantExpression }
+				case ConstantPatternSyntax
+				{
+					Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
+				}
 				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
 				{
 					context.ReportDiagnostic(
@@ -82,7 +85,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				case UnaryPatternSyntax
 				{
 					RawKind: (int)SyntaxKind.NotPattern,
-					Pattern: ConstantPatternSyntax { Expression: var constantExpression }
+					Pattern: ConstantPatternSyntax
+					{
+						Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
+					}
 				}
 				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
 				{

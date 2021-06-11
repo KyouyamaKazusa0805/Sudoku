@@ -22,9 +22,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
 			var ((_, span), _) = diagnostic;
 			var node = root.FindNode(span, getInnermostNodeForTie: true);
-			var (_, exprSpan) = diagnostic.AdditionalLocations[1];
+			var (_, exprSpan) = diagnostic.AdditionalLocations[0];
 			var expr = (ExpressionSyntax)root.FindNode(exprSpan, getInnermostNodeForTie: true);
-			var (_, constantSpan) = diagnostic.AdditionalLocations[2];
+			var (_, constantSpan) = diagnostic.AdditionalLocations[1];
 			var constant = (ExpressionSyntax)root.FindNode(constantSpan, getInnermostNodeForTie: true);
 
 			context.RegisterCodeFix(

@@ -54,7 +54,7 @@ SS0610,Warning,Design,"The positional pattern judges nothing; if you want to jud
 SS0611,Warning,Design,The discard in the 'var' pattern may not take any effects.,The discard in the 'var' pattern '{0}' may not take any effects.
 SS0612,Warning,Design,It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern.,
 SS0613,Warning,Design,The discard pattern in this property pattern doesn't judge anything; please remove this clause.,The discard pattern in this property pattern '{0}' doesn't judge anything; please remove this clause.
-SS0614,Warning,Design,"The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it.",
+SS0614,Warning,Design,"The empty-brace property pattern '{ }' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it.",
 SS0615,Warning,Design,"Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types.",
 SS0616,Warning,Design,Please use '{ }' or 'not null' instead of '!= null' in nullable reference types.,
 SS0617,Warning,Design,Unncessary operator 'is' to determine the range of that value of same type.,

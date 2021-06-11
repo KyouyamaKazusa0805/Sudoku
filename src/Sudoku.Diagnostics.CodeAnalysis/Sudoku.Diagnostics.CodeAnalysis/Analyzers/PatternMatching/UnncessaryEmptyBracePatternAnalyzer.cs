@@ -31,7 +31,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					PropertyPatternClause: PropertyPatternClauseSyntax
 					{
 						Subpatterns: { Count: var count } subpatterns
-					} propertyPattern
+					} propertyPattern,
+					Designation: var designation
 				} recursivePattern
 			)
 			{
@@ -43,8 +44,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				if (
 					semanticModel.GetOperation(recursivePattern) is IRecursivePatternOperation
 					{
-						InputType: (_, _, false) type
-					}
+						MatchedType: (isValueType: true, _, _)
+					} && designation is null
 				)
 				{
 					context.ReportDiagnostic(
@@ -70,7 +71,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					if (
 						subpattern is not
 						{
-							NameColon: { },
+							NameColon: not null,
 							Pattern: RecursivePatternSyntax
 							{
 								PropertyPatternClause:
@@ -86,10 +87,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					switch (count)
 					{
-						case 0 when semanticModel.GetOperation(pattern) is IRecursivePatternOperation
+						case 0
+						when semanticModel.GetOperation(pattern) is IRecursivePatternOperation
 						{
-							InputType: (_, _, false) type
-						}:
+							MatchedType: (isValueType: true, _, _)
+						} && designation is null:
 						{
 							context.ReportDiagnostic(
 								Diagnostic.Create(
@@ -101,11 +103,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							break;
 						}
-						case 0:
-						{
-							break;
-						}
-						default:
+						case not 0:
 						{
 							checkSS0614Recursively(context, nestedSubpatterns);
 

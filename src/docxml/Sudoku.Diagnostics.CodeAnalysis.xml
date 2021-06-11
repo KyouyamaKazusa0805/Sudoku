@@ -942,7 +942,7 @@
             <list type="table">
             <item>
             <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0614">SS0614</a></term>
-            <description>The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it</description>
+            <description>The empty-brace property pattern `{ }` will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to `var` pattern or other valid patterns, or just remove it</description>
             </item>
             </list>
             </summary>
@@ -953,7 +953,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SS0614">
             <summary>
             Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0614">SS0614</a>
-            diagnostic result (The empty-brace property pattern '{ }' will take effects only in nullable types, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to var pattern or other valid patterns, or just remove it).
+            diagnostic result (The empty-brace property pattern `{ }` will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to `var` pattern or other valid patterns, or just remove it).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SupportedDiagnostics">
