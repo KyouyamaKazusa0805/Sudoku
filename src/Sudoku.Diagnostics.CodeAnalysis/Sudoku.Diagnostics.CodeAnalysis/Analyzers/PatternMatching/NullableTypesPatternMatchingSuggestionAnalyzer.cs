@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
+using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
@@ -36,15 +37,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (originalNode)
 			{
+				// obj.HasValue
 				case MemberAccessExpressionSyntax
 				{
 					Expression: var expr,
 					Name: { Identifier: { ValueText: "HasValue" } }
 				}
-				when semanticModel.GetOperation(expr) is
-				{
-					Type: (isValueType: true, isReferenceType: false, isNullable: true) type
-				}:
+				when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
@@ -56,12 +55,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
+
+				// obj == null
+				// obj != null
 				case BinaryExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression,
 					Left: var leftExpr,
 					Right: var rightExpr
-				}:
+				} binaryExpression
+				when semanticModel.GetOperation(binaryExpression) is IBinaryOperation { OperatorMethod: null }:
 				{
 					ExpressionSyntax? instanceExpr = null, nullExpr = null;
 					bool? isNullableValueType = null;
@@ -82,7 +85,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							break;
 						}
 					}
-					if (instanceExpr is null || nullExpr is null || isNullableValueType is not { } isNvt)
+					if ((instanceExpr, nullExpr, isNullableValueType) is not (not null, not null, { } isNvt))
 					{
 						return;
 					}
@@ -94,47 +97,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							messageArgs: null
 						)
 					);
-
-					break;
-				}
-				case IsPatternExpressionSyntax { Expression: var instanceExpr, Pattern: var pattern }
-				when semanticModel.GetOperation(instanceExpr) is
-				{
-					Type: (isValueType: var isNvt, _, isNullable: true)
-				}:
-				{
-					switch (pattern)
-					{
-						case ConstantPatternSyntax
-						{
-							Expression: LiteralExpressionSyntax
-							{
-								RawKind: (int)SyntaxKind.NullLiteralExpression
-							}
-						}:
-						case UnaryPatternSyntax
-						{
-							RawKind: (int)SyntaxKind.NotPattern,
-							Pattern: ConstantPatternSyntax
-							{
-								Expression: LiteralExpressionSyntax
-								{
-									RawKind: (int)SyntaxKind.NullLiteralExpression
-								}
-							}
-						}:
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									descriptor: isNvt ? SS0615 : SS0616,
-									location: originalNode.GetLocation(),
-									messageArgs: null
-								)
-							);
-
-							break;
-						}
-					}
 
 					break;
 				}

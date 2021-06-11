@@ -1,11 +1,19 @@
-﻿using System;
+﻿S? s = null;
+R? r = null;
 
-var s = new S { A = 1 };
-R? p = null;
-R o = new(1, 2D, 3F, "4");
-_ = o is { };
-_ = p is { };
+_ = s is null;
+_ = s is not null;
+_ = s.HasValue;
+_ = s == null;
+_ = s != null;
 _ = s is { };
+_ = s is not { };
+_ = r is null;
+_ = r is not null;
+_ = r == null;
+_ = r != null;
+_ = r is { };
+_ = r is not { };
 
 record R(int A, double B, float C, string D);
 readonly struct S
