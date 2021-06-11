@@ -44,6 +44,10 @@
 		public const string SS0610 = "Use simplified pattern matching";
 		public const string SS0613_1 = "Remove all discards";
 		public const string SS0613_2 = "Remove this discard only";
+		public const string SS0615_1 = "Use 'is (not) null' instead";
+		public const string SS0615_2 = "Use 'is (not) { }' instead";
+		public const string SS0616_1 = "Use 'is (not) null' instead";
+		public const string SS0616_2 = "Use 'is (not) { }' instead";
 		public const string SS0617 = "Remove keyword 'is'";
 		public const string SS0620 = "Remove keyword 'not'";
 		public const string SS0634 = "Use empty-brace property pattern instead";

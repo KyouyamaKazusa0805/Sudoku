@@ -2192,6 +2192,38 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0613CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0615">SS0615</a>
+            (Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0616">SS0616</a>
+            (Please use '{ }' or 'not null' instead of '!= null' in nullable reference types).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0617CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -2579,19 +2611,47 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.CSharp.SyntaxFactory"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Boolean)">
             <summary>
-            Creates a syntax node that represents a <c>expr <see langword="is"/> { }</c> syntax.
+            Creates a syntax node that represents a <c>expr <see langword="is"/> { }</c>
+            or <c>expr <see langword="is not"/> { }</c> syntax.
             </summary>
             <param name="expression">The expression <c>expr</c> node.</param>
+            <param name="isNegated">
+            Indicates whether the pattern should be negated. The result expression may be as follows:
+            <list type="table">
+            <item>
+            <term><see langword="false"/></term>
+            <description><c>expr <see langword="is"/> { }</c></description>
+            </item>
+            <item>
+            <term><see langword="true"/></term>
+            <description><c>expr <see langword="is not"/> { }</c></description>
+            </item>
+            </list>
+            </param>
             <returns>The syntax node.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxFactoryEx.IsEmptyPropertyPatternExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.String,System.Boolean)">
             <summary>
-            Creates a syntax node that represents a <c>expr <see langword="is"/> { } variable</c> syntax.
+            Creates a syntax node that represents a <c>expr <see langword="is"/> { } variable</c>
+            or <c>expr <see langword="is not"/> { } variable</c> syntax.
             </summary>
             <param name="expression">The expression <c>expr</c> node.</param>
             <param name="variableName">The variable name of the part <c>variable</c>.</param>
+            <param name="isNegated">
+            Indicates whether the pattern should be negated. The result expression may be as follows:
+            <list type="table">
+            <item>
+            <term><see langword="false"/></term>
+            <description><c>expr <see langword="is"/> { }</c></description>
+            </item>
+            <item>
+            <term><see langword="true"/></term>
+            <description><c>expr <see langword="is not"/> { }</c></description>
+            </item>
+            </list>
+            </param>
             <returns>The syntax node.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.SyntaxNodeEx">

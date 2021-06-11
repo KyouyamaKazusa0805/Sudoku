@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -25,7 +27,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					SyntaxKind.SimpleMemberAccessExpression,
 					SyntaxKind.EqualsExpression,
 					SyntaxKind.NotEqualsExpression,
-					SyntaxKind.IsPatternExpression
+					SyntaxKind.IsPatternExpression,
+					SyntaxKind.LogicalNotExpression
 				}
 			);
 		}
@@ -37,9 +40,41 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (originalNode)
 			{
+				// !obj.HasValue
+				case PrefixUnaryExpressionSyntax
+				{
+					RawKind: (int)SyntaxKind.LogicalNotExpression,
+					Operand: MemberAccessExpressionSyntax
+					{
+						Expression: var expr,
+						Name: { Identifier: { ValueText: "HasValue" } }
+					}
+				}
+				when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
+				{
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: SS0615,
+							location: originalNode.GetLocation(),
+							messageArgs: null,
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("IsNull", "True"),
+									new("IsHasValue", "True")
+								}
+							),
+							additionalLocations: new[] { expr.GetLocation() }
+						)
+					);
+
+					break;
+				}
+
 				// obj.HasValue
 				case MemberAccessExpressionSyntax
 				{
+					Parent: not PrefixUnaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalNotExpression },
 					Expression: var expr,
 					Name: { Identifier: { ValueText: "HasValue" } }
 				}
@@ -49,7 +84,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Diagnostic.Create(
 							descriptor: SS0615,
 							location: originalNode.GetLocation(),
-							messageArgs: null
+							messageArgs: null,
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("IsNull", "False"),
+									new("IsHasValue", "True")
+								}
+							),
+							additionalLocations: new[] { expr.GetLocation() }
 						)
 					);
 
@@ -60,7 +103,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				// obj != null
 				case BinaryExpressionSyntax
 				{
-					RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression,
+					RawKind: var kind and (
+						(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+					),
 					Left: var leftExpr,
 					Right: var rightExpr
 				} binaryExpression
@@ -94,7 +139,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Diagnostic.Create(
 							descriptor: isNvt ? SS0615 : SS0616,
 							location: originalNode.GetLocation(),
-							messageArgs: null
+							messageArgs: null,
+							properties: ImmutableDictionary.CreateRange(
+								new KeyValuePair<string, string?>[]
+								{
+									new("IsNull", (kind == (int)SyntaxKind.EqualsExpression).ToString()),
+									new("IsHasValue", "False")
+								}
+							),
+							additionalLocations: new[] { instanceExpr.GetLocation() }
 						)
 					);
 
