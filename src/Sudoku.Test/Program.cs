@@ -12,10 +12,10 @@ _ = r is null;
 _ = r is not null;
 _ = r == null;
 _ = r != null;
-_ = r is { };
+_ = r is { E: { } };
 _ = r is not { };
 
-record R(int A, double B, float C, string D);
+record R(int A, double B, float C, string D, R? E = null);
 readonly struct S
 {
 	public int A { get; init; }

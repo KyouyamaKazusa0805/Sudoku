@@ -3,7 +3,6 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGen;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
@@ -18,7 +17,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.RecursivePattern });
+			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.IsPatternExpression });
 		}
 
 
@@ -26,14 +25,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			var (semanticModel, _, originalNode) = context;
 			if (
-				originalNode is not RecursivePatternSyntax
+				originalNode is not IsPatternExpressionSyntax
 				{
-					PropertyPatternClause: PropertyPatternClauseSyntax
+					Expression: var expr,
+					Pattern: RecursivePatternSyntax
 					{
-						Subpatterns: { Count: var count } subpatterns
-					} propertyPattern,
-					Designation: var designation
-				} recursivePattern
+						PropertyPatternClause: PropertyPatternClauseSyntax
+						{
+							Subpatterns: { Count: var count } subpatterns
+						} propertyPattern,
+						Designation: var designation
+					} recursivePattern
+				}
 			)
 			{
 				return;
@@ -41,12 +44,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			if (count == 0)
 			{
-				if (
-					semanticModel.GetOperation(recursivePattern) is IRecursivePatternOperation
-					{
-						MatchedType: (isValueType: true, _, _)
-					} && designation is null
-				)
+				// o is { }
+				// o is { } _
+				// where 'o' is of non-nullable value type.
+				if (semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: false) }
+					&& designation is null or DiscardDesignationSyntax)
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
@@ -71,13 +73,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					if (
 						subpattern is not
 						{
-							NameColon: not null,
+							NameColon: { Name: var nestedName },
 							Pattern: RecursivePatternSyntax
 							{
 								PropertyPatternClause:
 								{
 									Subpatterns: { Count: var count } nestedSubpatterns
-								} propertyPattern
+								} propertyPattern,
+								Designation: var nestedDesignation
 							} pattern
 						}
 					)
@@ -88,10 +91,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					switch (count)
 					{
 						case 0
-						when semanticModel.GetOperation(pattern) is IRecursivePatternOperation
+						when semanticModel.GetOperation(nestedName) is
 						{
-							MatchedType: (isValueType: true, _, _)
-						} && designation is null:
+							Type: (isValueType: true, _, isNullable: false)
+						} && nestedDesignation is null or DiscardDesignationSyntax:
 						{
 							context.ReportDiagnostic(
 								Diagnostic.Create(
