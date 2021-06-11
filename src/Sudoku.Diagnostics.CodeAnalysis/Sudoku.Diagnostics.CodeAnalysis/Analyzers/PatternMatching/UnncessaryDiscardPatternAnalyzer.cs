@@ -165,30 +165,39 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			checkSS0613Recursively(context, subpatterns);
+			var discardPatterns = new List<SubpatternSyntax>();
+			checkSS0613Recursively(context, subpatterns, discardPatterns);
+
+			var additionalLocations = (from p in discardPatterns select p.GetLocation()).ToArray();
+			foreach (var discardPattern in discardPatterns)
+			{
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0613,
+						location: discardPattern.GetLocation(),
+						messageArgs: new[] { discardPattern.ToString() },
+						additionalLocations: additionalLocations
+					)
+				);
+			}
 
 
 			static void checkSS0613Recursively(
-				in SyntaxNodeAnalysisContext context, in SeparatedSyntaxList<SubpatternSyntax> subpatterns)
+				in SyntaxNodeAnalysisContext context, in SeparatedSyntaxList<SubpatternSyntax> subpatterns,
+				IList<SubpatternSyntax> discardPatterns)
 			{
 				foreach (var subpattern in subpatterns)
 				{
-					if (subpattern is not { NameColon: { }, Pattern: var pattern })
+					if (subpattern is not { NameColon: not null, Pattern: var pattern })
 					{
 						continue;
 					}
 
 					switch (pattern)
 					{
-						case DiscardPatternSyntax:
+						case DiscardPatternSyntax { Parent: SubpatternSyntax subpatternPart }:
 						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									descriptor: SS0613,
-									location: subpattern.GetLocation(),
-									messageArgs: new[] { subpattern.ToString() }
-								)
-							);
+							discardPatterns.Add(subpatternPart);
 
 							break;
 						}
@@ -197,7 +206,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							PropertyPatternClause: { Subpatterns: { Count: >= 1 } nestedSubpatterns }
 						}:
 						{
-							checkSS0613Recursively(context, nestedSubpatterns);
+							checkSS0613Recursively(context, nestedSubpatterns, discardPatterns);
 
 							break;
 						}

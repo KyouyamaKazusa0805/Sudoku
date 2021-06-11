@@ -1,42 +1,10 @@
 ﻿using System;
 
-var v1 = new S(1, 2);
-if (v1 is (_, _))
+object o = new R(1, 2D, 3F, "4", null);
+
+if (o is R { A: 1, B: _, C: 3F, D: _, Parent: { A: _, Parent: null } })
 {
-	Console.WriteLine(nameof(v1));
+	Console.WriteLine(o);
 }
 
-var v2 = new S(1, 2);
-if (v2 is (_, _) v5)
-{
-	Console.WriteLine(nameof(v5));
-}
-
-R? v3 = null;
-if (v3 is (_, _) v6)
-{
-	Console.WriteLine(nameof(v6));
-}
-
-T? v4 = null;
-if (v4 is (_, _))
-{
-	Console.WriteLine(nameof(v4));
-}
-
-readonly struct S
-{
-	private readonly int _a, _b;
-
-	public S(int a, int b) { _a = a; _b = b; }
-
-	public void Deconstruct(out int a, out int b) { a = _a; b = _b; }
-}
-
-record R(int A, int B);
-record T(int A)
-{
-	public int B { get; set; }
-
-	public void Deconstruct(out int a, out int b) { a = A; b = B; }
-}
+record R(int A, double B, float C, string D, R? Parent);
