@@ -53,9 +53,9 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 | GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                              |
 | Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This project is copied & sync'd from GitHub as a backup.<br />这个项目从 GitHub 拷贝和同步过来的，是一个备份项目。 |
 
-| Intro about how to compile the solution<br />关于如何编译解决方案的介绍 |                                                           |
-| ------------------------------------------------------------ | --------------------------------------------------------- |
-| Chinese & English<br />中英双语介绍                          | [GitHub](https://github.com/SunnieShine/Sudoku/issues/83) |
+| Intro about how to compile the solution<br />关于如何编译解决方案的介绍 |                                                                                  |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Chinese & English<br />中英双语介绍                                    | [GitHub](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compile-The-Solution) |
 
 | Wiki<br />百科页面         |                                                      |
 | -------------------------- | ---------------------------------------------------- |
