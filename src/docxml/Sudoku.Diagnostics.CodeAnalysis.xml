@@ -838,6 +838,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RemoveParameterNameAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a></term>
+            <description>It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RemoveParameterNameAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RemoveParameterNameAnalyzer.SS0635">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a>
+            diagnostic result (It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RemoveParameterNameAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -869,6 +892,29 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ShouldAppendParameterNameAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0636">SS0636</a></term>
+            <description>We suggest you explicitly specify the parameter name to enhance the readability when the sub-pattern in the positional pattern has used the non-discard one</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ShouldAppendParameterNameAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ShouldAppendParameterNameAnalyzer.SS0636">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0636">SS0636</a>
+            diagnostic result (We suggest you explicitly specify the parameter name to enhance the readability when the sub-pattern in the positional pattern has used the non-discard one).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ShouldAppendParameterNameAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer">
@@ -2348,6 +2394,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0634CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0635CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a>
+            (It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0635CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0635CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0635CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0701CodeFixProvider">

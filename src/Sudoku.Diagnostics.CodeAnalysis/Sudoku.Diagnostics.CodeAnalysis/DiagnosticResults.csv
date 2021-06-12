@@ -70,6 +70,8 @@ SS0626,Warning,Design,Keyword 'not' repeats; A pair of keyword 'not' can be omit
 SS0627,Info,Design,Available length pattern.,Available length pattern: '{0}'.
 SS0633,Warning,Design,'case var _' label in a switch expression (or statement) is equivalent to the default case ('default:' in switch statement and '_ =>' in switch expression); try to use 'default:' or '_ =>' instead.,
 SS0634,Info,Design,The expression can be simplified to use empty-brace property pattern.,The expression can be simplified to '{0} is {2} {1}'.
+SS0635,Info,Design,It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern.,
+SS0636,Info,Design,We suggest you explicitly specify the parameter name to enhance the readability when the sub-pattern in the positional pattern has used the non-discard one.,
 SS0701,Info,Design,The expression can be simplified to using compound null-coalesce operator '??='.,The expression can be simplified to using compound null-coalesce expression '{0} ??= {1}'.
 SS0702,Info,Design,The expression can be simplified to using null-coalescing operator '??'.,The expression can be simplified to using null-coalescing operator: '{0} ?? {1}'.
 SS0703,Info,Design,Unncessary null-conditional operator '?'.,

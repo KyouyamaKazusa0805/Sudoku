@@ -53,6 +53,8 @@
 		public const string SS0626 = "Remove duplicate keyword 'not'";
 		public const string SS0633 = "Use default case/pattern instead";
 		public const string SS0634 = "Use empty-brace property pattern instead";
+		public const string SS0635 = "Remove parameter name";
+		public const string SS0636 = "Append parameter name";
 		public const string SS0701 = "Use operator '??='";
 		public const string SS0702 = "Use operator '??'";
 		public const string SS0703 = "Remove '?'";
