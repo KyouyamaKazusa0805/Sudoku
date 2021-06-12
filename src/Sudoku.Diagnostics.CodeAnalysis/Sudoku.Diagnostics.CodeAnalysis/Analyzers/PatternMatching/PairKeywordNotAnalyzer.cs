@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -34,8 +36,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			int count = 1;
+			PatternSyntax patternNode;
 			for (
-				var patternNode = pattern;
+				patternNode = pattern;
 				patternNode is UnaryPatternSyntax
 				{
 					RawKind: (int)SyntaxKind.NotPattern,
@@ -54,7 +57,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				Diagnostic.Create(
 					descriptor: SS0626,
 					location: node.GetLocation(),
-					messageArgs: null
+					messageArgs: null,
+					properties: ImmutableDictionary.CreateRange(
+						new KeyValuePair<string, string?>[] { new("Count", count.ToString()) }
+					),
+					additionalLocations: new[] { patternNode.GetLocation() }
 				)
 			);
 		}
