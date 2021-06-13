@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Sudoku.Bot.Console": {
-      "commandName": "Project",
-      "commandLineArgs": "/path \"P:\\Bot\\Settings\" /config /size 800"
-    }
-  }
-}

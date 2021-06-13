@@ -1580,16 +1580,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.TextResourcesClassName">
-            <summary>
-            Indicates the text resources class name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.TextResourcesStaticReadOnlyFieldName">
-            <summary>
-            Indicates that field dynamically bound.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
