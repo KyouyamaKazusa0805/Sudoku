@@ -15,8 +15,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="..\..\..\required\lang\Resources.en-us.dic" />
-		<AdditionalFiles Include="..\..\..\required\lang\Resources.zh-cn.dic" />
+		<AdditionalFiles Include="Resources.en-us.dic" />
+		<AdditionalFiles Include="Resources.zh-cn.dic" />
 		<AdditionalFiles Include="DiagnosticResults.csv" />
 	</ItemGroup>
 

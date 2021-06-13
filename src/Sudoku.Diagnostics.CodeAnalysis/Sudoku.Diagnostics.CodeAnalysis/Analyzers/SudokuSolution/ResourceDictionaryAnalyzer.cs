@@ -13,53 +13,43 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SD0201")]
 	public sealed partial class ResourceDictionaryAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the text resources class name.
-		/// </summary>
-		private const string TextResourcesClassName = "TextResources";
-
-		/// <summary>
-		/// Indicates that field dynamically bound.
-		/// </summary>
-		private const string TextResourcesStaticReadOnlyFieldName = "Current";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(CheckSD0201, new[] { SyntaxKind.SimpleMemberAccessExpression });
+			context.RegisterCompilationStartAction(static context =>
+			{
+				var (compilation, options) = context;
+
+				// BUG: Can't load local dictionary files.
+				string[] texts = (from f in options.AdditionalFiles select File.ReadAllText(f.Path)).ToArray();
+				if (texts.Length == 0)
+				{
+					// Check all files if available.
+					return;
+				}
+
+				if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
+				{
+					// We don't check on those two WPF projects, because those two projects has already used
+					// their own resource dictionary (MergedDictionary).
+					return;
+				}
+
+				context.RegisterSyntaxNodeAction(
+					context => CheckWithUsingDirective(context, texts),
+					new[] { SyntaxKind.SimpleMemberAccessExpression }
+				);
+			});
 		}
 
 
-		private static void CheckSD0201(SyntaxNodeAnalysisContext context)
+		private static void CheckWithUsingDirective(SyntaxNodeAnalysisContext context, string[] texts)
 		{
-			string[]? texts = (
-				from file in context.Options.AdditionalFiles
-				select File.ReadAllText(file.Path)
-			).ToArray();
-			if (texts.Length != 0)
-			{
-				// Check all syntax trees if available.
-				return;
-			}
+			var (semanticModel, _, node) = context;
 
-			var (semanticModel, compilation, node) = context;
-			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
-			{
-				// We don't check on those two WPF projects, because those two projects has already used
-				// their own resource dictionary (MergedDictionary).
-				return;
-			}
-
-			CheckWithUsingDirective(context, texts, semanticModel, node);
-		}
-
-		private static void CheckWithUsingDirective(
-			SyntaxNodeAnalysisContext context, string[] texts, SemanticModel semanticModel, SyntaxNode node)
-		{
 			if (semanticModel.GetOperation(node) is not { Kind: OperationKind.DynamicMemberReference })
 			{
 				return;
@@ -73,14 +63,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Expression: MemberAccessExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-						Expression: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: TextResourcesClassName }
-						},
-						Name: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
-						}
+						Expression: IdentifierNameSyntax { Identifier: { ValueText: "TextResources" } },
+						Name: IdentifierNameSyntax { Identifier: { ValueText: "Current" } }
 					},
 					Name: IdentifierNameSyntax { Identifier: { ValueText: var key } } nameNode
 				}
@@ -90,7 +74,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			// Check all dictionaries.
-			var jsonPropertyNameRegex = new Regex($@"""{key}""(?=\:\s""[^""]+"",?)", RegexOptions.Compiled);
+			var jsonPropertyNameRegex = new Regex($@"""{key}""(?=\:\s*""[^""]+"",?)", RegexOptions.Compiled);
 			if (texts.Any(text => jsonPropertyNameRegex.Match(text).Success))
 			{
 				// If all dictionaries don't contain that key,
