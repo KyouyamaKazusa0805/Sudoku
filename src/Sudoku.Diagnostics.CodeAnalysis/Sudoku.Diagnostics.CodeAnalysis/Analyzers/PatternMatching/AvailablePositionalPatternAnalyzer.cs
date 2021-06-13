@@ -169,7 +169,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			Array.Reverse(subexprs);
 
-			/*slice-pattern*/
 			if (
 				subexprs.Any(static subexpr => subexpr is
 				{

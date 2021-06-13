@@ -46,7 +46,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*slice-pattern*/
 			var members = type.GetMembers();
 			if (
 				!members.OfType<IMethodSymbol>().Any(

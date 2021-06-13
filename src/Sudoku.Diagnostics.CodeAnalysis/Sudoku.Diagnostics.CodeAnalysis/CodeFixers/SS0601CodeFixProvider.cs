@@ -19,6 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		{
 			var document = context.Document;
 			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SS0601));
+			/*length-pattern*/
 			if (diagnostic.AdditionalLocations.Count != 2)
 			{
 				return;

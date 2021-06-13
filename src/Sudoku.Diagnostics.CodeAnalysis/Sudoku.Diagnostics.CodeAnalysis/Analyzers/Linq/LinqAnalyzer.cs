@@ -83,7 +83,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					},
 					ArgumentList: { Arguments: { Count: 1 } arguments }
 				}
-				/*indexer-pattern*/
+				/*slice-pattern*/
 				&& arguments[0] is { Expression: var expr }
 				&& semanticModel.GetOperation(expr) is { Type: { } type }
 				&& SymbolEqualityComparer.Default.Equals(type, int32)

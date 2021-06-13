@@ -70,7 +70,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			else if (
 				/*slice-pattern*/
 				arguments[0] is { Expression: var expr } argument
-				&& semanticModel.GetOperation(expr) is { ConstantValue: { HasValue: true, Value: string value } }
+				&& semanticModel.GetOperation(expr) is
+				{
+					ConstantValue:
+					{
+						HasValue: true,
+						Value: string value
+					}
+				}
 			)
 			{
 				CheckSD0311(context, argument, value);

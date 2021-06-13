@@ -37,7 +37,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*slice-pattern*/
 			if (
 				!attributeLists.Any(
 					static attributeList =>

@@ -41,7 +41,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				/*slice-pattern*/
+				/*length-pattern*/
 				case ParenthesizedVariableDesignationSyntax { Variables: { Count: >= 2 } variables }
 				when variables.All(static variable => variable is DiscardDesignationSyntax):
 				{

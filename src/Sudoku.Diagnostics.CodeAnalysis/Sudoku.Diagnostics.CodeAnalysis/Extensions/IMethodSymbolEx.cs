@@ -32,7 +32,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				return false;
 			}
 
-			/*slice-pattern*/
 			if (parameters.Any(static parameter => parameter.RefKind != RefKind.Out))
 			{
 				return false;

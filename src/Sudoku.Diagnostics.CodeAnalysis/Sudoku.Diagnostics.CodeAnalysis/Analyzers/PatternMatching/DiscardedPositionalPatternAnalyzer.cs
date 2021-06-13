@@ -42,7 +42,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*slice-pattern*/
 			if (subpatterns.Any(static subpattern => subpattern.Pattern is not DiscardPatternSyntax))
 			{
 				return;

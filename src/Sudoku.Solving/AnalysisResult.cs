@@ -229,8 +229,8 @@ namespace Sudoku.Solving
 		/// <seealso cref="Steps"/>
 		private unsafe decimal DifficultyExecutor(
 			delegate*<IEnumerable<StepInfo>, Func<StepInfo, decimal>, decimal> funcExecutor,
-			decimal defaultValue) => Steps is { Count: not 0 }
+			decimal defaultValue) => Steps is { Count: not 0 } /*length-pattern*/
 			? funcExecutor(Steps, static step => step.ShowDifficulty ? step.Difficulty : 0)
-			: defaultValue; /*length-pattern*/
+			: defaultValue;
 	}
 }
