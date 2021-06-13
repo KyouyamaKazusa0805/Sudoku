@@ -10,7 +10,7 @@ namespace Sudoku.Painting
 	/// </summary>
 	public partial class Settings : ICloneable<Settings>
 	{
-		/// <inheritdoc	cref="DefaultConstructor"/>
+		/// <inheritdoc cref="DefaultConstructor"/>
 		public Settings()
 		{
 		}
