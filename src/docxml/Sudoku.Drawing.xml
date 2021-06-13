@@ -68,9 +68,6 @@
             Indicates the inner options.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="M:Sudoku.Drawing.Converters.DirectLineJsonConverter.CanConvert(System.Type)">
             <inheritdoc/>
         </member>
@@ -121,9 +118,6 @@
             Indicates the inner options.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="M:Sudoku.Drawing.Converters.MutableViewJsonConverter.CanConvert(System.Type)">
             <inheritdoc/>
         </member>
@@ -143,9 +137,6 @@
             <summary>
             Indicates the inner options.
             </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="M:Sudoku.Drawing.Converters.ViewJsonConverter.CanConvert(System.Type)">
             <inheritdoc/>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku
 {
@@ -8,11 +7,6 @@ namespace Sudoku
 	{
 		partial class Tables
 		{
-			/// <inheritdoc cref="StaticConstructor"/>
-			/// <remarks>
-			/// The initialization order between static constructor and static fields
-			/// may be annoying, so I use static constructor.
-			/// </remarks>
 			static unsafe Tables()
 			{
 				IntersectionBlockTable = new byte[54][]

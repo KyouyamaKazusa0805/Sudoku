@@ -1,5 +1,4 @@
 ﻿using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -11,7 +10,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		private static readonly Cells[] Patterns = new Cells[162];
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static UsStepSearcher()
 		{
 			int[,] ChuteIterator =

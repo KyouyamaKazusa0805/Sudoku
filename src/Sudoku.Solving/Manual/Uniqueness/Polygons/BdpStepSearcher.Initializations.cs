@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Manual.Extensions;
 using static Sudoku.Constants.Tables;
 
@@ -8,7 +7,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	partial class BdpStepSearcher
 	{
-		/// <inheritdoc cref="StaticConstructor"/>
 		static BdpStepSearcher()
 		{
 			int[][] quads =

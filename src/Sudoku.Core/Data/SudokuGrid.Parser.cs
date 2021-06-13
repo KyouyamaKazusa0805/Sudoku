@@ -5,7 +5,6 @@ using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 
@@ -49,7 +48,6 @@ namespace Sudoku.Data
 			}
 
 
-			/// <inheritdoc cref="StaticConstructor"/>
 			static Parser()
 			{
 				ParseFunctions = new delegate*<ref Parser, SudokuGrid>[]

@@ -37,7 +37,9 @@ namespace Sudoku.Windows
 	public partial class MainWindow : Window
 	{
 		#region Constructors
-		/// <inheritdoc cref="StaticConstructor"/>
+		/// <summary>
+		/// Initializes an instance with the default instanctiation behavior.
+		/// </summary>
 		public MainWindow() => InitializeComponent();
 
 		/// <summary>

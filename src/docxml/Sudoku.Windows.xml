@@ -1960,7 +1960,9 @@
             <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
+            <summary>
+            Initializes an instance with the default instanctiation behavior.
+            </summary>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>

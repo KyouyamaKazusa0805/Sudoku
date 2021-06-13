@@ -183,7 +183,6 @@ namespace Sudoku.Data
 		}
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static SudokuGrid()
 		{
 			// Initializes the empty grid.

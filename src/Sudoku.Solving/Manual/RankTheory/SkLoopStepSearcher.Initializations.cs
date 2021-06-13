@@ -1,5 +1,4 @@
 ﻿using Sudoku.Data;
-using Sudoku.DocComments;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.RankTheory
@@ -17,7 +16,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 		private static readonly Cells[] RegionMaps;
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static SkLoopStepSearcher()
 		{
 			// Initialize for region maps.

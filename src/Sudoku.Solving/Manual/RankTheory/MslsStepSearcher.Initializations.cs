@@ -1,8 +1,7 @@
-﻿using Sudoku.Data;
-using Sudoku.DocComments;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
+using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.RankTheory
@@ -15,7 +14,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 		private static readonly IReadOnlyList<Cells> Patterns;
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static MslsStepSearcher()
 		{
 			const int a = ~7, b = ~56, c = ~448;

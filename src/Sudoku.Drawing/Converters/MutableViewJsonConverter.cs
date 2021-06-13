@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Models;
 
 namespace Sudoku.Drawing.Converters
@@ -21,7 +20,6 @@ namespace Sudoku.Drawing.Converters
 		private static readonly JsonSerializerOptions InnerOptions;
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static MutableViewJsonConverter()
 		{
 			InnerOptions = new();

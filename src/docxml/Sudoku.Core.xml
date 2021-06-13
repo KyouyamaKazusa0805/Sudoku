@@ -273,13 +273,6 @@
             </para>
             </summary>
         </member>
-        <member name="M:Sudoku.Constants.Tables.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-            <remarks>
-            The initialization order between static constructor and static fields
-            may be annoying, so I use static constructor.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
             The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
@@ -3277,9 +3270,6 @@
             <param name="masks">The masks.</param>
             <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="P:Sudoku.Data.SudokuGrid.IsSolved">
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>,
@@ -4058,9 +4048,6 @@
             PM grid. See <see cref="P:Sudoku.Data.SudokuGrid.Parser.CompatibleFirst"/> to learn more.
             </param>
             <seealso cref="P:Sudoku.Data.SudokuGrid.Parser.CompatibleFirst"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Parser.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.Parser.ParsingValue">
             <summary>

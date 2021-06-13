@@ -2550,9 +2550,6 @@
             Indicates whether the searcher will find advanced eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.JeStepInfo">
             <summary>
             Provides a usage of <b>junior exocet</b> (JE) technique.
@@ -5028,9 +5025,6 @@
             Indicates the list initialized with the static constructor.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo">
             <summary>
             Provides a usage of <b>rank theory</b> technique.
@@ -5245,9 +5239,6 @@
             <summary>
             The region maps.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.ErStepInfo">
             <summary>
@@ -6885,9 +6876,6 @@
             All combinations.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
@@ -7387,9 +7375,6 @@
             <param name="cornerMask2">The corner mask 2.</param>
             <param name="centerMask">The center mask.</param>
             <param name="map">The map.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1StepInfo">
             <summary>
@@ -9313,9 +9298,6 @@
             <summary>
             Indicates the patterns.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.#cctor">
-            <inheritdoc cref="T:Sudoku.DocComments.StaticConstructor"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo">
             <summary>

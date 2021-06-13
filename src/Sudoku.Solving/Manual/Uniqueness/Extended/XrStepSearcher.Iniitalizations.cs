@@ -1,7 +1,6 @@
-﻿using Sudoku.Data;
-using Sudoku.DocComments;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Extensions;
+using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended
@@ -14,7 +13,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		private static readonly IReadOnlyList<(Cells, IReadOnlyList<(int, int)>, int)> Combinations;
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static XrStepSearcher()
 		{
 			int[,] regions =

@@ -1,6 +1,4 @@
-﻿using Sudoku.DocComments;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// Encapsulates an <b>exocet</b> technique searcher.
@@ -19,7 +17,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		public bool CheckAdvanced { get; init; }
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static unsafe ExocetStepSearcher()
 		{
 			int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };

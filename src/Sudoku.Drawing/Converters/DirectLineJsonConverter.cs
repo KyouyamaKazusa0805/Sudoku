@@ -4,7 +4,6 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Drawing.Converters
 {
@@ -26,7 +25,6 @@ namespace Sudoku.Drawing.Converters
 		private static readonly JsonSerializerOptions InnerOptions;
 
 
-		/// <inheritdoc cref="StaticConstructor"/>
 		static DirectLineJsonConverter()
 		{
 			InnerOptions = new() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
