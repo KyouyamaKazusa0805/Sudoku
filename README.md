@@ -46,16 +46,18 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 
 如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到上方的特殊公告栏里。
 
+### How to Compile the Solution (如何编译解决方案)
+
+Please visit [this link](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compile-The-Solution).
+
+请访问[此链接](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compile-The-Solution)。
+
 ### Basic Information (基本信息)
 
 | Solution sites<br />项目地址 |                                                             | P.S.<br />备注                                               |
 | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                              |
 | Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This project is copied & sync'd from GitHub as a backup.<br />这个项目从 GitHub 拷贝和同步过来的，是一个备份项目。 |
-
-| Intro about how to compile the solution<br />关于如何编译解决方案的介绍 |                                                                                  |
-| --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Chinese & English<br />中英双语介绍                                    | [GitHub](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compile-The-Solution) |
 
 | Wiki<br />百科页面         |                                                      |
 | -------------------------- | ---------------------------------------------------- |
@@ -67,8 +69,7 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 
 | Coding Information<br />编码信息                     |                                                              |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
-| Programming language<br />编程语言                   | C#                                                           |
-| Language version<br />编程语言版本                   | 9.0                                                          |
+| Programming language and version<br />编程语言和版本 | C# 9                                                         |
 | Framework<br />框架                                  | .NET 5                                                       |
 | Indenting<br />缩进                                  | Tabs (`\t`)<br />Tab                                         |
 | Integrated development environment<br />集成开发环境 | Visual Studio 2019 (Version 16.11 Preview)<br />Visual Studio 2019（16.11 预览版） |
