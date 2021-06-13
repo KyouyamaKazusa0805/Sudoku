@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.CodeGen;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -651,7 +650,11 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly string ToString() => ToString(null);
 
-		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		/// <summary>
+		/// Returns a string that represents the current object with the specified format string.
+		/// </summary>
+		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+		/// <returns>The string result.</returns>
 		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 		public readonly string ToString(string? format)
 		{

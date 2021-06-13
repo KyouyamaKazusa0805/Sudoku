@@ -806,7 +806,11 @@ namespace Sudoku.Data
 		[NonVersionable]
 		public override readonly string ToString() => ToString(null, null);
 
-		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		/// <summary>
+		/// Returns a string that represents the current object with the specified format string.
+		/// </summary>
+		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+		/// <returns>The string result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[NonVersionable]
 		public readonly string ToString(string? format) => ToString(format, null);

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
@@ -26,7 +25,13 @@ namespace Sudoku.Solving
 			/// <inheritdoc/>
 			public override string ToString() => ToString(null, null);
 
-			/// <inheritdoc cref="Formattable.ToString(string)"/>
+			/// <summary>
+			/// Returns a string that represents the current object with the specified format string.
+			/// </summary>
+			/// <param name="format">
+			/// The format. If available, the parameter can be <see langword="null"/>.
+			/// </param>
+			/// <returns>The string result.</returns>
 			public string ToString(string format) => ToString(format, null);
 
 			/// <inheritdoc/>

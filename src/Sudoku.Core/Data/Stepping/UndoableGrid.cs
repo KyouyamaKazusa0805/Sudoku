@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Sudoku.DocComments;
 using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.Stepping
@@ -313,7 +312,11 @@ namespace Sudoku.Data.Stepping
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override string ToString() => _innerGrid.ToString();
 
-		/// <inheritdoc cref="Formattable.ToString(string?)"/>
+		/// <summary>
+		/// Returns a string that represents the current object with the specified format string.
+		/// </summary>
+		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+		/// <returns>The string result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public string ToString(string? format) => _innerGrid.ToString(format);
 

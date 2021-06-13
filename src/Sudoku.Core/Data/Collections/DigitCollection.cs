@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Sudoku.CodeGen;
-using Sudoku.DocComments;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data.Collections
@@ -68,7 +67,11 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc/>
 		public override string ToString() => ToString(", ");
 
-		/// <inheritdoc cref="Formattable.ToString(string)"/>
+		/// <summary>
+		/// Returns a string that represents the current object with the specified format string.
+		/// </summary>
+		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+		/// <returns>The string result.</returns>
 		public string ToString(string? format)
 		{
 			if (_mask == 0)

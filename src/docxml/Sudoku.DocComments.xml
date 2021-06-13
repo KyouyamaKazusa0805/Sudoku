@@ -138,18 +138,6 @@
             <param name="sender">The control to trigger <c>Drop</c> event.</param>
             <param name="e">The event information, whose value is specified as a parameter.</param>
         </member>
-        <member name="T:Sudoku.DocComments.Formattable">
-            <summary>
-            Provides with doc comments for <c>ToString</c> methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DocComments.Formattable.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-            <returns>The string result.</returns>
-        </member>
         <member name="T:Sudoku.DocComments.SearchingProperties">
             <summary>
             Indicates the searcher properties.
