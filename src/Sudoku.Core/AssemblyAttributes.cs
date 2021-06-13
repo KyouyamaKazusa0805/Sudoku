@@ -9,8 +9,11 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Sudoku.Drawing")]
 [assembly: InternalsVisibleTo("Sudoku.Painting")]
 [assembly: InternalsVisibleTo("Sudoku.Solving")]
-[assembly: InternalsVisibleTo("Sudoku.Test")]
 [assembly: InternalsVisibleTo("Sudoku.Windows")]
 [assembly: InternalsVisibleTo("Sudoku.UI")]
+
+#if DEBUG
+[assembly: InternalsVisibleTo("Sudoku.Test")]
+#endif
 
 [module: SkipLocalsInit]
