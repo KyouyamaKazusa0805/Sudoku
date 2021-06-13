@@ -127,7 +127,8 @@ namespace Sudoku.CodeGen.Deconstruction
 			{assignments}
 		}}";
 
-				return $@"#pragma warning disable 1591
+				return $@"#pragma warning disable 1574
+#pragma warning disable 1591
 
 using System.Runtime.CompilerServices;
 
