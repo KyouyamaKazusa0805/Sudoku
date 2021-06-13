@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Extensions
 			var listToIterate = value.GetAllSets().GetSubsets(size);
 			short[] result = new short[listToIterate.Count];
 			int index = 0;
-			foreach (var target in listToIterate)
+			foreach (int[] target in listToIterate)
 			{
 				result[index++] = CreateBitsInt16(target);
 			}
