@@ -62,11 +62,7 @@ namespace Sudoku.Data
 
 
 #if !NESTED_ANNOTATION
-			/// <inheritdoc cref="DeconstructMethod"/>
-			/// <param name="cell">The cell offset.</param>
-			/// <param name="oldMask">The old mask.</param>
-			/// <param name="newMask">The new mask.</param>
-			/// <param name="setValue">the set value.</param>
+#pragma warning disable CS1591
 			public void Deconstruct(out int cell, out short oldMask, out short newMask, out int setValue)
 			{
 				cell = Cell;
@@ -74,6 +70,7 @@ namespace Sudoku.Data
 				newMask = NewMask;
 				setValue = SetValue;
 			}
+#pragma warning restore CS1591
 
 			/// <inheritdoc cref="object.Equals(object?)"/>
 			public override bool Equals(object? obj) => obj is ValueChangedArgs comparer && Equals(comparer);

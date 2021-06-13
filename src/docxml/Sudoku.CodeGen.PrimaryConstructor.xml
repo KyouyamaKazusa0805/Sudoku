@@ -87,15 +87,6 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
         </member>
-        <member name="M:Sudoku.CodeGen.PrimaryConstructor.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
-            <summary>
-            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
-            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
-            </summary>
-            <param name="this">The current syntax reference instance.</param>
-            <param name="textSpan">The text span.</param>
-            <param name="syntaxNode">The syntax node.</param>
-        </member>
         <member name="T:Sudoku.CodeGen.PrimaryConstructor.PrimaryConstructorGenerator">
             <summary>
             Indicates a generator that generates primary constructors for <see langword="class"/>es

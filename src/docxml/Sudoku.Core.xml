@@ -3901,13 +3901,6 @@
             The value. -1 when this value is not required.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="cell">The cell offset.</param>
-            <param name="oldMask">The old mask.</param>
-            <param name="newMask">The new mask.</param>
-            <param name="setValue">the set value.</param>
-        </member>
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>

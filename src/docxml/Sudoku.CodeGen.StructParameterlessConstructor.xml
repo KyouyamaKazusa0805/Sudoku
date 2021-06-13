@@ -38,15 +38,6 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
         </member>
-        <member name="M:Sudoku.CodeGen.StructParameterlessConstructor.Extensions.SyntaxReferenceEx.Deconstruct(Microsoft.CodeAnalysis.SyntaxReference,Microsoft.CodeAnalysis.Text.TextSpan@,Microsoft.CodeAnalysis.SyntaxNode@)">
-            <summary>
-            Deconstruct the <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/> instance to the current <see cref="T:Microsoft.CodeAnalysis.Text.TextSpan"/>
-            and the <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.
-            </summary>
-            <param name="this">The current syntax reference instance.</param>
-            <param name="textSpan">The text span.</param>
-            <param name="syntaxNode">The syntax node.</param>
-        </member>
         <member name="T:Sudoku.CodeGen.StructParameterlessConstructor.StructParameterlessConstructorGenerator">
             <summary>
             Defines a generator that controls generating parameterless constructor

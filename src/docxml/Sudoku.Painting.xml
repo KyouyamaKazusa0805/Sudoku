@@ -333,12 +333,6 @@
             <param name="this">The rectangle.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Painting.Extensions.RectangleEx.Deconstruct(System.Drawing.RectangleF,System.Drawing.PointF@,System.Drawing.SizeF@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="this">The rectangle.</param>
-            <param name="point">The point.</param>
-            <param name="size">The size.</param>
-        </member>
         <member name="T:Sudoku.Painting.Extensions.SizeEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Size"/> and <see cref="T:System.Drawing.SizeF"/>.

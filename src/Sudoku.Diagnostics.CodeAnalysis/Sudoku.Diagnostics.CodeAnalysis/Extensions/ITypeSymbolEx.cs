@@ -11,13 +11,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 	/// <seealso cref="ITypeSymbol"/>
 	public static class ITypeSymbolEx
 	{
-		/// <summary>
-		/// Deconstruct the instance to three values that specifies and indicates the details of that type.
-		/// </summary>
-		/// <param name="this">The symbol.</param>
-		/// <param name="isValueType">Indicates whether the type is a value type.</param>
-		/// <param name="isReferenceType">Indicates whether the type is a reference type.</param>
-		/// <param name="isNullable">Indicates whether the type is a nullable type.</param>
+#pragma warning disable CS1591
 		public static void Deconstruct(
 			this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
 		{
@@ -25,6 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			isReferenceType = @this.IsReferenceType;
 			isNullable = @this.IsNullableType();
 		}
+#pragma warning restore CS1591
 
 		/// <summary>
 		/// Determine whether the current type symbol is a nullable type. The nullable types
