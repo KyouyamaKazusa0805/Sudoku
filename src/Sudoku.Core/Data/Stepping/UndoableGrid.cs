@@ -323,29 +323,81 @@ namespace Sudoku.Data.Stepping
 			_innerGrid.ToString(format, formatProvider);
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether two <see cref="UndoableGrid"/>s hold a same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="true"/> is for same value; otherwise,
+		/// <see langword="false"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(UndoableGrid left, UndoableGrid right) =>
 			left._innerGrid == right._innerGrid;
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether a <see cref="UndoableGrid"/> and a <see cref="SudokuGrid"/>
+		/// hold a same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="true"/> is for same value; otherwise,
+		/// <see langword="false"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(in SudokuGrid left, UndoableGrid right) => left == right._innerGrid;
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether a <see cref="UndoableGrid"/> and a <see cref="SudokuGrid"/>
+		/// hold a same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="true"/> is for same value; otherwise,
+		/// <see langword="false"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==(UndoableGrid left, in SudokuGrid right) => left._innerGrid == right;
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether two <see cref="UndoableGrid"/>s don't hold the totally same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="false"/> is for same value; otherwise,
+		/// <see langword="true"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(UndoableGrid left, UndoableGrid right) =>
 			left._innerGrid != right._innerGrid;
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether a <see cref="UndoableGrid"/> and a <see cref="SudokuGrid"/>
+		/// don't hold the totally same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="false"/> is for same value; otherwise,
+		/// <see langword="true"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(in SudokuGrid left, UndoableGrid right) => left != right._innerGrid;
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether a <see cref="UndoableGrid"/> and a <see cref="SudokuGrid"/>
+		/// don't hold the totally same sudoku grid as inner.
+		/// </summary>
+		/// <param name="left">The first sudoku grid to compare.</param>
+		/// <param name="right">The second sudoku grid to compare.</param>
+		/// <returns>
+		/// A <see cref="bool"/> result. <see langword="false"/> is for same value; otherwise,
+		/// <see langword="true"/>.
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(UndoableGrid left, in SudokuGrid right) => left._innerGrid != right;
 

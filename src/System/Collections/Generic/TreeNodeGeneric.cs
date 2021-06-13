@@ -1,5 +1,4 @@
 ﻿using Sudoku.CodeGen;
-using Sudoku.DocComments;
 
 namespace System.Collections.Generic
 {
@@ -69,26 +68,64 @@ namespace System.Collections.Generic
 		};
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether two <see cref="TreeNode{T}"/> instances hold a same inner value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		public static bool operator ==(TreeNode<T>? left, TreeNode<T>? right) =>
 			InternalCompare(left, right) == 0;
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether two <see cref="TreeNode{T}"/> instances don't hold a same inner value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> value.</returns>
 		public static bool operator !=(TreeNode<T>? left, TreeNode<T>? right) => !(left == right);
 
-		/// <inheritdoc cref="Operators.operator &gt;"/>
+		/// <summary>
+		/// Determines whether the left <see cref="TreeNode{T}"/> instance holds the greater <see cref="Id"/>
+		/// value with the second <see cref="TreeNode{T}"/> instance.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instace to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Id"/>
 		public static bool operator >(TreeNode<T>? left, TreeNode<T>? right) =>
 			InternalCompare(left, right) > 0;
 
-		/// <inheritdoc cref="Operators.operator &gt;="/>
+		/// <summary>
+		/// Determines whether the left <see cref="TreeNode{T}"/> instance holds the greater or same
+		/// <see cref="Id"/> value with the second <see cref="TreeNode{T}"/> instance.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instace to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Id"/>
 		public static bool operator >=(TreeNode<T>? left, TreeNode<T>? right) =>
 			InternalCompare(left, right) >= 0;
 
-		/// <inheritdoc cref="Operators.operator &lt;"/>
+		/// <summary>
+		/// Determines whether the left <see cref="TreeNode{T}"/> instance holds the less
+		/// <see cref="Id"/> value with the second <see cref="TreeNode{T}"/> instance.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instace to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Id"/>
 		public static bool operator <(TreeNode<T>? left, TreeNode<T>? right) =>
 			InternalCompare(left, right) < 0;
 
-		/// <inheritdoc cref="Operators.operator &lt;="/>
+		/// <summary>
+		/// Determines whether the left <see cref="TreeNode{T}"/> instance holds the less or same
+		/// <see cref="Id"/> value with the second <see cref="TreeNode{T}"/> instance.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instace to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		/// <seealso cref="Id"/>
 		public static bool operator <=(TreeNode<T>? left, TreeNode<T>? right) =>
 			InternalCompare(left, right) <= 0;
 	}

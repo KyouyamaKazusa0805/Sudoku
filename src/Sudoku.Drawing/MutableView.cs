@@ -313,7 +313,12 @@ namespace Sudoku.Drawing
 		public string ToJson(JsonSerializerOptions? options = null) => JsonSerializer.Serialize(this, options);
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether two <see cref="MutableView"/> hold a same value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator ==(MutableView? left, MutableView? right) => (left, right) switch
 		{
 			(null, null) => true,
@@ -321,7 +326,12 @@ namespace Sudoku.Drawing
 			_ => false
 		};
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether two <see cref="MutableView"/> don't hold a same value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator !=(MutableView? left, MutableView? right) => !(left == right);
 	}
 }

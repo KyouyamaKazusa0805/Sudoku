@@ -1,12 +1,17 @@
 ﻿using System;
 using Sudoku.CodeGen;
-using Sudoku.DocComments;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.
 	/// </summary>
+	/// <remarks>
+	/// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
+	/// (i.e. holds the value <see cref="ConclusionType.Elimination"/> as the type), the instance
+	/// will be greater; if those two hold same conclusion type, but one of those two holds
+	/// the global index of the candidate position is greater, it is greater.
+	/// </remarks>
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
@@ -97,16 +102,36 @@ namespace Sudoku.Data
 			}} {(Digit + 1).ToString()}";
 
 
-		/// <inheritdoc cref="Operators.operator &gt;"/>
+		/// <summary>
+		/// Determine whether the first instance is less than the second one.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator <(in Conclusion left, in Conclusion right) => left.CompareTo(right) < 0;
 
-		/// <inheritdoc cref="Operators.operator &gt;="/>
+		/// <summary>
+		/// Determine whether the first instance is less than or equals to the second one.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator <=(in Conclusion left, in Conclusion right) => left.CompareTo(right) <= 0;
 
-		/// <inheritdoc cref="Operators.operator &lt;"/>
+		/// <summary>
+		/// Determine whether the first instance is greater than the second one.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator >(in Conclusion left, in Conclusion right) => left.CompareTo(right) > 0;
 
-		/// <inheritdoc cref="Operators.operator &lt;="/>
+		/// <summary>
+		/// Determine whether the first instance is greater than or equals to the second one.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator >=(in Conclusion left, in Conclusion right) => left.CompareTo(right) >= 0;
 	}
 }

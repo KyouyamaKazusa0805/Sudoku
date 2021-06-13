@@ -971,10 +971,20 @@
             <returns>The JSON result string.</returns>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.op_Equality(Sudoku.Drawing.MutableView,Sudoku.Drawing.MutableView)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Drawing.MutableView"/> hold a same value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.op_Inequality(Sudoku.Drawing.MutableView,Sudoku.Drawing.MutableView)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Drawing.MutableView"/> don't hold a same value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Drawing.PointConverter">
             <summary>
@@ -1457,10 +1467,20 @@
             <returns>The JSON result string.</returns>
         </member>
         <member name="M:Sudoku.Drawing.View.op_Equality(Sudoku.Drawing.View,Sudoku.Drawing.View)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Drawing.View"/> hold a same value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Drawing.View.op_Inequality(Sudoku.Drawing.View,Sudoku.Drawing.View)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Drawing.View"/> don't hold a same value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
     </members>
 </doc>

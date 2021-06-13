@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Models;
 
 namespace Sudoku.Drawing
@@ -84,7 +83,12 @@ namespace Sudoku.Drawing
 		public string ToJson(JsonSerializerOptions? options = null) => JsonSerializer.Serialize(this, options);
 
 
-		/// <inheritdoc cref="Operators.operator =="/>
+		/// <summary>
+		/// Determines whether two <see cref="View"/> hold a same value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator ==(View? left, View? right) => (left, right) switch
 		{
 			(null, null) => true,
@@ -92,7 +96,12 @@ namespace Sudoku.Drawing
 			_ => false
 		};
 
-		/// <inheritdoc cref="Operators.operator !="/>
+		/// <summary>
+		/// Determines whether two <see cref="View"/> don't hold a same value.
+		/// </summary>
+		/// <param name="left">The first instance to compare.</param>
+		/// <param name="right">The second instance to compare.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
 		public static bool operator !=(View? left, View? right) => !(left == right);
 	}
 }

@@ -84,10 +84,20 @@ namespace Sudoku.Data
 				&& SetValue == other.SetValue;
 
 
-			/// <inheritdoc cref="Operators.operator =="/>
+			/// <summary>
+			/// Determines whether two <see cref="ValueChangedArgs"/> instance hold a same value.
+			/// </summary>
+			/// <param name="left">The first instance to compare.</param>
+			/// <param name="right">The second instance to compare.</param>
+			/// <returns>A <see cref="bool"/> result.</returns>
 			public static bool operator ==(ValueChangedArgs left, ValueChangedArgs right) => left.Equals(right);
 
-			/// <inheritdoc cref="Operators.operator !="/>
+			/// <summary>
+			/// Determines whether two <see cref="ValueChangedArgs"/> instance don't hold a same value.
+			/// </summary>
+			/// <param name="left">The first instance to compare.</param>
+			/// <param name="right">The second instance to compare.</param>
+			/// <returns>A <see cref="bool"/> result.</returns>
 			public static bool operator !=(ValueChangedArgs left, ValueChangedArgs right) => !(left == right);
 #endif
 		}

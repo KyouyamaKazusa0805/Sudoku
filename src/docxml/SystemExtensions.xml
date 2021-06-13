@@ -379,22 +379,60 @@
             <returns>The result.</returns>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_Equality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:System.Collections.Generic.TreeNode`1"/> instances hold a same inner value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_Inequality(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether two <see cref="T:System.Collections.Generic.TreeNode`1"/> instances don't hold a same inner value.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether the left <see cref="T:System.Collections.Generic.TreeNode`1"/> instance holds the greater <see cref="P:System.Collections.Generic.TreeNode`1.Id"/>
+            value with the second <see cref="T:System.Collections.Generic.TreeNode`1"/> instance.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instace to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.Collections.Generic.TreeNode`1.Id"/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_GreaterThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_GreaterThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether the left <see cref="T:System.Collections.Generic.TreeNode`1"/> instance holds the greater or same
+            <see cref="P:System.Collections.Generic.TreeNode`1.Id"/> value with the second <see cref="T:System.Collections.Generic.TreeNode`1"/> instance.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instace to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.Collections.Generic.TreeNode`1.Id"/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_LessThan(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThan(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether the left <see cref="T:System.Collections.Generic.TreeNode`1"/> instance holds the less
+            <see cref="P:System.Collections.Generic.TreeNode`1.Id"/> value with the second <see cref="T:System.Collections.Generic.TreeNode`1"/> instance.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instace to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.Collections.Generic.TreeNode`1.Id"/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.op_LessThanOrEqual(System.Collections.Generic.TreeNode{`0},System.Collections.Generic.TreeNode{`0})">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_LessThanOrEqual(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
+            <summary>
+            Determines whether the left <see cref="T:System.Collections.Generic.TreeNode`1"/> instance holds the less or same
+            <see cref="P:System.Collections.Generic.TreeNode`1.Id"/> value with the second <see cref="T:System.Collections.Generic.TreeNode`1"/> instance.
+            </summary>
+            <param name="left">The first instance to compare.</param>
+            <param name="right">The second instace to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.Collections.Generic.TreeNode`1.Id"/>
         </member>
         <member name="M:System.Collections.Generic.TreeNode`1.Deconstruct(System.Int32@,System.Int32@,System.Boolean@,`0@,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{`0}}@)">
             <summary>
