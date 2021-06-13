@@ -860,7 +860,7 @@ namespace Sudoku.Solving.BruteForces
 						Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
 						_g->Bands[band] ^= cellMask;
 						_g++;
-						SetSolvedMask(band, cellMask);     // And try it out in a nested stack entry.
+						SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.
 						if (FullUpdate() != 0) Guess();
 						_g--;
 					}
