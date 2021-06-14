@@ -9,7 +9,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen;
 using Sudoku.Data.Extensions;
-using Sudoku.DocComments;
 using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
