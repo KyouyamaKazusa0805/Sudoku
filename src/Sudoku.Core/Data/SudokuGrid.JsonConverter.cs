@@ -27,16 +27,9 @@ namespace Sudoku.Data
 					{
 						case JsonTokenType.String:
 						{
-							if (reader.GetString() is not string code)
-							{
-								return Undefined;
-							}
-							if (!TryParse(code, out var grid))
-							{
-								return Undefined;
-							}
-
-							return grid;
+							return reader.GetString() is not string code || !TryParse(code, out var grid)
+								? Undefined
+								: grid;
 						}
 					}
 				}
