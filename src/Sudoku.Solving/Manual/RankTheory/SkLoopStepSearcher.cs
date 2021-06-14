@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Solving.Manual.Extensions;
@@ -17,7 +16,14 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// </summary>
 	public sealed partial class SkLoopStepSearcher : RankTheoryStepSearcher
 	{
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(37, nameof(Technique.SkLoop))
 		{
 			DisplayLevel = 4

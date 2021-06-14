@@ -1267,7 +1267,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -1325,7 +1332,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -1421,7 +1435,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -1474,7 +1495,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DbStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.DbStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -1542,7 +1570,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.EripStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.EripStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -1639,7 +1674,14 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.AicStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -2043,7 +2085,14 @@
             <param name="dynamic">Indicates whether the searcher should search for dynamic chains.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.FcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.FcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -2616,7 +2665,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.JeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -2924,7 +2980,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -3539,7 +3602,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -3731,7 +3801,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -3830,7 +3907,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -3914,7 +3998,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -3978,7 +4069,14 @@
             <param name="solution">The solution.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -4042,7 +4140,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -4157,7 +4262,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.PomStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -4233,7 +4345,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -4776,7 +4895,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5015,7 +5141,14 @@
             <seealso cref="T:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5100,7 +5233,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5177,7 +5317,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5225,7 +5372,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5284,7 +5438,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.ErStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.ErStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5342,7 +5503,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5432,7 +5600,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5605,7 +5780,14 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -5972,7 +6154,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -6056,7 +6245,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -6131,7 +6327,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -6508,7 +6711,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -6584,7 +6794,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -6821,7 +7038,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -7081,7 +7305,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -7323,7 +7554,14 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -7744,7 +7982,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -8161,7 +8406,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -9015,7 +9267,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -9251,7 +9510,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -9462,7 +9728,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
@@ -9606,7 +9879,14 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Properties">
-            <inheritdoc cref="T:Sudoku.DocComments.SearchingProperties"/>
+            <summary>
+            Indicates the searcher properties.
+            </summary>
+            <remarks>
+            Please note that all technique searches should contain
+            this static property in order to display on settings window. If the searcher doesn't contain,
+            when we open the settings window, it'll throw an exception to report about this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -11,7 +10,14 @@ namespace Sudoku.Solving.Manual.Symmetry
 	[DirectSearcher]
 	public sealed partial class GspStepSearcher : SymmetryStepSearcher
 	{
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(default, nameof(Technique.Gsp))
 		{
 			IsReadOnly = true

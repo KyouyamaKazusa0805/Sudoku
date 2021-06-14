@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
@@ -20,7 +19,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public bool SearchExtendedBugTypes { get; init; }
 
 
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(25, nameof(Technique.BugType1))
 		{
 			DisplayLevel = 2

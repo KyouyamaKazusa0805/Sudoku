@@ -2,7 +2,6 @@
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Solving.Manual.Singles;
@@ -38,7 +37,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public int MaxLength { get; init; }
 
 
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(19, nameof(Technique.BowmanBingo))
 		{
 			DisplayLevel = 3,

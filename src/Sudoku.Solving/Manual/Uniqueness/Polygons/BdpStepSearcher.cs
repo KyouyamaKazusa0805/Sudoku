@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -20,7 +19,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		private static readonly Pattern[] Patterns = new Pattern[14580];
 
 
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(17, nameof(Technique.BdpType1))
 		{
 			DisplayLevel = 2

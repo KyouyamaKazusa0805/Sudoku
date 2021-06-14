@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
@@ -12,7 +11,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	public sealed class PomStepSearcher : LastResortStepSearcher
 	{
-		/// <inheritdoc cref="SearchingProperties"/>
+		/// <summary>
+		/// Indicates the searcher properties.
+		/// </summary>
+		/// <remarks>
+		/// Please note that all technique searches should contain
+		/// this static property in order to display on settings window. If the searcher doesn't contain,
+		/// when we open the settings window, it'll throw an exception to report about this.
+		/// </remarks>
 		public static TechniqueProperties Properties { get; } = new(20, nameof(Technique.Pom))
 		{
 			DisplayLevel = 3,
