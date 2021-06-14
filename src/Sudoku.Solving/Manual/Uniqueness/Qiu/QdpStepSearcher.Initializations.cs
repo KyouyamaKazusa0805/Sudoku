@@ -7,7 +7,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	partial class QdpStepSearcher
 	{
-		/// <inheritdoc cref="DefaultConstructor()"/>
 		static QdpStepSearcher()
 		{
 			int[,] BaseLineIterator =

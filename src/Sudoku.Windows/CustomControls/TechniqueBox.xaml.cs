@@ -12,7 +12,9 @@ namespace Sudoku.Windows.CustomControls
 	/// </summary>
 	public partial class TechniqueBox : UserControl
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="TechniqueBox"/> instance.
+		/// </summary>
 		public TechniqueBox() => InitializeComponent();
 
 

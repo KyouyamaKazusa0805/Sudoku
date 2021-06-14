@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Models;
 
 namespace Sudoku.Drawing
@@ -17,7 +16,10 @@ namespace Sudoku.Drawing
 	[Obsolete("Please use 'PresentationData' instead.", false)]
 	public sealed class MutableView : IEquatable<MutableView>
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes an instance, and all properties are initialized by a default instantiation behavior
+		/// (i.e. a <see langword="new"/> clause).
+		/// </summary>
 		public MutableView()
 		{
 			Cells = new List<DrawingInfo>();

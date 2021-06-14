@@ -187,7 +187,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes an empty <see cref="T:Sudoku.Generating.TechniqueCodeFilter"/> collection instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Generating.TechniqueCodeFilter.#ctor(Sudoku.Techniques.Technique[])">
             <summary>

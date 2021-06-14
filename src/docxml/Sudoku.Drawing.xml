@@ -798,7 +798,10 @@
             <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
         <member name="M:Sudoku.Drawing.MutableView.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes an instance, and all properties are initialized by a default instantiation behavior
+            (i.e. a <see langword="new"/> clause).
+            </summary>
         </member>
         <member name="P:Sudoku.Drawing.MutableView.Cells">
             <summary>
@@ -1124,7 +1127,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.Settings.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Drawing.Settings"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Drawing.Settings.#ctor(Sudoku.Drawing.Settings)">
             <summary>

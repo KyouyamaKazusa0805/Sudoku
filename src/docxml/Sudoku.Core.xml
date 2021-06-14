@@ -4823,7 +4823,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Resources.TextResources.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <inheritdoc cref="!:DefaultConstructor"/>
         </member>
         <member name="P:Sudoku.Resources.TextResources.CurrentCountryCode">
             <summary>

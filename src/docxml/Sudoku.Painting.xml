@@ -1134,7 +1134,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Painting.Settings.#ctor">
-            <inheritdoc	cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Painting.Settings"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Painting.Settings.#ctor(Sudoku.Painting.Settings)">
             <summary>

@@ -13,7 +13,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.AboutMeWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes an instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Windows.AboutMeWindow.GitHubLink_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -93,7 +95,10 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.BatchWindow.#ctor(Sudoku.Windows.WindowsSettings)">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a <see cref="T:Sudoku.Windows.BatchWindow"/> instance, with a <see cref="T:Sudoku.Windows.WindowsSettings"/> instance.
+            </summary>
+            <param name="settings"></param>
         </member>
         <member name="M:Sudoku.Windows.BatchWindow.ButtonBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -149,7 +154,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.ColorPickerWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a <see cref="T:Sudoku.Windows.ColorPickerWindow"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.ColorPickerWindow.SimpleMode">
             <summary>
@@ -251,7 +258,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.ColorComponentSlider"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.ColorComponentSlider.FormatString">
             <summary>
@@ -313,7 +322,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.ColorPicker"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.ColorPicker.Color">
             <summary>
@@ -476,7 +487,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPickerPalette.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.ColorPickerPalette"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.ColorPickerPalette.BuiltInColors">
             <summary>
@@ -533,7 +546,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorSample.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.ColorSample"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.ColorSample.Editable">
             <summary>
@@ -593,7 +608,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.FontDialog.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.FontDialog"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.FontDialog.SelectedFont">
             <summary>
@@ -648,7 +665,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.NumericUpDown"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.NumericUpDown.CurrentValue">
             <summary>
@@ -705,7 +724,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.TechniqueBox"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.TechniqueBox.Category">
             <summary>
@@ -739,7 +760,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.TechniqueTreeView"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.TechniqueTreeView.OnInitialized(System.EventArgs)">
             <inheritdoc/>
@@ -774,7 +797,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.TechniqueView.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.CustomControls.TechniqueView"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.CustomControls.TechniqueView.ChosenTechniques">
             <summary>
@@ -834,7 +859,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.ErrorInfoWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.ErrorInfoWindow"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.ErrorInfoWindow.ErrorText">
             <summary>
@@ -2548,7 +2575,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.ProgressWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.ProgressWindow"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.ProgressWindow.CancellationTokenSource">
             <summary>
@@ -2896,7 +2925,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.SpecialThanksWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.SpecialThanksWindow"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Windows.SpecialThanksWindow.Hyperlink_Click(System.Object,System.Windows.RoutedEventArgs)">
             <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
@@ -2915,7 +2946,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.TechniquesWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.TechniquesWindow"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Windows.TechniquesWindow.InitializeComponent">
             <summary>
@@ -2931,7 +2964,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Windows.TechniqueViewWindow.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Windows.TechniqueViewWindow"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Windows.TechniqueViewWindow.ChosenTechniques">
             <summary>

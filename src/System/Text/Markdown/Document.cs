@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Sudoku.CodeGen;
-using Sudoku.DocComments;
 
 namespace System.Text.Markdown
 {
@@ -27,7 +26,9 @@ namespace System.Text.Markdown
 		private readonly StringBuilder _innerBuilder = new();
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes an empty <see cref="Document"/> instance.
+		/// </summary>
 		private Document()
 		{
 		}

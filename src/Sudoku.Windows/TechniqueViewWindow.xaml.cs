@@ -10,7 +10,9 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class TechniqueViewWindow : Window
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="TechniqueViewWindow"/> instance.
+		/// </summary>
 		public TechniqueViewWindow()
 		{
 			InitializeComponent();

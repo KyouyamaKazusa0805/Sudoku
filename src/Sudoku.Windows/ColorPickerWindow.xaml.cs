@@ -18,7 +18,9 @@ namespace Sudoku.Windows
 		private const int WidthMaxValue = 574, WidthMinValue = 342;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a <see cref="ColorPickerWindow"/> instance.
+		/// </summary>
 		public ColorPickerWindow() => InitializeComponent();
 
 

@@ -306,7 +306,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Recognition.RecognitionServiceProvider.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Recognition.RecognitionServiceProvider"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Recognition.RecognitionServiceProvider.IsInitialized">
             <summary>

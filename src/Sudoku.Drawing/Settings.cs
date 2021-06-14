@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using Sudoku.DocComments;
 
 namespace Sudoku.Drawing
 {
@@ -10,7 +9,9 @@ namespace Sudoku.Drawing
 	/// </summary>
 	public partial class Settings : ICloneable<Settings>
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="Settings"/> instance.
+		/// </summary>
 		public Settings()
 		{
 		}

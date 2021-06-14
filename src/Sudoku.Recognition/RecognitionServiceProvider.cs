@@ -6,7 +6,6 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.DocComments;
 
 namespace Sudoku.Recognition
 {
@@ -21,7 +20,9 @@ namespace Sudoku.Recognition
 		private readonly InternalServiceProvider _recognizingServiceProvider;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="RecognitionServiceProvider"/> instance.
+		/// </summary>
 		public RecognitionServiceProvider()
 		{
 			string folder = $@"{Directory.GetCurrentDirectory()}\tessdata";
@@ -72,4 +73,5 @@ namespace Sudoku.Recognition
 		public async Task<SudokuGrid> RecognizeAsync(Bitmap image) => await Task.Run(() => Recognize(image));
 	}
 }
+
 #endif

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using Sudoku.DocComments;
 using Sudoku.Resources;
 using Sudoku.Techniques;
 using static Sudoku.Windows.MainWindow;
@@ -14,7 +13,9 @@ namespace Sudoku.Windows.CustomControls
 	/// </summary>
 	public partial class TechniqueTreeView : UserControl
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="TechniqueTreeView"/> instance.
+		/// </summary>
 		public TechniqueTreeView() => InitializeComponent();
 
 

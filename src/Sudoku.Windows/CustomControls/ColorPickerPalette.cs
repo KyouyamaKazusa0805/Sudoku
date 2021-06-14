@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Media;
 using System.Xml.Serialization;
-using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using DColor = System.Drawing.Color;
@@ -40,7 +39,9 @@ namespace Sudoku.Windows.CustomControls
 		protected const int NumColorsSecondSwatch = 112;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ColorPickerPalette"/> instance.
+		/// </summary>
 		public ColorPickerPalette()
 		{
 			BuiltInColors = new List<ColorInfo>();

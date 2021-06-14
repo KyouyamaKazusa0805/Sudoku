@@ -7816,9 +7816,6 @@
             <param name="pattern">The pattern.</param>
             <param name="comparer">The mask comparer.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.#cctor">
-            <inheritdoc cref="M:Sudoku.DocComments.DefaultConstructor.#ctor"/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1StepInfo">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 1</b> (QDP) technique.

@@ -11,7 +11,9 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class SpecialThanksWindow : Window
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="SpecialThanksWindow"/> instance.
+		/// </summary>
 		public SpecialThanksWindow() => InitializeComponent();
 
 

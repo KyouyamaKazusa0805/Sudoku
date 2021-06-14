@@ -16,7 +16,9 @@ namespace Sudoku.Windows.CustomControls
 		private decimal _currentValue;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="NumericUpDown"/> instance.
+		/// </summary>
 		public NumericUpDown() => InitializeComponent();
 
 

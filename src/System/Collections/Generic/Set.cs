@@ -1,7 +1,6 @@
 ﻿using System.Extensions;
 using System.Linq;
 using Sudoku.CodeGen;
-using Sudoku.DocComments;
 
 namespace System.Collections.Generic
 {
@@ -19,7 +18,10 @@ namespace System.Collections.Generic
 		private readonly IList<TEquatable> _list = new List<TEquatable>();
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="Set{TEquatable}"/> collection instance,
+		/// with no elements in it.
+		/// </summary>
 		public Set()
 		{
 		}

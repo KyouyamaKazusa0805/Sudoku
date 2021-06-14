@@ -144,7 +144,10 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes a default <see cref="T:System.Collections.Generic.Set`1"/> collection instance,
+            with no elements in it.
+            </summary>
         </member>
         <member name="M:System.Collections.Generic.Set`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -2162,7 +2165,9 @@
             </summary>
         </member>
         <member name="M:System.Text.Markdown.Document.#ctor">
-            <inheritdoc cref="T:Sudoku.DocComments.DefaultConstructor"/>
+            <summary>
+            Initializes an empty <see cref="T:System.Text.Markdown.Document"/> instance.
+            </summary>
         </member>
         <member name="P:System.Text.Markdown.Document.ResultStr">
             <summary>

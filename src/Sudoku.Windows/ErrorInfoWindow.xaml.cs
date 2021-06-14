@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
 
@@ -12,7 +11,9 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class ErrorInfoWindow : Window
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ErrorInfoWindow"/> instance.
+		/// </summary>
 		public ErrorInfoWindow() => InitializeComponent();
 
 

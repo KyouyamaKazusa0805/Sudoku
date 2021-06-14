@@ -59,7 +59,9 @@ namespace Sudoku.Windows.CustomControls
 		private bool _isSettingValues = false;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ColorPicker"/> instance.
+		/// </summary>
 		public ColorPicker() => InitializeComponent();
 
 

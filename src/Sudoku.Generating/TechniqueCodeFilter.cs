@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Extensions;
-using Sudoku.DocComments;
 using Sudoku.Techniques;
 
 namespace Sudoku.Generating
@@ -18,7 +17,9 @@ namespace Sudoku.Generating
 		private readonly BitArray _internalList = new(Enum.GetValues<Technique>().Length);
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes an empty <see cref="TechniqueCodeFilter"/> collection instance.
+		/// </summary>
 		public TechniqueCodeFilter()
 		{
 		}

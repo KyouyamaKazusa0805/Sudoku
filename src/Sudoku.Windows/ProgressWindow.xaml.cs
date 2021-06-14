@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
-using Sudoku.DocComments;
 using Sudoku.Models;
 
 namespace Sudoku.Windows
@@ -12,7 +11,9 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class ProgressWindow : Window
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ProgressWindow"/> instance.
+		/// </summary>
 		public ProgressWindow() => InitializeComponent();
 
 

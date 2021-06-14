@@ -13,7 +13,9 @@ namespace Sudoku.Windows.CustomControls
 	/// </summary>
 	public partial class ColorSample : UserControl
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ColorSample"/> instance.
+		/// </summary>
 		public ColorSample() => InitializeComponent();
 
 

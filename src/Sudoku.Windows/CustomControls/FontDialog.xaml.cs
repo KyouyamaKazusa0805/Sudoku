@@ -37,7 +37,9 @@ namespace Sudoku.Windows.CustomControls
 		private bool _isDisposed;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="FontDialog"/> instance.
+		/// </summary>
 		public FontDialog() => InitializeComponent();
 
 

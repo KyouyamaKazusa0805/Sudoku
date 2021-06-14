@@ -16,7 +16,9 @@ namespace Sudoku.Windows.CustomControls
 		protected bool _updatingValues = false;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a default <see cref="ColorComponentSlider"/> instance.
+		/// </summary>
 		public ColorComponentSlider() => InitializeComponent();
 
 

@@ -12,7 +12,9 @@ namespace Sudoku.Windows
 	/// </summary>
 	public partial class AboutMeWindow : Window
 	{
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes an instance.
+		/// </summary>
 		public AboutMeWindow() => InitializeComponent();
 
 

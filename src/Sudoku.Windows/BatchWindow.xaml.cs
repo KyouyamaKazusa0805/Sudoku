@@ -15,7 +15,10 @@ namespace Sudoku.Windows
 		private readonly WindowsSettings _settings;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Initializes a <see cref="BatchWindow"/> instance, with a <see cref="WindowsSettings"/> instance.
+		/// </summary>
+		/// <param name="settings"></param>
 		public BatchWindow(WindowsSettings settings)
 		{
 			InitializeComponent();
