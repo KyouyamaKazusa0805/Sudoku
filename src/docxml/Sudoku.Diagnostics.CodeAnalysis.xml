@@ -1362,6 +1362,39 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0403">SD0403</a></term>
+            <description>'DirectSearcherAttribute' attribute can be only used for step searchers</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.StepSearcherTypeName">
+            <summary>
+            Indicates the type name of the <c>StepSearcher</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.AttributeTypeName">
+            <summary>
+            Indicates the type name of the <c>DirectSearcherAttribute</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.SD0403">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0403">SD0403</a>
+            diagnostic result ('DirectSearcherAttribute' attribute can be only used for step searchers).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

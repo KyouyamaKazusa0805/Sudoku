@@ -23,9 +23,10 @@ SD0307,Info,Usage,The expression can be simplified.,The expression can be simpli
 SD0308,Warning,Usage,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.
 SD0309,Info,Usage,'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead.,'{0}' expression is unnecessary; Please use object initializer instead.
 SD0310,Info,Usage,"Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case.",
-SD0311,Error,Usage,Invalid format string in 'SudokuGrid.ToString'.,Invalid format string in SudokuGrid.ToString.
+SD0311,Error,Usage,Invalid format string in 'SudokuGrid.ToString'.,Invalid format string in 'SudokuGrid.ToString'.
 SD0401,Warning,Usage,Please use nameof expression instead.,
 SD0402,Warning,Usage,This attribute must contain the specified number of parameters.,'{0}' must contain at least {1} parameters.
+SD0403,Error,Usage,'DirectSearcherAttribute' attribute can be only used for step searchers.,'DirectSearcherAttribute' attribute cann't be used for the type '{0}' because it isn't a step searcher.
 SS0101,Warning,Performance,Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.,
 SS0102,Info,Usage,Unnecessary interpolation leading character '$'.,
 SS0201,Warning,Performance,"The result of the expression '.ctor(void*, int)' can't be the return value as any methods.","The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods."
