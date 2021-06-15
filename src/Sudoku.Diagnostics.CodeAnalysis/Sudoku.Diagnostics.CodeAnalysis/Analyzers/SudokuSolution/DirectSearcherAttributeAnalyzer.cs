@@ -44,7 +44,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var attributeSymbol = compilation.GetTypeByMetadataName(AttributeTypeName);
 			switch (originalNode)
 			{
-				/*length-pattern*/
 				case RecordDeclarationSyntax { Identifier: { ValueText: var recordName } identifier }:
 				{
 					var attributeList = semanticModel.GetDeclaredSymbol(originalNode)!.GetAttributes();
@@ -69,7 +68,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					break;
 				}
 
-				/*length-pattern*/
 				case ClassDeclarationSyntax { Identifier: { ValueText: var className } identifier }:
 				{
 					var attributeList = semanticModel.GetDeclaredSymbol(originalNode)!.GetAttributes();
