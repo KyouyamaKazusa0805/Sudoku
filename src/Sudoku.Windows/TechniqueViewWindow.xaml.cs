@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using Sudoku.DocComments;
+﻿using System.Windows;
 using Sudoku.Generating;
 
 namespace Sudoku.Windows
@@ -27,10 +25,8 @@ namespace Sudoku.Windows
 		public TechniqueCodeFilter ChosenTechniques { get; }
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonSelect_Click(object sender, RoutedEventArgs e) => DialogResult = true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => DialogResult = false;
 	}
 }

@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Windows.Extensions;
 
@@ -13,7 +12,6 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.ContextMenuOpening(object?, EventArgs)"/>
 		private void ImageGrid_ContextMenuOpening(object sender, ContextMenuEventArgs e)
 		{
 			if (_imageGridContextMenu.IsOpen = _customDrawingMode == -1)
@@ -22,7 +20,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is Image image)
@@ -135,7 +132,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.MouseRightButtonDown(object?, EventArgs)"/>
 		private void ImageGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			// Disable all menu items.
@@ -183,7 +179,6 @@ namespace Sudoku.Windows
 				.GetValue(@this)!;
 		}
 
-		/// <inheritdoc cref="Events.MouseLeftButtonUp(object?, EventArgs)"/>
 		private void ImageGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is not Image image || _customDrawingMode == -1)
@@ -267,15 +262,12 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageUndoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditUndo_Click(sender, e);
 
-		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageRedoIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemEditRedo_Click(sender, e);
 
-		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageGeneratingIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			Action<object, RoutedEventArgs> a = _comboBoxMode.SelectedIndex switch
@@ -287,7 +279,6 @@ namespace Sudoku.Windows
 			a(sender, e);
 		}
 
-		/// <inheritdoc cref="Events.MouseLeftButtonDown(object?, EventArgs)"/>
 		private void ImageSolve_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
 			MenuItemAnalyzeAnalyze_Click(sender, e);
 	}

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows.Controls;
-using Sudoku.DocComments;
+﻿using System.Windows.Controls;
 
 namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ComboBoxMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, the selection index will be changed to 0.
@@ -24,7 +21,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ComboBoxSymmetry_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
@@ -34,7 +30,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ComboBoxBackdoorFilteringDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
@@ -44,7 +39,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ComboBoxDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.

@@ -15,7 +15,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.BitOperations\Sudoku.CodeGen.BitOperations.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Equality\Sudoku.CodeGen.Equality.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />

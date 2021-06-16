@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 
@@ -42,7 +41,6 @@ namespace Sudoku.Windows.CustomControls
 		public event PickingColorEventHandler? PickingColor;
 
 
-		/// <inheritdoc cref="Events.MouseDown(object?, System.EventArgs)"/>
 		private void Border_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is not Border border)

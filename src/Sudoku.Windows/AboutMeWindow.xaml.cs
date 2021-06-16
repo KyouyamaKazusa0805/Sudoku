@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
-using Sudoku.DocComments;
 using static Sudoku.Windows.MainWindow;
 
 namespace Sudoku.Windows
@@ -18,7 +17,6 @@ namespace Sudoku.Windows
 		public AboutMeWindow() => InitializeComponent();
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void GitHubLink_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is Hyperlink)

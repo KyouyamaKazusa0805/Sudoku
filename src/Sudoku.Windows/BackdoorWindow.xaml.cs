@@ -1,13 +1,11 @@
 ﻿#pragma warning disable IDE1006
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.MainWindow;
 
@@ -43,7 +41,6 @@ namespace Sudoku.Windows
 		}
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
 		{
 			var collections = await internalOperation();
@@ -82,7 +79,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ComboBoxDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (sender is ComboBox comboBox)

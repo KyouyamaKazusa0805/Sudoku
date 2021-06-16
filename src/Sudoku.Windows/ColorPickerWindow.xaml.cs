@@ -2,7 +2,6 @@
 using System.Extensions;
 using System.Windows;
 using System.Windows.Media;
-using Sudoku.DocComments;
 using Sudoku.Windows.CustomControls;
 
 namespace Sudoku.Windows
@@ -30,21 +29,18 @@ namespace Sudoku.Windows
 		protected bool SimpleMode { get; set; }
 
 
-		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void OkButton_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
 			Hide();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = false;
 			Hide();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void MinMaxViewButton_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (SimpleMode)

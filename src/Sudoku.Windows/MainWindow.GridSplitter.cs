@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Windows.Controls.Primitives;
-using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.DragDelta(object?, EventArgs)"/>
 		private void GridSplitterColumn01_DragDelta(object sender, DragDeltaEventArgs e)
 		{
 			_imageGrid.Height = _imageGrid.Width =
@@ -18,7 +16,6 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		/// <inheritdoc cref="Events.DragDelta(object?, EventArgs)"/>
 		private void GridSplitterColumn01_DragCompleted(object sender, DragCompletedEventArgs e)
 		{
 			DisplayDifficultyInfoAfterAnalyzed();

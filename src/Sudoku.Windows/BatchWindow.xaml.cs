@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Sudoku.DocComments;
 using Sudoku.IO;
 
 namespace Sudoku.Windows
@@ -27,7 +26,6 @@ namespace Sudoku.Windows
 		}
 
 
-		/// <inheritdoc cref="Events.Click(object?, System.EventArgs)"/>
 		private void ButtonBatch_Click(object sender, RoutedEventArgs e)
 		{
 			if (!BatchExecutor.TryParse(_textBoxBatch.Text, _settings, out var result))

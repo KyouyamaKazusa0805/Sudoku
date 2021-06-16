@@ -6,10 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Sudoku.DocComments;
 using Sudoku.Solving.Manual;
-using Sudoku.Windows.Extensions;
 using Sudoku.Windows.CustomControls;
+using Sudoku.Windows.Extensions;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, System.Type>;
 
 namespace Sudoku.Windows
@@ -264,7 +263,6 @@ namespace Sudoku.Windows
 		}
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
 			// Execute all assignments.
@@ -273,81 +271,62 @@ namespace Sudoku.Windows
 			CloseWindow(true);
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => CloseWindow(false);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxAskWhileQuitting_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAskWhileQuitting.IsChecked = Settings.AskWhileQuitting ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxSolveFromCurrent_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxSolveFromCurrent.IsChecked = Settings.SolveFromCurrent ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxTextFormatPlaceholdersAreZero_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxTextFormatPlaceholdersAreZero.IsChecked = Settings.TextFormatPlaceholdersAreZero ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxPmGridCompatible_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxPmGridCompatible.IsChecked = Settings.PmGridCompatible ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxOnlyShowSameLevelStepsInFindAllSteps.IsChecked = _manualSolver.OnlyShowSameLevelTechniquesInFindAllSteps ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxDisplayAbbrRatherThanFullNameOfSteps_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxDisplayAbbrRatherThanFullNameOfSteps.IsChecked = Settings.DisplayAcronymRatherThanFullNameOfSteps ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepLabel_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxShowStepLabel.IsChecked = Settings.ShowStepLabel ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepDifficulty_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxShowStepDifficulty.IsChecked = Settings.ShowStepDifficulty ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowLightRegion_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxShowStepDifficulty.IsChecked = Settings.ShowLightRegion ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxSearchExtendedUniqueRectangle_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxSearchExtendedUniqueRectangle.IsChecked = _manualSolver.SearchExtendedUniqueRectangles ^= true;
 
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_manualSolver.MaxPetalsOfDeathBlossom = (int)_numericUpDownMaxPetalsOfDeathBlossom.CurrentValue;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxCheckAdvancedInExocet_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxCheckAdvancedInExocet.IsChecked = _manualSolver.CheckAdvancedInExocet ^= true;
 
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownComplexFishMaxSize_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => Settings.MainManualSolver.ComplexFishMaxSize = (int)_numericUpDownComplexFishMaxSize.CurrentValue;
 
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownGridLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => Settings.GridLineWidth = (float)_numericUpDownGridLineWidth.CurrentValue;
 
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownBlockLineWidth_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => Settings.BlockLineWidth = (float)_numericUpDownBlockLineWidth.CurrentValue;
 
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void NumericUpDownValueScale_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => Settings.ValueScale = _numericUpDownValueScale.CurrentValue;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void NumericUpDownCandidateScale_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () => Settings.CandidateScale = _numericUpDownCandidateScale.CurrentValue;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGivenFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
@@ -361,7 +340,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonModifiableFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
@@ -378,7 +356,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateFontName_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new FontDialog();
@@ -392,7 +369,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBackgroundColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -406,7 +382,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGivenColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -420,7 +395,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonModifiableColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -434,7 +408,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -448,7 +421,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonFocusColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -462,7 +434,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonGridLineColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -476,7 +447,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonBlockLineColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -490,7 +460,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonChainColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -504,7 +473,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingOutlineColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -518,7 +486,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrosshatchingValuesColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -532,7 +499,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCrossSignColor_Click(object sender, RoutedEventArgs e)
 		{
 			if (ColorPickerWindow.ShowDialog(out var color))
@@ -546,100 +512,74 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor1_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 1);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor2_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 2);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor3_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 3);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor4_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 4);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor5_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 5);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor6_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 6);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor7_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 7);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor8_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 8);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor9_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 9);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor10_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 10);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor11_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 11);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor12_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 12);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor13_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 13);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor14_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 14);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonColor15_Click(object sender, RoutedEventArgs e) => HandleColor(sender, Settings, 15);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxAllowOverlappingAlses_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxAllowOverlappingAlses.IsChecked = _manualSolver.AllowOverlappingAlses ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxHighlightRegions_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxHighlightRegions.IsChecked = _manualSolver.AlsHighlightRegionInsteadOfCell ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxAllowAlsCycles_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowAlsCycles.IsChecked = _manualSolver.AllowAlsCycles ^= true;
 
-		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void NumericUpDownBowmanBingoMaxLength_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_manualSolver.BowmanBingoMaximumLength = (int)_numericUpDownBowmanBingoMaxLength.CurrentValue;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxAllowAlq_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () => _checkBoxAllowAlq.IsChecked = _manualSolver.CheckAlmostLockedQuadruple ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxCheckIncompleteUr_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxCheckIncompleteUr.IsChecked = _manualSolver.CheckIncompleteUniquenessPatterns ^= true;
 
-		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void NumericUpDownMaxRegularWingSize_ValueChanged(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_manualSolver.CheckRegularWingSize = (int)_numericUpDownMaxRegularWingSize.CurrentValue;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxUseExtendedBugSearcher_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxUseExtendedBugSearcher.IsChecked = _manualSolver.UseExtendedBugSearcher ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxEnableGcForcedly_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxEnableGcForcedly.IsEnabled = _manualSolver.EnableGarbageCollectionForcedly ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDirectLines_Click(object sender, RoutedEventArgs e) =>
 			_assigments += () =>
 			_checkBoxShowDirectLines.IsEnabled = Settings.ShowDirectLines = _manualSolver.ShowDirectLines ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxIsEnabled_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is CheckBox checkBox)
@@ -650,7 +590,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBoxPriority_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
@@ -661,7 +600,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.PreviewMouseLeftButtonDown(object?, EventArgs)"/>
 		private void PriorityControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (sender is not ListBoxItem draggedItem)
@@ -680,7 +618,6 @@ namespace Sudoku.Windows
 			draggedItem.IsSelected = true;
 		}
 
-		/// <inheritdoc cref="Events.Drop(object?, EventArgs)"/>
 		private void PriorityControl_Drop(object sender, DragEventArgs e)
 		{
 			var droppedItem = (ListBoxItem)e.Data.GetData(typeof(ListBoxItem));

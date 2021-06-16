@@ -17,9 +17,6 @@
             Initializes an instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.AboutMeWindow.GitHubLink_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.AboutMeWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -70,12 +67,6 @@
             </summary>
             <param name="puzzle">The puzzle.</param>
         </member>
-        <member name="M:Sudoku.Windows.BackdoorWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.BackdoorWindow.ComboBoxDepth_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.BackdoorWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -100,9 +91,6 @@
             </summary>
             <param name="settings"></param>
         </member>
-        <member name="M:Sudoku.Windows.BatchWindow.ButtonBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.BatchWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -126,9 +114,6 @@
             Initializes an instance with the specified puzzle.
             </summary>
             <param name="puzzle">The puzzle.</param>
-        </member>
-        <member name="M:Sudoku.Windows.BugNSearchWindow.ButtonStartSearching_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.BugNSearchWindow.InitializeComponent">
             <summary>
@@ -162,15 +147,6 @@
             <summary>
             Indicates whether the mode is simple mode (only shows basic options).
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.ColorPickerWindow.OkButton_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ColorPickerWindow.CloseButton_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ColorPickerWindow.MinMaxViewButton_OnClick(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.ColorPickerWindow.ToggleSimpleAdvancedView">
             <summary>
@@ -271,12 +247,6 @@
             <summary>
             The event triggering while value changed.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.Slider_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.TextBox_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorComponentSlider.InitializeComponent">
             <summary>
@@ -381,18 +351,6 @@
             <param name="img">The image.</param>
             <param name="pos">The point.</param>
         </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImage_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorPickerControl_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseMove(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorPickerControl_MouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseUp(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.SampleImage2_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.ColorSample_PickingColor(System.Windows.Media.Color@)">
             <inheritdoc cref="T:Sudoku.Windows.CustomControls.PickingColorEventHandler"/>
         </member>
@@ -416,9 +374,6 @@
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.LSlider_ValueChanged(System.Double)">
             <inheritdoc cref="T:Sudoku.Windows.CustomControls.ValueChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorPicker.PickerHueSlider_OnValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorPicker.UpdateImageForHSV">
             <summary>
@@ -570,9 +525,6 @@
             The event triggering while picking colors.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.CustomControls.ColorSample.Border_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseDown(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.CustomControls.ColorSample.GetColors">
             <summary>
             Get all colors.
@@ -628,24 +580,6 @@
             To draw the text.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ButtonApply_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ListBoxStyle_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.ListBoxFonts_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.TextBoxSize_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.FontDialog.TextBoxSize_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.PreviewKeyDown(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.CustomControls.FontDialog.InitializeComponent">
             <summary>
             InitializeComponent
@@ -695,15 +629,6 @@
             Indicates the event triggering when the value changed.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.TextBoxInner_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.ButtonUp_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.ButtonDown_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.CustomControls.NumericUpDown.InitializeComponent">
             <summary>
             InitializeComponent
@@ -742,9 +667,6 @@
             <summary>
             Indicates whether the check box changed the status.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.CheckBox_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.CustomControls.TechniqueBox.InitializeComponent">
             <summary>
@@ -899,7 +821,7 @@
         </member>
         <member name="T:Sudoku.Windows.ExportAnalysisResultWindow">
             <summary>
-            Interaction logic for ExportAnalysisResultWindow.xaml
+            Interaction logic for <c>ExportAnalysisResultWindow.xaml</c>.
             </summary>
             <summary>
             ExportAnalysisResultWindow
@@ -932,42 +854,6 @@
             Create format string.
             </summary>
             <returns>The result format string.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.ButtonExport_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowSeparators_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowStepIndices_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowLogic_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowBottleneck_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowDifficulty_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckboxShowStepsAfterBottleneck_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowAttributesOfPuzzle_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowMagicCells_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowDifficultyDetail_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.CheckBoxShowTechniqueSteps_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.ButtonOutputAnalysisResult_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.InitializeComponent">
             <summary>
@@ -1351,231 +1237,6 @@
             MainWindow
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonFindAllSteps_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonFirst_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonPrev_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonNext_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonLast_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellReset_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor10_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor11_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor12_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor13_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCellColor14_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor10_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor11_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor12_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor13_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonCandidateColor14_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor10_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor11_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor12_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor13_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonRegionColor14_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonStartDrawingChain_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ButtonEndDrawingChain_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ComboBoxMode_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ComboBoxSymmetry_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ComboBoxBackdoorFilteringDepth_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ComboBoxDifficulty_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridSet9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemImageGridDelete9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ContextListBoxPathsCopyCurrentStep_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ContextListBoxPathsCopyAllSteps_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ContextMenuTechniquesApply_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="F:Sudoku.Windows.MainWindow.CachePath">
             <summary>
             Indicates the cache path.
@@ -1739,228 +1400,6 @@
             The point converter.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.MainWindow.GridSplitterColumn01_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.DragDelta(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.GridSplitterColumn01_DragCompleted(System.Object,System.Windows.Controls.Primitives.DragCompletedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.DragDelta(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_ContextMenuOpening(System.Object,System.Windows.Controls.ContextMenuEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ContextMenuOpening(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseRightButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGrid_MouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonUp(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageUndoIcon_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageRedoIcon_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageGeneratingIcon_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ImageSolve_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.MouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ListBoxPaths_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.ListBoxTechniques_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileOpen_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileSave_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileOpenDatabase_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemBackupConfig_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileLoadPicture_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileSavePicture_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileLoadDrawing_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileSaveDrawing_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileGetSnapshot_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileSaveBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemFileQuit_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemOptionsShowCandidates_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemOptionsSettings_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditUndo_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditRedo_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditRecomputeCandidates_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopy_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyCurrentGrid_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyPmGrid_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyHodokuLibrary_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyAsSukaku_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyAsExcel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditCopyAsOpenSudoku_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditPaste_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditPasteAsSukaku_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditFix_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditUnfix_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditReset_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemClearStack_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemEditClear_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemGenerateWithSymmetry_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemGenerateHardPattern_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemGenerateWithTechniqueFiltering_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeSolve_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeAnalyze_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeSeMode_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeFastSearch_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemCheckConclusionValidityAfterSearched_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemCheckGurthSymmetricalPlacement_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemShowFullHouses_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemShowLastDigits_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemOptimizeApplyingOrder_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemUseCalculationPriority_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemExport_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeBackdoor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAnalyzeBugN_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemToolsBatch_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformMirrorLeftRight_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformMirrorTopBotton_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformMirrorDiagonal_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformMirrorAntidiagonal_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformRotateClockwise_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformRotateCounterclockwise_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemTransformRotatePi_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemViewsShowBugN_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemViewsBackdoorView_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemViewsGspView_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemLanguagesChinese_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemLanguagesEnglish_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAboutMe_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAboutSpecialThanks_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.MenuItemAboutImplementedTechniques_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="P:Sudoku.Windows.MainWindow.Settings">
             <summary>
             Indicates the settings used.
@@ -1979,12 +1418,6 @@
             <summary>
             The language source dictionary.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.TabControlInfo_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SelectionChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.TextBoxJumpTo_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.#ctor">
             <summary>
@@ -2189,9 +1622,6 @@
             <summary>
             Display difficulty information after analyzed a puzzle.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.MainWindow.Window_SizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.PreventYouOpeningTwoSameWindows">
             <summary>
@@ -2548,18 +1978,12 @@
             <param name="text">The output text.</param>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.ButtonSave_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.SavePicture(System.Drawing.Bitmap,System.String)">
             <summary>
             To save the picture.
             </summary>
             <param name="bitmap">The bitmap.</param>
             <param name="fileName">The file name.</param>
-        </member>
-        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.InitializeComponent">
             <summary>
@@ -2725,192 +2149,6 @@
             <param name="settings">The setting target instance.</param>
             <param name="colorIndex">The index.</param>
         </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonApply_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxAskWhileQuitting_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxSolveFromCurrent_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxTextFormatPlaceholdersAreZero_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxPmGridCompatible_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxOnlyShowSameLevelStepsInFindAllSteps_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxDisplayAbbrRatherThanFullNameOfSteps_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowStepLabel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowStepDifficulty_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowLightRegion_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxSearchExtendedUniqueRectangle_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownMaxPetalsOfDeathBlossom_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxCheckAdvancedInExocet_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownComplexFishMaxSize_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownGridLineWidth_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownBlockLineWidth_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownValueScale_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.SizeChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownCandidateScale_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonGivenFontName_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonModifiableFontName_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCandidateFontName_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonBackgroundColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonGivenColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonModifiableColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCandidateColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonFocusColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonGridLineColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonBlockLineColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonChainColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCrosshatchingOutlineColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCrosshatchingValuesColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonCrossSignColor_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor1_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor2_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor3_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor4_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor5_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor6_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor7_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor8_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor9_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor10_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor11_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor12_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor13_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor14_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.ButtonColor15_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxAllowOverlappingAlses_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxHighlightRegions_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxAllowAlsCycles_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownBowmanBingoMaxLength_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxAllowAlq_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxCheckIncompleteUr_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.NumericUpDownMaxRegularWingSize_ValueChanged(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.ValueChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxUseExtendedBugSearcher_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxEnableGcForcedly_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxShowDirectLines_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.CheckBoxIsEnabled_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.TextBoxPriority_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.TextChanged(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.PriorityControl_PreviewMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.PreviewMouseLeftButtonDown(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.SettingsWindow.PriorityControl_Drop(System.Object,System.Windows.DragEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Drop(System.Object,System.EventArgs)"/>
-        </member>
         <member name="M:Sudoku.Windows.SettingsWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -2928,9 +2166,6 @@
             <summary>
             Initializes a default <see cref="T:Sudoku.Windows.SpecialThanksWindow"/> instance.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.SpecialThanksWindow.Hyperlink_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.SpecialThanksWindow.InitializeComponent">
             <summary>
@@ -2972,12 +2207,6 @@
             <summary>
             Indicates the techniques having chosen.
             </summary>
-        </member>
-        <member name="M:Sudoku.Windows.TechniqueViewWindow.ButtonSelect_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
-        </member>
-        <member name="M:Sudoku.Windows.TechniqueViewWindow.ButtonCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <inheritdoc cref="M:Sudoku.DocComments.Events.Click(System.Object,System.EventArgs)"/>
         </member>
         <member name="M:Sudoku.Windows.TechniqueViewWindow.InitializeComponent">
             <summary>

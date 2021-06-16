@@ -3295,8 +3295,8 @@
             so their values can be got instantly, i.e. instant ones).
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
             <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>

@@ -23,7 +23,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.DocComments\Sudoku.DocComments.csproj" />
 		<ProjectReference Include="..\Sudoku.Globalization\Sudoku.Globalization.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />

@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Sudoku.Data;
 using Sudoku.Data.Extensions;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.Drawing.Converters;
 using Sudoku.Globalization;
@@ -1279,7 +1278,6 @@ namespace Sudoku.Windows
 
 
 		#region Event-delegated methods
-		/// <inheritdoc cref="Events.SizeChanged(object?, EventArgs)"/>
 		private void Window_SizeChanged(object sender, SizeChangedEventArgs e) =>
 			DisplayDifficultyInfoAfterAnalyzed();
 		#endregion

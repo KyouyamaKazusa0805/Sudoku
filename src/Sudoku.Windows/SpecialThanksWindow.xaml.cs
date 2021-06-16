@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using System;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
-using Sudoku.DocComments;
 
 namespace Sudoku.Windows
 {
@@ -17,7 +16,6 @@ namespace Sudoku.Windows
 		public SpecialThanksWindow() => InitializeComponent();
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void Hyperlink_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is Hyperlink link)

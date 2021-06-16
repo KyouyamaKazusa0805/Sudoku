@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using Sudoku.IO;
 using Sudoku.Solving;
@@ -12,7 +10,7 @@ using Sudoku.Solving;
 namespace Sudoku.Windows
 {
 	/// <summary>
-	/// Interaction logic for ExportAnalysisResultWindow.xaml
+	/// Interaction logic for <c>ExportAnalysisResultWindow.xaml</c>.
 	/// </summary>
 	public partial class ExportAnalysisResultWindow : Window
 	{
@@ -82,54 +80,42 @@ namespace Sudoku.Windows
 		}
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonExport_Click(object sender, RoutedEventArgs e) =>
 			_textBoxAnalysisResult.Text = _analysisResult.ToString(
 				CreateFormat(),
 				((WindowsSettings)_settings).LanguageCode
 			);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowSeparators_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowSeparators] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowStepIndices_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowStepLabel] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowLogic_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowSimple] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowBottleneck_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowBottleneck] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficulty_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowDifficulty] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckboxShowStepsAfterBottleneck_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowStepsAfterBottleneck] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowAttributesOfPuzzle_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowAttributes] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowMagicCells_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowBackdoors] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowDifficultyDetail_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowStepDetail] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBoxShowTechniqueSteps_Click(object sender, RoutedEventArgs e) =>
 			FormatOptions[AnalysisResultFormattingOptions.ShowSteps] ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonOutputAnalysisResult_Click(object sender, RoutedEventArgs e)
 		{
 			var sfd = new SaveFileDialog

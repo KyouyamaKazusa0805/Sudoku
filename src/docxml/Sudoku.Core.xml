@@ -4823,7 +4823,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Resources.TextResources.#ctor">
-            <inheritdoc cref="!:DefaultConstructor"/>
+            <summary>
+            Indicates the default constructor.
+            </summary>
         </member>
         <member name="P:Sudoku.Resources.TextResources.CurrentCountryCode">
             <summary>

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 using static System.Drawing.StringAlignment;
 using static System.Drawing.Text.TextRenderingHint;
@@ -95,7 +94,6 @@ namespace Sudoku.Windows.CustomControls
 			_imagePreview.Source = bitmap.ToImageSource();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonApply_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = true;
@@ -104,7 +102,6 @@ namespace Sudoku.Windows.CustomControls
 			Close();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
 		{
 			DialogResult = false;
@@ -113,7 +110,6 @@ namespace Sudoku.Windows.CustomControls
 			Close();
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
@@ -125,7 +121,6 @@ namespace Sudoku.Windows.CustomControls
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxFonts_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// While initializing, 'SelectedFont' is null.
@@ -137,7 +132,6 @@ namespace Sudoku.Windows.CustomControls
 			}
 		}
 
-		/// <inheritdoc cref="Events.TextChanged(object?, EventArgs)"/>
 		private void TextBoxSize_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (sender is not TextBox textBox)
@@ -159,7 +153,6 @@ namespace Sudoku.Windows.CustomControls
 			DrawString();
 		}
 
-		/// <inheritdoc cref="Events.PreviewKeyDown(object?, EventArgs)"/>
 		private void TextBoxSize_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (sender is not TextBox textBox || !e.Key.IsDigit(false)

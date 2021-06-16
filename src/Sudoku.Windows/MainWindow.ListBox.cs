@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-using Sudoku.DocComments;
+﻿using System.Windows.Controls;
 using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 
@@ -8,7 +6,6 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxPaths_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (
@@ -35,7 +32,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.SelectionChanged(object?, EventArgs)"/>
 		private void ListBoxTechniques_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (sender is ListBox { SelectedItem: ListBoxItem { Content: InfoTriplet triplet } })

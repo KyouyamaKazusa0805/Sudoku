@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Sudoku.DocComments;
 using Sudoku.Techniques;
 
 namespace Sudoku.Windows.CustomControls
@@ -35,7 +34,6 @@ namespace Sudoku.Windows.CustomControls
 		public event EventHandler? CheckingChanged;
 
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void CheckBox_Click(object sender, RoutedEventArgs e) =>
 			CheckingChanged?.Invoke(sender, EventArgs.Empty);
 	}

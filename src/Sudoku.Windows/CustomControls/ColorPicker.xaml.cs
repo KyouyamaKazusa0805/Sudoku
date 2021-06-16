@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
-using Sudoku.DocComments;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using WColor = System.Windows.Media.Color;
@@ -284,7 +283,6 @@ namespace Sudoku.Windows.CustomControls
 			SetColor(WColor.FromArgb(pixels[index + 3], pixels[index + 2], pixels[index + 1], pixels[index]));
 		}
 
-		/// <inheritdoc cref="Events.MouseDown(object?, EventArgs)"/>
 		private void SampleImage_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			Mouse.Capture(this);
@@ -293,7 +291,6 @@ namespace Sudoku.Windows.CustomControls
 			MouseUp += ColorPickerControl_MouseUp;
 		}
 
-		/// <inheritdoc cref="Events.MouseMove(object?, EventArgs)"/>
 		private void ColorPickerControl_MouseMove(object sender, MouseEventArgs e)
 		{
 			var pos = e.GetPosition(_sampleImage);
@@ -306,7 +303,6 @@ namespace Sudoku.Windows.CustomControls
 			}
 		}
 
-		/// <inheritdoc cref="Events.MouseUp(object?, EventArgs)"/>
 		private void ColorPickerControl_MouseUp(object sender, MouseButtonEventArgs e)
 		{
 			Mouse.Capture(null);
@@ -315,7 +311,6 @@ namespace Sudoku.Windows.CustomControls
 			MouseUp -= ColorPickerControl_MouseUp;
 		}
 
-		/// <inheritdoc cref="Events.MouseDown(object?, EventArgs)"/>
 		private void SampleImage2_MouseDown(object sender, MouseButtonEventArgs e) =>
 			SampleImageClick((BitmapSource)_sampleImage2.Source, e.GetPosition(_sampleImage2));
 
@@ -400,7 +395,6 @@ namespace Sudoku.Windows.CustomControls
 			}
 		}
 
-		/// <inheritdoc cref="Events.ValueChanged(object?, EventArgs)"/>
 		private void PickerHueSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) =>
 			UpdateImageForHSV();
 

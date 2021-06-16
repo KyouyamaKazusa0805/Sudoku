@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using Sudoku.DocComments;
 using Sudoku.Globalization;
 
 namespace Sudoku.Resources
@@ -26,7 +25,9 @@ namespace Sudoku.Resources
 		private static IDictionary<string, string> _dicPointer = null!;
 
 
-		/// <inheritdoc cref="DefaultConstructor"/>
+		/// <summary>
+		/// Indicates the default constructor.
+		/// </summary>
 		private TextResources()
 		{
 		}

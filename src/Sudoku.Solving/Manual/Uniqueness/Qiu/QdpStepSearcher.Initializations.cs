@@ -1,5 +1,4 @@
 ﻿using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Manual.Extensions;
 using static Sudoku.Constants.Tables;
 

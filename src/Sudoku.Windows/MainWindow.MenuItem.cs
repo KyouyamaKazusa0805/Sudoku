@@ -15,7 +15,6 @@ using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
-using Sudoku.DocComments;
 using Sudoku.Generating;
 using Sudoku.Globalization;
 using Sudoku.Models;
@@ -34,7 +33,6 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileOpen_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new OpenFileDialog
@@ -52,7 +50,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSave_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new SaveFileDialog
@@ -71,7 +68,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileOpenDatabase_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new OpenFileDialog
@@ -100,7 +96,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemBackupConfig_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new SaveFileDialog
@@ -125,7 +120,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 #if SUDOKU_RECOGNITION
 		private async void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
 #else
@@ -196,11 +190,9 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>
 			new PictureSavingPreferencesWindow(_puzzle, Settings, _currentPainter).ShowDialog();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileLoadDrawing_Click(object sender, RoutedEventArgs e)
 		{
 			var dialog = new OpenFileDialog
@@ -229,7 +221,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveDrawing_Click(object sender, RoutedEventArgs e)
 		{
 			var customView = _currentPainter.CustomView;
@@ -264,7 +255,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileGetSnapshot_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -277,7 +267,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileSaveBatch_Click(object sender, RoutedEventArgs e)
 		{
 			if (!_puzzle.IsValid())
@@ -303,10 +292,8 @@ namespace Sudoku.Windows
 			MenuItemFileSave_Click(sender, e);
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemFileQuit_Click(object sender, RoutedEventArgs e) => Close();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemOptionsShowCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			Settings.ShowCandidates = _menuItemOptionsShowCandidates.IsChecked ^= true;
@@ -314,7 +301,6 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemOptionsSettings_Click(object sender, RoutedEventArgs e)
 		{
 			var settingsWindow = new SettingsWindow(Settings, _manualSolver);
@@ -329,7 +315,6 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditUndo_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle.HasUndoSteps)
@@ -364,7 +349,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditRedo_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle.HasRedoSteps)
@@ -399,7 +383,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditRecomputeCandidates_Click(object sender, RoutedEventArgs e)
 		{
 			int[] z = new int[81];
@@ -448,19 +431,15 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopy_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy(Settings.TextFormatPlaceholdersAreZero ? "0" : ".");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyCurrentGrid_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy(Settings.TextFormatPlaceholdersAreZero ? "#0" : "#.");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyPmGrid_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy(Settings.PmGridCompatible ? "@:*!" : "@:*");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyHodokuLibrary_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -474,19 +453,15 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyAsSukaku_Click(object sender, RoutedEventArgs e) =>
 			InternalCopy(
 				$"~{(Settings.PmGridCompatible ? string.Empty : "@")}" +
 				$"{(Settings.TextFormatPlaceholdersAreZero ? "0" : ".")}");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyAsExcel_Click(object sender, RoutedEventArgs e) => InternalCopy("%");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditCopyAsOpenSudoku_Click(object sender, RoutedEventArgs e) => InternalCopy("^");
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditPaste_Click(object sender, RoutedEventArgs e)
 		{
 			if (SystemClipboard.Text is var puzzleStr)
@@ -499,7 +474,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditPasteAsSukaku_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -543,7 +517,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditFix_Click(object sender, RoutedEventArgs e)
 		{
 			_puzzle.Fix();
@@ -576,7 +549,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditUnfix_Click(object sender, RoutedEventArgs e)
 		{
 			_puzzle.Unfix();
@@ -609,7 +581,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditReset_Click(object sender, RoutedEventArgs e)
 		{
 			_currentPainter = _currentPainter with { Grid = _puzzle = _initialPuzzle, View = null };
@@ -642,7 +613,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemClearStack_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle is { HasUndoSteps: true } or { HasRedoSteps: true }
@@ -677,7 +647,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemEditClear_Click(object sender, RoutedEventArgs e)
 		{
 			Puzzle = SudokuGrid.Empty;
@@ -716,7 +685,6 @@ namespace Sudoku.Windows
 #endif
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateWithSymmetry_Click(object sender, RoutedEventArgs e)
 		{
 			CancellationTokenSource? cts = null;
@@ -793,7 +761,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateHardPattern_Click(object sender, RoutedEventArgs e)
 		{
 			CancellationTokenSource? cts = null;
@@ -875,7 +842,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemGenerateWithTechniqueFiltering_Click(object sender, RoutedEventArgs e)
 		{
 			CancellationTokenSource? cts = null;
@@ -951,7 +917,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeSolve_Click(object sender, RoutedEventArgs e)
 		{
 			if (!applyNormal() && !applySukaku())
@@ -1075,7 +1040,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemAnalyzeAnalyze_Click(object sender, RoutedEventArgs e)
 		{
 			if (_puzzle == SudokuGrid.Empty)
@@ -1192,39 +1156,30 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeSeMode_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.AnalyzeDifficultyStrictly = _menuItemAnalyzeSeMode.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeFastSearch_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.FastSearch = _menuItemAnalyzeFastSearch.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemCheckConclusionValidityAfterSearched_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.CheckConclusionValidityAfterSearched = _menuItemAnalyzeCheckConclusionValidityAfterSearched.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemCheckGurthSymmetricalPlacement_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.CheckGurthSymmetricalPlacement = _menuItemAnalyzeCheckGurthSymmetricalPlacement.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemShowFullHouses_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.EnableFullHouse = _menuItemAnalyzeShowFullHouses.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemShowLastDigits_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.EnableLastDigit = _menuItemAnalyzeShowLastDigits.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemOptimizeApplyingOrder_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.OptimizedApplyingOrder = _menuItemAnalyzeOptimizeApplyingOrder.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemUseCalculationPriority_Click(object sender, RoutedEventArgs e) =>
 			_manualSolver.UseCalculationPriority = _menuItemAnalyzeUseCalculationPriority.IsChecked ^= true;
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemExport_Click(object sender, RoutedEventArgs e)
 		{
 			if (_analyisResult is null)
@@ -1237,11 +1192,9 @@ namespace Sudoku.Windows
 			new ExportAnalysisResultWindow(_analyisResult, Settings).Show();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBackdoor_Click(object sender, RoutedEventArgs e) =>
 			new BackdoorWindow((SudokuGrid)_puzzle).ShowDialog();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAnalyzeBugN_Click(object sender, RoutedEventArgs e)
 		{
 			if (!_puzzle.IsValid())
@@ -1254,39 +1207,30 @@ namespace Sudoku.Windows
 			new BugNSearchWindow((SudokuGrid)_puzzle).ShowDialog();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemToolsBatch_Click(object sender, RoutedEventArgs e) =>
 			new BatchWindow(Settings).Show();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorLeftRight_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.MirrorLeftRight);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorTopBotton_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.MirrorTopBottom);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorDiagonal_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.MirrorDiagonal);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformMirrorAntidiagonal_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.MirrorAntidiagonal);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotateClockwise_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.RotateClockwise);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotateCounterclockwise_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.RotateCounterclockwise);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemTransformRotatePi_Click(object sender, RoutedEventArgs e) =>
 			Transform(&SudokuGridTransformations.RotatePi);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemViewsShowBugN_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -1329,7 +1273,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void MenuItemViewsBackdoorView_Click(object sender, RoutedEventArgs e)
 		{
 			await internalOperation();
@@ -1393,7 +1336,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private unsafe void MenuItemViewsGspView_Click(object sender, RoutedEventArgs e)
 		{
 			if (Enumerable.Range(0, 81).All(i => _puzzle.GetStatus(i) != CellStatus.Given))
@@ -1444,22 +1386,17 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemLanguagesChinese_Click(object sender, RoutedEventArgs e) =>
 			ChangeLanguage(CountryCode.ZhCn);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemLanguagesEnglish_Click(object sender, RoutedEventArgs e) =>
 			ChangeLanguage(CountryCode.EnUs);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAboutMe_Click(object sender, RoutedEventArgs e) => new AboutMeWindow().Show();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAboutSpecialThanks_Click(object sender, RoutedEventArgs e) =>
 			new SpecialThanksWindow().Show();
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void MenuItemAboutImplementedTechniques_Click(object sender, RoutedEventArgs e) =>
 			new TechniquesWindow().Show();
 	}

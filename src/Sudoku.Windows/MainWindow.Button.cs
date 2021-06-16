@@ -12,7 +12,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using Sudoku.Data;
-using Sudoku.DocComments;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Windows.Extensions;
@@ -23,7 +22,6 @@ namespace Sudoku.Windows
 {
 	partial class MainWindow
 	{
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private async void ButtonFindAllSteps_Click(object sender, RoutedEventArgs e)
 		{
 			CancellationTokenSource? cts = null;
@@ -115,7 +113,6 @@ namespace Sudoku.Windows
 			}
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonFirst_Click(object sender, RoutedEventArgs e)
 		{
 			int current = Settings.CurrentPuzzleNumber = 0;
@@ -126,7 +123,6 @@ namespace Sudoku.Windows
 			_labelPuzzleNumber.Content = $"1/{max.ToString()}";
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonPrev_Click(object sender, RoutedEventArgs e)
 		{
 			int current = --Settings.CurrentPuzzleNumber;
@@ -139,7 +135,6 @@ namespace Sudoku.Windows
 			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonNext_Click(object sender, RoutedEventArgs e)
 		{
 			int current = ++Settings.CurrentPuzzleNumber;
@@ -152,7 +147,6 @@ namespace Sudoku.Windows
 			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonLast_Click(object sender, RoutedEventArgs e)
 		{
 			int current = Settings.CurrentPuzzleNumber = _puzzlesText!.Length - 1;
@@ -163,7 +157,6 @@ namespace Sudoku.Windows
 			_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellReset_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = int.MinValue;
@@ -175,308 +168,264 @@ namespace Sudoku.Windows
 			UpdateImageGrid();
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor1_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 0;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor2_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 1;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor3_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 2;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor4_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 3;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor5_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -1;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor6_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -2;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor7_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -3;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor8_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -4;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor9_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 4;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor10_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 5;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor11_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 6;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor12_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 7;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor13_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 8;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCellColor14_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 9;
 			_customDrawingMode = 0;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor1_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 0;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor2_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 1;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor3_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 2;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor4_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 3;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor5_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -1;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor6_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -2;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor7_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -3;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor8_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -4;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor9_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 4;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor10_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 5;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor11_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 6;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor12_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 7;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor13_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 8;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonCandidateColor14_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 9;
 			_customDrawingMode = 1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor1_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 0;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor2_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 1;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor3_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 2;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor4_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 3;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor5_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -1;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor6_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -2;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor7_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -3;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor8_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = -4;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor9_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 4;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor10_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 5;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor11_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 6;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor12_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 7;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor13_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 8;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonRegionColor14_Click(object sender, RoutedEventArgs e)
 		{
 			_currentColor = 9;
 			_customDrawingMode = 2;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonStartDrawingChain_Click(object sender, RoutedEventArgs e)
 		{
 			_customDrawingMode = 3;
 			_startCand = -1;
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonEndDrawingChain_Click(object sender, RoutedEventArgs e)
 		{
 			_customDrawingMode = -1;

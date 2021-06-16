@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using Sudoku.Data.Stepping;
-using Sudoku.DocComments;
 using Sudoku.Drawing;
 using static System.Drawing.StringAlignment;
 using static Sudoku.Windows.MainWindow;
@@ -123,7 +122,6 @@ namespace Sudoku.Windows
 			return !(text = sb.ToString()).Contains('$');
 		}
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
 		private void ButtonSave_Click(object sender, RoutedEventArgs e)
 		{
 			string originalString = _textBoxFormat.Text;
@@ -231,7 +229,7 @@ namespace Sudoku.Windows
 		/// <param name="fileName">The file name.</param>
 		private static void SavePicture(Bitmap bitmap, string fileName) => bitmap.Save(fileName);
 
-		/// <inheritdoc cref="Events.Click(object?, EventArgs)"/>
+
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => Close();
 	}
 }
