@@ -27,6 +27,7 @@ SD0311,Error,Usage,Invalid format string in 'SudokuGrid.ToString'.,Invalid forma
 SD0401,Warning,Usage,Please use nameof expression instead.,
 SD0402,Warning,Usage,This attribute must contain the specified number of parameters.,'{0}' must contain at least {1} parameters.
 SD0403,Error,Usage,'DirectSearcherAttribute' attribute can be only used for step searchers.,'DirectSearcherAttribute' attribute cann't be used for the type '{0}' because it isn't a step searcher.
+SD0404,Warning,Usage,"If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps'.",
 SS0101,Warning,Performance,Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.,
 SS0102,Info,Usage,Unnecessary interpolation leading character '$'.,
 SS0201,Warning,Performance,"The result of the expression '.ctor(void*, int)' can't be the return value as any methods.","The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods."

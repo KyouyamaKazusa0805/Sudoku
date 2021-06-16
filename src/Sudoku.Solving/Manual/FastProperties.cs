@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Singles;
+using Sudoku.Versioning;
 
 namespace Sudoku.Solving.Manual
 {
@@ -37,8 +38,8 @@ namespace Sudoku.Solving.Manual
 	/// so their values can be got instantly, i.e. instant ones).
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
+	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="DirectSearcherAttribute"/>
 	/// <seealso cref="SudokuGrid"/>
 	internal static partial class FastProperties
@@ -102,6 +103,7 @@ namespace Sudoku.Solving.Manual
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
+		[NonVersionable]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void InitializeMaps(in SudokuGrid grid) =>
 			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;
