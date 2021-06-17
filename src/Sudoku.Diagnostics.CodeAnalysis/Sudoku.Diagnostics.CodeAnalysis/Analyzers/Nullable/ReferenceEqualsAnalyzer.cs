@@ -40,9 +40,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			// Special case: 'expr == null' or 'expr != null'.
-			// This case will trigger another diagnostic result in pattern matching,
-			// so we don't raise any diagnostics about those expressions here.
 			var objectType = compilation.GetSpecialType(SpecialType.System_Object);
 			var d = SymbolEqualityComparer.Default;
 			((Action)(d.Equals(lType, rType) && d.Equals(lType, objectType) ? f : static () => { }))();
