@@ -16,7 +16,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 			context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.ClassDeclaration });
+			context.RegisterSyntaxNodeAction(
+				AnalyzeSyntaxNode,
+				new[] { SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration }
+			);
 		}
 
 
@@ -24,45 +27,64 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			var (semanticModel, compilation, originalNode) = context;
 
-			if (
+			switch (originalNode)
+			{
 				/*length-pattern*/
-				originalNode is not ClassDeclarationSyntax
+				case ClassDeclarationSyntax
 				{
 					BaseList: { Types: { Count: not 0 } types } baseList,
 					Identifier: var identifier
 				} node
-			)
-			{
-				return;
-			}
-
-			/*slice-pattern*/
-			if (types[0] is not SimpleBaseTypeSyntax { Type: var innerType })
-			{
-				return;
-			}
-
-			// Check whether the first base type is 'object'.
-			// Because C# requires you should place base class type at first,
-			// so we only need to check the first type.
-			if (
-				!SymbolEqualityComparer.Default.Equals(
+				/*slice-pattern*/
+				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
+				&& SymbolEqualityComparer.Default.Equals(
 					semanticModel.GetSymbolInfo(innerType, context.CancellationToken).Symbol,
 					compilation.GetSpecialType(SpecialType.System_Object)
-				)
-			)
-			{
-				return;
-			}
+				):
+				{
+					// Check whether the first base type is 'object'.
+					// Because C# requires you should place base class type at first,
+					// so we only need to check the first type.
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: SS9006,
+							location: identifier.GetLocation(),
+							messageArgs: null,
+							additionalLocations: new[] { baseList.GetLocation() }
+						)
+					);
 
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SS9006,
-					location: identifier.GetLocation(),
-					messageArgs: null,
-					additionalLocations: new[] { baseList.GetLocation() }
-				)
-			);
+					break;
+				}
+
+				/*length-pattern*/
+				case RecordDeclarationSyntax
+				{
+					BaseList: { Types: { Count: not 0 } types } baseList,
+					Identifier: var identifier
+				} node
+				/*slice-pattern*/
+				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
+				&& SymbolEqualityComparer.Default.Equals(
+					semanticModel.GetSymbolInfo(innerType, context.CancellationToken).Symbol,
+					compilation.GetSpecialType(SpecialType.System_Object)
+				):
+				{
+					// Check whether the first base type is 'object'.
+					// Because C# requires you should place base class type at first,
+					// so we only need to check the first type.
+					context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: SS9006,
+							location: identifier.GetLocation(),
+							messageArgs: null,
+							additionalLocations: new[] { baseList.GetLocation() }
+						)
+					);
+
+					break;
+				}
+			}
 		}
 	}
 }
