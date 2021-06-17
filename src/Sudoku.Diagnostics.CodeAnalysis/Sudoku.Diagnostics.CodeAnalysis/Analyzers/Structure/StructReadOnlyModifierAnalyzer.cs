@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -53,18 +55,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 				&& (count == 0 || count != 0 && getterModifiers.All(isNotReadOnlyKeyword))
 				&& modifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
-				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier),
+				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, node),
 
-				// int Prop { readonly get; }
+				// int Prop { readonly get; set; }
 				/*slice-pattern*/
 				2 when accessors[0] is
 				{
 					Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
 					/*length-pattern*/
-					Modifiers: { Count: not 0 } getterModifiers
-				}
+					Modifiers: { Count: var count } getterModifiers
+				} getAccessor
+				&& (count == 0 || count != 0 && modifiers.All(isNotReadOnlyKeyword))
 				&& getterModifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
-				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier),
+				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, getAccessor),
 
 				_ => null
 			};
@@ -72,13 +75,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			a?.Invoke();
 
 
-			void f(SyntaxToken token)
+			void f(SyntaxToken token, SyntaxNode node)
 			{
 				context.ReportDiagnostic(
 					Diagnostic.Create(
 						descriptor: SS9005,
 						location: token.GetLocation(),
-						messageArgs: null
+						properties: ImmutableDictionary.CreateRange(
+							new KeyValuePair<string, string?>[]
+							{
+								new("AccessorsCount", accessorsCount.ToString())
+							}
+						),
+						messageArgs: null,
+						additionalLocations: new[] { node.GetLocation() }
 					)
 				);
 			}
