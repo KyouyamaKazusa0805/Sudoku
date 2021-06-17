@@ -1,3 +1,5 @@
-﻿using System;
+﻿object o = new(), p = new();
 
-Console.WriteLine();
+if (o == null)
+{
+}

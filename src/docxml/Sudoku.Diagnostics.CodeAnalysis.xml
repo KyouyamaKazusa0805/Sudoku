@@ -448,6 +448,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0706">SS0706</a></term>
+            <description>If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!='</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.SS0706">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0706">SS0706</a>
+            diagnostic result (If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!=').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

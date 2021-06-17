@@ -79,6 +79,7 @@ SS0702,Info,Design,The expression can be simplified to using null-coalescing ope
 SS0703,Info,Design,Unncessary null-conditional operator '?'.,
 SS0704,Info,Design,Unncessary null-forgiving operator '!'.,
 SS0705,Info,Design,Using compound null-coalesce operator '??=' is unncessary.,"Using compound null-coalesce operator '??=' is unncessary, because the left-side expression '{0}' is not null here."
+SS0706,Warning,Usage,"If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!='.",
 SS9001,Info,Performance,Available prepositional iteration condition expression.,
 SS9002,Info,Usage,Redundant array creation statement.,
 SS9003,Warning,Design,Unncessary discards.,
