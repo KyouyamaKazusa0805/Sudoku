@@ -59,6 +59,7 @@
 		public const string SS0702 = "Use operator '??'";
 		public const string SS0703 = "Remove '?'";
 		public const string SS0704 = "Remove '!'";
+		public const string SS0706 = "Use 'ReferenceEquals' instead";
 		public const string SS9001 = "Move the expression to the initializer";
 		public const string SS9002 = "Remove redundant array creation statement";
 	}

@@ -1,5 +1,9 @@
-﻿object o = new(), p = new();
+﻿using System;
 
-if (o == null)
+object o = new(), p = new();
+
+if (o == p)
 {
+	Console.WriteLine(o);
+	Console.WriteLine(p);
 }
