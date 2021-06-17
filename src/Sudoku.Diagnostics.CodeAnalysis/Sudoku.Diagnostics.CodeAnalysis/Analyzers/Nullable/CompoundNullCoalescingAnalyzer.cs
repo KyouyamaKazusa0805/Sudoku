@@ -91,7 +91,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						/*slice-pattern*/
 						BlockSyntax { Statements: { Count: 1 } statements } => statements[0],
-						ExpressionStatementSyntax => statement
+						ExpressionStatementSyntax => statement,
+						_ => null
 					} is not ExpressionStatementSyntax
 					{
 						Expression: AssignmentExpressionSyntax
