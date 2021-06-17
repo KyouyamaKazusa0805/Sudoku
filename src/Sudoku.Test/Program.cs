@@ -1,12 +1,12 @@
 ﻿using System;
 
-var s = new S();
-Console.WriteLine(s.ToString());
-
-struct S
+class I : object, IEquatable<I>
 {
-	public int A { get; }
-	public readonly int B { get; }
-	public int C { readonly get; set; }
-	public int D { get; set; }
+	public override bool Equals(object? obj) => base.Equals(obj);
+	public bool Equals(I? other) => throw new NotImplementedException();
+	public override int GetHashCode() => base.GetHashCode();
+	public override string ToString() => base.ToString()!;
+
+	public static bool operator ==(I left, I right) => left.Equals(right);
+	public static bool operator !=(I left, I right) => !(left == right);
 }
