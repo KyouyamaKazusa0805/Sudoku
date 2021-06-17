@@ -1,9 +1,12 @@
 ﻿using System;
 
-object o = new(), p = new();
+var s = new S();
+Console.WriteLine(s.ToString());
 
-if (o == p)
+struct S
 {
-	Console.WriteLine(o);
-	Console.WriteLine(p);
+	public int A { get; }
+	public readonly int B { get; }
+	public int C { readonly get; set; }
+	public int D { get; set; }
 }

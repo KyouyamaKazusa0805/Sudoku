@@ -1211,6 +1211,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9005">SS9005</a></term>
+            <description>Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer.SS9005">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9005">SS9005</a>
+            diagnostic result (Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
