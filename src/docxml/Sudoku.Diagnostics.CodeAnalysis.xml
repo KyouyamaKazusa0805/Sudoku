@@ -27,6 +27,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a></term>
+            <description>Please use keyword 'init' instead of 'set' of the property accessor in an attribute type</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer.SS9007">
+            <summary>
+            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a>
+            diagnostic result (Please use keyword 'init' instead of 'set' of the property accessor in an attribute type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InheritFromObjectAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -2691,6 +2714,22 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9006CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9007CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a>
+            (Please use keyword 'init' instead of 'set' of the property accessor in an attribute type).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9007CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9007CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9007CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixTitles">
             <summary>
             Provides the titles for the code fix solutions.
@@ -2709,6 +2748,20 @@
             <param name="this">The argument syntax node.</param>
             <param name="semanticModel">The semantic model.</param>
             <returns>The full name.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx.IsAttribute(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determine whether the type is an attribute.
+            </summary>
+            <param name="this">The compilation.</param>
+            <param name="symbol">The symbol to check.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ExpressionSyntaxEx">
             <summary>

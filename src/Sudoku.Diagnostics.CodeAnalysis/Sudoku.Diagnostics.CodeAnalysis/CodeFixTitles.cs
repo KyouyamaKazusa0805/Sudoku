@@ -64,5 +64,6 @@
 		public const string SS9002 = "Remove redundant array creation statement";
 		public const string SS9005 = "Remove keyword 'readonly'";
 		public const string SS9006 = "Remove the inheritance from type 'object'";
+		public const string SS9007 = "Use keyword 'init' instead";
 	}
 }
