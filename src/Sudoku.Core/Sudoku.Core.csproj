@@ -27,6 +27,7 @@
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Deconstruction\Sudoku.CodeGen.Deconstruction.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.Equality\Sudoku.CodeGen.Equality.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\Sudoku.CodeGen.Formattable\Sudoku.CodeGen.Formattable.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.GetEnumerator\Sudoku.CodeGen.GetEnumerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.HashCode\Sudoku.CodeGen.HashCode.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.CodeGen.RefStructDefaults\Sudoku.CodeGen.RefStructDefaults.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />

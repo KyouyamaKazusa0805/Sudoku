@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+
+using System;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace Sudoku.Solving
 	[AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
 	[AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
 	[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).*")]
+	[AutoFormattable]
 	public sealed partial record AnalysisResult(
 		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime
 	) : IEnumerable<StepInfo>, IFormattable
@@ -187,15 +190,9 @@ namespace Sudoku.Solving
 			: Steps[index];
 
 
-		/// <inheritdoc/>
-		public override string ToString() => ToString(null, null);
+		public override partial string ToString();
 
-		/// <summary>
-		/// Returns a string that represents the current object with the specified format string.
-		/// </summary>
-		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-		/// <returns>The string result.</returns>
-		public string ToString(string format) => ToString(format, null);
+		public partial string ToString(string? format);
 
 		/// <summary>
 		/// Get the analysis result string using the specified format and the country code.

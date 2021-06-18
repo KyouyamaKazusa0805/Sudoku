@@ -198,6 +198,7 @@ namespace Sudoku.Data
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly string ToString()
 		{
+			/*length-pattern*/
 			if (Parents is not { Count: not 0 })
 			{
 				return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()})";

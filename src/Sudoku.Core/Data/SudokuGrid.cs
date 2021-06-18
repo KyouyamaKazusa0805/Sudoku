@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -26,6 +28,7 @@ namespace Sudoku.Data
 #endif
 	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
+	[AutoFormattable]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
@@ -799,19 +802,11 @@ namespace Sudoku.Data
 			static string p(short v) => v.ToString();
 		}
 
-		/// <inheritdoc cref="object.ToString"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[NonVersionable]
-		public override readonly string ToString() => ToString(null, null);
+		public override readonly partial string ToString();
 
-		/// <summary>
-		/// Returns a string that represents the current object with the specified format string.
-		/// </summary>
-		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-		/// <returns>The string result.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[NonVersionable]
-		public readonly string ToString(string? format) => ToString(format, null);
+		public readonly partial string ToString(string? format);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

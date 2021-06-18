@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Extensions;
@@ -24,6 +26,7 @@ namespace Sudoku.Data
 	[AutoDeconstruct(nameof(_high), nameof(_low))]
 	[AutoEquality(nameof(_high), nameof(_low))]
 	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
+	[AutoFormattable]
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
 	{
 		/// <summary>
@@ -646,18 +649,20 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly int[] ToArray() => Offsets;
 
-		/// <inheritdoc cref="object.ToString"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override readonly string ToString() => ToString(null);
+		public override readonly partial string ToString();
 
-		/// <summary>
-		/// Returns a string that represents the current object with the specified format string.
-		/// </summary>
-		/// <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-		/// <returns>The string result.</returns>
+		public readonly partial string ToString(string? format);
+
+		/// <inheritdoc/>
 		/// <exception cref="FormatException">Throws when the format is invalid.</exception>
-		public readonly string ToString(string? format)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		{
+			if (formatProvider.HasFormatted(this, format, out string? result))
+			{
+				return result;
+			}
+
 			return format switch
 			{
 				null or "N" or "n" => Count switch
@@ -810,11 +815,6 @@ namespace Sudoku.Data
 				return sb.ToString();
 			}
 		}
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly string ToString(string? format, IFormatProvider? formatProvider) =>
-			formatProvider.HasFormatted(this, format, out string? result) ? result : ToString(format);
 
 		/// <summary>
 		/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.

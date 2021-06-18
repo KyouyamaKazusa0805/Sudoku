@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.CodeGen.Formattable</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.CodeGen.AutoFormattableAttribute">
+            <summary>
+            To mark on a type, to tell the user and the compiler that the source generator
+            should automatically generate the <c>ToString</c> methods
+            <see cref="M:System.Object.ToString"/> and <see cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>.
+            </summary>
+            <seealso cref="M:System.Object.ToString"/>
+            <seealso cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Formattable.Extensions.ISymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Formattable.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the symbol has marked the specified attribute.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGen.Formattable.Extensions.SyntaxReferenceEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Formattable.FormatOptions">
+            <summary>
+            Indicates the output format options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.Formattable.FormatOptions.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.Formattable.FormatOptions.PropertyTypeFormat">
+            <summary>
+            Indicates the property format.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator">
+            <summary>
+            Defines a source generator that generates the code for <c>ToString</c> methods. The methods below
+            will be generated:
+            <list type="bullet">
+            <item><c>string ToString()</c></item>
+            <item><c>string ToString(string? format)</c></item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGen.Formattable.FormattableMethodsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
