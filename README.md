@@ -59,9 +59,9 @@ Please visit [this link](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compi
 | GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                              |
 | Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This project is copied & sync'd from GitHub as a backup.<br />这个项目从 GitHub 拷贝和同步过来的，是一个备份项目。 |
 
-| Wiki<br />百科页面         |                                                      |
-| -------------------------- | ---------------------------------------------------- |
-| Chinese only<br />中文介绍 | [GitHub](https://github.com/SunnieShine/Sudoku/wiki) |
+| Wiki<br />百科页面         |                                                |
+| -------------------------- | ---------------------------------------------- |
+| Chinese only<br />中文介绍 | [GitHub](https://sunnieshine.github.io/Sudoku) |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
