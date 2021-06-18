@@ -7,7 +7,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <summary>
 	/// Indicates the borescoper's deadly pattern.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_mask))]
 	public readonly partial struct Pattern : IValueEquatable<Pattern>
 	{

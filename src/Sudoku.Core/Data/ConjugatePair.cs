@@ -11,7 +11,6 @@ namespace Sudoku.Data
 	/// these two candidates is in the same region where all cells has only
 	/// two position can fill this candidate.
 	/// </remarks>
-	[DisallowParameterlessConstructor]
 	[AutoHashCode(nameof(BaseHashCode), nameof(Map))]
 	[AutoEquality(nameof(Map), nameof(Digit))]
 	public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>

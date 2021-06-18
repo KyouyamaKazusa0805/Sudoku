@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGen;
 using static System.Numerics.BitOperations;
@@ -10,7 +9,6 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates a region collection.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_mask))]
 	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
 	public readonly ref partial struct RegionCollection

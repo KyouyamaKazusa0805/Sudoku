@@ -10,7 +10,6 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Provides a collection that contains the chain links.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoEquality(nameof(_collection))]
 	public readonly ref partial struct LinkCollection
 	{

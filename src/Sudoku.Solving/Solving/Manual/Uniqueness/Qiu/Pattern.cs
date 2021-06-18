@@ -7,7 +7,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <summary>
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
 	[AutoHashCode(nameof(FullMap))]
 	[AutoEquality(nameof(Pair), nameof(Square), nameof(BaseLine))]

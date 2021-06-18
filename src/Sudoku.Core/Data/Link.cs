@@ -8,7 +8,6 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a link used for drawing.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 	[AutoDeconstruct(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 	[AutoHashCode(nameof(EigenValue))]

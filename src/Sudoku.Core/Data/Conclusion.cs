@@ -12,7 +12,6 @@ namespace Sudoku.Data
 	/// will be greater; if those two hold same conclusion type, but one of those two holds
 	/// the global index of the candidate position is greater, it is greater.
 	/// </remarks>
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 	[AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]

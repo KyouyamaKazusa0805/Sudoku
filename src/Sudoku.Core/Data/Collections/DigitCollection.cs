@@ -9,8 +9,6 @@ namespace Sudoku.Data.Collections
 	/// <summary>
 	/// Indicates a collection that contains the several digits.
 	/// </summary>
-	[DisallowParameterlessConstructor]
-	[AutoEquality(nameof(_mask))]
 	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
 	public readonly ref partial struct DigitCollection
 	{

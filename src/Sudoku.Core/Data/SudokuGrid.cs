@@ -26,7 +26,6 @@ namespace Sudoku.Data
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	[AutoFormattable]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable

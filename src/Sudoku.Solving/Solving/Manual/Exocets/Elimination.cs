@@ -9,7 +9,6 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <summary>
 	/// Encapsulates an instance to represent a series of eliminations in JE or SE.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 	[AutoHashCode(nameof(Eliminations), nameof(Reason))]
 	[AutoEquality(nameof(Eliminations), nameof(Reason))]

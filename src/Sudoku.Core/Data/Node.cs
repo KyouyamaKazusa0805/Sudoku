@@ -7,7 +7,6 @@ namespace Sudoku.Data
 	/// <summary>
 	/// Encapsulates a chain node.
 	/// </summary>
-	[DisallowParameterlessConstructor]
 	[AutoDeconstruct(nameof(Candidate), nameof(IsOn))]
 	[AutoDeconstruct(nameof(Candidate), nameof(IsOn), nameof(Parents))]
 	[AutoEquality(nameof(Cell), nameof(Digit), nameof(IsOn))]

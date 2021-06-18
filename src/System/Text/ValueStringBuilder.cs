@@ -24,7 +24,6 @@ namespace System.Text
 	/// </code>
 	/// </example>
 	/// <seealso cref="ValueStringBuilder()"/>
-	[DisallowParameterlessConstructor]
 	[AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 	public ref partial struct ValueStringBuilder
 	{

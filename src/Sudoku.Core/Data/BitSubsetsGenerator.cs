@@ -14,7 +14,6 @@ namespace Sudoku.Data
 	/// }
 	/// </code>
 	/// </remarks>
-	[DisallowParameterlessConstructor]
 	[AutoGetEnumerator(nameof(_enumerator), ReturnType = typeof(Enumerator))]
 	public readonly ref partial struct BitSubsetsGenerator
 	{
