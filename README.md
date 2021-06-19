@@ -70,7 +70,7 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/How-To-Compile-The
 | Coding Information<br />编码信息                     |                                                              |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
 | Programming language and version<br />编程语言和版本 | C# 9                                                         |
-| Framework<br />框架                                  | .NET 5                                                       |
+| Framework<br />框架                                  | .NET 6                                                       |
 | Indenting<br />缩进                                  | Tabs (`\t`)<br />Tab                                         |
 | Integrated development environment<br />集成开发环境 | Visual Studio 2022 (Version 17.0 Preview)<br />Visual Studio 2022（17.0 预览版） |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
