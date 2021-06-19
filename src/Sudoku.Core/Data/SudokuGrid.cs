@@ -669,6 +669,9 @@ namespace Sudoku.Data
 		public override readonly int GetHashCode() => this switch
 		{
 			{ IsUndefined: true } => 0,
+#if DEBUG
+			{ IsDebuggerUndefined: true } => 0,
+#endif
 			{ IsEmpty: true } => 1,
 			_ => ToString("#").GetHashCode()
 		};
