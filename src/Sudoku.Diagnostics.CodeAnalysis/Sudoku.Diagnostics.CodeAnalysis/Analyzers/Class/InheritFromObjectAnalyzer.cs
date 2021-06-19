@@ -25,7 +25,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
+			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
 
 			switch (originalNode)
 			{
@@ -38,7 +38,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				/*slice-pattern*/
 				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
 				&& SymbolEqualityComparer.Default.Equals(
-					semanticModel.GetSymbolInfo(innerType, context.CancellationToken).Symbol,
+					semanticModel.GetSymbolInfo(innerType, cancellationToken).Symbol,
 					compilation.GetSpecialType(SpecialType.System_Object)
 				):
 				{
@@ -66,7 +66,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				/*slice-pattern*/
 				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
 				&& SymbolEqualityComparer.Default.Equals(
-					semanticModel.GetSymbolInfo(innerType, context.CancellationToken).Symbol,
+					semanticModel.GetSymbolInfo(innerType, cancellationToken).Symbol,
 					compilation.GetSpecialType(SpecialType.System_Object)
 				):
 				{

@@ -24,7 +24,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, _, originalNode) = context;
+			var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
 			if (
 				/*length-pattern*/
@@ -45,7 +45,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				semanticModel.GetSymbolInfo(type, context.CancellationToken) is not
+				semanticModel.GetSymbolInfo(type, cancellationToken) is not
 				{
 					Symbol: INamedTypeSymbol symbol
 				}
