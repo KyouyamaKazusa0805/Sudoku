@@ -17,11 +17,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// Indicates the full type names.
 		/// </summary>
 		private const string
-			AutoDeconstructAttributeFullTypeName = "AutoDeconstructAttribute",
-			AutoDeconstructExtensionAttributeFullTypeName = "AutoDeconstructExtensionAttribute",
-			AutoEqualityAttributeFullTypeName = "AutoEqualityAttribute",
-			AutoGetEnumeratorAttributeFullTypeName = "AutoGetEnumeratorAttribute",
-			AutoHashCodeAttributeFullTypeName = "AutoHashCodeAttribute";
+			AutoDeconstructAttributeTypeName = "AutoDeconstructAttribute",
+			AutoDeconstructAttributeTypeShortName = "AutoDeconstruct",
+			AutoDeconstructExtensionAttributeTypeName = "AutoDeconstructExtensionAttribute",
+			AutoDeconstructExtensionAttributeTypeShortName = "AutoDeconstructExtension",
+			AutoEqualityAttributeTypeName = "AutoEqualityAttribute",
+			AutoEqualityAttributeTypeShortName = "AutoEquality",
+			AutoGetEnumeratorAttributeTypeName = "AutoGetEnumeratorAttribute",
+			AutoGetEnumeratorAttributeTypeShortName = "AutoGetEnumerator",
+			AutoHashCodeAttributeTypeName = "AutoHashCodeAttribute",
+			AutoHashCodeAttributeTypeShortName = "AutoHashCode";
 
 
 		/// <inheritdoc/>
@@ -45,6 +50,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, node) = context;
+			/*length-pattern*/
 			if (node is not MemberDeclarationSyntax { AttributeLists: { Count: not 0 } attributeLists })
 			{
 				return;
@@ -52,6 +58,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			foreach (var attributeList in attributeLists)
 			{
+				/*length-pattern*/
 				if (attributeList.Attributes is not { Count: not 0 } attributes)
 				{
 					continue;
@@ -73,7 +80,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					switch (text)
 					{
-						case AutoDeconstructAttributeFullTypeName or "AutoDeconstruct":
+						case AutoDeconstructAttributeTypeName or AutoDeconstructAttributeTypeShortName:
 						{
 							if (arguments.Count < 2)
 							{
@@ -83,7 +90,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGen.{AutoDeconstructAttributeFullTypeName}",
+											$"Sudoku.CodeGen.{AutoDeconstructAttributeTypeName}",
 											2,
 											" at least"
 										}
@@ -96,8 +103,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							goto ArgumentsChecking_Case1;
 						}
 						case var name and (
-							AutoEqualityAttributeFullTypeName or AutoHashCodeAttributeFullTypeName
-							or "AutoEquality" or "AutoHashCode"
+							AutoEqualityAttributeTypeName or AutoEqualityAttributeTypeShortName
+							or AutoHashCodeAttributeTypeName or AutoHashCodeAttributeTypeShortName
 						):
 						{
 							if (arguments.Count < 1)
@@ -120,7 +127,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case1;
 						}
-						case AutoDeconstructExtensionAttributeFullTypeName or "AutoDeconstructExtension":
+						case AutoDeconstructExtensionAttributeTypeName
+						or AutoDeconstructExtensionAttributeTypeShortName:
 						{
 							if (arguments.Count < 3)
 							{
@@ -130,7 +138,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGen.{AutoDeconstructExtensionAttributeFullTypeName}",
+											$"Sudoku.CodeGen.{AutoDeconstructExtensionAttributeTypeName}",
 											3,
 											" at least"
 										}
@@ -142,7 +150,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case2;
 						}
-						case AutoGetEnumeratorAttributeFullTypeName or "AutoGetEnumerator":
+						case AutoGetEnumeratorAttributeTypeName or AutoGetEnumeratorAttributeTypeShortName:
 						{
 							/*slice-pattern*/
 							if (
