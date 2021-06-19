@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -23,7 +24,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
+			var (semanticModel, _, originalNode) = context;
 
 			if (
 				/*length-pattern*/
@@ -53,7 +54,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (!compilation.IsAttribute(symbol))
+			bool isAttribute = false;
+			for (
+				var symbolBaseType = symbol.BaseType;
+				symbolBaseType is not null;
+				symbolBaseType = symbolBaseType.BaseType
+			)
+			{
+				if (symbolBaseType.ToDisplayString(FormatOptions.TypeFormat) != typeof(Attribute).FullName)
+				{
+					isAttribute = true;
+					break;
+				}
+			}
+			if (!isAttribute)
 			{
 				return;
 			}
@@ -64,7 +78,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					member is not PropertyDeclarationSyntax
 					{
 						AccessorList: { Accessors: { Count: not 0 } accessors }
-					} propertyDeclaration
+					}
 				)
 				{
 					continue;

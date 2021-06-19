@@ -33,7 +33,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 							node,
 							node.WithKeyword(
 								SyntaxFactory.Token(
-									SyntaxKind.SetKeyword
+									SyntaxKind.InitKeyword
 								)
 							)
 						);

@@ -2749,20 +2749,6 @@
             <param name="semanticModel">The semantic model.</param>
             <returns>The full name.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.CompilationEx.IsAttribute(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Determine whether the type is an attribute.
-            </summary>
-            <param name="this">The compilation.</param>
-            <param name="symbol">The symbol to check.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Extensions.ExpressionSyntaxEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
@@ -3038,6 +3024,21 @@
             the node that used in traversing the iteration.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.FormatOptions">
+            <summary>
+            Provides the format options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.FormatOptions.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.FormatOptions.PropertyTypeFormat">
+            <summary>
+            Indicates the property format.
+            </summary>
         </member>
         <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@)">
             <summary>
