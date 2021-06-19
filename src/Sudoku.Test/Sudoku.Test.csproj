@@ -2,8 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Sunnie</Authors>
 		<Company>Sunnie</Company>
 		<Description>The debugging project.</Description>

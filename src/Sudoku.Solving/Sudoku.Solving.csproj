@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
 		<Authors>Sunnie</Authors>
 		<Description>Provides all solving operations for a sudoku grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
@@ -13,7 +13,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Version>0.5</Version>
-		<RootNamespace>Sudoku</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

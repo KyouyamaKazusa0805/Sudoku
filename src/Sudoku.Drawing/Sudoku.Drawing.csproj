@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Sunnie</Authors>
 		<Description>The drawing operation library.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
