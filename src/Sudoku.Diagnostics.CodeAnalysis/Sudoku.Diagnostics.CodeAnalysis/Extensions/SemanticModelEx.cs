@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using static Microsoft.CodeAnalysis.SymbolEqualityComparer;
@@ -24,11 +25,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// <param name="withNullableChecking">
 		/// Indicates whether the comparer uses advanced one to check nullable type.
 		/// </param>
+		/// <param name="cancellationToken">The cancellation token.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		/// <exception cref="ArgumentException">Throws when the type can't be inferred.</exception>
 		public static bool TypeEquals(
-			this SemanticModel @this, SyntaxNode left, SyntaxNode right, bool withNullableChecking = false) =>
-			(left.RawKind, right.RawKind, @this.GetOperation(left)?.Type, @this.GetOperation(right)?.Type) switch
+			this SemanticModel @this, SyntaxNode left, SyntaxNode right, bool withNullableChecking = false,
+			CancellationToken cancellationToken = default) =>
+			(left.RawKind, right.RawKind, @this.GetOperation(left, cancellationToken)?.Type, @this.GetOperation(right, cancellationToken)?.Type) switch
 			{
 				((int)SyntaxKind.NullLiteralExpression, _, _, { IsReferenceType: true }) => true,
 				(_, (int)SyntaxKind.NullLiteralExpression, { IsReferenceType: true }, _) => true,

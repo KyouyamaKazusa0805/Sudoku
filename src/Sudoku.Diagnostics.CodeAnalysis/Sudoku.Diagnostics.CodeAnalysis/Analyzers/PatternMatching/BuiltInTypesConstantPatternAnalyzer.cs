@@ -32,7 +32,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, _, originalNode) = context;
+			var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
 			if (
 				originalNode is not IsPatternExpressionSyntax
@@ -52,7 +52,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
 				}
-				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
+				when semanticModel.TypeEquals(
+					expressionToCheck, constantExpression, cancellationToken: cancellationToken
+				):
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
@@ -90,7 +92,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
 					}
 				}
-				when semanticModel.TypeEquals(expressionToCheck, constantExpression):
+				when semanticModel.TypeEquals(
+					expressionToCheck, constantExpression, cancellationToken: cancellationToken
+				):
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(

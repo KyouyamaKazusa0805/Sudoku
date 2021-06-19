@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -27,10 +28,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// otherwise, the method can't infer the correct result, so always returns <see langword="false"/>
 		/// for this case.
 		/// </param>
+		/// <param name="cancellationToken">The cancellation token.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public static bool IsDeconstructionMethod(
 			this MethodDeclarationSyntax @this, bool checkMemberExistence = false,
-			SemanticModel? semanticModel = null)
+			SemanticModel? semanticModel = null, CancellationToken cancellationToken = default)
 		{
 			// Check some general properties.
 			if (
@@ -91,7 +93,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 
 			// Now check the existence.
 			if (
-				semanticModel?.GetDeclaredSymbol(@this) is not IMethodSymbol
+				semanticModel?.GetDeclaredSymbol(@this, cancellationToken) is not IMethodSymbol
 				{
 					Parameters: var symbolParameters
 				} methodSymbol

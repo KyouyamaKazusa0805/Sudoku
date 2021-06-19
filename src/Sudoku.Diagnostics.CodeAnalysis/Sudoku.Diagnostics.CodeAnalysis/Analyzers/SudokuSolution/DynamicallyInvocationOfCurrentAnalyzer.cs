@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Threading;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -56,7 +57,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeDynamicInvocation(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, n) = context;
+			var (semanticModel, compilation, n, _, cancellationToken) = context;
 			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
 			{
 				// We don't check on those two WPF projects, because those two projects has already used
@@ -120,7 +121,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						)
 					)
 					{
-						ReportSD0203_Case1(context, semanticModel, identifierNameNode, methodName, argumentListNode);
+						ReportSD0203_Case1(context, semanticModel, identifierNameNode, methodName, argumentListNode, cancellationToken);
 					}
 
 					break;
@@ -138,7 +139,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							)
 						)
 						{
-							ReportSD0203_Case2(context, semanticModel, methodName, argumentListNode, i);
+							ReportSD0203_Case2(context, semanticModel, methodName, argumentListNode, i, cancellationToken);
 						}
 					}
 
@@ -184,7 +185,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void ReportSD0203_Case1(
 			SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
 			IdentifierNameSyntax identifierNameNode, string? methodName,
-			ArgumentListSyntax argListNode) => context.ReportDiagnostic(
+			ArgumentListSyntax argListNode, CancellationToken cancellationToken) =>
+			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SD0203,
 					location: identifierNameNode.GetLocation(),
@@ -192,14 +194,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						methodName,
 						CountryCodeTypeName,
-						argListNode.Arguments[0].GetParamFullName(semanticModel)
+						argListNode.Arguments[0].GetParamFullName(semanticModel, cancellationToken)
 					}
 				)
 			);
 
 		private static void ReportSD0203_Case2(
 			SyntaxNodeAnalysisContext context, SemanticModel semanticModel, string? methodName,
-			ArgumentListSyntax argListNode, int i) =>
+			ArgumentListSyntax argListNode, int i, CancellationToken cancellationToken) =>
 			context.ReportDiagnostic(
 				Diagnostic.Create(
 					descriptor: SD0203,
@@ -208,7 +210,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						methodName,
 						"string",
-						argListNode.Arguments[i].GetParamFullName(semanticModel)
+						argListNode.Arguments[i].GetParamFullName(semanticModel, cancellationToken)
 					}
 				)
 			);
