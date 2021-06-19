@@ -3086,6 +3086,16 @@
             This project won't be added into the solution because I had deleted yet.
             </remarks>
         </member>
+        <member name="T:Sudoku.CodeGen.ResourceDictionaryKeys">
+            <summary>
+            Indicates the resource dictionary to check.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGen.ResourceDictionaryKeys.Keys">
+            <summary>
+            Indicates the dictionary.
+            </summary>
+        </member>
         <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax

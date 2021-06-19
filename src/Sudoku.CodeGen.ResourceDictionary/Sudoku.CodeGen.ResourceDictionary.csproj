@@ -6,9 +6,9 @@
 		<Nullable>enable</Nullable>
 		<Version>0.1</Version>
 		<Authors>Sunnie</Authors>
-		<Description>A source generator project that generates the code about overriden methods in a ref struct.</Description>
+		<Description>A source generator project that generates the code about resource dictionary in code analysis project.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<DocumentationFile>..\docxml\Sudoku.CodeGen.RefStructDefaults.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.CodeGen.ResourceDictionary.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
