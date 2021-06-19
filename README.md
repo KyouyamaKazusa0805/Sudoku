@@ -72,7 +72,7 @@ Please visit [this link](https://github.com/SunnieShine/Sudoku/wiki/How-To-Compi
 | Programming language and version<br />编程语言和版本 | C# 9                                                         |
 | Framework<br />框架                                  | .NET 5                                                       |
 | Indenting<br />缩进                                  | Tabs (`\t`)<br />Tab                                         |
-| Integrated development environment<br />集成开发环境 | Visual Studio 2019 (Version 16.11 Preview)<br />Visual Studio 2019（16.11 预览版） |
+| Integrated development environment<br />集成开发环境 | Visual Studio 2022 (Version 17.0 Preview)<br />Visual Studio 2022（17.0 预览版） |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
 
 > You can also use JetBrains Rider as your IDE. However, disappointing, some features contain bugs still now. :(
