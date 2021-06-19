@@ -24,8 +24,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				var (compilation, options) = context;
 
 				// BUG: Can't load local dictionary files.
-				string[] texts = (from f in options.AdditionalFiles select File.ReadAllText(f.Path)).ToArray();
-				if (texts.Length == 0)
+				/*length-pattern*/
+				if (
+					(from f in options.AdditionalFiles select File.ReadAllText(f.Path)).ToArray() is not
+					{
+						Length: not 0
+					} texts
+				)
 				{
 					// Check all files if available.
 					return;
