@@ -36,7 +36,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
+				if (compilation.AssemblyName is ProjectNames.Sudoku_Windows or ProjectNames.Sudoku_UI)
 				{
 					// We don't check on those two WPF projects, because those two projects has already used
 					// their own resource dictionary (MergedDictionary).

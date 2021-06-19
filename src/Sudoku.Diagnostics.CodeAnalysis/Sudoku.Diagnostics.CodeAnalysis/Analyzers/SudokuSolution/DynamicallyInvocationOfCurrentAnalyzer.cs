@@ -58,7 +58,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void AnalyzeDynamicInvocation(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, compilation, n, _, cancellationToken) = context;
-			if (compilation.AssemblyName is "Sudoku.UI" or "Sudoku.Windows")
+			if (compilation.AssemblyName is ProjectNames.Sudoku_Windows or ProjectNames.Sudoku_UI)
 			{
 				// We don't check on those two WPF projects, because those two projects has already used
 				// their own resource dictionary called 'MergedDictionary'.
