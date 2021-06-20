@@ -33,7 +33,7 @@ namespace Sudoku
 
 		/// <inheritdoc/>
 		public override string HelpLink =>
-			"https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3706912&doc_id=633030";
+			"https://sunnieshine.github.io/Sudoku/types/exceptions/Exception-PuzzleShouldHaveBeenSolvedException";
 
 		/// <summary>
 		/// Indicates the invalid grid.

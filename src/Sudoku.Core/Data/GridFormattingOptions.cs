@@ -48,7 +48,7 @@ namespace Sudoku.Data
 		/// Indicates whether need to handle all grid outlines while outputting.
 		/// Visit the page
 		/// <i>
-		/// <a href="https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3352782&amp;doc_id=633030">
+		/// <a href="https://sunnieshine.github.io/Sudoku/types/structs/How-To-Use-Struct-SudokuGrid">
 		/// How to use the structure SudokuGrid
 		/// </a>
 		/// </i>

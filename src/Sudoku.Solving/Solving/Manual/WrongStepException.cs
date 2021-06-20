@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		public override string HelpLink =>
-			"https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3703024&doc_id=633030";
+			"https://sunnieshine.github.io/Sudoku/types/exceptions/Exception-WrongStepException";
 
 		/// <summary>
 		/// Indicates the invalid sudoku grid. This property is also stored in the property

@@ -43,7 +43,7 @@ namespace Sudoku.Recognition
 
 		/// <inheritdoc/>
 		public override string HelpLink =>
-			"https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3707050&doc_id=633030";
+			"https://sunnieshine.github.io/Sudoku/types/exceptions/Exception-FailedToFillValueException";
 
 
 		/// <inheritdoc/>

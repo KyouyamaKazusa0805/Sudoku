@@ -42,7 +42,7 @@ namespace Sudoku
 
 		/// <inheritdoc/>
 		public override string HelpLink =>
-			"https://gitee.com/SunnieShine/Sudoku/wikis/pages?sort_id=3703010&doc_id=633030";
+			"https://sunnieshine.github.io/Sudoku/types/exceptions/Exception-InvalidPuzzleException";
 
 		/// <summary>
 		/// Indicates the invalid sudoku grid. This property is also stored in the property
