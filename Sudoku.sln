@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
-		docs\index.md = docs\index.md
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -66,7 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.CodeAnalyzer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.Formattable", "src\Sudoku.CodeGen.Formattable\Sudoku.CodeGen.Formattable.csproj", "{FBBF522D-E6EA-44E3-A571-1741273C6A81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.CodeGen.ResourceDictionary", "src\Sudoku.CodeGen.ResourceDictionary\Sudoku.CodeGen.ResourceDictionary.csproj", "{B6F6EE81-4867-43C6-8149-BDFF8B2BF48E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGen.ResourceDictionary", "src\Sudoku.CodeGen.ResourceDictionary\Sudoku.CodeGen.ResourceDictionary.csproj", "{B6F6EE81-4867-43C6-8149-BDFF8B2BF48E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
