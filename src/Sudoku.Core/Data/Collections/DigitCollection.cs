@@ -96,12 +96,38 @@ namespace Sudoku.Data.Collections
 
 
 		/// <summary>
-		/// Reverse all statuses, which means all <see langword="true"/> bits
-		/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-		/// will be set <see langword="true"/>.
+		/// Make all <see langword="true"/> bits to be set <see langword="false"/>,
+		/// and make all <see langword="false"/> bits to be set <see langword="true"/>.
 		/// </summary>
 		/// <param name="collection">The instance to negate.</param>
 		/// <returns>The negative result.</returns>
 		public static DigitCollection operator ~(in DigitCollection collection) => new((short)~collection._mask);
+
+		/// <summary>
+		/// Apply the intersection from two <see cref="DigitCollection"/>s.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The result collection.</returns>
+		public static DigitCollection operator &(in DigitCollection left, in DigitCollection right) =>
+			new((short)(left._mask & right._mask));
+
+		/// <summary>
+		/// Apply the union of two <see cref="DigitCollection"/>s.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The result collection.</returns>
+		public static DigitCollection operator |(in DigitCollection left, in DigitCollection right) =>
+			new((short)(left._mask | right._mask));
+
+		/// <summary>
+		/// Apply the exclusive union of two <see cref="DigitCollection"/>s.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The result collection.</returns>
+		public static DigitCollection operator ^(in DigitCollection left, in DigitCollection right) =>
+			new((short)(left._mask ^ right._mask));
 	}
 }

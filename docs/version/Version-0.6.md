@@ -6,7 +6,7 @@
 
 ### 增加
 
-
+* 给 `DigitCollection` 追加了 `operator &`、`operator |` 和 `operator ^` 的运算符支持。
 
 ### 删除
 
