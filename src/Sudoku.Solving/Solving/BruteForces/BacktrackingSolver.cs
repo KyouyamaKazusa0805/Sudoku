@@ -96,7 +96,7 @@ namespace Sudoku.Solving.BruteForces
 				for (int i = 0; i < 9; i++)
 				{
 					gridValues[finishedCellsCount]++; // Only use value increment operator.
-					if (IsValid(gridValues, r, c))
+					if (isValid(gridValues, r, c))
 					{
 						BacktrackinglySolve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 					}
@@ -107,43 +107,36 @@ namespace Sudoku.Solving.BruteForces
 				// Backtracking the cell...
 				gridValues[finishedCellsCount] = 0;
 			}
-		}
 
 
-		/// <summary>
-		/// To decide the current row and column index is valid.
-		/// </summary>
-		/// <param name="gridValues">The grid values.</param>
-		/// <param name="r">The current row index.</param>
-		/// <param name="c">The current column index.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		private static bool IsValid(int[] gridValues, int r, int c)
-		{
-			int number = gridValues[r * 9 + c];
-
-			// Check lines.
-			for (int i = 0; i < 9; i++)
+			static bool isValid(int[] gridValues, int r, int c)
 			{
-				if (i != r && gridValues[i * 9 + c] == number || i != c && gridValues[r * 9 + i] == number)
-				{
-					return false;
-				}
-			}
+				int number = gridValues[r * 9 + c];
 
-			// Check blocks.
-			for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
-			{
-				for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+				// Check lines.
+				for (int i = 0; i < 9; i++)
 				{
-					if ((i != r || j != c) && gridValues[i * 9 + j] == number)
+					if (i != r && gridValues[i * 9 + c] == number || i != c && gridValues[r * 9 + i] == number)
 					{
 						return false;
 					}
 				}
-			}
 
-			// All region are checked and passed, return true.
-			return true;
+				// Check blocks.
+				for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+				{
+					for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+					{
+						if ((i != r || j != c) && gridValues[i * 9 + j] == number)
+						{
+							return false;
+						}
+					}
+				}
+
+				// All region are checked and passed, return true.
+				return true;
+			}
 		}
 	}
 }

@@ -667,15 +667,6 @@
             Throws when the puzzle contains multiple solutions.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
-            <summary>
-            To decide the current row and column index is valid.
-            </summary>
-            <param name="gridValues">The grid values.</param>
-            <param name="r">The current row index.</param>
-            <param name="c">The current column index.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.BruteForces.OneLineLinqSolver">
             <summary>
             Provides a solver using LINQ method.

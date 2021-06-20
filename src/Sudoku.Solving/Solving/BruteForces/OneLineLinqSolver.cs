@@ -34,9 +34,9 @@ namespace Sudoku.Solving.BruteForces
 			return results switch
 			{
 				{ Count: 0 } => throw new NoSolutionException(grid),
-				/*length-pattern*/
 				{ Count: 1 } => new(SolverName, grid, true, stopwatch.Elapsed)
 				{
+					/*slice-pattern*/
 					Solution = SudokuGrid.Parse(results[0])
 				},
 				{ Count: not (0 or 1) } => throw new MultipleSolutionsException(grid)

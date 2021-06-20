@@ -112,7 +112,7 @@ namespace Sudoku.Solving.BruteForces
 				char* solutionStr = stackalloc char[BufferLength];
 				long result = InternalSolve(p, solutionStr, limit);
 
-				solution = new string(solutionStr);
+				solution = new(solutionStr);
 
 				return result;
 			}
