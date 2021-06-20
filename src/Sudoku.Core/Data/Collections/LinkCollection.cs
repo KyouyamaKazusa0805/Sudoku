@@ -72,12 +72,13 @@ namespace Sudoku.Data.Collections
 					char digit = list[^1].Value;
 					for (int i = list.Count - 1; i >= 1; i--)
 					{
-						if (list[i - 1].Value == digit)
+						var (prevPos, prevValue) = list[i - 1];
+						if (prevValue == digit)
 						{
-							sb.Remove(list[i - 1].Pos, 3);
+							sb.Remove(prevPos, 3);
 						}
 
-						digit = list[i - 1].Value;
+						digit = prevValue;
 					}
 
 					return sb.ToString();
