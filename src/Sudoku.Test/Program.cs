@@ -1,3 +1,7 @@
 ﻿using System;
+using Sudoku.Resources;
 
-Console.WriteLine();
+_ = TextResources.Current.Hello;
+string value = TextResources.Current.ProgressSinglyLinkedAlsXz;
+
+Console.WriteLine(value);

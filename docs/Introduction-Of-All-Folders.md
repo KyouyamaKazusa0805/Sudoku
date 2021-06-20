@@ -13,6 +13,7 @@
 | [`Sudoku.CodeGen.KeyedTuple`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGen.KeyedTuple) | .NET Standard 2.0 |        | 源代码生成器项目，给项目提供 `KeyedTuple` 记录。             |
 | [`Sudoku.CodeGen.PrimaryConstructor`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGen.PrimaryConstructor) | .NET Standard 2.0 |        | 源代码生成器项目，用来给部分类生成主构造器。                 |
 | [`Sudoku.CodeGen.RefStructDefaults`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGen.RefStructDefaults) | .NET Standard 2.0 |        | 源代码生成器项目，用于自动生成引用结构里那些写不写都没事的、没有意义的重写方法（比如 `bool Equals(object?)`）。 |
+| [`Sudoku.CodeGen.ResourceDictionary`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGen.ResourceDictionary) | .NET Standard 2.0 |        | 源代码生成器项目，用于自动生成用于分析器判断的资源字典的键列表。 |
 | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) | .NET 5            |        | 对数独基本元素的主要数据结构的实现。                         |
 | [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) | .NET 5            |        | 封装了诊断整个解决方案的操作，比如检查代码的行数。           |
 | [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing) | .NET 5            |        | 用于绘制和渲染数独盘面。                                     |
