@@ -8,9 +8,6 @@ using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
 using Sudoku.CodeGen;
 using static Sudoku.Resources.TextResources;
-using Group = Sudoku.Techniques.TechniqueGroup;
-using Level = Sudoku.Solving.Manual.DifficultyLevel;
-using Tags = Sudoku.Techniques.TechniqueTags;
 
 namespace Sudoku.Solving.Manual
 {
@@ -74,18 +71,18 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// The technique tags of this instance.
 		/// </summary>
-		public abstract Tags TechniqueTags { get; }
+		public abstract TechniqueTags TechniqueTags { get; }
 
 		/// <summary>
 		/// The technique group that this technique instance belongs to.
 		/// </summary>
-		public virtual Group TechniqueGroup =>
-			Enum.TryParse<Group>(TechniqueCode.ToString(), out var inst) ? inst : Group.None;
+		public virtual TechniqueGroup TechniqueGroup =>
+			Enum.TryParse<TechniqueGroup>(TechniqueCode.ToString(), out var inst) ? inst : TechniqueGroup.None;
 
 		/// <summary>
 		/// The difficulty level of this step.
 		/// </summary>
-		public abstract Level DifficultyLevel { get; }
+		public abstract DifficultyLevel DifficultyLevel { get; }
 
 
 		/// <summary>
@@ -108,9 +105,9 @@ namespace Sudoku.Solving.Manual
 		/// one by one.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public unsafe bool HasTag(Tags flags)
+		public unsafe bool HasTag(TechniqueTags flags)
 		{
-			delegate*<Tags, Tags, bool> func = flags.IsFlag() ? &EnumEx.Flags : &EnumEx.MultiFlags;
+			delegate*<TechniqueTags, TechniqueTags, bool> func = flags.IsFlag() ? &EnumEx.Flags : &EnumEx.MultiFlags;
 
 			return func(TechniqueTags, flags);
 		}
