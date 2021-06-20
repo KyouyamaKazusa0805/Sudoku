@@ -10,7 +10,6 @@ using Sudoku.CodeGen;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
-using ParsingOptions = Sudoku.Data.CandidatesParsingOptions;
 
 namespace Sudoku.Data
 {
@@ -604,15 +603,15 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="str">The string text.</param>
 		/// <param name="options">
-		/// The options to parse. The default value is <see cref="ParsingOptions.All"/>.
+		/// The options to parse. The default value is <see cref="CandidatesParsingOptions.All"/>.
 		/// </param>
 		/// <returns>The result cell instance.</returns>
 		/// <exception cref="ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
 		/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
-		/// <seealso cref="ParsingOptions.All"/>
-		public static unsafe Candidates Parse(string str, ParsingOptions options = ParsingOptions.All)
+		/// <seealso cref="CandidatesParsingOptions.All"/>
+		public static unsafe Candidates Parse(string str, CandidatesParsingOptions options = CandidatesParsingOptions.All)
 		{
-			if (options is ParsingOptions.None or > ParsingOptions.All)
+			if (options is CandidatesParsingOptions.None or > CandidatesParsingOptions.All)
 			{
 				throw new ArgumentException("The option is invalid.", nameof(options));
 			}
@@ -638,14 +637,14 @@ namespace Sudoku.Data
 			{
 				string value = match.Value;
 				if (
-					options.Flags(ParsingOptions.ShortForm)
+					options.Flags(CandidatesParsingOptions.ShortForm)
 					&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm)
 				)
 				{
 					result.AddAnyway((value[1] - '1') * 81 + (value[2] - '1') * 9 + value[0] - '1');
 				}
 				else if (
-					options.Flags(ParsingOptions.BracketForm)
+					options.Flags(CandidatesParsingOptions.BracketForm)
 					&& value.SatisfyPattern(RegularExpressions.CandidateListPrepositionalForm)
 				)
 				{
@@ -668,7 +667,7 @@ namespace Sudoku.Data
 					}
 				}
 				else if (
-					options.Flags(ParsingOptions.PrepositionalForm)
+					options.Flags(CandidatesParsingOptions.PrepositionalForm)
 					&& value.SatisfyPattern(RegularExpressions.CandidateListPostpositionalForm)
 				)
 				{

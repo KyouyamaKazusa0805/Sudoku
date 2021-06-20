@@ -123,7 +123,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					"\r\n\t",
 					from id in diagnosticIds
 					select $@"/// <item>
-	/// <term><a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a></term>
+	/// <term><a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a></term>
 	/// <description>{getDescription(id)}</description>
 	/// </item>"
 				);
@@ -131,7 +131,7 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 					"\r\n\r\n\t\t",
 					from id in diagnosticIds
 					select $@"/// <summary>
-		/// Indicates the <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
+		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
 		/// diagnostic result ({getDescription(id)}).
 		/// </summary>
 		[CompilerGenerated]
@@ -220,7 +220,7 @@ namespace {namespaceName}
 {{
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href=""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"">{id}</a>
+	/// <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
 	/// ({description}).
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({typeName})), Shared]
