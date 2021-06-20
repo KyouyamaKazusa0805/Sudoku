@@ -9,7 +9,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

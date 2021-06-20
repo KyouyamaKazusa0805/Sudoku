@@ -7,7 +7,7 @@
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

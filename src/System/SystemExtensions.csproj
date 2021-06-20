@@ -10,7 +10,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -7,7 +7,7 @@
 		<Company>Sunnie</Company>
 		<Description>The debugging project.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Test.xml</DocumentationFile>
 	</PropertyGroup>

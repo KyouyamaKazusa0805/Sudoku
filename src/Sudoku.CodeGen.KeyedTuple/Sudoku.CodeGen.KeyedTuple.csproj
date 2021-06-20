@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>0.3</Version>
+		<Version>0.4</Version>
 		<DocumentationFile>..\docxml\Sudoku.CodeGen.KeyedTuple.xml</DocumentationFile>
 		<Authors>Sunnie</Authors>
 		<Description>A source generator project that generates keyed tuple 'KeyedTuple&lt;&gt;' to store multiple values and only shows one.</Description>

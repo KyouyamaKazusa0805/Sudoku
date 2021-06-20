@@ -8,7 +8,7 @@
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Drawing.xml</DocumentationFile>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

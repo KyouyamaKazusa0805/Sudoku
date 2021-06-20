@@ -10,7 +10,7 @@
 		<PackageId>Sudoku.Recognition</PackageId>
 		<Product>Sudoku.Recognition</Product>
 		<DocumentationFile>..\docxml\Sudoku.Recognition.xml</DocumentationFile>
-		<Version>0.5</Version>
+		<Version>0.6</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

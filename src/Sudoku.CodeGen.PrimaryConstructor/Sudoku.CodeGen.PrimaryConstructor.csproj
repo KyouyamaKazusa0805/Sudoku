@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>0.1</Version>
+		<Version>0.2</Version>
 		<DocumentationFile>..\docxml\Sudoku.CodeGen.PrimaryConstructor.xml</DocumentationFile>
 		<Authors>Sunnie</Authors>
 		<Description>A source generator project that generates the code about the primary constructors of a class.</Description>

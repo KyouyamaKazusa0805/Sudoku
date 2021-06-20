@@ -5,7 +5,7 @@
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<DocumentationFile>..\docxml\Sudoku.CodeGen.Deconstruction.xml</DocumentationFile>
-		<Version>0.1</Version>
+		<Version>0.2</Version>
 		<Authors>Sunnie</Authors>
 		<Description>The source generator project that generates deconstruction methods automactically.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
