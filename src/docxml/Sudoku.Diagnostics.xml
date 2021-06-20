@@ -4,6 +4,39 @@
         <name>Sudoku.Diagnostics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CSharpProjectUpdater">
+            <summary>
+            Defines a C# project file <c>*.csproj</c> information updater.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CSharpProjectUpdater.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CSharpProjectUpdater"/> instance with the specified solution path.
+            </summary>
+            <param name="solutionPath">The solution path.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CSharpProjectUpdater.SolutionPath">
+            <summary>
+            Indicates the solution path.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CSharpProjectUpdater.IncreaseVersionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            To increase <c>&lt;Version&gt;</c> block by 0.1.
+            </summary>
+            <param name="leadingString">The leading string.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The task.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CSharpProjectUpdater.UpdateNullableAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            To update <c>&lt;Nullable&gt;</c> block.
+            </summary>
+            <param name="nullableValue">The nullable value to update.</param>
+            <param name="leadingString">The leading string.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The task.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
             Encapsulates a file counter.
@@ -85,6 +118,13 @@
             <summary>
             Count up for all files in the specified root directory, and return the result asynchronously.
             </summary>
+            <returns>The task of the operation.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountUpAsync(System.Threading.CancellationToken)">
+            <summary>
+            Count up for all files in the specified root directory, and return the result asynchronously.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The task of the operation.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.FileCounterResult">

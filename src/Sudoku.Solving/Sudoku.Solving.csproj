@@ -13,6 +13,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Extensions;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using static Sudoku.Constants;
 
@@ -168,5 +169,13 @@ namespace Sudoku.Diagnostics
 		/// </summary>
 		/// <returns>The task of the operation.</returns>
 		public async Task<FileCounterResult> CountUpAsync() => await Task.Run(CountUp);
+
+		/// <summary>
+		/// Count up for all files in the specified root directory, and return the result asynchronously.
+		/// </summary>
+		/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+		/// <returns>The task of the operation.</returns>
+		public async Task<FileCounterResult> CountUpAsync(CancellationToken cancellationToken) =>
+			await Task.Run(CountUp, cancellationToken);
 	}
 }

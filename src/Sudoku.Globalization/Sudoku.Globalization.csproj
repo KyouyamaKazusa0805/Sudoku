@@ -8,6 +8,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.Globalization.xml</DocumentationFile>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

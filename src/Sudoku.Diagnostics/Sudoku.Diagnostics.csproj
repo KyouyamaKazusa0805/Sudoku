@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>

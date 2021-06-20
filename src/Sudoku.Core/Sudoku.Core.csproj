@@ -10,6 +10,7 @@
 		<LangVersion>9.0</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

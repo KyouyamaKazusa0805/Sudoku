@@ -9,6 +9,7 @@
 		<Description>The IO operations for sudoku.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -11,6 +11,7 @@
 		<Product>Sudoku.Recognition</Product>
 		<DocumentationFile>..\docxml\Sudoku.Recognition.xml</DocumentationFile>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

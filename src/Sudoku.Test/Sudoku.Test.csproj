@@ -8,6 +8,7 @@
 		<Description>The debugging project.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<Version>0.6</Version>
+		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Test.xml</DocumentationFile>
 	</PropertyGroup>

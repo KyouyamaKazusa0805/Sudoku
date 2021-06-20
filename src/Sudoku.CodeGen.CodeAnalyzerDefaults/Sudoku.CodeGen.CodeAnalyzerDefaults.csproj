@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>A source generator project that generates the code for code analyzer default value and code fix defaults.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
