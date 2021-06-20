@@ -14,7 +14,8 @@
 * 分析器 bug 导致忘记分析处理 `ToString` 方法输出文字的时候，需要处理递归成员的问题（#124）；
 * 分析器 bug 导致无法对值类型和引用类型进行分析（#125）；
 * 分析器 bug 导致 SS0615 分析情况异常（#126）；
-* 分析器 bug 导致如果触发 `if (expr is null) { 多语句 }` 的部分会引起 `CompoundNullCoalescingAnalyzer` 类的代码崩溃（#127）。
+* 分析器 bug 导致如果触发 `if (expr is null) { 多语句 }` 的部分会引起 `CompoundNullCoalescingAnalyzer` 类的代码崩溃（#127）；
+* 分析器 bug 导致无法正确载入资源字典用于判断数据（#128）。
 
 ### 增加
 
