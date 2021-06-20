@@ -35,6 +35,7 @@
 | [SD0402](rules/Rule-SD0402) | ⚠                  | Usage                     | ❌              |        |
 | [SD0403](rules/Rule-SD0403) | ❌                  | Usage                     | ❌              |        |
 | [SD0404](rules/Rule-SD0404) | ⚠                  | Usage                     | ❌              |        |
+| [SD0405](rules/Rule-SD0405) | ⚠                  | Usage                     | ❌              |        |
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
