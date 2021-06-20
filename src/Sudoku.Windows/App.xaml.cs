@@ -16,7 +16,9 @@ namespace Sudoku.Windows
 				0 => ShowMainWindowDefault(),
 				1 => args[0] switch
 				{
+#if AUTHOR_RESERVED && DEBUG
 					"-d" or "--dynamic" => ShowMainWindowWithDynamic(),
+#endif
 					var p => ShowMainWindowWithGridCode(p)
 				},
 				2 => args[0] switch
@@ -33,6 +35,8 @@ namespace Sudoku.Windows
 
 		private partial Window ShowMainWindowDefault();
 		private partial Window? ShowMainWindowWithGridCode(string str);
+#if AUTHOR_RESERVED && DEBUG
 		private partial Window ShowMainWindowWithDynamic();
+#endif
 	}
 }

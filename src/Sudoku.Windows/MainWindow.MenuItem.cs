@@ -967,9 +967,12 @@ namespace Sudoku.Windows
 					{
 					}
 				}
-#endif
+
 			Return:
 				return true;
+#else
+				return true;
+#endif
 			}
 
 			bool applyNormal()
@@ -1034,9 +1037,11 @@ namespace Sudoku.Windows
 					{
 					}
 				}
-#endif
 			Return:
 				return true;
+#else
+				return true;
+#endif
 			}
 		}
 
