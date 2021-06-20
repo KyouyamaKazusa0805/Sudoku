@@ -14,11 +14,11 @@ This section lists the update logs. If you want to check what content was added,
 
 本节陈列更新日志。如果你要查看什么东西添加了、删掉了或者是更新了，就查看下面这些链接。
 
-* [V0.1 (20210110)](Version-0.1)
-* [V0.2 (20210126)](Version-0.2)
-* [V0.3 (20210313)](Version-0.3)
-* [V0.4 (20210414)](Version-0.4)
-* [V0.5](Version-0.5)
+* [V0.1 (20210110)](version/Version-0.1)
+* [V0.2 (20210126)](version/Version-0.2)
+* [V0.3 (20210313)](version/Version-0.3)
+* [V0.4 (20210414)](version/Version-0.4)
+* [V0.5](version/Version-0.5)
 
 
 
@@ -35,40 +35,40 @@ This section you'll find the details about this solution.
   * [程序热键（快捷键）](Program-Hotkeys)
 * API 介绍
   * 条件编译符号
-    * [条件编译符号介绍](Introduction-About-Conditional-Compilation-Symbols)
-    * [条件编译符号列表](List-Of-Conditional-Compilation-Symbols)
+    * [条件编译符号介绍](conditional-compilation-symbols/Introduction-About-Conditional-Compilation-Symbols)
+    * [条件编译符号列表](conditional-compilation-symbols/List-Of-Conditional-Compilation-Symbols)
   * `SudokuGrid` 结构
-    * [该类型的介绍](How-To-Use-Struct-SudokuGrid)
-    * [该类型的格式串](Formats-Of-SudokuGrid)
-  * [`Cells` 结构](How-To-Use-Struct-Cells)
-  * [`AnalysisResult` 记录类](How-To-Use-Record-Class-AnalysisResult)
-  * [`CodeCounter` 类](How-To-Use-Class-CodeCounter)
+    * [该类型的介绍](types/structs/How-To-Use-Struct-SudokuGrid)
+    * [该类型的格式串](types/structs/Formats-Of-SudokuGrid)
+  * [`Cells` 结构](types/structs/How-To-Use-Struct-Cells)
+  * [`AnalysisResult` 记录类](types/classes/How-To-Use-Record-Class-AnalysisResult)
+  * [`CodeCounter` 类](types/classes/How-To-Use-Class-CodeCounter)
   * 异常
-    * [`AssemblyFailedToLoadException` 异常](Exception-AssemblyFailedToLoadException)
-    * [`FailedToFillValueException` 异常](Exception-FailedToFillValueException)
-    * [`InvalidPuzzleException` 异常](Exception-InvalidPuzzleException)
-    * [`MultipleSolutionsException` 异常](Exception-MultipleSolutionsException)
-    * [`NoSolutionException` 异常](Exception-NoSolutionException)
-    * [`PuzzleShouldHaveBeenSolvedException` 异常](Exception-PuzzleShouldHaveBeenSolvedException)
-    * [`RecognizerHasNotBeenInitializedException` 异常](Exception-RecognizerHasNotBeenInitializedException)
-    * [`ResourceCannotBeFoundException` 异常](Exception-ResourceCannotBeFoundException)
-    * [`TesseractException` 异常](Exception-TesseractException)
-    * [`WrongStepException` 异常](Exception-WrongStepException)
+    * [`AssemblyFailedToLoadException` 异常](types/exceptions/Exception-AssemblyFailedToLoadException)
+    * [`FailedToFillValueException` 异常](types/exceptions/Exception-FailedToFillValueException)
+    * [`InvalidPuzzleException` 异常](types/exceptions/Exception-InvalidPuzzleException)
+    * [`MultipleSolutionsException` 异常](types/exceptions/Exception-MultipleSolutionsException)
+    * [`NoSolutionException` 异常](types/exceptions/Exception-NoSolutionException)
+    * [`PuzzleShouldHaveBeenSolvedException` 异常](types/exceptions/Exception-PuzzleShouldHaveBeenSolvedException)
+    * [`RecognizerHasNotBeenInitializedException` 异常](types/exceptions/Exception-RecognizerHasNotBeenInitializedException)
+    * [`ResourceCannotBeFoundException` 异常](types/exceptions/Exception-ResourceCannotBeFoundException)
+    * [`TesseractException` 异常](types/exceptions/Exception-TesseractException)
+    * [`WrongStepException` 异常](types/exceptions/Exception-WrongStepException)
 * API 使用
-  * [如何使用解题功能](How-To-Use-Code-To-Solve-Sudokus)
-  * [数独盘面格式串支持情况](Sudoku-Grid-Format-Supports)
-  * [批处理指令](Batch-Commands)
+  * [如何使用解题功能](how-to/How-To-Use-Code-To-Solve-Sudokus)
+  * [数独盘面格式串支持情况](how-to/Sudoku-Grid-Format-Supports)
+  * [批处理指令](how-to/Batch-Commands)
 * 开发参考
-  * [如何取消一个 `Task` 对象](How-To-Cancel-A-Task)
-  * [如何添加一个菜单选项](How-To-Add-A-Menu-Item)
-  * [如何添加一个技巧搜索器](How-To-Add-A-Technique-Searcher)
-  * [如何添加一个程序设置项](How-To-Add-A-Preference-Item)
+  * [如何取消一个 `Task` 对象](how-to/How-To-Cancel-A-Task)
+  * [如何添加一个菜单选项](how-to/How-To-Add-A-Menu-Item)
+  * [如何添加一个技巧搜索器](how-to/How-To-Add-A-Technique-Searcher)
+  * [如何添加一个程序设置项](how-to/How-To-Add-A-Preference-Item)
 * 老的技巧算法参考
-  * [复杂鱼](Old-Algorithm-Complex-Fish)
-  * [死亡绽放](Old-Algorithm-Death-Blossom)
+  * [复杂鱼](technique-algorithm-ref/Old-Algorithm-Complex-Fish)
+  * [死亡绽放](technique-algorithm-ref/Old-Algorithm-Death-Blossom)
 * 其它
-  * [如何使用机器人项目](How-To-Compile-Bot-Projects)
-  * [伪代码约定](Pseudo-Code-Convention)
+  * ~~[如何使用机器人项目](how-to/How-To-Compile-Bot-Projects)~~
+  * [伪代码约定](miscellaneous/Pseudo-Code-Convention)
 
 
 
@@ -78,9 +78,9 @@ In this section, you'll find the code analyzers and fixers about this solution. 
 
 这一节将给出整个解决方案的代码分析和修补工具。解决方案甚至贴心地给你提供了语义分析器，可对你书写的代码进行代码分析。分析类别分项目相关和语法相关两类分析诊断信息，详情请参考本节的内容。
 
-* [什么是语义分析器](What-Is-A-Code-Analyzer)
-* [分类表](Code-Analysis-Table)
-* [代码分析规则集](Code-Analysis-Rule-List)
+* [什么是语义分析器](code-analysis/What-Is-A-Code-Analyzer)
+* [分类表](code-analysis/Code-Analysis-Table)
+* [代码分析规则集](code-analysis/Code-Analysis-Rule-List)
 
 
 
@@ -95,14 +95,14 @@ Please note that **NOT ALL** language features will be introduced below. I'll on
 请注意**并不是所有的**语言特性都会介绍。我只介绍一些对我或整个解决方案有用的、或者是强大的特性。
 
 * C# 7
-  * [引用结构](Ref-Struct)
-  * [`unmanaged` 泛型约束](Unmanaged-Generic-Type-Constraint)
+  * [引用结构](language-ref/Ref-Struct)
+  * [`unmanaged` 泛型约束](language-ref/Unmanaged-Generic-Type-Constraint)
 * C# 8
-  * [可空引用类型](Nullable-Reference-Types)
+  * [可空引用类型](language-ref/Nullable-Reference-Types)
 * C# 9
-  * [函数指针](Function-Pointer)
-  * [源代码生成器](Source-Generator)
+  * [函数指针](language-ref/Function-Pointer)
+  * [源代码生成器](language-ref/Source-Generator)
 * C# 10
-  * [Lambda 拓展](Extended-Lambdas)
+  * [Lambda 拓展](language-ref/Extended-Lambdas)
 * 综合内容
-  * [模式匹配](Pattern-Matching)
+  * [模式匹配](language-ref/Pattern-Matching)
