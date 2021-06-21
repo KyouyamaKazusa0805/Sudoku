@@ -88,3 +88,4 @@ SS9004,Error,Design,"Due to recursive member in the record type, invoking synthe
 SS9005,Warning,Design,"Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly'.",
 SS9006,Warning,Design,You don't need to write ': object' because this is always a truth.,
 SS9007,Info,Usage,Please use keyword 'init' instead of 'set' of the property accessor in an attribute type.,
+SS9008,Info,Design,Please append keyword 'readonly' into the read-only properties.,

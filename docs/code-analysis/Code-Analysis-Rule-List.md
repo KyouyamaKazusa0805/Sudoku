@@ -105,4 +105,4 @@
 | [SS9005](rules/Rule-SS9005) | ⚠                  | Design                    | ✔              |        |
 | [SS9006](rules/Rule-SS9006) | ⚠                  | Design                    | ✔              |        |
 | [SS9007](rules/Rule-SS9007) | ℹ                  | Usage                     | ✔              |        |
-| [SS9008](rules/Rule-SS9008) | ℹ | Design | ❌ | 是 |
+| [SS9008](rules/Rule-SS9008) | ℹ | Design | ❌ |  |
