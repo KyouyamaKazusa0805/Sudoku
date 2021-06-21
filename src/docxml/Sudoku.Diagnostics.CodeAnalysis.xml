@@ -9,7 +9,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9002">SS9002</a></term>
             <description>Redundant array creation statement</description>
             </item>
             </list>
@@ -20,7 +20,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ArrayCreationClauseAnalyzer.SS9002">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9002">SS9002</a>
             diagnostic result (Redundant array creation statement).
             </summary>
         </member>
@@ -32,7 +32,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9007">SS9007</a></term>
             <description>Please use keyword 'init' instead of 'set' of the property accessor in an attribute type</description>
             </item>
             </list>
@@ -43,7 +43,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer.SS9007">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9007">SS9007</a>
             diagnostic result (Please use keyword 'init' instead of 'set' of the property accessor in an attribute type).
             </summary>
         </member>
@@ -55,7 +55,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9006">SS9006</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9006">SS9006</a></term>
             <description>You don't need to write ': object' because this is always a truth</description>
             </item>
             </list>
@@ -66,7 +66,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InheritFromObjectAnalyzer.SS9006">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9006">SS9006</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9006">SS9006</a>
             diagnostic result (You don't need to write ': object' because this is always a truth).
             </summary>
         </member>
@@ -78,35 +78,35 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0501">SS0501</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0501">SS0501</a></term>
             <description>Deconstruction methods should contain at least 2 parameters</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0502">SS0502</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0502">SS0502</a></term>
             <description>Deconstruction methods must be instance ones</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0503">SS0503</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0503">SS0503</a></term>
             <description>Deconstruction methods must return void</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0504">SS0504</a></term>
             <description>Deconstruction methods must be public</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0505">SS0505</a></term>
             <description>All parameters in deconstruction methods should be out parameters</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0506">SS0506</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0506">SS0506</a></term>
             <description>The assignment statement isn't a simple variable one, but an expression</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0507">SS0507</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0507">SS0507</a></term>
             <description>The parameter should be corresponded to a certain instance field or instance property in this type</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0508">SS0508</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0508">SS0508</a></term>
             <description>The type has already contained a deconstruction method that holds the same number of parameters of this method, so this method won't work</description>
             </item>
             </list>
@@ -117,49 +117,49 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0501">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0501">SS0501</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0501">SS0501</a>
             diagnostic result (Deconstruction methods should contain at least 2 parameters).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0502">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0502">SS0502</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0502">SS0502</a>
             diagnostic result (Deconstruction methods must be instance ones).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0503">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0503">SS0503</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0503">SS0503</a>
             diagnostic result (Deconstruction methods must return void).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0504">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0504">SS0504</a>
             diagnostic result (Deconstruction methods must be public).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0505">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0505">SS0505</a>
             diagnostic result (All parameters in deconstruction methods should be out parameters).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0506">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0506">SS0506</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0506">SS0506</a>
             diagnostic result (The assignment statement isn't a simple variable one, but an expression).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0507">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0507">SS0507</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0507">SS0507</a>
             diagnostic result (The parameter should be corresponded to a certain instance field or instance property in this type).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.SS0508">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0508">SS0508</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0508">SS0508</a>
             diagnostic result (The type has already contained a deconstruction method that holds the same number of parameters of this method, so this method won't work).
             </summary>
         </member>
@@ -171,11 +171,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0303">SD0303</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0303">SD0303</a></term>
             <description>Please use the default-value field to avoid instantiation</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0304">SD0304</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0304">SD0304</a></term>
             <description>Please use the specific property to simplify the invocation</description>
             </item>
             </list>
@@ -236,13 +236,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SD0303">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0303">SD0303</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0303">SD0303</a>
             diagnostic result (Please use the default-value field to avoid instantiation).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SD0304">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0304">SD0304</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0304">SD0304</a>
             diagnostic result (Please use the specific property to simplify the invocation).
             </summary>
         </member>
@@ -254,7 +254,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9003">SS9003</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9003">SS9003</a></term>
             <description>Unncessary discards</description>
             </item>
             </list>
@@ -270,7 +270,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardAnalyzer.SS9003">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9003">SS9003</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9003">SS9003</a>
             diagnostic result (Unncessary discards).
             </summary>
         </member>
@@ -282,7 +282,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0401">SS0401</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0401">SS0401</a></term>
             <description>Can't apply the operator here because the type is closed enum</description>
             </item>
             </list>
@@ -303,7 +303,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer.SS0401">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0401">SS0401</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0401">SS0401</a>
             diagnostic result (Can't apply the operator here because the type is closed enum).
             </summary>
         </member>
@@ -315,11 +315,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0402">SS0402</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0402">SS0402</a></term>
             <description>The enum field must holds a flag value if the enum is marked 'FlagsAttribute'</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0403">SS0403</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0403">SS0403</a></term>
             <description>The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'</description>
             </item>
             </list>
@@ -330,13 +330,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SS0402">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0402">SS0402</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0402">SS0402</a>
             diagnostic result (The enum field must holds a flag value if the enum is marked 'FlagsAttribute').
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.FlaggedEnumFieldAnalyzer.SS0403">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0403">SS0403</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0403">SS0403</a>
             diagnostic result (The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute').
             </summary>
         </member>
@@ -348,11 +348,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0101">SS0101</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0101">SS0101</a></term>
             <description>Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0102">SS0102</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0102">SS0102</a></term>
             <description>Unnecessary interpolation leading character '$'</description>
             </item>
             </list>
@@ -363,13 +363,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SS0101">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0101">SS0101</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0101">SS0101</a>
             diagnostic result (Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SS0102">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0102">SS0102</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0102">SS0102</a>
             diagnostic result (Unnecessary interpolation leading character '$').
             </summary>
         </member>
@@ -381,7 +381,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0301">SS0301</a></term>
             <description>Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value'</description>
             </item>
             </list>
@@ -398,7 +398,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SS0301">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0301">SS0301</a>
             diagnostic result (Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value').
             </summary>
         </member>
@@ -410,11 +410,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0701">SS0701</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0701">SS0701</a></term>
             <description>The expression can be simplified to using compound null-coalesce operator '??='</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0705">SS0705</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0705">SS0705</a></term>
             <description>Using compound null-coalesce operator '??=' is unncessary</description>
             </item>
             </list>
@@ -425,13 +425,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SS0701">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0701">SS0701</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0701">SS0701</a>
             diagnostic result (The expression can be simplified to using compound null-coalesce operator '??=').
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer.SS0705">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0705">SS0705</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0705">SS0705</a>
             diagnostic result (Using compound null-coalesce operator '??=' is unncessary).
             </summary>
         </member>
@@ -443,7 +443,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0702">SS0702</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0702">SS0702</a></term>
             <description>The expression can be simplified to using null-coalescing operator '??'</description>
             </item>
             </list>
@@ -454,7 +454,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullCoalescingAnalyzer.SS0702">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0702">SS0702</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0702">SS0702</a>
             diagnostic result (The expression can be simplified to using null-coalescing operator '??').
             </summary>
         </member>
@@ -466,11 +466,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0703">SS0703</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0703">SS0703</a></term>
             <description>Unncessary null-conditional operator '?'</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0704">SS0704</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0704">SS0704</a></term>
             <description>Unncessary null-forgiving operator '!'</description>
             </item>
             </list>
@@ -481,13 +481,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer.SS0703">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0703">SS0703</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0703">SS0703</a>
             diagnostic result (Unncessary null-conditional operator '?').
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullConditionalAndSuppressionAnalyzer.SS0704">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0704">SS0704</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0704">SS0704</a>
             diagnostic result (Unncessary null-forgiving operator '!').
             </summary>
         </member>
@@ -499,7 +499,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0706">SS0706</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0706">SS0706</a></term>
             <description>If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!='</description>
             </item>
             </list>
@@ -510,7 +510,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.SS0706">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0706">SS0706</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0706">SS0706</a>
             diagnostic result (If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!=').
             </summary>
         </member>
@@ -522,11 +522,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0621">SS0621</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0621">SS0621</a></term>
             <description>Available simplification for property patterns connected with keyword 'and' to a single property pattern</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0622">SS0622</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0622">SS0622</a></term>
             <description>Available simplification for property patterns connected with keyword 'or' to a single property pattern</description>
             </item>
             </list>
@@ -537,13 +537,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0621">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0621">SS0621</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0621">SS0621</a>
             diagnostic result (Available simplification for property patterns connected with keyword 'and' to a single property pattern).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0622">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0622">SS0622</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0622">SS0622</a>
             diagnostic result (Available simplification for property patterns connected with keyword 'or' to a single property pattern).
             </summary>
         </member>
@@ -555,7 +555,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0634">SS0634</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0634">SS0634</a></term>
             <description>The expression can be simplified to use empty-brace property pattern</description>
             </item>
             </list>
@@ -576,7 +576,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer.SS0634">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0634">SS0634</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0634">SS0634</a>
             diagnostic result (The expression can be simplified to use empty-brace property pattern).
             </summary>
         </member>
@@ -588,7 +588,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0624">SS0624</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0624">SS0624</a></term>
             <description>Available simplification for extended property patterns</description>
             </item>
             </list>
@@ -599,7 +599,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableExtendedPropertyPatternAnalyzer.SS0624">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0624">SS0624</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0624">SS0624</a>
             diagnostic result (Available simplification for extended property patterns).
             </summary>
         </member>
@@ -611,7 +611,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0627">SS0627</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0627">SS0627</a></term>
             <description>Available length pattern</description>
             </item>
             </list>
@@ -622,7 +622,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableLengthPatternAnalyzer.SS0627">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0627">SS0627</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0627">SS0627</a>
             diagnostic result (Available length pattern).
             </summary>
         </member>
@@ -634,7 +634,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0606">SS0606</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0606">SS0606</a></term>
             <description>The expression can be simplifiy via using positional pattern matching</description>
             </item>
             </list>
@@ -645,7 +645,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer.SS0606">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0606">SS0606</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0606">SS0606</a>
             diagnostic result (The expression can be simplifiy via using positional pattern matching).
             </summary>
         </member>
@@ -657,7 +657,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0604">SS0604</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0604">SS0604</a></term>
             <description>Unnecessary constant pattern for the variable of the same type</description>
             </item>
             </list>
@@ -678,7 +678,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.SS0604">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0604">SS0604</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0604">SS0604</a>
             diagnostic result (Unnecessary constant pattern for the variable of the same type).
             </summary>
         </member>
@@ -690,7 +690,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0610">SS0610</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610</a></term>
             <description>The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead</description>
             </item>
             </list>
@@ -701,7 +701,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer.SS0610">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0610">SS0610</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610</a>
             diagnostic result (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead).
             </summary>
         </member>
@@ -713,11 +713,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0611">SS0611</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0611">SS0611</a></term>
             <description>The discard in the 'var' pattern may not take any effects</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0612">SS0612</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0612">SS0612</a></term>
             <description>It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern</description>
             </item>
             </list>
@@ -728,13 +728,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer.SS0611">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0611">SS0611</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0611">SS0611</a>
             diagnostic result (The discard in the 'var' pattern may not take any effects).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardInVarPatternAnalyzer.SS0612">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0612">SS0612</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0612">SS0612</a>
             diagnostic result (It doesn't take any effects that all subpatterns use discards in a 'var' deconstruction pattern).
             </summary>
         </member>
@@ -746,7 +746,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0608">SS0608</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0608">SS0608</a></term>
             <description>The positional pattern may not allow because bounded deconstruction method is a parameterless or single-parameter one</description>
             </item>
             </list>
@@ -757,7 +757,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.IncorrectDiscardPatternAnalyzer.SS0608">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0608">SS0608</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0608">SS0608</a>
             diagnostic result (The positional pattern may not allow because bounded deconstruction method is a parameterless or single-parameter one).
             </summary>
         </member>
@@ -769,11 +769,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0618">SS0618</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0618">SS0618</a></term>
             <description>Pattern 'not null' is redundant; please remove it</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0619">SS0619</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0619">SS0619</a></term>
             <description>Combination constant pattern 'null' and the keyword 'or' is redundant; please remove it</description>
             </item>
             </list>
@@ -792,13 +792,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.SS0618">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0618">SS0618</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0618">SS0618</a>
             diagnostic result (Pattern 'not null' is redundant; please remove it).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NotNullAndAndNullOrAnalyzer.SS0619">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0619">SS0619</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0619">SS0619</a>
             diagnostic result (Combination constant pattern 'null' and the keyword 'or' is redundant; please remove it).
             </summary>
         </member>
@@ -810,11 +810,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0615">SS0615</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a></term>
             <description>Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0616">SS0616</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a></term>
             <description>Please use '{ }' or 'not null' instead of '!= null' in nullable reference types</description>
             </item>
             </list>
@@ -825,13 +825,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0615">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0615">SS0615</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a>
             diagnostic result (Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0616">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0616">SS0616</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a>
             diagnostic result (Please use '{ }' or 'not null' instead of '!= null' in nullable reference types).
             </summary>
         </member>
@@ -843,7 +843,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0605">SS0605</a></term>
             <description>The nullable value type checking expression will be suggested to convert to constant pattern</description>
             </item>
             </list>
@@ -854,7 +854,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableValueTypeConstantPatternAnalyzer.SS0605">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0605">SS0605</a>
             diagnostic result (The nullable value type checking expression will be suggested to convert to constant pattern).
             </summary>
         </member>
@@ -866,7 +866,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0626">SS0626</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0626">SS0626</a></term>
             <description>Keyword 'not' repeats; A pair of keyword 'not' can be omitted</description>
             </item>
             </list>
@@ -877,7 +877,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PairKeywordNotAnalyzer.SS0626">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0626">SS0626</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0626">SS0626</a>
             diagnostic result (Keyword 'not' repeats; A pair of keyword 'not' can be omitted).
             </summary>
         </member>
@@ -889,7 +889,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0609">SS0609</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0609">SS0609</a></term>
             <description>The positional subpattern is redundant</description>
             </item>
             </list>
@@ -900,7 +900,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantSubpatternAnalyzer.SS0609">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0609">SS0609</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0609">SS0609</a>
             diagnostic result (The positional subpattern is redundant).
             </summary>
         </member>
@@ -912,7 +912,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0635">SS0635</a></term>
             <description>It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern</description>
             </item>
             </list>
@@ -923,7 +923,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RemoveParameterNameAnalyzer.SS0635">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0635">SS0635</a>
             diagnostic result (It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern).
             </summary>
         </member>
@@ -935,11 +935,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0623">SS0623</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0623">SS0623</a></term>
             <description>Repeated property path; try to integrate to one using keyword 'and' as the connection</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0625">SS0625</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0625">SS0625</a></term>
             <description>Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection</description>
             </item>
             </list>
@@ -950,13 +950,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SS0623">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0623">SS0623</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0623">SS0623</a>
             diagnostic result (Repeated property path; try to integrate to one using keyword 'and' as the connection).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RepeatedPropertyPathAnalyzer.SS0625">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0625">SS0625</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0625">SS0625</a>
             diagnostic result (Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection).
             </summary>
         </member>
@@ -968,7 +968,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0636">SS0636</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0636">SS0636</a></term>
             <description>We suggest you explicitly specify the parameter name to enhance the readability when the sub-pattern in the positional pattern has used the non-discard one</description>
             </item>
             </list>
@@ -979,7 +979,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ShouldAppendParameterNameAnalyzer.SS0636">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0636">SS0636</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0636">SS0636</a>
             diagnostic result (We suggest you explicitly specify the parameter name to enhance the readability when the sub-pattern in the positional pattern has used the non-discard one).
             </summary>
         </member>
@@ -991,15 +991,15 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0601">SS0601</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0601">SS0601</a></term>
             <description>Unnecessary explicit type pattern</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0602">SS0602</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0602">SS0602</a></term>
             <description>The pattern can be simplify to 'is null'</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0603">SS0603</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0603">SS0603</a></term>
             <description>The pattern can be simplify to 'is not null'</description>
             </item>
             </list>
@@ -1010,19 +1010,19 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0601">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0601">SS0601</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0601">SS0601</a>
             diagnostic result (Unnecessary explicit type pattern).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0602">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0602">SS0602</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0602">SS0602</a>
             diagnostic result (The pattern can be simplify to 'is null').
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TypePatternAnalyzer.SS0603">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0603">SS0603</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0603">SS0603</a>
             diagnostic result (The pattern can be simplify to 'is not null').
             </summary>
         </member>
@@ -1034,11 +1034,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0607">SS0607</a></term>
             <description>This discard can be omitted in the current positional pattern</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0613">SS0613</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0613">SS0613</a></term>
             <description>The discard pattern in this property pattern doesn't judge anything; please remove this clause</description>
             </item>
             </list>
@@ -1061,13 +1061,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0607">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0607">SS0607</a>
             diagnostic result (This discard can be omitted in the current positional pattern).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryDiscardPatternAnalyzer.SS0613">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0613">SS0613</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0613">SS0613</a>
             diagnostic result (The discard pattern in this property pattern doesn't judge anything; please remove this clause).
             </summary>
         </member>
@@ -1079,7 +1079,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0614">SS0614</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0614">SS0614</a></term>
             <description>The empty-brace property pattern '{ }' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it</description>
             </item>
             </list>
@@ -1090,7 +1090,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SS0614">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0614">SS0614</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0614">SS0614</a>
             diagnostic result (The empty-brace property pattern '{ }' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it).
             </summary>
         </member>
@@ -1102,7 +1102,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0617">SS0617</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0617">SS0617</a></term>
             <description>Unncessary operator 'is' to determine the range of that value of same type</description>
             </item>
             </list>
@@ -1113,7 +1113,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryIsOperatorAnalyzer.SS0617">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0617">SS0617</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0617">SS0617</a>
             diagnostic result (Unncessary operator 'is' to determine the range of that value of same type).
             </summary>
         </member>
@@ -1125,7 +1125,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0620">SS0620</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0620">SS0620</a></term>
             <description>Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead</description>
             </item>
             </list>
@@ -1136,7 +1136,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnnecessaryNotInRelationPatternAnalyzer.SS0620">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0620">SS0620</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0620">SS0620</a>
             diagnostic result (Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead).
             </summary>
         </member>
@@ -1148,7 +1148,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0633">SS0633</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0633">SS0633</a></term>
             <description>'case var _' label in a switch expression (or statement) is equivalent to the default case ('default:' in switch statement and '_ =>' in switch expression); try to use 'default:' or '_ =>' instead</description>
             </item>
             </list>
@@ -1159,7 +1159,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UseDefaultCaseAnalyzer.SS0633">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0633">SS0633</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0633">SS0633</a>
             diagnostic result ('case var _' label in a switch expression (or statement) is equivalent to the default case ('default:' in switch statement and '_ =>' in switch expression); try to use 'default:' or '_ =>' instead).
             </summary>
         </member>
@@ -1171,7 +1171,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9001">SS9001</a></term>
             <description>Available prepositional iteration condition expression</description>
             </item>
             </list>
@@ -1187,7 +1187,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ForLoopBadConditionAnalyzer.SS9001">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9001">SS9001</a>
             diagnostic result (Available prepositional iteration condition expression).
             </summary>
         </member>
@@ -1199,7 +1199,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9004">SS9004</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9004">SS9004</a></term>
             <description>Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing</description>
             </item>
             </list>
@@ -1210,7 +1210,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RecordToStringAnalyzer.SS9004">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9004">SS9004</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9004">SS9004</a>
             diagnostic result (Due to recursive member in the record type, invoking synthesized method ToString will cause stack overflowing).
             </summary>
         </member>
@@ -1222,7 +1222,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0201">SS0201</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0201">SS0201</a></term>
             <description>The result of the expression '.ctor(void*, int)' can't be the return value as any methods</description>
             </item>
             </list>
@@ -1250,7 +1250,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SS0201">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0201">SS0201</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0201">SS0201</a>
             diagnostic result (The result of the expression '.ctor(void*, int)' can't be the return value as any methods).
             </summary>
         </member>
@@ -1262,7 +1262,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9005">SS9005</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9005">SS9005</a></term>
             <description>Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly'</description>
             </item>
             </list>
@@ -1273,7 +1273,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer.SS9005">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9005">SS9005</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9005">SS9005</a>
             diagnostic result (Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly').
             </summary>
         </member>
@@ -1285,11 +1285,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0401">SD0401</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a></term>
             <description>Please use nameof expression instead</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0402">SD0402</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0402">SD0402</a></term>
             <description>This attribute must contain the specified number of parameters</description>
             </item>
             </list>
@@ -1350,17 +1350,52 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SD0401">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0401">SD0401</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a>
             diagnostic result (Please use nameof expression instead).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SD0402">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0402">SD0402</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0402">SD0402</a>
             diagnostic result (This attribute must contain the specified number of parameters).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0405">SD0405</a></term>
+            <description>The type of this expression should overload the operator '=='</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.AutoEqualityAttributeTypeName">
+            <summary>
+            Indicates the full type name of type <c>AutoEqualityAttribute</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.GetBuiltInTypesWithoutOperatorEquality(Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Get all built in types that don't contain <c>operator ==</c>.
+            </summary>
+            <param name="compilation">The compilation.</param>
+            <returns>The symbols.</returns>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.SD0405">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0405">SD0405</a>
+            diagnostic result (The type of this expression should overload the operator '==').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer">
@@ -1368,19 +1403,19 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0305">SD0305</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0305">SD0305</a></term>
             <description>The input value in this initializer is invalid</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0306">SD0306</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0306">SD0306</a></term>
             <description>The remove expression in the initializer following with the current constructor has no effect</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0307">SD0307</a></term>
             <description>The expression can be simplified</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0308">SD0308</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0308">SD0308</a></term>
             <description>The initializer contains the duplicate value</description>
             </item>
             </list>
@@ -1411,25 +1446,25 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0305">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0305">SD0305</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0305">SD0305</a>
             diagnostic result (The input value in this initializer is invalid).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0306">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0306">SD0306</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0306">SD0306</a>
             diagnostic result (The remove expression in the initializer following with the current constructor has no effect).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0307">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0307">SD0307</a>
             diagnostic result (The expression can be simplified).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellsAndCandidatesInitializerAnalyzer.SD0308">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0308">SD0308</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0308">SD0308</a>
             diagnostic result (The initializer contains the duplicate value).
             </summary>
         </member>
@@ -1441,7 +1476,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0302">SD0302</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0302">SD0302</a></term>
             <description>Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'</description>
             </item>
             </list>
@@ -1472,7 +1507,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CountIsEqualToZeroAnalyzer.SD0302">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0302">SD0302</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0302">SD0302</a>
             diagnostic result (Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty').
             </summary>
         </member>
@@ -1484,7 +1519,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0403">SD0403</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0403">SD0403</a></term>
             <description>'DirectSearcherAttribute' attribute can be only used for step searchers</description>
             </item>
             </list>
@@ -1505,7 +1540,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherAttributeAnalyzer.SD0403">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0403">SD0403</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0403">SD0403</a>
             diagnostic result ('DirectSearcherAttribute' attribute can be only used for step searchers).
             </summary>
         </member>
@@ -1517,7 +1552,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0404">SD0404</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0404">SD0404</a></term>
             <description>If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps'</description>
             </item>
             </list>
@@ -1548,7 +1583,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.SD0404">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0404">SD0404</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0404">SD0404</a>
             diagnostic result (If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps').
             </summary>
         </member>
@@ -1560,23 +1595,23 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0202">SD0202</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0202">SD0202</a></term>
             <description>The specified method can't be found and called</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0203">SD0203</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0203">SD0203</a></term>
             <description>The number of arguments mismatched in this dynamically invocation</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0204">SD0204</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0204">SD0204</a></term>
             <description>The argument type mismatched in this dynamically invocation</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0205">SD0205</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0205">SD0205</a></term>
             <description>The method returns void, but you make it an rvalue expression</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0206">SD0206</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0206">SD0206</a></term>
             <description>The specified dynamic invocation method doesn't exist</description>
             </item>
             </list>
@@ -1617,31 +1652,31 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SD0202">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0202">SD0202</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0202">SD0202</a>
             diagnostic result (The specified method can't be found and called).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SD0203">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0203">SD0203</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0203">SD0203</a>
             diagnostic result (The number of arguments mismatched in this dynamically invocation).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SD0204">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0204">SD0204</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0204">SD0204</a>
             diagnostic result (The argument type mismatched in this dynamically invocation).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SD0205">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0205">SD0205</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0205">SD0205</a>
             diagnostic result (The method returns void, but you make it an rvalue expression).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SD0206">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0206">SD0206</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0206">SD0206</a>
             diagnostic result (The specified dynamic invocation method doesn't exist).
             </summary>
         </member>
@@ -1653,35 +1688,35 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0101">SD0101</a></term>
             <description>A property named 'Properties' expected</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0102">SD0102</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0102">SD0102</a></term>
             <description>The property 'Properties' must be public</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0103">SD0103</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0103">SD0103</a></term>
             <description>The property 'Properties' must be static</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0104">SD0104</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0104">SD0104</a></term>
             <description>The property 'Properties' must be read-only</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0105">SD0105</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0105">SD0105</a></term>
             <description>The property 'Properties' has a wrong type</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0106">SD0106</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0106">SD0106</a></term>
             <description>The property 'Properties' can't be null</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0107">SD0107</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0107">SD0107</a></term>
             <description>The property 'Properties' must contain an initializer</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0108">SD0108</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0108">SD0108</a></term>
             <description>The property 'Properties' must be initialized by a new clause</description>
             </item>
             </list>
@@ -1713,49 +1748,49 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0101">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0101">SD0101</a>
             diagnostic result (A property named 'Properties' expected).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0102">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0102">SD0102</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0102">SD0102</a>
             diagnostic result (The property 'Properties' must be public).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0103">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0103">SD0103</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0103">SD0103</a>
             diagnostic result (The property 'Properties' must be static).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0104">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0104">SD0104</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0104">SD0104</a>
             diagnostic result (The property 'Properties' must be read-only).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0105">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0105">SD0105</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0105">SD0105</a>
             diagnostic result (The property 'Properties' has a wrong type).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0106">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0106">SD0106</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0106">SD0106</a>
             diagnostic result (The property 'Properties' can't be null).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0107">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0107">SD0107</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0107">SD0107</a>
             diagnostic result (The property 'Properties' must contain an initializer).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertiesInStepSearcherAnalyzer.SD0108">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0108">SD0108</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0108">SD0108</a>
             diagnostic result (The property 'Properties' must be initialized by a new clause).
             </summary>
         </member>
@@ -1767,7 +1802,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0201">SD0201</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0201">SD0201</a></term>
             <description>The specified key can't be found in the resource dictionary</description>
             </item>
             </list>
@@ -1778,7 +1813,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ResourceDictionaryAnalyzer.SD0201">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0201">SD0201</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0201">SD0201</a>
             diagnostic result (The specified key can't be found in the resource dictionary).
             </summary>
         </member>
@@ -1790,7 +1825,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0309">SD0309</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</a></term>
             <description>'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead</description>
             </item>
             </list>
@@ -1811,7 +1846,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.SD0309">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0309">SD0309</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</a>
             diagnostic result ('stackalloc' or 'new' expression is unnecessary; Please use object initializer instead).
             </summary>
         </member>
@@ -1823,7 +1858,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0301">SD0301</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0301">SD0301</a></term>
             <description>The member can't be invoked because they are reserved</description>
             </item>
             </list>
@@ -1849,7 +1884,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SD0301">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0301">SD0301</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0301">SD0301</a>
             diagnostic result (The member can't be invoked because they are reserved).
             </summary>
         </member>
@@ -1861,11 +1896,11 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a></term>
             <description>Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case</description>
             </item>
             <item>
-            <term><a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0311">SD0311</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0311">SD0311</a></term>
             <description>Invalid format string in 'SudokuGrid.ToString'</description>
             </item>
             </list>
@@ -1886,13 +1921,13 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SD0310">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a>
             diagnostic result (Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SD0311">
             <summary>
-            Indicates the <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0311">SD0311</a>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0311">SD0311</a>
             diagnostic result (Invalid format string in 'SudokuGrid.ToString').
             </summary>
         </member>
@@ -1922,7 +1957,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0101">SD0101</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0101">SD0101</a>
             (A property named 'Properties' expected).
             </summary>
         </member>
@@ -1938,7 +1973,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0102CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0102">SD0102</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0102">SD0102</a>
             (The property 'Properties' must be public).
             </summary>
         </member>
@@ -1954,7 +1989,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0103CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0103">SD0103</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0103">SD0103</a>
             (The property 'Properties' must be static).
             </summary>
         </member>
@@ -1970,7 +2005,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0104CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0104">SD0104</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0104">SD0104</a>
             (The property 'Properties' must be read-only).
             </summary>
         </member>
@@ -1986,7 +2021,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0106CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0106">SD0106</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0106">SD0106</a>
             (The property 'Properties' can't be null).
             </summary>
         </member>
@@ -2002,7 +2037,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0107CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0107">SD0107</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0107">SD0107</a>
             (The property 'Properties' must contain an initializer).
             </summary>
         </member>
@@ -2018,7 +2053,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0108CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0108">SD0108</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0108">SD0108</a>
             (The property 'Properties' must be initialized by a new clause).
             </summary>
         </member>
@@ -2034,7 +2069,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0302CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0302">SD0302</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0302">SD0302</a>
             (Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty').
             </summary>
         </member>
@@ -2050,7 +2085,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0303CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0303">SD0303</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0303">SD0303</a>
             (Please use the default-value field to avoid instantiation).
             </summary>
         </member>
@@ -2066,7 +2101,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0304CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0304">SD0304</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0304">SD0304</a>
             (Please use the specific property to simplify the invocation).
             </summary>
         </member>
@@ -2082,7 +2117,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0306CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0306">SD0306</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0306">SD0306</a>
             (The remove expression in the initializer following with the current constructor has no effect).
             </summary>
         </member>
@@ -2098,7 +2133,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0307CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0307">SD0307</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0307">SD0307</a>
             (The expression can be simplified).
             </summary>
         </member>
@@ -2114,7 +2149,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0308CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0308">SD0308</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0308">SD0308</a>
             (The initializer contains the duplicate value).
             </summary>
         </member>
@@ -2130,7 +2165,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0309CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0309">SD0309</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</a>
             ('stackalloc' or 'new' expression is unnecessary; Please use object initializer instead).
             </summary>
         </member>
@@ -2150,7 +2185,7 @@
             </summary>
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a>
             (Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case).
             </summary>
         </member>
@@ -2166,7 +2201,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0401CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0401">SD0401</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a>
             (Please use nameof expression instead).
             </summary>
         </member>
@@ -2182,7 +2217,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0101">SS0101</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0101">SS0101</a>
             (Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations).
             </summary>
         </member>
@@ -2198,7 +2233,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0102CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0102">SS0102</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0102">SS0102</a>
             (Unnecessary interpolation leading character '$').
             </summary>
         </member>
@@ -2214,7 +2249,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0301CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0301">SS0301</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0301">SS0301</a>
             (Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value').
             </summary>
         </member>
@@ -2230,7 +2265,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0402CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0402">SS0402</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0402">SS0402</a>
             (The enum field must holds a flag value if the enum is marked 'FlagsAttribute').
             </summary>
         </member>
@@ -2246,7 +2281,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0403CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0403">SS0403</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0403">SS0403</a>
             (The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute').
             </summary>
         </member>
@@ -2262,7 +2297,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0502CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0502">SS0502</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0502">SS0502</a>
             (Deconstruction methods must be instance ones).
             </summary>
         </member>
@@ -2278,7 +2313,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0504CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0504">SS0504</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0504">SS0504</a>
             (Deconstruction methods must be public).
             </summary>
         </member>
@@ -2294,7 +2329,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0505CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0505">SS0505</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0505">SS0505</a>
             (All parameters in deconstruction methods should be out parameters).
             </summary>
         </member>
@@ -2310,7 +2345,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0507CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0507">SS0507</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0507">SS0507</a>
             (The parameter should be corresponded to a certain instance field or instance property in this type).
             </summary>
         </member>
@@ -2326,7 +2361,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0601CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0601">SS0601</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0601">SS0601</a>
             (Unnecessary explicit type pattern).
             </summary>
         </member>
@@ -2342,7 +2377,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0602CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0602">SS0602</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0602">SS0602</a>
             (The pattern can be simplify to 'is null').
             </summary>
         </member>
@@ -2358,7 +2393,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0603CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0603">SS0603</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0603">SS0603</a>
             (The pattern can be simplify to 'is not null').
             </summary>
         </member>
@@ -2374,7 +2409,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0604CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0604">SS0604</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0604">SS0604</a>
             (Unnecessary constant pattern for the variable of the same type).
             </summary>
         </member>
@@ -2390,7 +2425,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0605CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0605">SS0605</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0605">SS0605</a>
             (The nullable value type checking expression will be suggested to convert to constant pattern).
             </summary>
         </member>
@@ -2406,7 +2441,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0607CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0607">SS0607</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0607">SS0607</a>
             (This discard can be omitted in the current positional pattern).
             </summary>
         </member>
@@ -2422,7 +2457,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0609CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0609">SS0609</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0609">SS0609</a>
             (The positional subpattern is redundant).
             </summary>
         </member>
@@ -2438,7 +2473,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0610">SS0610</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610</a>
             (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead).
             </summary>
         </member>
@@ -2454,7 +2489,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0613CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0613">SS0613</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0613">SS0613</a>
             (The discard pattern in this property pattern doesn't judge anything; please remove this clause).
             </summary>
         </member>
@@ -2470,7 +2505,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0615">SS0615</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a>
             (Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
             </summary>
         </member>
@@ -2486,7 +2521,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0616">SS0616</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a>
             (Please use '{ }' or 'not null' instead of '!= null' in nullable reference types).
             </summary>
         </member>
@@ -2502,7 +2537,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0617CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0617">SS0617</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0617">SS0617</a>
             (Unncessary operator 'is' to determine the range of that value of same type).
             </summary>
         </member>
@@ -2518,7 +2553,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0620CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0620">SS0620</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0620">SS0620</a>
             (Keyword 'not' followed with relation pattern is redundant; please negate the operator directly instead).
             </summary>
         </member>
@@ -2534,7 +2569,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0626CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0626">SS0626</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0626">SS0626</a>
             (Keyword 'not' repeats; A pair of keyword 'not' can be omitted).
             </summary>
         </member>
@@ -2550,7 +2585,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0633CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0633">SS0633</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0633">SS0633</a>
             ('case var _' label in a switch expression (or statement) is equivalent to the default case ('default:' in switch statement and '_ =>' in switch expression); try to use 'default:' or '_ =>' instead).
             </summary>
         </member>
@@ -2566,7 +2601,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0634CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0634">SS0634</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0634">SS0634</a>
             (The expression can be simplified to use empty-brace property pattern).
             </summary>
         </member>
@@ -2582,7 +2617,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0635CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0635">SS0635</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0635">SS0635</a>
             (It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern).
             </summary>
         </member>
@@ -2598,7 +2633,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0701CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0701">SS0701</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0701">SS0701</a>
             (The expression can be simplified to using compound null-coalesce operator '??=').
             </summary>
         </member>
@@ -2614,7 +2649,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0702CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0702">SS0702</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0702">SS0702</a>
             (The expression can be simplified to using null-coalescing operator '??').
             </summary>
         </member>
@@ -2630,7 +2665,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0703CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0703">SS0703</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0703">SS0703</a>
             (Unncessary null-conditional operator '?').
             </summary>
         </member>
@@ -2646,7 +2681,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0704CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0704">SS0704</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0704">SS0704</a>
             (Unncessary null-forgiving operator '!').
             </summary>
         </member>
@@ -2662,7 +2697,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0706CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS0706">SS0706</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0706">SS0706</a>
             (If you want to check the whether two references from two objects are equal, please use 'object.ReferenceEquals' instead of the operators '==' or '!=').
             </summary>
         </member>
@@ -2678,7 +2713,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9001">SS9001</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9001">SS9001</a>
             (Available prepositional iteration condition expression).
             </summary>
         </member>
@@ -2694,7 +2729,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9002CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9002">SS9002</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9002">SS9002</a>
             (Redundant array creation statement).
             </summary>
         </member>
@@ -2710,7 +2745,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9005CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9005">SS9005</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9005">SS9005</a>
             (Auto property in a non-readonly struct has already contained the meaning of the modifier 'readonly', so you don't specify the modifier 'readonly').
             </summary>
         </member>
@@ -2726,7 +2761,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9006CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9006">SS9006</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9006">SS9006</a>
             (You don't need to write ': object' because this is always a truth).
             </summary>
         </member>
@@ -2742,7 +2777,7 @@
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9007CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
-            <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SS9007">SS9007</a>
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9007">SS9007</a>
             (Please use keyword 'init' instead of 'set' of the property accessor in an attribute type).
             </summary>
         </member>

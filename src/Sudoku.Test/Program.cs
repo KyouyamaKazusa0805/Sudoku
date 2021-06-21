@@ -1,16 +1,9 @@
-﻿using System;
-using System.IO;
-using Sudoku.Diagnostics;
+﻿using Sudoku.CodeGen;
 
-var updater = new CSharpProjectUpdater(
-	Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName
-);
+[AutoEquality(nameof(P), nameof(Q))]
+internal sealed class S
+{
+	public int P { get; }
 
-try
-{
-	await updater.UpdateNullableAsync("enable", "\t");
-}
-catch (Exception ex)
-{
-	Console.WriteLine(ex);
+	public S? Q { get; }
 }

@@ -29,7 +29,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, _, originalNode) = context;
+			var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
 			// Check those cases:
 			// 1) _ = 10;
@@ -48,7 +48,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			// Check whether the right-side expression is a member access expression,
 			// and the expression isn't a method, property, indexer, event or user-defined operator.
 			if (
-				semanticModel.GetOperation(rightExpr) is
+				semanticModel.GetOperation(rightExpr, cancellationToken) is
 					IMethodReferenceOperation // User-defined method.
 					or IPropertyReferenceOperation // User-defined property or indexer.
 					or IEventReferenceOperation // User-defined event.
