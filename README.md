@@ -48,9 +48,9 @@ If I'm busy or something goes bad for me, I'll make a notice to you, whose conte
 
 ### How to Compile the Solution (如何编译解决方案)
 
-Please visit [this link](https://sunnieshine.github.io/Sudoku/How-To-Compile-The-Solution).
+Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution).
 
-请访问[此链接](https://sunnieshine.github.io/Sudoku/How-To-Compile-The-Solution)。
+请访问[此链接](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution)。
 
 ### Basic Information (基本信息)
 
