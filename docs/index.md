@@ -30,7 +30,7 @@ This section you'll find the details about this solution.
 这一节你可以找到关于整个解决方案的详细内容。
 
 * 解决方案介绍
-  * [**如何编译代码 (How to compile the solution)**](How-To-Compile-The-Solution)
+  * [**如何编译代码 (How to compile the solution)**](how-to/How-To-Compile-The-Solution)
   * [文件夹介绍](Introduction-Of-All-Folders)
   * [数独解题技巧和算法支持](Technique-Supports)
   * [程序热键（快捷键）](Program-Hotkeys)
