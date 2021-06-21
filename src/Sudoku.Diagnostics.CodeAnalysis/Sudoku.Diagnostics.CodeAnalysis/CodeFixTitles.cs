@@ -65,5 +65,6 @@
 		public const string SS9005 = "Remove keyword 'readonly'";
 		public const string SS9006 = "Remove the inheritance from type 'object'";
 		public const string SS9007 = "Use keyword 'init' instead";
+		public const string SS9008 = "Append keyword' readonly'";
 	}
 }

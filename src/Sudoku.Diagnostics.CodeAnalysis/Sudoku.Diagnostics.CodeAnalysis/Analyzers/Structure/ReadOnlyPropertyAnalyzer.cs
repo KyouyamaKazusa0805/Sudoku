@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -34,9 +35,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					AccessorList: null,
 					Initializer: null,
 					ExpressionBody: { Expression: var expr },
-					Identifier: var identifier
+					Identifier: var identifier,
+					Modifiers: var modifiers
 				}
 			)
+			{
+				return;
+			}
+
+			if (modifiers.Any(static modifier => modifier.RawKind == (int)SyntaxKind.ReadOnlyKeyword))
 			{
 				return;
 			}
