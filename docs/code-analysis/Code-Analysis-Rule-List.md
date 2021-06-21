@@ -39,7 +39,14 @@
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
-| [SS0301](rules/Rule-SS0301) | ⚠                  | Performance               | ✔              |        |
+| [SS0301](rules/Rule-SS0301) | ⚠                  | Performance               | ✔              |     |
+| [SS0302](rules/Rule-SS0302) | ℹ                  | Performance               | ❌              | 是    |
+| [SS0303](rules/Rule-SS0303) | ℹ                  | Performance               | ❌              | 是 |
+| [SS0304](rules/Rule-SS0304) | ⚠ | Performance | ❌ | 是 |
+| [SS0305](rules/Rule-SS0305) | ℹ | Performance | ❌ | 是 |
+| [SS0306](rules/Rule-SS0306) | ℹ | Performance | ❌ | 是 |
+| [SS0307](rules/Rule-SS0307) | ℹ | Performance | ❌ | 是 |
+| [SS0308](rules/Rule-SS0308) | ℹ | Performance | ❌ | 是 |
 | [SS0401](rules/Rule-SS0401) | ❌                  | Usage                     | ❌              |        |
 | [SS0402](rules/Rule-SS0402) | ⚠                  | Design                    | ✔              |        |
 | [SS0403](rules/Rule-SS0403) | ⚠                  | Design                    | ✔              |        |
@@ -98,3 +105,4 @@
 | [SS9005](rules/Rule-SS9005) | ⚠                  | Design                    | ✔              |        |
 | [SS9006](rules/Rule-SS9006) | ⚠                  | Design                    | ✔              |        |
 | [SS9007](rules/Rule-SS9007) | ℹ                  | Usage                     | ✔              |        |
+| [SS9008](rules/Rule-SS9008) | ℹ | Design | ❌ | 是 |
