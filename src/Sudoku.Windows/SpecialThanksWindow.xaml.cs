@@ -22,7 +22,7 @@ namespace Sudoku.Windows
 			{
 				try
 				{
-					Process.Start(link.NavigateUri.AbsoluteUri);
+					Process.Start("explorer.exe", link.NavigateUri.AbsoluteUri);
 				}
 				catch (Exception ex)
 				{
