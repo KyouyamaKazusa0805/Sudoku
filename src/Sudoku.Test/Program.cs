@@ -1,9 +1,3 @@
-﻿using Sudoku.CodeGen;
+﻿using System;
 
-[AutoEquality(nameof(P), nameof(Q))]
-internal sealed class S
-{
-	public int P { get; }
-
-	public S? Q { get; }
-}
+Console.WriteLine();
