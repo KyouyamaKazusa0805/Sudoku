@@ -1,4 +1,6 @@
-﻿namespace Sudoku
+﻿using System;
+
+namespace Sudoku
 {
 	partial class Constants
 	{
@@ -45,6 +47,7 @@
 			/// <summary>
 			/// Indicates the unit in the basic PM grid.
 			/// </summary>
+			[Obsolete("We suggest you don't use this field, and use '" + nameof(PmGridUnit) + "' instead.", false)]
 			public const string PmGridUnit_Old = @"(\<\d\>|\*\d\*|\d{1,9})";
 
 			/// <summary>
