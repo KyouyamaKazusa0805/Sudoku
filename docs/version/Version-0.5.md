@@ -39,6 +39,7 @@
 ### 修改
 
 * **重大修改：所有的项目不再支持 CLS 公共语言标准**（因为各个源代码生成器需要依赖变长参数初始化的特性，而这个东西是不符合 CLS 要求的）；
+* **重大修改：将尽可能的所有项目更新到 .NET 6 框架支持**（除了代码分析项目和一些代码生成器项目必须依赖 .NET Standard 2.0 的除外）；
 * 将注入式语义分析器修改为 VSIX 插件式语义分析器；
 * 把原始 `BitOperations` 的相关代码生成改成用源代码生成器 `Sudoku.CodeGen.BitOperations` 项目自动生成；
 * 将 `Sudoku.CodeGen` 项目里的内容移动到 `Sudoku.CodeGen.KeyedTuple` 项目里；
