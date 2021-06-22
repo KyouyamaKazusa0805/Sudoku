@@ -1,14 +1,14 @@
-﻿#pragma warning disable IDE0003
-#pragma warning disable IDE0032
-#pragma warning disable IDE0044
+﻿using System.Linq;
 
-using System;
+int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
 
-Console.WriteLine();
-
-struct MyStruct
+if (
+	(
+		from element in arr
+		where (element & 1) != 0
+		select element
+	).Any()
+)
 {
-	private int _a;
-
-	public int A => this._a;
+	// ...
 }

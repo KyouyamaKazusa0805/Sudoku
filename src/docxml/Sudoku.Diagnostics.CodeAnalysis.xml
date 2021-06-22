@@ -376,6 +376,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0303">SS0303</a></term>
+            <description>Available simplification of LINQ expression {0}</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.SS0303">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0303">SS0303</a>
+            diagnostic result (Available simplification of LINQ expression {0}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

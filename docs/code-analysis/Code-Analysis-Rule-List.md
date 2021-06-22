@@ -40,8 +40,7 @@
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
 | [SS0301](rules/Rule-SS0301) | ⚠                  | Performance               | ✔              |     |
-| [SS0302](rules/Rule-SS0302) | ℹ                  | Performance               | ❌              | 是    |
-| [SS0303](rules/Rule-SS0303) | ℹ                  | Performance               | ❌              | 是 |
+| [SS0303](rules/Rule-SS0303) | ℹ                  | Performance               | ❌              |  |
 | [SS0304](rules/Rule-SS0304) | ⚠ | Performance | ❌ | 是 |
 | [SS0305](rules/Rule-SS0305) | ℹ | Performance | ❌ | 是 |
 | [SS0306](rules/Rule-SS0306) | ℹ | Performance | ❌ | 是 |
