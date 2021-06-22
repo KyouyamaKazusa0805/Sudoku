@@ -382,7 +382,7 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0303">SS0303</a></term>
-            <description>Available simplification of LINQ expression {0}</description>
+            <description>Available simplification of LINQ expression</description>
             </item>
             </list>
             </summary>
@@ -393,7 +393,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.SS0303">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0303">SS0303</a>
-            diagnostic result (Available simplification of LINQ expression {0}).
+            diagnostic result (Available simplification of LINQ expression).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.SupportedDiagnostics">
@@ -2306,6 +2306,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0301CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0303CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0303">SS0303</a>
+            (Available simplification of LINQ expression).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0303CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0303CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0303CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0402CodeFixProvider">

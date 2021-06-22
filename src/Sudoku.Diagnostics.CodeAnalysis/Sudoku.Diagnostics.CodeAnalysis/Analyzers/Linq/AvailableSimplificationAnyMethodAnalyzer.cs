@@ -37,7 +37,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								{
 									Type: var typeToCast,
 									Expression: var expressionToIterate,
-									Identifier: { ValueText: var identifier }
+									Identifier: { ValueText: var identifier } identifierToken
 								},
 								Body:
 								{
@@ -84,12 +84,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						? new[]
 						{
 							node.GetLocation(),
+							identifierToken.GetLocation(),
 							expressionToIterate.GetLocation(),
 							conditionExpr.GetLocation()
 						}
 						: new[]
 						{
 							node.GetLocation(),
+							identifierToken.GetLocation(),
 							expressionToIterate.GetLocation(),
 							conditionExpr.GetLocation(),
 							typeToCast.GetLocation()
