@@ -2121,10 +2121,25 @@
             <param name="other">An object to compare with this instance.</param>
             <returns>
             A value that indicates the relative order of the objects being compared. The
-            return value has these meanings: Value Meaning Less than zero This instance precedes
-            other in the sort order. Zero This instance occurs in the same position in the
-            sort order as other. Greater than zero This instance follows other in the sort
-            order.
+            return value has these meanings:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c>&lt; 0</c></term>
+            <description>This instance precedes other in the sort order.</description>
+            </item>
+            <item>
+            <term><c>0</c></term>
+            <description>This instance occurs in the same position in the sort order as other.</description>
+            </item>
+            <item>
+            <term><c>&gt; 0</c></term>
+            <description>This instance follows other in the sort order.</description>
+            </item>
+            </list>
             </returns>
         </member>
         <member name="M:System.IValueComparable`1.System#IComparable{TStruct}#CompareTo(`0)">
