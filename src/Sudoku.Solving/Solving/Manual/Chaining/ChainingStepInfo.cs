@@ -128,7 +128,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		public virtual bool Equals(ChainingStepInfo? other) => (this, other) switch
 		{
 			(null, null) => true,
-			(not null, not null) => GetHashCode() == other!.GetHashCode(),
+			(not null, not null) => GetHashCode() == other.GetHashCode(),
 			_ => false
 		};
 

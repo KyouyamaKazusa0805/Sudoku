@@ -92,7 +92,7 @@ namespace Sudoku.Drawing
 		public static bool operator ==(View? left, View? right) => (left, right) switch
 		{
 			(null, null) => true,
-			(not null, not null) => left!.Equals(right),
+			(not null, not null) => left.Equals(right),
 			_ => false
 		};
 

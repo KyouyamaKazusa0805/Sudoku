@@ -285,9 +285,9 @@ namespace System.Collections.Generic
 				}
 				case (not null, not null):
 				{
-					foreach (var element in left!._list)
+					foreach (var element in left._list)
 					{
-						if (!right!._list.Contains(element))
+						if (!right._list.Contains(element))
 						{
 							return false;
 						}

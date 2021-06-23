@@ -63,7 +63,7 @@ namespace System.Collections.Generic
 		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) => (left, right) switch
 		{
 			(null, null) => 0,
-			(not null, not null) => left!.Id.CompareTo(right!.Id),
+			(not null, not null) => left.Id.CompareTo(right.Id),
 			_ => left is null ? -1 : 1
 		};
 

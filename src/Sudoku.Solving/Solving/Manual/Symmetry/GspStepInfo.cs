@@ -81,8 +81,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				case (not null, not null):
 				{
-					var results = new List<Conclusion>(left!.Conclusions);
-					results.AddRange(right!.Conclusions);
+					var results = new List<Conclusion>(left.Conclusions);
+					results.AddRange(right.Conclusions);
 
 					var candidateOffsets = new List<DrawingInfo>(left.Views[0].Candidates!);
 					candidateOffsets.AddRange(right.Views[0].Candidates!);
