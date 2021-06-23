@@ -6,9 +6,9 @@ using Sudoku.Resources;
 namespace Sudoku
 {
 	/// <summary>
-	/// Indicates the assembly initializer.
+	/// Indicates the module initializer.
 	/// </summary>
-	internal static class AssemblyInitializer
+	internal static class ModuleInitializer
 	{
 		/// <summary>
 		/// The initialize method.
@@ -24,7 +24,7 @@ namespace Sudoku
 		}
 
 		/// <summary>
-		/// Deserialize the resource dictionary. If failed, throw the exception.
+		/// Deserialize the resource dictionary. If failed, throw an exception.
 		/// </summary>
 		/// <param name="langSourceInstanceName">The name of the language resource instance.</param>
 		/// <param name="path">The path to deserialize.</param>
@@ -42,7 +42,7 @@ namespace Sudoku
 			if (!TextResources.Deserialize(langSourceInstanceName, path))
 			{
 				result = false;
-				throw new AssemblyFailedToLoadException(Assembly.GetExecutingAssembly().FullName!, path);
+				throw new AssemblyFailedToLoadException(Assembly.GetExecutingAssembly().FullName, path);
 			}
 
 			result = true;

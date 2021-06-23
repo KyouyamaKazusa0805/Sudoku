@@ -16,11 +16,12 @@ namespace Sudoku
 		/// </summary>
 		/// <param name="assemblyName">The assembly name.</param>
 		/// <param name="filePath">The file path.</param>
-		public AssemblyFailedToLoadException(string assemblyName, string filePath)
+		public AssemblyFailedToLoadException(string? assemblyName, string filePath)
 		{
-			AssemblyName = assemblyName;
+			string resultAssemblyName = assemblyName ?? "<Unknown assembly>";
+			AssemblyName = resultAssemblyName;
 			FilePath = filePath;
-			Data.Add(nameof(AssemblyName), assemblyName);
+			Data.Add(nameof(AssemblyName), resultAssemblyName);
 			Data.Add(nameof(filePath), filePath);
 		}
 
@@ -34,7 +35,7 @@ namespace Sudoku
 		/// <summary>
 		/// Indicates the assembly name.
 		/// </summary>
-		public string? AssemblyName { get; }
+		public string AssemblyName { get; } = "<Unknown assembly>";
 
 		/// <summary>
 		/// Indicates the file path.
