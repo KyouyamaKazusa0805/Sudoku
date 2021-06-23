@@ -34,8 +34,13 @@
 | [SD0401](rules/Rule-SD0401) | ⚠                  | Usage                     | ✔              |        |
 | [SD0402](rules/Rule-SD0402) | ⚠                  | Usage                     | ❌              |        |
 | [SD0403](rules/Rule-SD0403) | ❌                  | Usage                     | ❌              |        |
-| [SD0404](rules/Rule-SD0404) | ⚠                  | Usage                     | ❌              |        |
+| [SD0404](rules/Rule-SD0404) | ⚠                  | Usage                     | ❌              |  |
 | [SD0405](rules/Rule-SD0405) | ⚠                  | Usage                     | ❌              |        |
+| [SD0406](rules/Rule-SD0406) | ⚠ | Usage | ❌ |  |
+| [SD0407](rules/Rule-SD0407) | ⚠ | Usage | ❌ |  |
+| [SD0408](rules/Rule-SD0408) | ⚠ | Usage | ❌ |  |
+| [SD0409](rules/Rule-SD0409) | ⚠ | Usage | ❌ |  |
+| [SD0410](rules/Rule-SD0410) | ⚠ | Usage | ❌ |  |
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
