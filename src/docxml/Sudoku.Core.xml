@@ -3409,6 +3409,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.InitialValuesPointer">
+            <summary>
+            Indicates the initial values pointer value.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.SudokuGrid.Triplet">
             <summary>
             The triplet of three main information.
@@ -3551,11 +3556,20 @@
             <summary>
             Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
             </summary>
-            <param name="pinnedItem">The item you want to fix. If </param>
+            <param name="pinnedItem">
+            The item you want to fix. If the value is
+            <list type="table">
+            <item>
+            <term><see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.CurrentGrid"/></term>
+            <description>The current grid mask list of pointer value will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.InitialGrid"/></term>
+            <description>The initial grid mask list of pointer value will be returned.</description>
+            </item>
+            </list>
+            </param>
             <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the <paramref name="pinnedItem"/> isn't defined in the type.
-            </exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
             <summary>
@@ -4266,6 +4280,147 @@
             </para>
             </remarks>
             <seealso cref="T:System.ValueTuple"/>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGridSegment">
+            <summary>
+            Defines a segment that stores a part of a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment._maskList">
+            <summary>
+            Indicates the mask list and the candidates list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment._candidatesList">
+            <summary>
+            Indicates the mask list and the candidates list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.#ctor(Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.SudokuGridSegment"/> with the specified region,
+            and what sudoku grid filters.
+            </summary>
+            <param name="grid">The sudoku grid.</param>
+            <param name="region">The region to project.</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+            Throws when the argument <paramref name="region"/> isn't between 0 and 26.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.#ctor(Sudoku.Data.SudokuGrid@,Sudoku.Data.RegionLabel,System.Int32)">
+            <summary>
+            Initialzes a <see cref="T:Sudoku.Data.SudokuGridSegment"/> with the specified region label,
+            the index and a sudoku grid that filters.
+            </summary>
+            <param name="grid">The sudoku grid.</param>
+            <param name="regionLabel">The region label.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.Masks">
+            <summary>
+            Indicates the inner masks.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.Candidates">
+            <summary>
+            Indicates the candicates calculated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.RegionIndex">
+            <summary>
+            Indicates the region index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.Cells">
+            <summary>
+            Indicates the cells covered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.Undefined">
+            <summary>
+            Indicates the empty segment value that holds the undefined value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGridSegment"/> at index zero.
+            </summary>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGridSegment"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference(Sudoku.Data.SudokuGridSegment.PinnedItem)">
+            <summary>
+            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGridSegment"/> at index zero.
+            </summary>
+            <param name="pinnedItem">
+            The item you want to fix. If the value is
+            <list type="table">
+            <item>
+            <term><see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.Masks"/></term>
+            <description>The original mask list of pointer value will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.CandidateMasks"/></term>
+            <description>The candidate mask list of pointer value will be returned.</description>
+            </item>
+            </list>
+            </param>
+            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGridSegment"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.ToArray">
+            <summary>
+            Converts the collection into an array of type <see cref="T:System.Int16"/>.
+            </summary>
+            <returns>The array.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Equals(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Data.SudokuGridSegment"/>s are equal.
+            </summary>
+            <param name="left">The left instance to check.</param>
+            <param name="right">The right instance to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGridSegment.PinnedItem">
+            <summary>
+            Indicates the item that <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference"/> selects and returns the reference.
+            </summary>
+            <remarks>
+            <para>
+            This enumeration type is called to select what the inner field we want to fix. For example,
+            if called <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference"/> (parameterless method), the default value is
+            <see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.Masks"/>, and we'll get the table that contains all current statuses of the
+            curect collection using a <see cref="T:System.Int16"/>*. The code should be:
+            <code>
+            fixed (short* s = segment)
+            {
+                // Do something...
+            }
+            </code>
+            The code is equivalent to
+            <code>
+            fixed (short* s = &amp;segment.GetPinnableReference())
+            {
+                // Do something...
+            }
+            </code>
+            </para>
+            <para>
+            If you want to get the item <see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.CandidateMasks"/>, you should call the method
+            <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference(Sudoku.Data.SudokuGridSegment.PinnedItem)"/>.
+            </para>
+            </remarks>
+            <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference"/>
+            <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference(Sudoku.Data.SudokuGridSegment.PinnedItem)"/>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.PinnedItem.Masks">
+            <summary>
+            Indicates the pinned item is <c>_maskList</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.PinnedItem.CandidateMasks">
+            <summary>
+            Indicates the pinned item is <c>_candidateList</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>

@@ -465,6 +465,21 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Indicates the initial values pointer value.
+		/// </summary>
+		private readonly short* InitialValuesPointer
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				fixed (short* p = _initialValues)
+				{
+					return p;
+				}
+			}
+		}
+
+		/// <summary>
 		/// The triplet of three main information.
 		/// </summary>
 		private readonly (int A, int B, int C) Triplet
@@ -748,37 +763,27 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
 		/// </summary>
-		/// <param name="pinnedItem">The item you want to fix. If </param>
+		/// <param name="pinnedItem">
+		/// The item you want to fix. If the value is
+		/// <list type="table">
+		/// <item>
+		/// <term><see cref="PinnedItem.CurrentGrid"/></term>
+		/// <description>The current grid mask list of pointer value will be returned.</description>
+		/// </item>
+		/// <item>
+		/// <term><see cref="PinnedItem.InitialGrid"/></term>
+		/// <description>The initial grid mask list of pointer value will be returned.</description>
+		/// </item>
+		/// </list>
+		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
-		/// <exception cref="ArgumentException">
-		/// Throws when the <paramref name="pinnedItem"/> isn't defined in the type.
-		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem)
-		{
-			switch (pinnedItem)
-			{
-				case PinnedItem.CurrentGrid:
-				{
-					return ref GetPinnableReference();
-				}
-				case PinnedItem.InitialGrid:
-				{
-					fixed (SudokuGrid* pThis = &this)
-					{
-						return ref pThis->_initialValues[0];
-					}
-				}
-				default:
-				{
-					throw new ArgumentException(
-						$"The argument '{nameof(pinnedItem)}' holds invalid value: " +
-						$"The value must be {nameof(PinnedItem.CurrentGrid)} or {nameof(PinnedItem.InitialGrid)}.",
-						nameof(pinnedItem)
-					);
-				}
-			}
-		}
+		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
+			ref pinnedItem == PinnedItem.CurrentGrid
+			? ref GetPinnableReference()
+			: ref pinnedItem == PinnedItem.InitialGrid
+			? ref *InitialValuesPointer
+			: ref Unsafe.NullRef<short>();
 
 		/// <summary>
 		/// Get all masks and print them.
