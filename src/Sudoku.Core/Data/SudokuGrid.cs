@@ -15,8 +15,6 @@ using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
-using CreatingOption = Sudoku.Data.GridCreatingOption;
-using ParsingOption = Sudoku.Data.GridParsingOption;
 
 namespace Sudoku.Data
 {
@@ -121,7 +119,7 @@ namespace Sudoku.Data
 		/// Creates an instance using grid values.
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
-		public SudokuGrid(int[] gridValues) : this(gridValues, CreatingOption.None)
+		public SudokuGrid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
 		{
 		}
 
@@ -130,7 +128,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
 		/// <param name="creatingOption">The grid creating option.</param>
-		public SudokuGrid(int[] gridValues, CreatingOption creatingOption)
+		public SudokuGrid(int[] gridValues, GridCreatingOption creatingOption)
 		{
 			this = Empty;
 			for (int i = 0; i < Length; i++)
@@ -139,7 +137,7 @@ namespace Sudoku.Data
 				{
 					// Calls the indexer to trigger the event
 					// (Clear the candidates in peer cells).
-					this[i] = creatingOption == CreatingOption.MinusOne ? value - 1 : value;
+					this[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
 
 					// Set the status to 'CellStatus.Given'.
 					SetStatus(i, CellStatus.Given);
@@ -1014,12 +1012,12 @@ namespace Sudoku.Data
 		/// <para>Parses a string value and converts to this type.</para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
-		/// <see cref="Parse(string, ParsingOption)"/> instead of this method.
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="Parse(string, ParsingOption)"/>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
@@ -1029,12 +1027,12 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// If you want to parse a PM grid, we recommend you use the method
-		/// <see cref="Parse(string, ParsingOption)"/> instead of this method.
+		/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
 		/// </para>
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns>The result instance had converted.</returns>
-		/// <seealso cref="Parse(string, ParsingOption)"/>
+		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SudokuGrid Parse(string str) => new Parser(str).Parse();
 
@@ -1069,7 +1067,7 @@ namespace Sudoku.Data
 		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>The result instance had converted.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str, ParsingOption gridParsingOption) =>
+		public static SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
 			new Parser(str).Parse(gridParsingOption);
 
 		/// <summary>
@@ -1109,7 +1107,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
-		public static bool TryParse(string str, ParsingOption option, out SudokuGrid result)
+		public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
 		{
 			try
 			{
