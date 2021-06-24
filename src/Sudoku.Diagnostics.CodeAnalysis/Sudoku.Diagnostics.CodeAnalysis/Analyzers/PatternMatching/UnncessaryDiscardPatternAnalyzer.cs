@@ -12,7 +12,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0607", "SS0613")]
+	[CodeAnalyzer("SS0607F", "SS0613F")]
 	public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

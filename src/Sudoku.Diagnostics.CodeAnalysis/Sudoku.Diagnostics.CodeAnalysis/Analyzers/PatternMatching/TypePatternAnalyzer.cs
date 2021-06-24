@@ -8,7 +8,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0601", "SS0602", "SS0603")]
+	[CodeAnalyzer("SS0601F", "SS0602", "SS0603")]
 	public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

@@ -8,7 +8,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0703", "SS0704")]
+	[CodeAnalyzer("SS0703F", "SS0704F")]
 	public sealed partial class NullConditionalAndSuppressionAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

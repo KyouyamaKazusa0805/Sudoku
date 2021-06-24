@@ -9,7 +9,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0101", "SS0102")]
+	[CodeAnalyzer("SS0101", "SS0102F")]
 	public sealed partial class InterpolatedStringAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

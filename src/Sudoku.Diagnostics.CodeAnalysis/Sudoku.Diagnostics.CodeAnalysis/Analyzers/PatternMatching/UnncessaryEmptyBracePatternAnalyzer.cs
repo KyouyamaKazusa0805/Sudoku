@@ -8,7 +8,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0614")]
+	[CodeAnalyzer("SS0614F")]
 	public sealed partial class UnncessaryEmptyBracePatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

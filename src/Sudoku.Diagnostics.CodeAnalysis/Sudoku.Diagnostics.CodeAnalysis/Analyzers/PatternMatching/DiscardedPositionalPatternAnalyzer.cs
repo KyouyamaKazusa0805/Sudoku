@@ -11,7 +11,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0610")]
+	[CodeAnalyzer("SS0610F")]
 	public sealed partial class DiscardedPositionalPatternAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

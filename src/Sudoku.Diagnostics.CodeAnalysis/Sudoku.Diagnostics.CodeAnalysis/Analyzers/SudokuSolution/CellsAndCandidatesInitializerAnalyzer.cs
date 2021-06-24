@@ -11,7 +11,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SD0305", "SD0306", "SD0307", "SD0308")]
+	[CodeAnalyzer("SD0305", "SD0306F", "SD0307", "SD0308F")]
 	public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

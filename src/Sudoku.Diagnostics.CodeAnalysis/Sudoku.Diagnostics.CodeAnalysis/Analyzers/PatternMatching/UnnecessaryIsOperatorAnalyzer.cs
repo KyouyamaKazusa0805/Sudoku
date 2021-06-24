@@ -10,7 +10,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0617")]
+	[CodeAnalyzer("SS0617F")]
 	public sealed partial class UnnecessaryIsOperatorAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

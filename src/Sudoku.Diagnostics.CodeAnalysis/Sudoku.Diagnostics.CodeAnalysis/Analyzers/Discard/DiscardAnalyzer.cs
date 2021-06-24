@@ -8,7 +8,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS9003")]
+	[CodeAnalyzer("SS9003F")]
 	public sealed partial class DiscardAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>

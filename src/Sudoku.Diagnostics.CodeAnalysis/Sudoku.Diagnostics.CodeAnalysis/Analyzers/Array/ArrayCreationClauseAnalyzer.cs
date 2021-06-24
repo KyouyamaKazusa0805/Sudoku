@@ -6,7 +6,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS9002")]
+	[CodeAnalyzer("SS9002F")]
 	public sealed partial class ArrayCreationClauseAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

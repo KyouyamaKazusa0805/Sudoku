@@ -11,7 +11,7 @@ using Sudoku.CodeGen;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS9005")]
+	[CodeAnalyzer("SS9005F")]
 	public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>

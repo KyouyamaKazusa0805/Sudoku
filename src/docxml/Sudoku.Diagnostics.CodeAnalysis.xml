@@ -9,7 +9,7 @@
             Indicates an analyzer that analyzes the code for the following diagnostic results:
             <list type="table">
             <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9002">SS9002</a></term>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS9002">SS9002F</a></term>
             <description>Redundant array creation statement</description>
             </item>
             </list>

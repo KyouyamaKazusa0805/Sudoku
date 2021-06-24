@@ -121,15 +121,18 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 				string[] diagnosticIds = selection.First();
 				string diagnosticResults = string.Join(
 					"\r\n\t",
-					from id in diagnosticIds
+					from diagnosticId in diagnosticIds
+					let id = cut(diagnosticId)
 					select $@"/// <item>
-	/// <term><a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a></term>
+	/// <term><a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{diagnosticId}</a></term>
 	/// <description>{getDescription(id)}</description>
 	/// </item>"
 				);
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
-					from id in diagnosticIds
+					from diagnosticId in diagnosticIds
+					let tags = getWhetherFadingOutTag(diagnosticId)
+					let id = cut(diagnosticId)
 					select $@"/// <summary>
 		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
 		/// diagnostic result ({getDescription(id)}).
@@ -137,11 +140,14 @@ namespace Sudoku.CodeGen.CodeAnalyzerDefaults
 		[CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
 			DiagnosticIds.{id}, Titles.{id}, Messages.{id}, Categories.{id},
-			DiagnosticSeverities.{id}, true, helpLinkUri: HelpLinks.{id}
+			DiagnosticSeverities.{id}, true, helpLinkUri: HelpLinks.{id}{tags}
 		);"
 				);
 
-				string supportedInstances = string.Join(", ", diagnosticIds);
+				string supportedInstances = string.Join(
+					", ",
+					from diagnosticId in diagnosticIds select cut(diagnosticId)
+				);
 				string typeName = symbol.Name;
 
 				return $@"#pragma warning disable 1591
@@ -174,6 +180,14 @@ namespace {namespaceName}
 		);
 	}}
 }}";
+
+
+				static string getWhetherFadingOutTag(string id) =>
+					id.EndsWith("F")
+					? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }"
+					: string.Empty;
+
+				static string cut(string id) => id.EndsWith("F") ? id.Substring(0, id.Length - 1) : id;
 			}
 
 			string? getFixerCode(INamedTypeSymbol symbol)
