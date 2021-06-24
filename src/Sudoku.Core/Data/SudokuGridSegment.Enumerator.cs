@@ -2,12 +2,10 @@
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Sudoku.Data.Extensions;
-using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data
 {
-	partial struct SudokuGrid
+	partial struct SudokuGridSegment
 	{
 		/// <summary>
 		/// The inner enumerator.
@@ -57,7 +55,7 @@ namespace Sudoku.Data
 			public readonly int Current
 			{
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
+				get => _currentMask;
 			}
 
 
@@ -70,34 +68,13 @@ namespace Sudoku.Data
 			/// </returns>
 			public bool MoveNext()
 			{
-				if (_currentMask == 0)
-				{
-					goto MovePointer;
-				}
-				else
-				{
-					_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask));
-					if (_currentMask == 0)
-					{
-						goto MovePointer;
-					}
-
-					return true;
-				}
-
-			MovePointer:
-				do _currentIndex++; while (
-					_start[_currentIndex + 1].MaskToStatus() != CellStatus.Empty
-					&& _currentIndex != Length + 1
-				);
-
-				if (_currentIndex == Length + 1)
+				if (++_currentIndex == 10)
 				{
 					return false;
 				}
 
 				_currentPointer = _start + _currentIndex + 1;
-				_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
+				_currentMask = *_currentPointer;
 				return true;
 			}
 

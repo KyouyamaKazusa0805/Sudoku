@@ -3478,19 +3478,19 @@
             All values corresponding to the cases are below:
             <list type="table">
             <item>
-            <term><c><see langword="true"/></c></term>
+            <term><see langword="true"/></term>
             <description>
             The cell is an empty cell <b>and</b> contains the specified digit.
             </description>
             </item>
             <item>
-            <term><c><see langword="false"/></c></term>
+            <term><see langword="false"/></term>
             <description>
             The cell is an empty cell <b>but doesn't</b> contain the specified digit.
             </description>
             </item>
             <item>
-            <term><c><see langword="null"/></c></term>
+            <term><see langword="null"/></term>
             <description>The cell is <b>not</b> an empty cell.</description>
             </item>
             </list>
@@ -3768,6 +3768,14 @@
             </summary>
             <param name="this">The sudoku grid.</param>
             <seealso cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.op_Division(Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Returns the segment via the specified region and the sudoku grid to filter.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="region">The region.</param>
+            <returns>The segment.</returns>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.Enumerator">
             <summary>
@@ -4372,6 +4380,9 @@
             </summary>
             <returns>The array.</returns>
         </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:Sudoku.Data.SudokuGridSegment.Equals(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
             <summary>
             Determine whether two <see cref="T:Sudoku.Data.SudokuGridSegment"/>s are equal.
@@ -4379,6 +4390,60 @@
             <param name="left">The left instance to check.</param>
             <param name="right">The right instance to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.SudokuGridSegment.Enumerator">
+            <summary>
+            The inner enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.Enumerator._start">
+            <summary>
+            The pointer to the start value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.Enumerator._currentPointer">
+            <summary>
+            The current pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.Enumerator._currentMask">
+            <summary>
+            Indicates the current mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridSegment.Enumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.#ctor(System.Int16*)">
+            <summary>
+            Initializes an instance with the specified pointer to an array to iterate.
+            </summary>
+            <param name="arr">The pointer to an array.</param>
+            <remarks>
+            Note here we should point at the one-unit-lengthed memory before the array start.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGridSegment.Enumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            <see langword="true"/> if the enumerator was successfully advanced to the next element;
+            <see langword="false"/> if the enumerator has passed the end of the collection.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element
+            in the collection.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.SudokuGridSegment.PinnedItem">
             <summary>

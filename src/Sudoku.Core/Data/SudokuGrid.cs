@@ -651,19 +651,19 @@ namespace Sudoku.Data
 		/// All values corresponding to the cases are below:
 		/// <list type="table">
 		/// <item>
-		/// <term><c><see langword="true"/></c></term>
+		/// <term><see langword="true"/></term>
 		/// <description>
 		/// The cell is an empty cell <b>and</b> contains the specified digit.
 		/// </description>
 		/// </item>
 		/// <item>
-		/// <term><c><see langword="false"/></c></term>
+		/// <term><see langword="false"/></term>
 		/// <description>
 		/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
 		/// </description>
 		/// </item>
 		/// <item>
-		/// <term><c><see langword="null"/></c></term>
+		/// <term><see langword="null"/></term>
 		/// <description>The cell is <b>not</b> an empty cell.</description>
 		/// </item>
 		/// </list>
@@ -1169,5 +1169,15 @@ namespace Sudoku.Data
 				}
 			}
 		}
+
+
+		/// <summary>
+		/// Returns the segment via the specified region and the sudoku grid to filter.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="region">The region.</param>
+		/// <returns>The segment.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static SudokuGridSegment operator /(in SudokuGrid grid, int region) => new(grid, region);
 	}
 }

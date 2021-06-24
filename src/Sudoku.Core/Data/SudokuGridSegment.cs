@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGen;
@@ -156,6 +157,16 @@ namespace Sudoku.Data
 			}
 
 			return result;
+		}
+
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly Enumerator GetEnumerator()
+		{
+			fixed (short* arr = _maskList)
+			{
+				return new Enumerator(arr);
+			}
 		}
 
 
