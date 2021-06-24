@@ -16,6 +16,6 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates each value should minus one before creation.
 		/// </summary>
-		MinusOne,
+		MinusOne
 	}
 }

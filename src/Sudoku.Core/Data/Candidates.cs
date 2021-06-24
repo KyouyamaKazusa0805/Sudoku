@@ -127,7 +127,8 @@ namespace Sudoku.Data
 			if (binary.Length != Len)
 			{
 				throw new ArgumentException(
-					$"The length of the array should be {Len.ToString()}.", nameof(binary));
+					$"The length of the array should be {Len.ToString()}.", nameof(binary)
+				);
 			}
 
 			int count = 0;
@@ -609,7 +610,7 @@ namespace Sudoku.Data
 		/// <exception cref="ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
 		/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
 		/// <seealso cref="CandidatesParsingOptions.All"/>
-		public static unsafe Candidates Parse(string str, CandidatesParsingOptions options = CandidatesParsingOptions.All)
+		public static Candidates Parse(string str, CandidatesParsingOptions options = CandidatesParsingOptions.All)
 		{
 			if (options is CandidatesParsingOptions.None or > CandidatesParsingOptions.All)
 			{

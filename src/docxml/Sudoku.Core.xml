@@ -1326,12 +1326,13 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_Modulus(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
-            eliminations.
+            Simply calls <c>(a &amp; b).PeerIntersection &amp; b</c>.
+            The operator is used for searching for and checking eliminations.
             </summary>
             <param name="base">The base map.</param>
-            <param name="limit">The limit map that the base map sees.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
+            <seealso cref="P:Sudoku.Data.Cells.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Implicit(System.Int32[])~Sudoku.Data.Cells">
             <summary>
@@ -2214,10 +2215,12 @@
             </para>
             <para>
             For example:
-            <code>
-            080630040200085009090000081000300800000020000006001000970000030400850007010094050
-            4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
-            </code>
+            </para>
+            <para>
+            1) <c>080630040200085009090000081000300800000020000006001000970000030400850007010094050</c>
+            </para>
+            <para>
+            2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
             </para>
             </summary>
         </member>
@@ -2244,8 +2247,6 @@
             | 47    248    &lt;5&gt;  | &lt;9&gt;  *3*   28   | 2678    &lt;1&gt;   4678 |
             +-------------------+-----------------+--------------------+
             </code>
-            (Due to the rendering engine of IDE, all spaces will be displayed only once
-            in this table.)
             </para>
             </summary>
         </member>
@@ -2273,8 +2274,6 @@
             |  .  .  9 |  .  . +5 |  4  8  . |
             '----------'----------'----------'
             </code>
-            (Due to the rendering engine of IDE, all spaces will be displayed only once
-            in this table.)
             </para>
             </summary>
         </member>
@@ -2317,9 +2316,6 @@
              23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
              23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
             </code>
-            (Due to the rendering engine of IDE, all spaces will be displayed only once
-            in this table. In addition, this puzzle doesn't have a unique solution, here it is a
-            model for references only.)
             </para>
             </summary>
         </member>
@@ -2352,8 +2348,6 @@
             2	3	4	8	9	1	5	6	7
             5	6	7	2	3	4			1
             </code>
-            (Due to the rendering engine of IDE, all spaces will be displayed only once
-            in this table.)
             </para>
             </summary>
         </member>

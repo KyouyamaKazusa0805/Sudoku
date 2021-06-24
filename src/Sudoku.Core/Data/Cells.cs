@@ -835,6 +835,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="digit">The digit.</param>
 		/// <returns>The candidate list.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly Candidates Expand(int digit) => this * digit;
 
 		/// <summary>
@@ -1191,15 +1192,16 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Simply calls <c>-(a &amp; b) &amp; b</c>. The operator is used for searching and checking
-		/// eliminations.
+		/// Simply calls <c>(a &amp; b).PeerIntersection &amp; b</c>.
+		/// The operator is used for searching for and checking eliminations.
 		/// </summary>
 		/// <param name="base">The base map.</param>
-		/// <param name="limit">The limit map that the base map sees.</param>
+		/// <param name="template">The template map that the base map to check and cover.</param>
 		/// <returns>The result map.</returns>
+		/// <seealso cref="PeerIntersection"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Cells operator %(in Cells @base, in Cells limit) =>
-			(@base & limit).PeerIntersection & limit;
+		public static Cells operator %(in Cells @base, in Cells template) =>
+			(@base & template).PeerIntersection & template;
 
 
 		/// <summary>

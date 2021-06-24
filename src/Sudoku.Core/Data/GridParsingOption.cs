@@ -16,10 +16,12 @@ namespace Sudoku.Data
 		/// </para>
 		/// <para>
 		/// For example:
-		/// <code>
-		/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
-		/// 4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
-		/// </code>
+		/// </para>
+		/// <para>
+		/// 1) <c>080630040200085009090000081000300800000020000006001000970000030400850007010094050</c>
+		/// </para>
+		/// <para>
+		/// 2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
 		/// </para>
 		/// </summary>
 		Susser,
@@ -46,8 +48,6 @@ namespace Sudoku.Data
 		/// | 47    248    &lt;5&gt;  | &lt;9&gt;  *3*   28   | 2678    &lt;1&gt;   4678 |
 		/// +-------------------+-----------------+--------------------+
 		/// </code>
-		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table.)
 		/// </para>
 		/// </summary>
 		PencilMarked,
@@ -75,8 +75,6 @@ namespace Sudoku.Data
 		/// |  .  .  9 |  .  . +5 |  4  8  . |
 		/// '----------'----------'----------'
 		/// </code>
-		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table.)
 		/// </para>
 		/// </summary>
 		Table,
@@ -119,9 +117,6 @@ namespace Sudoku.Data
 		///  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
 		///  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
 		/// </code>
-		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table. In addition, this puzzle doesn't have a unique solution, here it is a
-		/// model for references only.)
 		/// </para>
 		/// </summary>
 		Sukaku,
@@ -154,8 +149,6 @@ namespace Sudoku.Data
 		/// 2	3	4	8	9	1	5	6	7
 		/// 5	6	7	2	3	4			1
 		/// </code>
-		/// (Due to the rendering engine of IDE, all spaces will be displayed only once
-		/// in this table.)
 		/// </para>
 		/// </summary>
 		Excel,
