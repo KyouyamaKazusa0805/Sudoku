@@ -30,6 +30,24 @@ namespace System.Extensions
 		}
 
 		/// <summary>
+		/// Remove all characters hehind the character whose index is specified.
+		/// </summary>
+		/// <param name="this">The instance to remove characters.</param>
+		/// <param name="startIndex">The start index.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder RemoveFrom(this StringBuilder @this, int startIndex) =>
+			@this.Remove(startIndex, @this.Length - startIndex);
+
+		/// <summary>
+		/// Remove all characters behind the character whose index is specified.
+		/// </summary>
+		/// <param name="this">The instance to remove characters.</param>
+		/// <param name="startIndex">The start index.</param>
+		/// <returns>The reference of the current instance.</returns>
+		public static StringBuilder RemoveFrom(this StringBuilder @this, in Index startIndex) =>
+			@this.Remove(startIndex.GetOffset(@this.Length), startIndex.Value);
+
+		/// <summary>
 		/// Remove the specified number of characters from the end of the string builder
 		/// instance.
 		/// </summary>

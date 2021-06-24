@@ -156,7 +156,7 @@ namespace Sudoku.Data
 							int cell = row * 9 + column;
 							sb.Append(builders[cell].ToString().PadLeft(span[column])).Append(' ');
 						}
-						sb.RemoveFromEnd(1).AppendLine(); // Remove last whitespace.
+						sb.RemoveFrom(^1).AppendLine(); // Remove last whitespace.
 					}
 
 					return sb.ToString();
@@ -222,7 +222,7 @@ namespace Sudoku.Data
 					}
 				}
 
-				string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFromEnd(1).ToString();
+				string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFrom(^1).ToString();
 				return $"{sb.ToString()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 			}
 

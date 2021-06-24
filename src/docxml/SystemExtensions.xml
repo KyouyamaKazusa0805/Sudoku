@@ -1207,6 +1207,22 @@
             </param>
             <returns>The reference of the current instance.</returns>
         </member>
+        <member name="M:System.Extensions.StringBuilderEx.RemoveFrom(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Remove all characters hehind the character whose index is specified.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Extensions.StringBuilderEx.RemoveFrom(System.Text.StringBuilder,System.Index@)">
+            <summary>
+            Remove all characters behind the character whose index is specified.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
         <member name="M:System.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
             <summary>
             Remove the specified number of characters from the end of the string builder
