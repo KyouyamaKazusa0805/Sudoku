@@ -2,9 +2,13 @@
 
 ## Bulletin for Specials (特殊公告)
 
-> Wait for adding.
+If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
+
+如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到上方的特殊公告栏里。
+
+> None at present.
 >
-> 等待添加。
+> 目前没有。
 
 ## Content (正文)
 
@@ -38,13 +42,9 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
-In the future, I'd like to apply this solution to **almost everything**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
+In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
-以后，我想把这个解决方案用于**几乎所有东西**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
-
-If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into the section "Bulletin for Specials".
-
-如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到上方的特殊公告栏里。
+以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 ### How to Compile the Solution (如何编译解决方案)
 
@@ -52,7 +52,26 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 
 请访问[此链接](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution)。
 
+### About Forking & PRs this Repo (关于复制这个仓库以及代码更新推并请求的内容)
+
+Of course you can fork my repo and do whatever you want. You can:
+
+当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以：
+
+* Modify the code (修改代码)
+* Use the code or code snippet into your project (使用代码或代码片段到你的项目里去)
+* Make a new pull request (编辑代码，创建一个新的代码更新推并请求)
+* and so on... (等等)
+
+> This repo may update frequently (At least 1 commit in a day).
+>
+> 这个仓库可能会更新得非常频繁（大概一天至少一次代码提交）。
+
 ### Basic Information (基本信息)
+
+Please visit the following tables.
+
+请查看下面的表格获取更多信息。
 
 | Solution sites<br />项目地址 |                                                             | P.S.<br />备注                                               |
 | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -63,10 +82,6 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 | -------------------------- | ---------------------------------------------- |
 | Chinese only<br />中文介绍 | [GitHub](https://sunnieshine.github.io/Sudoku) |
 
-> I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
->
-> 我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
-
 | Coding Information<br />编码信息                     |                                                              |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
 | Programming language and version<br />编程语言和版本 | C# 9                                                         |
@@ -75,17 +90,25 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 | Integrated development environment<br />集成开发环境 | Visual Studio 2022 (Version 17.0 Preview)<br />Visual Studio 2022（17.0 预览版） |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
 
-> You can also use JetBrains Rider as your IDE. However, disappointing, some features contain bugs still now. :(
+> I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
-> 当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发，不过有点难受的地方是，有一些特性目前还有 bug。（不开心脸）
+> 我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
+>
+> In addition, you can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D
+>
+> 当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发。随便你用什么都行，甚至是记事本（大笑）
 >
 > In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
 >
 > 另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
 
+### Open Resource License (项目开源许可证)
+
+[MIT License (麻省理工开源许可证)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
+
 ### Author (作者)
 
-Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University.
+Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
 
 小向，来自成都的一名四川~~普通大学~~师范大学的本科大学生。
 
