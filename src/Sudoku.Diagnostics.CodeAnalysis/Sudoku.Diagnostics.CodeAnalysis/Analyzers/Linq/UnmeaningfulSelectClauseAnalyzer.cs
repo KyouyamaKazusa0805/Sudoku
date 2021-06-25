@@ -31,6 +31,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					},
 					Body:
 					{
+						Clauses: { Count: 0 },
 						SelectOrGroup: SelectClauseSyntax
 						{
 							Expression: IdentifierNameSyntax
