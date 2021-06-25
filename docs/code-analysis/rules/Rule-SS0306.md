@@ -5,7 +5,7 @@
 **错误叙述**：
 
 * **中文**：可使用索引器代替 `ElementAt` LINQ 调用。
-* **英文**：The LINQ expression `ElementAt` can be replaced by an indexer invocation.
+* **英文**：The LINQ expression `ElementAt` can be replaced with an indexer invocation.
 
 **级别**：编译器信息
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,7 +11,7 @@ using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
-	[CodeAnalyzer("SS0301")]
+	[CodeAnalyzer("SS0301", "SS0306")]
 	public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
@@ -30,15 +31,21 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				static context =>
 				{
 					CheckSS0301(context);
+					CheckSS0306(context);
 				},
-				new[] { SyntaxKind.GreaterThanExpression, SyntaxKind.GreaterThanOrEqualExpression }
+				new[]
+				{
+					SyntaxKind.GreaterThanExpression,
+					SyntaxKind.GreaterThanOrEqualExpression,
+					SyntaxKind.InvocationExpression
+				}
 			);
 		}
 
 
 		private static void CheckSS0301(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, node) = context;
+			var (semanticModel, compilation, node, _, cancellationToken) = context;
 
 			// Check whether the node is valid:
 			//
@@ -94,7 +101,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			// Check the method invocation is from type 'System.Linq.Enumerable'.
 			if (
-				semanticModel.GetOperation(invocationNode) is not IInvocationOperation
+				semanticModel.GetOperation(invocationNode, cancellationToken) is not IInvocationOperation
 				{
 					TargetMethod:
 					{
@@ -136,6 +143,94 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						potentialNotTakeMethodInvocationNode.GetLocation(),
 						rightNode.GetLocation()
 					}
+				)
+			);
+		}
+
+		private static void CheckSS0306(SyntaxNodeAnalysisContext context)
+		{
+			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
+
+			if (
+				originalNode is not InvocationExpressionSyntax
+				{
+					Expression: MemberAccessExpressionSyntax
+					{
+						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+						Expression: var expr,
+						Name: { Identifier: { ValueText: "ElementAt" } } nameNode
+					},
+					ArgumentList: { Arguments: { Count: 1 } arguments }
+				}
+			)
+			{
+				return;
+			}
+
+			var typeSymbol = semanticModel.GetOperation(expr, cancellationToken)?.Type;
+			switch (typeSymbol)
+			{
+				// Array type has already contained the indexer implicitly.
+				case IArrayTypeSymbol { Rank: 1, IsSZArray: true }:
+				{
+					break;
+				}
+
+				// Should check whether the current type contains the indexer
+				// whose parameter is of type 'int' or 'Index'.
+				case INamedTypeSymbol
+				when compilation.GetSpecialType(SpecialType.System_Int32) is var int32Symbol
+				&& compilation.GetTypeByMetadataName("System.Index") is var indexSymbol
+				&& (
+					from possibleIndexerSymbol in typeSymbol.GetMembers().OfType<IPropertySymbol>()
+					where possibleIndexerSymbol is { IsIndexer: true, Parameters: { Length: 1 } }
+					let parameterType = possibleIndexerSymbol.Parameters[0].Type
+					where SymbolEqualityComparer.Default.Equals(parameterType, int32Symbol)
+					|| SymbolEqualityComparer.Default.Equals(parameterType, indexSymbol)
+					select possibleIndexerSymbol
+				).Any():
+				{
+					break;
+				}
+
+				default:
+				{
+					return;
+				}
+			}
+
+			// Check the method invocation is from type 'System.Linq.Enumerable'.
+			if (
+				semanticModel.GetOperation(originalNode, cancellationToken) is not IInvocationOperation
+				{
+					TargetMethod:
+					{
+						ContainingType: var containingTypeSymbol,
+						IsExtensionMethod: true,
+						IsGenericMethod: true
+					}
+				}
+			)
+			{
+				return;
+			}
+
+			if (
+				!SymbolEqualityComparer.Default.Equals(
+					containingTypeSymbol,
+					compilation.GetTypeByMetadataName(EnumerableClassFullName)
+				)
+			)
+			{
+				return;
+			}
+
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SS0306,
+					location: nameNode.GetLocation(),
+					messageArgs: null,
+					additionalLocations: new[] { expr.GetLocation(), arguments[0].GetLocation() }
 				)
 			);
 		}

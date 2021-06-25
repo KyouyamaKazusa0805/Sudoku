@@ -347,6 +347,10 @@
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0301">SS0301</a></term>
             <description>Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value'</description>
             </item>
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0306">SS0306</a></term>
+            <description>The LINQ expression 'ElementAt' can be replaced with an indexer invocation</description>
+            </item>
             </list>
             </summary>
         </member>
@@ -363,6 +367,12 @@
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0301">SS0301</a>
             diagnostic result (Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SS0306">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0306">SS0306</a>
+            diagnostic result (The LINQ expression 'ElementAt' can be replaced with an indexer invocation).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SupportedDiagnostics">
