@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 
-int[] s = { 1, 3, 45, 6, 8 };
+int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
 
-_ = from e in s where true select e;
-_ = from e in s where false select e;
-_ = from e in s select e + 10;
+var selection =
+	from x in arr
+	orderby x ascending
+	orderby x + 1 ascending
+	orderby x * 45 + 17 & 12 descending
+	select x;
