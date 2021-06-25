@@ -230,7 +230,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					descriptor: SS0306,
 					location: nameNode.GetLocation(),
 					messageArgs: null,
-					additionalLocations: new[] { expr.GetLocation(), arguments[0].GetLocation() }
+					additionalLocations: new[]
+					{
+						originalNode.GetLocation(),
+						expr.GetLocation(),
+						arguments[0].Expression.GetLocation()
+					}
 				)
 			);
 		}
