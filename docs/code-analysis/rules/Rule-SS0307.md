@@ -21,7 +21,7 @@ int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
 int element = from x in arr orderby x / 2 ascending where (x & 1) != 0 select x; 
 ```
 
-建议交换 `orderby` 和 `where` 的计算顺序
+建议交换 `orderby` 和 `where` 的计算顺序。
 
 ```csharp
 int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };

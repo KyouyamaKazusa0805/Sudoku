@@ -43,6 +43,7 @@ SS0303,Info,Performance,Available simplification of LINQ expression.,
 SS0304,Warning,Peformance,Unmeaningful 'where true' or 'where false' clause.,Unmeaningful 'where {0}' clause.
 SS0305,Info,Performance,Multiple 'orderby' LINQ expressions can be merged to one.,
 SS0306,Info,Performance,The LINQ expression 'ElementAt' can be replaced with an indexer invocation.,
+SS0307,Info,Performance,If the 'where' and 'orderby' clauses both exist in a same LINQ expression, please write 'where' clause first.,
 SS0401,Error,Usage,Can't apply the operator here because the type is closed enum.,Can't apply 'operator {0}' here because the type is closed enum.
 SS0402,Warning,Design,The enum field must holds a flag value if the enum is marked 'FlagsAttribute'.,
 SS0403,Warning,Design,The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'.,

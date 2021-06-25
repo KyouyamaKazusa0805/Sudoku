@@ -4,7 +4,7 @@
 
 **错误叙述**：
 
-* **中文**：后面重复调用的 `orderBy` 语句可归并到一起。
+* **中文**：重复调用的 `orderBy` 语句可归并到一起。
 * **英文**：Multiple `orderby` LINQ expressions can be merged to one.
 
 **级别**：编译器信息
