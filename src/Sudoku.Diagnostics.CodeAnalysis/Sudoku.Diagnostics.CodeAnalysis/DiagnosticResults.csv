@@ -38,6 +38,7 @@ SS0101,Warning,Performance,Please add 'ToString' method invocation to the interp
 SS0102,Info,Usage,Unnecessary interpolation leading character '$'.,
 SS0201,Warning,Performance,"The result of the expression '.ctor(void*, int)' can't be the return value as any methods.","The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods."
 SS0301,Warning,Performance,Replace 'Count() >=(or >) value' with 'Take(value).Count() >=(or >) value'.,Replace 'Count() {1} {0}' with 'Take({0}).Count() {1} {0}'.
+SS0302,Warning,Performance,The LINQ expression is unmeaningful, where the 'where' clause doesn't exist, and the conversion expression in 'select' clause is equal to the range variable in 'from' clause; please omit the iteration.,
 SS0303,Info,Performance,Available simplification of LINQ expression.,
 SS0401,Error,Usage,Can't apply the operator here because the type is closed enum.,Can't apply 'operator {0}' here because the type is closed enum.
 SS0402,Warning,Design,The enum field must holds a flag value if the enum is marked 'FlagsAttribute'.,

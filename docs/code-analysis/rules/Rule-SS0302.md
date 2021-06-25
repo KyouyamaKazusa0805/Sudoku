@@ -28,10 +28,3 @@ foreach (var a in list)
 var selection = from a in list select a;
 ```
 
-建议改成这样：
-
-```csharp
-var selection = list;
-```
-
-当然，这样的代码也没有什么特殊含义，但是分析器更不愿意的是你迭代一个本身就没有意义的部分。
