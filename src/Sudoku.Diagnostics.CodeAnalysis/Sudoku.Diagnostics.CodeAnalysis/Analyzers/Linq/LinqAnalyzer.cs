@@ -179,9 +179,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				// Should check whether the current type contains the indexer
 				// whose parameter is of type 'int' or 'Index'.
 				case INamedTypeSymbol
-				when compilation.GetSpecialType(SpecialType.System_Int32) is var int32Symbol
-				&& compilation.GetTypeByMetadataName("System.Index") is var indexSymbol
-				&& (
+				when (
+					compilation.GetSpecialType(SpecialType.System_Int32),
+					compilation.GetTypeByMetadataName("System.Index")
+				) is (var int32Symbol, var indexSymbol) && (
 					from possibleIndexerSymbol in typeSymbol.GetMembers().OfType<IPropertySymbol>()
 					where possibleIndexerSymbol is { IsIndexer: true, Parameters: { Length: 1 } }
 					let parameterType = possibleIndexerSymbol.Parameters[0].Type
