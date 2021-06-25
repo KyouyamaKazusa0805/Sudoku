@@ -368,6 +368,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulSelectClauseAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0304">SS0304F</a></term>
+            <description>Unmeaningful 'where true' or 'where false' clause</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer.SS0304">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0304">SS0304</a>
+            diagnostic result (Unmeaningful 'where true' or 'where false' clause).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
