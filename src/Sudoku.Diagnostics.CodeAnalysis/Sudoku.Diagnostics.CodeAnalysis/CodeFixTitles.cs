@@ -31,6 +31,7 @@
 		public const string SS0306 = "Use indexer instead";
 		public const string SS0307 = "Swap 'orderby' and 'where' clause";
 		public const string SS0308 = "Preposition type cast";
+		public const string SS0309 = "Remove keyword 'ascending'";
 		public const string SS0402 = "Replace value";
 		public const string SS0403 = "Append flag";
 		public const string SS0502 = "Remove keyword 'static'";
