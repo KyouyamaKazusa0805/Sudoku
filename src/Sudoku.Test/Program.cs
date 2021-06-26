@@ -1,5 +1,5 @@
 ﻿using System.Linq;
 
-string[] strings = { "1", "2", "3" };
-_ = from @string in strings select (object)@string;
-_ = from s in strings select (object)s;
+int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
+
+var selection = from x in arr orderby x ascending select x;

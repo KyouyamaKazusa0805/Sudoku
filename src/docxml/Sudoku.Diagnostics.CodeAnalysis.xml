@@ -424,6 +424,32 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.OrderbyAndWhereClauseAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0309">SS0309F</a></term>
+            <description>Keyword 'ascending' is unnecessary because the default ordering case is ascending</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer.AnalyzeSyntaxNode(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer.SS0309">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0309">SS0309</a>
+            diagnostic result (Keyword 'ascending' is unnecessary because the default ordering case is ascending).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulSelectClauseAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
