@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -33,9 +35,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							Expression: CastExpressionSyntax
 							{
 								Type: var typeToCast,
-								Expression: IdentifierNameSyntax { Identifier: { ValueText: var identifierToCheck } }
+								Expression: IdentifierNameSyntax
+								{
+									Identifier: { ValueText: var identifierToCheck }
+								} innerExpression
 							} castExpression
-						}
+						} selectClause
 					}
 				}
 			)
@@ -53,7 +58,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					descriptor: SS0308,
 					location: castExpression.GetLocation(),
 					messageArgs: null,
-					additionalLocations: new[] { fromClause.GetLocation(), typeToCast.GetLocation() }
+					additionalLocations: new[]
+					{
+						fromClause.GetLocation(),
+						typeToCast.GetLocation(),
+						selectClause.GetLocation(),
+						innerExpression.GetLocation()
+					}
 				)
 			);
 		}

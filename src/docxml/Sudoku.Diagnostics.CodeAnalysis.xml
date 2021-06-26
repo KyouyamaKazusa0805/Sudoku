@@ -50,29 +50,6 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AttributeSetterAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0308">SS0308</a></term>
-            <description>Please use 'Cast' instead of the inner conversion in the lambda expression</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.SS0308">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0308">SS0308</a>
-            diagnostic result (Please use 'Cast' instead of the inner conversion in the lambda expression).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InheritFromObjectAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -314,6 +291,29 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InterpolatedStringAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0308">SS0308</a></term>
+            <description>Please use 'Cast' instead of the inner conversion in the lambda expression</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.SS0308">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0308">SS0308</a>
+            diagnostic result (Please use 'Cast' instead of the inner conversion in the lambda expression).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableCastAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer">
@@ -2563,6 +2563,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0307CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0308CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0308">SS0308</a>
+            (Please use 'Cast' instead of the inner conversion in the lambda expression).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0308CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0308CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0308CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0402CodeFixProvider">
