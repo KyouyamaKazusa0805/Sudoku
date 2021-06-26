@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 
-int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
-
-var element = from x in arr orderby x / 2 ascending where (x & 1) != 0 select x;
-Console.WriteLine(element);
+string[] strings = { "1", "2", "3" };
+var stringsAsObjects = from @string in strings select (object)@string;
+Console.WriteLine(stringsAsObjects);

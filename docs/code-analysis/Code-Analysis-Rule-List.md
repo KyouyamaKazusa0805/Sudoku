@@ -51,7 +51,7 @@
 | [SS0305](rules/Rule-SS0305) | ℹ | Performance | ✔ |  |
 | [SS0306](rules/Rule-SS0306) | ℹ | Performance | ✔ |  |
 | [SS0307](rules/Rule-SS0307) | ℹ | Performance | ✔ |  |
-| [SS0308](rules/Rule-SS0308) | ℹ | Performance | ❌ | 是 |
+| [SS0308](rules/Rule-SS0308) | ℹ | Performance | ❌ |  |
 | [SS0309](rules/Rule-SS0309) | ℹ | Design | ❌ | 是 |
 | [SS0310](rules/Rule-SS0310) | ⚠ | Performance | ❌ | 是 |
 | [SS0311](rules/Rule-SS0311) | ⚠ | Performance | ❌ | 是 |

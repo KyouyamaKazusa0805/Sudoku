@@ -16,7 +16,7 @@
 LINQ 有 `Cast` 方法专门用来转换类型。但是，如果 Lambda 里带有转换，那么转换就可以使用 `Cast` 方法来代替。
 
 ```csharp
-var stringsAsObjects = from @string in strings select (object)str;
+var stringsAsObjects = from @string in strings select (object)@string;
 ```
 
 可转换为 `Cast` 调用。
