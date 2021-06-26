@@ -18,7 +18,7 @@ LINQ 的 `OrderBy` 调用会对对象进行自定义排序。但是自定义排�
 ```csharp
 int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
 
-int element = from x in arr orderby x / 2 ascending where (x & 1) != 0 select x; 
+var element = from x in arr orderby x / 2 ascending where (x & 1) != 0 select x; 
 ```
 
 建议交换 `orderby` 和 `where` 的计算顺序。
@@ -26,6 +26,6 @@ int element = from x in arr orderby x / 2 ascending where (x & 1) != 0 select x;
 ```csharp
 int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
 
-int element = from x in arr where (x & 1) != 0 orderby x / 2 ascending select x; 
+var element = from x in arr where (x & 1) != 0 orderby x / 2 ascending select x; 
 ```
 
