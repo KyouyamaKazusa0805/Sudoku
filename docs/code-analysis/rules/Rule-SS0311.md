@@ -5,7 +5,7 @@
 **错误叙述**：
 
 * **中文**：排序语句互斥或无意义。
-* **英文**：Orthogonal or unmeaningful `orderby` clauses.
+* **英文**：Unmeaningful `orderby` clauses.
 
 **级别**：编译器警告
 

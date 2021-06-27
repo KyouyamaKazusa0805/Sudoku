@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -28,7 +30,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			foreach (var clause in clauses)
 			{
-				if (clause is not OrderByClauseSyntax { Orderings: { Count: var count and not 0 } orderings })
+				if (
+					clause is not OrderByClauseSyntax
+					{
+						Orderings: { Count: var count and not 0 } orderings
+					} queryClause
+				)
 				{
 					continue;
 				}
@@ -69,8 +76,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							Diagnostic.Create(
 								descriptor: SS0311,
 								location: latter.GetLocation(),
+								properties: ImmutableDictionary.CreateRange(
+									new KeyValuePair<string, string?>[] { new("Index", j.ToString()) }
+								),
 								messageArgs: null,
-								additionalLocations: new[] { clause.GetLocation() }
+								additionalLocations: new[] { queryClause.GetLocation() }
 							)
 						);
 					}
