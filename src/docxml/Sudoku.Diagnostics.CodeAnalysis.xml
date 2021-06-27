@@ -608,6 +608,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.OrderbyAfterWhereFilterAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0310">SS0310</a></term>
+            <description>The selection after 'where' clause filtered can only contain only one case, so the ordering by the same field after the filtered selection is unmeaningful</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.OrderbyAfterWhereFilterAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.OrderbyAfterWhereFilterAnalyzer.SS0310">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0310">SS0310</a>
+            diagnostic result (The selection after 'where' clause filtered can only contain only one case, so the ordering by the same field after the filtered selection is unmeaningful).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.OrderbyAfterWhereFilterAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
