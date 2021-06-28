@@ -207,8 +207,21 @@
             <summary>
             <para>
             The map of all cell offsets in its specified region.
-            The indices is between 0 and 26, where <c>0..9</c> is for block 1 to 9,
-            <c>9..18</c> is for row 1 to 9 and <c>18..27</c> is for column 1 to 9.
+            The indices is between 0 and 26, where:
+            <list type="table">
+            <item>
+            <term><c>0..9</c></term>
+            <description>Block 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>9..18</c></term>
+            <description>Row 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>18..27</c></term>
+            <description>Column 1 to 9.</description>
+            </item>
+            </list>
             </para>
             </summary>
             <example>
