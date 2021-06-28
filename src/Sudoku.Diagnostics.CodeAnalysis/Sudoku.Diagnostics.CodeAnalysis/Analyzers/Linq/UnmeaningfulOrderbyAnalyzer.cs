@@ -9,7 +9,7 @@ using Sudoku.CodeGen;
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
 	[CodeAnalyzer("SS0311F")]
-	public sealed partial class ContinuousOrderbyAnalyzer : DiagnosticAnalyzer
+	public sealed partial class UnmeaningfulOrderbyAnalyzer : DiagnosticAnalyzer
 	{
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
