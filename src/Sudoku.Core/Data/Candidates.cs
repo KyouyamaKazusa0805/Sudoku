@@ -395,44 +395,40 @@ namespace Sudoku.Data
 		/// <inheritdoc/>
 		public override readonly string ToString()
 		{
-			switch (Count)
+			return Count switch
 			{
-				case 0:
-				{
-					return "{ }";
-				}
-				case 1:
-				{
-					int candidate = this[0], cell = candidate / 9, digit = candidate % 9;
-					return $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})";
-				}
-				default:
-				{
-					const string separator = ", ";
-					var sb = new ValueStringBuilder(stackalloc char[50]);
+				0 => "{ }",
+				1 when this[0] is var candidate && (candidate / 9, candidate % 9) is (var cell, var digit) =>
+					$"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})",
+				_ => f(Offsets)
+			};
 
-					foreach (var digitGroup in
-						from candidate in Offsets
-						group candidate by candidate % 9 into digitGroups
-						orderby digitGroups.Key
-						select digitGroups)
+			static string f(int[] offsets)
+			{
+				const string separator = ", ";
+				var sb = new ValueStringBuilder(stackalloc char[50]);
+
+				foreach (var digitGroup in
+					from candidate in offsets
+					group candidate by candidate % 9 into digitGroups
+					orderby digitGroups.Key
+					select digitGroups)
+				{
+					var cells = Cells.Empty;
+					foreach (int candidate in digitGroup)
 					{
-						var cells = Cells.Empty;
-						foreach (int candidate in digitGroup)
-						{
-							cells.AddAnyway(candidate / 9);
-						}
-
-						sb.Append(cells.ToString());
-						sb.Append('(');
-						sb.Append(digitGroup.Key + 1);
-						sb.Append(')');
-						sb.Append(separator);
+						cells.AddAnyway(candidate / 9);
 					}
 
-					sb.RemoveFromEnd(separator.Length);
-					return sb.ToString();
+					sb.Append(cells.ToString());
+					sb.Append('(');
+					sb.Append(digitGroup.Key + 1);
+					sb.Append(')');
+					sb.Append(separator);
 				}
+
+				sb.RemoveFromEnd(separator.Length);
+				return sb.ToString();
 			}
 		}
 
