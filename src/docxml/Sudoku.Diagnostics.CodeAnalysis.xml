@@ -339,52 +339,6 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableSimplificationAnyMethodAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuatedOrderbyClauseAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0305">SS0305</a></term>
-            <description>Multiple 'orderby' LINQ expressions can be merged to one</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuatedOrderbyClauseAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuatedOrderbyClauseAnalyzer.SS0305">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0305">SS0305</a>
-            diagnostic result (Multiple 'orderby' LINQ expressions can be merged to one).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuatedOrderbyClauseAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuousOrderbyAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0311">SS0311F</a></term>
-            <description>Unmeaningful 'orderby' clause</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuousOrderbyAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuousOrderbyAnalyzer.SS0311">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0311">SS0311</a>
-            diagnostic result (Unmeaningful 'orderby' clause).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ContinuousOrderbyAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -422,6 +376,29 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LinqAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.MultipleOrderbyClauseAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0305">SS0305</a></term>
+            <description>Multiple 'orderby' LINQ expressions can be merged to one</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.MultipleOrderbyClauseAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.MultipleOrderbyClauseAnalyzer.SS0305">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0305">SS0305</a>
+            diagnostic result (Multiple 'orderby' LINQ expressions can be merged to one).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.MultipleOrderbyClauseAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.MultipleWhereClauseAnalyzer">
@@ -517,6 +494,29 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RedundantAscendingKeywordAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulOrderbyAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0311">SS0311F</a></term>
+            <description>Unmeaningful 'orderby' clause</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulOrderbyAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulOrderbyAnalyzer.SS0311">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0311">SS0311</a>
+            diagnostic result (Unmeaningful 'orderby' clause).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulOrderbyAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnmeaningfulSelectClauseAnalyzer">

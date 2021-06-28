@@ -463,21 +463,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Indicates the initial values pointer value.
-		/// </summary>
-		private readonly short* InitialValuesPointer
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get
-			{
-				fixed (short* p = _initialValues)
-				{
-					return p;
-				}
-			}
-		}
-
-		/// <summary>
 		/// The triplet of three main information.
 		/// </summary>
 		private readonly (int A, int B, int C) Triplet
@@ -750,13 +735,7 @@ namespace Sudoku.Data
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public readonly ref readonly short GetPinnableReference()
-		{
-			fixed (SudokuGrid* pThis = &this)
-			{
-				return ref pThis->_values[0];
-			}
-		}
+		public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
 		/// <summary>
 		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
@@ -780,7 +759,7 @@ namespace Sudoku.Data
 			ref pinnedItem == PinnedItem.CurrentGrid
 			? ref GetPinnableReference()
 			: ref pinnedItem == PinnedItem.InitialGrid
-			? ref *InitialValuesPointer
+			? ref _initialValues[0]
 			: ref Unsafe.NullRef<short>();
 
 		/// <summary>

@@ -65,6 +65,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public readonly short* Masks
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				fixed (short* s = _maskList)
@@ -79,6 +80,7 @@ namespace Sudoku.Data
 		/// </summary>
 		public readonly short* Candidates
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				fixed (short* s = _candidatesList)
@@ -111,13 +113,7 @@ namespace Sudoku.Data
 		/// <returns>A reference to the element of the <see cref="SudokuGridSegment"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public readonly ref readonly short GetPinnableReference()
-		{
-			fixed (SudokuGridSegment* pThis = &this)
-			{
-				return ref pThis->_maskList[0];
-			}
-		}
+		public readonly ref readonly short GetPinnableReference() => ref _maskList[0];
 
 		/// <summary>
 		/// Returns a reference to the element of the <see cref="SudokuGridSegment"/> at index zero.
@@ -139,9 +135,9 @@ namespace Sudoku.Data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.Masks
-			? ref *Masks
+			? ref _maskList[0]
 			: ref pinnedItem == PinnedItem.CandidateMasks
-			? ref *Candidates
+			? ref _candidatesList[0]
 			: ref Unsafe.NullRef<short>();
 
 		/// <summary>

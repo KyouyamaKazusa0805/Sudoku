@@ -3422,11 +3422,6 @@
             </remarks>
             <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
         </member>
-        <member name="P:Sudoku.Data.SudokuGrid.InitialValuesPointer">
-            <summary>
-            Indicates the initial values pointer value.
-            </summary>
-        </member>
         <member name="P:Sudoku.Data.SudokuGrid.Triplet">
             <summary>
             The triplet of three main information.
