@@ -34,6 +34,8 @@ SD0407,Warning,Usage,The source generator will be well-working until the method 
 SD0408,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should contain a pair of parameters that is of the current type.,
 SD0409,Warning,Usage,The source generator will be well-working until the number of methods marked '[ProxyEquality]' should be only 1.,
 SD0410,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters.,
+SD0411,Error,Usage,The field should be a string when marked '[Regex]'.,
+SD0412,Warning,Usage,The field value isn't an invalid regular expression when marked '[Regex]'.,
 SS0101,Warning,Performance,Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.,
 SS0102,Info,Usage,Unnecessary interpolation leading character '$'.,
 SS0201,Warning,Performance,"The result of the expression '.ctor(void*, int)' can't be the return value as any methods.","The result of the expression '{0}.{0}(void*, int)' can't be the return value as any methods."

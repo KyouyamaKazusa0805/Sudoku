@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Sudoku
 {
@@ -12,92 +13,109 @@ namespace Sudoku
 			/// <summary>
 			/// Indicates a comment line.
 			/// </summary>
+			[Regex]
 			public const string CommentLine = @"(\s//.+|/\*.+|.+\*/)";
 
 			/// <summary>
 			/// Indicates each candidates group in the PM grid.
 			/// </summary>
+			[Regex]
 			public const string PmGridCandidates = @"[1-9]{1,9}";
 
 			/// <summary>
 			/// Indicates the eliminations in the extended susser format.
 			/// </summary>
+			[Regex]
 			public const string ExtendedSusserEliminations = @"(?<=\:)(\d{3}\s+)*\d{3}";
 
 			/// <summary>
 			/// Indicates the normal sudoku grid table (with only blank cells and numbers).
 			/// </summary>
+			[Regex]
 			public const string SimpleTable = @"([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}";
 
 			/// <summary>
 			/// Indicates the susser format.
 			/// </summary>
+			[Regex]
 			public const string Susser = @"[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?";
 
 			/// <summary>
 			/// Indicates the open sudoku format.
 			/// </summary>
+			[Regex]
 			public const string OpenSudoku = @"\d(\|\d){242}";
 
 			/// <summary>
 			/// Indicates the regular expression of a digit or empty cell placeholder.
 			/// </summary>
+			[Regex]
 			public const string DigitOrEmptyCell = @"(\+?\d|\.)";
 
 			/// <summary>
 			/// Indicates the unit in the basic PM grid.
 			/// </summary>
-			[Obsolete("We suggest you don't use this field, and use '" + nameof(PmGridUnit) + "' instead.", false)]
+			[Regex, Obsolete("We suggest you don't use this field, and use '" + nameof(PmGridUnit) + "' instead.")]
 			public const string PmGridUnit_Old = @"(\<\d\>|\*\d\*|\d{1,9})";
 
 			/// <summary>
 			/// Indicates the unit in the extended PM grid.
 			/// </summary>
+			[Regex]
 			public const string PmGridUnit = @"(\<\d\>|\*\d\*|\d*[\+\-]?\d+)";
 
 			/// <summary>
 			/// Indicates the candidate unit that used in the elimination list.
 			/// </summary>
+			[Regex]
 			public const string ThreeDigitsCandidate = @"\d{3}";
 
 			/// <summary>
 			/// Indicates the candidate list unit in the PM grid.
 			/// </summary>
+			[Regex]
 			public const string PmGridCandidatesUnit = @"\d*[\-\+]?\d+";
 
 			/// <summary>
 			/// Indicates a cell string.
 			/// </summary>
+			[Regex]
 			public const string Cell = @"[Rr]([1-9])[Cc]([1-9])";
 
 			/// <summary>
 			/// Indicates the cell list string.
 			/// </summary>
+			[Regex]
 			public const string CellOrCellList = @"(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})";
 
 			/// <summary>
 			/// Indicates the region string.
 			/// </summary>
+			[Regex]
 			public const string Region = @"([Rr][1-9]|[Cc][1-9]|[Bb][1-9])";
 
 			/// <summary>
 			/// Indicates a candidate string.
 			/// </summary>
+			[Regex]
 			public const string Candidate = @"[Rr]([1-9])[Cc]([1-9])\(([1-9])\)";
 
 			/// <summary>
 			/// Indicates the candidate list string that matches the triplet form candidate list.
 			/// </summary>
+			[Regex]
 			public const string CandidateListShortForm = @"[1-9]{3}";
 
 			/// <summary>
 			/// Indicates the candidate list string that matches the prepositional form candidate list.
 			/// </summary>
+			[Regex]
 			public const string CandidateListPrepositionalForm = @"[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})";
 
 			/// <summary>
 			/// Indicates the candidate list string that matches the postpositional form candidate list.
 			/// </summary>
+			[Regex]
 			public const string CandidateListPostpositionalForm = @"\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)";
 
 			/// <summary>
@@ -120,16 +138,19 @@ namespace Sudoku
 			/// </item>
 			/// </list>
 			/// </remarks>
+			[Regex]
 			public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListPrepositionalForm + "|" + CandidateListPostpositionalForm + ")";
 
 			/// <summary>
 			/// Indicates the regular expression to match a digit.
 			/// </summary>
+			[Regex]
 			public const string Digit = @"\d";
 
 			/// <summary>
 			/// Indicates the regular expression to match a tab character.
 			/// </summary>
+			[Regex]
 			public const string Tab = @"\t";
 		}
 	}
