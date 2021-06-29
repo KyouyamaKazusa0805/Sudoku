@@ -71,47 +71,42 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			switch (Count)
+			return Count switch
 			{
-				case 0:
-				{
-					return string.Empty;
-				}
-				case 1:
-				{
-					int region = TrailingZeroCount(_mask);
-					return $"{GetLabel(region / 9)}{(region % 9 + 1).ToString()}";
-				}
-				default:
-				{
-					var dic = new Dictionary<int, ICollection<int>>();
-					foreach (int region in this)
-					{
-						if (!dic.ContainsKey(region / 9))
-						{
-							dic.Add(region / 9, new List<int>());
-						}
+				0 => string.Empty,
+				1 when TrailingZeroCount(_mask) is var r => $"{GetLabel(r / 9)}{(r % 9 + 1).ToString()}",
+				_ => f(this)
+			};
 
-						dic[region / 9].Add(region % 9);
+			static string f(in RegionCollection @this)
+			{
+				var dic = new Dictionary<int, ICollection<int>>();
+				foreach (int region in @this)
+				{
+					if (!dic.ContainsKey(region / 9))
+					{
+						dic.Add(region / 9, new List<int>());
 					}
 
-					var sb = new ValueStringBuilder(stackalloc char[30]);
-					for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
-					{
-						if (!dic.ContainsKey(i))
-						{
-							continue;
-						}
+					dic[region / 9].Add(region % 9);
+				}
 
-						sb.Append(GetLabel(i));
-						foreach (int z in dic[i])
-						{
-							sb.Append(z + 1);
-						}
+				var sb = new ValueStringBuilder(stackalloc char[30]);
+				for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
+				{
+					if (!dic.ContainsKey(i))
+					{
+						continue;
 					}
 
-					return sb.ToString();
+					sb.Append(@this.GetLabel(i));
+					foreach (int z in dic[i])
+					{
+						sb.Append(z + 1);
+					}
 				}
+
+				return sb.ToString();
 			}
 		}
 

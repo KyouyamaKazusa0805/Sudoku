@@ -36,53 +36,49 @@ namespace Sudoku.Data.Collections
 		/// <inheritdoc cref="object.ToString"/>
 		public override string ToString()
 		{
-			switch (_collection.Length)
+			return _collection.Length switch
 			{
-				case 0:
+				0 => string.Empty,
+				1 => _collection[0].ToString(),
+				_ => f(_collection)
+			};
+
+			static string f(in Span<Link> collection)
+			{
+				var links = collection.ToArray();
+				var sb = new ValueStringBuilder(stackalloc char[100]);
+				foreach (var (start, _, type) in links)
 				{
-					return string.Empty;
+					sb.Append(new Candidates { start }.ToString());
+					sb.Append(type.GetNotation());
 				}
-				case 1:
+				sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
+
+				// Remove redundant digit labels:
+				// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).
+				var list = new List<(int Pos, char Value)>();
+				for (int i = 0; i < sb.Length; i++)
 				{
-					return _collection[0].ToString();
+					if (sb[i] == '(')
+					{
+						list.Add((i, sb[i + 1]));
+						i += 2;
+					}
 				}
-				default:
+
+				char digit = list[^1].Value;
+				for (int i = list.Count - 1; i >= 1; i--)
 				{
-					var links = _collection.ToArray();
-					var sb = new ValueStringBuilder(stackalloc char[100]);
-					foreach (var (start, _, type) in links)
+					var (prevPos, prevValue) = list[i - 1];
+					if (prevValue == digit)
 					{
-						sb.Append(new Candidates { start }.ToString());
-						sb.Append(type.GetNotation());
-					}
-					sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
-
-					// Remove redundant digit labels:
-					// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).
-					var list = new List<(int Pos, char Value)>();
-					for (int i = 0; i < sb.Length; i++)
-					{
-						if (sb[i] == '(')
-						{
-							list.Add((i, sb[i + 1]));
-							i += 2;
-						}
-					}
-
-					char digit = list[^1].Value;
-					for (int i = list.Count - 1; i >= 1; i--)
-					{
-						var (prevPos, prevValue) = list[i - 1];
-						if (prevValue == digit)
-						{
-							sb.Remove(prevPos, 3);
-						}
-
-						digit = prevValue;
+						sb.Remove(prevPos, 3);
 					}
 
-					return sb.ToString();
+					digit = prevValue;
 				}
+
+				return sb.ToString();
 			}
 		}
 	}
