@@ -1,7 +1,28 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using Sudoku.Diagnostics;
 
-int[] arr = { 1, 3, 5, 7, 9, 11, 13, 15, 20 };
+var fc = new FileCounter(
+	root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
+	extension: "md",
+	withBinOrObjDirectory: false
+);
 
-_ = from x in arr where x / 2 == 0 where x >= 8 select x;
-_ = from x in arr where x / 2 == 0 where x >= 8 && x <= 10 || x == 200 select x;
-_ = from x in arr where x / 2 == 0 where x >= 8 && (x <= 10 || x == 200) select x;
+await fc.CountUpAsync();
+
+foreach (string path in fc.FileList)
+{
+	if (await File.ReadAllLinesAsync(path) is not { Length: not 0 } lines)
+	{
+		Console.WriteLine(path);
+		continue;
+	}
+
+	if (!lines[0].StartsWith('#'))
+	{
+		Console.WriteLine(path);
+		continue;
+	}
+}
+
+Console.WriteLine("Done.");
