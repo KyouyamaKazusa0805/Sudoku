@@ -1,3 +1,4 @@
+﻿# V0.2 (20210126)
 # 下载链接
 
 https://github.com/SunnieShine/Sudoku/releases/tag/v2021.1.26-beta

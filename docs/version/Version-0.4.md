@@ -1,3 +1,4 @@
+﻿# V0.4 (20210414)
 # 下载链接
 
 https://github.com/SunnieShine/Sudoku/releases/tag/v2021.4.14-beta
