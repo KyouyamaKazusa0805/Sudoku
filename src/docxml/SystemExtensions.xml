@@ -2332,7 +2332,8 @@
             <returns>The reference of the character.</returns>
             <remarks>
             This property returns a <see langword="ref"/> <see cref="T:System.Char"/>, which
-            means you can use the return value to re-assign a new value.
+            means you can use the return value to re-assign a new value, as the same behavior
+            as the <see langword="set"/> accessor.
             </remarks>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
@@ -2345,25 +2346,25 @@
         </member>
         <member name="M:System.Text.ValueStringBuilder.ToString">
             <summary>
-            Returns the string result that is combined and constructed from the current instance.
+            Returns the string result that is combined and constructed from the current instance,
+            and then dispose the instance.
             </summary>
             <returns>The string representation.</returns>
             <remarks>
             <para>
-            The dispose method will be called during this method executed.
-            Therefore, in C# 8, even if we can use the syntax
-            <code>
-            using var sb = new ValueStringBuilder(stackalloc char[10]);
-            </code>
-            we won't use the keyword <see langword="using"/> before object creation expression.
-            </para>
-            <para>
-            So, you can't or don't need to:
+            Please note that the dispose method will be invoked in the execution of this method <c>ToString</c>.
+            Therefore, you can't or don't need to:
             <list type="bullet">
-            <item>Use the keyword <see langword="using"/> before object creation expression.</item>
-            <item>Use the instance of this type after called this method.</item>
+            <item>
+            Use the keyword <see langword="using"/> onto the variable declaration, such as
+            <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>
+            </item>
+            <item>
+            Use the current string builder instance after had been called this method <c>ToString</c>.
+            </item>
             </list>
             </para>
+            <para>Because of the such behavior, this method isn't <see langword="readonly"/>.</para>
             </remarks>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Dispose">
