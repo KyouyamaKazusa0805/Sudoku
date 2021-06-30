@@ -1,3 +1,4 @@
+﻿# **如何编译代码 (How to compile the solution)**
 ## Step 1: Clone the repo
 
 第一步：克隆本代码库

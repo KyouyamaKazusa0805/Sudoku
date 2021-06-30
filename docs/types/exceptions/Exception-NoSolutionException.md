@@ -1,3 +1,4 @@
+﻿# `NoSolutionException` 异常
 ## 基本信息
 
 异常类名：`NoSolutionException`

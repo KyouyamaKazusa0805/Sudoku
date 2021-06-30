@@ -1,3 +1,4 @@
+﻿# `CodeCounter` 类
 很简单！这样写代码就好：
 
 ```csharp
