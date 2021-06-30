@@ -63,20 +63,17 @@ namespace System.Text
 			#region Default overrides
 #pragma warning disable CS1591
 #pragma warning disable CS0809
-			[CompilerGenerated]
-			[DoesNotReturn]
+			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly bool Equals(object? other) => throw new NotSupportedException();
 
-			[CompilerGenerated]
-			[DoesNotReturn]
+			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly int GetHashCode() => throw new NotSupportedException();
 
-			[CompilerGenerated]
-			[DoesNotReturn]
+			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly string? ToString() => throw new NotSupportedException();

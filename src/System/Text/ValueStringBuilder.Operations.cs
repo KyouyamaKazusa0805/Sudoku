@@ -289,7 +289,7 @@ namespace System.Text
 		/// </summary>
 		/// <typeparam name="T">The type of each element.</typeparam>
 		/// <param name="list">The list.</param>
-		public void AppendLineRange<T>(IEnumerable<T> list)
+		public void AppendLineRange<T>(IEnumerable<T?> list)
 		{
 			foreach (var element in list)
 			{
@@ -303,7 +303,7 @@ namespace System.Text
 		/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
 		/// <param name="list">The list of elements.</param>
 		/// <param name="separator">The separator when an element is finished to append.</param>
-		public unsafe void AppendRange<TUnmanaged>(IEnumerable<TUnmanaged> list, string? separator = null)
+		public void AppendRange<TUnmanaged>(IEnumerable<TUnmanaged> list, string? separator = null)
 			where TUnmanaged : unmanaged
 		{
 			foreach (var element in list)
