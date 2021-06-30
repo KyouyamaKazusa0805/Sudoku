@@ -162,7 +162,7 @@ namespace System.Text
 		/// <list type="bullet">
 		/// <item>
 		/// Use the keyword <see langword="using"/> onto the variable declaration, such as
-		/// <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>
+		/// <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>.
 		/// </item>
 		/// <item>
 		/// Use the current string builder instance after had been called this method <c>ToString</c>.
