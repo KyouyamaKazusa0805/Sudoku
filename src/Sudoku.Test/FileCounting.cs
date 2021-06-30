@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Sudoku.Diagnostics;
 
 namespace Sudoku.Test
@@ -18,6 +20,19 @@ namespace Sudoku.Test
 				extension: "cs",
 				withBinOrObjDirectory: false
 			).CountUp()
+		);
+
+		/// <summary>
+		/// To count all files, and output the result using the <see cref="Console"/> asynchronously.
+		/// </summary>
+		/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+		/// <returns>The task of the operation.</returns>
+		internal static async Task CountUpAsync(CancellationToken cancellationToken = default) => Console.WriteLine(
+			await new FileCounter(
+				root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
+				extension: "cs",
+				withBinOrObjDirectory: false
+			).CountUpAsync(cancellationToken)
 		);
 	}
 }

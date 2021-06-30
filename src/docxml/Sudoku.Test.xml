@@ -14,5 +14,12 @@
             To count all files, and output the result using the <see cref="T:System.Console"/>.
             </summary>
         </member>
+        <member name="M:Sudoku.Test.FileCounting.CountUpAsync(System.Threading.CancellationToken)">
+            <summary>
+            To count all files, and output the result using the <see cref="T:System.Console"/> asynchronously.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The task of the operation.</returns>
+        </member>
     </members>
 </doc>
