@@ -47,13 +47,13 @@
         </member>
         <member name="F:Sudoku.Constants.InvalidFirstSet">
             <summary>
-            Indicates the invalid return value when called <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>.
+            Indicates the invalid return value of <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>.
             </summary>
             <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>
         </member>
         <member name="F:Sudoku.Constants.InvalidFirstSetLong">
             <summary>
-            Indicates the invalid return value when called <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>.
+            Indicates the invalid return value of <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>.
             </summary>
             <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>
         </member>
@@ -186,8 +186,7 @@
         </member>
         <member name="T:Sudoku.Constants.Tables">
             <summary>
-            The tables for grid processing. All fields will be initialized in
-            the static constructor.
+            The tables for grid processing. All fields will be initialized in the static constructor.
             </summary>
         </member>
         <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
@@ -3839,6 +3838,18 @@
             in the collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Data.SudokuGrid.Formatter">
             <summary>
             Provides operations for grid formatting.
@@ -4160,6 +4171,18 @@
             </param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parser.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parser.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parser.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Data.SudokuGrid.PinnedItem">
             <summary>
             Indicates the item that <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/> selects and returns the reference.
@@ -4452,6 +4475,18 @@
             Sets the enumerator to its initial position, which is before the first element
             in the collection.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.SudokuGridSegment.PinnedItem">
             <summary>

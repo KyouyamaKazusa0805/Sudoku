@@ -1,16 +1,14 @@
-﻿#pragma warning disable IDE0079
-#pragma warning disable 8618
+﻿#pragma warning disable CS8618, IDE0079
 
 using System.Collections.Generic;
 using Sudoku.Data;
 
 namespace Sudoku
 {
-	public static partial class Constants
+	partial class Constants
 	{
 		/// <summary>
-		/// The tables for grid processing. All fields will be initialized in
-		/// the static constructor.
+		/// The tables for grid processing. All fields will be initialized in the static constructor.
 		/// </summary>
 		public static partial class Tables
 		{

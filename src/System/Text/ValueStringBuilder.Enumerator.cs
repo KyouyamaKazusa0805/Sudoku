@@ -61,24 +61,28 @@ namespace System.Text
 			}
 
 			#region Default overrides
-#pragma warning disable CS1591
 #pragma warning disable CS0809
+			/// <inheritdoc cref="object.Equals(object?)"/>
+			/// <exception cref="NotSupportedException">Always throws.</exception>
 			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly bool Equals(object? other) => throw new NotSupportedException();
 
+			/// <inheritdoc cref="object.GetHashCode"/>
+			/// <exception cref="NotSupportedException">Always throws.</exception>
 			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly int GetHashCode() => throw new NotSupportedException();
 
+			/// <inheritdoc cref="object.ToString"/>
+			/// <exception cref="NotSupportedException">Always throws.</exception>
 			[CompilerGenerated, DoesNotReturn]
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
 			public override readonly string? ToString() => throw new NotSupportedException();
 #pragma warning restore CS0809
-#pragma warning restore CS1591
 			#endregion
 		}
 	}
