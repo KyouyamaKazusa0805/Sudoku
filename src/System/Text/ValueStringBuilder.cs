@@ -30,7 +30,27 @@ namespace System.Text
 		/// <summary>
 		/// Indicates the inner character series that is created by <see cref="ArrayPool{T}"/>.
 		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// In the general cases, this field always keeps the <see langword="null"/> value. This
+		/// field is not <see langword="null"/> when you calls the constructor <see cref="ValueStringBuilder(int)"/>
+		/// because that constructor will be called if you want to create a large buffer.
+		/// </para>
+		/// <para>
+		/// The field
+		/// is as the same reference as the rent buffer array segment. If called that constructor,
+		/// the inner code will execute <see cref="ArrayPool{T}.Rent(int)"/> to rent the specified number
+		/// of bytes of buffer to be used, which won't allocate any memory.
+		/// </para>
+		/// <para>
+		/// If the field is not <see langword="null"/> and when we calls the method <see cref="ToString"/>,
+		/// the buffer will be returned and the inner data will be released.
+		/// </para>
+		/// </remarks>
 		/// <seealso cref="ArrayPool{T}"/>
+		/// <seealso cref="ArrayPool{T}.Rent(int)"/>
+		/// <seealso cref="ValueStringBuilder(int)"/>
+		/// <seealso cref="ToString"/>
 		private char[]? _chunk;
 
 		/// <summary>
