@@ -2665,5 +2665,13 @@
             </summary>
             <param name="s">The string.</param>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
     </members>
 </doc>

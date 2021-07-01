@@ -87,10 +87,9 @@ namespace Sudoku.CodeGen.RefStructDefaults
 						symbol.ReturnType,
 						compilation.GetSpecialType(SpecialType.System_Boolean)
 					)
-				) ? string.Empty : $@"
-
-		[CompilerGenerated]
-		[DoesNotReturn]
+				) ? string.Empty : $@"/// <inheritdoc cref=""object.Equals(object?)""/>
+		/// <exception cref=""NotSupportedException"">Always throws.</exception>
+		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeywordIfWorth}bool Equals(object? other) => throw new NotSupportedException();";
@@ -101,10 +100,9 @@ namespace Sudoku.CodeGen.RefStructDefaults
 						symbol.ReturnType,
 						compilation.GetSpecialType(SpecialType.System_Int32)
 					)
-				) ? string.Empty : $@"
-
-		[CompilerGenerated]
-		[DoesNotReturn]
+				) ? string.Empty : $@"/// <inheritdoc cref=""object.GetHashCode""/>
+		/// <exception cref=""NotSupportedException"">Always throws.</exception>
+		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeywordIfWorth}int GetHashCode() => throw new NotSupportedException();";
@@ -123,17 +121,14 @@ namespace Sudoku.CodeGen.RefStructDefaults
 								.WithNullableAnnotation(NullableAnnotation.Annotated)
 						)
 					)
-				) ? string.Empty : $@"
-
-		[CompilerGenerated]
-		[DoesNotReturn]
+				) ? string.Empty : $@"/// <inheritdoc cref=""object.ToString""/>
+		/// <exception cref=""NotSupportedException"">Always throws.</exception>
+		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeywordIfWorth}string? ToString() => throw new NotSupportedException();";
 
-				return $@"#pragma warning disable 809
-#pragma warning disable 1591
-#pragma warning disable IDE0005
+				return $@"#pragma warning disable 809, IDE0005
 
 using System;
 using System.ComponentModel;

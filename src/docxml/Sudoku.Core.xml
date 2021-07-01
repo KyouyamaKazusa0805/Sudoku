@@ -338,6 +338,18 @@
             <inheritdoc/>
             <remarks>Here will do nothing.</remarks>
         </member>
+        <member name="M:Sudoku.Data.BitSubsetsGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.BitSubsetsGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.BitSubsetsGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Data.Candidates">
             <summary>
             Encapsulates a map that contains 729 positions to represent a candidate.
@@ -1490,6 +1502,14 @@
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Data.Collections.DigitCollection">
             <summary>
             Indicates a collection that contains the several digits.
@@ -1572,6 +1592,14 @@
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
         </member>
+        <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.DigitCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Data.Collections.LinkCollection">
             <summary>
             Provides a collection that contains the chain links.
@@ -1596,6 +1624,14 @@
         </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.Collections.RegionCollection">
             <summary>
@@ -1656,6 +1692,10 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
@@ -4529,6 +4569,18 @@
             <summary>
             Indicates the pinned item is <c>_candidateList</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>

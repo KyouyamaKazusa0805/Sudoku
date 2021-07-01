@@ -122,9 +122,7 @@ namespace Sudoku.CodeGen.Deconstruction
 		}}"
 				);
 
-				return $@"#pragma warning disable 618
-#pragma warning disable 1574
-#pragma warning disable 1591
+				return $@"#pragma warning disable 618, 1574, 1591
 
 using System;
 using System.Runtime.CompilerServices;
