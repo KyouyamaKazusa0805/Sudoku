@@ -16,7 +16,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the type name of the attribute <c>ProxyEqualityAttribute</c>.
 		/// </summary>
-		private const string ProxyEqualityAttributeTypeName = "Sudoku.CodeGen.ProxyEqualityAttribute";
+		private const string ProxyEqualityAttributeTypeName = "Sudoku.CodeGenerating.ProxyEqualityAttribute";
 
 
 		/// <inheritdoc/>

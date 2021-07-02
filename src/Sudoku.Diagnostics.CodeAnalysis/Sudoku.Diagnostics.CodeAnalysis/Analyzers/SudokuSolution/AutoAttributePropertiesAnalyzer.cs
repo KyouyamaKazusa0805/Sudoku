@@ -90,7 +90,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGen.{AutoDeconstructAttributeTypeName}",
+											$"Sudoku.CodeGenerating.{AutoDeconstructAttributeTypeName}",
 											2,
 											" at least"
 										}
@@ -115,7 +115,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGen.{name}",
+											$"Sudoku.CodeGenerating.{name}",
 											1,
 											" at least"
 										}
@@ -138,7 +138,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGen.{AutoDeconstructExtensionAttributeTypeName}",
+											$"Sudoku.CodeGenerating.{AutoDeconstructExtensionAttributeTypeName}",
 											3,
 											" at least"
 										}

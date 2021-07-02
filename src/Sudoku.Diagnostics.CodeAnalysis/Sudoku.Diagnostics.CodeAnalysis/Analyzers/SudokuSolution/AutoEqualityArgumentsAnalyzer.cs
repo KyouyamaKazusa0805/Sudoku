@@ -16,7 +16,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <summary>
 		/// Indicates the full type name of type <c>AutoEqualityAttribute</c>.
 		/// </summary>
-		private const string AutoEqualityAttributeTypeName = "Sudoku.CodeGen.AutoEqualityAttribute";
+		private const string AutoEqualityAttributeTypeName = "Sudoku.CodeGenerating.AutoEqualityAttribute";
 
 
 		/// <inheritdoc/>
