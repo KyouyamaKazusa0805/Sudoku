@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -21,13 +19,15 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var nameDic = new Dictionary<string, int>();
-			foreach (var classSymbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var classSymbol in
+				from candidate in receiver.Candidates
+				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into symbol
+				where symbol.Marks<AutoFormattableAttribute>()
+				select symbol)
 			{
 				_ = nameDic.TryGetValue(classSymbol.Name, out int i);
 				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
@@ -37,19 +37,6 @@ namespace Sudoku.CodeGenerating
 				{
 					context.AddSource($"{name}.ToString.g.cs", c);
 				}
-			}
-
-
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidate in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-					select model.GetDeclaredSymbol(candidate)! into symbol
-					where symbol.Marks<AutoFormattableAttribute>()
-					select (INamedTypeSymbol)symbol;
 			}
 
 

@@ -31,15 +31,7 @@ namespace Sudoku.CodeGenerating
 				);
 				string commentsForParams = string.Join(
 					"\r\n\t",
-					from i in values
-					let p = i switch
-					{
-						1 when i / 10 != 1 => "st",
-						2 when i / 10 != 1 => "nd",
-						3 when i / 10 != 1 => "rd",
-						_ => "th"
-					}
-					select $@"/// <param name=""Item{i}"">The {i}{p} item.</param>"
+					from i in values select $@"/// <param name=""Item{i}"">The {i}{i.GetOrderSuffix()} item.</param>"
 				);
 				string typeParams = string.Join(", ", from i in values select $"T{i}");
 				string primaryConstructorParamListWithoutPriorKey = string.Join(", ", from i in values select $"T{i} Item{i}");

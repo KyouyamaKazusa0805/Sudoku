@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,16 +33,12 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
 			if (context.AdditionalFiles is not { Length: not 0 } additionalFiles)
 			{
 				return;
 			}
 
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();

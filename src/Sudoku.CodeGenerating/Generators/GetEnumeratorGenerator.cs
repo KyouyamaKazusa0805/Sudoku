@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -19,14 +17,18 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
 			var nameDic = new Dictionary<string, int>();
-			foreach (var (symbol, attribute) in g(context, receiver))
+			foreach (
+				var (symbol, attribute) in
+					from candidateInfo in receiver.Candidates
+					let model = compilation.GetSemanticModel(candidateInfo.Node.SyntaxTree)
+					select (
+						(INamedTypeSymbol)model.GetDeclaredSymbol(candidateInfo.Node)!,
+						candidateInfo.Attribute
+					)
+			)
 			{
 				_ = nameDic.TryGetValue(symbol.Name, out int i);
 				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
@@ -40,19 +42,6 @@ namespace Sudoku.CodeGenerating
 				}
 			}
 
-			static IEnumerable<(INamedTypeSymbol, AttributeSyntax)> g(
-				in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidateInfo in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateInfo.Node.SyntaxTree)
-					select (
-						(INamedTypeSymbol)model.GetDeclaredSymbol(candidateInfo.Node)!,
-						candidateInfo.Attribute
-					);
-			}
 
 			static ITypeSymbol? getReturnType(
 				AttributeArgumentListSyntax attributeArgumentList, SemanticModel semanticModel)
@@ -140,7 +129,7 @@ namespace Sudoku.CodeGenerating
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string readonlyKeyword = symbol.MemberShouldAppendReadOnly()  ? "readonly " : string.Empty;
+				string readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
 				string? typeArguments = symbol.AllInterfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].ToDisplayString(FormatOptions.TypeFormat);
 				var typeSymbol = getReturnType(attribute.ArgumentList, semanticModel);
 				string returnType = typeSymbol is null ? $"System.Collections.Generic.IEnumerator<{typeArguments}>" : typeSymbol.ToDisplayString(FormatOptions.TypeFormat);

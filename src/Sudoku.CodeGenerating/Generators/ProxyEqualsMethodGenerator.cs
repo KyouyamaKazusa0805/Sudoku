@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -16,14 +14,22 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var nameDic = new Dictionary<string, int>();
 			var processedList = new List<INamedTypeSymbol>();
-			foreach (var symbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var symbol in
+				from candidate in receiver.Candidates
+				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into symbol
+				from member in symbol.GetMembers().OfType<IMethodSymbol>()
+				where member.Marks<ProxyEqualityAttribute>()
+				let boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean)
+				let returnTypeSymbol = member.ReturnType
+				where SymbolEqualityComparer.Default.Equals(returnTypeSymbol, boolSymbol)
+				let parameters = member.Parameters
+				where parameters.Length == 2 && parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, symbol))
+				select symbol)
 			{
 				if (processedList.Contains(symbol, SymbolEqualityComparer.Default))
 				{
@@ -42,23 +48,6 @@ namespace Sudoku.CodeGenerating
 				}
 			}
 
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidate in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into symbol
-					from member in symbol.GetMembers().OfType<IMethodSymbol>()
-					where member.Marks<ProxyEqualityAttribute>()
-					let boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean)
-					let returnTypeSymbol = member.ReturnType
-					where SymbolEqualityComparer.Default.Equals(returnTypeSymbol, boolSymbol)
-					let parameters = member.Parameters
-					where parameters.Length == 2 && parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, symbol))
-					select symbol;
-			}
 
 			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{

@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -18,16 +16,20 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver syntaxReceiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
-			var groupedResult = g(syntaxReceiver, compilation);
-
 			var nameDic = new Dictionary<string, int>();
-			foreach (var groupResult in groupedResult)
+			foreach (var groupResult in
+				from attribute in receiver.Attributes
+				let argList = attribute.ArgumentList
+				where argList is { Arguments: { Count: >= 2 } }
+				let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax
+				where firstArg is not null
+				let semanticModel = compilation.GetSemanticModel(firstArg.SyntaxTree)
+				let operation = semanticModel.GetOperation(firstArg) as ITypeOfOperation
+				where operation is not null
+				let type = operation.TypeOperand
+				group (argList, type) by type.ToDisplayString())
 			{
 				string key = groupResult.Key;
 				foreach (var (p, typeSymbol) in groupResult)
@@ -39,19 +41,6 @@ namespace Sudoku.CodeGenerating
 				}
 			}
 
-
-			static IEnumerable<IGrouping<string, (AttributeArgumentListSyntax, ITypeSymbol)>> g(
-				SyntaxReceiver syntaxReceiver, Compilation compilation) =>
-				from attribute in syntaxReceiver.Attributes
-				let argList = attribute.ArgumentList
-				where argList is { Arguments: { Count: >= 2 } }
-				let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax
-				where firstArg is not null
-				let semanticModel = compilation.GetSemanticModel(firstArg.SyntaxTree)
-				let operation = semanticModel.GetOperation(firstArg) as ITypeOfOperation
-				where operation is not null
-				let type = operation.TypeOperand
-				group (argList, type) by type.ToDisplayString();
 
 			static string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
 			{
@@ -84,11 +73,11 @@ namespace Sudoku.CodeGenerating
 					where memberFound is not null
 					let memberType = getMemberType(memberFound)
 					where memberType is not null
-					select $@"out {memberType} {toCamelCase(member)}"
+					select $@"out {memberType} {member.ToCamelCase()}"
 				);
 				string assignments = string.Join(
 					"\r\n\t\t\t",
-					from member in members select $"{toCamelCase(member)} = @this.{member};"
+					from member in members select $"{member.ToCamelCase()} = @this.{member};"
 				);
 				string deconstructMethods = $@"/// <summary>
 		/// Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -147,12 +136,6 @@ namespace {namespaceName}
 					IPropertySymbol p => p.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
 					_ => null
 				};
-
-				static string toCamelCase(string input)
-				{
-					input = input.TrimStart('_');
-					return input.Substring(0, 1).ToLowerInvariant() + input.Substring(1);
-				}
 			}
 		}
 

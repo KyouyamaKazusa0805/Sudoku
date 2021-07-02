@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
@@ -15,13 +13,13 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var nameDic = new Dictionary<string, int>();
-			foreach (var classSymbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var classSymbol in
+				from candidateStruct in receiver.CandidateRefStructs
+				let model = compilation.GetSemanticModel(candidateStruct.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateStruct)!)
 			{
 				_ = nameDic.TryGetValue(classSymbol.Name, out int i);
 				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
@@ -33,15 +31,6 @@ namespace Sudoku.CodeGenerating
 				}
 			}
 
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidateStruct in receiver.CandidateRefStructs
-					let model = compilation.GetSemanticModel(candidateStruct.SyntaxTree)
-					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateStruct)!;
-			}
 
 			static string? getCode(INamedTypeSymbol symbol, Compilation compilation)
 			{

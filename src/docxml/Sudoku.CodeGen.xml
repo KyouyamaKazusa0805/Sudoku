@@ -305,6 +305,19 @@
             <param name="this">The type symbol.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.Int32Ex">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.Int32Ex.GetOrderSuffix(System.Int32)">
+            <summary>
+            Get the order suffix.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>The order suffix.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.ISymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
@@ -340,6 +353,19 @@
             </summary>
             <param name="this">The symbol.</param>
             <returns>All members.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.StringEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.ToCamelCase(System.String)">
+            <summary>
+            Converts the current string into the camel case.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.SyntaxReferenceEx">
             <summary>

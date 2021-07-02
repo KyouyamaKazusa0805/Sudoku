@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -19,13 +17,16 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 
 			var nameDic = new Dictionary<string, int>();
-			foreach (var typeSymbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var typeSymbol in
+				from candidateType in receiver.Candidates
+				let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
+				select model.GetDeclaredSymbol(candidateType)! into symbol
+				where symbol.Marks<AutoDeconstructAttribute>()
+				select symbol)
 			{
 				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
@@ -33,18 +34,6 @@ namespace Sudoku.CodeGenerating
 				context.AddSource($"{name}.DeconstructionMethods.g.cs", getDeconstructionCode(typeSymbol));
 			}
 
-
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidateType in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
-					select model.GetDeclaredSymbol(candidateType)! into typeSymbol
-					where typeSymbol.Marks<AutoDeconstructAttribute>()
-					select typeSymbol;
-			}
 
 			static string getDeconstructionCode(INamedTypeSymbol symbol)
 			{

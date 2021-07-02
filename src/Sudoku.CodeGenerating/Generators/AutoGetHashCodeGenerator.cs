@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -18,13 +16,16 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 
 			var nameDic = new Dictionary<string, int>();
-			foreach (var classSymbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var classSymbol in
+				from candidateClass in receiver.Candidates
+				let model = compilation.GetSemanticModel(candidateClass.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateClass)! into symbol
+				where symbol.Marks<AutoHashCodeAttribute>()
+				select symbol)
 			{
 				_ = nameDic.TryGetValue(classSymbol.Name, out int i);
 				string name = i == 0 ? classSymbol.Name : $"{classSymbol.Name}{(i + 1).ToString()}";
@@ -34,18 +35,6 @@ namespace Sudoku.CodeGenerating
 				{
 					context.AddSource($"{name}.GetHashCode.g.cs", c);
 				}
-			}
-
-			static IEnumerable<INamedTypeSymbol> g(in GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidateClass in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateClass.SyntaxTree)
-					select model.GetDeclaredSymbol(candidateClass)! into symbol
-					where symbol.Marks<AutoHashCodeAttribute>()
-					select (INamedTypeSymbol)symbol;
 			}
 
 			static string? getGetHashCodeCode(INamedTypeSymbol symbol)
@@ -58,8 +47,6 @@ namespace Sudoku.CodeGenerating
 				int tokenStartIndex = attributeStr.IndexOf("({");
 				if (tokenStartIndex == -1)
 				{
-					// Error.
-
 					return null;
 				}
 

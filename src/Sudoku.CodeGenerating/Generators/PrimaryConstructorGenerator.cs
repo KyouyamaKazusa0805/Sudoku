@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0057
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -21,13 +19,15 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.SyntaxReceiver is not SyntaxReceiver receiver)
-			{
-				return;
-			}
-
+			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var nameDic = new Dictionary<string, int>();
-			foreach (var symbol in g(context, receiver))
+			var compilation = context.Compilation;
+			foreach (var symbol in
+				from candidate in receiver.CandidateClasses
+				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
+				select model.GetDeclaredSymbol(candidate)! into symbol
+				where symbol.Marks<AutoGeneratePrimaryConstructorAttribute>()
+				select (INamedTypeSymbol)symbol)
 			{
 				_ = nameDic.TryGetValue(symbol.Name, out int i);
 				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
@@ -35,18 +35,6 @@ namespace Sudoku.CodeGenerating
 				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(symbol));
 			}
 
-
-			static IEnumerable<INamedTypeSymbol> g(GeneratorExecutionContext context, SyntaxReceiver receiver)
-			{
-				var compilation = context.Compilation;
-
-				return
-					from candidate in receiver.CandidateClasses
-					let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-					select model.GetDeclaredSymbol(candidate)! into symbol
-					where symbol.Marks<AutoGeneratePrimaryConstructorAttribute>()
-					select (INamedTypeSymbol)symbol;
-			}
 
 			static string getPrimaryConstructorCode(INamedTypeSymbol symbol)
 			{
