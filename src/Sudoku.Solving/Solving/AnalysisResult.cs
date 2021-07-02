@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Solving.Manual;

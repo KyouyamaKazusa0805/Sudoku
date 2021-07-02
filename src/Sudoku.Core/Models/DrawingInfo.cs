@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace Sudoku.Models
 {

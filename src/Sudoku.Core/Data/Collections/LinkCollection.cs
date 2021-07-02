@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Collections

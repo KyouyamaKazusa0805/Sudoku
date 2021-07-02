@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data.Collections

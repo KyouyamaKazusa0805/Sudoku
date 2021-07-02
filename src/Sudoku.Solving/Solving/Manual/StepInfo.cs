@@ -6,7 +6,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using static Sudoku.Resources.TextResources;
 
 namespace Sudoku.Solving.Manual

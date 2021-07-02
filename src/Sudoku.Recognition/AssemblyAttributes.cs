@@ -1,6 +1,6 @@
 ﻿using System;
 using Emgu.CV.Structure;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 [assembly: CLSCompliant(false)]
 

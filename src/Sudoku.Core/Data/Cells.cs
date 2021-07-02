@@ -7,7 +7,7 @@ using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;

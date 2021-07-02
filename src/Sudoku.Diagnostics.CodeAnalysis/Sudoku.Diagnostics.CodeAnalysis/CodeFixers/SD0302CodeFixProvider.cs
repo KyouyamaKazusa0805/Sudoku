@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {

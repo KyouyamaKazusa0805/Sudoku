@@ -2,7 +2,7 @@
 
 using System;
 #if NESTED_ANNOTATION
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 #endif
 
 namespace Sudoku.Data

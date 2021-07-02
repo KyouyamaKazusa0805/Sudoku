@@ -9,7 +9,7 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Data.Extensions;
 using Sudoku.Versioning;
 using static System.Numerics.BitOperations;

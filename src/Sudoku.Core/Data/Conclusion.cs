@@ -1,5 +1,5 @@
 ﻿using System;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
 {

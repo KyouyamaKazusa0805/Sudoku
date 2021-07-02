@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<Version>0.2</Version>
+		<Authors>Sunnie</Authors>
+		<Description>A project that generates the source code.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<DocumentationFile>..\docxml\Sudoku.CodeGen.xml</DocumentationFile>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IsExternalInit" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.10.0-2.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0-2.final" />
+	</ItemGroup>
+
+</Project>

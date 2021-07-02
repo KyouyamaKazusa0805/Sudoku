@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 [assembly: CLSCompliant(false)]
 

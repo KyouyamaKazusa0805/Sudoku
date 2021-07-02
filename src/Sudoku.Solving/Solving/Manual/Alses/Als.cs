@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Extensions;
 using System.Text;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using static System.Numerics.BitOperations;

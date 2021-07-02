@@ -1,4 +1,4 @@
-﻿using Sudoku.CodeGen;
+﻿using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
 {

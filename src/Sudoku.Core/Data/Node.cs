@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
 {

@@ -1,6 +1,6 @@
 ﻿using System.Extensions;
 using System.Linq;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace System.Collections.Generic
 {

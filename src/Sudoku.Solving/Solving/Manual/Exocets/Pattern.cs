@@ -1,5 +1,5 @@
 ﻿using System;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual.Exocets

@@ -3599,12 +3599,12 @@
             This project won't be added into the solution because I had deleted yet.
             </remarks>
         </member>
-        <member name="T:Sudoku.CodeGen.ResourceDictionaryKeys">
+        <member name="T:Sudoku.CodeGenerating.ResourceDictionaryKeys">
             <summary>
             Indicates the resource dictionary to check.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGen.ResourceDictionaryKeys.Keys">
+        <member name="F:Sudoku.CodeGenerating.ResourceDictionaryKeys.Keys">
             <summary>
             Indicates the dictionary.
             </summary>

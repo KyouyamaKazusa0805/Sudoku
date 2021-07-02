@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace System.Collections.Generic
 {

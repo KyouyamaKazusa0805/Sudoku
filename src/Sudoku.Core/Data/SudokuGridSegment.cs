@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data

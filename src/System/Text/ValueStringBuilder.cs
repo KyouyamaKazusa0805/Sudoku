@@ -1,5 +1,5 @@
 ﻿using System.Buffers;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 
 namespace System.Text
 {

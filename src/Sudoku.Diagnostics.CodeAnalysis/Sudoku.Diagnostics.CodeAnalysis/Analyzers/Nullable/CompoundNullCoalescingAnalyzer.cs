@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Sudoku.CodeGen;
+using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
 using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
