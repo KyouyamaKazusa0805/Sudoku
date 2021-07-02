@@ -103,19 +103,14 @@ namespace {namespaceName}
 		/// <returns>The result list that contains all member symbols.</returns>
 		private static IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
 		{
-			var result = new List<string>(
-				(
-					from x in symbol.GetMembers().OfType<IFieldSymbol>()
-					select x.Name
-				).Concat(
-					from x in symbol.GetMembers().OfType<IPropertySymbol>()
-					select x.Name
-				)
-			);
+			var members = symbol.GetMembers();
+			var fieldElements = from x in members.OfType<IFieldSymbol>() select x.Name;
+			var propertyElements = from x in members.OfType<IPropertySymbol>() select x.Name;
+			var result = new List<string>(fieldElements.Concat(propertyElements));
 
 			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoHashCodeAttribute>())
 			{
-				result.AddRange(GetMembers(baseType, handleRecursively: true));
+				result.AddRange(GetMembers(baseType, true));
 			}
 
 			return result;
