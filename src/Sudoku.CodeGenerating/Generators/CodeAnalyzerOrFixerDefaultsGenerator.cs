@@ -98,15 +98,6 @@ namespace Sudoku.CodeGenerating
 				int i = fullTypeName.IndexOf('<');
 				if (i != -1)
 				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							"SG0001", "SourceGenerator", "The type can't be generic one.",
-							DiagnosticSeverity.Error, DiagnosticSeverity.Error, true, 0,
-							null, null, helpLink: null, location: symbol.Locations[0],
-							additionalLocations: null, null, null
-						)
-					);
-
 					return null;
 				}
 

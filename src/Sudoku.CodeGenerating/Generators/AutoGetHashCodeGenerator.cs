@@ -81,25 +81,19 @@ namespace Sudoku.CodeGenerating
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct"
-				};
-				string readonlyKeyword = symbol is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false } ? "readonly " : string.Empty;
+				string typeKind = symbol.GetTypeKindString();
+				string readonlyKeyword = symbol.MemberShouldAppendReadOnly(true) ? "readonly " : string.Empty;
 				string hashCodeStr = string.Join(" ^ ", from member in members select $"{member}.GetHashCode()");
 
-				return $@"#pragma warning disable 1591
-
-using System.Runtime.CompilerServices;
+				return $@"using System.Runtime.CompilerServices;
 
 #nullable enable
 
 namespace {namespaceName}
 {{
-	partial {typeKind} {symbol.Name}{genericParametersList}
+	partial {typeKind}{symbol.Name}{genericParametersList}
 	{{
+		/// <inheritdoc cref=""object.GetHashCode"">
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};

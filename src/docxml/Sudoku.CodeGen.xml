@@ -274,6 +274,37 @@
             <param name="projectNames">The project names to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetTypeKindString(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get the type kind string.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>The type kind string.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.MemberShouldAppendReadOnly(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Indicates whether the member should append <see langword="readonly"/> modifier.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="checkNotRefStruct">
+            Indicates whether the method should check whether the type is a <see langword="ref struct"/>
+            and not a <see langword="ref struct"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.MemberShouldAppendIn(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Indicates whether the member should append <see langword="in"/> modifier.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.ISymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.

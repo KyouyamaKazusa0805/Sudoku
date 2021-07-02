@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
+using Sudoku.CodeGenerating.Extensions;
 
 namespace Sudoku.CodeGenerating
 {
@@ -139,7 +140,7 @@ namespace Sudoku.CodeGenerating
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string readonlyKeyword = symbol.TypeKind == TypeKind.Struct ? "readonly " : string.Empty;
+				string readonlyKeyword = symbol.MemberShouldAppendReadOnly()  ? "readonly " : string.Empty;
 				string? typeArguments = symbol.AllInterfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].ToDisplayString(FormatOptions.TypeFormat);
 				var typeSymbol = getReturnType(attribute.ArgumentList, semanticModel);
 				string returnType = typeSymbol is null ? $"System.Collections.Generic.IEnumerator<{typeArguments}>" : typeSymbol.ToDisplayString(FormatOptions.TypeFormat);
@@ -149,12 +150,7 @@ namespace Sudoku.CodeGenerating
 					return null;
 				}
 
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct"
-				};
+				string typeKind = symbol.GetTypeKindString();
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
 				string memberName = memberNameStr == @"""@""" ? "this" : memberNameStr.Substring(7, memberNameStr.Length - 8);
 				string exprStr = getConversion(attribute.ArgumentList.Arguments);
@@ -177,7 +173,7 @@ using System.Runtime.CompilerServices;{extraNamespaces}
 
 namespace {namespaceName}
 {{
-	partial {typeKind} {typeName}{genericParameterList}
+	partial {typeKind}{typeName}{genericParameterList}
 	{{
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

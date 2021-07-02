@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Sudoku.CodeGenerating.Extensions;
@@ -56,13 +55,7 @@ namespace Sudoku.CodeGenerating
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record ",
-					{ TypeKind: TypeKind.Class } => "class ",
-					{ TypeKind: TypeKind.Struct } => "struct "
-				};
-
+				string typeKind = symbol.GetTypeKindString();
 				string methods = string.Join(
 					"\r\n\r\n\t\t",
 					from attribute in symbol.GetAttributes()
@@ -72,7 +65,7 @@ namespace Sudoku.CodeGenerating
 					where tokenStartIndex != -1
 					let memberStrs = getMemberValues(attributeStr, tokenStartIndex)
 					where !memberStrs.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
-					let readonlyKeyword = isNonReadonlyStruct(symbol) ? "readonly " : string.Empty
+					let readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty
 					let parameterList = string.Join(
 						", ",
 						from memberStr in memberStrs
@@ -137,10 +130,6 @@ namespace {namespaceName}
 	}}
 }}";
 
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				static bool isNonReadonlyStruct(INamedTypeSymbol symbol) =>
-					symbol is { TypeKind: TypeKind.Struct, IsReadOnly: false };
-
 				static string[] getMemberValues(string attributeStr, int tokenStartIndex)
 				{
 					string[] result = (
@@ -191,8 +180,7 @@ namespace {namespaceName}
 				)
 			);
 
-			if (handleRecursively
-				&& symbol.BaseType is { } baseType && baseType.Marks<AutoDeconstructAttribute>())
+			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoDeconstructAttribute>())
 			{
 				result.AddRange(GetMembers(baseType, true));
 			}

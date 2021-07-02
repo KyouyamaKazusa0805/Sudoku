@@ -92,14 +92,8 @@ namespace Sudoku.CodeGenerating
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
 				int j = fullTypeName.IndexOf('>');
 				string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct"
-				};
-
-				string readonlyKeyword = symbol is { TypeKind: TypeKind.Struct, IsReadOnly: false } ? "readonly " : string.Empty;
+				string typeKind = symbol.GetTypeKindString();
+				string readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
 				string inKeyword = symbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
 				string nullableAnnotation = symbol.TypeKind == TypeKind.Class ? "?" : string.Empty;
 				string nullCheck = symbol.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
@@ -135,7 +129,7 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial {typeKind} {symbol.Name}{genericParametersList}
+	partial {typeKind}{symbol.Name}{genericParametersList}
 	{{
 		{objectEqualsMethod}
 

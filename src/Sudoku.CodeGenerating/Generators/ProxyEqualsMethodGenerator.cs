@@ -86,18 +86,10 @@ namespace Sudoku.CodeGenerating
 				int j = fullTypeName.IndexOf('>');
 				string genericParametersListWithoutConstraint = j == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
 				string typeName = symbol.Name;
-				string typeKind = symbol switch
-				{
-					{ IsRecord: true } => "record",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct"
-				};
-
-				string readonlyModifier = methodSymbol.IsReadOnly && !symbol.IsReadOnly
-					? "readonly "
-					: string.Empty;
+				string typeKind = symbol.GetTypeKindString();
+				string readonlyModifier = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
 				string methodName = methodSymbol.Name;
-				string inModifier = symbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
+				string inModifier = symbol.MemberShouldAppendIn() ? "in " : string.Empty;
 				string nullableMark = symbol.TypeKind == TypeKind.Class || symbol.IsRecord ? "?" : string.Empty;
 				string objectEqualityMethod = symbol.IsRefLikeType
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
@@ -113,7 +105,7 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial {typeKind} {symbol.Name}{genericParametersList}
+	partial {typeKind}{symbol.Name}{genericParametersList}
 	{{
 		{objectEqualityMethod}
 

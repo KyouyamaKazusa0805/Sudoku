@@ -68,10 +68,7 @@ namespace Sudoku.CodeGenerating
 	}}
 }}";
 
-			context.AddSource(
-				"ResourceDictionaryValues.g.cs",
-				SourceText.From(code, Encoding.Unicode)
-			);
+			context.AddSource("ResourceDictionaryKeys.g.cs", SourceText.From(code, Encoding.Unicode));
 		}
 
 		/// <inheritdoc/>
