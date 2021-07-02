@@ -4,7 +4,7 @@
 
 If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
 
-如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到上方的特殊公告栏里。
+如果我有点忙，或者是有东西对我来说有问题的话，我会告知你，而告知的内容我会写到这里。
 
 > None at present.
 >
@@ -52,7 +52,7 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 
 请访问[此链接](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution)。
 
-### About Forking & PRs this Repo (关于复制这个仓库以及代码更新推并请求的内容)
+### Forking & PRs this Repo (复制这个仓库以及代码更新推并请求)
 
 Of course you can fork my repo and do whatever you want. You can:
 
