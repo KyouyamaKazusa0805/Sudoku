@@ -68,15 +68,11 @@ namespace Sudoku.CodeGenerating
 					return null;
 				}
 
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				int j = fullTypeName.IndexOf('>');
-				string genericParametersListWithoutConstraint = j == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string typeName = symbol.Name;
-				string typeKind = symbol.GetTypeKindString();
-				string readonlyModifier = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out string genericParametersListWithoutConstraint, out string typeKind,
+					out string readonlyKeyword, out _
+				);
 				string methodName = methodSymbol.Name;
 				string inModifier = symbol.MemberShouldAppendIn() ? "in " : string.Empty;
 				string nullableMark = symbol.TypeKind == TypeKind.Class || symbol.IsRecord ? "?" : string.Empty;
@@ -84,7 +80,7 @@ namespace Sudoku.CodeGenerating
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
 					: $@"[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override {readonlyModifier}bool Equals(object? obj) => obj is {typeName}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
+		public override {readonlyKeyword}bool Equals(object? obj) => obj is {symbol.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 				return $@"#pragma warning disable 1591
 
@@ -100,16 +96,16 @@ namespace {namespaceName}
 
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals({inModifier}{typeName}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
+		public bool Equals({inModifier}{symbol.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
 
 
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==({inModifier}{typeName}{genericParametersListWithoutConstraint} left, {inModifier}{typeName}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
+		public static bool operator ==({inModifier}{symbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{symbol.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
 
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=({inModifier}{typeName}{genericParametersListWithoutConstraint} left, {inModifier}{typeName}{genericParametersListWithoutConstraint} right) => !(left == right);
+		public static bool operator !=({inModifier}{symbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{symbol.Name}{genericParametersListWithoutConstraint} right) => !(left == right);
 	}}
 }}";
 			}

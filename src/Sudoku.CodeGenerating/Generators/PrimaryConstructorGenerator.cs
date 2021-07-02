@@ -38,10 +38,10 @@ namespace Sudoku.CodeGenerating
 
 			static string getPrimaryConstructorCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out _, out _, out _, out _
+				);
 
 				var baseClassCtorArgs =
 					symbol.BaseType is { } baseType && baseType.Marks<AutoGeneratePrimaryConstructorAttribute>()
@@ -53,11 +53,15 @@ namespace Sudoku.CodeGenerating
 					: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 
 				var members = GetMembers(symbol, handleRecursively: false);
-				var arguments =
+				string parameterList = string.Join(
+					", ",
 					from x in baseClassCtorArgs is null ? members : members.Concat(baseClassCtorArgs)
-					select $"{x.Type} {x.ParameterName}";
-				string parameterList = string.Join(", ", arguments);
-				string memberAssignments = string.Join("\r\n\t\t\t", from member in members select $"{member.Name} = {member.ParameterName};");
+					select $"{x.Type} {x.ParameterName}"
+				);
+				string memberAssignments = string.Join(
+					"\r\n\t\t\t",
+					from member in members select $"{member.Name} = {member.ParameterName};"
+				);
 
 				return $@"#pragma warning disable 1591
 

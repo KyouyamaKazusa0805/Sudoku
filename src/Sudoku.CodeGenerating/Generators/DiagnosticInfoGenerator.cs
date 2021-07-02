@@ -27,10 +27,8 @@ namespace Sudoku.CodeGenerating
 			}
 
 			string csvTableFilePath = context.AdditionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
-
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
-
 			string[][] info = (from line in withoutHeader select SplitInfo(line)).ToArray();
 			string diagnosticIdClause = string.Join(
 				"\r\n\t\t",
@@ -66,9 +64,7 @@ namespace Sudoku.CodeGenerating
 				"\r\n\t\t",
 				from line in info
 				let pair = (Id: line[0], Title: line[3], Message: line[4])
-				select $@"public const string {pair.Id} = ""{
-					(pair.Message == string.Empty ? pair.Title : pair.Message)
-				}"";"
+				select $@"public const string {pair.Id} = ""{(pair.Message == string.Empty ? pair.Title : pair.Message)}"";"
 			);
 
 			context.AddSource(
@@ -172,7 +168,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 		private static unsafe string[] SplitInfo(string line)
 		{
-			if ((line.Count(static c => c == '"') & 1) != 0)
+			if ((line.CountOf('"') & 1) != 0)
 			{
 				throw new ArgumentException("The specified string is invalid to split.", nameof(line));
 			}

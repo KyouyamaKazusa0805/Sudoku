@@ -73,12 +73,10 @@ namespace Sudoku.CodeGenerating
 
 				members[0] = members[0].Substring(2); // Remove token '{"'.
 
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string typeKind = symbol.GetTypeKindString();
-				string readonlyKeyword = symbol.MemberShouldAppendReadOnly(true) ? "readonly " : string.Empty;
+				symbol.DeconstructInfo(
+					true, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out _, out string typeKind, out string readonlyKeyword, out _
+				);
 				string hashCodeStr = string.Join(" ^ ", from member in members select $"{member}.GetHashCode()");
 
 				return $@"using System.Runtime.CompilerServices;
@@ -89,7 +87,7 @@ namespace {namespaceName}
 {{
 	partial {typeKind}{symbol.Name}{genericParametersList}
 	{{
-		/// <inheritdoc cref=""object.GetHashCode"">
+		/// <inheritdoc cref=""object.GetHashCode""/>
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};

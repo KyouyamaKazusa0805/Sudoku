@@ -27,14 +27,19 @@ namespace Sudoku.CodeGenerating
 				string commentsForGenericTypeParams = string.Join(
 					"\r\n\t",
 					from i in values
-					select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{generics}}}.Item{i}""/>.</typeparam>"
+					select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{
+						generics
+					}}}.Item{i}""/>.</typeparam>"
 				);
 				string commentsForParams = string.Join(
 					"\r\n\t",
 					from i in values select $@"/// <param name=""Item{i}"">The {i}{i.GetOrderSuffix()} item.</param>"
 				);
 				string typeParams = string.Join(", ", from i in values select $"T{i}");
-				string primaryConstructorParamListWithoutPriorKey = string.Join(", ", from i in values select $"T{i} Item{i}");
+				string primaryConstructorParamListWithoutPriorKey = string.Join(
+					", ",
+					from i in values select $"T{i} Item{i}"
+				);
 				string primaryConstructorParamList = $"{primaryConstructorParamListWithoutPriorKey}, int PriorKey";
 				string constructorParamList = string.Join(", ", from i in values select $"T{i} item{i}");
 				string constructorParamListWithoutType = string.Join(", ", from i in values select $"item{i}");

@@ -754,7 +754,9 @@
             </summary>
             <param name="map">The map.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Data.Candidates.GetHashCode" -->
+        <member name="M:Sudoku.Data.Candidates.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
             Encapsulates an option that is specified to parse the <see cref="T:Sudoku.Data.Candidates"/> instance.
@@ -1941,7 +1943,9 @@
         <member name="M:Sudoku.Data.ConjugatePair.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Data.ConjugatePair.GetHashCode" -->
+        <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Data.Extensions.CellParser">
             <summary>
             Encapsulates the cell parser that converts the string to an <see cref="T:System.Int32"/> value that
@@ -2474,7 +2478,9 @@
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Data.Link.GetHashCode" -->
+        <member name="M:Sudoku.Data.Link.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -4787,7 +4793,9 @@
         <member name="M:Sudoku.Models.GridProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Models.GridProgressResult.GetHashCode" -->
+        <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax

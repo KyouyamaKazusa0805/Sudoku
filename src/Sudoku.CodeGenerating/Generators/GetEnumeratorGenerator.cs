@@ -124,12 +124,11 @@ namespace Sudoku.CodeGenerating
 			static string? getGetEnumeratorCode(
 				INamedTypeSymbol symbol, AttributeSyntax attribute, SemanticModel semanticModel)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string typeName = symbol.Name;
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParameterList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParameterList,
+					out _, out _, out string readonlyKeyword, out _
+				);
+
 				string? typeArguments = symbol.AllInterfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].ToDisplayString(FormatOptions.TypeFormat);
 				var typeSymbol = getReturnType(attribute.ArgumentList, semanticModel);
 				string returnType = typeSymbol is null ? $"System.Collections.Generic.IEnumerator<{typeArguments}>" : typeSymbol.ToDisplayString(FormatOptions.TypeFormat);
@@ -162,7 +161,7 @@ using System.Runtime.CompilerServices;{extraNamespaces}
 
 namespace {namespaceName}
 {{
-	partial {typeKind}{typeName}{genericParameterList}
+	partial {typeKind}{symbol.Name}{genericParameterList}
 	{{
 		[CompilerGenerated]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

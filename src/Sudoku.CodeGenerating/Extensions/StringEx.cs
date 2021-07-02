@@ -9,6 +9,29 @@ namespace Sudoku.CodeGenerating.Extensions
 	public static class StringEx
 	{
 		/// <summary>
+		/// Count how many specified characters are in the current string.
+		/// </summary>
+		/// <param name="this">The current string.</param>
+		/// <param name="character">The character to count.</param>
+		/// <returns>The number of characters found.</returns>
+		public static unsafe int CountOf(this string @this, char character)
+		{
+			int count = 0;
+			fixed (char* pThis = @this)
+			{
+				for (char* p = pThis; *p != '\0'; p++)
+				{
+					if (*p == character)
+					{
+						count++;
+					}
+				}
+			}
+
+			return count;
+		}
+
+		/// <summary>
 		/// Converts the current string into the camel case.
 		/// </summary>
 		/// <param name="this">The string.</param>

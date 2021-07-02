@@ -305,6 +305,28 @@
             <param name="this">The type symbol.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.DeconstructInfo(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
+            <summary>
+            Get the detail information that represented as <see cref="T:System.String"/> values.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="checkNotRefStruct">
+            Indicates whether the method will check whether the type is a <see langword="ref struct"/>.
+            </param>
+            <param name="fullTypeName">The full type name.</param>
+            <param name="namespaceName">The namespace name.</param>
+            <param name="genericParametersList">
+            The generic parameter list. The type parameter constraint will also include,
+            e.g. <c>Namespace.TypeName&lt;T&gt; where T : class?</c>.
+            </param>
+            <param name="genericParametersListWithoutConstraint">
+            The generic parameter list without type parameter constraint,
+            e.g. <c>Namespace.TypeName&lt;T&gt;</c>.
+            </param>
+            <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
+            <param name="readonlyKeyword">The read-only keyword on members.</param>
+            <param name="isGeneric">Indicates whether the type is a generic type.</param>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -360,6 +382,14 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
         <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.ToCamelCase(System.String)">
             <summary>
             Converts the current string into the camel case.
@@ -393,6 +423,12 @@
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
             </summary>
             <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.AttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.AutoHashCodeAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoHashCodeAttribute"/>
         </member>
         <member name="M:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
@@ -533,6 +569,12 @@
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.AttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute"/>
+        </member>
         <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
             <summary>
             Indicates the regular expression for extraction of the information.
@@ -561,6 +603,12 @@
             <summary>
             Provides a generator that generates the deconstruction methods.
             </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.DeconstructMethodGenerator.AttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.AutoDeconstructAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoDeconstructAttribute"/>
         </member>
         <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
@@ -622,6 +670,12 @@
             Please note that if the type is a <see langword="ref struct"/>, the first one won't be generated
             because this method is useless in the by-ref-like types.
             </remarks>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.EqualsMethodGenerator.AttributeFullTypeName">
+            <summary>
+            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.AutoEqualityAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoEqualityAttribute"/>
         </member>
         <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>

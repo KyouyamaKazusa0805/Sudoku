@@ -23,6 +23,13 @@ namespace Sudoku.CodeGenerating
 	[Generator]
 	public sealed partial class EqualsMethodGenerator : ISourceGenerator
 	{
+		/// <summary>
+		/// Indicates the full type name of the attribute <see cref="AutoEqualityAttribute"/>.
+		/// </summary>
+		/// <seealso cref="AutoEqualityAttribute"/>
+		private static readonly string AttributeFullTypeName = typeof(AutoEqualityAttribute).FullName;
+
+
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -47,11 +54,12 @@ namespace Sudoku.CodeGenerating
 			}
 
 
-			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
+			string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
+				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName);
 				string attributeStr = (
 					from attribute in symbol.GetAttributes()
-					where attribute.AttributeClass?.Name == nameof(AutoEqualityAttribute)
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					select attribute
 				).First().ToString();
 				int tokenStartIndex = attributeStr.IndexOf("({");
@@ -74,14 +82,11 @@ namespace Sudoku.CodeGenerating
 
 				members[0] = members[0].Substring(2); // Remove token '{"'.
 
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				int j = fullTypeName.IndexOf('>');
-				string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string typeKind = symbol.GetTypeKindString();
-				string readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out string genericParametersListWithoutConstraint, out string typeKind,
+					out string readonlyKeyword, out _
+				);
 				string inKeyword = symbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
 				string nullableAnnotation = symbol.TypeKind == TypeKind.Class ? "?" : string.Empty;
 				string nullCheck = symbol.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
@@ -146,15 +151,9 @@ namespace {namespaceName}
 		/// <returns>The result list that contains all member symbols.</returns>
 		private static IReadOnlyList<string> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
 		{
-			var result = new List<string>(
-				(
-					from x in symbol.GetMembers().OfType<IFieldSymbol>()
-					select x.Name
-				).Concat(
-					from x in symbol.GetMembers().OfType<IPropertySymbol>()
-					select x.Name
-				)
-			);
+			var fieldMembers = from x in symbol.GetMembers().OfType<IFieldSymbol>() select x.Name;
+			var propertyMembers = from x in symbol.GetMembers().OfType<IPropertySymbol>() select x.Name;
+			var result = new List<string>(fieldMembers.Concat(propertyMembers));
 
 			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoEqualityAttribute>())
 			{

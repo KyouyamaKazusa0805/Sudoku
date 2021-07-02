@@ -2770,7 +2770,9 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -3113,7 +3115,9 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -3857,7 +3861,9 @@
             Indicates the mutant fish.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher">
             <summary>
             Encapsulates a <b>Hobiwan's fish</b> technique searcher.
@@ -5171,7 +5177,9 @@
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher">
             <summary>
             Encapsulates a <b>bi-value oddagon</b> technique searcher.
@@ -5780,7 +5788,9 @@
         <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher">
             <summary>
             Encapsulates a <b>guardian</b> technique searcher.
@@ -7582,7 +7592,9 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo)">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher">
             <summary>
             Encapsulates a <b>unique loop</b> (UL) technique searcher.
@@ -8142,7 +8154,9 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -9547,7 +9561,9 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo)">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.GetHashCode" -->
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">
             <summary>
             Encapsulates a <b>reverse bi-value universal grave</b> technique searcher.

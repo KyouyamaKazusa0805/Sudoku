@@ -14,6 +14,13 @@ namespace Sudoku.CodeGenerating
 	[Generator]
 	public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 	{
+		/// <summary>
+		/// Indicates the full type name of the attribute <see cref="AutoDeconstructAttribute"/>.
+		/// </summary>
+		/// <seealso cref="AutoDeconstructAttribute"/>
+		private static readonly string AttributeFullTypeName = typeof(AutoDeconstructAttribute).FullName;
+
+
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -35,26 +42,26 @@ namespace Sudoku.CodeGenerating
 			}
 
 
-			static string getDeconstructionCode(INamedTypeSymbol symbol)
+			string getDeconstructionCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				var possibleArgs =
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out _, out string typeKind, out string readonlyKeyword, out _
+				);
+				var possibleArgs = (
 					from x in GetMembers(symbol, handleRecursively: false)
-					select (Info: x, Param: $"out {x.Type} {x.ParameterName}");
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string typeKind = symbol.GetTypeKindString();
+					select (Info: x, Param: $"out {x.Type} {x.ParameterName}")
+				).ToArray();
+				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
 				string methods = string.Join(
 					"\r\n\r\n\t\t",
 					from attribute in symbol.GetAttributes()
-					where attribute.AttributeClass?.Name == nameof(AutoDeconstructAttribute)
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
 					let memberStrs = getMemberValues(attributeStr, tokenStartIndex)
 					where !memberStrs.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
-					let readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty
 					let parameterList = string.Join(
 						", ",
 						from memberStr in memberStrs

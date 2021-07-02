@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Sudoku.CodeGenerating.Extensions;
 
 namespace Sudoku.CodeGenerating
 {
@@ -34,11 +35,11 @@ namespace Sudoku.CodeGenerating
 
 			static string? getCode(INamedTypeSymbol symbol, Compilation compilation)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string readonlyKeyword = symbol.IsReadOnly ? string.Empty : "readonly ";
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out _, out _, out string readonlyKeyword, out _
+				);
+
 				string equalsMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
 					&& (

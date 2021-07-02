@@ -21,6 +21,12 @@ namespace Sudoku.CodeGenerating
 
 
 		/// <summary>
+		/// Indicates the full type name of the attribute <see cref="CodeAnalyzerAttribute"/>.
+		/// </summary>
+		/// <seealso cref="CodeAnalyzerAttribute"/>
+		private static readonly string AttributeFullTypeName = typeof(CodeAnalyzerAttribute).FullName;
+
+		/// <summary>
 		/// Indicates the regular expression for extraction of the information.
 		/// </summary>
 		private static readonly Regex InfoRegex = new(
@@ -38,6 +44,7 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
+			var compilation = context.Compilation;
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
@@ -87,17 +94,19 @@ namespace Sudoku.CodeGenerating
 
 			string? getAnalyzerCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				if (i != -1)
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName,
+					out _, out _, out _, out _, out bool isGeneric
+				);
+				if (isGeneric)
 				{
 					return null;
 				}
 
+				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
 				var selection =
 					from attribute in symbol.GetAttributes()
-					where attribute.AttributeClass?.Name == nameof(CodeAnalyzerAttribute)
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					let attributeStr = attribute.ToString()
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
@@ -186,15 +195,6 @@ namespace {namespaceName}
 				int i = fullTypeName.IndexOf('<');
 				if (i != -1)
 				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							"SG0001", "SourceGenerator", "The type can't be generic one.",
-							DiagnosticSeverity.Error, DiagnosticSeverity.Error, true, 0,
-							null, null, helpLink: null, location: symbol.Locations[0],
-							additionalLocations: null, null, null
-						)
-					);
-
 					return null;
 				}
 

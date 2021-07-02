@@ -42,14 +42,11 @@ namespace Sudoku.CodeGenerating
 
 			static string? getToStringMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				int j = fullTypeName.IndexOf('>');
-				string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string typeKind = symbol.GetTypeKindString();
-				string readonlyKeyword = symbol.MemberShouldAppendReadOnly() ? "readonly " : string.Empty;
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
+					out string genericParametersListWithoutConstraint, out string typeKind,
+					out string readonlyKeyword, out _
+				);
 
 				return $@"#pragma warning disable 1591
 
