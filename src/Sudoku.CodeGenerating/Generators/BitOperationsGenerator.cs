@@ -19,9 +19,7 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
-			#region Global file
 			context.AddSource("BitOperationsEx.g.cs", GenerateGlobalFile());
-			#endregion
 
 			const string separator = "\r\n\r\n\t\t";
 
@@ -30,12 +28,7 @@ namespace Sudoku.CodeGenerating
 			#region GetAllSets
 			sb
 				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from name in GetAllSetsTypes select GenerateGetAllSets(name)
-					)
-				)
+				.AppendLine(string.Join(separator, from name in GetAllSetsTypes select GenerateGetAllSets(name)))
 				.Append(TrailingText);
 
 			context.AddSource("BitOperationsEx.GetAllSets.g.cs", sb.ToString());
@@ -46,12 +39,7 @@ namespace Sudoku.CodeGenerating
 			#region GetEnumerator
 			sb
 				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from name in GetEnumeratorTypes select GenerateGetEnumerator(name)
-					)
-				)
+				.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select GenerateGetEnumerator(name)))
 				.Append(TrailingText);
 
 			context.AddSource("BitOperationsEx.GetEnumerator.g.cs", sb.ToString());
@@ -94,12 +82,7 @@ namespace Sudoku.CodeGenerating
 			#region SetAt
 			sb
 				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from name in SetAtTypes select GenerateSetAt(name)
-					)
-				)
+				.AppendLine(string.Join(separator, from name in SetAtTypes select GenerateSetAt(name)))
 				.Append(TrailingText);
 
 			context.AddSource("BitOperationsEx.SetAt.g.cs", sb.ToString());
@@ -110,12 +93,7 @@ namespace Sudoku.CodeGenerating
 			#region SkipSetBit
 			sb
 				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from name in SkipSetBitTypes select GenerateSkipSetBit(name)
-					)
-				)
+				.AppendLine(string.Join(separator, from name in SkipSetBitTypes select GenerateSkipSetBit(name)))
 				.Append(TrailingText);
 
 			context.AddSource("BitOperationsEx.SkipSetBit.g.cs", sb.ToString());

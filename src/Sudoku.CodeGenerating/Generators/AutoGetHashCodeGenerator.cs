@@ -13,6 +13,13 @@ namespace Sudoku.CodeGenerating
 	[Generator]
 	public sealed partial class AutoGetHashCodeGenerator : ISourceGenerator
 	{
+		/// <summary>
+		/// Indicates the full type name of the attribute <see cref="AutoHashCodeAttribute"/>.
+		/// </summary>
+		/// <seealso cref="AutoHashCodeAttribute"/>
+		private static readonly string AttributeFullTypeName = typeof(AutoHashCodeAttribute).FullName;
+
+
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -37,11 +44,13 @@ namespace Sudoku.CodeGenerating
 				}
 			}
 
-			static string? getGetHashCodeCode(INamedTypeSymbol symbol)
+			string? getGetHashCodeCode(INamedTypeSymbol symbol)
 			{
+				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
+
 				string attributeStr = (
 					from attribute in symbol.GetAttributes()
-					where attribute.AttributeClass?.Name == nameof(AutoHashCodeAttribute)
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					select attribute
 				).ToArray()[0].ToString();
 				int tokenStartIndex = attributeStr.IndexOf("({");
