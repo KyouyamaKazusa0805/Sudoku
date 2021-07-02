@@ -38,7 +38,7 @@ namespace Sudoku.CodeGenerating
 				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
 				int i = fullTypeName.IndexOf('<');
 				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				string readonlyKeywordIfWorth = symbol.IsReadOnly ? string.Empty : "readonly ";
+				string readonlyKeyword = symbol.IsReadOnly ? string.Empty : "readonly ";
 				string equalsMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
 					&& (
@@ -62,7 +62,7 @@ namespace Sudoku.CodeGenerating
 		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		public override {readonlyKeywordIfWorth}bool Equals(object? other) => throw new NotSupportedException();";
+		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 				string getHashCodeMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
@@ -75,7 +75,7 @@ namespace Sudoku.CodeGenerating
 		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		public override {readonlyKeywordIfWorth}int GetHashCode() => throw new NotSupportedException();";
+		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 				string toStringMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
@@ -96,7 +96,7 @@ namespace Sudoku.CodeGenerating
 		[CompilerGenerated, DoesNotReturn]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		public override {readonlyKeywordIfWorth}string? ToString() => throw new NotSupportedException();";
+		public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 				return $@"#pragma warning disable 809, IDE0005
 
