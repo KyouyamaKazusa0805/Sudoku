@@ -1,4 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
+using static Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
+using static Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
+using static Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
+using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
 namespace Sudoku.CodeGenerating
 {
@@ -11,27 +15,20 @@ namespace Sudoku.CodeGenerating
 		/// Indicates the type format.
 		/// </summary>
 		public static readonly SymbolDisplayFormat TypeFormat = new(
-			SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
-			SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-			SymbolDisplayGenericsOptions.IncludeTypeParameters
-			| SymbolDisplayGenericsOptions.IncludeTypeConstraints,
-			miscellaneousOptions:
-				SymbolDisplayMiscellaneousOptions.UseSpecialTypes
-				| SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
-				| SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier
+			OmittedAsContaining,
+			NameAndContainingTypesAndNamespaces,
+			IncludeTypeParameters | IncludeTypeConstraints,
+			miscellaneousOptions: UseSpecialTypes | EscapeKeywordIdentifiers | IncludeNullableReferenceTypeModifier
 		);
 
 		/// <summary>
 		/// Indicates the property format.
 		/// </summary>
 		public static readonly SymbolDisplayFormat PropertyTypeFormat = new(
-			SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
-			SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
-			SymbolDisplayGenericsOptions.IncludeTypeParameters,
-			miscellaneousOptions:
-				SymbolDisplayMiscellaneousOptions.UseSpecialTypes
-				| SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
-				| SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier
+			OmittedAsContaining,
+			NameAndContainingTypesAndNamespaces,
+			IncludeTypeParameters,
+			miscellaneousOptions: UseSpecialTypes | EscapeKeywordIdentifiers | IncludeNullableReferenceTypeModifier
 		);
 	}
 }
