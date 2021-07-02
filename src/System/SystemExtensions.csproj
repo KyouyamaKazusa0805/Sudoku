@@ -17,5 +17,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
-	
+
 </Project>
