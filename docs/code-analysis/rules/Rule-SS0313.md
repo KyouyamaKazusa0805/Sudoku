@@ -6,7 +6,7 @@
 **错误叙述**：
 
 * **中文**：请尽量使用 `select`-`into` 语句代替 `let` 语句。
-* **英文**：Please use `select-into` clause instead of `let` clause.
+* **英文**：Please use `select`-`into` clause instead of `let` clause.
 
 **级别**：编译器信息
 
