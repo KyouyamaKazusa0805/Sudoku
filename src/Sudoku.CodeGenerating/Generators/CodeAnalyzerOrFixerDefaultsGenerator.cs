@@ -21,12 +21,6 @@ namespace Sudoku.CodeGenerating
 
 
 		/// <summary>
-		/// Indicates the full type name of the attribute <see cref="CodeAnalyzerAttribute"/>.
-		/// </summary>
-		/// <seealso cref="CodeAnalyzerAttribute"/>
-		private static readonly string AttributeFullTypeName = typeof(CodeAnalyzerAttribute).FullName;
-
-		/// <summary>
 		/// Indicates the regular expression for extraction of the information.
 		/// </summary>
 		private static readonly Regex InfoRegex = new(
@@ -60,20 +54,20 @@ namespace Sudoku.CodeGenerating
 
 				if (getAnalyzerCode(typeSymbol) is { } generatedCode)
 				{
-					context.AddSource($"{name}.SupportedDiagnostics.g.cs", generatedCode);
+					context.AddSource($"Analyzer.{name}.SupportedDiagnostics.g.cs", generatedCode);
 				}
 			}
 
 			var fixerNameDic = new Dictionary<string, int>();
 			foreach (var typeSymbol in attributeCheck<CodeFixProviderAttribute>(context, receiver))
 			{
-				_ = analyzerNameDic.TryGetValue(typeSymbol.Name, out int i);
+				_ = fixerNameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
-				analyzerNameDic[typeSymbol.Name] = i + 1;
+				fixerNameDic[typeSymbol.Name] = i + 1;
 
 				if (getFixerCode(typeSymbol) is { } generatedCode)
 				{
-					context.AddSource($"{name}.SupportedDiagnostics.g.cs", generatedCode);
+					context.AddSource($"Fixer.{name}.SupportedDiagnostics.g.cs", generatedCode);
 				}
 			}
 
@@ -83,12 +77,14 @@ namespace Sudoku.CodeGenerating
 				where TAttribute : Attribute
 			{
 				var compilation = context.Compilation;
-
+				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(TAttribute).FullName);
 				return
 					from candidateType in receiver.Candidates
 					let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
 					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateType)! into typeSymbol
-					where typeSymbol.Marks<TAttribute>()
+					where typeSymbol.GetAttributes().Any(
+						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					)
 					select typeSymbol;
 			}
 
@@ -103,14 +99,12 @@ namespace Sudoku.CodeGenerating
 					return null;
 				}
 
-				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
+				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
 				var selection =
-					from attribute in symbol.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-					let attributeStr = attribute.ToString()
+					from attributeStr in symbol.GetAttributeStrings(attributeSymbol)
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					select getMemberValues(attributeStr, tokenStartIndex);
+					select attributeStr.GetMemberValues(tokenStartIndex);
 				if (!selection.Any())
 				{
 					return null;
@@ -190,18 +184,20 @@ namespace {namespaceName}
 
 			string? getFixerCode(INamedTypeSymbol symbol)
 			{
-				string namespaceName = symbol.ContainingNamespace.ToDisplayString();
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				if (i != -1)
+				symbol.DeconstructInfo(
+					false, out string fullTypeName, out string namespaceName, out _,
+					out _, out _, out _, out bool isGeneric
+				);
+				if (isGeneric)
 				{
 					return null;
 				}
 
+				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
 				string typeName = symbol.Name;
 				string id = (
 					from attribute in symbol.GetAttributes()
-					where attribute.AttributeClass?.Name == nameof(CodeFixProviderAttribute)
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					let match = InfoRegex.Match(attribute.ToString())
 					where match.Success
 					select match.Value
@@ -242,24 +238,9 @@ namespace {namespaceName}
 }}";
 			}
 
-			string getDescription(string id) =>
-			(
+			string getDescription(string id) => (
 				from line in info select (Id: line[0], Title: line[3])
 			).First(pair => pair.Id == id).Title;
-
-			static string[] getMemberValues(string attributeStr, int tokenStartIndex)
-			{
-				string[] result = (
-					from parameterValue in attributeStr.Substring(
-						tokenStartIndex,
-						attributeStr.Length - tokenStartIndex - 2
-					).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-					select parameterValue.Substring(1, parameterValue.Length - 2)
-				).ToArray();
-
-				result[0] = result[0].Substring(2);
-				return result;
-			}
 
 			static unsafe string[] splitInfo(string line)
 			{
@@ -314,7 +295,6 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 	}
 }

@@ -653,12 +653,6 @@
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.AttributeFullTypeName">
-            <summary>
-            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute"/>
-        </member>
         <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
             <summary>
             Indicates the regular expression for extraction of the information.
