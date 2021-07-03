@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -46,32 +45,24 @@ namespace Sudoku.CodeGenerating
 
 			string? getGetHashCodeCode(INamedTypeSymbol symbol)
 			{
-				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
-
-				string attributeStr = (
-					from attribute in symbol.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-					select attribute
-				).ToArray()[0].ToString();
-				int tokenStartIndex = attributeStr.IndexOf("({");
-				if (tokenStartIndex == -1)
+				if (
+					symbol.GetAttributeString(
+						compilation.GetTypeByMetadataName(AttributeFullTypeName)
+					) is not { } attributeStr
+				)
 				{
 					return null;
 				}
 
-				string[] members = (
-					from parameterValue in attributeStr.Substring(
-						tokenStartIndex,
-						attributeStr.Length - tokenStartIndex - 2
-					).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-					select parameterValue.Substring(1, parameterValue.Length - 2)
-				).ToArray(); // Remove quote token '"'.
-				if (members is not { Length: not 0 })
+				if (attributeStr.IndexOf("({") is var tokenStartIndex && tokenStartIndex == -1)
 				{
 					return null;
 				}
 
-				members[0] = members[0].Substring(2); // Remove token '{"'.
+				if (attributeStr.GetMemberValues(tokenStartIndex) is not { Length: not 0 } members)
+				{
+					return null;
+				}
 
 				symbol.DeconstructInfo(
 					true, out string fullTypeName, out string namespaceName, out string genericParametersList,
@@ -97,8 +88,7 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 
 		/// <summary>

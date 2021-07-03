@@ -40,24 +40,20 @@ namespace Sudoku.CodeGenerating
 					out _, out _, out string readonlyKeyword, out _
 				);
 
+				var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
+				var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
+				var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
+				var nullableStringSymbol = stringSymbol.WithNullableAnnotation(NullableAnnotation.Annotated);
+				var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
+				var nullableObjectSymbol = objectSymbol.WithNullableAnnotation(NullableAnnotation.Annotated);
+
 				string equalsMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
 					&& (
-						SymbolEqualityComparer.Default.Equals(
-							parameters[0].Type,
-							compilation.GetSpecialType(SpecialType.System_Object)
-						)
-						|| SymbolEqualityComparer.Default.Equals(
-							parameters[0].Type,
-							compilation
-								.GetSpecialType(SpecialType.System_Object)
-								.WithNullableAnnotation(NullableAnnotation.Annotated)
-						)
+						SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
+						|| SymbolEqualityComparer.Default.Equals(parameters[0].Type, nullableObjectSymbol)
 					)
-					&& SymbolEqualityComparer.Default.Equals(
-						symbol.ReturnType,
-						compilation.GetSpecialType(SpecialType.System_Boolean)
-					)
+					&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn]
@@ -67,10 +63,7 @@ namespace Sudoku.CodeGenerating
 
 				string getHashCodeMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-					&& SymbolEqualityComparer.Default.Equals(
-						symbol.ReturnType,
-						compilation.GetSpecialType(SpecialType.System_Int32)
-					)
+					&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn]
@@ -81,16 +74,8 @@ namespace Sudoku.CodeGenerating
 				string toStringMethod = symbol.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
 					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
 					&& (
-						SymbolEqualityComparer.Default.Equals(
-							symbol.ReturnType,
-							compilation.GetSpecialType(SpecialType.System_String)
-						)
-						|| SymbolEqualityComparer.Default.Equals(
-							symbol.ReturnType,
-							compilation
-								.GetSpecialType(SpecialType.System_String)
-								.WithNullableAnnotation(NullableAnnotation.Annotated)
-						)
+						SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
+						|| SymbolEqualityComparer.Default.Equals(symbol.ReturnType, nullableStringSymbol)
 					)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
@@ -119,7 +104,6 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 	}
 }

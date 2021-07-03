@@ -274,6 +274,39 @@
             <param name="projectNames">The project names to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.GeneratorInitializationContextEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorInitializationContextEx.FastRegister``1(Microsoft.CodeAnalysis.GeneratorInitializationContext@)">
+            <summary>
+            Fast invokes the method
+            <see cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>.
+            </summary>
+            <typeparam name="TSyntaxReceiver">The type of the syntax receiver.</typeparam>
+            <param name="this">The current initialization context.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+            </summary>
+            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx.NullableMatches(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol}@,Microsoft.CodeAnalysis.NullableAnnotation[])">
+            <summary>
+            Matches the array of <see cref="T:Microsoft.CodeAnalysis.IParameterSymbol"/> instances, to check whether the
+            types matches the nullable annotation list.
+            </summary>
+            <param name="this">The array of parameter symbols.</param>
+            <param name="nullableAnnotations">The nullable annotation list to check.</param>
+            <returns>
+            Returns <see langword="true"/> when all parameters matches the corresponding nullable annotation;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
@@ -327,6 +360,22 @@
             <param name="readonlyKeyword">The read-only keyword on members.</param>
             <param name="isGeneric">Indicates whether the type is a generic type.</param>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetAttributeString(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Get the attribute string representation from the specified type symbol.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetAttributeStrings(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Get the attribute strings from the specified type symbol.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
+            <returns>The result string.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.Int32Ex">
             <summary>
             Provides extension methods on <see cref="T:System.Int32"/>.
@@ -362,6 +411,13 @@
             <param name="this">The symbol to check.</param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.ISymbolEx.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Gets the member type string representation.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>The result string.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.ITypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
@@ -375,6 +431,25 @@
             </summary>
             <param name="this">The symbol.</param>
             <returns>All members.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.ITypeSymbolEx.DeconstructInfo(Microsoft.CodeAnalysis.ITypeSymbol,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
+            <summary>
+            Get the detail information that represented as <see cref="T:System.String"/> values.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="fullTypeName">The full type name.</param>
+            <param name="namespaceName">The namespace name.</param>
+            <param name="genericParametersList">
+            The generic parameter list. The type parameter constraint will also include,
+            e.g. <c>Namespace.TypeName&lt;T&gt; where T : class?</c>.
+            </param>
+            <param name="genericParametersListWithoutConstraint">
+            The generic parameter list without type parameter constraint,
+            e.g. <c>Namespace.TypeName&lt;T&gt;</c>.
+            </param>
+            <param name="fullTypeNameWithoutConstraint">The full type name without constraint.</param>
+            <param name="constraint">The constraint.</param>
+            <param name="isGeneric">Indicates whether the type is a generic type.</param>
         </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.StringEx">
             <summary>
@@ -397,6 +472,15 @@
             <param name="this">The string.</param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.GetMemberValues(System.String,System.Int32)">
+            <summary>
+            Separate the attribute string representation into multiple elements.
+            The attribute string will be like <c>Type({value1, value2, value3})</c>.
+            </summary>
+            <param name="this">The attribute string.</param>
+            <param name="tokenStartIndex">The token start index.</param>
+            <returns>The array of separated values.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.SyntaxReferenceEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
@@ -415,7 +499,7 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.FormatOptions.PropertyTypeFormat">
             <summary>
-            Indicates the property format.
+            Indicates the property format. Sometimes the option can also be used on field member symbol output.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.AutoGetHashCodeGenerator">

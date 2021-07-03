@@ -49,19 +49,22 @@ namespace Sudoku.CodeGenerating
 			}
 
 
-			static string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
+			string? getEqualityMethodsCode(in GeneratorExecutionContext context, INamedTypeSymbol symbol)
 			{
+				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
 				var methodSymbol = (
 					from member in symbol.GetMembers().OfType<IMethodSymbol>()
-					where member.Marks<ProxyEqualityAttribute>()
+					from attribute in member.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					select member
 				).First();
 
 				/*slice-pattern*/
 				if (
-					symbol.IsReferenceType && (
-						methodSymbol.Parameters[0].NullableAnnotation != NullableAnnotation.Annotated
-						|| methodSymbol.Parameters[1].NullableAnnotation != NullableAnnotation.Annotated
+					symbol.IsReferenceType
+					&& !methodSymbol.Parameters.NullableMatches(
+						NullableAnnotation.Annotated,
+						NullableAnnotation.Annotated
 					)
 				)
 				{
@@ -112,7 +115,6 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 	}
 }

@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.CodeGenerating.Extensions
 {
@@ -41,6 +43,32 @@ namespace Sudoku.CodeGenerating.Extensions
 		{
 			@this = @this.TrimStart('_');
 			return @this.Substring(0, 1).ToLowerInvariant() + @this.Substring(1);
+		}
+
+		/// <summary>
+		/// Separate the attribute string representation into multiple elements.
+		/// The attribute string will be like <c>Type({value1, value2, value3})</c>.
+		/// </summary>
+		/// <param name="this">The attribute string.</param>
+		/// <param name="tokenStartIndex">The token start index.</param>
+		/// <returns>The array of separated values.</returns>
+		internal static string[]? GetMemberValues(this string @this, int tokenStartIndex)
+		{
+			string[] result = (
+				from parameterValue in @this.Substring(
+					tokenStartIndex,
+					@this.Length - tokenStartIndex - 2
+				).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+				select parameterValue.Substring(1, parameterValue.Length - 2)
+			).ToArray();
+
+			if (result.Length == 0)
+			{
+				return null;
+			}
+
+			result[0] = result[0].Substring(2);
+			return result;
 		}
 	}
 }

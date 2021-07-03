@@ -48,15 +48,14 @@ namespace Sudoku.CodeGenerating
 					/*extended-property-pattern*/
 					static arg => arg is { NameEquals: { Name: { Identifier: { ValueText: "Namespace" } } } }
 				)?.Expression.ToString();
-				string namespaceName = tempNamespace?.Substring(1, tempNamespace.Length - 2) ?? $"{symbol.ContainingNamespace}.Extensions";
+				string namespaceName = tempNamespace?.Substring(1, tempNamespace.Length - 2)
+					?? $"{symbol.ContainingNamespace}.Extensions";
 				string typeName = symbol.Name;
-				string fullTypeName = symbol.ToDisplayString(FormatOptions.TypeFormat);
-				int i = fullTypeName.IndexOf('<');
-				string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-				int j = fullTypeName.IndexOf('>');
-				string fullTypeNameWithoutConstraint = j + 1 == genericParametersList.Length ? fullTypeName : fullTypeName.Substring(0, j);
-				string genericParameterListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-				string constraint = j + 1 == genericParametersList.Length ? string.Empty : genericParametersList.Substring(j + 1);
+				symbol.DeconstructInfo(
+					out string fullTypeName, out _, out string genericParametersList,
+					out string genericParameterListWithoutConstraint, out string fullTypeNameWithoutConstraint,
+					out string constraint, out _
+				);
 				var members =
 					from arg in argList.Arguments
 					let expr = arg.Expression as InvocationExpressionSyntax
@@ -71,7 +70,7 @@ namespace Sudoku.CodeGenerating
 					from member in members
 					let memberFound = symbol.GetAllMembers().FirstOrDefault(m => m.Name == member)
 					where memberFound is not null
-					let memberType = getMemberType(memberFound)
+					let memberType = memberFound.GetMemberType()
 					where memberType is not null
 					select $@"out {memberType} {member.ToCamelCase()}"
 				);
@@ -129,18 +128,10 @@ namespace {namespaceName}
 		{deconstructMethods}
 	}}
 }}";
-
-				static string? getMemberType(ISymbol symbol) => symbol switch
-				{
-					IFieldSymbol f => f.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-					IPropertySymbol p => p.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-					_ => null
-				};
 			}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 	}
 }

@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.CodeGenerating.Extensions
@@ -85,5 +87,31 @@ namespace Sudoku.CodeGenerating.Extensions
 			typeKind = @this.GetTypeKindString();
 			readonlyKeyword = @this.MemberShouldAppendReadOnly(checkNotRefStruct) ? "readonly " : string.Empty;
 		}
+
+		/// <summary>
+		/// Get the attribute string representation from the specified type symbol.
+		/// </summary>
+		/// <param name="this">The type symbol.</param>
+		/// <param name="attributeSymbol">The attribute symbol to check.</param>
+		/// <returns>The result string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static string? GetAttributeString(this INamedTypeSymbol @this, ISymbol? attributeSymbol) => (
+			from attribute in @this.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+			select attribute
+		).FirstOrDefault()?.ToString();
+
+		/// <summary>
+		/// Get the attribute strings from the specified type symbol.
+		/// </summary>
+		/// <param name="this">The type symbol.</param>
+		/// <param name="attributeSymbol">The attribute symbol to check.</param>
+		/// <returns>The result string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static IEnumerable<string?> GetAttributeStrings(
+			this INamedTypeSymbol @this, ISymbol? attributeSymbol) =>
+			from attribute in @this.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+			select attribute.ToString();
 	}
 }

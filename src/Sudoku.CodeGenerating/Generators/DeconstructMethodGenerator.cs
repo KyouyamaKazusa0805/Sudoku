@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -55,21 +54,20 @@ namespace Sudoku.CodeGenerating
 				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
 				string methods = string.Join(
 					"\r\n\r\n\t\t",
-					from attribute in symbol.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-					let attributeStr = attribute.ToString()
+					from attributeStr in symbol.GetAttributeStrings(attributeSymbol)
+					where attributeStr is not null
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					let memberStrs = getMemberValues(attributeStr, tokenStartIndex)
-					where !memberStrs.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
+					let members = attributeStr.GetMemberValues(tokenStartIndex)
+					where members is not null && !members.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
 					let parameterList = string.Join(
 						", ",
-						from memberStr in memberStrs
+						from memberStr in members
 						select possibleArgs.First(p => p.Info.Name == memberStr).Param
 					)
 					let assignments = string.Join(
 						"\r\n\t\t\t",
-						from member in memberStrs
+						from member in members
 						let paramName = possibleArgs.First(p => p.Info.Name == member).Info.ParameterName
 						select $"{paramName} = {member};"
 					)
@@ -125,26 +123,11 @@ namespace {namespaceName}
 		{methods}
 	}}
 }}";
-
-				static string[] getMemberValues(string attributeStr, int tokenStartIndex)
-				{
-					string[] result = (
-						from parameterValue in attributeStr.Substring(
-							tokenStartIndex,
-							attributeStr.Length - tokenStartIndex - 2
-						).Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-						select parameterValue.Substring(1, parameterValue.Length - 2)
-					).ToArray();
-
-					result[0] = result[0].Substring(2);
-					return result;
-				}
 			}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 		/// <summary>
 		/// Try to get all possible fields or properties in the specified type.
@@ -161,7 +144,7 @@ namespace {namespaceName}
 					from x in symbol.GetMembers().OfType<IFieldSymbol>()
 					select (
 						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-						toCamelCase(x.Name),
+						x.Name.ToCamelCase(),
 						x.Name,
 						x.GetAttributes()
 					)
@@ -169,7 +152,7 @@ namespace {namespaceName}
 					from x in symbol.GetMembers().OfType<IPropertySymbol>()
 					select (
 						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-						toCamelCase(x.Name),
+						x.Name.ToCamelCase(),
 						x.Name,
 						x.GetAttributes()
 					)
@@ -182,13 +165,6 @@ namespace {namespaceName}
 			}
 
 			return result;
-
-
-			static string toCamelCase(string name)
-			{
-				name = name.TrimStart('_');
-				return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
-			}
 		}
 	}
 }

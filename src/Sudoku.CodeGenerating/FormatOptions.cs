@@ -22,7 +22,7 @@ namespace Sudoku.CodeGenerating
 		);
 
 		/// <summary>
-		/// Indicates the property format.
+		/// Indicates the property format. Sometimes the option can also be used on field member symbol output.
 		/// </summary>
 		public static readonly SymbolDisplayFormat PropertyTypeFormat = new(
 			OmittedAsContaining,

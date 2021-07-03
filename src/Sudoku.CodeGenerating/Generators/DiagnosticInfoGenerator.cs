@@ -26,7 +26,12 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
-			string csvTableFilePath = context.AdditionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
+			if (context.AdditionalFiles is not { Length: not 0 } additionalFiles)
+			{
+				return;
+			}
+
+			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 			string[][] info = (from line in withoutHeader select SplitInfo(line)).ToArray();

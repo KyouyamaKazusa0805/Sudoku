@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.CodeGenerating.Extensions
@@ -15,6 +16,7 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <param name="this">The context.</param>
 		/// <param name="projectNames">The project names to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsNotInProject(this in GeneratorExecutionContext @this, params string[] projectNames)
 		{
 			string? assemblyName = @this.Compilation.AssemblyName;

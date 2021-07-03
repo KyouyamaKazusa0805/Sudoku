@@ -126,7 +126,7 @@ namespace Sudoku.CodeGenerating
 			{
 				symbol.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParameterList,
-					out _, out _, out string readonlyKeyword, out _
+					out _, out string typeKind, out string readonlyKeyword, out _
 				);
 
 				string? typeArguments = symbol.AllInterfaces.FirstOrDefault(static i => i.Name.StartsWith("IEnumerable"))?.TypeArguments[0].ToDisplayString(FormatOptions.TypeFormat);
@@ -138,7 +138,6 @@ namespace Sudoku.CodeGenerating
 					return null;
 				}
 
-				string typeKind = symbol.GetTypeKindString();
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
 				string memberName = memberNameStr == @"""@""" ? "this" : memberNameStr.Substring(7, memberNameStr.Length - 8);
 				string exprStr = getConversion(attribute.ArgumentList.Arguments);
@@ -172,7 +171,6 @@ namespace {namespaceName}
 		}
 
 		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) =>
-			context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 
 namespace Sudoku.CodeGenerating.Extensions
@@ -44,6 +45,44 @@ namespace Sudoku.CodeGenerating.Extensions
 					break;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Get the detail information that represented as <see cref="string"/> values.
+		/// </summary>
+		/// <param name="this">The symbol.</param>
+		/// <param name="fullTypeName">The full type name.</param>
+		/// <param name="namespaceName">The namespace name.</param>
+		/// <param name="genericParametersList">
+		/// The generic parameter list. The type parameter constraint will also include,
+		/// e.g. <c>Namespace.TypeName&lt;T&gt; where T : class?</c>.
+		/// </param>
+		/// <param name="genericParametersListWithoutConstraint">
+		/// The generic parameter list without type parameter constraint,
+		/// e.g. <c>Namespace.TypeName&lt;T&gt;</c>.
+		/// </param>
+		/// <param name="fullTypeNameWithoutConstraint">The full type name without constraint.</param>
+		/// <param name="constraint">The constraint.</param>
+		/// <param name="isGeneric">Indicates whether the type is a generic type.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void DeconstructInfo(
+			this ITypeSymbol @this, out string fullTypeName, out string namespaceName,
+			out string genericParametersList, out string genericParametersListWithoutConstraint,
+			out string fullTypeNameWithoutConstraint, out string constraint,
+			out bool isGeneric)
+		{
+			fullTypeName = @this.ToDisplayString(FormatOptions.TypeFormat);
+			namespaceName = @this.ContainingNamespace.ToDisplayString();
+
+			int i = fullTypeName.IndexOf('<');
+			isGeneric = i != -1;
+			genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+
+			int j = fullTypeName.IndexOf('>');
+			genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
+
+			fullTypeNameWithoutConstraint = j + 1 == genericParametersList.Length ? fullTypeName : fullTypeName.Substring(0, j);
+			constraint = j + 1 == genericParametersList.Length ? string.Empty : genericParametersList.Substring(j + 1);
 		}
 	}
 }
