@@ -21,7 +21,7 @@ namespace Sudoku.CodeGenerating
 			var nameDic = new Dictionary<string, int>();
 			foreach (var groupResult in
 				from attribute in receiver.Attributes
-				let argList = attribute.ArgumentList
+				select attribute.ArgumentList into argList
 				where argList is { Arguments: { Count: >= 2 } }
 				let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax
 				where firstArg is not null
@@ -29,7 +29,7 @@ namespace Sudoku.CodeGenerating
 				let operation = semanticModel.GetOperation(firstArg) as ITypeOfOperation
 				where operation is not null
 				let type = operation.TypeOperand
-				group (argList, type) by type.ToDisplayString())
+				group (argList, type) by type.ToDisplayString(FormatOptions.TypeFormat))
 			{
 				string key = groupResult.Key;
 				foreach (var (p, typeSymbol) in groupResult)
@@ -37,7 +37,7 @@ namespace Sudoku.CodeGenerating
 					_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 					string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{i + 1}";
 					nameDic[typeSymbol.Name] = i + 1;
-					context.AddSource($"{name}Ex.DeconstructionMethods.g.cs", getDeconstructionCode(typeSymbol, p));
+					context.AddSource($"{name}Ex", "DeconstructionMethods", getDeconstructionCode(typeSymbol, p));
 				}
 			}
 
