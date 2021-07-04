@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -40,94 +40,62 @@ namespace Sudoku.CodeGenerating
 
 			var compilation = context.Compilation;
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
+			var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
+			var attributeFixerSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
-			string[][] info = (from line in withoutHeader select splitInfo(line)).ToArray();
+			string[][] info = (from line in withoutHeader select SplitInfo(line)).ToArray();
 
-			var analyzerNameDic = new Dictionary<string, int>();
-			foreach (var typeSymbol in attributeCheck<CodeAnalyzerAttribute>(context, receiver))
+			foreach (var type in
+				from type in receiver.Candidates
+				let model = compilation.GetSemanticModel(type.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
+				where (
+					from a in type.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeAnalyzerSymbol)
+					select a
+				).Any()
+				select type)
 			{
-				_ = analyzerNameDic.TryGetValue(typeSymbol.Name, out int i);
-				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
-				analyzerNameDic[typeSymbol.Name] = i + 1;
-
-				if (getAnalyzerCode(typeSymbol) is { } generatedCode)
-				{
-					context.AddSource($"Analyzer.{name}.SupportedDiagnostics.g.cs", generatedCode);
-				}
-			}
-
-			var fixerNameDic = new Dictionary<string, int>();
-			foreach (var typeSymbol in attributeCheck<CodeFixProviderAttribute>(context, receiver))
-			{
-				_ = fixerNameDic.TryGetValue(typeSymbol.Name, out int i);
-				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
-				fixerNameDic[typeSymbol.Name] = i + 1;
-
-				if (getFixerCode(typeSymbol) is { } generatedCode)
-				{
-					context.AddSource($"Fixer.{name}.SupportedDiagnostics.g.cs", generatedCode);
-				}
-			}
-
-
-			static IEnumerable<INamedTypeSymbol> attributeCheck<TAttribute>(
-				in GeneratorExecutionContext context, SyntaxReceiver receiver)
-				where TAttribute : Attribute
-			{
-				var compilation = context.Compilation;
-				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(TAttribute).FullName);
-				return
-					from candidateType in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
-					select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateType)! into typeSymbol
-					where typeSymbol.GetAttributes().Any(
-						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					)
-					select typeSymbol;
-			}
-
-			string? getAnalyzerCode(INamedTypeSymbol symbol)
-			{
-				symbol.DeconstructInfo(
+				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName,
 					out _, out _, out _, out _, out bool isGeneric
 				);
 				if (isGeneric)
 				{
-					return null;
+					continue;
 				}
 
 				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
 				var selection =
-					from attributeStr in symbol.GetAttributeStrings(attributeSymbol)
+					from attributeStr in type.GetAttributeStrings(attributeSymbol)
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
 					select attributeStr.GetMemberValues(tokenStartIndex);
 				if (!selection.Any())
 				{
-					return null;
+					continue;
 				}
 
 				string[] diagnosticIds = selection.First();
 				string diagnosticResults = string.Join(
 					"\r\n\t",
 					from diagnosticId in diagnosticIds
-					let id = cut(diagnosticId)
+					let id = Cut(diagnosticId)
 					select $@"/// <item>
 	/// <term><a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{diagnosticId}</a></term>
-	/// <description>{getDescription(id)}</description>
+	/// <description>{GetDescription(info, id)}</description>
 	/// </item>"
 				);
 				string descriptors = string.Join(
 					"\r\n\r\n\t\t",
 					from diagnosticId in diagnosticIds
-					let tags = getWhetherFadingOutTag(diagnosticId)
-					let id = cut(diagnosticId)
+					let tags = GetWhetherFadingOutTag(diagnosticId)
+					let id = Cut(diagnosticId)
 					select $@"/// <summary>
 		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
-		/// diagnostic result ({getDescription(id)}).
+		/// diagnostic result ({GetDescription(info, id)}).
 		/// </summary>
 		[CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
@@ -138,13 +106,13 @@ namespace Sudoku.CodeGenerating
 
 				string supportedInstances = string.Join(
 					", ",
-					from diagnosticId in diagnosticIds select cut(diagnosticId)
+					from diagnosticId in diagnosticIds select Cut(diagnosticId)
 				);
-				string typeName = symbol.Name;
 
-				return $@"#pragma warning disable 1591
-
-using System.Collections.Immutable;
+				context.AddSource(
+					type.ToFileName(),
+					"Analyzer",
+					$@"using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -160,7 +128,7 @@ namespace {namespaceName}
 	/// </list>
 	/// </summary>
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	partial class {typeName}
+	partial class {type.Name}
 	{{
 		{descriptors}
 
@@ -171,42 +139,45 @@ namespace {namespaceName}
 			{supportedInstances}
 		);
 	}}
-}}";
-
-
-				static string getWhetherFadingOutTag(string id) =>
-					id.EndsWith("F")
-					? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }"
-					: string.Empty;
-
-				static string cut(string id) => id.EndsWith("F") ? id.Substring(0, id.Length - 1) : id;
+}}"
+				);
 			}
 
-			string? getFixerCode(INamedTypeSymbol symbol)
+			foreach (var type in
+				from type in receiver.Candidates
+				let model = compilation.GetSemanticModel(type.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
+				where (
+					from a in type.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeFixerSymbol)
+					select a
+				).Any()
+				select type)
 			{
-				symbol.DeconstructInfo(
+				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out _,
 					out _, out _, out _, out bool isGeneric
 				);
 				if (isGeneric)
 				{
-					return null;
+					continue;
 				}
 
 				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
-				string typeName = symbol.Name;
+				string typeName = type.Name;
 				string id = (
-					from attribute in symbol.GetAttributes()
+					from attribute in type.GetAttributes()
 					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					let match = InfoRegex.Match(attribute.ToString())
 					where match.Success
 					select match.Value
 				).First();
-				string description = getDescription(id);
+				string description = GetDescription(info, id);
 
-				return $@"#pragma warning disable 1591
-
-using System.Collections.Immutable;
+				context.AddSource(
+					type.ToFileName(),
+					"Fixer",
+					$@"using System.Collections.Immutable;
 using System.Composition;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
@@ -235,66 +206,100 @@ namespace {namespaceName}
 		[CompilerGenerated]
 		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 	}}
-}}";
+}}"
+				);
+			}
+		}
+
+
+		/// <inheritdoc/>
+		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+
+
+		/// <summary>
+		/// Cut the diagnostic ID and get the base ID part. This method will remove the suffix <c>"F"</c>
+		/// if exists.
+		/// </summary>
+		/// <param name="id">The diagnostic ID.</param>
+		/// <returns>The result.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static string Cut(string id) => id.EndsWith("F") ? id.Substring(0, id.Length - 1) : id;
+
+		/// <summary>
+		/// Get the raw code when the ID contains the suffix <c>"F"</c>.
+		/// </summary>
+		/// <param name="id">The diagnostic ID.</param>
+		/// <returns>The raw code for representing the option of fading out the code.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static string GetWhetherFadingOutTag(string id) =>
+			id.EndsWith("F") ? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }" : string.Empty;
+
+		/// <summary>
+		/// To split the info on the <c>*.csv</c> file line.
+		/// </summary>
+		/// <param name="line">A line of the file.</param>
+		/// <returns>The <see cref="string"/>[] result.</returns>
+		/// <exception cref="ArgumentException">Throws when the specified string is invalid to split.</exception>
+		private static unsafe string[] SplitInfo(string line)
+		{
+			if ((line.CountOf('"') & 1) != 0)
+			{
+				throw new ArgumentException("The specified string is invalid to split.", nameof(line));
 			}
 
-			string getDescription(string id) => (
-				from line in info select (Id: line[0], Title: line[3])
-			).First(pair => pair.Id == id).Title;
-
-			static unsafe string[] splitInfo(string line)
+			fixed (char* pLine = line)
 			{
-				if ((line.Count(static c => c == '"') & 1) != 0)
+				for (int i = 0; i < line.Length - 1;)
 				{
-					throw new ArgumentException("The specified string is invalid to split.", nameof(line));
-				}
-
-				fixed (char* pLine = line)
-				{
-					for (int i = 0; i < line.Length - 1;)
+					if (pLine[i++] != '"')
 					{
-						if (pLine[i++] != '"')
+						continue;
+					}
+
+					for (int j = i + 1; j < line.Length; j++)
+					{
+						if (pLine[j] != '"')
 						{
 							continue;
 						}
 
-						for (int j = i + 1; j < line.Length; j++)
+						for (int p = i + 1; p <= j - 1; p++)
 						{
-							if (pLine[j] != '"')
+							if (pLine[p] == ',')
 							{
-								continue;
+								// Change to the temporary character.
+								pLine[p] = '，';
 							}
-
-							for (int p = i + 1; p <= j - 1; p++)
-							{
-								if (pLine[p] == ',')
-								{
-									// Change to the temporary character.
-									pLine[p] = '，';
-								}
-							}
-
-							i = j + 1 + 1;
-							break;
 						}
+
+						i = j + 1 + 1;
+						break;
 					}
 				}
-
-				string[] result = line.Split(',');
-				for (int i = 0; i < result.Length; i++)
-				{
-					string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
-
-					result[i] = i == result.Length - 1 || i == result.Length - 2
-						? string.IsNullOrEmpty(temp) ? string.Empty : temp.Substring(0, temp.Length - 1)
-						: temp;
-				}
-
-				return result;
 			}
+
+			string[] result = line.Split(',');
+			for (int i = 0; i < result.Length; i++)
+			{
+				string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
+
+				result[i] = i == result.Length - 1 || i == result.Length - 2
+					? string.IsNullOrEmpty(temp) ? string.Empty : temp.Substring(0, temp.Length - 1)
+					: temp;
+			}
+
+			return result;
 		}
 
-		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+		/// <summary>
+		/// Get the description of from the split result.
+		/// </summary>
+		/// <param name="info">The info.</param>
+		/// <param name="id">The diagnostic ID.</param>
+		/// <returns>The description.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static string GetDescription(string[][] info, string id) => (
+			from line in info select (Id: line[0], Title: line[3])
+		).First(pair => pair.Id == id).Title;
 	}
 }

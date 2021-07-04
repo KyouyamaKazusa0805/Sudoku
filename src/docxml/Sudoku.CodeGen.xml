@@ -666,6 +666,37 @@
         <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.Cut(System.String)">
+            <summary>
+            Cut the diagnostic ID and get the base ID part. This method will remove the suffix <c>"F"</c>
+            if exists.
+            </summary>
+            <param name="id">The diagnostic ID.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.GetWhetherFadingOutTag(System.String)">
+            <summary>
+            Get the raw code when the ID contains the suffix <c>"F"</c>.
+            </summary>
+            <param name="id">The diagnostic ID.</param>
+            <returns>The raw code for representing the option of fading out the code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SplitInfo(System.String)">
+            <summary>
+            To split the info on the <c>*.csv</c> file line.
+            </summary>
+            <param name="line">A line of the file.</param>
+            <returns>The <see cref="T:System.String"/>[] result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.GetDescription(System.String[][],System.String)">
+            <summary>
+            Get the description of from the split result.
+            </summary>
+            <param name="info">The info.</param>
+            <param name="id">The diagnostic ID.</param>
+            <returns>The description.</returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver">
             <summary>
             Defines a syntax receiver.
