@@ -805,26 +805,11 @@
             because this method is useless in the by-ref-like types.
             </remarks>
         </member>
-        <member name="F:Sudoku.CodeGenerating.EqualsMethodGenerator.AttributeFullTypeName">
-            <summary>
-            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.AutoEqualityAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.CodeGenerating.AutoEqualityAttribute"/>
-        </member>
         <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
-            <summary>
-            Try to get all possible fields or properties in the specified <see langword="class"/> type.
-            </summary>
-            <param name="symbol">The specified class symbol.</param>
-            <param name="handleRecursively">
-            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
-            <returns>The result list that contains all member symbols.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.EqualsMethodGenerator.SyntaxReceiver">
             <summary>
@@ -1046,6 +1031,21 @@
         </member>
         <member name="M:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.OperatorNames">
+            <summary>
+            Indicates the operator names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.OperatorNames.Equality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>==</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.OperatorNames.Inequality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>!=</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.ProjectNames">
             <summary>
