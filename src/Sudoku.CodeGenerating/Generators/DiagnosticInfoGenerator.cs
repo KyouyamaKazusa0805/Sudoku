@@ -173,10 +173,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string f(IEnumerable<string> linqExpression) => string.Join(
-				separator,
-				linqExpression
-			);
+			static string f(IEnumerable<string> linqExpression) => string.Join(separator, linqExpression);
 		}
 
 		/// <inheritdoc/>
