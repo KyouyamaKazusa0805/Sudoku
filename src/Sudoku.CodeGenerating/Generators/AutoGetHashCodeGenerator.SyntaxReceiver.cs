@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Sudoku.CodeGenerating
 {
-	public sealed partial class AutoGetHashCodeGenerator
+	partial class AutoGetHashCodeGenerator
 	{
 		/// <summary>
 		/// Defines the syntax receiver.

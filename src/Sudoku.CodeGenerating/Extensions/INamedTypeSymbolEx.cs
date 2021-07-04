@@ -113,5 +113,14 @@ namespace Sudoku.CodeGenerating.Extensions
 			from attribute in @this.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 			select attribute.ToString();
+
+		/// <summary>
+		/// Get the file name of the type symbol.
+		/// </summary>
+		/// <param name="this">The symbol.</param>
+		/// <returns>The file name.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static string ToFileName(this INamedTypeSymbol @this) =>
+			@this.ToDisplayString(FormatOptions.TypeFormat).Replace('`', '_');
 	}
 }
