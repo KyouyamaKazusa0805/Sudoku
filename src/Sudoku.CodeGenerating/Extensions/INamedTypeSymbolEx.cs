@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
@@ -118,9 +119,34 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// Get the file name of the type symbol.
 		/// </summary>
 		/// <param name="this">The symbol.</param>
-		/// <returns>The file name.</returns>
+		/// <returns>
+		/// The file name. Due to the limited file name and the algorithm, if:
+		/// <list type="bullet">
+		/// <item>The character is <c>'&lt;'</c> or <c>'&gt;'</c>: Change them to <c>'['</c> and <c>']'</c>.</item>
+		/// <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
+		/// <item>The character is <c>' '</c>: Remove it.</item>
+		/// </list>
+		/// </returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static string ToFileName(this INamedTypeSymbol @this) =>
-			@this.ToDisplayString(FormatOptions.TypeFormat).Replace('`', '_');
+		internal static string ToFileName(this INamedTypeSymbol @this)
+		{
+			string result = @this.ToDisplayString(FormatOptions.TypeFormat);
+			Span<char> buffer = stackalloc char[result.Length];
+			buffer.Fill('\0');
+			int pointer = 0;
+			for (int i = 0; i < result.Length; i++)
+			{
+				switch (result[i])
+				{
+					case '<': { buffer[pointer++] = '['; break; }
+					case '>': { buffer[pointer++] = ']'; break; }
+					case ',': { buffer[pointer++] = '_'; break; }
+					case ' ': { continue; }
+					default: { buffer[pointer++] = result[i]; break; }
+				}
+			}
+
+			return buffer.Slice(0, pointer).ToString();
+		}
 	}
 }

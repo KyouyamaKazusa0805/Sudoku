@@ -402,7 +402,14 @@
             Get the file name of the type symbol.
             </summary>
             <param name="this">The symbol.</param>
-            <returns>The file name.</returns>
+            <returns>
+            The file name. Due to the limited file name and the algorithm, if:
+            <list type="bullet">
+            <item>The character is <c>'&lt;'</c> or <c>'&gt;'</c>: Change them to <c>'['</c> and <c>']'</c>.</item>
+            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
+            <item>The character is <c>' '</c>: Remove it.</item>
+            </list>
+            </returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.Int32Ex">
             <summary>
@@ -726,19 +733,13 @@
             Provides a generator that generates the deconstruction methods.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.DeconstructMethodGenerator.AttributeFullTypeName">
-            <summary>
-            Indicates the full type name of the attribute <see cref="T:Sudoku.CodeGenerating.AutoDeconstructAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.CodeGenerating.AutoDeconstructAttribute"/>
-        </member>
         <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Try to get all possible fields or properties in the specified type.
             </summary>
@@ -746,6 +747,7 @@
             <param name="handleRecursively">
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.
             </param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
             <returns>The result list that contains all member symbols.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.DeconstructMethodGenerator.SyntaxReceiver">

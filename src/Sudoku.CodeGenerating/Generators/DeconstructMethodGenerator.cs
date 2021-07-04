@@ -13,13 +13,6 @@ namespace Sudoku.CodeGenerating
 	[Generator]
 	public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 	{
-		/// <summary>
-		/// Indicates the full type name of the attribute <see cref="AutoDeconstructAttribute"/>.
-		/// </summary>
-		/// <seealso cref="AutoDeconstructAttribute"/>
-		private static readonly string AttributeFullTypeName = typeof(AutoDeconstructAttribute).FullName;
-
-
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
@@ -27,39 +20,34 @@ namespace Sudoku.CodeGenerating
 
 			var nameDic = new Dictionary<string, int>();
 			var compilation = context.Compilation;
-			foreach (var typeSymbol in
+			var attributeSymbol = compilation.GetTypeByMetadataName<AutoDeconstructAttribute>();
+			foreach (var type in
 				from candidateType in receiver.Candidates
 				let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
-				select model.GetDeclaredSymbol(candidateType)! into symbol
-				where symbol.Marks<AutoDeconstructAttribute>()
-				select symbol)
+				select model.GetDeclaredSymbol(candidateType)! into type
+				where (
+					from a in type.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					select a
+				).Any()
+				select type)
 			{
-				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
-				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{(i + 1).ToString()}";
-				nameDic[typeSymbol.Name] = i + 1;
-				context.AddSource($"{name}.DeconstructionMethods.g.cs", getDeconstructionCode(typeSymbol));
-			}
-
-
-			string getDeconstructionCode(INamedTypeSymbol symbol)
-			{
-				symbol.DeconstructInfo(
+				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 					out _, out string typeKind, out string readonlyKeyword, out _
 				);
 				var possibleArgs = (
-					from x in GetMembers(symbol, handleRecursively: false)
+					from x in GetMembers(type, false, attributeSymbol)
 					select (Info: x, Param: $"out {x.Type} {x.ParameterName}")
 				).ToArray();
-				var attributeSymbol = compilation.GetTypeByMetadataName(AttributeFullTypeName)!;
 				string methods = string.Join(
 					"\r\n\r\n\t\t",
-					from attributeStr in symbol.GetAttributeStrings(attributeSymbol)
+					from attributeStr in type.GetAttributeStrings(attributeSymbol)
 					where attributeStr is not null
 					let tokenStartIndex = attributeStr.IndexOf("({")
 					where tokenStartIndex != -1
-					let members = attributeStr.GetMemberValues(tokenStartIndex)
-					where members is not null && !members.Any(member => possibleArgs.All(pair => pair.Info.Name != member))
+					select attributeStr.GetMemberValues(tokenStartIndex) into members
+					where members is not null && !members.Any(m => possibleArgs.All(pair => pair.Info.Name != m))
 					let parameterList = string.Join(
 						", ",
 						from memberStr in members
@@ -101,15 +89,17 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}void Deconstruct({parameterList})
 		{{
 			{assignments}
 		}}"
 				);
 
-				return $@"#pragma warning disable 618, 1574, 1591
+				context.AddSource(
+					type.ToFileName(),
+					"DeconstructionMethods",
+					$@"#pragma warning disable 618, 1574, 1591
 
 using System;
 using System.Runtime.CompilerServices;
@@ -118,11 +108,12 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial {typeKind}{symbol.Name}{genericParametersList}
+	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		{methods}
 	}}
-}}";
+}}"
+				);
 			}
 		}
 
@@ -136,8 +127,9 @@ namespace {namespaceName}
 		/// <param name="handleRecursively">
 		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.
 		/// </param>
+		/// <param name="attributeSymbol">The attribute symbol to check.</param>
 		/// <returns>The result list that contains all member symbols.</returns>
-		private static IReadOnlyList<(string Type, string ParameterName, string Name, ImmutableArray<AttributeData> Attributes)> GetMembers(INamedTypeSymbol symbol, bool handleRecursively)
+		private static IReadOnlyList<(string Type, string ParameterName, string Name, ImmutableArray<AttributeData> Attributes)> GetMembers(INamedTypeSymbol symbol, bool handleRecursively, INamedTypeSymbol? attributeSymbol)
 		{
 			var result = new List<(string, string, string, ImmutableArray<AttributeData>)>(
 				(
@@ -159,9 +151,14 @@ namespace {namespaceName}
 				)
 			);
 
-			if (handleRecursively && symbol.BaseType is { } baseType && baseType.Marks<AutoDeconstructAttribute>())
+			if (
+				handleRecursively && symbol.BaseType is { } baseType
+				&& baseType.GetAttributes().Any(
+					a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+				)
+			)
 			{
-				result.AddRange(GetMembers(baseType, true));
+				result.AddRange(GetMembers(baseType, true, attributeSymbol));
 			}
 
 			return result;
