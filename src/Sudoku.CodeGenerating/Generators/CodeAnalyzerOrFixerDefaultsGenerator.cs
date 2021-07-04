@@ -40,8 +40,8 @@ namespace Sudoku.CodeGenerating
 
 			var compilation = context.Compilation;
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-			var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
-			var attributeFixerSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
+			var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName<CodeAnalyzerAttribute>();
+			var attributeFixerSymbol = compilation.GetTypeByMetadataName<CodeFixProviderAttribute>();
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();

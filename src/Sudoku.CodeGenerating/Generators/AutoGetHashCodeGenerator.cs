@@ -17,8 +17,7 @@ namespace Sudoku.CodeGenerating
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 
 			var compilation = context.Compilation;
-			string attributeName = typeof(AutoHashCodeAttribute).FullName;
-			var attributeSymbol = compilation.GetTypeByMetadataName(attributeName);
+			var attributeSymbol = compilation.GetTypeByMetadataName<AutoHashCodeAttribute>();
 			foreach (var type in
 				from type in receiver.Candidates
 				let model = compilation.GetSemanticModel(type.SyntaxTree)
@@ -30,11 +29,7 @@ namespace Sudoku.CodeGenerating
 				).Any()
 				select symbol)
 			{
-				if (
-					type.GetAttributeString(
-						compilation.GetTypeByMetadataName(attributeName)
-					) is not { } attributeStr
-				)
+				if (type.GetAttributeString(attributeSymbol) is not { } attributeStr)
 				{
 					continue;
 				}

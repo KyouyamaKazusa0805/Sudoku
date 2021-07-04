@@ -247,6 +247,17 @@
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Extensions.CompilationEx">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.CompilationEx.GetTypeByMetadataName``1(Microsoft.CodeAnalysis.Compilation)">
+            <inheritdoc cref="M:Microsoft.CodeAnalysis.Compilation.GetTypeByMetadataName(System.String)"/>
+            <typeparam name="T">The type of the metadata type name to construct.</typeparam>
+            <param name="this">The compilation.</param>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.ExpressionSyntaxEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
