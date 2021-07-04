@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 
@@ -31,49 +33,45 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
+			const string separator = "\r\n\t\t";
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 			string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
-			string diagnosticIdClause = string.Join(
-				"\r\n\t\t",
+			string diagnosticIdClause = f(
 				from line in info
 				let diagnosticId = line[0]
 				select $"public const string {diagnosticId} = nameof({diagnosticId});"
 			);
-			string severitiesClause = string.Join(
-				"\r\n\t\t",
+			string severitiesClause = f(
 				from line in info
 				let pair = (Id: line[0], Severity: line[1])
 				select $@"public const DiagnosticSeverity {pair.Id} = DiagnosticSeverity.{pair.Severity};"
 			);
-			string categoryClause = string.Join(
-				"\r\n\t\t",
+			string categoryClause = f(
 				from line in info
 				let pair = (Id: line[0], Category: line[2])
 				select $@"public const string {pair.Id} = ""{pair.Category}"";"
 			);
-			string helpLinkClause = string.Join(
-				"\r\n\t\t",
+			string helpLinkClause = f(
 				from line in info
 				let id = line[0]
 				select $@"public const string {id} = ""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"";"
 			);
-			string titleClause = string.Join(
-				"\r\n\t\t",
+			string titleClause = f(
 				from line in info
 				let pair = (Id: line[0], Title: line[3])
 				select $@"public const string {pair.Id} = ""{pair.Title}"";"
 			);
-			string messageClause = string.Join(
-				"\r\n\t\t",
+			string messageClause = f(
 				from line in info
 				let pair = (Id: line[0], Title: line[3], Message: line[4])
 				select $@"public const string {pair.Id} = ""{(pair.Message == string.Empty ? pair.Title : pair.Message)}"";"
 			);
 
 			context.AddSource(
-				"DiagnosticIds.g.cs",
+				"DiagnosticIds",
+				null,
 				$@"#pragma warning disable 1591
 
 #nullable enable
@@ -88,7 +86,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 			context.AddSource(
-				"DiagnosticSeverities.g.cs",
+				"DiagnosticSeverities",
+				null,
 				$@"#pragma warning disable 1591
 
 using Microsoft.CodeAnalysis;
@@ -105,7 +104,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 			context.AddSource(
-				"Categories.g.cs",
+				"Categories",
+				null,
 				$@"#pragma warning disable 1591
 
 #nullable enable
@@ -120,7 +120,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 			context.AddSource(
-				"HelpLinks.g.cs",
+				"HelpLinks",
+				null,
 				$@"#pragma warning disable 1591
 
 #nullable enable
@@ -135,7 +136,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 			context.AddSource(
-				"Titles.g.cs",
+				"Titles",
+				null,
 				$@"#pragma warning disable 1591
 
 #nullable enable
@@ -150,7 +152,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 			);
 
 			context.AddSource(
-				"Messages.g.cs",
+				"Messages",
+				null,
 				$@"#pragma warning disable 1591
 
 #nullable enable
@@ -162,6 +165,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		{messageClause}
 	}}
 }}"
+			);
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string f(IEnumerable<string> linqExpression) => string.Join(
+				separator,
+				linqExpression
 			);
 		}
 
