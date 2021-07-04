@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -19,85 +20,95 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
-			context.AddSource("BitOperationsEx.g.cs", GenerateGlobalFile());
-
 			const string separator = "\r\n\r\n\t\t";
+			const string typeName = "System.Extensions.BitOperationsEx";
+
+			context.AddSource(typeName, null, GenerateGlobalFile());
 
 			var sb = new StringBuilder();
+			var actions = new Action[] { a, b, c, d, e, f };
+			Array.ForEach(actions, static action => action());
 
-			#region GetAllSets
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in GetAllSetsTypes select GenerateGetAllSets(name)))
-				.Append(TrailingText);
 
-			context.AddSource("BitOperationsEx.GetAllSets.g.cs", sb.ToString());
-			#endregion
+			void a()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(string.Join(separator, from name in GetAllSetsTypes select GenerateGetAllSets(name)))
+					.Append(TrailingText);
 
-			sb.Clear();
+				context.AddSource(typeName, "GetAllSets", sb.ToString());
 
-			#region GetEnumerator
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select GenerateGetEnumerator(name)))
-				.Append(TrailingText);
+				sb.Clear();
+			}
 
-			context.AddSource("BitOperationsEx.GetEnumerator.g.cs", sb.ToString());
-			#endregion
+			void b()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select GenerateGetEnumerator(name)))
+					.Append(TrailingText);
 
-			sb.Clear();
+				context.AddSource(typeName, "GetEnumerator", sb.ToString());
 
-			#region GetNextSet
-			sb
-				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from pair in GetNextSetTypes select GenerateGetNextSet(pair.TypeName, pair.Size)
+				sb.Clear();
+			}
+
+			void c()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(
+						string.Join(
+							separator,
+							from pair in GetNextSetTypes select GenerateGetNextSet(pair.TypeName, pair.Size)
+						)
 					)
-				)
-				.Append(TrailingText);
+					.Append(TrailingText);
 
-			context.AddSource("BitOperationsEx.GetNextSet.g.cs", sb.ToString());
-			#endregion
+				context.AddSource(typeName, "GetNextSet", sb.ToString());
 
-			sb.Clear();
+				sb.Clear();
+			}
 
-			#region ReverseBits
-			sb
-				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from pair in ReverseBitsTypes select GenerateReverseBits(pair.TypeName, pair.Size)
+			void d()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(
+						string.Join(
+							separator,
+							from pair in ReverseBitsTypes select GenerateReverseBits(pair.TypeName, pair.Size)
+						)
 					)
-				)
-				.Append(TrailingText);
+					.Append(TrailingText);
 
-			context.AddSource("BitOperationsEx.ReverseBits.g.cs", sb.ToString());
-			#endregion
+				context.AddSource(typeName, "ReverseBits", sb.ToString());
 
-			sb.Clear();
+				sb.Clear();
+			}
 
-			#region SetAt
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in SetAtTypes select GenerateSetAt(name)))
-				.Append(TrailingText);
+			void e()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(string.Join(separator, from name in SetAtTypes select GenerateSetAt(name)))
+					.Append(TrailingText);
 
-			context.AddSource("BitOperationsEx.SetAt.g.cs", sb.ToString());
-			#endregion
+				context.AddSource(typeName, "SetAt", sb.ToString());
 
-			sb.Clear();
+				sb.Clear();
+			}
 
-			#region SkipSetBit
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in SkipSetBitTypes select GenerateSkipSetBit(name)))
-				.Append(TrailingText);
+			void f()
+			{
+				sb
+					.Append(LeadingText)
+					.AppendLine(string.Join(separator, from name in SkipSetBitTypes select GenerateSkipSetBit(name)))
+					.Append(TrailingText);
 
-			context.AddSource("BitOperationsEx.SkipSetBit.g.cs", sb.ToString());
-			#endregion
+				context.AddSource(typeName, "SkipSetBit", sb.ToString());
+			}
 		}
 
 		/// <inheritdoc/>

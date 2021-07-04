@@ -36,7 +36,10 @@ namespace Sudoku.CodeGenerating.Extensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void AddSource(
 			this ref GeneratorExecutionContext @this, string fileName,
-			string sourceGeneratorName, string sourceCode) =>
-			@this.AddSource($"{fileName}.{sourceGeneratorName}.g.cs", SourceText.From(sourceCode, Encoding.UTF8));
+			string? sourceGeneratorName, string sourceCode) =>
+			@this.AddSource(
+				$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".{sourceGeneratorName}")}.g.cs",
+				SourceText.From(sourceCode, Encoding.UTF8)
+			);
 	}
 }
