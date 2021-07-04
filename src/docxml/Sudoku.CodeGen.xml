@@ -328,6 +328,16 @@
             otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx.GetPath(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AdditionalText}@,System.Predicate{System.String})">
+            <summary>
+            Try to get the path in the additional file list that satisify the specified condition.
+            </summary>
+            <param name="this">The list of additional files.</param>
+            <param name="predicate">The condition</param>
+            <returns>
+            The file name found. If none of all files satisfies the condition, <see langword="null"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.

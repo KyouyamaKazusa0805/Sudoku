@@ -33,8 +33,12 @@ namespace Sudoku.CodeGenerating
 				return;
 			}
 
+			if (additionalFiles.GetPath(static f => f.Contains(CsvTableName)) is not { } csvTableFilePath)
+			{
+				return;
+			}
+
 			const string separator = "\r\n\t\t";
-			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 			string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();

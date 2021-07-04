@@ -38,5 +38,26 @@ namespace Sudoku.CodeGenerating.Extensions
 
 			return true;
 		}
+
+		/// <summary>
+		/// Try to get the path in the additional file list that satisify the specified condition.
+		/// </summary>
+		/// <param name="this">The list of additional files.</param>
+		/// <param name="predicate">The condition</param>
+		/// <returns>
+		/// The file name found. If none of all files satisfies the condition, <see langword="null"/>.
+		/// </returns>
+		internal static string? GetPath(this in ImmutableArray<AdditionalText> @this, Predicate<string> predicate)
+		{
+			foreach (var file in @this)
+			{
+				if (predicate(file.Path))
+				{
+					return file.Path;
+				}
+			}
+
+			return null;
+		}
 	}
 }
