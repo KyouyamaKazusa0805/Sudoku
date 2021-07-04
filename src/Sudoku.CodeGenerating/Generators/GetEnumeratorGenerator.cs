@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -19,26 +18,16 @@ namespace Sudoku.CodeGenerating
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
-			var nameDic = new Dictionary<string, int>();
-			foreach (
-				var (symbol, attribute) in
-					from candidateInfo in receiver.Candidates
-					let model = compilation.GetSemanticModel(candidateInfo.Node.SyntaxTree)
-					select (
-						(INamedTypeSymbol)model.GetDeclaredSymbol(candidateInfo.Node)!,
-						candidateInfo.Attribute
-					)
-			)
+			foreach (var (type, attribute) in
+				from type in receiver.Candidates
+				let model = compilation.GetSemanticModel(type.Node.SyntaxTree)
+				select ((INamedTypeSymbol)model.GetDeclaredSymbol(type.Node)!, type.Attribute))
 			{
-				_ = nameDic.TryGetValue(symbol.Name, out int i);
-				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
-				nameDic[symbol.Name] = i + 1;
-
 				var syntaxTree = attribute.SyntaxTree;
 				var semanticModel = compilation.GetSemanticModel(syntaxTree);
-				if (getGetEnumeratorCode(symbol, attribute, semanticModel) is { } c)
+				if (getGetEnumeratorCode(type, attribute, semanticModel) is { } c)
 				{
-					context.AddSource($"{name}.GetEnumerator.g.cs", c);
+					context.AddSource(type.ToFileName(), "GetEnumerator", c);
 				}
 			}
 
@@ -146,8 +135,7 @@ namespace Sudoku.CodeGenerating
 				bool implementsIEnumerableNongeneric = symbol.AllInterfaces.Any(static i => i is { Name: nameof(IEnumerable), IsGenericType: false });
 				string interfaceExplicitlyImplementation = symbol.IsRefLikeType || !implementsIEnumerableNongeneric ? string.Empty : $@"
 
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		{readonlyKeyword}System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();";
 
 				return $@"#pragma warning disable 1591
@@ -162,8 +150,7 @@ namespace {namespaceName}
 {{
 	partial {typeKind}{symbol.Name}{genericParameterList}
 	{{
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}{returnType} GetEnumerator() => {memberConversion};{interfaceExplicitlyImplementation}
 	}}
 }}";

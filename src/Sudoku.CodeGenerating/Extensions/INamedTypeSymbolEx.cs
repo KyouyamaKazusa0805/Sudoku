@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
@@ -131,7 +130,7 @@ namespace Sudoku.CodeGenerating.Extensions
 		internal static string ToFileName(this INamedTypeSymbol @this)
 		{
 			string result = @this.ToDisplayString(FormatOptions.TypeFormat);
-			Span<char> buffer = stackalloc char[result.Length];
+			var buffer = (stackalloc char[result.Length]);
 			buffer.Fill('\0');
 			int pointer = 0;
 			for (int i = 0; i < result.Length; i++)
@@ -141,7 +140,7 @@ namespace Sudoku.CodeGenerating.Extensions
 					case '<': { buffer[pointer++] = '['; break; }
 					case '>': { buffer[pointer++] = ']'; break; }
 					case ',': { buffer[pointer++] = '_'; break; }
-					case ' ': { continue; }
+					case ' ' or ':': { continue; }
 					default: { buffer[pointer++] = result[i]; break; }
 				}
 			}
