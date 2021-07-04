@@ -34,7 +34,7 @@ namespace Sudoku.CodeGenerating
 			string csvTableFilePath = additionalFiles.First(static f => f.Path.Contains(CsvTableName)).Path;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
-			string[][] info = (from line in withoutHeader select SplitInfo(line)).ToArray();
+			string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
 			string diagnosticIdClause = string.Join(
 				"\r\n\t\t",
 				from line in info
@@ -168,58 +168,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 		/// <inheritdoc/>
 		public void Initialize(GeneratorInitializationContext context)
 		{
-		}
-
-
-		private static unsafe string[] SplitInfo(string line)
-		{
-			if ((line.CountOf('"') & 1) != 0)
-			{
-				throw new ArgumentException("The specified string is invalid to split.", nameof(line));
-			}
-
-			fixed (char* pLine = line)
-			{
-				for (int i = 0; i < line.Length - 1;)
-				{
-					if (pLine[i++] != '"')
-					{
-						continue;
-					}
-
-					for (int j = i + 1; j < line.Length; j++)
-					{
-						if (pLine[j] != '"')
-						{
-							continue;
-						}
-
-						for (int p = i + 1; p <= j - 1; p++)
-						{
-							if (pLine[p] == ',')
-							{
-								// Change to the temporary character.
-								pLine[p] = '，';
-							}
-						}
-
-						i = j + 1 + 1;
-						break;
-					}
-				}
-			}
-
-			string[] result = line.Split(',');
-			for (int i = 0; i < result.Length; i++)
-			{
-				string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
-
-				result[i] = i == result.Length - 1 || i == result.Length - 2
-					? string.IsNullOrEmpty(temp) ? string.Empty : temp.Substring(0, temp.Length - 1)
-					: temp;
-			}
-
-			return result;
 		}
 	}
 }

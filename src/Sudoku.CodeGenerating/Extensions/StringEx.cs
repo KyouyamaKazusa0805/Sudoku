@@ -70,5 +70,62 @@ namespace Sudoku.CodeGenerating.Extensions
 			result[0] = result[0].Substring(2);
 			return result;
 		}
+
+		/// <summary>
+		/// To split the info on the <c>*.csv</c> file line.
+		/// </summary>
+		/// <param name="this">A line of the file.</param>
+		/// <returns>The <see cref="string"/>[] result.</returns>
+		/// <exception cref="ArgumentException">Throws when the specified string is invalid to split.</exception>
+		internal static unsafe string[] SplitInfo(this string @this)
+		{
+			if ((@this.CountOf('"') & 1) != 0)
+			{
+				throw new ArgumentException("The specified string is invalid to split.", nameof(@this));
+			}
+
+			fixed (char* pLine = @this)
+			{
+				for (int i = 0; i < @this.Length - 1;)
+				{
+					if (pLine[i++] != '"')
+					{
+						continue;
+					}
+
+					for (int j = i + 1; j < @this.Length; j++)
+					{
+						if (pLine[j] != '"')
+						{
+							continue;
+						}
+
+						for (int p = i + 1; p <= j - 1; p++)
+						{
+							if (pLine[p] == ',')
+							{
+								// Change to the temporary character.
+								pLine[p] = '，';
+							}
+						}
+
+						i = j + 1 + 1;
+						break;
+					}
+				}
+			}
+
+			string[] result = @this.Split(',');
+			for (int i = 0; i < result.Length; i++)
+			{
+				string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
+
+				result[i] = i == result.Length - 1 || i == result.Length - 2
+					? string.IsNullOrEmpty(temp) ? string.Empty : temp.Substring(0, temp.Length - 1)
+					: temp;
+			}
+
+			return result;
+		}
 	}
 }

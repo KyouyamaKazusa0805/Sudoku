@@ -516,6 +516,14 @@
             <param name="tokenStartIndex">The token start index.</param>
             <returns>The array of separated values.</returns>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.SplitInfo(System.String)">
+            <summary>
+            To split the info on the <c>*.csv</c> file line.
+            </summary>
+            <param name="this">A line of the file.</param>
+            <returns>The <see cref="T:System.String"/>[] result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.SyntaxReferenceEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
@@ -698,14 +706,6 @@
             </summary>
             <param name="id">The diagnostic ID.</param>
             <returns>The raw code for representing the option of fading out the code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SplitInfo(System.String)">
-            <summary>
-            To split the info on the <c>*.csv</c> file line.
-            </summary>
-            <param name="line">A line of the file.</param>
-            <returns>The <see cref="T:System.String"/>[] result.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
         </member>
         <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.GetDescription(System.String[][],System.String)">
             <summary>
