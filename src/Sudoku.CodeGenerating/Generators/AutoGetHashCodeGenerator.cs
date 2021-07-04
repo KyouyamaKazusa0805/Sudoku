@@ -23,8 +23,11 @@ namespace Sudoku.CodeGenerating
 				from type in receiver.Candidates
 				let model = compilation.GetSemanticModel(type.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into symbol
-				from attribute in symbol.GetAttributes()
-				where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+				where (
+					from attribute in symbol.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+					select attribute
+				).Any()
 				select symbol)
 			{
 				if (
