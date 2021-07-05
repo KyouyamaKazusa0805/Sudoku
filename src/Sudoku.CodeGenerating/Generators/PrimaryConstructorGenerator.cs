@@ -20,39 +20,31 @@ namespace Sudoku.CodeGenerating
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-			var nameDic = new Dictionary<string, int>();
 			var compilation = context.Compilation;
-			foreach (var symbol in
+			foreach (var type in
 				from candidate in receiver.CandidateClasses
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-				select model.GetDeclaredSymbol(candidate)! into symbol
-				where symbol.Marks<AutoGeneratePrimaryConstructorAttribute>()
-				select (INamedTypeSymbol)symbol)
+				select model.GetDeclaredSymbol(candidate)! into type
+				where type.Marks<AutoGeneratePrimaryConstructorAttribute>()
+				select (INamedTypeSymbol)type)
 			{
-				_ = nameDic.TryGetValue(symbol.Name, out int i);
-				string name = i == 0 ? symbol.Name : $"{symbol.Name}{(i + 1).ToString()}";
-				nameDic[symbol.Name] = i + 1;
-				context.AddSource($"{name}.PrimaryConstructor.g.cs", getPrimaryConstructorCode(symbol));
-			}
-
-
-			static string getPrimaryConstructorCode(INamedTypeSymbol symbol)
-			{
-				symbol.DeconstructInfo(
+				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 					out _, out _, out _, out _
 				);
 
+				var attributeSymbol = compilation.GetTypeByMetadataName<AutoGeneratePrimaryConstructorAttribute>();
 				var baseClassCtorArgs =
-					symbol.BaseType is { } baseType && baseType.Marks<AutoGeneratePrimaryConstructorAttribute>()
-					? GetMembers(baseType, handleRecursively: true)
-					: null;
+					type.BaseType is { } baseType
+					&& baseType.GetAttributes().Any(
+						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					) ? GetMembers(baseType, handleRecursively: true) : null;
 				/*length-pattern*/
 				string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
 					? null
 					: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 
-				var members = GetMembers(symbol, handleRecursively: false);
+				var members = GetMembers(type, handleRecursively: false);
 				string parameterList = string.Join(
 					", ",
 					from x in baseClassCtorArgs is null ? members : members.Concat(baseClassCtorArgs)
@@ -63,7 +55,10 @@ namespace Sudoku.CodeGenerating
 					from member in members select $"{member.Name} = {member.ParameterName};"
 				);
 
-				return $@"#pragma warning disable 1591
+				context.AddSource(
+					type.ToFileName(),
+					"PrimaryConstructor",
+					$@"#pragma warning disable 1591
 
 using System.Runtime.CompilerServices;
 
@@ -71,15 +66,16 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial class {symbol.Name}{genericParametersList}
+	partial class {type.Name}{genericParametersList}
 	{{
 		[CompilerGenerated]
-		public {symbol.Name}({parameterList}){baseCtorInheritance}
+		public {type.Name}({parameterList}){baseCtorInheritance}
 		{{
 			{memberAssignments}
 		}}
 	}}
-}}";
+}}"
+				);
 			}
 		}
 
