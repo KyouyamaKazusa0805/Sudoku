@@ -1710,6 +1710,7 @@
             will be greater; if those two hold same conclusion type, but one of those two holds
             the global index of the candidate position is greater, it is greater.
             </remarks>
+            <seealso cref="F:Sudoku.Data.ConclusionType.Elimination"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32,System.Int32)">
             <summary>
