@@ -23,8 +23,7 @@ namespace Sudoku.CodeGenerating
 				let model = compilation.GetSemanticModel(type.Node.SyntaxTree)
 				select ((INamedTypeSymbol)model.GetDeclaredSymbol(type.Node)!, type.Attribute))
 			{
-				var syntaxTree = attribute.SyntaxTree;
-				var semanticModel = compilation.GetSemanticModel(syntaxTree);
+				var semanticModel = compilation.GetSemanticModel(attribute.SyntaxTree);
 				if (getGetEnumeratorCode(type, attribute, semanticModel) is { } c)
 				{
 					context.AddSource(type.ToFileName(), "GetEnumerator", c);
@@ -64,14 +63,13 @@ namespace Sudoku.CodeGenerating
 			{
 				string p = string.Join(
 					"\r\n",
-					from attributeArgument in attributeArguments
-					let nameEqualsNode = attributeArgument.NameEquals
-					where nameEqualsNode is not null && nameEqualsNode.Name.Identifier.ValueText == nameof(AutoGetEnumeratorAttribute.ExtraNamespaces)
-					let array = attributeArgument.Expression
-					let op = semanticModel.GetOperation(array) as IArrayCreationOperation
+					from arg in attributeArguments
+					where arg.NameEquals?.Name.Identifier.ValueText == nameof(AutoGetEnumeratorAttribute.ExtraNamespaces)
+					select arg.Expression into array
+					select semanticModel.GetOperation(array) as IArrayCreationOperation into op
 					where op is not null
 					from element in op.Initializer.ElementValues
-					let literalOp = element as ILiteralOperation
+					select element as ILiteralOperation into literalOp
 					where literalOp is { ConstantValue: { HasValue: true } }
 					select $"using {literalOp.ConstantValue.Value};"
 				);
