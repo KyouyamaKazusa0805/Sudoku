@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 
@@ -37,9 +36,7 @@ namespace Sudoku.CodeGenerating
 				context.AddSource(
 					type.ToFileName(),
 					"ToString",
-					$@"#pragma warning disable 1591
-
-using System.Runtime.CompilerServices;
+					$@"using System.Runtime.CompilerServices;
 
 #nullable enable
 
