@@ -6,7 +6,7 @@ namespace Sudoku.CodeGenerating
 	/// Used on an assembly, to tell the compiler this assembly will generate
 	/// a extension method called <c>Deconstruct</c>.
 	/// </summary>
-	/// <remarks>
+	/// <example>
 	/// For example, if you write the code like:
 	/// <code>
 	/// [assembly: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
@@ -17,8 +17,7 @@ namespace Sudoku.CodeGenerating
 	/// 
 	/// public static class ClassEx
 	/// {
-	///     [CompilerGenerated]
-	///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+	///     [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 	///     public static void Deconstruct(this Class @this, out int a, out int b, out int c)
 	///     {
 	///         a = @this.A;
@@ -27,7 +26,7 @@ namespace Sudoku.CodeGenerating
 	///     }
 	/// }
 	/// </code>
-	/// </remarks>
+	/// </example>
 	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
 	public sealed class AutoDeconstructExtensionAttribute : Attribute
 	{

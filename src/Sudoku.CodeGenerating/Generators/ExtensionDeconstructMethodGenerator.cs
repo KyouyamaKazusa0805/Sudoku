@@ -108,8 +108,7 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
 		{{
 			{assignments}
