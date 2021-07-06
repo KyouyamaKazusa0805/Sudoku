@@ -1,5 +1,6 @@
 ﻿using System.Extensions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 
 namespace System.Collections.Generic
@@ -22,6 +23,7 @@ namespace System.Collections.Generic
 		/// Initializes a default <see cref="Set{TEquatable}"/> collection instance,
 		/// with no elements in it.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Set()
 		{
 		}
@@ -42,10 +44,18 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// The number of elements.
 		/// </summary>
-		public int Count => _list.Count;
+		public int Count
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _list.Count;
+		}
 
 		/// <inheritdoc/>
-		bool ICollection<TEquatable>.IsReadOnly => false;
+		bool ICollection<TEquatable>.IsReadOnly
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => false;
+		}
 
 
 		/// <summary>
@@ -53,30 +63,39 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="element">The element.</param>
 		/// <returns>The first element to satisfy the condition.</returns>
-		public TEquatable? this[TEquatable element] => _list.FirstOrDefault(e => e.Equals(element));
+		public TEquatable? this[TEquatable element]
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _list.FirstOrDefault(e => e.Equals(element));
+		}
 
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Clear() => _list.Clear();
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void CopyTo(TEquatable[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
 
 		/// <summary>
 		/// Sort the list.
 		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Sort() => ((List<TEquatable>)_list).Sort();
 
 		/// <summary>
 		/// Sort the list with the specified comparison.
 		/// </summary>
 		/// <param name="comparison">The comparison.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Sort(Comparison<TEquatable> comparison) => ((List<TEquatable>)_list).Sort(comparison);
 
 		/// <summary>
 		/// Add an element into the set.
 		/// </summary>
 		/// <param name="item">The item.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Add(TEquatable item)
 		{
 			if (_list.Contains(item))
@@ -118,6 +137,7 @@ namespace System.Collections.Generic
 		/// Remove the last element out of the list.
 		/// </summary>
 		/// <returns>The element removed.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public TEquatable Remove() => RemoveAt(^1);
 
 		/// <summary>
@@ -125,6 +145,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The element removed.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public TEquatable RemoveAt(int index)
 		{
 			var result = _list[index];
@@ -137,6 +158,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The element removed.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public TEquatable RemoveAt(in Index index)
 		{
 			var result = _list[index];
@@ -145,9 +167,11 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Contains(TEquatable item) => _list.Contains(item);
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Remove(TEquatable item) => _list.Remove(item);
 
 		/// <inheritdoc/>
@@ -187,10 +211,12 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool IsProperSubsetOf(IEnumerable<TEquatable> other) =>
 			IsSubsetOf(other) && other.Take(Count + 1).Count() != Count;
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool IsProperSupersetOf(IEnumerable<TEquatable> other) =>
 			IsSupersetOf(other) && other.Take(Count + 1).Count() != Count;
 
@@ -223,12 +249,15 @@ namespace System.Collections.Generic
 		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Overlaps(IEnumerable<TEquatable> other) => other.Any(element => _list.Contains(element));
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool SetEquals(IEnumerable<TEquatable> other) => other.All(element => _list.Contains(element));
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void SymmetricExceptWith(IEnumerable<TEquatable> other)
 		{
 			var elements = _list.Except(other).Union(other.Except(_list));
@@ -261,7 +290,7 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		[ProxyEquality]
+		[ProxyEquality, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
 		{
 			(null, null) => true,
@@ -275,32 +304,13 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		private static bool SetEquals(Set<TEquatable>? left, Set<TEquatable>? right)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private static bool SetEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
 		{
-			switch ((left, right))
-			{
-				case (null, null):
-				{
-					return true;
-				}
-				case (not null, not null):
-				{
-					foreach (var element in left._list)
-					{
-						if (!right._list.Contains(element))
-						{
-							return false;
-						}
-					}
-
-					return true;
-				}
-				default:
-				{
-					return false;
-				}
-			}
-		}
+			(null, null) => true,
+			(not null, not null) => left._list.All(element => !right._list.Contains(element)),
+			_ => false
+		};
 
 
 		/// <summary>
@@ -311,6 +321,7 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>The intersection result.</returns>
 		/// <seealso cref="IntersectWith(IEnumerable{TEquatable})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Set<TEquatable> operator &(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.IntersectWith(right);
@@ -325,6 +336,7 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>The union result.</returns>
 		/// <seealso cref="UnionWith(IEnumerable{TEquatable})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Set<TEquatable> operator |(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.UnionWith(right);
@@ -339,6 +351,7 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>The symmetric exception result.</returns>
 		/// <seealso cref="SymmetricExceptWith(IEnumerable{TEquatable})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Set<TEquatable> operator ^(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.SymmetricExceptWith(right);
@@ -353,6 +366,7 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>The exception result.</returns>
 		/// <seealso cref="ExceptWith(IEnumerable{TEquatable})"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Set<TEquatable> operator -(Set<TEquatable> left, IEnumerable<TEquatable> right)
 		{
 			left.ExceptWith(right);

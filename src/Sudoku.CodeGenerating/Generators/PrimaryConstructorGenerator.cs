@@ -21,30 +21,36 @@ namespace Sudoku.CodeGenerating
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
+			var attributeSymbol = compilation.GetTypeByMetadataName<AutoGeneratePrimaryConstructorAttribute>();
+			var addAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIncludedMemberAttribute>();
+			var removeAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIgnoredMemberAttribute>();
 			foreach (var type in
 				from candidate in receiver.CandidateClasses
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-				select model.GetDeclaredSymbol(candidate)! into type
-				where type.Marks<AutoGeneratePrimaryConstructorAttribute>()
-				select (INamedTypeSymbol)type)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
+				where (
+					from a in type.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					select a
+				).Any()
+				select type)
 			{
 				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 					out _, out _, out _, out _
 				);
 
-				var attributeSymbol = compilation.GetTypeByMetadataName<AutoGeneratePrimaryConstructorAttribute>();
 				var baseClassCtorArgs =
 					type.BaseType is { } baseType
 					&& baseType.GetAttributes().Any(
 						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					) ? GetMembers(baseType, handleRecursively: true) : null;
+					) ? GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol) : null;
 				/*length-pattern*/
 				string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
 					? null
 					: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 
-				var members = GetMembers(type, handleRecursively: false);
+				var members = GetMembers(type, false, attributeSymbol, addAttributeSymbol, removeAttributeSymbol);
 				string parameterList = string.Join(
 					", ",
 					from x in baseClassCtorArgs is null ? members : members.Concat(baseClassCtorArgs)
@@ -86,61 +92,65 @@ namespace {namespaceName}
 		/// <summary>
 		/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
 		/// </summary>
-		/// <param name="classSymbol">The specified class symbol.</param>
+		/// <param name="type">The specified class symbol.</param>
 		/// <param name="handleRecursively">
 		/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
+		/// <param name="attributeSymbol">
+		/// Indicates the attribute symbol of attribute <see cref="AutoGeneratePrimaryConstructorAttribute"/>.
+		/// </param>
+		/// <param name="addAttributeSymbol">
+		/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIncludedMemberAttribute"/>.
+		/// </param>
+		/// <param name="removeAttributeSymbol">
+		/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIgnoredMemberAttribute"/>.
+		/// </param>
 		/// <returns>The result list that contains all member symbols.</returns>
-		private static IReadOnlyList<SymbolInfo> GetMembers(INamedTypeSymbol classSymbol, bool handleRecursively)
+		/// <seealso cref="AutoGeneratePrimaryConstructorAttribute"/>
+		/// <seealso cref="PrimaryConstructorIncludedMemberAttribute"/>
+		/// <seealso cref="PrimaryConstructorIgnoredMemberAttribute"/>
+		private static IReadOnlyList<(string Type, string ParameterName, string Name, IEnumerable<AttributeData> Attributes)> GetMembers(
+			INamedTypeSymbol type, bool handleRecursively, INamedTypeSymbol? attributeSymbol,
+			INamedTypeSymbol? addAttributeSymbol, INamedTypeSymbol? removeAttributeSymbol)
 		{
-			var result = new List<SymbolInfo>(
+			var result = new List<(string, string, string, IEnumerable<AttributeData>)>(
 				(
-					from x in classSymbol.GetMembers().OfType<IFieldSymbol>()
+					from x in type.GetMembers().OfType<IFieldSymbol>()
 					where x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (
-							x.IsReadOnly
-							&& !x.HasInitializer()
-							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
-						)
-						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
-					select new SymbolInfo(
+						&& (x.IsReadOnly && !x.HasInitializer() || x.GetAttributes().Any(p_include))
+						&& !x.GetAttributes().Any(p_ignore)
+					select (
 						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-						toCamelCase(x.Name),
+						x.Name.ToCamelCase(),
 						x.Name,
-						x.GetAttributes()
+						x.GetAttributes().AsEnumerable()
 					)
 				).Concat(
-					from x in classSymbol.GetMembers().OfType<IPropertySymbol>()
+					from x in type.GetMembers().OfType<IPropertySymbol>()
 					where x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (
-							x.IsReadOnly
-							&& !x.HasInitializer()
-							|| x.Marks<PrimaryConstructorIncludedMemberAttribute>()
-						)
-						&& !x.Marks<PrimaryConstructorIgnoredMemberAttribute>()
-					select new SymbolInfo(
+						&& (x.IsReadOnly && !x.HasInitializer() || x.GetAttributes().Any(p_include))
+						&& !x.GetAttributes().Any(p_ignore)
+					select (
 						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-						toCamelCase(x.Name),
+						x.Name.ToCamelCase(),
 						x.Name,
-						x.GetAttributes()
+						x.GetAttributes().AsEnumerable()
 					)
 				)
 			);
 
-			if (handleRecursively
-				&& classSymbol.BaseType is { } baseType
-				&& baseType.Marks<AutoGeneratePrimaryConstructorAttribute>())
+			if (handleRecursively && type.BaseType is { } baseType && baseType.GetAttributes().Any(p_attribute))
 			{
-				result.AddRange(GetMembers(baseType, true));
+				result.AddRange(
+					GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol)
+				);
 			}
 
 			return result;
 
 
-			static string toCamelCase(string name)
-			{
-				name = name.TrimStart('_');
-				return name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
-			}
+			bool p_include(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, addAttributeSymbol);
+			bool p_ignore(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, removeAttributeSymbol);
+			bool p_attribute(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol);
 		}
 	}
 }

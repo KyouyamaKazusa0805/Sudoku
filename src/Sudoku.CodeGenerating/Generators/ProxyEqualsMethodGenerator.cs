@@ -17,27 +17,31 @@ namespace Sudoku.CodeGenerating
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var processedList = new List<INamedTypeSymbol>();
 			var compilation = context.Compilation;
-			foreach (var symbol in
+			var attributeSymbol = compilation.GetTypeByMetadataName<ProxyEqualityAttribute>();
+			foreach (var type in
 				from candidate in receiver.Candidates
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into symbol
-				from member in symbol.GetMembers().OfType<IMethodSymbol>()
-				where member.Marks<ProxyEqualityAttribute>()
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
+				from member in type.GetMembers().OfType<IMethodSymbol>()
+				where (
+					from a in member.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					select a
+				).Any()
 				let boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean)
 				let returnTypeSymbol = member.ReturnType
 				where SymbolEqualityComparer.Default.Equals(returnTypeSymbol, boolSymbol)
 				let parameters = member.Parameters
-				where parameters.Length == 2 && parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, symbol))
-				select symbol)
+				where parameters.Length == 2 && parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, type))
+				select type)
 			{
-				if (processedList.Contains(symbol, SymbolEqualityComparer.Default))
+				if (processedList.Contains(type, SymbolEqualityComparer.Default))
 				{
 					continue;
 				}
 
-				var attributeSymbol = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
 				var methods = (
-					from member in symbol.GetMembers().OfType<IMethodSymbol>()
+					from member in type.GetMembers().OfType<IMethodSymbol>()
 					from attribute in member.GetAttributes()
 					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
 					select member
@@ -45,28 +49,28 @@ namespace Sudoku.CodeGenerating
 
 				/*slice-pattern*/
 				if (
-					symbol.IsReferenceType
+					type.IsReferenceType
 					&& !methods.Parameters.NullableMatches(NullableAnnotation.Annotated, NullableAnnotation.Annotated)
 				)
 				{
 					continue;
 				}
 
-				symbol.DeconstructInfo(
+				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 					out string genericParametersListWithoutConstraint, out string typeKind,
 					out string readonlyKeyword, out _
 				);
 				string methodName = methods.Name;
-				string inModifier = symbol.MemberShouldAppendIn() ? "in " : string.Empty;
-				string nullableMark = symbol.TypeKind == TypeKind.Class || symbol.IsRecord ? "?" : string.Empty;
-				string objectEqualityMethod = symbol.IsRefLikeType
+				string inModifier = type.MemberShouldAppendIn() ? "in " : string.Empty;
+				string nullableMark = type.TypeKind == TypeKind.Class || type.IsRecord ? "?" : string.Empty;
+				string objectEqualityMethod = type.IsRefLikeType
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
 					: $@"[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override {readonlyKeyword}bool Equals(object? obj) => obj is {symbol.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
+		public override {readonlyKeyword}bool Equals(object? obj) => obj is {type.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 				context.AddSource(
-					symbol.ToFileName(),
+					type.ToFileName(),
 					"ProxyEquality",
 					$@"#pragma warning disable 1591
 
@@ -76,23 +80,23 @@ using System.Runtime.CompilerServices;
 
 namespace {namespaceName}
 {{
-	partial {typeKind}{symbol.Name}{genericParametersList}
+	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		{objectEqualityMethod}
 
 		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Equals({inModifier}{symbol.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
+		public bool Equals({inModifier}{type.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
 
 
 		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator ==({inModifier}{symbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{symbol.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
+		public static bool operator ==({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
 
 		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool operator !=({inModifier}{symbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{symbol.Name}{genericParametersListWithoutConstraint} right) => !(left == right);
+		public static bool operator !=({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => !(left == right);
 	}}
 }}");
 
-				processedList.Add(symbol);
+				processedList.Add(type);
 			}
 		}
 

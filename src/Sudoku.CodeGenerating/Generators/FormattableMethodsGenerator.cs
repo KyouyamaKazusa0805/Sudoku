@@ -20,11 +20,16 @@ namespace Sudoku.CodeGenerating
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
+			var attributeSymbol = compilation.GetTypeByMetadataName<AutoFormattableAttribute>();
 			foreach (var type in
 				from candidate in receiver.Candidates
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
-				where type.Marks<AutoFormattableAttribute>()
+				where (
+					from a in type.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
+					select a
+				).Any()
 				select type)
 			{
 				type.DeconstructInfo(

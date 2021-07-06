@@ -439,14 +439,6 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ISymbolEx.Marks``1(Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            To determine whether the symbol has marked the specified attribute.
-            </summary>
-            <typeparam name="TAttribute">The type of that attribute.</typeparam>
-            <param name="this">The symbol to check.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.CodeGenerating.Extensions.ISymbolEx.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
             <summary>
             To determine whether the specified symbol (should be property or field members)
@@ -927,14 +919,26 @@
         <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Try to get all possible fields or properties in the specified <see langword="class"/> type.
             </summary>
-            <param name="classSymbol">The specified class symbol.</param>
+            <param name="type">The specified class symbol.</param>
             <param name="handleRecursively">
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
+            <param name="attributeSymbol">
+            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>.
+            </param>
+            <param name="addAttributeSymbol">
+            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>.
+            </param>
+            <param name="removeAttributeSymbol">
+            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>.
+            </param>
             <returns>The result list that contains all member symbols.</returns>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>
+            <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>
+            <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>
         </member>
         <member name="T:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SymbolInfo">
             <summary>

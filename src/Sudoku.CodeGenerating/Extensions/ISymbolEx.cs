@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -12,16 +10,6 @@ namespace Sudoku.CodeGenerating.Extensions
 	/// <seealso cref="ISymbol"/>
 	public static class ISymbolEx
 	{
-		/// <summary>
-		/// To determine whether the symbol has marked the specified attribute.
-		/// </summary>
-		/// <typeparam name="TAttribute">The type of that attribute.</typeparam>
-		/// <param name="this">The symbol to check.</param>
-		/// <returns>The result.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool Marks<TAttribute>(this ISymbol @this) where TAttribute : Attribute =>
-			@this.GetAttributes().Any(static x => x.AttributeClass?.Name == typeof(TAttribute).Name);
-
 		/// <summary>
 		/// To determine whether the specified symbol (should be property or field members)
 		/// has an initializer.
