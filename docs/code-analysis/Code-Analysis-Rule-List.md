@@ -116,6 +116,7 @@
 | [SS0705](rules/Rule-SS0705) | ℹ                  | Design                    | ❌              |        |
 | [SS0706](rules/Rule-SS0706) | ⚠                  | Usage                     | ✔              |        |
 | [SS0801](rules/Rule-SS0801) | ⚠ | Usage | ❌ | 是 |
+| [SS0802](rules/Rule-SS0802) | ❌ | Usage | ❌ | 是 |
 | [SS9001](rules/Rule-SS9001) | ℹ                  | Performance               | ✔              |        |
 | [SS9002](rules/Rule-SS9002) | ℹ                  | Usage                     | ✔              |        |
 | [SS9003](rules/Rule-SS9003) | ⚠                  | Usage                     | ❌              |        |
