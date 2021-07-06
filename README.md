@@ -54,18 +54,13 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 
 ### Forking & PRs this Repo (复制这个仓库以及代码更新推并请求)
 
-Of course you can fork my repo and do whatever you want. You can:
+Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the MIT license.
 
-当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以：
+当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 MIT 开源协议下做你任何想做的事情。
 
-* Modify the code (修改代码)
-* Use the code or code snippet into your project (使用代码或代码片段到你的项目里去)
-* Make a new pull request (编辑代码，创建一个新的代码更新推并请求)
-* and so on... (等等)
+However, this repo may update **frequently** (At least 1 commit in a day).
 
-> This repo may update frequently (At least 1 commit in a day).
->
-> 这个仓库可能会更新得非常频繁（大概一天至少一次代码提交）。
+不过，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
 
 ### Basic Information (基本信息)
 
@@ -101,6 +96,17 @@ Please visit the following tables.
 > In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
 >
 > 另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
+
+### To-do List (完成列表)
+
+* [ ] Docs (Wiki 文档)
+  * [x] Basic docs (基本文档)
+  * [ ] Sudoku tutorial on web (数独教程)
+* [ ] UI Projects (UI 项目)
+  * [ ] Android project (安卓平台的项目)
+  * [x] WPF project (Desktop) (WPF 桌面项目)
+  * [ ] UWP project (UWP 桌面项目)
+  * [ ] iOS project (iOS 项目)
 
 ### Open Resource License (项目开源许可证)
 
