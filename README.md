@@ -58,9 +58,13 @@ Of course you can fork my repo and do whatever you want. You can do whatever you
 
 当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 MIT 开源协议下做你任何想做的事情。
 
-However, this repo may update **frequently** (At least 1 commit in a day).
+However, due to the copy of the Github repo, Gitee repo doesn't support any PRs. I'm sorry.
 
-不过，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
+不过，由于 Gitee 是从 Github 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解。
+
+In addition, this repo may update **frequently** (At least 1 commit in a day).
+
+另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
 
 ### Basic Information (基本信息)
 
