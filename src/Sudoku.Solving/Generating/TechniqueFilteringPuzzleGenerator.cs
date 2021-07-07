@@ -18,17 +18,17 @@ namespace Sudoku.Generating
 		/// <summary>
 		/// Indicates the default filter.
 		/// </summary>
-		private static readonly TechniqueCodeFilter DefaultFilter =
-			new(
-				Technique.LastDigit, Technique.FullHouse,
-				Technique.HiddenSingleRow, Technique.HiddenSingleColumn,
-				Technique.HiddenSingleBlock, Technique.NakedSingle,
-				Technique.NakedPair, Technique.NakedPairPlus,
-				Technique.HiddenPair, Technique.LockedPair,
-				Technique.NakedTriple, Technique.NakedTriplePlus,
-				Technique.HiddenTriple, Technique.LockedTriple,
-				Technique.NakedQuadruple, Technique.NakedQuadruplePlus,
-				Technique.HiddenQuadruple);
+		private static readonly TechniqueCodeFilter DefaultFilter = new(
+			Technique.LastDigit, Technique.FullHouse,
+			Technique.HiddenSingleRow, Technique.HiddenSingleColumn,
+			Technique.HiddenSingleBlock, Technique.NakedSingle,
+			Technique.NakedPair, Technique.NakedPairPlus,
+			Technique.HiddenPair, Technique.LockedPair,
+			Technique.NakedTriple, Technique.NakedTriplePlus,
+			Technique.HiddenTriple, Technique.LockedTriple,
+			Technique.NakedQuadruple, Technique.NakedQuadruplePlus,
+			Technique.HiddenQuadruple
+		);
 
 		/// <summary>
 		/// The default manual solver.
@@ -56,9 +56,9 @@ namespace Sudoku.Generating
 			TechniqueCodeFilter? techniqueCodeFilter, IProgress<IProgressResult>? progress,
 			CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
 		{
-			PuzzleGeneratingProgressResult defaultValue = default;
-			var pr = new PuzzleGeneratingProgressResult(
-				0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
+			PuzzleGeneratingProgressResult
+				defaultValue = default,
+				pr = new(0, countryCode == CountryCode.Default ? CountryCode.EnUs : countryCode);
 			ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 			progress?.Report(progressResult);
 
