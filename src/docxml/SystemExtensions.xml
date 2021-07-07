@@ -598,6 +598,11 @@
         <member name="M:System.Collections.Generic.KeyedTuple`4.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AssemblyObsoleteAttribute">
+            <summary>
+            To mark on an assembly, to tell the user and the compiler that the assembly is obsolete.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.ClosedAttribute">
             <summary>
             Marks on a enumeration type, which means the enumeration type is a closed enumeration type.

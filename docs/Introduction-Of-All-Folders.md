@@ -9,7 +9,6 @@
 | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) | .NET 6            | DLL  | 对数独基本元素的主要数据结构的实现。           |          |
 | [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) | .NET 6            | DLL  | 检测、诊断解决方案的项目，比如检测代码行数。   |          |
 | [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing) | .NET 6            | DLL  | 用于绘制和渲染数独盘面。                       | 即将弃用 |
-| [`Sudoku.Globalization`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Globalization) | .NET 6            | DLL  | 封装了国际化的一些常数、常量及数据类型。       |          |
 | [`Sudoku.IO`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO) | .NET 6            | DLL  | 用于处理数独相关的文件操作。                   |          |
 | [`Sudoku.Recognition`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition) | .NET 6            | DLL  | 封装了关于识别一个数独图片的相关操作。         |          |
 | [`Sudoku.Solving`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving) | .NET 6            | DLL  | 解题和题目生成的项目。                         |          |

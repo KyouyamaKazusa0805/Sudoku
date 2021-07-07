@@ -4642,6 +4642,30 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
+        <member name="T:Sudoku.Globalization.CountryCode">
+            <summary>
+            Encapsulates a country code to tell different countries.
+            </summary>
+            <remarks>
+            This <see langword="enum"/> is used for some formatted string output, i.e. a
+            multi-language string.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.Default">
+            <summary>
+            Indicates the language is none of them, which is the default value of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.EnUs">
+            <summary>
+            Indicates the American English.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Globalization.CountryCode.ZhCn">
+            <summary>
+            Indicates the Chinese (Mainland).
+            </summary>
+        </member>
         <member name="T:Sudoku.InvalidPuzzleException">
             <summary>
             Indicates an error that throws when a sudoku grid is in an invalid state in other scenarios
