@@ -55,9 +55,7 @@ namespace Sudoku.IO
 			try
 			{
 				XWPFDocument? doc = outputType == AnalysisResultOutputType.WordDocument ? new() : null;
-				if (AnalysisResult.Steps is { } steps
-					&& AnalysisResult.StepGrids is { } stepGrids
-					&& doc is not null)
+				if (AnalysisResult is { Steps: { } steps, StepGrids: { } stepGrids } && doc is not null)
 				{
 					// If the directory cannot be found, create it.
 					string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
