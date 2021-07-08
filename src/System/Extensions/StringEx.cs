@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System.Extensions
 {
@@ -27,15 +28,21 @@ namespace System.Extensions
 		/// the specified regular expression pattern or not.
 		/// </summary>
 		/// <param name="this">The value to check.</param>
-		/// <param name="pattern">The regular expression pattern.</param>
+		/// <param name="pattern">
+		/// The regular expression pattern. If the value is <see langword="null"/>,
+		/// the return value is always <see langword="false"/>.
+		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <exception cref="InvalidRegexStringException">
 		/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 		/// expression pattern.
 		/// </exception>
-		public static bool SatisfyPattern(this string @this, string pattern) => pattern.IsRegexPattern()
-			? @this.Match(pattern) == @this
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+		public static bool SatisfyPattern(this string @this, [NotNullWhen(true)] string? pattern) =>
+			pattern is not null && (
+				pattern.IsRegexPattern()
+				? @this.Match(pattern) == @this
+				: throw new InvalidRegexStringException { WrongRegexString = pattern }
+			);
 
 		/// <summary>
 		/// Check whether the specified string instance can match the value

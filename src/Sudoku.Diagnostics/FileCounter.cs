@@ -144,7 +144,7 @@ namespace Sudoku.Diagnostics
 			{
 				FileList.AddRange(
 					from file in directory.GetFiles()
-					let fullName = file.FullName
+					select file.FullName into fullName
 					where Pattern is null || fullName.SatisfyPattern(Pattern)
 					select fullName
 				);
