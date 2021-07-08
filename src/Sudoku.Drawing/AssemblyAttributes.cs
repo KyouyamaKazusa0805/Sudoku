@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Sudoku.CodeGenerating;
-
-[assembly: CLSCompliant(false)]
 
 [assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B), Namespace = "Sudoku.Drawing.Extensions")]
 [assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y), Namespace = "Sudoku.Drawing.Extensions")]
