@@ -21,6 +21,7 @@
 		public const string SD0308 = "Remove duplicate items";
 		public const string SD0309 = "Use object initializer instead";
 		public const string SD0310 = "Add default format";
+		public const string SD0312 = "Use 'stackalloc' expression instead";
 		public const string SD0401 = "Use 'nameof' expression instead";
 
 		public const string SS0101 = "Append 'ToString' invocation";

@@ -50,10 +50,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						case ArrayCreationExpressionSyntax
 						{
-							Type: ArrayTypeSyntax
-							{
-								ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } }
-							}
+							Type: { ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } } }
 						}:
 						case ImplicitArrayCreationExpressionSyntax implicitArrayCreation
 						when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
@@ -65,7 +62,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								Diagnostic.Create(
 									descriptor: SD0312,
 									location: arg.GetLocation(),
-									messageArgs: null
+									messageArgs: null,
+									additionalLocations: new[] { arg.Expression.GetLocation() }
 								)
 							);
 
@@ -87,10 +85,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						case ArrayCreationExpressionSyntax
 						{
-							Type: ArrayTypeSyntax
-							{
-								ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } }
-							}
+							Type: { ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } } }
 						}:
 						case ImplicitArrayCreationExpressionSyntax implicitArrayCreation
 						when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
@@ -102,7 +97,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								Diagnostic.Create(
 									descriptor: SD0312,
 									location: arg.GetLocation(),
-									messageArgs: null
+									messageArgs: null,
+									additionalLocations: new[] { arg.Expression.GetLocation() }
 								)
 							);
 

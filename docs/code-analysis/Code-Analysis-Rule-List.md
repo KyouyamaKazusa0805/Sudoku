@@ -32,7 +32,7 @@
 | [SD0309](rules/Rule-SD0309) | ℹ                  | Usage                     | ✔              |        |
 | [SD0310](rules/Rule-SD0310) | ℹ                  | Usage                     | ✔              |        |
 | [SD0311](rules/Rule-SD0311) | ❌                  | Usage                     | ❌              |        |
-| [SD0312](rules/Rule-SD0312) | ⚠ | Usage | ❌ |  |
+| [SD0312](rules/Rule-SD0312) | ⚠ | Usage | ✔ |  |
 | [SD0313](rules/Rule-SD0313) | ⚠ | Performance | ❌ | 是 |
 | [SD0314](rules/Rule-SD0314) | ⚠ | Usage | ❌ | 是 |
 | [SD0401](rules/Rule-SD0401) | ⚠                  | Usage                     | ✔              |        |
