@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
@@ -9,7 +10,7 @@ namespace System.IO.Csv
 	/// <summary>
 	/// Introduces a <c>*.csv</c> document.
 	/// </summary>
-	public sealed class CsvDocument : IDisposable
+	public sealed class CsvDocument : IDisposable, IEnumerable<string[]?>, IAsyncEnumerable<string[]?>
 	{
 		/// <summary>
 		/// Indicates the reader of the document.
@@ -24,11 +25,14 @@ namespace System.IO.Csv
 
 
 		/// <summary>
-		/// Initializes the <see cref="CsvDocument"/> with the specified path.
+		/// Initializes the <see cref="CsvDocument"/> with the specified path, with two optional parameters.
 		/// </summary>
 		/// <param name="path">The path.</param>
 		/// <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
-		/// <param name="delimiter">The delimiter.</param>
+		/// <param name="delimiter">
+		/// The delimiter. This delimiter will be processed in splitting the line and
+		/// separating to the multiple values.
+		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CsvDocument(string path, bool withHeader = false, string? delimiter = null)
 		{
@@ -75,29 +79,7 @@ namespace System.IO.Csv
 		/// Closes the file, and releases the memory.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Close() => Dispose();
-
-		/// <inheritdoc/>
-		/// <exception cref="ObjectDisposedException">Throws when the object has been already disposed.</exception>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Dispose()
-		{
-			if (_hasBeenDisposed)
-			{
-				throw new ObjectDisposedException(
-					"The object has been already disposed.",
-					new InvalidOperationException(
-						"Can't release an object whose memory has been already disposed."
-					)
-				);
-			}
-
-			_parser.Close();
-
-			_hasBeenDisposed = true;
-			GC.SuppressFinalize(this);
-		}
+		public void Close() => ((IDisposable)this).Dispose();
 
 		/// <summary>
 		/// Try to get the fields of the table if worth. The table may contain those fields or not
@@ -126,15 +108,7 @@ namespace System.IO.Csv
 		/// </summary>
 		/// <returns>The values.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public string[]? ReadLine()
-		{
-			if (WithHeader && LineNumber == 0 && !_parser.EndOfData)
-			{
-				_parser.ReadFields();
-			}
-
-			return _parser.ReadFields();
-		}
+		public string[]? ReadLine() => _parser.ReadFields();
 
 		/// <summary>
 		/// Reads the whole document, and returns the separated result.
@@ -175,8 +149,38 @@ namespace System.IO.Csv
 			static ValueTask<string[]?> f(TextFieldParser parser) => new(parser.ReadFields());
 		}
 
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override string? ToString() => _parser.ReadToEnd();
+		public IEnumerator<string[]?> GetEnumerator() => ReadToEnd().GetEnumerator();
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public IAsyncEnumerator<string[]?> GetAsyncEnumerator(CancellationToken cancellationToken = default) =>
+			ReadToEndAsync().GetAsyncEnumerator(cancellationToken);
+
+		/// <inheritdoc/>
+		/// <exception cref="ObjectDisposedException">Throws when the object has been already disposed.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void IDisposable.Dispose()
+		{
+			if (_hasBeenDisposed)
+			{
+				throw new ObjectDisposedException(
+					"The object has been already disposed.",
+					new InvalidOperationException(
+						"Can't release an object whose memory has been already disposed."
+					)
+				);
+			}
+
+			_parser.Close();
+
+			_hasBeenDisposed = true;
+			GC.SuppressFinalize(this);
+		}
+
+		/// <inheritdoc/>
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }

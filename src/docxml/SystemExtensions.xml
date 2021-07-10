@@ -2135,11 +2135,14 @@
         </member>
         <member name="M:System.IO.Csv.CsvDocument.#ctor(System.String,System.Boolean,System.String)">
             <summary>
-            Initializes the <see cref="T:System.IO.Csv.CsvDocument"/> with the specified path.
+            Initializes the <see cref="T:System.IO.Csv.CsvDocument"/> with the specified path, with two optional parameters.
             </summary>
             <param name="path">The path.</param>
             <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
-            <param name="delimiter">The delimiter.</param>
+            <param name="delimiter">
+            The delimiter. This delimiter will be processed in splitting the line and
+            separating to the multiple values.
+            </param>
         </member>
         <member name="P:System.IO.Csv.CsvDocument.WithHeader">
             <summary>
@@ -2165,10 +2168,6 @@
             <summary>
             Closes the file, and releases the memory.
             </summary>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object has been already disposed.</exception>
         </member>
         <member name="M:System.IO.Csv.CsvDocument.GetFields">
             <summary>
@@ -2221,7 +2220,17 @@
             </remarks>
             <seealso cref="M:System.IO.Csv.CsvDocument.ReadToEnd"/>
         </member>
-        <member name="M:System.IO.Csv.CsvDocument.ToString">
+        <member name="M:System.IO.Csv.CsvDocument.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object has been already disposed.</exception>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:System.ICloneable`1">
