@@ -11,6 +11,7 @@ namespace Sudoku.CodeGenerating.Extensions
 	public static class StringEx
 	{
 #if !NETSTANDARD2_1_OR_GREATER
+#pragma warning disable IDE0056
 		/// <summary>
 		/// Check whether the last character is the specified character.
 		/// </summary>
@@ -19,6 +20,7 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <returns>A <see cref="bool"/> result</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool EndsWith(this string @this, char character) => @this[@this.Length - 1] == character;
+#pragma warning restore IDE0056
 #endif
 
 		/// <summary>

@@ -1,6 +1,22 @@
-﻿using System.Text;
+﻿using System;
+using System.IO;
+using System.IO.Csv;
 
-var vsb = new ValueStringBuilder(new char[50]);
-ValueStringBuilder vsb2 = new(new char[50]);
-var vsb3 = new ValueStringBuilder(new[] { '\0', '\0', '\0', '\0', '\0' });
-ValueStringBuilder vsb4 = new(new[] { '\0', '\0', '\0', '\0', '\0' });
+using var reader = new CsvDocument(
+	path: Path.Combine(
+		Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+		"Test.csv"
+	),
+	withHeader: true,
+	delimiter: ","
+);
+
+await foreach (string[]? fields in reader.ReadToEndAsync())
+{
+	if (fields is null)
+	{
+		continue;
+	}
+
+	Console.WriteLine(string.Join(" | ", fields));
+}

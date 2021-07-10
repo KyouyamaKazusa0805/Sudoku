@@ -24,6 +24,29 @@ namespace System.Extensions
 
 
 		/// <summary>
+		/// Count how many specified characters are in the current string.
+		/// </summary>
+		/// <param name="this">The current string.</param>
+		/// <param name="character">The character to count.</param>
+		/// <returns>The number of characters found.</returns>
+		public static unsafe int CountOf(this string @this, char character)
+		{
+			int count = 0;
+			fixed (char* pThis = @this)
+			{
+				for (char* p = pThis; *p != '\0'; p++)
+				{
+					if (*p == character)
+					{
+						count++;
+					}
+				}
+			}
+
+			return count;
+		}
+
+		/// <summary>
 		/// Check whether the specified string instance is satisfied
 		/// the specified regular expression pattern or not.
 		/// </summary>

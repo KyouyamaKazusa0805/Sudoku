@@ -1378,6 +1378,14 @@
             Indicates the time span that is used for matching.
             </summary>
         </member>
+        <member name="M:System.Extensions.StringEx.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
         <member name="M:System.Extensions.StringEx.SatisfyPattern(System.String,System.String)">
             <summary>
             Check whether the specified string instance is satisfied
@@ -2109,6 +2117,112 @@
             </summary>
             <param name="path">The path.</param>
             <returns>The <see cref="T:System.Boolean"/> result indicating whether the deletion is successful.</returns>
+        </member>
+        <member name="T:System.IO.Csv.CsvDocument">
+            <summary>
+            Introduces a <c>*.csv</c> document.
+            </summary>
+        </member>
+        <member name="F:System.IO.Csv.CsvDocument._parser">
+            <summary>
+            Indicates the reader of the document.
+            </summary>
+        </member>
+        <member name="F:System.IO.Csv.CsvDocument._hasBeenDisposed">
+            <summary>
+            Indicates the value that suggests whether the document instance has been already disposed.
+            </summary>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            Initializes the <see cref="T:System.IO.Csv.CsvDocument"/> with the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
+            <param name="delimiter">The delimiter.</param>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.WithHeader">
+            <summary>
+            Indicates whether the table contains the header.
+            </summary>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.LineNumber">
+            <summary>
+            Indicates the current line number.
+            </summary>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.Path">
+            <summary>
+            Indicates the path.
+            </summary>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.Delimiter">
+            <summary>
+            Indicates the delimiter.
+            </summary>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.Close">
+            <summary>
+            Closes the file, and releases the memory.
+            </summary>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object has been already disposed.</exception>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.GetFields">
+            <summary>
+            Try to get the fields of the table if worth. The table may contain those fields or not
+            displayed at the first line.
+            </summary>
+            <returns>The result value. The value can be:
+            <list type="table">
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The property <see cref="P:System.IO.Csv.CsvDocument.WithHeader"/> is <see langword="false"/>, or the table is empty.
+            </description>
+            </item>
+            <item>
+            <term>The string of the field names</term>
+            <description>Otherwise.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IO.Csv.CsvDocument.WithHeader"/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.ReadLine">
+            <summary>
+            Reads a line of values.
+            </summary>
+            <returns>The values.</returns>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.ReadToEnd">
+            <summary>
+            Reads the whole document, and returns the separated result.
+            </summary>
+            <returns>The list of lines of fields.</returns>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.ReadToEndAsync">
+            <summary>
+            Reads the whole document, and returns the separated result asynchronously.
+            </summary>
+            <returns>The list of lines of fields.</returns>
+            <remarks>
+            The same as <see cref="M:System.IO.Csv.CsvDocument.ReadToEnd"/>, this method can also provide iteration. However,
+            due to the return type <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>, you should use the method to iterate
+            asynchronously, such as:
+            <code>
+            await foreach (string[] fields in instance.ReadToEndAsync())
+            {
+                // Do whatever you like.
+            }
+            </code>
+            </remarks>
+            <seealso cref="M:System.IO.Csv.CsvDocument.ReadToEnd"/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:System.ICloneable`1">
             <inheritdoc cref="T:System.ICloneable"/>
