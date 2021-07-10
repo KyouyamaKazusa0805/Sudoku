@@ -227,7 +227,7 @@ namespace {namespaceName}
 		/// <param name="id">The diagnostic ID.</param>
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static string Cut(string id) => id.EndsWith("F") ? id.Substring(0, id.Length - 1) : id;
+		private static string Cut(string id) => id.EndsWith('F') ? id.Substring(0, id.Length - 1) : id;
 
 		/// <summary>
 		/// Get the raw code when the ID contains the suffix <c>"F"</c>.
@@ -236,7 +236,7 @@ namespace {namespaceName}
 		/// <returns>The raw code for representing the option of fading out the code.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static string GetWhetherFadingOutTag(string id) =>
-			id.EndsWith("F") ? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }" : string.Empty;
+			id.EndsWith('F') ? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }" : string.Empty;
 
 		/// <summary>
 		/// Get the description of from the split result.
@@ -247,6 +247,6 @@ namespace {namespaceName}
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static string GetDescription(string[][] info, string id) => (
 			from line in info select (Id: line[0], Title: line[3])
-		).First(pair => pair.Id == id).Title;
+		).First(pair => pair.Id == id).Title.Replace("{", "&lt;").Replace("}", "&gt;");
 	}
 }

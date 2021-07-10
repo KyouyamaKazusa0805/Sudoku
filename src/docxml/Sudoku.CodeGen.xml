@@ -493,6 +493,14 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.EndsWith(System.String,System.Char)">
+            <summary>
+            Check whether the last character is the specified character.
+            </summary>
+            <param name="this">The string.</param>
+            <param name="character">The character to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result</returns>
+        </member>
         <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.CountOf(System.String,System.Char)">
             <summary>
             Count how many specified characters are in the current string.

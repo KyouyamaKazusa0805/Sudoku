@@ -10,6 +10,17 @@ namespace Sudoku.CodeGenerating.Extensions
 	/// <seealso cref="string"/>
 	public static class StringEx
 	{
+#if !NETSTANDARD2_1_OR_GREATER
+		/// <summary>
+		/// Check whether the last character is the specified character.
+		/// </summary>
+		/// <param name="this">The string.</param>
+		/// <param name="character">The character to check.</param>
+		/// <returns>A <see cref="bool"/> result</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool EndsWith(this string @this, char character) => @this[@this.Length - 1] == character;
+#endif
+
 		/// <summary>
 		/// Count how many specified characters are in the current string.
 		/// </summary>

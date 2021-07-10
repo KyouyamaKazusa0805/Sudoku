@@ -851,7 +851,7 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610F</a></term>
-            <description>The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead</description>
+            <description>The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '&lt; &gt;' or 'not null' instead</description>
             </item>
             </list>
             </summary>
@@ -862,7 +862,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer.SS0610">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610</a>
-            diagnostic result (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead).
+            diagnostic result (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '&lt; &gt;' or 'not null' instead).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardedPositionalPatternAnalyzer.SupportedDiagnostics">
@@ -971,11 +971,11 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a></term>
-            <description>Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types</description>
+            <description>Please use '&lt; &gt;' instead of '!= null', 'not null' or 'HasValue' in nullable value types</description>
             </item>
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a></term>
-            <description>Please use '{ }' or 'not null' instead of '!= null' in nullable reference types</description>
+            <description>Please use '&lt; &gt;' or 'not null' instead of '!= null' in nullable reference types</description>
             </item>
             </list>
             </summary>
@@ -986,13 +986,13 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0615">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a>
-            diagnostic result (Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
+            diagnostic result (Please use '&lt; &gt;' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SS0616">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a>
-            diagnostic result (Please use '{ }' or 'not null' instead of '!= null' in nullable reference types).
+            diagnostic result (Please use '&lt; &gt;' or 'not null' instead of '!= null' in nullable reference types).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NullableTypesPatternMatchingSuggestionAnalyzer.SupportedDiagnostics">
@@ -1240,7 +1240,7 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0614">SS0614F</a></term>
-            <description>The empty-brace property pattern '{ }' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it</description>
+            <description>The empty-brace property pattern '&lt; &gt;' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it</description>
             </item>
             </list>
             </summary>
@@ -1251,7 +1251,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SS0614">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0614">SS0614</a>
-            diagnostic result (The empty-brace property pattern '{ }' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it).
+            diagnostic result (The empty-brace property pattern '&lt; &gt;' will take effects only in reference types or value types with variable designations, so we don't suggest you use the pattern to judge non-nullable types; please change the clause to 'var' pattern or other valid patterns, or just remove it).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.UnncessaryEmptyBracePatternAnalyzer.SupportedDiagnostics">
@@ -1423,7 +1423,7 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a></term>
-            <description>Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder'</description>
+            <description>Please use 'stackalloc' clause to create a buffer of type 'Span&lt;char&gt;' as the argument of the constructor of type 'ValueStringBuilder'</description>
             </item>
             </list>
             </summary>
@@ -1434,7 +1434,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SD0312">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a>
-            diagnostic result (Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder').
+            diagnostic result (Please use 'stackalloc' clause to create a buffer of type 'Span&lt;char&gt;' as the argument of the constructor of type 'ValueStringBuilder').
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SupportedDiagnostics">
@@ -2559,7 +2559,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a>
-            (Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder').
+            (Please use 'stackalloc' clause to create a buffer of type 'Span&lt;char&gt;' as the argument of the constructor of type 'ValueStringBuilder').
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0312CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
@@ -2975,7 +2975,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0610">SS0610</a>
-            (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '{ }' or 'not null' instead).
+            (The positional pattern judges nothing; if you want to judge whether the object is not null, please use empty property pattern '&lt; &gt;' or 'not null' instead).
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0610CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
@@ -3007,7 +3007,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0615">SS0615</a>
-            (Please use '{ }' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
+            (Please use '&lt; &gt;' instead of '!= null', 'not null' or 'HasValue' in nullable value types).
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0615CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
@@ -3023,7 +3023,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0616">SS0616</a>
-            (Please use '{ }' or 'not null' instead of '!= null' in nullable reference types).
+            (Please use '&lt; &gt;' or 'not null' instead of '!= null' in nullable reference types).
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0616CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
