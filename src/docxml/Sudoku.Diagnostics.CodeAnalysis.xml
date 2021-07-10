@@ -1417,6 +1417,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a></term>
+            <description>Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SD0312">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a>
+            diagnostic result (Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReadOnlyPropertyAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
