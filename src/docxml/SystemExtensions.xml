@@ -2192,6 +2192,7 @@
             <summary>
             Closes the file, and releases the memory.
             </summary>
+            <exception cref="T:System.ObjectDisposedException">Throws when the memory has been already released.</exception>
         </member>
         <member name="M:System.IO.Csv.CsvDocument.GetFields">
             <summary>

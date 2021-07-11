@@ -75,6 +75,7 @@ namespace System.IO.Csv
 		/// <summary>
 		/// Closes the file, and releases the memory.
 		/// </summary>
+		/// <exception cref="ObjectDisposedException">Throws when the memory has been already released.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Close() => ((IDisposable)this).Dispose();
 
