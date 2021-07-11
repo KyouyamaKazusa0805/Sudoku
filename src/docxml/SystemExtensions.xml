@@ -2123,6 +2123,29 @@
             Introduces a <c>*.csv</c> document.
             </summary>
         </member>
+        <member name="T:System.IO.Csv.CsvDocument.AsyncEnumerator">
+            <summary>
+            Indicates the enumerator that bounds with <see cref="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator"/>.
+            </summary>
+            <seealso cref="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator"/>
+        </member>
+        <member name="F:System.IO.Csv.CsvDocument.AsyncEnumerator._parser">
+            <summary>
+            Indicates the parser.
+            </summary>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.AsyncEnumerator.#ctor(Microsoft.VisualBasic.FileIO.TextFieldParser)">
+            <summary>
+            Initializes a <see cref="T:System.IO.Csv.CsvDocument.AsyncEnumerator"/> instance using the specified text parser.
+            </summary>
+            <param name="parser">The text field parser.</param>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.AsyncEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IAsyncEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.AsyncEnumerator.MoveNextAsync">
+            <inheritdoc cref="M:System.Collections.Generic.IAsyncEnumerator`1.MoveNextAsync"/>
+        </member>
         <member name="F:System.IO.Csv.CsvDocument._parser">
             <summary>
             Indicates the reader of the document.
@@ -2133,7 +2156,7 @@
             Indicates the value that suggests whether the document instance has been already disposed.
             </summary>
         </member>
-        <member name="M:System.IO.Csv.CsvDocument.#ctor(System.String,System.Boolean,System.String)">
+        <member name="M:System.IO.Csv.CsvDocument.#ctor(System.String,System.Boolean,System.Char)">
             <summary>
             Initializes the <see cref="T:System.IO.Csv.CsvDocument"/> with the specified path, with two optional parameters.
             </summary>
@@ -2141,7 +2164,8 @@
             <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
             <param name="delimiter">
             The delimiter. This delimiter will be processed in splitting the line and
-            separating to the multiple values.
+            separating to the multiple values. The default value is <see langword="default"/>(<see cref="T:System.Char"/>)
+            (i.e. <c>'\0'</c>) as the undefined character.
             </param>
         </member>
         <member name="P:System.IO.Csv.CsvDocument.WithHeader">
@@ -2196,42 +2220,59 @@
             </summary>
             <returns>The values.</returns>
         </member>
-        <member name="M:System.IO.Csv.CsvDocument.ReadToEnd">
-            <summary>
-            Reads the whole document, and returns the separated result.
-            </summary>
-            <returns>The list of lines of fields.</returns>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.ReadToEndAsync">
-            <summary>
-            Reads the whole document, and returns the separated result asynchronously.
-            </summary>
-            <returns>The list of lines of fields.</returns>
-            <remarks>
-            The same as <see cref="M:System.IO.Csv.CsvDocument.ReadToEnd"/>, this method can also provide iteration. However,
-            due to the return type <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>, you should use the method to iterate
-            asynchronously, such as:
-            <code>
-            await foreach (string[] fields in instance.ReadToEndAsync())
-            {
-                // Do whatever you like.
-            }
-            </code>
-            </remarks>
-            <seealso cref="M:System.IO.Csv.CsvDocument.ReadToEnd"/>
-        </member>
         <member name="M:System.IO.Csv.CsvDocument.GetEnumerator">
-            <inheritdoc/>
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that iterates through the collection.</returns>
         </member>
-        <member name="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator(System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator">
+            <summary>
+            Returns an enumerator that iterates asynchronously through the collection.
+            </summary>
+            <returns>An enumerator that iterates asynchronously through the collection.</returns>
         </member>
         <member name="M:System.IO.Csv.CsvDocument.System#IDisposable#Dispose">
             <inheritdoc/>
             <exception cref="T:System.ObjectDisposedException">Throws when the object has been already disposed.</exception>
         </member>
-        <member name="M:System.IO.Csv.CsvDocument.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
+        <member name="T:System.IO.Csv.CsvDocument.Enumerator">
+            <summary>
+            Indicates the enumerator that bounds with <see cref="M:System.IO.Csv.CsvDocument.GetEnumerator"/>.
+            </summary>
+            <seealso cref="M:System.IO.Csv.CsvDocument.GetEnumerator"/>
+        </member>
+        <member name="F:System.IO.Csv.CsvDocument.Enumerator._parser">
+            <summary>
+            Indicates the parser.
+            </summary>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.Enumerator.#ctor(Microsoft.VisualBasic.FileIO.TextFieldParser)">
+            <summary>
+            Initializes a <see cref="T:System.IO.Csv.CsvDocument.Enumerator"/> instance using the specified text parser.
+            </summary>
+            <param name="parser">The text field parser.</param>
+        </member>
+        <member name="P:System.IO.Csv.CsvDocument.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.IO.Csv.CsvDocument.Enumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            Returns the value if:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the enumerator was sucessfuly advanced to the next element.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the enumerator has passed the end of the collection.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:System.ICloneable`1">
             <inheritdoc cref="T:System.ICloneable"/>

@@ -8,10 +8,10 @@ using var reader = new CsvDocument(
 		"Test.csv"
 	),
 	withHeader: true,
-	delimiter: ","
+	delimiter: ','
 );
 
-await foreach (string[]? fields in reader.ReadToEndAsync())
+await foreach (string[]? fields in reader)
 {
 	if (fields is null)
 	{

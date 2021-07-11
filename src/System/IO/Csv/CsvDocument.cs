@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic.FileIO;
 
 namespace System.IO.Csv
@@ -10,7 +6,7 @@ namespace System.IO.Csv
 	/// <summary>
 	/// Introduces a <c>*.csv</c> document.
 	/// </summary>
-	public sealed class CsvDocument : IDisposable, IEnumerable<string[]?>, IAsyncEnumerable<string[]?>
+	public sealed partial class CsvDocument : IDisposable
 	{
 		/// <summary>
 		/// Indicates the reader of the document.
@@ -31,20 +27,21 @@ namespace System.IO.Csv
 		/// <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
 		/// <param name="delimiter">
 		/// The delimiter. This delimiter will be processed in splitting the line and
-		/// separating to the multiple values.
+		/// separating to the multiple values. The default value is <see langword="default"/>(<see cref="char"/>)
+		/// (i.e. <c>'\0'</c>) as the undefined character.
 		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CsvDocument(string path, bool withHeader = false, string? delimiter = null)
+		public CsvDocument(string path, bool withHeader = false, char delimiter = '\0')
 		{
 			Path = path;
 			WithHeader = withHeader;
 
-			_parser = delimiter is null
+			_parser = delimiter == '\0'
 				? new(Path) { HasFieldsEnclosedInQuotes = true }
 				: new(Path)
 				{
 					TextFieldType = FieldType.Delimited,
-					Delimiters = new[] { delimiter },
+					Delimiters = new[] { delimiter.ToString() },
 					HasFieldsEnclosedInQuotes = true
 				};
 		}
@@ -111,53 +108,18 @@ namespace System.IO.Csv
 		public string[]? ReadLine() => _parser.ReadFields();
 
 		/// <summary>
-		/// Reads the whole document, and returns the separated result.
+		/// Returns an enumerator that iterates through the collection.
 		/// </summary>
-		/// <returns>The list of lines of fields.</returns>
-		public IEnumerable<string[]?> ReadToEnd()
-		{
-			while (!_parser.EndOfData)
-			{
-				yield return _parser.ReadFields();
-			}
-		}
+		/// <returns>An enumerator that iterates through the collection.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Enumerator GetEnumerator() => new(_parser);
 
 		/// <summary>
-		/// Reads the whole document, and returns the separated result asynchronously.
+		/// Returns an enumerator that iterates asynchronously through the collection.
 		/// </summary>
-		/// <returns>The list of lines of fields.</returns>
-		/// <remarks>
-		/// The same as <see cref="ReadToEnd"/>, this method can also provide iteration. However,
-		/// due to the return type <see cref="IAsyncEnumerable{T}"/>, you should use the method to iterate
-		/// asynchronously, such as:
-		/// <code>
-		/// await foreach (string[] fields in instance.ReadToEndAsync())
-		/// {
-		///     // Do whatever you like.
-		/// }
-		/// </code>
-		/// </remarks>
-		/// <seealso cref="ReadToEnd"/>
-		public async IAsyncEnumerable<string[]?> ReadToEndAsync()
-		{
-			while (!_parser.EndOfData)
-			{
-				yield return await f(_parser);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static ValueTask<string[]?> f(TextFieldParser parser) => new(parser.ReadFields());
-		}
-
-
-		/// <inheritdoc/>
+		/// <returns>An enumerator that iterates asynchronously through the collection.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public IEnumerator<string[]?> GetEnumerator() => ReadToEnd().GetEnumerator();
-
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public IAsyncEnumerator<string[]?> GetAsyncEnumerator(CancellationToken cancellationToken = default) =>
-			ReadToEndAsync().GetAsyncEnumerator(cancellationToken);
+		public AsyncEnumerator GetAsyncEnumerator() => new(_parser);
 
 		/// <inheritdoc/>
 		/// <exception cref="ObjectDisposedException">Throws when the object has been already disposed.</exception>
@@ -179,8 +141,5 @@ namespace System.IO.Csv
 			_hasBeenDisposed = true;
 			GC.SuppressFinalize(this);
 		}
-
-		/// <inheritdoc/>
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }
