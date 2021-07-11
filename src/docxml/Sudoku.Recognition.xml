@@ -324,7 +324,7 @@
             </summary>
             <param name="image">The image.</param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException">
+            <exception cref="T:Sudoku.Recognition.RecognizerNotInitializedException">
             Throws when the tool has not initialized yet.
             </exception>
         </member>
@@ -335,24 +335,24 @@
             <param name="image">The image.</param>
             <returns>The task.</returns>
         </member>
-        <member name="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException">
+        <member name="T:Sudoku.Recognition.RecognizerNotInitializedException">
             <summary>
             Indicates the exception that throws when the recognition tools hasn't been initialized
             before using a function.
             </summary>
         </member>
-        <member name="M:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.#ctor">
+        <member name="M:Sudoku.Recognition.RecognizerNotInitializedException.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Recognition.RecognizerHasNotBeenInitializedException"/>.
+            Initializes a <see cref="T:Sudoku.Recognition.RecognizerNotInitializedException"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Sudoku.Recognition.RecognizerNotInitializedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.Message">
+        <member name="P:Sudoku.Recognition.RecognizerNotInitializedException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Recognition.RecognizerHasNotBeenInitializedException.HelpLink">
+        <member name="P:Sudoku.Recognition.RecognizerNotInitializedException.HelpLink">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Recognition.TesseractException">

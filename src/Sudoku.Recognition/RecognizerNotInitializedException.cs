@@ -10,17 +10,17 @@ namespace Sudoku.Recognition
 	/// before using a function.
 	/// </summary>
 	[Serializable]
-	public sealed class RecognizerHasNotBeenInitializedException : Exception
+	public sealed class RecognizerNotInitializedException : Exception
 	{
 		/// <summary>
-		/// Initializes a <see cref="RecognizerHasNotBeenInitializedException"/>.
+		/// Initializes a <see cref="RecognizerNotInitializedException"/> instance.
 		/// </summary>
-		public RecognizerHasNotBeenInitializedException()
+		public RecognizerNotInitializedException()
 		{
 		}
 
 		/// <inheritdoc/>
-		private RecognizerHasNotBeenInitializedException(SerializationInfo info, StreamingContext context)
+		private RecognizerNotInitializedException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}

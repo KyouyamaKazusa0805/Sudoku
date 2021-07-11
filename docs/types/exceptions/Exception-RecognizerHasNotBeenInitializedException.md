@@ -1,7 +1,7 @@
-﻿# `RecognizerHasNotBeenInitializedException` 异常
+﻿# `RecognizerNotInitializedException` 异常
 ## 基本信息
 
-异常类名：`RecognizerHasNotBeenInitializedException`
+异常类名：`RecognizerNotInitializedException`
 
 命名空间：`Sudoku.Recognition`
 
