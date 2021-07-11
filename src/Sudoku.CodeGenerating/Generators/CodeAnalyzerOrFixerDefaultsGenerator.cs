@@ -172,7 +172,7 @@ namespace {namespaceName}
 				string id = (
 					from attribute in type.GetAttributes()
 					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-					let match = InfoRegex.Match(attribute.ToString())
+					select InfoRegex.Match(attribute.ToString()) into match
 					where match.Success
 					select match.Value
 				).First();

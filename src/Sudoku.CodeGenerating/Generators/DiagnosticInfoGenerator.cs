@@ -44,33 +44,35 @@ namespace Sudoku.CodeGenerating
 			string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
 			string diagnosticIdClause = f(
 				from line in info
-				let diagnosticId = line[0]
+				select line[0] into diagnosticId
 				select $"public const string {diagnosticId} = nameof({diagnosticId});"
 			);
 			string severitiesClause = f(
 				from line in info
-				let pair = (Id: line[0], Severity: line[1])
+				select (Id: line[0], Severity: line[1]) into pair
 				select $@"public const DiagnosticSeverity {pair.Id} = DiagnosticSeverity.{pair.Severity};"
 			);
 			string categoryClause = f(
 				from line in info
-				let pair = (Id: line[0], Category: line[2])
+				select (Id: line[0], Category: line[2]) into pair
 				select $@"public const string {pair.Id} = ""{pair.Category}"";"
 			);
 			string helpLinkClause = f(
 				from line in info
-				let id = line[0]
+				select line[0] into id
 				select $@"public const string {id} = ""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"";"
 			);
 			string titleClause = f(
 				from line in info
-				let pair = (Id: line[0], Title: line[3])
+				select (Id: line[0], Title: line[3]) into pair
 				select $@"public const string {pair.Id} = ""{pair.Title}"";"
 			);
 			string messageClause = f(
 				from line in info
-				let pair = (Id: line[0], Title: line[3], Message: line[4])
-				select $@"public const string {pair.Id} = ""{(pair.Message == string.Empty ? pair.Title : pair.Message)}"";"
+				select (Id: line[0], Title: line[3], Message: line[4]) into triplet
+				select $@"public const string {triplet.Id} = ""{(
+					triplet.Message == string.Empty ? triplet.Title : triplet.Message
+				)}"";"
 			);
 
 			context.AddSource(
