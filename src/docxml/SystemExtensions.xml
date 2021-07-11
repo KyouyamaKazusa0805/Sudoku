@@ -2167,6 +2167,7 @@
             separating to the multiple values. The default value is <see langword="default"/>(<see cref="T:System.Char"/>)
             (i.e. <c>'\0'</c>) as the undefined character.
             </param>
+            <exception cref="T:System.IO.FileNotFoundException">Throws when the file can't be found.</exception>
         </member>
         <member name="P:System.IO.Csv.CsvDocument.WithHeader">
             <summary>

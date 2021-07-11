@@ -30,9 +30,15 @@ namespace System.IO.Csv
 		/// separating to the multiple values. The default value is <see langword="default"/>(<see cref="char"/>)
 		/// (i.e. <c>'\0'</c>) as the undefined character.
 		/// </param>
+		/// <exception cref="FileNotFoundException">Throws when the file can't be found.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CsvDocument(string path, bool withHeader = false, char delimiter = '\0')
 		{
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException("The specified file can't be found.", path);
+			}
+
 			Path = path;
 			WithHeader = withHeader;
 
