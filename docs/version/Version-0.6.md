@@ -20,4 +20,5 @@
 
 * 将所有源代码生成器的项目归并到同一个项目里（项目名为 `Sudoku.CodeGenerating`）；
 * 删除 `Sudoku.Globalization` 项目，把项目的代码移动到 `Sudoku.Core` 项目的 `Globalization` 子文件夹下；
-* 修改 `StringEx.SatisfyPattern` 方法的第二个参数，从 `string` 改为 `string?`，并追加 `[NotNullWhen(true)]` 于该参数上。
+* 修改 `StringEx.SatisfyPattern` 方法的第二个参数，从 `string` 改为 `string?`，并追加 `[NotNullWhen(true)]` 于该参数上；
+* 修改 `RecognitionServiceProvider` 类型里的 `RecognizeAsync` 异步方法的返回值从 `Task<SudokuGrid>` 改成了 `ValueTask<SudokuGrid>`。

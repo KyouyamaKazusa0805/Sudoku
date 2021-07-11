@@ -70,7 +70,7 @@ namespace Sudoku.Recognition
 		/// <param name="image">The image.</param>
 		/// <returns>The task.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public async Task<SudokuGrid> RecognizeAsync(Bitmap image) => await Task.Run(() => Recognize(image));
+		public async ValueTask<SudokuGrid> RecognizeAsync(Bitmap image) => await new ValueTask<SudokuGrid>(Recognize(image));
 	}
 }
 
