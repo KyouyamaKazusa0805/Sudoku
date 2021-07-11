@@ -9,7 +9,8 @@
 ### 增加
 
 * 给 `DigitCollection` 追加了 `operator &`、`operator |` 和 `operator ^` 的运算符支持；
-* 添加 `CsvDocument` 类，用于读取 CSV 格式的文件。
+* 添加 `CsvDocument` 类，用于读取 CSV 格式的文件；
+* 为 Wiki 里添加一些例子，以帮助你使用整个解决方案的 API（#133）。
 
 ### 删除
 

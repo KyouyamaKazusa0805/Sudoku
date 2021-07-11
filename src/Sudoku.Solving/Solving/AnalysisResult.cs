@@ -88,8 +88,7 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public decimal PearlDifficulty =>
-			Steps?.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
+		public decimal PearlDifficulty => Steps?.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 		/// <summary>
 		/// <para>

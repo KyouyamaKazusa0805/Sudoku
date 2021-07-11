@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides a difficulty kind for a puzzle.
 	/// </summary>
-	[Flags, Closed]
+	[Flags]
 	public enum DifficultyLevel : byte
 	{
 		/// <summary>

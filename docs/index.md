@@ -64,9 +64,14 @@ This section you'll find the details about this solution.
   * [如何添加一个菜单选项](how-to/How-To-Add-A-Menu-Item)
   * [如何添加一个技巧搜索器](how-to/How-To-Add-A-Technique-Searcher)
   * [如何添加一个程序设置项](how-to/How-To-Add-A-Preference-Item)
-* 老的技巧算法参考
-  * [复杂鱼](technique-algorithm-ref/Old-Algorithm-Complex-Fish)
-  * [死亡绽放](technique-algorithm-ref/Old-Algorithm-Death-Blossom)
+* API 使用的一些例子
+  * 直接使用
+    * [使用人工解题器解题](examples/Solve-Sudoku-Using-Manual-Solver)
+    * [代码反射](examples/Get-Code-Reflection)
+    * [解析 CSV 文档](examples/Parse-CSV-Document)
+  * 老的技巧算法参考
+    * [复杂鱼](technique-algorithm-ref/Old-Algorithm-Complex-Fish)
+    * [死亡绽放](technique-algorithm-ref/Old-Algorithm-Death-Blossom)
 * 其它
   * ~~[如何使用机器人项目](how-to/How-To-Compile-Bot-Projects)~~
   * [伪代码约定](miscellaneous/Pseudo-Code-Convention)
