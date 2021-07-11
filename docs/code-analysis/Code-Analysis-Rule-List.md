@@ -125,3 +125,4 @@
 | [SS9006](rules/Rule-SS9006) | ⚠                  | Design                    | ✔              |        |
 | [SS9007](rules/Rule-SS9007) | ℹ                  | Usage                     | ✔              |        |
 | [SS9008](rules/Rule-SS9008) | ℹ | Design | ✔ |  |
+| [SS9009](rules/Rule-SS9009) | ℹ | Performance | ❌ | 是 |
