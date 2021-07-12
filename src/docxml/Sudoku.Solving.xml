@@ -856,7 +856,7 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.ExtractSolution(System.Char*)">
             <summary>
-            Extract solution as a character string.
+            Extract solution as a string.
             </summary>
             <param name="solution">
             The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.BufferLength"/>

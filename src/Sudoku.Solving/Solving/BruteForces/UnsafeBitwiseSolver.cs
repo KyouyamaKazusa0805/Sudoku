@@ -290,23 +290,18 @@ namespace Sudoku.Solving.BruteForces
 		{
 			fixed (State* g = _stack)
 			{
-				try
+				_numSolutions = 0;
+				for (int band = 0; band < 27; band++)
 				{
-					_numSolutions = 0;
-					for (int band = 0; band < 27; band++)
-					{
-						g->Bands[band] = BitSet27;
-					}
+					g->Bands[band] = BitSet27;
+				}
 
-					Unsafe.InitBlock(g->PrevBands, 0, 108); // 108: sizeof(_g->PrevBands)
-					g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
-					g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
-					g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
-				}
-				finally
-				{
-					_g = g;
-				}
+				Unsafe.InitBlock(g->PrevBands, 0, 108); // 108: sizeof(_g->PrevBands)
+				g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
+				g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
+				g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
+
+				_g = g;
 			}
 
 			switch (Pointer.StringLengthOf(board))
@@ -770,7 +765,7 @@ namespace Sudoku.Solving.BruteForces
 		}
 
 		/// <summary>
-		/// Extract solution as a character string.
+		/// Extract solution as a string.
 		/// </summary>
 		/// <param name="solution">
 		/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/>
@@ -919,13 +914,13 @@ namespace Sudoku.Solving.BruteForces
 					return 2;
 				}
 
-				// locked empty cell or conflict singles in cells
+				// locked empty cell or conflict singles in cells.
 				if (ApplySingleOrEmptyCells())
 				{
 					return 0;
 				}
 
-				// Found a single, run Update again
+				// Found a single, run Update again.
 				if (_singleApplied)
 				{
 					continue;
