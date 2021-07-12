@@ -16,9 +16,9 @@ namespace Sudoku.CodeGenerating
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
 			foreach (var type in
-				from candidateStruct in receiver.CandidateRefStructs
-				let model = compilation.GetSemanticModel(candidateStruct.SyntaxTree)
-				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateStruct)! into type
+				from type in receiver.CandidateRefStructs
+				let model = compilation.GetSemanticModel(type.SyntaxTree)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
 				where type.ContainingType is null
 				select type)
 			{
