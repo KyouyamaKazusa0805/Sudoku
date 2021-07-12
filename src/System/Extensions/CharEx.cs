@@ -14,6 +14,6 @@ namespace System.Extensions
 		/// <param name="this">The character.</param>
 		/// <returns>The <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsAsciiPuncuation(char @this) => @this is '!' or '?' or ',' or '.' or ';' or ':';
+		public static bool IsAsciiPuncuation(this char @this) => @this is '!' or '?' or ',' or '.' or ';' or ':';
 	}
 }
