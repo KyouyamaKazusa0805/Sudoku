@@ -1425,6 +1425,10 @@
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a></term>
             <description>Please use 'stackalloc' clause to create a buffer of type 'Span&lt;char&gt;' as the argument of the constructor of type 'ValueStringBuilder'</description>
             </item>
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0313">SD0313</a></term>
+            <description>The length of the buffer is too long; please use another constructor passing an 'int' value</description>
+            </item>
             </list>
             </summary>
         </member>
@@ -1435,6 +1439,12 @@
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0312">SD0312</a>
             diagnostic result (Please use 'stackalloc' clause to create a buffer of type 'Span&lt;char&gt;' as the argument of the constructor of type 'ValueStringBuilder').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SD0313">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0313">SD0313</a>
+            diagnostic result (The length of the buffer is too long; please use another constructor passing an 'int' value).
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderArgsAnalyzer.SupportedDiagnostics">

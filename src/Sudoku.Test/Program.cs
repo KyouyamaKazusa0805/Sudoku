@@ -1,22 +1,4 @@
-﻿using System;
-using System.IO;
-using System.IO.Csv;
+﻿using System.Text;
 
-using var reader = new CsvDocument(
-	path: Path.Combine(
-		Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-		"Test.csv"
-	),
-	withHeader: true,
-	delimiter: ','
-);
-
-await foreach (string[]? fields in reader)
-{
-	if (fields is null)
-	{
-		continue;
-	}
-
-	Console.WriteLine(string.Join(" | ", fields));
-}
+var vsb = new ValueStringBuilder(stackalloc char[500]);
+ValueStringBuilder vsb2 = new(stackalloc char[500]);
