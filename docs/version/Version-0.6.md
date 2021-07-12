@@ -4,7 +4,8 @@
 ### Bug 修复
 
 * `Exception.HelpLink` 的页面没有从 Gitee 迁移到 GitHub Wiki 上（#129）；
-* 修复一些 Wiki 链接写错或者文字的打错。
+* 修复一些 Wiki 链接写错或者文字的打错；
+* `RefStructDefaults` 需要忽略掉嵌套类型的源代码生成（#134）。
 
 ### 增加
 

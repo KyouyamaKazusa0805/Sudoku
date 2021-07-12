@@ -18,7 +18,9 @@ namespace Sudoku.CodeGenerating
 			foreach (var type in
 				from candidateStruct in receiver.CandidateRefStructs
 				let model = compilation.GetSemanticModel(candidateStruct.SyntaxTree)
-				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateStruct)!)
+				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidateStruct)! into type
+				where type.ContainingType is null
+				select type)
 			{
 				type.DeconstructInfo(
 					false, out string fullTypeName, out string namespaceName, out string genericParametersList,
@@ -32,7 +34,8 @@ namespace Sudoku.CodeGenerating
 				var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
 				var nullableObjectSymbol = objectSymbol.WithNullableAnnotation(NullableAnnotation.Annotated);
 
-				string equalsMethod = type.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
+				var methods = type.GetMembers().OfType<IMethodSymbol>();
+				string equalsMethod = methods.Any(symbol =>
 					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
 					&& (
 						SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
@@ -45,7 +48,7 @@ namespace Sudoku.CodeGenerating
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
-				string getHashCodeMethod = type.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
+				string getHashCodeMethod = methods.Any(symbol =>
 					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
 					&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.GetHashCode""/>
@@ -54,7 +57,7 @@ namespace Sudoku.CodeGenerating
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
-				string toStringMethod = type.GetMembers().OfType<IMethodSymbol>().Any(symbol =>
+				string toStringMethod = methods.Any(symbol =>
 					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
 					&& (
 						SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
@@ -83,7 +86,7 @@ namespace {namespaceName}
 	partial struct {type.Name}{genericParametersList}
 	{{
 #line hidden
-{equalsMethod}{getHashCodeMethod}{toStringMethod}
+		{equalsMethod}{getHashCodeMethod}{toStringMethod}
 #line default
 	}}
 }}"
