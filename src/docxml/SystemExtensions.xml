@@ -1420,14 +1420,13 @@
             expression pattern.
             </exception>
         </member>
-        <member name="M:System.Extensions.StringEx.SliceConcat(System.String,System.Int32,System.String)">
+        <member name="M:System.Extensions.StringEx.ReplaceAt(System.String,System.Int32,System.Char)">
             <summary>
-            Concatenate two strings to one. The string <paramref name="strToInsert"/>
-            should be inserted into the base string from the index <paramref name="index"/>.
+            Replace the character at the specified index with the new value.
             </summary>
             <param name="this">The current string.</param>
             <param name="index">The index.</param>
-            <param name="strToInsert">The string to insert.</param>
+            <param name="charToInsert">The string to insert.</param>
             <returns>The result string.</returns>
         </member>
         <member name="M:System.Extensions.StringEx.SliceViaCharacter(System.String,System.Char)">

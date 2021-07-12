@@ -1,7 +1,7 @@
-﻿using System.Text.RegularExpressions;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace System.Extensions
 {
@@ -89,16 +89,26 @@ namespace System.Extensions
 			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 		/// <summary>
-		/// Concatenate two strings to one. The string <paramref name="strToInsert"/>
-		/// should be inserted into the base string from the index <paramref name="index"/>.
+		/// Replace the character at the specified index with the new value.
 		/// </summary>
 		/// <param name="this">The current string.</param>
 		/// <param name="index">The index.</param>
-		/// <param name="strToInsert">The string to insert.</param>
+		/// <param name="charToInsert">The string to insert.</param>
 		/// <returns>The result string.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string SliceConcat(this string @this, int index, string strToInsert) =>
-			$"{@this[..index]}{strToInsert}{@this[(index + 1)..]}";
+		public static unsafe string ReplaceAt(this string @this, int index, char charToInsert)
+		{
+			char* resultPtr = stackalloc char[@this.Length + 1];
+			resultPtr[@this.Length] = '\0';
+			fixed (char* pThis = @this)
+			{
+				Unsafe.CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
+			}
+
+			resultPtr[index] = charToInsert;
+
+			return new(resultPtr);
+		}
 
 		/// <summary>
 		/// Slices the current <see cref="string"/> instance, via the specified character.

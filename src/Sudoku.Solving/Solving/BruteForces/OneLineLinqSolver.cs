@@ -90,7 +90,7 @@ namespace Sudoku.Solving.BruteForces
 					// Then check whether the duplicate list contains any elements.
 					// If so, the grid is invalid.
 					where !duplicateCases.Any()
-					select solution.SliceConcat(index, digit.ToString())
+					select solution.ReplaceAt(index, digit)
 				).ToList();
 #pragma warning restore IDE0055
 			}

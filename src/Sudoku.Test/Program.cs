@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.Extensions;
 
-var vsb = new ValueStringBuilder(stackalloc char[500]);
-ValueStringBuilder vsb2 = new(stackalloc char[500]);
+string p = "Hello_ world";
+string q = p.ReplaceAt(5, ',');
+Console.WriteLine(p);
+Console.WriteLine(q);
