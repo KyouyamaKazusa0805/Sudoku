@@ -14,6 +14,7 @@ namespace System.Extensions
 		/// <summary>
 		/// Indicates the regular expression to match all null lines and header spaces in their lines.
 		/// </summary>
+		[Regex]
 		private const string NullLinesOrHeaderSpaces = @"(^\s*|(?<=\r\n)\s+)";
 
 
