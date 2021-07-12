@@ -3222,10 +3222,21 @@
             The list of 64-based characters.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.SudokuGrid.RegionCellsCount">
+            <summary>
+            Indicates the size of each region.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.SudokuGrid.Length">
             <summary>
             Indicates the size of each grid.
             </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGrid.Base64Length">
+            <summary>
+            Indicates the length of the string <see cref="F:Sudoku.Data.SudokuGrid.Base64List"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.Base64List"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.EmptyString">
             <summary>
@@ -3623,6 +3634,10 @@
             <item>
             <term><see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.InitialGrid"/></term>
             <description>The initial grid mask list of pointer value will be returned.</description>
+            </item>
+            <item>
+            <term>Otherwise</term>
+            <description>The reference of <see langword="null"/>.</description>
             </item>
             </list>
             </param>

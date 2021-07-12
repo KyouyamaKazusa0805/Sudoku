@@ -36,15 +36,15 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the maximum candidate mask that used.
 		/// </summary>
-		public const short MaxCandidatesMask = 0b111_111_111;
+		public const short MaxCandidatesMask = (1 << RegionCellsCount) - 1;
 
 		/// <summary>
 		/// Indicates the empty mask, modifiable mask and given mask.
 		/// </summary>
 		public const short
-			EmptyMask = (int)CellStatus.Empty << 9,
-			ModifiableMask = (int)CellStatus.Modifiable << 9,
-			GivenMask = (int)CellStatus.Given << 9;
+			EmptyMask = (int)CellStatus.Empty << RegionCellsCount,
+			ModifiableMask = (int)CellStatus.Modifiable << RegionCellsCount,
+			GivenMask = (int)CellStatus.Given << RegionCellsCount;
 
 		/// <summary>
 		/// The list of 64-based characters.
@@ -52,9 +52,20 @@ namespace Sudoku.Data
 		private const string Base64List = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.";
 
 		/// <summary>
+		/// Indicates the size of each region.
+		/// </summary>
+		private const byte RegionCellsCount = 9;
+
+		/// <summary>
 		/// Indicates the size of each grid.
 		/// </summary>
 		private const byte Length = 81;
+
+		/// <summary>
+		/// Indicates the length of the string <see cref="Base64List"/>.
+		/// </summary>
+		/// <seealso cref="Base64List"/>
+		private const byte Base64Length = 64;
 
 
 		/// <summary>
@@ -154,10 +165,10 @@ namespace Sudoku.Data
 			var bi = BigInteger.Zero;
 			for (int i = 0; i < token.Length; i++)
 			{
-				bi += Lookup[token[i]] * BigInteger.Pow(64, i);
+				bi += Lookup[token[i]] * BigInteger.Pow(Base64Length, i);
 			}
 
-			this = Parse(bi.ToString().PadLeft(81, '0'));
+			this = Parse(bi.ToString().PadLeft(Length, '0'));
 		}
 
 		/// <summary>
@@ -176,8 +187,8 @@ namespace Sudoku.Data
 
 			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pValues, pArray, sizeof(short) * 81);
-				Unsafe.CopyBlock(pInitialValues, pArray, sizeof(short) * 81);
+				Unsafe.CopyBlock(pValues, pArray, sizeof(short) * Length);
+				Unsafe.CopyBlock(pInitialValues, pArray, sizeof(short) * Length);
 			}
 		}
 
@@ -194,7 +205,7 @@ namespace Sudoku.Data
 
 			// Lookup table.
 			Lookup = new Dictionary<char, int>(
-				from i in Enumerable.Range(0, 64)
+				from i in Enumerable.Range(0, Base64Length)
 				select new KeyValuePair<char, int>(Base64List[i], i)
 			);
 
@@ -346,9 +357,9 @@ namespace Sudoku.Data
 			{
 				// The maximum grid as the base 64 is of length 45.
 				var sb = new ValueStringBuilder(stackalloc char[45]);
-				for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= 64)
+				for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= Base64Length)
 				{
-					sb.Append(Base64List[(int)(temp % 64)]);
+					sb.Append(Base64List[(int)(temp % Base64Length)]);
 				}
 
 				return sb.ToString();
@@ -533,7 +544,7 @@ namespace Sudoku.Data
 
 						break;
 					}
-					case >= 0 and < 9:
+					case >= 0 and < RegionCellsCount:
 					{
 						ref short result = ref _values[cell];
 						short copy = result;
@@ -569,7 +580,7 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				if ((cell, digit) is ( >= 0 and < 81, >= 0 and < 9))
+				if ((cell, digit) is ( >= 0 and < Length, >= 0 and < RegionCellsCount))
 				{
 					short copied = _values[cell];
 					if (value)
@@ -751,6 +762,10 @@ namespace Sudoku.Data
 		/// <term><see cref="PinnedItem.InitialGrid"/></term>
 		/// <description>The initial grid mask list of pointer value will be returned.</description>
 		/// </item>
+		/// <item>
+		/// <term>Otherwise</term>
+		/// <description>The reference of <see langword="null"/>.</description>
+		/// </item>
 		/// </list>
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
@@ -779,7 +794,7 @@ namespace Sudoku.Data
 			fixed (short* pArr = _values)
 			{
 				var sb = new ValueStringBuilder(400);
-				sb.AppendRange(pArr, 81, &p, separator);
+				sb.AppendRange(pArr, Length, &p, separator);
 				return sb.ToString();
 			}
 
@@ -869,7 +884,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pValues, pInitialValues, sizeof(short) * 81);
+				Unsafe.CopyBlock(pValues, pInitialValues, sizeof(short) * Length);
 			}
 		}
 
@@ -883,7 +898,7 @@ namespace Sudoku.Data
 		{
 			ref short mask = ref _values[cell];
 			short copy = mask;
-			mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
+			mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
 
 			ValueChanged(ref this, new(cell, copy, mask, -1));
 		}
@@ -910,7 +925,7 @@ namespace Sudoku.Data
 		{
 			fixed (short* pValues = _values, pInitialValues = _initialValues)
 			{
-				Unsafe.CopyBlock(pInitialValues, pValues, sizeof(short) * 81);
+				Unsafe.CopyBlock(pInitialValues, pValues, sizeof(short) * Length);
 			}
 		}
 
@@ -925,11 +940,11 @@ namespace Sudoku.Data
 		/// <seealso cref="ValuesMap"/>
 		private readonly Cells[] GetMap(delegate*<in SudokuGrid, int, int, bool> predicate)
 		{
-			var result = new Cells[9];
-			for (int digit = 0; digit < 9; digit++)
+			var result = new Cells[RegionCellsCount];
+			for (int digit = 0; digit < RegionCellsCount; digit++)
 			{
 				ref var map = ref result[digit];
-				for (int cell = 0; cell < 81; cell++)
+				for (int cell = 0; cell < Length; cell++)
 				{
 					if (predicate(this, cell, digit))
 					{
@@ -951,7 +966,7 @@ namespace Sudoku.Data
 		private readonly Cells GetCells(delegate*<in SudokuGrid, int, bool> predicate)
 		{
 			var result = Cells.Empty;
-			for (int cell = 0; cell < 81; cell++)
+			for (int cell = 0; cell < Length; cell++)
 			{
 				if (predicate(this, cell))
 				{
