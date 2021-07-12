@@ -47,6 +47,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		public event EventHandler? ElementAdded;
 
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Add(T item)
