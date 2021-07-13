@@ -1,7 +1,14 @@
 ﻿using System;
-using System.Extensions;
+using System.IO;
+using Sudoku.Diagnostics.LanguageFeatures;
 
-string p = "Hello_ world";
-string q = p.ReplaceAt(5, ',');
-Console.WriteLine(p);
-Console.WriteLine(q);
+string targetPath = Path.Combine(
+	Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+	"Test.cs"
+);
+
+ISyntaxReplacer f = new FileScopedNamespaceSyntaxReplacer();
+string content = await File.ReadAllTextAsync(targetPath);
+string? processedResult = await f.ReplaceAsync(content);
+
+Console.WriteLine(processedResult);

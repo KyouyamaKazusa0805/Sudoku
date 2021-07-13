@@ -9,6 +9,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
 		<Version>0.6</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>

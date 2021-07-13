@@ -55,6 +55,7 @@ This section you'll find the details about this solution.
     * [`ResourceCannotBeFoundException` 异常](types/exceptions/Exception-ResourceCannotBeFoundException)
     * [`TesseractException` 异常](types/exceptions/Exception-TesseractException)
     * [`WrongStepException` 异常](types/exceptions/Exception-WrongStepException)
+    * [`CodeIsInvalidException` 异常](types/exceptions/Exception-CodeIsInvalidException)
 * API 使用
   * [如何使用解题功能](how-to/How-To-Use-Code-To-Solve-Sudokus)
   * [数独盘面格式串支持情况](how-to/Sudoku-Grid-Format-Supports)

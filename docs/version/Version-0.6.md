@@ -11,7 +11,8 @@
 
 * 给 `DigitCollection` 追加了 `operator &`、`operator |` 和 `operator ^` 的运算符支持；
 * 添加 `CsvDocument` 类，用于读取 CSV 格式的文件；
-* 为 Wiki 里添加一些例子，以帮助你使用整个解决方案的 API（#133）。
+* 为 Wiki 里添加一些例子，以帮助你使用整个解决方案的 API（#133）；
+* 添加 `FileScopedNamespaceSyntaxReplacer` 类型，为即将的 C# 10 特性“基于文件的命名空间”（File-scoped namespace）提供代码语法的转换操作。
 
 ### 删除
 
