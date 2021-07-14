@@ -35,28 +35,31 @@ namespace Sudoku.CodeGenerating
 				var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
 
 				var methods = type.GetMembers().OfType<IMethodSymbol>();
-				string equalsMethod = methods.Any(symbol =>
-					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
-					&& c(parameters[0].Type, objectSymbol)
-					&& c(symbol.ReturnType, boolSymbol)
+				string equalsMethod = methods.Any(
+					symbol =>
+						symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
+						&& c(parameters[0].Type, objectSymbol)
+						&& c(symbol.ReturnType, boolSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
-				string getHashCodeMethod = methods.Any(symbol =>
-					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, intSymbol)
+				string getHashCodeMethod = methods.Any(
+					symbol =>
+						symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+						&& c(symbol.ReturnType, intSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
-				string toStringMethod = methods.Any(symbol =>
-					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, stringSymbol)
+				string toStringMethod = methods.Any(
+					symbol =>
+						symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
+						&& c(symbol.ReturnType, stringSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
