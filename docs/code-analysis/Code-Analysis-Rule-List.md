@@ -102,10 +102,6 @@
 | [SS0624](rules/Rule-SS0624) | ℹ                  | Design                    | ❌              |        |
 | [SS0625](rules/Rule-SS0625) | ⚠                  | Design                    | ❌              |        |
 | [SS0626](rules/Rule-SS0626) | ⚠                  | Design                    | ✔              |        |
-| [SS0627](rules/Rule-SS0627) | ℹ                  | Design                    | ❌              |        |
-| [SS0628](rules/Rule-SS0628) | ⚠                  | Design                    | ❌              |        |
-| [SS0629](rules/Rule-SS0629) | ⚠                  | Design                    | ❌              | 是     |
-| [SS0630](rules/Rule-SS0630) | ℹ                  | Design                    | ❌              | 是     |
 | [SS0633](rules/Rule-SS0633) | ⚠                  | Design                    | ✔              |        |
 | [SS0634](rules/Rule-SS0634) | ℹ                  | Design                    | ✔              |        |
 | [SS0635](rules/Rule-SS0635) | ℹ                  | Design                    | ✔              |        |

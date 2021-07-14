@@ -766,29 +766,6 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableExtendedPropertyPatternAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableLengthPatternAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0627">SS0627</a></term>
-            <description>Available length pattern</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableLengthPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableLengthPatternAnalyzer.SS0627">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0627">SS0627</a>
-            diagnostic result (Available length pattern).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableLengthPatternAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailablePositionalPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

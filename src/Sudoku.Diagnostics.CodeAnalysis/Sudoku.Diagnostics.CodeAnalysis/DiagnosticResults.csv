@@ -90,7 +90,6 @@ SS0623,Warning,Design,Repeated property path; try to integrate to one using keyw
 SS0624,Info,Design,Available simplification for extended property patterns.,Available simplification for extended property patterns: '{0}'.
 SS0625,Warning,Design,Repeated property path in the extended property pattern; try to integrate to one using keyword 'and' as the connection.,
 SS0626,Warning,Design,Keyword 'not' repeats; A pair of keyword 'not' can be omitted.,
-SS0627,Info,Design,Available length pattern.,Available length pattern: '{0}'.
 SS0633,Warning,Design,'case var _' label in a switch expression (or statement) is equivalent to the default case ('default:' in switch statement and '_ =>' in switch expression); try to use 'default:' or '_ =>' instead.,
 SS0634,Info,Design,The expression can be simplified to use empty-brace property pattern.,The expression can be simplified to '{0} is {2} {1}'.
 SS0635,Info,Design,It's unnecessary to explicitly specify positional parameter in this sub-positional pattern that the pattern part is used a discard pattern.,
