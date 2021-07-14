@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 
 namespace System.Text
 {
@@ -10,7 +7,7 @@ namespace System.Text
 		/// <summary>
 		/// Encapsulates the enumerator of this collection.
 		/// </summary>
-		public unsafe ref struct Enumerator
+		public unsafe ref partial struct Enumerator
 		{
 			/// <summary>
 			/// Indicates the length.
@@ -59,31 +56,6 @@ namespace System.Text
 				_ptr++;
 				return true;
 			}
-
-			#region Default overrides
-#pragma warning disable CS0809
-			/// <inheritdoc cref="object.Equals(object?)"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly bool Equals(object? other) => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.GetHashCode"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly int GetHashCode() => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.ToString"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly string? ToString() => throw new NotSupportedException();
-#pragma warning restore CS0809
-			#endregion
 		}
 	}
 }

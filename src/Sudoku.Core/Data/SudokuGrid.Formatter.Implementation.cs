@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -472,27 +470,6 @@ namespace Sudoku.Data
 					.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
 					.ToString();
 			}
-
-
-#pragma warning disable 809
-			/// <inheritdoc/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method because the type is a ref struct.", true, DiagnosticId = "BAN")]
-			public override readonly bool Equals(object? other) => throw new NotSupportedException();
-
-			/// <inheritdoc/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method because the type is a ref struct.", true, DiagnosticId = "BAN")]
-			public override readonly int GetHashCode() => throw new NotSupportedException();
-
-			/// <inheritdoc/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method because the type is a ref struct.", true, DiagnosticId = "BAN")]
-			public override readonly string? ToString() => throw new NotSupportedException();
-#pragma warning restore 809
 		}
 	}
 }

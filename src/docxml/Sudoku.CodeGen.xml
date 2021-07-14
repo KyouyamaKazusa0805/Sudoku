@@ -1019,7 +1019,7 @@
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.SyntaxReceiver.CandidateRefStructs">
+        <member name="P:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.SyntaxReceiver.Types">
             <summary>
             Indicates all possible candidate types used.
             </summary>

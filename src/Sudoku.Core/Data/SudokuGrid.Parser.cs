@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,7 +13,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Encapsulates a grid parser.
 		/// </summary>
-		public unsafe ref struct Parser
+		public unsafe ref partial struct Parser
 		{
 			/// <summary>
 			/// The list of all methods to parse.
@@ -608,31 +606,6 @@ namespace Sudoku.Data
 					return result;
 				}
 			}
-
-			#region Default overrides
-#pragma warning disable CS0809
-			/// <inheritdoc cref="object.Equals(object?)"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly bool Equals(object? other) => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.GetHashCode"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly int GetHashCode() => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.ToString"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly string? ToString() => throw new NotSupportedException();
-#pragma warning restore CS0809
-			#endregion
 		}
 	}
 }

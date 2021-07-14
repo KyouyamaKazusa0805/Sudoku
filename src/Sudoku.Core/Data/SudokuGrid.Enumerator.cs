@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Data.Extensions;
 using static System.Numerics.BitOperations;
 
@@ -12,7 +9,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// The inner enumerator.
 		/// </summary>
-		public unsafe ref struct Enumerator
+		public unsafe ref partial struct Enumerator
 		{
 			/// <summary>
 			/// The pointer to the start value.
@@ -112,31 +109,6 @@ namespace Sudoku.Data
 				_currentIndex = -1;
 				_currentMask = default;
 			}
-
-			#region Default overrides
-#pragma warning disable CS0809
-			/// <inheritdoc cref="object.Equals(object?)"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly bool Equals(object? other) => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.GetHashCode"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly int GetHashCode() => throw new NotSupportedException();
-
-			/// <inheritdoc cref="object.ToString"/>
-			/// <exception cref="NotSupportedException">Always throws.</exception>
-			[CompilerGenerated, DoesNotReturn]
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			[Obsolete("You can't use or call this method.", true, DiagnosticId = "BAN")]
-			public override readonly string? ToString() => throw new NotSupportedException();
-#pragma warning restore CS0809
-			#endregion
 		}
 	}
 }

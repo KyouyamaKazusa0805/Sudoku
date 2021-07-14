@@ -15,7 +15,7 @@ namespace Sudoku.CodeGenerating
 			/// <summary>
 			/// Indicates all possible candidate types used.
 			/// </summary>
-			public IList<StructDeclarationSyntax> CandidateRefStructs { get; } = new List<StructDeclarationSyntax>();
+			public IList<StructDeclarationSyntax> Types { get; } = new List<StructDeclarationSyntax>();
 
 
 			/// <inheritdoc/>
@@ -24,7 +24,7 @@ namespace Sudoku.CodeGenerating
 				if (syntaxNode is StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration
 					&& modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword))
 				{
-					CandidateRefStructs.Add(declaration);
+					Types.Add(declaration);
 				}
 			}
 		}

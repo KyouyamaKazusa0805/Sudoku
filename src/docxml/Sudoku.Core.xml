@@ -4105,15 +4105,15 @@
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Formatter.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Formatter.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Formatter.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.SudokuGrid.JsonConverter">
