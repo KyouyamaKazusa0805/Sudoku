@@ -89,7 +89,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				if (
 					statement switch
 					{
-						/*slice-pattern*/
 						BlockSyntax { Statements: { Count: 1 } statements } => statements[0],
 						ExpressionStatementSyntax => statement,
 						_ => null

@@ -43,9 +43,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
+			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
 
-			/*length-pattern*/
 			if (
 				originalNode is not BaseObjectCreationExpressionSyntax
 				{
@@ -57,7 +56,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				semanticModel.GetOperation(node) is not IObjectCreationOperation
+				semanticModel.GetOperation(node, cancellationToken) is not IObjectCreationOperation
 				{
 					Kind: OperationKind.ObjectCreation,
 					Type: var typeSymbol

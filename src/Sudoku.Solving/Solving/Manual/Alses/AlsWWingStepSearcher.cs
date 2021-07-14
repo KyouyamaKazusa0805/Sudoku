@@ -40,7 +40,6 @@ namespace Sudoku.Solving.Manual.Alses
 			{
 				for (int region = 0; region < 27; region++)
 				{
-					/*length-pattern*/
 					if ((RegionMaps[region] & CandMaps[digit]) is { Count: 2 } temp)
 					{
 						(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));

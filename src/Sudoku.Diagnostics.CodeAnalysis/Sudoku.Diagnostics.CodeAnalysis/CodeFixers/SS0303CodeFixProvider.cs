@@ -77,7 +77,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 					break;
 				}
 
-				/*slice-pattern*/
 				case { Count: 5 } additionalLocations
 				when additionalLocations[4] is var (_, typeToCastSpan)
 				&& root.FindNode(typeToCastSpan, getInnermostNodeForTie: true) is TypeSyntax typeName:

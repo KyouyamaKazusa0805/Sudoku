@@ -47,7 +47,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				when semanticModel.GetSymbolInfo(type, cancellationToken) is { Symbol: var possibleVsbSymbol }
 				&& SymbolEqualityComparer.Default.Equals(possibleVsbSymbol, vsbSymbol):
 				{
-					/*slice-pattern*/
 					var arg = args[0];
 					switch (arg.Expression)
 					{
@@ -82,7 +81,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Type: var possibleCharSymbol
 				} && SymbolEqualityComparer.Default.Equals(possibleCharSymbol, vsbSymbol):
 				{
-					/*slice-pattern*/
 					var arg = args[0];
 					switch (arg.Expression)
 					{
@@ -131,7 +129,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				when semanticModel.GetSymbolInfo(type, cancellationToken) is { Symbol: var possibleVsbSymbol }
 				&& SymbolEqualityComparer.Default.Equals(possibleVsbSymbol, vsbSymbol):
 				{
-					/*slice-pattern*/
 					var arg = args[0];
 					switch (arg.Expression)
 					{
@@ -143,7 +140,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								RankSpecifiers: { Count: 1 } rankSpecifiers
 							}
 						}
-						/*slice-pattern*/
 						when rankSpecifiers[0] is { Sizes: { Count: 1 } sizes }
 						&& sizes[0] is LiteralExpressionSyntax
 						{
@@ -202,7 +198,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Type: var possibleCharSymbol
 				} && SymbolEqualityComparer.Default.Equals(possibleCharSymbol, vsbSymbol):
 				{
-					/*slice-pattern*/
 					var arg = args[0];
 					switch (arg.Expression)
 					{
@@ -214,7 +209,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								RankSpecifiers: { Count: 1 } rankSpecifiers
 							}
 						}
-						/*slice-pattern*/
 						when rankSpecifiers[0] is { Sizes: { Count: 1 } sizes }
 						&& sizes[0] is LiteralExpressionSyntax
 						{

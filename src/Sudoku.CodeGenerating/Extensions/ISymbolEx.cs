@@ -18,7 +18,6 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <returns>The result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static bool HasInitializer(this ISymbol @this) =>
-			/*length-pattern*/
 			@this is { DeclaringSyntaxReferences: { Length: not 0 } list }
 			&& list[0] is (_, syntaxNode: VariableDeclaratorSyntax { Initializer: not null });
 

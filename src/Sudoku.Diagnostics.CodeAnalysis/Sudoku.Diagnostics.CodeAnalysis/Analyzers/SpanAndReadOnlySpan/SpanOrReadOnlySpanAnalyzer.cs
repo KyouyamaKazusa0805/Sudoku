@@ -114,9 +114,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 
 				// Check parameters.
-				var @params = constructorSymbol.Parameters;
-				/*length-pattern*/
-				if (@params.Length != 2)
+				if (constructorSymbol.Parameters is not { Length: 2 } @params)
 				{
 					continue;
 				}

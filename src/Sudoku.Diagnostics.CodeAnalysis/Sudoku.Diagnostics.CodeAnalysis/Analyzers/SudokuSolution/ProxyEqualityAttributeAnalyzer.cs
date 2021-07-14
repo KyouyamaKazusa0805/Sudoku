@@ -34,7 +34,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
 
 			if (
-				/*length-pattern*/
 				originalNode is not MethodDeclarationSyntax
 				{
 					AttributeLists: { Count: not 0 } attributes,

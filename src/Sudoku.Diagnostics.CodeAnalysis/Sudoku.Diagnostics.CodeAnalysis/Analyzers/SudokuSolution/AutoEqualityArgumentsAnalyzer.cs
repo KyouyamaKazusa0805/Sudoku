@@ -92,7 +92,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		DetermineSyntaxNode:
 			if (
-				/*length-pattern*/
 				attribute is not AttributeSyntax
 				{
 					ArgumentList: { Arguments: { Count: not 0 } arguments }
@@ -123,7 +122,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				/*slice-pattern*/
 				var nameofArgExpr = nameofArgs[0].Expression;
 
 				var nameofArgTypeSymbol = semanticModel.GetOperation(nameofArgExpr, cancellationToken)?.Type;

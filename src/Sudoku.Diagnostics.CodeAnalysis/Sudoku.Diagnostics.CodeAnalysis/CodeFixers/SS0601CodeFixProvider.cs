@@ -19,15 +19,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 		{
 			var document = context.Document;
 			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SS0601));
-			/*length-pattern*/
 			if (diagnostic.AdditionalLocations.Count != 2)
 			{
 				return;
 			}
 
 			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-
-			/*slice-pattern*/
 			var (_, patternSpan) = diagnostic.AdditionalLocations[0];
 			var pattern = (PatternSyntax)root.FindNode(patternSpan, getInnermostNodeForTie: true);
 			var (_, designationSpan) = diagnostic.AdditionalLocations[1];

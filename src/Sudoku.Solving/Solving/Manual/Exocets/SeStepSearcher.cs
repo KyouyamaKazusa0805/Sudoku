@@ -74,7 +74,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				var tempTarget = new List<int>();
 				for (i = 0; i < 8; i++)
 				{
-					/*length-pattern*/
 					if ((temp & RegionMaps[cover[i]]) is { Count: 1 } check)
 					{
 						tempTarget.Add(check[0]);

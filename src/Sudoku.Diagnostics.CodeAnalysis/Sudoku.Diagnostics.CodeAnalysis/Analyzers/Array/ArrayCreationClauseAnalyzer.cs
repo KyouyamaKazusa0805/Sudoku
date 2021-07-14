@@ -21,7 +21,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			/*length-pattern*/
 			if (
 				context.Node is not VariableDeclarationSyntax
 				{

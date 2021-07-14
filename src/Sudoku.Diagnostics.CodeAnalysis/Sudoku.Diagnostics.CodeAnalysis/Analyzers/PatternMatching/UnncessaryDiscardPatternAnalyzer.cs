@@ -39,7 +39,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var (semanticModel, _, originalNode) = context;
 
 			// Get basic information.
-			/*length-pattern*/
 			if (
 				originalNode is not PositionalPatternClauseSyntax
 				{
@@ -159,7 +158,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void CheckSS0613(SyntaxNodeAnalysisContext context)
 		{
-			/*length-pattern*/
 			if (context.Node is not PropertyPatternClauseSyntax { Subpatterns: { Count: >= 1 } subpatterns })
 			{
 				return;

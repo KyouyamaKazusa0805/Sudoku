@@ -401,7 +401,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			}
 
 			otherCellsMap &= tempMap;
-			/*length-pattern*/
 			if (otherCellsMap is { IsEmpty: true } or { Count: > 5 })
 			{
 				return;

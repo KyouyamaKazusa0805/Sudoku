@@ -61,7 +61,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*slice-pattern*/
 			if (clauses[0] is not WhereClauseSyntax { Condition: var conditionExpr })
 			{
 				return;

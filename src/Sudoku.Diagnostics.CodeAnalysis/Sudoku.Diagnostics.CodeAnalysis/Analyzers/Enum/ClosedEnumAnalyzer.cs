@@ -132,7 +132,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				};
 
 			static bool innerCondition(ITypeSymbol type) =>
-				/*length-pattern*/
 				type.GetAttributes() is { Length: not 0 } attributes &&
 				attributes.Any(
 					static attributeData => attributeData is

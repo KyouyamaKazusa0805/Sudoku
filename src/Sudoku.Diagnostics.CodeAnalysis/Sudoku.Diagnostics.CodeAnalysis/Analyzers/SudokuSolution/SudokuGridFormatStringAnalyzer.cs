@@ -44,9 +44,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
+			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
 
-			/*length-pattern*/
 			if (
 				originalNode is not InvocationExpressionSyntax
 				{
@@ -68,9 +67,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				CheckSD0310(context, semanticModel, compilation, expression, nameNode, node);
 			}
 			else if (
-				/*slice-pattern*/
 				arguments[0] is { Expression: var expr } argument
-				&& semanticModel.GetOperation(expr) is
+				&& semanticModel.GetOperation(expr, cancellationToken) is
 				{
 					ConstantValue:
 					{

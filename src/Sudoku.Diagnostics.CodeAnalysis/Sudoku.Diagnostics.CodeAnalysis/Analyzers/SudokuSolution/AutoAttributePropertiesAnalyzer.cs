@@ -50,7 +50,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var (semanticModel, _, node) = context;
-			/*length-pattern*/
 			if (node is not MemberDeclarationSyntax { AttributeLists: { Count: not 0 } attributeLists })
 			{
 				return;
@@ -58,7 +57,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			foreach (var attributeList in attributeLists)
 			{
-				/*length-pattern*/
 				if (attributeList.Attributes is not { Count: not 0 } attributes)
 				{
 					continue;
@@ -152,7 +150,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 						case AutoGetEnumeratorAttributeTypeName or AutoGetEnumeratorAttributeTypeShortName:
 						{
-							/*slice-pattern*/
 							if (
 								arguments[0] is { Expression: var expr } argument
 								&& semanticModel.GetOperation(expr) is

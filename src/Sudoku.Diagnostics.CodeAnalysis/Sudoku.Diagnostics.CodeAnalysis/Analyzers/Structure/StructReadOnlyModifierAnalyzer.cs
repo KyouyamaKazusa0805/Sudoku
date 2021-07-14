@@ -32,10 +32,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				originalNode is not PropertyDeclarationSyntax
 				{
 					Parent: StructDeclarationSyntax,
-					/*length-pattern*/
 					Modifiers: { Count: not 0 } modifiers,
 					ExpressionBody: null,
-					/*length-pattern*/
 					AccessorList: { Accessors: { Count: var accessorsCount and not 0 } accessors }
 				} node
 			)
@@ -46,11 +44,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			Action? a = accessorsCount switch
 			{
 				// readonly int Prop { get; }
-				/*slice-pattern*/
 				1 when accessors[0] is
 				{
 					Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
-					/*length-pattern*/
 					Modifiers: { Count: var count } getterModifiers
 				}
 				&& (count == 0 || count != 0 && getterModifiers.All(isNotReadOnlyKeyword))
@@ -58,11 +54,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, node),
 
 				// int Prop { readonly get; set; }
-				/*slice-pattern*/
 				2 when accessors[0] is
 				{
 					Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
-					/*length-pattern*/
 					Modifiers: { Count: var count } getterModifiers
 				} getAccessor
 				&& (count == 0 || count != 0 && modifiers.All(isNotReadOnlyKeyword))

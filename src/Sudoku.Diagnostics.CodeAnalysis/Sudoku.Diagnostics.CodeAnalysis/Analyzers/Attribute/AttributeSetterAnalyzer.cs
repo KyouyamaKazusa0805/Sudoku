@@ -27,7 +27,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
 			if (
-				/*length-pattern*/
 				originalNode is not ClassDeclarationSyntax
 				{
 					Members: { Count: not 0 } members,
@@ -38,7 +37,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*slice-pattern*/
 			if (types[0] is not SimpleBaseTypeSyntax { Type: var type })
 			{
 				return;

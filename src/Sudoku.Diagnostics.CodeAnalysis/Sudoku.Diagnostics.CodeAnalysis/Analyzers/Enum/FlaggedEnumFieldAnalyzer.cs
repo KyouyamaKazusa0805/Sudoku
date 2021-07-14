@@ -31,7 +31,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			var (semanticModel, _, n) = context;
 
-			/*length-pattern*/
 			if (n is not EnumDeclarationSyntax { AttributeLists: { Count: not 0 } attributeLists } node)
 			{
 				return;

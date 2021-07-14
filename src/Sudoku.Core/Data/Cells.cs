@@ -668,7 +668,6 @@ namespace Sudoku.Data
 				null or "N" or "n" => Count switch
 				{
 					0 => "{ }",
-					/*length-pattern*/
 					1 when Offsets[0] is var cell => $"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}",
 					_ => normalToString(this)
 				},

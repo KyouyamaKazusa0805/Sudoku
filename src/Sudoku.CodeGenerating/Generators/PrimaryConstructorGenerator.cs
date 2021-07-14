@@ -45,7 +45,7 @@ namespace Sudoku.CodeGenerating
 					&& baseType.GetAttributes().Any(
 						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
 					) ? GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol) : null;
-				/*length-pattern*/
+
 				string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
 					? null
 					: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";

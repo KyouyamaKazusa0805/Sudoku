@@ -54,7 +54,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			//
 			// Note that 'Take()' method invocation can't exist here.
 			if (
-				/*length-pattern*/
 				node is not BinaryExpressionSyntax
 				{
 					RawKind: var kind and (
@@ -90,7 +89,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					},
 					ArgumentList: { Arguments: { Count: 1 } arguments }
 				}
-				/*slice-pattern*/
 				&& arguments[0] is { Expression: var expr }
 				&& semanticModel.GetOperation(expr) is { Type: { } type }
 				&& SymbolEqualityComparer.Default.Equals(type, int32)

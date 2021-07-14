@@ -56,7 +56,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				if (
 					semanticModel.GetOperation(currentNode) is IMethodBodyOperation
 					{
-						/*length-pattern*/
 						BlockBody: { Locals: { Length: not 0 } locals }
 					}
 				)

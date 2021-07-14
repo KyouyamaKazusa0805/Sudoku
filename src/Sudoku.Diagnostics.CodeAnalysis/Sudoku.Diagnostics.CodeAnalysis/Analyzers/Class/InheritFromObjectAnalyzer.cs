@@ -29,13 +29,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (originalNode)
 			{
-				/*length-pattern*/
 				case ClassDeclarationSyntax
 				{
 					BaseList: { Types: { Count: not 0 } types } baseList,
 					Identifier: var identifier
 				} node
-				/*slice-pattern*/
 				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
 				&& SymbolEqualityComparer.Default.Equals(
 					semanticModel.GetSymbolInfo(innerType, cancellationToken).Symbol,
@@ -57,13 +55,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					break;
 				}
 
-				/*length-pattern*/
 				case RecordDeclarationSyntax
 				{
 					BaseList: { Types: { Count: not 0 } types } baseList,
 					Identifier: var identifier
 				} node
-				/*slice-pattern*/
 				when types[0] is SimpleBaseTypeSyntax { Type: var innerType }
 				&& SymbolEqualityComparer.Default.Equals(
 					semanticModel.GetSymbolInfo(innerType, cancellationToken).Symbol,

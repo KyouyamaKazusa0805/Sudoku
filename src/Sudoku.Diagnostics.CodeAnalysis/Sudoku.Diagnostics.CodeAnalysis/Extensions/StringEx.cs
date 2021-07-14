@@ -39,8 +39,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 						CaseConvertingOption.ReserveLeadingUnderscore => $"_{@this}"
 					};
 				}
-				/*length-pattern*/
-				/*slice-pattern*/
 				case '_' when @this.Length >= 2 && @this[1] is >= 'A' and <= 'Z' or >= 'a' and <= 'z':
 				{
 					if (@this[1] is >= 'A' and <= 'Z')

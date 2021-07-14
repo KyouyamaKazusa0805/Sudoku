@@ -47,7 +47,6 @@ namespace Sudoku.CodeGenerating
 					select member
 				).First();
 
-				/*slice-pattern*/
 				if (
 					type.IsReferenceType
 					&& !methods.Parameters.NullableMatches(NullableAnnotation.Annotated, NullableAnnotation.Annotated)

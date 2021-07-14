@@ -41,7 +41,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 			string getSwappedString()
 			{
-				/*length-pattern*/
 				if (SwappingTable is { Length: not 0 })
 				{
 					const string separator = ", ";

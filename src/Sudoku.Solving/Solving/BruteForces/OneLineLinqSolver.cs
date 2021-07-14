@@ -36,7 +36,6 @@ namespace Sudoku.Solving.BruteForces
 				{ Count: 0 } => throw new NoSolutionException(grid),
 				{ Count: 1 } => new(SolverName, grid, true, stopwatch.Elapsed)
 				{
-					/*slice-pattern*/
 					Solution = SudokuGrid.Parse(results[0])
 				},
 				{ Count: not (0 or 1) } => throw new MultipleSolutionsException(grid)
@@ -54,7 +53,6 @@ namespace Sudoku.Solving.BruteForces
 			const string digits = "123456789";
 			var result = new List<string> { puzzle };
 
-			/*length-pattern*/
 			while (result.Count > 0 && result[0].IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
 			{
 #pragma warning disable IDE0055

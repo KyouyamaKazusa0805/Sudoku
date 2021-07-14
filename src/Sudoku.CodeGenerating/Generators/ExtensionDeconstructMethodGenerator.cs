@@ -45,7 +45,6 @@ namespace Sudoku.CodeGenerating
 			static string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
 			{
 				string? tempNamespace = argList.Arguments.FirstOrDefault(
-					/*extended-property-pattern*/
 					static arg => arg is { NameEquals: { Name: { Identifier: { ValueText: "Namespace" } } } }
 				)?.Expression.ToString();
 				string namespaceName = tempNamespace?.Substring(1, tempNamespace.Length - 2)

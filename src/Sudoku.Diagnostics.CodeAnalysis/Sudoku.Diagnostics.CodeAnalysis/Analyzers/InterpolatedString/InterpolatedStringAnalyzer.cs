@@ -37,7 +37,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			/*length-pattern*/
 			if (
 				node.DescendantNodes().OfType<InterpolationSyntax>().ToArray() is not
 				{

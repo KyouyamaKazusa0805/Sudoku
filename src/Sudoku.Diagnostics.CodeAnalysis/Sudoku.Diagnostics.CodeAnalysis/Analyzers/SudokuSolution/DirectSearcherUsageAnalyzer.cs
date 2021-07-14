@@ -63,7 +63,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			var stepSearcherSymbol = compilation.GetTypeByMetadataName(StepSearcherTypeName);
 			switch (operation)
 			{
-				/*length-pattern*/
 				case ILocalFunctionOperation { Body: { Locals: { Length: var length and not 0 } locals } }:
 				{
 					checkAndReportLocal(locals, length == 1);
@@ -79,14 +78,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				{
 					switch ((blockBody, exprBody))
 					{
-						/*length-pattern*/
 						case ({ Locals: { Length: var length and not 0 } blockBodyLocals }, _):
 						{
 							checkAndReportLocal(blockBodyLocals, length == 1);
 
 							break;
 						}
-						/*length-pattern*/
 						case (_, { Locals: { Length: not 0 } exprBodyLocals }):
 						{
 							checkAndReportLocal(exprBodyLocals, true);
@@ -198,13 +195,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						continue;
 					}
 
-					/*length-pattern*/
 					if (attribute.ConstructorArguments is not { Length: not 0 } arguments)
 					{
 						continue;
 					}
 
-					/*slice-pattern*/
 					if (arguments[0] is { Value: true })
 					{
 						continue;
@@ -240,7 +235,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 						when semanticModel.GetSymbolInfo(typeNode) is { Symbol: var staticTypeSymbol }
 						&& SymbolEqualityComparer.Default.Equals(staticTypeSymbol, c(FastPropertiesTypeName))
-						/*slice-pattern*/
 						&& arguments[0] is { Expression: var argExpr }
 						&& semanticModel.GetOperation(argExpr) is { Type: var argTypeSymbol }
 						&& SymbolEqualityComparer.Default.Equals(argTypeSymbol, c(SudokuGridTypeName)):
