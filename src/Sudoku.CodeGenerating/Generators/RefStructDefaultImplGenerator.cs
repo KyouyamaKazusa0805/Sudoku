@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 
@@ -15,6 +16,7 @@ namespace Sudoku.CodeGenerating
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
+			Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
 			foreach (var type in
 				from type in receiver.CandidateRefStructs
 				let model = compilation.GetSemanticModel(type.SyntaxTree)
@@ -30,18 +32,13 @@ namespace Sudoku.CodeGenerating
 				var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
 				var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
 				var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
-				var nullableStringSymbol = stringSymbol.WithNullableAnnotation(NullableAnnotation.Annotated);
 				var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
-				var nullableObjectSymbol = objectSymbol.WithNullableAnnotation(NullableAnnotation.Annotated);
 
 				var methods = type.GetMembers().OfType<IMethodSymbol>();
 				string equalsMethod = methods.Any(symbol =>
 					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
-					&& (
-						SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
-						|| SymbolEqualityComparer.Default.Equals(parameters[0].Type, nullableObjectSymbol)
-					)
-					&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
+					&& c(parameters[0].Type, objectSymbol)
+					&& c(symbol.ReturnType, boolSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
@@ -50,7 +47,7 @@ namespace Sudoku.CodeGenerating
 
 				string getHashCodeMethod = methods.Any(symbol =>
 					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-					&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
+					&& c(symbol.ReturnType, intSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
@@ -59,10 +56,7 @@ namespace Sudoku.CodeGenerating
 
 				string toStringMethod = methods.Any(symbol =>
 					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
-					&& (
-						SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
-						|| SymbolEqualityComparer.Default.Equals(symbol.ReturnType, nullableStringSymbol)
-					)
+					&& c(symbol.ReturnType, stringSymbol)
 				) ? string.Empty : $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
