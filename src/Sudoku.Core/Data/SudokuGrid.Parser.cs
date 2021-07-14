@@ -294,7 +294,6 @@ namespace Sudoku.Data
 			private static SudokuGrid OnParsingPencilMarked(ref Parser parser)
 			{
 				// Older regular expression pattern:
-				// string[] matches = ParsingValue.MatchAll(RegularExpressions.PmGridUnit_Old);
 				if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is not { Length: 81 } matches)
 				{
 					return Undefined;
@@ -303,9 +302,7 @@ namespace Sudoku.Data
 				var result = Empty;
 				for (int cell = 0; cell < 81; cell++)
 				{
-					string s = matches[cell]/*.Reserve(RegularExpressions.Digit)*/;
-					int length = s.Length;
-					if (length > 9)
+					if (matches[cell] is not { Length: var length and <= 9 } s)
 					{
 						// More than 9 characters.
 						return Undefined;
@@ -411,7 +408,7 @@ namespace Sudoku.Data
 					return Undefined;
 				}
 
-				// Remove all '\r' and '\n'-s.
+				// Remove all '\r's and '\n's.
 				var sb = new ValueStringBuilder(stackalloc char[81 + (9 << 1)]);
 				foreach (char c in from @char in match where @char is not ('\r' or '\n') select @char)
 				{

@@ -56,8 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						continue;
 					}
 
-					// Find all possible loops.
-					// Iterate on each loop.
+					// Find all possible loops. Iterate on each loop.
 					int d1 = TrailingZeroCount(grid.GetCandidates(cell1));
 					int d2 = TrailingZeroCount(grid.GetCandidates(cell2));
 					short comparer = (short)(1 << d1 | 1 << d2);
@@ -72,16 +71,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						var extraCells = EmptyMap & loop;
 						switch (extraCells.Count)
 						{
-							//case 0:
-							//{
-							//	throw new SudokuHandlingException();
-							//}
 							case 1:
 							{
 								CheckType1(resultAccumulator, grid, d1, d2, loop, extraCells[0], links, comparer);
 								break;
 							}
-							case 2: /*fallthrough*/
+							case 2:
 							{
 								CheckType3(resultAccumulator, grid, d1, d2, loop, extraCells, links, comparer);
 								CheckType4(resultAccumulator, grid, d1, d2, loop, extraCells, links, comparer);

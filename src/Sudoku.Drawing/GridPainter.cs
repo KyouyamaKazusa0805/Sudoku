@@ -816,12 +816,12 @@ namespace Sudoku.Drawing
 				if (ColorId.IsCustomColorId(id, out byte aWeight, out byte rWeight, out byte gWeight, out byte bWeight))
 				{
 					using var brush = new SolidBrush(Color.FromArgb(aWeight, rWeight, gWeight, bWeight));
-					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell));
 				}
 				else if (Preferences.PaletteColors.TryGetValue(id, out var color))
 				{
 					using var brush = new SolidBrush(Color.FromArgb(64, color));
-					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell)/*.Zoom(-offset)*/);
+					g.FillRectangle(brush, Converter.GetMouseRectangleViaCell(cell));
 				}
 			}
 		}
