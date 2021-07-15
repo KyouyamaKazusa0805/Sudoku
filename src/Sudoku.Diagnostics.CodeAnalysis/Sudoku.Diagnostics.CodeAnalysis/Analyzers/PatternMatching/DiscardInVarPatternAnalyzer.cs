@@ -29,7 +29,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (designation)
 			{
-				case DiscardDesignationSyntax:
+				case DiscardDesignationSyntax
+				{
+					Parent:
+						CasePatternSwitchLabelSyntax { WhenClause: not null }
+						or not CasePatternSwitchLabelSyntax
+						or SwitchExpressionArmSyntax { WhenClause: not null }
+						or not SwitchExpressionArmSyntax
+				}:
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
@@ -41,7 +48,15 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case ParenthesizedVariableDesignationSyntax { Variables: { Count: >= 2 } variables }
+				case ParenthesizedVariableDesignationSyntax
+				{
+					Parent:
+						CasePatternSwitchLabelSyntax { WhenClause: not null }
+						or not CasePatternSwitchLabelSyntax
+						or SwitchExpressionArmSyntax { WhenClause: not null }
+						or not SwitchExpressionArmSyntax,
+					Variables: { Count: >= 2 } variables
+				}
 				when variables.All(static variable => variable is DiscardDesignationSyntax):
 				{
 					context.ReportDiagnostic(
