@@ -48,7 +48,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				select (PatternNode: subpattern, nameColonNode.Name.Identifier.ValueText)
 			).ToArray();
 
-			for (int i = 0, length = listOfNames.Length; i < length - 1; i++)
+			for (int i = 0, length = listOfNames.Length, iterationLength = length - 1; i < iterationLength; i++)
 			{
 				for (int j = i + 1; j < length; j++)
 				{

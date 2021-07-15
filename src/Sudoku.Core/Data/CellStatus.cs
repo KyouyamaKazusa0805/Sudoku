@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Represents a cell status.
 	/// </summary>
-	[Flags, Closed]
+	[Flags]
 	public enum CellStatus : byte
 	{
 		/// <summary>

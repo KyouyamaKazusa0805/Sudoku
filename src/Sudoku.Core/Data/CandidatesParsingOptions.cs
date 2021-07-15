@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.ComponentModel;
 
 namespace Sudoku.Data
 {
@@ -7,7 +7,7 @@ namespace Sudoku.Data
 	/// Encapsulates an option that is specified to parse the <see cref="Candidates"/> instance.
 	/// </summary>
 	/// <seealso cref="Candidates"/>
-	[Closed]
+	[Flags]
 	public enum CandidatesParsingOptions : byte
 	{
 		/// <summary>
