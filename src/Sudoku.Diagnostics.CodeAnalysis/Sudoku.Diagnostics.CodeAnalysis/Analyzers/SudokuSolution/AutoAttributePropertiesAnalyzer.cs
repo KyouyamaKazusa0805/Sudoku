@@ -210,7 +210,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					ArgumentsChecking_Case2:
 						{
-							for (int i = 1; i < arguments.Count; i++)
+							for (int i = 1, count = arguments.Count; i < count; i++)
 							{
 								var argument = arguments[i];
 								if (
