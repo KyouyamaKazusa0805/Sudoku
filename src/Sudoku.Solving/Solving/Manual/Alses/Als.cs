@@ -24,7 +24,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
 		/// <param name="map">The map.</param>
-		public Als(short digitMask, in Cells map) : this(digitMask, map, default)
+		public Als(short digitMask, in Cells map) : this(digitMask, map, Cells.Empty)
 		{
 		}
 
@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Alses
 			get
 			{
 				int[] digits = DigitsMask.GetAllSets().ToArray();
-				for (int i = 0, length = digits.Length; i < length - 1; i++)
+				for (int i = 0, length = digits.Length, iterationLength = length - 1; i < iterationLength; i++)
 				{
 					for (int j = i + 1; j < length; j++)
 					{

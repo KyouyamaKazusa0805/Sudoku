@@ -106,7 +106,7 @@ namespace Sudoku.Drawing
 			const float offset = 6F;
 			DrawViewIfNeed(g, offset);
 			DrawCustomViewIfNeed(g, offset);
-			if (FocusedCells.HasValue) DrawFocusedCells(g, FocusedCells.Value);
+			if (FocusedCells is { } focusedCells) DrawFocusedCells(g, focusedCells);
 			if (Conclusions is not null) DrawEliminations(g, Conclusions, offset);
 			if (Grid != SudokuGrid.Undefined) DrawValue(g, Grid);
 

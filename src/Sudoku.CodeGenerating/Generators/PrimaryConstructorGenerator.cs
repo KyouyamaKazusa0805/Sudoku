@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -19,6 +20,7 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var compilation = context.Compilation;
 			var attributeSymbol = compilation.GetTypeByMetadataName<AutoGeneratePrimaryConstructorAttribute>();
@@ -28,11 +30,7 @@ namespace Sudoku.CodeGenerating
 				from candidate in receiver.CandidateClasses
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
-				where (
-					from a in type.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					select a
-				).Any()
+				where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
 				select type)
 			{
 				type.DeconstructInfo(
@@ -41,10 +39,9 @@ namespace Sudoku.CodeGenerating
 				);
 
 				var baseClassCtorArgs =
-					type.BaseType is { } baseType
-					&& baseType.GetAttributes().Any(
-						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					) ? GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol) : null;
+					type.BaseType is { } baseType && baseType.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
+					? GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol)
+					: null;
 
 				string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
 					? null

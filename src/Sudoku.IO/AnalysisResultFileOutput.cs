@@ -62,7 +62,7 @@ namespace Sudoku.IO
 					DirectoryEx.CreateIfDoesNotExist(directoryPath);
 
 					// Get all pictures, and input into the document.
-					for (int i = 0; i < steps.Count; i++)
+					for (int i = 0, count = steps.Count; i < count; i++)
 					{
 						var step = steps[i];
 						var grid = stepGrids[i];

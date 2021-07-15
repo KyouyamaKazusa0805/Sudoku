@@ -12,16 +12,16 @@ namespace Sudoku.Windows.CustomControls
 		/// <summary>
 		/// Indicates the initialization is default.
 		/// </summary>
-		None,
+		None = 0,
 		
 		/// <summary>
 		/// Indicates the initialization should show the colors only.
 		/// </summary>
-		SimpleView,
+		SimpleView = 1,
 
 		/// <summary>
 		/// Indicates the initialization will display the custom palette.
 		/// </summary>
-		LoadCustomPalette
+		LoadCustomPalette = 2
 	}
 }

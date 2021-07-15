@@ -11,7 +11,7 @@ namespace Sudoku.CodeGenerating.Reflection
 		/// <summary>
 		/// Indicates the accessibility is none.
 		/// </summary>
-		None,
+		None = 0,
 
 		/// <summary>
 		/// Indicates the <see langword="public"/> modifier.

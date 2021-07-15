@@ -201,7 +201,7 @@ namespace Sudoku.Data
 			}
 			else
 			{
-				var nodes = new Candidates();
+				var nodes = Candidates.Empty;
 				foreach (var (cand, _) in Parents)
 				{
 					nodes.Add(cand);

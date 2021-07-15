@@ -5,7 +5,8 @@
 
 * `Exception.HelpLink` 的页面没有从 Gitee 迁移到 GitHub Wiki 上（#129）；
 * 修复一些 Wiki 链接写错或者文字的打错；
-* `RefStructDefaults` 需要忽略掉嵌套类型的源代码生成（#134）。
+* `RefStructDefaults` 需要忽略掉嵌套类型的源代码生成（#134）；
+* 修复 SS9005 分析器的 bug 导致忘记分析非自动实现的 get 属性导致的假阳性现象（#135）。
 
 ### 增加
 
@@ -16,7 +17,7 @@
 
 ### 删除
 
-* 批量删除一些标记性注释（这些注释对读代码来说用处不大，只是为了辅助编译器修改变更代码风格）；
+* 批量删除一些标记性注释（这些注释对读代码来说用处不大，只是为了辅助编译器修改变更代码风格）。
 
 ### 修改
 
@@ -25,4 +26,5 @@
 * 修改 `StringEx.SatisfyPattern` 方法的第二个参数，从 `string` 改为 `string?`，并追加 `[NotNullWhen(true)]` 于该参数上；
 * 修改 `RecognitionServiceProvider` 类型里的 `RecognizeAsync` 异步方法的返回值从 `Task<SudokuGrid>` 改成了 `ValueTask<SudokuGrid>`；
 * 将 `StringEx.SliceConcat` 方法重新命名为 `ReplaceAt`，并改变参数为 `char` 类型；
-* 所有 XML 文档注释里使用到的转义符号改用 `<![CDATA[]]>` 表达式块存储，避免出现转义符号。
+* 所有 XML 文档注释里使用到的转义符号改用 `<![CDATA[]]>` 表达式块存储，避免出现转义符号；
+* 禁用掉了 SS0621 和 SS0622 的分析器代码，因为有 bug 不是很方便去修复。

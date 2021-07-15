@@ -392,7 +392,7 @@ namespace Sudoku.Windows
 			}
 
 			var grid = new SudokuGrid(z, GridCreatingOption.MinusOne);
-			if (new UnsafeBitwiseSolver().Solve(grid.ToString(), null, 2) == 0)
+			if (new UnsafeBitwiseSolver().Solve(grid.ToString(null, null), null, 2) == 0)
 			{
 				Messagings.SukakuCannotUseThisFunction();
 
@@ -984,7 +984,7 @@ namespace Sudoku.Windows
 					return !(e.Handled = true);
 				}
 
-				var newSb = new ValueStringBuilder(stackalloc char[300]);
+				var newSb = new ValueStringBuilder(300);
 				for (int i = 0, cell = 0, length = puzzleStr.Length; i < length; cell++)
 				{
 					char c = solutionSb[cell];
@@ -1363,7 +1363,8 @@ namespace Sudoku.Windows
 				var cellOffsets = new List<DrawingInfo>();
 				for (int i = 0, p = 0; i < 9; i++)
 				{
-					if ((series[i], mapping[i]) is (false, { } j) && (series[i] = true) & (series[j] = true))
+					if ((series[i], mapping[i]) is (Item1: false, Item2: { } j)
+						&& (series[i] = true) & (series[j] = true))
 					{
 						for (int cell = 0; cell < 81; cell++)
 						{

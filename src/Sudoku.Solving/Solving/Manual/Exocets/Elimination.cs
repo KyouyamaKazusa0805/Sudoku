@@ -77,7 +77,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public ReadOnlySpan<Conclusion> AsSpan()
 		{
 			var result = new Conclusion[Eliminations.Count];
-			for (int i = 0; i < Eliminations.Count; i++)
+			for (int i = 0, count = Eliminations.Count; i < count; i++)
 			{
 				result[i] = new(ConclusionType.Elimination, Eliminations[i]);
 			}
@@ -108,18 +108,18 @@ namespace Sudoku.Solving.Manual.Exocets
 				throw new ArgumentException("Two arguments should contains same eliminated reason.");
 			}
 
-			int count = le.Count + re.Count;
-			int* merged = stackalloc int[count];
-			for (int i = 0; i < le.Count; i++)
+			int totalCount = le.Count + re.Count;
+			int* merged = stackalloc int[totalCount];
+			for (int i = 0, count = le.Count; i < count; i++)
 			{
 				merged[i] = left.Eliminations[i];
 			}
-			for (int i = 0; i < re.Count; i++)
+			for (int i = 0, count = re.Count; i < count; i++)
 			{
 				merged[i + le.Count] = re[i];
 			}
 
-			return new(new(merged, count), lr);
+			return new(new(merged, totalCount), lr);
 		}
 	}
 }

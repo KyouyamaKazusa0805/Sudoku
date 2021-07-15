@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-			for (int i = 0, length = BivalueMap.Count; i < length - 1; i++)
+			for (int i = 0, length = BivalueMap.Count, iterationLength = length - 1; i < iterationLength; i++)
 			{
 				int c1 = BivalueMap[i];
 

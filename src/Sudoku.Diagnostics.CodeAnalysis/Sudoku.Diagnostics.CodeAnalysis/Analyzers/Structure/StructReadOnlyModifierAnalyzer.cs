@@ -47,7 +47,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				1 when accessors[0] is
 				{
 					Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
-					Modifiers: { Count: var count } getterModifiers
+					Modifiers: { Count: var count } getterModifiers,
+					Body: null,
+					ExpressionBody: null
 				}
 				&& (count == 0 || count != 0 && getterModifiers.All(isNotReadOnlyKeyword))
 				&& modifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
@@ -57,7 +59,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				2 when accessors[0] is
 				{
 					Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
-					Modifiers: { Count: var count } getterModifiers
+					Modifiers: { Count: var count } getterModifiers,
+					Body: null,
+					ExpressionBody: null
 				} getAccessor
 				&& (count == 0 || count != 0 && modifiers.All(isNotReadOnlyKeyword))
 				&& getterModifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier

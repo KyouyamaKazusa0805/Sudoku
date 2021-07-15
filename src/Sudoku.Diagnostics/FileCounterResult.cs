@@ -25,7 +25,7 @@ namespace Sudoku.Diagnostics
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			var sb = new ValueStringBuilder(stackalloc char[300]);
+			var sb = new ValueStringBuilder(300);
 			sb.AppendLine("Results:");
 			sb.Append("* Code lines: ");
 			sb.AppendLine(ResultLines);

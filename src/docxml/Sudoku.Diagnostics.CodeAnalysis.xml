@@ -677,39 +677,6 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReferenceEqualsAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer">
-            <summary>
-            Indicates an analyzer that analyzes the code for the following diagnostic results:
-            <list type="table">
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0621">SS0621</a></term>
-            <description>Available simplification for property patterns connected with keyword 'and' to a single property pattern</description>
-            </item>
-            <item>
-            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0622">SS0622</a></term>
-            <description>Available simplification for property patterns connected with keyword 'or' to a single property pattern</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0621">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0621">SS0621</a>
-            diagnostic result (Available simplification for property patterns connected with keyword 'and' to a single property pattern).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SS0622">
-            <summary>
-            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0622">SS0622</a>
-            diagnostic result (Available simplification for property patterns connected with keyword 'or' to a single property pattern).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableAndOrPatternsToMergeAnalyzer.SupportedDiagnostics">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AvailableEmptyBracePropertyPatternAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:

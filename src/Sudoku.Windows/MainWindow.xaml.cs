@@ -389,9 +389,9 @@ namespace Sudoku.Windows
 		{
 			base.OnKeyUp(e);
 
-			if (_previewMap.HasValue && e.Key == Key.Space)
+			if (_previewMap is { } map && e.Key == Key.Space)
 			{
-				_focusedCells = _previewMap.Value;
+				_focusedCells = map;
 
 				_currentPainter.FocusedCells = _focusedCells;
 
@@ -1156,7 +1156,7 @@ namespace Sudoku.Windows
 
 			// Get the specified dictionary.
 			ResourceDictionary? g(string p) => dictionaries.Find(d => d.Source.OriginalString == p);
-			if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not { } rd)
+			if ((g($"Lang{countryCode.ToString()}.xaml") ?? g("LangEnUs.xaml")) is not { } rd)
 			{
 				Messagings.FailedToLoadGlobalizationFile();
 				return;
@@ -1198,10 +1198,12 @@ namespace Sudoku.Windows
 					var (fore, back) = ColorPalette.DifficultyLevelColors[step.DifficultyLevel];
 					var content = new StepTriplet((Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
 					{
-						(true, true) =>
+						(ShowStepLabel: true, ShowStepDifficulty: true) =>
 							$"(#{(i + 1).ToString()}, {step.Difficulty.ToString()}) {step.ToSimpleString()}",
-						(true, false) => $"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
-						(false, true) => $"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
+						(ShowStepLabel: true, ShowStepDifficulty: false) =>
+							$"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
+						(ShowStepLabel: false, ShowStepDifficulty: true) =>
+							$"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
 						_ => step.ToSimpleString()
 					}, i++, step);
 

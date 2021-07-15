@@ -254,9 +254,9 @@ namespace Sudoku.Windows
 		/// <param name="colorIndex">The index.</param>
 		private void HandleColor(object sender, WindowsSettings settings, int colorIndex)
 		{
-			if (sender is Button button && ColorPickerWindow.ShowDialog(out var color) && color.HasValue)
+			if (sender is Button button && ColorPickerWindow.ShowDialog(out var color) && color is { } c)
 			{
-				var target = color.Value.ToDColor();
+				var target = c.ToDColor();
 				typeof(WindowsSettings).GetProperty($"Color{colorIndex.ToString()}")!.SetValue(settings, target);
 				ChangeColor(button, target.ToWColor());
 			}

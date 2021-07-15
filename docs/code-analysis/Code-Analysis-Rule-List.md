@@ -96,7 +96,6 @@
 | [SS0618](rules/Rule-SS0618) | ℹ                  | Design                    | ❌              |        |
 | [SS0619](rules/Rule-SS0619) | ℹ                  | Design                    | ❌              |        |
 | [SS0620](rules/Rule-SS0620) | ℹ                  | Design                    | ✔              |        |
-| [SS0621](rules/Rule-SS0621) | ℹ                  | Design                    | ❌              |        |
 | [SS0622](rules/Rule-SS0622) | ℹ                  | Design                    | ❌              |        |
 | [SS0623](rules/Rule-SS0623) | ⚠                  | Design                    | ❌              |        |
 | [SS0624](rules/Rule-SS0624) | ℹ                  | Design                    | ❌              |        |

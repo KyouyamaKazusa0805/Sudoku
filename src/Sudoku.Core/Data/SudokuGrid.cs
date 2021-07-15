@@ -163,7 +163,7 @@ namespace Sudoku.Data
 		public SudokuGrid(string token)
 		{
 			var bi = BigInteger.Zero;
-			for (int i = 0; i < token.Length; i++)
+			for (int i = 0, length = token.Length; i < length; i++)
 			{
 				bi += Lookup[token[i]] * BigInteger.Pow(Base64Length, i);
 			}
@@ -196,7 +196,9 @@ namespace Sudoku.Data
 		static SudokuGrid()
 		{
 			// Initializes the empty grid.
+#pragma warning disable SD0303
 			Empty = default;
+#pragma warning restore SD0303
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
 				int i = 0;
@@ -580,7 +582,7 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				if ((cell, digit) is ( >= 0 and < Length, >= 0 and < RegionCellsCount))
+				if ((cell, digit) is (cell: >= 0 and < Length, digit: >= 0 and < RegionCellsCount))
 				{
 					short copied = _values[cell];
 					if (value)
