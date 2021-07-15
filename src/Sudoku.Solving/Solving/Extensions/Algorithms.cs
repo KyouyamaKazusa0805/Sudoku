@@ -58,7 +58,7 @@ namespace Sudoku.Solving.Extensions
 		/// <returns>The mask result.</returns>
 		/// <remarks>
 		/// For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
-		/// will be <c>1 &lt;&lt; 3 | 1 &lt;&lt; 6</c>.
+		/// will be <c><![CDATA[1 << 3 | 1 << 6]]></c>.
 		/// </remarks>
 		private static short CreateBitsInt16(int[] values)
 		{

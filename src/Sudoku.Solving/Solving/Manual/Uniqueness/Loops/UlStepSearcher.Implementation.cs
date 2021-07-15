@@ -67,7 +67,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">The extra cells map.</param>
-		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
+		/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 		partial void CheckType2(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
@@ -126,7 +126,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">The extra cells map.</param>
-		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
+		/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 		partial void CheckType3(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
@@ -248,7 +248,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <param name="loop">The loop.</param>
 		/// <param name="links">The links.</param>
 		/// <param name="extraCellsMap">The extra cells map.</param>
-		/// <param name="comparer">The comparer mask (equals to <c>1 &lt;&lt; d1 | 1 &lt;&lt; d2</c>).</param>
+		/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 		partial void CheckType4(
 			IList<UlStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
 			in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)

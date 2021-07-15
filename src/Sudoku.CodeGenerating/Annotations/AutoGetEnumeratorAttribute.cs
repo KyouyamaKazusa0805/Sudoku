@@ -30,9 +30,9 @@ namespace Sudoku.CodeGenerating
 		/// <remarks>
 		/// <para>
 		/// This property should be stored a lambda body. One of possible syntaxes is:
-		/// <code>
-		/// [AutoGetEnumerator(nameof(MemberName), "((IEnumerable&lt;int&gt;)@).*")]
-		/// </code>
+		/// <code><![CDATA[
+		/// [AutoGetEnumerator(nameof(MemberName), "((IEnumerable<int>)@).*")]
+		/// ]]></code>
 		/// Where:
 		/// <list type="table">
 		/// <item>

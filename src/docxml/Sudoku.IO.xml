@@ -91,77 +91,96 @@
             All available batches are below:
             <list type="table">
             <item>
-            <term><c>Create workspace with width &lt;width&gt; height &lt;height&gt;</c></term>
+            <term><c>Create workspace with width <![CDATA[<width>]]> height <![CDATA[<height>]]></c></term>
             <description>
             Create an empty and new picture workspace with the specified width and height.
             </description>
             </item>
             <item>
-            <term><c>Fill given &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <term><c>Fill given <![CDATA[<digit>]]> in <![CDATA[<cell>]]></c></term>
             <description>Draw a specified given in a specified cell.</description>
             </item>
             <item>
-            <term><c>Fill modifiable &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <term><c>Fill modifiable <![CDATA[<digit>]]> in <![CDATA[<cell>]]></c></term>
             <description>Draw a specified modifiable in a specified cell.</description>
             </item>
             <item>
-            <term><c>Fill candidate &lt;digit&gt; in &lt;cell&gt;</c></term>
+            <term><c>Fill candidate <![CDATA[<digit>]]> in <![CDATA[<cell>]]></c></term>
             <description>Draw a specified candidate in a specified cell.</description>
             </item>
             <item>
-            <term><c>Draw cell &lt;cell&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c></term>
+            <term>
+            <c>
+            Draw cell <![CDATA[<cell>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]></c>
+            </term>
             <description>Paint a color for a specified cell.</description>
             </item>
             <item>
             <term>
-            <c>Draw candidate &lt;cell&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            <c>
+            Draw candidate <![CDATA[<cell>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]>
+            </c>
             </term>
             <description>Paint a color for a specified candidate.</description>
             </item>
             <item>
             <term>
-            <c>Draw region &lt;region&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            <c>
+            Draw region <![CDATA[<region>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]>
+            </c>
             </term>
             <description>Draw a color for a specified region.</description>
             </item>
             <item>
             <term>
-            <c>Draw row &lt;row&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            <c>
+            Draw row <![CDATA[<row>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]>
+            </c>
             </term>
             <description>Draw a color for a specified row.</description>
             </item>
             <item>
             <term>
-            <c>Draw column &lt;column&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            <c>
+            Draw column <![CDATA[<column>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]>
+            </c>
             </term>
             <description>Draw a color for a specified column.</description>
             </item>
             <item>
             <term>
-            <c>Draw block &lt;block&gt; with color a &lt;a&gt; r &lt;r&gt; g &lt;g&gt; b &lt;b&gt;</c>
+            <c>
+            Draw block <![CDATA[<block>]]> with color
+            a <![CDATA[<a>]]> r <![CDATA[<r>]]> g <![CDATA[<g>]]> b <![CDATA[<b>]]>
+            </c>
             </term>
             <description>Draw a color for a specified block.</description>
             </item>
             <item>
             <term>
-            <c>Draw chain from &lt;candidate1&gt; to &lt;candidate2&gt; type (line|strong|weak|chain)</c>
+            <c>Draw chain from <![CDATA[<candidate1>]]> to <![CDATA[<candidate2>]]> type (line|strong|weak|chain)</c>
             </term>
             <description>Draw a chain.</description>
             </item>
             <item>
             <term>
-            <c>Draw cross &lt;cell&gt;</c>
+            <c>Draw cross <![CDATA[<cell>]]></c>
             </term>
             <description>Draw a cross sign (used for direct lines).</description>
             </item>
             <item>
             <term>
-            <c>Draw circle &lt;cell&gt;</c>
+            <c>Draw circle <![CDATA[<cell>]]></c>
             </term>
             <description>Draw a circle sign (used for direct lines).</description>
             </item>
             <item>
-            <term><c>Save to &lt;path&gt;</c></term>
+            <term><c>Save to <![CDATA[<path>]]></c></term>
             <description>
             Save the current picture to the specified path. If the current memory doesn't contain
             any pictures here, it'll do nothing.

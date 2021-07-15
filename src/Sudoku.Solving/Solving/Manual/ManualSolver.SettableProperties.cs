@@ -312,8 +312,7 @@
 		/// <para>The value is <c>5</c> in default case.</para>
 		/// </summary>
 		/// <remarks>
-		/// In fact this value can be 9 at most (i.e. <c>value &gt;&#61; 3
-		/// &amp;&amp; value &lt;&#61; 9</c>) theoretically.
+		/// In fact this value can be 9 at most (i.e. <c><![CDATA[value is >= 3 and <= 9]]></c>) theoretically.
 		/// </remarks>
 		public int CheckRegularWingSize { get; set; } = 5;
 

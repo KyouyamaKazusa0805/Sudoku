@@ -26,7 +26,7 @@ namespace Sudoku.Diagnostics
 
 
 		/// <summary>
-		/// To increase <c>&lt;Version&gt;</c> block by 0.1.
+		/// To increase <c><![CDATA[<Version>]]></c> block by 0.1.
 		/// </summary>
 		/// <param name="leadingString">The leading string.</param>
 		/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
@@ -85,7 +85,7 @@ namespace Sudoku.Diagnostics
 		}
 
 		/// <summary>
-		/// To update <c>&lt;Nullable&gt;</c> block.
+		/// To update <c><![CDATA[<Nullable>]]></c> block.
 		/// </summary>
 		/// <param name="nullableValue">The nullable value to update.</param>
 		/// <param name="leadingString">The leading string.</param>

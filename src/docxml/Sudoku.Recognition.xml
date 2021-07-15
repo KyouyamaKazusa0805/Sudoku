@@ -84,8 +84,9 @@
         </member>
         <member name="M:Sudoku.Recognition.Extensions.BitmapEx.ToImage``2(System.Drawing.Bitmap)">
             <summary>
-            Create an <c>Image&lt;TColor, TDepth&gt;</c> from <see cref="T:System.Drawing.Bitmap"/>.
+            Create an <see cref="T:Emgu.CV.Image`2"/> from <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
+            <seealso cref="T:Emgu.CV.Image`2"/>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
         <member name="M:Sudoku.Recognition.Extensions.BitmapEx.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">

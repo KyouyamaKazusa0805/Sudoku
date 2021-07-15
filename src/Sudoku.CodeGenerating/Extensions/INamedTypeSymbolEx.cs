@@ -59,11 +59,11 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <param name="namespaceName">The namespace name.</param>
 		/// <param name="genericParametersList">
 		/// The generic parameter list. The type parameter constraint will also include,
-		/// e.g. <c>Namespace.TypeName&lt;T&gt; where T : class?</c>.
+		/// e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
 		/// </param>
 		/// <param name="genericParametersListWithoutConstraint">
 		/// The generic parameter list without type parameter constraint,
-		/// e.g. <c>Namespace.TypeName&lt;T&gt;</c>.
+		/// e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
 		/// </param>
 		/// <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
 		/// <param name="readonlyKeyword">The read-only keyword on members.</param>
@@ -121,7 +121,10 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <returns>
 		/// The file name. Due to the limited file name and the algorithm, if:
 		/// <list type="bullet">
-		/// <item>The character is <c>'&lt;'</c> or <c>'&gt;'</c>: Change them to <c>'['</c> and <c>']'</c>.</item>
+		/// <item>
+		/// The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
+		/// Change them to <c>'['</c> and <c>']'</c>.
+		/// </item>
 		/// <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
 		/// <item>The character is <c>' '</c>: Remove it.</item>
 		/// </list>

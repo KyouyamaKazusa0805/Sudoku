@@ -1037,7 +1037,7 @@ namespace Sudoku.Data
 		/// <para>
 		/// If you want to parse a PM grid, you should decide the mode to parse.
 		/// If you use compatible mode to parse, all single values will be treated as
-		/// given values; otherwise, recommended mode, which uses '<c>&lt;d&gt;</c>'
+		/// given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
 		/// or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
 		/// will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
 		/// </para>
@@ -1054,8 +1054,7 @@ namespace Sudoku.Data
 			new Parser(str, compatibleFirst).Parse();
 
 		/// <summary>
-		/// Parses a string value and converts to this type,
-		/// using a specified grid parsing type.
+		/// Parses a string value and converts to this type, using a specified grid parsing type.
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <param name="gridParsingOption">The grid parsing type.</param>

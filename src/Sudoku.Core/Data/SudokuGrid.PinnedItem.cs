@@ -20,12 +20,12 @@ namespace Sudoku.Data
 		/// }
 		/// </code>
 		/// The code is equivalent to
-		/// <code>
-		/// fixed (short* s = &amp;grid.GetPinnableReference())
+		/// <code><![CDATA[
+		/// fixed (short* s = &grid.GetPinnableReference())
 		/// {
 		///     // Do something...
 		/// }
-		/// </code>
+		/// ]]></code>
 		/// </para>
 		/// <para>
 		/// If you want to get the item <see cref="InitialGrid"/>, you should call the method

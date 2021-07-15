@@ -20,12 +20,12 @@ namespace Sudoku.Data
 		/// }
 		/// </code>
 		/// The code is equivalent to
-		/// <code>
-		/// fixed (short* s = &amp;segment.GetPinnableReference())
+		/// <code><![CDATA[
+		/// fixed (short* s = &segment.GetPinnableReference())
 		/// {
 		///     // Do something...
 		/// }
-		/// </code>
+		/// ]]></code>
 		/// </para>
 		/// <para>
 		/// If you want to get the item <see cref="CandidateMasks"/>, you should call the method

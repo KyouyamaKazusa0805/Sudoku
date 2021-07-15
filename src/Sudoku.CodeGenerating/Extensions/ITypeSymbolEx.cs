@@ -55,11 +55,11 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <param name="namespaceName">The namespace name.</param>
 		/// <param name="genericParametersList">
 		/// The generic parameter list. The type parameter constraint will also include,
-		/// e.g. <c>Namespace.TypeName&lt;T&gt; where T : class?</c>.
+		/// e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
 		/// </param>
 		/// <param name="genericParametersListWithoutConstraint">
 		/// The generic parameter list without type parameter constraint,
-		/// e.g. <c>Namespace.TypeName&lt;T&gt;</c>.
+		/// e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
 		/// </param>
 		/// <param name="fullTypeNameWithoutConstraint">The full type name without constraint.</param>
 		/// <param name="constraint">The constraint.</param>

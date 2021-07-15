@@ -63,7 +63,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <description>Leviathan</description>
 		/// </item>
 		/// <item>
-		/// <term>&gt; 7</term>
+		/// <term><![CDATA[> 7]]></term>
 		/// <description>No name</description>
 		/// </item>
 		/// </list>

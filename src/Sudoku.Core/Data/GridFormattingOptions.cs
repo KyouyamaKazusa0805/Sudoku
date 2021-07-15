@@ -39,7 +39,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the output will treat modifiable values as given ones.
 		/// If the output is single line, the output will remove all plus marks '+'.
-		/// If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>'
+		/// If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>'
 		/// instead of '<c>*digit*</c>'.
 		/// </summary>
 		TreatValueAsGiven = 4,

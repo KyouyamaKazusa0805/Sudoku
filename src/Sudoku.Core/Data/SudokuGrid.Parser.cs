@@ -73,7 +73,7 @@ namespace Sudoku.Data
 			/// <summary>
 			/// Indicates whether the parser will change the execution order of PM grid.
 			/// If the value is <see langword="true"/>, the parser will check compatible one
-			/// first, and then check recommended parsing plan ('<c>&lt;d&gt;</c>' and '<c>*d*</c>').
+			/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 			/// </summary>
 			public bool CompatibleFirst { get; }
 

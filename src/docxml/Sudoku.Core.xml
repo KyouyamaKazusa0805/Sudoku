@@ -1121,7 +1121,7 @@
         <member name="M:Sudoku.Data.Cells.PeerIntersectionLimitsWith(Sudoku.Data.Cells@)">
             <summary>
             To gets the cells that is in the cells that both <see langword="this"/>
-            and <paramref name="limit"/> sees (i.e. peer intersection of <c>this &amp; limit</c>),
+            and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
             and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
             </summary>
             <param name="limit">
@@ -1283,7 +1283,7 @@
             <returns>The negative result.</returns>
             <remarks>
             While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-            that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+            that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
             </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.op_GreaterThan(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
@@ -1353,7 +1353,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_Modulus(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
-            Simply calls <c>(a &amp; b).PeerIntersection &amp; b</c>.
+            Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
             The operator is used for searching for and checking eliminations.
             </summary>
             <param name="base">The base map.</param>
@@ -2206,7 +2206,7 @@
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>'
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>'
             instead of '<c>*digit*</c>'.
             </summary>
         </member>
@@ -2291,21 +2291,21 @@
             </para>
             <para>
             For example:
-            <code>
+            <code><![CDATA[
             +-------------------+-----------------+--------------------+
-            | &lt;8&gt;   12459  249  | *6*  &lt;7&gt;   259  | 1245    245   *3*  |
-            | 1457  1245   &lt;6&gt;  | 58   125   &lt;3&gt;  | 124578  2458  &lt;9&gt;  |
-            | 1579  &lt;3&gt;    279  | &lt;4&gt;  1259  2589 | 12578   *6*   78   |
+            | <8>   12459  249  | *6*  <7>   259  | 1245    245   *3*  |
+            | 1457  1245   <6>  | 58   125   <3>  | 124578  2458  <9>  |
+            | 1579  <3>    279  | <4>  1259  2589 | 12578   *6*   78   |
             +-------------------+-----------------+--------------------+
-            | *2*   &lt;7&gt;    *3*  | &lt;1&gt;  &lt;8&gt;   45   | 456     &lt;9&gt;   46   |
-            | &lt;6&gt;   458    48   | &lt;2&gt;  59    459  | &lt;3&gt;     *7*   *1*  |
-            | 1459  1459   49   | *3*  *6*   &lt;7&gt;  | 458     458   &lt;2&gt;  |
+            | *2*   <7>    *3*  | <1>  <8>   45   | 456     <9>   46   |
+            | <6>   458    48   | <2>  59    459  | <3>     *7*   *1*  |
+            | 1459  1459   49   | *3*  *6*   <7>  | 458     458   <2>  |
             +-------------------+-----------------+--------------------+
-            | &lt;3&gt;   2489   &lt;1&gt;  | 578  25    &lt;6&gt;  | 24789   248   478  |
-            | 79    &lt;6&gt;    2789 | 78   &lt;4&gt;   *1*  | 289     *3*   &lt;5&gt;  |
-            | 47    248    &lt;5&gt;  | &lt;9&gt;  *3*   28   | 2678    &lt;1&gt;   4678 |
+            | <3>   2489   <1>  | 578  25    <6>  | 24789   248   478  |
+            | 79    <6>    2789 | 78   <4>   *1*  | 289     *3*   <5>  |
+            | 47    248    <5>  | <9>  *3*   28   | 2678    <1>   4678 |
             +-------------------+-----------------+--------------------+
-            </code>
+            ]]></code>
             </para>
             </summary>
         </member>
@@ -2553,17 +2553,17 @@
         </member>
         <member name="F:Sudoku.Data.LinkType.Default">
             <summary>
-            Indicates the default link (<c>off</c> -&gt; <c>off</c> or <c>on</c> -&gt; <c>on</c>).
+            Indicates the default link (<c><![CDATA[off -> off]]></c> or <c><![CDATA[on -> on]]></c>).
             </summary>
         </member>
         <member name="F:Sudoku.Data.LinkType.Weak">
             <summary>
-            Indicates the weak link (<c>on</c> -&gt; <c>off</c>).
+            Indicates the weak link (<c><![CDATA[on -> off]]></c>).
             </summary>
         </member>
         <member name="F:Sudoku.Data.LinkType.Strong">
             <summary>
-            Indicates the strong link (<c>off</c> -&gt; <c>on</c>).
+            Indicates the strong link (<c><![CDATA[off -> on]]></c>).
             </summary>
         </member>
         <member name="F:Sudoku.Data.LinkType.Line">
@@ -3777,7 +3777,7 @@
             <para>
             If you want to parse a PM grid, you should decide the mode to parse.
             If you use compatible mode to parse, all single values will be treated as
-            given values; otherwise, recommended mode, which uses '<c>&lt;d&gt;</c>'
+            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
             or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
             will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
             </para>
@@ -3792,8 +3792,7 @@
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)">
             <summary>
-            Parses a string value and converts to this type,
-            using a specified grid parsing type.
+            Parses a string value and converts to this type, using a specified grid parsing type.
             </summary>
             <param name="str">The string.</param>
             <param name="gridParsingOption">The grid parsing type.</param>
@@ -3991,7 +3990,7 @@
             <summary>
             Indicates the output will treat modifiable values as given ones.
             If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c>&lt;digit&gt;</c>' instead
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
             of '<c>*digit*</c>'.
             </summary>
         </member>
@@ -4168,7 +4167,7 @@
             <summary>
             Indicates whether the parser will change the execution order of PM grid.
             If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c>&lt;d&gt;</c>' and '<c>*d*</c>').
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parser.Parse">
@@ -4265,12 +4264,12 @@
             }
             </code>
             The code is equivalent to
-            <code>
-            fixed (short* s = &amp;grid.GetPinnableReference())
+            <code><![CDATA[
+            fixed (short* s = &grid.GetPinnableReference())
             {
                 // Do something...
             }
-            </code>
+            ]]></code>
             </para>
             <para>
             If you want to get the item <see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.InitialGrid"/>, you should call the method
@@ -4570,12 +4569,12 @@
             }
             </code>
             The code is equivalent to
-            <code>
-            fixed (short* s = &amp;segment.GetPinnableReference())
+            <code><![CDATA[
+            fixed (short* s = &segment.GetPinnableReference())
             {
                 // Do something...
             }
-            </code>
+            ]]></code>
             </para>
             <para>
             If you want to get the item <see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.CandidateMasks"/>, you should call the method

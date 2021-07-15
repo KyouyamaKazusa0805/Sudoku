@@ -628,7 +628,7 @@ namespace Sudoku.Data
 
 		/// <summary>
 		/// To gets the cells that is in the cells that both <see langword="this"/>
-		/// and <paramref name="limit"/> sees (i.e. peer intersection of <c>this &amp; limit</c>),
+		/// and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
 		/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
 		/// </summary>
 		/// <param name="limit">
@@ -1082,7 +1082,7 @@ namespace Sudoku.Data
 		/// <returns>The negative result.</returns>
 		/// <remarks>
 		/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-		/// that is why using the code "<c>higherBits &amp; 0xFFFFFFFFFFL</c>".
+		/// that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Cells operator ~(in Cells gridMap) =>
@@ -1191,7 +1191,7 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Simply calls <c>(a &amp; b).PeerIntersection &amp; b</c>.
+		/// Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
 		/// The operator is used for searching for and checking eliminations.
 		/// </summary>
 		/// <param name="base">The base map.</param>

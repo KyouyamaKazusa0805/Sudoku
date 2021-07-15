@@ -21,7 +21,7 @@
 		/// <description>Meaning</description>
 		/// </listheader>
 		/// <item>
-		/// <term><c>&lt; 0</c></term>
+		/// <term><c><![CDATA[< 0]]></c></term>
 		/// <description>This instance precedes other in the sort order.</description>
 		/// </item>
 		/// <item>
@@ -29,7 +29,7 @@
 		/// <description>This instance occurs in the same position in the sort order as other.</description>
 		/// </item>
 		/// <item>
-		/// <term><c>&gt; 0</c></term>
+		/// <term><c><![CDATA[> 0]]></c></term>
 		/// <description>This instance follows other in the sort order.</description>
 		/// </item>
 		/// </list>
