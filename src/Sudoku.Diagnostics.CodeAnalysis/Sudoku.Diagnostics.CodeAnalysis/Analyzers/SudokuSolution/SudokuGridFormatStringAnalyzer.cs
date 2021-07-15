@@ -62,31 +62,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (count == 0)
-			{
-				CheckSD0310(context, semanticModel, compilation, expression, nameNode, node);
-			}
-			else if (
-				arguments[0] is { Expression: var expr } argument
-				&& semanticModel.GetOperation(expr, cancellationToken) is
-				{
-					ConstantValue:
-					{
-						HasValue: true,
-						Value: string value
-					}
-				}
-			)
-			{
-				CheckSD0311(context, argument, value);
-			}
-		}
-
-		private static void CheckSD0310(
-			SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
-			Compilation compilation, ExpressionSyntax expression, SimpleNameSyntax nameNode,
-			InvocationExpressionSyntax invocationNode)
-		{
 			if (semanticModel.GetOperation(expression) is not { Type: var possibleSudokuGridType })
 			{
 				return;
@@ -98,31 +73,38 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SD0310,
-					location: nameNode.GetLocation(),
-					messageArgs: null,
-					additionalLocations: new[] { invocationNode.GetLocation() }
-				)
-			);
-		}
-
-		private static void CheckSD0311(
-			SyntaxNodeAnalysisContext context, ArgumentSyntax argument, string format)
-		{
-			if (Array.IndexOf(PossibleFormats, format) != -1)
+			if (count == 0)
 			{
-				return;
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SD0310,
+						location: nameNode.GetLocation(),
+						messageArgs: null,
+						additionalLocations: new[] { node.GetLocation() }
+					)
+				);
 			}
+			else if (
+				arguments[0] is { Expression: var expr } argument
+				&& semanticModel.GetOperation(expr, cancellationToken) is
+				{
+					ConstantValue: { HasValue: true, Value: string format }
+				}
+			)
+			{
+				if (Array.IndexOf(PossibleFormats, format) != -1)
+				{
+					return;
+				}
 
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SD0311,
-					location: argument.GetLocation(),
-					messageArgs: null
-				)
-			);
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SD0311,
+						location: argument.GetLocation(),
+						messageArgs: null
+					)
+				);
+			}
 		}
 	}
 }

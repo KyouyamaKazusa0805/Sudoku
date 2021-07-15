@@ -103,7 +103,7 @@ namespace Sudoku.Solving
 					puzzle, solution, elapsed, stepsCount, steps, _, additional) = Result;
 
 				// Print header.
-				var sb = new ValueStringBuilder(stackalloc char[300]);
+				var sb = new ValueStringBuilder(300);
 				sb.Append((string)Current.AnalysisResultPuzzle);
 				sb.AppendLine(puzzle.ToString("#"));
 				sb.Append((string)Current.AnalysisResultSolvingTool);
@@ -115,7 +115,7 @@ namespace Sudoku.Solving
 					sb.AppendLine((string)Current.AnalysisResultSolvingSteps);
 					if (getBottleneck() is var (bIndex, bInfo))
 					{
-						for (int i = 0; i < steps.Count; i++)
+						for (int i = 0, count = steps.Count; i < count; i++)
 						{
 							if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 							{
@@ -230,10 +230,10 @@ namespace Sudoku.Solving
 				sb.AppendLine(diamond.ToString("0.0"));
 
 				// Print the solution (if not null).
-				if (solution.HasValue)
+				if (solution is { } solutionNotNull)
 				{
 					sb.Append((string)Current.AnalysisResultPuzzleSolution);
-					sb.AppendLine(solution.Value.ToString("!"));
+					sb.AppendLine(solutionNotNull.ToString("!"));
 				}
 
 				// Print the elapsed time.
