@@ -321,10 +321,10 @@ namespace Sudoku.Drawing
 		/// <param name="left">The first instance to compare.</param>
 		/// <param name="right">The second instance to compare.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator ==(MutableView? left, MutableView? right) => (left, right) switch
+		public static bool operator ==(MutableView? left, MutableView? right) => (Left: left, Right: right) switch
 		{
-			(null, null) => true,
-			(not null, not null) => left!.Equals(right),
+			(Left: null, Right: null) => true,
+			(Left: not null, Right: not null) => left.Equals(right),
 			_ => false
 		};
 

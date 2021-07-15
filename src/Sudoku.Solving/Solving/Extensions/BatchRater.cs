@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Extensions
 
 				// Append the text.
 				string textToAppend =
-					$"{grid.ToString()}\t{total.ToString("0.0")} {max.ToString("0.0")} " +
+					$"{grid.ToString("0")}\t{total.ToString("0.0")} {max.ToString("0.0")} " +
 					$"{pearl.ToString("0.0")} {diamond.ToString("0.0")} {stepCount.ToString()} " +
 					$"{chainingTechniquesCount.ToString()}\r\n";
 

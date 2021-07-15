@@ -1363,7 +1363,7 @@ namespace Sudoku.Windows
 				var cellOffsets = new List<DrawingInfo>();
 				for (int i = 0, p = 0; i < 9; i++)
 				{
-					if ((series[i], mapping[i]) is (Item1: false, Item2: { } j)
+					if ((A: series[i], B: mapping[i]) is (A: false, B: { } j)
 						&& (series[i] = true) & (series[j] = true))
 					{
 						for (int cell = 0; cell < 81; cell++)

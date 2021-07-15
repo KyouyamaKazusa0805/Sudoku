@@ -381,7 +381,7 @@ namespace Sudoku.Data
 		public readonly short GetSubviewMask(int region, int digit)
 		{
 			short p = 0;
-			for (int i = 0; i < RegionCells[region].Length; i++)
+			for (int i = 0, length = RegionCells[region].Length; i < length; i++)
 			{
 				if (Contains(RegionCells[region][i] * 9 + digit))
 				{
@@ -707,7 +707,7 @@ namespace Sudoku.Data
 			}
 			catch (FormatException)
 			{
-				result = default;
+				result = Empty;
 				return false;
 			}
 		}

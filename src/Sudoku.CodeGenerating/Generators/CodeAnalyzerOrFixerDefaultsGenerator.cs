@@ -47,6 +47,7 @@ namespace Sudoku.CodeGenerating
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 			var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName<CodeAnalyzerAttribute>();
 			var attributeFixerSymbol = compilation.GetTypeByMetadataName<CodeFixProviderAttribute>();
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			string[] list = File.ReadAllLines(csvTableFilePath);
 			string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 			string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
@@ -55,11 +56,7 @@ namespace Sudoku.CodeGenerating
 				from type in receiver.Candidates
 				let model = compilation.GetSemanticModel(type.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
-				where (
-					from a in type.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeAnalyzerSymbol)
-					select a
-				).Any()
+				where type.GetAttributes().Any(a => f(a.AttributeClass, attributeAnalyzerSymbol))
 				select type)
 			{
 				type.DeconstructInfo(
@@ -151,11 +148,7 @@ namespace {namespaceName}
 				from type in receiver.Candidates
 				let model = compilation.GetSemanticModel(type.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
-				where (
-					from a in type.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeFixerSymbol)
-					select a
-				).Any()
+				where type.GetAttributes().Any(a => f(a.AttributeClass, attributeFixerSymbol))
 				select type)
 			{
 				type.DeconstructInfo(

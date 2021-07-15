@@ -158,7 +158,8 @@ namespace System.Text
 			fixed (char* pThis = left._chars, pOther = right._chars)
 			{
 				int i = 0;
-				for (char* p = pThis, q = pOther; i < left.Length; i++)
+				char* p = pThis, q = pOther;
+				for (; i < left.Length; i++) // SS9008 fixer bug
 				{
 					if (*p++ != *q++)
 					{

@@ -129,11 +129,11 @@ namespace Sudoku.Solving
 
 							string d = $"({info.Difficulty.ToString("0.0")}".PadLeft(5);
 							string s = (i + 1).ToString().PadLeft(4);
-							string labelInfo = (options.Flags(ShowStepLabel), showDiff) switch
+							string labelInfo = (ShowStepLabel: options.Flags(ShowStepLabel), ShowDiff: showDiff) switch
 							{
-								(true, true) => $"{s}, {d}) ",
-								(true, false) => $"{s} ",
-								(false, true) => $"{d}) ",
+								(ShowStepLabel: true, ShowDiff: true) => $"{s}, {d}) ",
+								(ShowStepLabel: true, ShowDiff: false) => $"{s} ",
+								(ShowStepLabel: false, ShowDiff: true) => $"{d}) ",
 								_ => string.Empty,
 							};
 
@@ -264,7 +264,7 @@ namespace Sudoku.Solving
 						sb.Append(methodInfo.Name);
 						sb.Append(':');
 						sb.Append(' ');
-						sb.AppendLine(grid.ToString());
+						sb.AppendLine(grid.ToString("0"));
 					}
 
 					a(ref sb, options.Flags(ShowSeparators));
