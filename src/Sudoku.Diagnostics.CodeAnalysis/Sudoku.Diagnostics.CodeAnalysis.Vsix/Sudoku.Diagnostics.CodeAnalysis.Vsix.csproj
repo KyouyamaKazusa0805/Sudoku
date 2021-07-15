@@ -19,7 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.1050" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.3155-preview3" PrivateAssets="all" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -29,7 +29,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>A vsix project to export the analyzer and fixers as a plugin file (*.vsix).</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<Version>0.1</Version>
+		<Version>0.2</Version>
 	</PropertyGroup>
 
 	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />

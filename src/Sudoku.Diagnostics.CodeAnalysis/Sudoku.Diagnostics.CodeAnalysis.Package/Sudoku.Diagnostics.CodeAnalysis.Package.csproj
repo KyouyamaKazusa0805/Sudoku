@@ -9,16 +9,14 @@
 
 	<PropertyGroup>
 		<PackageId>Sudoku.Diagnostics.CodeAnalysis</PackageId>
-		<PackageVersion>1.0.0.0</PackageVersion>
+		<PackageVersion>0.2.0.0</PackageVersion>
 		<Authors>Howdy</Authors>
-		<PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-		<PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-		<PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-		<RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+		<PackageProjectUrl>https://sunnieshine.github.io/Sudoku/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<Description>Sudoku.Diagnostics.CodeAnalysis</Description>
+		<Description>The project that encapsulates the package of the project Sudoku.Diagnostics.CodeAnalysis.</Description>
 		<PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
-		<Copyright>Copyright</Copyright>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<PackageTags>Sudoku.Diagnostics.CodeAnalysis, analyzers</PackageTags>
 		<DevelopmentDependency>true</DevelopmentDependency>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
