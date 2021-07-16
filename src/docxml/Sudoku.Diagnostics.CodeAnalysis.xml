@@ -3191,6 +3191,30 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.GetTypeSyntax(Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Check whether the specified type symbol is built-in type.
+            </summary>
+            <param name="symbol">The symbol.</param>
+            <param name="compilation">The compilation.</param>
+            <returns>
+            The method will return:
+            <list type="bullet">
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.PredefinedTypeSyntax"/></term>
+            <description>The type is built-in type.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.IdentifierNameSyntax"/></term>
+            <description>The type is <see langword="nint"/> or <see langword="nuint"/>.</description>
+            </item>
+            <item>
+            <term><see langword="var"/> type</term>
+            <description>Otherwise.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS9001CodeFixProvider.FixableDiagnosticIds">
             <inheritdoc/>
         </member>

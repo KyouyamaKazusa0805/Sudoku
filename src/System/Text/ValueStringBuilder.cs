@@ -159,7 +159,7 @@ namespace System.Text
 			{
 				int i = 0;
 				char* p = pThis, q = pOther;
-				for (; i < left.Length; i++) // SS9008 fixer bug
+				for (; i < left.Length; i++) // SS9001 fixer bug
 				{
 					if (*p++ != *q++)
 					{
