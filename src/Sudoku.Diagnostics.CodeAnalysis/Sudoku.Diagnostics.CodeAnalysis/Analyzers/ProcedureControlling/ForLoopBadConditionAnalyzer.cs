@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
@@ -18,7 +20,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// Indicates the regular expression to match a member access expression.
 		/// </summary>
 		private static readonly Regex MemberAccessExpressionRegex = new(
-			@"[\w\.]+", RegexOptions.Compiled, TimeSpan.FromSeconds(5)
+			@"[\w\.]+",
+			RegexOptions.Compiled,
+			TimeSpan.FromSeconds(5)
 		);
 
 
@@ -34,14 +38,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			if (context is { Node: ForStatementSyntax { Condition: { } conditionNode } node })
+			var (semanticModel, _, originalNode, _, cancellationToken) = context;
+			if (originalNode is ForStatementSyntax { Condition: { } conditionNode } node)
 			{
-				AnalyzeSyntaxNodeRecursively(context, node, conditionNode);
+				AnalyzeSyntaxNodeRecursively(context, node, conditionNode, semanticModel, cancellationToken);
 			}
 		}
 
 		private static void AnalyzeSyntaxNodeRecursively(
-			in SyntaxNodeAnalysisContext context, ForStatementSyntax forStatement, SyntaxNode originalNode)
+			in SyntaxNodeAnalysisContext context, ForStatementSyntax forStatement, SyntaxNode originalNode,
+			SemanticModel semanticModel, in CancellationToken cancellationToken)
 		{
 			switch (originalNode)
 			{
@@ -56,24 +62,38 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						case (int)SyntaxKind.LessThanExpression:
 						case (int)SyntaxKind.LessThanEqualsToken:
 						{
-							foreach (var possibleExpressions in new[] { rightExpr, leftExpr })
+							foreach (var possibleExpression in new[] { rightExpr, leftExpr })
 							{
-								if (possibleExpressions.IsSimpleExpression())
+								// Check whether the expression is a constant value.
+								if (possibleExpression.IsSimpleExpression())
 								{
 									continue;
 								}
 
+								// Check whether the expression is a constant expression.
+								if (semanticModel.GetOperation(rightExpr) is { ConstantValue: { HasValue: true } })
+								{
+									continue;
+								}
+
+								// Check whether the expression is as a same type as the variable declaration part.
 								if (
-									context.SemanticModel.GetOperation(rightExpr) is
+									forStatement.Declaration?.Type is { } declarationType
+									&& semanticModel.GetSymbolInfo(declarationType, cancellationToken) is
 									{
-										ConstantValue: { HasValue: true }
+										Symbol: var declarationTypeSymbol
 									}
+									&& semanticModel.GetOperation(possibleExpression, cancellationToken) is
+									{
+										Type: var typeToCheck
+									}
+									&& !SymbolEqualityComparer.Default.Equals(declarationTypeSymbol, typeToCheck)
 								)
 								{
 									continue;
 								}
 
-								string exprStr = possibleExpressions.ToString();
+								string exprStr = possibleExpression.ToString();
 								var match = MemberAccessExpressionRegex.Match(exprStr);
 								string? suggestedName;
 								if (match.Success)
@@ -89,7 +109,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								context.ReportDiagnostic(
 									Diagnostic.Create(
 										descriptor: SS9001,
-										location: possibleExpressions.GetLocation(),
+										location: possibleExpression.GetLocation(),
 										properties: ImmutableDictionary.CreateRange(
 											new KeyValuePair<string, string?>[]
 											{
@@ -113,8 +133,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						case (int)SyntaxKind.LogicalOrExpression:
 						//case (int)SyntaxKind.ExclusiveOrExpression:
 						{
-							AnalyzeSyntaxNodeRecursively(context, forStatement, leftExpr);
-							AnalyzeSyntaxNodeRecursively(context, forStatement, rightExpr);
+							AnalyzeSyntaxNodeRecursively(context, forStatement, leftExpr, semanticModel, cancellationToken);
+							AnalyzeSyntaxNodeRecursively(context, forStatement, rightExpr, semanticModel, cancellationToken);
 
 							break;
 						}
@@ -128,7 +148,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Operand: var operand
 				}:
 				{
-					AnalyzeSyntaxNodeRecursively(context, forStatement, operand);
+					AnalyzeSyntaxNodeRecursively(context, forStatement, operand, semanticModel, cancellationToken);
 
 					break;
 				}

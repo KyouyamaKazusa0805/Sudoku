@@ -63,7 +63,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						if (
 							declaration is
 							{
-								Type: var declarationType,
+								Type: { } declarationType,
 								Variables: { Count: not 0 } variableDeclarators
 							}
 						)
