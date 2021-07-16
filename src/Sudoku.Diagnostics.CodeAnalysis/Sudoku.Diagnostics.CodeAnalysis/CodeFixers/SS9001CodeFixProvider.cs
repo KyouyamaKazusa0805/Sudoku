@@ -127,45 +127,45 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 								)
 							);
 						}
-						else
-						{
-							var syntax = GetTypeSyntax(
-								semanticModel.GetOperation(badExpression, c)!.Type!,
-								compilation
-							);
-
-							editor.ReplaceNode(
-								badExpression,
-								SyntaxFactory.IdentifierName(
-									resultDefaultVariableName
-								)
-							);
-							editor.ReplaceNode(
-								forLoop,
-								forLoop
-								.WithDeclaration(
-									SyntaxFactory.VariableDeclaration(
-										syntax
-										.WithTrailingTrivia(
-											SyntaxFactory.ParseTrailingTrivia(" ")
-										),
-										SyntaxFactory.SingletonSeparatedList(
-											SyntaxFactory.VariableDeclarator(
-												SyntaxFactory.Identifier(
-													resultDefaultVariableName
-												)
-											)
-											.WithInitializer(
-												SyntaxFactory.EqualsValueClause(
-													badExpression
-												)
-											)
-											.NormalizeWhitespace(indentation: "\t")
-										)
-									)
-								)
-							);
-						}
+						//else
+						//{
+						//	var syntax = GetTypeSyntax(
+						//		semanticModel.GetOperation(badExpression, c)!.Type!,
+						//		compilation
+						//	);
+						//
+						//	editor.ReplaceNode(
+						//		badExpression,
+						//		SyntaxFactory.IdentifierName(
+						//			resultDefaultVariableName
+						//		)
+						//	);
+						//	editor.ReplaceNode(
+						//		forLoop,
+						//		forLoop
+						//		.WithDeclaration(
+						//			SyntaxFactory.VariableDeclaration(
+						//				syntax
+						//				.WithTrailingTrivia(
+						//					SyntaxFactory.ParseTrailingTrivia(" ")
+						//				),
+						//				SyntaxFactory.SingletonSeparatedList(
+						//					SyntaxFactory.VariableDeclarator(
+						//						SyntaxFactory.Identifier(
+						//							resultDefaultVariableName
+						//						)
+						//					)
+						//					.WithInitializer(
+						//						SyntaxFactory.EqualsValueClause(
+						//							badExpression
+						//						)
+						//					)
+						//					.NormalizeWhitespace(indentation: "\t")
+						//				)
+						//			)
+						//		)
+						//	);
+						//}
 
 						// Returns the changed document.
 						return editor.GetChangedDocument();
