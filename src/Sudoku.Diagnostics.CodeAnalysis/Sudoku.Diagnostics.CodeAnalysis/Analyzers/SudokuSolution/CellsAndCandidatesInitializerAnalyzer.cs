@@ -242,7 +242,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						for (int j = i + 1; j < count; j++)
 						{
 							var (v2, comparisonNode) = values[j];
-							if (v1 == v2)
+							if (v1 == v2 && v1 != -1)
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(
