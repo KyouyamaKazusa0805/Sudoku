@@ -59,7 +59,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				symbolBaseType = symbolBaseType.BaseType
 			)
 			{
-				if (symbolBaseType.ToDisplayString(FormatOptions.TypeFormat) != typeof(Attribute).FullName)
+				if (symbolBaseType.ToDisplayString(FormatOptions.TypeFormat) == typeof(Attribute).FullName)
 				{
 					isAttribute = true;
 					break;
