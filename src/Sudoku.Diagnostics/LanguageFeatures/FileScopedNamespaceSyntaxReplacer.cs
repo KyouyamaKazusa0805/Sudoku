@@ -142,7 +142,7 @@ namespace Sudoku.Diagnostics.LanguageFeatures
 
 					for (int i = 0; i < RequiredStringsCount; i++)
 					{
-						if (methods[i] is var method and not null) // SS0634 analyzer bug
+						if (methods[i] is var method and not null)
 						{
 							method(sb, groups[i]);
 						}
