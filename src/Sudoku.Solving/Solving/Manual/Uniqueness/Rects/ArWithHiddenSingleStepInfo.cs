@@ -50,9 +50,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			string targetCellStr = new Cells { TargetCell }.ToString();
 			string regionStr = new RegionCollection(TargetRegion).ToString();
 			return
-				$"hidden single: if cell {baseCellStr} is filled with the digit {Digit1 + 1}, " +
-				$"region {regionStr} will only contain a cell {targetCellStr} can be filled with that digit, " +
-				$"but will raise the deadly pattern";
+				$@"hidden single: if cell {baseCellStr} is filled with the digit {Digit1 + 1}, 
+region {regionStr} will only contain a cell {targetCellStr} can be filled with that digit, 
+but will raise the deadly pattern";
 		}
 	}
 }

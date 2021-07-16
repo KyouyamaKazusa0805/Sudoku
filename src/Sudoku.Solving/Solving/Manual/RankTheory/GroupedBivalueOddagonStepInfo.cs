@@ -43,10 +43,10 @@ namespace Sudoku.Solving.Manual.RankTheory
 			string cellsStr = Loop.ToString();
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
 			return
-				$"The cells {cellsStr} about digits {Digit1 + 1} and {Digit2 + 1} " +
-				$"will form an invalid bi-value oddagon structure to make the puzzle no solution " +
-				$"when all positions about a digit in digits {digitsStr} in this structure is removed " +
-				$"=> {concStr}";
+				$@"The cells {cellsStr} about digits {Digit1 + 1} and {Digit2 + 1} 
+will form an invalid bi-value oddagon structure to make the puzzle no solution 
+when all positions about a digit in digits {digitsStr} in this structure is removed 
+=> {concStr}";
 		}
 	}
 }

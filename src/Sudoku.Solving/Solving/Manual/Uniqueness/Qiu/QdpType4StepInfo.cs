@@ -30,9 +30,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string patternStr = Pattern.FullMap.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return
-				$"{Name}: Cells {patternStr} will be a deadly pattern " +
-				$"if another digit in either cells lying " +
-				$"on the conjugate pair {ConjugatePair.ToString()} is true => {elimStr}";
+				$@"{Name}: Cells {patternStr} will be a deadly pattern 
+if another digit in either cells lying 
+on the conjugate pair {ConjugatePair.ToString()} is true => {elimStr}";
 		}
 	}
 }

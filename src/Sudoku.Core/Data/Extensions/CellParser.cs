@@ -100,7 +100,7 @@ namespace Sudoku.Data.Extensions
 		{
 			if (string.IsNullOrWhiteSpace(str))
 			{
-				cells = default;
+				cells = Cells.Empty;
 				return false;
 			}
 

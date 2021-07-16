@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -18,6 +19,7 @@ namespace Sudoku.CodeGenerating
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			var nameDic = new Dictionary<string, int>();
 			var compilation = context.Compilation;
 			var attributeSymbol = compilation.GetTypeByMetadataName<AutoDeconstructAttribute>();
@@ -25,11 +27,7 @@ namespace Sudoku.CodeGenerating
 				from candidateType in receiver.Candidates
 				let model = compilation.GetSemanticModel(candidateType.SyntaxTree)
 				select model.GetDeclaredSymbol(candidateType)! into type
-				where (
-					from a in type.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					select a
-				).Any()
+				where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
 				select type)
 			{
 				type.DeconstructInfo(

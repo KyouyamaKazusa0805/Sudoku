@@ -44,9 +44,9 @@ namespace Sudoku
 
 		/// <inheritdoc/>
 		public override string Message =>
-			$"The assembly {AssemblyName} can't be loaded. " +
-			$"The large possibility of the problem raised is that the required files don't exist. " +
-			$"Please check the existence of the resource dictionary file (path {FilePath}).";
+			$@"The assembly {AssemblyName} can't be loaded. 
+The large possibility of the problem raised is that the required files don't exist. 
+Please check the existence of the resource dictionary file (path {FilePath}).";
 
 		/// <inheritdoc/>
 		public override string HelpLink =>

@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Checking
 		/// <seealso cref="IsValid(in SudokuGrid, out SudokuGrid)"/>
 		/// <seealso cref="IsValid(in SudokuGrid, out SudokuGrid, out bool?)"/>
 		public static bool IsValid(this in SudokuGrid @this) =>
-			Solver.CheckValidity(@this.ToString()) || Solver.CheckValidity(@this.ToString("~"));
+			Solver.CheckValidity(@this.ToString(null)) || Solver.CheckValidity(@this.ToString("~"));
 
 		/// <summary>
 		/// Same as <see cref="IsValid(UndoableGrid, out UndoableGrid)"/> and
@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Checking
 		{
 			solutionIfValid = SudokuGrid.Undefined;
 
-			if (Solver.CheckValidity(@this.ToString(), out string? solution)
+			if (Solver.CheckValidity(@this.ToString(null), out string? solution)
 				|| Solver.CheckValidity(@this.ToString("~"), out solution))
 			{
 				solutionIfValid = SudokuGrid.Parse(solution);
@@ -106,7 +106,7 @@ namespace Sudoku.Solving.Checking
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsValid(this in SudokuGrid @this, [NotNullWhen(true)] out bool? sukaku)
 		{
-			if (Solver.CheckValidity(@this.ToString()))
+			if (Solver.CheckValidity(@this.ToString(null)))
 			{
 				sukaku = false;
 				return true;
@@ -151,7 +151,7 @@ namespace Sudoku.Solving.Checking
 		public static bool IsValid(
 			this in SudokuGrid @this, out SudokuGrid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 		{
-			if (Solver.CheckValidity(@this.ToString(), out string? solution))
+			if (Solver.CheckValidity(@this.ToString(null), out string? solution))
 			{
 				solutionIfValid = SudokuGrid.Parse(solution);
 				sukaku = false;

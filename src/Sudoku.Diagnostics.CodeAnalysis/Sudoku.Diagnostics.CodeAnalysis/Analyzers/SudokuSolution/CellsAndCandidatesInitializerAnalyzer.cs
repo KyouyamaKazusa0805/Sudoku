@@ -50,7 +50,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, originalNode) = context;
+			var (semanticModel, compilation, originalNode, _, cancellationToken) = context;
 
 			switch (originalNode)
 			{
@@ -59,7 +59,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					ArgumentList: var argumentList,
 					Initializer: { Expressions: var expressions }
 				} node
-				when semanticModel.GetOperation(node) is IObjectCreationOperation
+				when semanticModel.GetOperation(node, cancellationToken) is IObjectCreationOperation
 				{
 					Kind: OperationKind.ObjectCreation,
 					Type: var typeSymbol
@@ -85,10 +85,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					foreach (var expression in expressions)
 					{
 						values[i++] = (
-							semanticModel.GetOperation(expression)?.ConstantValue is
+							semanticModel.GetOperation(expression, cancellationToken) is
 							{
-								HasValue: true,
-								Value: int value
+								ConstantValue: { HasValue: true, Value: int value }
 							} ? value : -1,
 							expression
 						);
@@ -123,7 +122,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							} expr
 							when int.TryParse(v, out int realValue):
 							{
-								if (realValue < 0 || realValue >= 81)
+								if (realValue is < 0 or >= 81)
 								{
 									context.ReportDiagnostic(
 										Diagnostic.Create(
@@ -188,7 +187,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 													new("RealValue", (realValue - 1).ToString())
 												}
 											),
-											messageArgs: new[] { $"~{realValue - 1}" }
+											messageArgs: new[] { $"~{(realValue - 1).ToString()}" }
 										)
 									);
 								}
@@ -249,8 +248,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									Diagnostic.Create(
 										descriptor: SD0308,
 										location: comparisonNode.GetLocation(),
-										additionalLocations: new Location[] { comparisonNode.GetLocation() },
-										messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{-v1 - 1}" }
+										additionalLocations: new[] { comparisonNode.GetLocation() },
+										messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{(-v1 - 1).ToString()}" }
 									)
 								);
 							}

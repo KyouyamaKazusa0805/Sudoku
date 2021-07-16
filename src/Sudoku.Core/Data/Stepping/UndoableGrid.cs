@@ -310,7 +310,7 @@ namespace Sudoku.Data.Stepping
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override string ToString() => _innerGrid.ToString();
+		public override string ToString() => _innerGrid.ToString(null);
 
 		/// <summary>
 		/// Returns a string that represents the current object with the specified format string.
