@@ -228,9 +228,9 @@ namespace Sudoku.Recognition.Extensions
 				{
 					using var temp = new Image<Bgra, byte>(size);
 					byte[,,] data = temp.Data;
-					for (int i = 0; i < size.Width; i++)
+					for (int i = 0, width = size.Width; i < width; i++)
 					{
-						for (int j = 0; j < size.Height; j++)
+						for (int j = 0, height = size.Height; j < height; j++)
 						{
 							var color = bitmap.GetPixel(i, j);
 							data[j, i, 0] = color.B;
@@ -267,7 +267,7 @@ namespace Sudoku.Recognition.Extensions
 			byte[,] bData = bTable.Data, gData = gTable.Data, rData = rTable.Data, aData = aTable.Data;
 
 			var colors = palette.Entries;
-			for (int i = 0; i < colors.Length; i++)
+			for (int i = 0, length = colors.Length; i < length; i++)
 			{
 				var c = colors[i];
 				bData[i, 0] = c.B;
@@ -283,7 +283,8 @@ namespace Sudoku.Recognition.Extensions
 		/// <param name="image">The image to copy data to.</param>
 		/// <param name="bmp">the bitmap to copy data from.</param>
 		private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
-			where TColor : struct, IColor where TDepth : new()
+			where TColor : struct, IColor
+			where TDepth : new()
 		{
 			var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 			using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);

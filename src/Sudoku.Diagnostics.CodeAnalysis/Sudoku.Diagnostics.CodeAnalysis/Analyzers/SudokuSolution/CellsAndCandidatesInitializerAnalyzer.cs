@@ -235,7 +235,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					}
 
 					// Check whether the initialize contains the same value.
-					for (i = 0; i < count - 1; i++)
+					i = 0;
+					for (int iterationCount = count - 1; i < iterationCount; i++)
 					{
 						var (v1, _) = values[i];
 

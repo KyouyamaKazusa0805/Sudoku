@@ -94,7 +94,7 @@ namespace Sudoku.Recognition
 			// Finding contours and choosing needed.
 			Cv.FindContours(edges, contours, null, RetrType.List, ChainApprox);
 
-			for (int i = 0; i < contours.Size; i++)
+			for (int i = 0, size = contours.Size; i < size; i++)
 			{
 				if (contours[i].Size < 4)
 				{
