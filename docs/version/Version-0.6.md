@@ -34,4 +34,5 @@
 * 修改 `RecognitionServiceProvider` 类型里的 `RecognizeAsync` 异步方法的返回值从 `Task<SudokuGrid>` 改成了 `ValueTask<SudokuGrid>`；
 * 将 `StringEx.SliceConcat` 方法重新命名为 `ReplaceAt`，并改变参数为 `char` 类型；
 * 所有 XML 文档注释里使用到的转义符号改用 `<![CDATA[]]>` 表达式块存储，避免出现转义符号；
+* SS0636 分析器将忽略对位模式里定义变量（如 `var` 模式）的情况（#145）；
 * 禁用掉了 SS0621 和 SS0622 的分析器代码，因为有 bug 不是很方便去修复。

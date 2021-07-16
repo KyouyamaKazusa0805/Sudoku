@@ -56,7 +56,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							break;
 						}
-						case not DiscardPatternSyntax when subpattern.NameColon is null:
+						case not (DiscardPatternSyntax or VarPatternSyntax) when subpattern.NameColon is null:
 						{
 							context.ReportDiagnostic(
 								Diagnostic.Create(
