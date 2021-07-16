@@ -418,15 +418,18 @@ namespace Sudoku.Windows.CustomControls
 
 			var writableImage = BitmapFactory.ConvertToPbgra32Format(img);
 			using var context = writableImage.GetBitmapContext();
-			for (int x = 0; x < img.PixelWidth; x++)
+			for (int x = 0, pixelWidth = img.PixelWidth; x < pixelWidth; x++)
 			{
-				for (int y = 0; y < img.PixelHeight; y++)
+				for (int y = 0, pixelHeight = img.PixelHeight; y < pixelHeight; y++)
 				{
 					var pixel = writableImage.GetPixel(x, y);
 					float newHue = sliderHue + pixel.GetHue();
 					newHue = newHue >= 360 ? newHue - 360 : newHue;
 					writableImage.SetPixel(
-						x, y, WColorEx.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness()));
+						x,
+						y,
+						WColorEx.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness())
+					);
 				}
 			}
 

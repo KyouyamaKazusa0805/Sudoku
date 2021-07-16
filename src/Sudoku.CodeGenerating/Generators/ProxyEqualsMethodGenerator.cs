@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
@@ -15,6 +16,7 @@ namespace Sudoku.CodeGenerating
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			var processedList = new List<INamedTypeSymbol>();
 			var compilation = context.Compilation;
 			var attributeSymbol = compilation.GetTypeByMetadataName<ProxyEqualityAttribute>();
@@ -23,16 +25,12 @@ namespace Sudoku.CodeGenerating
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
 				from member in type.GetMembers().OfType<IMethodSymbol>()
-				where (
-					from a in member.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					select a
-				).Any()
+				where member.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
 				let boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean)
 				let returnTypeSymbol = member.ReturnType
-				where SymbolEqualityComparer.Default.Equals(returnTypeSymbol, boolSymbol)
+				where f(returnTypeSymbol, boolSymbol)
 				let parameters = member.Parameters
-				where parameters.Length == 2 && parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, type))
+				where parameters.Length == 2 && parameters.All(p => f(p.Type, type))
 				select type)
 			{
 				if (processedList.Contains(type, SymbolEqualityComparer.Default))
@@ -43,7 +41,7 @@ namespace Sudoku.CodeGenerating
 				var methods = (
 					from member in type.GetMembers().OfType<IMethodSymbol>()
 					from attribute in member.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+					where f(attribute.AttributeClass, attributeSymbol)
 					select member
 				).First();
 

@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates a reason why the searcher is disabled.
 	/// </summary>
-	[Flags, Closed]
+	[Flags]
 	public enum DisabledReason : byte
 	{
 		/// <summary>
 		/// Indicates the searcher is normal.
 		/// </summary>
-		None,
+		None = 0,
 
 		/// <summary>
 		/// Indicates the searcher searches for last resorts, which don't need to show.

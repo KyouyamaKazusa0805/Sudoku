@@ -649,7 +649,7 @@ namespace Sudoku.Windows
 			// Refresh the list.
 			if (shouldRefresh)
 			{
-				for (int index = 0; index < _priorityControls.Count; index++)
+				for (int index = 0, count = _priorityControls.Count; index < count; index++)
 				{
 					var (name, _, type, _) = (StepTriplet)_priorityControls[index].Content;
 

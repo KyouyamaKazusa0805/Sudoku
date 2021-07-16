@@ -53,7 +53,7 @@ namespace Sudoku.Windows.CustomControls
 
 		Start:
 			// Iterate on each category, and add the missing nodes.
-			for (int i = 0; i < categories.Count; i++)
+			for (int i = 0, count = categories.Count; i < count; i++)
 			{
 				string category = categories[i];
 				if (!category.Contains('>'))

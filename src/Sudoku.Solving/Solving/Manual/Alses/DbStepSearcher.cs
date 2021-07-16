@@ -134,7 +134,11 @@ namespace Sudoku.Solving.Manual.Alses
 						{
 							var alsesUsed = dic.Values.ToArray();
 							bool overlap = false;
-							for (int i = 0, length = alsesUsed.Length; i < length - 1; i++)
+							for (
+								int i = 0, length = alsesUsed.Length, outerLoopIterationLength = length - 1;
+								i < outerLoopIterationLength;
+								i++
+							)
 							{
 								for (int j = i + 1; j < length; j++)
 								{
@@ -294,7 +298,7 @@ namespace Sudoku.Solving.Manual.Alses
 				}
 
 				int[] emptyCellsArray = tempEmptyCells.ToArray();
-				for (int i = 1; i < emptyCellsArray.Length; i++)
+				for (int i = 1, length = emptyCellsArray.Length; i < length; i++)
 				{
 					foreach (int[] cells in emptyCellsArray.GetSubsets(i))
 					{
@@ -315,7 +319,12 @@ namespace Sudoku.Solving.Manual.Alses
 						}
 
 						var map = new Cells(cells);
-						if ((PopCount((uint)map.BlockMask), region) is (1, >= 9))
+						if (
+							(CurrentBlockCellsCount: PopCount((uint)map.BlockMask), Region: region) is (
+								CurrentBlockCellsCount: 1,
+								Region: >= 9
+							)
+						)
 						{
 							// If the current cells are in the same block and same line (i.e. in mini-line),
 							// we will process them in blocks.

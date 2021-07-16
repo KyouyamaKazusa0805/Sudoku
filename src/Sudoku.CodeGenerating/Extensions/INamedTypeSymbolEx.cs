@@ -136,7 +136,7 @@ namespace Sudoku.CodeGenerating.Extensions
 			var buffer = (stackalloc char[result.Length]);
 			buffer.Fill('\0');
 			int pointer = 0;
-			for (int i = 0; i < result.Length; i++)
+			for (int i = 0, length = result.Length; i < length; i++)
 			{
 				switch (result[i])
 				{

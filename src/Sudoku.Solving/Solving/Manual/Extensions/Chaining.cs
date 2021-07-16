@@ -84,9 +84,9 @@ namespace Sudoku.Solving.Manual.Extensions
 				{
 					var pOn = new Node(p.Cell, TrailingZeroCount(mask), true, p);
 
-					if (source.HasValue && offNodes is not null)
+					if (source is { } sourceCell && offNodes is not null)
 					{
-						AddHiddenParentsOfCell(ref pOn, grid, source.Value, offNodes);
+						AddHiddenParentsOfCell(ref pOn, grid, sourceCell, offNodes);
 					}
 
 					result.Add(pOn);
@@ -106,9 +106,9 @@ namespace Sudoku.Solving.Manual.Extensions
 					{
 						var pOn = new Node(cells[0], p.Digit, true, p);
 
-						if (source.HasValue && offNodes is not null)
+						if (source is { } sourceCell && offNodes is not null)
 						{
-							AddHiddenParentsOfRegion(ref pOn, grid, source.Value, label, offNodes);
+							AddHiddenParentsOfRegion(ref pOn, grid, sourceCell, label, offNodes);
 						}
 
 						result.Add(pOn);

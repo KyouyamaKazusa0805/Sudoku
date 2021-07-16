@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
@@ -27,17 +28,14 @@ namespace Sudoku.CodeGenerating
 		public void Execute(GeneratorExecutionContext context)
 		{
 			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			var compilation = context.Compilation;
 			var attributeSymbol = compilation.GetTypeByMetadataName<AutoEqualityAttribute>();
 			foreach (var type in
 				from candidate in receiver.Candidates
 				let model = compilation.GetSemanticModel(candidate.SyntaxTree)
 				select (INamedTypeSymbol)model.GetDeclaredSymbol(candidate)! into type
-				where (
-					from a in type.GetAttributes()
-					where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-					select a
-				).Any()
+				where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
 				select type)
 			{
 				if (type.GetAttributeString(attributeSymbol) is not { } attributeStr)
@@ -76,12 +74,12 @@ namespace Sudoku.CodeGenerating
 		public {readonlyKeyword}bool Equals({inKeyword}{typeName}{genericParametersListWithoutConstraint}{nullableAnnotation} other) => {nullCheck}{memberCheck};";
 
 				var memberSymbols = type.GetMembers().OfType<IMethodSymbol>();
-				string opEquality = f(memberSymbols, OperatorNames.Equality)
+				string opEquality = isOp(memberSymbols, OperatorNames.Equality)
 					? $@"[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==({inKeyword}{typeName}{genericParametersListWithoutConstraint} left, {inKeyword}{typeName}{genericParametersListWithoutConstraint} right) => left.Equals(right);"
 					: "// 'operator ==' does exist in the type.";
 
-				string opInequality = f(memberSymbols, OperatorNames.Inequality)
+				string opInequality = isOp(memberSymbols, OperatorNames.Inequality)
 					? $@"[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=({inKeyword}{typeName}{genericParametersListWithoutConstraint} left, {inKeyword}{typeName}{genericParametersListWithoutConstraint} right) => !(left == right);"
 					: "// 'operator !=' does exist in the type.";
@@ -113,7 +111,7 @@ namespace {namespaceName}
 
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				static bool f(IEnumerable<IMethodSymbol> methods, string operatorName) =>
+				static bool isOp(IEnumerable<IMethodSymbol> methods, string operatorName) =>
 					methods.All(method => method.Name != operatorName);
 			}
 		}

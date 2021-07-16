@@ -99,14 +99,14 @@ namespace Sudoku.CodeGenerating.Extensions
 
 			fixed (char* pLine = @this)
 			{
-				for (int i = 0; i < @this.Length - 1;)
+				for (int i = 0, outerLoopIterationLength = @this.Length - 1; i < outerLoopIterationLength;)
 				{
 					if (pLine[i++] != '"')
 					{
 						continue;
 					}
 
-					for (int j = i + 1; j < @this.Length; j++)
+					for (int j = i + 1, innerLoopIterationLength = @this.Length; j < innerLoopIterationLength; j++)
 					{
 						if (pLine[j] != '"')
 						{
@@ -129,7 +129,7 @@ namespace Sudoku.CodeGenerating.Extensions
 			}
 
 			string[] result = @this.Split(',');
-			for (int i = 0; i < result.Length; i++)
+			for (int i = 0, length = result.Length; i < length; i++)
 			{
 				string temp = result[i].Replace(@"""", string.Empty).Replace('，', ',');
 

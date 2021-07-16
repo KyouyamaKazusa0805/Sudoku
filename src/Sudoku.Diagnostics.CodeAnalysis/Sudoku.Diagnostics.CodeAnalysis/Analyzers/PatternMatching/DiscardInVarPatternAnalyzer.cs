@@ -32,9 +32,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				case DiscardDesignationSyntax
 				{
 					Parent:
-						CasePatternSwitchLabelSyntax { WhenClause: not null }
+						CasePatternSwitchLabelSyntax { WhenClause: null }
 						or not CasePatternSwitchLabelSyntax
-						or SwitchExpressionArmSyntax { WhenClause: not null }
+						or SwitchExpressionArmSyntax { WhenClause: null }
 						or not SwitchExpressionArmSyntax
 				}:
 				{
@@ -51,9 +51,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				case ParenthesizedVariableDesignationSyntax
 				{
 					Parent:
-						CasePatternSwitchLabelSyntax { WhenClause: not null }
+						CasePatternSwitchLabelSyntax { WhenClause: null }
 						or not CasePatternSwitchLabelSyntax
-						or SwitchExpressionArmSyntax { WhenClause: not null }
+						or SwitchExpressionArmSyntax { WhenClause: null }
 						or not SwitchExpressionArmSyntax,
 					Variables: { Count: >= 2 } variables
 				}
