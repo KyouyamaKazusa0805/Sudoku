@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
@@ -11,17 +13,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SS0634")]
 	public sealed partial class AvailableEmptyBracePropertyPatternAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the property name that is used in <see cref="KeyValuePair{TKey, TValue}.Key"/>.
-		/// </summary>
-		private const string VariableNamePropertyName = "VariableName";
-
-		/// <summary>
-		/// Indicates a pair of braces (i.e. <c>{ }</c>).
-		/// </summary>
-		private const string EmptyBrace = "{ }";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -37,7 +28,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
-			switch (context.Node)
+			var (semanticModel, _, originalNode, _, cancellationToken) = context;
+
+			switch (originalNode)
 			{
 				// o is object variable
 				case IsPatternExpressionSyntax
@@ -46,23 +39,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Pattern: DeclarationPatternSyntax
 					{
 						Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } },
-						Designation: SingleVariableDesignationSyntax
-						{
-							Identifier: { ValueText: var variableName }
-						}
+						Designation: SingleVariableDesignationSyntax { Identifier: { ValueText: var variableName } }
 					}
-				} node:
+				}
+				when !expressionIsOfPointerTypeOrNull(expr):
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
 							descriptor: SS0634,
-							location: node.GetLocation(),
-							messageArgs: new[] { expr.ToString(), variableName, EmptyBrace },
+							location: originalNode.GetLocation(),
+							messageArgs: new[] { expr.ToString(), variableName, "{ }" },
 							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new(VariableNamePropertyName, variableName)
-								}
+								new KeyValuePair<string, string?>[] { new("VariableName", variableName) }
 							),
 							additionalLocations: new[] { expr.GetLocation() }
 						)
@@ -81,19 +69,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Left: var leftPattern,
 						Right: var rightPattern
 					}
-				} node:
+				}
+				when !expressionIsOfPointerTypeOrNull(expr):
 				{
-					switch ((leftPattern, rightPattern))
+					switch ((Left: leftPattern, Right: rightPattern))
 					{
 						case (
-							UnaryPatternSyntax
+							Left: UnaryPatternSyntax
 							{
 								Pattern: ConstantPatternSyntax
 								{
-									Expression: LiteralExpressionSyntax
-									{
-										RawKind: (int)SyntaxKind.NullLiteralExpression
-									}
+									Expression: { RawKind: (int)SyntaxKind.NullLiteralExpression }
 								}
 							} or RecursivePatternSyntax
 							{
@@ -102,12 +88,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								Designation: null
 							} or TypePatternSyntax
 							{
-								Type: PredefinedTypeSyntax
-								{
-									Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword }
-								}
+								Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
 							},
-							VarPatternSyntax
+							Right: VarPatternSyntax
 							{
 								Designation: SingleVariableDesignationSyntax
 								{
@@ -119,13 +102,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							context.ReportDiagnostic(
 								Diagnostic.Create(
 									descriptor: SS0634,
-									location: node.GetLocation(),
-									messageArgs: new[] { expr.ToString(), variableName, EmptyBrace },
+									location: originalNode.GetLocation(),
+									messageArgs: new[] { expr.ToString(), variableName, "{ }" },
 									properties: ImmutableDictionary.CreateRange(
-										new KeyValuePair<string, string?>[]
-										{
-											new(VariableNamePropertyName, variableName)
-										}
+										new KeyValuePair<string, string?>[] { new("VariableName", variableName) }
 									),
 									additionalLocations: new[] { expr.GetLocation() }
 								)
@@ -134,21 +114,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							break;
 						}
 						case (
-							VarPatternSyntax
+							Left: VarPatternSyntax
 							{
 								Designation: SingleVariableDesignationSyntax
 								{
 									Identifier: { ValueText: var variableName }
 								}
 							},
-							UnaryPatternSyntax
+							Right: UnaryPatternSyntax
 							{
 								Pattern: ConstantPatternSyntax
 								{
-									Expression: LiteralExpressionSyntax
-									{
-										RawKind: (int)SyntaxKind.NullLiteralExpression
-									}
+									Expression: { RawKind: (int)SyntaxKind.NullLiteralExpression }
 								}
 							} or RecursivePatternSyntax
 							{
@@ -167,13 +144,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							context.ReportDiagnostic(
 								Diagnostic.Create(
 									descriptor: SS0634,
-									location: node.GetLocation(),
-									messageArgs: new[] { expr.ToString(), variableName, EmptyBrace },
+									location: originalNode.GetLocation(),
+									messageArgs: new[] { expr.ToString(), variableName, "{ }" },
 									properties: ImmutableDictionary.CreateRange(
-										new KeyValuePair<string, string?>[]
-										{
-											new(VariableNamePropertyName, variableName)
-										}
+										new KeyValuePair<string, string?>[] { new("VariableName", variableName) }
 									),
 									additionalLocations: new[] { expr.GetLocation() }
 								)
@@ -185,6 +159,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				bool expressionIsOfPointerTypeOrNull(ExpressionSyntax expr) =>
+					semanticModel.GetOperation(expr, cancellationToken) is
+					{
+						// I Don't know why pointer types may let the symbol null... Is there a bug?
+						//     |
+						//     ↓
+						Type: null or IPointerTypeSymbol or IFunctionPointerTypeSymbol
+					};
 			}
 		}
 	}
