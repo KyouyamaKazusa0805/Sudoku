@@ -5,7 +5,7 @@
 
 下面陈列所有代码分析规则的整合内容，以表格形式呈现。
 
-| 编号                                      | 严重性（诊断级别） | 诊断类别                  | 是否包含修补器 | 待完成 |
+| 编号                                      | 严重性（诊断级别） | 诊断类别                  | 是否包含修补器 | 状态 |
 | ----------------------------------------- | ------------------ | ------------------------- | -------------- | ------ |
 | [SD0101](rules/Rule-SD0101) | ❌                  | StaticTechniqueProperties | ✔              |        |
 | [SD0102](rules/Rule-SD0102) | ❌                  | StaticTechniqueProperties | ✔              |        |
@@ -34,8 +34,8 @@
 | [SD0311](rules/Rule-SD0311) | ❌                  | Usage                     | ❌              |        |
 | [SD0312](rules/Rule-SD0312) | ⚠ | Usage | ✔ |  |
 | [SD0313](rules/Rule-SD0313) | ⚠ | Performance | ✔ |  |
-| [SD0314](rules/Rule-SD0314) | ⚠ | Usage | ❌ | 是 |
-| [SD0315](rules/Rule-SD0315) | ⚠ | Usage | ❌ | 是 |
+| [SD0314](rules/Rule-SD0314) | ⚠ | Usage | ❌ | 待完成 |
+| [SD0315](rules/Rule-SD0315) | ⚠ | Usage | ❌ | 待完成 |
 | [SD0401](rules/Rule-SD0401) | ⚠                  | Usage                     | ✔              |        |
 | [SD0402](rules/Rule-SD0402) | ⚠                  | Usage                     | ❌              |        |
 | [SD0403](rules/Rule-SD0403) | ❌                  | Usage                     | ❌              |        |
@@ -46,8 +46,8 @@
 | [SD0408](rules/Rule-SD0408) | ⚠ | Usage | ❌ |  |
 | [SD0409](rules/Rule-SD0409) | ⚠ | Usage | ❌ |  |
 | [SD0410](rules/Rule-SD0410) | ⚠ | Usage | ❌ |  |
-| [SD0411](rules/Rule-SD0411) | ❌ | Usage | ❌ | 是 |
-| [SD0412](rules/Rule-SD0412) | ⚠ | Usage | ❌ | 是 |
+| [SD0411](rules/Rule-SD0411) | ❌ | Usage | ❌ | 待完成 |
+| [SD0412](rules/Rule-SD0412) | ⚠ | Usage | ❌ | 待完成 |
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
@@ -63,8 +63,8 @@
 | [SS0310](rules/Rule-SS0310) | ⚠ | Performance | ❌ |  |
 | [SS0311](rules/Rule-SS0311) | ⚠ | Performance | ✔ |  |
 | [SS0312](rules/Rule-SS0312) | ℹ | Performance | ✔ |  |
-| [SS0313](rules/Rule-SS0313) | ℹ | Design | ❌ | 是 |
-| [SS0314](rules/Rule-SS0314) | ⚠ | Design | ❌ | 是 |
+| [SS0313](rules/Rule-SS0313) | ℹ | Design | ❌ | 待完成 |
+| [SS0314](rules/Rule-SS0314) | ⚠ | Design | ❌ | 待完成 |
 | [SS0401](rules/Rule-SS0401) | ❌                  | Usage                     | ❌              |        |
 | [SS0402](rules/Rule-SS0402) | ⚠                  | Design                    | ✔              |        |
 | [SS0403](rules/Rule-SS0403) | ⚠                  | Design                    | ✔              |        |
@@ -96,7 +96,8 @@
 | [SS0618](rules/Rule-SS0618) | ℹ                  | Design                    | ❌              |        |
 | [SS0619](rules/Rule-SS0619) | ℹ                  | Design                    | ❌              |        |
 | [SS0620](rules/Rule-SS0620) | ℹ                  | Design                    | ✔              |        |
-| [SS0622](rules/Rule-SS0622) | ℹ                  | Design                    | ❌              |        |
+| [SS0621](rules/Rule-SS0621) | ℹ | Design | ❌ | 禁用中 |
+| [SS0622](rules/Rule-SS0622) | ℹ                  | Design                    | ❌              | 禁用中 |
 | [SS0623](rules/Rule-SS0623) | ⚠                  | Design                    | ❌              |        |
 | [SS0624](rules/Rule-SS0624) | ℹ                  | Design                    | ❌              |        |
 | [SS0625](rules/Rule-SS0625) | ⚠                  | Design                    | ❌              |        |
@@ -107,12 +108,12 @@
 | [SS0636](rules/Rule-SS0636) | ℹ                  | Design                    | ❌              |        |
 | [SS0701](rules/Rule-SS0701) | ℹ                  | Design                    | ✔              |        |
 | [SS0702](rules/Rule-SS0702) | ℹ                  | Design                    | ✔              |        |
-| [SS0703](rules/Rule-SS0703) | ℹ                  | Design                    | ✔              |        |
-| [SS0704](rules/Rule-SS0704) | ℹ                  | Design                    | ✔              |        |
+| [SS0703](rules/Rule-SS0703) | ℹ                  | Design                    | ✔              | 禁用中 |
+| [SS0704](rules/Rule-SS0704) | ℹ                  | Design                    | ✔              | 禁用中 |
 | [SS0705](rules/Rule-SS0705) | ℹ                  | Design                    | ❌              |        |
 | [SS0706](rules/Rule-SS0706) | ⚠                  | Usage                     | ✔              |        |
-| [SS0801](rules/Rule-SS0801) | ⚠ | Usage | ❌ | 是 |
-| [SS0802](rules/Rule-SS0802) | ❌ | Usage | ❌ | 是 |
+| [SS0801](rules/Rule-SS0801) | ⚠ | Usage | ❌ | 待完成 |
+| [SS0802](rules/Rule-SS0802) | ❌ | Usage | ❌ | 待完成 |
 | [SS9001](rules/Rule-SS9001) | ℹ                  | Performance               | ✔              |        |
 | [SS9002](rules/Rule-SS9002) | ℹ                  | Usage                     | ✔              |        |
 | [SS9003](rules/Rule-SS9003) | ⚠                  | Usage                     | ❌              |        |
@@ -121,5 +122,5 @@
 | [SS9006](rules/Rule-SS9006) | ⚠                  | Design                    | ✔              |        |
 | [SS9007](rules/Rule-SS9007) | ℹ                  | Usage                     | ✔              |        |
 | [SS9008](rules/Rule-SS9008) | ℹ | Design | ✔ |  |
-| [SS9009](rules/Rule-SS9009) | ℹ | Performance | ❌ | 是 |
-| [SS9010](rules/Rule-SS9010) | ⚠ | Design | ❌ | 是 |
+| [SS9009](rules/Rule-SS9009) | ℹ | Performance | ❌ | 待完成 |
+| [SS9010](rules/Rule-SS9010) | ⚠ | Design | ❌ | 待完成 |
