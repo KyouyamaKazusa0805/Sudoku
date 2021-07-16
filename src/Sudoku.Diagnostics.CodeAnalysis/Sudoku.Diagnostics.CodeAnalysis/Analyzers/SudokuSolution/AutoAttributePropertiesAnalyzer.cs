@@ -13,22 +13,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SD0401", "SD0402")]
 	public sealed partial class AutoAttributePropertiesAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the full type names.
-		/// </summary>
-		private const string
-			AutoDeconstructAttributeTypeName = "AutoDeconstructAttribute",
-			AutoDeconstructAttributeTypeShortName = "AutoDeconstruct",
-			AutoDeconstructExtensionAttributeTypeName = "AutoDeconstructExtensionAttribute",
-			AutoDeconstructExtensionAttributeTypeShortName = "AutoDeconstructExtension",
-			AutoEqualityAttributeTypeName = "AutoEqualityAttribute",
-			AutoEqualityAttributeTypeShortName = "AutoEquality",
-			AutoGetEnumeratorAttributeTypeName = "AutoGetEnumeratorAttribute",
-			AutoGetEnumeratorAttributeTypeShortName = "AutoGetEnumerator",
-			AutoHashCodeAttributeTypeName = "AutoHashCodeAttribute",
-			AutoHashCodeAttributeTypeShortName = "AutoHashCode";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -78,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					switch (text)
 					{
-						case AutoDeconstructAttributeTypeName or AutoDeconstructAttributeTypeShortName:
+						case nameof(AutoDeconstructAttribute) or "AutoDeconstruct":
 						{
 							if (arguments.Count < 2)
 							{
@@ -88,7 +72,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGenerating.{AutoDeconstructAttributeTypeName}",
+											"Sudoku.CodeGenerating.AutoDeconstructAttribute",
 											2,
 											" at least"
 										}
@@ -101,8 +85,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							goto ArgumentsChecking_Case1;
 						}
 						case var name and (
-							AutoEqualityAttributeTypeName or AutoEqualityAttributeTypeShortName
-							or AutoHashCodeAttributeTypeName or AutoHashCodeAttributeTypeShortName
+							nameof(AutoEqualityAttribute) or "AutoEquality"
+							or nameof(AutoHashCodeAttribute) or "AutoHashCode"
 						):
 						{
 							if (arguments.Count < 1)
@@ -125,8 +109,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case1;
 						}
-						case AutoDeconstructExtensionAttributeTypeName
-						or AutoDeconstructExtensionAttributeTypeShortName:
+						case nameof(AutoDeconstructExtensionAttribute) or "AutoDeconstructExtension":
 						{
 							if (arguments.Count < 3)
 							{
@@ -136,7 +119,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 										location: node.GetLocation(),
 										messageArgs: new object[]
 										{
-											$"Sudoku.CodeGenerating.{AutoDeconstructExtensionAttributeTypeName}",
+											"Sudoku.CodeGenerating.AutoDeconstructExtensionAttribute",
 											3,
 											" at least"
 										}
@@ -148,14 +131,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 							goto ArgumentsChecking_Case2;
 						}
-						case AutoGetEnumeratorAttributeTypeName or AutoGetEnumeratorAttributeTypeShortName:
+						case nameof(AutoGetEnumeratorAttribute) or "AutoGetEnumerator":
 						{
 							if (
 								arguments[0] is { Expression: var expr } argument
 								&& semanticModel.GetOperation(expr) is
 								{
 									Kind: not OperationKind.NameOf,
-									ConstantValue: { HasValue: true, Value: string exprValue }
+									ConstantValue: { HasValue: true, Value: string exprValue and not "@" }
 								}
 							)
 							{

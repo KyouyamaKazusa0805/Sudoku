@@ -1403,7 +1403,7 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a></term>
-            <description>Please use nameof expression instead</description>
+            <description>Please use 'nameof' expression instead</description>
             </item>
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0402">SD0402</a></term>
@@ -1412,63 +1412,13 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructAttributeTypeName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructAttributeTypeShortName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructExtensionAttributeTypeName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoDeconstructExtensionAttributeTypeShortName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoEqualityAttributeTypeName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoEqualityAttributeTypeShortName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoGetEnumeratorAttributeTypeName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoGetEnumeratorAttributeTypeShortName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoHashCodeAttributeTypeName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.AutoHashCodeAttributeTypeShortName">
-            <summary>
-            Indicates the full type names.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SD0401">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a>
-            diagnostic result (Please use nameof expression instead).
+            diagnostic result (Please use 'nameof' expression instead).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer.SD0402">
@@ -2502,7 +2452,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0401">SD0401</a>
-            (Please use nameof expression instead).
+            (Please use 'nameof' expression instead).
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0401CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">

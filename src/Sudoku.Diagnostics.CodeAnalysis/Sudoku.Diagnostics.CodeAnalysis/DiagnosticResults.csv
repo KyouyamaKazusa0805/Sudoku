@@ -26,7 +26,7 @@ SD0310,Info,Usage,"Please add the format string as the argument into the method 
 SD0311,Error,Usage,Invalid format string in 'SudokuGrid.ToString'.,Invalid format string in 'SudokuGrid.ToString'.
 SD0312,Warning,Usage,Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder'.,
 SD0313,Warning,Performance,The length of the buffer is too long; please use another constructor passing an 'int' value.,
-SD0401,Warning,Usage,Please use nameof expression instead.,
+SD0401,Warning,Usage,Please use 'nameof' expression instead.,
 SD0402,Warning,Usage,This attribute must contain the specified number of parameters.,'{0}' must contain at least {1} parameters.
 SD0403,Error,Usage,'DirectSearcherAttribute' attribute can be only used for step searchers.,'DirectSearcherAttribute' attribute cann't be used for the type '{0}' because it isn't a step searcher.
 SD0404,Warning,Usage,"If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps'.",

@@ -41,10 +41,7 @@ namespace Sudoku.CodeGenerating
 						{
 							NameEquals:
 							{
-								Name:
-								{
-									Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.ReturnType) }
-								}
+								Name: { Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.ReturnType) } }
 							},
 							Expression: var expr
 						}
@@ -88,16 +85,10 @@ namespace Sudoku.CodeGenerating
 							{
 								Name:
 								{
-									Identifier:
-									{
-										ValueText: nameof(AutoGetEnumeratorAttribute.MemberConversion)
-									}
+									Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.MemberConversion) }
 								}
 							},
-							Expression: LiteralExpressionSyntax
-							{
-								Token: { ValueText: var text }
-							}
+							Expression: LiteralExpressionSyntax { Token: { ValueText: var text } }
 						}
 					)
 					{
@@ -126,7 +117,20 @@ namespace Sudoku.CodeGenerating
 				}
 
 				string memberNameStr = attribute.ArgumentList.Arguments[0].Expression.ToString();
-				string memberName = memberNameStr == @"""@""" ? "this" : memberNameStr.Substring(7, memberNameStr.Length - 8);
+				string memberName;
+				if (memberNameStr == @"""@""")
+				{
+					memberName = "this";
+				}
+				else if (memberNameStr.Length - 8 is var pos and >= 0)
+				{
+					memberName = memberNameStr.Substring(7, pos);
+				}
+				else
+				{
+					return null;
+				}
+
 				string exprStr = getConversion(attribute.ArgumentList.Arguments);
 				string memberConversion = exprStr.Replace("@", memberName).Replace("*", "GetEnumerator()");
 				string extraNamespaces = getExtraNamespaces(attribute.ArgumentList.Arguments, semanticModel);
