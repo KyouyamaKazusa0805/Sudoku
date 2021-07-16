@@ -43,7 +43,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (modifiers.Any(static modifier => modifier.RawKind == (int)SyntaxKind.ReadOnlyKeyword))
+			if (
+				modifiers.Any(static modifier => modifier is
+				{
+					RawKind: (int)SyntaxKind.ReadOnlyKeyword or (int)SyntaxKind.StaticKeyword
+				})
+			)
 			{
 				return;
 			}
