@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -13,12 +14,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SD0405")]
 	public sealed partial class AutoEqualityArgumentsAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the full type name of type <c>AutoEqualityAttribute</c>.
-		/// </summary>
-		private const string AutoEqualityAttributeTypeName = "Sudoku.CodeGenerating.AutoEqualityAttribute";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -52,20 +47,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			var attributesData = semanticModel
-				.GetDeclaredSymbol(originalNode, cancellationToken)!
-				.GetAttributes();
-
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+			var attributesData = semanticModel.GetDeclaredSymbol(originalNode, cancellationToken)!.GetAttributes();
+			var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoEqualityAttribute).FullName);
 			SyntaxNode? attribute = null;
-			foreach (var attributeData in attributesData)
+			foreach (var a in attributesData)
 			{
-				if (
-					attributeData.AttributeClass is { } s
-					&& SymbolEqualityComparer.Default.Equals(
-						s,
-						compilation.GetTypeByMetadataName(AutoEqualityAttributeTypeName)
-					)
-				)
+				if (f(a.AttributeClass, attributeSymbol))
 				{
 					foreach (var attributeList in attributeLists)
 					{
@@ -76,7 +64,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								{
 									Name: IdentifierNameSyntax
 									{
-										Identifier: { ValueText: "AutoEqualityAttribute" or "AutoEquality" }
+										Identifier: { ValueText: nameof(AutoEqualityAttribute) or "AutoEquality" }
 									}
 								}
 							)
@@ -91,12 +79,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 		DetermineSyntaxNode:
-			if (
-				attribute is not AttributeSyntax
-				{
-					ArgumentList: { Arguments: { Count: not 0 } arguments }
-				}
-			)
+			if (attribute is not AttributeSyntax { ArgumentList: { Arguments: { Count: not 0 } arguments } })
 			{
 				return;
 			}
@@ -123,24 +106,28 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 
 				var nameofArgExpr = nameofArgs[0].Expression;
+				if (
+					semanticModel.GetOperation(nameofArgExpr, cancellationToken) is not
+					{
+						Type: INamedTypeSymbol { BaseType: var baseType } argTypeSymbol
+					}
+				)
+				{
+					continue;
+				}
 
-				var nameofArgTypeSymbol = semanticModel.GetOperation(nameofArgExpr, cancellationToken)?.Type;
-				if (nameofArgTypeSymbol is not INamedTypeSymbol argTypeSymbol)
+				// Check whether the type is an enumeration type. If so, the enumeration has already implemented
+				// the operator ==, so we should ignore on this case.
+				if (baseType?.ToDisplayString(FormatOptions.TypeFormat) == typeof(Enum).FullName)
 				{
 					continue;
 				}
 
 				// Check whether the type contains the operator '=='.
 				bool containsOperatorEquality = argTypeSymbol.MemberNames.Contains("op_Equality");
-				if (
-					containsOperatorEquality
-					|| !containsOperatorEquality && builtInTypes.Any(
-						builtInType => SymbolEqualityComparer.Default.Equals(
-							builtInType,
-							argTypeSymbol
-						)
-					)
-				)
+				if (containsOperatorEquality
+					|| !containsOperatorEquality
+					&& builtInTypes.Contains(argTypeSymbol, SymbolEqualityComparer.Default))
 				{
 					continue;
 				}

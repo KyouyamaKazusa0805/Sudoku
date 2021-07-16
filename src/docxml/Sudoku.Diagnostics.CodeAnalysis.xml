@@ -1441,11 +1441,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.AutoEqualityAttributeTypeName">
-            <summary>
-            Indicates the full type name of type <c>AutoEqualityAttribute</c>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoEqualityArgumentsAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
