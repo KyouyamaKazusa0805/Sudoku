@@ -114,7 +114,7 @@ namespace Sudoku.Windows
 			if (
 				sender is MenuItem && _listBoxTechniques is
 				{
-					SelectedItem: ListBoxItem { Content: InfoTriplet(_, var info, true, _) triplet }
+					SelectedItem: ListBoxItem { Content: InfoTriplet(_, var info, Item3: true, _) triplet }
 				}
 			)
 			{
