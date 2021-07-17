@@ -12,12 +12,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	public sealed partial class SudokuGridFormatStringAnalyzer : DiagnosticAnalyzer
 	{
 		/// <summary>
-		/// Indicates the full type name of the sudoku grid.
-		/// </summary>
-		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
-
-
-		/// <summary>
 		/// All possible format strings to check.
 		/// </summary>
 		private static readonly string[] PossibleFormats = new[]
@@ -67,7 +61,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			var sudokuGridType = compilation.GetTypeByMetadataName(SudokuGridFullTypeName);
+			if (compilation.GetTypeByMetadataName("Sudoku.Data.SudokuGrid") is not { } sudokuGridType)
+			{
+				return;
+			}
+
 			if (!SymbolEqualityComparer.Default.Equals(possibleSudokuGridType, sudokuGridType))
 			{
 				return;

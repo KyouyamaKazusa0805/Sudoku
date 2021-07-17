@@ -2040,18 +2040,13 @@
             <list type="table">
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a></term>
-            <description>Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case</description>
+            <description>Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case</description>
             </item>
             <item>
             <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0311">SD0311</a></term>
             <description>Invalid format string in 'SudokuGrid.ToString'</description>
             </item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SudokuGridFullTypeName">
-            <summary>
-            Indicates the full type name of the sudoku grid.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.PossibleFormats">
@@ -2065,7 +2060,7 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SD0310">
             <summary>
             Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a>
-            diagnostic result (Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case).
+            diagnostic result (Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridFormatStringAnalyzer.SD0311">
@@ -2329,7 +2324,7 @@
             <summary>
             Indicates the code fixer for solving the diagnostic result
             <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</a>
-            (Please add the format string as the argument into the method invocation of SudokuGrid, such as '.' for default case, or '#' for intelligent-handling case).
+            (Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case).
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0310CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
@@ -3258,6 +3253,21 @@
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.Deconstruct(Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance to multiple values.
+            </summary>
+            <param name="this">The type symbol instance.</param>
+            <param name="isValueType">
+            The <see cref="T:System.Boolean"/> value indicating whether the type is a value type.
+            </param>
+            <param name="isReferenceType">
+            The <see cref="T:System.Boolean"/> value indicating whether the type is a reference type.
+            </param>
+            <param name="isNullable">
+            The <see cref="T:System.Boolean"/> value indicating whether the type is a nullable type.
+            </param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.ITypeSymbolEx.IsNullableType(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
