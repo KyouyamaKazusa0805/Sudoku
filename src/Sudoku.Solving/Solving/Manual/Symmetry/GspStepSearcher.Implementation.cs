@@ -57,7 +57,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					if (d1 == d2)
 					{
 						int? o1 = mapping[d1];
-						if (!o1.HasValue)
+						if (o1 is null)
 						{
 							mapping[d1] = d1;
 							continue;
@@ -71,12 +71,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 					else
 					{
 						int? o1 = mapping[d1], o2 = mapping[d2];
-						if (o1.HasValue ^ o2.HasValue)
+						if (o1 is not null ^ o2 is not null)
 						{
 							return;
 						}
 
-						if (!o1.HasValue && !o2.HasValue)
+						if (o1 is null && o2 is null)
 						{
 							mapping[d1] = d2;
 							mapping[d2] = d1;
@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int digit = 0; digit < 9; digit++)
 			{
 				int? mappingDigit = mapping[digit];
-				if (!mappingDigit.HasValue || mappingDigit == digit)
+				if (mappingDigit is null || mappingDigit == digit)
 				{
 					singleDigitList.Add(digit);
 				}
@@ -187,7 +187,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					if (d1 == d2)
 					{
 						int? o1 = mapping[d1];
-						if (!o1.HasValue)
+						if (o1 is null)
 						{
 							mapping[d1] = d1;
 							continue;
@@ -201,12 +201,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 					else
 					{
 						int? o1 = mapping[d1], o2 = mapping[d2];
-						if (o1.HasValue ^ o2.HasValue)
+						if (o1 is not null ^ o2 is not null)
 						{
 							return;
 						}
 
-						if (!o1.HasValue && !o2.HasValue)
+						if (o1 is null && o2 is null)
 						{
 							mapping[d1] = d2;
 							mapping[d2] = d1;
@@ -226,7 +226,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			for (int digit = 0; digit < 9; digit++)
 			{
 				int? mappingDigit = mapping[digit];
-				if (!mappingDigit.HasValue || mappingDigit == digit)
+				if (mappingDigit is null || mappingDigit == digit)
 				{
 					singleDigitList.Add(digit);
 				}
@@ -305,7 +305,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 				if (d1 == d2)
 				{
 					int? o1 = mapping[d1];
-					if (!o1.HasValue)
+					if (o1 is null)
 					{
 						mapping[d1] = d1;
 						continue;
@@ -319,12 +319,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 				else
 				{
 					int? o1 = mapping[d1], o2 = mapping[d2];
-					if (o1.HasValue ^ o2.HasValue)
+					if (o1 is not null ^ o2 is not null)
 					{
 						return;
 					}
 
-					if (!o1.HasValue && !o2.HasValue)
+					if (o1 is null && o2 is null)
 					{
 						mapping[d1] = d2;
 						mapping[d2] = d1;
@@ -341,7 +341,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 			for (int digit = 0; digit < 9; digit++)
 			{
-				if (mapping[digit] == digit || !mapping[digit].HasValue)
+				if (mapping[digit] is null || mapping[digit] == digit)
 				{
 					var conclusion = new Conclusion(ConclusionType.Assignment, 40, digit);
 					result.Add(conclusion);
@@ -350,7 +350,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 						new[] { conclusion },
 						new View[] { new() { Candidates = new DrawingInfo[] { new(0, 360 + digit) } } },
 						SymmetryType.Central,
-						mapping.ToArray());
+						mapping.ToArray()
+					);
 
 					return;
 				}
