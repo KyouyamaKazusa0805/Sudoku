@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Globalization;
+using Sudoku.Versioning;
 
 namespace Sudoku.Resources
 {
@@ -14,6 +15,7 @@ namespace Sudoku.Resources
 	/// in this solution.
 	/// </i>
 	/// </remarks>
+	[NonVersionable]
 	public sealed class TextResources
 	{
 		/// <summary>

@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using Sudoku.Globalization;
+using Sudoku.Versioning;
 
 namespace Sudoku.Resources
 {
 	/// <summary>
 	/// Provides a way to get the local text resources, and save the resources to the local path.
 	/// </summary>
+	[NonVersionable]
 	public sealed partial class TextResources : DynamicObject
 	{
 		/// <summary>

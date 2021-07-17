@@ -724,16 +724,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.EqualsToken">
-            <summary>
-            Indicates the equals token and not equals token.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.NotEqualsToken">
-            <summary>
-            Indicates the equals token and not equals token.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.BuiltInTypesConstantPatternAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>
@@ -1730,36 +1720,6 @@
             <description>The specified dynamic invocation method doesn't exist</description>
             </item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.ChangeLanguageMethodName">
-            <summary>
-            Indicates the method name that is called in order to change the language of that resource dictionary.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.SerializeMethodName">
-            <summary>
-            Indicates the method name that is called in order to serialize the object.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.DeserializeMethodName">
-            <summary>
-            Indicates the method name that is called in order to deserialize the object.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.CountryCodeTypeName">
-            <summary>
-            Indicates the country code type name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesClassName">
-            <summary>
-            Indicates the text resources class name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.TextResourcesStaticReadOnlyFieldName">
-            <summary>
-            Indicates that field dynamically bound.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DynamicallyInvocationOfCurrentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">

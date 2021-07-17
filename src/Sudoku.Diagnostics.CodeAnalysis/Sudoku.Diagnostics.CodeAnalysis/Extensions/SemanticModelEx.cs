@@ -30,15 +30,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// <exception cref="ArgumentException">Throws when the type can't be inferred.</exception>
 		public static bool TypeEquals(
 			this SemanticModel @this, SyntaxNode left, SyntaxNode right, bool withNullableChecking = false,
-			CancellationToken cancellationToken = default) =>
-			(left.RawKind, right.RawKind, @this.GetOperation(left, cancellationToken)?.Type, @this.GetOperation(right, cancellationToken)?.Type) switch
+			CancellationToken cancellationToken = default) => (
+				LKind: left.RawKind,
+				RKind: right.RawKind,
+				LType: @this.GetOperation(left, cancellationToken)?.Type,
+				RType: @this.GetOperation(right, cancellationToken)?.Type
+			) switch
 			{
-				((int)SyntaxKind.NullLiteralExpression, _, _, { IsReferenceType: true }) => true,
-				(_, (int)SyntaxKind.NullLiteralExpression, { IsReferenceType: true }, _) => true,
-				((int)SyntaxKind.NullLiteralExpression, _, _, { IsValueType: true }) => false,
-				(_, (int)SyntaxKind.NullLiteralExpression, { IsValueType: true }, _) => false,
-				(_, _, null, _) => throw new ArgumentException("The type can't be inferred.", nameof(left)),
-				(_, _, _, null) => throw new ArgumentException("The type can't be inferred.", nameof(right)),
+				(LKind: (int)SyntaxKind.NullLiteralExpression, _, _, RType: { IsReferenceType: true }) => true,
+				(_, RKind: (int)SyntaxKind.NullLiteralExpression, LType: { IsReferenceType: true }, _) => true,
+				(LKind: (int)SyntaxKind.NullLiteralExpression, _, _, RType: { IsValueType: true }) => false,
+				(_, RKind: (int)SyntaxKind.NullLiteralExpression, LType: { IsValueType: true }, _) => false,
+				(_, _, LType: null, _) => throw new ArgumentException("The type can't be inferred.", nameof(left)),
+				(_, _, _, RType: null) => throw new ArgumentException("The type can't be inferred.", nameof(right)),
 				(_, _, var l, var r) => (withNullableChecking ? IncludeNullability : Default).Equals(l, r)
 			};
 	}

@@ -14,12 +14,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SS0604F")]
 	public sealed partial class BuiltInTypesConstantPatternAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the equals token and not equals token.
-		/// </summary>
-		private const string EqualsToken = "==", NotEqualsToken = "!=";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -50,7 +44,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				// o is constantValue
 				case ConstantPatternSyntax
 				{
-					Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
+					Expression: LiteralExpressionSyntax
+					{
+						RawKind: not (int)SyntaxKind.NullLiteralExpression
+					} constantExpression
 				}
 				when semanticModel.TypeEquals(
 					expressionToCheck, constantExpression, cancellationToken: cancellationToken
@@ -63,14 +60,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							messageArgs: new[]
 							{
 								expressionToCheck.ToString(),
-								EqualsToken,
+								"==",
 								constantExpression.ToString()
 							},
 							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new("EqualityToken", EqualsToken)
-								}
+								new KeyValuePair<string, string?>[] { new("EqualityToken", "==") }
 							),
 							additionalLocations: new[]
 							{
@@ -89,7 +83,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					RawKind: (int)SyntaxKind.NotPattern,
 					Pattern: ConstantPatternSyntax
 					{
-						Expression: { RawKind: not (int)SyntaxKind.NullLiteralExpression } constantExpression
+						Expression: LiteralExpressionSyntax
+						{
+							RawKind: not (int)SyntaxKind.NullLiteralExpression
+						} constantExpression
 					}
 				}
 				when semanticModel.TypeEquals(
@@ -103,14 +100,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							messageArgs: new[]
 							{
 								expressionToCheck.ToString(),
-								NotEqualsToken,
+								"!=",
 								constantExpression.ToString()
 							},
 							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new("EqualityToken", NotEqualsToken)
-								}
+								new KeyValuePair<string, string?>[] { new("EqualityToken", "!=") }
 							),
 							additionalLocations: new[]
 							{

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Sudoku.Versioning;
 
 namespace Sudoku.Globalization
 {
@@ -10,6 +11,7 @@ namespace Sudoku.Globalization
 	/// multi-language string.
 	/// </remarks>
 	[Closed]
+	[NonVersionable]
 	public enum CountryCode : short
 	{
 		/// <summary>

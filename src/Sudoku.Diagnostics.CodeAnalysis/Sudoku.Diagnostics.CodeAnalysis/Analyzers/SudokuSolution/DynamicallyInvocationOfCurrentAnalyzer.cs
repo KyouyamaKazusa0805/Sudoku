@@ -12,37 +12,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SD0202", "SD0203", "SD0204", "SD0205", "SD0206")]
 	public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the method name that is called in order to change the language of that resource dictionary.
-		/// </summary>
-		private const string ChangeLanguageMethodName = "ChangeLanguage";
-
-		/// <summary>
-		/// Indicates the method name that is called in order to serialize the object.
-		/// </summary>
-		private const string SerializeMethodName = "Serialize";
-
-		/// <summary>
-		/// Indicates the method name that is called in order to deserialize the object.
-		/// </summary>
-		private const string DeserializeMethodName = "Deserialize";
-
-		/// <summary>
-		/// Indicates the country code type name.
-		/// </summary>
-		private const string CountryCodeTypeName = "Sudoku.Globalization.CountryCode";
-
-		/// <summary>
-		/// Indicates the text resources class name.
-		/// </summary>
-		private const string TextResourcesClassName = "TextResources";
-
-		/// <summary>
-		/// Indicates that field dynamically bound.
-		/// </summary>
-		private const string TextResourcesStaticReadOnlyFieldName = "Current";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -74,14 +43,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						Expression: MemberAccessExpressionSyntax
 						{
 							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-							Expression: IdentifierNameSyntax
-							{
-								Identifier: { ValueText: TextResourcesClassName }
-							},
-							Name: IdentifierNameSyntax
-							{
-								Identifier: { ValueText: TextResourcesStaticReadOnlyFieldName }
-							}
+							Expression: IdentifierNameSyntax { Identifier: { ValueText: "TextResources" } },
+							Name: IdentifierNameSyntax { Identifier: { ValueText: "Current" } }
 						},
 						Name: IdentifierNameSyntax
 						{
@@ -98,9 +61,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			int actualParamsCount = argumentListNode.Arguments.Count;
 			int requiredParamsCount = methodName switch
 			{
-				ChangeLanguageMethodName => 1,
-				SerializeMethodName => 2,
-				DeserializeMethodName => 2,
+				"ChangeLanguage" => 1,
+				"Serialize" => 2,
+				"Deserialize" => 2,
 				_ => -1
 			};
 			if (requiredParamsCount != -1 && actualParamsCount != requiredParamsCount)
@@ -112,12 +75,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			switch (methodName)
 			{
-				case ChangeLanguageMethodName:
+				case "ChangeLanguage":
 				{
 					if (
 						!SymbolEqualityComparer.Default.Equals(
 							semanticModel.GetOperation(argumentListNode.Arguments[0].Expression)!.Type,
-							compilation.GetTypeByMetadataName(CountryCodeTypeName)
+							compilation.GetTypeByMetadataName("Sudoku.Globalization.CountryCode")
 						)
 					)
 					{
@@ -126,8 +89,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 					break;
 				}
-				case SerializeMethodName:
-				case DeserializeMethodName:
+				case "Serialize":
+				case "Deserialize":
 				{
 					var expectedTypeSymbol = compilation.GetSpecialType(SpecialType.System_String);
 					for (int i = 0; i < 2; i++)
@@ -193,7 +156,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					messageArgs: new object?[]
 					{
 						methodName,
-						CountryCodeTypeName,
+						"Sudoku.Globalization.CountryCode",
 						argListNode.Arguments[0].GetParamFullName(semanticModel, cancellationToken)
 					}
 				)
