@@ -1289,16 +1289,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.SpanTypeFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.ReadOnlySpanTypeFullName">
-            <summary>
-            Indicates the full type name of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SpanOrReadOnlySpanAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>

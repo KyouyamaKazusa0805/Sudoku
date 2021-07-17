@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -13,17 +14,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SS0201")]
 	public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the full type name of <see cref="Span{T}"/> of <see cref="int"/>.
-		/// </summary>
-		private const string SpanTypeFullName = "System.Span`1";
-
-		/// <summary>
-		/// Indicates the full type name of <see cref="ReadOnlySpan{T}"/> of <see cref="int"/>.
-		/// </summary>
-		private const string ReadOnlySpanTypeFullName = "System.ReadOnlySpan`1";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -63,10 +53,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// <param name="node">The root node of the function.</param>
 		private static void InternalVisit(SyntaxNodeAnalysisContext context, SyntaxNode node)
 		{
-			var (semanticModel, compilation) = context;
+			var (semanticModel, compilation, _, _, cancellationToken) = context;
+
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+			Func<SpecialType, INamedTypeSymbol> s = compilation.GetSpecialType;
+			Func<string, INamedTypeSymbol?> c = compilation.GetTypeByMetadataName;
 			foreach (var descendant in node.DescendantNodes().ToArray())
 			{
-				// Check whether the block contains explicit or implicit new clauses.
+				// Check whether the block contains an explicit or implicit new expression.
 				if (
 					descendant is not BaseObjectCreationExpressionSyntax
 					{
@@ -80,13 +74,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 
 				// Check operation and get the constructor symbol.
-				var operation = semanticModel.GetOperation(newClauseNode);
 				if (
-					operation is not IObjectCreationOperation
+					semanticModel.GetOperation(newClauseNode, cancellationToken) is not IObjectCreationOperation
 					{
 						Kind: OperationKind.ObjectCreation,
 						Constructor: { } constructorSymbol
-					}
+					} operation
 				)
 				{
 					continue;
@@ -101,14 +94,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				// Check type.
 				INamedTypeSymbol
 					typeSymbol = containingType.ConstructUnboundGenericType(),
-					spanTypeSymbol = compilation
-						.GetTypeByMetadataName(SpanTypeFullName)!
-						.ConstructUnboundGenericType(),
-					readOnlySpanTypeSymbol = compilation
-						.GetTypeByMetadataName(ReadOnlySpanTypeFullName)!
-						.ConstructUnboundGenericType();
-				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol)
-					&& !SymbolEqualityComparer.Default.Equals(typeSymbol, readOnlySpanTypeSymbol))
+					spanTypeSymbol = c(typeof(Span<>).FullName)!.ConstructUnboundGenericType(),
+					readOnlySpanTypeSymbol = c(typeof(ReadOnlySpan<>).FullName)!.ConstructUnboundGenericType();
+				if (!f(typeSymbol, spanTypeSymbol) && !f(typeSymbol, readOnlySpanTypeSymbol))
 				{
 					continue;
 				}
@@ -119,16 +107,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				if (
-					!SymbolEqualityComparer.Default.Equals(
-						@params[0].Type,
-						compilation.CreatePointerTypeSymbol(compilation.GetSpecialType(SpecialType.System_Void))
-					)
-					|| !SymbolEqualityComparer.Default.Equals(
-						@params[1].Type,
-						compilation.GetSpecialType(SpecialType.System_Int32)
-					)
-				)
+				if (!f(@params[0].Type, compilation.CreatePointerTypeSymbol(s(SpecialType.System_Void)))
+					|| !f(@params[1].Type, s(SpecialType.System_Int32)))
 				{
 					continue;
 				}
@@ -139,10 +119,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					newClauseNode.ArgumentList?.Arguments[0] is not
 					{
 						RawKind: (int)SyntaxKind.Argument,
-						Expression: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: var variableName }
-						}
+						Expression: IdentifierNameSyntax { Identifier: { ValueText: var variableName } }
 					}
 				)
 				{
@@ -167,18 +144,62 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: SS0201,
-						location: newClauseNode.GetLocation(),
-						messageArgs: new[]
+				// Check whether the Span- or ReadOnlySpan- typed instance is as the result value
+				// of an out parameter or a return statement.
+				switch (newClauseNode.Parent)
+				{
+					case AssignmentExpressionSyntax
+					{
+						Left: IdentifierNameSyntax { Identifier: { ValueText: var identifierName } }
+					}:
+					{
+						var outParameters = new List<string>();
+						for (
+							IOperation? tempOperation = operation;
+							tempOperation is not null;
+							tempOperation = tempOperation.Parent
+						)
 						{
-							SymbolEqualityComparer.Default.Equals(typeSymbol, spanTypeSymbol)
-							? "Span"
-							: "ReadOnlySpan"
+							if (
+								tempOperation is IMethodReferenceOperation
+								{
+									Method: { Parameters: { Length: not 0 } parameters }
+								}
+							)
+							{
+								outParameters.AddRange(
+									from parameter in parameters
+									where parameter.RefKind == RefKind.Out
+									select parameter.Name
+								);
+							}
 						}
-					)
-				);
+						if (outParameters.Count != 0 && outParameters.Contains(identifierName))
+						{
+							r();
+						}
+
+						break;
+					}
+
+					case ReturnStatementSyntax:
+					{
+						r();
+
+						break;
+					}
+
+					void r() => context.ReportDiagnostic(
+						Diagnostic.Create(
+							descriptor: SS0201,
+							location: newClauseNode.GetLocation(),
+							messageArgs: new[]
+							{
+								(f(typeSymbol, spanTypeSymbol) ? typeof(Span<>) : typeof(ReadOnlySpan<>)).Name
+							}
+						)
+					);
+				}
 			}
 		}
 	}

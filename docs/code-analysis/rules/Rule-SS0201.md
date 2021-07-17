@@ -18,7 +18,7 @@ C# 7 引入了 `Span<T>` 和 `ReadOnlySpan<T>` 这两个数据类型。由于这
 
 问题来了。`Span<T>` 和 `ReadOnlySpan<T>` 的实现非常特殊，即使我们传入的是一个 `void*` 作为参数，但这块连续的内存空间是作为地址直接赋值到 `Span<T>` 和 `ReadOnlySpan<T>` 的底层的，因此，我们不可以这么做——因为返回到调用方的时候，被调用方栈帧内存已经被清除，所以 `void*` 此时就变成了垂悬指针。
 
-如下的例子，将展示出一个隐藏的 `SUDOKU017` 错误：
+如下的例子，将展示出一个隐藏的 `SS0201` 错误：
 
 ```csharp
 using System.Numerics; // BitOperations.
