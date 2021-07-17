@@ -118,14 +118,10 @@ namespace Sudoku.Solving.Manual
 				new BowmanBingoStepSearcher { MaxLength = BowmanBingoMaximumLength },
 			};
 
-			if (solution.HasValue)
+			if (solution is { } s)
 			{
-				result.Add(new TemplateStepSearcher(solution.Value)
-				{
-					TemplateDeleteOnly = OnlyRecordTemplateDelete
-				});
-
-				result.Add(new BfStepSearcher(solution.Value));
+				result.Add(new TemplateStepSearcher(s) { TemplateDeleteOnly = OnlyRecordTemplateDelete });
+				result.Add(new BfStepSearcher(s));
 			}
 
 			return result.ToArray();

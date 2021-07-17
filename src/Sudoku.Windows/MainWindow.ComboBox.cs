@@ -9,8 +9,7 @@ namespace Sudoku.Windows
 			// While initializing, the selection index will be changed to 0.
 			// During changing, the label or combo box may be null in this case.
 			// So here need null checking.
-			if (
-				sender is ComboBox comboBox
+			if (sender is ComboBox comboBox
 				&& _labelSymmetry is not null
 				&& _comboBoxSymmetry is not null
 				&& _labelBackdoorFilteringDepth is not null
@@ -24,7 +23,7 @@ namespace Sudoku.Windows
 		private void ComboBoxSymmetry_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if ((sender, Settings) is (ComboBox comboBox, not null))
+			if ((Sender: sender, Settings) is (Sender: ComboBox comboBox, Settings: not null))
 			{
 				Settings.GeneratingSymmetryModeComboBoxSelectedIndex = comboBox.SelectedIndex;
 			}
@@ -33,7 +32,7 @@ namespace Sudoku.Windows
 		private void ComboBoxBackdoorFilteringDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if ((sender, Settings) is (ComboBox comboBox, not null))
+			if ((Sender: sender, Settings) is (Sender: ComboBox comboBox, Settings: not null))
 			{
 				Settings.GeneratingBackdoorSelectedIndex = comboBox.SelectedIndex;
 			}
@@ -42,7 +41,7 @@ namespace Sudoku.Windows
 		private void ComboBoxDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// When initializing, 'Settings' may be null.
-			if ((sender, Settings) is (ComboBox comboBox, not null))
+			if ((Sender: sender, Settings) is (Sender: ComboBox comboBox, Settings: not null))
 			{
 				Settings.GeneratingDifficultyLevelSelectedIndex = comboBox.SelectedIndex;
 			}

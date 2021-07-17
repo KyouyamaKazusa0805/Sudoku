@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string candStr = new Candidates(Candidates).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string quantifier = Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
-			string number = Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
+			string number = Candidates.Count == 1 ? " the" : $" {Candidates.Count.ToString()}";
 			string singularOrPlural = Candidates.Count == 1 ? "candidate" : "candidates";
 			string beVerb = Candidates.Count == 1 ? "is" : "are";
 			return
