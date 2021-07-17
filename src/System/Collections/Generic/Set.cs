@@ -291,12 +291,13 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[ProxyEquality, MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
-		{
-			(null, null) => true,
-			(not null, not null) => SetEquals(left, right),
-			_ => false
-		};
+		private static bool InternalEquals(Set<TEquatable>? left, Set<TEquatable>? right) =>
+			(Left: left, Right: right) switch
+			{
+				(Left: null, Right: null) => true,
+				(Left: not null, Right: not null) => SetEquals(left, right),
+				_ => false
+			};
 
 		/// <summary>
 		/// Determine whether two <see cref="Set{T}"/>s contain the same elements.
@@ -305,12 +306,13 @@ namespace System.Collections.Generic
 		/// <param name="right">The right.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static bool SetEquals(Set<TEquatable>? left, Set<TEquatable>? right) => (left, right) switch
-		{
-			(null, null) => true,
-			(not null, not null) => left._list.All(element => !right._list.Contains(element)),
-			_ => false
-		};
+		private static bool SetEquals(Set<TEquatable>? left, Set<TEquatable>? right) =>
+			(Left: left, Right: right) switch
+			{
+				(Left: null, Right: null) => true,
+				(Left: not null, Right: not null) => left._list.All(element => !right._list.Contains(element)),
+				_ => false
+			};
 
 
 		/// <summary>

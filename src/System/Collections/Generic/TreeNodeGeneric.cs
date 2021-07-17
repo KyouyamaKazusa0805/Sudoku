@@ -60,10 +60,10 @@ namespace System.Collections.Generic
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		/// <returns>The result.</returns>
-		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) => (left, right) switch
+		private static int InternalCompare(TreeNode<T>? left, TreeNode<T>? right) => (Left: left, Right: right) switch
 		{
-			(null, null) => 0,
-			(not null, not null) => left.Id.CompareTo(right.Id),
+			(Left: null, Right: null) => 0,
+			(Left: not null, Right: not null) => left.Id.CompareTo(right.Id),
 			_ => left is null ? -1 : 1
 		};
 

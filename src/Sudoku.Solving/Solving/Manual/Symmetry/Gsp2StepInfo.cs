@@ -80,9 +80,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 						int? value = MappingTable[i];
 
 						sb.Append(i + 1);
-						sb.Append(
-							value.HasValue && value != i ? $" -> {(value.Value + 1).ToString()}" : string.Empty
-						);
+						sb.Append(value is { } v && value != i ? $" -> {(v + 1).ToString()}" : string.Empty);
 						sb.Append(separator);
 					}
 

@@ -40,27 +40,27 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					continue;
 				}
 
-				for (int i = 0; i < count - 1; i++)
+				for (int i = 0, iterationCount = count - 1; i < iterationCount; i++)
 				{
 					for (int j = i + 1; j < count; j++)
 					{
 						OrderingSyntax former = orderings[i], latter = orderings[j];
 						if (
-							(former, latter) is not (
-#pragma warning disable IDE0055
+							(Former: former, Latter: latter) is not (
+								Former:
 								{
 									Expression: IdentifierNameSyntax
 									{
 										Identifier: { ValueText: var formerIdentifier }
 									}
 								},
+								Latter:
 								{
 									Expression: IdentifierNameSyntax
 									{
 										Identifier: { ValueText: var latterIdentifier }
 									}
 								}
-#pragma warning restore IDE0055
 							)
 						)
 						{

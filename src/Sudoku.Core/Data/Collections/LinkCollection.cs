@@ -57,7 +57,7 @@ namespace Sudoku.Data.Collections
 				// Remove redundant digit labels:
 				// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).
 				var list = new List<(int Pos, char Value)>();
-				for (int i = 0; i < sb.Length; i++)
+				for (int i = 0, length = sb.Length; i < length; i++)
 				{
 					if (sb[i] == '(')
 					{

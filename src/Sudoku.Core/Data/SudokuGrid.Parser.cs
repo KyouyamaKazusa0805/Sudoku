@@ -92,6 +92,7 @@ namespace Sudoku.Data
 						// The sukaku should be of length 729.
 						return grid;
 					}
+#pragma warning disable SS0611
 					case var _ when ParsingValue.Contains("-+-"):
 					{
 						// The multi-line grid should be with the mark '-' and '+'.
@@ -107,6 +108,7 @@ namespace Sudoku.Data
 					}
 					case var _
 					when ParsingValue.Contains('\t') && OnParsingExcel(ref this) is { IsUndefined: false } grid:
+#pragma warning restore SS0611
 					{
 						// The excel grid should be with '\t'.
 						return grid;

@@ -48,9 +48,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					int? value = MappingTable[i];
 
 					sb.Append(i + 1);
-					sb.Append(
-						value.HasValue && value != i ? $" -> {(value.Value + 1).ToString()}" : string.Empty
-					);
+					sb.Append(value is { } v && value != i ? $" -> {(v + 1).ToString()}" : string.Empty);
 					sb.Append(separator);
 				}
 
@@ -73,13 +71,13 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <returns>The merge result.</returns>
 		public static GspStepInfo? operator |(GspStepInfo? left, GspStepInfo? right)
 		{
-			switch ((left, right))
+			switch ((Left: left, Right: right))
 			{
-				case (null, null):
+				case (Left: null, Right: null):
 				{
 					return null;
 				}
-				case (not null, not null):
+				case (Left: not null, Right: not null):
 				{
 					var results = new List<Conclusion>(left.Conclusions);
 					results.AddRange(right.Conclusions);

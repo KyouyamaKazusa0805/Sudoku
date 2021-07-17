@@ -28,12 +28,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			for (int i = 0, count = clauses.Count; i < count - 1; i++)
+			for (int i = 0, iterationCount = clauses.Count - 1; i < iterationCount; i++)
 			{
 				if (
-					(clauses[i], clauses[i + 1]) is not (
-						WhereClauseSyntax { Condition: var formerCondition },
-						WhereClauseSyntax { Condition: var latterCondition } latter
+					(Left: clauses[i], Right: clauses[i + 1]) is not (
+						Left: WhereClauseSyntax { Condition: var formerCondition },
+						Right: WhereClauseSyntax { Condition: var latterCondition } latter
 					)
 				)
 				{
