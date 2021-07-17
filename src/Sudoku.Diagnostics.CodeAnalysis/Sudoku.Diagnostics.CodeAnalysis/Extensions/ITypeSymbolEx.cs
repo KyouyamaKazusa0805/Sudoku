@@ -11,7 +11,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 	/// <seealso cref="ITypeSymbol"/>
 	public static class ITypeSymbolEx
 	{
-#pragma warning disable CS1591
+#pragma warning disable IDE0079, CS1591
 		public static void Deconstruct(
 			this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
 		{
@@ -19,7 +19,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			isReferenceType = @this.IsReferenceType;
 			isNullable = @this.IsNullableType();
 		}
-#pragma warning restore CS1591
+#pragma warning restore CS1591, IDE0079
 
 		/// <summary>
 		/// Determine whether the current type symbol is a nullable type. The nullable types

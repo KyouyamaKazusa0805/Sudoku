@@ -23,7 +23,9 @@ namespace Sudoku.Solving.Manual
 		{
 			var cloneation = grid;
 
+#pragma warning disable SD0404
 			var searcher = new SingleStepSearcher();
+#pragma warning restore SD0404
 			List<StepInfo> steps = new(), bag = new();
 			while (!cloneation.IsSolved)
 			{

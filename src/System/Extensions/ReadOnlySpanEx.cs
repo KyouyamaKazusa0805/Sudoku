@@ -66,7 +66,7 @@ namespace System.Extensions
 					else
 					{
 						var temp = new T[count];
-						for (int j = 0; j < tempArray.Length; j++)
+						for (int j = 0, length = tempArray.Length; j < length; j++)
 						{
 							temp[j] = @this[tempArray[j]];
 						}

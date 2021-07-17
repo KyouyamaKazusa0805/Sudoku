@@ -107,7 +107,7 @@ namespace Sudoku.Solving.Manual.Chaining
 			{
 				if (Views[0].Links is { } links)
 				{
-					for (int i = 0; i < links.Count; i += 2)
+					for (int i = 0, count = links.Count; i < count; i += 2)
 					{
 						var link = links[i];
 						if (link.StartCandidate / 9 != link.EndCandidate / 9)
@@ -125,10 +125,10 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public virtual bool Equals(ChainingStepInfo? other) => (this, other) switch
+		public virtual bool Equals(ChainingStepInfo? other) => (Left: this, Right: other) switch
 		{
-			(null, null) => true,
-			(not null, not null) => GetHashCode() == other.GetHashCode(),
+			(Left: null, Right: null) => true,
+			(Left: not null, Right: not null) => GetHashCode() == other.GetHashCode(),
 			_ => false
 		};
 

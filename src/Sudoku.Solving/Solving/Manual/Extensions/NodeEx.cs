@@ -75,10 +75,10 @@ namespace Sudoku.Solving.Manual.Extensions
 						new(
 							pCandidate,
 							prCandidate,
-							(prIsOn, pIsOn) switch
+							(A: prIsOn, B: pIsOn) switch
 							{
-								(false, true) => LinkType.Strong,
-								(true, false) => LinkType.Weak,
+								(A: false, B: true) => LinkType.Strong,
+								(A: true, B: false) => LinkType.Weak,
 								_ => LinkType.Default
 							}
 						)

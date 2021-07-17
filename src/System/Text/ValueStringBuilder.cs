@@ -196,7 +196,9 @@ namespace System.Text
 		{
 			try
 			{
+#pragma warning disable SD0310
 				return _chars[..Length].ToString();
+#pragma warning restore SD0310
 			}
 			finally
 			{

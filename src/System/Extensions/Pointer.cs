@@ -106,7 +106,7 @@ namespace System.Extensions
 				}
 
 				int[] result = new int[length - count - index];
-				for (int i = index; i < length - count; i++)
+				for (int i = index, iterationLength = length - count; i < iterationLength; i++)
 				{
 					result[i - index] = ptr[i];
 				}
