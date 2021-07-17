@@ -173,8 +173,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					}
 
 					var namedArgs = attribute.NamedArguments;
-					return namedArgs.Length == 1 && namedArgs[0] is var pair
-						&& pair.Key == "IsAllow" && pair.Value.Value is true;
+					return namedArgs.Length == 1
+						&& namedArgs[0] is var pair
+						&& pair.Key == "IsAllow"
+						&& pair.Value.Value is true
+						|| namedArgs.Length == 0;
 				}
 
 				return false;
