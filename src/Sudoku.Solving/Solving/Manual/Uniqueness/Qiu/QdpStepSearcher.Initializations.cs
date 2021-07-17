@@ -21,11 +21,19 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 				{ 27, 36 }, { 27, 45 }, { 36, 45 }, { 54, 63 }, { 54, 72 }, { 63, 72 }
 			};
 
-			for (int i = 0, n = 0, length = BaseLineIterator.Length; i < length >> 1; i++)
+			for (
+				int i = 0, n = 0, length = BaseLineIterator.Length, iterationLengthOuter = length >> 1;
+				i < iterationLengthOuter;
+				i++
+			)
 			{
 				bool isRow = i < length >> 2;
 				var baseLineMap = RegionMaps[BaseLineIterator[i, 0]] | RegionMaps[BaseLineIterator[i, 1]];
-				for (int j = isRow ? 0 : 9, z = 0; z < length >> 2; j++, z++)
+				for (
+					int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2;
+					z < iterationLengthInner;
+					j++, z++
+				)
 				{
 					int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 					for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
@@ -33,7 +41,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						var pairMap = new Cells { c1, c2 };
 						if
 						(
-							!(baseLineMap & pairMap).IsEmpty || !(
+							!(baseLineMap & pairMap).IsEmpty
+							|| !(
 								baseLineMap & (
 									RegionMaps[c1.ToRegion(RegionLabel.Block)]
 									| RegionMaps[c2.ToRegion(RegionLabel.Block)]
@@ -44,11 +53,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 							continue;
 						}
 
-						var squareMap =
-							baseLineMap & (
-								RegionMaps[c1.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
-								| RegionMaps[c2.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
-							);
+						var squareMap = baseLineMap & (
+							RegionMaps[c1.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
+							| RegionMaps[c2.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
+						);
 
 						Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 					}

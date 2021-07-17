@@ -109,7 +109,7 @@ namespace System.Text
 			}
 
 			var dst = _chars[Length..(Length + count)];
-			for (int i = 0; i < dst.Length; i++)
+			for (int i = 0, length = dst.Length; i < length; i++)
 			{
 				dst[i] = c;
 			}
@@ -188,7 +188,7 @@ namespace System.Text
 			}
 
 			var dst = _chars[Length..(Length + length)];
-			for (int i = 0; i < dst.Length; i++)
+			for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
 			{
 				dst[i] = *value++;
 			}
@@ -427,7 +427,7 @@ namespace System.Text
 		{
 			fixed (char* p = _chars)
 			{
-				for (int i = 0; i < Length >> 1; i++)
+				for (int i = 0, iterationLength = Length >> 1; i < iterationLength; i++)
 				{
 					char c = p[i];
 					p[i] = p[Length - 1 - i];

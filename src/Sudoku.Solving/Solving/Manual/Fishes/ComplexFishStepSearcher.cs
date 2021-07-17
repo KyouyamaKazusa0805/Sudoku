@@ -178,7 +178,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 							// Get the primary map of endo-fins.
 							Cells tempMap = Cells.Empty, endofins = Cells.Empty;
-							for (int i = 0; i < baseSets.Length; i++)
+							for (int i = 0, length = baseSets.Length; i < length; i++)
 							{
 								int baseSet = baseSets[i];
 								if (i != 0)
@@ -420,7 +420,7 @@ namespace Sudoku.Solving.Manual.Fishes
 									// Don't forget the extra cover set.
 									// Add it into the list now.
 									int[] actualCoverSets = new int[size];
-									for (int p = 0; p < size - 1; p++)
+									for (int p = 0, iterationSize = size - 1; p < iterationSize; p++)
 									{
 										actualCoverSets[p] = coverSets[p];
 									}
@@ -454,7 +454,9 @@ namespace Sudoku.Solving.Manual.Fishes
 											exofins,
 											endofins,
 											!searchForMutant,
-											IsSashimi(baseSets, fins, digit)));
+											IsSashimi(baseSets, fins, digit)
+										)
+									);
 
 								// Backtracking.
 								BacktrackValue:

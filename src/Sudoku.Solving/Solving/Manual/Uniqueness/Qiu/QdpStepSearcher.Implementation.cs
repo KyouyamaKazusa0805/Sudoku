@@ -189,7 +189,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			{
 				var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
 				int[] allCells = allCellsMap.ToArray();
-				for (int size = PopCount((uint)otherDigitsMask) - 1; size < allCells.Length; size++)
+				for (
+					int size = PopCount((uint)otherDigitsMask) - 1, length = allCells.Length;
+					size < length;
+					size++
+				)
 				{
 					foreach (int[] cells in allCells.GetSubsets(size))
 					{
@@ -258,14 +262,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 										Cells = cellOffsets,
 										Candidates = candidateOffsets,
 										Regions =
-											from pos
-											in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
+											from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
 											select new DrawingInfo(0, pos + (isRow ? 9 : 18))
 									}
 								},
 								pattern,
 								mask,
-								cells));
+								cells
+							)
+						);
 					}
 				}
 			}
@@ -358,7 +363,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 								}
 							},
 							pattern,
-							new(pair, digit)));
+							new(pair, digit)
+						)
+					);
 				}
 			}
 		}
@@ -481,7 +488,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 					},
 					pattern,
-					candidates));
+					candidates
+				)
+			);
 		}
 	}
 }

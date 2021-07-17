@@ -92,7 +92,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				// Iterate on each possible digit combination.
 				var allDigitsInThem = mask.GetAllSets();
-				for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
+				for (
+					int i = 0, length = allDigitsInThem.Length, iterationLength = length - 1;
+					i < iterationLength;
+					i++
+				)
 				{
 					int d1 = allDigitsInThem[i];
 					for (int j = i + 1; j < length; j++)
@@ -168,9 +172,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									}
 								}
 
-								switch ((c1, c2))
+								switch ((A: c1, B: c2))
 								{
-									case (0, 3) or (1, 2): // Diagonal type.
+									case (A: 0, B: 3) or (A: 1, B: 2): // Diagonal type.
 									{
 										if (!arMode)
 										{

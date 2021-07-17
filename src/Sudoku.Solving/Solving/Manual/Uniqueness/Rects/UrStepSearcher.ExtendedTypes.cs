@@ -43,9 +43,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			int[] otherCells = otherCellsMap.ToArray();
 			short o1 = grid.GetCandidates(otherCells[0]), o2 = grid.GetCandidates(otherCells[1]);
 			short o = (short)(o1 | o2);
-			if ((PopCount((uint)o), PopCount((uint)o1), PopCount((uint)o2), o1 & comparer, o2 & comparer) is
-				not (4, <= 3, <= 3, not 0, not 0)
-				|| (o & comparer) != comparer)
+			if (
+				(
+					TotalNumbersCount: PopCount((uint)o),
+					OtherCell1NumbersCount: PopCount((uint)o1),
+					OtherCell2NumbersCount: PopCount((uint)o2),
+					OtherCell1Intersetion: o1 & comparer,
+					OtherCell2Intersetion: o2 & comparer
+				) is not (
+					TotalNumbersCount: 4,
+					OtherCell1NumbersCount: <= 3,
+					OtherCell2NumbersCount: <= 3,
+					OtherCell1Intersetion: not 0,
+					OtherCell2Intersetion: not 0
+				) || (o & comparer) != comparer
+			)
 			{
 				return;
 			}
@@ -465,13 +477,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			short m1 = grid.GetCandidates(c1), m2 = grid.GetCandidates(c2), m3 = grid.GetCandidates(c3);
 			short mask = (short)((short)(m1 | m2) | m3);
 
-			if
-			(
+			if (
 				(
-					PopCount((uint)mask), PopCount((uint)m1), PopCount((uint)m2), PopCount((uint)m3),
-					m1 & comparer, m2 & comparer, m3 & comparer
-				) is not (4, <= 3, <= 3, <= 3, not 0, not 0, not 0)
-				|| (mask & comparer) != comparer
+					TotalNumbersCount: PopCount((uint)mask),
+					Cell1NumbersCount: PopCount((uint)m1),
+					Cell2NumbersCount: PopCount((uint)m2),
+					Cell3NumbersCount: PopCount((uint)m3),
+					Cell1Intersection: m1 & comparer,
+					Cell2Intersection: m2 & comparer,
+					Cell3Intersection: m3 & comparer
+				) is not (
+					TotalNumbersCount: 4,
+					Cell1NumbersCount: <= 3,
+					Cell2NumbersCount: <= 3,
+					Cell3NumbersCount: <= 3,
+					Cell1Intersection: not 0,
+					Cell2Intersection: not 0,
+					Cell3Intersection: not 0
+				) || (mask & comparer) != comparer
 			)
 			{
 				return;
@@ -552,7 +575,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						x,
 						y,
 						possibleXyCell,
-						index));
+						index
+					)
+				);
 			}
 		}
 

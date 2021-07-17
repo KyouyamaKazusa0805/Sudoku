@@ -183,7 +183,11 @@ namespace Sudoku.Solving.Checking
 			}
 
 			// Search backdoors (Eliminations).
-			for (int i1 = 0, count = incorrectCandidates.Count; i1 < count + 1 - depth; i1++)
+			for (
+				int i1 = 0, count = incorrectCandidates.Count, countPlus1MinusDepth = count + 1 - depth;
+				i1 < countPlus1MinusDepth;
+				i1++
+			)
 			{
 				int c1 = incorrectCandidates[i1];
 				tempGrid[c1 / 9, c1 % 9] = false;
@@ -197,7 +201,7 @@ namespace Sudoku.Solving.Checking
 				}
 				else // depth > 1
 				{
-					for (int i2 = i1 + 1; i2 < count + 2 - depth; i2++)
+					for (int i2 = i1 + 1, countPlus2MinusDepth = count + 2 - depth; i2 < countPlus2MinusDepth; i2++)
 					{
 						int c2 = incorrectCandidates[i2];
 						tempGrid[c2 / 9, c2 % 9] = false;
@@ -215,7 +219,11 @@ namespace Sudoku.Solving.Checking
 						}
 						else // depth == 3
 						{
-							for (int i3 = i2 + 1; i3 < count + 3 - depth; i3++)
+							for (
+								int i3 = i2 + 1, countPlus3MinusDepth = count + 3 - depth;
+								i3 < countPlus3MinusDepth;
+								i3++
+							)
 							{
 								int c3 = incorrectCandidates[i3];
 								tempGrid[c3 / 9, c3 % 9] = false;

@@ -78,7 +78,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				var testMap = new Cells { otherCell1, otherCell2 }.PeerIntersection;
 				short extraDigitsMask = (short)(mask ^ comparer);
 				int[] cells = map.ToArray();
-				for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
+				for (
+					int i1 = 0, length = cells.Length, iterationLengthOuter = length - size + 1;
+					i1 < iterationLengthOuter;
+					i1++
+				)
 				{
 					int c1 = cells[i1];
 					short m1 = grid.GetCandidates(c1);
@@ -87,7 +91,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						continue;
 					}
 
-					for (int i2 = i1 + 1; i2 < length - size + 2; i2++)
+					for (int i2 = i1 + 1, lengthMinusSizePlus2 = length - size + 2; i2 < lengthMinusSizePlus2; i2++)
 					{
 						int c2 = cells[i2];
 						short m2 = grid.GetCandidates(c2);
@@ -184,11 +188,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									new[] { c1, c2 },
 									extraDigitsMask.GetAllSets().ToArray(),
 									otherCellsMap,
-									index));
+									index
+								)
+							);
 						}
 						else // size > 2
 						{
-							for (int i3 = i2 + 1; i3 < length - size + 3; i3++)
+							for (
+								int i3 = i2 + 1, lengthMinusSizePlus3 = length - size + 3;
+								i3 < lengthMinusSizePlus3;
+								i3++
+							)
 							{
 								int c3 = cells[i3];
 								short m3 = grid.GetCandidates(c3);
@@ -285,7 +295,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											new[] { c1, c2, c3 },
 											extraDigitsMask.GetAllSets().ToArray(),
 											otherCellsMap,
-											index));
+											index
+										)
+									);
 								}
 								else // size == 4
 								{
@@ -391,7 +403,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												new[] { c1, c2, c3, c4 },
 												extraDigitsMask.GetAllSets().ToArray(),
 												otherCellsMap,
-												index));
+												index
+											)
+										);
 									}
 								}
 							}

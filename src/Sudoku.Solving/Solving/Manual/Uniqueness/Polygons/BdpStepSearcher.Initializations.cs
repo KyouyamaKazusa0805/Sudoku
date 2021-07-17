@@ -81,7 +81,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 							};
 
 							long v = 0;
-							for (int z = 0; z < allCells.Count; z++)
+							for (int z = 0, iterationCount = allCells.Count; z < iterationCount; z++)
 							{
 								v |= (long)allCells[z];
 
@@ -142,7 +142,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						};
 
 						long v = 0;
-						for (int z = 0; z < allCells.Count; z++)
+						for (int z = 0, iterationCount = allCells.Count; z < iterationCount; z++)
 						{
 							int cell = allCells[z];
 							v |= (long)cell;

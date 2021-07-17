@@ -79,7 +79,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				//             ↑ whenTrueExpr
 				if (
 					semanticModel.GetOperation(leftExpr) is not (
-						(FRef or LRef or PRef) and { Type: (_, _, true) leftExprType } referenceOperation
+						(FRef or LRef or PRef) and { Type: (_, _, isNullable: true) leftExprType } referenceOperation
 					)
 				)
 				{
@@ -95,11 +95,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				switch ((operandReferenceOperation, referenceOperation))
+				switch ((OperandReference: operandReferenceOperation, Reference: referenceOperation))
 				{
-					case (FRef fr1, FRef fr2) when fr1.SameReferenceWith(fr2):
-					case (PRef pr1, PRef pr2) when pr1.SameReferenceWith(pr2):
-					case (LRef lr1, LRef lr2) when lr1.SameReferenceWith(lr2):
+					case (OperandReference: FRef fr1, Reference: FRef fr2) when fr1.SameReferenceWith(fr2):
+					case (OperandReference: PRef pr1, Reference: PRef pr2) when pr1.SameReferenceWith(pr2):
+					case (OperandReference: LRef lr1, Reference: LRef lr2) when lr1.SameReferenceWith(lr2):
 					{
 						break;
 					}

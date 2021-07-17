@@ -48,7 +48,7 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			// Iterate on each ALS.
-			for (int i = 0, length = alses.Length; i < length - 1; i++)
+			for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)
 			{
 				var als1 = alses[i];
 				var (_, region1, mask1, map1, _, _) = als1;
@@ -200,7 +200,9 @@ namespace Sudoku.Solving.Manual.Alses
 										als2,
 										conjugatePair,
 										wDigitsMask,
-										x));
+										x
+									)
+								);
 							}
 						}
 					}

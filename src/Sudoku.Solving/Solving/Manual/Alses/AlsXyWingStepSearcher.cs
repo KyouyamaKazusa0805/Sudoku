@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Alses
 			var alses = Als.GetAllAlses(grid);
 
 			// Gather all RCCs.
-			for (int i = 0, length = alses.Length; i < length - 1; i++)
+			for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 			{
 				var als1 = alses[i];
 				var (_, mask1, map1) = als1;
@@ -69,7 +69,7 @@ namespace Sudoku.Solving.Manual.Alses
 			}
 
 			// Now check them.
-			for (int i = 0, count = rccs.Count; i < count - 1; i++)
+			for (int i = 0, count = rccs.Count, iterationCountOuter = count - 1; i < iterationCountOuter; i++)
 			{
 				var (als11, als12, mask1) = rccs[i];
 				for (int j = i + 1; j < count; j++)

@@ -120,7 +120,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			foreach (int region in extraCellsMap.CoveredRegions)
 			{
 				int[] otherCells = ((RegionMaps[region] & EmptyMap) - allCellsMap).ToArray();
-				for (int size = 1; size < otherCells.Length; size++)
+				for (int size = 1, length = otherCells.Length; size < length; size++)
 				{
 					foreach (int[] cells in otherCells.GetSubsets(size))
 					{
@@ -192,7 +192,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 								normalDigits,
 								cells,
 								mask,
-								region));
+								region
+							)
+						);
 					}
 				}
 			}
@@ -253,7 +255,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 							conclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
 							allCellsMap,
-							normalDigits));
+							normalDigits
+						)
+					);
 
 					break;
 				}
@@ -318,7 +322,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 									},
 									allCellsMap,
 									normalDigits,
-									new(extraCellsMap, conjugateDigit)));
+									new(extraCellsMap, conjugateDigit)
+								)
+							);
 						}
 					}
 

@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 			int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 			var result = new Cells[74601];
 			int n = 0;
-			for (int i = 0; i < sizeList.Length >> 1; i++)
+			for (int i = 0, iterationLength = sizeList.Length >> 1; i < iterationLength; i++)
 			{
 				int rows = sizeList[i, 0], columns = sizeList[i, 1];
 				foreach (int[] rowList in z.GetSubsets(rows))

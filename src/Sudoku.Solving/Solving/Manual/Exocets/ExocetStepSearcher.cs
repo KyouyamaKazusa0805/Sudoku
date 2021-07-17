@@ -59,11 +59,11 @@
 			int n = 0;
 			for (int i = 0; i < 18; i++)
 			{
-				for (int z = i / 9 * 9, j = z; j < z + 9; j++)
+				for (int z = i / 9 * 9, j = z, zPlus9 = z + 9; j < zPlus9; j++)
 				{
-					for (int y = j / 3 * 3, k = y; k < y + 3; k++)
+					for (int y = j / 3 * 3, k = y, yPlus3Outer = y + 3; k < yPlus3Outer; k++)
 					{
-						for (int l = y; l < y + 3; l++)
+						for (int l = y, yPlus3Inner = y + 3; l < yPlus3Inner; l++)
 						{
 							ref var exocet = ref Patterns[n];
 							var (b1, b2) = (bb[i] + b[j, 0], bb[i] + b[j, 1]);
@@ -96,7 +96,8 @@
 								new() { bb[bc[i, 1]] + m[l, 2], bb[bc[i, 1]] + m[l, 3] },
 								new() { bb[bc[i, 1]] + m[l, 0], bb[bc[i, 1]] + m[l, 1] },
 								new() { bb[bc[i, 0]] + m[k, 2], bb[bc[i, 0]] + m[k, 3] },
-								new() { bb[bc[i, 0]] + m[k, 0], bb[bc[i, 0]] + m[k, 1] });
+								new() { bb[bc[i, 0]] + m[k, 0], bb[bc[i, 0]] + m[k, 1] }
+							);
 
 							n++;
 						}

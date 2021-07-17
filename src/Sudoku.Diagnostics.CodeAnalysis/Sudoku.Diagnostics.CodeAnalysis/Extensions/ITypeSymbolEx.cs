@@ -11,7 +11,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 	/// <seealso cref="ITypeSymbol"/>
 	public static class ITypeSymbolEx
 	{
-#pragma warning disable IDE0079, CS1591
+		/// <summary>
+		/// Deconstruct the instance to multiple values.
+		/// </summary>
+		/// <param name="this">The type symbol instance.</param>
+		/// <param name="isValueType">
+		/// The <see cref="bool"/> value indicating whether the type is a value type.
+		/// </param>
+		/// <param name="isReferenceType">
+		/// The <see cref="bool"/> value indicating whether the type is a reference type.
+		/// </param>
+		/// <param name="isNullable">
+		/// The <see cref="bool"/> value indicating whether the type is a nullable type.
+		/// </param>
 		public static void Deconstruct(
 			this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
 		{
@@ -19,7 +31,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			isReferenceType = @this.IsReferenceType;
 			isNullable = @this.IsNullableType();
 		}
-#pragma warning restore CS1591, IDE0079
 
 		/// <summary>
 		/// Determine whether the current type symbol is a nullable type. The nullable types

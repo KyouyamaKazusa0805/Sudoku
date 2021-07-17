@@ -115,13 +115,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				switch ((operandReferenceOperation, refOperation))
+				switch ((OperandReference: operandReferenceOperation, Reference: refOperation))
 				{
-					case (FRef { Field: var field }, FRef { Field: var fieldOperand })
+					case (OperandReference: FRef { Field: var field }, Reference: FRef { Field: var fieldOperand })
 					when field.ToDisplayString() == fieldOperand.ToDisplayString():
-					case (PRef { Property: var property }, PRef { Property: var propertyOperand })
+					case (
+						OperandReference: PRef { Property: var property },
+						Reference: PRef { Property: var propertyOperand }
+					)
 					when property.ToDisplayString() == propertyOperand.ToDisplayString():
-					case (LRef { Local: var local }, LRef { Local: var localOperand })
+					case (OperandReference: LRef { Local: var local }, Reference: LRef { Local: var localOperand })
 					when local.ToDisplayString() == localOperand.ToDisplayString():
 					{
 						break;
@@ -160,8 +163,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			if (
 				semanticModel.GetOperation(leftExpr) is not (
-					(FRef or LRef)
-					and { Type: (_, var isReferenceType, var isNullable) } referenceOperation
+					(FRef or LRef) and { Type: (_, var isReferenceType, var isNullable) } referenceOperation
 				)
 			)
 			{

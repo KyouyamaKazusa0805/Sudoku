@@ -96,7 +96,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 						var lineMap = a & EmptyMap;
 
 						// Iterate on the number of the cells that should be selected in block.
-						for (int i = 1; i < blockMap.Count; i++)
+						for (int i = 1, count = blockMap.Count; i < count; i++)
 						{
 							// Iterate on each combination in block.
 							foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
@@ -143,8 +143,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 										short maskIsolated = (short)(
 											cannibalMode
-											? (lineMask & blockMask & selectedInterMask)
-											: (selectedInterMask & ~(blockMask | lineMask))
+											? lineMask & blockMask & selectedInterMask
+											: selectedInterMask & ~(blockMask | lineMask)
 										);
 										short maskOnlyInInter = (short)(
 											selectedInterMask & ~(blockMask | lineMask)
@@ -194,7 +194,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 													if ((blockMask >> digit & 1) != 0)
 													{
 														conclusions.Add(
-															new(ConclusionType.Elimination, cell, digit));
+															new(ConclusionType.Elimination, cell, digit)
+														);
 													}
 												}
 											}
@@ -205,14 +206,16 @@ namespace Sudoku.Solving.Manual.RankTheory
 													if ((lineMask >> digit & 1) != 0)
 													{
 														conclusions.Add(
-															new(ConclusionType.Elimination, cell, digit));
+															new(ConclusionType.Elimination, cell, digit)
+														);
 													}
 												}
 											}
 											foreach (int cell in elimMapIsolated)
 											{
 												conclusions.Add(
-													new(ConclusionType.Elimination, cell, digitIsolated));
+													new(ConclusionType.Elimination, cell, digitIsolated)
+												);
 											}
 											if (conclusions.Count == 0)
 											{
@@ -242,7 +245,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 													candidateOffsets.Add(
 														new(
 															!cannibalMode && digit == digitIsolated ? 2 : 0,
-															cell * 9 + digit));
+															cell * 9 + digit
+														)
+													);
 												}
 											}
 											foreach (int cell in currentLineMap)
@@ -252,7 +257,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 													candidateOffsets.Add(
 														new(
 															!cannibalMode && digit == digitIsolated ? 2 : 1,
-															cell * 9 + digit));
+															cell * 9 + digit
+														)
+													);
 												}
 											}
 											foreach (int cell in currentInterMap)
@@ -264,7 +271,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 															digitIsolated == digit
 															? 2
 															: (blockMask >> digit & 1) != 0 ? 0 : 1,
-															cell * 9 + digit));
+															cell * 9 + digit
+														)
+													);
 												}
 											}
 
@@ -292,7 +301,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 													maskIsolated,
 													currentBlockMap,
 													currentLineMap,
-													currentInterMap));
+													currentInterMap
+												)
+											);
 										}
 									}
 								}

@@ -93,13 +93,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 			return result;
 		}
 
-#pragma warning disable IDE0055
 		/// <summary>
 		/// Get templates.
 		/// </summary>
 		/// <returns>The templates.</returns>
 		private static IEnumerable<Cells> GetTemplates()
 		{
+#pragma warning disable IDE0055
 			for (int i1 = 0; i1 < 9; i1++)
 			for (int i2 = 0; i2 < 9; i2++)
 			if (i2 / 3 != i1 / 3)
@@ -121,9 +121,10 @@ namespace Sudoku.Solving.Manual.LastResorts
 				yield return new(
 					1 << i1 | 1 << (i2 + 9) | 1 << (i3 + 18),
 					1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18),
-					1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18));
+					1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18)
+				);
 			}
-		}
 #pragma warning restore IDE0055
+		}
 	}
 }

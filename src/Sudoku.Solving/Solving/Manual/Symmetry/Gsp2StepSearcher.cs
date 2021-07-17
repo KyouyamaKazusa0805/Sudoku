@@ -142,13 +142,15 @@ namespace Sudoku.Solving.Manual.Symmetry
 									accumulator.Add(
 										new Gsp2StepInfo(
 											conclusions,
-											new[] { newView is null ? new() : newView },
+											new[] { newView ?? new() },
 											info.SymmetryType,
 											r1[0] == 0 && r2[0] == 0 && r3[0] == 0
 											&& c1[0] == 0 && c2[0] == 0 && c3[0] == 0
 											? null
 											: new[] { r1, r2, r3, c1, c2, c3 },
-											info.MappingTable));
+											info.MappingTable
+										)
+									);
 								}
 							}
 						}

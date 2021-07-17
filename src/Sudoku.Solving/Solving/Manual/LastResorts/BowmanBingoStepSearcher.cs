@@ -161,7 +161,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		private IReadOnlyList<Link> GetLinks()
 		{
 			var result = new List<Link>();
-			for (int i = 0, count = _tempConclusions.Count; i < count - 1; i++)
+			for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 			{
 				var (_, c1) = _tempConclusions[i];
 				var (_, c2) = _tempConclusions[i + 1];

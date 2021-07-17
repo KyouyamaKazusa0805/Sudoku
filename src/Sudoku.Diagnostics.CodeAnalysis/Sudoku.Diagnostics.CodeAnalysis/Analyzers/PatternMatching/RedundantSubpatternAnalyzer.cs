@@ -62,7 +62,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					return;
 				}
 
-				for (int i = 0; i < currentSubpatterns.Count; i++)
+				for (int i = 0, count = currentSubpatterns.Count; i < count; i++)
 				{
 					switch (currentSubpatterns[i])
 					{
@@ -87,7 +87,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
-			for (int i = 0, count = subpatterns.Count; i < count - 1; i++)
+			for (int i = 0, count = subpatterns.Count, iterationCount = count - 1; i < iterationCount; i++)
 			{
 				var (_, firstName) = subpatterns[i];
 				for (int j = i + 1; j < count; j++)

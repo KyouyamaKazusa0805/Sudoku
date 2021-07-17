@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			int* house = stackalloc int[2];
 			var alses = Als.GetAllAlses(grid);
-			for (int i = 0, length = alses.Length; i < length - 1; i++)
+			for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)
 			{
 				var als1 = alses[i];
 				var (_, region1, mask1, map1, possibleElimMap1, _) = als1;

@@ -279,12 +279,13 @@ namespace System.Extensions
 				_ => throw new InvalidRegexStringException("The current reserved pattern is invalid.")
 			};
 
-			char* ptr = stackalloc char[@this.Length];
+			int length = @this.Length;
+			char* ptr = stackalloc char[length];
 			int count = 0;
 			fixed (char* p = @this)
 			{
 				char* q = p;
-				for (int i = 0; i < @this.Length; i++, q++)
+				for (int i = 0; i < length; i++, q++)
 				{
 					if (predicate(*q))
 					{

@@ -37,13 +37,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						var editor = await DocumentEditor.CreateAsync(document, c);
 						editor.ReplaceNode(
 							isPatternExpr,
-							(isNullable, hasDesignation) switch
+							(IsNullable: isNullable, HasDesignation: hasDesignation) switch
 							{
-								(_, true) => SyntaxFactoryEx.IsEmptyPropertyPatternExpression(
+								(_, HasDesignation: true) => SyntaxFactoryEx.IsEmptyPropertyPatternExpression(
 									expr,
 									getVariableName(diagnostic, root).Name
 								),
-								(true, false) => SyntaxFactory.IsPatternExpression(
+								(IsNullable: true, HasDesignation: false) => SyntaxFactory.IsPatternExpression(
 									expr,
 									SyntaxFactory.UnaryPattern(
 										SyntaxFactory.ConstantPattern(

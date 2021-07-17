@@ -34,11 +34,11 @@ namespace Sudoku.Solving.Manual.Sdps
 		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode => (BaseRegion / 9, TargetRegion / 9) switch
+		public override Technique TechniqueCode => (BaseKind: BaseRegion / 9, TargetKind: TargetRegion / 9) switch
 		{
-			(0, _) or (_, 0) => Technique.TurbotFish,
-			(1, 1) or (2, 2) => Technique.Skyscraper,
-			(1, 2) or (2, 1) => Technique.TwoStringKite
+			(BaseKind: 0, _) or (_, TargetKind: 0) => Technique.TurbotFish,
+			(BaseKind: 1, TargetKind: 1) or (BaseKind: 2, TargetKind: 2) => Technique.Skyscraper,
+			(BaseKind: 1, TargetKind: 2) or (BaseKind: 2, TargetKind: 1) => Technique.TwoStringKite
 		};
 
 

@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		{
 			short* linkForEachRegion = stackalloc short[27];
 			var linkForEachDigit = stackalloc Cells[9];
-			for (int globalIndex = 0; globalIndex < Patterns.Count; globalIndex++)
+			for (int globalIndex = 0, iterationCount = Patterns.Count; globalIndex < iterationCount; globalIndex++)
 			{
 				Cells pattern = Patterns[globalIndex], map = EmptyMap & pattern;
 				if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)

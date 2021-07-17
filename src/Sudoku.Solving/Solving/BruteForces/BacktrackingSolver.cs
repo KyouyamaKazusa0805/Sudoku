@@ -123,9 +123,9 @@ namespace Sudoku.Solving.BruteForces
 				}
 
 				// Check blocks.
-				for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+				for (int ii = r / 3 * 3, i = ii, iiPlus3 = ii + 3; i < iiPlus3; i++)
 				{
-					for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+					for (int jj = c / 3 * 3, j = jj, jjPlus3 = jj + 3; j < jjPlus3; j++)
 					{
 						if ((i != r || j != c) && gridValues[i * 9 + j] == number)
 						{

@@ -186,7 +186,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
 					int[] iterationCells = iterationCellsMap.ToArray();
 					short otherDigitsMask = (short)(orMask & ~tempMask);
-					for (int size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
+					for (
+						int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count;
+						size < count;
+						size++
+					)
 					{
 						foreach (int[] combination in iterationCells.GetSubsets(size))
 						{

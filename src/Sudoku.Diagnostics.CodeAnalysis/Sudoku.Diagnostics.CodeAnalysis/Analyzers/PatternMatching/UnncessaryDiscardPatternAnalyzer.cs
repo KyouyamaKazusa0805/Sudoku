@@ -68,7 +68,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				new TripletComparer()
 			);
 
-			for (int i = 0; i < subpatterns.Count; i++)
+			for (int i = 0, count = subpatterns.Count; i < count; i++)
 			{
 				switch (subpatterns[i])
 				{

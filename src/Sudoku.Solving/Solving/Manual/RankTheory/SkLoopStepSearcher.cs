@@ -66,7 +66,13 @@ namespace Sudoku.Solving.Manual.RankTheory
 						pairs[i] |= grid.GetCandidates(cells[(i << 1) + 1]);
 					}
 
-					if ((n, PopCount((uint)pairs[i]), pairs[i]) is not ( <= 4, <= 5, not 0))
+					if (
+						(
+							NumbersCount: n,
+							PairNumbersCount: PopCount((uint)pairs[i]),
+							PairMask: pairs[i]
+						) is not (NumbersCount: <= 4, PairNumbersCount: <= 5, PairMask: not 0)
+					)
 					{
 						break;
 					}

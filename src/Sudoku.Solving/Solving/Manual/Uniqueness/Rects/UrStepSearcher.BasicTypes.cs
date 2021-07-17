@@ -179,19 +179,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							Candidates = candidateOffsets
 						}
 					},
-					(arMode, isType5) switch
+					(IsAvoidableRectangle: arMode, IsType5: isType5) switch
 					{
-						(true, true) => Technique.ArType5,
-						(true, false) => Technique.ArType2,
-						(false, true) => Technique.UrType5,
-						(false, false) => Technique.UrType2
+						(IsAvoidableRectangle: true, IsType5: true) => Technique.ArType5,
+						(IsAvoidableRectangle: true, IsType5: false) => Technique.ArType2,
+						(IsAvoidableRectangle: false, IsType5: true) => Technique.UrType5,
+						(IsAvoidableRectangle: false, IsType5: false) => Technique.UrType2
 					},
 					d1,
 					d2,
 					urCells,
 					arMode,
 					extraDigit,
-					index));
+					index
+				)
+			);
 		}
 
 		/// <summary>
@@ -252,7 +254,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				}
 
 				var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
-				for (int size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
+				for (
+					int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count;
+					size < count;
+					size++
+				)
 				{
 					foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
 					{

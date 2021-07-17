@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		public static bool IsEmptyRectangle(this in Cells @this, int block, out int row, out int column)
 		{
 			int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
-			for (int i = r, count = 0; i < r + 3; i++)
+			for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)
 			{
 				if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
 				{
@@ -31,7 +31,7 @@ namespace Sudoku.Solving.Manual.Extensions
 				return false;
 			}
 
-			for (int i = c, count = 0; i < c + 3; i++)
+			for (int i = c, count = 0, cPlus3 = c + 3; i < cPlus3; i++)
 			{
 				if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
 				{
@@ -42,9 +42,9 @@ namespace Sudoku.Solving.Manual.Extensions
 				return false;
 			}
 
-			for (int i = r; i < r + 3; i++)
+			for (int i = r, rPlus3 = r + 3; i < rPlus3; i++)
 			{
-				for (int j = c; j < c + 3; j++)
+				for (int j = c, cPlus3 = c + 3; j < cPlus3; j++)
 				{
 					if (@this > (RegionMaps[i] | RegionMaps[j]))
 					{

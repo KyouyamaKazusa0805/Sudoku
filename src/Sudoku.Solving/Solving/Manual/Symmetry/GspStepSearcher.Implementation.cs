@@ -167,7 +167,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 			mapping.Fill(null);
 			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 8 - i; j++)
+				for (int j = 0, iterationLength = 8 - i; j < iterationLength; j++)
 				{
 					int c1 = i * 9 + j;
 					int c2 = (8 - j) * 9 + (8 - i);

@@ -42,7 +42,12 @@ namespace Sudoku.Solving.Manual.RankTheory
 				int b = pivot.ToRegion(RegionLabel.Block);
 				Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 				Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
-				if ((rbEmptyMap.Count, cbEmptyMap.Count) is not ( >= 2, >= 2))
+				if (
+					(RowBlock: rbEmptyMap.Count, ColumnBlock: cbEmptyMap.Count) is not (
+						RowBlock: >= 2,
+						ColumnBlock: >= 2
+					)
+				)
 				{
 					// The intersection needs at least two cells.
 					continue;
@@ -111,7 +116,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 						var columnMap = RegionMaps[c] - RegionMaps[b] & EmptyMap;
 
 						// Iterate on the number of the cells that should be selected in block.
-						for (int i = 0; i < blockMap.Count; i++)
+						for (int i = 0, count = blockMap.Count; i < count; i++)
 						{
 							foreach (int[] selectedBlockCells in blockMap.ToArray().GetSubsets(i))
 							{

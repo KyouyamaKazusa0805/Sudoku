@@ -240,10 +240,13 @@ namespace System.Extensions
 		{
 			if (@this.Length > to.Length)
 			{
-				throw new ArgumentException("The specified string builder doesn't have enough space to copy.", nameof(@this));
+				throw new ArgumentException(
+					"The specified string builder doesn't have enough space to copy.",
+					nameof(@this)
+				);
 			}
 
-			for (int i = 0; i < @this.Length; i++)
+			for (int i = 0, iterationLength = @this.Length; i < iterationLength; i++)
 			{
 				to[i] = @this[i];
 			}

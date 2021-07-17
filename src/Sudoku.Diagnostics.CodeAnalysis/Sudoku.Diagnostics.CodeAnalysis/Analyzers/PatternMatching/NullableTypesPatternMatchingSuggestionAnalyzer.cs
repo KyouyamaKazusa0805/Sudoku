@@ -130,7 +130,13 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							break;
 						}
 					}
-					if ((instanceExpr, nullExpr, isNullableValueType) is not (not null, not null, { } isNvt))
+					if (
+						(
+							InstanceExpressionNode: instanceExpr,
+							NullExpressionNode: nullExpr,
+							IsNvt: isNullableValueType
+						) is not (InstanceExpressionNode: not null, NullExpressionNode: not null, IsNvt: { } isNvt)
+					)
 					{
 						return;
 					}

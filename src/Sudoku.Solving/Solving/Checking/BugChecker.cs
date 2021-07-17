@@ -160,7 +160,7 @@ namespace Sudoku.Solving.Checking
 
 				if (@continue)
 				{
-					for (int z = 0; z < stack.GetLength(1); z++)
+					for (int z = 0, stackLength = stack.GetLength(1); z < stackLength; z++)
 					{
 						stack[currentIndex, z] = stack[currentIndex - 1, z];
 					}
