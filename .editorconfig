@@ -438,3 +438,6 @@ dotnet_diagnostic.CA2249.severity = silent
 # May be deleted later in the future.
 dotnet_diagnostic.CS0618.severity = silent
 dotnet_style_prefer_simplified_interpolation = false
+
+# SS0624: Available simplification for extended property patterns
+dotnet_diagnostic.SS0624.severity = none
