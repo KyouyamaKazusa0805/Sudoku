@@ -119,6 +119,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					{
 						case ConstantPatternSyntax
 						{
+#pragma warning disable IDE0055
+							// Ignore the pattern 'null or T'.
+							Parent: not (
+								BinaryPatternSyntax and (
+									{
+										Left: ConstantPatternSyntax { Expression: IdentifierNameSyntax }
+									} or
+									{
+										Right: ConstantPatternSyntax { Expression: IdentifierNameSyntax }
+									}
+								)
+							),
+#pragma warning restore IDE0055
 							Expression: LiteralExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.NullLiteralExpression
