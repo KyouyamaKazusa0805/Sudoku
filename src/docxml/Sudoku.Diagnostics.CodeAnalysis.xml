@@ -1703,26 +1703,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.StepSearcherTypeName">
-            <summary>
-            Indicates the type name of the <c>StepSearcher</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.AttributeTypeName">
-            <summary>
-            Indicates the type name of the <c>DirectSearcherAttribute</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.FastPropertiesTypeName">
-            <summary>
-            Indicates the type name of the <c>FastProperties</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.SudokuGridTypeName">
-            <summary>
-            Indicates the type name of the <c>SudokuGrid</c>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DirectSearcherUsageAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
             <inheritdoc/>
         </member>

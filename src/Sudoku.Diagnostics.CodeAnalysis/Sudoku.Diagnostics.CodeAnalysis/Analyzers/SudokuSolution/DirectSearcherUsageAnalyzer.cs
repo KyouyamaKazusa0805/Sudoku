@@ -15,27 +15,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 	[CodeAnalyzer("SD0404")]
 	public sealed partial class DirectSearcherUsageAnalyzer : DiagnosticAnalyzer
 	{
-		/// <summary>
-		/// Indicates the type name of the <c>StepSearcher</c>.
-		/// </summary>
-		private const string StepSearcherTypeName = "Sudoku.Solving.Manual.StepSearcher";
-
-		/// <summary>
-		/// Indicates the type name of the <c>DirectSearcherAttribute</c>.
-		/// </summary>
-		private const string AttributeTypeName = "Sudoku.Solving.Manual.DirectSearcherAttribute";
-
-		/// <summary>
-		/// Indicates the type name of the <c>FastProperties</c>.
-		/// </summary>
-		private const string FastPropertiesTypeName = "Sudoku.Solving.Manual.FastProperties";
-
-		/// <summary>
-		/// Indicates the type name of the <c>SudokuGrid</c>.
-		/// </summary>
-		private const string SudokuGridTypeName = "Sudoku.Data.SudokuGrid";
-
-
 		/// <inheritdoc/>
 		public override void Initialize(AnalysisContext context)
 		{
@@ -59,8 +38,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			var attributeSymbol = compilation.GetTypeByMetadataName(AttributeTypeName)!;
-			var stepSearcherSymbol = compilation.GetTypeByMetadataName(StepSearcherTypeName);
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+			Func<string, INamedTypeSymbol?> c = compilation.GetTypeByMetadataName;
+			var attributeSymbol = c("Sudoku.Solving.Manual.DirectSearcherAttribute")!;
+			var stepSearcherSymbol = c("Sudoku.Solving.Manual.StepSearcher");
 			switch (operation)
 			{
 				case ILocalFunctionOperation { Body: { Locals: { Length: var length and not 0 } locals } }:
@@ -70,21 +51,17 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					break;
 				}
 
-				case IMethodBodyOperation
+				case IMethodBodyOperation { BlockBody: var blockBody, ExpressionBody: var exprBody }:
 				{
-					BlockBody: var blockBody,
-					ExpressionBody: var exprBody
-				}:
-				{
-					switch ((blockBody, exprBody))
+					switch ((BlockBody: blockBody, ExpressionBody: exprBody))
 					{
-						case ({ Locals: { Length: var length and not 0 } blockBodyLocals }, _):
+						case (BlockBody: { Locals: { Length: var length and not 0 } blockBodyLocals }, _):
 						{
 							checkAndReportLocal(blockBodyLocals, length == 1);
 
 							break;
 						}
-						case (_, { Locals: { Length: not 0 } exprBodyLocals }):
+						case (_, ExpressionBody: { Locals: { Length: not 0 } exprBodyLocals }):
 						{
 							checkAndReportLocal(exprBodyLocals, true);
 
@@ -185,27 +162,19 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				}
 			}
 
-			static bool hasMarkedDirectSearcherAttribute(INamedTypeSymbol localType, ISymbol attributeSymbol)
+			bool hasMarkedDirectSearcherAttribute(INamedTypeSymbol localType, ISymbol attributeSymbol)
 			{
 				var attributes = localType.GetAttributes();
 				foreach (var attribute in attributes)
 				{
-					if (!SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol))
+					if (!f(attribute.AttributeClass, attributeSymbol))
 					{
 						continue;
 					}
 
-					if (attribute.ConstructorArguments is not { Length: not 0 } arguments)
-					{
-						continue;
-					}
-
-					if (arguments[0] is { Value: true })
-					{
-						continue;
-					}
-
-					return true;
+					var namedArgs = attribute.NamedArguments;
+					return namedArgs.Length == 1 && namedArgs[0] is var pair
+						&& pair.Key == "IsAllow" && pair.Value.Value is true;
 				}
 
 				return false;
@@ -234,10 +203,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							}
 						}
 						when semanticModel.GetSymbolInfo(typeNode) is { Symbol: var staticTypeSymbol }
-						&& SymbolEqualityComparer.Default.Equals(staticTypeSymbol, c(FastPropertiesTypeName))
+						&& f(staticTypeSymbol, c("Sudoku.Solving.Manual.FastProperties"))
 						&& arguments[0] is { Expression: var argExpr }
 						&& semanticModel.GetOperation(argExpr) is { Type: var argTypeSymbol }
-						&& SymbolEqualityComparer.Default.Equals(argTypeSymbol, c(SudokuGridTypeName)):
+						&& f(argTypeSymbol, c("Sudoku.Data.SudokuGrid")):
 						{
 							return true;
 						}
@@ -250,9 +219,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						{
 							return false;
 						}
-
-
-						INamedTypeSymbol? c(string name) => compilation.GetTypeByMetadataName(name);
 					}
 				}
 
