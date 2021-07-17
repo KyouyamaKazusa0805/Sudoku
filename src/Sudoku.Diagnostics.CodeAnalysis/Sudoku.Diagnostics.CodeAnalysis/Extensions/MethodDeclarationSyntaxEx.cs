@@ -107,7 +107,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			foreach (var symbolParameter in symbolParameters)
 			{
 				var (type, name) = symbolParameter;
-				string possibleFieldName = name.ToCamelCase(), possiblePropertyName = name.ToPascalCase();
+				string possibleFieldName = name.ToCamelCase()!, possiblePropertyName = name.ToPascalCase();
 
 				if (
 					(

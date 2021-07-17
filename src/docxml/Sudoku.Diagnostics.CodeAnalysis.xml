@@ -3395,7 +3395,9 @@
             </summary>
             <param name="this">The name.</param>
             <param name="caseConvertingOption">The option that decides the result.</param>
-            <returns>The result name.</returns>
+            <returns>
+            The result name. If the name can't be converted, <see langword="null"/> will be returned.
+            </returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToPascalCase(System.String)">
             <summary>

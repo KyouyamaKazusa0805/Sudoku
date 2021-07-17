@@ -45,7 +45,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 											SyntaxFactory.Identifier(
 												parameter.Identifier.ValueText.ToCamelCase(
 													CaseConvertingOption.ReserveLeadingUnderscore
-												)
+												)!
 											)
 										)
 									)

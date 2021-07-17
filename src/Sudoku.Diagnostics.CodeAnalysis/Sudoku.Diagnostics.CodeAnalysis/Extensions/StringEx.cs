@@ -14,8 +14,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 		/// </summary>
 		/// <param name="this">The name.</param>
 		/// <param name="caseConvertingOption">The option that decides the result.</param>
-		/// <returns>The result name.</returns>
-		public static unsafe string ToCamelCase(
+		/// <returns>
+		/// The result name. If the name can't be converted, <see langword="null"/> will be returned.
+		/// </returns>
+		public static unsafe string? ToCamelCase(
 			this string @this, CaseConvertingOption caseConvertingOption = CaseConvertingOption.None)
 		{
 			switch (@this[0])
@@ -59,10 +61,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 				}
 				default:
 				{
-					throw new ArgumentException(
-						"The specified argument is invalid name to convert.",
-						nameof(@this)
-					);
+					return null;
 				}
 			}
 		}

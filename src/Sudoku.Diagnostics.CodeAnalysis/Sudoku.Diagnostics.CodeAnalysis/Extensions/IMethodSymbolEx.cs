@@ -40,7 +40,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 			foreach (var parameter in parameters)
 			{
 				var (type, name) = parameter;
-				string possibleFieldName = name.ToCamelCase(), possiblePropertyName = name.ToPascalCase();
+				string possibleFieldName = name.ToCamelCase()!, possiblePropertyName = name.ToPascalCase();
 
 				if (
 					(

@@ -357,7 +357,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 				// Checks whether all member reference and be corresponded to the parameters.
 				bool matchFlag = true;
-				foreach (string memberName in from tuple in info select tuple.Item2.ToCamelCase())
+				foreach (string memberName in from tuple in info select tuple.Item2.ToCamelCase()!)
 				{
 					if (parameters.All(parameter => parameter.Name != memberName))
 					{
@@ -391,7 +391,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					string.Join(
 						", ",
 						from tuple in info
-						let parameterName = tuple.Item2.ToCamelCase()
+						let parameterName = tuple.Item2.ToCamelCase()!
 						let constantExpr = tuple.Item6 ? tuple.Item4 : tuple.Item5
 						let notKeyword = tuple.Item7 ? "not " : string.Empty
 						select $"{parameterName}: {notKeyword}{constantExpr}"
