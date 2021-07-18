@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.filenesting.json = .filenesting.json
 		LICENSE = LICENSE
 		README.md = README.md
-		docs\version\Version-0.6.md = docs\version\Version-0.6.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving", "src\Sudoku.Solving\Sudoku.Solving.csproj", "{C8227C2F-9495-4C41-9B27-5DE5CB1F5BEC}"
