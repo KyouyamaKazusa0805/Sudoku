@@ -8,9 +8,7 @@
 * **中文**：在调用了 `ValueStringBuilder.ToString` 方法后，就不能再继续使用该变量了，因为变量已经被隐式地销毁了。
 * **英文**：You can't invoke any operations after called `ValueStringBuilder.ToString` method because this object has been already disposed implicitly.
 
-**级别**：编译器警告
-
-**警告级别**：1
+**级别**：编译器错误
 
 **类型**：使用（Usage）
 

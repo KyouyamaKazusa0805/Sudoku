@@ -1377,6 +1377,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StructReadOnlyModifierAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0314">SD0314</a></term>
+            <description>You can't invoke any operations after called 'ValueStringBuilder.ToString' method because this object has been already disposed implicitly</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer.SD0314">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0314">SD0314</a>
+            diagnostic result (You can't invoke any operations after called 'ValueStringBuilder.ToString' method because this object has been already disposed implicitly).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
