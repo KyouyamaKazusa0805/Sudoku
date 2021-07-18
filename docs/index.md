@@ -19,7 +19,8 @@ This section lists the update logs. If you want to check what content was added,
 * [V0.3 (20210313)](version/Version-0.3)
 * [V0.4 (20210414)](version/Version-0.4)
 * [V0.5 (20210620)](version/Version-0.5)
-* [V0.6](version/Version-0.6)
+* [V0.6 (20210718)](version/Version-0.6)
+* [V0.7](version/Version-0.7)
 
 
 
