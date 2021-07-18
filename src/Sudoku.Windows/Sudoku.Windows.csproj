@@ -19,7 +19,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Windows.xml</DocumentationFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<Version>0.6</Version>
+		<Version>0.7</Version>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 

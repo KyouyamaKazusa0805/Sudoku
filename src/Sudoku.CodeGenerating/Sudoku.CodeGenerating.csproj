@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>0.2</Version>
+		<Version>0.3</Version>
 		<Authors>Sunnie</Authors>
 		<Description>A project that generates the source code.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
