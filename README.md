@@ -75,7 +75,7 @@ Please visit the following tables.
 | Solution sites<br />项目地址 |                                                             | P.S.<br />备注                                               |
 | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | GitHub                       | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                              |
-| Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This project is copied & sync'd from GitHub as a backup.<br />这个项目从 GitHub 拷贝和同步过来的，是一个备份项目。 |
+| Gitee                        | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | This repo is copied & sync'd from GitHub as a backup.<br />这个仓库从 GitHub 拷贝和同步过来的，是一个备份仓库。 |
 
 | Wiki<br />百科页面         |                                                |
 | -------------------------- | ---------------------------------------------- |
@@ -86,7 +86,7 @@ Please visit the following tables.
 | Programming language and version<br />编程语言和版本 | C# 9                                                         |
 | Framework<br />框架                                  | .NET 6                                                       |
 | Indenting<br />缩进                                  | Tabs (`\t`)<br />Tab                                         |
-| Integrated development environment<br />集成开发环境 | Visual Studio 2022 (Version 17.0 Preview)<br />Visual Studio 2022（17.0 预览版） |
+| Integrated development environment<br />集成开发环境 | Visual Studio 2022 (Version 17.0 Preview 2)<br />Visual Studio 2022（17.0 预览版 2） |
 | Natural languages support<br />自然语言支持          | English, Simplified Chinese<br />英语、简体中文              |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
@@ -103,14 +103,17 @@ Please visit the following tables.
 
 ### To-do List (完成列表)
 
-* [ ] Docs (Wiki 文档)
-  * [x] Basic docs (基本文档)
-  * [ ] Sudoku tutorial on web (数独教程)
+* [x] API (解决方案提供的编程接口)
 * [ ] UI Projects (UI 项目)
   * [ ] Android project (安卓平台的项目)
   * [x] WPF project (Desktop) (WPF 桌面项目)
   * [ ] UWP project (UWP 桌面项目)
   * [ ] iOS project (iOS 项目)
+* [ ] Docs (Wiki 文档)
+  * [x] Basic docs (基本文档)
+  * [ ] Sudoku tutorial on web (数独教程)
+* [x] Vsix Plugins (VS 插件)
+  * [x] Sudoku Solution Guardian (数独解决方案的代码分析器)
 
 ### Open Resource License (项目开源许可证)
 
