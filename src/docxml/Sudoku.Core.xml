@@ -3355,41 +3355,6 @@
             </summary>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Empty"/>
         </member>
-        <member name="P:Sudoku.Data.SudokuGrid.IsDebuggerUndefined">
-            <summary>
-            Indicates whether the grid is as same behaviors as <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-            in debugging mode.
-            </summary>
-            <remarks>
-            <para>
-            This property checks whether all non-first masks are all 0. This checking behavior
-            is aiming to the debugger because the debugger can't recognize the fixed buffer.
-            </para>
-            <para>
-            The debugger can't recognize fixed buffer.
-            The fixed buffer whose code is like:
-            <code>
-            private fixed short _values[81];
-            </code>
-            However, internally, the field <c>_values</c> is implemented
-            with a fixed buffer using a inner struct, which is just like:
-            <code>
-            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-            private struct FixedBuffer
-            {
-                public short _internalValue;
-            }
-            </code>
-            And that field:
-            <code>
-            private FixedBuffer _fixedField;
-            </code>
-            From the code we can learn that only 2 bytes of the inner struct can be detected,
-            because the buffer struct only contains 2 bytes data.
-            </para>
-            </remarks>
-            <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-        </member>
         <member name="P:Sudoku.Data.SudokuGrid.CandidatesCount">
             <summary>
             Indicates the number of total candidates.
