@@ -66,11 +66,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			void checkOnMethod(in SyntaxList<StatementSyntax> statements)
 			{
 				int i = 0, count = statements.Count, iterationCount = count - 1;
-				
+
 				for (; i < iterationCount; i++)
 				{
 					// Step 1: Check whether the statement is a variable declaration of type 'ValueStringBuilder'.
-					string? variableNameToCheck = null;
 					foreach (var descendant in statements[i].DescendantNodes())
 					{
 						if (
@@ -87,8 +86,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 						}
 
 						// Check whether the current operation contains a operation instance to check.
-						var operation = semanticModel.GetOperation(newClause, cancellationToken);
-						if (operation is not IObjectCreationOperation { Type: var possibleVsbType })
+						if (
+							semanticModel.GetOperation(newClause, cancellationToken) is not IObjectCreationOperation
+							{
+								Type: var possibleVsbType
+							}
+						)
 						{
 							continue;
 						}
@@ -99,25 +102,133 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 							continue;
 						}
 
-						variableNameToCheck = variableName;
-						break;
-					}
+						// Step 2: Check whether the current statement has used the variable above.
+						SyntaxNode? toStringInvocationNode = null, expressionStatement = null;
+						for (int j = i + 1; j < iterationCount; j++)
+						{
+							switch (statements[j])
+							{
+								case ExpressionStatementSyntax
+								{
+									Expression: var innerExpression
+								} currentExpressionStatement:
+								{
+									foreach (var innerDescendant in innerExpression.DescendantNodes())
+									{
+										// Check whether the node is an invocation 'ValueStringBuilder.ToString'.
+										if (
+											innerDescendant is not InvocationExpressionSyntax
+											{
+												Expression: MemberAccessExpressionSyntax
+												{
+													Expression: IdentifierNameSyntax
+													{
+														Identifier: { ValueText: var possibleVariableName }
+													},
+													Name: { Identifier: { ValueText: "ToString" } }
+												},
+												ArgumentList: { Arguments: { Count: 0 } }
+											}
+										)
+										{
+											continue;
+										}
 
-					if (variableNameToCheck is null)
+										// Check whether the variable exists above.
+										// By this way we can check the type of that variable.
+										if (possibleVariableName != variableName)
+										{
+											continue;
+										}
+
+										toStringInvocationNode = innerDescendant;
+										expressionStatement = currentExpressionStatement;
+										goto CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType;
+									}
+
+									break;
+								}
+							}
+
+						CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType:
+							if (toStringInvocationNode is null)
+							{
+								continue;
+							}
+
+							// Step 3-1: Check whether the statement contains the extra usage of that variable.
+							// For example, if the expression is like:
+							//
+							//     sb.Append(sb.ToString());
+							//
+							// Because of the disposing of the variable 'sb', we can't use 'sb' to surround
+							// the invocation 'sb.ToString', because the outer invocation 'sb.Append' will be
+							// executed after than 'sb.ToString', and 'sb' has been already disposed now to call
+							// 'sb.Append'.
+							finalStepPhase1(toStringInvocationNode, expressionStatement!, variableName);
+
+							// Step 3-2: Check whether the last statements contains the usage of that variable.
+							finalStepPhase2(ref j, count, statements, variableName);
+						}
+					}
+				}
+			}
+
+			void checkOnGlobalStatement(CompilationUnitSyntax compilationUnit, StatementSyntax statement)
+			{
+				// Step 1: Check whether the statement is a variable declaration of type 'ValueStringBuilder'.
+				foreach (var descendant in statement.DescendantNodes())
+				{
+					if (
+						descendant is not BaseObjectCreationExpressionSyntax
+						{
+							Parent: EqualsValueClauseSyntax
+							{
+								Parent: VariableDeclaratorSyntax { Identifier: { ValueText: var variableName } }
+							}
+						} newClause
+					)
 					{
 						continue;
 					}
 
-					// Step 2: Check whether the current statement has used the variable above.
-					SyntaxNode? toStringInvocationNode = null, expressionStatement = null;
-					for (int j = i + 1; j < iterationCount; j++)
-					{
-						switch (statements[j])
+					// Check whether the current operation contains a operation instance to check.
+					if (
+						semanticModel.GetOperation(newClause, cancellationToken) is not IObjectCreationOperation
 						{
-							case ExpressionStatementSyntax
+							Type: var possibleVsbType
+						}
+					)
+					{
+						continue;
+					}
+
+					// Check whether the object creation operation is of type 'ValueStringBuilder'.
+					if (!f(possibleVsbType, vsbType))
+					{
+						continue;
+					}
+
+					// Step 2: Get all global statements.
+					var globalStatements = compilationUnit.DescendantNodes()
+						.OfType<GlobalStatementSyntax>()
+						.Skip(1)
+						.ToArray();
+
+					// Step 3: Check whether the current statement has used the variable above.
+					int i = 0, length = globalStatements.Length;
+					SyntaxNode? toStringInvocationNode = null, expressionStatement = null;
+					for (int iterationCount = length - 1; i < iterationCount; i++)
+					{
+						switch (globalStatements[i])
+						{
+							case
 							{
-								Expression: var innerExpression
-							} currentExpressionStatement:
+								Statement: ExpressionStatementSyntax
+								{
+									Expression: var innerExpression
+								} currentExpressionStatement
+							}:
 							{
 								foreach (var innerDescendant in innerExpression.DescendantNodes())
 								{
@@ -142,7 +253,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 									// Check whether the variable exists above.
 									// By this way we can check the type of that variable.
-									if (possibleVariableName != variableNameToCheck)
+									if (possibleVariableName != variableName)
 									{
 										continue;
 									}
@@ -155,162 +266,33 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 								break;
 							}
 						}
-
-					CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType:
-						if (toStringInvocationNode is null)
-						{
-							continue;
-						}
-
-						// Step 3-1: Check whether the current statement contains the extra usage of that variable.
-						// For example, if the expression is like:
-						//
-						//     sb.Append(sb.ToString());
-						//
-						// Because of the disposing of the variable 'sb', we can't use 'sb' to surround
-						// the invocation 'sb.ToString', because the outer invocation 'sb.Append' will be
-						// executed after than 'sb.ToString', and 'sb' has been already disposed now to call
-						// 'sb.Append'.
-						finalStepPhase1(toStringInvocationNode, expressionStatement!, variableNameToCheck);
-
-						// Step 3-2: Check whether the last statements contains the usage of that variable.
-						finalStepPhase2(ref j, count, statements, variableNameToCheck);
 					}
-				}
-			}
 
-			void checkOnGlobalStatement(CompilationUnitSyntax compilationUnit, StatementSyntax statement)
-			{
-				// Step 1: Check whether the statement is a variable declaration of type 'ValueStringBuilder'.
-				string? variableNameToCheck = null;
-				foreach (var descendant in statement.DescendantNodes())
-				{
-					if (
-						descendant is not BaseObjectCreationExpressionSyntax
-						{
-							Parent: EqualsValueClauseSyntax
-							{
-								Parent: VariableDeclaratorSyntax { Identifier: { ValueText: var variableName } }
-							}
-						} newClause
-					)
+				CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType:
+					if (toStringInvocationNode is null)
 					{
-						continue;
+						return;
 					}
 
-					// Check whether the current operation contains a operation instance to check.
-					var operation = semanticModel.GetOperation(newClause, cancellationToken);
-					if (operation is not IObjectCreationOperation { Type: var possibleVsbType })
-					{
-						continue;
-					}
+					// Step 4-1: Check whether the current statement contains the extra usage of that variable.
+					// For example, if the expression is like:
+					//
+					//     sb.Append(sb.ToString());
+					//
+					// Because of the disposing of the variable 'sb', we can't use 'sb' to surround
+					// the invocation 'sb.ToString', because the outer invocation 'sb.Append' will be
+					// executed after than 'sb.ToString', and 'sb' has been already disposed now to call
+					// 'sb.Append'.
+					finalStepPhase1(toStringInvocationNode, expressionStatement!, variableName);
 
-					// Check whether the object creation operation is of type 'ValueStringBuilder'.
-					if (!f(possibleVsbType, vsbType))
-					{
-						continue;
-					}
-
-					variableNameToCheck = variableName;
-					break;
+					// Step 4-2: Check whether the last statements contains the usage of that variable.
+					finalStepPhase2(ref i, length, globalStatements, variableName);
 				}
-
-				if (variableNameToCheck is null)
-				{
-					return;
-				}
-
-				// Step 2: Get all global statements.
-				var globalStatements = new List<GlobalStatementSyntax>();
-				bool isTheFirstStatement = true;
-				foreach (var node in compilationUnit.DescendantNodes().OfType<GlobalStatementSyntax>())
-				{
-					if (isTheFirstStatement)
-					{
-						isTheFirstStatement = false;
-						continue;
-					}
-
-					globalStatements.Add(node);
-				}
-
-				// Step 3: Check whether the current statement has used the variable above.
-				int i = 0, count = globalStatements.Count;
-				SyntaxNode? toStringInvocationNode = null, expressionStatement = null;
-				for (int iterationCount = count - 1; i < iterationCount; i++)
-				{
-					switch (globalStatements[i])
-					{
-						case
-						{
-							Statement: ExpressionStatementSyntax
-							{
-								Expression: var innerExpression
-							} currentExpressionStatement
-						}:
-						{
-							foreach (var innerDescendant in innerExpression.DescendantNodes())
-							{
-								// Check whether the node is an invocation 'ValueStringBuilder.ToString'.
-								if (
-									innerDescendant is not InvocationExpressionSyntax
-									{
-										Expression: MemberAccessExpressionSyntax
-										{
-											Expression: IdentifierNameSyntax
-											{
-												Identifier: { ValueText: var possibleVariableName }
-											},
-											Name: { Identifier: { ValueText: "ToString" } }
-										},
-										ArgumentList: { Arguments: { Count: 0 } }
-									}
-								)
-								{
-									continue;
-								}
-
-								// Check whether the variable exists above.
-								// By this way we can check the type of that variable.
-								if (possibleVariableName != variableNameToCheck)
-								{
-									continue;
-								}
-
-								toStringInvocationNode = innerDescendant;
-								expressionStatement = currentExpressionStatement;
-								goto CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType;
-							}
-
-							break;
-						}
-					}
-				}
-
-			CheckWhetherTheCurrentStatementContainsToStringInvocationOfThatType:
-				if (toStringInvocationNode is null)
-				{
-					return;
-				}
-
-				// Step 4-1: Check whether the current statement contains the extra usage of that variable.
-				// For example, if the expression is like:
-				//
-				//     sb.Append(sb.ToString());
-				//
-				// Because of the disposing of the variable 'sb', we can't use 'sb' to surround
-				// the invocation 'sb.ToString', because the outer invocation 'sb.Append' will be
-				// executed after than 'sb.ToString', and 'sb' has been already disposed now to call
-				// 'sb.Append'.
-				finalStepPhase1(toStringInvocationNode, expressionStatement!, variableNameToCheck);
-
-				// Step 4-2: Check whether the last statements contains the usage of that variable.
-				finalStepPhase2(ref i, count, globalStatements, variableNameToCheck);
 			}
 
 
 			void finalStepPhase1(
-				SyntaxNode toStringInvocationNode, SyntaxNode expressionStatement, string? variableNameToCheck)
+				SyntaxNode toStringInvocationNode, SyntaxNode expressionStatement, string variableNameToCheck)
 			{
 				foreach (var ancestor in toStringInvocationNode.Ancestors())
 				{

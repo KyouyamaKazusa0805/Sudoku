@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Text;
 
-var vsb = new ValueStringBuilder(stackalloc char[10]);
-var vsb2 = new ValueStringBuilder(stackalloc char[10]);
-var vsb3 = new ValueStringBuilder(stackalloc char[10]);
+ValueStringBuilder vsb = new(stackalloc char[10]), vsb2 = new(stackalloc char[10]), vsb3 = new(stackalloc char[10]);
 
 Console.WriteLine(vsb.ToString());
 vsb.Append('!'); // Wrong.
@@ -22,9 +20,7 @@ class MyClass
 {
 	void F()
 	{
-		var vsb = new ValueStringBuilder(stackalloc char[10]);
-		var vsb2 = new ValueStringBuilder(stackalloc char[10]);
-		var vsb3 = new ValueStringBuilder(stackalloc char[10]);
+		ValueStringBuilder vsb = new(stackalloc char[10]), vsb2 = new(stackalloc char[10]), vsb3 = new(stackalloc char[10]);
 
 		Console.WriteLine(vsb.ToString());
 		vsb.Append('!'); // Wrong.
@@ -46,9 +42,7 @@ class MyClass
 
 		static void g()
 		{
-			var vsb = new ValueStringBuilder(stackalloc char[10]);
-			var vsb2 = new ValueStringBuilder(stackalloc char[10]);
-			var vsb3 = new ValueStringBuilder(stackalloc char[10]);
+			ValueStringBuilder vsb = new(stackalloc char[10]), vsb2 = new(stackalloc char[10]), vsb3 = new(stackalloc char[10]);
 
 			Console.WriteLine(vsb.ToString());
 			vsb.Append('!'); // Wrong.
