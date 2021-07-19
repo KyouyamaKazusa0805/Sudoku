@@ -36,6 +36,7 @@
 | [SD0313](rules/Rule-SD0313) | ⚠ | Performance | ✔ |  |
 | [SD0314](rules/Rule-SD0314) | ❌ | Usage | ❌ |  |
 | [SD0315](rules/Rule-SD0315) | ⚠ | Usage | ❌ |  |
+| [SD0316](rules/Rule-SD0316) | ⚠ | Usage | ❌ | |
 | [SD0401](rules/Rule-SD0401) | ⚠                  | Usage                     | ✔              |        |
 | [SD0402](rules/Rule-SD0402) | ⚠                  | Usage                     | ❌              |        |
 | [SD0403](rules/Rule-SD0403) | ❌                  | Usage                     | ❌              |        |

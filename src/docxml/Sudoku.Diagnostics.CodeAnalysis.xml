@@ -1400,6 +1400,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.Structure.ValueStringBuilderDisposeInvocationAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0316">SD0316</a></term>
+            <description>Don't call 'ValueStringBuilder.Dispose' method explicitly</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.Structure.ValueStringBuilderDisposeInvocationAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.Structure.ValueStringBuilderDisposeInvocationAnalyzer.SD0316">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0316">SD0316</a>
+            diagnostic result (Don't call 'ValueStringBuilder.Dispose' method explicitly).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.Structure.ValueStringBuilderDisposeInvocationAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderUsingDeclarationAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
