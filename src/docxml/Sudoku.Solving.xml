@@ -323,11 +323,21 @@
             <summary>
             Indicates a list, whose element is the intermediate grid for each step.
             </summary>
+            <remarks>
+            The result value is not <see langword="null"/> when the property
+            <see cref="P:Sudoku.Solving.AnalysisResult.Steps"/> is not <see langword="null"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.Steps"/>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.Steps">
             <summary>
             Indicates all solving steps that the solver has recorded.
             </summary>
+            <remarks>
+            The result value is not <see langword="null"/> when the property
+            <see cref="P:Sudoku.Solving.AnalysisResult.StepGrids"/> is not <see langword="null"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.StepGrids"/>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.MaxDifficulty">
             <summary>
@@ -403,6 +413,11 @@
             <summary>
             Indicates the bottle neck during the whole grid solving.
             </summary>
+            <remarks>
+            The result value is not <see langword="null"/> when the property <see cref="P:Sudoku.Solving.AnalysisResult.Steps"/>
+            is not <see langword="null"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.AnalysisResult.Steps"/>
         </member>
         <member name="P:Sudoku.Solving.AnalysisResult.Item(System.Int32)">
             <summary>
@@ -444,7 +459,7 @@
         <member name="M:Sudoku.Solving.AnalysisResult.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)">
             <inheritdoc cref="M:Sudoku.Solving.AnalysisResult.Formatter.ToString(Sudoku.Solving.AnalysisResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
         </member>
-        <member name="M:Sudoku.Solving.AnalysisResult.DifficultyExecutor(,System.Decimal)">
+        <member name="M:Sudoku.Solving.AnalysisResult.Evaluator(,System.Decimal)">
             <summary>
             The inner executor to get the difficulty value (total, average).
             </summary>

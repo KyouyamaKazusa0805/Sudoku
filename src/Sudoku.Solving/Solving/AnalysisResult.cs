@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using Sudoku.CodeGenerating;
@@ -24,7 +25,10 @@ namespace Sudoku.Solving
 	[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).*")]
 	[AutoFormattable]
 	public sealed partial record AnalysisResult(
-		string SolverName, in SudokuGrid Puzzle, bool IsSolved, in TimeSpan ElapsedTime
+		string SolverName,
+		in SudokuGrid Puzzle,
+		[property: MemberNotNullWhen(returnValue: true, nameof(AnalysisResult.Solution))] bool IsSolved,
+		in TimeSpan ElapsedTime
 	) : IEnumerable<StepInfo>, IFormattable
 	{
 		/// <summary>
@@ -41,11 +45,23 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates a list, whose element is the intermediate grid for each step.
 		/// </summary>
+		/// <remarks>
+		/// The result value is not <see langword="null"/> when the property
+		/// <see cref="Steps"/> is not <see langword="null"/>.
+		/// </remarks>
+		/// <seealso cref="Steps"/>
+		[NotNullIfNotNull(nameof(Steps))]
 		public IReadOnlyList<SudokuGrid>? StepGrids { get; init; }
 
 		/// <summary>
 		/// Indicates all solving steps that the solver has recorded.
 		/// </summary>
+		/// <remarks>
+		/// The result value is not <see langword="null"/> when the property
+		/// <see cref="StepGrids"/> is not <see langword="null"/>.
+		/// </remarks>
+		/// <seealso cref="StepGrids"/>
+		[NotNullIfNotNull(nameof(StepGrids))]
 		public IReadOnlyList<StepInfo>? Steps { get; init; }
 
 		/// <summary>
@@ -59,7 +75,7 @@ namespace Sudoku.Solving
 		/// </para>
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
-		public unsafe decimal MaxDifficulty => DifficultyExecutor(&Enumerable.Max<StepInfo>, 20.0M);
+		public unsafe decimal MaxDifficulty => Evaluator(&Enumerable.Max<StepInfo>, 20.0M);
 
 		/// <summary>
 		/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -74,7 +90,7 @@ namespace Sudoku.Solving
 		/// </summary>
 		/// <seealso cref="ManualSolver"/>
 		/// <seealso cref="Steps"/>
-		public unsafe decimal TotalDifficulty => DifficultyExecutor(&Enumerable.Sum<StepInfo>, 0);
+		public unsafe decimal TotalDifficulty => Evaluator(&Enumerable.Sum<StepInfo>, 0);
 
 		/// <summary>
 		/// <para>
@@ -148,6 +164,12 @@ namespace Sudoku.Solving
 		/// <summary>
 		/// Indicates the bottle neck during the whole grid solving.
 		/// </summary>
+		/// <remarks>
+		/// The result value is not <see langword="null"/> when the property <see cref="Steps"/>
+		/// is not <see langword="null"/>.
+		/// </remarks>
+		/// <seealso cref="Steps"/>
+		[NotNullIfNotNull(nameof(Steps))]
 		public StepInfo? Bottleneck
 		{
 			get
@@ -223,7 +245,7 @@ namespace Sudoku.Solving
 		/// </param>
 		/// <returns>The result.</returns>
 		/// <seealso cref="Steps"/>
-		private unsafe decimal DifficultyExecutor(
+		private unsafe decimal Evaluator(
 			delegate*<IEnumerable<StepInfo>, Func<StepInfo, decimal>, decimal> funcExecutor,
 			decimal defaultValue) => Steps is { Count: not 0 }
 			? funcExecutor(Steps, static step => step.ShowDifficulty ? step.Difficulty : 0)

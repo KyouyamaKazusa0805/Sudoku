@@ -78,8 +78,7 @@ namespace Sudoku.Solving.Checking
 		/// otherwise, <see langword="null"/>.
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static bool IsValid(
-			this UndoableGrid @this, [NotNullWhen(true)] out UndoableGrid? solutionIfValid)
+		public static bool IsValid(this UndoableGrid @this, [NotNullWhen(true)] out UndoableGrid? solutionIfValid)
 		{
 			solutionIfValid = null;
 
