@@ -35,7 +35,7 @@
 | [SD0312](rules/Rule-SD0312) | ⚠ | Usage | ✔ |  |
 | [SD0313](rules/Rule-SD0313) | ⚠ | Performance | ✔ |  |
 | [SD0314](rules/Rule-SD0314) | ❌ | Usage | ❌ |  |
-| [SD0315](rules/Rule-SD0315) | ⚠ | Usage | ❌ | 待完成 |
+| [SD0315](rules/Rule-SD0315) | ⚠ | Usage | ❌ |  |
 | [SD0401](rules/Rule-SD0401) | ⚠                  | Usage                     | ✔              |        |
 | [SD0402](rules/Rule-SD0402) | ⚠                  | Usage                     | ❌              |        |
 | [SD0403](rules/Rule-SD0403) | ❌                  | Usage                     | ❌              |        |

@@ -16,7 +16,7 @@
 
 ## 描述
 
-这是因为 `ValueStringBuilder` 数据类型本身的机制的问题。确实在底层 `ValueStringBuilder` 类型实现了 `Dispose` 方法可以释放内存，不过因为它是受到自动调用，因此强烈不建议手动调用，比如 `using` 声明。
+这是因为 `ValueStringBuilder` 数据类型本身的机制的问题。确实在底层 `ValueStringBuilder` 类型实现了 `Dispose` 方法可以释放内存，不过因为它是受到 `ToString` 方法本身的调用而被自动调用的，因此我们强烈不建议你手动调用 `Dispose` 方法，比如使用 `using` 声明。
 
 ```csharp
 using var sb = new ValueStringBuilder(stackalloc char[10]);

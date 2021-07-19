@@ -1400,6 +1400,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderDisposeAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderUsingDeclarationAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0315">SD0315F</a></term>
+            <description>Don't use 'using' statement onto the instance of type 'ValueStringBuilder'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderUsingDeclarationAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderUsingDeclarationAnalyzer.SD0315">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0315">SD0315</a>
+            diagnostic result (Don't use 'using' statement onto the instance of type 'ValueStringBuilder').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ValueStringBuilderUsingDeclarationAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AutoAttributePropertiesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
