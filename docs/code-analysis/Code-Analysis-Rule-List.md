@@ -47,8 +47,8 @@
 | [SD0408](rules/Rule-SD0408) | ⚠ | Usage | ❌ |  |
 | [SD0409](rules/Rule-SD0409) | ⚠ | Usage | ❌ |  |
 | [SD0410](rules/Rule-SD0410) | ⚠ | Usage | ❌ |  |
-| [SD0411](rules/Rule-SD0411) | ❌ | Usage | ❌ | 待完成 |
-| [SD0412](rules/Rule-SD0412) | ⚠ | Usage | ❌ | 待完成 |
+| [SD0411](rules/Rule-SD0411) | ❌ | Usage | ❌ |  |
+| [SD0412](rules/Rule-SD0412) | ⚠ | Usage | ❌ |  |
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
