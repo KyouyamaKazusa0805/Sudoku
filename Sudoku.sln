@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
 		LICENSE = LICENSE
+		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md
 		docs\version\Version-0.7.md = docs\version\Version-0.7.md
 	EndProjectSection
