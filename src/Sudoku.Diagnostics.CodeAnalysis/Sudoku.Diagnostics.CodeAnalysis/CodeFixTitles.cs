@@ -24,6 +24,7 @@
 		public const string SD0312 = "Use 'stackalloc' expression instead";
 		public const string SD0313 = "Change argument to pass an 'int' value";
 		public const string SD0401 = "Use 'nameof' expression instead";
+		public const string SD0501 = "Convert to camel case";
 
 		public const string SS0101 = "Append 'ToString' invocation";
 		public const string SS0102 = "Remove redundant '$'";

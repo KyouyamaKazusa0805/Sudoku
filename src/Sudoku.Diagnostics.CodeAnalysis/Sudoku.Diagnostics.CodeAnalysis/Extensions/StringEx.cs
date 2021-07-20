@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
@@ -9,6 +10,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
 	/// <seealso cref="string"/>
 	public static class StringEx
 	{
+		/// <summary>
+		/// To determine whether the string value is a camel-case identifier.
+		/// </summary>
+		/// <param name="this">The value.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public static bool IsCamelCase(this string @this) =>
+			!string.IsNullOrWhiteSpace(@this)
+			&& @this[0] is >= 'a' and <= 'z'
+			&& @this.All(static c => c is >= '0' and <= '9' or >= 'a' and <= 'z' or >= 'A' and <= 'Z');
+
 		/// <summary>
 		/// Converts the current name into the camel case.
 		/// </summary>

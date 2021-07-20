@@ -565,6 +565,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LocalFunctionNamingAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0501">SD0501</a></term>
+            <description>The local functions will use camel case as its name</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LocalFunctionNamingAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LocalFunctionNamingAnalyzer.SD0501">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0501">SD0501</a>
+            diagnostic result (The local functions will use camel case as its name).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LocalFunctionNamingAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CompoundNullCoalescingAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -2486,6 +2509,22 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0401CodeFixProvider.GetFixAllProvider">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0501CodeFixProvider">
+            <summary>
+            Indicates the code fixer for solving the diagnostic result
+            <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0501">SD0501</a>
+            (The local functions will use camel case as its name).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0501CodeFixProvider.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0501CodeFixProvider.FixableDiagnosticIds">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SD0501CodeFixProvider.GetFixAllProvider">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CodeFixers.SS0101CodeFixProvider">
             <summary>
             Indicates the code fixer for solving the diagnostic result
@@ -3460,6 +3499,13 @@
             Provides extension methods on <see cref="T:System.String"/>.
             </summary>
             <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.IsCamelCase(System.String)">
+            <summary>
+            To determine whether the string value is a camel-case identifier.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Extensions.StringEx.ToCamelCase(System.String,Sudoku.Diagnostics.CodeAnalysis.CaseConvertingOption)">
             <summary>
