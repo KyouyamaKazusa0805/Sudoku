@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CodeGenerating", "src\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj", "{4C81AD78-1EC7-4FA2-8721-E63FCD1AFC9E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sudoku.UiProjects", "Sudoku.UiProjects", "{98E06ADC-B497-43B9-97CB-3F9F05EAF295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -320,6 +322,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{CDB8160F-6FEA-41E8-B1ED-A3FA06EB069A} = {98E06ADC-B497-43B9-97CB-3F9F05EAF295}
 		{416083A2-2B6A-4AD7-9E8C-60CFCCF52373} = {D6ABE417-292C-4AFF-B1C2-2831597C3ED7}
 		{6C2F4EC3-2757-41FA-AE29-BB158D08B952} = {D6ABE417-292C-4AFF-B1C2-2831597C3ED7}
 		{38881602-6A67-4BA1-8437-F909ACA24FF6} = {6C2F4EC3-2757-41FA-AE29-BB158D08B952}
