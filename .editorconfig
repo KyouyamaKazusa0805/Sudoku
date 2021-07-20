@@ -66,14 +66,14 @@ csharp_style_var_for_built_in_types = false:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
 
 # Expression-bodied members
-csharp_style_expression_bodied_accessors = when_on_single_line:silent
-csharp_style_expression_bodied_constructors = when_on_single_line:silent
-csharp_style_expression_bodied_indexers = when_on_single_line:silent
-csharp_style_expression_bodied_lambdas = when_on_single_line:silent
-csharp_style_expression_bodied_local_functions = when_on_single_line:silent
-csharp_style_expression_bodied_methods = when_on_single_line:silent
-csharp_style_expression_bodied_operators = when_on_single_line:silent
-csharp_style_expression_bodied_properties = when_on_single_line:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_constructors = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = true:silent
+csharp_style_expression_bodied_methods = true:silent
+csharp_style_expression_bodied_operators = true:silent
+csharp_style_expression_bodied_properties = true:silent
 
 # Pattern matching preferences
 csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
@@ -441,3 +441,25 @@ dotnet_style_prefer_simplified_interpolation = false
 
 # SS0624: Available simplification for extended property patterns
 dotnet_diagnostic.SS0624.severity = none
+
+
+# The separator. I don't know how to separate two parts, so... I find a joke to put into here.
+#
+# George comes from school on the first of September.
+# "George, how did you like your new teacher?" asked his mother.
+# He said, "I didn't like her, Mother, because she said that three and three were six and then
+# she said that two and four were six too....."
+
+
+# Following settings is only enabled on 'Sudoku.UI' project because the compiler suggestion is too noisy :(
+[src/Sudoku.UI/Sudoku.UI/**.{cs,xaml}]
+
+# Expression-bodied members
+csharp_style_expression_bodied_accessors = true:none
+csharp_style_expression_bodied_constructors = true:none
+csharp_style_expression_bodied_indexers = true:none
+csharp_style_expression_bodied_lambdas = true:none
+csharp_style_expression_bodied_local_functions = true:none
+csharp_style_expression_bodied_methods = true:none
+csharp_style_expression_bodied_operators = true:none
+csharp_style_expression_bodied_properties = true:none

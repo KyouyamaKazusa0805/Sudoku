@@ -620,6 +620,11 @@
             instead of any calculations.
             </remarks>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DiscardAttribute">
+            <summary>
+            Indicates the marked parameter is a discard and can't be used.
+            </summary>
+        </member>
         <member name="T:System.Extensions.BitArrayEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

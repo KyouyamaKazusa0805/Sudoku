@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--
+		The basic information for the MAUI project.
+		
+		In fact we can also append the options about C# here, such as <Nullable>enable</Nullable>,
+		but we separate to two parts in order to make this configuration document more comprehensibility and readability.
+	-->
+	<PropertyGroup>
+		<!-- iOS, Android, MacCatalyst -->
+		<TargetFrameworks>net6.0-ios;net6.0-android;net6.0-maccatalyst</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<RootNamespace>Sudoku.UI</RootNamespace>
+
+		<!-- Display name -->
+		<ApplicationTitle>Sudoku.UI</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.sunnie.sss</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationVersion>0.1</ApplicationVersion>
+		<AndroidVersionCode>1</AndroidVersionCode>
+	</PropertyGroup>
+
+	<!--
+		The basic configuration about the project, such as the C# language version, etc..
+	-->
+	<PropertyGroup>
+		<!-- Cross-platform information -->
+		<InvariantGlobalization Condition="$(TargetFramework.Contains('-maccatalyst'))">true</InvariantGlobalization>
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('-ios'))">iossimulator-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="$(TargetFramework.Contains('-maccatalyst'))">maccatalyst-x64</RuntimeIdentifier>
+		<UseInterpreter Condition="$(TargetFramework.Contains('-android'))">False</UseInterpreter>
+
+		<!-- C# or project information -->
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>..\..\docxml\Sudoku.UI.xml</DocumentationFile>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<DefineConstants>NULLABLE</DefineConstants>
+
+		<!-- Information about signature for the project -->
+		<AssemblyName>Sudoku.UI</AssemblyName>
+		<Authors>Sunnie</Authors>
+		<Company>Sunnie</Company>
+		<VersionPrefix>0.1.0</VersionPrefix>
+		<Description>The project that uses MAUI to implement for all main platforms as a solution for using the inner sudoku APIs.</Description>
+		<Copyright>Copyright (c) Sunnie 2021</Copyright>
+		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
+		<PackageTags>sudoku;puzzle-solving;algorithms</PackageTags>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<!--
+		Multiple platform settings.
+		Here we can modify the value here to change the behavior of the platform information.
+
+		The '$(Configuration)' symbol can help you to determine which platform we choose.
+	-->
+	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net6.0-android|AnyCPU'">
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<!--
+	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net6.0-ios|AnyCPU'">
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net6.0-maccatalyst|AnyCPU'">
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	-->
+
+	<!-- Project references -->
+	<ItemGroup>
+		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<!-- Assets -->
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiImage Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" IsAppIcon="true" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+
+</Project>

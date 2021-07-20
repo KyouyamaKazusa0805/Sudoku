@@ -7,7 +7,7 @@
 
 ### 增加
 
-
+* 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目。
 
 ### 删除
 

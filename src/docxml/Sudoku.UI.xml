@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.App">
+            <summary>
+            Defines the interaction of this application.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.App"/> instance without parameters.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MainPage">
+            <summary>
+            The basic interactions about the <c><see cref="T:Sudoku.UI.MainPage"/>.xaml</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.MainPage._clickedCount">
+            <summary>
+            Indicates the numbers that the button clicked.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MainPage"/> instance with no parameters.
+            </summary>
+            <remarks>
+            <para>
+            This constructor will calls the inner method called <c>InitializeComponent</c>,
+            but this method will automatically iniatilize all controls in this page implicitly,
+            but Roslyn don't know this behavior.
+            </para>
+            <para>
+            To be honest, I suggest the team will append <see cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
+            onto the method <c>InitializeComponent</c> in order to avoid Roslyn making the error wave
+            mark on this method.
+            </para>
+            </remarks>
+            <seealso cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
+        </member>
+        <member name="M:Sudoku.UI.MainPage.OnCounterClicked(System.Object,System.EventArgs)">
+            <summary>
+            Executed when the button <see cref="F:Sudoku.UI.MainPage._buttonCounter"/> clicked.
+            </summary>
+            <param name="sender">
+            The sender to trigger the event. The value of <paramref name="sender"/>
+            should be <see cref="F:Sudoku.UI.MainPage._buttonCounter"/> in general.
+            </param>
+            <param name="e">
+            The event arguments provided. Here this argument will be a discard
+            because the inner data is unmeaningful.
+            </param>
+            <seealso cref="F:Sudoku.UI.MainPage._buttonCounter"/>
+        </member>
+        <member name="T:Sudoku.UI.Startup">
+            <summary>
+            Defines a startup entry point.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Startup.Configure(Microsoft.Maui.Hosting.IAppHostBuilder)">
+            <summary>
+            To configure the current UI project, and creates the base information.
+            </summary>
+            <param name="appBuilder">The application builder host.</param>
+        </member>
+    </members>
+</doc>
