@@ -288,7 +288,7 @@ dotnet_diagnostic.IDE0010.severity = none
 csharp_style_unused_value_expression_statement_preference = discard_variable:none
 
 # IDE0072: Add missing cases
-dotnet_diagnostic.IDE0072.severity = silent
+dotnet_diagnostic.IDE0072.severity = none
 
 
 # CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive).
