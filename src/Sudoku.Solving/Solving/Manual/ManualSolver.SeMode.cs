@@ -17,6 +17,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Solve the puzzle with <see cref="AnalyzeDifficultyStrictly"/> option.
 		/// </summary>
+		/// <param name="this">The current manual solver instance.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
@@ -39,12 +40,12 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private unsafe AnalysisResult SolveSeMode(
-			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
+		private static unsafe AnalysisResult SolveSeMode(
+			ManualSolver @this, in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
 			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress,
 			CancellationToken? cancellationToken)
 		{
-			var searchers = this.GetSeModeSearchers(solution);
+			var searchers = @this.GetSeModeSearchers(solution);
 			var stepGrids = new List<SudokuGrid>();
 			var bag = new List<StepInfo>();
 			var stopwatch = new Stopwatch();
@@ -70,7 +71,7 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (EnableGarbageCollectionForcedly)
+					if (@this.EnableGarbageCollectionForcedly)
 					{
 						GC.Collect();
 					}
@@ -82,7 +83,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (FastSearch)
+				if (@this.FastSearch)
 				{
 					decimal minDiff = bag.Min(static info => info.Difficulty);
 					var selection = from info in bag where info.Difficulty == minDiff select info;
@@ -101,12 +102,12 @@ namespace Sudoku.Solving.Manual
 						}
 					}
 
-					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
+					if (!@this.CheckConclusionValidityAfterSearched || allConclusionsAreValid)
 					{
 						foreach (var step in selection)
 						{
 							if (
-								RecordStep(
+								@this.RecordStep(
 									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
 									cancellationToken
 								)
@@ -148,11 +149,11 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched
+					if (!@this.CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
 						if (
-							RecordStep(
+							@this.RecordStep(
 								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
 								cancellationToken
 							)
@@ -188,7 +189,7 @@ namespace Sudoku.Solving.Manual
 			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
-			return new(SolverName, grid, false, stopwatch.Elapsed)
+			return new(@this.SolverName, grid, false, stopwatch.Elapsed)
 			{
 				Steps = steps.AsReadOnlyList(),
 				StepGrids = stepGrids,

@@ -73,7 +73,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="countryCode">The country code.</param>
 		/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 		/// <returns>The analysis result.</returns>
-		public AnalysisResult Solve(
+		public unsafe AnalysisResult Solve(
 			in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs,
 			CancellationToken? cancellationToken = null)
 		{
@@ -91,14 +91,16 @@ namespace Sudoku.Solving.Manual
 
 					var tempList = new List<StepInfo>();
 					var copied = grid;
-					return AnalyzeDifficultyStrictly
-						? SolveSeMode(
-							grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-							cancellationToken
-						) : SolveNaively(
-							grid, ref copied, tempList, solution, sukaku.Value, ref pr, progress,
-							cancellationToken
-						);
+					delegate*<
+						ManualSolver, in SudokuGrid, ref SudokuGrid, IList<StepInfo>,
+						in SudokuGrid, bool, ref GridProgressResult, IProgress<IProgressResult>?,
+						CancellationToken?, AnalysisResult
+					> f = AnalyzeDifficultyStrictly ? &SolveSeMode : &SolveNaively;
+
+					return f(
+						this, grid, ref copied, tempList, solution, sukaku.Value, ref pr,
+						progress, cancellationToken
+					);
 				}
 				catch (WrongStepException ex)
 				{

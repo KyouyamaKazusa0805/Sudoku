@@ -18,6 +18,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Solve naively.
 		/// </summary>
+		/// <param name="this">The current manual solver.</param>
 		/// <param name="grid">The grid.</param>
 		/// <param name="cloneation">The cloneation grid to calculate.</param>
 		/// <param name="steps">All steps found.</param>
@@ -40,14 +41,14 @@ namespace Sudoku.Solving.Manual
 		/// Throws when the solver can't solved due to wrong handling.
 		/// </exception>
 		/// <seealso cref="GridProgressResult"/>
-		private unsafe AnalysisResult SolveNaively(
-			in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps, in SudokuGrid solution,
-			bool sukaku, ref GridProgressResult progressResult, IProgress<IProgressResult>? progress,
-			CancellationToken? cancellationToken)
+		private static unsafe AnalysisResult SolveNaively(
+			ManualSolver @this, in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps,
+			in SudokuGrid solution, bool sukaku, ref GridProgressResult progressResult,
+			IProgress<IProgressResult>? progress, CancellationToken? cancellationToken)
 		{
 			// Check symmetry first.
 			var stepGrids = new List<SudokuGrid>();
-			if (!sukaku && CheckGurthSymmetricalPlacement)
+			if (!sukaku && @this.CheckGurthSymmetricalPlacement)
 			{
 				var symmetrySearcher =
 #if I_WANT_TO_DISABLE_THIS__BECAUSE_OF_TOO_SLOW
@@ -76,8 +77,8 @@ namespace Sudoku.Solving.Manual
 			}
 
 			// Start searching.
-			var searchers = this.GetHodokuModeSearchers(solution);
-			if (UseCalculationPriority)
+			var searchers = @this.GetHodokuModeSearchers(solution);
+			if (@this.UseCalculationPriority)
 			{
 				searchers.Sort(&cmp);
 			}
@@ -108,7 +109,7 @@ namespace Sudoku.Solving.Manual
 					continue;
 				}
 
-				if (FastSearch)
+				if (@this.FastSearch)
 				{
 					bool allConclusionsAreValid = true;
 					foreach (var element in bag)
@@ -120,12 +121,12 @@ namespace Sudoku.Solving.Manual
 						}
 					}
 
-					if (!CheckConclusionValidityAfterSearched || allConclusionsAreValid)
+					if (!@this.CheckConclusionValidityAfterSearched || allConclusionsAreValid)
 					{
 						foreach (var step in bag)
 						{
 							if (
-								RecordStep(
+								@this.RecordStep(
 									steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
 									cancellationToken)
 							)
@@ -139,7 +140,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly)
+						if (@this.EnableGarbageCollectionForcedly)
 						{
 							GC.Collect();
 						}
@@ -164,7 +165,7 @@ namespace Sudoku.Solving.Manual
 					// If the searcher is only used in the fast mode, just skip it.
 					if (
 						(
-							OptimizedApplyingOrder
+							@this.OptimizedApplyingOrder
 							? from info in bag orderby info.Difficulty select info
 							: bag.AsEnumerable()
 						).FirstOrDefault() is not { } step
@@ -176,11 +177,11 @@ namespace Sudoku.Solving.Manual
 						continue;
 					}
 
-					if (!CheckConclusionValidityAfterSearched
+					if (!@this.CheckConclusionValidityAfterSearched
 						|| CheckConclusionsValidity(solution, step.Conclusions))
 					{
 						if (
-							RecordStep(
+							@this.RecordStep(
 								steps, step, grid, ref cloneation, stopwatch, stepGrids, out var result,
 								cancellationToken
 							)
@@ -194,7 +195,7 @@ namespace Sudoku.Solving.Manual
 						// we should turn to the first step finder
 						// to continue solving puzzle.
 						bag.Clear();
-						if (EnableGarbageCollectionForcedly)
+						if (@this.EnableGarbageCollectionForcedly)
 						{
 							GC.Collect();
 						}
@@ -214,7 +215,7 @@ namespace Sudoku.Solving.Manual
 			// All solver can't finish the puzzle...
 			// :(
 			stopwatch.Stop();
-			return new(SolverName, grid, false, stopwatch.Elapsed)
+			return new(@this.SolverName, grid, false, stopwatch.Elapsed)
 			{
 				Steps = steps.AsReadOnlyList(),
 				StepGrids = stepGrids,
