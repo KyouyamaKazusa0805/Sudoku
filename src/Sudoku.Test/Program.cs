@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 Console.WriteLine();
 
-int[] a = { 1, 2, 3, 4, 5, 6 };
-var selection2 = from e in a select e + 1 into f where f is var q select f;
+MyClass.Method(10, default);
 
 abstract class MyClass
 {
@@ -19,4 +18,15 @@ abstract class MyClass
 	protected static readonly string R = @"\w+";
 
 	protected static readonly string S = @"\w+";
+
+
+	public static void Method(int age, [Discard] double discardVariable)
+	{
+		age += 10;
+		Console.WriteLine(age);
+		Console.WriteLine(nameof(age));
+		discardVariable -= 10;
+		Console.WriteLine(discardVariable);
+		Console.WriteLine(nameof(discardVariable));
+	}
 }

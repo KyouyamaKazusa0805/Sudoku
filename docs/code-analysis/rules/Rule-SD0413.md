@@ -6,7 +6,7 @@
 **错误叙述**：
 
 * **中文**：标记了 `[Discard]` 的参数无法被任何地方使用，除非是 `nameof` 表达式。
-* **英文**：The parameter marked` [Discard]` can't be used wherever unless a `nameof` expression.
+* **英文**：The parameter marked` [Discard]` can't be used in anywhere unless in a `nameof` expression.
 
 **级别**：编译器错误
 

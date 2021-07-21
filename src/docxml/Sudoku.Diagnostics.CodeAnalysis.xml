@@ -194,6 +194,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0413">SD0413</a></term>
+            <description>The parameter marked '[Discard]' can't be used in anywhere unless in a 'nameof' expression</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer.SD0413">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0413">SD0413</a>
+            diagnostic result (The parameter marked '[Discard]' can't be used in anywhere unless in a 'nameof' expression).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ClosedEnumAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
