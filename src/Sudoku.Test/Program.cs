@@ -5,8 +5,7 @@ using System.Text.RegularExpressions;
 Console.WriteLine();
 
 int[] a = { 1, 2, 3, 4, 5, 6 };
-var selection1 = from e in a let f = e + 1 where f % 2 == 0 select f;
-var selection2 = from e in a select e + 1 into f where f % 2 == 0 select f;
+var selection2 = from e in a select e + 1 into f where f is var q select f;
 
 abstract class MyClass
 {

@@ -59,6 +59,7 @@ SS0310,Warning,Performance,"The selection after 'where' clause filtered can only
 SS0311,Warning,Performance,Unmeaningful 'orderby' clause.,
 SS0312,Info,Performance,Multiple 'where' clauses can be merged to one.,
 SS0313,Info,Performance,Please use 'select-into' clause instead of 'let' clause.,
+SS0314,Warning,Design,Don't declare new variables in the 'where' clause or pattern matching in the LINQ expression.,
 SS0401,Error,Usage,Can't apply the operator here because the type is closed enum.,Can't apply 'operator {0}' here because the type is closed enum.
 SS0402,Warning,Design,The enum field must holds a flag value if the enum is marked 'FlagsAttribute'.,
 SS0403,Warning,Design,The enum field must holds a explicitly-wroten value if the enum is marked 'FlagsAttribute'.,

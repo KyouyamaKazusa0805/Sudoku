@@ -588,6 +588,29 @@
         <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereClausePureBooleanAnalyzer.SupportedDiagnostics">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereVarVariableAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0314">SS0314</a></term>
+            <description>Don't declare new variables in the 'where' clause or pattern matching in the LINQ expression</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereVarVariableAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereVarVariableAnalyzer.SS0314">
+            <summary>
+            Indicates the <a href="https://sunnieshine.github.io/Sudoku/rules/Rule-SS0314">SS0314</a>
+            diagnostic result (Don't declare new variables in the 'where' clause or pattern matching in the LINQ expression).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.WhereVarVariableAnalyzer.SupportedDiagnostics">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ExtensionMethodParameterNamingAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
