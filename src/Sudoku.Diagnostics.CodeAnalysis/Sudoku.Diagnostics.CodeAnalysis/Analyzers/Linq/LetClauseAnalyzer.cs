@@ -27,6 +27,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		{
 			var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
+			// BUG: Here we don't check the property Continuation part, which may also be a variable to check.
 			if (
 				originalNode is not QueryExpressionSyntax
 				{
