@@ -93,5 +93,8 @@
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Pages\" />
+	</ItemGroup>
 
 </Project>

@@ -1,21 +1,12 @@
-﻿using System;
-using Microsoft.Maui.Controls;
-using System.Diagnostics.CodeAnalysis;
-using MemberNotNull = System.Diagnostics.CodeAnalysis.MemberNotNullAttribute;
+﻿using MemberNotNull = System.Diagnostics.CodeAnalysis.MemberNotNullAttribute;
 
 namespace Sudoku.UI
 {
 	/// <summary>
 	/// The basic interactions about the <c><see cref="MainPage"/>.xaml</c>.
 	/// </summary>
-	public partial class MainPage : ContentPage
+	public partial class MainPage
 	{
-		/// <summary>
-		/// Indicates the numbers that the button clicked.
-		/// </summary>
-		private int _clickedCount;
-
-
 		/// <summary>
 		/// Initializes a <see cref="MainPage"/> instance with no parameters.
 		/// </summary>
@@ -23,7 +14,11 @@ namespace Sudoku.UI
 		/// <para>
 		/// This constructor will calls the inner method called <c>InitializeComponent</c>,
 		/// but this method will automatically iniatilize all controls in this page implicitly,
-		/// but Roslyn don't know this behavior.
+		/// but Roslyn don't know this behavior, so it'll report a
+		/// <see href="https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/upgrade-to-nullable-references#warnings-help-discover-original-design-intent">
+		/// CS8618
+		/// </see>
+		/// compiler warning.
 		/// </para>
 		/// <para>
 		/// To be honest, I suggest the team will append <see cref="MemberNotNull"/>
@@ -37,29 +32,5 @@ namespace Sudoku.UI
 		public MainPage() => InitializeComponent();
 #nullable restore
 #endif
-
-
-		/// <summary>
-		/// Executed when the button <see cref="_buttonCounter"/> clicked.
-		/// </summary>
-		/// <param name="sender">
-		/// The sender to trigger the event. The value of <paramref name="sender"/>
-		/// should be <see cref="_buttonCounter"/> in general.
-		/// </param>
-		/// <param name="e">
-		/// The event arguments provided. Here this argument will be a discard
-		/// because the inner data is unmeaningful.
-		/// </param>
-		/// <seealso cref="_buttonCounter"/>
-		private void OnCounterClicked(object sender, [Discard] EventArgs e)
-		{
-			if (sender is not Button)
-			{
-				return;
-			}
-
-			_clickedCount++;
-			_labelCounter.Text = $"Current count: {_clickedCount.ToString()}";
-		}
 	}
 }
