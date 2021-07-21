@@ -28,5 +28,29 @@ abstract class MyClass
 		discardVariable -= 10;
 		Console.WriteLine(discardVariable);
 		Console.WriteLine(nameof(discardVariable));
+
+#pragma warning disable IDE0039
+		Action<int> f = static discardVariable => Console.WriteLine(discardVariable);
+		f(10);
+
+		Action<int> g = static delegate (int discardVariable) { Console.WriteLine(discardVariable); };
+		g(20);
+#pragma warning restore IDE0039
+
+		static void h(double discardVariable)
+		{
+			discardVariable += 20;
+			Console.WriteLine(discardVariable);
+		}
+
+		h(30);
+
+		void i()
+		{
+			discardVariable += 20;
+			Console.WriteLine(discardVariable);
+		}
+
+		i();
 	}
 }

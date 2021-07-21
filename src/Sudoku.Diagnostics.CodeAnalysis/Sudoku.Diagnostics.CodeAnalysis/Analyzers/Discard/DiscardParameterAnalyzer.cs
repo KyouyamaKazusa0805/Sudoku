@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -89,10 +90,12 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 				void traverseDescendants(SyntaxNode method, string parameterName)
 				{
-					foreach (var usage in method.DescendantNodes())
+					var descendants = method.DescendantNodes().ToArray();
+					for (int i = 0, length = descendants.Length; i < length; i++)
 					{
-						if (
-							usage is not IdentifierNameSyntax
+						switch (descendants[i])
+						{
+							case IdentifierNameSyntax
 							{
 								Parent: not ArgumentSyntax
 								{
@@ -108,25 +111,60 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 									}
 								},
 								Identifier: { ValueText: var possibleReference }
+							} usage
+							when possibleReference == parameterName:
+							{
+								context.ReportDiagnostic(
+									Diagnostic.Create(
+										descriptor: SD0413,
+										location: usage.GetLocation(),
+										messageArgs: null
+									)
+								);
+
+								break;
 							}
-						)
-						{
-							continue;
-						}
 
-						if (possibleReference != parameterName)
-						{
-							continue;
-						}
+							// The variable may not the same variable if the variable exists in:
+							//
+							//   1) a static lambda            'static v => { }'           or 'static (v) => { }'
+							//   2) static anonymous function  'static delegate (T v) { }'
+							//   3) a static local function    'static void f(T v) { }'
+							//
+							// If so, the whole expression should be skipped the checking.
+							case SimpleLambdaExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+							when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
+							{
+								// Skip the whole expression.
+								skipNodes(d, ref i);
+								continue;
+							}
+							case ParenthesizedLambdaExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+							when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
+							{
+								// Skip the whole expression.
+								skipNodes(d, ref i);
+								continue;
+							}
+							case AnonymousFunctionExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+							when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
+							{
+								// Skip the whole expression.
+								skipNodes(d, ref i);
+								continue;
+							}
+							case LocalFunctionStatementSyntax { Modifiers: { Count: not 0 } modifiers } d
+							when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
+							{
+								// Skip the whole expression.
+								skipNodes(d, ref i);
+								continue;
+							}
 
-						// BUG: If the variable exists in a static lambda, static anonymous function or a static local function, the variable may not the same variable.
-						context.ReportDiagnostic(
-							Diagnostic.Create(
-								descriptor: SD0413,
-								location: usage.GetLocation(),
-								messageArgs: null
-							)
-						);
+
+							[MethodImpl(MethodImplOptions.AggressiveInlining)]
+							void skipNodes(SyntaxNode d, ref int i) => i += d.DescendantNodes().Count();
+						}
 					}
 				}
 			}

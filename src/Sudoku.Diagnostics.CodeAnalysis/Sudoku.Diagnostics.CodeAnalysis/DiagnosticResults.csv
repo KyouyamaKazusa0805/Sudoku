@@ -41,7 +41,7 @@ SD0409,Warning,Usage,The source generator will be well-working until the number 
 SD0410,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters.,
 SD0411,Error,Usage,The field should be a string when marked '[Regex]'.,
 SD0412,Warning,Usage,The field value isn't an invalid regular expression when marked '[Regex]'.,
-SD0413,Error,Usage,The parameter marked '[Discard]' can't be used in anywhere unless in a 'nameof' expression.,
+SD0413,Error,Usage,The parameter marked '[Discard]' can't be used in anywhere unless in a 'nameof' expression.,{0}.
 SD0501,Info,Naming,The local functions will use camel case as its name.,
 SD0502,Info,Naming,The 'this' parameter in the extension methods are named '@this'.,
 SS0101,Warning,Performance,Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations.,
