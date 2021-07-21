@@ -44,11 +44,9 @@ Console.WriteLine(analysisResult.ToString());
 
 请访问[此链接](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution)。
 
-### 复制这个仓库以及代码更新推并请求
+### 关于该仓库的克隆仓库（Fork）以及代码更新推并请求（Pull Requests）
 
-当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 MIT 开源协议下做你任何想做的事情。
-
-不过，由于 Gitee 是从 Github 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。
+当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于[ MIT 开源协议](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
 
 另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
 
@@ -85,13 +83,17 @@ Console.WriteLine(analysisResult.ToString());
 * [ ] UI 项目
   * [ ] 桌面项目
     * [x] WPF 项目
-    * [ ] UWP 项目
+    * [ ] ~~UWP 项目（这个可能我不会考虑了）~~
     * [ ] WinUI 3 项目
     * [x] ~~Winform 项目（已实现，但早已过时，已被移除）~~
   * [ ] MAUI 项目
     * [ ] 安卓项目
     * [ ] iOS 项目
     * [ ] 其它
+* [ ] 一些常见平台的机器人
+  * [ ] 哔哩哔哩（这个可能需要网站自己提供 API 给我们用才行）
+  * [x] ~~QQ（这个已经实现了，不过我删掉了……之后再说吧）~~
+  * [ ] 其它内容……
 * [ ] Wiki 文档
   * [x] 基本文档
   * [ ] 数独教程

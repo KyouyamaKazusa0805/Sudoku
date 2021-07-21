@@ -42,11 +42,9 @@ In the future, I'd like to apply this solution to **almost every platform**. I m
 
 Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution).
 
-### Forking & PRs this Repo
+### Fork & PRs (Pull Requests) for This Repo
 
-Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the MIT license.
-
-However, due to the copy of the Github repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms.
+Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
 In addition, this repo may update **frequently** (At least 1 commit in a day).
 
@@ -83,13 +81,17 @@ Please visit the following tables.
 * [ ] UI Projects
   * [ ] Desktop Projects
     * [x] WPF
-    * [ ] UWP
+    * [ ] ~~UWP (This may not be considered)~~
     * [ ] WinUI 3
     * [x] ~~Winform (Impl'ed, but deprecated, so it has been removed)~~
   * [ ] MAUI
     * [ ] Android
     * [ ] iOS
     * [ ] Other
+* [ ] Platform Robots (Dependabot)
+  * [ ] Bilibili (Should the platform provide APIs)
+  * [x] ~~QICQ (Impl'ed, but I has removed yet, but don't worry because I'll re-upload 'em)~~
+  * [ ] Others...
 * [ ] Wiki Documentation
   * [x] Basic Docs
   * [ ] Sudoku Tutorial
