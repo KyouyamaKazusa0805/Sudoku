@@ -149,7 +149,9 @@ namespace Sudoku.Solving.Manual.Alses
 								c2,
 								block,
 								d1,
-								d2));
+								d2
+							)
+						);
 					}
 				}
 			}

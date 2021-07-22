@@ -248,7 +248,9 @@ namespace Sudoku.Solving.Manual.Alses
 							als2,
 							rccMask,
 							finalZ,
-							isEsp ? null : isDoublyLinked));
+							isEsp ? null : isDoublyLinked
+						)
+					);
 				}
 			}
 		}

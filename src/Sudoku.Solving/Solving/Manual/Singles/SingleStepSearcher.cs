@@ -123,9 +123,11 @@ namespace Sudoku.Solving.Manual.Singles
 							}
 						},
 						resultCell,
-						digit));
+						digit
+					)
+				);
 			}
-		#endregion
+			#endregion
 			#region Hidden single or last digits
 		CheckHiddenSingle:
 #if HIDDEN_SINGLE_BLOCK_FIRST
@@ -221,7 +223,9 @@ namespace Sudoku.Solving.Manual.Singles
 							}
 						},
 						cell,
-						digit));
+						digit
+					)
+				);
 			}
 			#endregion
 #pragma warning restore IDE0055

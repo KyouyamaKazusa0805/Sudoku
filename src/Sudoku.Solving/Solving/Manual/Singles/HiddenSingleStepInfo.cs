@@ -22,8 +22,7 @@ namespace Sudoku.Solving.Manual.Singles
 	) : SingleStepInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
-		public override decimal Difficulty =>
-			EnableAndIsLastDigit switch { true => 1.1M, _ => Region switch { < 9 => 1.2M, _ => 1.5M } };
+		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>

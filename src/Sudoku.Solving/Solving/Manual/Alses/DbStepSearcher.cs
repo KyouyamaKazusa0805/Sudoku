@@ -215,7 +215,9 @@ namespace Sudoku.Solving.Manual.Alses
 									}
 								},
 								pivot,
-								dic));
+								dic
+							)
+						);
 					}
 					else
 					{
@@ -227,7 +229,8 @@ namespace Sudoku.Solving.Manual.Alses
 			accumulator.AddRange(
 				from info in tempAccumulator.RemoveDuplicateItems()
 				orderby info.Petals.Count, info.Pivot
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>

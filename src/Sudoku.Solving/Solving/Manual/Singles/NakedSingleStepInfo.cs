@@ -24,7 +24,6 @@ namespace Sudoku.Solving.Manual.Singles
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {new Cells { Cell }.ToString()} = {(Digit + 1).ToString()}";
+		public override string ToString() => $"{Name}: {new Cells { Cell }.ToString()} = {(Digit + 1).ToString()}";
 	}
 }

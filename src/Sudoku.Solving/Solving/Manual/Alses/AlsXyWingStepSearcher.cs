@@ -228,7 +228,9 @@ namespace Sudoku.Solving.Manual.Alses
 									c,
 									finalX,
 									finalY,
-									finalZ));
+									finalZ
+								)
+							);
 						}
 					}
 				}

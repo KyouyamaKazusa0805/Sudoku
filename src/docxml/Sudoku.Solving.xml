@@ -1777,12 +1777,6 @@
         <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.AlsPetalsToString">
-            <summary>
-            Get the string result from those ALS petals and their own branches.
-            </summary>
-            <returns>The string result.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.DbStepSearcher">
             <summary>
             Encapsulates a <b>death blossom</b> technique.

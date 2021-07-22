@@ -625,6 +625,11 @@
             Indicates the marked parameter is a discard and can't be used.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RefStructTypeAttribute">
+            <summary>
+            Marks on a generic type parameter, to tell the compiler that the type is a <see langword="ref struct"/>.
+            </summary>
+        </member>
         <member name="T:System.Extensions.BitArrayEx">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -2714,7 +2719,7 @@
             <summary>
             Append a value.
             </summary>
-            <typeparam name="TUnmanaged">The type of the value.</typeparam>
+            <typeparam name="TRefStruct">The type of the value.</typeparam>
             <param name="value">The value.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Append(System.String)">
@@ -2778,7 +2783,7 @@
             <summary>
             Append a string representation of a specified instance, and then append a new line.
             </summary>
-            <typeparam name="TUnmanaged">The type of the instance.</typeparam>
+            <typeparam name="TRefStruct">The type of the instance.</typeparam>
             <param name="value">The value.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.AppendLineRange``1(System.Collections.Generic.IEnumerable{``0})">

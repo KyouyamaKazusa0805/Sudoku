@@ -127,7 +127,9 @@ namespace Sudoku.Solving.Manual.Intersections
 							},
 							digit,
 							r[0],
-							r[1]));
+							r[1]
+						)
+					);
 				}
 			}
 		}

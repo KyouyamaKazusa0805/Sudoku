@@ -45,9 +45,7 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string wStr = new DigitCollection(WDigitsMask).ToString();
-			return
-				$"{Name}: Two ALSes {Als1.ToString()}, {Als2.ToString()} connected by " +
-				$"{ConjugatePair.ToString()}, W = {wStr}, X = {(X + 1).ToString()} => {elimStr}";
+			return $@"{Name}: Two ALSes {Als1.ToString()}, {Als2.ToString()} connected by {ConjugatePair.ToString()}, W = {wStr}, X = {(X + 1).ToString()} => {elimStr}";
 		}
 	}
 }

@@ -43,9 +43,7 @@ namespace Sudoku.Solving.Manual.Alses
 			string eCellStr = new Cells { EndCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string regionStr = new RegionCollection(Region).ToString();
-			return
-				$"{Name}: Digits {d1.ToString()}, {d2.ToString()} in bivalue cells {sCellStr} and {eCellStr} " +
-				$"with empty rectangle in {regionStr} => {elimStr}";
+			return $@"{Name}: Digits {d1.ToString()}, {d2.ToString()} in bivalue cells {sCellStr} and {eCellStr} with empty rectangle in {regionStr} => {elimStr}";
 		}
 	}
 }

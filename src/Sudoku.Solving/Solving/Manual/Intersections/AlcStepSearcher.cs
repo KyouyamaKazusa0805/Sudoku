@@ -212,7 +212,9 @@ namespace Sudoku.Solving.Manual.Intersections
 						mask,
 						cellsMap,
 						ahsCells,
-						hasValueCell));
+						hasValueCell
+					)
+				);
 			}
 		}
 	}

@@ -40,29 +40,27 @@ namespace Sudoku.Solving.Manual.Alses
 		{
 			string pivotStr = new Cells { Pivot }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {AlsPetalsToString()} => {elimStr}";
-		}
+			return $"{Name}: Cell {pivotStr} - {petalsToString()} => {elimStr}";
 
-		/// <summary>
-		/// Get the string result from those ALS petals and their own branches.
-		/// </summary>
-		/// <returns>The string result.</returns>
-		private unsafe string? AlsPetalsToString()
-		{
-			const string separator = ", ";
 
-			var sb = new ValueStringBuilder(stackalloc char[50]);
-			sb.AppendRange(Petals, &appender, separator);
-			return sb.ToString();
-
-			static string appender(KeyValuePair<int, Als> pair)
+			unsafe string? petalsToString()
 			{
-				var sb = new ValueStringBuilder(stackalloc char[15]);
-				sb.Append(pair.Key + 1);
-				sb.Append(" - ");
-				sb.Append(pair.Value.ToString());
+				const string separator = ", ";
 
+				var sb = new ValueStringBuilder(stackalloc char[50]);
+				sb.AppendRange(Petals, &converter, separator);
 				return sb.ToString();
+
+
+				static string converter(KeyValuePair<int, Als> pair)
+				{
+					var sb = new ValueStringBuilder(stackalloc char[15]);
+					sb.Append(pair.Key + 1);
+					sb.Append(" - ");
+					sb.Append(pair.Value.ToString());
+
+					return sb.ToString();
+				}
 			}
 		}
 	}
