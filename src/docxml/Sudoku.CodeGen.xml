@@ -593,6 +593,56 @@
         <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GlobalFile">
+            <summary>
+            Generates the global file.
+            </summary>
+            <returns>The string text of the code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetAllSets(System.String)">
+            <summary>
+            Generates the file of the method <c>GetAllSets</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetEnumerator(System.String)">
+            <summary>
+            Generates the file of the method <c>GetEnumerator</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetNextSet(System.String,System.Int32)">
+            <summary>
+            Generates the file of the method <c>GetNextSet</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="size">The size of the type.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_ReverseBits(System.String,System.Int32)">
+            <summary>
+            Generates the file of the method <c>ReverseBits</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="size">The size of the type.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_SetAt(System.String)">
+            <summary>
+            Generates the file of the method <c>SetAt</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_SkipSetBit(System.String)">
+            <summary>
+            Generates the file of the method <c>SkipSetBit</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
         <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.LeadingText">
             <summary>
             Indicates the leading text.
@@ -632,56 +682,6 @@
             <summary>
             Indicates the type names of the method <c>SkipSetBit</c> to be used.
             </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateGlobalFile">
-            <summary>
-            Generates the global file.
-            </summary>
-            <returns>The string text of the code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateGetAllSets(System.String)">
-            <summary>
-            Generates the file of the method <c>GetAllSets</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateGetEnumerator(System.String)">
-            <summary>
-            Generates the file of the method <c>GetEnumerator</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateGetNextSet(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>GetNextSet</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateReverseBits(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>ReverseBits</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateSetAt(System.String)">
-            <summary>
-            Generates the file of the method <c>SetAt</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.GenerateSkipSetBit(System.String)">
-            <summary>
-            Generates the file of the method <c>SkipSetBit</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator">
             <summary>

@@ -19,11 +19,6 @@
             The basic interactions about the <c><see cref="T:Sudoku.UI.MainPage"/>.xaml</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.MainPage._clickedCount">
-            <summary>
-            Indicates the numbers that the button clicked.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.MainPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.MainPage"/> instance with no parameters.
@@ -32,7 +27,11 @@
             <para>
             This constructor will calls the inner method called <c>InitializeComponent</c>,
             but this method will automatically iniatilize all controls in this page implicitly,
-            but Roslyn don't know this behavior.
+            but Roslyn don't know this behavior, so it'll report a
+            <see href="https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/upgrade-to-nullable-references#warnings-help-discover-original-design-intent">
+            CS8618
+            </see>
+            compiler warning.
             </para>
             <para>
             To be honest, I suggest the team will append <see cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
@@ -41,20 +40,6 @@
             </para>
             </remarks>
             <seealso cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
-        </member>
-        <member name="M:Sudoku.UI.MainPage.OnCounterClicked(System.Object,System.EventArgs)">
-            <summary>
-            Executed when the button <see cref="F:Sudoku.UI.MainPage._buttonCounter"/> clicked.
-            </summary>
-            <param name="sender">
-            The sender to trigger the event. The value of <paramref name="sender"/>
-            should be <see cref="F:Sudoku.UI.MainPage._buttonCounter"/> in general.
-            </param>
-            <param name="e">
-            The event arguments provided. Here this argument will be a discard
-            because the inner data is unmeaningful.
-            </param>
-            <seealso cref="F:Sudoku.UI.MainPage._buttonCounter"/>
         </member>
         <member name="T:Sudoku.UI.Startup">
             <summary>
@@ -66,6 +51,12 @@
             To configure the current UI project, and creates the base information.
             </summary>
             <param name="appBuilder">The application builder host.</param>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.MainPageViewModel">
+            <summary>
+            Indicates the view model that bound with <see cref="T:Sudoku.UI.MainPage"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.MainPage"/>
         </member>
     </members>
 </doc>

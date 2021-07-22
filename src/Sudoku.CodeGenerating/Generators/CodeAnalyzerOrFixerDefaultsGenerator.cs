@@ -98,7 +98,8 @@ namespace Sudoku.CodeGenerating
 		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
 		/// diagnostic result ({GetDescription(info, id)}).
 		/// </summary>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
 			DiagnosticIds.{id}, Titles.{id}, Messages.{id}, Categories.{id},
 			DiagnosticSeverities.{id}, true, helpLinkUri: HelpLinks.{id}{tags}
@@ -114,7 +115,6 @@ namespace Sudoku.CodeGenerating
 					type.ToFileName(),
 					"Analyzer",
 					$@"using System.Collections.Immutable;
-using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -135,7 +135,8 @@ namespace {namespaceName}
 
 
 		/// <inheritdoc/>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
 			{supportedInstances}
 		);
@@ -176,7 +177,6 @@ namespace {namespaceName}
 					"Fixer",
 					$@"using System.Collections.Immutable;
 using System.Composition;
-using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -194,13 +194,15 @@ namespace {namespaceName}
 	partial class {typeName}
 	{{
 		/// <inheritdoc/>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
 			DiagnosticIds.{id}
 		);
 
 		/// <inheritdoc/>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 	}}
 }}"

@@ -60,7 +60,7 @@ namespace Sudoku.CodeGenerating
 			string helpLinkClause = f(
 				from line in info
 				select line[0] into id
-				select $@"public const string {id} = ""https://github.com/SunnieShine/Sudoku/wiki/Rule-{id}"";"
+				select $@"public const string {id} = ""https://sunnieshine.github.io/Sudoku/code-analysis/rules/Rule-{id}"";"
 			);
 			string titleClause = f(
 				from line in info
@@ -84,6 +84,8 @@ namespace Sudoku.CodeGenerating
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class DiagnosticIds
 	{{
 		{diagnosticIdClause}
@@ -102,6 +104,8 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class DiagnosticSeverities
 	{{
 		{severitiesClause}
@@ -118,6 +122,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Categories
 	{{
 		{categoryClause}
@@ -134,6 +140,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class HelpLinks
 	{{
 		{helpLinkClause}
@@ -150,6 +158,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Titles
 	{{
 		{titleClause}
@@ -166,6 +176,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Messages
 	{{
 		{messageClause}

@@ -38,7 +38,7 @@ namespace Sudoku.CodeGenerating
 					from additionalFile in additionalFiles
 					from line in File.ReadLines(additionalFile.Path)
 					where !string.IsNullOrWhiteSpace(line)
-					let match = Regex.Match(line)
+					select Regex.Match(line) into match
 					where match.Success
 					select match.Value
 				).Distinct()
@@ -54,13 +54,15 @@ namespace Sudoku.CodeGenerating
 	/// <summary>
 	/// Indicates the resource dictionary to check.
 	/// </summary>
-	[CompilerGenerated]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class ResourceDictionaryKeys
 	{{
 		/// <summary>
 		/// Indicates the dictionary.
 		/// </summary>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static readonly IReadOnlyCollection<string> Keys = new[]
 		{{
 			{keys}

@@ -11,7 +11,6 @@ namespace Sudoku.CodeGenerating
 		private const string LeadingText = @"#pragma warning disable 1591
 
 using System;
-using System.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 
 #nullable enable
@@ -81,26 +80,26 @@ namespace System.Extensions
 		/// Generates the global file.
 		/// </summary>
 		/// <returns>The string text of the code.</returns>
-		private static string GenerateGlobalFile()
+		private partial string G_GlobalFile()
 		{
-			const string baseModifiers = "		public static partial";
+			const string baseModifiers = "\t\tpublic static partial";
 
 			var sb = new StringBuilder();
-			sb.AppendLine(@"#pragma warning disable 1591
+			sb.AppendLine($@"#pragma warning disable 1591
 
 using System;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 
 namespace System.Extensions
-{
+{{
 	/// <summary>
 	/// Provides extension methods on <see cref=""BitOperations""/>.
 	/// </summary>
 	/// <seealso cref=""BitOperations""/>
-	[CompilerGenerated]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public static partial class BitOperationsEx
-	{");
+	{{");
 			foreach (string name in GetAllSetsTypes)
 			{
 				sb.AppendLine($"{baseModifiers} ReadOnlySpan<int> GetAllSets(this {name} @this);");
@@ -138,7 +137,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="typeName">The type name.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateGetAllSets(string typeName)
+		private partial string G_GetAllSets(string typeName)
 		{
 			string popCountStr = typeName switch
 			{
@@ -152,7 +151,8 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name=""this"">The value.</param>
 		/// <returns>All offsets.</returns>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial ReadOnlySpan<int> GetAllSets(this {typeName} @this)
 		{{
 			if (@this == 0)
@@ -179,7 +179,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="typeName">The type name.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateGetEnumerator(string typeName) => $@"/// <summary>
+		private partial string G_GetEnumerator(string typeName) => $@"/// <summary>
 		/// <para>Extension get enumerator of the type <see cref=""{typeName}""/>.</para>
 		/// <para>
 		/// This method will allow you to use <see langword=""foreach""/> loop to iterate on
@@ -197,8 +197,9 @@ namespace System.Extensions
 		/// }}
 		/// </code>
 		/// </remarks>
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {typeName} @this) =>
 			@this.GetAllSets().GetEnumerator();";
 
@@ -208,14 +209,15 @@ namespace System.Extensions
 		/// <param name="typeName">The type name.</param>
 		/// <param name="size">The size of the type.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateGetNextSet(string typeName, int size) => $@"/// <summary>
+		private partial string G_GetNextSet(string typeName, int size) => $@"/// <summary>
 		/// Find a index of the binary representation of a value after the specified index,
 		/// whose bit is set <see langword=""true""/>.
 		/// </summary>
 		/// <param name=""this"">The value.</param>
 		/// <param name=""index"">The index.</param>
 		/// <returns>The index.</returns>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial int GetNextSet(this {typeName} @this, int index)
 		{{
 			for (int i = index + 1; i < {size}; i++)
@@ -235,7 +237,7 @@ namespace System.Extensions
 		/// <param name="typeName">The type name.</param>
 		/// <param name="size">The size of the type.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateReverseBits(string typeName, int size)
+		private partial string G_ReverseBits(string typeName, int size)
 		{
 			IReadOnlyDictionary<int, string[]> defaults = new Dictionary<int, string[]>()
 			{
@@ -254,8 +256,9 @@ namespace System.Extensions
 		/// </para>
 		/// </summary>
 		/// <param name=""this"">The value.</param>
-		[CompilerGenerated]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static partial void ReverseBits(this ref {typeName} @this)
 		{{")
 				.AppendLine();
@@ -278,7 +281,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="typeName">The type name.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateSetAt(string typeName)
+		private partial string G_SetAt(string typeName)
 		{
 			return $@"/// <summary>
 		/// Get an <see cref=""int""/> value, indicating that the absolute position of
@@ -287,7 +290,8 @@ namespace System.Extensions
 		/// <param name=""this"">The value.</param>
 		/// <param name=""order"">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial int SetAt(this {typeName} @this, int order)
 		{{
 			for (int i = 0, count = -1; i < sizeof({typeName}) << 3; i++, @this >>= 1)
@@ -307,7 +311,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name="typeName">The type name.</param>
 		/// <returns>The code.</returns>
-		private static string GenerateSkipSetBit(string typeName)
+		private partial string G_SkipSetBit(string typeName)
 		{
 			string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
 			int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64 };
@@ -329,7 +333,8 @@ namespace System.Extensions
 		/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
 		/// two of them, so the result set bit positions to iterate on are only 2 and 4.
 		/// </remarks>
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial {typeName} SkipSetBit(this {typeName} @this, int setBitPosCount)
 		{{
 			{typeName} result = @this;

@@ -53,8 +53,6 @@ namespace Sudoku.CodeGenerating
 					$"KeyedTuple_{length}.cs",
 					$@"#pragma warning disable 8509
 
-using System.Runtime.CompilerServices;
-
 #nullable enable
 
 namespace System.Collections.Generic
@@ -66,25 +64,47 @@ namespace System.Collections.Generic
 	{commentsForGenericTypeParams}
 	{commentsForParams}
 	/// <param name=""PriorKey"">The prior key.</param>
-	[CompilerGenerated]
-	public sealed record KeyedTuple<{typeParams}>({primaryConstructorParamList}) : ITuple
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public sealed record KeyedTuple<{typeParams}>({primaryConstructorParamList})
+		: global::System.Runtime.CompilerServices.ITuple
 	{{
 		/// <summary>
 		/// Initializes an instance with the specified {length} items, and the first one is the prior key.
 		/// </summary>
 		{commentsForConstructorParams}
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public KeyedTuple({constructorParamList}) : this({constructorParamListWithoutType}, 1)
 		{{
 		}}
 
-		/// <inheritdoc/>
-		int ITuple.Length => {length};
 
 		/// <inheritdoc/>
-		object? ITuple.this[int index] => index switch {{ {indexerValues} }};
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		int global::System.Runtime.CompilerServices.ITuple.Length
+		{{
+			[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+			get => {length};
+		}}
 
 		/// <inheritdoc/>
-		public override string ToString() => ((ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		object? global::System.Runtime.CompilerServices.ITuple.this[int index]
+		{{
+			[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+			get => index switch {{ {indexerValues} }};
+		}}
+
+
+		/// <inheritdoc/>
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+		public override string ToString() => ((global::System.Runtime.CompilerServices.ITuple)this)[PriorKey]?.ToString() ?? string.Empty;
 	}}
 }}"
 				);

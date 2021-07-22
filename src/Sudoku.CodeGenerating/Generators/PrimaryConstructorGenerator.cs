@@ -63,15 +63,14 @@ namespace Sudoku.CodeGenerating
 					"PrimaryConstructor",
 					$@"#pragma warning disable 1591
 
-using System.Runtime.CompilerServices;
-
 #nullable enable
 
 namespace {namespaceName}
 {{
 	partial class {type.Name}{genericParametersList}
 	{{
-		[CompilerGenerated]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public {type.Name}({parameterList}){baseCtorInheritance}
 		{{
 			{memberAssignments}

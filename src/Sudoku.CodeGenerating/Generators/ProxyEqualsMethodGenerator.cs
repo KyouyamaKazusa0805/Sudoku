@@ -63,15 +63,15 @@ namespace Sudoku.CodeGenerating
 				string nullableMark = type.TypeKind == TypeKind.Class || type.IsRecord ? "?" : string.Empty;
 				string objectEqualityMethod = type.IsRefLikeType
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
-					: $@"[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}bool Equals(object? obj) => obj is {type.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 				context.AddSource(
 					type.ToFileName(),
 					"ProxyEquality",
 					$@"#pragma warning disable 1591
-
-using System.Runtime.CompilerServices;
 
 #nullable enable
 
@@ -81,14 +81,20 @@ namespace {namespaceName}
 	{{
 		{objectEqualityMethod}
 
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public bool Equals({inModifier}{type.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
 
 
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
 
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => !(left == right);
 	}}
 }}");

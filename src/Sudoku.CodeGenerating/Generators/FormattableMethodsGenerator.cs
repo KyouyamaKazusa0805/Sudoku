@@ -39,16 +39,16 @@ namespace Sudoku.CodeGenerating
 				context.AddSource(
 					type.ToFileName(),
 					"ToString",
-					$@"using System.Runtime.CompilerServices;
-
-#nullable enable
+					$@"#nullable enable
 
 namespace {namespaceName}
 {{
 	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		/// <inheritdoc cref=""object.ToString""/>
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}partial string ToString() => ToString(null, null);
 
 		/// <summary>
@@ -58,7 +58,9 @@ namespace {namespaceName}
 		/// The format. If available, the parameter can be <see langword=""null""/>.
 		/// </param>
 		/// <returns>The string result.</returns>
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}partial string ToString(string? format) => ToString(format, null);
 	}}
 }}"

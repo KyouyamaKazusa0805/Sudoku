@@ -87,7 +87,9 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}void Deconstruct({parameterList})
 		{{
 			{assignments}
@@ -100,7 +102,6 @@ namespace Sudoku.CodeGenerating
 					$@"#pragma warning disable 618, 1574, 1591
 
 using System;
-using System.Runtime.CompilerServices;
 
 #nullable enable
 

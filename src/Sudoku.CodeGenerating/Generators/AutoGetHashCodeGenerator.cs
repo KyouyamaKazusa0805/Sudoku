@@ -52,16 +52,16 @@ namespace Sudoku.CodeGenerating
 				context.AddSource(
 					type.ToFileName(),
 					"GetHashCode",
-					$@"using System.Runtime.CompilerServices;
-
-#nullable enable
+					$@"#nullable enable
 
 namespace {namespaceName}
 {{
 	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		/// <inheritdoc cref=""object.GetHashCode""/>
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};
 	}}
 }}"

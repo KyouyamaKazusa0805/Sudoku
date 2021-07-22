@@ -42,7 +42,7 @@ namespace Sudoku.CodeGenerating
 			}
 
 
-			static string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
+			string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
 			{
 				string? tempNamespace = argList.Arguments.FirstOrDefault(
 					static arg => arg is { NameEquals: { Name: { Identifier: { ValueText: "Namespace" } } } }
@@ -107,15 +107,15 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
 		{{
 			{assignments}
 		}}";
 
 				return $@"#pragma warning disable 1574, 1591
-
-using System.Runtime.CompilerServices;
 
 #nullable enable
 

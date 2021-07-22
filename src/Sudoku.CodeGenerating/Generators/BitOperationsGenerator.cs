@@ -23,7 +23,7 @@ namespace Sudoku.CodeGenerating
 			const string separator = "\r\n\r\n\t\t";
 			const string typeName = "System.Extensions.BitOperationsEx";
 
-			context.AddSource(typeName, null, GenerateGlobalFile());
+			context.AddSource(typeName, null, G_GlobalFile());
 
 			var sb = new StringBuilder();
 			var actions = new Action[] { a, b, c, d, e, f };
@@ -34,7 +34,7 @@ namespace Sudoku.CodeGenerating
 			{
 				sb
 					.Append(LeadingText)
-					.AppendLine(string.Join(separator, from name in GetAllSetsTypes select GenerateGetAllSets(name)))
+					.AppendLine(string.Join(separator, from name in GetAllSetsTypes select G_GetAllSets(name)))
 					.Append(TrailingText);
 
 				context.AddSource(typeName, "GetAllSets", sb.ToString());
@@ -46,7 +46,7 @@ namespace Sudoku.CodeGenerating
 			{
 				sb
 					.Append(LeadingText)
-					.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select GenerateGetEnumerator(name)))
+					.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select G_GetEnumerator(name)))
 					.Append(TrailingText);
 
 				context.AddSource(typeName, "GetEnumerator", sb.ToString());
@@ -61,7 +61,7 @@ namespace Sudoku.CodeGenerating
 					.AppendLine(
 						string.Join(
 							separator,
-							from pair in GetNextSetTypes select GenerateGetNextSet(pair.TypeName, pair.Size)
+							from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size)
 						)
 					)
 					.Append(TrailingText);
@@ -78,7 +78,7 @@ namespace Sudoku.CodeGenerating
 					.AppendLine(
 						string.Join(
 							separator,
-							from pair in ReverseBitsTypes select GenerateReverseBits(pair.TypeName, pair.Size)
+							from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size)
 						)
 					)
 					.Append(TrailingText);
@@ -92,7 +92,7 @@ namespace Sudoku.CodeGenerating
 			{
 				sb
 					.Append(LeadingText)
-					.AppendLine(string.Join(separator, from name in SetAtTypes select GenerateSetAt(name)))
+					.AppendLine(string.Join(separator, from name in SetAtTypes select G_SetAt(name)))
 					.Append(TrailingText);
 
 				context.AddSource(typeName, "SetAt", sb.ToString());
@@ -104,7 +104,7 @@ namespace Sudoku.CodeGenerating
 			{
 				sb
 					.Append(LeadingText)
-					.AppendLine(string.Join(separator, from name in SkipSetBitTypes select GenerateSkipSetBit(name)))
+					.AppendLine(string.Join(separator, from name in SkipSetBitTypes select G_SkipSetBit(name)))
 					.Append(TrailingText);
 
 				context.AddSource(typeName, "SkipSetBit", sb.ToString());
@@ -115,5 +115,14 @@ namespace Sudoku.CodeGenerating
 		public void Initialize(GeneratorInitializationContext context)
 		{
 		}
+
+
+		private partial string G_GlobalFile();
+		private partial string G_GetAllSets(string typeName);
+		private partial string G_GetEnumerator(string typeName);
+		private partial string G_GetNextSet(string typeName, int size);
+		private partial string G_ReverseBits(string typeName, int size);
+		private partial string G_SetAt(string typeName);
+		private partial string G_SkipSetBit(string typeName);
 	}
 }

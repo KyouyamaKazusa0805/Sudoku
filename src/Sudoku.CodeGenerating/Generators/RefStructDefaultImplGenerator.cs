@@ -40,7 +40,7 @@ namespace Sudoku.CodeGenerating
 		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 
-		private static void Q(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+		private void Q(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 		{
 			type.DeconstructInfo(
 				false, out _, out string namespaceName, out string genericParametersList,
@@ -64,8 +64,11 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'Equals' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 			string getHashCodeMethod = Array.Exists(
@@ -77,8 +80,11 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 			string toStringMethod = Array.Exists(
@@ -90,8 +96,11 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'ToString' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-		[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 			context.AddSource(
@@ -100,9 +109,6 @@ namespace Sudoku.CodeGenerating
 				$@"#pragma warning disable 809, IDE0005
 
 using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 
 #nullable enable
 
@@ -122,7 +128,7 @@ namespace {namespaceName}
 			);
 		}
 
-		private static void R(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+		private void R(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 		{
 			type.DeconstructInfo(
 				false, out _, out string namespaceName, out string genericParametersList,
@@ -185,8 +191,11 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'Equals' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-{methodIndenting}[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 			string getHashCodeMethod = Array.Exists(
@@ -198,8 +207,12 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-{methodIndenting}[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 			string toStringMethod = Array.Exists(
@@ -211,8 +224,12 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[CompilerGenerated, DoesNotReturn, EditorBrowsable(EditorBrowsableState.Never)]
-{methodIndenting}[Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+{methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+{methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+{methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 			context.AddSource(
