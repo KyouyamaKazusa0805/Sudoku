@@ -48,6 +48,9 @@
 | [SD0411](rules/Rule-SD0411) | ❌ | Usage | ❌ |  |
 | [SD0412](rules/Rule-SD0412) | ⚠ | Usage | ❌ | 待完成 |
 | [SD0413](rules/Rule-SD0413) | ❌                  | Usage                     | ❌ |        |
+| [SD0414](rules/Rule-SD0414) | ❌ | Usage | ❌ | 待完成 |
+| [SD0415](rules/Rule-SD0415) | ❌ | Usage | ❌ | 待完成 |
+| [SD0416](rules/Rule-SD0416) | ❌ | Usage | ❌ | 待完成 |
 | [SD0501](rules/Rule-SD0501) | ℹ | Naming | ✔ |  |
 | [SD0502](rules/Rule-SD0502) | ℹ | Naming | ✔ |  |
 | [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |

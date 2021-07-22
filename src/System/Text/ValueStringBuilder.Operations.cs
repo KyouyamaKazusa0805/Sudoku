@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace System.Text
@@ -120,27 +121,28 @@ namespace System.Text
 		/// <summary>
 		/// Append a value.
 		/// </summary>
-		/// <typeparam name="TUnmanaged">The type of the value.</typeparam>
+		/// <typeparam name="TRefStruct">The type of the value.</typeparam>
 		/// <param name="value">The value.</param>
-		public void Append<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged => Append(value switch
-		{
-			sbyte s => s.ToString(),
-			byte b => b.ToString(),
-			short s => s.ToString(),
-			ushort u => u.ToString(),
-			nint n => n.ToString(),
-			nuint n => n.ToString(),
-			int i => i.ToString(),
-			uint u => u.ToString(),
-			long l => l.ToString(),
-			ulong u => u.ToString(),
-			char c => c.ToString(),
-			bool b => b.ToString(),
-			float f => f.ToString(),
-			double d => d.ToString(),
-			decimal d => d.ToString(),
-			_ => value.ToString()
-		});
+		public void Append<[RefStructType] TRefStruct>(TRefStruct value) where TRefStruct : unmanaged =>
+			Append(value switch
+			{
+				sbyte s => s.ToString(),
+				byte b => b.ToString(),
+				short s => s.ToString(),
+				ushort u => u.ToString(),
+				nint n => n.ToString(),
+				nuint n => n.ToString(),
+				int i => i.ToString(),
+				uint u => u.ToString(),
+				long l => l.ToString(),
+				ulong u => u.ToString(),
+				char c => c.ToString(),
+				bool b => b.ToString(),
+				float f => f.ToString(),
+				double d => d.ToString(),
+				decimal d => d.ToString(),
+				_ => value.ToString()
+			});
 
 		/// <summary>
 		/// Append a string into the collection.
@@ -275,10 +277,10 @@ namespace System.Text
 		/// <summary>
 		/// Append a string representation of a specified instance, and then append a new line.
 		/// </summary>
-		/// <typeparam name="TUnmanaged">The type of the instance.</typeparam>
+		/// <typeparam name="TRefStruct">The type of the instance.</typeparam>
 		/// <param name="value">The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AppendLine<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged
+		public void AppendLine<[RefStructType] TRefStruct>(TRefStruct value) where TRefStruct : unmanaged
 		{
 			Append(value);
 			AppendLine();
@@ -329,8 +331,8 @@ namespace System.Text
 		/// <param name="converter">The converter.</param>
 		/// <param name="separator">The separator when an element is finished to append.</param>
 		public unsafe void AppendRange<TUnmanaged>(
-			IEnumerable<TUnmanaged> list, delegate*<TUnmanaged, string?> converter,
-			string? separator = null) where TUnmanaged : unmanaged
+			IEnumerable<TUnmanaged> list, delegate*<TUnmanaged, string?> converter, string? separator = null)
+			where TUnmanaged : unmanaged
 		{
 			foreach (var element in list)
 			{
@@ -382,8 +384,8 @@ namespace System.Text
 		/// <param name="converter">The converter.</param>
 		/// <param name="separator">The separator when an element is finished to append.</param>
 		public unsafe void AppendRange<TUnmanaged>(
-			TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter,
-			string? separator = null) where TUnmanaged : unmanaged
+			TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string? separator = null)
+			where TUnmanaged : unmanaged
 		{
 			int index = 0;
 			for (var p = list; index < length; index++, p++)
