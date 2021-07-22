@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGenerating;
 using static System.Numerics.BitOperations;
@@ -133,6 +134,7 @@ namespace Sudoku.Data.Collections
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns>The label.</returns>
-		private char GetLabel(int index) => index switch { 0 => 'b', 1 => 'r', 2 => 'c' };
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private char GetLabel(int index) => index == 0 ? 'b' : index == 1 ? 'r' : index == 2 ? 'c' : '\0';
 	}
 }
