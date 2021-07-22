@@ -36,19 +36,7 @@ namespace Sudoku.Data.Collections
 		/// <summary>
 		/// Indicates all cells used in this conclusions list.
 		/// </summary>
-		public Cells Cells
-		{
-			get
-			{
-				var result = Cells.Empty;
-				foreach (var conclusion in _collection)
-				{
-					result.AddAnyway(conclusion.Cell);
-				}
-
-				return result;
-			}
-		}
+		public Cells Cells => new(from conclusion in _collection select conclusion.Cell);
 
 		/// <summary>
 		/// Indicates all digits used in this conclusions list, represented as a mask.
