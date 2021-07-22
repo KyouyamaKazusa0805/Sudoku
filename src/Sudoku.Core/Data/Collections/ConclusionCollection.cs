@@ -106,13 +106,7 @@ namespace Sudoku.Data.Collections
 							from conclusion in typeGroup
 							group conclusion by conclusion.Digit)
 						{
-							var cells = Cells.Empty;
-							foreach (var (_, cell, _) in digitGroup)
-							{
-								cells.AddAnyway(cell);
-							}
-
-							sb.Append(cells.ToString());
+							sb.Append(new Cells(from conclusion in digitGroup select conclusion.Cell));
 							sb.Append(op);
 							sb.Append(digitGroup.Key + 1);
 							sb.Append(separator);

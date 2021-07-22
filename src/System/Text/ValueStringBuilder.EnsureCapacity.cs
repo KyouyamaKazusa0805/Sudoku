@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 #if DEBUG
 using System.Diagnostics;
+#else
+using System;
 #endif
 
 namespace System.Text
@@ -17,6 +19,11 @@ namespace System.Text
 #if DEBUG
 			// This is not expected to be called this with negative capacity
 			Debug.Assert(capacity >= 0);
+#else
+			if (capacity < 0)
+			{
+				throw new ArgumentOutOfRange(nameof(capacity));
+			}
 #endif
 
 			// If the caller has a bug and calls this with negative capacity,

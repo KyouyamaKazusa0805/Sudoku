@@ -29,8 +29,7 @@ namespace Sudoku.Data.Collections
 		/// Initializes an instance with the specified collection.
 		/// </summary>
 		/// <param name="collection">The collection.</param>
-		public LinkCollection(IEnumerable<Link> collection) : this() =>
-			_collection = collection.ToArray().AsSpan();
+		public LinkCollection(IEnumerable<Link> collection) : this() => _collection = collection.ToArray().AsSpan();
 
 
 		/// <inheritdoc cref="object.ToString"/>
@@ -49,7 +48,7 @@ namespace Sudoku.Data.Collections
 				var sb = new ValueStringBuilder(stackalloc char[100]);
 				foreach (var (start, _, type) in links)
 				{
-					sb.Append(new Candidates { start }.ToString());
+					sb.Append(new Candidates { start });
 					sb.Append(type.GetNotation());
 				}
 				sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
