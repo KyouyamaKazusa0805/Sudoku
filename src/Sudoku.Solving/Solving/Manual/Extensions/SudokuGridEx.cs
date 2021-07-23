@@ -3,6 +3,8 @@ using Sudoku.Data;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;
+using Sudoku.Techniques;
+using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Extensions
@@ -51,6 +53,72 @@ namespace Sudoku.Solving.Manual.Extensions
 
 				goto Again;
 			}
+		}
+
+		/// <summary>
+		/// Checks whether the next step is "single" technique after the specified candidate is removed.
+		/// The "single" techniques are:
+		/// <list type="bullet">
+		/// <item><see cref="Technique.HiddenSingleBlock"/></item>
+		/// <item><see cref="Technique.HiddenSingleRow"/></item>
+		/// <item><see cref="Technique.HiddenSingleColumn"/></item>
+		/// <item><see cref="Technique.NakedSingle"/></item>
+		/// </list>
+		/// Full houses and last digits may not be found in this method due to the limitation of the algorithm.
+		/// </summary>
+		/// <param name="this">The grid to check.</param>
+		/// <param name="candidateRemoved">The candidate removed.</param>
+		/// <returns>The <see cref="bool"/> result.</returns>
+		public static bool IsSingleWhenRemoved(this in SudokuGrid @this, int candidateRemoved)
+		{
+			int cellRemoved = candidateRemoved / 9, digitRemoved = candidateRemoved % 9;
+			
+			// Hidden single check.
+			for (int digit = 0; digit < 9; digit++)
+			{
+				for (int region = 0; region < 27; region++)
+				{
+					int count = 0;
+					bool flag = true;
+					foreach (int cell in RegionMaps[region])
+					{
+						if ((cellRemoved != cell || digitRemoved != digit)
+							&& @this.Exists(cell, digit) is true
+							&& ++count > 1)
+						{
+							flag = false;
+							break;
+						}
+					}
+					if (!flag || count == 0)
+					{
+						continue;
+					}
+
+					return true;
+				}
+			}
+
+			// Naked single check.
+			for (int cell = 0; cell < 81; cell++)
+			{
+				if (@this.GetStatus(cell) != CellStatus.Empty)
+				{
+					continue;
+				}
+
+				short mask = cell != cellRemoved
+					? @this.GetCandidates(cell)
+					: (short)(@this.GetCandidates(cell) & ~(1 << digitRemoved));
+				if (mask == 0 || (mask & mask - 1) != 0)
+				{
+					continue;
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
