@@ -323,6 +323,11 @@
             Indicates the project <c>Sudoku.UI</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Maui_WinUI">
+            <summary>
+            Indicates the project <c>Sudoku.UI.WinUI</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.CompilationEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.

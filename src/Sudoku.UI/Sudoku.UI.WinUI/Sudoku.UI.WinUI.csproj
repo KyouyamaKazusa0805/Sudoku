@@ -29,6 +29,7 @@
 	<!-- Project references -->
 	<ItemGroup>
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<ItemGroup>

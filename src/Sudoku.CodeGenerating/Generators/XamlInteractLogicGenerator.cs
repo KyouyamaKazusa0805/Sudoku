@@ -15,7 +15,7 @@ namespace Sudoku.CodeGenerating.Generators
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
-			if (context.IsNotInProject(ProjectNames.Maui))
+			if (context.IsNotInProject(ProjectNames.Maui, ProjectNames.Maui_WinUI))
 			{
 				return;
 			}
