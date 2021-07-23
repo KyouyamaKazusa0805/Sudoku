@@ -61,13 +61,13 @@ Please visit the following tables.
 | ------------ | ---------------------------------------------- |
 | Chinese only | [GitHub](https://sunnieshine.github.io/Sudoku) |
 
-| Coding Information                 |                                             |
-| ---------------------------------- | ------------------------------------------- |
-| Programming language and version   | C# 9                                        |
-| Framework                          | .NET 6                                      |
-| Indenting                          | Tabs `\t`                                   |
-| Integrated development environment | Visual Studio 2022 (Version 17.0 Preview 2) |
-| Natural languages support          | English, Simplified Chinese                 |
+| Coding Information                 |                                               |
+| ---------------------------------- | --------------------------------------------- |
+| Programming language and version   | C# 9                                          |
+| Framework                          | .NET 6                                        |
+| Indenting                          | Tabs `\t`                                     |
+| Integrated development environment | Visual Studio 2022 (Version 17.0 Preview 2.1) |
+| Natural languages support          | English, Simplified Chinese                   |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
