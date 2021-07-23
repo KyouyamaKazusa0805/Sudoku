@@ -34,9 +34,12 @@
             compiler warning.
             </para>
             <para>
-            To be honest, I suggest the team will append <see cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
+            <i>
+            To be honest, I suggest the team will append
+            <see cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
             onto the method <c>InitializeComponent</c> in order to avoid Roslyn making the error wave
             mark on this method.
+            </i>
             </para>
             </remarks>
             <seealso cref="T:System.Diagnostics.CodeAnalysis.MemberNotNullAttribute"/>
@@ -57,6 +60,23 @@
             Indicates the view model that bound with <see cref="T:Sudoku.UI.MainPage"/>.
             </summary>
             <seealso cref="T:Sudoku.UI.MainPage"/>
+        </member>
+        <member name="T:Sudoku.UI.MainActivity">
+            <summary>
+            Indicates the main activity.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MainApplication">
+            <summary>
+            Indicates the main application.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MainApplication"/> instance with the specified handle and the ownership.
+            </summary>
+            <param name="handle">The handle.</param>
+            <param name="ownership">The ownership.</param>
         </member>
     </members>
 </doc>

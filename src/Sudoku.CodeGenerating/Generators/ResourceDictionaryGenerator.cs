@@ -28,6 +28,11 @@ namespace Sudoku.CodeGenerating
 		/// <inheritdoc/>
 		public void Execute(GeneratorExecutionContext context)
 		{
+			if (context.IsNotInProject(ProjectNames.CodeAnalysis))
+			{
+				return;
+			}
+
 			if (context.AdditionalFiles is not { Length: not 0 } additionalFiles)
 			{
 				return;

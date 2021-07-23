@@ -246,6 +246,22 @@
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
         </member>
+        <member name="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute">
+            <summary>
+            Indicates the class is the interact logic bound with the specified XAML file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.XamlInteractLogicAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute"/> instance with the specified file name.
+            </summary>
+            <param name="xamlFileName"></param>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.XamlInteractLogicAttribute.XamlFileName">
+            <summary>
+            Indicates the XAML file name.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants">
             <summary>
             Defines the constants used in this project.
@@ -300,6 +316,11 @@
         <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.CodeAnalysis">
             <summary>
             Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Maui">
+            <summary>
+            Indicates the project <c>Sudoku.UI</c>.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.CompilationEx">
@@ -1096,6 +1117,30 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator">
+            <summary>
+            Indicates the XAML interact logic generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">
