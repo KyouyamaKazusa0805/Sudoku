@@ -89,10 +89,12 @@ Console.WriteLine(analysisResult.ToString());
   * [ ] MAUI 项目
     * [ ] 安卓项目
     * [ ] iOS 项目
+    * [ ] Mac Catalyst
     * [ ] 其它
 * [ ] 一些常见平台的机器人
   * [ ] 哔哩哔哩（这个可能需要网站自己提供 API 给我们用才行）
   * [x] ~~QQ（这个已经实现了，不过我删掉了……之后再说吧）~~
+  * [ ] 微信
   * [ ] 其它内容……
 * [ ] Wiki 文档
   * [x] 基本文档

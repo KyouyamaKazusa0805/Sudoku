@@ -87,10 +87,12 @@ Please visit the following tables.
   * [ ] MAUI
     * [ ] Android
     * [ ] iOS
+    * [ ] Mac Catalyst
     * [ ] Other
 * [ ] Platform Robots (Dependabot)
   * [ ] Bilibili (Should the platform provide APIs)
   * [x] ~~QICQ (Impl'ed, but I has removed yet, but don't worry because I'll re-upload 'em)~~
+  * [ ] WeChat
   * [ ] Others...
 * [ ] Wiki Documentation
   * [x] Basic Docs
