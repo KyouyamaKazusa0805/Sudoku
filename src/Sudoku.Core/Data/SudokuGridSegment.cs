@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using static Sudoku.Constants.Tables;
@@ -133,12 +134,13 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGridSegment"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[return: MaybeNull]
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.Masks
 			? ref _maskList[0]
 			: ref pinnedItem == PinnedItem.CandidateMasks
 			? ref _candidatesList[0]
-			: ref Unsafe.NullRef<short>();
+			: ref *(short*)null;
 
 		/// <summary>
 		/// Converts the collection into an array of type <see cref="short"/>.

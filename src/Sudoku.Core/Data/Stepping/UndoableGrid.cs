@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using static Sudoku.Data.SudokuGrid;
 
@@ -237,6 +238,7 @@ namespace Sudoku.Data.Stepping
 		/// <param name="pinnedItem">The item you want to fix. If </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[return: MaybeNull]
 		public ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref _innerGrid.GetPinnableReference(pinnedItem);
 

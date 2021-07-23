@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Numerics;
@@ -772,12 +773,13 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[return: MaybeNull]
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.CurrentGrid
 			? ref GetPinnableReference()
 			: ref pinnedItem == PinnedItem.InitialGrid
 			? ref _initialValues[0]
-			: ref Unsafe.NullRef<short>();
+			: ref *(short*)null;
 
 		/// <summary>
 		/// Get all masks and print them.
