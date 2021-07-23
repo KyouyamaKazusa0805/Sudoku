@@ -3,7 +3,10 @@ using Microsoft.Maui;
 
 namespace Sudoku.UI
 {
-	[Register("AppDelegate")]
+	/// <summary>
+	/// Indicates the application delegate.
+	/// </summary>
+	[Register(nameof(AppDelegate))]
 	public class AppDelegate : MauiUIApplicationDelegate<Startup>
 	{
 	}
