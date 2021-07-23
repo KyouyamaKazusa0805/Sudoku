@@ -134,7 +134,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGridSegment"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[return: MaybeNull]
+		[return: MaybeNullWhenNotDefined("pinnedItem")]
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.Masks
 			? ref _maskList[0]
