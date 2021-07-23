@@ -246,6 +246,62 @@
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Constants">
+            <summary>
+            Defines the constants used in this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.Version">
+            <summary>
+            Indictaes the version of this project.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Constants.FormatOptions">
+            <summary>
+            Provides the format options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.FormatOptions.TypeFormat">
+            <summary>
+            Indicates the type format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.FormatOptions.PropertyTypeFormat">
+            <summary>
+            Indicates the property format. Sometimes the option can also be used on field member symbol output.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
+            <summary>
+            Indicates the operator names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.OperatorNames.Equality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>==</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.OperatorNames.Inequality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>!=</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Constants.ProjectNames">
+            <summary>
+            Indicates the project names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.SystemExtensions">
+            <summary>
+            Indicates the project <c>SystemExtensions</c>. The project uses the namespace <c>System</c>
+            to store types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.CodeAnalysis">
+            <summary>
+            Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.CompilationEx">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
@@ -293,6 +349,17 @@
             <param name="sourceGeneratorName">The source generator name.</param>
             <param name="sourceCode">The source code.</param>
             <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorExecutionContextEx.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <param name="encoding">The encoding.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Extensions.GeneratorInitializationContextEx">
             <summary>
@@ -541,21 +608,6 @@
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.FormatOptions">
-            <summary>
-            Provides the format options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.FormatOptions.TypeFormat">
-            <summary>
-            Indicates the type format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.FormatOptions.PropertyTypeFormat">
-            <summary>
-            Indicates the property format. Sometimes the option can also be used on field member symbol output.
-            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.AutoGetHashCodeGenerator">
             <summary>
@@ -1045,37 +1097,6 @@
         </member>
         <member name="M:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.OperatorNames">
-            <summary>
-            Indicates the operator names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.OperatorNames.Equality">
-            <summary>
-            Indicates the name of the <see langword="operator"/> <c>==</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.OperatorNames.Inequality">
-            <summary>
-            Indicates the name of the <see langword="operator"/> <c>!=</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.ProjectNames">
-            <summary>
-            Indicates the project names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.ProjectNames.SystemExtensions">
-            <summary>
-            Indicates the project <c>SystemExtensions</c>. The project uses the namespace <c>System</c>
-            to store types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.ProjectNames.CodeAnalysis">
-            <summary>
-            Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">
             <summary>

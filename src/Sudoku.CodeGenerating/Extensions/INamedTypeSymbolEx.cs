@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating.Extensions
 {

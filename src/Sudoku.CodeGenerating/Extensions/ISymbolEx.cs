@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating.Extensions
 {

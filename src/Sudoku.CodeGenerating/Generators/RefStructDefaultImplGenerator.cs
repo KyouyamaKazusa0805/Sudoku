@@ -64,7 +64,7 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'Equals' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
@@ -80,7 +80,7 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
@@ -96,7 +96,7 @@ namespace Sudoku.CodeGenerating
 				? @"// Can't generate 'ToString' because the method is impl'ed by user."
 				: $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
@@ -191,7 +191,7 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'Equals' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
@@ -207,8 +207,7 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
@@ -224,8 +223,7 @@ namespace {namespaceName}
 				? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."
 				: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
-{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+{methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]

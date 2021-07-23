@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -107,7 +108,7 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}

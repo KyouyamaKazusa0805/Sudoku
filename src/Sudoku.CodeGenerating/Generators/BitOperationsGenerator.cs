@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {

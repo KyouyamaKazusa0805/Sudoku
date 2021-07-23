@@ -98,7 +98,7 @@ namespace Sudoku.CodeGenerating
 		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
 		/// diagnostic result ({GetDescription(info, id)}).
 		/// </summary>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		private static readonly DiagnosticDescriptor {id} = new(
 			DiagnosticIds.{id}, Titles.{id}, Messages.{id}, Categories.{id},
@@ -135,7 +135,7 @@ namespace {namespaceName}
 
 
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
 			{supportedInstances}
@@ -194,14 +194,14 @@ namespace {namespaceName}
 	partial class {typeName}
 	{{
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(
 			DiagnosticIds.{id}
 		);
 
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 	}}
@@ -231,7 +231,7 @@ namespace {namespaceName}
 		/// <returns>The raw code for representing the option of fading out the code.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static string GetWhetherFadingOutTag(string id) =>
-			id.EndsWith('F') ? ", customTags: new[] { WellKnownDiagnosticTags.Unnecessary }" : string.Empty;
+			id.EndsWith('F') ? ",\r\n\t\t\tcustomTags: new[] { WellKnownDiagnosticTags.Unnecessary }" : string.Empty;
 
 		/// <summary>
 		/// Get the description of from the split result.

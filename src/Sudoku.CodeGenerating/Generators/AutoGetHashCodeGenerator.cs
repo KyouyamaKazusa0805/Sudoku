@@ -59,7 +59,7 @@ namespace {namespaceName}
 	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		/// <inheritdoc cref=""object.GetHashCode""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};

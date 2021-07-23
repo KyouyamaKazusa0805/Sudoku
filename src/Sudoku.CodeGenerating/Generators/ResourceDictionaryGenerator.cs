@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
+using Sudoku.CodeGenerating.Extensions;
 
 namespace Sudoku.CodeGenerating
 {
@@ -54,14 +54,14 @@ namespace Sudoku.CodeGenerating
 	/// <summary>
 	/// Indicates the resource dictionary to check.
 	/// </summary>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class ResourceDictionaryKeys
 	{{
 		/// <summary>
 		/// Indicates the dictionary.
 		/// </summary>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static readonly IReadOnlyCollection<string> Keys = new[]
 		{{
@@ -70,7 +70,7 @@ namespace Sudoku.CodeGenerating
 	}}
 }}";
 
-			context.AddSource("ResourceDictionaryKeys.g.cs", SourceText.From(code, Encoding.Unicode));
+			context.AddSource("ResourceDictionaryKeys", null, code, Encoding.Unicode);
 		}
 
 		/// <inheritdoc/>

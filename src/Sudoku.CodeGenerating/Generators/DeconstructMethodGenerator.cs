@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -87,7 +88,7 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}void Deconstruct({parameterList})
@@ -150,12 +151,9 @@ namespace {namespaceName}
 				)
 			);
 
-			if (
-				handleRecursively && symbol.BaseType is { } baseType
-				&& baseType.GetAttributes().Any(
-					a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)
-				)
-			)
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+			if (handleRecursively && symbol.BaseType is { } baseType
+				&& baseType.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol)))
 			{
 				result.AddRange(GetMembers(baseType, true, attributeSymbol));
 			}

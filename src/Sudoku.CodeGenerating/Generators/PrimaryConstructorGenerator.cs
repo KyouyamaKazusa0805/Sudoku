@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -69,7 +70,7 @@ namespace {namespaceName}
 {{
 	partial class {type.Name}{genericParametersList}
 	{{
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.3"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public {type.Name}({parameterList}){baseCtorInheritance}
 		{{
