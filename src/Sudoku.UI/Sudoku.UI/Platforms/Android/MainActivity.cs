@@ -4,6 +4,9 @@ using Microsoft.Maui;
 
 namespace Sudoku.UI
 {
+	/// <summary>
+	/// Indicates the main activity.
+	/// </summary>
 	[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
 	public class MainActivity : MauiAppCompatActivity
 	{

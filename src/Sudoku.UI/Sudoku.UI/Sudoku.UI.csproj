@@ -52,6 +52,7 @@
 		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
 		<PackageTags>sudoku;puzzle-solving;algorithms</PackageTags>
 		<RepositoryType>git</RepositoryType>
+		<ApplicationIcon>..\Sudoku.UI\icon-64.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<!--
@@ -60,11 +61,11 @@
 
 		The '$(Configuration)' symbol can help you to determine which platform we choose.
 	-->
+	<!--
 	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net6.0-android|AnyCPU'">
 		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
-
-	<!--
+	
 	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net6.0-ios|AnyCPU'">
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
@@ -93,8 +94,9 @@
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <Folder Include="Pages\" />
+		<Folder Include="Pages\" />
 	</ItemGroup>
 
 </Project>
