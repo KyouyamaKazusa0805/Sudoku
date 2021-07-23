@@ -296,6 +296,7 @@ namespace System.Extensions
 
 			return new string(ptr, 0, count);
 
+
 			static bool isTab(char c) => c == '\t';
 			static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 		}
