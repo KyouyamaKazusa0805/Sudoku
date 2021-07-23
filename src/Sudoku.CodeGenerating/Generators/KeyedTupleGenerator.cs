@@ -65,7 +65,7 @@ namespace System.Collections.Generic
 	{commentsForGenericTypeParams}
 	{commentsForParams}
 	/// <param name=""PriorKey"">The prior key.</param>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public sealed record KeyedTuple<{typeParams}>({primaryConstructorParamList})
 		: global::System.Runtime.CompilerServices.ITuple
@@ -74,7 +74,7 @@ namespace System.Collections.Generic
 		/// Initializes an instance with the specified {length} items, and the first one is the prior key.
 		/// </summary>
 		{commentsForConstructorParams}
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public KeyedTuple({constructorParamList}) : this({constructorParamListWithoutType}, 1)
@@ -83,7 +83,7 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		int global::System.Runtime.CompilerServices.ITuple.Length
 		{{
@@ -92,7 +92,7 @@ namespace System.Collections.Generic
 		}}
 
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		object? global::System.Runtime.CompilerServices.ITuple.this[int index]
 		{{
@@ -102,7 +102,7 @@ namespace System.Collections.Generic
 
 
 		/// <inheritdoc/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override string ToString() => ((global::System.Runtime.CompilerServices.ITuple)this)[PriorKey]?.ToString() ?? string.Empty;

@@ -85,7 +85,7 @@ namespace Sudoku.CodeGenerating
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class DiagnosticIds
 	{{
@@ -105,7 +105,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class DiagnosticSeverities
 	{{
@@ -123,7 +123,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Categories
 	{{
@@ -141,7 +141,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class HelpLinks
 	{{
@@ -159,7 +159,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Titles
 	{{
@@ -177,7 +177,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis
 
 namespace Sudoku.Diagnostics.CodeAnalysis
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class Messages
 	{{

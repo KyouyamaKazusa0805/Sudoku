@@ -68,7 +68,7 @@ namespace Sudoku.CodeGenerating
 				string typeName = type.Name;
 				string objectEqualsMethod = type.IsRefLikeType
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
-					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}bool Equals(object? other) => other is {typeName}{genericParametersList} comparer && Equals(comparer);";
@@ -80,14 +80,14 @@ namespace Sudoku.CodeGenerating
 
 				var memberSymbols = type.GetMembers().OfType<IMethodSymbol>();
 				string opEquality = isOp(memberSymbols, OperatorNames.Equality)
-					? $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+					? $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==({inKeyword}{typeName}{genericParametersListWithoutConstraint} left, {inKeyword}{typeName}{genericParametersListWithoutConstraint} right) => left.Equals(right);"
 					: "// 'operator ==' does exist in the type.";
 
 				string opInequality = isOp(memberSymbols, OperatorNames.Inequality)
-					? $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+					? $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=({inKeyword}{typeName}{genericParametersListWithoutConstraint} left, {inKeyword}{typeName}{genericParametersListWithoutConstraint} right) => !(left == right);"

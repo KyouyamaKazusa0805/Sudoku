@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -63,7 +64,7 @@ namespace Sudoku.CodeGenerating
 				string nullableMark = type.TypeKind == TypeKind.Class || type.IsRecord ? "?" : string.Empty;
 				string objectEqualityMethod = type.IsRefLikeType
 					? "// This type is a ref struct, so 'bool Equals(object?) is useless."
-					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}bool Equals(object? obj) => obj is {type.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
@@ -81,18 +82,18 @@ namespace {namespaceName}
 	{{
 		{objectEqualityMethod}
 
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public bool Equals({inModifier}{type.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
 
 
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator ==({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
 
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=({inModifier}{type.Name}{genericParametersListWithoutConstraint} left, {inModifier}{type.Name}{genericParametersListWithoutConstraint} right) => !(left == right);

@@ -108,7 +108,7 @@ namespace Sudoku.CodeGenerating
 		/// </para>
 		/// </remarks>
 		/// <seealso cref=""ValueTuple""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}

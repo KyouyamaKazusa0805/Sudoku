@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -46,7 +47,7 @@ namespace {namespaceName}
 	partial {typeKind}{type.Name}{genericParametersList}
 	{{
 		/// <inheritdoc cref=""object.ToString""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public override {readonlyKeyword}partial string ToString() => ToString(null, null);
@@ -58,7 +59,7 @@ namespace {namespaceName}
 		/// The format. If available, the parameter can be <see langword=""null""/>.
 		/// </param>
 		/// <returns>The string result.</returns>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public {readonlyKeyword}partial string ToString(string? format) => ToString(format, null);

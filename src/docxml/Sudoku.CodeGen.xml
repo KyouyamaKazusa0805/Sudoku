@@ -251,7 +251,7 @@
             Defines the constants used in this project.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.Version">
+        <member name="F:Sudoku.CodeGenerating.Constants.VersionValue">
             <summary>
             Indictaes the version of this project.
             </summary>

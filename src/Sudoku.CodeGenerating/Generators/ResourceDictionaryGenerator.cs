@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -45,7 +46,6 @@ namespace Sudoku.CodeGenerating
 			);
 
 			string code = $@"using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 #nullable enable
 
@@ -54,14 +54,14 @@ namespace Sudoku.CodeGenerating
 	/// <summary>
 	/// Indicates the resource dictionary to check.
 	/// </summary>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	internal static class ResourceDictionaryKeys
 	{{
 		/// <summary>
 		/// Indicates the dictionary.
 		/// </summary>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static readonly IReadOnlyCollection<string> Keys = new[]
 		{{

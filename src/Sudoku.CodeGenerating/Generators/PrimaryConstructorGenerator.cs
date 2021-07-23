@@ -70,7 +70,7 @@ namespace {namespaceName}
 {{
 	partial class {type.Name}{genericParametersList}
 	{{
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.Version}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public {type.Name}({parameterList}){baseCtorInheritance}
 		{{
