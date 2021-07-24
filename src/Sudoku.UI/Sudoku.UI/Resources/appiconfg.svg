@@ -1,22 +1,38 @@
 <svg width="456" height="456" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
 
- <g>
-  <title>Layer 1</title>
-  <rect rx="5" stroke="#000" id="svg_2" height="441" width="441" y="7.5" x="7.5" fill-opacity="null" stroke-opacity="null" stroke-width="3" fill="none"/>
-  <rect id="svg_4" height="147" width="147" y="8" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_6" height="147" width="147" y="8" x="155" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_7" height="147" width="147" y="8" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_8" height="147" width="147" y="155" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_9" height="147" width="147" y="155" x="155.058838" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_10" height="147" width="147" y="155" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_11" height="147" width="147" y="302" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_12" height="147" width="147" y="302" x="155" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <rect id="svg_13" height="147" width="147" y="302" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <text font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" id="svg_14" y="103.58406" x="63.919525" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="#000000">1</text>
-  <text font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" id="svg_15" y="103.58406" x="212.448958" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="#000000">2</text>
-  <text font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" id="svg_16" y="254.319382" x="63.18423" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="#000000">4</text>
-  <text font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" id="svg_17" y="399.172325" x="358.772507" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="#000000">9</text>
-  <text style="cursor: move;" font-weight="bold" transform="rotate(-45 227.9956512451172,227.99871826171875) " xml:space="preserve" text-anchor="start" font-family="'Courier New', Courier, monospace" font-size="48" id="svg_18" y="240.652104" x="11.99229" fill-opacity="null" stroke-opacity="null" stroke="#000" fill="#000000">(me) =&gt; Sudoku;</text>
- </g>
+	<defs>
+		<marker id="arrow" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="6" refY="6" orient="auto">
+			<path d="M2,2 L10,6 L2,10 L2,2" style="fill: #F00;" />
+		</marker>
+	</defs>
+
+	<g>
+		<rect id="whole_block" stroke="#000" height="441" width="441" y="7.5" x="7.5" fill-opacity="null" stroke-opacity="null" stroke-width="3" fill="none"/>
+		<rect id="cell1" height="147" width="147" y="8" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell2" height="147" width="147" y="8" x="155" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell3" height="147" width="147" y="8" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell4" height="147" width="147" y="155" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell5" height="147" width="147" y="155" x="155" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell6" height="147" width="147" y="155" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell7" height="147" width="147" y="302" x="8" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell8" height="147" width="147" y="302" x="155" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<rect id="cell9" height="147" width="147" y="302" x="302" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+		<text id="digit1shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="108.58406" x="68.919525" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#CCC" fill="#CCC">1</text>
+		<text id="digit1" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="103.58406" x="63.919525" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#F00" fill="#F00">1</text>
+		<text id="digit2shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="108.58406" x="217.448958" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#CCC" fill="#CCC">2</text>
+		<text id="digit2" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="103.58406" x="212.448958" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#0F0" fill="#0F0">2</text>
+		<text id="digit4shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="259.319382" x="68.18423" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#CCC" fill="#CCC">4</text>
+		<text id="digit4" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="254.319382" x="63.18423" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#00F" fill="#00F">4</text>
+		<text id="digit9shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="403.172325" x="362.772507" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#CCC" fill="#CCC">9</text>
+		<text id="digit9" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="72" y="398.172325" x="357.772507" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#FF0" fill="#FF0">9</text>
+		<ellipse id="candidate1" ry="24.5" rx="24.5" cy="326.5" cx="277.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#FFC059"/>
+		<ellipse id="candidate2" ry="24.5" rx="24.5" cy="179.5" cx="424" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#3FDA65"/>
+		<ellipse id="candidate_elim" ry="24.5" rx="24.5" cy="179.5" cx="277.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#FF7684"/>
+		<line id="chain" x1="296.82411614" y1="307.17588386" x2="398.67588386" y2="204.82411614" stroke-dasharray="2,2" stroke-linecap="undefined" stroke-linejoin="undefined" stroke-width="2" stroke="#F00" fill="#F00" marker-end="url(#arrow)"/>
+		<text id="candidate1digit" font-style="normal" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="32" y="335.5" x="270.5" fill-opacity="null" stroke-opacity="null" stroke-width="1" stroke="#777" fill="#777">3</text>
+		<text id="candidate2digit" font-style="normal" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="32" y="188.5" x="417" fill-opacity="null" stroke-opacity="null" stroke-width="1" stroke="#777" fill="#777">3</text>
+		<text id="candidate_elim" font-style="normal" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="32" y="188.5" x="270.5" fill-opacity="null" stroke-opacity="null" stroke-width="1" stroke="#777" fill="#777">3</text>
+		<text id="watermark" style="cursor: move;" font-weight="bold" transform="rotate(-45 227.9956512451172,227.99871826171875) " xml:space="preserve" text-anchor="start" font-family="'Courier New', Courier, monospace" font-size="48" y="240.652104" x="11.99229" fill-opacity="null" stroke-opacity="null" stroke="#000" fill="#000000">(me) =&gt; Sudoku;</text>
+	</g>
+
 </svg>

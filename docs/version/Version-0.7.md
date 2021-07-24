@@ -8,7 +8,8 @@
 
 ### 增加
 
-* 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目。
+* 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目；
+* 添加 MAUI 的 WinUI 的程序图标（#159）。
 
 ### 删除
 
