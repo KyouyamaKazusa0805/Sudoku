@@ -1,56 +1,87 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Text.RegularExpressions;
+﻿#pragma warning disable IDE0079
+#pragma warning disable SS0101
 
-Console.WriteLine();
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Sudoku.Generating;
+using Sudoku.Globalization;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual;
+using Sudoku.Techniques;
 
-MyClass.Method(10, default);
+var stopwatch = new Stopwatch();
 
-abstract class MyClass
+TextResources.Current.ChangeLanguage(CountryCode.ZhCn);
+
+var generator = new HardPatternPuzzleGenerator();
+var solver = new ManualSolver();
+var techniqueDic = new Dictionary<Technique, long>();
+var difficultyLevelDic = new Dictionary<DifficultyLevel, int>();
+
+const int count = 1000;
+
+stopwatch.Start();
+for (int i = 0; i < count; i++)
 {
-	[Regex]
-	protected static readonly int P = 30;
+	Console.Clear();
+	Console.WriteLine($"Progress: {(double)i / count * 100:0.00}%  [{i} / {count}]");
+	Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
 
-	[Regex]
-	protected static readonly string Q = @"\a";
-
-	[Regex]
-	protected static readonly string R = @"\w+";
-
-	protected static readonly string S = @"\w+";
-
-
-	public static void Method(int age, [Discard] double discardVariable)
+	var puzzle = generator.Generate()!.Value;
+	var analysisResult = solver.Solve(puzzle);
+	foreach (var techniqueUsage in analysisResult.Steps!)
 	{
-		age += 10;
-		Console.WriteLine(age);
-		Console.WriteLine(nameof(age));
-		discardVariable -= 10;
-		Console.WriteLine(discardVariable);
-		Console.WriteLine(nameof(discardVariable));
-
-#pragma warning disable IDE0039
-		Action<int> f = static discardVariable => Console.WriteLine(discardVariable);
-		f(10);
-
-		Action<int> g = static delegate (int discardVariable) { Console.WriteLine(discardVariable); };
-		g(20);
-#pragma warning restore IDE0039
-
-		static void h(double discardVariable)
+		var code = techniqueUsage.TechniqueCode;
+		if (code is not (
+			Technique.HiddenSingleRow or Technique.HiddenSingleColumn or Technique.HiddenSingleBlock
+			or Technique.NakedSingle or Technique.FullHouse or Technique.LastDigit))
 		{
-			discardVariable += 20;
-			Console.WriteLine(discardVariable);
+			if (techniqueDic.ContainsKey(code))
+			{
+				techniqueDic[code]++;
+			}
+			else
+			{
+				techniqueDic.Add(code, 1);
+			}
 		}
+	}
 
-		h(30);
-
-		void i()
-		{
-			discardVariable += 20;
-			Console.WriteLine(discardVariable);
-		}
-
-		i();
+	var difficultyLevel = analysisResult.DifficultyLevel;
+	if (difficultyLevelDic.ContainsKey(difficultyLevel))
+	{
+		difficultyLevelDic[difficultyLevel]++;
+	}
+	else
+	{
+		difficultyLevelDic.Add(difficultyLevel, 1);
 	}
 }
+
+stopwatch.Stop();
+
+Console.Clear();
+Console.WriteLine($"Time elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}");
+Console.WriteLine();
+Console.WriteLine("Technique used:");
+Console.WriteLine(
+	string.Join(
+		"\r\n",
+		from pair in techniqueDic
+		orderby pair.Value descending, pair.Key
+		select $"{TextResources.Current[pair.Key.ToString()]}: {pair.Value.ToString()}"
+	)
+);
+
+Console.WriteLine();
+Console.WriteLine("Difficulty level distribution:");
+Console.WriteLine(
+	string.Join(
+		"\r\n",
+		from pair in difficultyLevelDic
+		orderby pair.Key
+		select $"{pair.Key.ToString()}: {pair.Value.ToString()}"
+	)
+);
