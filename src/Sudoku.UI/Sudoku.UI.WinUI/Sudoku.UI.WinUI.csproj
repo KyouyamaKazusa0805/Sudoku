@@ -34,10 +34,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiImage Include="..\Sudoku.UI\Resources\appicon.svg" Link="Resources\appicon.svg" ForegroundFile="..\Sudoku.UI\Resources\appiconfg.svg" IsAppIcon="true" Color="#512BD4" />
+		<MauiImage Include="..\Sudoku.UI\Resources\appicon.svg" Link="Resources\appicon.svg" ForegroundFile="..\Sudoku.UI\Resources\appiconfg.svg" IsAppIcon="true" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="..\Sudoku.UI\Resources\appiconfg.svg" Link="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiSplashScreen Include="..\Sudoku.UI\Resources\appiconfg.svg" Link="Resources\appiconfg.svg" Color="#FFFFFF" />
 
 		<!-- Images -->
 		<MauiImage Include="..\Sudoku.UI\Resources\Images\*" Link="Resources\Images\%(Filename)%(Extension)" />
