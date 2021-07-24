@@ -7,6 +7,7 @@ using Sudoku.Globalization;
 using Sudoku.Resources;
 using Sudoku.Solving.Manual;
 using Sudoku.Techniques;
+using static System.Console;
 
 namespace Sudoku.Test
 {
@@ -33,22 +34,21 @@ namespace Sudoku.Test
 			stopwatch.Start();
 			for (int i = 0; i < puzzlesCount; i++)
 			{
-				Console.Clear();
-				Console.WriteLine(
+				Clear();
+				WriteLine(
 					"Progress: {0}%  [{1} / {2}]",
-					((double)i / puzzlesCount * 100).ToString("0.00"),
+					(i * 100D / puzzlesCount).ToString("0.00"),
 					i.ToString(),
 					puzzlesCount.ToString()
 				);
-				Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
+				WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
 
 				var puzzle = generator.Generate()!.Value;
 				var analysisResult = solver.Solve(puzzle);
 				foreach (var techniqueUsage in analysisResult.Steps!)
 				{
-					var code = techniqueUsage.TechniqueCode;
 					if (
-						code is not (
+						techniqueUsage.TechniqueCode is var code and not (
 							Technique.HiddenSingleRow or Technique.HiddenSingleColumn or Technique.HiddenSingleBlock
 							or Technique.NakedSingle or Technique.FullHouse or Technique.LastDigit
 						)
@@ -78,30 +78,29 @@ namespace Sudoku.Test
 
 			stopwatch.Stop();
 
-			Console.Clear();
-			Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
-			Console.WriteLine();
-			Console.WriteLine("Technique used:");
-			Console.WriteLine(
+			Clear();
+			WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
+			WriteLine();
+			WriteLine("Technique used:");
+			WriteLine(
 				string.Join(
-					"\r\n",
+					Environment.NewLine,
 					from pair in techniqueDic
 					orderby pair.Value descending, pair.Key
 					select $"{TextResources.Current[pair.Key.ToString()]}: {pair.Value.ToString()}"
 				)
 			);
 
-			Console.WriteLine();
-			Console.WriteLine("Difficulty level distribution:");
-			Console.WriteLine(
+			WriteLine();
+			WriteLine("Difficulty level distribution:");
+			WriteLine(
 				string.Join(
-					"\r\n",
+					Environment.NewLine,
 					from pair in difficultyLevelDic
 					orderby pair.Key
 					select $"{pair.Key.ToString()}: {pair.Value.ToString()}"
 				)
 			);
-
 		}
 	}
 }
