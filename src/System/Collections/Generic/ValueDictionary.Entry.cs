@@ -13,9 +13,33 @@
 			public uint HashCode;
 
 			/// <summary>
-			/// 0-based index of next entry in chain: -1 means end of chain
-			/// also encodes whether this entry _itself_ is part of the free list by changing sign and subtracting 3,
-			/// so -2 means end of free list, -3 means index 0 but on free list, -4 means index 1 but on free list, etc.
+			/// 0-based index of next entry in chain. The possible values are:
+			/// <list type="table">
+			/// <listheader>
+			/// <term>Value</term>
+			/// <description>The description</description>
+			/// </listheader>
+			/// <item>
+			/// <term>-1</term>
+			/// <description>
+			/// End of chain also encodes whether this entry <i>itself</i> is part of the free list
+			/// by changing sign and subtracting 3.
+			/// </description>
+			/// </item>
+			/// <item>
+			/// <term>-2</term>
+			/// <description>End of free list.</description>
+			/// </item>
+			/// <item>
+			/// <term>-3</term>
+			/// <description>Index 0 but on free list.</description>
+			/// </item>
+			/// <item>
+			/// <term>-4</term>
+			/// <description>Index 1 but on free list.</description>
+			/// </item>
+			/// </list>
+			/// etc.
 			/// </summary>
 			public int NextValue;
 
