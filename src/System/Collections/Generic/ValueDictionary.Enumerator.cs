@@ -58,7 +58,7 @@
 					ref var entry = ref _dictionary._entries![_index++];
 					if (entry.NextValue >= -1)
 					{
-						Current = new(entry.Key, entry.Value);
+						Current = (entry.Key, entry.Value);
 						return true;
 					}
 				}
@@ -72,7 +72,7 @@
 			/// <summary>
 			/// Indicates the current element that iterated.
 			/// </summary>
-			public KeyValuePair<TKey, TValue> Current { get; private set; }
+			public (TKey Key, TValue Value) Current { get; private set; }
 		}
 	}
 }
