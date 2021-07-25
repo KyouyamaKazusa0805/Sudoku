@@ -160,14 +160,16 @@ namespace {namespaceName}
 			var outerTypes = new Stack<(INamedTypeSymbol Type, int Indenting)>();
 			int outerTypesCount = 0;
 			for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
-			for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
-			{
-				outerTypes.Push((outer, --outerTypesCount));
-			}
 
 			string methodIndenting = new('\t', outerTypesCount + 2);
 			string typeIndenting = new('\t', outerTypesCount + 1);
+			for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
+			{
+				outerTypes.Push((outer, outerTypesCount--));
+			}
+
 			StringBuilder outerTypeDeclarationsStart = new(), outerTypeDeclarationsEnd = new();
+			var indentingStack = new Stack<string>();
 			foreach (var (outerType, currentIndenting) in outerTypes)
 			{
 				outerType.DeconstructInfo(
@@ -228,10 +230,16 @@ namespace {namespaceName}
 					.Append(indenting)
 					.AppendLine("{");
 
+				indentingStack.Push(indenting);
+			}
+
+			foreach (string indenting in indentingStack)
+			{
 				outerTypeDeclarationsEnd
 					.Append(indenting)
 					.AppendLine("}");
 			}
+
 
 			// Remove the last new line.
 			outerTypeDeclarationsStart.Remove(outerTypeDeclarationsStart.Length - 2, 2);
