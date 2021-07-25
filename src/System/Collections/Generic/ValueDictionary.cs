@@ -179,16 +179,16 @@ namespace System.Collections.Generic
 		}
 
 		/// <summary>
-		/// Copies the current collection into a new array of <see cref="KeyValuePair{TKey, TValue}"/>s.
+		/// Copies the current collection into a new array of <see cref="ValueTuple{T1, T2}"/>s.
 		/// </summary>
-		/// <param name="array">The array of <see cref="KeyValuePair{TKey, TValue}"/>s.</param>
+		/// <param name="array">The array of <see cref="ValueTuple{T1, T2}"/>s.</param>
 		/// <param name="index">The index you want to copy as the start one.</param>
-		/// <seealso cref="KeyValuePair{TKey, TValue}"/>
+		/// <seealso cref="ValueTuple{T1, T2}"/>
 		/// <exception cref="IndexOutOfRangeException">
 		/// Throws when the specified argument <paramref name="index"/> is out of range.
 		/// </exception>
 		/// <exception cref="ArgumentException">Throws when the array is too small to store values.</exception>
-		public readonly void CopyTo(KeyValuePair<TKey, TValue>[] array, int index)
+		public readonly void CopyTo((TKey, TValue)[] array, int index)
 		{
 			if ((uint)index > (uint)array.Length)
 			{
@@ -206,7 +206,7 @@ namespace System.Collections.Generic
 			{
 				if (entries![i].NextValue >= -1)
 				{
-					array[index++] = new(entries[i].Key, entries[i].Value);
+					array[index++] = (entries[i].Key, entries[i].Value);
 				}
 			}
 		}

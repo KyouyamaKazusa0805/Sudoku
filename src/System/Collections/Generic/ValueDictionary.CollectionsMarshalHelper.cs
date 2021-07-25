@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace System.Collections.Generic
 {
@@ -19,8 +18,9 @@ namespace System.Collections.Generic
 		private static class CollectionsMarshalHelper
 		{
 			/// <summary>
-			/// Gets a ref to a <typeparamref name="TValue"/> in the <see cref="ValueDictionary{TKey, TValue}"/>,
-			/// adding a new entry with a default value if it does not exist in the <paramref name="dictionary"/>.
+			/// Gets a reference to a <typeparamref name="TValue"/> in the
+			/// <see cref="ValueDictionary{TKey, TValue}"/>, adding a new entry with a default value
+			/// if it does not exist in the <paramref name="dictionary"/>.
 			/// </summary>
 			/// <param name="dictionary">
 			/// The dictionary to get the ref to <typeparamref name="TValue"/> from.
@@ -36,22 +36,15 @@ namespace System.Collections.Generic
 			public static ref TValue GetValueRefOrAddDefault(
 				ref ValueDictionary<TKey, TValue> dictionary, TKey key, out bool exists)
 			{
-				// NOTE: this method is mirrored by Dictionary<TKey, TValue>.TryInsert above.
+				// NOTE: this method is mirrored by 'Dictionary<TKey, TValue>.TryInsert' above.
 				// If you make any changes here, make sure to keep that version in sync as well.
 
 				if (dictionary._buckets is null)
 				{
 					dictionary.Initialize(0);
 				}
-#if DEBUG
-				Debug.Assert(dictionary._buckets is not null);
-#endif
 
-				var entries = dictionary._entries;
-#if DEBUG
-				Debug.Assert(entries is not null, "expected entries to be non-null");
-#endif
-
+				var entries = dictionary._entries!;
 				uint hashCode = (uint)key.GetHashCode();
 
 				uint collisionCount = 0;
@@ -88,12 +81,6 @@ namespace System.Collections.Generic
 				if (dictionary._freeCount > 0)
 				{
 					index = dictionary._freeList;
-#if DEBUG
-					Debug.Assert(
-						StartOfFreeList - entries[dictionary._freeList].NextValue >= -1,
-						"shouldn't overflow because `next` cannot underflow"
-					);
-#endif
 					dictionary._freeList = StartOfFreeList - entries[dictionary._freeList].NextValue;
 					dictionary._freeCount--;
 				}
@@ -114,13 +101,13 @@ namespace System.Collections.Generic
 				entry.HashCode = hashCode;
 				entry.NextValue = bucket - 1; // Value in _buckets is 1-based.
 				entry.Key = key;
-				entry.Value = default!;
+				entry.Value = default;
 				bucket = index + 1; // Value in _buckets is 1-based.
 				dictionary._version++;
 
 				// Value types never rehash. Just assigns the value false into 'exists'.
 				exists = false;
-				return ref entry.Value!;
+				return ref entry.Value;
 			}
 		}
 	}

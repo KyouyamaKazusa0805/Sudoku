@@ -515,8 +515,9 @@
         </member>
         <member name="M:System.Collections.Generic.ValueDictionary`2.CollectionsMarshalHelper.GetValueRefOrAddDefault(System.Collections.Generic.ValueDictionary{`0,`1}@,`0,System.Boolean@)">
             <summary>
-            Gets a ref to a <typeparamref name="TValue"/> in the <see cref="T:System.Collections.Generic.ValueDictionary`2"/>,
-            adding a new entry with a default value if it does not exist in the <paramref name="dictionary"/>.
+            Gets a reference to a <typeparamref name="TValue"/> in the
+            <see cref="T:System.Collections.Generic.ValueDictionary`2"/>, adding a new entry with a default value
+            if it does not exist in the <paramref name="dictionary"/>.
             </summary>
             <param name="dictionary">
             The dictionary to get the ref to <typeparamref name="TValue"/> from.
@@ -617,13 +618,13 @@
             <param name="value">The value.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyTo(System.ValueTuple{`0,`1}[],System.Int32)">
             <summary>
-            Copies the current collection into a new array of <see cref="T:System.Collections.Generic.KeyValuePair`2"/>s.
+            Copies the current collection into a new array of <see cref="T:System.ValueTuple`2"/>s.
             </summary>
-            <param name="array">The array of <see cref="T:System.Collections.Generic.KeyValuePair`2"/>s.</param>
+            <param name="array">The array of <see cref="T:System.ValueTuple`2"/>s.</param>
             <param name="index">The index you want to copy as the start one.</param>
-            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            <seealso cref="T:System.ValueTuple`2"/>
             <exception cref="T:System.IndexOutOfRangeException">
             Throws when the specified argument <paramref name="index"/> is out of range.
             </exception>
