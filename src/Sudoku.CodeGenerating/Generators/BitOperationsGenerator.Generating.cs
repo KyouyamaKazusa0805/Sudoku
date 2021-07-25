@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using static Sudoku.CodeGenerating.Constants;
 
 namespace Sudoku.CodeGenerating
 {
@@ -96,7 +97,7 @@ namespace System.Extensions
 	/// Provides extension methods on <see cref=""BitOperations""/>.
 	/// </summary>
 	/// <seealso cref=""BitOperations""/>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public static partial class BitOperationsEx
 	{{");
@@ -151,7 +152,7 @@ namespace System.Extensions
 		/// </summary>
 		/// <param name=""this"">The value.</param>
 		/// <returns>All offsets.</returns>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial ReadOnlySpan<int> GetAllSets(this {typeName} @this)
 		{{
@@ -197,7 +198,7 @@ namespace System.Extensions
 		/// }}
 		/// </code>
 		/// </remarks>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {typeName} @this) =>
@@ -216,7 +217,7 @@ namespace System.Extensions
 		/// <param name=""this"">The value.</param>
 		/// <param name=""index"">The index.</param>
 		/// <returns>The index.</returns>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial int GetNextSet(this {typeName} @this, int index)
 		{{
@@ -256,7 +257,7 @@ namespace System.Extensions
 		/// </para>
 		/// </summary>
 		/// <param name=""this"">The value.</param>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public static partial void ReverseBits(this ref {typeName} @this)
@@ -290,7 +291,7 @@ namespace System.Extensions
 		/// <param name=""this"">The value.</param>
 		/// <param name=""order"">The number of the order of set bits.</param>
 		/// <returns>The position.</returns>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial int SetAt(this {typeName} @this, int order)
 		{{
@@ -333,7 +334,7 @@ namespace System.Extensions
 		/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
 		/// two of them, so the result set bit positions to iterate on are only 2 and 4.
 		/// </remarks>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Constants.VersionValue}"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public static partial {typeName} SkipSetBit(this {typeName} @this, int setBitPosCount)
 		{{
