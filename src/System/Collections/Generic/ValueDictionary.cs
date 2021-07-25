@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic
@@ -76,14 +75,17 @@ namespace System.Collections.Generic
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ValueDictionary(int capacity = 0) : this()
 		{
-			if (capacity < 0)
+			switch (capacity)
 			{
-				throw new ArgumentOutOfRangeException(nameof(capacity));
-			}
-
-			if (capacity > 0)
-			{
-				Initialize(capacity);
+				case < 0:
+				{
+					throw new ArgumentOutOfRangeException(nameof(capacity));
+				}
+				case > 0:
+				{
+					Initialize(capacity);
+					break;
+				}
 			}
 		}
 
@@ -271,13 +273,9 @@ namespace System.Collections.Generic
 			ref var entry = ref *(Entry*)null;
 			if (_buckets is not null)
 			{
-#if DEBUG
-				Debug.Assert(_entries is not null, "expected entries to be != null");
-#endif
-
 				uint hashCode = (uint)key.GetHashCode();
 				int i = GetBucket(hashCode);
-				var entries = _entries;
+				var entries = _entries!;
 				uint collisionCount = 0;
 
 				// Value in _buckets is 1-based; subtract 1 from i.
@@ -321,7 +319,7 @@ namespace System.Collections.Generic
 			return ref value;
 
 		ReturnNotFound:
-			value = ref Unsafe.NullRef<TValue>();
+			value = ref *(TValue*)null;
 			goto Return;
 		}
 
@@ -342,18 +340,13 @@ namespace System.Collections.Generic
 			int count = _count;
 			if (count > 0)
 			{
-#if DEBUG
-				Debug.Assert(_buckets is not null, $"'{nameof(_buckets)}' should be non-null.");
-				Debug.Assert(_entries is not null, $"'{nameof(_entries)}' should be non-null.");
-#endif
-
 				fixed (int* pBucket = _buckets)
 				{
-					Unsafe.InitBlock(pBucket, 0, (uint)(sizeof(int) * _buckets.Length));
+					Unsafe.InitBlock(pBucket, 0, (uint)(sizeof(int) * _buckets!.Length));
 				}
 
 				(_count, _freeCount, _freeList) = (0, 0, -1);
-				fixed (Entry* pEntry = _entries)
+				fixed (Entry* pEntry = _entries!)
 				{
 					Unsafe.InitBlock(pEntry, 0, (uint)(sizeof(Entry) * count));
 				}
@@ -366,6 +359,7 @@ namespace System.Collections.Generic
 		/// <param name="capacity">The capacity.</param>
 		/// <returns>The size of the collection.</returns>
 		[MemberNotNull(new[] { nameof(_buckets), nameof(_entries) })]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private int Initialize(int capacity)
 		{
 			int size = HashHelpers.GetPrime(capacity);
@@ -449,12 +443,6 @@ namespace System.Collections.Generic
 			if (_freeCount > 0)
 			{
 				index = _freeList;
-#if DEBUG
-				Debug.Assert(
-					StartOfFreeList - entries[_freeList].NextValue >= -1,
-					"shouldn't overflow because `next` cannot underflow"
-				);
-#endif
 				_freeList = StartOfFreeList - entries[_freeList].NextValue;
 				_freeCount--;
 			}
@@ -498,16 +486,10 @@ namespace System.Collections.Generic
 		[MemberNotNull(nameof(_entries))]
 		private void Resize(int newSize)
 		{
-#if DEBUG
-			// Value types never rehash.
-			Debug.Assert(_entries is not null, $"'{nameof(_entries)}' should be non-null");
-			Debug.Assert(newSize >= _entries.Length);
-#endif
-
 			var entries = new Entry[newSize];
 
 			int count = _count;
-			Array.Copy(_entries, entries, count);
+			Array.Copy(_entries!, entries, count);
 
 			// Assign member variables after both arrays allocated to guard
 			// against corruption from OOM if second fails.
@@ -539,9 +521,6 @@ namespace System.Collections.Generic
 			// Code has been intentionally duplicated for performance reasons.
 			if (_buckets is not null)
 			{
-#if DEBUG
-				Debug.Assert(_entries is not null, "The entries should be non-null.");
-#endif
 				uint collisionCount = 0;
 				uint hashCode = (uint)key.GetHashCode();
 				ref int bucket = ref GetBucket(hashCode);
@@ -550,7 +529,7 @@ namespace System.Collections.Generic
 				int i = bucket - 1; // Value in buckets is 1-based.
 				while (i >= 0)
 				{
-					ref var entry = ref entries[i];
+					ref var entry = ref entries![i];
 
 					if (entry.HashCode == hashCode && UnsafeConvert(entry.Key) == UnsafeConvert(key))
 					{
@@ -563,13 +542,6 @@ namespace System.Collections.Generic
 							entries[last].NextValue = entry.NextValue;
 						}
 
-#if DEBUG
-						Debug.Assert(
-							StartOfFreeList - _freeList < 0,
-							@"Shouldn't underflow because max hashtable length is 
-MaxPrimeArrayLength = 0x7FEFFFFD (i.e. decimal value 2146435069) _freelist underflow threshold 2147483646."
-						);
-#endif
 						entry.NextValue = StartOfFreeList - _freeList;
 
 						if (RuntimeHelpers.IsReferenceOrContainsReferences<TKey>())
@@ -640,13 +612,6 @@ MaxPrimeArrayLength = 0x7FEFFFFD (i.e. decimal value 2146435069) _freelist under
 
 						value = entry.Value;
 
-#if DEBUG
-						Debug.Assert(
-							StartOfFreeList - _freeList < 0,
-							@"Shouldn't underflow because max hashtable length is 
-MaxPrimeArrayLength = 0x7FEFFFFD(i.e. decimal value 2146435069) _freelist underflow threshold 2147483646."
-						);
-#endif
 						entry.NextValue = StartOfFreeList - _freeList;
 
 						if (RuntimeHelpers.IsReferenceOrContainsReferences<TKey>())
@@ -774,11 +739,7 @@ MaxPrimeArrayLength = 0x7FEFFFFD(i.e. decimal value 2146435069) _freelist underf
 			_version++;
 			Initialize(newSize);
 
-#if DEBUG
-			Debug.Assert(oldEntries is not null);
-#endif
-
-			CopyEntries(oldEntries, oldCount);
+			CopyEntries(oldEntries!, oldCount);
 		}
 
 		/// <summary>
@@ -788,10 +749,6 @@ MaxPrimeArrayLength = 0x7FEFFFFD(i.e. decimal value 2146435069) _freelist underf
 		/// <param name="count">The count you want to copy.</param>
 		private void CopyEntries(Entry[] entries, int count)
 		{
-#if DEBUG
-			Debug.Assert(_entries is not null);
-#endif
-
 			var newEntries = _entries;
 			int newCount = 0;
 			for (int i = 0; i < count; i++)
@@ -799,7 +756,7 @@ MaxPrimeArrayLength = 0x7FEFFFFD(i.e. decimal value 2146435069) _freelist underf
 				uint hashCode = entries[i].HashCode;
 				if (entries[i].NextValue >= -1)
 				{
-					ref var entry = ref newEntries[newCount];
+					ref var entry = ref newEntries![newCount];
 					entry = entries[i];
 					ref int bucket = ref GetBucket(hashCode);
 					entry.NextValue = bucket - 1; // Value in _buckets is 1-based.
@@ -811,14 +768,6 @@ MaxPrimeArrayLength = 0x7FEFFFFD(i.e. decimal value 2146435069) _freelist underf
 			_count = newCount;
 			_freeCount = 0;
 		}
-
-
-#pragma warning disable 1591
-		public override readonly bool Equals(object? other) => throw new();
-		public override readonly int GetHashCode() => throw new();
-		public override readonly string? ToString() => throw new();
-#pragma warning restore 1591
-
 
 
 		/// <summary>
