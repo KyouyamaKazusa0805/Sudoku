@@ -56,10 +56,7 @@ namespace System.Collections.Generic
 		/// <summary>
 		/// All entries of the collection that stores the pair of key and value information.
 		/// </summary>
-#if false
-		[NotNullIfNotNull(nameof(_buckets))]
-#endif
-		private Entry[]? _entries;
+		private Span<Entry> _entries;
 
 
 		/// <summary>
@@ -73,7 +70,7 @@ namespace System.Collections.Generic
 		[MemberNotNull(new[] { nameof(_buckets), nameof(_entries) })]
 #endif
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public ValueDictionary(int capacity = 0) : this()
+		public ValueDictionary(int capacity) : this()
 		{
 			switch (capacity)
 			{
@@ -169,7 +166,7 @@ namespace System.Collections.Generic
 
 			for (int i = 0; i < _count; i++)
 			{
-				if (entries![i].NextValue >= -1 && UnsafeConvert(entries[i].Value) == UnsafeConvert(value))
+				if (entries[i].NextValue >= -1 && UnsafeConvert(entries[i].Value) == UnsafeConvert(value))
 				{
 					return true;
 				}
@@ -204,7 +201,7 @@ namespace System.Collections.Generic
 			var entries = _entries;
 			for (int i = 0; i < count; i++)
 			{
-				if (entries![i].NextValue >= -1)
+				if (entries[i].NextValue >= -1)
 				{
 					array[index++] = (entries[i].Key, entries[i].Value);
 				}
@@ -403,7 +400,7 @@ namespace System.Collections.Generic
 			{
 				// Should be a while loop https://github.com/dotnet/runtime/issues/9422
 				// Test uint in if rather than loop condition to drop range check for following array access.
-				if ((uint)i >= (uint)entries!.Length)
+				if ((uint)i >= (uint)entries.Length)
 				{
 					break;
 				}
@@ -459,7 +456,7 @@ namespace System.Collections.Generic
 				entries = _entries;
 			}
 
-			ref var entry = ref entries![index];
+			ref var entry = ref entries[index];
 			entry.HashCode = hashCode;
 			entry.NextValue = bucket - 1; // Value in '_buckets' is 1-based.
 			entry.Key = key;
@@ -489,7 +486,10 @@ namespace System.Collections.Generic
 			var entries = new Entry[newSize];
 
 			int count = _count;
-			Array.Copy(_entries!, entries, count);
+			fixed (Entry* pEntry = _entries, pNewEntry = entries)
+			{
+				Unsafe.CopyBlock(pNewEntry, pEntry, (uint)(sizeof(Entry) * count));
+			}
 
 			// Assign member variables after both arrays allocated to guard
 			// against corruption from OOM if second fails.
@@ -529,7 +529,7 @@ namespace System.Collections.Generic
 				int i = bucket - 1; // Value in buckets is 1-based.
 				while (i >= 0)
 				{
-					ref var entry = ref entries![i];
+					ref var entry = ref entries[i];
 
 					if (entry.HashCode == hashCode && UnsafeConvert(entry.Key) == UnsafeConvert(key))
 					{
@@ -597,7 +597,7 @@ namespace System.Collections.Generic
 				int last = -1, i = bucket - 1; // Value in buckets is 1-based.
 				while (i >= 0)
 				{
-					ref var entry = ref entries![i];
+					ref var entry = ref entries[i];
 
 					if (entry.HashCode == hashCode && UnsafeConvert(entry.Key) == UnsafeConvert(key))
 					{
@@ -671,7 +671,7 @@ namespace System.Collections.Generic
 				throw new ArgumentOutOfRangeException(nameof(capacity));
 			}
 
-			int currentCapacity = _entries?.Length ?? 0;
+			int currentCapacity = _entries.Length;
 			if (currentCapacity >= capacity)
 			{
 				return currentCapacity;
@@ -730,7 +730,7 @@ namespace System.Collections.Generic
 
 			int newSize = HashHelpers.GetPrime(capacity);
 			var oldEntries = _entries;
-			if (newSize >= (oldEntries?.Length ?? 0))
+			if (newSize >= oldEntries.Length)
 			{
 				return;
 			}
@@ -739,7 +739,10 @@ namespace System.Collections.Generic
 			_version++;
 			Initialize(newSize);
 
-			CopyEntries(oldEntries!, oldCount);
+			fixed (Entry* pEntry = oldEntries)
+			{
+				CopyEntries(pEntry, oldCount);
+			}
 		}
 
 		/// <summary>
@@ -747,7 +750,7 @@ namespace System.Collections.Generic
 		/// </summary>
 		/// <param name="entries">The entries stores the copied entries.</param>
 		/// <param name="count">The count you want to copy.</param>
-		private void CopyEntries(Entry[] entries, int count)
+		private void CopyEntries(Entry* entries, int count)
 		{
 			var newEntries = _entries;
 			int newCount = 0;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-var dic = new ValueDictionary<Gender, int>();
+var dic = new ValueDictionary<Gender, int>(0);
 dic.Add(Gender.Female, 10);
 dic.Add(Gender.Male, 20);
 

@@ -780,7 +780,7 @@
             Throws when <paramref name="capacity"/> is a negative value.
             </exception>
         </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyEntries(System.Collections.Generic.ValueDictionary{`0,`1}.Entry[],System.Int32)">
+        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyEntries(System.Collections.Generic.ValueDictionary{`0,`1}.Entry*,System.Int32)">
             <summary>
             Copies all entries of this collection into the new array specified as the parameter.
             </summary>

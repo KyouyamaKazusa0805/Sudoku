@@ -53,7 +53,7 @@
 				var entries = _dictionary._entries;
 				for (int i = 0; i < count; i++)
 				{
-					if (entries![i].NextValue >= -1)
+					if (entries[i].NextValue >= -1)
 					{
 						array[index++] = entries[i].Value;
 					}

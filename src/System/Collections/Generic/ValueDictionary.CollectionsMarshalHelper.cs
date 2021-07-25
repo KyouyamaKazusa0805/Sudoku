@@ -44,7 +44,7 @@ namespace System.Collections.Generic
 					dictionary.Initialize(0);
 				}
 
-				var entries = dictionary._entries!;
+				var entries = dictionary._entries;
 				uint hashCode = (uint)key.GetHashCode();
 
 				uint collisionCount = 0;
@@ -97,7 +97,7 @@ namespace System.Collections.Generic
 					entries = dictionary._entries;
 				}
 
-				ref var entry = ref entries![index];
+				ref var entry = ref entries[index];
 				entry.HashCode = hashCode;
 				entry.NextValue = bucket - 1; // Value in _buckets is 1-based.
 				entry.Key = key;
