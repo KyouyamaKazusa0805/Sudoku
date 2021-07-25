@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using static System.Collections.Generic.InsertionBehavior;
 
 namespace System.Collections.Generic
 {
@@ -86,6 +87,15 @@ namespace System.Collections.Generic
 			}
 		}
 
+		/// <summary>
+		/// Initializes a <see cref="ValueDictionary{TKey, TValue}"/> instance with the specified collection
+		/// of <see cref="ValueTuple{T1, T2}"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>
+		/// pair.
+		/// </summary>
+		/// <param name="collection">The collection.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ValueDictionary(IEnumerable<(TKey, TValue)> collection) : this(0) => AddRange(collection);
+
 
 		/// <summary>
 		/// Indicates the number of elements stored in this collection.
@@ -138,7 +148,7 @@ namespace System.Collections.Generic
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			set => TryInsert(key, value, InsertionBehavior.OverwriteExisting);
+			set => TryInsert(key, value, OverwriteExisting);
 		}
 
 
@@ -326,7 +336,22 @@ namespace System.Collections.Generic
 		/// <param name="key"></param>
 		/// <param name="value"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Add(TKey key, TValue value) => TryInsert(key, value, InsertionBehavior.ThrowOnExisting);
+		public void Add(TKey key, TValue value) => TryInsert(key, value, ThrowOnExisting);
+
+		/// <summary>
+		/// Add a serial of pair of <typeparamref name="TKey"/> and <typeparamref name="TValue"/> instance
+		/// into the collection.
+		/// </summary>
+		/// <param name="collection">
+		/// The collection of pairs of type <typeparamref name="TKey"/> and <typeparamref name="TValue"/>.
+		/// </param>
+		public void AddRange(IEnumerable<(TKey, TValue)> collection)
+		{
+			foreach (var (key, value) in collection)
+			{
+				Add(key, value);
+			}
+		}
 
 		/// <summary>
 		/// Clears the collection.
@@ -348,164 +373,6 @@ namespace System.Collections.Generic
 					Unsafe.InitBlock(pEntry, 0, (uint)(sizeof(Entry) * count));
 				}
 			}
-		}
-
-		/// <summary>
-		/// Initializes the current collection as the specified capacity.
-		/// </summary>
-		/// <param name="capacity">The capacity.</param>
-		/// <returns>The size of the collection.</returns>
-		[MemberNotNull(new[] { nameof(_buckets), nameof(_entries) })]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private int Initialize(int capacity)
-		{
-			int size = HashHelpers.GetPrime(capacity);
-			int[] buckets = new int[size];
-			var entries = new Entry[size];
-
-			// Assign member variables after both arrays allocated to guard against corruption
-			// from OOM if second fails.
-			_freeList = -1;
-			_fastModMultiplier = HashHelpers.GetFastModMultiplier((uint)size);
-			_buckets = buckets;
-			_entries = entries;
-
-			return size;
-		}
-
-		/// <summary>
-		/// Try to insert the specified key and the value into the collection using the specified behavior.
-		/// </summary>
-		/// <param name="key">The key to add.</param>
-		/// <param name="value">The value to add.</param>
-		/// <param name="behavior">The behavior.</param>
-		/// <returns>A <see cref="bool"/> result indicating whether the operaion is successful.</returns>
-		private bool TryInsert(TKey key, TValue value, InsertionBehavior behavior)
-		{
-			// NOTE: this method is mirrored in 'CollectionsMarshal.GetValueRefOrAddDefault' below.
-			// If you make any changes here, make sure to keep that version in sync as well.
-			if (_buckets is null)
-			{
-				Initialize(0);
-			}
-
-			var entries = _entries;
-
-			uint hashCode = (uint)key.GetHashCode();
-			uint collisionCount = 0;
-			ref int bucket = ref GetBucket(hashCode);
-			int i = bucket - 1; // Value in _buckets is 1-based.
-
-			while (true)
-			{
-				// Should be a while loop https://github.com/dotnet/runtime/issues/9422
-				// Test uint in if rather than loop condition to drop range check for following array access.
-				if ((uint)i >= (uint)entries.Length)
-				{
-					break;
-				}
-
-				if (entries[i].HashCode == hashCode && UnsafeConvert(entries[i].Key) == UnsafeConvert(key))
-				{
-					return behavior switch
-					{
-						InsertionBehavior.OverwriteExisting => assign(ref entries[i], value),
-						InsertionBehavior.ThrowOnExisting => throw new ArgumentException(
-							"The key can't be added because of the duplicate.",
-							nameof(key)
-						),
-						_ => false
-					};
-
-
-					[MethodImpl(MethodImplOptions.AggressiveInlining)]
-					static bool assign(ref Entry entry, TValue value)
-					{
-						entry.Value = value;
-						return true;
-					}
-				}
-
-				i = entries[i].NextValue;
-
-				if (++collisionCount > (uint)entries.Length)
-				{
-					// The chain of entries forms a loop; which means a concurrent update has happened.
-					// Break out of the loop and throw, rather than looping forever.
-					throw new InvalidOperationException("The concurrent operation doesn't supported.");
-				}
-			}
-
-			int index;
-			if (_freeCount > 0)
-			{
-				index = _freeList;
-				_freeList = StartOfFreeList - entries[_freeList].NextValue;
-				_freeCount--;
-			}
-			else
-			{
-				int count = _count;
-				if (count == entries.Length)
-				{
-					Resize();
-					bucket = ref GetBucket(hashCode);
-				}
-				index = count;
-				_count = count + 1;
-				entries = _entries;
-			}
-
-			ref var entry = ref entries[index];
-			entry.HashCode = hashCode;
-			entry.NextValue = bucket - 1; // Value in '_buckets' is 1-based.
-			entry.Key = key;
-			entry.Value = value;
-			bucket = index + 1; // Value in '_buckets' is 1-based.
-			_version++;
-
-			// Value types never rehash. Just returns true.
-			return true;
-		}
-
-		/// <summary>
-		/// Resizes the collection.
-		/// </summary>
-		[MemberNotNull(nameof(_entries))]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Resize() => Resize(HashHelpers.ExpandPrime(_count));
-
-		/// <summary>
-		/// Resizes the collection with the specified size value and a <see cref="bool"/> value indicating
-		/// whether the hash code will be re-calculated.
-		/// </summary>
-		/// <param name="newSize">The new size.</param>
-		[MemberNotNull(nameof(_entries))]
-		private void Resize(int newSize)
-		{
-			var entries = new Entry[newSize];
-
-			int count = _count;
-			fixed (Entry* pEntry = _entries, pNewEntry = entries)
-			{
-				Unsafe.CopyBlock(pNewEntry, pEntry, (uint)(sizeof(Entry) * count));
-			}
-
-			// Assign member variables after both arrays allocated to guard
-			// against corruption from OOM if second fails.
-			_buckets = new int[newSize];
-			_fastModMultiplier = HashHelpers.GetFastModMultiplier((uint)newSize);
-			for (int i = 0; i < count; i++)
-			{
-				if (entries[i].NextValue >= -1)
-				{
-					ref int bucket = ref GetBucket(entries[i].HashCode);
-					entries[i].NextValue = bucket - 1; // Value in _buckets is 1-based.
-					bucket = i + 1;
-				}
-			}
-
-			_entries = entries;
 		}
 
 		/// <summary>
@@ -653,7 +520,7 @@ namespace System.Collections.Generic
 		/// <param name="value">The value to add.</param>
 		/// <returns>A <see cref="bool"/> result indicating whether the adding operation is successful.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool TryAdd(TKey key, TValue value) => TryInsert(key, value, InsertionBehavior.None);
+		public bool TryAdd(TKey key, TValue value) => TryInsert(key, value, None);
 
 		/// <summary>
 		/// Ensures that the dictionary can hold up to <paramref name="capacity"/> entries
@@ -746,6 +613,46 @@ namespace System.Collections.Generic
 		}
 
 		/// <summary>
+		/// Resizes the collection.
+		/// </summary>
+		[MemberNotNull(nameof(_entries))]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void Resize() => Resize(HashHelpers.ExpandPrime(_count));
+
+		/// <summary>
+		/// Resizes the collection with the specified size value and a <see cref="bool"/> value indicating
+		/// whether the hash code will be re-calculated.
+		/// </summary>
+		/// <param name="newSize">The new size.</param>
+		[MemberNotNull(nameof(_entries))]
+		private void Resize(int newSize)
+		{
+			var entries = new Entry[newSize];
+
+			int count = _count;
+			fixed (Entry* pEntry = _entries, pNewEntry = entries)
+			{
+				Unsafe.CopyBlock(pNewEntry, pEntry, (uint)(sizeof(Entry) * count));
+			}
+
+			// Assign member variables after both arrays allocated to guard
+			// against corruption from OOM if second fails.
+			_buckets = new int[newSize];
+			_fastModMultiplier = HashHelpers.GetFastModMultiplier((uint)newSize);
+			for (int i = 0; i < count; i++)
+			{
+				if (entries[i].NextValue >= -1)
+				{
+					ref int bucket = ref GetBucket(entries[i].HashCode);
+					entries[i].NextValue = bucket - 1; // Value in _buckets is 1-based.
+					bucket = i + 1;
+				}
+			}
+
+			_entries = entries;
+		}
+
+		/// <summary>
 		/// Copies all entries of this collection into the new array specified as the parameter.
 		/// </summary>
 		/// <param name="entries">The entries stores the copied entries.</param>
@@ -770,6 +677,124 @@ namespace System.Collections.Generic
 
 			_count = newCount;
 			_freeCount = 0;
+		}
+
+		/// <summary>
+		/// Try to insert the specified key and the value into the collection using the specified behavior.
+		/// </summary>
+		/// <param name="key">The key to add.</param>
+		/// <param name="value">The value to add.</param>
+		/// <param name="behavior">The behavior.</param>
+		/// <returns>A <see cref="bool"/> result indicating whether the operaion is successful.</returns>
+		/// <exception cref="ArgumentException">Throws when the duplicate keys encountered.</exception>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when teh current operation is concurrent operation.
+		/// </exception>
+		private bool TryInsert(TKey key, TValue value, InsertionBehavior behavior)
+		{
+			// NOTE: this method is mirrored in 'CollectionsMarshal.GetValueRefOrAddDefault' below.
+			// If you make any changes here, make sure to keep that version in sync as well.
+			if (_buckets is null)
+			{
+				Initialize(0);
+			}
+
+			var entries = _entries;
+
+			uint hashCode = (uint)key.GetHashCode(), collisionCount = 0;
+			ref int bucket = ref GetBucket(hashCode);
+			int i = bucket - 1; // Value in _buckets is 1-based.
+
+			while (true)
+			{
+				// Should be a while loop https://github.com/dotnet/runtime/issues/9422
+				// Test uint in if rather than loop condition to drop range check for following array access.
+				if ((uint)i >= (uint)entries.Length)
+				{
+					break;
+				}
+
+				if (entries[i].HashCode == hashCode && UnsafeConvert(entries[i].Key) == UnsafeConvert(key))
+				{
+					return behavior switch
+					{
+						OverwriteExisting => assign(ref entries[i], value),
+						ThrowOnExisting => throw new ArgumentException("The key can't be added because of the duplicate.", nameof(key)),
+						_ => false
+					};
+
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					static bool assign(ref Entry entry, TValue value)
+					{
+						entry.Value = value;
+						return true;
+					}
+				}
+
+				i = entries[i].NextValue;
+
+				if (++collisionCount > (uint)entries.Length)
+				{
+					// The chain of entries forms a loop; which means a concurrent update has happened.
+					// Break out of the loop and throw, rather than looping forever.
+					throw new InvalidOperationException("The concurrent operation doesn't supported.");
+				}
+			}
+
+			int index;
+			if (_freeCount > 0)
+			{
+				index = _freeList;
+				_freeList = StartOfFreeList - entries[_freeList].NextValue;
+				_freeCount--;
+			}
+			else
+			{
+				int count = _count;
+				if (count == entries.Length)
+				{
+					Resize();
+					bucket = ref GetBucket(hashCode);
+				}
+				index = count;
+				_count = count + 1;
+				entries = _entries;
+			}
+
+			ref var entry = ref entries[index];
+			entry.HashCode = hashCode;
+			entry.NextValue = bucket - 1; // Value in '_buckets' is 1-based.
+			entry.Key = key;
+			entry.Value = value;
+			bucket = index + 1; // Value in '_buckets' is 1-based.
+			_version++;
+
+			// Value types never rehash. Just returns true.
+			return true;
+		}
+
+		/// <summary>
+		/// Initializes the current collection as the specified capacity.
+		/// </summary>
+		/// <param name="capacity">The capacity.</param>
+		/// <returns>The size of the collection.</returns>
+		[MemberNotNull(new[] { nameof(_buckets), nameof(_entries) })]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private int Initialize(int capacity)
+		{
+			int size = HashHelpers.GetPrime(capacity);
+			int[] buckets = new int[size];
+			var entries = new Entry[size];
+
+			// Assign member variables after both arrays allocated to guard against corruption
+			// from OOM if second fails.
+			_freeList = -1;
+			_fastModMultiplier = HashHelpers.GetFastModMultiplier((uint)size);
+			_buckets = buckets;
+			_entries = entries;
+
+			return size;
 		}
 
 

@@ -580,6 +580,14 @@
             Throws when the <paramref name="capacity"/> is a negative value.
             </exception>
         </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.#ctor(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueDictionary`2"/> instance with the specified collection
+            of <see cref="T:System.ValueTuple`2"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>
+            pair.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
         <member name="P:System.Collections.Generic.ValueDictionary`2.Count">
             <summary>
             Indicates the number of elements stored in this collection.
@@ -675,38 +683,19 @@
             <param name="key"></param>
             <param name="value"></param>
         </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.AddRange(System.Collections.Generic.IEnumerable{System.ValueTuple{`0,`1}})">
+            <summary>
+            Add a serial of pair of <typeparamref name="TKey"/> and <typeparamref name="TValue"/> instance
+            into the collection.
+            </summary>
+            <param name="collection">
+            The collection of pairs of type <typeparamref name="TKey"/> and <typeparamref name="TValue"/>.
+            </param>
+        </member>
         <member name="M:System.Collections.Generic.ValueDictionary`2.Clear">
             <summary>
             Clears the collection.
             </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.Initialize(System.Int32)">
-            <summary>
-            Initializes the current collection as the specified capacity.
-            </summary>
-            <param name="capacity">The capacity.</param>
-            <returns>The size of the collection.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.TryInsert(`0,`1,System.Collections.Generic.InsertionBehavior)">
-            <summary>
-            Try to insert the specified key and the value into the collection using the specified behavior.
-            </summary>
-            <param name="key">The key to add.</param>
-            <param name="value">The value to add.</param>
-            <param name="behavior">The behavior.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operaion is successful.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize">
-            <summary>
-            Resizes the collection.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize(System.Int32)">
-            <summary>
-            Resizes the collection with the specified size value and a <see cref="T:System.Boolean"/> value indicating
-            whether the hash code will be re-calculated.
-            </summary>
-            <param name="newSize">The new size.</param>
         </member>
         <member name="M:System.Collections.Generic.ValueDictionary`2.Remove(`0)">
             <summary>
@@ -780,12 +769,44 @@
             Throws when <paramref name="capacity"/> is a negative value.
             </exception>
         </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize">
+            <summary>
+            Resizes the collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize(System.Int32)">
+            <summary>
+            Resizes the collection with the specified size value and a <see cref="T:System.Boolean"/> value indicating
+            whether the hash code will be re-calculated.
+            </summary>
+            <param name="newSize">The new size.</param>
+        </member>
         <member name="M:System.Collections.Generic.ValueDictionary`2.CopyEntries(System.Collections.Generic.ValueDictionary{`0,`1}.Entry*,System.Int32)">
             <summary>
             Copies all entries of this collection into the new array specified as the parameter.
             </summary>
             <param name="entries">The entries stores the copied entries.</param>
             <param name="count">The count you want to copy.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TryInsert(`0,`1,System.Collections.Generic.InsertionBehavior)">
+            <summary>
+            Try to insert the specified key and the value into the collection using the specified behavior.
+            </summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <param name="behavior">The behavior.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operaion is successful.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the duplicate keys encountered.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when teh current operation is concurrent operation.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Initialize(System.Int32)">
+            <summary>
+            Initializes the current collection as the specified capacity.
+            </summary>
+            <param name="capacity">The capacity.</param>
+            <returns>The size of the collection.</returns>
         </member>
         <member name="M:System.Collections.Generic.ValueDictionary`2.UnsafeConvert``1(``0)">
             <summary>
