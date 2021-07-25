@@ -52,7 +52,6 @@
 		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
 		<PackageTags>sudoku;puzzle-solving;algorithms</PackageTags>
 		<RepositoryType>git</RepositoryType>
-		<ApplicationIcon>..\..\Sudoku.UI\icon-64.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<!--

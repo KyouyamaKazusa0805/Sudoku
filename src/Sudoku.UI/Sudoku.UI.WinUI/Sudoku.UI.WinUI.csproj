@@ -23,7 +23,6 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>sudoku;puzzle-solving;algorithms</PackageTags>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<ApplicationIcon>..\..\Sudoku.UI\icon-64.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<!-- Project references -->

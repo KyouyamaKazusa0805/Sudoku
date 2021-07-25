@@ -61,22 +61,10 @@
             </summary>
             <seealso cref="T:Sudoku.UI.MainPage"/>
         </member>
-        <member name="T:Sudoku.UI.MainActivity">
+        <member name="T:Sudoku.UI.AppDelegate">
             <summary>
-            Indicates the main activity.
+            Indicates the application delegate.
             </summary>
-        </member>
-        <member name="T:Sudoku.UI.MainApplication">
-            <summary>
-            Indicates the main application.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.MainApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.MainApplication"/> instance with the specified handle and the ownership.
-            </summary>
-            <param name="handle">The handle.</param>
-            <param name="ownership">The ownership.</param>
         </member>
     </members>
 </doc>

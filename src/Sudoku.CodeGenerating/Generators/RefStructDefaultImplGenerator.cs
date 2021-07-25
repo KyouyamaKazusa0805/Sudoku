@@ -58,7 +58,7 @@ namespace Sudoku.CodeGenerating
 			string equalsMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
+					symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
 					&& c(parameters[0].Type, objectSymbol)
 					&& c(symbol.ReturnType, boolSymbol)
 			)
@@ -75,7 +75,7 @@ namespace Sudoku.CodeGenerating
 			string getHashCodeMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+					symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
 					&& c(symbol.ReturnType, intSymbol)
 			)
 				? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
@@ -91,7 +91,7 @@ namespace Sudoku.CodeGenerating
 			string toStringMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
+					symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
 					&& c(symbol.ReturnType, stringSymbol)
 			)
 				? @"// Can't generate 'ToString' because the method is impl'ed by user."
@@ -136,26 +136,88 @@ namespace {namespaceName}
 				out _, out _, out string readonlyKeyword, out _
 			);
 
-			// Get outer types.
-			var outerTypes = new List<INamedTypeSymbol>();
-			int outerTypesCount = 0;
-			for (var outer = type.ContainingType; outer is not null; outerTypesCount++)
+			// If nested type, the 'genericParametersList' may contain the dot '.' such as
+			//
+			//     <TKey, TValue>.KeyCollection
+			//
+			// We should remove the characters before the dot.
+			if (!string.IsNullOrEmpty(genericParametersList)
+				&& genericParametersList.LastIndexOf('.') is var dot and not -1)
 			{
-				outerTypes.Add(outer);
-				outer = outer.ContainingType;
+				if (dot + 1 >= genericParametersList.Length)
+				{
+					return;
+				}
+
+				genericParametersList = genericParametersList.Substring(dot + 1);
+				if (genericParametersList.IndexOf('<') == -1)
+				{
+					genericParametersList = string.Empty;
+				}
+			}
+
+			// Get outer types.
+			var outerTypes = new Stack<(INamedTypeSymbol Type, int Indenting)>();
+			int outerTypesCount = 0;
+			for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
+			for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
+			{
+				outerTypes.Push((outer, --outerTypesCount));
 			}
 
 			string methodIndenting = new('\t', outerTypesCount + 2);
 			string typeIndenting = new('\t', outerTypesCount + 1);
 			StringBuilder outerTypeDeclarationsStart = new(), outerTypeDeclarationsEnd = new();
-			foreach (var outerType in outerTypes)
+			foreach (var (outerType, currentIndenting) in outerTypes)
 			{
 				outerType.DeconstructInfo(
-					false, out _, out _, out string outerGenericParametersList,
-					out _, out string outerTypeKind, out _, out _
+					false, out string outerFullTypeName, out _, out _, out _,
+					out string outerTypeKind, out _, out _
 				);
 
-				string indenting = new('\t', outerTypesCount--);
+				string outerGenericParametersList;
+				int lastDot = outerFullTypeName.LastIndexOf('.');
+				if (lastDot == -1)
+				{
+					int lt = outerFullTypeName.IndexOf('<'), gt = outerFullTypeName.IndexOf('>');
+					if (lt == -1)
+					{
+						outerGenericParametersList = string.Empty;
+					}
+					else if (gt < lt)
+					{
+						continue;
+					}
+					else
+					{
+						outerGenericParametersList = outerFullTypeName.Substring(lt, gt - lt + 1);
+					}
+				}
+				else
+				{
+					int start = lastDot + 1;
+					if (start >= outerFullTypeName.Length)
+					{
+						continue;
+					}
+
+					string temp = outerFullTypeName.Substring(start);
+					int lt = temp.IndexOf('<'), gt = temp.IndexOf('>');
+					if (lt == -1)
+					{
+						outerGenericParametersList = string.Empty;
+					}
+					else if (gt < lt)
+					{
+						continue;
+					}
+					else
+					{
+						outerGenericParametersList = temp.Substring(lt, gt - lt + 1);
+					}
+				}
+
+				string indenting = new('\t', currentIndenting);
 
 				outerTypeDeclarationsStart
 					.Append(indenting)
@@ -185,7 +247,7 @@ namespace {namespaceName}
 			string equalsMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "Equals", Parameters: { Length: not 0 } parameters }
+					symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
 					&& c(parameters[0].Type, objectSymbol)
 					&& c(symbol.ReturnType, boolSymbol)
 			)
@@ -202,7 +264,7 @@ namespace {namespaceName}
 			string getHashCodeMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+					symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
 					&& c(symbol.ReturnType, intSymbol)
 			)
 				? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
@@ -218,7 +280,7 @@ namespace {namespaceName}
 			string toStringMethod = Array.Exists(
 				methods,
 				symbol =>
-					symbol is { Name: "ToString", Parameters: { Length: 0 } parameters }
+					symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
 					&& c(symbol.ReturnType, stringSymbol)
 			)
 				? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."

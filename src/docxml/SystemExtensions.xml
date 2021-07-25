@@ -83,6 +83,26 @@
             with the whole array.
             </remarks>
         </member>
+        <member name="T:System.Collections.Generic.InsertionBehavior">
+            <summary>
+            Used internally to control behavior of insertion into a <see cref="T:System.Collections.Generic.ValueDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.InsertionBehavior.None">
+            <summary>
+            The default insertion behavior.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.InsertionBehavior.OverwriteExisting">
+            <summary>
+            Specifies that an existing entry with the same key should be overwritten if encountered.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.InsertionBehavior.ThrowOnExisting">
+            <summary>
+            Specifies that if an existing entry with the same key is encountered, an exception should be thrown.
+            </summary>
+        </member>
         <member name="T:System.Collections.Generic.NotifyChangedList`1">
             <summary>
             Encapsulates the list that notifies the users while adding an element.
@@ -469,6 +489,589 @@
             </remarks>
             <seealso cref="T:System.ValueTuple"/>
         </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2">
+            <summary>
+            Represents a collection of keys and values, which is similar with the type
+            <see cref="T:System.Collections.Generic.Dictionary`2"/>. Different with that type, this type is represented as a
+            <see langword="ref struct"/>, which means you can't use the instance of this type outside any methods
+            as the data member of the types unless it's also a <see langword="ref struct"/>.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.CollectionsMarshalHelper">
+            <summary>
+            <para>
+            A helper class containing APIs exposed through <see cref="T:System.Runtime.InteropServices.CollectionsMarshal"/>.
+            </para>
+            <para>
+            These methods are relatively niche and only used in specific scenarios,
+            so adding them in a separate type avoids the additional overhead on each
+            <see cref="T:System.Collections.Generic.ValueDictionary`2"/> instantiation, especially in AOT scenarios.
+            </para>
+            </summary>
+            <seealso cref="T:System.Runtime.InteropServices.CollectionsMarshal"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.CollectionsMarshalHelper.GetValueRefOrAddDefault(System.Collections.Generic.ValueDictionary{`0,`1}@,`0,System.Boolean@)">
+            <summary>
+            Gets a ref to a <typeparamref name="TValue"/> in the <see cref="T:System.Collections.Generic.ValueDictionary`2"/>,
+            adding a new entry with a default value if it does not exist in the <paramref name="dictionary"/>.
+            </summary>
+            <param name="dictionary">
+            The dictionary to get the ref to <typeparamref name="TValue"/> from.
+            </param>
+            <param name="key">The key used for lookup.</param>
+            <param name="exists">
+            Whether or not a new entry for the given key was added to the dictionary.
+            </param>
+            <remarks>
+            Items should not be added to or removed from the <see cref="T:System.Collections.Generic.ValueDictionary`2"/>
+            while the ref <typeparamref name="TValue"/> is in use.
+            </remarks>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.StartOfFreeList">
+            <summary>
+            Indicates the free list start value.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._count">
+            <summary>
+            The inner counting variable.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._freeList">
+            <summary>
+            Indicates the free list.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._freeCount">
+            <summary>
+            Indicates the free count.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._version">
+            <summary>
+            Indicates how many times the instance being modified.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._buckets">
+            <summary>
+            The buckets that stores the inner dictionary key informations.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._fastModMultiplier">
+            <summary>
+            Indicates the fast modulo multiplier that is used for optimization the performance.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2._entries">
+            <summary>
+            All entries of the collection that stores the pair of key and value information.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueDictionary`2"/> instance with the specified capacity.
+            </summary>
+            <param name="capacity">The capacity.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the <paramref name="capacity"/> is a negative value.
+            </exception>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.Count">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.Keys">
+            <summary>
+            Indicates the key collection.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.Values">
+            <summary>
+            Indicates the value collection.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.Item(`0)">
+            <summary>
+            Gets or sets the specified value from/into the collection.
+            </summary>
+            <param name="key">The key.</param>
+            <value>The value you want to assign into.</value>
+            <returns>The value of this key corresponded to.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when the specified key doesn't found.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ContainsKey(`0)">
+            <summary>
+            Checks the collection, whether the collection contains the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ContainsValue(`1)">
+            <summary>
+            Checks the collection, whether the collection contains the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <summary>
+            Copies the current collection into a new array of <see cref="T:System.Collections.Generic.KeyValuePair`2"/>s.
+            </summary>
+            <param name="array">The array of <see cref="T:System.Collections.Generic.KeyValuePair`2"/>s.</param>
+            <param name="index">The index you want to copy as the start one.</param>
+            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            <exception cref="T:System.IndexOutOfRangeException">
+            Throws when the specified argument <paramref name="index"/> is out of range.
+            </exception>
+            <exception cref="T:System.ArgumentException">Throws when the array is too small to store values.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TryGetValue(`0,`1@)">
+            <summary>
+            Try to get the value from the collection using the specified key as the entry point to visit that value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">
+            The value found. If the return value is <see langword="false"/>, the value will be
+            <see langword="default"/>(<typeparamref name="TValue"/>).
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result indicating whether the finding operation is successful.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.GetEnumerator">
+            <summary>
+            Gets the enumertor to iterate the collection.
+            </summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.GetBucket(System.UInt32)">
+            <summary>
+            Gets the bucket for using specified hash code.
+            </summary>
+            <param name="hashCode">The hash code.</param>
+            <returns>
+            The bucket result located. The return value is a <see langword="ref"/> <see cref="T:System.Int32"/> in order to
+            help you use the value and re-assign the value.
+            </returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.FindValue(`0)">
+            <summary>
+            Finds the specified value, and returns the reference of the value in this collection, in order to
+            allow you using <c><![CDATA[&FindValue(key)]]></c> syntax to get the pointer.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+            The reference of the value. If don't found any satisfied result, the result will be the reference
+            of <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Add(`0,`1)">
+            <summary>
+            Add the specified key and value into the collection.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Clear">
+            <summary>
+            Clears the collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Initialize(System.Int32)">
+            <summary>
+            Initializes the current collection as the specified capacity.
+            </summary>
+            <param name="capacity">The capacity.</param>
+            <returns>The size of the collection.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TryInsert(`0,`1,System.Collections.Generic.InsertionBehavior)">
+            <summary>
+            Try to insert the specified key and the value into the collection using the specified behavior.
+            </summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <param name="behavior">The behavior.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operaion is successful.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize">
+            <summary>
+            Resizes the collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Resize(System.Int32)">
+            <summary>
+            Resizes the collection with the specified size value and a <see cref="T:System.Boolean"/> value indicating
+            whether the hash code will be re-calculated.
+            </summary>
+            <param name="newSize">The new size.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Remove(`0)">
+            <summary>
+            Removes the value from the current collection using the specified key as the entry point
+            to visit the corresponding value.
+            </summary>
+            <param name="key">The key</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to remove.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Remove(`0,`1@)">
+            <summary>
+            Removes the element from the current collection using the specified key as the entry point
+            to visit the corresponding value, and returns the value from the <see langword="out"/>
+            parameter <paramref name="value"/>.
+            </summary>
+            <param name="key">The key to remove.</param>
+            <param name="value">
+            The value. If failed to remove, the value will be
+            <see langword="default"/>(<typeparamref name="TValue"/>).
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to remove.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TryAdd(`0,`1)">
+            <summary>
+            Try to add the specified key and the value into the collection. If the collection contains the same
+            key, the operation will be failed but don't throw exceptions.
+            </summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the adding operation is successful.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.EnsureCapacity(System.Int32)">
+            <summary>
+            Ensures that the dictionary can hold up to <paramref name="capacity"/> entries
+            without any further expansion of its backing storage.
+            </summary>
+            <returns>The current capacity created.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="capacity"/> is a negative value.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TrimExcess">
+            <summary>
+            Sets the capacity of this dictionary to what it would be if it had been originally
+            initialized with all its entries.
+            </summary>
+            <remarks>
+            <para>
+            This method can be used to minimize the memory overhead
+            once it is known that no new elements will be added.
+            </para>
+            <para>
+            To allocate minimum size storage array, execute the following statements:
+            <list type="bullet">
+            <item><c>dictionary.Clear();</c></item>
+            <item><c>dictionary.TrimExcess();</c></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.TrimExcess(System.Int32)">
+            <summary>
+            Sets the capacity of this dictionary to hold up <paramref name="capacity"/> entries
+            without any further expansion of its backing storage.
+            </summary>
+            <remarks>
+            This method can be used to minimize the memory overhead
+            once it is known that no new elements will be added.
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when <paramref name="capacity"/> is a negative value.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.CopyEntries(System.Collections.Generic.ValueDictionary{`0,`1}.Entry[],System.Int32)">
+            <summary>
+            Copies all entries of this collection into the new array specified as the parameter.
+            </summary>
+            <param name="entries">The entries stores the copied entries.</param>
+            <param name="count">The count you want to copy.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.UnsafeConvert``1(``0)">
+            <summary>
+            Converts the current value into an <see cref="T:System.Int32"/> value.
+            </summary>
+            <returns>The result value.</returns>
+            <typeparam name="TUnmanaged">The type of the value.</typeparam>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.Entry">
+            <summary>
+            Defines an entry of the dictionary.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Entry.HashCode">
+            <summary>
+            The hash code calculated.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Entry.NextValue">
+            <summary>
+            0-based index of next entry in chain: -1 means end of chain
+            also encodes whether this entry _itself_ is part of the free list by changing sign and subtracting 3,
+            so -2 means end of free list, -3 means index 0 but on free list, -4 means index 1 but on free list, etc.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Entry.Key">
+            <summary>
+            The key of the entry.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Entry.Value">
+            <summary>
+            The value of the entry.
+            </summary>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.Enumerator">
+            <summary>
+            Indicates the inner enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Enumerator._dictionary">
+            <summary>
+            Indicates the dictionary instance.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Enumerator._version">
+            <summary>
+            Indicates the version modified.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Enumerator.#ctor(System.Collections.Generic.ValueDictionary{`0,`1}@)">
+            <summary>
+            Initializes an instance with the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.Enumerator.MoveNext">
+            <summary>
+            Moves the iterator to the next element.
+            </summary>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the moving operation is successful.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the version value is invalid.</exception>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.Enumerator.Current">
+            <summary>
+            Indicates the current element that iterated.
+            </summary>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.KeyCollection">
+            <summary>
+            Indicates the key collection that only iterates key set.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.KeyCollection._dictionary">
+            <summary>
+            Indicates the dictionary instance.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.#ctor(System.Collections.Generic.ValueDictionary{`0,`1}@)">
+            <summary>
+            Initializes an instance with the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.KeyCollection.Count">
+            <summary>
+            Indicates the number of keys in this collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the current collection into an array of <typeparamref name="TKey"/>s.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="index">The index.</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+            Throws when the argument <paramref name="index"/> is out of range.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when the <paramref name="array"/> is too small.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator that can iterates the key collection.
+            </summary>
+            <returns>The enumerator that can iterates the key collection.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator">
+            <summary>
+            Indicates the inner enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator._version">
+            <summary>
+            Indicates the version modified.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator._dictionary">
+            <summary>
+            Indicates the dictionary instance.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.#ctor(System.Collections.Generic.ValueDictionary{`0,`1}@)">
+            <summary>
+            Initializes an instance with the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.Current">
+            <summary>
+            Indicates the current element that iterated.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.MoveNext">
+            <summary>
+            Moves the iterator to the next element.
+            </summary>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the moving operation is successful.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the version value is invalid.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.KeyCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.ValueCollection">
+            <summary>
+            Indicates the value collection that only iterates value set.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.ValueCollection._dictionary">
+            <summary>
+            Indicates the dictionary instance.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.#ctor(System.Collections.Generic.ValueDictionary{`0,`1}@)">
+            <summary>
+            Initializes an instance with the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.ValueCollection.Count">
+            <summary>
+            Indicates the number of keys in this collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.CopyTo(`1[],System.Int32)">
+            <summary>
+            Copies the current collection into an array of <typeparamref name="TValue"/>s.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="index">The index.</param>
+            <exception cref="T:System.IndexOutOfRangeException">
+            Throws when the argument <paramref name="index"/> is out of range.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when the <paramref name="array"/> is too small.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator that can iterates the value collection.
+            </summary>
+            <returns>The enumerator that can iterates the value collection.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator">
+            <summary>
+            Indicates the inner enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator._version">
+            <summary>
+            Indicates the version modified.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator._dictionary">
+            <summary>
+            Indicates the dictionary instance.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.#ctor(System.Collections.Generic.ValueDictionary{`0,`1}@)">
+            <summary>
+            Initializes an instance with the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.Current">
+            <summary>
+            Indicates the current element that iterated.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.MoveNext">
+            <summary>
+            Moves the iterator to the next element.
+            </summary>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the moving operation is successful.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the version value is invalid.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueDictionary`2.ValueCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:System.Collections.Generic.KeyedTuple`2">
             <summary>
             Provides a tuple with a primary element, which means the tuple contains multiple items,
@@ -597,6 +1200,95 @@
         </member>
         <member name="M:System.Collections.Generic.KeyedTuple`4.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Collections.HashHelpers">
+            <summary>
+            Encapsulates and provides the methods about hash code handling.
+            </summary>
+        </member>
+        <member name="F:System.Collections.HashHelpers.HashCollisionThreshold">
+            <summary>
+            Indicates the threshold on the hash collision case.
+            </summary>
+        </member>
+        <member name="F:System.Collections.HashHelpers.MaxPrimeArrayLength">
+            <summary>
+            Indiactes the maximum prime number of the type <see cref="T:System.Int32"/>
+            smaller than <see cref="P:System.Array.MaxLength"/>..
+            </summary>
+            <seealso cref="P:System.Array.MaxLength"/>
+            <remarks>
+            The next prime is <c>2147483629</c>, which is bigger than <see cref="P:System.Array.MaxLength"/>
+            though it is still in the valid range of <see cref="T:System.Int32"/> type.
+            </remarks>
+        </member>
+        <member name="F:System.Collections.HashHelpers.HashPrime">
+            <summary>
+            Indicates the hash prime number used.
+            </summary>
+        </member>
+        <member name="F:System.Collections.HashHelpers.Primes">
+            <summary>
+            <para>
+            Table of prime numbers to use as hash table sizes.
+            A typical resize algorithm would pick the smallest prime number in this array
+            that is larger than twice the previous capacity.
+            </para>
+            <para>
+            Suppose our Hashtable currently has capacity <c>x</c> and enough elements are added
+            such that a resize needs to occur. Resizing first computes <c>2x</c> then finds the
+            first prime in the table greater than <c>2x</c>, i.e. if primes are ordered
+            <c>p_1, p_2, ..., p_i, ...</c>, it finds <c>p_n</c> such that <c><![CDATA[p_n-1 < 2x < p_n]]></c>.
+            Doubling is important for preserving the asymptotic complexity of the
+            hashtable operations such as add.  Having a prime guarantees that double
+            hashing does not lead to infinite loops.  IE, your hash function will be
+            <c><![CDATA[h1(key) + i * h2(key)]]></c>, <c><![CDATA[0 <= i < size]]></c>.
+            <c>h2</c> and the size must be relatively prime.
+            </para>
+            <para>
+            We prefer the low computation costs of higher prime numbers over the increased
+            memory allocation of a fixed prime number i.e. when right sizing a <c>HashSet</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="M:System.Collections.HashHelpers.IsPrime(System.Int32)">
+            <summary>
+            Checks whether the specified candidate number is a prime number using the normal algorithm.
+            </summary>
+            <param name="candidate">The number to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.HashHelpers.GetPrime(System.Int32)">
+            <summary>
+            Gets a prime number.
+            </summary>
+            <param name="threshold">
+            The minimum value as the threshold. The return value will be greater than this value.
+            </param>
+            <returns>The result prime number.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="threshold"/> is a negative value.
+            </exception>
+        </member>
+        <member name="M:System.Collections.HashHelpers.ExpandPrime(System.Int32)">
+            <summary>
+            Expand the prime number from an old size.
+            </summary>
+            <param name="oldSize">The old size.</param>
+            <returns>Returns size of hashtable to grow to.</returns>
+        </member>
+        <member name="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)">
+            <summary>
+            Returns approximate reciprocal of the divisor: <c>Ceil(Pow(2, 64) / divisor)</c>.
+            </summary>
+            <remarks>This should only be used on 64-bit.</remarks>
+        </member>
+        <member name="M:System.Collections.HashHelpers.FastMod(System.UInt32,System.UInt32,System.UInt64)">
+            <summary>
+            Performs a mod operation using the multiplier pre-computed with <see cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>.
+            </summary>
+            <remarks>This should only be used on 64-bit.</remarks>
+            <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AssemblyObsoleteAttribute">
             <summary>
