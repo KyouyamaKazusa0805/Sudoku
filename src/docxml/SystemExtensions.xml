@@ -3074,7 +3074,10 @@
             <inheritdoc/>
         </member>
         <member name="T:System.IValueComparable`1">
-            <inheritdoc cref="T:System.IComparable`1"/>
+            <summary>
+            Defines a generalized comparison method that a <see langword="struct"/> implements
+            to create a type-specific comparison method for ordering or sorting its instances.
+            </summary>
             <typeparam name="TStruct">
             The type of objects to compare. Here it should be a <see langword="struct"/>.
             </typeparam>
@@ -3113,7 +3116,10 @@
             <inheritdoc/>
         </member>
         <member name="T:System.IValueEquatable`1">
-            <inheritdoc cref="T:System.IEquatable`1"/>
+            <summary>
+            Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
+            for detemining equality of instances.
+            </summary>
             <typeparam name="TStruct">
             The type of objects to compare. Here it should be a <see langword="struct"/>.
             </typeparam>

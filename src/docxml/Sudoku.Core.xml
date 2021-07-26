@@ -4917,6 +4917,41 @@
         <member name="M:Sudoku.Models.IProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Models.PresentationDataKind">
+            <summary>
+            Presents a kind to identify the inner presentation data.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.None">
+            <summary>
+            Indicates the data kind is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.Cells">
+            <summary>
+            Indicates the data kind is for cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.Candidates">
+            <summary>
+            Indicates the data kind is for candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.Regions">
+            <summary>
+            Indicates the data kind is for regions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.Links">
+            <summary>
+            Indicates the data kind is for links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.DirectLines">
+            <summary>
+            Indicates the data kind is for direct lines.
+            </summary>
+        </member>
         <member name="T:Sudoku.Models.PuzzleGeneratingProgressResult">
             <summary>
             Indicates a puzzle generating progress result.

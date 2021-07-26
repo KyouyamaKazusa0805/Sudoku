@@ -1,10 +1,14 @@
 ﻿namespace System
 {
-	/// <inheritdoc cref="IComparable{T}"/>
+	/// <summary>
+	/// Defines a generalized comparison method that a <see langword="struct"/> implements
+	/// to create a type-specific comparison method for ordering or sorting its instances.
+	/// </summary>
 	/// <typeparam name="TStruct">
 	/// The type of objects to compare. Here it should be a <see langword="struct"/>.
 	/// </typeparam>
-	public interface IValueComparable<TStruct> : IComparable<TStruct> where TStruct : struct
+	public interface IValueComparable<TStruct> : IComparable<TStruct>
+		where TStruct : struct, IValueComparable<TStruct>
 	{
 		/// <summary>
 		/// Compares the current instance with another object of the same type and returns

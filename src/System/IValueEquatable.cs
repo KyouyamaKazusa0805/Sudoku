@@ -1,10 +1,14 @@
 ﻿namespace System
 {
-	/// <inheritdoc cref="IEquatable{T}"/>
+	/// <summary>
+	/// Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
+	/// for detemining equality of instances.
+	/// </summary>
 	/// <typeparam name="TStruct">
 	/// The type of objects to compare. Here it should be a <see langword="struct"/>.
 	/// </typeparam>
-	public interface IValueEquatable<TStruct> : IEquatable<TStruct> where TStruct : struct
+	public interface IValueEquatable<TStruct> : IEquatable<TStruct>
+		where TStruct : struct, IValueEquatable<TStruct>
 	{
 		/// <summary>
 		/// Indicates whether the current object is equal to another object of the same type.
