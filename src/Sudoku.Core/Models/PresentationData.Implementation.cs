@@ -125,7 +125,7 @@ namespace Sudoku.Models
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the argument <paramref name="dataKind"/> is out of range.
 		/// </exception>
-		public partial void Add<TStruct>(PresentationDataKind dataKind, TStruct element, int color)
+		public partial void Add<TStruct>(PresentationDataKind dataKind, TStruct element, ColorIdentifier color)
 			where TStruct : struct
 		{
 			switch (dataKind)

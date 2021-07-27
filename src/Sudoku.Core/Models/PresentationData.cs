@@ -18,11 +18,11 @@ namespace Sudoku.Models
 	/// <param name="Links">The links.</param>
 	/// <param name="DirectLines">The direct lines.</param>
 	public partial record struct PresentationData(
-		[DisallowNull] IList<(int Cell, int Color)>? Cells,
-		[DisallowNull] IList<(int Candidate, int Color)>? Candidates,
-		[DisallowNull] IList<(int Region, int Color)>? Regions,
-		[DisallowNull] IList<(Link Link, int Color)>? Links,
-		[DisallowNull] IList<((Cells Start, Cells End) DirectLine, int Color)>? DirectLines
+		[DisallowNull] IList<(int Cell, ColorIdentifier Color)>? Cells,
+		[DisallowNull] IList<(int Candidate, ColorIdentifier Color)>? Candidates,
+		[DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
+		[DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
+		[DisallowNull] IList<((Cells Start, Cells End) DirectLine, ColorIdentifier Color)>? DirectLines
 	) : IValueEquatable<PresentationData>, IParsable<PresentationData>
 	{
 		public readonly partial bool Equals(in PresentationData other);
@@ -31,7 +31,7 @@ namespace Sudoku.Models
 		public override readonly partial int GetHashCode();
 		public override readonly partial string ToString();
 		public readonly partial string ToSvgCode();
-		public partial void Add<TStruct>(PresentationDataKind dataKind, TStruct element, int color) where TStruct : struct;
+		public partial void Add<TStruct>(PresentationDataKind dataKind, TStruct element, ColorIdentifier color) where TStruct : struct;
 		public partial void Remove<TStruct>(PresentationDataKind dataKind, TStruct element) where TStruct : struct;
 
 		public static partial bool TryParse(string svgCode, out PresentationData result);
