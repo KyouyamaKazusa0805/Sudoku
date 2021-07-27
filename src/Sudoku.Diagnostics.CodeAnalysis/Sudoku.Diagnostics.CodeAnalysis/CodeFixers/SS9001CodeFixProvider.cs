@@ -30,8 +30,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 			var (_, forLoopSpan) = diagnostic.AdditionalLocations[0];
 			var forLoop = (ForStatementSyntax)root.FindNode(forLoopSpan, getInnermostNodeForTie: true);
 
-			var declaration = forLoop.Declaration;
-			if (declaration is null/*not (null or { Variables: { Count: not 0 } })*/)
+			if (forLoop.Declaration is not { } declaration)
 			{
 				return;
 			}
@@ -70,12 +69,30 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 						{
 							// Check whether the result variable name is duplicate
 							// in the old variable declarator list.
-							if (
-								variableDeclarators.Any(
-									variableDeclarator =>
-										variableDeclarator.Identifier.ValueText == resultDefaultVariableName
-								)
-							)
+							var flowAnalysis = semanticModel.AnalyzeDataFlow(forLoop);
+							string[]? listOfVariablesOutside = flowAnalysis is null
+								? null
+								: (
+									from variable in flowAnalysis.VariablesDeclared
+									select variable.Name into name
+									where !string.IsNullOrEmpty(name)
+									select name
+								).Concat(
+									from variable in flowAnalysis.ReadOutside
+									select variable.Name
+								).Concat(
+									from variable in flowAnalysis.WrittenOutside
+									select variable.Name
+								).Concat(
+									from method in flowAnalysis.UsedLocalFunctions
+									from variable in method.Parameters
+									select variable.Name
+								).Concat(
+									from variable in flowAnalysis.CapturedOutside
+									select variable.Name
+								).Distinct().ToArray();
+
+							if (Array.IndexOf(listOfVariablesOutside, resultDefaultVariableName) != -1)
 							{
 								for (uint trial = 1; ; trial = checked(trial + 1))
 								{
@@ -90,7 +107,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 										}
 									}
 
-									if (!exists)
+									if (!exists && Array.IndexOf(listOfVariablesOutside, currentPossibleName) == -1)
 									{
 										resultDefaultVariableName = currentPossibleName;
 										break;
@@ -127,45 +144,6 @@ namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 								)
 							);
 						}
-						//else
-						//{
-						//	var syntax = GetTypeSyntax(
-						//		semanticModel.GetOperation(badExpression, c)!.Type!,
-						//		compilation
-						//	);
-						//
-						//	editor.ReplaceNode(
-						//		badExpression,
-						//		SyntaxFactory.IdentifierName(
-						//			resultDefaultVariableName
-						//		)
-						//	);
-						//	editor.ReplaceNode(
-						//		forLoop,
-						//		forLoop
-						//		.WithDeclaration(
-						//			SyntaxFactory.VariableDeclaration(
-						//				syntax
-						//				.WithTrailingTrivia(
-						//					SyntaxFactory.ParseTrailingTrivia(" ")
-						//				),
-						//				SyntaxFactory.SingletonSeparatedList(
-						//					SyntaxFactory.VariableDeclarator(
-						//						SyntaxFactory.Identifier(
-						//							resultDefaultVariableName
-						//						)
-						//					)
-						//					.WithInitializer(
-						//						SyntaxFactory.EqualsValueClause(
-						//							badExpression
-						//						)
-						//					)
-						//					.NormalizeWhitespace(indentation: "\t")
-						//				)
-						//			)
-						//		)
-						//	);
-						//}
 
 						// Returns the changed document.
 						return editor.GetChangedDocument();
