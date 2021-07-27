@@ -14,7 +14,7 @@ namespace Sudoku.Versioning
 	/// </para>
 	/// <para>
 	/// This attribute has a different meaning with a type named
-	/// <see cref="T:System.Runtime.Versioning.NonVersionableAttribute"/>, which doesn't contain
+	/// <c>System.Runtime.Versioning.NonVersionableAttribute</c>, which doesn't contain
 	/// in .NET (.NET 5 and its later version), but in .NET framework. Please tell with them.
 	/// </para>
 	/// </remarks>
