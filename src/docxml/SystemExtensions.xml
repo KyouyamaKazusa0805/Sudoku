@@ -3202,21 +3202,6 @@
             </example>
             <seealso cref="M:System.Text.ValueStringBuilder.#ctor"/>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">The builder.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the target argument doesn't contain the enough space.
-            </exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">The builder.</param>
-        </member>
         <member name="F:System.Text.ValueStringBuilder._chunk">
             <summary>
             Indicates the inner character series that is created by <see cref="T:System.Buffers.ArrayPool`1"/>.
@@ -3321,103 +3306,20 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.ToString">
+        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
             <summary>
-            Returns the string result that is combined and constructed from the current instance,
-            and then dispose the instance.
+            Try to copy the current instance to the specified builder.
             </summary>
-            <returns>The string representation.</returns>
-            <remarks>
-            <para>
-            Please note that the dispose method will be invoked in the execution of this method <c>ToString</c>.
-            Therefore, you can't or don't need to:
-            <list type="bullet">
-            <item>
-            Use the keyword <see langword="using"/> onto the variable declaration, such as
-            <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>.
-            </item>
-            <item>
-            Use the current string builder instance after had been called this method <c>ToString</c>.
-            </item>
-            </list>
-            </para>
-            <para>Because of the such behavior, this method isn't <see langword="readonly"/>.</para>
-            </remarks>
+            <param name="builder">The builder.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the target argument doesn't contain the enough space.
+            </exception>
         </member>
-        <member name="M:System.Text.ValueStringBuilder.Dispose">
+        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
             <summary>
-            To dispose the collection, all fields and properties will be cleared. In other words,
-            this method is nearly equivalent to the code <c>this = default;</c>.
+            Try to copy the current instance to the specified builder.
             </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)">
-            <summary>
-            To dispose the collection. Although this method is <see langword="public"/>,
-            you may not call this method, because this method will be called automatically when
-            the method <see cref="M:System.Text.ValueStringBuilder.ToString"/> is called.
-            </summary>
-            <param name="clearAll">Indicates whether we should return the buffer.</param>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.EnsureCapacity(System.Int32)">
-            <summary>
-            To ensure the capacity in order to append characters into this collection.
-            </summary>
-            <param name="capacity">The capacity value to ensure.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
-            <summary>
-            Resize the internal buffer either by doubling current buffer size or
-            by adding <paramref name="additionalCapacityBeyondPos"/> to
-            <see cref="P:System.Text.ValueStringBuilder.Length"/> whichever is greater.
-            </summary>
-            <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
-            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
-        </member>
-        <member name="T:System.Text.ValueStringBuilder.Enumerator">
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._index">
-            <summary>
-            Indicates whether 
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._ptr">
-            <summary>
-            Indicates the pointer that points to the current character.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.#ctor(System.Text.ValueStringBuilder@)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+            <param name="builder">The builder.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
             <summary>
@@ -3439,6 +3341,18 @@
             Ensures that the builder has a null character after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
             </param>
             <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Dispose">
+            <summary>
+            To dispose the collection, all fields and properties will be cleared. In other words,
+            this method is nearly equivalent to the code <c>this = default;</c>.
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.EnsureCapacity(System.Int32)">
+            <summary>
+            To ensure the capacity in order to append characters into this collection.
+            </summary>
+            <param name="capacity">The capacity value to ensure.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Insert(System.Int32,System.Char,System.Int32)">
             <summary>
@@ -3616,11 +3530,97 @@
             after called this method, the string will be <c>"olleH"</c>.
             </summary>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.ToString">
+            <summary>
+            Returns the string result that is combined and constructed from the current instance,
+            and then dispose the instance.
+            </summary>
+            <returns>The string representation.</returns>
+            <remarks>
+            <para>
+            Please note that the dispose method will be invoked in the execution of this method <c>ToString</c>.
+            Therefore, you can't or don't need to:
+            <list type="bullet">
+            <item>
+            Use the keyword <see langword="using"/> onto the variable declaration, such as
+            <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>.
+            </item>
+            <item>
+            Use the current string builder instance after had been called this method <c>ToString</c>.
+            </item>
+            </list>
+            </para>
+            <para>Because of the such behavior, this method isn't <see langword="readonly"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
+            <summary>
+            Resize the internal buffer either by doubling current buffer size or
+            by adding <paramref name="additionalCapacityBeyondPos"/> to
+            <see cref="P:System.Text.ValueStringBuilder.Length"/> whichever is greater.
+            </summary>
+            <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
+            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
+        </member>
         <member name="M:System.Text.ValueStringBuilder.AppendSlow(System.String)">
             <summary>
             Append a string.
             </summary>
             <param name="s">The string.</param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)">
+            <summary>
+            To dispose the collection. Although this method is <see langword="public"/>,
+            you may not call this method, because this method will be called automatically when
+            the method <see cref="M:System.Text.ValueStringBuilder.ToString"/> is called.
+            </summary>
+            <param name="clearAll">Indicates whether we should return the buffer.</param>
+            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
+        </member>
+        <member name="T:System.Text.ValueStringBuilder.Enumerator">
+            <summary>
+            Encapsulates the enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._length">
+            <summary>
+            Indicates the length.
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._index">
+            <summary>
+            Indicates whether 
+            </summary>
+        </member>
+        <member name="F:System.Text.ValueStringBuilder.Enumerator._ptr">
+            <summary>
+            Indicates the pointer that points to the current character.
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.#ctor(System.Text.ValueStringBuilder@)">
+            <summary>
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="chars">The characters.</param>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="P:System.Text.ValueStringBuilder.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
