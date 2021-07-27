@@ -23,6 +23,7 @@ namespace System
 		{
 			q(0, @this.Length - 1, @this, comparer);
 
+
 			static void q(int l, int r, T[] @this, delegate*<in T, in T, int> comparer)
 			{
 				if (l < r)
@@ -103,6 +104,7 @@ namespace System
 			var result = new List<T[]>();
 			g(@this.Count, count, count, stackalloc int[count], @this, result);
 			return result;
+
 
 			static void g(
 				int last, int count, int index, in Span<int> tempArray, IReadOnlyList<T> @this,
