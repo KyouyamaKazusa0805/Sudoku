@@ -583,7 +583,7 @@ namespace Sudoku.Data
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			set
 			{
-				if ((cell, digit) is (cell: >= 0 and < Length, digit: >= 0 and < RegionCellsCount))
+				if ((Cell: cell, Digit: digit) is (Cell: >= 0 and < Length, Digit: >= 0 and < RegionCellsCount))
 				{
 					short copied = _values[cell];
 					if (value)
