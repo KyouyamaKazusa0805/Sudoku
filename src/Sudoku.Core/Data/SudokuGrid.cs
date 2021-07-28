@@ -213,8 +213,47 @@ namespace Sudoku.Data
 			);
 
 			// Initializes events.
-			ValueChanged = &OnValueChanged;
-			RefreshingCandidates = &OnRefreshingCandidates;
+			ValueChanged = &onValueChanged;
+			RefreshingCandidates = &onRefreshingCandidates;
+
+
+			static void onValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
+			{
+				if (e is { Cell: var cell, SetValue: var setValue and not -1 })
+				{
+					foreach (int peerCell in PeerMaps[cell])
+					{
+						if (@this.GetStatus(peerCell) == CellStatus.Empty)
+						{
+							// You can't do this because of being invoked recursively.
+							//@this[peerCell, setValue] = false;
+
+							@this._values[peerCell] &= (short)~(1 << setValue);
+						}
+					}
+				}
+			}
+
+			static void onRefreshingCandidates(ref SudokuGrid @this)
+			{
+				for (int i = 0; i < Length; i++)
+				{
+					if (@this.GetStatus(i) == CellStatus.Empty)
+					{
+						// Remove all appeared digits.
+						short mask = MaxCandidatesMask;
+						foreach (int cell in PeerMaps[i])
+						{
+							if (@this[cell] is var digit and not -1)
+							{
+								mask &= (short)~(1 << digit);
+							}
+						}
+
+						@this._values[i] = (short)(EmptyMask | mask);
+					}
+				}
+			}
 		}
 
 
@@ -1117,56 +1156,7 @@ namespace Sudoku.Data
 				return false;
 			}
 		}
-
-		/// <summary>
-		/// The method that is pointed by the function pointer <see cref="ValueChanged"/>.
-		/// </summary>
-		/// <param name="this">The sudoku grid.</param>
-		/// <param name="e">The event arguments.</param>
-		/// <seealso cref="ValueChanged"/>
-		private static void OnValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
-		{
-			if (e is { Cell: var cell, SetValue: var setValue and not -1 })
-			{
-				foreach (int peerCell in PeerMaps[cell])
-				{
-					if (@this.GetStatus(peerCell) == CellStatus.Empty)
-					{
-						// You can't do this because of being invoked recursively.
-						//@this[peerCell, setValue] = false;
-
-						@this._values[peerCell] &= (short)~(1 << setValue);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// The method that is pointed by the function pointer <see cref="RefreshingCandidates"/>.
-		/// </summary>
-		/// <param name="this">The sudoku grid.</param>
-		/// <seealso cref="RefreshingCandidates"/>
-		private static void OnRefreshingCandidates(ref SudokuGrid @this)
-		{
-			for (int i = 0; i < Length; i++)
-			{
-				if (@this.GetStatus(i) == CellStatus.Empty)
-				{
-					// Remove all appeared digits.
-					short mask = MaxCandidatesMask;
-					foreach (int cell in PeerMaps[i])
-					{
-						if (@this[cell] is var digit and not -1)
-						{
-							mask &= (short)~(1 << digit);
-						}
-					}
-
-					@this._values[i] = (short)(EmptyMask | mask);
-				}
-			}
-		}
-
+	
 
 		/// <summary>
 		/// Returns the segment via the specified region and the sudoku grid to filter.
