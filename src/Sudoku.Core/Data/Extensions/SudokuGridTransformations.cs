@@ -6,11 +6,10 @@ using static Sudoku.Constants.Tables;
 namespace Sudoku.Data.Extensions
 {
 	/// <summary>
-	/// Provides a series of methods for <see cref="SudokuGrid"/>
-	/// using in transformations.
+	/// Provides methods for <see cref="SudokuGrid"/> instances on transformations.
 	/// </summary>
 	/// <seealso cref="SudokuGrid"/>
-	public static class SudokuGridTransformations
+	public static unsafe class SudokuGridTransformations
 	{
 		/// <summary>
 		/// The table of clockwise rotation.
@@ -66,7 +65,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static unsafe SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
+		public static SudokuGrid MirrorLeftRight(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -87,7 +86,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static unsafe SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
+		public static SudokuGrid MirrorTopBottom(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -108,7 +107,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static unsafe SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
+		public static SudokuGrid MirrorDiagonal(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -137,7 +136,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result grid.</returns>
-		public static unsafe SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
+		public static SudokuGrid MirrorAntidiagonal(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -159,7 +158,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
-		public static unsafe SudokuGrid RotateClockwise(this in SudokuGrid @this)
+		public static SudokuGrid RotateClockwise(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -178,7 +177,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
-		public static unsafe SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
+		public static SudokuGrid RotateCounterclockwise(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -197,7 +196,7 @@ namespace Sudoku.Data.Extensions
 		/// </summary>
 		/// <param name="this">The grid.</param>
 		/// <returns>The result.</returns>
-		public static unsafe SudokuGrid RotatePi(this in SudokuGrid @this)
+		public static SudokuGrid RotatePi(this in SudokuGrid @this)
 		{
 			var result = @this;
 			fixed (short* pThis = @this, pResult = result)
@@ -222,7 +221,7 @@ namespace Sudoku.Data.Extensions
 		/// Throws when two specified region argument is not in valid range (0..27)
 		/// or two regions are not in same region type.
 		/// </exception>
-		public static unsafe SudokuGrid SwapTwoRegions(this in SudokuGrid @this, int region1, int region2)
+		public static SudokuGrid SwapTwoRegions(this in SudokuGrid @this, int region1, int region2)
 		{
 			if (region1 is < 0 or >= 18)
 			{
@@ -234,7 +233,7 @@ namespace Sudoku.Data.Extensions
 			}
 			if (region1 / 9 != region2 / 9)
 			{
-				throw new ArgumentException("Two region should be the same region type.", nameof(region1));
+				throw new ArgumentException("Two region should be the same region type.");
 			}
 
 			var result = @this;

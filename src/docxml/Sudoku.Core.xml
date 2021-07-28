@@ -2038,8 +2038,7 @@
         </member>
         <member name="T:Sudoku.Data.Extensions.SudokuGridTransformations">
             <summary>
-            Provides a series of methods for <see cref="T:Sudoku.Data.SudokuGrid"/>
-            using in transformations.
+            Provides methods for <see cref="T:Sudoku.Data.SudokuGrid"/> instances on transformations.
             </summary>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
@@ -3824,21 +3823,6 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.OnValueChanged(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
-            <summary>
-            The method that is pointed by the function pointer <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
-            </summary>
-            <param name="this">The sudoku grid.</param>
-            <param name="e">The event arguments.</param>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.OnRefreshingCandidates(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            The method that is pointed by the function pointer <see cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>.
-            </summary>
-            <param name="this">The sudoku grid.</param>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.RefreshingCandidates"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.op_Division(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
