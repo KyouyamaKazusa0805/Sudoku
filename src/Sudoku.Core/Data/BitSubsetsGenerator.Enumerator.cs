@@ -54,6 +54,7 @@ namespace Sudoku.Data
 
 				return result;
 
+
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				static bool hasNext(ref Enumerator @this)
 				{
