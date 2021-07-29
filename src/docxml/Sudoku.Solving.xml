@@ -8095,24 +8095,6 @@
             </summary>
             <param name="mask">The mask.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair1">
-            <summary>
-            Indicates the pair 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair2">
-            <summary>
-            Indicates the pair 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.CenterCells">
-            <summary>
-            Indicates the other three (or four) cells.
-            </summary>
-            <remarks>
-            <b>If and only if</b> the fourth value in the returned quadruple is available.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.IsHeptagon">
             <summary>
             Indicates whether the specified pattern is a heptagon.
@@ -8137,6 +8119,24 @@
             <summary>
             The map.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.CenterCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -8261,10 +8261,10 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.Name">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.DifficultyLevel">

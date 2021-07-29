@@ -80,7 +80,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						conclusions,
 						new View[] { new() { Candidates = candidateOffsets } },
 						map,
-						tempMask));
+						tempMask
+					)
+				);
 			}
 		}
 
@@ -142,7 +144,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 						new View[] { new() { Candidates = candidateOffsets } },
 						map,
 						tempMask,
-						otherDigit));
+						otherDigit
+					)
+				);
 			}
 		}
 
@@ -265,7 +269,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 									map,
 									tempMask,
 									combination,
-									otherDigitsMask));
+									otherDigitsMask
+								)
+							);
 						}
 					}
 				}
@@ -390,7 +396,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								map,
 								otherMask,
 								currentMap,
-								combinationMask));
+								combinationMask
+							)
+						);
 					}
 				}
 			}

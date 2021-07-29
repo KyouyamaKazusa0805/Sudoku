@@ -54,7 +54,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					new View[] { new() { Candidates = candidateOffsets, Links = links } },
 					d1,
 					d2,
-					loop));
+					loop
+				)
+			);
 		}
 
 		/// <summary>
@@ -113,7 +115,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 					d1,
 					d2,
 					loop,
-					extraDigit));
+					extraDigit
+				)
+			);
 		}
 
 		/// <summary>
@@ -205,7 +209,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+								);
 							}
 						}
 						foreach (int cell in cells)
@@ -232,7 +237,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 								d2,
 								loop,
 								mask,
-								cells));
+								cells
+							)
+						);
 					}
 				}
 			}
@@ -312,7 +319,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 							d1,
 							d2,
 							loop,
-							new(first, second, digit)));
+							new(first, second, digit)
+						)
+					);
 				}
 			}
 		}

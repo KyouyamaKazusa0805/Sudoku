@@ -34,6 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				}
 			}
 
+
 			static void c3(int block, int i, int[] quad, ref int count)
 			{
 				int[][] triplets = new int[4][]

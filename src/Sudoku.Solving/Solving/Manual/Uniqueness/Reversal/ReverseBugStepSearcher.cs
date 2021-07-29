@@ -95,7 +95,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			accumulator.AddRange(
 				from info in resultAccumulator.RemoveDuplicateItems()
 				orderby info.TechniqueCode
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>
@@ -164,7 +165,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 
 						f(
 							grid, values, nextCell, TrailingZeroCount(mask), digitsMask,
-							EmptyMap.Contains(nextCell) ? lastEmptyCellsCount - 1 : lastEmptyCellsCount);
+							EmptyMap.Contains(nextCell) ? lastEmptyCellsCount - 1 : lastEmptyCellsCount
+						);
 					}
 				}
 

@@ -152,7 +152,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 												digit == elimDigit
 												? otherCellsMap.Contains(cell) ? 2 : 0
 												: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
-												cell * 9 + digit));
+												cell * 9 + digit
+											)
+										);
 									}
 								}
 							}
@@ -255,7 +257,11 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													new((extraDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+													new(
+														(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+														cell * 9 + digit
+													)
+												);
 											}
 										}
 									}
@@ -337,8 +343,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 										// Now check eliminations.
 										var conclusions = new List<Conclusion>();
 										int elimDigit = TrailingZeroCount(m);
-										var elimMap =
-											new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
+										var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection
+											& CandMaps[elimDigit];
 										if (elimMap.IsEmpty)
 										{
 											continue;
@@ -359,7 +365,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 													candidateOffsets.Add(
 														new(
 															(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
-															cell * 9 + digit));
+															cell * 9 + digit
+														)
+													);
 												}
 											}
 										}
@@ -583,7 +591,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									accumulator, grid, arMode, cannibalMode, d1, d2, urCells,
 									line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
 									otherDigitsMask, elimMapLine, elimMapBlock, otherCellsMap, currentBlockMap,
-									currentInterMap, i, 0, index);
+									currentInterMap, i, 0, index
+								);
 							}
 						}
 					}
@@ -615,9 +624,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 				int digitIsolated = TrailingZeroCount(maskIsolated);
 				if (digitIsolated != Constants.InvalidFirstSet)
 				{
-					elimMapIsolated =
-						(cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
-						% CandMaps[digitIsolated] & EmptyMap;
+					elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
+						% CandMaps[digitIsolated]
+						& EmptyMap;
 				}
 
 				if (currentInterMap.Count + i + j + 1 ==
@@ -662,7 +671,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+							);
 						}
 					}
 					foreach (int cell in currentBlockMap)
@@ -670,7 +680,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit));
+								new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit)
+							);
 						}
 					}
 					foreach (int cell in currentInterMap)
@@ -680,7 +691,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							candidateOffsets.Add(
 								new(
 									digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2,
-									cell * 9 + digit));
+									cell * 9 + digit
+								)
+							);
 						}
 					}
 
@@ -710,7 +723,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							maskIsolated,
 							currentBlockMap,
 							currentLineMap,
-							currentInterMap));
+							currentInterMap
+						)
+					);
 				}
 			}
 		}
@@ -903,12 +918,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									targetCell,
 									extraDigit,
 									urCells,
-									index));
+									index
+								)
+							);
 							#endregion
 
-#pragma warning disable IDE0055
 							#region Subtype 2
-#pragma warning restore IDE0055
 						SubType2:
 							// The extra digit should form a conjugate pair in that line.
 							var anotherMap = new Cells { urCellInSameBlock, anotherCell };
@@ -925,7 +940,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								if (digit == d1 || digit == d2)
 								{
 									conclusionsAnotherSubType.Add(
-										new(ConclusionType.Elimination, targetCell, digit));
+										new(ConclusionType.Elimination, targetCell, digit)
+									);
 								}
 							}
 							if (conclusionsAnotherSubType.Count == 0)
@@ -1020,7 +1036,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 									targetCell,
 									extraDigit,
 									urCells,
-									index));
+									index
+								)
+							);
 							#endregion
 						}
 					}
@@ -1138,7 +1156,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 						urCells,
 						guardianDigit,
 						guardianMap,
-						index));
+						index
+					)
+				);
 			}
 		}
 
@@ -1250,7 +1270,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								baseCell,
 								anotherCell,
 								sameRegion,
-								index));
+								index
+							)
+						);
 					}
 				}
 			}

@@ -58,7 +58,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets } },
 					allCellsMap,
-					normalDigits));
+					normalDigits
+				)
+			);
 		}
 
 		/// <summary>
@@ -101,7 +103,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 					new View[] { new() { Candidates = candidateOffsets } },
 					allCellsMap,
 					normalDigits,
-					extraDigit));
+					extraDigit
+				)
+			);
 		}
 
 		/// <summary>

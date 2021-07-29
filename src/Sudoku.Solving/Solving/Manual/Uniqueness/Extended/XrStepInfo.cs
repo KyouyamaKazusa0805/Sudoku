@@ -37,9 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			string cellsStr = Cells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string? additional = GetAdditional();
-			return
-				$"{Name}: {digitsStr} in {cellsStr}" +
-				$"{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
+			return $"{Name}: {digitsStr} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
 		}
 
 		/// <summary>

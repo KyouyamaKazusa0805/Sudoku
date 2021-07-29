@@ -31,10 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string cellsStr = Cells.ToString();
 			string conjStr = ConjugateRegion.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: Digits {digitsStr} in cells {cellsStr} can avoid to form a deadly pattern " +
-				$"if and only if the conjugate region {conjStr} can't set the digit " +
-				$"neither {(Digit1 + 1).ToString()} nor {(Digit2 + 1).ToString()} => {elimStr}";
+			return $"{Name}: Digits {digitsStr} in cells {cellsStr} can avoid to form a deadly pattern if and only if the conjugate region {conjStr} can't set the digit neither {(Digit1 + 1).ToString()} nor {(Digit2 + 1).ToString()} => {elimStr}";
 		}
 	}
 }

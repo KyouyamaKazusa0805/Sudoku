@@ -100,7 +100,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 				accumulator.AddRange(
 					from info in resultAccumulator.RemoveDuplicateItems()
 					orderby info.Loop.Count
-					select info);
+					select info
+				);
 
 				/*Don't convert to method or static local function*/
 				void f(
@@ -160,7 +161,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 								f(
 									grid, d1, d2, nextCell, label, exDigitsMask,
-									digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount);
+									digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount
+								);
 							}
 						}
 					}

@@ -38,12 +38,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		protected override string GetAdditional()
 		{
-			string digitsStr = new DigitCollection(stackalloc int[] { Digit1, Digit2 }).ToString(" or ");
+			string digitsStr = new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(" or ");
 			string targetCellStr = new Cells { TargetCell }.ToString();
 			string extraDigitStr = (ExtraDigit + 1).ToString();
-			return
-				$"unknown covering: Suppose {targetCellStr} is filled with the unknown digit X (X is {digitsStr}), " +
-				$"then 4 cells form a UR deadly pattern of digit X and {extraDigitStr}";
+			return $@"unknown covering: Suppose {targetCellStr} is filled with the unknown digit X (X is {digitsStr}), then 4 cells form a UR deadly pattern of digit X and {extraDigitStr}";
 		}
 	}
 }

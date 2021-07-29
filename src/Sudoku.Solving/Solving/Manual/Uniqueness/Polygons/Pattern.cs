@@ -39,25 +39,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <summary>
-		/// Indicates the pair 1.
-		/// </summary>
-		private (int Cell1, int Cell2) Pair1 => ((int)(_mask >> 7 & 127), (int)(_mask & 127));
-
-		/// <summary>
-		/// Indicates the pair 2.
-		/// </summary>
-		private (int Cell1, int Cell2) Pair2 => ((int)(_mask >> 21 & 127), (int)(_mask >> 14 & 127));
-
-		/// <summary>
-		/// Indicates the other three (or four) cells.
-		/// </summary>
-		/// <remarks>
-		/// <b>If and only if</b> the fourth value in the returned quadruple is available.
-		/// </remarks>
-		private (int Cell1, int Cell2, int Cell3, int Cell4) CenterCells =>
-			((int)(_mask >> 49 & 127), (int)(_mask >> 42 & 127), (int)(_mask >> 35 & 127), (int)(_mask >> 28 & 127));
-
-		/// <summary>
 		/// Indicates whether the specified pattern is a heptagon.
 		/// </summary>
 		public bool IsHeptagon => (_mask >> 28 & 127) == 127;
@@ -65,12 +46,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <summary>
 		/// Indicates the map of pair 1 cells.
 		/// </summary>
-		public Cells Pair1Map => new() { Pair1.Cell1, Pair1.Cell2 };
+		public Cells Pair1Map => new() { Pair1.Item1, Pair1.Item2 };
 
 		/// <summary>
 		/// Indicates the map of pair 2 cells.
 		/// </summary>
-		public Cells Pair2Map => new() { Pair2.Cell1, Pair2.Cell2 };
+		public Cells Pair2Map => new() { Pair2.Item1, Pair2.Item2 };
 
 		/// <summary>
 		/// The map of other three (or four) cells.
@@ -88,6 +69,29 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// The map.
 		/// </summary>
 		public Cells Map => Pair1Map | Pair2Map | CenterCellsMap;
+
+		/// <summary>
+		/// Indicates the pair 1.
+		/// </summary>
+		private (int, int) Pair1 => ((int)(_mask >> 7 & 127), (int)(_mask & 127));
+
+		/// <summary>
+		/// Indicates the pair 2.
+		/// </summary>
+		private (int, int) Pair2 => ((int)(_mask >> 21 & 127), (int)(_mask >> 14 & 127));
+
+		/// <summary>
+		/// Indicates the other three (or four) cells.
+		/// </summary>
+		/// <remarks>
+		/// <b>If and only if</b> the fourth value in the returned quadruple is available.
+		/// </remarks>
+		private (int, int, int, int) CenterCells => (
+			(int)(_mask >> 49 & 127),
+			(int)(_mask >> 42 & 127),
+			(int)(_mask >> 35 & 127),
+			(int)(_mask >> 28 & 127)
+		);
 
 
 		/// <inheritdoc cref="object.GetHashCode"/>

@@ -35,9 +35,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string number = Candidates.Count == 1 ? " the" : $" {Candidates.Count.ToString()}";
 			string singularOrPlural = Candidates.Count == 1 ? "candidate" : "candidates";
 			string beVerb = Candidates.Count == 1 ? "is" : "are";
-			return
-				$"{Name}: Cells {patternStr} will be a deadly pattern " +
-				$"if{quantifier}{number} {singularOrPlural} {candStr} {beVerb} false => {elimStr}";
+			return $"{Name}: Cells {patternStr} will be a deadly pattern if{quantifier}{number} {singularOrPlural} {candStr} {beVerb} false => {elimStr}";
 		}
 	}
 }

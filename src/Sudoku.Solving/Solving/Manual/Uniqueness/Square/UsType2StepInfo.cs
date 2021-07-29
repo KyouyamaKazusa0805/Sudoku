@@ -31,9 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string cellsStr = Cells.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: Digits {digitsStr} in cells {cellsStr} will form a deadly pattern if " +
-				$"the extra digit {(ExtraDigit + 1).ToString()} is all false in the pattern => {elimStr}";
+			return $"{Name}: Digits {digitsStr} in cells {cellsStr} will form a deadly pattern if the extra digit {(ExtraDigit + 1).ToString()} is all false in the pattern => {elimStr}";
 		}
 	}
 }

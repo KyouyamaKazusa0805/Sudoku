@@ -41,9 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			string anchor = new Cells { Anchor }.ToString();
 			string digitsStr = new DigitCollection(stackalloc[] { Digit1, Digit2 }).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: Digits {digitsStr} in all empty cells may form a deadly pattern " +
-				$"when {anchor} is only last the digit {(AnchorLastDigit + 1).ToString()} => {elimStr}";
+			return $"{Name}: Digits {digitsStr} in all empty cells may form a deadly pattern when {anchor} is only last the digit {(AnchorLastDigit + 1).ToString()} => {elimStr}";
 		}
 	}
 }

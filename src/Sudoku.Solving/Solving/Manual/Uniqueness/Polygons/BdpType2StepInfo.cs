@@ -31,9 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string cellsStr = Map.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {digitsStr} in cells {cellsStr} with the extra digit " +
-				$"{(ExtraDigit + 1).ToString()} => {elimStr}";
+			return $"{Name}: {digitsStr} in cells {cellsStr} with the extra digit {(ExtraDigit + 1).ToString()} => {elimStr}";
 		}
 	}
 }

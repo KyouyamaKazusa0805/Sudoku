@@ -27,9 +27,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} " +
-				$"with the extra digit {(ExtraDigit + 1).ToString()} => {elimStr}";
+			return $"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} with the extra digit {(ExtraDigit + 1).ToString()} => {elimStr}";
 		}
 
 		/// <inheritdoc/>

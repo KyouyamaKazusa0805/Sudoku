@@ -70,7 +70,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						new View[] { new() { Candidates = candidateOffsets } },
 						pattern,
 						digitsMask,
-						elimCell * 9 + extraDigit));
+						elimCell * 9 + extraDigit
+					)
+				);
 			}
 		}
 
@@ -127,7 +129,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 						new View[] { new() { Candidates = candidateOffsets } },
 						pattern,
 						digitsMask,
-						extraDigit));
+						extraDigit
+					)
+				);
 			}
 		}
 
@@ -197,7 +201,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+										new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+									);
 								}
 							}
 							foreach (int cell in cells)
@@ -222,7 +227,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 									pattern,
 									digitsMask,
 									extraDigitsMask,
-									cells));
+									cells
+								)
+							);
 						}
 					}
 				}
@@ -329,7 +336,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 							digitsMask,
 							d1,
 							d2,
-							compareMap));
+							compareMap
+						)
+					);
 				}
 			}
 		}

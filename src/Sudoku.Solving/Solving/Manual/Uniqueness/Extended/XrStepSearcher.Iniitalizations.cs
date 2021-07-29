@@ -83,8 +83,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			}
 
 			// Fat type. e.g.
-			// ab | . ac . | bc
-			// ab | . ac . | bc
+			// ab | ac | bc
+			// ab | ac | bc
 			for (int size = 3; size <= 7; size++)
 			{
 				for (int i = 0, length = regions.Length >> 1; i < length; i++)

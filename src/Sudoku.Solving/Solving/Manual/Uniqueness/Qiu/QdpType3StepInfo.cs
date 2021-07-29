@@ -34,9 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string cellsStr = new Cells(ExtraCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1].ToLower(null);
-			return
-				$"{Name}: Cells {patternStr} won't be a deadly pattern " +
-				$"if and only if digits {digitsStr} in cells {cellsStr} is a naked {subsetName} => {elimStr}";
+			return $"{Name}: Cells {patternStr} won't be a deadly pattern if and only if digits {digitsStr} in cells {cellsStr} is a naked {subsetName} => {elimStr}";
 		}
 	}
 }

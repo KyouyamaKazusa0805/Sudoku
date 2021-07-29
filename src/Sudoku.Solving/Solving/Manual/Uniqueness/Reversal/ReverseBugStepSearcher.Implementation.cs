@@ -55,7 +55,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 					d1,
 					d2,
 					extraCell,
-					TrailingZeroCount(grid.GetCandidates(extraCell) & comparer)));
+					TrailingZeroCount(grid.GetCandidates(extraCell) & comparer)
+				)
+			);
 		}
 
 		/// <summary>
@@ -115,7 +117,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 					extraCells,
 					d1,
 					d2,
-					extraDigit));
+					extraDigit
+				)
+			);
 		}
 
 		partial void CheckType3(
@@ -196,7 +200,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+								);
 							}
 						}
 						foreach (int cell in cells)
@@ -224,7 +229,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 								d1,
 								d2,
 								mask,
-								true));
+								true
+							)
+						);
 					}
 				}
 			}
@@ -294,7 +301,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 							extraCells,
 							d1,
 							d2,
-							new(first, second, digit)));
+							new(first, second, digit)
+						)
+					);
 				}
 			}
 		}

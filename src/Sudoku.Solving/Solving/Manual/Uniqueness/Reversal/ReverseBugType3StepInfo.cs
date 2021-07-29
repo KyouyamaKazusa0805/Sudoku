@@ -41,9 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1];
 			string digitsStr = new DigitCollection(DigitsMask).ToString();
 			string subsetCellsStr = ExtraCells.ToString();
-			return
-				$"{Name}: If {subsetCellsStr}({digitsStr}) don't form a {subsetName}, " +
-				$"the deadly pattern in cells {cellsStr} will be formed => {elimStr}";
+			return $"{Name}: If {subsetCellsStr}({digitsStr}) don't form a {subsetName}, the deadly pattern in cells {cellsStr} will be formed => {elimStr}";
 		}
 	}
 }

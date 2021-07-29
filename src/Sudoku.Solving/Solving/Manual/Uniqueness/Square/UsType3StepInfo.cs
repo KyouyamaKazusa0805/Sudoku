@@ -41,10 +41,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string subsetCellsStr = new Cells(ExtraCells).ToString();
 			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern " +
-				$"if and only if the digits {subsetDigitsStr} in cells {subsetCellsStr} " +
-				$"form a naked {subsetName} => {elimStr}";
+			return $"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern if and only if the digits {subsetDigitsStr} in cells {subsetCellsStr} form a naked {subsetName} => {elimStr}";
 		}
 	}
 }

@@ -61,7 +61,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			accumulator.AddRange(
 				from info in tempList.RemoveDuplicateItems()
 				orderby info.TechniqueCode, info.AbsoluteOffset
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>

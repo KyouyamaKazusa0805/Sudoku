@@ -91,7 +91,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 					},
 					pattern,
-					elimCell * 9 + extraDigit));
+					elimCell * 9 + extraDigit
+				)
+			);
 		}
 
 		/// <summary>
@@ -166,7 +168,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 						}
 					},
 					pattern,
-					extraDigit));
+					extraDigit
+				)
+			);
 		}
 
 		/// <summary>

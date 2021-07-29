@@ -36,9 +36,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			string sizeStr = TechniqueNaming.SubsetNames[Digits.Count].ToLower(null);
 			string trueCandidatesStr = new Candidates(TrueCandidates).ToString();
 			string subsetTypeStr = IsNaked ? "naked" : "hidden";
-			return
-				$"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} " +
-				$"in cells {cellsStr} => {elimStr}";
+			return $"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} in cells {cellsStr} => {elimStr}";
 		}
 	}
 }

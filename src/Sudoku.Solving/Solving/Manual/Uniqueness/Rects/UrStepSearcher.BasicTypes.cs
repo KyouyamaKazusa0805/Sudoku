@@ -92,7 +92,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					d2,
 					urCells,
 					arMode,
-					index));
+					index
+				)
+			);
 		}
 
 		/// <summary>
@@ -335,7 +337,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 								iteratedCells,
 								region,
 								true,
-								index));
+								index
+							)
+						);
 					}
 				}
 			}
@@ -452,7 +456,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							urCells,
 							arMode,
 							new ConjugatePair[] { new(offsets[0], offsets[1], digit) },
-							index));
+							index
+						)
+					);
 				}
 			}
 		}
@@ -550,7 +556,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					urCells,
 					arMode,
 					extraDigit,
-					index));
+					index
+				)
+			);
 		}
 
 		/// <summary>
@@ -675,7 +683,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							new(corner1, isRow ? o1 : o2, digit),
 							new(corner2, isRow ? o2 : o1, digit)
 						},
-						index));
+						index
+					)
+				);
 			}
 		}
 
@@ -782,7 +792,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 							new(abzCell, abxCell, digit),
 							new(abzCell, abyCell, digit),
 						},
-						index));
+						index
+					)
+				);
 			}
 		}
 	}

@@ -40,9 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			string cellsStr = Map.ToString();
 			string conjRegion = ConjugateRegion.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {digitsStr} in cells {cellsStr} with the conjugate region {conjRegion} " +
-				$"of the extra digits {combStr} => {elimStr}";
+			return $"{Name}: {digitsStr} in cells {cellsStr} with the conjugate region {conjRegion} of the extra digits {combStr} => {elimStr}";
 		}
 	}
 }

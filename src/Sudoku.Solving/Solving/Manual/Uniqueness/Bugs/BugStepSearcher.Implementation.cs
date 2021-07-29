@@ -57,7 +57,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets } },
 					digit,
-					cells.ToArray()));
+					cells.ToArray()
+				)
+			);
 		}
 
 		/// <summary>
@@ -158,7 +160,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 								trueCandidates,
 								digitsMask.GetAllSets().ToArray(),
 								cells,
-								true));
+								true
+							)
+						);
 					}
 				}
 			}
@@ -283,7 +287,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 							},
 							digits.ToArray(),
 							cells,
-							new(c1, c2, conjuagtePairDigit)));
+							new(c1, c2, conjuagtePairDigit)
+						)
+					);
 				}
 			}
 		}
@@ -335,7 +341,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				new BugMultipleStepInfo(
 					conclusions,
 					new View[] { new() { Candidates = candidateOffsets } },
-					trueCandidates));
+					trueCandidates
+				)
+			);
 		}
 
 		/// <summary>
@@ -398,7 +406,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 						},
 						mask,
 						new[] { c1, c2 },
-						cell));
+						cell
+					)
+				);
 			}
 		}
 
