@@ -7,7 +7,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the enumerator of the current instance.
 		/// </summary>
-		public ref struct Enumerator
+		public ref partial struct Enumerator
 		{
 			/// <summary>
 			/// The mask.
