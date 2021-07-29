@@ -79,7 +79,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 						new TemplateStepInfo(
 							templateSetConclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
-							false));
+							false
+						)
+					);
 				}
 
 				// Then check template deletes.

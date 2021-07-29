@@ -6,6 +6,7 @@ using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -215,7 +216,7 @@ namespace Sudoku.Solving.Manual.Alses
 							new(
 								digitsMask,
 								map,
-								region < 9 && coveredLine is >= 9 and not Constants.InvalidFirstSet
+								region < 9 && coveredLine is >= 9 and not InvalidFirstSet
 								? ((RegionMaps[region] | RegionMaps[coveredLine]) & EmptyMap) - map
 								: tempMap - map
 							)

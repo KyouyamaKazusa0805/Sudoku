@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <summary>
 		/// All different patterns.
 		/// </summary>
-		private static readonly Pattern[] Patterns = new Pattern[972];
+		private static readonly Pattern[] Patterns = new Pattern[Constants.QdpTemplatesCount];
 
 
 		/// <summary>

@@ -7,6 +7,7 @@ using Sudoku.Models;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -622,7 +623,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 				var elimMapIsolated = Cells.Empty;
 				int digitIsolated = TrailingZeroCount(maskIsolated);
-				if (digitIsolated != Constants.InvalidFirstSet)
+				if (digitIsolated != InvalidFirstSet)
 				{
 					elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
 						% CandMaps[digitIsolated]
@@ -795,7 +796,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 					// Check all bivalue cells.
 					foreach (int bivalueCellToCheck in bivalueCellsToCheck)
 					{
-						if (new Cells { bivalueCellToCheck, targetCell }.CoveredLine != Constants.InvalidFirstSet)
+						if (new Cells { bivalueCellToCheck, targetCell }.CoveredLine != InvalidFirstSet)
 						{
 							// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 							continue;
@@ -809,7 +810,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 						int urCellInSameBlock = new Cells(RegionMaps[block] & cells) { ~targetCell }[0];
 						int coveredLine = new Cells { bivalueCellToCheck, urCellInSameBlock }.CoveredLine;
-						if (coveredLine == Constants.InvalidFirstSet)
+						if (coveredLine == InvalidFirstSet)
 						{
 							// The bi-value cell 'bivalueCellToCheck' should be lie on a same region
 							// as 'urCellInSameBlock'.

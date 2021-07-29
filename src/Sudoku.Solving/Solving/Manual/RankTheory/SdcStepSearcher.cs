@@ -6,6 +6,7 @@ using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -166,7 +167,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 										var elimMapIsolated = Cells.Empty;
 										int digitIsolated = TrailingZeroCount(maskIsolated);
-										if (digitIsolated != Constants.InvalidFirstSet)
+										if (digitIsolated != InvalidFirstSet)
 										{
 											elimMapIsolated = (
 												cannibalMode

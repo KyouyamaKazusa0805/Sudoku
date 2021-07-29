@@ -1,15 +1,7 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Square
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	partial class UsStepSearcher
 	{
-		/// <summary>
-		/// Indicates the patterns.
-		/// </summary>
-		private static readonly Cells[] Patterns = new Cells[162];
-
-
 		static UsStepSearcher()
 		{
 			int[,] ChuteIterator =
@@ -22,8 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 				{ 2, 5, 6 }, { 2, 5, 7 }, { 2, 5, 8 }
 			};
 
-			int length = ChuteIterator.Length / 3;
-			int n = 0;
+			int length = ChuteIterator.Length / 3, n = 0;
 			for (int i = 0; i < 3; i++)
 			{
 				for (int j = 0; j < length; j++)

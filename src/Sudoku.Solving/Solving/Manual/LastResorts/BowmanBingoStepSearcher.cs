@@ -87,7 +87,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 							new BowmanBingoStepInfo(
 								new Conclusion[] { new(ConclusionType.Elimination, startCandidate) },
 								new View[] { new() { Candidates = candidateOffsets, Links = GetLinks() } },
-								_tempConclusions.AsReadOnlyList()));
+								_tempConclusions.AsReadOnlyList()
+							)
+						);
 					}
 
 					// Undo the operation.
@@ -99,7 +101,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 			accumulator.AddRange(
 				from info in tempAccumulator
 				orderby info.ContradictionSeries.Count, info.ContradictionSeries[0]
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>
@@ -146,7 +149,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 					new BowmanBingoStepInfo(
 						new Conclusion[] { new(ConclusionType.Elimination, startCand) },
 						new View[] { new() { Candidates = candidateOffsets, Links = GetLinks() } },
-						_tempConclusions.AsReadOnlyList()));
+						_tempConclusions.AsReadOnlyList()
+					)
+				);
 			}
 
 			// Undo grid.

@@ -11,6 +11,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	public sealed partial class UsStepSearcher : UniquenessStepSearcher
 	{
 		/// <summary>
+		/// Indicates the patterns.
+		/// </summary>
+		private static readonly Cells[] Patterns = new Cells[Constants.UsTemplatesCount];
+
+
+		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
 		/// <remarks>

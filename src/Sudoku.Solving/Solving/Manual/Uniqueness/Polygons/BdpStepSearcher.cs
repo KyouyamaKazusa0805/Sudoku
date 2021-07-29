@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <remarks>
 		/// All possible heptagons and octagons are in here.
 		/// </remarks>
-		private static readonly Pattern[] Patterns = new Pattern[14580];
+		private static readonly Pattern[] Patterns = new Pattern[Constants.BdpTemplatesSize3Count];
 
 
 		/// <summary>
@@ -41,7 +41,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 				return;
 			}
 
-			for (int i = 0, end = EmptyMap.Count == 7 ? 14580 : 11664; i < end; i++)
+			for (
+				int i = 0, end = EmptyMap.Count == 7
+					? Constants.BdpTemplatesSize3Count
+					: Constants.BdpTemplatesSize4Count;
+				i < end;
+				i++
+			)
 			{
 				var pattern = Patterns[i];
 				if ((EmptyMap & pattern.Map) != pattern.Map)
@@ -50,7 +56,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 					continue;
 				}
 
-				short cornerMask1 = 0, cornerMask2 = 0, centerMask =0;
+				short cornerMask1 = 0, cornerMask2 = 0, centerMask = 0;
 				foreach (int cell in pattern.Pair1Map)
 				{
 					cornerMask1 |= grid.GetCandidates(cell);

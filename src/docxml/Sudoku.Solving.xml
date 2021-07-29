@@ -2561,6 +2561,31 @@
         <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Constants">
+            <summary>
+            Provides the constants for the operation handling on solving puzzles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.QdpTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's Deadly Pattern possible templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.UsTemplatesCount">
+            <summary>
+            Indicates the total number of Unique Square possible templates.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -9838,6 +9863,11 @@
             Encapsulates a <b>uniqueness square</b> (US) technique searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -9885,11 +9915,6 @@
             <param name="grid">The grid.</param>
             <param name="pattern">The pattern.</param>
             <param name="mask">The mask.</param>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Patterns">
-            <summary>
-            Indicates the patterns.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo">
             <summary>
