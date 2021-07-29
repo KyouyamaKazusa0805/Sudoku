@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Sudoku.Data
 {
@@ -9,7 +7,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the enumerator of the current instance.
 		/// </summary>
-		public struct Enumerator : IEnumerator<long>
+		public ref struct Enumerator
 		{
 			/// <summary>
 			/// The mask.
@@ -40,15 +38,6 @@ namespace Sudoku.Data
 			/// <inheritdoc/>
 			public long Current { get; private set; }
 
-			/// <inheritdoc/>
-			readonly object IEnumerator.Current => Current;
-
-
-			/// <inheritdoc/>
-			/// <remarks>Here will do nothing.</remarks>
-			public readonly void Dispose()
-			{
-			}
 
 			/// <inheritdoc/>
 			public bool MoveNext()
@@ -72,12 +61,6 @@ namespace Sudoku.Data
 					@this._isLast = (@this.Current & -@this.Current & @this._mask) == 0;
 					return result;
 				}
-			}
-
-			/// <inheritdoc/>
-			/// <remarks>Here will do nothing.</remarks>
-			public readonly void Reset()
-			{
 			}
 		}
 	}

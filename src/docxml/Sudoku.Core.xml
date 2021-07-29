@@ -324,19 +324,8 @@
         <member name="P:Sudoku.Data.BitSubsetsGenerator.Enumerator.Current">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.BitSubsetsGenerator.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.BitSubsetsGenerator.Enumerator.Dispose">
-            <inheritdoc/>
-            <remarks>Here will do nothing.</remarks>
-        </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Enumerator.MoveNext">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.BitSubsetsGenerator.Enumerator.Reset">
-            <inheritdoc/>
-            <remarks>Here will do nothing.</remarks>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
