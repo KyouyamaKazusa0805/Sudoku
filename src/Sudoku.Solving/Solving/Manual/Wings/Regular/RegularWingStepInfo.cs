@@ -26,6 +26,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </summary>
 		private static readonly decimal[] DifficultyRating = { 0, 0, 0, 0, 4.6M, 4.8M, 5.1M, 5.4M, 5.7M, 6.0M };
 
+
 		/// <summary>
 		/// Indicates whether the structure is incomplete.
 		/// </summary>
@@ -47,7 +48,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// </item>
 		/// <item>
 		/// <term>4</term>
-		/// <description>WXYZ-Wing or XYZW-Wing</description>
+		/// <description>WXYZ-Wing</description>
 		/// </item>
 		/// <item>
 		/// <term>5</term>

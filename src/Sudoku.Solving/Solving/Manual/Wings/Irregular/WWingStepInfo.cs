@@ -35,9 +35,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			string startCellStr = new Cells { StartCell }.ToString();
 			string endCellStr = new Cells { EndCell }.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {startCellStr} to {endCellStr} with conjugate pair " +
-				$"{ConjugatePair.ToString()} => {elimStr}";
+			return $"{Name}: {startCellStr} to {endCellStr} with conjugate pair {ConjugatePair.ToString()} => {elimStr}";
 		}
 	}
 }

@@ -152,7 +152,9 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 									},
 									a,
 									b,
-									new(conjugateRegion, digit)));
+									new(conjugateRegion, digit)
+								)
+							);
 						}
 					}
 				}

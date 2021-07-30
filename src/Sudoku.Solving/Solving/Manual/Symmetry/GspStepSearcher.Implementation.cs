@@ -134,7 +134,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				conclusions,
 				new View[] { new() { Candidates = candidateOffsets } },
 				SymmetryType.Diagonal,
-				mapping.ToArray());
+				mapping.ToArray()
+			);
 		}
 
 		/// <summary>
@@ -264,7 +265,8 @@ namespace Sudoku.Solving.Manual.Symmetry
 				conclusions,
 				new View[] { new() { Candidates = candidateOffsets } },
 				SymmetryType.AntiDiagonal,
-				mapping.ToArray());
+				mapping.ToArray()
+			);
 		}
 
 		/// <summary>

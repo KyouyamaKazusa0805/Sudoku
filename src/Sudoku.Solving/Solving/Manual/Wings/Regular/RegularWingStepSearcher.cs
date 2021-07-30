@@ -68,7 +68,11 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 						// Check duplicate.
 						// If two cells contain same candidates, the wing can't be formed.
 						bool flag = false;
-						for (int i = 0, length = cells.Length, iterationLength = length - 1; i < iterationLength; i++)
+						for (
+							int i = 0, length = cells.Length, iterationLength = length - 1;
+							i < iterationLength;
+							i++
+						)
 						{
 							for (int j = i + 1; j < length; j++)
 							{
