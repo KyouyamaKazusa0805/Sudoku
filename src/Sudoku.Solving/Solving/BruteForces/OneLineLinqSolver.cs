@@ -83,11 +83,15 @@ namespace Sudoku.Solving.BruteForces
 						let duplicatesInColumn = solution[pair.Column + i * 9] == digit
 						let duplicatesInBlock = solution[pair.Block + i % 3 + (int)Floor(i / 3F) * 9] == digit
 						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
+
+						// Gather the result.
 						select i
 
 					// Then check whether the duplicate list contains any elements.
 					// If so, the grid is invalid.
 					where !duplicateCases.Any()
+
+					// Gather the result.
 					select solution.ReplaceAt(index, digit)
 				).ToList();
 #pragma warning restore IDE0055
