@@ -148,7 +148,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 						{
 							result.Add((loopMap, loop.GetLinks()));
 
-							throw new Exception("Exit the recursion.");
+							throw new("Exit the recursion.");
 						}
 						else
 						{
