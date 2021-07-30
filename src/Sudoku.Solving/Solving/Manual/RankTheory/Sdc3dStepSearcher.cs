@@ -56,6 +56,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 				rbList.Clear();
 				cbList.Clear();
 
+
 				static void a(IList<Cells> list, in Cells emptyMap)
 				{
 					switch (emptyMap.Count)
@@ -245,7 +246,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 														foreach (int cell in elimMapBlock & CandMaps[digit])
 														{
 															conclusions.Add(
-																new(ConclusionType.Elimination, cell, digit));
+																new(ConclusionType.Elimination, cell, digit)
+															);
 														}
 													}
 													foreach (int digit in rowMask)
@@ -253,7 +255,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 														foreach (int cell in elimMapRow & CandMaps[digit])
 														{
 															conclusions.Add(
-																new(ConclusionType.Elimination, cell, digit));
+																new(ConclusionType.Elimination, cell, digit)
+															);
 														}
 													}
 													foreach (int digit in columnMask)
@@ -261,7 +264,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 														foreach (int cell in elimMapColumn & CandMaps[digit])
 														{
 															conclusions.Add(
-																new(ConclusionType.Elimination, cell, digit));
+																new(ConclusionType.Elimination, cell, digit)
+															);
 														}
 													}
 													if (conclusions.Count == 0)
@@ -303,8 +307,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 													foreach (int digit in blockMask)
 													{
 														foreach (int cell in
-															(currentBlockMap | rbCurrentMap | cbCurrentMap) &
-															CandMaps[digit])
+															(currentBlockMap | rbCurrentMap | cbCurrentMap)
+															& CandMaps[digit])
 														{
 															candidateOffsets.Add(new(2, cell * 9 + digit));
 														}
@@ -329,7 +333,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 															blockMask,
 															currentRowMap | rbCurrentMap,
 															currentColumnMap | cbCurrentMap,
-															currentBlockMap | rbCurrentMap | cbCurrentMap));
+															currentBlockMap | rbCurrentMap | cbCurrentMap
+														)
+													);
 												}
 											}
 										}

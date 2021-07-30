@@ -99,7 +99,9 @@ namespace Sudoku.Solving.Manual.Subsets
 								region,
 								new(cells),
 								mask.GetAllSets().ToArray(),
-								isLocked));
+								isLocked
+							)
+						);
 					}
 				}
 				#endregion
@@ -169,7 +171,9 @@ namespace Sudoku.Solving.Manual.Subsets
 								},
 								region,
 								map,
-								digits));
+								digits
+							)
+						);
 					}
 				}
 				#endregion

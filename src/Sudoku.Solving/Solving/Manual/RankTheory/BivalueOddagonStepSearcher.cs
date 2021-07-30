@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 			}
 
 			var resultAccumulator = new List<BivalueOddagonStepInfo>();
-			var loops = new List<(Cells Map, IReadOnlyList<Link> Links)>();
+			var loops = new List<(Cells, IReadOnlyList<Link>)>();
 			var tempLoop = new List<int>();
 			foreach (int cell in BivalueMap)
 			{
@@ -100,6 +100,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 					orderby info.Loop.Count, info.TechniqueCode
 					select info);
 
+
 				/*Don't convert to method or static local function*/
 				void f(
 					in SudokuGrid grid,
@@ -159,7 +160,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 								f(
 									grid, d1, d2, nextCell, label, exDigitsMask,
-									digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount);
+									digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount
+								);
 							}
 						}
 					}

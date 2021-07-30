@@ -151,7 +151,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 								if (!canL[cand].Contains(cell))
 								{
 									candidateOffsets.Add(
-										new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
+										new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand)
+									);
 								}
 							}
 						}
@@ -161,7 +162,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 						new MslsStepInfo(
 							conclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
-							map));
+							map
+						)
+					);
 				}
 			}
 		}

@@ -67,9 +67,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 			string interCellsStr = IntersectionCells.ToString();
 			string interDigitsStr = new DigitCollection(IntersectionMask).ToString(null);
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {interCellsStr}({interDigitsStr}) - " +
-				$"{blockCellsStr}({blockDigitsStr}) & {lineCellsStr}({lineDigitsStr}) => {elimStr}";
+			return $"{Name}: {interCellsStr}({interDigitsStr}) - {blockCellsStr}({blockDigitsStr}) & {lineCellsStr}({lineDigitsStr}) => {elimStr}";
 		}
 	}
 }

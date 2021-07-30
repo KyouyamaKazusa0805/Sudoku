@@ -104,7 +104,9 @@ namespace Sudoku.Solving.Manual.Sdps
 								},
 								digit,
 								block,
-								new(cpCells[0], cpCells[1], digit)));
+								new(cpCells[0], cpCells[1], digit)
+							)
+						);
 					}
 				}
 			}

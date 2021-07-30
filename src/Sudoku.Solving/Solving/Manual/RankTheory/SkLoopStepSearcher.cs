@@ -190,7 +190,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 							foreach (int digit in cands)
 							{
 								candidateOffsets.Add(
-									new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
+									new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit)
+								);
 							}
 						}
 					}
@@ -200,7 +201,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 						new SkLoopStepInfo(
 							conclusions,
 							new View[] { new() { Candidates = candidateOffsets } },
-							cells));
+							cells
+						)
+					);
 				}
 			}
 		}

@@ -106,8 +106,11 @@ namespace Sudoku.Solving.Manual.Sdps
 									new View[] { new() { Candidates = candidateOffsets, Links = links } },
 									digit,
 									map,
-									guardians));
+									guardians
+								)
+							);
 						}
+
 
 						// This function is used for recursion.
 						// You can't change it to the static local function or normal methods,
@@ -137,17 +140,21 @@ namespace Sudoku.Solving.Manual.Sdps
 								if (tempLoop.Count >= 5 && (tempLoop.Count & 1) != 0
 									&& tempLoop[0] == anotherCell)
 								{
-									loops.Add((
-										loopMap,
-										CreateGuardianMap(cell, anotherCell, digit, guardians),
-										tempLoop.GetLinks()));
+									loops.Add(
+										(
+											loopMap,
+											CreateGuardianMap(cell, anotherCell, digit, guardians),
+											tempLoop.GetLinks()
+										)
+									);
 								}
 								else if (!loopMap.Contains(anotherCell))
 								{
 									f(
 										anotherCell,
 										label,
-										CreateGuardianMap(cell, anotherCell, digit, guardians));
+										CreateGuardianMap(cell, anotherCell, digit, guardians)
+									);
 								}
 							}
 
@@ -166,7 +173,8 @@ namespace Sudoku.Solving.Manual.Sdps
 			accumulator.AddRange(
 				from info in resultAccumulator.RemoveDuplicateItems()
 				orderby info.Loop.Count, info.Guardians.Count
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>

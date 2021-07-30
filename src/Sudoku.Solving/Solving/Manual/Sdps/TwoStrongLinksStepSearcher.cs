@@ -128,7 +128,9 @@ namespace Sudoku.Solving.Manual.Sdps
 								},
 								digit,
 								r1,
-								r2));
+								r2
+							)
+						);
 					}
 				}
 			}

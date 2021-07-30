@@ -49,9 +49,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 			string digits2Str = new DigitCollection(ColumnDigitsMask).ToString();
 			string digits3Str = new DigitCollection(BlockDigitsMask).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {cells1Str}({digits1Str}) + {cells2Str}({digits2Str}) + " +
-				$"{cells3Str}({digits3Str}) => {elimStr}";
+			return $"{Name}: {cells1Str}({digits1Str}) + {cells2Str}({digits2Str}) + {cells3Str}({digits3Str}) => {elimStr}";
 		}
 	}
 }

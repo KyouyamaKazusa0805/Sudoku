@@ -55,7 +55,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 					loop,
 					d1,
 					d2,
-					extraCell));
+					extraCell
+				)
+			);
 		}
 
 		/// <summary>
@@ -114,7 +116,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 					loop,
 					d1,
 					d2,
-					extraDigit));
+					extraDigit
+				)
+			);
 		}
 
 		/// <summary>
@@ -207,7 +211,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+									new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+								);
 							}
 						}
 						foreach (int cell in cells)
@@ -234,7 +239,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 								d1,
 								d2,
 								mask,
-								cells));
+								cells
+							)
+						);
 					}
 				}
 			}

@@ -36,11 +36,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 		{
 			string digitsStr = new DigitCollection(ExtraDigits).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: To avoid the structure {Loop.ToString()} of digits " +
-				$"{(Digit1 + 1).ToString()} and {(Digit2 + 1).ToString()} error, " +
-				$"the only way is to form the subset (digits {digitsStr} in cells {ExtraCells.ToString()}) => " +
-				$"{elimStr}";
+			return $"{Name}: To avoid the structure {Loop.ToString()} of digits {(Digit1 + 1).ToString()} and {(Digit2 + 1).ToString()} error, the only way is to form the subset (digits {digitsStr} in cells {ExtraCells.ToString()}) => {elimStr}";
 		}
 	}
 }

@@ -147,9 +147,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 											? lineMask & blockMask & selectedInterMask
 											: selectedInterMask & ~(blockMask | lineMask)
 										);
-										short maskOnlyInInter = (short)(
-											selectedInterMask & ~(blockMask | lineMask)
-										);
+										short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 										if (
 											!cannibalMode && (
 												(blockMask & lineMask) != 0

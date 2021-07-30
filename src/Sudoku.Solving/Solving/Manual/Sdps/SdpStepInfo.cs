@@ -21,7 +21,6 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
 
-
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
 	}

@@ -38,12 +38,10 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			int digit = Digit + 1;
+			string digitStr = (Digit + 1).ToString();
 			string regionStr = new RegionCollection(Block).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: {digit.ToString()} in {regionStr} with conjugate pair " +
-				$"{ConjugatePair.ToString()} => {elimStr}";
+			return $"{Name}: {digitStr} in {regionStr} with conjugate pair {ConjugatePair.ToString()} => {elimStr}";
 		}
 	}
 }
