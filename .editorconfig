@@ -407,6 +407,9 @@ dotnet_diagnostic.CS8846.severity = silent
 dotnet_diagnostic.CS8907.severity = error
 
 
+# CA1000: Do not declare static members on generic types
+dotnet_diagnostic.CA1000.severity = none
+
 # CA1027: Mark enums with FlagsAttribute
 dotnet_diagnostic.CA1027.severity = none
 

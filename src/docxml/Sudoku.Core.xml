@@ -1392,6 +1392,20 @@
             </summary>
             <param name="map">The map.</param>
         </member>
+        <member name="T:Sudoku.Data.Cells.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Cells.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -2423,6 +2437,38 @@
             </para>
             </summary>
         </member>
+        <member name="T:Sudoku.Data.IJsonSerializable`2">
+            <summary>
+            Defines a type that can serialize and deserialize.
+            </summary>
+            <typeparam name="TSelf">The type of the instance.</typeparam>
+            <typeparam name="TConverter">The type of the converter bound with.</typeparam>
+        </member>
+        <member name="F:Sudoku.Data.IJsonSerializable`2.SerializerOptions">
+            <summary>
+            Indicates the JSON serializer option instance that used
+            during serialization or deserialization operation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.IJsonSerializable`2.#cctor">
+            <summary>
+            Indicates the <see langword="static"/> constructor of this type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.IJsonSerializable`2.Serialize(`0)">
+            <summary>
+            Serializes the current instance, and converts the instance into a JSON string.
+            </summary>
+            <param name="instance">The instance to serialize.</param>
+            <returns>The JSON string result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IJsonSerializable`2.Deserialize(System.String)">
+            <summary>
+            Deserializes the specified possible JSON string, and parses the string, then return the result.
+            </summary>
+            <param name="json">The JSON string.</param>
+            <returns>The instance result.</returns>
+        </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
             Encapsulates a link used for drawing.
@@ -2478,6 +2524,20 @@
         </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Data.Link.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Link.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Link.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

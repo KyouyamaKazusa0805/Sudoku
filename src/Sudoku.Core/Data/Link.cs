@@ -12,7 +12,7 @@ namespace Sudoku.Data
 	[AutoDeconstruct(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 	[AutoHashCode(nameof(EigenValue))]
 	[AutoEquality(nameof(EigenValue))]
-	public readonly partial struct Link : IValueEquatable<Link>
+	public readonly partial struct Link : IValueEquatable<Link>, IJsonSerializable<Link, Link.JsonConverter>
 	{
 		/// <summary>
 		/// Initializes an instance with the specified start and end candidate, and a link type.

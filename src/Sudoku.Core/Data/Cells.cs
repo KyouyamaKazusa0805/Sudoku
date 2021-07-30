@@ -27,7 +27,7 @@ namespace Sudoku.Data
 	[AutoEquality(nameof(_high), nameof(_low))]
 	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 	[AutoFormattable]
-	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable
+	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>
 	{
 		/// <summary>
 		/// The cover table.
@@ -1228,12 +1228,14 @@ namespace Sudoku.Data
 		/// Implicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.
 		/// </summary>
 		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Span<int>(in Cells map) => map.ToSpan();
 
 		/// <summary>
 		/// Implicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.
 		/// </summary>
 		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator ReadOnlySpan<int>(in Cells map) => map.ToReadOnlySpan();
 	}
 }
