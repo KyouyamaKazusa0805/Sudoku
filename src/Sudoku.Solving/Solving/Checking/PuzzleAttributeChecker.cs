@@ -238,7 +238,8 @@ namespace Sudoku.Solving.Checking
 			}
 
 			return tempArrays.All(
-				static v => !Solver.Solve(new SudokuGrid(v, GridCreatingOption.MinusOne)).IsSolved);
+				static v => !Solver.Solve(new SudokuGrid(v, GridCreatingOption.MinusOne)).IsSolved
+			);
 		}
 
 		/// <summary>
@@ -247,8 +248,9 @@ namespace Sudoku.Solving.Checking
 		/// <param name="this">The puzzle to check.</param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		public static bool IsPearl(this in SudokuGrid @this) =>
-			@this.IsValid() && new ManualSolver().Solve(@this) is var result
-			&& result.MaxDifficulty == result.PearlDifficulty;
+			@this.IsValid()
+			&& new ManualSolver().Solve(@this) is { MaxDifficulty: var m, PearlDifficulty: var p }
+			&& m == p;
 
 		/// <summary>
 		/// To check if the puzzle is diamond or not.
