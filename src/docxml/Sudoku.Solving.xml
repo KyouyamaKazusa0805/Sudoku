@@ -2586,6 +2586,26 @@
             Indicates the total number of Unique Square possible templates.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of Exocet templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllRowsMask">
+            <summary>
+            Indicates the mask that means all rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllColumnsMask">
+            <summary>
+            Indicates the mask that means all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllRegionsMask">
+            <summary>
+            Indicates the mask that means all regions.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -3917,21 +3937,6 @@
         <member name="T:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher">
             <summary>
             Encapsulates a <b>Hobiwan's fish</b> technique searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllRowsMask">
-            <summary>
-            Indicates the mask that means all rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllColumnsMask">
-            <summary>
-            Indicates the mask that means all columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.AllRegions">
-            <summary>
-            Indicates the mask that means all regions.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.MaxSize">

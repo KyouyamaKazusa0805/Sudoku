@@ -211,7 +211,9 @@ namespace Sudoku.Solving.Manual.Exocets
 							{
 								new(targetElims, EliminatedReason.Basic),
 								new(trueBaseElims, EliminatedReason.TrueBase)
-							}));
+							}
+						)
+					);
 				}
 			}
 		}

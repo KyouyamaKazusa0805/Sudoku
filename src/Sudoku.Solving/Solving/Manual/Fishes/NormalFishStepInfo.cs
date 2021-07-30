@@ -43,8 +43,27 @@ namespace Sudoku.Solving.Manual.Fishes
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			Enum.Parse<Technique>(InternalName.Replace(" ", string.Empty).Replace("-", string.Empty));
+		public override unsafe Technique TechniqueCode
+		{
+			get
+			{
+				fixed (char* pName = InternalName)
+				{
+					var buffer = (stackalloc char[InternalName.Length]);
+
+					int i = 0;
+					for (char* p = pName; *p != '\0'; p++)
+					{
+						if (*p is var ch and not (' ' or '-'))
+						{
+							buffer[i++] = ch;
+						}
+					}
+
+					return Enum.Parse<Technique>(buffer[..i].ToString());
+				}
+			}
+		}
 
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.NormalFish;
@@ -77,9 +96,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			string baseSetStr = new RegionCollection(BaseSets).ToString();
 			string coverSetStr = new RegionCollection(CoverSets).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$@"{Name}: {(Digit + 1).ToString()} in {baseSetStr}\{coverSetStr}" +
-				$"{(Fins.IsEmpty ? string.Empty : $" f{Fins.ToString()}")} => {elimStr}";
+			return $@"{Name}: {(Digit + 1).ToString()} in {baseSetStr}\{coverSetStr}{(Fins.IsEmpty ? string.Empty : $" f{Fins.ToString()}")} => {elimStr}";
 		}
 	}
 }

@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Indicates all patterns.
 		/// </summary>
-		protected static readonly Pattern[] Patterns = new Pattern[1458];
+		protected static readonly Pattern[] Patterns = new Pattern[Constants.ExocetTemplatesCount];
 
 
 		/// <summary>

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
-using System.Linq;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -26,7 +26,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates whether the specified instance contains any extra regions.
 		/// </summary>
-		public bool ContainsExtraRegions => ExtraRegionsMask?.Any(static m => m != 0) ?? false;
+		public bool ContainsExtraRegions =>
+			ExtraRegionsMask is not null && Array.Exists(ExtraRegionsMask, static m => m != 0);
 
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M + (ContainsExtraRegions ? 0 : .2M);

@@ -1,4 +1,6 @@
-﻿using Sudoku.Techniques;
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Extensions
 {
@@ -14,26 +16,11 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// <param name="this">The instance.</param>
 		/// <param name="code">The technique code to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool Contains(this AnalysisResult @this, Technique code)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool Contains(this AnalysisResult @this, Technique code) => @this switch
 		{
-			if (@this.IsSolved)
-			{
-				return false;
-			}
-
-			if (@this.Steps is null)
-			{
-				return false;
-			}
-
-			foreach (var step in @this.Steps)
-			{
-				if (step.TechniqueCode == code)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
+			{ IsSolved: true } or { Steps: null } => false,
+			_ => @this.Steps.Any(step => step.TechniqueCode == code)
+		};
 	}
 }

@@ -232,7 +232,9 @@ namespace Sudoku.Solving.Manual.Fishes
 								baseSets,
 								coverSets,
 								fins,
-								IsSashimi(baseSets, fins, digit)));
+								IsSashimi(baseSets, fins, digit)
+							)
+						);
 					}
 				}
 			}
@@ -262,9 +264,17 @@ namespace Sudoku.Solving.Manual.Fishes
 				{
 					switch (grid.Exists(cell, digit))
 					{
-						case true when fins.Contains(cell):
+						case true:
 						{
-							cellOffsets.Add(new(1, cell));
+							if (fins.Contains(cell))
+							{
+								cellOffsets.Add(new(1, cell));
+							}
+							else
+							{
+								continue;
+							}
+
 							break;
 						}
 						case false:
@@ -274,9 +284,11 @@ namespace Sudoku.Solving.Manual.Fishes
 							foreach (int c in ValueMaps[digit])
 							{
 								if (
-									RegionMaps[c.ToRegion(
-										searchRow ? RegionLabel.Column : RegionLabel.Row
-									)].Contains(cell)
+									RegionMaps[
+										c.ToRegion(
+											searchRow ? RegionLabel.Column : RegionLabel.Row
+										)
+									].Contains(cell)
 								)
 								{
 									flag = true;
@@ -300,11 +312,6 @@ namespace Sudoku.Solving.Manual.Fishes
 							cellOffsets.Add(new(0, cell));
 							break;
 						}
-						//default:
-						//{
-						//	// Don't forget this case.
-						//	continue;
-						//}
 					}
 				}
 			}

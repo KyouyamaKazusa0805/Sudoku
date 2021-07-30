@@ -24,5 +24,26 @@
 		/// Indicates the total number of Unique Square possible templates.
 		/// </summary>
 		public const int UsTemplatesCount = 162;
+
+		/// <summary>
+		/// Indicates the total number of Exocet templates.
+		/// </summary>
+		public const int ExocetTemplatesCount = 1458;
+
+
+		/// <summary>
+		/// Indicates the mask that means all rows.
+		/// </summary>
+		public const int AllRowsMask = 0b111_111_111__000_000_000;
+
+		/// <summary>
+		/// Indicates the mask that means all columns.
+		/// </summary>
+		public const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
+
+		/// <summary>
+		/// Indicates the mask that means all regions.
+		/// </summary>
+		public const int AllRegionsMask = 0b111_111_111__111_111_111__111_111_111;
 	}
 }

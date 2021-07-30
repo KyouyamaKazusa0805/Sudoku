@@ -174,7 +174,9 @@ namespace Sudoku.Solving.Manual.Exocets
 						baseCands.GetAllSets().ToArray(),
 						null,
 						null,
-						new Elimination[] { targetElims }));
+						new Elimination[] { targetElims }
+					)
+				);
 			}
 		}
 

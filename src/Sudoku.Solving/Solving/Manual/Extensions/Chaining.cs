@@ -165,9 +165,8 @@ namespace Sudoku.Solving.Manual.Extensions
 				// Add a hidden parent.
 				var parent = new Node(p.Cell, digit, false);
 				(p.Parents ??= new List<Node>()).Add(
-					offNodes.Contains(parent)
-					? parent
-					: throw new Exception("Parent node can't be found."));
+					offNodes.Contains(parent) ? parent : throw new("Parent node can't be found.")
+				);
 			}
 		}
 
@@ -191,9 +190,8 @@ namespace Sudoku.Solving.Manual.Extensions
 				// Add a hidden parent.
 				var parent = new Node(RegionCells[region][pos], p.Digit, false);
 				(p.Parents ??= new List<Node>()).Add(
-					offNodes.Contains(parent)
-					? parent
-					: throw new Exception("Parent node can't be found."));
+					offNodes.Contains(parent) ? parent : throw new("Parent node can't be found.")
+				);
 			}
 
 			static short m(in SudokuGrid grid, int digit, int region)

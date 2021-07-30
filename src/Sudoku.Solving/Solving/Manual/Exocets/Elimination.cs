@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override unsafe string ToString() =>
+		public override string ToString() =>
 			$"* {Header} elimination: {new ConclusionCollection(AsSpan()).ToString()}";
 
 		/// <summary>

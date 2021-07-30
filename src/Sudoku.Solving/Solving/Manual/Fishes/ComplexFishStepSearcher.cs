@@ -10,6 +10,7 @@ using Sudoku.Solving.Manual.LastResorts;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Constants;
 using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual.Fishes
@@ -19,22 +20,6 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </summary>
 	public sealed class ComplexFishStepSearcher : FishStepSearcher
 	{
-		/// <summary>
-		/// Indicates the mask that means all rows.
-		/// </summary>
-		private const int AllRowsMask = 0b111_111_111__000_000_000;
-
-		/// <summary>
-		/// Indicates the mask that means all columns.
-		/// </summary>
-		private const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
-
-		/// <summary>
-		/// Indicates the mask that means all regions.
-		/// </summary>
-		private const int AllRegions = 0b111_111_111__111_111_111__111_111_111;
-
-
 		/// <summary>
 		/// Indicates the max size to search.
 		/// </summary>
@@ -231,7 +216,7 @@ namespace Sudoku.Solving.Manual.Fishes
 							baseMap &= possibleMap;
 
 							// Now check the possible cover sets to iterate.
-							int z = baseMap.Regions & ~usedInBaseSets & AllRegions;
+							int z = baseMap.Regions & ~usedInBaseSets & AllRegionsMask;
 							if (z == 0)
 							{
 								continue;

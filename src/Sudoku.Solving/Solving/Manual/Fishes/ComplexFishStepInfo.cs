@@ -150,31 +150,13 @@ namespace Sudoku.Solving.Manual.Fishes
 
 
 		/// <inheritdoc/>
-		public bool Equals(ComplexFishStepInfo? other)
-		{
-			if (other is null)
-			{
-				return false;
-			}
-
-			if (Digit != other.Digit)
-			{
-				return false;
-			}
-
-			if (new RegionCollection(BaseSets) != new RegionCollection(other.BaseSets)
-				|| new RegionCollection(CoverSets) != new RegionCollection(other.CoverSets))
-			{
-				return false;
-			}
-
-			if (Exofins != other.Exofins || Endofins != other.Endofins)
-			{
-				return false;
-			}
-
-			return true;
-		}
+		public bool Equals(ComplexFishStepInfo? other) =>
+			other is not null
+			&& Digit == other.Digit
+			&& new RegionCollection(BaseSets) == new RegionCollection(other.BaseSets)
+			&& new RegionCollection(CoverSets) == new RegionCollection(other.CoverSets)
+			&& Exofins == other.Exofins
+			&& Endofins == other.Endofins;
 
 		/// <inheritdoc/>
 		public override string ToString()

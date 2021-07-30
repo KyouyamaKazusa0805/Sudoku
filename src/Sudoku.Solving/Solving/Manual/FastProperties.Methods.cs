@@ -28,7 +28,7 @@ namespace Sudoku.Solving.Manual
 		/// </item>
 		/// </list>
 		/// </returns>
-		public static bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
+		internal static bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
 		{
 			if (fins.IsEmpty)
 			{
