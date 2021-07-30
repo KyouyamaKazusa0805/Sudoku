@@ -9,24 +9,15 @@ namespace Sudoku.Models
 	/// Indicates the color identifier that used to identify the color.
 	/// </summary>
 	/// <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
+	/// <param name="Id">Indicates the ID label.</param>
+	/// <param name="Color">Indicates the color.</param>
 	[StructLayout(LayoutKind.Explicit)]
 	public readonly record struct ColorIdentifier(
-		[field: FieldOffset(0)] bool UseId
+		[field: FieldOffset(0)] bool UseId,
+		[field: FieldOffset(4)] byte Id,
+		[field: FieldOffset(4)] int Color
 	) : IValueEquatable<ColorIdentifier>
 	{
-		/// <summary>
-		/// Indicates the ID label.
-		/// </summary>
-		[field: FieldOffset(4)]
-		public byte Id { get; init; } = default;
-
-		/// <summary>
-		/// Indicates the color.
-		/// </summary>
-		[field: FieldOffset(4)]
-		public int Color { get; init; } = default;
-
-
 		/// <inheritdoc/>
 		public bool Equals(in ColorIdentifier other) => UseId && Id == other.Id || !UseId && Color == other.Color;
 
