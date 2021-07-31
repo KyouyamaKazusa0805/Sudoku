@@ -2,6 +2,7 @@
 
 using System;
 using System.Text.Json;
+using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
 {
@@ -10,12 +11,9 @@ namespace Sudoku.Data
 	/// </summary>
 	/// <param name="Start">The start position.</param>
 	/// <param name="End">The end position.</param>
+	[AutoEquality(nameof(Start), nameof(End))]
 	public readonly partial record struct Crosshatch(in Cells Start, in Cells End) : IValueEquatable<Crosshatch>, IJsonSerializable<Crosshatch, Crosshatch.JsonConverter>
 	{
-		/// <inheritdoc/>
-		public bool Equals(in Crosshatch other) => (Start, End) == (other.Start, other.End);
-
-
 		/// <summary>
 		/// Implicit cast from <see cref="ValueTuple{T1, T2}"/> to <see cref="Crosshatch"/>.
 		/// </summary>

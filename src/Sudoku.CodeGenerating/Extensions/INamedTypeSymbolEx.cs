@@ -18,12 +18,14 @@ namespace Sudoku.CodeGenerating.Extensions
 		/// <param name="this">The symbol.</param>
 		/// <returns>The type kind string.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static string GetTypeKindString(this INamedTypeSymbol @this) => @this switch
-		{
-			{ IsRecord: true } => "record ",
-			{ TypeKind: TypeKind.Class } => "class ",
-			{ TypeKind: TypeKind.Struct } => "struct "
-		};
+		public static string GetTypeKindString(this INamedTypeSymbol @this) =>
+			(@this.IsRecord, @this.TypeKind) switch
+			{
+				(IsRecord: true, TypeKind: TypeKind.Class) => "record ",
+				(IsRecord: true, TypeKind: TypeKind.Struct) => "record struct ",
+				(IsRecord: false, TypeKind: TypeKind.Class) => "class ",
+				(IsRecord: false, TypeKind: TypeKind.Struct) => "struct "
+			};
 
 		/// <summary>
 		/// Indicates whether the member should append <see langword="readonly"/> modifier.
