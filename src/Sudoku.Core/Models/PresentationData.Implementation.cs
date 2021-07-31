@@ -121,7 +121,7 @@ namespace Sudoku.Models
 		/// <typeparam name="TStruct">The type of the element to add.</typeparam>
 		/// <param name="dataKind">The data kind to append.</param>
 		/// <param name="element">The element to add.</param>
-		/// <param name="color">The color value represented by an <see cref="int"/> value.</param>
+		/// <param name="color">The color identifier.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the argument <paramref name="dataKind"/> is out of range.
 		/// </exception>
@@ -166,7 +166,7 @@ namespace Sudoku.Models
 
 					break;
 				}
-				case PresentationDataKind.DirectLines when element is ValueTuple<Cells, Cells> e:
+				case PresentationDataKind.DirectLines when element is Crosshatch e:
 				{
 					var collection = DirectLines;
 					EnsureNotNull(ref collection);
@@ -267,8 +267,7 @@ namespace Sudoku.Models
 
 					break;
 				}
-				case PresentationDataKind.DirectLines
-				when element is ValueTuple<Cells, Cells> e && DirectLines is not null:
+				case PresentationDataKind.DirectLines when element is Crosshatch e && DirectLines is not null:
 				{
 					int index = -1;
 					for (int i = 0, count = DirectLines.Count; i < count; i++)
@@ -367,8 +366,8 @@ namespace Sudoku.Models
 		/// when the method has been executed wholly.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private static void EnsureNotNull<TStruct>([AllowNull] ref IList<(TStruct, int)> collection)
-			where TStruct : struct => collection ??= new List<(TStruct, int)>();
+		private static void EnsureNotNull<TStruct>([AllowNull] ref IList<(TStruct, ColorIdentifier)> collection)
+			where TStruct : struct => collection ??= new List<(TStruct, ColorIdentifier)>();
 	}
 }
 

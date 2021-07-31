@@ -18,11 +18,11 @@ namespace Sudoku.Models
 	/// <param name="Links">The links.</param>
 	/// <param name="DirectLines">The direct lines.</param>
 	public partial record struct PresentationData(
-		[DisallowNull] IList<(int Cell, ColorIdentifier Color)>? Cells,
-		[DisallowNull] IList<(int Candidate, ColorIdentifier Color)>? Candidates,
-		[DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
-		[DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
-		[DisallowNull] IList<((Cells Start, Cells End) DirectLine, ColorIdentifier Color)>? DirectLines
+		[DisallowNull][property: DisallowNull] IList<(int Cell, ColorIdentifier Color)>? Cells,
+		[DisallowNull][property: DisallowNull] IList<(int Candidate, ColorIdentifier Color)>? Candidates,
+		[DisallowNull][property: DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
+		[DisallowNull][property: DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
+		[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines
 	) : IValueEquatable<PresentationData>, IParsable<PresentationData>
 	{
 		public readonly partial bool Equals(in PresentationData other);

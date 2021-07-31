@@ -14,7 +14,7 @@ namespace Sudoku.Models
 	[StructLayout(LayoutKind.Explicit)]
 	public readonly record struct ColorIdentifier(
 		[field: FieldOffset(0)] bool UseId,
-		[field: FieldOffset(4)] byte Id,
+		[field: FieldOffset(4)] int Id,
 		[field: FieldOffset(4)] int Color
 	) : IValueEquatable<ColorIdentifier>
 	{
