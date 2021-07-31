@@ -15,9 +15,9 @@ namespace Sudoku.Recognition.Extensions
 	/// </summary>
 	/// <remarks>
 	/// Some methods of this file is copied by the <see cref="Emgu.CV"/>'s
-	/// <a href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
+	/// <see href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
 	/// site
-	/// </a>.
+	/// </see>.
 	/// </remarks>
 	/// <seealso cref="Bitmap"/>
 	public static class BitmapEx

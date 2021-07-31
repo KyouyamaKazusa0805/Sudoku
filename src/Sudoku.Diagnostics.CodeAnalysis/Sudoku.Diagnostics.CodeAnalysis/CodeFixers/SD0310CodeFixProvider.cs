@@ -11,10 +11,6 @@ using Sudoku.CodeGenerating;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
 {
-	/// <summary>
-	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href="https://github.com/SunnieShine/Sudoku/wiki/Rule-SD0310">SD0310</a>.
-	/// </summary>
 	[CodeFixProvider("SD0310")] // Please update here.
 	public sealed partial class SD0310CodeFixProvider : CodeFixProvider
 	{

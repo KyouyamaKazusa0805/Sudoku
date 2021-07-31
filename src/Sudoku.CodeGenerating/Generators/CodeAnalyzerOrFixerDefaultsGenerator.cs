@@ -86,7 +86,7 @@ namespace Sudoku.CodeGenerating
 					from diagnosticId in diagnosticIds
 					let id = Cut(diagnosticId)
 					select $@"/// <item>
-	/// <term><a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{diagnosticId}</a></term>
+	/// <term><see href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{diagnosticId}</see></term>
 	/// <description>{GetDescription(info, id)}</description>
 	/// </item>"
 				);
@@ -96,7 +96,7 @@ namespace Sudoku.CodeGenerating
 					let tags = GetWhetherFadingOutTag(diagnosticId)
 					let id = Cut(diagnosticId)
 					select $@"/// <summary>
-		/// Indicates the <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
+		/// Indicates the <see href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</see>
 		/// diagnostic result ({GetDescription(info, id)}).
 		/// </summary>
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -188,7 +188,7 @@ namespace {namespaceName}
 {{
 	/// <summary>
 	/// Indicates the code fixer for solving the diagnostic result
-	/// <a href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</a>
+	/// <see href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{id}</see>
 	/// ({description}).
 	/// </summary>
 	[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof({typeName})), Shared]
