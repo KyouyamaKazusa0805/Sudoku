@@ -11,6 +11,7 @@ using Sudoku.Data.Extensions;
 using static Sudoku.Recognition.Constants;
 using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
+
 #if MUST_DOWNLOAD_TRAINED_DATA
 using System.Net.Http;
 using System.Threading.Tasks;

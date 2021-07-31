@@ -1,6 +1,7 @@
 ﻿#undef NESTED_ANNOTATION
 
 using System;
+
 #if NESTED_ANNOTATION
 using Sudoku.CodeGenerating;
 #endif

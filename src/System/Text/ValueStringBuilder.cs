@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.CodeGenerating;
+
 #if DEBUG
 using System.Diagnostics;
 #else

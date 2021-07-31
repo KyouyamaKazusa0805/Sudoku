@@ -25,6 +25,7 @@ using Sudoku.Solving.Manual.Symmetry;
 using System.Text.Json;
 using Sudoku.Drawing;
 using Sudoku.Data.Stepping;
+
 #if SUDOKU_RECOGNITION
 using System.Drawing;
 #endif
