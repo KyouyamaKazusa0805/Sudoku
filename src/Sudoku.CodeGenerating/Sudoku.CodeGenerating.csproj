@@ -8,7 +8,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>A project that generates the source code.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<DocumentationFile>..\docxml\Sudoku.CodeGen.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.CodeGenerating.xml</DocumentationFile>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
