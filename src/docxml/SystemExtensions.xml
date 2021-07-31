@@ -1456,7 +1456,7 @@
             <param name="this">The object.</param>
             <returns>The cast result.</returns>
         </member>
-        <member name="M:System.Extensions.CloneableEx.Cast``1(System.ICloneable)">
+        <member name="M:System.Extensions.CloneableEx.As``1(System.ICloneable)">
             <summary>
             Try to cast the current instance to the generic cloneable type <see cref="T:System.ICloneable`1"/>.
             </summary>

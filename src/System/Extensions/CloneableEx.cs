@@ -45,7 +45,7 @@ namespace System.Extensions
 		/// <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
 		/// <seealso cref="ICloneable{T}"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static ICloneable<TClass>? Cast<TClass>(this ICloneable @this) where TClass : class =>
+		public static ICloneable<TClass>? As<TClass>(this ICloneable @this) where TClass : class =>
 			@this as ICloneable<TClass>;
 	}
 }

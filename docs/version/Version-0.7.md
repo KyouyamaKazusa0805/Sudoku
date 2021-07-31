@@ -11,7 +11,8 @@
 ### 增加
 
 * 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目；
-* 添加 MAUI 的 WinUI 的程序图标（#159）。
+* 添加 MAUI 的 WinUI 的程序图标（#159）；
+* 添加 `Sudoku.Data.Grid` 类型作为 `Sudoku.Data.SudokuGrid` 类型的替代。
 
 ### 删除
 
@@ -19,3 +20,5 @@
 
 ### 修改
 
+* 修改部分代码的逻辑，给部分数据类型追加 `[Obsolete]` 表示类型不再使用；
+* 将 `ICloneableEx` 静态类里的 `Cast` 扩展方法改名为 `As`。

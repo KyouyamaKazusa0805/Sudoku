@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Buffers;
+using System.Collections;
 using static System.Numerics.BitOperations;
 
 namespace System.Extensions
@@ -16,20 +17,27 @@ namespace System.Extensions
 		/// <returns>The total number of bits set <see langword="true"/>.</returns>
 		public static unsafe int GetCardinality(this BitArray @this)
 		{
-			int[] integers = new int[((@this.Length >> 5) + 1)];
-			@this.CopyTo(integers, 0);
-
-			int result = 0;
-			fixed (int* p = integers)
+			int[] integers = ArrayPool<int>.Shared.Rent((@this.Length >> 5) + 1);
+			try
 			{
-				int i = 0, length = integers.Length;
-				for (int* ptr = p; i < length; ptr++, i++)
-				{
-					result += PopCount((uint)*ptr);
-				}
-			}
+				@this.CopyTo(integers, 0);
 
-			return result;
+				int result = 0;
+				fixed (int* p = integers)
+				{
+					int i = 0, length = integers.Length;
+					for (int* ptr = p; i < length; ptr++, i++)
+					{
+						result += PopCount((uint)*ptr);
+					}
+				}
+
+				return result;
+			}
+			finally
+			{
+				ArrayPool<int>.Shared.Return(integers);
+			}
 		}
 	}
 }
