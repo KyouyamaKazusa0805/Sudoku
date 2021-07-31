@@ -1,10 +1,10 @@
-﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+﻿#pragma warning disable CS1591 // False-positive.
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Numerics;
@@ -20,14 +20,18 @@ using static Sudoku.Constants.Tables;
 namespace Sudoku.Data
 {
 	/// <summary>
-	/// Encapsulates a sudoku grid using value type instead of reference type.
+	/// Represents a sudoku grid. The type is the substitution plan of type <see cref="SudokuGrid"/>.
 	/// </summary>
+	/// <remarks>
+	/// The type doesn't contain the initial sudoku grid data.
+	/// </remarks>
+	/// <seealso cref="Grid"/>
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	[AutoFormattable]
-	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
+	public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>
 	{
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -77,23 +81,23 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
-		public static readonly delegate*<ref SudokuGrid, in ValueChangedArgs, void> ValueChanged;
+		public static readonly delegate*<ref Grid, in ValueChangedArgs, void> ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		public static readonly delegate*<ref SudokuGrid, void> RefreshingCandidates;
+		public static readonly delegate*<ref Grid, void> RefreshingCandidates;
 
 		/// <summary>
 		/// Indicates the default grid that all values are initialized 0, which is same as
-		/// <see cref="SudokuGrid()"/>.
+		/// <see cref="Grid()"/>.
 		/// </summary>
 		/// <remarks>
 		/// We recommend you should use this static field instead of the default constructor
 		/// to reduce object creation.
 		/// </remarks>
-		/// <seealso cref="SudokuGrid()"/>
-		public static readonly SudokuGrid Undefined;
+		/// <seealso cref="Grid()"/>
+		public static readonly Grid Undefined;
 
 		/// <summary>
 		/// The empty grid that is valid during implementation or running the program
@@ -103,7 +107,7 @@ namespace Sudoku.Data
 		/// This field is initialized by the static constructor of this structure.
 		/// </remarks>
 		/// <seealso cref="DefaultMask"/>
-		public static readonly SudokuGrid Empty;
+		public static readonly Grid Empty;
 
 		/// <summary>
 		/// The lookup table.
@@ -112,26 +116,18 @@ namespace Sudoku.Data
 
 
 		/// <summary>
-		/// Indicates the inner array that stores the masks of the sudoku grid, where:
-		/// <list type="table">
-		/// <item>
-		/// <term><c>_values</c></term>
-		/// <description>Stores the in-time sudoku grid inner information.</description>
-		/// </item>
-		/// <item>
-		/// <term><c>_initialValues</c></term>
-		/// <description>Stores the initial information of a sudoku grid.</description>
-		/// </item>
-		/// </list>
+		/// Indicates the inner array that stores the masks of the sudoku grid, which
+		/// stores the in-time sudoku grid inner information.
 		/// </summary>
-		private fixed short _values[Length], _initialValues[Length];
+		private fixed short _values[Length];
+
 
 
 		/// <summary>
 		/// Creates an instance using grid values.
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
-		public SudokuGrid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
+		public Grid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
 		{
 		}
 
@@ -140,7 +136,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="gridValues">The array of grid values.</param>
 		/// <param name="creatingOption">The grid creating option.</param>
-		public SudokuGrid(int[] gridValues, GridCreatingOption creatingOption)
+		public Grid(int[] gridValues, GridCreatingOption creatingOption)
 		{
 			this = Empty;
 			for (int i = 0; i < Length; i++)
@@ -161,7 +157,7 @@ namespace Sudoku.Data
 		/// Try to parse a token, and converts the token to the sudoku grid instance.
 		/// </summary>
 		/// <param name="token">The token.</param>
-		public SudokuGrid(string token)
+		public Grid(string token)
 		{
 			var bi = BigInteger.Zero;
 			for (int i = 0, length = token.Length; i < length; i++)
@@ -176,34 +172,60 @@ namespace Sudoku.Data
 		/// Initializes an instance with the specified mask array.
 		/// </summary>
 		/// <param name="masks">The masks.</param>
+		/// <remarks>
+		/// In order to decrease the memory allocation, you can use the system buffer,
+		/// whose corresponding code will be implemented like this:
+		/// <code><![CDATA[
+		/// // Rents the buffer memory.
+		/// short[] buffer = ArrayPool<short>.Shared.Rent(81);
+		/// 
+		/// // Initialize the memory in order to be used later.
+		/// fixed (short* pBuffer = buffer, pGrid = this)
+		/// {
+		///     Unsafe.CopyBlock(pBuffer, pGrid, sizeof(short) * 81);
+		/// }
+		///
+		/// // Gets the result sudoku grid instance.
+		/// try
+		/// {
+		///     var targetGrid = new Grid(buffer); // Now the result grid is created here.
+		///
+		///     // Do something to use 'targetGrid'.
+		/// }
+		/// finally
+		/// {
+		///     // Returns the buffer memory to system.
+		///     ArrayPool<short>.Shared.Return(buffer, false);
+		/// }
+		/// ]]></code>
+		/// In this way we can get the sudoku grid without any allocations.
+		/// </remarks>
 		/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
-		internal SudokuGrid(short[] masks)
+		public Grid(short[] masks)
 		{
-#if DEBUG
-			Debug.Assert(
-				masks.Length == Length,
-				$"The length of the array argument should be {Length.ToString()}."
-			);
-#endif
+			if (masks.Length != Length)
+			{
+				throw new ArgumentException(
+					$"The length of the array argument should be {Length.ToString()}.",
+					nameof(masks)
+				);
+			}
 
-			fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)
+			fixed (short* pArray = masks, pValues = _values)
 			{
 				Unsafe.CopyBlock(pValues, pArray, sizeof(short) * Length);
-				Unsafe.CopyBlock(pInitialValues, pArray, sizeof(short) * Length);
 			}
 		}
 
 
-		static SudokuGrid()
+		static Grid()
 		{
 			// Initializes the empty grid.
-#pragma warning disable SD0303
 			Empty = default;
-#pragma warning restore SD0303
-			fixed (short* p = Empty._values, q = Empty._initialValues)
+			fixed (short* p = Empty._values)
 			{
 				int i = 0;
-				for (short* ptrP = p, ptrQ = q; i < Length; *ptrP++ = *ptrQ++ = DefaultMask, i++) ;
+				for (short* ptrP = p; i < Length; *ptrP++ = DefaultMask, i++) ;
 			}
 
 			// Lookup table.
@@ -217,7 +239,7 @@ namespace Sudoku.Data
 			RefreshingCandidates = &onRefreshingCandidates;
 
 
-			static void onValueChanged(ref SudokuGrid @this, in ValueChangedArgs e)
+			static void onValueChanged(ref Grid @this, in ValueChangedArgs e)
 			{
 				if (e is { Cell: var cell, SetValue: var setValue and not -1 })
 				{
@@ -234,7 +256,7 @@ namespace Sudoku.Data
 				}
 			}
 
-			static void onRefreshingCandidates(ref SudokuGrid @this)
+			static void onRefreshingCandidates(ref Grid @this)
 			{
 				for (int i = 0; i < Length; i++)
 				{
@@ -426,7 +448,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
+				static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
 			}
 		}
 
@@ -443,7 +465,7 @@ namespace Sudoku.Data
 			{
 				return GetCells(&p);
 
-				static bool p(in SudokuGrid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
+				static bool p(in Grid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
 			}
 		}
 
@@ -461,7 +483,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid g, int cell, int digit) => g.Exists(cell, digit) is true;
+				static bool p(in Grid g, int cell, int digit) => g.Exists(cell, digit) is true;
 			}
 		}
 
@@ -486,7 +508,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
+				static bool p(in Grid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 			}
 		}
 
@@ -511,7 +533,7 @@ namespace Sudoku.Data
 			{
 				return GetMap(&p);
 
-				static bool p(in SudokuGrid g, int cell, int digit) => g[cell] == digit;
+				static bool p(in Grid g, int cell, int digit) => g[cell] == digit;
 			}
 		}
 
@@ -784,42 +806,13 @@ namespace Sudoku.Data
 		public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
 		/// <summary>
-		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
+		/// Returns a reference to the element of the <see cref="Grid"/> at index zero.
 		/// </summary>
-		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
+		/// <returns>A reference to the element of the <see cref="Grid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
-		/// <summary>
-		/// Returns a reference to the element of the <see cref="SudokuGrid"/> at index zero.
-		/// </summary>
-		/// <param name="pinnedItem">
-		/// The item you want to fix. If the value is
-		/// <list type="table">
-		/// <item>
-		/// <term><see cref="PinnedItem.CurrentGrid"/></term>
-		/// <description>The current grid mask list of pointer value will be returned.</description>
-		/// </item>
-		/// <item>
-		/// <term><see cref="PinnedItem.InitialGrid"/></term>
-		/// <description>The initial grid mask list of pointer value will be returned.</description>
-		/// </item>
-		/// <item>
-		/// <term>Otherwise</term>
-		/// <description>The reference of <see langword="null"/>.</description>
-		/// </item>
-		/// </list>
-		/// </param>
-		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[return: MaybeNullWhenNotDefined("pinnedItem")]
-		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
-			ref pinnedItem == PinnedItem.CurrentGrid
-			? ref GetPinnableReference()
-			: ref pinnedItem == PinnedItem.InitialGrid
-			? ref _initialValues[0]
-			: ref *(short*)null;
 
 		/// <summary>
 		/// Get all masks and print them.
@@ -891,6 +884,28 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
+		/// Convertes the current instance to a <see cref="SudokuGrid"/>.
+		/// </summary>
+		/// <returns>The sudoku grid result.</returns>
+		public readonly SudokuGrid ToSudokuGrid()
+		{
+			short[] arr = ArrayPool<short>.Shared.Rent(Length);
+			fixed (short* pArr = arr, pGrid = this)
+			{
+				Unsafe.CopyBlock(pArr, pGrid, sizeof(short) * Length);
+			}
+
+			try
+			{
+				return new(arr);
+			}
+			finally
+			{
+				ArrayPool<short>.Shared.Return(arr);
+			}
+		}
+
+		/// <summary>
 		/// To fix the current grid (all modifiable values will be changed to given ones).
 		/// </summary>
 		public void Fix()
@@ -902,8 +917,6 @@ namespace Sudoku.Data
 					SetStatus(i, CellStatus.Given);
 				}
 			}
-
-			UpdateInitialMasks();
 		}
 
 		/// <summary>
@@ -917,18 +930,6 @@ namespace Sudoku.Data
 				{
 					SetStatus(i, CellStatus.Modifiable);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To reset the grid to initial status.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Reset()
-		{
-			fixed (short* pValues = _values, pInitialValues = _initialValues)
-			{
-				Unsafe.CopyBlock(pValues, pInitialValues, sizeof(short) * Length);
 			}
 		}
 
@@ -963,17 +964,6 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// To update initial masks.
-		/// </summary>
-		internal void UpdateInitialMasks()
-		{
-			fixed (short* pValues = _values, pInitialValues = _initialValues)
-			{
-				Unsafe.CopyBlock(pInitialValues, pValues, sizeof(short) * Length);
-			}
-		}
-
-		/// <summary>
 		/// Called by properties <see cref="CandidateMap"/>, <see cref="DigitsMap"/>
 		/// and <see cref="ValuesMap"/>.
 		/// </summary>
@@ -982,7 +972,7 @@ namespace Sudoku.Data
 		/// <seealso cref="CandidateMap"/>
 		/// <seealso cref="DigitsMap"/>
 		/// <seealso cref="ValuesMap"/>
-		private readonly Cells[] GetMap(delegate*<in SudokuGrid, int, int, bool> predicate)
+		private readonly Cells[] GetMap(delegate*<in Grid, int, int, bool> predicate)
 		{
 			var result = new Cells[RegionCellsCount];
 			for (int digit = 0; digit < RegionCellsCount; digit++)
@@ -1007,7 +997,7 @@ namespace Sudoku.Data
 		/// <returns>The cells.</returns>
 		/// <seealso cref="EmptyCells"/>
 		/// <seealso cref="BivalueCells"/>
-		private readonly Cells GetCells(delegate*<in SudokuGrid, int, bool> predicate)
+		private readonly Cells GetCells(delegate*<in Grid, int, bool> predicate)
 		{
 			var result = Cells.Empty;
 			for (int cell = 0; cell < Length; cell++)
@@ -1029,7 +1019,7 @@ namespace Sudoku.Data
 		/// <param name="right">The right one.</param>
 		/// <returns>The <see cref="bool"/> result indicating that.</returns>
 		[ProxyEquality]
-		public static bool Equals(in SudokuGrid left, in SudokuGrid right)
+		public static bool Equals(in Grid left, in Grid right)
 		{
 			fixed (short* pThis = left, pOther = right)
 			{
@@ -1057,7 +1047,7 @@ namespace Sudoku.Data
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
+		public static Grid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
 		/// <summary>
 		/// <para>
@@ -1072,7 +1062,7 @@ namespace Sudoku.Data
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parse(string, GridParsingOption)"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str) => new Parser(str).Parse();
+		public static Grid Parse(string str) => new Parser(str).Parse();
 
 		/// <summary>
 		/// <para>
@@ -1094,7 +1084,7 @@ namespace Sudoku.Data
 		/// <returns>The result instance had converted.</returns>
 		/// <seealso cref="Parser.CompatibleFirst"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str, bool compatibleFirst) =>
+		public static Grid Parse(string str, bool compatibleFirst) =>
 			new Parser(str, compatibleFirst).Parse();
 
 		/// <summary>
@@ -1104,7 +1094,7 @@ namespace Sudoku.Data
 		/// <param name="gridParsingOption">The grid parsing type.</param>
 		/// <returns>The result instance had converted.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
+		public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
 			new Parser(str).Parse(gridParsingOption);
 
 		/// <summary>
@@ -1118,7 +1108,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
-		public static bool TryParse(string str, out SudokuGrid result)
+		public static bool TryParse(string str, out Grid result)
 		{
 			try
 			{
@@ -1144,7 +1134,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A <see cref="bool"/> value indicating that.</returns>
 		/// <seealso cref="Undefined"/>
-		public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
+		public static bool TryParse(string str, GridParsingOption option, out Grid result)
 		{
 			try
 			{
@@ -1157,15 +1147,15 @@ namespace Sudoku.Data
 				return false;
 			}
 		}
-	
 
+
+#if false
 		/// <summary>
-		/// Returns the segment via the specified region and the sudoku grid to filter.
+		/// Implicit cast from <see cref="Grid"/> to <see cref="SudokuGrid"/>.
 		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="region">The region.</param>
-		/// <returns>The segment.</returns>
+		/// <param name="this">The current type instance.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static SudokuGridSegment operator /(in SudokuGrid grid, int region) => new(grid, region);
+		public static implicit operator SudokuGrid(in Grid @this) => @this.ToSudokuGrid();
+#endif
 	}
 }
