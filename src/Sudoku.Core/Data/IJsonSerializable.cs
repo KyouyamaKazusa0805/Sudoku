@@ -9,7 +9,7 @@ namespace Sudoku.Data
 	/// </summary>
 	/// <typeparam name="TSelf">The type of the instance.</typeparam>
 	/// <typeparam name="TConverter">The type of the converter bound with.</typeparam>
-	public interface IJsonSerializable<out TSelf, in TConverter>
+	public interface IJsonSerializable<TSelf, in TConverter>
 		where TSelf : IJsonSerializable<TSelf, TConverter>
 		where TConverter : JsonConverter<TSelf>, new()
 	{
