@@ -25,7 +25,7 @@
             Used on an assembly, to tell the compiler this assembly will generate
             a extension method called <c>Deconstruct</c>.
             </summary>
-            <example>
+            <remarks>
             For example, if you write the code like:
             <code>
             [assembly: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
@@ -45,7 +45,7 @@
                 }
             }
             </code>
-            </example>
+            </remarks>
         </member>
         <member name="M:Sudoku.CodeGenerating.AutoDeconstructExtensionAttribute.#ctor(System.Type,System.String[])">
             <summary>
