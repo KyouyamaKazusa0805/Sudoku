@@ -269,6 +269,7 @@ namespace Sudoku.Data
 		{
 			// Don't merge those two to one.
 			//(this = PeerMaps[cell]).InternalAdd(cell, setItself);
+			// This is a bug for the compiler, see sharplab http://bitly.ws/fRdf
 			this = PeerMaps[cell];
 			InternalAdd(cell, setItself);
 		}
