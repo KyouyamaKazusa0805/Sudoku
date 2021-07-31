@@ -31,6 +31,7 @@ namespace Sudoku.Data
 #endif
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	[AutoFormattable]
+	[NonVersionable]
 	public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>
 	{
 		/// <summary>

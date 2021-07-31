@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.CodeGenerating;
+using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -27,6 +28,7 @@ namespace Sudoku.Data
 	[AutoEquality(nameof(_high), nameof(_low))]
 	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 	[AutoFormattable]
+	[NonVersionable]
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>
 	{
 		/// <summary>

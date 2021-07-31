@@ -61,12 +61,14 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				return;
 			}
 
-			if (compilation.GetTypeByMetadataName("Sudoku.Data.SudokuGrid") is not { } sudokuGridType)
+			if (compilation.GetTypeByMetadataName("Sudoku.Data.SudokuGrid") is not { } sudokuGridType
+				|| compilation.GetTypeByMetadataName("Sudoku.Data.Grid") is not { } gridType)
 			{
 				return;
 			}
 
-			if (!SymbolEqualityComparer.Default.Equals(possibleSudokuGridType, sudokuGridType))
+			if (!SymbolEqualityComparer.Default.Equals(possibleSudokuGridType, sudokuGridType)
+				&& !SymbolEqualityComparer.Default.Equals(possibleSudokuGridType, gridType))
 			{
 				return;
 			}

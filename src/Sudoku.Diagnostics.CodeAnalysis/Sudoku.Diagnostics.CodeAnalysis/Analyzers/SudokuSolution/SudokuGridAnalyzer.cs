@@ -16,6 +16,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private const string SudokuGridTypeName = "SudokuGrid";
 
 		/// <summary>
+		/// Indicates the type name of the sudoku grid.
+		/// </summary>
+		private const string GridTypeName = "Grid";
+
+		/// <summary>
 		/// Indicates the field name "<c>RefreshingCandidates</c>".
 		/// </summary>
 		private const string RefreshingCandidatesFuncPtrName = "RefreshingCandidates";
@@ -44,7 +49,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Expression: MemberAccessExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-						Expression: IdentifierNameSyntax { Identifier: { ValueText: SudokuGridTypeName } },
+						Expression: IdentifierNameSyntax
+						{
+							Identifier: { ValueText: SudokuGridTypeName or GridTypeName }
+						},
 						Name: IdentifierNameSyntax
 						{
 							Identifier:
@@ -62,12 +70,10 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			}
 
 			if (
-				node.ContainingTypeIs(
-					static nodeTraversing => nodeTraversing is StructDeclarationSyntax
-					{
-						Identifier: { ValueText: SudokuGridTypeName }
-					}
-				)
+				node.ContainingTypeIs(static nodeTraversing => nodeTraversing is StructDeclarationSyntax
+				{
+					Identifier: { ValueText: SudokuGridTypeName }
+				})
 			)
 			{
 				return;

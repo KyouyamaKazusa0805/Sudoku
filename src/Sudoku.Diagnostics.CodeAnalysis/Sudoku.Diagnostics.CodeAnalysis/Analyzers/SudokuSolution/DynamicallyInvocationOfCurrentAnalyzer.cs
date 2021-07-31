@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
+using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -26,8 +27,18 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 		private static void AnalyzeDynamicInvocation(SyntaxNodeAnalysisContext context)
 		{
-			var (semanticModel, compilation, n, _, cancellationToken) = context;
-			if (compilation.AssemblyName is ProjectNames.Sudoku_Windows or ProjectNames.Sudoku_UI)
+			if (
+				context is not (
+					semanticModel: var semanticModel,
+					compilation:
+					{
+						AssemblyName: not (P.Sudoku_Windows or P.Sudoku_UI or P.Sudoku_UI_WinUI)
+					} compilation,
+					node: var n,
+					_,
+					cancellationToken: var cancellationToken
+				)
+			)
 			{
 				// We don't check on those two WPF projects, because those two projects has already used
 				// their own resource dictionary called 'MergedDictionary'.

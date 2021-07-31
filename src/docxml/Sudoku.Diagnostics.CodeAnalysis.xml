@@ -1770,6 +1770,11 @@
             Indicates the sudoku grid type name.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.GridTypeName">
+            <summary>
+            Indicates the sudoku grid type name.
+            </summary>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.CellsFullTypeName">
             <summary>
             Indicates the full type name of <c>Cells</c>.
@@ -1781,6 +1786,11 @@
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.SudokuGridFullTypeName">
+            <summary>
+            Indicates the full type name of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DefaultExpressionAnalyzer.GridFullTypeName">
             <summary>
             Indicates the full type name of the sudoku grid.
             </summary>
@@ -2225,6 +2235,11 @@
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.SudokuGridTypeName">
+            <summary>
+            Indicates the type name of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.SudokuGridAnalyzer.GridTypeName">
             <summary>
             Indicates the type name of the sudoku grid.
             </summary>
@@ -3724,9 +3739,11 @@
             <summary>
             Indicates the project <c>Sudoku.UI</c>.
             </summary>
-            <remarks>
-            This project won't be added into the solution because I had deleted yet.
-            </remarks>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.ProjectNames.Sudoku_UI_WinUI">
+            <summary>
+            Indicates the project <c>Sudoku.UI.WinUI</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.ResourceDictionaryKeys">
             <summary>

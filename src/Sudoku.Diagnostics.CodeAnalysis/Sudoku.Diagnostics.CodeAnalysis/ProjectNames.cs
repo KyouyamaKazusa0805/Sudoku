@@ -13,9 +13,11 @@
 		/// <summary>
 		/// Indicates the project <c>Sudoku.UI</c>.
 		/// </summary>
-		/// <remarks>
-		/// This project won't be added into the solution because I had deleted yet.
-		/// </remarks>
 		public const string Sudoku_UI = "Sudoku.UI";
+
+		/// <summary>
+		/// Indicates the project <c>Sudoku.UI.WinUI</c>.
+		/// </summary>
+		public const string Sudoku_UI_WinUI = "Sudoku.UI.WinUI";
 	}
 }

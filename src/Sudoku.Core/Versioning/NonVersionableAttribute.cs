@@ -3,7 +3,7 @@
 namespace Sudoku.Versioning
 {
 	/// <summary>
-	/// To mark on a member, to tell the user the member is never not changed.
+	/// To mark on a member, to tell the user the member is never changed.
 	/// </summary>
 	/// <remarks>
 	/// <para>

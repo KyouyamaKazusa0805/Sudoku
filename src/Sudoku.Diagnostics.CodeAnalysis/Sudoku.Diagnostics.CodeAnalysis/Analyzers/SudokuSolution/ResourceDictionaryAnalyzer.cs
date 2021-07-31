@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
+using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 {
@@ -19,18 +20,20 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 
 			context.RegisterCompilationStartAction(static context =>
 			{
-				var (compilation, options) = context;
-				if (compilation.AssemblyName is ProjectNames.Sudoku_Windows or ProjectNames.Sudoku_UI)
+				if (
+					context is (
+						compilation: { AssemblyName: not (P.Sudoku_Windows or P.Sudoku_UI or P.Sudoku_UI_WinUI) },
+						_
+					)
+				)
 				{
 					// We don't check on those two WPF projects, because those two projects has already used
 					// their own resource dictionary (MergedDictionary).
-					return;
+					context.RegisterSyntaxNodeAction(
+						CheckWithUsingDirective,
+						new[] { SyntaxKind.SimpleMemberAccessExpression }
+					);
 				}
-
-				context.RegisterSyntaxNodeAction(
-					CheckWithUsingDirective,
-					new[] { SyntaxKind.SimpleMemberAccessExpression }
-				);
 			});
 		}
 

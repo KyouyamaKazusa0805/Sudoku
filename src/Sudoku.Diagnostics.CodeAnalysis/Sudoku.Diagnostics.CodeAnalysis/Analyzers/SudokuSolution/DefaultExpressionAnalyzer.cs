@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -29,6 +30,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		private const string SudokuGridTypeName = "SudokuGrid";
 
 		/// <summary>
+		/// Indicates the sudoku grid type name.
+		/// </summary>
+		private const string GridTypeName = "Grid";
+
+		/// <summary>
 		/// Indicates the full type name of <c>Cells</c>.
 		/// </summary>
 		private const string CellsFullTypeName = "Sudoku.Data.Cells";
@@ -42,6 +48,11 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 		/// Indicates the full type name of the sudoku grid.
 		/// </summary>
 		private const string SudokuGridFullTypeName = "Sudoku.Data.SudokuGrid";
+
+		/// <summary>
+		/// Indicates the full type name of the sudoku grid.
+		/// </summary>
+		private const string GridFullTypeName = "Sudoku.Data.Grid";
 
 		/// <summary>
 		/// Indicates the field name to check in the diagnostic result <c>SD0303</c>.
@@ -91,6 +102,8 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 			bool isOfTypeSudokuGrid;
 			SyntaxNode? parent;
 
+			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+			Func<string, INamedTypeSymbol?> c = compilation.GetTypeByMetadataName;
 			switch (originalNode)
 			{
 				case BaseObjectCreationExpressionSyntax
@@ -105,18 +118,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					Type: var typeSymbol
 				}:
 				{
-					bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CellsFullTypeName)
-					);
-					bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CandidatesFullTypeName)
-					);
-					isOfTypeSudokuGrid = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
-					);
+					bool isOfTypeCells = f(typeSymbol, c(CellsFullTypeName));
+					bool isOfTypeCandidates = f(typeSymbol, c(CandidatesFullTypeName));
+					isOfTypeSudokuGrid = f(typeSymbol, c(SudokuGridFullTypeName)) || f(typeSymbol, c(GridFullTypeName));
 
 					if (!isOfTypeCells && !isOfTypeCandidates && !isOfTypeSudokuGrid)
 					{
@@ -126,25 +130,16 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
-						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
+						: isOfTypeCandidates ? CandidatesTypeName : $"{SudokuGridTypeName} or {GridTypeName}";
 
 					break;
 				}
 				case DefaultExpressionSyntax { Parent: var parentNode } node
 				when semanticModel.GetOperation(node) is { Type: var typeSymbol }:
 				{
-					bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CellsFullTypeName)
-					);
-					bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CandidatesFullTypeName)
-					);
-					isOfTypeSudokuGrid = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
-					);
+					bool isOfTypeCells = f(typeSymbol, c(CellsFullTypeName));
+					bool isOfTypeCandidates = f(typeSymbol, c(CandidatesFullTypeName));
+					isOfTypeSudokuGrid = f(typeSymbol, c(SudokuGridFullTypeName)) || f(typeSymbol, c(GridFullTypeName));
 
 					if (!isOfTypeCells && !isOfTypeCandidates && !isOfTypeSudokuGrid)
 					{
@@ -154,7 +149,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
-						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
+						: isOfTypeCandidates ? CandidatesTypeName : $"{SudokuGridTypeName} or {GridTypeName}";
 
 					break;
 				}
@@ -165,18 +160,9 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 				} node
 				when semanticModel.GetOperation(node) is { Type: var typeSymbol }:
 				{
-					bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CellsFullTypeName)
-					);
-					bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(CandidatesFullTypeName)
-					);
-					isOfTypeSudokuGrid = SymbolEqualityComparer.Default.Equals(
-						typeSymbol,
-						compilation.GetTypeByMetadataName(SudokuGridFullTypeName)
-					);
+					bool isOfTypeCells = f(typeSymbol, c(CellsFullTypeName));
+					bool isOfTypeCandidates = f(typeSymbol, c(CandidatesFullTypeName));
+					isOfTypeSudokuGrid = f(typeSymbol, c(SudokuGridFullTypeName)) || f(typeSymbol, c(GridFullTypeName));
 
 					if (!isOfTypeCells && !isOfTypeCandidates && !isOfTypeSudokuGrid)
 					{
@@ -186,7 +172,7 @@ namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
 					parent = parentNode;
 					typeName = isOfTypeCells
 						? CellsTypeName
-						: isOfTypeCandidates ? CandidatesTypeName : SudokuGridTypeName;
+						: isOfTypeCandidates ? CandidatesTypeName : $"{SudokuGridTypeName} or {GridTypeName}";
 
 					break;
 				}
