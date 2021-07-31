@@ -28,6 +28,7 @@ namespace Sudoku.Data
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	[AutoFormattable]
 	[NonVersionable]
+	[Obsolete("Please use the type '" + nameof(Grid) + "' instead.", false)]
 	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
 	{
 		/// <summary>
@@ -846,15 +847,12 @@ namespace Sudoku.Data
 			static string p(short v) => v.ToString();
 		}
 
-		[NonVersionable]
 		public override readonly partial string ToString();
 
-		[NonVersionable]
 		public readonly partial string ToString(string? format);
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[NonVersionable]
 		public readonly string ToString(string? format, IFormatProvider? formatProvider) => this switch
 		{
 			{ IsEmpty: true } => "<Empty>",
