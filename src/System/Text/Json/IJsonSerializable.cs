@@ -27,7 +27,7 @@ namespace System.Text.Json
 		static IJsonSerializable() => SerializerOptions = new JsonSerializerOptions
 		{
 			WriteIndented = true
-		}.AppendConverter<TConverter, TSelf>(new TConverter());
+		}.AppendConverter<TSelf, TConverter>(new TConverter());
 
 
 		/// <summary>

@@ -14,15 +14,15 @@ namespace System.Extensions
 		/// Append the specified JSON converter into the collection, and returns the reference
 		/// of this current instance.
 		/// </summary>
-		/// <typeparam name="TConverter">The type of the JSON converter.</typeparam>
 		/// <typeparam name="TSelf">
 		/// The type of the data as the result value that JSON converter returns.
 		/// </typeparam>
+		/// <typeparam name="TConverter">The type of the JSON converter.</typeparam>
 		/// <param name="this">The current instance.</param>
 		/// <param name="converter">The JSON converter to append.</param>
 		/// <returns>The reference of the current instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static JsonSerializerOptions AppendConverter<TConverter, TSelf>(
+		public static JsonSerializerOptions AppendConverter<TSelf, TConverter>(
 			this JsonSerializerOptions @this, TConverter converter)
 			where TSelf : IJsonSerializable<TSelf, TConverter>
 			where TConverter : JsonConverter<TSelf>, new()
