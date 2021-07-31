@@ -122,7 +122,6 @@ namespace Sudoku.Data
 		private fixed short _values[Length];
 
 
-
 		/// <summary>
 		/// Creates an instance using grid values.
 		/// </summary>
