@@ -10,6 +10,7 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using Sudoku.CodeGenerating;
 using Sudoku.Data.Extensions;
 using Sudoku.Versioning;
@@ -29,7 +30,7 @@ namespace Sudoku.Data
 	[AutoFormattable]
 	[NonVersionable]
 	[Obsolete("Please use the type '" + nameof(Grid) + "' instead.", false)]
-	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable
+	public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>
 	{
 		/// <summary>
 		/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1156,7 +1157,7 @@ namespace Sudoku.Data
 				return false;
 			}
 		}
-	
+
 
 		/// <summary>
 		/// Returns the segment via the specified region and the sudoku grid to filter.

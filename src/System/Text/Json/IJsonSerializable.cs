@@ -1,8 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Json;
+﻿using System.Extensions;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
-namespace Sudoku.Data
+namespace System.Text.Json
 {
 	/// <summary>
 	/// Defines a type that can serialize and deserialize.
@@ -24,13 +24,10 @@ namespace Sudoku.Data
 		/// Indicates the <see langword="static"/> constructor of this type.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static IJsonSerializable()
+		static IJsonSerializable() => SerializerOptions = new JsonSerializerOptions
 		{
-			var options = new JsonSerializerOptions { WriteIndented = true };
-			options.Converters.Add(new TConverter());
-
-			SerializerOptions = options;
-		}
+			WriteIndented = true
+		}.AppendConverter<TConverter, TSelf>(new TConverter());
 
 
 		/// <summary>

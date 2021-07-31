@@ -45,6 +45,7 @@ namespace Sudoku.Data
 			public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options)
 			{
 				var (hi, lo) = value;
+
 				writer.WriteStartObject();
 				writer.WriteNumber("HighBits", hi);
 				writer.WriteNumber("LowBits", lo);
