@@ -9,6 +9,7 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Defines a JSON converter that allows the current instance being serialized.
 		/// </summary>
+		[JsonConverter(typeof(Cells))]
 		public sealed unsafe class JsonConverter : JsonConverter<Cells>
 		{
 			/// <inheritdoc/>
