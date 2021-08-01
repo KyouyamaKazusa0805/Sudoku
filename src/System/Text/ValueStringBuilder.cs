@@ -441,7 +441,7 @@ namespace System.Text
 		{
 			switch (s)
 			{
-				case null:
+				case not { Length: not 0 }:
 				{
 					return;
 				}

@@ -263,6 +263,12 @@
             </para>
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.Tables.CellsCoverTable">
+            <summary>
+            Indicates the cover table that only used for <see cref="T:Sudoku.Data.Cells"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
             The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
@@ -826,11 +832,6 @@
             and the <see langword="false"/> bit (0) is for the cell not containing
             the digit.
             </remarks>
-        </member>
-        <member name="F:Sudoku.Data.Cells.CoverTable">
-            <summary>
-            The cover table.
-            </summary>
         </member>
         <member name="F:Sudoku.Data.Cells.Empty">
             <summary>

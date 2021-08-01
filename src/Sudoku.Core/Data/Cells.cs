@@ -33,40 +33,6 @@ namespace Sudoku.Data
 	public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>
 	{
 		/// <summary>
-		/// The cover table.
-		/// </summary>
-		private static readonly long[,] CoverTable =
-		{
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000111_000000111_000000111 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000111000_000111000_000111000 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_111000000_111000000_111000000 },
-			{ 0b000000000_000000000_000000000_000000111_0000, 0b00111_000000111_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_000111000_0001, 0b11000_000111000_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_111000000_1110, 0b00000_111000000_000000000_000000000_000000000 },
-			{ 0b000000111_000000111_000000111_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b000111000_000111000_000111000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b111000000_111000000_111000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_111111111 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_111111111_000000000 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_111111111_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_111111111_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_000000000_1111, 0b11111_000000000_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_000000000_111111111_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b000000000_000000000_111111111_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b000000000_111111111_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b111111111_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 },
-			{ 0b000000001_000000001_000000001_000000001_0000, 0b00001_000000001_000000001_000000001_000000001 },
-			{ 0b000000010_000000010_000000010_000000010_0000, 0b00010_000000010_000000010_000000010_000000010 },
-			{ 0b000000100_000000100_000000100_000000100_0000, 0b00100_000000100_000000100_000000100_000000100 },
-			{ 0b000001000_000001000_000001000_000001000_0000, 0b01000_000001000_000001000_000001000_000001000 },
-			{ 0b000010000_000010000_000010000_000010000_0000, 0b10000_000010000_000010000_000010000_000010000 },
-			{ 0b000100000_000100000_000100000_000100000_0001, 0b00000_000100000_000100000_000100000_000100000 },
-			{ 0b001000000_001000000_001000000_001000000_0010, 0b00000_001000000_001000000_001000000_001000000 },
-			{ 0b010000000_010000000_010000000_010000000_0100, 0b00000_010000000_010000000_010000000_010000000 },
-			{ 0b100000000_100000000_100000000_100000000_1000, 0b00000_100000000_100000000_100000000_100000000 },
-		};
-
-		/// <summary>
 		/// <para>Indicates an empty instance (all bits are 0).</para>
 		/// <para>
 		/// I strongly recommend you <b>should</b> use this instance instead of default constructor
@@ -96,11 +62,24 @@ namespace Sudoku.Data
 		private long _high, _low;
 
 
+#if false
+		/// <summary>
+		/// Initializes a default instance of type <see cref="Cells"/>.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Cells()
+		{
+			_high = _low = 0;
+			Count = 0;
+		}
+#endif
+
 		/// <summary>
 		/// Initializes an instance with the specified cell offset
 		/// (Sets itself and all peers).
 		/// </summary>
 		/// <param name="cell">The cell offset.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Cells(int cell) : this(cell, true)
 		{
 		}
@@ -231,6 +210,7 @@ namespace Sudoku.Data
 		/// </summary>
 		/// <param name="high">Higher 40 bits.</param>
 		/// <param name="low">Lower 41 bits.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Cells(long high, long low)
 		{
 			_high = high;
@@ -244,6 +224,7 @@ namespace Sudoku.Data
 		/// <param name="high">Higher 27 bits.</param>
 		/// <param name="mid">Medium 27 bits.</param>
 		/// <param name="low">Lower 27 bits.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Cells(int high, int mid, int low) : this(
 			(high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL),
 			(mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
@@ -265,6 +246,7 @@ namespace Sudoku.Data
 		/// If you want to use this constructor, please use <see cref="PeerMaps"/> instead.
 		/// </remarks>
 		/// <seealso cref="PeerMaps"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private Cells(int cell, bool setItself)
 		{
 			// Don't merge those two to one.
@@ -295,7 +277,7 @@ namespace Sudoku.Data
 			{
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
 					{
 						return true;
 					}
@@ -382,7 +364,7 @@ namespace Sudoku.Data
 				int resultRegions = 0;
 				for (int i = BlockOffset; i < Limit; i++)
 				{
-					if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+					if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
 					{
 						resultRegions |= 1 << i;
 					}
@@ -602,7 +584,7 @@ namespace Sudoku.Data
 		{
 			for (int i = BlockOffset; i < Limit; i++)
 			{
-				if ((_high & ~CoverTable[i, 0]) == 0 && (_low & ~CoverTable[i, 1]) == 0)
+				if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
 				{
 					region = i;
 					return true;

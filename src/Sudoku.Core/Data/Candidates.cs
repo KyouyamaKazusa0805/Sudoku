@@ -57,6 +57,18 @@ namespace Sudoku.Data
 		private long _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
 
 
+#if false
+		/// <summary>
+		/// Initializes a default instance of type <see cref="Candidates"/>.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Candidates()
+		{
+			_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
+			Count = 0;
+		}
+#endif
+
 		/// <summary>
 		///  Initializes an instance with another one.
 		/// </summary>
@@ -163,7 +175,9 @@ namespace Sudoku.Data
 			if (length != Len)
 			{
 				throw new ArgumentException(
-					$"Argument '{nameof(length)}' should be {Len.ToString()}.", nameof(length));
+					$"Argument '{nameof(length)}' should be {Len.ToString()}.",
+					nameof(length)
+				);
 			}
 
 			int count = 0;
@@ -366,7 +380,6 @@ namespace Sudoku.Data
 				CopyTo(arr, span.Length);
 			}
 		}
-
 
 		/// <summary>
 		/// Check whether the specified candidate is in the current list.
@@ -890,24 +903,28 @@ namespace Sudoku.Data
 		/// Implicit cast from <see cref="int"/>[] to <see cref="Candidates"/>.
 		/// </summary>
 		/// <param name="array">The array.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Candidates(int[] array) => new(array);
 
 		/// <summary>
 		/// Implicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
 		/// </summary>
 		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator Span<int>(in Candidates map) => map.ToSpan();
 
 		/// <summary>
 		/// Implicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
 		/// </summary>
 		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static implicit operator ReadOnlySpan<int>(in Candidates map) => map.ToReadOnlySpan();
 
 		/// <summary>
 		/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
 		/// </summary>
 		/// <param name="map">The map.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static explicit operator int[](in Candidates map) => map.ToArray();
 	}
 }

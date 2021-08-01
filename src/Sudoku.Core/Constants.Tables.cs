@@ -83,6 +83,12 @@ namespace Sudoku
 				(byte Line, byte Block),
 				(Cells LineMap, Cells BlockMap, Cells IntersectionMap, byte[] OtherBlocks)
 			> IntersectionMaps;
+
+			/// <summary>
+			/// Indicates the cover table that only used for <see cref="Cells"/>.
+			/// </summary>
+			/// <seealso cref="Cells"/>
+			internal static readonly long[,] CellsCoverTable;
 		}
 	}
 }

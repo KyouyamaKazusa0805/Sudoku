@@ -79,6 +79,7 @@ namespace Sudoku.Data.Collections
 				_ => f(this)
 			};
 
+
 			static string f(in RegionCollection @this)
 			{
 				var dic = new Dictionary<int, ICollection<int>>();
