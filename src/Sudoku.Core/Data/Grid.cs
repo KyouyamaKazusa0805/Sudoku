@@ -83,12 +83,12 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the event triggered when the value is changed.
 		/// </summary>
-		public static readonly delegate*<ref Grid, in ValueChangedArgs, void> ValueChanged;
+		public static readonly void* ValueChanged;
 
 		/// <summary>
 		/// Indicates the event triggered when should re-compute candidates.
 		/// </summary>
-		public static readonly delegate*<ref Grid, void> RefreshingCandidates;
+		public static readonly void* RefreshingCandidates;
 
 		/// <summary>
 		/// Indicates the default grid that all values are initialized 0, which is same as
@@ -235,9 +235,9 @@ namespace Sudoku.Data
 				select new KeyValuePair<char, int>(Base64List[i], i)
 			);
 
-			// Initializes events.
-			ValueChanged = &onValueChanged;
-			RefreshingCandidates = &onRefreshingCandidates;
+			// Initializes events.//delegate*<ref Grid, in ValueChangedArgs, void>
+			ValueChanged = (delegate*<ref Grid, in ValueChangedArgs, void>)&onValueChanged;
+			RefreshingCandidates = (delegate*<ref Grid, void>)&onRefreshingCandidates;
 
 
 			static void onValueChanged(ref Grid @this, in ValueChangedArgs e)
@@ -605,7 +605,7 @@ namespace Sudoku.Data
 						// Note that reset candidates may not trigger the event.
 						_values[cell] = DefaultMask;
 
-						RefreshingCandidates(ref this);
+						((delegate*<ref Grid, void>)RefreshingCandidates)(ref this);
 
 						break;
 					}
@@ -619,7 +619,10 @@ namespace Sudoku.Data
 
 						// To trigger the event, which is used for eliminate
 						// all same candidates in peer cells.
-						ValueChanged(ref this, new(cell, copy, result, value));
+						((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(
+							ref this,
+							new(cell, copy, result, value)
+						);
 
 						break;
 					}
@@ -658,7 +661,10 @@ namespace Sudoku.Data
 					}
 
 					// To trigger the event.
-					ValueChanged(ref this, new(cell, copied, _values[cell], -1));
+					((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(
+						ref this,
+						new(cell, copied, _values[cell], -1)
+					);
 				}
 			}
 		}
@@ -943,7 +949,7 @@ namespace Sudoku.Data
 			short copy = mask;
 			mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
 
-			ValueChanged(ref this, new(cell, copy, mask, -1));
+			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copy, mask, -1));
 		}
 
 		/// <summary>
@@ -958,7 +964,7 @@ namespace Sudoku.Data
 			short copy = m;
 			m = mask;
 
-			ValueChanged(ref this, new(cell, copy, m, -1));
+			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copy, m, -1));
 		}
 
 		/// <summary>
