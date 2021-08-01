@@ -5,6 +5,7 @@ using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Sudoku.CodeGenerating;
 using Sudoku.Versioning;
@@ -21,7 +22,7 @@ namespace Sudoku.Data
 	[AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 	[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 	[NonVersionable]
-	public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>
+	public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>, IJsonSerializable<Candidates, Candidates.JsonConverter>
 	{
 		/// <summary>
 		/// Indicates the size of each unit.
@@ -210,6 +211,31 @@ namespace Sudoku.Data
 		/// <param name="candidates">The candidates.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Candidates(IEnumerable<int> candidates) : this() => AddRange(candidates);
+
+		/// <summary>
+		/// Copies the values into the collection.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private Candidates(
+			long _0, long _1, long _2, long _3, long _4, long _5, long _6, long _7, long _8,
+			long _9, long _10, long _11)
+		{
+			this._0 = _0;
+			this._1 = _1;
+			this._2 = _2;
+			this._3 = _3;
+			this._4 = _4;
+			this._5 = _5;
+			this._6 = _6;
+			this._7 = _7;
+			this._8 = _8;
+			this._9 = _9;
+			this._10 = _10;
+			this._11 = _11;
+			Count = PopCount((ulong)_0) + PopCount((ulong)_1) + PopCount((ulong)_2) + PopCount((ulong)_3)
+				+ PopCount((ulong)_4) + PopCount((ulong)_5) + PopCount((ulong)_6) + PopCount((ulong)_7)
+				+ PopCount((ulong)_8) + PopCount((ulong)_9) + PopCount((ulong)_10) + PopCount((ulong)_11);
+		}
 
 
 		/// <summary>

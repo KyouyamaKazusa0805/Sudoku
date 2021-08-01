@@ -142,6 +142,12 @@ namespace Sudoku
 			public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListPrepositionalForm + "|" + CandidateListPostpositionalForm + ")";
 
 			/// <summary>
+			/// Indicates the regular expression to match a conclusion.
+			/// </summary>
+			[Regex]
+			public const string Conclusion = @"(R[1-9]C[1-9]|r[1-9]c[1-9])\s*(=|!=|<>)\s*([1-9])";
+
+			/// <summary>
 			/// Indicates the regular expression to match a digit.
 			/// </summary>
 			[Regex]

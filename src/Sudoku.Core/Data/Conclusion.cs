@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
@@ -16,7 +17,7 @@ namespace Sudoku.Data
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
 	[AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 	[AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-	public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IComparable<Conclusion>
+	public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 	{
 		/// <summary>
 		/// Initializes an instance with a conclusion type, a cell offset and a digit.

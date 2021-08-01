@@ -17,6 +17,7 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
+			/// <exception cref="InvalidOperationException">Throws when the specified data is invalid.</exception>
 			public override Link Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				var (start, end, linkType, propName) = default((int, int, LinkType, string?));
@@ -47,6 +48,10 @@ namespace Sudoku.Data
 								{
 									linkType = (LinkType)reader.GetByte();
 									break;
+								}
+								default:
+								{
+									throw new InvalidOperationException("Throws when the specified data is invalid.");
 								}
 							}
 

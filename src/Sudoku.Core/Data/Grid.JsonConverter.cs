@@ -7,7 +7,7 @@ namespace Sudoku.Data
 	partial struct Grid
 	{
 		/// <summary>
-		/// Indicates a <see cref="Grid"/> JSON converter.
+		/// Defines a JSON converter that allows the current instance being serialized.
 		/// </summary>
 		/// <seealso cref="Grid"/>
 		[JsonConverter(typeof(Grid))]
@@ -18,19 +18,19 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
+			/// <exception cref="InvalidOperationException">Throws when the specified data is invalid.</exception>
 			public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				while (reader.Read())
 				{
-					if (reader.TokenType != JsonTokenType.String)
+					if (reader.TokenType == JsonTokenType.String
+						&& reader.GetString() is { } code && TryParse(code, out var grid))
 					{
-						continue;
+						return grid;
 					}
-
-					return reader.GetString() is not string code || !TryParse(code, out var grid) ? Undefined : grid;
 				}
 
-				return Undefined;
+				throw new InvalidOperationException("The specified data is invalid.");
 			}
 
 			/// <inheritdoc/>

@@ -17,6 +17,7 @@ namespace Sudoku.Data
 
 
 			/// <inheritdoc/>
+			/// <exception cref="InvalidOperationException">Throws when the specified data is invalid.</exception>
 			public override Cells Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			{
 				long hi, lo;
@@ -27,7 +28,12 @@ namespace Sudoku.Data
 					{
 						case JsonTokenType.PropertyName:
 						{
-							pos = reader.GetString() switch { "HighBits" => 0, "LowBits" => 1 };
+							pos = reader.GetString() switch
+							{
+								"HighBits" => 0,
+								"LowBits" => 1,
+								_ => throw new InvalidOperationException("The specified data is invalid.")
+							};
 							break;
 						}
 						case JsonTokenType.Number:

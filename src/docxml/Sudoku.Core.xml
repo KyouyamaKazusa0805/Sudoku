@@ -174,6 +174,11 @@
             </list>
             </remarks>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.Conclusion">
+            <summary>
+            Indicates the regular expression to match a conclusion.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Digit">
             <summary>
             Indicates the regular expression to match a digit.
@@ -511,6 +516,11 @@
             </summary>
             <param name="candidates">The candidates.</param>
         </member>
+        <member name="M:Sudoku.Data.Candidates.#ctor(System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Copies the values into the collection.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Candidates.IsEmpty">
             <summary>
             Indicates whether the map has no set bits.
@@ -754,6 +764,23 @@
             Explicit cast from <see cref="T:Sudoku.Data.Candidates"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="map">The map.</param>
+        </member>
+        <member name="T:Sudoku.Data.Candidates.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Candidates.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified part contains the invalid data (such as the wrong type) while reading.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Candidates,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -1402,6 +1429,7 @@
         </member>
         <member name="M:Sudoku.Data.Cells.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
@@ -1812,6 +1840,21 @@
             <param name="right">The second instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Data.Conclusion.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Conclusion,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
@@ -1995,6 +2038,96 @@
             <param name="cells">The cell.</param>
             <param name="separators">All separators.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Extensions.GridTransformations">
+            <summary>
+            Provides methods for <see cref="T:Sudoku.Data.Grid"/> instances on transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.CounterclockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Extensions.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.Transpose(Sudoku.Data.Grid@)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateClockwise(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotatePi(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Extensions.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
         </member>
         <member name="T:Sudoku.Data.Extensions.Int16Ex">
             <summary>
@@ -3057,7 +3190,7 @@
         </member>
         <member name="T:Sudoku.Data.Grid.JsonConverter">
             <summary>
-            Indicates a <see cref="T:Sudoku.Data.Grid"/> JSON converter.
+            Defines a JSON converter that allows the current instance being serialized.
             </summary>
             <seealso cref="T:Sudoku.Data.Grid"/>
         </member>
@@ -3066,6 +3199,7 @@
         </member>
         <member name="M:Sudoku.Data.Grid.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Grid.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
@@ -3621,6 +3755,7 @@
         </member>
         <member name="M:Sudoku.Data.Link.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
