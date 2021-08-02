@@ -12,7 +12,8 @@
 
 * 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目；
 * 添加 MAUI 的 WinUI 的程序图标（#159）；
-* 添加 `Sudoku.Data.Grid` 类型作为 `Sudoku.Data.SudokuGrid` 类型的替代。
+* 添加 `Sudoku.Data.Grid` 类型作为 `Sudoku.Data.SudokuGrid` 类型的替代；
+* 添加了很多基本类型的 JSON 序列化和反序列化的嵌套类型提供序列化操作。
 
 ### 删除
 
