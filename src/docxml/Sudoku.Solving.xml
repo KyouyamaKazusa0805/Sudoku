@@ -3661,10 +3661,11 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.FastProperties.BivalueMap">
             <summary>
@@ -3672,10 +3673,11 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.FastProperties.CandMaps">
             <summary>
@@ -3683,10 +3685,11 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.FastProperties.DigitMaps">
             <summary>
@@ -3694,10 +3697,11 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.FastProperties.ValueMaps">
             <summary>
@@ -3705,9 +3709,11 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/> called, and you<b>'d better</b>
-            not use this field on <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/> instance.
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.DirectSearcherAttribute"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.FastProperties.InitializeMaps(Sudoku.Data.SudokuGrid@)">
             <summary>

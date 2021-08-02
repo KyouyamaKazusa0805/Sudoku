@@ -1,6 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿#nullable disable warnings
+
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Singles;
 using Sudoku.Versioning;
 
 namespace Sudoku.Solving.Manual
@@ -49,10 +50,11 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <remarks>
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleStepSearcher"/> instance.
+		/// not use this field on instances which are marked the attribute
+		/// <see cref="DirectSearcherAttribute"/>.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		/// <seealso cref="SingleStepSearcher"/>
+		/// <seealso cref="DirectSearcherAttribute"/>
 		public static Cells EmptyMap { get; private set; }
 
 		/// <summary>
@@ -60,10 +62,11 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <remarks>
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleStepSearcher"/> instance.
+		/// not use this field on instances which are marked the attribute
+		/// <see cref="DirectSearcherAttribute"/>.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		/// <seealso cref="SingleStepSearcher"/>
+		/// <seealso cref="DirectSearcherAttribute"/>
 		public static Cells BivalueMap { get; private set; }
 
 		/// <summary>
@@ -71,32 +74,36 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <remarks>
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleStepSearcher"/> instance.
+		/// not use this field on instances which are marked the attribute
+		/// <see cref="DirectSearcherAttribute"/>.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		/// <seealso cref="SingleStepSearcher"/>
-		public static Cells[] CandMaps { get; private set; } = null!;
+		/// <seealso cref="DirectSearcherAttribute"/>
+		public static Cells[] CandMaps { get; private set; }
 
 		/// <summary>
 		/// The digit maps.
 		/// </summary>
 		/// <remarks>
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleStepSearcher"/> instance.
+		/// not use this field on instances which are marked the attribute
+		/// <see cref="DirectSearcherAttribute"/>.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		/// <seealso cref="SingleStepSearcher"/>
-		public static Cells[] DigitMaps { get; private set; } = null!;
+		/// <seealso cref="DirectSearcherAttribute"/>
+		public static Cells[] DigitMaps { get; private set; }
 
 		/// <summary>
 		/// The value maps.
 		/// </summary>
 		/// <remarks>
 		/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
-		/// not use this field on <see cref="SingleStepSearcher"/> instance.
+		/// not use this field on instances which are marked the attribute
+		/// <see cref="DirectSearcherAttribute"/>.
 		/// </remarks>
 		/// <seealso cref="InitializeMaps(in SudokuGrid)"/>
-		public static Cells[] ValueMaps { get; private set; } = null!;
+		/// <seealso cref="DirectSearcherAttribute"/>
+		public static Cells[] ValueMaps { get; private set; }
 
 
 		/// <summary>
