@@ -8,25 +8,21 @@ namespace Sudoku.Solving.Manual
 	/// <summary>
 	/// Indicates the properties while searching aiming to <see cref="StepSearcher"/>s.
 	/// </summary>
+	/// <param name="Priority">Indicates the priority of this technique.</param>
+	/// <param name="DisplayLabel">
+	/// <para>
+	/// Indicates the display label of this technique. The program will process and handle the
+	/// value to the specified technique name.
+	/// </para>
+	/// <para>Note that the property is different with <see cref="DisplayLevel"/>.</para>
+	/// </param>
 	/// <seealso cref="StepSearcher"/>
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly))]
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority))]
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
-	public sealed partial class TechniqueProperties
+	public sealed partial record TechniqueProperties(int Priority, string DisplayLabel)
 	{
-		/// <summary>
-		/// Initializes an instance with the specified priority.
-		/// </summary>
-		/// <param name="priority">The priority.</param>
-		/// <param name="displayLabel">The display label.</param>
-		public TechniqueProperties(int priority, string displayLabel)
-		{
-			Priority = priority;
-			DisplayLabel = displayLabel;
-		}
-
-
 		/// <summary>
 		/// Indicates whether the technique is enabled. The default value is <see langword="true"/>.
 		/// </summary>
@@ -42,11 +38,6 @@ namespace Sudoku.Solving.Manual
 		/// If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
 		/// </summary>
 		public bool OnlyEnableInAnalysis { get; set; }
-
-		/// <summary>
-		/// Indicates the priority of this technique.
-		/// </summary>
-		public int Priority { get; set; }
 
 		/// <summary>
 		/// Indicates the display level of this technique.
@@ -72,16 +63,6 @@ namespace Sudoku.Solving.Manual
 		/// <seealso cref="AllStepSearcher"/>
 		/// <seealso cref="DisplayLabel"/>
 		public int DisplayLevel { get; set; }
-
-		/// <summary>
-		/// Indicates the display label of this technique. The program will process and handle the
-		/// value to the specified technique name.
-		/// </summary>
-		/// <remarks>
-		/// Note that the property is different with <see cref="DisplayLevel"/>.
-		/// </remarks>
-		/// <seealso cref="DisplayLevel"/>
-		public string DisplayLabel { get; set; }
 
 		/// <summary>
 		/// Indicates whether the current searcher has bug to fix, or something else to describe why

@@ -592,11 +592,26 @@ namespace Sudoku.Windows
 
 		private void TextBoxPriority_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (sender is TextBox textBox && int.TryParse(textBox.Text, out int value))
+			if (
+				sender is TextBox { Text: var text } textBox && int.TryParse(text, out int value)
+				&& _listBoxPriority is
+				{
+					SelectedItem: ListBoxItem { Content: StepTriplet(_, _, Item3: var type, _) }
+				}
+			)
 			{
-				TechniqueProperties.FromType(
-					((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
-				)!.Priority = value;
+				// Here we can't use 'with' expression to modify the value.
+				// Although the following statement can modify the inner value, but the original
+				// variable doesn't modified because the 'with' expression will create a copy
+				// so the instance of result of the expression 'a with { Prop = value }'
+				// and 'a' itself at present don't hold a same reference.
+				//techniqueProperties = techniqueProperties with { Priority = value };
+
+				// This way is OK to modify the inner value using reflection
+				// even if the property 'Priority' uses 'init' accessor, rather than a 'set' accessor.
+				typeof(TechniqueProperties)
+					.GetProperty(nameof(TechniqueProperties.Priority))!
+					.SetValue(TechniqueProperties.FromType(type), value);
 			}
 		}
 
@@ -658,7 +673,19 @@ namespace Sudoku.Windows
 						index,
 						type
 					);
-					TechniqueProperties.FromType(type)!.Priority = index;
+
+					// Here we can't use 'with' expression to modify the value.
+					// Although the following statement can modify the inner value, but the original
+					// variable doesn't modified because the 'with' expression will create a copy
+					// so the instance of result of the expression 'a with { Prop = value }'
+					// and 'a' itself at present don't hold a same reference.
+					//techniqueProperties = techniqueProperties with { Priority = value };
+
+					// This way is OK to modify the inner value using reflection
+					// even if the property 'Priority' uses 'init' accessor, rather than a 'set' accessor.
+					typeof(TechniqueProperties)
+						.GetProperty(nameof(TechniqueProperties.Priority))!
+						.SetValue(TechniqueProperties.FromType(type), index);
 				}
 			}
 		}

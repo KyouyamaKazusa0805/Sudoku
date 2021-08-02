@@ -6751,14 +6751,29 @@
             <summary>
             Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
             </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="DisplayLabel">
+            <para>
+            Indicates the display label of this technique. The program will process and handle the
+            value to the specified technique name.
+            </para>
+            <para>Note that the property is different with <see cref="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLevel"/>.</para>
+            </param>
             <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.TechniqueProperties.#ctor(System.Int32,System.String)">
             <summary>
-            Initializes an instance with the specified priority.
+            Indicates the properties while searching aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
             </summary>
-            <param name="priority">The priority.</param>
-            <param name="displayLabel">The display label.</param>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="DisplayLabel">
+            <para>
+            Indicates the display label of this technique. The program will process and handle the
+            value to the specified technique name.
+            </para>
+            <para>Note that the property is different with <see cref="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLevel"/>.</para>
+            </param>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.TechniqueProperties.IsEnabled">
             <summary>
@@ -6774,11 +6789,6 @@
             <summary>
             Indicates whether the searcher is only used in analyzing a sudoku grid.
             If <see langword="true"/>, when in find-all-step mode, this searcher will be disabled.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.TechniqueProperties.Priority">
-            <summary>
-            Indicates the priority of this technique.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLevel">
@@ -6805,16 +6815,6 @@
             </remarks>
             <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
             <seealso cref="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLabel"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLabel">
-            <summary>
-            Indicates the display label of this technique. The program will process and handle the
-            value to the specified technique name.
-            </summary>
-            <remarks>
-            Note that the property is different with <see cref="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLevel"/>.
-            </remarks>
-            <seealso cref="P:Sudoku.Solving.Manual.TechniqueProperties.DisplayLevel"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.TechniqueProperties.DisabledReason">
             <summary>
