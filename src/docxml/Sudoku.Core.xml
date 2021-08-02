@@ -199,11 +199,6 @@
             The tables for grid processing. All fields will be initialized in the static constructor.
             </summary>
         </member>
-        <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
-            <summary>
-            The table of all blocks to iterate for each blocks.
-            </summary>
-        </member>
         <member name="F:Sudoku.Constants.Tables.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
@@ -270,9 +265,18 @@
         </member>
         <member name="F:Sudoku.Constants.Tables.CellsCoverTable">
             <summary>
-            Indicates the cover table that only used for <see cref="T:Sudoku.Data.Cells"/>.
+            Indicates the cover table that only used in <see cref="T:Sudoku.Data.Cells"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>
         </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
