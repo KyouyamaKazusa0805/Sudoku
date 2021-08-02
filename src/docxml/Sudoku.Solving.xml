@@ -1332,6 +1332,13 @@
             Encapsulates a normal ALS.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Alses.Als.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unsed in the property <see cref="P:Sudoku.Solving.Manual.Alses.Als.StrongLinksMask"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Alses.Als.StrongLinksMask"/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.#ctor(System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
@@ -1438,7 +1445,7 @@
             </remarks>
             <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Collections.Generic.IEnumerable{System.Int16}@)">
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:

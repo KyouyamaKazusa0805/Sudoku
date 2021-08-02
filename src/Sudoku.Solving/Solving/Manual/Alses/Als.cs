@@ -21,6 +21,14 @@ namespace Sudoku.Solving.Manual.Alses
 	public readonly partial struct Als : IValueEquatable<Als>
 	{
 		/// <summary>
+		/// Indicates an array of the total number of the strong relations in an ALS of the different size.
+		/// The field is only unsed in the property <see cref="StrongLinksMask"/>.
+		/// </summary>
+		/// <seealso cref="StrongLinksMask"/>
+		private static readonly int[] StrongRelationsCount = new[] { 0, 1, 3, 6, 10, 15, 21, 34, 45 };
+
+
+		/// <summary>
 		/// Initializes an instance with the specified digit mask and the map of cells.
 		/// </summary>
 		/// <param name="digitMask">The digit mask.</param>
@@ -77,18 +85,24 @@ namespace Sudoku.Solving.Manual.Alses
 		/// Indicates all strong links in this ALS. The result will be represented
 		/// as a <see cref="short"/> mask of 9 bits indicating which bits used.
 		/// </summary>
-		public IEnumerable<short> StrongLinksMask
+		public unsafe short[] StrongLinksMask
 		{
 			get
 			{
-				int[] digits = DigitsMask.GetAllSets().ToArray();
-				for (int i = 0, length = digits.Length, iterationLength = length - 1; i < iterationLength; i++)
+				var digits = DigitsMask.GetAllSets();
+				short[] result = new short[StrongRelationsCount[digits.Length]];
+				fixed (int* pDigits = digits)
 				{
-					for (int j = i + 1; j < length; j++)
+					for (int i = 0, x = 0, length = digits.Length, iterationLength = length - 1; i < iterationLength; i++)
 					{
-						yield return (short)(1 << digits[i] | 1 << digits[j]);
+						for (int j = i + 1; j < length; j++)
+						{
+							result[x++] = (short)(1 << pDigits[i] | 1 << pDigits[j]);
+						}
 					}
 				}
+
+				return result;
 			}
 		}
 
