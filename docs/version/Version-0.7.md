@@ -23,4 +23,5 @@
 
 * 修改部分代码的逻辑，给部分数据类型追加 `[Obsolete]` 表示类型不再使用；
 * 将 `ICloneableEx` 静态类里的 `Cast` 扩展方法改名为 `As`；
+* 移动 `CellParser` 类型，从 `Sudouk.Data.Extensions` 命名空间移动到 `Sudoku.Data.Parsers` 命名空间下；
 * `Als` 结构里的 `StrongLinksMask` 属性的返回值类型从 `IEnumerable<short>` 改成了 `short[]`。

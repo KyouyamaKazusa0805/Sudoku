@@ -2029,40 +2029,6 @@
         <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="T:Sudoku.Data.Extensions.CellParser">
-            <summary>
-            Encapsulates the cell parser that converts the string to an <see cref="T:System.Int32"/> value that
-            represents a cell offset.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,System.Byte@)">
-            <summary>
-            Try to parse the string, and converts the instance to a cell instance represented
-            by a <see cref="T:System.Byte"/> value.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="cell">The cell.</param>
-            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,Sudoku.Data.Cells@)">
-            <summary>
-            Try to parse the string, and converts the instance to cells instance represented
-            by <see cref="T:System.Byte"/> values.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="cells">The cells.</param>
-            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.CellParser.TryParse(System.String@,Sudoku.Data.Cells@,System.Char[])">
-            <summary>
-            Try to parse the string, and converts the instance to cells instance represented
-            by <see cref="T:System.Byte"/> values, with the specified separators.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="cells">The cell.</param>
-            <param name="separators">All separators.</param>
-            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformations">
             <summary>
             Provides methods for <see cref="T:Sudoku.Data.Grid"/> instances on transformations.
@@ -4024,6 +3990,40 @@
             </para>
             </remarks>
             <seealso cref="T:System.ValueTuple"/>
+        </member>
+        <member name="T:Sudoku.Data.Parsers.CellParser">
+            <summary>
+            Encapsulates the cell parser that converts the string to an <see cref="T:System.Int32"/> value that
+            represents a cell offset.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Parsers.CellParser.TryParse(System.String@,System.Byte@)">
+            <summary>
+            Try to parse the string, and converts the instance to a cell instance represented
+            by a <see cref="T:System.Byte"/> value.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="cell">The cell.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Parsers.CellParser.TryParse(System.String@,Sudoku.Data.Cells@)">
+            <summary>
+            Try to parse the string, and converts the instance to cells instance represented
+            by <see cref="T:System.Byte"/> values.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="cells">The cells.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Parsers.CellParser.TryParse(System.String@,Sudoku.Data.Cells@,System.Char[])">
+            <summary>
+            Try to parse the string, and converts the instance to cells instance represented
+            by <see cref="T:System.Byte"/> values, with the specified separators.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="cells">The cell.</param>
+            <param name="separators">All separators.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:Sudoku.Data.RegionLabel">
             <summary>

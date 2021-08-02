@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using Sudoku.Data.Extensions;
+using Sudoku.Data.Parsers;
 using static Sudoku.Constants;
 
 namespace Sudoku.Data
