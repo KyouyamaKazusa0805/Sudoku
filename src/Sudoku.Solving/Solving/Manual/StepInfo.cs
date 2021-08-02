@@ -7,7 +7,7 @@ using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
 using Sudoku.CodeGenerating;
-using static Sudoku.Resources.TextResources;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.Manual
 {
@@ -39,7 +39,7 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name.
 		/// </summary>
-		public virtual string Name => Current[TechniqueCode.ToString()];
+		public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
 
 		/// <summary>
 		/// Indicates the acronym of the step name. For example, the acronym of the technique
@@ -55,7 +55,8 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name alias.
 		/// </summary>
-		public string[]? NameAlias => Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
+		public string[]? NameAlias =>
+			TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
 
 		/// <summary>
 		/// The difficulty or this step.
@@ -105,12 +106,8 @@ namespace Sudoku.Solving.Manual
 		/// one by one.
 		/// </param>
 		/// <returns>A <see cref="bool"/> result.</returns>
-		public unsafe bool HasTag(TechniqueTags flags)
-		{
-			delegate*<TechniqueTags, TechniqueTags, bool> func = flags.IsFlag() ? &EnumEx.Flags : &EnumEx.MultiFlags;
-
-			return func(TechniqueTags, flags);
-		}
+		public bool HasTag(TechniqueTags flags) =>
+			flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
 		/// <summary>
 		/// Returns a string that only contains the name and the basic information. Different with
