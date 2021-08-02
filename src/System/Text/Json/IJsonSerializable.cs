@@ -24,10 +24,9 @@ namespace System.Text.Json
 		/// Indicates the <see langword="static"/> constructor of this type.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static IJsonSerializable() => SerializerOptions = new JsonSerializerOptions
-		{
-			WriteIndented = true
-		}.AppendConverter<TSelf, TConverter>(new TConverter());
+		static IJsonSerializable() =>
+			SerializerOptions = new JsonSerializerOptions { WriteIndented = true }
+				.AppendConverter<TSelf, TConverter>(new TConverter());
 
 
 		/// <summary>

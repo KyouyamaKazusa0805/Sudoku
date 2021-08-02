@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data
@@ -13,7 +14,7 @@ namespace Sudoku.Data
 	/// </remarks>
 	[AutoHashCode(nameof(BaseHashCode), nameof(Map))]
 	[AutoEquality(nameof(Map), nameof(Digit))]
-	public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>
+	public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>, IJsonSerializable<ConjugatePair, ConjugatePair.JsonConverter>
 	{
 		/// <summary>
 		/// Initializes an instance with from and to cell offset
@@ -31,7 +32,8 @@ namespace Sudoku.Data
 		}
 
 		/// <summary>
-		/// Initializes an instance with the map and the digit.
+		/// Initializes an instance with the map and the digit. The map should contains two cells,
+		/// the first one is the start one, and the second one is the end one.
 		/// </summary>
 		/// <param name="map">The map.</param>
 		/// <param name="digit">The digit.</param>

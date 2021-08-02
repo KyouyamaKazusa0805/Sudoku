@@ -148,6 +148,12 @@ namespace Sudoku
 			public const string Conclusion = @"(R[1-9]C[1-9]|r[1-9]c[1-9])\s*(=|!=|<>)\s*([1-9])";
 
 			/// <summary>
+			/// Indicates the regular expression to match a conjugate pair.
+			/// </summary>
+			[Regex]
+			public const string ConjugatePair = @"(R[1-9]C[1-9]|r[1-9]c[1-9])\s*==\s*(R[1-9]C[1-9]|r[1-9]c[1-9])\(([1-9])\)";
+
+			/// <summary>
 			/// Indicates the regular expression to match a digit.
 			/// </summary>
 			[Regex]
