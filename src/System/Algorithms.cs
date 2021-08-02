@@ -57,7 +57,7 @@ namespace System
 		/// <returns>
 		/// The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c>, the output
 		/// should be as follows:
-		/// <list type="table">
+		/// <list type="bullet">
 		/// <item><c>{ 1 }</c></item>
 		/// <item><c>{ 2 }</c></item>
 		/// <item><c>{ 3 }</c></item>
