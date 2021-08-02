@@ -612,7 +612,7 @@ namespace Sudoku.Data
 					case >= 0 and < RegionCellsCount:
 					{
 						ref short result = ref _values[cell];
-						short copy = result;
+						short copied = result;
 
 						// Set cell status to 'CellStatus.Modifiable'.
 						result = (short)(ModifiableMask | 1 << value);
@@ -621,7 +621,7 @@ namespace Sudoku.Data
 						// all same candidates in peer cells.
 						((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(
 							ref this,
-							new(cell, copy, result, value)
+							new(cell, copied, result, value)
 						);
 
 						break;
@@ -946,10 +946,10 @@ namespace Sudoku.Data
 		public void SetStatus(int cell, CellStatus status)
 		{
 			ref short mask = ref _values[cell];
-			short copy = mask;
+			short copied = mask;
 			mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
 
-			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copy, mask, -1));
+			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copied, mask, -1));
 		}
 
 		/// <summary>
@@ -961,10 +961,10 @@ namespace Sudoku.Data
 		public void SetMask(int cell, short mask)
 		{
 			ref short m = ref _values[cell];
-			short copy = m;
+			short copied = m;
 			m = mask;
 
-			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copy, m, -1));
+			((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copied, m, -1));
 		}
 
 		/// <summary>
