@@ -6,12 +6,12 @@
 	internal static class Constants
 	{
 		/// <summary>
-		/// Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 3.
+		/// Indicates the total number of Borescoper's Deadly Pattern possible templates of size 3.
 		/// </summary>
 		public const int BdpTemplatesSize3Count = 14580;
 
 		/// <summary>
-		/// Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 4.
+		/// Indicates the total number of Borescoper's Deadly Pattern possible templates of size 4.
 		/// </summary>
 		public const int BdpTemplatesSize4Count = 11664;
 
@@ -34,7 +34,7 @@
 		/// <summary>
 		/// Indicates the mask that means all rows.
 		/// </summary>
-		public const int AllRowsMask = 0b111_111_111__000_000_000;
+		public const int AllRowsMask = 0b000_000_000__111_111_111__000_000_000;
 
 		/// <summary>
 		/// Indicates the mask that means all columns.

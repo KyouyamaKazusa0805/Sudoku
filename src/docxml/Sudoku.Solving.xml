@@ -2568,12 +2568,12 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize3Count">
             <summary>
-            Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 3.
+            Indicates the total number of Borescoper's Deadly Pattern possible templates of size 3.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize4Count">
             <summary>
-            Indicates the total number of Borescoper's Deadly Pattern possible templates with the size 4.
+            Indicates the total number of Borescoper's Deadly Pattern possible templates of size 4.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.QdpTemplatesCount">
