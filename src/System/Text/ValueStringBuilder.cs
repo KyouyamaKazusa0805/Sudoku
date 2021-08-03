@@ -409,9 +409,9 @@ namespace System.Text
 		/// <summary>
 		/// Append a value.
 		/// </summary>
-		/// <typeparam name="TRefStruct">The type of the value.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of the value.</typeparam>
 		/// <param name="value">The value.</param>
-		public void Append<[RefStructType] TRefStruct>(TRefStruct value) where TRefStruct : unmanaged =>
+		public void Append<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged =>
 			Append(value switch
 			{
 				sbyte s => s.ToString(),
@@ -565,10 +565,10 @@ namespace System.Text
 		/// <summary>
 		/// Append a string representation of a specified instance, and then append a new line.
 		/// </summary>
-		/// <typeparam name="TRefStruct">The type of the instance.</typeparam>
+		/// <typeparam name="TUnmanaged">The type of the instance.</typeparam>
 		/// <param name="value">The value.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void AppendLine<[RefStructType] TRefStruct>(TRefStruct value) where TRefStruct : unmanaged
+		public void AppendLine<TUnmanaged>(TUnmanaged value) where TUnmanaged : unmanaged
 		{
 			Append(value);
 			AppendLine();
