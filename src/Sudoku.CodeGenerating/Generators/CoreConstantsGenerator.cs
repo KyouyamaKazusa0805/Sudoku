@@ -182,7 +182,15 @@ namespace Sudoku
 	{{
 		partial class Tables
 		{{
-			static unsafe Tables()
+			/// <summary>
+			/// Initializes all constants for this type.
+			/// </summary>
+			/// <remarks><i>
+			/// The interactive logic is implemented by source generator, so you can't modify the inner logic.
+			/// </i></remarks>
+			[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			static Tables()
 			{{
 #line hidden
 				IntersectionBlockTable = {intersectionBlockSb};
@@ -228,20 +236,23 @@ namespace Sudoku
 				RegionMaps = new Cells[27];
 				for (int i = 0; i < 27; i++) RegionMaps[i] = RegionCells[i];
 
-				byte* r = stackalloc byte[] {{ 0, 1, 2, 3, 4, 5, 6, 7, 8 }};
-				byte* c = stackalloc byte[] {{ 0, 3, 6, 1, 4, 7, 2, 5, 8 }};
-				var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
-				for (byte bs = 9; bs < 27; bs++)
+				unsafe
 				{{
-					for (byte j = 0; j < 3; j++)
+					byte* r = stackalloc byte[] {{ 0, 1, 2, 3, 4, 5, 6, 7, 8 }};
+					byte* c = stackalloc byte[] {{ 0, 3, 6, 1, 4, 7, 2, 5, 8 }};
+					var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
+					for (byte bs = 9; bs < 27; bs++)
 					{{
-						byte cs = bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j];
-						Cells bm = RegionMaps[bs], cm = RegionMaps[cs], i = bm & cm;
-						dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+						for (byte j = 0; j < 3; j++)
+						{{
+							byte cs = bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j];
+							Cells bm = RegionMaps[bs], cm = RegionMaps[cs], i = bm & cm;
+							dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+						}}
 					}}
-				}}
 
-				IntersectionMaps = dic;
+					IntersectionMaps = dic;
+				}}
 #line default
 			}}
 
@@ -251,6 +262,8 @@ namespace Sudoku
 			/// the field <see cref=""IntersectionMaps""/>.
 			/// </summary>
 			/// <seealso cref=""IntersectionMaps""/>
+			[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
 			private readonly struct ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
 			{{
 				/// <inheritdoc/>

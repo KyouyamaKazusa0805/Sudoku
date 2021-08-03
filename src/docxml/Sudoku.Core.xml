@@ -278,6 +278,14 @@
             </summary>
             <seealso cref="T:Sudoku.Data.Cells"/>
         </member>
+        <member name="M:Sudoku.Constants.Tables.#cctor">
+            <summary>
+            Initializes all constants for this type.
+            </summary>
+            <remarks><i>
+            The interactive logic is implemented by source generator, so you can't modify the inner logic.
+            </i></remarks>
+        </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
             The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
