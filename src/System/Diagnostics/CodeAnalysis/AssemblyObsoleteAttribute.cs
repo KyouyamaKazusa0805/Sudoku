@@ -1,4 +1,6 @@
-﻿namespace System.Diagnostics.CodeAnalysis
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+
+namespace System.Diagnostics.CodeAnalysis
 {
 	/// <summary>
 	/// To mark on an assembly, to tell the user and the compiler that the assembly is obsolete.
@@ -9,3 +11,5 @@
 	{
 	}
 }
+
+#endif

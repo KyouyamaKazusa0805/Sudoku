@@ -1,4 +1,6 @@
-﻿namespace System.Diagnostics.CodeAnalysis
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+
+namespace System.Diagnostics.CodeAnalysis
 {
 	/// <summary>
 	/// Indicates the return value may be <see langword="null"/> when the specified enumeration-typed
@@ -22,3 +24,5 @@
 		public string ArgumentName { get; }
 	}
 }
+
+#endif

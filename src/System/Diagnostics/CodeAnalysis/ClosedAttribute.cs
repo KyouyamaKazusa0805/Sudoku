@@ -1,4 +1,6 @@
-﻿namespace System.Diagnostics.CodeAnalysis
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+
+namespace System.Diagnostics.CodeAnalysis
 {
 	/// <summary>
 	/// Marks on an enumeration type, which means the enumeration type is a closed enumeration type.
@@ -25,3 +27,5 @@
 	{
 	}
 }
+
+#endif
