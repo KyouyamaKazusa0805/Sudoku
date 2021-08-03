@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using static Sudoku.Constants.Tables;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Data
 {
@@ -134,7 +137,9 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGridSegment"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if SOLUTION_WIDE_CODE_ANALYSIS
 		[return: MaybeNullWhenNotDefined("pinnedItem")]
+#endif
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.Masks
 			? ref _maskList[0]

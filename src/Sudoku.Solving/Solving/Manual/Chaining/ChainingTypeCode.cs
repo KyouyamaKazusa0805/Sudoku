@@ -1,11 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Indicates a type code for a chain.
 	/// </summary>
+#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
+#endif
 	public enum ChainingTypeCode : byte
 	{
 		/// <summary>

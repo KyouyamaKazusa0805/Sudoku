@@ -5,6 +5,7 @@
 	/// argument isn't defined.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.ReturnValue)]
+	[Conditional("SOLUTION_WIDE_CODE_ANALYSIS")]
 	public sealed class MaybeNullWhenNotDefinedAttribute : Attribute
 	{
 		/// <summary>

@@ -1,11 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Used internally to control behavior of insertion into a <see cref="ValueDictionary{TKey, TValue}"/>.
 	/// </summary>
+#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
+#endif
 	internal enum InsertionBehavior : byte
 	{
 		/// <summary>

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Numerics;
@@ -17,6 +16,10 @@ using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Data
 {
@@ -200,9 +203,13 @@ namespace Sudoku.Data
 		static SudokuGrid()
 		{
 			// Initializes the empty grid.
+#if SOLUTION_WIDE_CODE_ANALYSIS
 #pragma warning disable SD0303
+#endif
 			Empty = default;
+#if SOLUTION_WIDE_CODE_ANALYSIS
 #pragma warning restore SD0303
+#endif
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
 				int i = 0;
@@ -816,7 +823,9 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if SOLUTION_WIDE_CODE_ANALYSIS
 		[return: MaybeNullWhenNotDefined("pinnedItem")]
+#endif
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.CurrentGrid
 			? ref GetPinnableReference()

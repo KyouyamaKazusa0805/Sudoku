@@ -1,11 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Techniques
 {
 	/// <summary>
 	/// Represents a technique instance, which is used for comparison.
 	/// </summary>
+#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
+#endif
 	public enum Technique : short
 	{
 		/// <summary>

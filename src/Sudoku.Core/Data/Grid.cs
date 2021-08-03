@@ -26,7 +26,7 @@ namespace Sudoku.Data
 	/// <remarks>
 	/// The type doesn't contain the initial sudoku grid data.
 	/// </remarks>
-	/// <seealso cref="Grid"/>
+	/// <seealso cref="SudokuGrid"/>
 #if DEBUG
 	[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
 #endif

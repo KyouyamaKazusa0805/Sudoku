@@ -20,6 +20,7 @@
 	/// <c>Gender.Boy</c> or <c>Gender.Girl</c>.
 	/// </remarks>
 	[AttributeUsage(AttributeTargets.Enum)]
+	[Conditional("SOLUTION_WIDE_CODE_ANALYSIS")]
 	public sealed class ClosedAttribute : Attribute
 	{
 	}

@@ -1,11 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Indicates a link type.
 	/// </summary>
+#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
+#endif
 	public enum LinkType : byte
 	{
 		/// <summary>

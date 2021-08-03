@@ -2311,7 +2311,7 @@
             <remarks>
             The type doesn't contain the initial sudoku grid data.
             </remarks>
-            <seealso cref="T:Sudoku.Data.Grid"/>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
         <member name="F:Sudoku.Data.Grid.DefaultMask">
             <summary>

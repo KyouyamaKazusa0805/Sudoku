@@ -1,10 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Sudoku.CodeGenerating;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+using System.Diagnostics.CodeAnalysis;
+#endif
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
 [assembly: AssemblyObsolete]
+#endif
 
 [assembly: AutoDeconstructExtension(typeof(Image), nameof(Image.Width), nameof(Image.Height), Namespace = "Sudoku.Windows.Extensions")]
 [assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y), Namespace = "Sudoku.Windows.Extensions")]

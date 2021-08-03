@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
 using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace Sudoku.Techniques
 {
@@ -11,7 +14,9 @@ namespace Sudoku.Techniques
 	/// the real technique group that the technique belongs to. In addition, the value
 	/// of this type may effect the displaying of the analysis result.
 	/// </remarks>
+#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
+#endif
 	public enum TechniqueGroup : byte
 	{
 		/// <summary>
