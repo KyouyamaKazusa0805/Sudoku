@@ -1183,7 +1183,7 @@ namespace Sudoku.Windows
 			if (_analyisResult.IsSolved)
 			{
 				_textBoxInfo.Text =
-					$"{_analyisResult.SolvingStepsCount.ToString()} " +
+					_analyisResult.SolvingStepsCount.ToStringWithTrailingSpace() +
 					$"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
 					$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 					$"{LangSource["Comma"]}" +

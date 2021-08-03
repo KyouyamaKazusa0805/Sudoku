@@ -8186,45 +8186,6 @@
             Indicates the brute force (BF) technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Techniques.TechniqueNaming">
-            <summary>
-            Provides the methods that uses or handles about types <see cref="T:Sudoku.Techniques.Technique"/> and <see cref="T:System.String"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Techniques.Technique"/>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueNaming.SubsetNames">
-            <summary>
-            <para>The names of all subsets by their sizes.</para>
-            <para>
-            For example, if you want to get the name of the size 3, the code will be
-            <code>
-            string name = TechniqueStrings.SubsetNames[3];
-            </code>
-            Here the digit <c>3</c> is the size you want to get.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueNaming.RegularWingNames">
-            <summary>
-            <para>The names of all regular wings by their sizes.</para>
-            <para>
-            For example, if you want to get the name of the size 3, the code will be
-            <code>
-            string name = TechniqueStrings.RegularWingNames[3];
-            </code>
-            Here the digit <c>3</c> is the size you want to get.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Techniques.TechniqueNaming.GetComplexFishTechniqueCodeFromName(System.String)">
-            <summary>
-            Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
-            to a complex fish name, such as "Finned Franken Swordfish".
-            </summary>
-            <param name="name">The name.</param>
-            <returns>The <see cref="T:Sudoku.Techniques.Technique"/> code instance.</returns>
-            <seealso cref="T:Sudoku.Techniques.Technique"/>
-        </member>
         <member name="T:Sudoku.Techniques.TechniqueTags">
             <summary>
             Provides a series of tags to mark on a technique.

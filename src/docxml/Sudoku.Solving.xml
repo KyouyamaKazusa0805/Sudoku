@@ -2613,6 +2613,35 @@
             Indicates the mask that means all regions.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.SubsetNames">
+            <summary>
+            <para>The names of all subsets by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code>
+            string name = TechniqueStrings.SubsetNames[3];
+            </code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.FishNames">
+            <summary>
+            The names of all fishes by their sizes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.RegularWingNames">
+            <summary>
+            <para>The names of all regular wings by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code>
+            string name = TechniqueStrings.RegularWingNames[3];
+            </code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -4006,11 +4035,6 @@
             <param name="BaseSets">The base sets.</param>
             <param name="CoverSets">The cover sets.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Fishes.FishStepInfo.FishNames">
-            <summary>
-            The names of all fishes by their sizes.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.FishStepInfo.Size">
             <summary>
             Indicates the size of this fish instance.
@@ -4063,6 +4087,15 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.FishStepInfo.TechniqueTags">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishStepInfo.GetComplexFishTechniqueCodeFromName(System.String)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
+            to a complex fish name, such as "Finned Franken Swordfish".
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The <see cref="T:Sudoku.Techniques.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Fishes.FishStepSearcher">
             <summary>

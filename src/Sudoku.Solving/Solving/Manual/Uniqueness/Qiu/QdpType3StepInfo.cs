@@ -4,6 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -33,7 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			string digitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string cellsStr = new Cells(ExtraCells).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1].ToLower(null);
+			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower(null);
 			return $"{Name}: Cells {patternStr} won't be a deadly pattern if and only if digits {digitsStr} in cells {cellsStr} is a naked {subsetName} => {elimStr}";
 		}
 	}

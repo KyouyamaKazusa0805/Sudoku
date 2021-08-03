@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Extensions;
 using System.Text;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -79,8 +81,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		};
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			TechniqueNaming.GetComplexFishTechniqueCodeFromName(InternalName);
+		public override Technique TechniqueCode => GetComplexFishTechniqueCodeFromName(InternalName);
 
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.ComplexFish;
@@ -125,8 +126,16 @@ namespace Sudoku.Solving.Manual.Fishes
 			get
 			{
 				var sb = new ValueStringBuilder(stackalloc char[50]);
-				sb.Append(FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier.ToString()} ");
-				sb.Append(ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier.ToString()} ");
+				sb.Append(
+					FinModifier == FinModifiers.Normal
+					? string.Empty
+					: FinModifier.ToStringWithTrailingSpace()
+				);
+				sb.Append(
+					ShapeModifier == ShapeModifiers.Basic
+					? string.Empty
+					: ShapeModifier.ToStringWithTrailingSpace()
+				);
 				sb.Append(FishNames[Size]);
 
 				return sb.ToString();

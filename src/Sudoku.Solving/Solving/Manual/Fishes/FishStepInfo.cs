@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -18,16 +20,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets
 	) : StepInfo(Conclusions, Views)
 	{
-		/// <summary>
-		/// The names of all fishes by their sizes.
-		/// </summary>
-		protected static readonly string[] FishNames =
-		{
-			string.Empty, "Cyclopsfish", "X-Wing", "Swordfish", "Jellyfish",
-			"Squirmbag", "Whale", "Leviathan"
-		};
-
-
 		/// <summary>
 		/// Indicates the size of this fish instance.
 		/// </summary>
@@ -80,5 +72,33 @@ namespace Sudoku.Solving.Manual.Fishes
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Fishes | TechniqueTags.RankTheory;
+
+
+		/// <summary>
+		/// Try to get the <see cref="Technique"/> code instance from the specified name, where the name belongs
+		/// to a complex fish name, such as "Finned Franken Swordfish".
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <returns>The <see cref="Technique"/> code instance.</returns>
+		/// <seealso cref="Technique"/>
+		protected static unsafe Technique GetComplexFishTechniqueCodeFromName(string name)
+		{
+			// Creates a buffer to store the characters that isn't a space or a bar.
+			char* buffer = stackalloc char[name.Length];
+			int bufferLength = 0;
+			fixed (char* p = name)
+			{
+				for (char* ptr = p; *ptr != '\0'; ptr++)
+				{
+					if (*ptr is not ('-' or ' '))
+					{
+						buffer[bufferLength++] = *ptr;
+					}
+				}
+			}
+
+			// Parses via the buffer, and returns the result.
+			return Enum.Parse<Technique>(new string(Pointer.GetArrayFromStart(buffer, bufferLength, 0)));
+		}
 	}
 }

@@ -1693,6 +1693,19 @@
             </code>
             </remarks>
         </member>
+        <member name="T:System.Extensions.GenericEx">
+            <summary>
+            Provides extension methods on generic type.
+            </summary>
+        </member>
+        <member name="M:System.Extensions.GenericEx.ToStringWithTrailingSpace``1(``0)">
+            <summary>
+            Get the string representation of the instance, with the trailing space after the result string value.
+            </summary>
+            <typeparam name="TNotNull">The type of the instance.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The result value.</returns>
+        </member>
         <member name="T:System.Extensions.JsonSerializerOptionsEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.

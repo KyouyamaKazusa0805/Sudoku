@@ -4,6 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Wings.Regular
 {
@@ -113,9 +114,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		private string InternalName => Size switch
 		{
 			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
-			>= 4 and < 9 => IsIncomplete
-				? $"Incomplete {TechniqueNaming.RegularWingNames[Size]}"
-				: TechniqueNaming.RegularWingNames[Size]
+			>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
 		};
 
 

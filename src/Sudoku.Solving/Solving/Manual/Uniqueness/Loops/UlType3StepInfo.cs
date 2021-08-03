@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Techniques;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		{
 			string cellsStr = Loop.ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = TechniqueNaming.SubsetNames[SubsetCells.Count + 1];
+			string subsetName = SubsetNames[SubsetCells.Count + 1];
 			string digitsStr = new DigitCollection(SubsetDigitsMask).ToString();
 			string subsetCellsStr = new Cells(SubsetCells).ToString();
 			return $"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} with the naked {subsetName} with extra digits {digitsStr} in cells {subsetCellsStr} => {elimStr}";

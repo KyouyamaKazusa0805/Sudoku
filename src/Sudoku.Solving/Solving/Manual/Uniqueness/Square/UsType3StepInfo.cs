@@ -4,6 +4,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -39,7 +40,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			string cellsStr = Cells.ToString();
 			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
 			string subsetCellsStr = new Cells(ExtraCells).ToString();
-			string subsetName = TechniqueNaming.SubsetNames[ExtraCells.Count + 1];
+			string subsetName = SubsetNames[ExtraCells.Count + 1];
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern if and only if the digits {subsetDigitsStr} in cells {subsetCellsStr} form a naked {subsetName} => {elimStr}";
 		}
