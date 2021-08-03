@@ -4,7 +4,7 @@ using System.Extensions;
 using System.Linq;
 using System.Reflection;
 using Sudoku.Data;
-using static Sudoku.Resources.TextResources;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.Manual
 {
@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual
 			let v = type.GetProperty(NecessaryPropertyName, BindingFlags.Public | BindingFlags.Static)
 			let casted = v?.GetValue(null) as TechniqueProperties
 			where casted is not null && !casted.DisabledReason.Flags(DisabledReason.HasBugs)
-			select (type, (string)Current[$"Progress{casted.DisplayLabel}"], casted);
+			select (type, (string)TextResources.Current[$"Progress{casted.DisplayLabel}"], casted);
 
 
 		/// <summary>

@@ -8,7 +8,7 @@ using Sudoku.Data;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
-using static Sudoku.Resources.TextResources;
+using Sudoku.Resources;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using CountryCode = Sudoku.Globalization.CountryCode;
 
@@ -95,7 +95,7 @@ namespace Sudoku.Solving
 			/// <returns>The result.</returns>
 			public string ToString(AnalysisResultFormattingOptions options, CountryCode countryCode)
 			{
-				Current.ChangeLanguage(countryCode);
+				TextResources.Current.ChangeLanguage(countryCode);
 
 				// Get all information.
 				var (
@@ -104,22 +104,22 @@ namespace Sudoku.Solving
 
 				// Print header.
 				var sb = new ValueStringBuilder(300);
-				sb.Append((string)Current.AnalysisResultPuzzle);
+				sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
 				sb.AppendLine(puzzle.ToString("#"));
-				sb.Append((string)Current.AnalysisResultSolvingTool);
+				sb.Append((string)TextResources.Current.AnalysisResultSolvingTool);
 				sb.AppendLine(solverName);
 
 				// Print solving steps (if worth).
 				if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 				{
-					sb.AppendLine((string)Current.AnalysisResultSolvingSteps);
+					sb.AppendLine((string)TextResources.Current.AnalysisResultSolvingSteps);
 					if (getBottleneck() is var (bIndex, bInfo))
 					{
 						for (int i = 0, count = steps.Count; i < count; i++)
 						{
 							if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 							{
-								sb.AppendLine((string)Current.Ellipsis);
+								sb.AppendLine((string)TextResources.Current.Ellipsis);
 								break;
 							}
 
@@ -145,10 +145,12 @@ namespace Sudoku.Solving
 						{
 							a(ref sb, options.Flags(ShowSeparators));
 
-							sb.Append((string)Current.AnalysisResultBottleneckStep);
+							sb.Append((string)TextResources.Current.AnalysisResultBottleneckStep);
 							sb.Append(
 								options.Flags(ShowStepLabel)
-								? $"{Current.AnalysisResultInStep}{(bIndex + 1).ToString()}{Current.Colon}"
+								? $@"{
+									TextResources.Current.AnalysisResultInStep
+								}{(bIndex + 1).ToString()}{TextResources.Current.Colon}"
 								: string.Empty
 							);
 							sb.Append(' ');
@@ -165,14 +167,14 @@ namespace Sudoku.Solving
 					var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
 						from step in steps orderby step.Difficulty group step by step.Name
 					);
-					sb.AppendLine((string)Current.AnalysisResultTechniqueUsed);
+					sb.AppendLine((string)TextResources.Current.AnalysisResultTechniqueUsed);
 					if (options.Flags(ShowStepDetail))
 					{
-						sb.Append((string)Current.AnalysisResultMin.PadLeft(6));
+						sb.Append((string)TextResources.Current.AnalysisResultMin.PadLeft(6));
 						sb.Append(',');
 						sb.Append(' ');
-						sb.Append((string)Current.AnalysisResultTotal.PadLeft(6));
-						sb.AppendLine((string)Current.AnalysisResultTechniqueUsing);
+						sb.Append((string)TextResources.Current.AnalysisResultTotal.PadLeft(6));
+						sb.AppendLine((string)TextResources.Current.AnalysisResultTechniqueUsing);
 					}
 
 					foreach (var solvingStepsGroup in solvingStepsGrouped)
@@ -214,15 +216,15 @@ namespace Sudoku.Solving
 					sb.Append(' ');
 					sb.AppendLine(
 						stepsCount == 1
-						? (string)Current.AnalysisResultStepSingular
-						: (string)Current.AnalysisResultStepPlural
+						? (string)TextResources.Current.AnalysisResultStepSingular
+						: (string)TextResources.Current.AnalysisResultStepPlural
 					);
 
 					a(ref sb, options.Flags(ShowSeparators));
 				}
 
 				// Print detail data.
-				sb.Append((string)Current.AnalysisResultPuzzleRating);
+				sb.Append((string)TextResources.Current.AnalysisResultPuzzleRating);
 				sb.Append(max.ToString("0.0"));
 				sb.Append('/');
 				sb.Append(pearl.ToString("0.0"));
@@ -232,15 +234,15 @@ namespace Sudoku.Solving
 				// Print the solution (if not null).
 				if (solution is { } solutionNotNull)
 				{
-					sb.Append((string)Current.AnalysisResultPuzzleSolution);
+					sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
 					sb.AppendLine(solutionNotNull.ToString("!"));
 				}
 
 				// Print the elapsed time.
-				sb.Append((string)Current.AnalysisResultPuzzleHas);
-				sb.Append(hasSolved ? string.Empty : (string)Current.AnalysisResultNot);
-				sb.AppendLine((string)Current.AnalysisResultBeenSolved);
-				sb.Append((string)Current.AnalysisResultTimeElapsed);
+				sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
+				sb.Append(hasSolved ? string.Empty : (string)TextResources.Current.AnalysisResultNot);
+				sb.AppendLine((string)TextResources.Current.AnalysisResultBeenSolved);
+				sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
 				sb.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
 
 				a(ref sb, options.Flags(ShowSeparators));
@@ -250,7 +252,7 @@ namespace Sudoku.Solving
 				// only one parameter and its type is 'Grid'.
 				if (options.Flags(ShowAttributes))
 				{
-					sb.AppendLine((string)Current.AnalysisResultAttributes);
+					sb.AppendLine((string)TextResources.Current.AnalysisResultAttributes);
 					foreach (var methodInfo in
 						from methodInfo in typeof(PuzzleAttributeChecker).GetMethods()
 						where methodInfo.ReturnType == typeof(bool)
@@ -273,7 +275,7 @@ namespace Sudoku.Solving
 				// Print backdoors (if worth).
 				if (options.Flags(ShowBackdoors))
 				{
-					sb.AppendLine((string)Current.AnalysisResultBackdoors);
+					sb.AppendLine((string)TextResources.Current.AnalysisResultBackdoors);
 					var searcher = new BackdoorSearcher();
 					foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 					{
@@ -291,6 +293,7 @@ namespace Sudoku.Solving
 				}
 
 				return sb.ToString();
+
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				static void a(ref ValueStringBuilder sb, bool showSeparator) =>
