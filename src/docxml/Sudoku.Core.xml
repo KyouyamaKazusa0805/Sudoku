@@ -288,7 +288,7 @@
         </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
-            The inner comparer of <see cref="T:System.ValueTuple`2"/> used in
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used for
             the field <see cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>.
             </summary>
             <seealso cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>

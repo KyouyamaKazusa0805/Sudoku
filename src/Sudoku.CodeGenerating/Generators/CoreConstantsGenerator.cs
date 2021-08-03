@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Sudoku.CodeGenerating.Collections;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
@@ -79,7 +80,7 @@ namespace Sudoku.CodeGenerating.Generators
 				return;
 			}
 
-			int[][] tables = new[] { BlockTable, RowTable, ColumnTable };
+			int[][] tables = new[] { BlockTable, RowTable, ColumnTable }, regionCells = new int[27][];
 
 			#region Initialize 'IntersectionBlockTable'
 			var intersectionBlockSb = new StringBuilder()
@@ -135,16 +136,17 @@ namespace Sudoku.CodeGenerating.Generators
 			var regionCellsSb = new StringBuilder()
 				.AppendLine("new int[27][]")
 				.AppendLine("\t\t\t\t{");
-			for (int i = 0; i < 3; i++)
+			for (int regionType = 0; regionType < 3; regionType++)
 			{
-				for (int label = 0; label < 9; label++)
+				for (int index = 0; index < 9; index++)
 				{
-					int[] table = tables[i];
+					int regionLabel = regionType * 9 + index;
+					int[] table = tables[regionType];
 					int[] cells = new int[9];
 					int x = 0;
 					for (int j = 0; j < 81; j++)
 					{
-						if (table[j] == i * 9 + label)
+						if (table[j] == regionLabel)
 						{
 							cells[x++] = j;
 							if (x >= 9)
@@ -153,6 +155,7 @@ namespace Sudoku.CodeGenerating.Generators
 							}
 						}
 					}
+					regionCells[regionLabel] = cells;
 
 					regionCellsSb.Append(new string('\t', 5)).Append("new[] { ");
 					for (int j = 0; j < 9; j++)
@@ -165,6 +168,25 @@ namespace Sudoku.CodeGenerating.Generators
 			regionCellsSb.Append(new string('\t', 4)).Append('}');
 			#endregion
 
+			#region Initialize 'CellsCoverTable'
+			var coverTableSb = new StringBuilder()
+				.AppendLine("new long[,]")
+				.Append(new string('\t', 4))
+				.AppendLine("{");
+			for (int regionLabel = 0; regionLabel < 27; regionLabel++)
+			{
+				// Don't merge to one statement.
+				var cells = Cells.Empty;
+				cells.AddRange(regionCells[regionLabel]);
+
+				coverTableSb
+					.Append(new string('\t', 5))
+					.Append("{ ")
+					.Append(cells.ToString())
+					.AppendLine(" },");
+			}
+			coverTableSb.Append(new string('\t', 4)).Append('}');
+			#endregion
 
 
 			context.AddSource(
@@ -199,36 +221,7 @@ namespace Sudoku
 
 				RegionCells = {regionCellsSb};
 
-				CellsCoverTable = new long[,]
-				{{
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000111_000000111_000000111 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000111000_000111000_000111000 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_111000000_111000000_111000000 }},
-					{{ 0b000000000_000000000_000000000_000000111_0000, 0b00111_000000111_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_000111000_0001, 0b11000_000111000_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_111000000_1110, 0b00000_111000000_000000000_000000000_000000000 }},
-					{{ 0b000000111_000000111_000000111_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b000111000_000111000_000111000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b111000000_111000000_111000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_111111111 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_111111111_000000000 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_000000000_111111111_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_000000000_0000, 0b00000_111111111_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_000000000_1111, 0b11111_000000000_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_000000000_111111111_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b000000000_000000000_111111111_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b000000000_111111111_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b111111111_000000000_000000000_000000000_0000, 0b00000_000000000_000000000_000000000_000000000 }},
-					{{ 0b000000001_000000001_000000001_000000001_0000, 0b00001_000000001_000000001_000000001_000000001 }},
-					{{ 0b000000010_000000010_000000010_000000010_0000, 0b00010_000000010_000000010_000000010_000000010 }},
-					{{ 0b000000100_000000100_000000100_000000100_0000, 0b00100_000000100_000000100_000000100_000000100 }},
-					{{ 0b000001000_000001000_000001000_000001000_0000, 0b01000_000001000_000001000_000001000_000001000 }},
-					{{ 0b000010000_000010000_000010000_000010000_0000, 0b10000_000010000_000010000_000010000_000010000 }},
-					{{ 0b000100000_000100000_000100000_000100000_0001, 0b00000_000100000_000100000_000100000_000100000 }},
-					{{ 0b001000000_001000000_001000000_001000000_0010, 0b00000_001000000_001000000_001000000_001000000 }},
-					{{ 0b010000000_010000000_010000000_010000000_0100, 0b00000_010000000_010000000_010000000_010000000 }},
-					{{ 0b100000000_100000000_100000000_100000000_1000, 0b00000_100000000_100000000_100000000_100000000 }},
-				}};
+				CellsCoverTable = {coverTableSb};
 
 				PeerMaps = new Cells[81];
 				for (int i = 0; i < 81; i++) PeerMaps[i] = Peers[i];
@@ -257,8 +250,9 @@ namespace Sudoku
 			}}
 
 
+#line hidden
 			/// <summary>
-			/// The inner comparer of <see cref=""ValueTuple{{T1, T2}}""/> used in
+			/// The inner comparer of <see cref=""ValueTuple{{T1, T2}}""/> used for
 			/// the field <see cref=""IntersectionMaps""/>.
 			/// </summary>
 			/// <seealso cref=""IntersectionMaps""/>
@@ -272,6 +266,7 @@ namespace Sudoku
 				/// <inheritdoc/>
 				public int GetHashCode((byte Value1, byte Value2) obj) => obj.Value1 << 5 | obj.Value2;
 			}}
+#line default
 		}}
 	}}
 }}"
