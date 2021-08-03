@@ -25,12 +25,18 @@ namespace System.Extensions
 		/// <remarks>
 		/// You should use this as:
 		/// <code>
-		/// if (formatProvider.HasFormatted(this, format, out string? result)) return result;
+		/// if (formatProvider.HasFormatted(this, format, out string? result))
+		/// {
+		///	    return result;
+		/// }
 		/// </code>
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasFormatted<TNotNull>(
-			this IFormatProvider? @this, in TNotNull obj, string? format, [NotNullWhen(true)] out string? result)
+			[NotNullWhen(true)] this IFormatProvider? @this,
+			in TNotNull obj,
+			string? format,
+			[NotNullWhen(true)] out string? result)
 			where TNotNull : notnull
 		{
 			if (@this?.GetFormat(obj.GetType()) is ICustomFormatter customFormatter)

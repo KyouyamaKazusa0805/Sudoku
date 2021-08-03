@@ -52,6 +52,7 @@ namespace System.Extensions
 			g(@this.Length, count, count, stackalloc int[count], @this, result);
 			return result;
 
+
 			static void g(
 				int last, int count, int index, in Span<int> tempArray,
 				in ReadOnlySpan<T> @this, in IList<T[]> resultList)

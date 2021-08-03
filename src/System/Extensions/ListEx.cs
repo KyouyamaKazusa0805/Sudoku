@@ -81,10 +81,9 @@ namespace System.Extensions
 		{
 			List<T> list => list,
 			T[] array => array,
-			_ =>
-				throw new InvalidCastException(
-					$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} " +
-					$"because the element isn't a normal {typeof(List<>).Name}.")
+			_ => throw new InvalidCastException(
+				$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} because the element isn't a normal {typeof(List<>).Name}."
+			)
 		};
 	}
 }
