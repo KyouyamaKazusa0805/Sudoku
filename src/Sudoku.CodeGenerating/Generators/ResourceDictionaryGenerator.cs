@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Indicates the source generator that generates the code for the resource dictionary.

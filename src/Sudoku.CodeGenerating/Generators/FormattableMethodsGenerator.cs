@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Defines a source generator that generates the code for <c>ToString</c> methods. The methods below

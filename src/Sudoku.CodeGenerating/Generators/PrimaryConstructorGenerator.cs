@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Indicates a generator that generates primary constructors for <see langword="class"/>es

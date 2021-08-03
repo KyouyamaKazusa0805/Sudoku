@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS8618, IDE0079
+﻿#nullable disable warnings
 
 using System.Collections.Generic;
 using Sudoku.Data;
@@ -80,19 +80,19 @@ namespace Sudoku
 			> IntersectionMaps;
 
 			/// <summary>
-			/// Indicates the cover table that only used in <see cref="Cells"/>.
-			/// </summary>
-			/// <seealso cref="Cells"/>
-			internal static readonly long[,] CellsCoverTable;
-
-			/// <summary>
 			/// <para>The table of all blocks to iterate for each blocks.</para>
 			/// <para>
 			/// This field is only used for providing the data for another field <see cref="IntersectionMaps"/>.
 			/// </para>
 			/// </summary>
 			/// <seealso cref="IntersectionMaps"/>
-			private static readonly byte[][] IntersectionBlockTable;
+			internal static readonly byte[][] IntersectionBlockTable;
+
+			/// <summary>
+			/// Indicates the cover table that only used in <see cref="Cells"/>.
+			/// </summary>
+			/// <seealso cref="Cells"/>
+			internal static readonly long[,] CellsCoverTable;
 		}
 	}
 }

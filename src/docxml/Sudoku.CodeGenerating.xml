@@ -309,8 +309,14 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.SystemExtensions">
             <summary>
-            Indicates the project <c>SystemExtensions</c>. The project uses the namespace <c>System</c>
-            to store types.
+            Indicates the project <c>SystemExtensions</c>.
+            The project uses the namespace <c>System</c> to store types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Core">
+            <summary>
+            Indicates the project <c>Sudouk.Core</c>.
+            The project uses the namespace <c>Sudoku</c> to store types.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.CodeAnalysis">
@@ -635,63 +641,63 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.AutoGetHashCodeGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator">
             <summary>
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
             </summary>
             <seealso cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.AutoGetHashCodeGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.BitOperationsGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.BitOperationsGenerator">
             <summary>
             Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GlobalFile">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_GlobalFile">
             <summary>
             Generates the global file.
             </summary>
             <returns>The string text of the code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetAllSets(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_GetAllSets(System.String)">
             <summary>
             Generates the file of the method <c>GetAllSets</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetEnumerator(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_GetEnumerator(System.String)">
             <summary>
             Generates the file of the method <c>GetEnumerator</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_GetNextSet(System.String,System.Int32)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_GetNextSet(System.String,System.Int32)">
             <summary>
             Generates the file of the method <c>GetNextSet</c>.
             </summary>
@@ -699,7 +705,7 @@
             <param name="size">The size of the type.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_ReverseBits(System.String,System.Int32)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_ReverseBits(System.String,System.Int32)">
             <summary>
             Generates the file of the method <c>ReverseBits</c>.
             </summary>
@@ -707,82 +713,82 @@
             <param name="size">The size of the type.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_SetAt(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_SetAt(System.String)">
             <summary>
             Generates the file of the method <c>SetAt</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.BitOperationsGenerator.G_SkipSetBit(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.G_SkipSetBit(System.String)">
             <summary>
             Generates the file of the method <c>SkipSetBit</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.LeadingText">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.LeadingText">
             <summary>
             Indicates the leading text.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.TrailingText">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.TrailingText">
             <summary>
             Indicates the trailing text.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.GetAllSetsTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.GetAllSetsTypes">
             <summary>
             Indicates the type names of the method <c>GetAllSets</c> to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.GetEnumeratorTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.GetEnumeratorTypes">
             <summary>
             Indicates the type names of the method <c>GetEnumerator</c> to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.GetNextSetTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.GetNextSetTypes">
             <summary>
             Indicates the type names of the method <c>NextSetTypes</c> to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.ReverseBitsTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.ReverseBitsTypes">
             <summary>
             Indicates the type names of the method <c>ReverseBits</c> to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.SetAtTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.SetAtTypes">
             <summary>
             Indicates the type names of the method <c>SetAt</c> to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.BitOperationsGenerator.SkipSetBitTypes">
+        <member name="F:Sudoku.CodeGenerating.Generators.BitOperationsGenerator.SkipSetBitTypes">
             <summary>
             Indicates the type names of the method <c>SkipSetBit</c> to be used.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator">
             <summary>
             A generator that generates the code for code analyzer and fix defaults.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.CsvTableName">
+        <member name="F:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.CsvTableName">
             <summary>
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
+        <member name="F:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
             <summary>
             Indicates the regular expression for extraction of the information.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.Cut(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.Cut(System.String)">
             <summary>
             Cut the diagnostic ID and get the base ID part. This method will remove the suffix <c>"F"</c>
             if exists.
@@ -790,14 +796,14 @@
             <param name="id">The diagnostic ID.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.GetWhetherFadingOutTag(System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.GetWhetherFadingOutTag(System.String)">
             <summary>
             Get the raw code when the ID contains the suffix <c>"F"</c>.
             </summary>
             <param name="id">The diagnostic ID.</param>
             <returns>The raw code for representing the option of fading out the code.</returns>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.GetDescription(System.String[][],System.String)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.GetDescription(System.String[][],System.String)">
             <summary>
             Get the description of from the split result.
             </summary>
@@ -805,31 +811,63 @@
             <param name="id">The diagnostic ID.</param>
             <returns>The description.</returns>
         </member>
-        <member name="T:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver">
             <summary>
             Defines a syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.DeconstructMethodGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator">
+            <summary>
+            Encapsulates a source generator that generates the source code for the constants initialization
+            that is in the project <c>Sudoku.Core</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.IntersectionBlockCoreValues">
+            <summary>
+            The table that used for the table <c>IntersectionBlockTable</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator">
             <summary>
             Provides a generator that generates the deconstruction methods.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Try to get all possible fields or properties in the specified type.
             </summary>
@@ -840,36 +878,36 @@
             <param name="attributeSymbol">The attribute symbol to check.</param>
             <returns>The result list that contains all member symbols.</returns>
         </member>
-        <member name="T:Sudoku.CodeGenerating.DeconstructMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.DeconstructMethodGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.DiagnosticInfoGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator">
             <summary>
             Indicates the generator that generates the diagnostic information used in code analysis.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.DiagnosticInfoGenerator.CsvTableName">
+        <member name="F:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator.CsvTableName">
             <summary>
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DiagnosticInfoGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.DiagnosticInfoGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.EqualsMethodGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator">
             <summary>
             Indicates the generator that generates the methods about the equality checking. The methods below
             will be generated:
@@ -885,50 +923,50 @@
             because this method is useless in the by-ref-like types.
             </remarks>
         </member>
-        <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.EqualsMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.EqualsMethodGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.EqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator">
             <summary>
             Provides a generator that generates the deconstruction methods that are extension methods.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.SyntaxReceiver">
             <summary>
             Indicates the inner syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator.SyntaxReceiver.Attributes">
+        <member name="P:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.SyntaxReceiver.Attributes">
             <summary>
             Indicates the attributes result that targets to a module.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ExtensionDeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.FormattableMethodsGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator">
             <summary>
             Defines a source generator that generates the code for <c>ToString</c> methods. The methods below
             will be generated:
@@ -938,61 +976,61 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.FormattableMethodsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.FormattableMethodsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.FormattableMethodsGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.FormattableMethodsGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.FormattableMethodsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.GetEnumeratorGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator">
             <summary>
             Indicates a source generator that generates the code for the method <c>GetEnumerator</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.GetEnumeratorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.GetEnumeratorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.GetEnumeratorGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver">
             <summary>
             Indicates the inner syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.GetEnumeratorGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates the types that satisfy the condition.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.GetEnumeratorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.KeyedTupleGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator">
             <summary>
             Define a keyed tuple generator.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.PrimaryConstructorGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator">
             <summary>
             Indicates a generator that generates primary constructors for <see langword="class"/>es
             when they're marked <see cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>.
@@ -1002,13 +1040,13 @@
             </remarks>
             <seealso cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Try to get all possible fields or properties in the specified <see langword="class"/> type.
             </summary>
@@ -1029,7 +1067,7 @@
             <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>
             <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SymbolInfo">
+        <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SymbolInfo">
             <summary>
             Indicates the inner member symbol information quadruple.
             </summary>
@@ -1038,7 +1076,7 @@
             <param name="Name">Indicates the name.</param>
             <param name="Attributes">Indicates all attributes that the type has marked.</param>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SymbolInfo.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SymbolInfo.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">
             <summary>
             Indicates the inner member symbol information quadruple.
             </summary>
@@ -1047,81 +1085,81 @@
             <param name="Name">Indicates the name.</param>
             <param name="Attributes">Indicates all attributes that the type has marked.</param>
         </member>
-        <member name="T:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SyntaxReceiver.CandidateClasses">
+        <member name="P:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SyntaxReceiver.CandidateClasses">
             <summary>
             Indicates all possible candidate <see langword="class"/>es used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.PrimaryConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator">
             <summary>
             Indicates a generator that generates the code about the equality method.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator.SyntaxReceiver">
             <summary>
             Indicates the inner syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates the result types.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ProxyEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.RefStructDefaultImplGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator">
             <summary>
             Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.SyntaxReceiver.Types">
+        <member name="P:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator.SyntaxReceiver.Types">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.RefStructDefaultImplGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.RefStructDefaultImplGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.ResourceDictionaryGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator">
             <summary>
             Indicates the source generator that generates the code for the resource dictionary.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Regex">
+        <member name="F:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Regex">
             <summary>
             Indicates the regular expression to match a key.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator">

@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Indicates a source generator that generates the code for the method <c>GetEnumerator</c>.

@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Define a keyed tuple generator.

@@ -2,7 +2,7 @@
 using System.Text;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	partial class BitOperationsGenerator
 	{

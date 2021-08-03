@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Indicates the generator that generates the diagnostic information used in code analysis.

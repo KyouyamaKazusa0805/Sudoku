@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Sudoku.CodeGenerating.Extensions;
 using static Sudoku.CodeGenerating.Constants;
 
-namespace Sudoku.CodeGenerating
+namespace Sudoku.CodeGenerating.Generators
 {
 	/// <summary>
 	/// Provides a generator that generates the deconstruction methods.
