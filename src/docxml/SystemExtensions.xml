@@ -1365,19 +1365,23 @@
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.ClosedAttribute">
             <summary>
-            Marks on a enumeration type, which means the enumeration type is a closed enumeration type.
+            Marks on an enumeration type, which means the enumeration type is a closed enumeration type.
             </summary>
             <remarks>
-            A closed enumeration type is a type that only holds the value in the enumeration declaration field
-            (i.e. the curly bracket). For example, the code
+            A <b>closed</b> enumeration type is an enumeration type
+            of which you can only uses those constant values from declared fields. Therefore <b>all</b>
+            operators can't be used here.
+            For example:
             <code>
-            [Closed] public enum Gender { Boy; Girl; }
+            using System.Diagnostics.CodeAnalysis;
+            
+            [Closed]
+            public enum Gender { Boy; Girl; }
             </code>
-            Which means the type <c>Gender</c> is a closed enumeration type, and you can't use arithmetic operators
-            (such as <c>operator +</c>) to get the fields that don't appear
-            in the declaration <c>{ Boy; Girl; }</c> (e.g. <c>Gender.Boy + Gender.Girl</c>,
-            <c>Gender.Boy + 1</c>, etc.). In other words, you can only use those fields as the references
-            instead of any calculations.
+            The code snippet means the type <c>Gender</c> is a closed enumeration type,
+            so you can't use any arithmetic operators (such as the <see langword="operator"/> <c>+</c>)
+            to calculate and get the new result of this type, because the operator may get the result that isn't
+            <c>Gender.Boy</c> or <c>Gender.Girl</c>.
             </remarks>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DiscardAttribute">
