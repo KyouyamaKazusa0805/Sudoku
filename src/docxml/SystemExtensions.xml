@@ -1346,7 +1346,17 @@
             Performs a mod operation using the multiplier pre-computed with <see cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>.
             </summary>
             <remarks>This should only be used on 64-bit.</remarks>
+            <exception cref="T:System.ArgumentException">
+            Throws when the <paramref name="divisor"/> is greater than <see cref="F:System.Int32.MaxValue"/>.
+            </exception>
+            <exception cref="T:System.ArithmeticException">
+            Throws when the expression <c>highbits == value % divisor</c> returns <see langword="false"/>,
+            where the variable <c>highbits</c> equals to the expression
+            <c>(uint)(((((multiplier * value) >> 32) + 1) * divisor) >> 32)</c>,
+            which is an <see cref="T:System.UInt32"/> value.
+            </exception>
             <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
+            <seealso cref="F:System.Int32.MaxValue"/>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AssemblyObsoleteAttribute">
             <summary>
