@@ -439,12 +439,9 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the cells that corresponding position in this grid is empty.
 		/// </summary>
-		/// <remarks>
-		/// Note that this property isn't a promptly one because the value won't be calculated
-		/// until this property called.
-		/// </remarks>
 		public readonly Cells EmptyCells
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				return GetCells(&p);
@@ -456,12 +453,9 @@ namespace Sudoku.Data
 		/// <summary>
 		/// Indicates the cells that corresponding position in this grid contain two candidates.
 		/// </summary>
-		/// <remarks>
-		/// Note that this property isn't a promptly one because the value won't be calculated
-		/// until this property called.
-		/// </remarks>
 		public readonly Cells BivalueCells
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				return GetCells(&p);
@@ -474,12 +468,9 @@ namespace Sudoku.Data
 		/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 		/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 		/// </summary>
-		/// <remarks>
-		/// Note that this property isn't a promptly one because the value won't be calculated
-		/// until this property called.
-		/// </remarks>
 		public readonly Cells[] CandidateMap
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				return GetMap(&p);
@@ -498,13 +489,10 @@ namespace Sudoku.Data
 		/// empty cells only if it contains the digit in the mask.
 		/// </para>
 		/// </summary>
-		/// <remarks>
-		/// Note that this property isn't a promptly one because the value won't be calculated
-		/// until this property called.
-		/// </remarks>
 		/// <seealso cref="CandidateMap"/>
 		public readonly Cells[] DigitsMap
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				return GetMap(&p);
@@ -523,13 +511,10 @@ namespace Sudoku.Data
 		/// cells whose mask contain the set bit of that digit.
 		/// </para>
 		/// </summary>
-		/// <remarks>
-		/// Note that this property isn't a promptly one because the value won't be calculated
-		/// until this property called.
-		/// </remarks>
 		/// <seealso cref="CandidateMap"/>
 		public readonly Cells[] ValuesMap
 		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
 				return GetMap(&p);

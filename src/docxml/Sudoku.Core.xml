@@ -2549,29 +2549,17 @@
             <summary>
             Indicates the cells that corresponding position in this grid is empty.
             </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
         </member>
         <member name="P:Sudoku.Data.Grid.BivalueCells">
             <summary>
             Indicates the cells that corresponding position in this grid contain two candidates.
             </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
         </member>
         <member name="P:Sudoku.Data.Grid.CandidateMap">
             <summary>
             Indicates the map of possible positions of the existence of the candidate value for each digit.
             The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
             </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
         </member>
         <member name="P:Sudoku.Data.Grid.DigitsMap">
             <summary>
@@ -2584,10 +2572,6 @@
             empty cells only if it contains the digit in the mask.
             </para>
             </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
             <seealso cref="P:Sudoku.Data.Grid.CandidateMap"/>
         </member>
         <member name="P:Sudoku.Data.Grid.ValuesMap">
@@ -2601,10 +2585,6 @@
             cells whose mask contain the set bit of that digit.
             </para>
             </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
             <seealso cref="P:Sudoku.Data.Grid.CandidateMap"/>
         </member>
         <member name="P:Sudoku.Data.Grid.Triplet">
