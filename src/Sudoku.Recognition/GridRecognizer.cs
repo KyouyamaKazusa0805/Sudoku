@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Extensions;
 using Emgu.CV;
@@ -53,34 +51,6 @@ namespace Sudoku.Recognition
 		}
 
 		/// <summary>
-		/// Prepare the image.
-		/// </summary>
-		/// <returns>The <see cref="UMat"/> instance.</returns>
-		private UMat PrepareImage()
-		{
-			// Resize image.
-			if (_image.Width > MaxSize && _image.Height > MaxSize)
-			{
-				_image = _image.Resize(MaxSize, MaxSize * _image.Width / _image.Height, Inter.Linear, true);
-			}
-
-			// Convert the image to gray-scale and filter out the noise.
-			using var uimage = new UMat();
-			Cv.CvtColor(_image, uimage, ColorConversion.Bgr2Gray);
-
-			// Use image pyramid to remove noise.
-			using var pyrDown = new UMat();
-			Cv.PyrDown(uimage, pyrDown);
-			Cv.PyrUp(pyrDown, uimage);
-
-			var cannyEdges = new UMat();
-
-			Cv.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
-
-			return cannyEdges;
-		}
-
-		/// <summary>
 		/// Find the field.
 		/// </summary>
 		/// <param name="edges">The edges.</param>
@@ -116,28 +86,6 @@ namespace Sudoku.Recognition
 			}
 
 			return biggestRectangle;
-		}
-
-		/// <summary>
-		/// To cut the field.
-		/// </summary>
-		/// <param name="field">The field.</param>
-		/// <returns>The image.</returns>
-		private Field CutField(PointF[] field)
-		{
-			// Size for output image, recommendation: multiples of 9 and 6.
-			var resultField = new Field(RSize, RSize);
-
-			// Transformation sudoku field to rectangle size and aligning the sides.
-			Cv.WarpPerspective(
-				_image,
-				resultField,
-				Cv.GetPerspectiveTransform(
-					field,
-					new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }),
-				new(RSize, RSize));
-
-			return resultField;
 		}
 
 		/// <summary>
@@ -189,6 +137,57 @@ namespace Sudoku.Recognition
 
 			return corners;
 		}
+
+		/// <summary>
+		/// Prepare the image.
+		/// </summary>
+		/// <returns>The <see cref="UMat"/> instance.</returns>
+		private UMat PrepareImage()
+		{
+			// Resize image.
+			if (_image.Width > MaxSize && _image.Height > MaxSize)
+			{
+				_image = _image.Resize(MaxSize, MaxSize * _image.Width / _image.Height, Inter.Linear, true);
+			}
+
+			// Convert the image to gray-scale and filter out the noise.
+			using var uimage = new UMat();
+			Cv.CvtColor(_image, uimage, ColorConversion.Bgr2Gray);
+
+			// Use image pyramid to remove noise.
+			using var pyrDown = new UMat();
+			Cv.PyrDown(uimage, pyrDown);
+			Cv.PyrUp(pyrDown, uimage);
+
+			var cannyEdges = new UMat();
+
+			Cv.Canny(uimage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
+
+			return cannyEdges;
+		}
+
+		/// <summary>
+		/// To cut the field.
+		/// </summary>
+		/// <param name="field">The field.</param>
+		/// <returns>The image.</returns>
+		private Field CutField(PointF[] field)
+		{
+			// Size for output image, recommendation: multiples of 9 and 6.
+			var resultField = new Field(RSize, RSize);
+
+			// Transformation sudoku field to rectangle size and aligning the sides.
+			Cv.WarpPerspective(
+				src: _image,
+				dst: resultField,
+				mapMatrix: Cv.GetPerspectiveTransform(
+					field,
+					new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }
+				),
+				dsize: new(RSize, RSize)
+			);
+
+			return resultField;
+		}
 	}
 }
-#endif

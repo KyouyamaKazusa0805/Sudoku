@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using Emgu.CV.CvEnum;
+﻿using Emgu.CV.CvEnum;
 
 namespace Sudoku.Recognition
 {
@@ -9,6 +7,11 @@ namespace Sudoku.Recognition
 	/// </summary>
 	internal static class Constants
 	{
+		/// <summary>
+		/// Indicates the L2Gradient.
+		/// </summary>
+		public const bool L2Gradient = true;
+
 		/// <summary>
 		/// Indicates the maximum size.
 		/// </summary>
@@ -30,16 +33,6 @@ namespace Sudoku.Recognition
 		public const int ThresholdMax = 100;
 
 		/// <summary>
-		/// Indicates the L2Gradient.
-		/// </summary>
-		public const bool L2Gradient = true;
-
-		/// <summary>
-		/// Indicates the font.
-		/// </summary>
-		public const FontFace Font = FontFace.HersheyPlain;
-
-		/// <summary>
 		/// Indicates the font size.
 		/// </summary>
 		public const int FontSize = 3;
@@ -50,11 +43,6 @@ namespace Sudoku.Recognition
 		public const int FontSizePr = 1;
 
 		/// <summary>
-		/// Indicates the ChainApprox.
-		/// </summary>
-		public const ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
-
-		/// <summary>
 		/// Indicates the ThOcrMin.
 		/// </summary>
 		public const int ThOcrMin = 120;
@@ -63,6 +51,15 @@ namespace Sudoku.Recognition
 		/// Indicates the ThOcrMax.
 		/// </summary>
 		public const int ThOcrMax = 255;
+
+		/// <summary>
+		/// Indicates the font.
+		/// </summary>
+		public const FontFace Font = FontFace.HersheyPlain;
+
+		/// <summary>
+		/// Indicates the ChainApprox.
+		/// </summary>
+		public const ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
 	}
 }
-#endif

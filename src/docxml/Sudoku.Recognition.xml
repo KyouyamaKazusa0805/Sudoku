@@ -9,6 +9,11 @@
             Define the internal settings.
             </summary>
         </member>
+        <member name="F:Sudoku.Recognition.Constants.L2Gradient">
+            <summary>
+            Indicates the L2Gradient.
+            </summary>
+        </member>
         <member name="F:Sudoku.Recognition.Constants.MaxSize">
             <summary>
             Indicates the maximum size.
@@ -29,16 +34,6 @@
             Indicates the maximum threshold.
             </summary>
         </member>
-        <member name="F:Sudoku.Recognition.Constants.L2Gradient">
-            <summary>
-            Indicates the L2Gradient.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.Constants.Font">
-            <summary>
-            Indicates the font.
-            </summary>
-        </member>
         <member name="F:Sudoku.Recognition.Constants.FontSize">
             <summary>
             Indicates the font size.
@@ -47,11 +42,6 @@
         <member name="F:Sudoku.Recognition.Constants.FontSizePr">
             <summary>
             Indicates the font size pr.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.Constants.ChainApprox">
-            <summary>
-            Indicates the ChainApprox.
             </summary>
         </member>
         <member name="F:Sudoku.Recognition.Constants.ThOcrMin">
@@ -64,14 +54,24 @@
             Indicates the ThOcrMax.
             </summary>
         </member>
+        <member name="F:Sudoku.Recognition.Constants.Font">
+            <summary>
+            Indicates the font.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Constants.ChainApprox">
+            <summary>
+            Indicates the ChainApprox.
+            </summary>
+        </member>
         <member name="T:Sudoku.Recognition.Extensions.BitmapEx">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
             <remarks>
-            Some methods of this file is copied by the <see cref="N:Emgu.CV"/>'s
+            Some methods of this file is copied by 
             <see href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
-            site
+            the EmguCV's repository
             </see>.
             </remarks>
             <seealso cref="T:System.Drawing.Bitmap"/>
@@ -215,12 +215,6 @@
             </summary>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Recognition.GridRecognizer.PrepareImage">
-            <summary>
-            Prepare the image.
-            </summary>
-            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.Recognition.GridRecognizer.FindField(Emgu.CV.UMat)">
             <summary>
             Find the field.
@@ -228,19 +222,25 @@
             <param name="edges">The edges.</param>
             <returns>The points.</returns>
         </member>
-        <member name="M:Sudoku.Recognition.GridRecognizer.CutField(System.Drawing.PointF[])">
-            <summary>
-            To cut the field.
-            </summary>
-            <param name="field">The field.</param>
-            <returns>The image.</returns>
-        </member>
         <member name="M:Sudoku.Recognition.GridRecognizer.GetFourCornerPoints(System.Drawing.Point[])">
             <summary>
             Getting four corner points from contour points.
             </summary>
             <param name="points">The points.</param>
             <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.GridRecognizer.PrepareImage">
+            <summary>
+            Prepare the image.
+            </summary>
+            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.GridRecognizer.CutField(System.Drawing.PointF[])">
+            <summary>
+            To cut the field.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The image.</returns>
         </member>
         <member name="T:Sudoku.Recognition.InternalServiceProvider">
             <summary>

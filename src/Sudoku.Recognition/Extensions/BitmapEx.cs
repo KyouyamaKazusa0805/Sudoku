@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -14,9 +12,9 @@ namespace Sudoku.Recognition.Extensions
 	/// Provides extension methods on <see cref="Bitmap"/>.
 	/// </summary>
 	/// <remarks>
-	/// Some methods of this file is copied by the <see cref="Emgu.CV"/>'s
+	/// Some methods of this file is copied by 
 	/// <see href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
-	/// site
+	/// the EmguCV's repository
 	/// </see>.
 	/// </remarks>
 	/// <seealso cref="Bitmap"/>
@@ -28,7 +26,7 @@ namespace Sudoku.Recognition.Extensions
 		/// <param name="this">The bitmap.</param>
 		public static void CorrectOrientation(this Bitmap @this)
 		{
-			if (Array.IndexOf(@this.PropertyIdList, 274) > -1)
+			if (Array.IndexOf(@this.PropertyIdList, 274) != -1)
 			{
 				switch (@this.GetPropertyItem(274)!.Value![0])
 				{
@@ -85,7 +83,8 @@ namespace Sudoku.Recognition.Extensions
 		/// <seealso cref="Image{TColor, TDepth}"/>
 		/// <seealso cref="Bitmap"/>
 		public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
-			where TColor : struct, IColor where TDepth : new()
+			where TColor : struct, IColor
+			where TDepth : new()
 		{
 			var size = bitmap.Size;
 			var image = new Image<TColor, TDepth>(size);
@@ -96,7 +95,9 @@ namespace Sudoku.Recognition.Extensions
 				{
 					if (typeof(TColor) == typeof(Bgr) && typeof(TDepth) == typeof(byte))
 					{
-						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(
+							new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat
+						);
 
 						using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						CvInvoke.MixChannels(mat, image, new[] { 0, 0, 1, 1, 2, 2 });
@@ -119,7 +120,9 @@ namespace Sudoku.Recognition.Extensions
 					}
 					else
 					{
-						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(
+							new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat
+						);
 						using var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						image.ConvertFrom(tmp);
 
@@ -133,10 +136,15 @@ namespace Sudoku.Recognition.Extensions
 					if (typeof(TColor) == typeof(Bgra) && typeof(TDepth) == typeof(byte))
 					{
 						ColorPaletteToLookupTable(
-							bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable);
+							bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable
+						);
 
-						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-						using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
+						var data = bitmap.LockBits(
+							new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat
+						);
+						using var indexValue = new Image<Gray, byte>(
+							size.Width, size.Height, data.Stride, data.Scan0
+						);
 						using Mat a = new(), r = new(), g = new(), b = new();
 						using var mv = new VectorOfMat(new[] { b, g, r, a });
 						try
@@ -173,7 +181,9 @@ namespace Sudoku.Recognition.Extensions
 					}
 					else
 					{
-						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(
+							new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat
+						);
 						using var tmp = new Image<Bgr, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 						image.ConvertFrom(tmp);
 						bitmap.UnlockBits(data);
@@ -187,7 +197,9 @@ namespace Sudoku.Recognition.Extensions
 					{
 						int rows = size.Height;
 						int cols = size.Width;
-						var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+						var data = bitmap.LockBits(
+							new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat
+						);
 
 						int fullByteCount = cols >> 3;
 						int partialBitCount = cols & 7;
@@ -293,4 +305,3 @@ namespace Sudoku.Recognition.Extensions
 		}
 	}
 }
-#endif

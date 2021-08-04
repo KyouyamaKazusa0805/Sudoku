@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 using Sudoku.Data;
 
@@ -56,5 +54,3 @@ namespace Sudoku.Recognition
 		}
 	}
 }
-
-#endif

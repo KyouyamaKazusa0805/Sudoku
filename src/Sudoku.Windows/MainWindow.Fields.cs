@@ -141,12 +141,10 @@ namespace Sudoku.Windows
 		/// </summary>
 		private SudokuGrid _initialPuzzle = SudokuGrid.Undefined;
 
-#if SUDOKU_RECOGNITION
 		/// <summary>
 		/// Indicates an recognition instance.
 		/// </summary>
 		private RecognitionServiceProvider? _recognition;
-#endif
 
 		/// <summary>
 		/// Indicates the analysis result after solved of the current grid.

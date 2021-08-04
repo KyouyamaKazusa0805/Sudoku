@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Emgu.CV;
@@ -59,13 +57,12 @@ namespace Sudoku.Recognition
 				for (int y = 0; y < 9; y++)
 				{
 					// Recognize digit from cell.
-					if (
-						RecognizeCellNumber(
-							field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2))
-						) is var recognition and not -1
-					)
+					int recogizedResult = RecognizeCellNumber(
+						field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2))
+					);
+					if (recogizedResult != -1)
 					{
-						int cell = x * 9 + y, digit = recognition - 1;
+						int cell = x * 9 + y, digit = recogizedResult - 1;
 						if (!result[cell, digit])
 						{
 							throw new FailedToFillValueException(cell, digit);
@@ -208,4 +205,3 @@ namespace Sudoku.Recognition
 #endif
 	}
 }
-#endif

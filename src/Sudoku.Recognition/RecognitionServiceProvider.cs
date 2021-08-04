@@ -1,6 +1,4 @@
-﻿#if SUDOKU_RECOGNITION
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -73,5 +71,3 @@ namespace Sudoku.Recognition
 		public async ValueTask<SudokuGrid> RecognizeAsync(Bitmap image) => await new ValueTask<SudokuGrid>(Recognize(image));
 	}
 }
-
-#endif

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Extensions;
 using System.IO;
 using System.Linq;
@@ -24,10 +25,6 @@ using Sudoku.Windows.Data;
 using Sudoku.Windows.Extensions;
 using Sudoku.Windows.Media;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-
-#if SUDOKU_RECOGNITION
-using System.Diagnostics;
-#endif
 
 namespace Sudoku.Windows
 {
@@ -172,11 +169,7 @@ namespace Sudoku.Windows
 			CheckResourceDictionaryFilesExistence();
 			ChangeLanguage(Settings.LanguageCode);
 			PreventYouOpeningTwoSameWindows();
-
-#if SUDOKU_RECOGNITION
 			InitializeRecognizerIfWorth();
-#endif
-
 			DefineShortCuts();
 			InitializeGridPainter();
 			LoadDatabaseIfWorth();
@@ -233,15 +226,12 @@ namespace Sudoku.Windows
 			}
 #endif
 
-#if SUDOKU_RECOGNITION
 			// Dispose the OCR tools.
 			_recognition?.Dispose();
-#endif
 
 			// Call base.OnClosing to close the window (collect the garbage memory).
 			base.OnClosing(e);
 
-#if SUDOKU_RECOGNITION
 			// If you don't use this feature, the program won't need to use
 			// this method to KILL itself... KILL... sounds terrible and dangerous, isn't it?
 			// To be honest, I don't know why the program fails to exit... The background
@@ -251,7 +241,6 @@ namespace Sudoku.Windows
 			{
 				Process.GetCurrentProcess().Kill();
 			}
-#endif
 		}
 
 		/// <inheritdoc/>
@@ -403,7 +392,6 @@ namespace Sudoku.Windows
 
 
 		#region Other instance methods
-#if SUDOKU_RECOGNITION
 		/// <summary>
 		/// Initialize recognizer if worth.
 		/// </summary>
@@ -427,7 +415,6 @@ namespace Sudoku.Windows
 				Messagings.FailedToLoadRecognitionTool(ex);
 			}
 		}
-#endif
 
 		/// <summary>
 		/// Add short cuts during initialization.
@@ -677,10 +664,6 @@ namespace Sudoku.Windows
 		/// </summary>
 		private void UpdateControls()
 		{
-#if !SUDOKU_RECOGNITION
-			_menuItemFileLoadPicture.IsEnabled = false;
-#endif
-
 			_menuItemOptionsShowCandidates.IsChecked = Settings.ShowCandidates;
 			_menuItemAnalyzeSeMode.IsChecked = Settings.MainManualSolver.AnalyzeDifficultyStrictly;
 			_menuItemAnalyzeFastSearch.IsChecked = Settings.MainManualSolver.FastSearch;

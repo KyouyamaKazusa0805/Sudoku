@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Extensions;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +17,8 @@ using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
+using Sudoku.Data.Stepping;
+using Sudoku.Drawing;
 using Sudoku.Generating;
 using Sudoku.Globalization;
 using Sudoku.Models;
@@ -22,13 +26,6 @@ using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
-using System.Text.Json;
-using Sudoku.Drawing;
-using Sudoku.Data.Stepping;
-
-#if SUDOKU_RECOGNITION
-using System.Drawing;
-#endif
 
 namespace Sudoku.Windows
 {
@@ -121,13 +118,8 @@ namespace Sudoku.Windows
 			}
 		}
 
-#if SUDOKU_RECOGNITION
 		private async void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
-#else
-		private void MenuItemFileLoadPicture_Click(object sender, RoutedEventArgs e)
-#endif
 		{
-#if SUDOKU_RECOGNITION
 			await internalOperation();
 
 			async Task internalOperation()
@@ -186,9 +178,6 @@ namespace Sudoku.Windows
 					_textBoxInfo.ClearValue(TextBox.TextProperty);
 				}
 			}
-#else
-			Messagings.NotSupportedForLoadingPicture();
-#endif
 		}
 
 		private void MenuItemFileSavePicture_Click(object sender, RoutedEventArgs e) =>

@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
-		<DefineConstants>SUDOKU_RECOGNITION</DefineConstants>
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates the operations about recognitions of a sudoku picture.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
@@ -15,11 +14,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUDOKU_RECOGNITION; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+		<DefineConstants>DEBUG;SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUDOKU_RECOGNITION; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+		<DefineConstants>SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
