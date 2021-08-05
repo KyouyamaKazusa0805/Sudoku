@@ -147,7 +147,7 @@ namespace Sudoku.Solving.Manual
 		/// A <b>format</b> is the better way to format the result text of this technique information instance,
 		/// It'll be represented by the normal characters and the placeholders, e.g.
 		/// <code>
-		/// "<![CDATA[{Name}: Cells {CellsStr} => {ElimsStr}]]>"
+		/// <![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]>
 		/// </code>
 		/// Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
 		/// format string, rather than a interpolated string.
