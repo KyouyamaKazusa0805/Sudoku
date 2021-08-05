@@ -469,5 +469,6 @@
   "Format_BugType2StepInfo": "{Name}: {ExtraDigitStr} with cells {CellsStr} => {ElimStr}",
   "Format_BugType3StepInfo": "{Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} => {ElimStr}",
   "Format_BugType4StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with conjugate pair {ConjStr} => {ElimStr}",
-  "Format_BugXzStepInfo": "{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}"
+  "Format_BugXzStepInfo": "{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}",
+  "Format_CellChainingStepInfo": "{Name}: It can be proved using chains that all digits are false from {SourceCellStr} => {ElimStr}"
 }

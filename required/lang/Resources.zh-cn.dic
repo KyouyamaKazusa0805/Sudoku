@@ -456,5 +456,6 @@
   "Format_BugType2StepInfo": "{Name}：单元格 {CellsStr} 里包含额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_BugType3StepInfo": "{Name}：真数 {TrueCandidatesStr}，伴有{SubsetTypeStr}{SizeStrZhCn}于单元格 {CellsStr} 里，涉及数字 {ExtraDigitsStr} => {ElimStr}",
   "Format_BugType4StepInfo": "{Name}：位于单元格 {CellsStr} 里的数字 {DigitsStr}，带有一个共轭对 {ConjStr} => {ElimStr}",
-  "Format_BugXzStepInfo": "{Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} => {ElimStr}"
+  "Format_BugXzStepInfo": "{Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} => {ElimStr}",
+  "Format_CellChainingStepInfo": "{Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 => {ElimStr}"
 }
