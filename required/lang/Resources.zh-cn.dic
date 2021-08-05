@@ -440,5 +440,6 @@
   "Format_BinaryChainingStepInfo": "{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 => {ElimStr}",
   "Format_BivalueOddagonType1StepInfo": "{Name}：如果单元格 {CellStr} 只有数字 {Digit1Str} 和 {Digit2Str} 的话，整个环 {LoopStr} 会直接导致违背规则的矛盾现象 => {ElimStr}",
   "Format_BivalueOddagonType2StepInfo": "{Name}：如果所有在单元格 {LoopStr} 里的数字 {ExtraDigitStr} 全部删掉，则整个环会直接导致违背规则的矛盾现象 => {ElimStr}",
-  "Format_BivalueOddagonType3StepInfo": "{Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 => {ElimStr}"
+  "Format_BivalueOddagonType3StepInfo": "{Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 => {ElimStr}",
+  "Format_BowmanBingoStepInfo": "{Name}：设 {ContradictionSeriesStr} => {ElimStr}"
 }

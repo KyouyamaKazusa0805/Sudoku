@@ -4484,7 +4484,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
+            <param name="ContradictionSeries">Indicates all conclusions that occurs a contradiction.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
             <summary>
@@ -4492,7 +4492,7 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
+            <param name="ContradictionSeries">Indicates all conclusions that occurs a contradiction.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.Difficulty">
             <inheritdoc/>

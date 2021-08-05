@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -12,10 +13,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	/// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
+	/// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradiction.</param>
 	public sealed record BowmanBingoStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		IReadOnlyList<Conclusion> ContradictionSeries) : LastResortStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> ContradictionSeries
+	) : LastResortStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + ContradictionSeries.Count.GetExtraDifficultyByLength();
@@ -33,13 +35,26 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.BowmanBingo;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ContradictionSeriesStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string contradictionSeriesStr = new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Try {contradictionSeriesStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: Try {ContradictionSeriesStr} => {ElimStr}";
 	}
 }
