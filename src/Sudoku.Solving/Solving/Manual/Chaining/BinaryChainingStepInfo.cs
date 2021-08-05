@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Chaining
@@ -49,11 +51,36 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string AnchorCandidateStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates { Anchor.Cell * 9 + Anchor.Digit }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string AnchorIsTrueOrFalseStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Anchor.IsOn ? TextResources.Current.TrueKeyword : TextResources.Current.FalseKeyword;
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() =>
-			$"{Name}: It can be proved to be a contradiction if " +
-			$"{new Candidates { Anchor.Cell * 9 + Anchor.Digit }.ToString()} is " +
-			$"{(!Anchor.IsOn).ToString().ToLower()} => {new ConclusionCollection(Conclusions).ToString()}";
+			$"{Name}: It can be proved to be a contradiction if {AnchorCandidateStr} is {AnchorIsTrueOrFalseStr} => {ElimStr}";
 	}
 }

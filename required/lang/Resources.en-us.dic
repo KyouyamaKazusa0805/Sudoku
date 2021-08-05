@@ -455,5 +455,6 @@
   "Format_BdpType2StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} => {ElimStr}",
   "Format_BdpType3StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} => {ElimStr}",
   "Format_BdpType4StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the conjugate region {ConjRegionStr} of the extra digits {ExtraCombStr} => {ElimStr}",
-  "Format_BfStepInfo": "{Name}: {AssignmentStr}"
+  "Format_BfStepInfo": "{Name}: {AssignmentStr}",
+  "Format_BinaryChainingStepInfo": "{Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} => {ElimStr}"
 }

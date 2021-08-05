@@ -90,6 +90,8 @@
   "Appear": "出现",
   "OrKeyword": " 或 ",
   "Only": "只",
+  "TrueKeyword": "真",
+  "FalseKeyword": "假",
   "FullHouse": "同区剩余",
   "LastDigit": "同数剩余",
   "HiddenSingleRow": "行排除",
@@ -434,5 +436,6 @@
   "Format_BdpType2StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_BdpType3StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} => {ElimStr}",
   "Format_BdpType4StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 => {ElimStr}",
-  "Format_BfStepInfo": "{Name}：{AssignmentStr}"
+  "Format_BfStepInfo": "{Name}：{AssignmentStr}",
+  "Format_BinaryChainingStepInfo": "{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 => {ElimStr}"
 }
