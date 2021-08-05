@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
@@ -157,6 +158,60 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		private ShapeModifiers ShapeModifier => IsFranken ? ShapeModifiers.Franken : ShapeModifiers.Mutant;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string BaseSetsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(BaseSets).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CoverSetsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(CoverSets).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExofinsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string EndofinsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public bool Equals(ComplexFishStepInfo? other) =>
@@ -168,15 +223,7 @@ namespace Sudoku.Solving.Manual.Fishes
 			&& Endofins == other.Endofins;
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitStr = (Digit + 1).ToString();
-			string baseSets = new RegionCollection(BaseSets).ToString();
-			string coverSets = new RegionCollection(CoverSets).ToString();
-			string exo = Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
-			string endo = Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $@"{Name}: {digitStr} in {baseSets}\{coverSets} {exo}{endo}=> {elimStr}";
-		}
+		public override string ToString() =>
+			$@"{Name}: {DigitStr} in {BaseSetsStr}\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}";
 	}
 }
