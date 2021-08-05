@@ -458,5 +458,6 @@
   "Format_BugType4StepInfo": "{Name}：位于单元格 {CellsStr} 里的数字 {DigitsStr}，带有一个共轭对 {ConjStr} => {ElimStr}",
   "Format_BugXzStepInfo": "{Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} => {ElimStr}",
   "Format_CellChainingStepInfo": "{Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 => {ElimStr}",
-  "Format_ComplexFishStepInfo": "{Name}: {BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=> {ElimStr}"
+  "Format_ComplexFishStepInfo": "{Name}: {BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=> {ElimStr}",
+  "Format_DbStepInfo": "{Name}：从单元格 {PivotStr} 开始展开花瓣——{PetalsStr} => {ElimStr}"
 }

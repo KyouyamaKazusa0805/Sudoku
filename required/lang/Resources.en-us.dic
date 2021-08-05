@@ -471,5 +471,6 @@
   "Format_BugType4StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with conjugate pair {ConjStr} => {ElimStr}",
   "Format_BugXzStepInfo": "{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}",
   "Format_CellChainingStepInfo": "{Name}: It can be proved using chains that all digits are false from {SourceCellStr} => {ElimStr}",
-  "Format_ComplexFishStepInfo": "{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}"
+  "Format_ComplexFishStepInfo": "{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}",
+  "Format_DbStepInfo": "{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}"
 }

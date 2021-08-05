@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
@@ -15,8 +16,8 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Pivot">The pivot cell.</param>
 	/// <param name="Petals">All ALSes used.</param>
 	public sealed record DbStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
-		IReadOnlyDictionary<int, Als> Petals
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Pivot, IReadOnlyDictionary<int, Als> Petals
 	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
@@ -34,16 +35,21 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
-
-		/// <inheritdoc/>
-		public override string ToString()
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string PivotStr
 		{
-			string pivotStr = new Cells { Pivot }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cell {pivotStr} - {petalsToString()} => {elimStr}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { Pivot }.ToString();
+		}
 
-
-			unsafe string? petalsToString()
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private unsafe string PetalsStr
+		{
+			get
 			{
 				const string separator = ", ";
 
@@ -63,5 +69,18 @@ namespace Sudoku.Solving.Manual.Alses
 				}
 			}
 		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
+
+		/// <inheritdoc/>
+		public override string ToString() => $"{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}";
 	}
 }
