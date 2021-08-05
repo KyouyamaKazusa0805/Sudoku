@@ -1727,6 +1727,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.Format">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -4230,6 +4233,11 @@
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.FormatItemAttribute">
+            <summary>
+            Marks on a property to tell the user the property is only used for the formatting.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.AlcStepInfo">
             <summary>
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
@@ -6306,6 +6314,54 @@
             This method is used for displaying details in text box control.
             </summary>
             <returns>The string instance.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.Format">
+            <summary>
+            Gets the format of the current instance.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
+            any valid formats here, the result value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            A <b>format</b> is the better way to format the result text of this technique information instance,
+            It'll be represented by the normal characters and the placeholders, e.g.
+            <code>
+            "<![CDATA[{Name}: Cells {CellsStr} => {ElimsStr}]]>"
+            </code>
+            Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
+            format string, rather than a interpolated string.
+            </para>
+            <para>
+            Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> should be implemented before
+            the property invoked, you should creates those 3 properties, returns the corresponding correct string
+            result, makes them <see langword="private"/> or <see langword="protected"/> and marks the attribute
+            <see cref="T:Sudoku.Solving.Manual.FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
+            The recommended implementation pattern is:
+            <code><![CDATA[
+            #if SOLUTION_WIDE_CODE_ANALYSIS
+            [FormatItem]
+            #endif
+            private string CellsStr
+            {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => Cells.ToString();
+            }
+            ]]></code>
+            You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
+            into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
+            <see href="file:///../../../../required/README.md">README.md</see> in the <c>required</c> folder
+            to learn more information.
+            </para>
+            <para>
+            Because this property will get the value from the resource dictionary, the property supports
+            multiple language switching, which is better than the normal methods <see cref="M:Sudoku.Solving.Manual.StepInfo.ToString"/>
+            and <see cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.StepInfo.ToString"/>
+            <seealso cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@)">
             <summary>
@@ -8607,6 +8663,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8690,6 +8749,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8738,6 +8800,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8746,12 +8811,20 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo">
             <summary>
-            Provides a usage of <b>unique rectangle</b> (UR) or
-            <b>avoidable rectangle</b> (AR) technique.
+            Provides a usage of <b>unique rectangle</b> (UR) or <b>avoidable rectangle</b> (AR) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TechniqueCode2">The technique code.</param>
+            <param name="TechniqueCode2">
+            <para>The technique code.</para>
+            <para>
+            Limited by the C# language, here we creates a new property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode2"/>
+            to pass the value and assign it to the property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode"/>. If write code
+            to place the property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode"/> into the primary constructor as a parameter,
+            the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+            which isn't allowed in <see langword="record"/> types in the langugae design.
+            </para>
+            </param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -8760,12 +8833,20 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
-            Provides a usage of <b>unique rectangle</b> (UR) or
-            <b>avoidable rectangle</b> (AR) technique.
+            Provides a usage of <b>unique rectangle</b> (UR) or <b>avoidable rectangle</b> (AR) technique.
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
-            <param name="TechniqueCode2">The technique code.</param>
+            <param name="TechniqueCode2">
+            <para>The technique code.</para>
+            <para>
+            Limited by the C# language, here we creates a new property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode2"/>
+            to pass the value and assign it to the property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode"/>. If write code
+            to place the property <see cref="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueCode"/> into the primary constructor as a parameter,
+            the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+            which isn't allowed in <see langword="record"/> types in the langugae design.
+            </para>
+            </param>
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
             <param name="Cells">All cells.</param>
@@ -8780,6 +8861,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueGroup">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.AdditionalFormat">
+            <summary>
+            Indicates the additional format string.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ToString">
             <inheritdoc/>
@@ -9300,6 +9386,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -9340,6 +9429,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.ToString">
@@ -9386,6 +9478,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.BaseDifficulty">
@@ -9437,6 +9532,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.ToString">
@@ -9503,6 +9601,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.SdCDifficulty">
             <summary>
             The extra difficulty that assesses the size of SdC.
@@ -9564,6 +9665,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.AdditionalFormat">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -9619,6 +9723,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.AvoidableExtraDifficulty">

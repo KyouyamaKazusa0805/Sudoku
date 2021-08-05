@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -45,6 +47,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrWithWingStepInfo_Additional;
+
 		/// <summary>
 		/// Indicates the extra difficulty on whether the UR is an AR.
 		/// </summary>
@@ -60,17 +68,39 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			Technique.UrWxyzWing or Technique.ArWxyzWing => 2
 		}];
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string PivotsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(Pivots).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(ExtraCells).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string? GetAdditional()
-		{
-			string pivotsStr = new Cells(Pivots).ToString();
-			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			string cellsStr = new Cells(ExtraCells).ToString();
-			return $"pivots: {pivotsStr}, with digits: {digitsStr} in cells {cellsStr}";
-		}
+		protected override string? GetAdditional() =>
+			$"pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}";
 	}
 }

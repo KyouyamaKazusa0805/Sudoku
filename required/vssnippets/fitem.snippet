@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>fitem</Title>
+			<Shortcut>fitem</Shortcut>
+			<Author>Sunnie</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>propertyName</ID>
+					<Default>PropertyName</Default>
+					<ToolTip>The name of this property.</ToolTip>
+				</Literal>
+				<Literal Editable="true">
+					<ID>expression</ID>
+					<Default>"String Expression Here"</Default>
+					<ToolTip>The expression of the string value.</ToolTip>
+				</Literal>
+				<Literal Editable="false">
+					<ID>methodImplType</ID>
+					<Function>SimpleTypeName(global::System.Runtime.CompilerServices.MethodImplAttribute)</Function>
+				</Literal>
+				<Literal Editable="false">
+					<ID>metodImplOptionsType</ID>
+					<Function>SimpleTypeName(global::System.Runtime.CompilerServices.MethodImplOptions)</Function>
+				</Literal>
+			</Declarations>
+			<Code Language="CSharp">
+				<![CDATA[#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string $propertyName$
+		{
+			[$methodImplType$($metodImplOptionsType$.AggressiveInlining)]
+			get => $expression$;$end$
+		}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

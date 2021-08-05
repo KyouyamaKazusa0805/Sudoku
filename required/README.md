@@ -20,12 +20,17 @@ If you want to run the WPF project, please copy those folders to your debug fold
 
 如果你想要运行 WPF 项目，请把它们拷贝到你的调试文件夹下。
 
+The `vssnippets` folder stores the code snippets that can be used and imported into the Visual Studio in order to make code easier.
+
+`vssnippets` 文件夹存储的是一些本项目常用的代码片段，这些代码片段文件你可以手动导入到 Visual Studio 里以辅助你更方便地写代码。
+
 
 
 ## Additional descriptions
 
 标题：**额外补充说明**
 
-For example, the debug folder in my machine is `\Sudoku\Sudoku.Windows\bin\Debug\net5.0-windows`.
+For example, the debug folder in my machine is `\Sudoku\Sudoku.Windows\bin\Debug\net6.0-windows`.
 
-比如说，我的调试文件夹路径是 `\Sudoku\Sudoku.Windows\bin\Debug\net5.0-windows`。
+比如说，我的调试文件夹路径是 `\Sudoku\Sudoku.Windows\bin\Debug\net6.0-windows`。
+

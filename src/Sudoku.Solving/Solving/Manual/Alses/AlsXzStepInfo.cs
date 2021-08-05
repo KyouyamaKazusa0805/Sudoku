@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
@@ -65,36 +67,90 @@ namespace Sudoku.Solving.Manual.Alses
 			null => Technique.Esp
 		};
 
+		/// <inheritdoc/>
+		public override string? Format =>
+			IsDoublyLinked is null
+				// Extended Subset Principle.
+				? ZDigitsMask == 0
+					? TextResources.Current.Format_AlsXzStepInfo_1
+					: TextResources.Current.Format_AlsXzStepInfo_2
+				// Normal ALS-XZ.
+				: TextResources.Current.Format_AlsXzStepInfo_3;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Als1.Map | Als2.Map).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string EspDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als1.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als2.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string XStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(XDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ZResultStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ZDigitsMask != 0
+				? $", Z = {new DigitCollection(ZDigitsMask).ToString()}"
+				: string.Empty;
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			if (IsDoublyLinked is null)
-			{
-				// Extended subset principle.
-				if (ZDigitsMask == 0)
-				{
-					string cellsStr = (Als1.Map | Als2.Map).ToString();
-					return $"{Name}: All digits can't be duplicate in cells {cellsStr} => {elimStr}";
-				}
-				else
-				{
-					string digitStr = (TrailingZeroCount(ZDigitsMask) + 1).ToString();
-					string cellsStr = (Als1.Map | Als2.Map).ToString();
-					return $"{Name}: Only the digit {digitStr} can be duplicate in cells {cellsStr} => {elimStr}";
-				}
-			}
-			else
-			{
-				// ALS-XZ.
-				string xStr = new DigitCollection(XDigitsMask).ToString();
-				string zResultStr =
-					ZDigitsMask != 0
-					? $", z = {new DigitCollection(ZDigitsMask).ToString()}"
-					: string.Empty;
-				return $@"{Name}: ALS 1: {Als1.ToString()}, ALS 2: {Als2.ToString()}, x = {xStr}{zResultStr} => {elimStr}";
-			}
-		}
+		public override string ToString() =>
+			IsDoublyLinked is null
+				// Extended Subset Principle.
+				? ZDigitsMask == 0
+					? $"{Name}: All digits can't be duplicate in cells {CellsStr} => {ElimStr}"
+					: $"{Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} => {ElimStr}"
+				// Normal ALS-XZ.
+				: $"{Name}: ALS #1: {Als1Str}, ALS #2: {Als2Str}, X = {XStr}{ZResultStr} => {ElimStr}";
 	}
 }

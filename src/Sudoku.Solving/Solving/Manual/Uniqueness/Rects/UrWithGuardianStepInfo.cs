@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -30,12 +32,36 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrWithGuardianStepInfo_Additional;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string GuardianDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (GuardianDigit + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string GuardianCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GuardianCells.ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional() =>
-			$"guardian: digit {(GuardianDigit + 1).ToString()} in cells {GuardianCells.ToString()}";
+			$"guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr}";
 	}
 }

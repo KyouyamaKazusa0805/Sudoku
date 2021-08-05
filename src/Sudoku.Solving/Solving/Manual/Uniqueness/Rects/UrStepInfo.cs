@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -7,12 +8,20 @@ using Sudoku.Techniques;
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
-	/// Provides a usage of <b>unique rectangle</b> (UR) or
-	/// <b>avoidable rectangle</b> (AR) technique.
+	/// Provides a usage of <b>unique rectangle</b> (UR) or <b>avoidable rectangle</b> (AR) technique.
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	/// <param name="TechniqueCode2">The technique code.</param>
+	/// <param name="TechniqueCode2">
+	/// <para>The technique code.</para>
+	/// <para>
+	/// Limited by the C# language, here we creates a new property <see cref="TechniqueCode2"/>
+	/// to pass the value and assign it to the property <see cref="TechniqueCode"/>. If write code
+	/// to place the property <see cref="TechniqueCode"/> into the primary constructor as a parameter,
+	/// the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+	/// which isn't allowed in <see langword="record"/> types in the langugae design.
+	/// </para>
+	/// </param>
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Cells">All cells.</param>
@@ -32,16 +41,63 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Ur;
 
+		/// <summary>
+		/// Indicates the additional format string.
+		/// </summary>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected abstract string? AdditionalFormat { get; }
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string D1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string D2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(Cells).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Additional
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			int d1 = Digit1 + 1, d2 = Digit2 + 1;
-			string cellsStr = new Cells(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string? additional = GetAdditional();
-			return $"{Name}: Digits {d1.ToString()} and {d2.ToString()} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {D1Str} and {D2Str} in {CellsStr}{Additional} => {ElimStr}";
 
 		/// <summary>
 		/// Get additional string.

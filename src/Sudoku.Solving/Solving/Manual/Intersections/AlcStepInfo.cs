@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -56,15 +57,45 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </summary>
 		private decimal ExtraDifficulty => Size switch { 2 => .1M, 3 => .1M, 4 => .2M };
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string BaseCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => BaseCells.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string TargetCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TargetCells.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string baseCellsStr = BaseCells.ToString();
-			string targetCellsStr = TargetCells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digitsStr} in {baseCellsStr} to {targetCellsStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} => {ElimStr}";
 	}
 }

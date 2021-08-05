@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -29,11 +31,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrType2StepInfo_Additional;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (ExtraDigit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string GetAdditional() => $"extra digit {(ExtraDigit + 1).ToString()}";
+		protected override string GetAdditional() => $"extra digit {ExtraDigitStr}";
 	}
 }

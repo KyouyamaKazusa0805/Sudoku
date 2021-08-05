@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -210,13 +211,26 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ChainStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new LinkCollection(Views[0].Links!).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string chainStr = new LinkCollection(Views[0].Links!).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {chainStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {ChainStr} => {ElimStr}";
 	}
 }

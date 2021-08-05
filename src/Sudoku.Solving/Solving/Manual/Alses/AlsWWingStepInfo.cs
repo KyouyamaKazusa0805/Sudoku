@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -39,13 +40,63 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.AlsWWing;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als1.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als2.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ConjStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePair.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string WStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(WDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string XStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (X + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string wStr = new DigitCollection(WDigitsMask).ToString();
-			return $@"{Name}: Two ALSes {Als1.ToString()}, {Als2.ToString()} connected by {ConjugatePair.ToString()}, W = {wStr}, X = {(X + 1).ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} => {ElimStr}";
 	}
 }

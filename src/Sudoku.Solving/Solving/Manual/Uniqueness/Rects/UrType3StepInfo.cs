@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -36,6 +38,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrType3StepInfo_Additional;
+
 		/// <summary>
 		/// Indicates the base difficulty.
 		/// </summary>
@@ -46,17 +54,65 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		private decimal SizeExtraDifficulty => .1M * ExtraDigits.Count;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string OnlyKeyword
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => IsNaked ? string.Empty : "only ";
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string OnlyKeywordZhCn
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.Only;
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(ExtraCells).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string AppearLimitKeyword
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.Appear;
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string GetAdditional()
-		{
-			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			string cellsStr = new Cells(ExtraCells).ToString();
-			string regionStr = new RegionCollection(Region).ToString();
-			return $"{digitsStr} in {(IsNaked ? string.Empty : "only ")}cells {cellsStr} in {regionStr}";
-		}
+		protected override string GetAdditional() => $"{DigitsStr} in {OnlyKeyword}cells {CellsStr} in {RegionStr}";
 	}
 }

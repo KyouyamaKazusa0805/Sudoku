@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -26,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	) : UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
-		public sealed override decimal Difficulty => ConjugatePairs.Count * .2M + 4.4M;
+		public sealed override decimal Difficulty => 4.4M + ConjugatePairs.Count * .2M;
 
 		/// <inheritdoc/>
 		public override string? Acronym => IsAvoidable ? "AR (+)" : "UR (+)";
@@ -37,24 +39,52 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
-
 		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrPlusStepInfo_Additional;
 
-		/// <inheritdoc/>
-		protected sealed override string GetAdditional()
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Prefix
 		{
-			const string separator = ", ";
-			bool singular = ConjugatePairs.Count == 1;
-			return $"{(singular ? "a " : string.Empty)}conjugate pair{(singular ? string.Empty : "s")} {g()}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePairs.Count == 1 ? "a " : string.Empty;
+		}
 
-			unsafe string g()
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Suffix
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePairs.Count == 1 ? string.Empty : "s";
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ConjPairsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
 			{
+				const string separator = ", ";
+
 				var sb = new ValueStringBuilder(stackalloc char[100]);
 				sb.AppendRange(ConjugatePairs, separator);
 
 				return sb.ToString();
 			}
 		}
+
+
+		/// <inheritdoc/>
+		public override string ToString() => base.ToString();
+
+		/// <inheritdoc/>
+		protected sealed override string GetAdditional() => $"{Prefix}conjugate pair{Suffix} {ConjPairsStr}";
 	}
 }

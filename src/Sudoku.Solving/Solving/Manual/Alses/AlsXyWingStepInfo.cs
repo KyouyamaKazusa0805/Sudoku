@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -40,15 +41,72 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.AlsXyWing;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als1.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string BridgeStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Bridge.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Als2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Als2.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string XStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(XDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string YStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(YDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ZStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ZDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string xStr = new DigitCollection(XDigitsMask).ToString();
-			string yStr = new DigitCollection(YDigitsMask).ToString();
-			string zStr = new DigitCollection(ZDigitsMask).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $@"{Name}: {Als1.ToString()} -> {Bridge.ToString()} -> {Als2.ToString()}, x = {xStr}, y = {yStr}, z = {zStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {Als1Str} -> {BridgeStr} -> {Als2Str}, X = {XStr}, Y = {YStr}, Z = {ZStr} => {ElimStr}";
 	}
 }

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -39,17 +41,55 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string? AdditionalFormat =>
+			TextResources.Current.Format_ArWithHiddenSingleStepInfo_Additional;
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string BaseCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { BaseCell }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string TargetCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { TargetCell }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(TargetRegion).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string GetAdditional()
-		{
-			string baseCellStr = new Cells { BaseCell }.ToString();
-			string targetCellStr = new Cells { TargetCell }.ToString();
-			string regionStr = new RegionCollection(TargetRegion).ToString();
-			return $@"hidden single: if cell {baseCellStr} is filled with the digit {Digit1 + 1}, region {regionStr} will only contain a cell {targetCellStr} can be filled with that digit, but will raise the deadly pattern";
-		}
+		protected override string GetAdditional() =>
+			$"hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, region {RegionStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern";
 	}
 }

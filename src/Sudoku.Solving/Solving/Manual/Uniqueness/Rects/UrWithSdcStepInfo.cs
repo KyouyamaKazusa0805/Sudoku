@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -50,6 +52,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
+		/// <inheritdoc/>
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		protected override string AdditionalFormat => TextResources.Current.Format_UrWithSdcStepInfo_Additional;
+
 		/// <summary>
 		/// The extra difficulty that assesses the size of SdC.
 		/// </summary>
@@ -70,16 +78,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		private decimal ArDifficulty => IsAvoidable ? .1M : 0;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string MergedCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (LineCells | BlockCells).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection((short)(LineMask | BlockMask)).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
-		protected override string GetAdditional()
-		{
-			string digits = new DigitCollection((short)(LineMask | BlockMask)).ToString();
-			string mergedCells = (LineCells | BlockCells).ToString();
-			return $"a generalized Sue de Coq in cells {mergedCells} of digits {digits}";
-		}
+		protected override string GetAdditional() =>
+			$"a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr}";
 	}
 }

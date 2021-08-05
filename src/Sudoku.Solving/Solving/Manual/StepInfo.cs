@@ -134,5 +134,66 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public virtual string ToFullString() => ToString();
+
+		/// <summary>
+		/// Gets the format of the current instance.
+		/// </summary>
+		/// <returns>
+		/// Returns a <see cref="string"/> result. If the resource dictionary doesn't contain
+		/// any valid formats here, the result value will be <see langword="null"/>.
+		/// </returns>
+		/// <remarks>
+		/// <para>
+		/// A <b>format</b> is the better way to format the result text of this technique information instance,
+		/// It'll be represented by the normal characters and the placeholders, e.g.
+		/// <code>
+		/// "<![CDATA[{Name}: Cells {CellsStr} => {ElimsStr}]]>"
+		/// </code>
+		/// Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
+		/// format string, rather than a interpolated string.
+		/// </para>
+		/// <para>
+		/// Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> should be implemented before
+		/// the property invoked, you should creates those 3 properties, returns the corresponding correct string
+		/// result, makes them <see langword="private"/> or <see langword="protected"/> and marks the attribute
+		/// <see cref="FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
+		/// The recommended implementation pattern is:
+		/// <code><![CDATA[
+		/// #if SOLUTION_WIDE_CODE_ANALYSIS
+		/// [FormatItem]
+		/// #endif
+		/// private string CellsStr
+		/// {
+		///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+		///	    get => Cells.ToString();
+		/// }
+		/// ]]></code>
+		/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
+		/// into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
+		/// <see href="file:///../../../../required/README.md">README.md</see> in the <c>required</c> folder
+		/// to learn more information.
+		/// </para>
+		/// <para>
+		/// Because this property will get the value from the resource dictionary, the property supports
+		/// multiple language switching, which is better than the normal methods <see cref="ToString"/>
+		/// and <see cref="ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
+		/// </para>
+		/// </remarks>
+		/// <seealso cref="ToString"/>
+		/// <seealso cref="ToFullString"/>
+		public virtual string? Format
+		{
+			get
+			{
+				try
+				{
+					return TextResources.Current[$"Format_{GetType().Name}"];
+				}
+				catch
+				{
+					return null;
+				}
+			}
+		}
 	}
 }
