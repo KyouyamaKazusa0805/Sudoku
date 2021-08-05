@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -29,12 +30,36 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (ExtraDigit + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string LoopStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: If all digit {(ExtraDigit + 1).ToString()} in cells {Loop.ToString()} are removed, the loop will from an error structure => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure => {ElimStr}";
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -30,13 +31,63 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string LoopStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ExtraCells.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: To avoid the structure {Loop.ToString()} of digits {(Digit1 + 1).ToString()} and {(Digit2 + 1).ToString()} error, the only way is to form the subset (digits {digitsStr} in cells {ExtraCells.ToString()}) => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) => {ElimStr}";
 	}
 }

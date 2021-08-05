@@ -437,5 +437,8 @@
   "Format_BdpType3StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} => {ElimStr}",
   "Format_BdpType4StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 => {ElimStr}",
   "Format_BfStepInfo": "{Name}：{AssignmentStr}",
-  "Format_BinaryChainingStepInfo": "{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 => {ElimStr}"
+  "Format_BinaryChainingStepInfo": "{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 => {ElimStr}",
+  "Format_BivalueOddagonType1StepInfo": "{Name}：如果单元格 {CellStr} 只有数字 {Digit1Str} 和 {Digit2Str} 的话，整个环 {LoopStr} 会直接导致违背规则的矛盾现象 => {ElimStr}",
+  "Format_BivalueOddagonType2StepInfo": "{Name}：如果所有在单元格 {LoopStr} 里的数字 {ExtraDigitStr} 全部删掉，则整个环会直接导致违背规则的矛盾现象 => {ElimStr}",
+  "Format_BivalueOddagonType3StepInfo": "{Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 => {ElimStr}"
 }
