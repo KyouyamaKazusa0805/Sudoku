@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -16,7 +17,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="ExtraCell">The extra cell.</param>
 	public sealed record BugXzStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell) : BugStepInfo(Conclusions, Views)
+		short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .2M;
@@ -24,15 +26,45 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugXz;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(Cells).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { ExtraCell }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digit = new DigitCollection(DigitsMask).ToString();
-			string extraCellStr = new Cells { ExtraCell }.ToString();
-			string cellsStr = new Cells(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digit} with cells {cellsStr}, with extra cell {extraCellStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}";
 	}
 }

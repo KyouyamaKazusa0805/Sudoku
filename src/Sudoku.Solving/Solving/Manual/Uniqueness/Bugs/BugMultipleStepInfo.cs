@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -39,13 +40,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugMultiple;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CandidatesStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates(Candidates).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string candsStr = new Candidates(Candidates).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: True candidates: {candsStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: True candidates: {CandidatesStr} => {ElimStr}";
 	}
 }

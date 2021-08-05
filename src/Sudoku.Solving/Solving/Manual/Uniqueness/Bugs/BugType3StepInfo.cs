@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.Constants;
 
@@ -19,7 +21,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed record BugType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 		IReadOnlyList<int> TrueCandidates, IReadOnlyList<int> Digits,
-		IReadOnlyList<int> Cells, bool IsNaked) : BugStepInfo(Conclusions, Views)
+		IReadOnlyList<int> Cells, bool IsNaked
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + Digits.Count * .1M + (IsNaked ? 0 : .1M);
@@ -27,17 +30,72 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType3;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string TrueCandidatesStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates(TrueCandidates).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string SubsetTypeStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => IsNaked ? TextResources.Current.NakedKeyword : TextResources.Current.HiddenKeyword;
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string SizeStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => SubsetNames[Digits.Count].ToLower(null);
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string SizeStrZhCn
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current[$"SubsetNamesSize{Digits.Count.ToString()}"];
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(Digits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(Cells).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(Digits).ToString();
-			string cellsStr = new Cells(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string sizeStr = SubsetNames[Digits.Count].ToLower(null);
-			string trueCandidatesStr = new Candidates(TrueCandidates).ToString();
-			string subsetTypeStr = IsNaked ? "naked" : "hidden";
-			return $"{Name}: True candidates {trueCandidatesStr} with {subsetTypeStr} {sizeStr} {digitsStr} in cells {cellsStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} => {ElimStr}";
 	}
 }

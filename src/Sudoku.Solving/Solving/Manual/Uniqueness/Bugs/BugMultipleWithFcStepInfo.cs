@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -78,13 +79,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override DifficultyLevel DifficultyLevel =>
 			Candidates.Count < 6 ? DifficultyLevel.Fiendish : DifficultyLevel.Nightmare;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string CandidatesStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates(Candidates).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string candsStr = new Candidates(Candidates).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: True candidates: {candsStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: True candidates: {CandidatesStr} => {ElimStr}";
 	}
 }

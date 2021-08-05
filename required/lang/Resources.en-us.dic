@@ -86,6 +86,8 @@
   "AnalysisResultAttributes": "Attributes:",
   "AnalysisResultBackdoors": "Backdoors:",
   "OrKeyword": " or ",
+  "NakedKeyword": "naked",
+  "HiddenKeyword": "hidden",
   "FullHouse": "Full House",
   "LastDigit": "Last Digit",
   "HiddenSingleRow": "Hidden Single in Row",
@@ -460,5 +462,12 @@
   "Format_BivalueOddagonType1StepInfo": "{Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure => {ElimStr}",
   "Format_BivalueOddagonType2StepInfo": "{Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure => {ElimStr}",
   "Format_BivalueOddagonType3StepInfo": "{Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) => {ElimStr}",
-  "Format_BowmanBingoStepInfo": "{Name}: Try {ContradictionSeriesStr} => {ElimStr}"
+  "Format_BowmanBingoStepInfo": "{Name}: Try {ContradictionSeriesStr} => {ElimStr}",
+  "Format_BugMultipleStepInfo": "{Name}: True candidates: {CandidatesStr} => {ElimStr}",
+  "Format_BugMultipleWithFcStepInfo": "{Name}: True candidates: {CandidatesStr} => {ElimStr}",
+  "Format_BugType1StepInfo": "{Name}: {ElimStr}",
+  "Format_BugType2StepInfo": "{Name}: {ExtraDigitStr} with cells {CellsStr} => {ElimStr}",
+  "Format_BugType3StepInfo": "{Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} => {ElimStr}",
+  "Format_BugType4StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with conjugate pair {ConjStr} => {ElimStr}",
+  "Format_BugXzStepInfo": "{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}"
 }
