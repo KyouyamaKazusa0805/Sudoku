@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -26,8 +27,17 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Bf;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string AssignmentStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {new ConclusionCollection(Conclusions).ToString()}";
+		public override string ToString() => $"{Name}: {AssignmentStr}";
 	}
 }

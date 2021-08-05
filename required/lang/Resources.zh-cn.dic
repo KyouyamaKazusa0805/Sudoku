@@ -433,5 +433,6 @@
   "Format_BdpType1StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里 => {ElimStr}",
   "Format_BdpType2StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_BdpType3StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} => {ElimStr}",
-  "Format_BdpType4StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 => {ElimStr}"
+  "Format_BdpType4StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 => {ElimStr}",
+  "Format_BfStepInfo": "{Name}：{AssignmentStr}"
 }
