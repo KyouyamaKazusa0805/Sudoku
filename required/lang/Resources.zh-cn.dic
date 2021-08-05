@@ -429,5 +429,9 @@
   "Format_UrWithGuardianStepInfo_Additional": "守护者：数字 {GuardianDigitStr} 在单元格 {GuardianCellsStr} 里",
   "Format_UrWithSdcStepInfo_Additional": "一个简化版的融合待定数组存在于单元格 {MergedCellsStr} 里，涉及数字 {DigitsStr}",
   "Format_UrWithUnknownCoveringStepInfo_Additional": "代数：设单元格 {TargetCellStr} 填入 X（X 是 {DigitsStr} 其一），则四个单元格将构成关于 X 和数字 {ExtraDigitStr} 的唯一矩形致命形式",
-  "Format_UrWithWingStepInfo_Additional": "拐点为 {PivotsStr}、数字 {DigitsStr}、结构位于 {CellsStr}"
+  "Format_UrWithWingStepInfo_Additional": "拐点为 {PivotsStr}、数字 {DigitsStr}、结构位于 {CellsStr}",
+  "Format_BdpType1StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里 => {ElimStr}",
+  "Format_BdpType2StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个额外数字 {ExtraDigitStr} => {ElimStr}",
+  "Format_BdpType3StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} => {ElimStr}",
+  "Format_BdpType4StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 => {ElimStr}"
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record BdpType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask,
-		int ExtraDigit) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		in Cells Map, short DigitsMask, int ExtraDigit
+	) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.4M;
@@ -24,14 +25,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BdpType2;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (ExtraDigit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Map.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digitsStr} in cells {cellsStr} with the extra digit {(ExtraDigit + 1).ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} => {ElimStr}";
 	}
 }

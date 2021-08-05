@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -16,8 +17,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="ExtraCells">The extra cells.</param>
 	/// <param name="ExtraDigitsMask">The extra digits mask.</param>
 	public sealed record BdpType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask,
-		in Cells ExtraCells, short ExtraDigitsMask) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		in Cells Map, short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask
+	) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;
@@ -25,16 +27,27 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BdpType3;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigitsMask).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ExtraCells.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Map.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string exDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
-			string exCellsStr = ExtraCells.ToString();
-			return $"{Name}: {digitsStr} in cells {cellsStr} with the digits {exDigitsStr} in cells {exCellsStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} => {ElimStr}";
 	}
 }

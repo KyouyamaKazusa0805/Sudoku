@@ -450,5 +450,9 @@
   "Format_UrWithGuardianStepInfo_Additional": "guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr}",
   "Format_UrWithSdcStepInfo_Additional": "a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr}",
   "Format_UrWithUnknownCoveringStepInfo_Additional": "unknown covering: Suppose {TargetCellStr} is filled with the unknown digit X (X is {DigitsStr}), then 4 cells form a UR deadly pattern of digit X and {ExtraDigitStr}",
-  "Format_UrWithWingStepInfo_Additional": "pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}"
+  "Format_UrWithWingStepInfo_Additional": "pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}",
+  "Format_BdpType1StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} => {ElimStr}",
+  "Format_BdpType2StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} => {ElimStr}",
+  "Format_BdpType3StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} => {ElimStr}",
+  "Format_BdpType4StepInfo": "{Name}: {DigitsStr} in cells {CellsStr} with the conjugate region {ConjRegionStr} of the extra digits {ExtraCombStr} => {ElimStr}"
 }
