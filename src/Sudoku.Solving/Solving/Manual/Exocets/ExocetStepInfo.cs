@@ -18,8 +18,8 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="Eliminations">The eliminations.</param>
 	public abstract record ExocetStepInfo(
 		IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
-		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		IReadOnlyList<Elimination> Eliminations) : StepInfo(GatherConclusions(Eliminations), Views)
+		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR, IReadOnlyList<Elimination> Eliminations
+	) : StepInfo(GatherConclusions(Eliminations), Views)
 	{
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;

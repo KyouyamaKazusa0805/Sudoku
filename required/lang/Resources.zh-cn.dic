@@ -459,5 +459,7 @@
   "Format_BugXzStepInfo": "{Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} => {ElimStr}",
   "Format_CellChainingStepInfo": "{Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 => {ElimStr}",
   "Format_ComplexFishStepInfo": "{Name}: {BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=> {ElimStr}",
-  "Format_DbStepInfo": "{Name}：从单元格 {PivotStr} 开始展开花瓣——{PetalsStr} => {ElimStr}"
+  "Format_DbStepInfo": "{Name}：从单元格 {PivotStr} 开始展开花瓣——{PetalsStr} => {ElimStr}",
+  "Format_EripStepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 => {ElimStr}",
+  "Format_ErStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} => {ElimStr}"
 }

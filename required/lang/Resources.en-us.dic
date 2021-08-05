@@ -472,5 +472,7 @@
   "Format_BugXzStepInfo": "{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}",
   "Format_CellChainingStepInfo": "{Name}: It can be proved using chains that all digits are false from {SourceCellStr} => {ElimStr}",
   "Format_ComplexFishStepInfo": "{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}",
-  "Format_DbStepInfo": "{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}"
+  "Format_DbStepInfo": "{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}",
+  "Format_EripStepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} => {ElimStr}",
+  "Format_ErStepInfo": "{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}"
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -17,8 +18,8 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	public sealed record EripStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
-		int Region, int Digit1, int Digit2
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int StartCell, int EndCell, int Region, int Digit1, int Digit2
 	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
@@ -33,17 +34,63 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Erip;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string StartCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { StartCell }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string EndCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { EndCell }.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			int d1 = Digit1 + 1;
-			int d2 = Digit2 + 1;
-			string sCellStr = new Cells { StartCell }.ToString();
-			string eCellStr = new Cells { EndCell }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string regionStr = new RegionCollection(Region).ToString();
-			return $@"{Name}: Digits {d1.ToString()}, {d2.ToString()} in bivalue cells {sCellStr} and {eCellStr} with empty rectangle in {regionStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} => {ElimStr}";
 	}
 }
