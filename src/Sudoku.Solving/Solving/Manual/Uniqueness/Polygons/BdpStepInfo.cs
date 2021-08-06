@@ -33,19 +33,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
 
+#pragma warning disable CS1591
 		[FormatItem]
-		private protected string DigitsStr
+		protected string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(DigitsMask).ToString();
 		}
 
 		[FormatItem]
-		private protected string CellsStr
+		protected string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Map.ToString();
 		}
+#pragma warning restore CS1591
 
 
 		/// <inheritdoc/>

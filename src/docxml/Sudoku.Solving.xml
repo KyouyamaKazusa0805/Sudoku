@@ -6330,6 +6330,16 @@
             The difficulty level of this step.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.ElimStr">
+            <summary>
+            Indicates the string representation of the conclusions.
+            </summary>
+            <remarks>
+            Most of techniques uses eliminations
+            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+            the property will still use this name rather than <c>AssignmentStr</c>.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.ApplyTo(Sudoku.Data.SudokuGrid@)">
             <summary>
             Put this instance into the specified grid.

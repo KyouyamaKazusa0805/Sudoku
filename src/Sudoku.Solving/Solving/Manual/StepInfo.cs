@@ -145,8 +145,16 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
 
+		/// <summary>
+		/// Indicates the string representation of the conclusions.
+		/// </summary>
+		/// <remarks>
+		/// Most of techniques uses eliminations
+		/// so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+		/// the property will still use this name rather than <c>AssignmentStr</c>.
+		/// </remarks>
 		[FormatItem]
-		private protected string ElimStr
+		protected string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new ConclusionCollection(Conclusions).ToString();
