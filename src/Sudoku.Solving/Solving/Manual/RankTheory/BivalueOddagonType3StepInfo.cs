@@ -31,54 +31,42 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string LoopStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Loop.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Digit1Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit1 + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Digit2Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit2 + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ExtraCells.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

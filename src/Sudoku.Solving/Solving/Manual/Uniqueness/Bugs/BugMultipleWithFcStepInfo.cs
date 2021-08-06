@@ -79,18 +79,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public override DifficultyLevel DifficultyLevel =>
 			Candidates.Count < 6 ? DifficultyLevel.Fiendish : DifficultyLevel.Nightmare;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CandidatesStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates(Candidates).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

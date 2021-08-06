@@ -40,18 +40,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugMultiple;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CandidatesStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates(Candidates).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

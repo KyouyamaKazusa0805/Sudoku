@@ -23,18 +23,14 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.FullHouse;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { Cell }.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -48,9 +48,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrWithWingStepInfo_Additional;
 
 		/// <summary>
@@ -68,27 +66,21 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			Technique.UrWxyzWing or Technique.ArWxyzWing => 2
 		}];
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string PivotsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Pivots).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

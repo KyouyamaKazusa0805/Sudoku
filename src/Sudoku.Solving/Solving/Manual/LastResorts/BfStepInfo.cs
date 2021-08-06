@@ -27,9 +27,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Bf;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string AssignmentStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -18,9 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType1;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

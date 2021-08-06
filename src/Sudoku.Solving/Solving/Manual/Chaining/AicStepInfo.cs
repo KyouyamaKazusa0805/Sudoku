@@ -211,18 +211,14 @@ namespace Sudoku.Solving.Manual.Chaining
 			}
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ChainStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new LinkCollection(Views[0].Links!).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

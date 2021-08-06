@@ -33,23 +33,17 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrWithGuardianStepInfo_Additional;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string GuardianDigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (GuardianDigit + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string GuardianCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

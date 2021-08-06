@@ -27,18 +27,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BdpType3;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraDigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigitsMask).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

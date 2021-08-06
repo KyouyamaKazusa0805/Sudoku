@@ -35,18 +35,14 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.BowmanBingo;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ContradictionSeriesStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

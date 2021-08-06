@@ -32,14 +32,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrType2StepInfo_Additional;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraDigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -51,27 +51,21 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string AnchorCandidateStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates { Anchor.Cell * 9 + Anchor.Digit }.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string AnchorIsTrueOrFalseStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Anchor.IsOn ? TextResources.Current.TrueKeyword : TextResources.Current.FalseKeyword;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

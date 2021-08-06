@@ -44,50 +44,38 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <summary>
 		/// Indicates the additional format string.
 		/// </summary>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected abstract string? AdditionalFormat { get; }
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string D1Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit1 + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string D2Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit2 + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Additional
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -70,36 +70,28 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(Digits).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string BaseMapStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => BaseMap.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string TargetMapStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TargetMap.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		[NotNullIfNotNull(nameof(LockedMemberQ))]
 		private string? LockedMemberQStr
 		{
@@ -112,9 +104,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		[NotNullIfNotNull(nameof(LockedMemberR))]
 		private string? LockedMemberRStr
 		{
@@ -127,18 +117,14 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Additional
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

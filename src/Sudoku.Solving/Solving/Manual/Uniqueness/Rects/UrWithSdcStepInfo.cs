@@ -53,9 +53,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrWithSdcStepInfo_Additional;
 
 		/// <summary>
@@ -78,18 +76,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		private decimal ArDifficulty => IsAvoidable ? .1M : 0;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string MergedCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (LineCells | BlockCells).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

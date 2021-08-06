@@ -77,54 +77,42 @@ namespace Sudoku.Solving.Manual.Alses
 				// Normal ALS-XZ.
 				: TextResources.Current.Format_AlsXzStepInfo_3;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Als1.Map | Als2.Map).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string EspDigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Als1Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Als1.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Als2Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Als2.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string XStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(XDigitsMask).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ZResultStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -133,9 +121,7 @@ namespace Sudoku.Solving.Manual.Alses
 				: string.Empty;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

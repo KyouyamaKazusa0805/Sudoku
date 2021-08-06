@@ -30,63 +30,49 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType3;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string TrueCandidatesStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates(TrueCandidates).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string SubsetTypeStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => IsNaked ? TextResources.Current.NakedKeyword : TextResources.Current.HiddenKeyword;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string SizeStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => SubsetNames[Digits.Count].ToLower(null);
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string SizeStrZhCn
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current[$"SubsetNamesSize{Digits.Count.ToString()}"];
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraDigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(Digits).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

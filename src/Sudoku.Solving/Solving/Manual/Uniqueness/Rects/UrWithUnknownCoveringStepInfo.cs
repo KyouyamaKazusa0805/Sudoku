@@ -34,24 +34,18 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat =>
 			TextResources.Current.Format_UrWithUnknownCoveringStepInfo_Additional;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string TargetCellStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { TargetCell }.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -60,9 +54,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			).ToString((string)TextResources.Current.OrKeyword);
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraDigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

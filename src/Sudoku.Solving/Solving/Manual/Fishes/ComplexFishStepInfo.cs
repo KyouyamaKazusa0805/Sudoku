@@ -158,54 +158,42 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </summary>
 		private ShapeModifiers ShapeModifier => IsFranken ? ShapeModifiers.Franken : ShapeModifiers.Mutant;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string BaseSetsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(BaseSets).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CoverSetsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(CoverSets).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExofinsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string EndofinsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

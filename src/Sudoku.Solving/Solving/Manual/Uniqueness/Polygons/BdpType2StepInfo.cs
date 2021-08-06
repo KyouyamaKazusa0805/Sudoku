@@ -25,9 +25,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BdpType2;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ExtraDigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

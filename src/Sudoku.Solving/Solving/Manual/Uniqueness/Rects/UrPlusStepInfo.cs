@@ -40,32 +40,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrPlusStepInfo_Additional;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Prefix
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePairs.Count == 1 ? "a " : string.Empty;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Suffix
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePairs.Count == 1 ? string.Empty : "s";
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ConjPairsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

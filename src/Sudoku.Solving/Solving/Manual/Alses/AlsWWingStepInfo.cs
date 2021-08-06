@@ -40,54 +40,42 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.AlsWWing;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Als1Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Als1.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string Als2Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Als2.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ConjStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string WStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(WDigitsMask).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string XStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (X + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

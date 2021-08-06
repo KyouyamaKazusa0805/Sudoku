@@ -35,36 +35,28 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.EmptyRectangle;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit + 1).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string RegionStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Block).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ConjStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

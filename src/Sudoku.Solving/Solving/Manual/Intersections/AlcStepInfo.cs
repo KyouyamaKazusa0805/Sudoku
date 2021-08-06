@@ -57,36 +57,28 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// </summary>
 		private decimal ExtraDifficulty => Size switch { 2 => .1M, 3 => .1M, 4 => .2M };
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(DigitsMask).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string BaseCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => BaseCells.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string TargetCellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TargetCells.ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

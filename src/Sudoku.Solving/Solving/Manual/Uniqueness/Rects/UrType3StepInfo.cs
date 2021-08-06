@@ -39,9 +39,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string AdditionalFormat => TextResources.Current.Format_UrType3StepInfo_Additional;
 
 		/// <summary>
@@ -54,54 +52,42 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		private decimal SizeExtraDifficulty => .1M * ExtraDigits.Count;
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string OnlyKeyword
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => IsNaked ? string.Empty : "only ";
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string OnlyKeywordZhCn
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current.Only;
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(ExtraCells).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string RegionStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string AppearLimitKeyword
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -82,9 +82,7 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		private string EndoTargetCellStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

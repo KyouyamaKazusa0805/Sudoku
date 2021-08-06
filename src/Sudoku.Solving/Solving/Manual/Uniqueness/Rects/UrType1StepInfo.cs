@@ -31,9 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 		/// <inheritdoc/>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[FormatItem]
-#endif
 		protected override string? AdditionalFormat => null;
 
 
