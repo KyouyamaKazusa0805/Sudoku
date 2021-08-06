@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -17,13 +15,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType1;
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
 
 
 		/// <inheritdoc/>

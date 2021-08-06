@@ -93,13 +93,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 		}
 
 		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
-		[FormatItem]
 		private string GspBaseInfo
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

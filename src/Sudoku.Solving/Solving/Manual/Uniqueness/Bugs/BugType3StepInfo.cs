@@ -72,13 +72,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			get => new Cells(Cells).ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

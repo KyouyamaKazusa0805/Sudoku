@@ -8,6 +8,7 @@ using Sudoku.Solving.Manual.Exocets;
 using Sudoku.Techniques;
 using Sudoku.CodeGenerating;
 using Sudoku.Resources;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Solving.Manual
 {
@@ -144,6 +145,13 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		public abstract DifficultyLevel DifficultyLevel { get; }
 
+		[FormatItem]
+		private protected string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <summary>
 		/// Put this instance into the specified grid.
@@ -185,7 +193,7 @@ namespace Sudoku.Solving.Manual
 		/// Returns a string that only contains the name and the conclusions.
 		/// </summary>
 		/// <returns>The string instance.</returns>
-		public string ToSimpleString() => $"{Name} => {new ConclusionCollection(Conclusions).ToString()}";
+		public string ToSimpleString() => $"{Name} => {ElimStr}";
 
 		/// <summary>
 		/// Returns a string that contains the name, the conclusions and its all details.

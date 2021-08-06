@@ -78,13 +78,6 @@ namespace Sudoku.Solving.Manual.Intersections
 			get => TargetCells.ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

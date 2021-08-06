@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Resources;
 using Sudoku.Techniques;
@@ -57,13 +56,6 @@ namespace Sudoku.Solving.Manual.Sdps
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Guardians.ToString();
-		}
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
 

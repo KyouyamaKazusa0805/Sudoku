@@ -193,13 +193,6 @@ namespace Sudoku.Solving.Manual.Fishes
 			get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public bool Equals(ComplexFishStepInfo? other) =>

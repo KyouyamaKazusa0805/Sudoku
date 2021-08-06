@@ -75,13 +75,6 @@ namespace Sudoku.Solving.Manual.Alses
 			get => (X + 1).ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

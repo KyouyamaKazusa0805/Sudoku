@@ -47,13 +47,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			get => Map.ToString();
 		}
 
-		[FormatItem]
-		private protected string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public abstract override string ToString();

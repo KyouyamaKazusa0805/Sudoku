@@ -66,13 +66,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 			get => ExtraCells.ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

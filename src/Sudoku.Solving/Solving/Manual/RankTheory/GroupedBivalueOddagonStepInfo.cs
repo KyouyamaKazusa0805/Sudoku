@@ -64,13 +64,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

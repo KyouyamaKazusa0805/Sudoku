@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Resources;
@@ -83,13 +82,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 					return $"{TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
 				}
 			}
-		}
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
 

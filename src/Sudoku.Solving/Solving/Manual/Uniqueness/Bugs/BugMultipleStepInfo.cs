@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Resources;
 using Sudoku.Techniques;
@@ -45,13 +44,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates(Candidates).ToString();
-		}
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
 

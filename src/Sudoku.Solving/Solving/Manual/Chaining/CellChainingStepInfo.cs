@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -57,13 +56,6 @@ namespace Sudoku.Solving.Manual.Chaining
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { SourceCell }.ToString();
-		}
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
 

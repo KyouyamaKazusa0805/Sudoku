@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -56,13 +55,6 @@ namespace Sudoku.Solving.Manual.RankTheory
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Loop.ToString();
-		}
-
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
 		}
 
 

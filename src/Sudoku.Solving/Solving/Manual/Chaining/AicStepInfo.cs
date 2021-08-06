@@ -218,13 +218,6 @@ namespace Sudoku.Solving.Manual.Chaining
 			get => new LinkCollection(Views[0].Links!).ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() => $"{Name}: {ChainStr} => {ElimStr}";

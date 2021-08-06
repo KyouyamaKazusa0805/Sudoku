@@ -124,13 +124,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>
