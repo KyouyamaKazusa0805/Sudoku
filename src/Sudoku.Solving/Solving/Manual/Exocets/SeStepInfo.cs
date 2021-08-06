@@ -44,6 +44,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
 
 		/// <inheritdoc/>
+		[FormatItem]
 		protected override string? AdditionalFormat
 		{
 			get
