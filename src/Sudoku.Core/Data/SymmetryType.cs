@@ -1,18 +1,12 @@
 ﻿using System;
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
 using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Define a symmetry type.
 	/// </summary>
-	[Flags]
-#if SOLUTION_WIDE_CODE_ANALYSIS
-	[Closed]
-#endif
+	[Flags, Closed]
 	public enum SymmetryType : byte
 	{
 		/// <summary>

@@ -1,15 +1,11 @@
-﻿#if SOLUTION_WIDE_CODE_ANALYSIS
-using System.Diagnostics.CodeAnalysis;
-#endif
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Represents a grid parsing type.
 	/// </summary>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
-#endif
 	public enum GridParsingOption : byte
 	{
 		/// <summary>

@@ -1,9 +1,10 @@
-﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+﻿#pragma warning disable CS1591 // False-positive
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Linq;
 using System.Numerics;
@@ -16,10 +17,6 @@ using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
-using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace Sudoku.Data
 {
@@ -203,12 +200,14 @@ namespace Sudoku.Data
 		static SudokuGrid()
 		{
 			// Initializes the empty grid.
-#if SOLUTION_WIDE_CODE_ANALYSIS
-#pragma warning disable SD0303
+#if !SOLUTION_WIDE_CODE_ANALYSIS
+#pragma warning disable IDE0079
 #endif
+#pragma warning disable SD0303
 			Empty = default;
-#if SOLUTION_WIDE_CODE_ANALYSIS
 #pragma warning restore SD0303
+#if !SOLUTION_WIDE_CODE_ANALYSIS
+#pragma warning restore IDE0079
 #endif
 			fixed (short* p = Empty._values, q = Empty._initialValues)
 			{
@@ -823,9 +822,7 @@ namespace Sudoku.Data
 		/// </param>
 		/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if SOLUTION_WIDE_CODE_ANALYSIS
 		[return: MaybeNullWhenNotDefined("pinnedItem")]
-#endif
 		public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 			ref pinnedItem == PinnedItem.CurrentGrid
 			? ref GetPinnableReference()

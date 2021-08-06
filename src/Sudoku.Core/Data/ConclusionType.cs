@@ -1,15 +1,11 @@
-﻿#if SOLUTION_WIDE_CODE_ANALYSIS
-using System.Diagnostics.CodeAnalysis;
-#endif
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a conclusion type.
 	/// </summary>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
-#endif
 	public enum ConclusionType : byte
 	{
 		/// <summary>

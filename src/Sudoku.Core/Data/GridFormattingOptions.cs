@@ -1,18 +1,12 @@
 ﻿using System;
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
 using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides a grid format option.
 	/// </summary>
-	[Flags]
-#if SOLUTION_WIDE_CODE_ANALYSIS
-	[Closed]
-#endif
+	[Flags, Closed]
 	public enum GridFormattingOptions : short
 	{
 		/// <summary>

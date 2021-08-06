@@ -1,18 +1,12 @@
 ﻿using System;
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
 using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates the formatting options of <see cref="AnalysisResult"/> instance.
 	/// </summary>
-	[Flags]
-#if SOLUTION_WIDE_CODE_ANALYSIS
-	[Closed]
-#endif
+	[Flags, Closed]
 	public enum AnalysisResultFormattingOptions : short
 	{
 		/// <summary>

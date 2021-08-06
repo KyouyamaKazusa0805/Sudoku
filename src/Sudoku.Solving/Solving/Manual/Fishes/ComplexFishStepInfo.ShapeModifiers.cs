@@ -1,8 +1,5 @@
 ﻿using System;
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
 using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace Sudoku.Solving.Manual.Fishes
 {
@@ -11,10 +8,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the shape modifiers.
 		/// </summary>
-		[Flags]
-#if SOLUTION_WIDE_CODE_ANALYSIS
-		[Closed]
-#endif
+		[Flags, Closed]
 		private enum ShapeModifiers
 		{
 			/// <summary>

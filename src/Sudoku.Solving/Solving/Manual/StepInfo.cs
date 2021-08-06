@@ -76,9 +76,7 @@ namespace Sudoku.Solving.Manual
 		/// <see cref="FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
 		/// The recommended implementation pattern is:
 		/// <code><![CDATA[
-		/// #if SOLUTION_WIDE_CODE_ANALYSIS
 		/// [FormatItem]
-		/// #endif
 		/// private string CellsStr
 		/// {
 		///     [MethodImpl(MethodImplOptions.AggressiveInlining)]

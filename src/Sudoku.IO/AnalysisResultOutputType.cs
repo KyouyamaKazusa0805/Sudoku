@@ -1,15 +1,11 @@
-﻿#if SOLUTION_WIDE_CODE_ANALYSIS
-using System.Diagnostics.CodeAnalysis;
-#endif
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.IO
 {
 	/// <summary>
 	/// Indicates the analysis result output type.
 	/// </summary>
-#if SOLUTION_WIDE_CODE_ANALYSIS
 	[Closed]
-#endif
 	public enum AnalysisResultOutputType : byte
 	{
 		/// <summary>

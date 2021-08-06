@@ -1,6 +1,4 @@
-﻿#if SOLUTION_WIDE_CODE_ANALYSIS
-
-using System;
+﻿using System;
 using System.Diagnostics;
 
 namespace Sudoku.Solving.Manual
@@ -14,5 +12,3 @@ namespace Sudoku.Solving.Manual
 	{
 	}
 }
-
-#endif
