@@ -488,5 +488,6 @@
   "Format_DbStepInfo": "{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}",
   "Format_EripStepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} => {ElimStr}",
   "Format_ErStepInfo": "{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}",
-  "Format_ExocetStepInfo": "{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}"
+  "Format_ExocetStepInfo": "{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
+  "Format_FullHouseStepInfo": "{Name}: {CellStr} = {DigitStr}"
 }

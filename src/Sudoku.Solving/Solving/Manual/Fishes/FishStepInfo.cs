@@ -54,10 +54,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <term>7</term>
 		/// <description>Leviathan</description>
 		/// </item>
-		/// <item>
-		/// <term><![CDATA[> 7]]></term>
-		/// <description>No name</description>
-		/// </item>
 		/// </list>
 		/// </remarks>
 		public int Size => BaseSets.Count;
