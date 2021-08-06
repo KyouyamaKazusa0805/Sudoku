@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Sdps
@@ -17,8 +19,8 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Guardians">All guardians.</param>
 	[AutoHashCode(nameof(Digit), nameof(Loop), nameof(Guardians))]
 	public sealed partial record GuardianStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, in Cells Loop,
-		in Cells Guardians
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit, in Cells Loop, in Cells Guardians
 	) : SdpStepInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
@@ -36,20 +38,41 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+		[FormatItem]
+		private string GuardianSingularOrPlural
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Guardians.Count == 1 ? TextResources.Current.GuardianSingular : TextResources.Current.GuardianPlural;
+		}
+
+		[FormatItem]
+		private string GuardianStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Guardians.ToString();
+		}
+
+		[FormatItem]
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
 		public bool Equals(GuardianStepInfo? other) =>
 			other is not null && Loop == other.Loop && Guardians == other.Guardians && Digit == other.Digit;
 
-
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string guardians = Guardians.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string guardianSingularOrPlural = Guardians.Count == 1 ? "a guardian" : "guardians";
-			return $"{Name}: Cells {cellsStr} with {guardianSingularOrPlural} {guardians} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}";
 	}
 }

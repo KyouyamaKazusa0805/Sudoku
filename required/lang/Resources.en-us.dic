@@ -110,6 +110,8 @@
   "WithKeyword": " with ",
   "NakedKeyword": "naked",
   "HiddenKeyword": "hidden",
+  "GuardianSingular": "a guardian",
+  "GuardianPlural": "guardians",
   "FullHouse": "Full House",
   "LastDigit": "Last Digit",
   "HiddenSingleRow": "Hidden Single in Row",
@@ -501,5 +503,6 @@
   "Format_FullHouseStepInfo": "{Name}: {CellStr} = {DigitStr}",
   "Format_GroupedBivalueOddagonStepInfo": "The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}",
   "Format_GspStepInfo": "{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
-  "Format_Gsp2StepInfo": "{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}"
+  "Format_Gsp2StepInfo": "{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}",
+  "Format_GuardianStepInfo": "{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}"
 }

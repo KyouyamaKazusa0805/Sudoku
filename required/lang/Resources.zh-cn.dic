@@ -88,6 +88,8 @@
   "AnalysisResultTimeElapsed": "耗时：",
   "AnalysisResultAttributes": "题目特性：",
   "AnalysisResultBackdoors": "后门：",
+  "GuardianSingular": "守护者",
+  "GuardianPlural": "守护者",
   "SubsetNamesSize2": "数对",
   "SubsetNamesSize3": "三数组",
   "SubsetNamesSize4": "四数组",
@@ -488,5 +490,6 @@
   "Format_FullHouseStepInfo": "{Name}：{CellStr} = {DigitStr}",
   "Format_GroupedBivalueOddagonStepInfo": "当单元格 {LoopStr} 里面的额外数字 {ExtraDigitsStr} 全部被去掉的话，里面剩下的数字 {Digit1Str} 和 {Digit2Str} 会构成一个错误的结构，导致题目无解 => {ElimStr}",
   "Format_GspStepInfo": "{Name}：{SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
-  "Format_Gsp2StepInfo": "{Name}：{SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}"
+  "Format_Gsp2StepInfo": "{Name}：{SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}",
+  "Format_GuardianStepInfo": "{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} => {ElimStr}"
 }
