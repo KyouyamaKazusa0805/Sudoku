@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -35,14 +36,54 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string LoopStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Digit2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ExtraDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string concStr = new ConclusionCollection(Conclusions).ToString();
-			string cellsStr = Loop.ToString();
-			string digitsStr = new DigitCollection(ExtraDigits).ToString();
-			return $"The cells {cellsStr} about digits {Digit1 + 1} and {Digit2 + 1} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {digitsStr} in this structure is removed => {concStr}";
-		}
+		public override string ToString() =>
+			$"The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}";
 	}
 }

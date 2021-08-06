@@ -476,5 +476,6 @@
   "Format_EripStepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 => {ElimStr}",
   "Format_ErStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} => {ElimStr}",
   "Format_ExocetStepInfo": "{Name}：数字 {DigitsStr} 在基准单元格 {BaseMapStr} 里，目标单元格 {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
-  "Format_FullHouseStepInfo": "{Name}：{CellStr} = {DigitStr}"
+  "Format_FullHouseStepInfo": "{Name}：{CellStr} = {DigitStr}",
+  "Format_GroupedBivalueOddagonStepInfo": "当单元格 {LoopStr} 里面的额外数字 {ExtraDigitsStr} 全部被去掉的话，里面剩下的数字 {Digit1Str} 和 {Digit2Str} 会构成一个错误的结构，导致题目无解 => {ElimStr}"
 }
