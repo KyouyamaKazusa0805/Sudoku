@@ -5,6 +5,7 @@
   "GoesTo": " => ",
   "Equals": " = ",
   "Backslash": "\\",
+  "ClosedBracket": ") ",
   "UnsolvedCells": "Unsolved cells: ",
   "UnsolvedCandidates": ", candidates: ",
   "Manual": "Manual",
@@ -98,7 +99,15 @@
   "ExocetTrueBaseEliminationName": "True Base",
   "ExocetCompatibilityTestEliminationName": "Compatibility Test",
   "ExocetEliminationSnippet": " elimination: ",
+  "SymmetryTypeSnippet": "Symmetry type: ",
+  "MappingRelationSnippet": ", mapping relations: ",
+  "SymmetryTypeCentral": "central",
+  "SymmetryTypeDiagnoal": "diagonal",
+  "SymmetryTypeAntiDiagonal": "anti-diagonal",
+  "SymmetrySnippet": "We should swap region(s) ",
+  "SymmetryThenWeGet": "then we'll get the symmetrical placement (",
   "OrKeyword": " or ",
+  "WithKeyword": " with ",
   "NakedKeyword": "naked",
   "HiddenKeyword": "hidden",
   "FullHouse": "Full House",
@@ -490,5 +499,7 @@
   "Format_ErStepInfo": "{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}",
   "Format_ExocetStepInfo": "{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
   "Format_FullHouseStepInfo": "{Name}: {CellStr} = {DigitStr}",
-  "Format_GroupedBivalueOddagonStepInfo": "The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}"
+  "Format_GroupedBivalueOddagonStepInfo": "The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}",
+  "Format_GspStepInfo": "{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
+  "Format_Gsp2StepInfo": "{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}"
 }

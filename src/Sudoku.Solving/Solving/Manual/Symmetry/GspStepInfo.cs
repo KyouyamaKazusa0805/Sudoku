@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Models;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -33,34 +35,67 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Gsp;
 
-
-		/// <inheritdoc/>
-		public override string ToString()
+		[FormatItem]
+		private string SymmetryTypeSnippet
 		{
-			const string separator = ", ";
-			string customName = SymmetryType.GetName().ToLower();
-			string conclusions = new ConclusionCollection(Conclusions).ToString();
-			if (MappingTable is not null)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.SymmetryTypeSnippet;
+		}
+
+		[FormatItem]
+		private string SymmetryTypeName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => SymmetryType switch
 			{
-				var sb = new ValueStringBuilder(stackalloc char[100]);
-				for (int i = 0; i < 9; i++)
+				SymmetryType.Central => TextResources.Current.SymmetryTypeCentral,
+				SymmetryType.Diagonal => TextResources.Current.SymmetryTypeDiagnoal,
+				SymmetryType.AntiDiagonal => TextResources.Current.SymmetryTypeAntiDiagonal
+			};
+		}
+
+		[FormatItem]
+		[NotNullIfNotNull(nameof(MappingTable))]
+		private string? MappingRelations
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				if (MappingTable is null)
 				{
-					int? value = MappingTable[i];
-
-					sb.Append(i + 1);
-					sb.Append(value is { } v && value != i ? $" -> {(v + 1).ToString()}" : string.Empty);
-					sb.Append(separator);
+					return null;
 				}
+				else
+				{
+					const string separator = ", ";
 
-				sb.RemoveFromEnd(separator.Length);
-				string mapping = sb.ToString();
-				return $"{Name}: Symmetry type: {customName}, mapping relations: {mapping} => {conclusions}";
-			}
-			else
-			{
-				return $"{Name}: Symmetry type: {customName} => {conclusions}";
+					var sb = new ValueStringBuilder(stackalloc char[100]);
+					for (int i = 0; i < 9; i++)
+					{
+						int? value = MappingTable[i];
+
+						sb.Append(i + 1);
+						sb.Append(value is { } v && value != i ? $" -> {(v + 1).ToString()}" : string.Empty);
+						sb.Append(separator);
+					}
+
+					sb.RemoveFromEnd(separator.Length);
+					return $"{TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
+				}
 			}
 		}
+
+		[FormatItem]
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
+
+		/// <inheritdoc/>
+		public override string ToString() =>
+			$"{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}";
 
 
 		/// <summary>
@@ -69,6 +104,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <param name="left">The left information to merge.</param>
 		/// <param name="right">The right information to merge.</param>
 		/// <returns>The merge result.</returns>
+		[return: NotNullIfNotNull("left"), NotNullIfNotNull("right")]
 		public static GspStepInfo? operator |(GspStepInfo? left, GspStepInfo? right)
 		{
 			switch ((Left: left, Right: right))
@@ -93,8 +129,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				default:
 				{
-					// Here the null suppression operator is unnecessary, but Roslyn don't think so.
-					// Here either 'left' or 'right' isn't null, so the expression can't be null.
 					return new((left ?? right)!);
 				}
 			}

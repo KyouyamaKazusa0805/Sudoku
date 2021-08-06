@@ -4,6 +4,7 @@
   "Period": "。",
   "GoesTo": " => ",
   "Backslash": "\\",
+  "ClosedBracket": "）",
   "UnsolvedCells": "剩余空格总数：",
   "UnsolvedCandidates": "，剩余候选数总数：",
   "Manual": "人工",
@@ -113,6 +114,14 @@
   "ExocetTrueBaseEliminationName": "基准格永真删数",
   "ExocetCompatibilityTestEliminationName": "兼容性测试删数",
   "ExocetEliminationSnippet": "删数：",
+  "SymmetryTypeSnippet": "对称类型：",
+  "MappingRelationSnippet": "，对应关系：",
+  "SymmetryTypeCentral": "中心对称",
+  "SymmetryTypeDiagnoal": "撇对角线对称",
+  "SymmetryTypeAntiDiagonal": "捺对角线对称",
+  "SymmetrySnippet": "我们需要交换区域：",
+  "WithKeyword": " 和 ",
+  "SymmetryThenWeGet": "然后就可实现宇宙法的交换（",
   "FullHouse": "同区剩余",
   "LastDigit": "同数剩余",
   "HiddenSingleRow": "行排除",
@@ -477,5 +486,7 @@
   "Format_ErStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} => {ElimStr}",
   "Format_ExocetStepInfo": "{Name}：数字 {DigitsStr} 在基准单元格 {BaseMapStr} 里，目标单元格 {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
   "Format_FullHouseStepInfo": "{Name}：{CellStr} = {DigitStr}",
-  "Format_GroupedBivalueOddagonStepInfo": "当单元格 {LoopStr} 里面的额外数字 {ExtraDigitsStr} 全部被去掉的话，里面剩下的数字 {Digit1Str} 和 {Digit2Str} 会构成一个错误的结构，导致题目无解 => {ElimStr}"
+  "Format_GroupedBivalueOddagonStepInfo": "当单元格 {LoopStr} 里面的额外数字 {ExtraDigitsStr} 全部被去掉的话，里面剩下的数字 {Digit1Str} 和 {Digit2Str} 会构成一个错误的结构，导致题目无解 => {ElimStr}",
+  "Format_GspStepInfo": "{Name}：{SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
+  "Format_Gsp2StepInfo": "{Name}：{SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}"
 }

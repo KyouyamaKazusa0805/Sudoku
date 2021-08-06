@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -20,8 +22,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// contains multiple different symmetry types.
 	/// </param>
 	public sealed record Gsp2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType,
-		int[]?[]? SwappingTable, int?[]? MappingTable) : SymmetryStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		SymmetryType SymmetryType, int[]?[]? SwappingTable, int?[]? MappingTable
+	) : SymmetryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.5M;
@@ -32,49 +35,41 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.Gsp2;
 
-
-		/// <inheritdoc/>
-		public override string ToString()
+		[FormatItem]
+		private string SymmetryTypeSnippet
 		{
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {getSwappedString()}{getStringThatDescribesGspInfo()}) => {elimStr}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.SymmetryTypeSnippet;
+		}
 
-			string getSwappedString()
+		[FormatItem]
+		private string SymmetryTypeName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => SymmetryType switch
 			{
-				if (SwappingTable is { Length: not 0 })
+				SymmetryType.Central => TextResources.Current.SymmetryTypeCentral,
+				SymmetryType.Diagonal => TextResources.Current.SymmetryTypeDiagnoal,
+				SymmetryType.AntiDiagonal => TextResources.Current.SymmetryTypeAntiDiagonal
+			};
+		}
+
+		[FormatItem]
+		[NotNullIfNotNull(nameof(MappingTable))]
+		private string? MappingRelations
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				if (MappingTable is null)
 				{
-					const string separator = ", ";
-					var sb = new ValueStringBuilder(stackalloc char[100]);
-					sb.Append("We should swap region(s) ");
-
-					foreach (int[]? swappingRegionPair in SwappingTable)
-					{
-						if (swappingRegionPair is not null)
-						{
-							sb.Append(new RegionCollection(swappingRegionPair[0]).ToString());
-							sb.Append(" with ");
-							sb.Append(new RegionCollection(swappingRegionPair[1]).ToString());
-							sb.Append(separator);
-						}
-					}
-
-					sb.Append("then we'll get the symmetrical placement (");
-
-					return sb.ToString();
+					return null;
 				}
 				else
 				{
-					return string.Empty;
-				}
-			}
+					const string separator = ", ";
 
-			string getStringThatDescribesGspInfo()
-			{
-				const string separator = ", ";
-				string customName = SymmetryType.GetName().ToLower();
-				if (MappingTable is not null)
-				{
-					var sb = new ValueStringBuilder(stackalloc char[50]);
+					var sb = new ValueStringBuilder(stackalloc char[100]);
 					for (int i = 0; i < 9; i++)
 					{
 						int? value = MappingTable[i];
@@ -85,14 +80,69 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					sb.RemoveFromEnd(separator.Length);
-					string mapping = sb.ToString();
-					return $"Symmetry type: {customName}, mapping relations: {mapping}";
-				}
-				else
-				{
-					return $"Symmetry type: {customName}";
+					return $"{TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
 				}
 			}
 		}
+
+		[FormatItem]
+		private string ClosedBracket
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.ClosedBracket;
+		}
+
+		[FormatItem]
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
+		[FormatItem]
+		private string GspBaseInfo
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => $"{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations}";
+		}
+
+		[FormatItem]
+		[NotNullIfNotNull(nameof(SwappingTable))]
+		private string? SwappingStr
+		{
+			get
+			{
+				if (SwappingTable is { Length: not 0 })
+				{
+					const string separator = ", ";
+
+					var sb = new ValueStringBuilder(stackalloc char[100]);
+					sb.Append((string)TextResources.Current.SymmetrySnippet);
+
+					foreach (int[]? swappingRegionPair in SwappingTable)
+					{
+						if (swappingRegionPair is not null)
+						{
+							sb.Append(new RegionCollection(swappingRegionPair[0]).ToString());
+							sb.Append((string)TextResources.Current.WithKeyword);
+							sb.Append(new RegionCollection(swappingRegionPair[1]).ToString());
+							sb.Append(separator);
+						}
+					}
+
+					sb.Append((string)TextResources.Current.SymmetryThenWeGet);
+
+					return sb.ToString();
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+
+
+		/// <inheritdoc/>
+		public override string ToString() => $"{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}";
 	}
 }

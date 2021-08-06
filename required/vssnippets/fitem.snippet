@@ -23,23 +23,17 @@
 					<ToolTip>The expression of the string value.</ToolTip>
 				</Literal>
 				<Literal Editable="false">
-					<ID>methodImplType</ID>
-					<Function>SimpleTypeName(global::System.Runtime.CompilerServices.MethodImplAttribute)</Function>
-				</Literal>
-				<Literal Editable="false">
 					<ID>metodImplOptionsType</ID>
 					<Function>SimpleTypeName(global::System.Runtime.CompilerServices.MethodImplOptions)</Function>
 				</Literal>
 			</Declarations>
 			<Code Language="CSharp">
-				<![CDATA[#if SOLUTION_WIDE_CODE_ANALYSIS
-		[FormatItem]
-#endif
-		private string $propertyName$
-		{
-			[$methodImplType$($metodImplOptionsType$.AggressiveInlining)]
-			get => $expression$;$end$
-		}]]>
+				<![CDATA[[FormatItem]
+private string $propertyName$
+{
+	[MethodImpl($metodImplOptionsType$.AggressiveInlining)]
+	get => $expression$;$end$
+}]]>
 			</Code>
 		</Snippet>
 	</CodeSnippet>
