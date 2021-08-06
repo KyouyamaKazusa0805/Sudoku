@@ -6082,6 +6082,9 @@
         <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.HiddenSingleStepInfo.Format">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -6358,14 +6361,15 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.StepInfo.ToString">
             <summary>
-            Returns a string that only contains the name and the basic information. Different with
-            <see cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>, the method will only contains the basic introduction
-            about the technique.
-            For example, in the <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo"/>, the detail will contain the several special
-            eliminations, in this method, those won't be displayed, But the method <see cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>
-            will.
+            Returns a string that only contains the name and the basic information.
             </summary>
             <returns>The string instance.</returns>
+            <remarks>
+            Different with the method <see cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>, the method only contains
+            the basic introduction about the technique. For example in the <see cref="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo"/>,
+            the detail will contain the several special eliminations; while in this method,
+            those information won't be displayed, but the method <see cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/> will.
+            </remarks>
             <seealso cref="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo"/>
             <seealso cref="M:Sudoku.Solving.Manual.StepInfo.ToFullString"/>
         </member>

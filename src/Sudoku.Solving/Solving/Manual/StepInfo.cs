@@ -185,14 +185,15 @@ namespace Sudoku.Solving.Manual
 			flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
 		/// <summary>
-		/// Returns a string that only contains the name and the basic information. Different with
-		/// <see cref="ToFullString()"/>, the method will only contains the basic introduction
-		/// about the technique.
-		/// For example, in the <see cref="ExocetStepInfo"/>, the detail will contain the several special
-		/// eliminations, in this method, those won't be displayed, But the method <see cref="ToFullString()"/>
-		/// will.
+		/// Returns a string that only contains the name and the basic information.
 		/// </summary>
 		/// <returns>The string instance.</returns>
+		/// <remarks>
+		/// Different with the method <see cref="ToFullString()"/>, the method only contains
+		/// the basic introduction about the technique. For example in the <see cref="ExocetStepInfo"/>,
+		/// the detail will contain the several special eliminations; while in this method,
+		/// those information won't be displayed, but the method <see cref="ToFullString()"/> will.
+		/// </remarks>
 		/// <seealso cref="ExocetStepInfo"/>
 		/// <seealso cref="ToFullString()"/>
 		public abstract override string ToString();
