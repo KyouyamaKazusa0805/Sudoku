@@ -90,7 +90,7 @@ namespace Sudoku.Solving.Manual.Alses
 			get
 			{
 				var digits = DigitsMask.GetAllSets();
-				short[] result = new short[StrongRelationsCount[digits.Length]];
+				short[] result = new short[StrongRelationsCount[digits.Length - 1]];
 				fixed (int* pDigits = digits)
 				{
 					for (int i = 0, x = 0, length = digits.Length, iterationLength = length - 1; i < iterationLength; i++)

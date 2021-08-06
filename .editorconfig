@@ -379,6 +379,9 @@ dotnet_diagnostic.CS8762.severity = error
 # CS8763: A method marked [DoesNotReturn] should not return.
 dotnet_diagnostic.CS8763.severity = error
 
+# CS8764: Nullability of return type doesn't match overridden member (possibly because of nullability attributes).
+dotnet_diagnostic.CS8764.severity = error
+
 # CS8765: Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
 dotnet_diagnostic.CS8765.severity = error
 

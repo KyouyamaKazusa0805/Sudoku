@@ -33,6 +33,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
 
+		/// <inheritdoc/>
+		protected override string? AdditionalFormat => null;
+
 		/// <summary>
 		/// Indicates extra difficulty on mirror eliminations.
 		/// </summary>
@@ -59,7 +62,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional() => null;

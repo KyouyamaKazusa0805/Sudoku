@@ -2935,6 +2935,21 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.AdditionalFormat">
+            <summary>
+            Indicates the additional format.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.BaseMap">
+            <summary>
+            Indicates the map of the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.TargetMap">
+            <summary>
+            Indicates the map of the target cells.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -2946,12 +2961,6 @@
             Get the additional message.
             </summary>
             <returns>The additional message.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.ToStringInternal">
-            <summary>
-            Same as <see cref="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.ToString"/> but the implementation part.
-            </summary>
-            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.GatherConclusions(System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
             <summary>
@@ -3006,6 +3015,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepInfo.MirrorDifficulty">
@@ -3344,6 +3356,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.SeStepInfo.ToString">

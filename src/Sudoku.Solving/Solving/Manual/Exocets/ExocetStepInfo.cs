@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -36,9 +39,116 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
+		/// <summary>
+		/// Indicates the additional format.
+		/// </summary>
+		protected abstract string? AdditionalFormat { get; }
+
+		/// <summary>
+		/// Indicates the map of the base cells.
+		/// </summary>
+		private Cells BaseMap
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				var (baseMap, _, _) = Exocet;
+				return baseMap;
+			}
+		}
+
+		/// <summary>
+		/// Indicates the map of the target cells.
+		/// </summary>
+		private Cells TargetMap
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				var (_, targetMap, _) = Exocet;
+				return targetMap;
+			}
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(Digits).ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string BaseMapStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => BaseMap.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string TargetMapStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TargetMap.ToString();
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		[NotNullIfNotNull(nameof(LockedMemberQ))]
+		private string? LockedMemberQStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				string snippet = TextResources.Current.LockedMemberQSnippet;
+				string? cells = LockedMemberQ is null ? null : new DigitCollection(LockedMemberQ).ToString();
+				return$"{snippet}{cells}";
+			}
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		[NotNullIfNotNull(nameof(LockedMemberR))]
+		private string? LockedMemberRStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				string snippet = TextResources.Current.LockedMemberRSnippet;
+				string? cells = LockedMemberR is null ? null : new DigitCollection(LockedMemberR).ToString();
+				return $"{snippet}{cells}";
+			}
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string Additional
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string ElimStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new ConclusionCollection(Conclusions).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{Additional} => {ElimStr}";
 
 		/// <inheritdoc/>
 		public sealed override string ToFullString()
@@ -55,40 +165,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		/// <returns>The additional message.</returns>
 		protected abstract string? GetAdditional();
-
-		/// <summary>
-		/// Same as <see cref="ToString"/> but the implementation part.
-		/// </summary>
-		/// <returns>The result.</returns>
-		protected string ToStringInternal()
-		{
-			var (baseMap, targetMap, _) = Exocet;
-			string? addtional = GetAdditional();
-
-			var sb = new ValueStringBuilder(stackalloc char[150]);
-			sb.Append(Name);
-			sb.Append(": Digits ");
-			sb.Append(new DigitCollection(Digits).ToString());
-			sb.Append(" in base cells ");
-			sb.Append(baseMap.ToString());
-			sb.Append(", target cells ");
-			sb.Append(targetMap.ToString());
-			sb.Append(
-				LockedMemberQ is null
-				? null
-				: $", locked member 1: {new DigitCollection(LockedMemberQ).ToString()}"
-			);
-			sb.Append(
-				LockedMemberR is null
-				? null
-				: $", locked member 2: {new DigitCollection(LockedMemberR).ToString()}"
-			);
-			sb.Append(addtional is null ? string.Empty : $" with {addtional}");
-			sb.Append(" => ");
-			sb.Append(new ConclusionCollection(Conclusions).ToString());
-
-			return sb.ToString();
-		}
 
 
 		/// <summary>

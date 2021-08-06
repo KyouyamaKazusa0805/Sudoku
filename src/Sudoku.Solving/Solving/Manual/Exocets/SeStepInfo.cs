@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Exocets
@@ -41,9 +43,57 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
 
+		/// <inheritdoc/>
+		protected override string? AdditionalFormat
+		{
+			get
+			{
+				const string separator = ", ";
+				string endoTargetSnippet = TextResources.Current.EndoTargetSnippet;
+				string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
+				if (ExtraRegionsMask is not null)
+				{
+					var sb = new ValueStringBuilder(stackalloc char[100]);
+					int count = 0;
+					for (int digit = 0; digit < 9; digit++)
+					{
+						if (ExtraRegionsMask[digit] is not (var mask and not 0))
+						{
+							continue;
+						}
+
+						sb.Append(digit + 1);
+						sb.Append(new RegionCollection(mask.GetAllSets()).ToString());
+						sb.Append(separator);
+
+						count++;
+					}
+
+					if (count != 0)
+					{
+						sb.RemoveFromEnd(separator.Length);
+
+						string extraRegionsIncluded = TextResources.Current.IncludedExtraRegionSnippet;
+						return $"{endoTargetStr}{extraRegionsIncluded}{sb.ToString()}";
+					}
+				}
+
+				return endoTargetStr;
+			}
+		}
+
+#if SOLUTION_WIDE_CODE_ANALYSIS
+		[FormatItem]
+#endif
+		private string EndoTargetCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { EndoTargetCell }.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString() => ToStringInternal();
+		public override string ToString() => base.ToString();
 
 		/// <inheritdoc/>
 		protected override string? GetAdditional()

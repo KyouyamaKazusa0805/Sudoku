@@ -85,6 +85,19 @@
   "AnalysisResultTimeElapsed": "Time elapsed: ",
   "AnalysisResultAttributes": "Attributes:",
   "AnalysisResultBackdoors": "Backdoors:",
+  "LockedMemberQSnippet": ", locked member 1: ",
+  "LockedMemberRSnippet": ", locked member 2: ",
+  "EndoTaragetSnippet": "endo-target: ",
+  "IncludedExtraRegionSnippet": ". Extra regions will be included: ",
+  "ExocetBasicEliminationName": "Target",
+  "ExocetTargetInferenceEliminationName": "Target Inference",
+  "ExocetMirrorEliminationName": "Mirror",
+  "ExocetBiBiPatternEliminationName": "Bi-bi Pattern",
+  "ExocetTargetPairEliminationName": "Target Pair",
+  "ExocetGeneralizedSwordfishEliminationName": "Generalized Swordfish",
+  "ExocetTrueBaseEliminationName": "True Base",
+  "ExocetCompatibilityTestEliminationName": "Compatibility Test",
+  "ExocetEliminationSnippet": " elimination: ",
   "OrKeyword": " or ",
   "NakedKeyword": "naked",
   "HiddenKeyword": "hidden",
@@ -474,5 +487,6 @@
   "Format_ComplexFishStepInfo": "{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}",
   "Format_DbStepInfo": "{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}",
   "Format_EripStepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} => {ElimStr}",
-  "Format_ErStepInfo": "{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}"
+  "Format_ErStepInfo": "{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}",
+  "Format_ExocetStepInfo": "{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}"
 }

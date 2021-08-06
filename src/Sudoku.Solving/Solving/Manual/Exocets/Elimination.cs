@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -50,23 +51,17 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <summary>
 		/// Indicates the header of the reason.
 		/// </summary>
-		private string Header => Reason switch
-		{
-			EliminatedReason.Basic => "Target",
-			EliminatedReason.TargetInference => "Target inference",
-			EliminatedReason.Mirror => "Mirror",
-			EliminatedReason.BiBiPattern => "Bi-Bi pattern",
-			EliminatedReason.TargetPair => "Target pair",
-			EliminatedReason.GeneralizedSwordfish => "Generalized swordfish",
-			EliminatedReason.TrueBase => "True base",
-			EliminatedReason.CompatibilityTest => "Compatibility test"
-		};
+		private string Header => TextResources.Current[$"Exocet{Reason.ToString()}EliminationName"];
 
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public override string ToString() =>
-			$"* {Header} elimination: {new ConclusionCollection(AsSpan()).ToString()}";
+		public override string ToString()
+		{
+			string snippet = TextResources.Current.ExocetEliminationSnippet;
+			string elim = new ConclusionCollection(AsSpan()).ToString();
+			return $"* {Header}{snippet}{elim}";
+		}
 
 		/// <summary>
 		/// Converts all elements to <see cref="Conclusion"/>.

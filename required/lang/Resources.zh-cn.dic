@@ -100,6 +100,19 @@
   "FalseKeyword": "假",
   "NakedKeyword": "显性",
   "HiddenKeyword": "隐性",
+  "LockedMemberQSnippet": "，区块成员 #1：",
+  "LockedMemberRSnippet": "，区块成员 #2：",
+  "EndoTaragetSnippet": "内目标格：",
+  "IncludedExtraRegionSnippet": "。额外的需要计算进来的区域：",
+  "ExocetBasicEliminationName": "目前格删数",
+  "ExocetTargetInferenceEliminationName": "目前格推断删数",
+  "ExocetMirrorEliminationName": "镜面格推断删数",
+  "ExocetBiBiPatternEliminationName": "X 理论删数",
+  "ExocetTargetPairEliminationName": "目标格数对删数",
+  "ExocetGeneralizedSwordfishEliminationName": "广义三阶鱼删数",
+  "ExocetTrueBaseEliminationName": "基准格永真删数",
+  "ExocetCompatibilityTestEliminationName": "兼容性测试删数",
+  "ExocetEliminationSnippet": "删数：",
   "FullHouse": "同区剩余",
   "LastDigit": "同数剩余",
   "HiddenSingleRow": "行排除",
@@ -461,5 +474,6 @@
   "Format_ComplexFishStepInfo": "{Name}: {BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=> {ElimStr}",
   "Format_DbStepInfo": "{Name}：从单元格 {PivotStr} 开始展开花瓣——{PetalsStr} => {ElimStr}",
   "Format_EripStepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 => {ElimStr}",
-  "Format_ErStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} => {ElimStr}"
+  "Format_ErStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} => {ElimStr}",
+  "Format_ExocetStepInfo": "{Name}：数字 {DigitsStr} 在基准单元格 {BaseMapStr} 里，目标单元格 {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}"
 }
