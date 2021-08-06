@@ -504,5 +504,7 @@
   "Format_GroupedBivalueOddagonStepInfo": "The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}",
   "Format_GspStepInfo": "{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
   "Format_Gsp2StepInfo": "{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}",
-  "Format_GuardianStepInfo": "{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}"
+  "Format_GuardianStepInfo": "{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}",
+  "Format_HiddenSingleStepInfo_1": "{Name}: {CellStr} = {DigitStr}",
+  "Format_HiddenSingleStepInfo_2": "{Name}: {CellStr} = {DigitStr} in {RegionStr}"
 }

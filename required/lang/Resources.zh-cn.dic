@@ -491,5 +491,7 @@
   "Format_GroupedBivalueOddagonStepInfo": "当单元格 {LoopStr} 里面的额外数字 {ExtraDigitsStr} 全部被去掉的话，里面剩下的数字 {Digit1Str} 和 {Digit2Str} 会构成一个错误的结构，导致题目无解 => {ElimStr}",
   "Format_GspStepInfo": "{Name}：{SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}",
   "Format_Gsp2StepInfo": "{Name}：{SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}",
-  "Format_GuardianStepInfo": "{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} => {ElimStr}"
+  "Format_GuardianStepInfo": "{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} => {ElimStr}",
+  "Format_HiddenSingleStepInfo_1": "{Name}：{CellStr} = {DigitStr}",
+  "Format_HiddenSingleStepInfo_2": "{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}"
 }

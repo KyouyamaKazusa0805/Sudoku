@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Singles
@@ -17,28 +19,48 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <param name="Region">The region.</param>
 	/// <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
 	public sealed record HiddenSingleStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit,
-		int Region, bool EnableAndIsLastDigit
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Cell, int Digit, int Region, bool EnableAndIsLastDigit
 	) : SingleStepInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
 
 		/// <inheritdoc/>
-		public override Technique TechniqueCode =>
-			EnableAndIsLastDigit
+		public override Technique TechniqueCode => EnableAndIsLastDigit
 			? Technique.LastDigit
 			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToLabel());
 
+		/// <inheritdoc/>
+		public override string? Format => EnableAndIsLastDigit
+			? TextResources.Current.Format_HiddenSingleStepInfo_1
+			: TextResources.Current.Format_HiddenSingleStepInfo_2;
+
+		[FormatItem]
+		private string CellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { Cell }.ToString();
+		}
+
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+		[FormatItem]
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellStr = new Cells { Cell }.ToString();
-			int v = Digit + 1;
-			return EnableAndIsLastDigit
-				? $"{Name}: {cellStr} = {v.ToString()}"
-				: $"{Name}: {cellStr} = {v.ToString()} in {new RegionCollection(Region).ToString()}";
-		}
+		public override string ToString() => EnableAndIsLastDigit
+			? $"{Name}: {CellStr} = {DigitStr}"
+			: $"{Name}: {CellStr} = {DigitStr} in {RegionStr}";
 	}
 }
