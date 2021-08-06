@@ -19,8 +19,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
 	public sealed record HiddenUrStepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
-		int AbsoluteOffset
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
+		IReadOnlyList<ConjugatePair> ConjugatePairs, int AbsoluteOffset
 	) : UrPlusStepInfo(
 		Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
 		Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset
