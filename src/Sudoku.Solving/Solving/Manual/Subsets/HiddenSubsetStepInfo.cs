@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -30,14 +31,22 @@ namespace Sudoku.Solving.Manual.Subsets
 			4 => Technique.HiddenQuadruple
 		};
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(Digits).ToString();
+		}
+
+		[FormatItem]
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitStr = new DigitCollection(Digits).ToString();
-			string regionStr = new RegionCollection(Region).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digitStr} in {regionStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {DigitStr} in {RegionStr} => {ElimStr}";
 	}
 }

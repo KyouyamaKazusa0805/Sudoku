@@ -506,5 +506,6 @@
   "Format_Gsp2StepInfo": "{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}",
   "Format_GuardianStepInfo": "{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}",
   "Format_HiddenSingleStepInfo_1": "{Name}: {CellStr} = {DigitStr}",
-  "Format_HiddenSingleStepInfo_2": "{Name}: {CellStr} = {DigitStr} in {RegionStr}"
+  "Format_HiddenSingleStepInfo_2": "{Name}: {CellStr} = {DigitStr} in {RegionStr}",
+  "Format_HiddenSubsetStepInfo": "{Name}: {DigitStr} in {RegionStr} => {ElimStr}"
 }
