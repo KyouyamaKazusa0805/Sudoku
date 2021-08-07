@@ -522,5 +522,9 @@
   "Format_UlType1StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构 => {ElimStr}",
   "Format_UlType2StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_UlType3StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有显性{SubsetName}、额外数字 {DigitsStr}，单元格为 {SubsetCellsStr} => {ElimStr}",
-  "Format_UlType4StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有共轭对 {ConjStr} => {ElimStr}"
+  "Format_UlType4StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有共轭对 {ConjStr} => {ElimStr}",
+  "Format_UsType1StepInfo": "{Name}：如果候选数 {CandidateStr} 为假，则位于单元格 {CellsStr} 的数字 {DigitsStr} 将构成致命形式 => {ElimStr}",
+  "Format_UsType2StepInfo": "{Name}：如果数字 {ExtraDigitStr} 在单元格 {CellsStr} 里全部为假，则剩余数字 {DigitsStr} 在这些格子里将构成致命形式 => {ElimStr}",
+  "Format_UsType3StepInfo": "{Name}：如果数字 {ExtraDigitStr} 在单元格 {ExtraCellsStr} 里不构成显性{SubsetName}的话，则数字 {DigitsStr} 在单元格 {CellsStr} 里将构成致命形式 => {ElimStr}",
+  "Format_UsType4StepInfo": "{Name}：如果共轭区域 {ConjStr} 无法填入数字 {Digit1Str} 或者 {Digit2Str} 的话，数字 {DigitsStr} 在单元格 {CellsStr} 里将形成致命形式 => {ElimStr}"
 }

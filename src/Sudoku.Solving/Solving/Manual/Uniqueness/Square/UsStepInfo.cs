@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -30,6 +32,26 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
+
+		/// <summary>
+		/// Indicates the digits string.
+		/// </summary>
+		[FormatItem]
+		protected string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
+		}
+
+		/// <summary>
+		/// Indicates the cells string.
+		/// </summary>
+		[FormatItem]
+		protected string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Cells.ToString();
+		}
 
 
 		/// <inheritdoc/>

@@ -56,13 +56,6 @@ namespace Sudoku.Solving.Manual.Sdps
 			get => ConjugatePair.ToString();
 		}
 
-		[FormatItem]
-		private string ElimStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new ConclusionCollection(Conclusions).ToString();
-		}
-
 
 		/// <inheritdoc/>
 		public override string ToString() =>

@@ -10115,6 +10115,16 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.ToString">
             <inheritdoc/>
         </member>

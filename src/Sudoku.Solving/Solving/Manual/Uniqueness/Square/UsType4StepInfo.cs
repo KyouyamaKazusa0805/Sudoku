@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -17,21 +17,37 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="ConjugateRegion">The so-called conjugate region.</param>
 	public sealed record UsType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-		int Digit1, int Digit2, in Cells ConjugateRegion) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		in Cells Cells, short DigitsMask, int Digit1, int Digit2, in Cells ConjugateRegion
+	) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.UsType4;
 
+		[FormatItem]
+		private string ConjStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugateRegion.ToString();
+		}
+
+		[FormatItem]
+		private string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+		[FormatItem]
+		private string Digit2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Cells.ToString();
-			string conjStr = ConjugateRegion.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {digitsStr} in cells {cellsStr} can avoid to form a deadly pattern if and only if the conjugate region {conjStr} can't set the digit neither {(Digit1 + 1).ToString()} nor {(Digit2 + 1).ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} => {ElimStr}";
 	}
 }

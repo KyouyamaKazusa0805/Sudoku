@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record UsType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-		int ExtraDigit) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		in Cells Cells, short DigitsMask, int ExtraDigit
+	) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M;
@@ -24,14 +25,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.UsType2;
 
+		[FormatItem]
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (ExtraDigit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Cells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {digitsStr} in cells {cellsStr} will form a deadly pattern if the extra digit {(ExtraDigit + 1).ToString()} is all false in the pattern => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern => {ElimStr}";
 	}
 }

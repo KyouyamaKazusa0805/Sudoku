@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -22,15 +22,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.UsType1;
 
-
-		/// <inheritdoc/>
-		public override string ToString()
+		[FormatItem]
+		private string CandidateStr
 		{
-			string candStr = new Candidates { Candidate }.ToString();
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Cells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {digitsStr} in cells {cellsStr} will form a deadly pattern if the candidate {candStr} is false => {elimStr}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates { Candidate }.ToString();
 		}
+
+		
+		/// <inheritdoc/>
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false => {ElimStr}";
 	}
 }

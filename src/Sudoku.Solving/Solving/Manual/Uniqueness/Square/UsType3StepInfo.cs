@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
-using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
@@ -32,17 +33,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 		/// </summary>
 		private decimal ExtraDifficulty => PopCount((uint)ExtraDigitsMask) * .1M;
 
+		[FormatItem]
+		private string ExtraCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(ExtraCells).ToString();
+		}
+
+		[FormatItem]
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string SubsetName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current[$"SubsetNames{(ExtraCells.Count + 1).ToString()}"];
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Cells.ToString();
-			string subsetDigitsStr = new DigitCollection(ExtraDigitsMask).ToString();
-			string subsetCellsStr = new Cells(ExtraCells).ToString();
-			string subsetName = SubsetNames[ExtraCells.Count + 1];
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {digitsStr} in cells {cellsStr} can be avoid to form a deadly pattern if and only if the digits {subsetDigitsStr} in cells {subsetCellsStr} form a naked {subsetName} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} => {ElimStr}";
 	}
 }
