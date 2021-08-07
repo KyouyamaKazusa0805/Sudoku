@@ -533,5 +533,6 @@
   "Format_ReverseBugType2StepInfo": "{Name}: Digits {DigitsStr} in all empty cells may form a deadly pattern when {ExtraCellsStr} is only last the digit {ExtraDigitStr} => {ElimStr}",
   "Format_ReverseBugType3StepInfo": "{Name}: If {SubsetCellsStr}({SubsetDigitsStr}) don't form a naked {SubsetName}, the deadly pattern in cells {CellsStr} will be formed => {ElimStr}",
   "Format_ReverseBugType4StepInfo": "{Name}: We can't fill with the digit {DigitStr} bacause of the conjugate pair {ConjStr}, otherwise the deadly pattern in cells {CellsStr} will be formed => {ElimStr}",
-  "Format_Sdc3dStepInfo": "{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}"
+  "Format_Sdc3dStepInfo": "{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}",
+  "Format_SdcStepInfo": "{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}"
 }

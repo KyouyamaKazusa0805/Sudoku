@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -56,18 +57,51 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// </summary>
 		private decimal IsolatedExtraDifficulty => IsolatedDigitsMask != 0 ? .1M : 0;
 
+		[FormatItem]
+		private string IntersectionCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => IntersectionCells.ToString();
+		}
+
+		[FormatItem]
+		private string IntersectionDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(IntersectionMask).ToString(null);
+		}
+
+		[FormatItem]
+		private string BlockCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => BlockCells.ToString();
+		}
+
+		[FormatItem]
+		private string BlockDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(BlockMask).ToString(null);
+		}
+
+		[FormatItem]
+		private string LineCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => LineCells.ToString();
+		}
+
+		[FormatItem]
+		private string LineDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(LineMask).ToString(null);
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string blockCellsStr = BlockCells.ToString();
-			string blockDigitsStr = new DigitCollection(BlockMask).ToString(null);
-			string lineCellsStr = LineCells.ToString();
-			string lineDigitsStr = new DigitCollection(LineMask).ToString(null);
-			string interCellsStr = IntersectionCells.ToString();
-			string interDigitsStr = new DigitCollection(IntersectionMask).ToString(null);
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {interCellsStr}({interDigitsStr}) - {blockCellsStr}({blockDigitsStr}) & {lineCellsStr}({lineDigitsStr}) => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}";
 	}
 }
