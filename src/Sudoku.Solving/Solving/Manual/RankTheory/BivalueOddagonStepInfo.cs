@@ -32,5 +32,8 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>
 			other is not null && Loop == other.Loop && Digit1 == other.Digit1 && Digit2 == other.Digit2;
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

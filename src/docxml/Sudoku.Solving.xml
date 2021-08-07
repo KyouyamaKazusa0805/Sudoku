@@ -1497,6 +1497,9 @@
         <member name="P:Sudoku.Solving.Manual.Alses.AlsStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepSearcher">
             <summary>
             Encapsulates an <b>almost locked set</b> (ALS) technique searcher.
@@ -2232,6 +2235,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.ChainingStepSearcher">
@@ -4102,6 +4108,9 @@
         <member name="P:Sudoku.Solving.Manual.Fishes.FishStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Fishes.FishStepInfo.GetComplexFishTechniqueCodeFromName(System.String)">
             <summary>
             Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
@@ -4358,6 +4367,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.IntersectionStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.IntersectionStepSearcher">
@@ -4620,6 +4632,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.LastResortStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.LastResortStepSearcher">
@@ -5298,6 +5313,9 @@
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.Equals(Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -5588,6 +5606,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.RankTheoryStepSearcher">
@@ -5969,6 +5990,9 @@
         <member name="P:Sudoku.Solving.Manual.Sdps.SdpStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Sdps.SdpStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.SdpStepSearcher">
             <summary>
             Encapsulates a <b>single-digit pattern</b> (SDP) technique searcher.
@@ -6143,6 +6167,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher">
@@ -6623,6 +6650,9 @@
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher">
             <summary>
             Encapsulates a <b>subset</b> technique searcher.
@@ -6859,6 +6889,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Symmetry.SymmetryStepSearcher">
@@ -8015,6 +8048,16 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.TechniqueCode">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8435,6 +8478,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.TechniqueGroup">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.PatternStr">
+            <summary>
+            Indicates the pattern string.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.ToString">
             <inheritdoc/>
@@ -9798,7 +9846,15 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.Equals(Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.GetHashCode">
@@ -10246,6 +10302,9 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.UniquenessStepInfo.TechniqueTags">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.UniquenessStepInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.UniquenessStepSearcher">
             <summary>
             Encapsulates a <b>uniqueness</b> technique searcher.
@@ -10264,6 +10323,9 @@
             </summary>
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepInfo.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher">
             <summary>
@@ -10455,6 +10517,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.WingStepInfo.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Wings.WingStepInfo.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Wings.WingStepSearcher">

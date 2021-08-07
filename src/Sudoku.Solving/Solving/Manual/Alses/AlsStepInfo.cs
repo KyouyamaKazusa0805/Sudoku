@@ -18,5 +18,9 @@ namespace Sudoku.Solving.Manual.Alses
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.Als;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

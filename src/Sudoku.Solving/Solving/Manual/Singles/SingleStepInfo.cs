@@ -27,5 +27,9 @@ namespace Sudoku.Solving.Manual.Singles
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Single;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

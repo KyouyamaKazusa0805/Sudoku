@@ -18,5 +18,9 @@ namespace Sudoku.Solving.Manual.Uniqueness
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

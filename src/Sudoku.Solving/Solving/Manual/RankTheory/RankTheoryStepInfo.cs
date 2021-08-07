@@ -18,5 +18,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

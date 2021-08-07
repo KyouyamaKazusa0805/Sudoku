@@ -21,5 +21,9 @@ namespace Sudoku.Solving.Manual.Wings
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Wing;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

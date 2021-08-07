@@ -39,5 +39,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		public virtual bool Equals(ReverseBugStepInfo? obj) =>
 			obj is not null && Loop == obj.Loop
 			&& Digit1 == obj.Digit1 && Digit2 == obj.Digit2 && TechniqueCode == obj.TechniqueCode;
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

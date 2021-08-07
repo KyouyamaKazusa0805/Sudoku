@@ -21,5 +21,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Symmetry;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

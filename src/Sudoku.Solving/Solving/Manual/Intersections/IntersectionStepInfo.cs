@@ -18,5 +18,9 @@ namespace Sudoku.Solving.Manual.Intersections
 
 		/// <inheritdoc/>
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Intersections;
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

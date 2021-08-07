@@ -33,7 +33,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
 
-#pragma warning disable CS1591
+		/// <summary>
+		/// Indicates the digits string.
+		/// </summary>
 		[FormatItem]
 		protected string DigitsStr
 		{
@@ -41,13 +43,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			get => new DigitCollection(DigitsMask).ToString();
 		}
 
+		/// <summary>
+		/// Indicates the cells string.
+		/// </summary>
 		[FormatItem]
 		protected string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Map.ToString();
 		}
-#pragma warning restore CS1591
 
 
 		/// <inheritdoc/>

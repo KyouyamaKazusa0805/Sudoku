@@ -144,5 +144,8 @@ namespace Sudoku.Solving.Manual.Chaining
 
 			return result;
 		}
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }
