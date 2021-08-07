@@ -26,6 +26,7 @@ using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Symmetry;
+using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
 {
@@ -1377,7 +1378,7 @@ namespace Sudoku.Windows
 			}
 
 			_currentPainter.Conclusions = info.Conclusions;
-			_textBoxInfo.Text = info.ToString();
+			_textBoxInfo.Text = info.Formatize();
 
 			UpdateImageGrid();
 		}

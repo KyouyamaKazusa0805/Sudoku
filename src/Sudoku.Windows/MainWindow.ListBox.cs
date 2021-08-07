@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Sudoku.Windows.Extensions;
 using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 
@@ -26,7 +27,7 @@ namespace Sudoku.Windows
 					Conclusions = techniqueInfo.Conclusions
 				};
 
-				_textBoxInfo.Text = techniqueInfo.ToString();
+				_textBoxInfo.Text = techniqueInfo.Formatize();
 
 				UpdateImageGrid();
 			}
@@ -43,7 +44,7 @@ namespace Sudoku.Windows
 					_currentPainter.View = views[0];
 					_currentPainter.Conclusions = conclusions;
 
-					_textBoxInfo.Text = info.ToString();
+					_textBoxInfo.Text = info.Formatize();
 
 					UpdateImageGrid();
 				}

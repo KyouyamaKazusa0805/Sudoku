@@ -527,6 +527,7 @@
   "Format_UsType2StepInfo": "{Name}：如果数字 {ExtraDigitStr} 在单元格 {CellsStr} 里全部为假，则剩余数字 {DigitsStr} 在这些格子里将构成致命形式 => {ElimStr}",
   "Format_UsType3StepInfo": "{Name}：如果数字 {ExtraDigitStr} 在单元格 {ExtraCellsStr} 里不构成显性{SubsetName}的话，则数字 {DigitsStr} 在单元格 {CellsStr} 里将构成致命形式 => {ElimStr}",
   "Format_UsType4StepInfo": "{Name}：如果共轭区域 {ConjStr} 无法填入数字 {Digit1Str} 或者 {Digit2Str} 的话，数字 {DigitsStr} 在单元格 {CellsStr} 里将形成致命形式 => {ElimStr}",
+  "Format_WWingStepInfo": "{Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} => {ElimStr}",
   "Format_XrType1StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 => {ElimStr}",
   "Format_XrType2StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_XrType3StepInfo": "{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，在区域 {RegionStr} 带有数组，涉及单元格 {ExtraCellsStr} 的数字 {ExtraDigitsStr} => {ElimStr}",
