@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -49,13 +50,15 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// </summary>
 		private bool IsXCycle => XEnabled && !YEnabled;
 
+		[FormatItem]
+		private string ChainStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new LinkCollection(Views[0].Links!).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string chainStr = new LinkCollection(Views[0].Links!).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {chainStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {ChainStr} => {ElimStr}";
 	}
 }

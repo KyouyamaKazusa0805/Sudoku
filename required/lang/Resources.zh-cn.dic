@@ -447,7 +447,7 @@
   "TechniqueGroupTemplating": "模板",
   "TechniqueGroupBf": "计算机试数",
   "Equals": " = ",
-  "Format_AicStepInfo": "{Name}：{ChainStr} => {ElimStr}",
+  "Format_AicStepInfo": "{Name}：链 {ChainStr} => {ElimStr}",
   "Format_AlcStepInfo": "{Name}：数字 {DigitsStr} 从 {BaseCellsStr} 往 {TargetCellsStr} 推理 => {ElimStr}",
   "Format_AlsWWingStepInfo": "{Name}：ALS {Als1Str} 和 {Als2Str} 以共轭对 {ConjStr} 关联起来；其中 W = {WStr}、X = {XStr} => {ElimStr}",
   "Format_AlsXyWingStepInfo": "{Name}：{Als1Str} -> {BridgeStr} -> {Als2Str}；其中 X = {XStr}、Y = {YStr}、Z = {ZStr} => {ElimStr}",
@@ -495,5 +495,6 @@
   "Format_HiddenSingleStepInfo_1": "{Name}：{CellStr} = {DigitStr}",
   "Format_HiddenSingleStepInfo_2": "{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}",
   "Format_HiddenSubsetStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有鱼结构 => {ElimStr}",
-  "Format_LcStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 => {ElimStr}"
+  "Format_LcStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 => {ElimStr}",
+  "Format_LoopStepInfo": "{Name}：环 {ChainStr} => {ElimStr}"
 }
