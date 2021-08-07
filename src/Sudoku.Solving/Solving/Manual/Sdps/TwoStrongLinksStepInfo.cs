@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -41,15 +42,30 @@ namespace Sudoku.Solving.Manual.Sdps
 			(BaseKind: 1, TargetKind: 2) or (BaseKind: 2, TargetKind: 1) => Technique.TwoStringKite
 		};
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+		[FormatItem]
+		private string BaseRegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(BaseRegion).ToString();
+		}
+
+		[FormatItem]
+		private string TargetRegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(TargetRegion).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			int digit = Digit + 1;
-			string baseRegionStr = new RegionCollection(BaseRegion).ToString();
-			string targetRegionStr = new RegionCollection(TargetRegion).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $@"{Name}: {digit} in {baseRegionStr}\{targetRegionStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$@"{Name}: {DigitStr} in {BaseRegionStr}\{TargetRegionStr} => {ElimStr}";
 	}
 }

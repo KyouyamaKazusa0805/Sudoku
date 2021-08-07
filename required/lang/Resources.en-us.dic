@@ -536,5 +536,6 @@
   "Format_Sdc3dStepInfo": "{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}",
   "Format_SdcStepInfo": "{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}",
   "Format_SkLoopStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
-  "Format_TemplateStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}"
+  "Format_TemplateStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}",
+  "Format_TwoStringLinkStepInfo": "{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}"
 }
