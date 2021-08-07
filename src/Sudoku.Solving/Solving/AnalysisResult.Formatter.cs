@@ -11,6 +11,7 @@ using Sudoku.Solving.Manual.Singles;
 using Sudoku.Resources;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using CountryCode = Sudoku.Globalization.CountryCode;
+using Sudoku.Solving.Manual.Extensions;
 
 namespace Sudoku.Solving
 {
@@ -124,7 +125,7 @@ namespace Sudoku.Solving
 							}
 
 							var info = steps[i];
-							string infoStr = options.Flags(ShowSimple) ? info.ToSimpleString() : info.ToString();
+							string infoStr = options.Flags(ShowSimple) ? info.ToSimpleString() : info.Formatize();
 							bool showDiff = options.Flags(ShowDifficulty) && info.ShowDifficulty;
 
 							string d = $"({info.Difficulty.ToString("0.0")}".PadLeft(5);

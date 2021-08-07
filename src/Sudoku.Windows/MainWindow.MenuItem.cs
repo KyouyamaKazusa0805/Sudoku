@@ -25,8 +25,8 @@ using Sudoku.Models;
 using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
+using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Symmetry;
-using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows
 {

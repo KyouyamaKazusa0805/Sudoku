@@ -38,6 +38,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
+		/// <summary>
+		/// Indicates the conjugate pair string.
+		/// </summary>
 		[FormatItem]
 		protected string ConjPairsStr
 		{

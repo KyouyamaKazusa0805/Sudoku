@@ -70,13 +70,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		}
 
 		[FormatItem]
-		private string CellsStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new Cells(ExtraCells).ToString();
-		}
-
-		[FormatItem]
 		private string RegionStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

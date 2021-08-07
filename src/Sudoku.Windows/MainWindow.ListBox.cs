@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using Sudoku.Windows.Extensions;
+using Sudoku.Solving.Manual.Extensions;
 using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 

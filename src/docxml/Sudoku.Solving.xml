@@ -3653,6 +3653,27 @@
             <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.Formatize(Sudoku.Solving.Manual.StepInfo,System.Boolean)">
+            <summary>
+            Formatizes the <see cref="P:Sudoku.Solving.Manual.StepInfo.Format"/> property string and output the result.
+            </summary>
+            <param name="this">The object to calls the reflection.</param>
+            <param name="handleEsapcing">Indicates whether the method will handle the escaping characters.</param>
+            <returns>The result string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the format is invalid. The possible cases are:
+            <list type="bullet">
+            <item>The format is null.</item>
+            <item>The interpolation part contains the empty value.</item>
+            <item>Missing the closed brace character <c>'}'</c>.</item>
+            <item>The number of interpolations failed to match.</item>
+            </list>
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+            Throws when the string handling encounters a <see langword="null"/> reference.
+            </exception>
+            <seealso cref="P:Sudoku.Solving.Manual.StepInfo.Format"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Extensions.SudokuGridEx">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
@@ -8893,6 +8914,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.TechniqueGroup">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.ConjPairsStr">
+            <summary>
+            Indicates the conjugate pair string.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.ToString">
             <inheritdoc/>
