@@ -515,5 +515,6 @@
   "Format_ReverseBugType3StepInfo": "{Name}：如果 {SubsetCellsStr}({SubsetDigitsStr}) 不构成一个显性{SubsetName}的话，那么单元格 {CellsStr} 会让剩余空格形成致命形式 => {ElimStr}",
   "Format_ReverseBugType4StepInfo": "{Name}：由于存在共轭对 {ConjStr}，所以我们不能填入数字 {DigitStr}，否则单元格 {CellsStr} 会让剩余空格形式致命形式 => {ElimStr}",
   "Format_Sdc3dStepInfo": "{Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}",
-  "Format_SdcStepInfo": "{Name}：{IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}"
+  "Format_SdcStepInfo": "{Name}：{IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}",
+  "Format_SkLoopStepInfo": "{Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 => {ElimStr}"
 }
