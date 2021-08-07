@@ -511,5 +511,6 @@
   "Format_LcStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} => {ElimStr}",
   "Format_LoopStepInfo": "{Name}: {ChainStr} => {ElimStr}",
   "Format_MslsStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
-  "Format_NakedSingleStepInfo": "{Name}: {CellStr} = {DigitStr}"
+  "Format_NakedSingleStepInfo": "{Name}: {CellStr} = {DigitStr}",
+  "Format_NakedSubsetStepInfo": "{Name}: {DigitsStr} in {RegionStr} => {ElimStr}"
 }

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Subsets
@@ -47,14 +50,35 @@ namespace Sudoku.Solving.Manual.Subsets
 		private decimal ExtraDifficulty =>
 			IsLocked switch { null => 0, true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M };
 
+		[FormatItem]
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(Digits).ToString();
+		}
+
+		[FormatItem]
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
+		[FormatItem]
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods)]
+		private string SubsetName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Digits.Count switch
+			{
+				2 => TextResources.Current.SubsetNamesSize2,
+				3 => TextResources.Current.SubsetNamesSize3,
+				4 => TextResources.Current.SubsetNamesSize4
+			};
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitStr = new DigitCollection(Digits).ToString();
-			string regionStr = new RegionCollection(Region).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digitStr} in {regionStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {DigitsStr} in {RegionStr} => {ElimStr}";
 	}
 }
