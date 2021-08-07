@@ -9,6 +9,7 @@ using Sudoku.Techniques;
 using Sudoku.CodeGenerating;
 using Sudoku.Resources;
 using System.Runtime.CompilerServices;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Sudoku.Solving.Manual
 {
@@ -115,8 +116,20 @@ namespace Sudoku.Solving.Manual
 		/// <summary>
 		/// Indicates the technique name alias.
 		/// </summary>
-		public string[]? NameAlias =>
-			TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
+		public string[]? NameAlias
+		{
+			get
+			{
+				try
+				{
+					return TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
+				}
+				catch (RuntimeBinderException)
+				{
+					return null;
+				}
+			}
+		}
 
 		/// <summary>
 		/// The difficulty or this step.
