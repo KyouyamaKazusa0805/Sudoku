@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -29,6 +30,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.DeadlyPattern;
+
+		/// <summary>
+		/// Indicates the pattern string.
+		/// </summary>
+		[FormatItem]
+		protected string PatternStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Pattern.FullMap.ToString();
+		}
 
 
 		/// <inheritdoc/>

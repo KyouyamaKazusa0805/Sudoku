@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -24,18 +24,44 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.LockedQdp;
 
+		[FormatItem]
+		private string CandidateStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates(Candidates).ToString();
+		}
+
+		[FormatItem]
+		private string Quantifier
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
+		}
+
+		[FormatItem]
+		private string Number
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Candidates.Count == 1 ? " the" : $" {Candidates.Count.ToString()}";
+		}
+
+		[FormatItem]
+		private string SingularOrPlural
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Candidates.Count == 1 ? "candidate" : "candidates";
+		}
+
+		[FormatItem]
+		private string BeVerb
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Candidates.Count == 1 ? "is" : "are";
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string patternStr = Pattern.FullMap.ToString();
-			string candStr = new Candidates(Candidates).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string quantifier = Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
-			string number = Candidates.Count == 1 ? " the" : $" {Candidates.Count.ToString()}";
-			string singularOrPlural = Candidates.Count == 1 ? "candidate" : "candidates";
-			string beVerb = Candidates.Count == 1 ? "is" : "are";
-			return $"{Name}: Cells {patternStr} will be a deadly pattern if{quantifier}{number} {singularOrPlural} {candStr} {beVerb} false => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false => {ElimStr}";
 	}
 }

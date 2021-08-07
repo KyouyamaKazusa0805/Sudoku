@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
-using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
@@ -26,16 +27,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.QdpType3;
 
+		[FormatItem]
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(ExtraCells).ToString();
+		}
+
+		[FormatItem]
+		private string SubsetName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current[$"SubsetNamesSize{(ExtraCells.Count + 1).ToString()}"];
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string patternStr = Pattern.FullMap.ToString();
-			string digitsStr = new DigitCollection(ExtraDigitsMask).ToString();
-			string cellsStr = new Cells(ExtraCells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = SubsetNames[ExtraCells.Count + 1].ToLower(null);
-			return $"{Name}: Cells {patternStr} won't be a deadly pattern if and only if digits {digitsStr} in cells {cellsStr} is a naked {subsetName} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Cells {PatternStr} won't be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} => {ElimStr}";
 	}
 }

@@ -106,6 +106,12 @@
   "SymmetryTypeAntiDiagonal": "anti-diagonal",
   "SymmetrySnippet": "We should swap region(s) ",
   "SymmetryThenWeGet": "then we'll get the symmetrical placement (",
+  "SubsetNamesSize2": "pair",
+  "SubsetNamesSize3": "triple",
+  "SubsetNamesSize4": "quadruple",
+  "SubsetNamesSize5": "quintuple",
+  "SubsetNamesSize6": "sextuple",
+  "SubsetNamesSize7": "septuple",
   "OrKeyword": " or ",
   "WithKeyword": " with ",
   "NakedKeyword": "naked",
@@ -515,5 +521,10 @@
   "Format_NakedSingleStepInfo": "{Name}: {CellStr} = {DigitStr}",
   "Format_NakedSubsetStepInfo": "{Name}: {DigitsStr} in {RegionStr} => {ElimStr}",
   "Format_NormalFishStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} => {ElimStr}",
-  "Format_PomStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}"
+  "Format_PomStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}",
+  "Format_QdpLockedTypeStepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false => {ElimStr}",
+  "Format_QdpType1StepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false => {ElimStr}",
+  "Format_QdpType2StepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false => {ElimStr}",
+  "Format_QdpType3StepInfo": "{Name}: Cells {PatternStr} won't be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} => {ElimStr}",
+  "Format_QdpType4StepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true => {ElimStr}"
 }

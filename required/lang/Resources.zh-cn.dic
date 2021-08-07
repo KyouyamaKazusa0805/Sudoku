@@ -502,5 +502,10 @@
   "Format_NakedSingleStepInfo": "{Name}：{CellStr} = {DigitStr}",
   "Format_NakedSubsetStepInfo": "{Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 => {ElimStr}",
   "Format_NormalFishStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} => {ElimStr}",
-  "Format_PomStepInfo": "{Name}：数字 {DigitStr} 有 POM 结构 => {ElimStr}"
+  "Format_PomStepInfo": "{Name}：数字 {DigitStr} 有 POM 结构 => {ElimStr}",
+  "Format_QdpLockedTypeStepInfo": "{Name}：如果所有这 {Number} 个候选数都为假的话，单元格 {PatternStr} 将产生致命形式 => {ElimStr}",
+  "Format_QdpType1StepInfo": "{Name}：如果 {CandidateStr} 全为假的话，单元格 {PatternStr} 将产生致命形式 => {ElimStr}",
+  "Format_QdpType2StepInfo": "{Name}：如果所有位于单元格 {PatternStr} 里的数字 {ExtraDigitStr} 全部为假的话，则结构将产生致命形式 => {ElimStr}",
+  "Format_QdpType3StepInfo": "{Name}：单元格 {PatternStr} 不会产生致命形式当且仅当数字 {DigitsStr} 在单元格 {CellsStr} 里会构成显性{SubsetName} => {ElimStr}",
+  "Format_QdpType4StepInfo": "{Name}：如果涉及结构的、和共轭对 {ConjStr} 涉及外的数字被放在了共轭对上，单元格 {PatternStr} 将产生致命形式 => {ElimStr}"
 }

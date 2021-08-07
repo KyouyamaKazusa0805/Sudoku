@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -20,14 +20,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.QdpType1;
 
+		[FormatItem]
+		private string CandidateStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Candidates { Candidate }.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string patternStr = Pattern.FullMap.ToString();
-			string candStr = new Candidates { Candidate }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Cells {patternStr} will be a deadly pattern if {candStr} is false => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false => {ElimStr}";
 	}
 }
