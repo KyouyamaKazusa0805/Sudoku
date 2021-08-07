@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -52,15 +53,23 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+		[FormatItem]
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string regionStr = new RegionCollection(Region).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return
-				$"{Name}: It can be proved using chains that digit {(Digit + 1).ToString()} from {regionStr} " +
-				$"are false => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false => {ElimStr}";
 	}
 }
