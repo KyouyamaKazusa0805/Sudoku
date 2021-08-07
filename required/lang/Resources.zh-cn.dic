@@ -124,6 +124,7 @@
   "SymmetrySnippet": "我们需要交换区域：",
   "WithKeyword": " 和 ",
   "SymmetryThenWeGet": "然后就可实现宇宙法的交换（",
+  "FinSnippet": "，鱼鳍为 ",
   "FullHouse": "同区剩余",
   "LastDigit": "同数剩余",
   "HiddenSingleRow": "行排除",
@@ -499,5 +500,6 @@
   "Format_LoopStepInfo": "{Name}：环 {ChainStr} => {ElimStr}",
   "Format_MslsStepInfo": "{Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} => {ElimStr}",
   "Format_NakedSingleStepInfo": "{Name}：{CellStr} = {DigitStr}",
-  "Format_NakedSubsetStepInfo": "{Name}：{DigitsStr} 位于区域 {RegionStr} 里有{SubsetName}结构 => {ElimStr}"
+  "Format_NakedSubsetStepInfo": "{Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 => {ElimStr}",
+  "Format_NormalFishStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} => {ElimStr}"
 }

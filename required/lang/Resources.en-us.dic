@@ -112,6 +112,7 @@
   "HiddenKeyword": "hidden",
   "GuardianSingular": "a guardian",
   "GuardianPlural": "guardians",
+  "FinSnippet": " f",
   "FullHouse": "Full House",
   "LastDigit": "Last Digit",
   "HiddenSingleRow": "Hidden Single in Row",
@@ -512,5 +513,6 @@
   "Format_LoopStepInfo": "{Name}: {ChainStr} => {ElimStr}",
   "Format_MslsStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
   "Format_NakedSingleStepInfo": "{Name}: {CellStr} = {DigitStr}",
-  "Format_NakedSubsetStepInfo": "{Name}: {DigitsStr} in {RegionStr} => {ElimStr}"
+  "Format_NakedSubsetStepInfo": "{Name}: {DigitsStr} in {RegionStr} => {ElimStr}",
+  "Format_NormalFishStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} => {ElimStr}"
 }

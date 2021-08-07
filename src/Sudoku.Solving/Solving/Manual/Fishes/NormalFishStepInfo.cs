@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.Constants;
 
@@ -90,14 +92,44 @@ namespace Sudoku.Solving.Manual.Fishes
 		private string InternalName =>
 			$"{IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty }}{FishNames[Size]}";
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+		[FormatItem]
+		private string BaseSetStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(BaseSets).ToString();
+		}
+
+		[FormatItem]
+		private string CoverSetStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(CoverSets).ToString();
+		}
+
+		[FormatItem]
+		private string FinSnippet
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current.FinSnippet;
+		}
+
+		[FormatItem]
+		private string FinsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Fins.IsEmpty ? string.Empty : $"{FinSnippet}{Fins.ToString()}";
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string baseSetStr = new RegionCollection(BaseSets).ToString();
-			string coverSetStr = new RegionCollection(CoverSets).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $@"{Name}: {(Digit + 1).ToString()} in {baseSetStr}\{coverSetStr}{(Fins.IsEmpty ? string.Empty : $" f{Fins.ToString()}")} => {elimStr}";
-		}
+		public override string ToString() =>
+			$@"{Name}: {DigitStr} in {BaseSetStr}\{CoverSetStr}{FinsStr} => {ElimStr}";
 	}
 }
