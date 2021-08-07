@@ -79,6 +79,7 @@ namespace Sudoku.Solving.Manual
 		/// The recommended implementation pattern is:
 		/// <code><![CDATA[
 		/// [FormatItem]
+		/// [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods)]
 		/// private string CellsStr
 		/// {
 		///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -106,7 +107,7 @@ namespace Sudoku.Solving.Manual
 				{
 					return TextResources.Current[$"Format_{GetType().Name}"];
 				}
-				catch
+				catch (RuntimeBinderException)
 				{
 					return null;
 				}
