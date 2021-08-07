@@ -40,11 +40,6 @@ namespace Sudoku.Solving.Manual.Exocets
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <summary>
-		/// Indicates the additional format.
-		/// </summary>
-		protected abstract string? AdditionalFormat { get; }
-
-		/// <summary>
 		/// Indicates the map of the base cells.
 		/// </summary>
 		private Cells BaseMap

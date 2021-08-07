@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -43,9 +44,9 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Exocet;
 
-		/// <inheritdoc/>
 		[FormatItem]
-		protected override string? AdditionalFormat
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods)]
+		private string AdditionalFormat
 		{
 			get
 			{
