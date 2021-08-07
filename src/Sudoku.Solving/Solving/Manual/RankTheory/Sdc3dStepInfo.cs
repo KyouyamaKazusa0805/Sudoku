@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -38,18 +39,51 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		[FormatItem]
+		private string Cells1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => RowCells.ToString();
+		}
+
+		[FormatItem]
+		private string Digits1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(RowDigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string Cells2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ColumnCells.ToString();
+		}
+
+		[FormatItem]
+		private string Digits2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ColumnDigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string Cells3Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => BlockCells.ToString();
+		}
+
+		[FormatItem]
+		private string Digits3Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(BlockDigitsMask).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cells1Str = RowCells.ToString();
-			string cells2Str = ColumnCells.ToString();
-			string cells3Str = BlockCells.ToString();
-			string digits1Str = new DigitCollection(RowDigitsMask).ToString();
-			string digits2Str = new DigitCollection(ColumnDigitsMask).ToString();
-			string digits3Str = new DigitCollection(BlockDigitsMask).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {cells1Str}({digits1Str}) + {cells2Str}({digits2Str}) + {cells3Str}({digits3Str}) => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}";
 	}
 }
