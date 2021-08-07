@@ -116,9 +116,7 @@ namespace Sudoku.Solving.Manual.Alses
 		private string ZResultStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => ZDigitsMask != 0
-				? $", Z = {new DigitCollection(ZDigitsMask).ToString()}"
-				: string.Empty;
+			get => ZDigitsMask != 0 ? $", Z = {new DigitCollection(ZDigitsMask).ToString()}" : string.Empty;
 		}
 
 
