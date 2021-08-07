@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -13,8 +13,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <param name="Views">All views.</param>
 	/// <param name="IsTemplateDeletion">Indicates whether the current instance is template deletion.</param>
 	public sealed record TemplateStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		bool IsTemplateDeletion
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool IsTemplateDeletion
 	) : LastResortStepInfo(Conclusions, Views)
 	{
 		/// <summary>
@@ -35,13 +34,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Templating;
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string conclusionsStr = new ConclusionCollection(Conclusions).ToString();
-			string digitStr = (Digit + 1).ToString();
-			return $"{Name}: Digit {digitStr} => {conclusionsStr}";
-		}
+		public override string ToString() => $"{Name}: Digit {DigitStr} => {ElimStr}";
 	}
 }

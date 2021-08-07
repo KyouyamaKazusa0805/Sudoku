@@ -535,5 +535,6 @@
   "Format_ReverseBugType4StepInfo": "{Name}: We can't fill with the digit {DigitStr} bacause of the conjugate pair {ConjStr}, otherwise the deadly pattern in cells {CellsStr} will be formed => {ElimStr}",
   "Format_Sdc3dStepInfo": "{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}",
   "Format_SdcStepInfo": "{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}",
-  "Format_SkLoopStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}"
+  "Format_SkLoopStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
+  "Format_TemplateStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}"
 }
