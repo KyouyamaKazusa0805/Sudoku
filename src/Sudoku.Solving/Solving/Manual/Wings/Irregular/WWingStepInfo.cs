@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -28,14 +28,30 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.WWing;
 
+		[FormatItem]
+		private string StartCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { StartCell }.ToString();
+		}
+
+		[FormatItem]
+		private string EndCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { EndCell }.ToString();
+		}
+
+		[FormatItem]
+		private string ConjStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePair.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string startCellStr = new Cells { StartCell }.ToString();
-			string endCellStr = new Cells { EndCell }.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {startCellStr} to {endCellStr} with conjugate pair {ConjugatePair.ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} => {ElimStr}";
 	}
 }
