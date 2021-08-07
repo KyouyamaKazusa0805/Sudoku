@@ -496,5 +496,6 @@
   "Format_HiddenSingleStepInfo_2": "{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}",
   "Format_HiddenSubsetStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有鱼结构 => {ElimStr}",
   "Format_LcStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 => {ElimStr}",
-  "Format_LoopStepInfo": "{Name}：环 {ChainStr} => {ElimStr}"
+  "Format_LoopStepInfo": "{Name}：环 {ChainStr} => {ElimStr}",
+  "Format_MslsStepInfo": "{Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} => {ElimStr}"
 }

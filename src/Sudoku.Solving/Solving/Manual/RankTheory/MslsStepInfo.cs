@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Math;
@@ -35,13 +35,22 @@ namespace Sudoku.Solving.Manual.RankTheory
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
+		[FormatItem]
+		private string CellsCountStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Cells.Count.ToString();
+		}
+
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Cells.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Cells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {Cells.Count.ToString()} cells {cellsStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}";
 	}
 }

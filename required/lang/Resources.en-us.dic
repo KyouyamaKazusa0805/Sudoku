@@ -509,5 +509,6 @@
   "Format_HiddenSingleStepInfo_2": "{Name}: {CellStr} = {DigitStr} in {RegionStr}",
   "Format_HiddenSubsetStepInfo": "{Name}: {DigitStr} in {RegionStr} => {ElimStr}",
   "Format_LcStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} => {ElimStr}",
-  "Format_LoopStepInfo": "{Name}: {ChainStr} => {ElimStr}"
+  "Format_LoopStepInfo": "{Name}: {ChainStr} => {ElimStr}",
+  "Format_MslsStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}"
 }
