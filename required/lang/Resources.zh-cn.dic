@@ -494,5 +494,6 @@
   "Format_GuardianStepInfo": "{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} => {ElimStr}",
   "Format_HiddenSingleStepInfo_1": "{Name}：{CellStr} = {DigitStr}",
   "Format_HiddenSingleStepInfo_2": "{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}",
-  "Format_HiddenSubsetStepInfo": "{Name}：在区域 {RegionStr} 里关于数字 {DigitStr} 有鱼结构 => {ElimStr}"
+  "Format_HiddenSubsetStepInfo": "{Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有鱼结构 => {ElimStr}",
+  "Format_LcStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 => {ElimStr}"
 }

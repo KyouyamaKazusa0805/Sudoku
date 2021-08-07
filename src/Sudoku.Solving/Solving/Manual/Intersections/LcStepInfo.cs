@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -31,14 +32,29 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Lc;
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
+		[FormatItem]
+		private string BaseSetStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(BaseSet).ToString();
+		}
+
+		[FormatItem]
+		private string CoverSetStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(CoverSet).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string baseSetStr = new RegionCollection(BaseSet).ToString();
-			string coverSetStr = new RegionCollection(CoverSet).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $@"{Name}: {Digit + 1} in {baseSetStr}\{coverSetStr} => {elimStr}";
-		}
+		public override string ToString() => $@"{Name}: {DigitStr} in {BaseSetStr}\{CoverSetStr} => {ElimStr}";
 	}
 }
