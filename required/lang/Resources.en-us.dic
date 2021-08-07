@@ -537,5 +537,9 @@
   "Format_SdcStepInfo": "{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}",
   "Format_SkLoopStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
   "Format_TemplateStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}",
-  "Format_TwoStringLinkStepInfo": "{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}"
+  "Format_TwoStringLinkStepInfo": "{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}",
+  "Format_UlType1StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} => {ElimStr}",
+  "Format_UlType2StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} => {ElimStr}",
+  "Format_UlType3StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} => {ElimStr}",
+  "Format_UlType4StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} => {ElimStr}"
 }

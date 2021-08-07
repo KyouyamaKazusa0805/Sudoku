@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using static Sudoku.Solving.Manual.Constants;
+using Sudoku.Resources;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
@@ -24,17 +25,31 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		/// <inheritdoc/>
 		public override int Type => 3;
 
+		[FormatItem]
+		private string SubsetCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(SubsetCells).ToString();
+		}
+
+		[FormatItem]
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(SubsetDigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string SubsetName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current[$"SubsetNames{(SubsetCells.Count + 1).ToString()}"];
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = SubsetNames[SubsetCells.Count + 1];
-			string digitsStr = new DigitCollection(SubsetDigitsMask).ToString();
-			string subsetCellsStr = new Cells(SubsetCells).ToString();
-			return $"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} with the naked {subsetName} with extra digits {digitsStr} in cells {subsetCellsStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} => {ElimStr}";
 
 		/// <inheritdoc/>
 		public bool Equals(UlType3StepInfo? other) =>

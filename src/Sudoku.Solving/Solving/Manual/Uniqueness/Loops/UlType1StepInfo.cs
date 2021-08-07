@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -23,12 +22,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} => {ElimStr}";
 
 		/// <inheritdoc/>
 		public bool Equals(UlType1StepInfo? other) => base.Equals(other);

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
@@ -15,20 +15,24 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Loop">The loop.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record UlType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop, in ConjugatePair ConjugatePair) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		int Digit1, int Digit2, in Cells Loop, in ConjugatePair ConjugatePair
+	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 4;
 
+		[FormatItem]
+		private string ConjStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePair.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {(Digit1 + 1).ToString()}, {(Digit2 + 1).ToString()} in cells {cellsStr} with the conjugate pair {ConjugatePair.ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} => {ElimStr}";
 
 		/// <inheritdoc/>
 		public bool Equals(UlType4StepInfo? other) => base.Equals(other) && ConjugatePair == other.ConjugatePair;

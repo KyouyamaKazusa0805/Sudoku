@@ -7795,6 +7795,21 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.LoopStr">
+            <summary>
+            Indicates the loop string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Digit1Str">
+            <summary>
+            Indicates the digit 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.Digit2Str">
+            <summary>
+            Indicates the digit 2 string.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.BaseDifficulty">
             <summary>
             Indicates the base difficulty.

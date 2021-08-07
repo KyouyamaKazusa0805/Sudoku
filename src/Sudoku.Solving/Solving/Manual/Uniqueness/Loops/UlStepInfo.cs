@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -49,6 +50,36 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Ul;
+
+		/// <summary>
+		/// Indicates the loop string.
+		/// </summary>
+		[FormatItem]
+		protected string LoopStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+		/// <summary>
+		/// Indicates the digit 1 string.
+		/// </summary>
+		[FormatItem]
+		protected string Digit1Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit1 + 1).ToString();
+		}
+
+		/// <summary>
+		/// Indicates the digit 2 string.
+		/// </summary>
+		[FormatItem]
+		protected string Digit2Str
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit2 + 1).ToString();
+		}
 
 		/// <summary>
 		/// Indicates the base difficulty.
