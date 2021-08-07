@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
+using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -21,6 +23,16 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	{
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.ReverseBug;
+
+		/// <summary>
+		/// Indicates the digits string.
+		/// </summary>
+		[FormatItem]
+		protected string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(stackalloc[] { Digit1, Digit2 }).ToString();
+		}
 
 
 		/// <inheritdoc/>

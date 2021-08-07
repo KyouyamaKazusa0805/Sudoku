@@ -509,5 +509,9 @@
   "Format_QdpType3StepInfo": "{Name}：单元格 {PatternStr} 不会产生致命形式当且仅当数字 {DigitsStr} 在单元格 {CellsStr} 里会构成显性{SubsetName} => {ElimStr}",
   "Format_QdpType4StepInfo": "{Name}：如果涉及结构的、和共轭对 {ConjStr} 涉及外的数字被放在了共轭对上，单元格 {PatternStr} 将产生致命形式 => {ElimStr}",
   "Format_RegionChainingStepInfo": "{Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 => {ElimStr}",
-  "Format_RegularWingStepInfo": "{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 => {ElimStr}"
+  "Format_RegularWingStepInfo": "{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 => {ElimStr}",
+  "Format_ReverseBugType1StepInfo": "{Name}：当单元格 {AnchorStr} 仅剩下数字 {AnchorDigitStr} 的时候，数字 {DigitsStr} 会在盘面的剩余空格形成致命形式 => {ElimStr}",
+  "Format_ReverseBugType2StepInfo": "{Name}：当单元格 {ExtraCellsStr} 里只剩下数字 {ExtraDigitStr} 的话，数字 {DigitsStr} 会在盘面的剩余空格形成致命形式 => {ElimStr}",
+  "Format_ReverseBugType3StepInfo": "{Name}：如果 {SubsetCellsStr}({SubsetDigitsStr}) 不构成一个显性{SubsetName}的话，那么单元格 {CellsStr} 会让剩余空格形成致命形式 => {ElimStr}",
+  "Format_ReverseBugType4StepInfo": "{Name}：由于存在共轭对 {ConjStr}，所以我们不能填入数字 {DigitStr}，否则单元格 {CellsStr} 会让剩余空格形式致命形式 => {ElimStr}"
 }

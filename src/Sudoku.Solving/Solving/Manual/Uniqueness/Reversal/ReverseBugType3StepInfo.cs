@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Resources;
 using Sudoku.Techniques;
-using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 {
@@ -33,16 +34,37 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
+		[FormatItem]
+		private string SubsetCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ExtraCells.ToString();
+		}
+
+		[FormatItem]
+		private string SubsetDigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string SubsetName
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TextResources.Current[$"SubsetNamesSize{(ExtraCells.Count + 1).ToString()}"];
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string subsetName = SubsetNames[ExtraCells.Count + 1];
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string subsetCellsStr = ExtraCells.ToString();
-			return $"{Name}: If {subsetCellsStr}({digitsStr}) don't form a {subsetName}, the deadly pattern in cells {cellsStr} will be formed => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: If {SubsetCellsStr}({SubsetDigitsStr}) don't form a naked {SubsetName}, the deadly pattern in cells {CellsStr} will be formed => {ElimStr}";
 	}
 }

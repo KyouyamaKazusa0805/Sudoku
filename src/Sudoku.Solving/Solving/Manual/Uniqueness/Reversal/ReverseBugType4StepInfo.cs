@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -31,13 +31,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ((ConjugatePair.Digit == Digit1 ? Digit2 : Digit1) + 1).ToString();
+		}
+
+		[FormatItem]
+		private string ConjStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ConjugatePair.ToString();
+		}
+
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Loop.ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string cellsStr = Loop.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: We can't fill with the digit {((ConjugatePair.Digit == Digit1 ? Digit2 : Digit1) + 1).ToString()} bacause of the conjugate pair {ConjugatePair.ToString()}, otherwise the deadly pattern in cells {cellsStr} will be formed => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: We can't fill with the digit {DigitStr} bacause of the conjugate pair {ConjStr}, otherwise the deadly pattern in cells {CellsStr} will be formed => {ElimStr}";
 	}
 }

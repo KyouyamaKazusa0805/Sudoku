@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -31,14 +31,23 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+		[FormatItem]
+		private string ExtraCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ExtraCells.ToString();
+		}
+
+		[FormatItem]
+		private string ExtraDigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (ExtraDigit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string anchor = ExtraCells.ToString();
-			string digitsStr = new DigitCollection(stackalloc[] { Digit1, Digit2 }).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digits {digitsStr} in all empty cells may form a deadly pattern when {anchor} is only last the digit {(ExtraDigit + 1).ToString()} => {elimStr}";
-		}
+		public override string ToString() =>
+			$"{Name}: Digits {DigitsStr} in all empty cells may form a deadly pattern when {ExtraCellsStr} is only last the digit {ExtraDigitStr} => {ElimStr}";
 	}
 }
