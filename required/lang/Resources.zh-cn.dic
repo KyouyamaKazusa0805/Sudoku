@@ -508,5 +508,6 @@
   "Format_QdpType2StepInfo": "{Name}：如果所有位于单元格 {PatternStr} 里的数字 {ExtraDigitStr} 全部为假的话，则结构将产生致命形式 => {ElimStr}",
   "Format_QdpType3StepInfo": "{Name}：单元格 {PatternStr} 不会产生致命形式当且仅当数字 {DigitsStr} 在单元格 {CellsStr} 里会构成显性{SubsetName} => {ElimStr}",
   "Format_QdpType4StepInfo": "{Name}：如果涉及结构的、和共轭对 {ConjStr} 涉及外的数字被放在了共轭对上，单元格 {PatternStr} 将产生致命形式 => {ElimStr}",
-  "Format_RegionChainingStepInfo": "{Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 => {ElimStr}"
+  "Format_RegionChainingStepInfo": "{Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 => {ElimStr}",
+  "Format_RegularWingStepInfo": "{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 => {ElimStr}"
 }

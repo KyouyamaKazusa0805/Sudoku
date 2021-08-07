@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -117,15 +118,29 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			>= 4 and < 9 => IsIncomplete ? $"Incomplete {RegularWingNames[Size]}" : RegularWingNames[Size]
 		};
 
+		[FormatItem]
+		private string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
+		}
+
+		[FormatItem]
+		private string PivotCellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { Pivot }.ToString();
+		}
+
+		[FormatItem]
+		private string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(Cells).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string pivotCellStr = new Cells { Pivot }.ToString();
-			string cellOffsetsStr = new Cells(Cells).ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: {digitsStr} in {pivotCellStr} with {cellOffsetsStr} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} => {ElimStr}";
 	}
 }

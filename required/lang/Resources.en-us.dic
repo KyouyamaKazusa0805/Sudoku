@@ -527,5 +527,6 @@
   "Format_QdpType2StepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false => {ElimStr}",
   "Format_QdpType3StepInfo": "{Name}: Cells {PatternStr} won't be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} => {ElimStr}",
   "Format_QdpType4StepInfo": "{Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true => {ElimStr}",
-  "Format_RegionChainingStepInfo": "{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false => {ElimStr}"
+  "Format_RegionChainingStepInfo": "{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false => {ElimStr}",
+  "Format_RegularWingStepInfo": "{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} => {ElimStr}"
 }
