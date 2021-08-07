@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -31,17 +32,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.XrType3;
 
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional()
+		[FormatItem]
+		private string ExtraDigitsStr
 		{
-			string digitsStr = new DigitCollection(ExtraDigitsMask).ToString();
-			string cellsStr = new Cells(ExtraCells).ToString();
-			string regionStr = new RegionCollection(Region).ToString();
-			return $"{digitsStr} in cells {cellsStr} in {regionStr}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(ExtraDigitsMask).ToString();
 		}
+
+		[FormatItem]
+		private string ExtraCellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells(ExtraCells).ToString();
+		}
+
+		[FormatItem]
+		private string RegionStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new RegionCollection(Region).ToString();
+		}
+
+
+		/// <inheritdoc/>
+		public override string ToString() =>
+			$"{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {RegionStr} => {ElimStr}";
 	}
 }

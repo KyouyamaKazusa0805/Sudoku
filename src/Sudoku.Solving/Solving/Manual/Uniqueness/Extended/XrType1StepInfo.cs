@@ -24,9 +24,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 
 		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string? GetAdditional() => null;
+		public override string ToString() => $"{Name}: {DigitsStr} in {CellsStr} => {ElimStr}";
 	}
 }

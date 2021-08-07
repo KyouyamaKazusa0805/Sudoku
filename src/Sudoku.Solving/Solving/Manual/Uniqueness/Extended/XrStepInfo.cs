@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -29,21 +30,28 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Xr;
 
-
-		/// <inheritdoc/>
-		public override string ToString()
+		/// <summary>
+		/// Indicates the digits string.
+		/// </summary>
+		[FormatItem]
+		protected string DigitsStr
 		{
-			string digitsStr = new DigitCollection(DigitsMask).ToString();
-			string cellsStr = Cells.ToString();
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			string? additional = GetAdditional();
-			return $"{Name}: {digitsStr} in {cellsStr}{(additional is null ? string.Empty : $" with {additional}")} => {elimStr}";
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(DigitsMask).ToString();
 		}
 
 		/// <summary>
-		/// Get additional string.
+		/// Indicates the cells string.
 		/// </summary>
-		/// <returns>The additional string.</returns>
-		protected abstract string? GetAdditional();
+		[FormatItem]
+		protected string CellsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => Cells.ToString();
+		}
+
+
+		/// <inheritdoc/>
+		public abstract override string ToString();
 	}
 }

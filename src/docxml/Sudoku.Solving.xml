@@ -7531,14 +7531,18 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.ToString">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.GetAdditional">
-            <summary>
-            Get additional string.
-            </summary>
-            <returns>The additional string.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher">
             <summary>
@@ -7635,9 +7639,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.GetAdditional">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
@@ -7668,9 +7669,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo">
@@ -7709,9 +7707,6 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.GetAdditional">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
@@ -7742,9 +7737,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.GetAdditional">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo">

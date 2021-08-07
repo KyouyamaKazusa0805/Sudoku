@@ -545,5 +545,9 @@
   "Format_UsType1StepInfo": "{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false => {ElimStr}",
   "Format_UsType2StepInfo": "{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the extra digit {ExtraDigitStr} is all false in the pattern => {ElimStr}",
   "Format_UsType3StepInfo": "{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} => {ElimStr}",
-  "Format_UsType4StepInfo": "{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} => {ElimStr}"
+  "Format_UsType4StepInfo": "{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} => {ElimStr}",
+  "Format_XrType1StepInfo": "{Name}: {DigitsStr} in {CellsStr} => {ElimStr}",
+  "Format_XrType2StepInfo": "{Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} => {ElimStr}",
+  "Format_XrType3StepInfo": "{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {RegionStr} => {ElimStr}",
+  "Format_XrType4StepInfo": "{Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} => {ElimStr}"
 }
