@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
@@ -22,8 +23,22 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.NakedSingle;
 
+		[FormatItem]
+		private string CellStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new Cells { Cell }.ToString();
+		}
+
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {new Cells { Cell }.ToString()} = {(Digit + 1).ToString()}";
+		public override string ToString() => $"{Name}: {CellStr} = {DigitStr}";
 	}
 }
