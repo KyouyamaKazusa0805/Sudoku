@@ -514,5 +514,6 @@
   "Format_MslsStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
   "Format_NakedSingleStepInfo": "{Name}: {CellStr} = {DigitStr}",
   "Format_NakedSubsetStepInfo": "{Name}: {DigitsStr} in {RegionStr} => {ElimStr}",
-  "Format_NormalFishStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} => {ElimStr}"
+  "Format_NormalFishStepInfo": "{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} => {ElimStr}",
+  "Format_PomStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}"
 }

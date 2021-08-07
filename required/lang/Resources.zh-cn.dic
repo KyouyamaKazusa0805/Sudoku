@@ -501,5 +501,6 @@
   "Format_MslsStepInfo": "{Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} => {ElimStr}",
   "Format_NakedSingleStepInfo": "{Name}：{CellStr} = {DigitStr}",
   "Format_NakedSubsetStepInfo": "{Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 => {ElimStr}",
-  "Format_NormalFishStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} => {ElimStr}"
+  "Format_NormalFishStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} => {ElimStr}",
+  "Format_PomStepInfo": "{Name}：数字 {DigitStr} 有 POM 结构 => {ElimStr}"
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
 
@@ -34,13 +34,15 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Pom;
 
+		[FormatItem]
+		private string DigitStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (Digit + 1).ToString();
+		}
+
 
 		/// <inheritdoc/>
-		public override string ToString()
-		{
-			int digit = Digit + 1;
-			string elimStr = new ConclusionCollection(Conclusions).ToString();
-			return $"{Name}: Digit {digit.ToString()} => {elimStr}";
-		}
+		public override string ToString() => $"{Name}: Digit {DigitStr} => {ElimStr}";
 	}
 }
