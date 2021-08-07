@@ -33,11 +33,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
-		/// <inheritdoc/>
-		[FormatItem]
-		protected override string AdditionalFormat =>
-			TextResources.Current.Format_UrWithUnknownCoveringStepInfo_Additional;
-
 		[FormatItem]
 		private string TargetCellStr
 		{
@@ -49,9 +44,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		private string DigitsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new DigitCollection(
-				(short)(1 << Digit1 | 1 << Digit2)
-			).ToString((string)TextResources.Current.OrKeyword);
+			get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString((string)TextResources.Current.OrKeyword);
 		}
 
 		[FormatItem]

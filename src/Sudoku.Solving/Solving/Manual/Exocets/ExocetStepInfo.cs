@@ -40,6 +40,75 @@ namespace Sudoku.Solving.Manual.Exocets
 		public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 		/// <summary>
+		/// Indiactes the digits string.
+		/// </summary>
+		[FormatItem]
+		protected string DigitsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new DigitCollection(Digits).ToString();
+		}
+
+		/// <summary>
+		/// Indicates the base map string.
+		/// </summary>
+		[FormatItem]
+		protected string BaseMapStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => BaseMap.ToString();
+		}
+
+		/// <summary>
+		/// Indicates the target map string.
+		/// </summary>
+		[FormatItem]
+		protected string TargetMapStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => TargetMap.ToString();
+		}
+
+		/// <summary>
+		/// Indicates the locked member Q string.
+		/// </summary>
+		[FormatItem]
+		[NotNullIfNotNull(nameof(LockedMemberQ))]
+		protected string LockedMemberQStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				string snippet = TextResources.Current.LockedMemberQSnippet;
+				string? cells = LockedMemberQ is null ? null : new DigitCollection(LockedMemberQ).ToString();
+				return $"{snippet}{cells}";
+			}
+		}
+
+		/// <summary>
+		/// Indicates the locked member R string.
+		/// </summary>
+		[FormatItem]
+		[NotNullIfNotNull(nameof(LockedMemberR))]
+		protected string LockedMemberRStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				string snippet = TextResources.Current.LockedMemberRSnippet;
+				string? cells = LockedMemberR is null ? null : new DigitCollection(LockedMemberR).ToString();
+				return $"{snippet}{cells}";
+			}
+		}
+
+		[FormatItem]
+		private string Additional
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
+		}
+
+		/// <summary>
 		/// Indicates the map of the base cells.
 		/// </summary>
 		private Cells BaseMap
@@ -63,60 +132,6 @@ namespace Sudoku.Solving.Manual.Exocets
 				var (_, targetMap, _) = Exocet;
 				return targetMap;
 			}
-		}
-
-		[FormatItem]
-		private string DigitsStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new DigitCollection(Digits).ToString();
-		}
-
-		[FormatItem]
-		private string BaseMapStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => BaseMap.ToString();
-		}
-
-		[FormatItem]
-		private string TargetMapStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => TargetMap.ToString();
-		}
-
-		[FormatItem]
-		[NotNullIfNotNull(nameof(LockedMemberQ))]
-		private string? LockedMemberQStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get
-			{
-				string snippet = TextResources.Current.LockedMemberQSnippet;
-				string? cells = LockedMemberQ is null ? null : new DigitCollection(LockedMemberQ).ToString();
-				return$"{snippet}{cells}";
-			}
-		}
-
-		[FormatItem]
-		[NotNullIfNotNull(nameof(LockedMemberR))]
-		private string? LockedMemberRStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get
-			{
-				string snippet = TextResources.Current.LockedMemberRSnippet;
-				string? cells = LockedMemberR is null ? null : new DigitCollection(LockedMemberR).ToString();
-				return $"{snippet}{cells}";
-			}
-		}
-
-		[FormatItem]
-		private string Additional
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
 		}
 
 

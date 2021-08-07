@@ -38,10 +38,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
-		/// <inheritdoc/>
-		[FormatItem]
-		protected override string AdditionalFormat => TextResources.Current.Format_UrType3StepInfo_Additional;
-
 		/// <summary>
 		/// Indicates the base difficulty.
 		/// </summary>

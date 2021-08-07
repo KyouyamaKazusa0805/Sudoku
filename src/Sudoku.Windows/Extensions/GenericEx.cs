@@ -34,11 +34,13 @@ namespace Sudoku.Windows.Extensions
 		/// <seealso cref="StepInfo.Format"/>
 		public static string Formatize(this StepInfo @this, bool handleEsapcing = false)
 		{
+			// Check whether the format property is not null.
 			if (@this.Format is not { } format)
 			{
 				throw new ArgumentException("The format can't be null.", nameof(@this));
 			}
 
+			// Get the interpolation values, and extract them into a new collection to store the format values.
 			int length = format.Length;
 			var sb = new StringBuilder(length);
 			var formats = new List<string>();
@@ -110,18 +112,21 @@ namespace Sudoku.Windows.Extensions
 				}
 			}
 
+			// Use reflection to invoke each properties, and get the interpolation result.
 			var type = @this.GetType();
 			const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 			string[] matchedFormats = (
 				from f in formats
 				select type.GetProperty(f, flags) into property
-				where property is not null
-				where property.GetCustomAttribute<FormatItemAttribute>() is not null
-				select property.GetValue(@this) as string into result
+				where property?.GetCustomAttribute<FormatItemAttribute>() is not null
+				let isPropStatic = property.GetMethod?.IsStatic
+				where isPropStatic is not null
+				select property.GetValue(isPropStatic.Value ? null : @this) as string into result
 				where result is not null
 				select result
 			).Prepend(@this.Name).ToArray();
 
+			// Check the length validity.
 			if (formatCount != matchedFormats.Length)
 			{
 				throw new ArgumentException(
@@ -130,6 +135,7 @@ namespace Sudoku.Windows.Extensions
 				);
 			}
 
+			// Format and return the value.
 			return string.Format(sb.ToString(), matchedFormats);
 		}
 	}

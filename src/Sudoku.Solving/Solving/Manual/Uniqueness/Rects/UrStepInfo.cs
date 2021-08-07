@@ -41,27 +41,30 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Ur;
 
 		/// <summary>
-		/// Indicates the additional format string.
+		/// Indicates the digit 1 string.
 		/// </summary>
 		[FormatItem]
-		protected abstract string? AdditionalFormat { get; }
-
-		[FormatItem]
-		private string D1Str
+		protected string D1Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit1 + 1).ToString();
 		}
 
+		/// <summary>
+		/// Indicates the digit 2 string.
+		/// </summary>
 		[FormatItem]
-		private string D2Str
+		protected string D2Str
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit2 + 1).ToString();
 		}
 
+		/// <summary>
+		/// Indicates the cells string.
+		/// </summary>
 		[FormatItem]
-		private string CellsStr
+		protected string CellsStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();

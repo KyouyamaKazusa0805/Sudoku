@@ -30,10 +30,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
-		/// <inheritdoc/>
-		[FormatItem]
-		protected override string? AdditionalFormat => null;
-
 
 		/// <inheritdoc/>
 		public override string ToString() => base.ToString();

@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -31,10 +30,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
-
-		/// <inheritdoc/>
-		[FormatItem]
-		protected override string AdditionalFormat => TextResources.Current.Format_UrWithGuardianStepInfo_Additional;
 
 		[FormatItem]
 		private string GuardianDigitStr

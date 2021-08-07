@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -30,10 +29,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-		/// <inheritdoc/>
-		[FormatItem]
-		protected override string AdditionalFormat => TextResources.Current.Format_UrType2StepInfo_Additional;
 
 		[FormatItem]
 		private string ExtraDigitStr

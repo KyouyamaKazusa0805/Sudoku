@@ -2941,6 +2941,31 @@
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.DigitsStr">
+            <summary>
+            Indiactes the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.BaseMapStr">
+            <summary>
+            Indicates the base map string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.TargetMapStr">
+            <summary>
+            Indicates the target map string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.LockedMemberQStr">
+            <summary>
+            Indicates the locked member Q string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.LockedMemberRStr">
+            <summary>
+            Indicates the locked member R string.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.BaseMap">
             <summary>
             Indicates the map of the base cells.
@@ -8738,9 +8763,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.AdditionalFormat">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8824,9 +8846,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.AdditionalFormat">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -8873,9 +8892,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.ToString">
@@ -8937,9 +8953,19 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.AdditionalFormat">
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.D1Str">
             <summary>
-            Indicates the additional format string.
+            Indicates the digit 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.D2Str">
+            <summary>
+            Indicates the digit 2 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.CellsStr">
+            <summary>
+            Indicates the cells string.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.ToString">
@@ -9461,9 +9487,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.AdditionalFormat">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -9504,9 +9527,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.ToString">
@@ -9553,9 +9573,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.BaseDifficulty">
@@ -9607,9 +9624,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.ToString">
@@ -9676,9 +9690,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.AdditionalFormat">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.SdCDifficulty">
             <summary>
             The extra difficulty that assesses the size of SdC.
@@ -9740,9 +9751,6 @@
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.AdditionalFormat">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.ToString">
             <inheritdoc/>
         </member>
@@ -9798,9 +9806,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.TechniqueGroup">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.AdditionalFormat">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.AvoidableExtraDifficulty">

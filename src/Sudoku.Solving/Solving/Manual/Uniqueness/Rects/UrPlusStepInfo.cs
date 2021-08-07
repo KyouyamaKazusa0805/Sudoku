@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Resources;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Rects
@@ -39,9 +38,20 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
 
-		/// <inheritdoc/>
 		[FormatItem]
-		protected override string AdditionalFormat => TextResources.Current.Format_UrPlusStepInfo_Additional;
+		protected string ConjPairsStr
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get
+			{
+				const string separator = ", ";
+
+				var sb = new ValueStringBuilder(stackalloc char[100]);
+				sb.AppendRange(ConjugatePairs, separator);
+
+				return sb.ToString();
+			}
+		}
 
 		[FormatItem]
 		private string Prefix
@@ -55,21 +65,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePairs.Count == 1 ? string.Empty : "s";
-		}
-
-		[FormatItem]
-		private string ConjPairsStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get
-			{
-				const string separator = ", ";
-
-				var sb = new ValueStringBuilder(stackalloc char[100]);
-				sb.AppendRange(ConjugatePairs, separator);
-
-				return sb.ToString();
-			}
 		}
 
 
