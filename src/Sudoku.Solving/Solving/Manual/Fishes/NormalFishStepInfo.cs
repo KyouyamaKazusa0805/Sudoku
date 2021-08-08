@@ -126,10 +126,5 @@ namespace Sudoku.Solving.Manual.Fishes
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Fins.IsEmpty ? string.Empty : $"{FinSnippet}{Fins.ToString()}";
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$@"{Name}: {DigitStr} in {BaseSetStr}\{CoverSetStr}{FinsStr} => {ElimStr}";
 	}
 }

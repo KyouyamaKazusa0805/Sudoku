@@ -82,12 +82,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current.Appear;
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional() => $"{DigitsStr} in {OnlyKeyword}cells {CellsStr} in {RegionStr}";
 	}
 }

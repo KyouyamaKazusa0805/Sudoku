@@ -77,10 +77,5 @@ namespace Sudoku.Solving.Manual.Intersections
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TargetCells.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} => {ElimStr}";
 	}
 }

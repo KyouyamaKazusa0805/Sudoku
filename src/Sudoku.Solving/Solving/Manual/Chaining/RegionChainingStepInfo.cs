@@ -66,10 +66,5 @@ namespace Sudoku.Solving.Manual.Chaining
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false => {ElimStr}";
 	}
 }

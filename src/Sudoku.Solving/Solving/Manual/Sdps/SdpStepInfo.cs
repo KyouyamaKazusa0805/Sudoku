@@ -23,9 +23,5 @@ namespace Sudoku.Solving.Manual.Sdps
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

@@ -118,16 +118,5 @@ namespace Sudoku.Solving.Manual.Alses
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ZDigitsMask != 0 ? $", Z = {new DigitCollection(ZDigitsMask).ToString()}" : string.Empty;
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			IsDoublyLinked is null
-				// Extended Subset Principle.
-				? ZDigitsMask == 0
-					? $"{Name}: All digits can't be duplicate in cells {CellsStr} => {ElimStr}"
-					: $"{Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} => {ElimStr}"
-				// Normal ALS-XZ.
-				: $"{Name}: ALS #1: {Als1Str}, ALS #2: {Als2Str}, X = {XStr}{ZResultStr} => {ElimStr}";
 	}
 }

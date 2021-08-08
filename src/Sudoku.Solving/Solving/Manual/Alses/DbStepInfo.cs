@@ -64,9 +64,5 @@ namespace Sudoku.Solving.Manual.Alses
 				}
 			}
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: Cell {PivotStr} - {PetalsStr} => {ElimStr}";
 	}
 }

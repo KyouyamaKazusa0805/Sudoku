@@ -63,10 +63,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"The cells {LoopStr} about digits {Digit1Str} and {Digit2Str} will form an invalid bi-value oddagon structure to make the puzzle no solution when all positions about a digit in digits {ExtraDigitsStr} in this structure is removed => {ElimStr}";
 	}
 }

@@ -133,9 +133,5 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 			}
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {SwappingStr}{GspBaseInfo}{ClosedBracket} => {ElimStr}";
 	}
 }

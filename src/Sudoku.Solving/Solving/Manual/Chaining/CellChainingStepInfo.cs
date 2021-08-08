@@ -57,10 +57,5 @@ namespace Sudoku.Solving.Manual.Chaining
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { SourceCell }.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: It can be proved using chains that all digits are false from {SourceCellStr} => {ElimStr}";
 	}
 }

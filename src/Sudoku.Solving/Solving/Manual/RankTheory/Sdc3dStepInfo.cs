@@ -80,10 +80,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(BlockDigitsMask).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) => {ElimStr}";
 	}
 }

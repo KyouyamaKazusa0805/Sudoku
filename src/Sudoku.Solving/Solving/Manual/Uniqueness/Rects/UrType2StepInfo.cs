@@ -36,12 +36,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (ExtraDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional() => $"extra digit {ExtraDigitStr}";
 	}
 }

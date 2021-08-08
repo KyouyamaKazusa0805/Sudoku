@@ -44,13 +44,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => GuardianCells.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string? GetAdditional() =>
-			$"guardian: digit {GuardianDigitStr} in cells {GuardianCellsStr}";
 	}
 }

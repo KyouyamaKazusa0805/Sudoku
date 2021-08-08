@@ -47,10 +47,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (AnchorLastDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {DigitsStr} in all empty cells may form a deadly pattern when {AnchorStr} is only last the digit {AnchorDigitStr} => {ElimStr}";
 	}
 }

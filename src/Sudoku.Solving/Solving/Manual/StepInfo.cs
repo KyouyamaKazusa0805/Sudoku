@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
+using System.Runtime.CompilerServices;
+using Microsoft.CSharp.RuntimeBinder;
+using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Techniques;
-using Sudoku.CodeGenerating;
 using Sudoku.Resources;
-using System.Runtime.CompilerServices;
-using Microsoft.CSharp.RuntimeBinder;
+using Sudoku.Solving.Manual.Extensions;
+using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual
 {
@@ -168,6 +169,7 @@ namespace Sudoku.Solving.Manual
 		/// the property will still use this name rather than <c>AssignmentStr</c>.
 		/// </remarks>
 		[FormatItem]
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods | DynamicallyAccessedMemberTypes.PublicMethods)]
 		protected string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -203,14 +205,16 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		/// <remarks>
-		/// Different with the method <see cref="ToFullString()"/>, the method only contains
-		/// the basic introduction about the technique. For example in the <see cref="ExocetStepInfo"/>,
-		/// the detail will contain the several special eliminations; while in this method,
-		/// those information won't be displayed, but the method <see cref="ToFullString()"/> will.
+		/// From version 0.7, this method will use <see langword="sealed record"/> <c>ToString</c>
+		/// method to prevent the compiler overriding the method; the default behavior is changed to
+		/// output as the method <see cref="StepInfoEx.Formatize(StepInfo, bool)"/> invoking.
 		/// </remarks>
-		/// <seealso cref="ExocetStepInfo"/>
-		/// <seealso cref="ToFullString()"/>
-		public abstract override string ToString();
+		/// <seealso cref="StepInfoEx.Formatize(StepInfo, bool)"/>
+		public
+#if false
+		sealed 
+#endif
+		override string ToString() => this.Formatize();
 
 		/// <summary>
 		/// Returns a string that only contains the name and the conclusions.

@@ -68,10 +68,5 @@ namespace Sudoku.Solving.Manual.Alses
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} => {ElimStr}";
 	}
 }

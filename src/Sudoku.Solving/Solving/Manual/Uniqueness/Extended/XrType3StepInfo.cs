@@ -52,10 +52,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {RegionStr} => {ElimStr}";
 	}
 }

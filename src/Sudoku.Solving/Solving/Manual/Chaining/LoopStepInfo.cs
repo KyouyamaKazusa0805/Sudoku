@@ -56,9 +56,5 @@ namespace Sudoku.Solving.Manual.Chaining
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new LinkCollection(Views[0].Links!).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {ChainStr} => {ElimStr}";
 	}
 }

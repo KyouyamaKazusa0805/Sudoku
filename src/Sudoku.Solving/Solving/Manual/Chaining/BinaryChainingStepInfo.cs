@@ -63,10 +63,5 @@ namespace Sudoku.Solving.Manual.Chaining
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Anchor.IsOn ? TextResources.Current.TrueKeyword : TextResources.Current.FalseKeyword;
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: It can be proved to be a contradiction if {AnchorCandidateStr} is {AnchorIsTrueOrFalseStr} => {ElimStr}";
 	}
 }

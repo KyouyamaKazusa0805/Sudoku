@@ -47,10 +47,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current[$"SubsetNamesSize{(ExtraCells.Count + 1).ToString()}"];
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {PatternStr} won't be a deadly pattern if and only if digits {DigitsStr} in cells {CellsStr} is a naked {SubsetName} => {ElimStr}";
 	}
 }

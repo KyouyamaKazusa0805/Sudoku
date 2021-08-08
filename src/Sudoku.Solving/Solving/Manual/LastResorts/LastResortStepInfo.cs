@@ -18,9 +18,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.LastResort;
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

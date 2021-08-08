@@ -34,9 +34,5 @@ namespace Sudoku.Solving.Manual.Subsets
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Subset;
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

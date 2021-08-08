@@ -31,10 +31,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} => {ElimStr}";
-
-		/// <inheritdoc/>
 		public bool Equals(UlType2StepInfo? other) => base.Equals(other);
 
 		/// <inheritdoc/>

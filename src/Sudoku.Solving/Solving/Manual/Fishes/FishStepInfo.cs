@@ -70,10 +70,6 @@ namespace Sudoku.Solving.Manual.Fishes
 		public sealed override TechniqueTags TechniqueTags => TechniqueTags.Fishes | TechniqueTags.RankTheory;
 
 
-		/// <inheritdoc/>
-		public abstract override string ToString();
-
-
 		/// <summary>
 		/// Try to get the <see cref="Technique"/> code instance from the specified name, where the name belongs
 		/// to a complex fish name, such as "Finned Franken Swordfish".

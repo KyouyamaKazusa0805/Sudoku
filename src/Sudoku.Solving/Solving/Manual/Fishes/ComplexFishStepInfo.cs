@@ -202,9 +202,5 @@ namespace Sudoku.Solving.Manual.Fishes
 			&& new RegionCollection(CoverSets) == new RegionCollection(other.CoverSets)
 			&& Exofins == other.Exofins
 			&& Endofins == other.Endofins;
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$@"{Name}: {DigitStr} in {BaseSetsStr}\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=> {ElimStr}";
 	}
 }

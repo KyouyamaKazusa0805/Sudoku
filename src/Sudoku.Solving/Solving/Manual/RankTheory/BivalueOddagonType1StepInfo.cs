@@ -56,10 +56,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Loop.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure => {ElimStr}";
 	}
 }

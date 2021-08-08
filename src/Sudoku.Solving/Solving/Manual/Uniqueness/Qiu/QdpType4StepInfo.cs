@@ -30,10 +30,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true => {ElimStr}";
 	}
 }

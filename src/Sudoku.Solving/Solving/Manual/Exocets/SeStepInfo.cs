@@ -90,43 +90,5 @@ namespace Sudoku.Solving.Manual.Exocets
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { EndoTargetCell }.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string? GetAdditional()
-		{
-			const string separator = ", ";
-			string endoTargetStr = $"endo-target: {new Cells { EndoTargetCell }.ToString()}";
-			if (ExtraRegionsMask is not null)
-			{
-				var sb = new ValueStringBuilder(stackalloc char[100]);
-				int count = 0;
-				for (int digit = 0; digit < 9; digit++)
-				{
-					if (ExtraRegionsMask[digit] is not (var mask and not 0))
-					{
-						continue;
-					}
-
-					sb.Append(digit + 1);
-					sb.Append(new RegionCollection(mask.GetAllSets()).ToString());
-					sb.Append(separator);
-
-					count++;
-				}
-
-				if (count != 0)
-				{
-					sb.RemoveFromEnd(separator.Length);
-
-					return $"{endoTargetStr}. Extra regions will be included: {sb.ToString()}";
-				}
-			}
-
-			return endoTargetStr;
-		}
 	}
 }

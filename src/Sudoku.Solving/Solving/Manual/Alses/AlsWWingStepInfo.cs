@@ -74,10 +74,5 @@ namespace Sudoku.Solving.Manual.Alses
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (X + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} => {ElimStr}";
 	}
 }

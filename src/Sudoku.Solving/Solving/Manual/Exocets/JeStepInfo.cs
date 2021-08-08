@@ -56,12 +56,5 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// </summary>
 		private decimal GeneralizedSwordfishDifficulty =>
 			Eliminations.Any(static e => e.Reason == EliminatedReason.GeneralizedSwordfish) ? .2M : 0;
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string? GetAdditional() => null;
 	}
 }

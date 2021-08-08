@@ -69,23 +69,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
-
-		[FormatItem]
-		private string Additional
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
-		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {D1Str} and {D2Str} in {CellsStr}{Additional} => {ElimStr}";
-
-		/// <summary>
-		/// Get additional string.
-		/// </summary>
-		/// <returns>The additional string.</returns>
-		protected abstract string? GetAdditional();
 	}
 }

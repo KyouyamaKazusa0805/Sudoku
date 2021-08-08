@@ -28,10 +28,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates { Candidate }.ToString();
 		}
-
-		
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {DigitsStr} in cells {CellsStr} will form a deadly pattern if the candidate {CandidateStr} is false => {ElimStr}";
 	}
 }

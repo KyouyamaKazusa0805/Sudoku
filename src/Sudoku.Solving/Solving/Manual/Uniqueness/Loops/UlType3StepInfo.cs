@@ -48,10 +48,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} => {ElimStr}";
-
-		/// <inheritdoc/>
 		public bool Equals(UlType3StepInfo? other) =>
 			base.Equals(other) && SubsetDigitsMask == other.SubsetDigitsMask;
 

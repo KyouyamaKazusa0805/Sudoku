@@ -94,9 +94,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public abstract override string ToString();
-
-		/// <inheritdoc/>
 		public virtual bool Equals(UlStepInfo? other) =>
 			other is not null
 			&& Type == other.Type && Loop == other.Loop

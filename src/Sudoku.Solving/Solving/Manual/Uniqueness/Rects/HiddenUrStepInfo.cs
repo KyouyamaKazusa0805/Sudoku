@@ -28,9 +28,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	{
 		/// <inheritdoc/>
 		public override string? Acronym => IsAvoidable ? "HAR" : "HUR";
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
 	}
 }

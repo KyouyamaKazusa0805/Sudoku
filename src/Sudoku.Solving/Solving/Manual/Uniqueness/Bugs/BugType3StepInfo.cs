@@ -71,10 +71,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: True candidates {TrueCandidatesStr} with {SubsetTypeStr} {SizeStr} {ExtraDigitsStr} in cells {CellsStr} => {ElimStr}";
 	}
 }

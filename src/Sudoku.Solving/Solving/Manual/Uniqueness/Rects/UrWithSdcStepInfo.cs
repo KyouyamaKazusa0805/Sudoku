@@ -84,13 +84,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection((short)(LineMask | BlockMask)).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional() =>
-			$"a generalized Sue de Coq in cells {MergedCellsStr} of digits {DigitsStr}";
 	}
 }

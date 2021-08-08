@@ -55,10 +55,5 @@ namespace Sudoku.Solving.Manual.Sdps
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} => {ElimStr}";
 	}
 }

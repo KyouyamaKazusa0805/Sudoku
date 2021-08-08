@@ -53,10 +53,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current[$"SubsetNames{(ExtraCells.Count + 1).ToString()}"];
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} => {ElimStr}";
 	}
 }

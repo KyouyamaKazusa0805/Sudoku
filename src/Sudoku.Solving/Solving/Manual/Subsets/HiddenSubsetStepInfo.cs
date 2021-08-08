@@ -44,9 +44,5 @@ namespace Sudoku.Solving.Manual.Subsets
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {DigitStr} in {RegionStr} => {ElimStr}";
 	}
 }

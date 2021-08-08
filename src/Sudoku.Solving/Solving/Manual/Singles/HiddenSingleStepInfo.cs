@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Singles
 			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToLabel());
 
 		/// <inheritdoc/>
-		public override string? Format => EnableAndIsLastDigit
+		public override string Format => EnableAndIsLastDigit
 			? TextResources.Current.Format_HiddenSingleStepInfo_1
 			: TextResources.Current.Format_HiddenSingleStepInfo_2;
 
@@ -56,11 +56,5 @@ namespace Sudoku.Solving.Manual.Singles
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(Region).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => EnableAndIsLastDigit
-			? $"{Name}: {CellStr} = {DigitStr}"
-			: $"{Name}: {CellStr} = {DigitStr} in {RegionStr}";
 	}
 }

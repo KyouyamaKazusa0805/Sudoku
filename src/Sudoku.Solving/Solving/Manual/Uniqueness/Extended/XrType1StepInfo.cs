@@ -21,9 +21,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.XrType1;
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {DigitsStr} in {CellsStr} => {ElimStr}";
 	}
 }

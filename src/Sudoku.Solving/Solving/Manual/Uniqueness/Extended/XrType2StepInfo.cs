@@ -34,10 +34,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (ExtraDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			 $"{Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} => {ElimStr}";
 	}
 }

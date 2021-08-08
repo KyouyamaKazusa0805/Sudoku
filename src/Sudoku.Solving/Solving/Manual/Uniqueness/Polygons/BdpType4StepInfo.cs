@@ -50,10 +50,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugateRegion.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} in cells {CellsStr} with the conjugate region {ConjRegionStr} of the extra digits {ExtraCombStr} => {ElimStr}";
 	}
 }

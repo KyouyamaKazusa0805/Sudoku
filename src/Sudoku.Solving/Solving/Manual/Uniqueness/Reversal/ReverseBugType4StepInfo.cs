@@ -51,10 +51,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Loop.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: We can't fill with the digit {DigitStr} bacause of the conjugate pair {ConjStr}, otherwise the deadly pattern in cells {CellsStr} will be formed => {ElimStr}";
 	}
 }

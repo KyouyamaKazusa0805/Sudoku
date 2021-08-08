@@ -48,10 +48,5 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} => {ElimStr}";
 	}
 }

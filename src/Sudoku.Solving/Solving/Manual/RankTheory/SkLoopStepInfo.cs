@@ -48,9 +48,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}";
 	}
 }

@@ -40,9 +40,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: Digit {DigitStr} => {ElimStr}";
 	}
 }

@@ -58,10 +58,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Candidates.Count == 1 ? "is" : "are";
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false => {ElimStr}";
 	}
 }

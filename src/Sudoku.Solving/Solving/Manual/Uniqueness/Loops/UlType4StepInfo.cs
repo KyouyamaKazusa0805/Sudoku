@@ -31,10 +31,6 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the conjugate pair {ConjStr} => {ElimStr}";
-
-		/// <inheritdoc/>
 		public bool Equals(UlType4StepInfo? other) => base.Equals(other) && ConjugatePair == other.ConjugatePair;
 
 		/// <inheritdoc/>

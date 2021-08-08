@@ -101,13 +101,6 @@ namespace Sudoku.Solving.Manual.Exocets
 			}
 		}
 
-		[FormatItem]
-		private string Additional
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => GetAdditional() is { } additional ? $" + {additional}" : string.Empty;
-		}
-
 		/// <summary>
 		/// Indicates the map of the base cells.
 		/// </summary>
@@ -136,24 +129,14 @@ namespace Sudoku.Solving.Manual.Exocets
 
 
 		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{Additional} => {ElimStr}";
-
-		/// <inheritdoc/>
 		public sealed override string ToFullString()
 		{
 			var sb = new ValueStringBuilder(stackalloc char[100]);
-			sb.AppendLine(ToString());
+			sb.AppendLine(base.ToFullString());
 			sb.AppendLineRange(Eliminations);
 
 			return sb.ToString();
 		}
-
-		/// <summary>
-		/// Get the additional message.
-		/// </summary>
-		/// <returns>The additional message.</returns>
-		protected abstract string? GetAdditional();
 
 
 		/// <summary>

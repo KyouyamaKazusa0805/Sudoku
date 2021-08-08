@@ -52,9 +52,5 @@ namespace Sudoku.Solving.Manual.Intersections
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(CoverSet).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $@"{Name}: {DigitStr} in {BaseSetStr}\{CoverSetStr} => {ElimStr}";
 	}
 }

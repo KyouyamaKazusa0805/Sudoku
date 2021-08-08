@@ -69,12 +69,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePairs.Count == 1 ? string.Empty : "s";
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected sealed override string GetAdditional() => $"{Prefix}conjugate pair{Suffix} {ConjPairsStr}";
 	}
 }

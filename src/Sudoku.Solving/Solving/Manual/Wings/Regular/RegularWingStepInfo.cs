@@ -138,9 +138,5 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells(Cells).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} => {ElimStr}";
 	}
 }

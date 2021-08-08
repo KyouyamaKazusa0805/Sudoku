@@ -67,13 +67,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit1 + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional() =>
-			$"hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, region {RegionStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern";
 	}
 }

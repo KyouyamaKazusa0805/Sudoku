@@ -34,10 +34,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ConjugatePair.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} => {ElimStr}";
 	}
 }

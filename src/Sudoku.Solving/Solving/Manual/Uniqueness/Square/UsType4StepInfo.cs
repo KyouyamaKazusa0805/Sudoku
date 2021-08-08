@@ -44,10 +44,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (Digit2 + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} => {ElimStr}";
 	}
 }

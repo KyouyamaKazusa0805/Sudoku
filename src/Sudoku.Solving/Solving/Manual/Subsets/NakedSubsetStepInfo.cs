@@ -76,9 +76,5 @@ namespace Sudoku.Solving.Manual.Subsets
 				4 => TextResources.Current.SubsetNamesSize4
 			};
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {DigitsStr} in {RegionStr} => {ElimStr}";
 	}
 }

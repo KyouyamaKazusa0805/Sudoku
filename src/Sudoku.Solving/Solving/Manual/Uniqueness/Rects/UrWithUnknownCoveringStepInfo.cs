@@ -53,13 +53,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (ExtraDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string GetAdditional() =>
-			$"unknown covering: Suppose {TargetCellStr} is filled with the unknown digit X (X is {DigitsStr}), then 4 cells form a UR deadly pattern of digit X and {ExtraDigitStr}";
 	}
 }

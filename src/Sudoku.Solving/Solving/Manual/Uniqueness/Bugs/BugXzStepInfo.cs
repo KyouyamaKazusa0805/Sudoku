@@ -46,10 +46,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Cells { ExtraCell }.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} => {ElimStr}";
 	}
 }

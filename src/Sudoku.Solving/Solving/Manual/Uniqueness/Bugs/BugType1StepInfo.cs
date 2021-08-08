@@ -15,9 +15,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType1;
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {ElimStr}";
 	}
 }

@@ -74,13 +74,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ExtraDigits).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => base.ToString();
-
-		/// <inheritdoc/>
-		protected override string? GetAdditional() =>
-			$"pivots: {PivotsStr}, with digits: {DigitsStr} in cells {CellsStr}";
 	}
 }

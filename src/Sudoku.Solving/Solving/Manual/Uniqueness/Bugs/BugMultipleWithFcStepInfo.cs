@@ -84,9 +84,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates(Candidates).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: True candidates: {CandidatesStr} => {ElimStr}";
 	}
 }

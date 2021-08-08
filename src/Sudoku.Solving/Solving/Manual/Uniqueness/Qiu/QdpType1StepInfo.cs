@@ -26,10 +26,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new Candidates { Candidate }.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {PatternStr} will be a deadly pattern if {CandidateStr} is false => {ElimStr}";
 	}
 }

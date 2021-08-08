@@ -65,10 +65,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ExtraCells.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) => {ElimStr}";
 	}
 }

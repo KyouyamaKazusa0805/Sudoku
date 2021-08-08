@@ -52,9 +52,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Cells.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

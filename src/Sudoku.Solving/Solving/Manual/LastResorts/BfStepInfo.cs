@@ -33,9 +33,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new ConclusionCollection(Conclusions).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {AssignmentStr}";
 	}
 }

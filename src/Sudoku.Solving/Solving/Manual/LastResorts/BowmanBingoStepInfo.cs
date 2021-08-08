@@ -41,9 +41,5 @@ namespace Sudoku.Solving.Manual.LastResorts
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new ConclusionCollection(ContradictionSeries).ToString(false, " -> ");
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: Try {ContradictionSeriesStr} => {ElimStr}";
 	}
 }

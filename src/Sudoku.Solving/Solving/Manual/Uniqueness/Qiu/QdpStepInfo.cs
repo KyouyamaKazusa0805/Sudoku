@@ -40,9 +40,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Pattern.FullMap.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

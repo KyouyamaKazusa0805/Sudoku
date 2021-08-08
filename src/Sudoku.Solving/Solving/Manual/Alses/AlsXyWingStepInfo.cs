@@ -82,10 +82,5 @@ namespace Sudoku.Solving.Manual.Alses
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(ZDigitsMask).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {Als1Str} -> {BridgeStr} -> {Als2Str}, X = {XStr}, Y = {YStr}, Z = {ZStr} => {ElimStr}";
 	}
 }

@@ -85,11 +85,6 @@ namespace Sudoku.Solving.Manual.Symmetry
 		}
 
 
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {SymmetryTypeSnippet}{SymmetryTypeName}{MappingRelations} => {ElimStr}";
-
-
 		/// <summary>
 		/// Merge two information, and reserve all conclusions from them two.
 		/// </summary>

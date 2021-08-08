@@ -62,9 +62,5 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// <inheritdoc/>
 		public bool Equals(GuardianStepInfo? other) =>
 			other is not null && Loop == other.Loop && Guardians == other.Guardians && Digit == other.Digit;
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} => {ElimStr}";
 	}
 }

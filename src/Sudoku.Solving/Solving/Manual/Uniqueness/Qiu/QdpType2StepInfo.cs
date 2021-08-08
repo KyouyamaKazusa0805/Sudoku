@@ -29,10 +29,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (ExtraDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: Cells {PatternStr} will be a deadly pattern if all the extra digits {ExtraDigitStr} in pair cells is false => {ElimStr}";
 	}
 }

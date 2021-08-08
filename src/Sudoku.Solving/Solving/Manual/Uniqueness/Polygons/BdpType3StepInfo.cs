@@ -40,10 +40,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ExtraCells.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} => {ElimStr}";
 	}
 }

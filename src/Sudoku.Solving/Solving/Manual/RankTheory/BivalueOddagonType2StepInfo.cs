@@ -42,10 +42,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Loop.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure => {ElimStr}";
 	}
 }

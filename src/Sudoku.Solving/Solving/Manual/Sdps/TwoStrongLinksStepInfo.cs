@@ -62,10 +62,5 @@ namespace Sudoku.Solving.Manual.Sdps
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new RegionCollection(TargetRegion).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$@"{Name}: {DigitStr} in {BaseRegionStr}\{TargetRegionStr} => {ElimStr}";
 	}
 }

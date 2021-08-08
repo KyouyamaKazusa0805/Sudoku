@@ -24,9 +24,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 		/// <inheritdoc/>
 		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Bug;
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }

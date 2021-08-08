@@ -98,10 +98,5 @@ namespace Sudoku.Solving.Manual.RankTheory
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => new DigitCollection(LineMask).ToString(null);
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) & {LineCellsStr}({LineDigitsStr}) => {ElimStr}";
 	}
 }

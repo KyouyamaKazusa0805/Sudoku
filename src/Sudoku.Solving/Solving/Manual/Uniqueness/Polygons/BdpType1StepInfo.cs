@@ -18,9 +18,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BdpType1;
-
-
-		/// <inheritdoc/>
-		public override string ToString() => $"{Name}: {DigitsStr} in cells {CellsStr} => {ElimStr}";
 	}
 }

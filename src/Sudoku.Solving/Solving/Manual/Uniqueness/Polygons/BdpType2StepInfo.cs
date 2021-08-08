@@ -31,10 +31,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (ExtraDigit + 1).ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: {DigitsStr} in cells {CellsStr} with the extra digit {ExtraDigitStr} => {ElimStr}";
 	}
 }

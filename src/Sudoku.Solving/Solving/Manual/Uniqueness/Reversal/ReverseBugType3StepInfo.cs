@@ -61,10 +61,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => TextResources.Current[$"SubsetNamesSize{(ExtraCells.Count + 1).ToString()}"];
 		}
-
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"{Name}: If {SubsetCellsStr}({SubsetDigitsStr}) don't form a naked {SubsetName}, the deadly pattern in cells {CellsStr} will be formed => {ElimStr}";
 	}
 }

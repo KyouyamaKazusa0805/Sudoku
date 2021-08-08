@@ -52,9 +52,5 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => Map.ToString();
 		}
-
-
-		/// <inheritdoc/>
-		public abstract override string ToString();
 	}
 }
