@@ -1,6 +1,4 @@
-﻿#if false
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual
@@ -12,23 +10,10 @@ namespace Sudoku.Solving.Manual
 	public interface IStepSearcher
 	{
 		/// <summary>
-		/// Indicates the searcher properties.
+		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
-		/// <remarks>
-		/// Please note that all technique searches should contain
-		/// this static property in order to display on settings window. If the searcher doesn't contain,
-		/// when we open the settings window, it'll throw an exception to report about this.
-		/// </remarks>
-		static abstract TechniqueProperties Properties { get; }
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="accumulator"></param>
-		/// <param name="grid"></param>
+		/// <param name="accumulator">The accumulator to store technique information.</param>
+		/// <param name="grid">The grid to search for techniques.</param>
 		void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
 	}
 }
-
-#endif

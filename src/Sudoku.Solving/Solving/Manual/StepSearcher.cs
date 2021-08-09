@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual
 	/// Encapsulates a step finder that used in solving in <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public abstract class StepSearcher
+	public abstract class StepSearcher : IStepSearcher
 	{
 		/// <summary>
 		/// Indicates the necessary property name.
@@ -37,6 +37,9 @@ namespace Sudoku.Solving.Manual
 			select (type, (string)TextResources.Current[$"Progress{casted.DisplayLabel}"], casted);
 
 
+		/// <inheritdoc/>
+		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
+
 		/// <summary>
 		/// Take a technique step after searched all solving steps.
 		/// </summary>
@@ -57,12 +60,5 @@ namespace Sudoku.Solving.Manual
 
 			return bag.FirstOrDefault();
 		}
-
-		/// <summary>
-		/// Accumulate all technique information instances into the specified accumulator.
-		/// </summary>
-		/// <param name="accumulator">The accumulator to store technique information.</param>
-		/// <param name="grid">The grid to search for techniques.</param>
-		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
 	}
 }

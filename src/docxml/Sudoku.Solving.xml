@@ -4369,6 +4369,19 @@
         <member name="M:Sudoku.Solving.Manual.Intersections.LcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.IStepSearcher">
+            <summary>
+            Provides the basic restraint of a <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.IStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Accumulate all technique information instances into the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator to store technique information.</param>
+            <param name="grid">The grid to search for techniques.</param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BfStepInfo">
             <summary>
             Provides a usage of <b>brute force</b> (<b>BF</b>) technique.
@@ -6413,19 +6426,15 @@
             searcher properties.
             </remarks>
         </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetOne(Sudoku.Data.SudokuGrid@)">
             <summary>
             Take a technique step after searched all solving steps.
             </summary>
             <param name="grid">The grid to search steps.</param>
             <returns>A technique information.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Accumulate all technique information instances into the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator to store technique information.</param>
-            <param name="grid">The grid to search for techniques.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo">
             <summary>
