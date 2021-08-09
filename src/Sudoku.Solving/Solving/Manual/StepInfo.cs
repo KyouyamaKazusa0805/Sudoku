@@ -82,7 +82,6 @@ namespace Sudoku.Solving.Manual
 		/// The recommended implementation pattern is:
 		/// <code><![CDATA[
 		/// [FormatItem]
-		/// [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods)]
 		/// private string CellsStr
 		/// {
 		///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
