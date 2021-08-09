@@ -25,6 +25,11 @@
 			public const string CodeAnalysis = "Sudoku.Diagnostics.CodeAnalysis";
 
 			/// <summary>
+			/// Indicates the project <c>Sudoku.Solving</c>.
+			/// </summary>
+			public const string Solving = "Sudoku.Solving";
+
+			/// <summary>
 			/// Indicates the project <c>Sudoku.UI</c>.
 			/// </summary>
 			public const string Maui = "Sudoku.UI";

@@ -542,6 +542,11 @@
             Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Solving">
+            <summary>
+            Indicates the project <c>Sudoku.Solving</c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Maui">
             <summary>
             Indicates the project <c>Sudoku.UI</c>.
@@ -706,6 +711,13 @@
             <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
             <param name="readonlyKeyword">The read-only keyword on members.</param>
             <param name="isGeneric">Indicates whether the type is a generic type.</param>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetBaseTypes(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get all base types of this instance.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>All base types.</returns>
         </member>
         <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetAttributeString(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
             <summary>
@@ -1378,6 +1390,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator">
+            <summary>
+            Indicates the source generator that generates the code about the attributes to mark onto
+            the method <c>Formatize</c> in the type <c>StepInfo</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator">

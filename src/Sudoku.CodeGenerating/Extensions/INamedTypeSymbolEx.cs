@@ -92,6 +92,19 @@ namespace Sudoku.CodeGenerating.Extensions
 		}
 
 		/// <summary>
+		/// Get all base types of this instance.
+		/// </summary>
+		/// <param name="this">The type.</param>
+		/// <returns>All base types.</returns>
+		public static IEnumerable<ISymbol> GetBaseTypes(this INamedTypeSymbol @this)
+		{
+			for (var s = @this; s is not null; s = s.BaseType)
+			{
+				yield return s;
+			}
+		}
+
+		/// <summary>
 		/// Get the attribute string representation from the specified type symbol.
 		/// </summary>
 		/// <param name="this">The type symbol.</param>

@@ -90,8 +90,7 @@ namespace Sudoku.Solving.Manual
 		/// ]]></code>
 		/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
 		/// into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
-		/// <see href="file:///../../../../required/README.md">README.md</see> in the <c>required</c> folder
-		/// to learn more information.
+		/// <see href="#">README.md</see> in the <c>required</c> folder to learn more information.
 		/// </para>
 		/// <para>
 		/// Because this property will get the value from the resource dictionary, the property supports
@@ -245,10 +244,7 @@ namespace Sudoku.Solving.Manual
 		/// </exception>
 		/// <seealso cref="Format"/>
 		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicProperties)]
-#if false
-		[DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicProperties, typeof(AlsWWingStepInfo), Condition = "SOLUTION_WIDE_CODE_ANALYSIS")]
-#endif
-		public string Formatize(bool handleEscaping = false)
+		public partial string Formatize(bool handleEscaping)
 		{
 			// Check whether the format property is not null.
 			if (Format is not { } format)
