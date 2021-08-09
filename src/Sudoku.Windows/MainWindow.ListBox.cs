@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Sudoku.Solving.Manual.Extensions;
 using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
 using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
 
@@ -13,7 +12,7 @@ namespace Sudoku.Windows
 				sender is ListBox
 				{
 					SelectedIndex: not -1,
-					SelectedItem: ListBoxItem { Content: StepTriplet { Item2: var n, Item3: var s } }
+					SelectedItem: ListBoxItem { Content: StepTriplet(_, Item2: var n, Item3: var s, _) }
 				} && _analyisResult is { Steps: not null, StepGrids: not null })
 			{
 				var techniqueInfo = _analyisResult.Steps[n];
@@ -37,7 +36,7 @@ namespace Sudoku.Windows
 		{
 			if (sender is ListBox { SelectedItem: ListBoxItem { Content: InfoTriplet triplet } })
 			{
-				if (triplet.Item3 && triplet.Item2 is var info and var (_, _, _, conclusions, views))
+				if (triplet is (_, Item2: var info and var (_, _, _, conclusions, views), Item3: true, _))
 				{
 					_currentStepInfo = info;
 					_currentViewIndex = 0;

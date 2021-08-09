@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Microsoft.CSharp.RuntimeBinder;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Resources;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual
@@ -169,7 +171,6 @@ namespace Sudoku.Solving.Manual
 		/// the property will still use this name rather than <c>AssignmentStr</c>.
 		/// </remarks>
 		[FormatItem]
-		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods | DynamicallyAccessedMemberTypes.PublicMethods)]
 		protected string ElimStr
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -207,14 +208,14 @@ namespace Sudoku.Solving.Manual
 		/// <remarks>
 		/// From version 0.7, this method will use <see langword="sealed record"/> <c>ToString</c>
 		/// method to prevent the compiler overriding the method; the default behavior is changed to
-		/// output as the method <see cref="StepInfoEx.Formatize(StepInfo, bool)"/> invoking.
+		/// output as the method <see cref="Formatize(bool)"/> invoking.
 		/// </remarks>
-		/// <seealso cref="StepInfoEx.Formatize(StepInfo, bool)"/>
+		/// <seealso cref="Formatize(bool)"/>
 		public
 #if false
-		sealed 
+		sealed
 #endif
-		override string ToString() => this.Formatize();
+		override string ToString() => Formatize();
 
 		/// <summary>
 		/// Returns a string that only contains the name and the conclusions.
@@ -228,5 +229,133 @@ namespace Sudoku.Solving.Manual
 		/// </summary>
 		/// <returns>The string instance.</returns>
 		public virtual string ToFullString() => ToString();
+
+		/// <summary>
+		/// Formatizes the <see cref="Format"/> property string and output the result.
+		/// </summary>
+		/// <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
+		/// <returns>The result string.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when the format is invalid. The possible cases are:
+		/// <list type="bullet">
+		/// <item>The format is null.</item>
+		/// <item>The interpolation part contains the empty value.</item>
+		/// <item>Missing the closed brace character <c>'}'</c>.</item>
+		/// <item>The number of interpolations failed to match.</item>
+		/// </list>
+		/// </exception>
+		/// <seealso cref="Format"/>
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicProperties)]
+#if false
+		[DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicProperties, typeof(AlsWWingStepInfo), Condition = "SOLUTION_WIDE_CODE_ANALYSIS")]
+#endif
+		public string Formatize(bool handleEscaping = false)
+		{
+			// Check whether the format property is not null.
+			if (Format is not { } format)
+			{
+				throw new ArgumentException("The format can't be null.");
+			}
+
+			// Get the interpolation values, and extract them into a new collection to store the format values.
+			int length = format.Length;
+			var sb = new StringBuilder(length);
+			var formats = new List<string>();
+			int formatCount = 0;
+			for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
+			{
+				switch ((Left: format[i], Right: format[i + 1]))
+				{
+					case (Left: '{', Right: '}'):
+					{
+						throw new ArgumentException(
+							"The format is invalid. The interpolation part cannot contain empty value."
+						);
+					}
+					case (Left: '{', Right: '{'):
+					{
+						sb.Append("{{");
+						i++;
+
+						break;
+					}
+					case (Left: '}', Right: '}'):
+					{
+						sb.Append("}}");
+						i++;
+
+						break;
+					}
+					case (Left: '{', Right: not '{'):
+					{
+						int pos = -1;
+						for (int j = i + 1; j < length; j++)
+						{
+							if (format[j] == '}')
+							{
+								pos = j;
+								break;
+							}
+						}
+						if (pos == -1)
+						{
+							throw new ArgumentException(
+								"The format is invalid. Missing the closed brace character '}'."
+							);
+						}
+
+						sb.Append('{').Append(formatCount++).Append('}');
+						formats.Add(format[(i + 1)..pos]);
+
+						i = pos;
+
+						break;
+					}
+					case (Left: '\\', Right: var right) when handleEscaping: // De-escape the escaping characters.
+					{
+						sb.Append(right);
+						i++;
+
+						break;
+					}
+					case (Left: var left, _):
+					{
+						sb.Append(left);
+
+						break;
+					}
+				}
+			}
+
+			// Use reflection to invoke each properties, and get the interpolation result.
+			var type = GetType();
+			const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
+			string[] matchedFormats = (
+				from f in formats
+				select type.GetProperty(f, flags) into property
+				where property?.IsDefined<FormatItemAttribute>() ?? false
+				let propertyGetMethod = property.GetMethod
+				where propertyGetMethod is not null && isPrivateOrProtected(propertyGetMethod)
+				select property.GetValue(propertyGetMethod.IsStatic ? null : this) as string into result
+				where result is not null
+				select result
+			).Prepend(Name).ToArray();
+
+			// Check the length validity.
+			if (formatCount != matchedFormats.Length)
+			{
+				throw new ArgumentException("The format is invalid. The number of interpolations failed to match.");
+			}
+
+			// Format and return the value.
+			return string.Format(sb.ToString(), matchedFormats);
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool isPrivateOrProtected(MethodInfo propertyGetMethod) =>
+				propertyGetMethod.IsPrivate // private
+				|| propertyGetMethod.IsFamily // protected
+				|| propertyGetMethod.IsPrivate && propertyGetMethod.IsFamily; // private protected
+		}
 	}
 }
