@@ -4382,6 +4382,13 @@
             <param name="accumulator">The accumulator to store technique information.</param>
             <param name="grid">The grid to search for techniques.</param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.IStepSearcher.GetOne(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Take a technique step after searched all solving steps.
+            </summary>
+            <param name="grid">The grid to search steps.</param>
+            <returns>A technique information.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.LastResorts.BfStepInfo">
             <summary>
             Provides a usage of <b>brute force</b> (<b>BF</b>) technique.
@@ -6430,11 +6437,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetOne(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Take a technique step after searched all solving steps.
-            </summary>
-            <param name="grid">The grid to search steps.</param>
-            <returns>A technique information.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo">
             <summary>
