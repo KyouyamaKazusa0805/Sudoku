@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	public sealed class BugMultipleWithFcStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(27, DisplayingLevel: DisplayingLevel.C);
+		public override SearchingOptions Options { get; set; } = new(27, DisplayingLevel.C);
 
 		/// <summary>
 		/// Indicates the searcher properties.

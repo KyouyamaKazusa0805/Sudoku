@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Exocets
 	public sealed class SeStepSearcher : ExocetStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(35, DisplayingLevel: DisplayingLevel.D);
+		public override SearchingOptions Options { get; set; } = new(35, DisplayingLevel.D);
 
 		/// <summary>
 		/// Indicates the searcher properties.

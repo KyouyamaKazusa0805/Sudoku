@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 	public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(22, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(22, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

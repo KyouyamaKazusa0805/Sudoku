@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		public int MaxSize { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(6, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

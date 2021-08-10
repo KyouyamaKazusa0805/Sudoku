@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	public sealed class AicStepSearcher : ChainingStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(13, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(13, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

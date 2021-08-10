@@ -39,7 +39,6 @@ namespace Sudoku.Solving.Manual
 	/// find some special techniques, such as exocets.
 	/// </para>
 	/// </param>
-	/// <param name="Rarity">Indicates the average rarity of the searched techniques.</param>
 	/// <seealso cref="StepSearcher"/>
 	/// <seealso cref="TechniqueProperties"/>.
 	/// <seealso cref="AllStepSearcher"/>
@@ -50,10 +49,9 @@ namespace Sudoku.Solving.Manual
 	public record SearchingOptions(
 #endif
 		[field: FieldOffset(4)] short Priority,
+		[field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
 		[field: FieldOffset(0)] EnabledAreas EnabledAreas = EnabledAreas.Default | EnabledAreas.FullSearching,
-		[field: FieldOffset(1)] DisplayingLevel DisplayingLevel = DisplayingLevel.None,
 		[field: FieldOffset(6)] DisabledReason DisabledReason = DisabledReason.None,
-		[field: FieldOffset(2)] Stableness Stableness = Stableness.Stable,
-		[field: FieldOffset(3)] Rarity Rarity = Rarity.Default
+		[field: FieldOffset(2)] Stableness Stableness = Stableness.Stable
 	);
 }

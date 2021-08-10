@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		public bool SearchExtendedBugTypes { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(25, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(25, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

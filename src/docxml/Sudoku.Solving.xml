@@ -6158,12 +6158,11 @@
             find some special techniques, such as exocets.
             </para>
             </param>
-            <param name="Rarity">Indicates the average rarity of the searched techniques.</param>
             <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
             <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int16,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.DisabledReason,Sudoku.Solving.Manual.Stableness,Sudoku.Solving.Manual.Rarity)">
+        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int16,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisabledReason,Sudoku.Solving.Manual.Stableness)">
             <summary>
             Indicates the options aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s while searching, which is the newer
             implementation of the type <see cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
@@ -6201,7 +6200,6 @@
             find some special techniques, such as exocets.
             </para>
             </param>
-            <param name="Rarity">Indicates the average rarity of the searched techniques.</param>
             <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
             <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>

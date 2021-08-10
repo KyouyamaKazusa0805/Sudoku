@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 	public sealed partial class SkLoopStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(37, DisplayingLevel: DisplayingLevel.D);
+		public override SearchingOptions Options { get; set; } = new(37, DisplayingLevel.D);
 
 		/// <summary>
 		/// Indicates the searcher properties.

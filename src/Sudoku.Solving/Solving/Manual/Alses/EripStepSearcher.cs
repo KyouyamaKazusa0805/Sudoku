@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class EripStepSearcher : AlsStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(28, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(28, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

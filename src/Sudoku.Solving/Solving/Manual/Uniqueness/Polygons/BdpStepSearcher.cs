@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(17, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(17, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

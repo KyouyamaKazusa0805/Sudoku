@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(33, DisplayingLevel: DisplayingLevel.C);
+		public override SearchingOptions Options { get; set; } = new(33, DisplayingLevel.C);
 
 		/// <summary>
 		/// Indicates the searcher properties.

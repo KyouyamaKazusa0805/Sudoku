@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		public bool CheckAlmostLockedQuadruple { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(9, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

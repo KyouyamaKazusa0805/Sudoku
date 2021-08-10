@@ -20,7 +20,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class GuardianStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(18, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(18, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

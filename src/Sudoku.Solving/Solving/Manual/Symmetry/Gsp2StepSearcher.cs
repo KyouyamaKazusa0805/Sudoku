@@ -37,7 +37,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
-			default,
+			default, default,
 			EnabledAreas: EnabledAreas.None,
 			DisabledReason: DisabledReason.TooSlow
 		);

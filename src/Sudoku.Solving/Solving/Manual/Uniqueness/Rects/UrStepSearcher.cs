@@ -30,7 +30,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		public bool SearchForExtendedUniqueRectangles { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(8, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(8, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

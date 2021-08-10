@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Intersections
 	public sealed class LcStepSearcher : IntersectionStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(2, DisplayingLevel: DisplayingLevel.A);
+		public override SearchingOptions Options { get; set; } = new(2, DisplayingLevel.A);
 
 		/// <summary>
 		/// Indicates the searcher properties.

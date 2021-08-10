@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(16, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(16, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(26, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(26, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

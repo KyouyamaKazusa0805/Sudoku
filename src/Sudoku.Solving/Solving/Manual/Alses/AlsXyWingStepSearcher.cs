@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class AlsXyWingStepSearcher : AlsStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(29, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(29, DisplayingLevel.B);
 
 
 		/// <summary>

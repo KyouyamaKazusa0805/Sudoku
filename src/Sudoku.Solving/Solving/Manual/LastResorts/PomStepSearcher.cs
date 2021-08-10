@@ -14,8 +14,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	{
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
-			20,
-			DisplayingLevel: DisplayingLevel.C,
+			20, DisplayingLevel.C,
 			EnabledAreas: EnabledAreas.None,
 			DisabledReason: DisabledReason.LastResort
 		);

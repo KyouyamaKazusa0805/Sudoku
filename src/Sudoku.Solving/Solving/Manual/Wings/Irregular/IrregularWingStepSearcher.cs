@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Wings.Irregular
 	public sealed class IrregularWingStepSearcher : StepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(7, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(7, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

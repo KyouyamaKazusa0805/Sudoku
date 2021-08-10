@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed class TwoStrongLinksStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(5, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(5, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

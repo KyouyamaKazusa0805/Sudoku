@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	public sealed partial class XrStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(11, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(11, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

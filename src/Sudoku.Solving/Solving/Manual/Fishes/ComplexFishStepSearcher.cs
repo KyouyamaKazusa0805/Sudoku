@@ -26,7 +26,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		public int MaxSize { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(32, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(32, DisplayingLevel.B);
 
 
 		/// <summary>

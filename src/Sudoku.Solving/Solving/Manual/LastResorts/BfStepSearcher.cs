@@ -53,9 +53,8 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
-			38,
-			EnabledAreas: EnabledAreas.Default,
-			DisplayingLevel: DisplayingLevel.E
+			38, DisplayingLevel.E,
+			EnabledAreas: EnabledAreas.Default
 		);
 
 		/// <summary>

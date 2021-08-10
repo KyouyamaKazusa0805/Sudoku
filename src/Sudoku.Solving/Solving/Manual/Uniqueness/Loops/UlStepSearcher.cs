@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	public sealed partial class UlStepSearcher : UniquenessStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(10, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Sdps
 	public sealed partial class ErStepSearcher : SdpStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(12, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(12, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

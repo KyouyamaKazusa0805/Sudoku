@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Alses
 	public sealed class AlsXzStepSearcher : AlsStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(23, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(23, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

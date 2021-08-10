@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Fishes
 	public sealed class NormalFishStepSearcher : FishStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(4, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

@@ -18,8 +18,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	{
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
-			24,
-			DisplayingLevel: DisplayingLevel.B,
+			24, DisplayingLevel.B,
 			EnabledAreas: EnabledAreas.None,
 			DisabledReason: DisabledReason.TooSlow
 		);

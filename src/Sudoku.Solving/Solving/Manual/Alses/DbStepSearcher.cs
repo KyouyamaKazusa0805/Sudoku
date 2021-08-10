@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
 			31,
-			DisplayingLevel: DisplayingLevel.C,
+			DisplayingLevel.C,
 			Stableness: Stableness.Unstable,
 #if OLD_ALGORITHM
 			EnabledAreas: EnabledAreas.None,

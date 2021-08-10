@@ -65,7 +65,7 @@ namespace Sudoku.Solving.Manual.Singles
 		public bool ShowDirectLines { get; init; }
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(1, DisplayingLevel: DisplayingLevel.A);
+		public override SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);
 
 		/// <summary>
 		/// Indicates the searcher properties.

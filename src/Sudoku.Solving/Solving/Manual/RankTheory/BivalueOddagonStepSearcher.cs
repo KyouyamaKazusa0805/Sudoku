@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 	public sealed partial class BivalueOddagonStepSearcher : RankTheoryStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(14, DisplayingLevel: DisplayingLevel.B);
+		public override SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
 
 		/// <summary>
 		/// Indicates the searcher properties.

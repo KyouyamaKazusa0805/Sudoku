@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 	public sealed partial class GspStepSearcher : SymmetryStepSearcher
 	{
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(default);
+		public override SearchingOptions Options { get; set; } = new(default, default);
 
 		/// <summary>
 		/// Indicates the searcher properties.
