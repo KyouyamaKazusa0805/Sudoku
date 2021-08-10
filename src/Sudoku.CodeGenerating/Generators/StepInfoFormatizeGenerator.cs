@@ -24,7 +24,7 @@ namespace Sudoku.CodeGenerating.Generators
 			Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 			var compilation = context.Compilation;
 			var symbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.StepInfo");
-			var attributeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.FormatItemAttribute");
+			var attributeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Text.FormatItemAttribute");
 
 			string attributes = string.Join(
 				"\r\n\t\t",
