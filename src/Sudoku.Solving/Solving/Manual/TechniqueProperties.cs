@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Reflection;
 using Sudoku.CodeGenerating;
@@ -21,6 +22,7 @@ namespace Sudoku.Solving.Manual
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority))]
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
 	[AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
+	[Obsolete("Please use type '" + nameof(SearchingOptions) + "' instead.", false)]
 	public sealed partial record TechniqueProperties(int Priority, string DisplayLabel)
 	{
 		/// <summary>
@@ -101,7 +103,8 @@ namespace Sudoku.Solving.Manual
 		/// or not <see cref="StepSearcher"/> at all,
 		/// the return value will be <see langword="null"/>.
 		/// </returns>
-		public static TechniqueProperties? FromType(Type type)
+		public static TechniqueProperties? FromType(
+			[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type)
 		{
 			if (!type.IsSubclassOf<StepSearcher>() || type.IsAbstract)
 			{

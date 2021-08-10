@@ -12,6 +12,12 @@ namespace Sudoku.Solving.Manual
 	public interface IStepSearcher
 	{
 		/// <summary>
+		/// Indicates the step searching options.
+		/// </summary>
+		SearchingOptions Options { get; set; }
+
+
+		/// <summary>
 		/// Accumulate all technique information instances into the specified accumulator.
 		/// </summary>
 		/// <param name="accumulator">The accumulator to store technique information.</param>

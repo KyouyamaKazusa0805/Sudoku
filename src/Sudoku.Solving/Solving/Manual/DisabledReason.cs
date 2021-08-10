@@ -6,10 +6,10 @@ namespace Sudoku.Solving.Manual
 	/// Indicates a reason why the searcher is disabled.
 	/// </summary>
 	[Flags]
-	public enum DisabledReason : byte
+	public enum DisabledReason : short
 	{
 		/// <summary>
-		/// Indicates the searcher is normal.
+		/// Indicates the searcher is normal one and isn't disabled.
 		/// </summary>
 		None = 0,
 
