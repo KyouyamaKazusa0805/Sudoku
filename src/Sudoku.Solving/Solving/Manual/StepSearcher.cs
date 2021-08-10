@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual
 
 		// MAKE BUFFER USING MODULE INITIALIZERS TO CREATE A LIST OF TECHNIQUE STEP SEARCHERS
 		/// <inheritdoc/>
-		public virtual SearchingOptions Options { get; set; }
+		public virtual SearchingOptions Options { get; set; } = null!;
 
 		/// <summary>
 		/// Indicates all step searchers and their type info used in the current solution.

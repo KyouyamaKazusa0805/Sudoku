@@ -2707,7 +2707,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.DisabledReason.None">
             <summary>
-            Indicates the searcher is normal.
+            Indicates the searcher is normal one and isn't disabled.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.DisabledReason.LastResort">
@@ -2729,6 +2729,62 @@
             <summary>
             Indicates the searcher can get correct <see cref="T:Sudoku.Solving.Manual.StepInfo"/>s, but the difference
             of the difficulty among them are too big.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.DisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.A">
+            <summary>
+            Indicates the level is the easy (Level A).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.B">
+            <summary>
+            Indicates the level is medium (Level B).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.C">
+            <summary>
+            Indicates the level is hard (Level C).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.D">
+            <summary>
+            Indicates the level is fiendish (Level D).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.E">
+            <summary>
+            Indicates the level is nightmare (Level E).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.EnabledAreas">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.FullSearching">
+            <summary>
+            Indicates the full searching mode (All steps will be found here).
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.EliminatedReason">
@@ -4375,6 +4431,11 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.IStepSearcher.Options">
+            <summary>
+            Indicates the step searching options.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.IStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <summary>
             Accumulate all technique information instances into the specified accumulator.
@@ -5226,6 +5287,22 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">The progress result.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.PropertiesFixedAttribute">
+            <summary>
+            Marks onto a <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>, to let the compiler know the specified step searcher
+            is fixed-ordering, and we can't modify the order in the settings UI.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.QualifierAttribute">
+            <summary>
+            Indicates the qualifier of this step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.QualifierAttribute.Qualifier">
+            <summary>
+            Indicates the qualifier.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo">
             <summary>
             Provides a usage of <b>bi-value oddagon</b> technique.
@@ -5741,6 +5818,26 @@
             The region maps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Rarity">
+            <summary>
+            Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Default">
+            <summary>
+            Indicates the technique appears in all sudoku puzzles, such as <b>Hidden Single</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Common">
+            <summary>
+            Indicates the rarity is common.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Rarely">
+            <summary>
+            Indicates the rarity is rarely.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Sdps.ErStepInfo">
             <summary>
             Provides a usage of <b>empty rectangle</b> (<b>ER</b>) technique.
@@ -5953,6 +6050,92 @@
         <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.SearchingOptions">
+            <summary>
+            Indicates the options aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s while searching, which is the newer
+            implementation of the type <see cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.FullSearching"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </param>
+            <param name="Stableness">
+            <para>Indicates how stable the technique behaves.</para>
+            <para>
+            In the future, if the technique is unstable, we may modify the order slightly via algorithm to
+            find some special techniques, such as exocets.
+            </para>
+            </param>
+            <param name="Rarity">Indicates the average rarity of the searched techniques.</param>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
+            <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int16,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.DisabledReason,Sudoku.Solving.Manual.Stableness,Sudoku.Solving.Manual.Rarity)">
+            <summary>
+            Indicates the options aiming to <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s while searching, which is the newer
+            implementation of the type <see cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.FullSearching"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </param>
+            <param name="Stableness">
+            <para>Indicates how stable the technique behaves.</para>
+            <para>
+            In the future, if the technique is unstable, we may modify the order slightly via algorithm to
+            find some special techniques, such as exocets.
+            </para>
+            </param>
+            <param name="Rarity">Indicates the average rarity of the searched techniques.</param>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
+            <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Singles.FullHouseStepInfo">
             <summary>
             Indicates a usage of <b>full house</b> technique.
@@ -6126,6 +6309,36 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Stableness">
+            <summary>
+            Defines a stableness of a technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.Stable">
+            <summary>
+            Indicates the stableness is stable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.LessStable">
+            <summary>
+            Indicates the stableness is less stable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.LessUnstable">
+            <summary>
+            Indicates the stableness is less unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.Unstable">
+            <summary>
+            Indicates the stableness is unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.MostUnstable">
+            <summary>
+            Indicates the stableness is most unstable.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepInfo">
             <summary>
@@ -6423,6 +6636,9 @@
             <summary>
             Indicates the necessary property name.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepSearcher.AllStepSearchers">
             <summary>
