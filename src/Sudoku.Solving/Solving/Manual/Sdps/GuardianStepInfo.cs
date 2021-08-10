@@ -4,6 +4,7 @@ using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Resources;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Sdps

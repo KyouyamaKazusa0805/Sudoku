@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Sudoku.Solving.Manual
+namespace Sudoku.Solving.Text
 {
 	/// <summary>
 	/// Marks on a property to tell the user the property is only used for the formatting.

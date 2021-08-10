@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Resources;
+using Sudoku.Solving.Text;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {

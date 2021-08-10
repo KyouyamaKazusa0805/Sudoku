@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Extended

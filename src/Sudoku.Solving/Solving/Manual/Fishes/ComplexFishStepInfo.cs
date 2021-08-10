@@ -6,6 +6,7 @@ using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.Constants;
 

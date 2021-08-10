@@ -5,6 +5,7 @@ using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
 using Sudoku.Resources;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Singles

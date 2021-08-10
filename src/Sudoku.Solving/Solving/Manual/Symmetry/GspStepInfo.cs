@@ -6,6 +6,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Resources;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry

@@ -4,6 +4,7 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
 using Sudoku.Resources;
+using Sudoku.Solving.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
@@ -19,7 +20,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="ExtraCells">The extra cells.</param>
 	public sealed record QdpType3StepInfo(
 		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern,
-		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : QdpStepInfo(Conclusions, Views, Pattern)
+		short ExtraDigitsMask, IReadOnlyList<int> ExtraCells
+	) : QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;

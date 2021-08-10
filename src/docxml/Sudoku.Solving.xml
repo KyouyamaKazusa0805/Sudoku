@@ -4290,11 +4290,6 @@
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.FormatItemAttribute">
-            <summary>
-            Marks on a property to tell the user the property is only used for the formatting.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Intersections.AlcStepInfo">
             <summary>
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
@@ -6486,7 +6481,7 @@
             Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> should be implemented before
             the property invoked, you should creates those 3 properties, returns the corresponding correct string
             result, makes them <see langword="private"/> or <see langword="protected"/> and marks the attribute
-            <see cref="T:Sudoku.Solving.Manual.FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
+            <see cref="T:Sudoku.Solving.Text.FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
             The recommended implementation pattern is:
             <code><![CDATA[
             [FormatItem]
@@ -10574,6 +10569,11 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Text.FormatItemAttribute">
+            <summary>
+            Marks on a property to tell the user the property is only used for the formatting.
+            </summary>
         </member>
     </members>
 </doc>

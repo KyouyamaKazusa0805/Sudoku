@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;
+using Sudoku.Solving.Text;
 using static System.Math;
 
 namespace Sudoku.Solving.Manual.RankTheory
