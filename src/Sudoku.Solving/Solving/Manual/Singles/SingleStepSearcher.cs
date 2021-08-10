@@ -86,8 +86,6 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
-#pragma warning disable IDE0055
-			#region Full houses
 			if (!EnableFullHouse)
 			{
 				goto CheckHiddenSingle;
@@ -131,8 +129,6 @@ namespace Sudoku.Solving.Manual.Singles
 					)
 				);
 			}
-			#endregion
-			#region Hidden single or last digits
 		CheckHiddenSingle:
 #if HIDDEN_SINGLE_BLOCK_FIRST
 			// If block first, we'll extract all blocks and iterate on them firstly.
@@ -173,8 +169,6 @@ namespace Sudoku.Solving.Manual.Singles
 				}
 			}
 #endif
-			#endregion
-			#region Naked singles
 			for (int cell = 0; cell < 81; cell++)
 			{
 				if (grid.GetStatus(cell) != CellStatus.Empty)
@@ -231,8 +225,6 @@ namespace Sudoku.Solving.Manual.Singles
 					)
 				);
 			}
-			#endregion
-#pragma warning restore IDE0055
 
 			bool g(IList<StepInfo> accumulator, in SudokuGrid grid, int digit, int region)
 			{
