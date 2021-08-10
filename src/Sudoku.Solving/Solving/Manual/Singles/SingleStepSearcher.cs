@@ -1,5 +1,6 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
+using System;
 using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -13,7 +14,7 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <summary>
 	/// Encapsulates a <b>single</b> technique searcher.
 	/// </summary>
-	[DirectSearcher]
+	[DirectSearcher, IsOptionsFixed]
 	public sealed class SingleStepSearcher : StepSearcher
 	{
 		/// <summary>
@@ -63,6 +64,8 @@ namespace Sudoku.Solving.Manual.Singles
 		/// </remarks>
 		public bool ShowDirectLines { get; init; }
 
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(1, DisplayingLevel: DisplayingLevel.A);
 
 		/// <summary>
 		/// Indicates the searcher properties.
@@ -72,6 +75,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(1, nameof(Technique.NakedSingle))
 		{
 			DisplayLevel = 0,

@@ -1564,6 +1564,9 @@
             Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -1625,6 +1628,9 @@
             <summary>
             Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher.Properties">
             <summary>
@@ -1729,6 +1735,9 @@
             Encapsulates an <b>almost locked set XZ rule</b> (ALS-XZ) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -1779,6 +1788,9 @@
             <summary>
             Encapsulates a <b>death blossom</b> technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.DbStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.DbStepSearcher.Properties">
             <summary>
@@ -1851,6 +1863,9 @@
             <summary>
             Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Alses.EripStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Alses.EripStepSearcher.Properties">
             <summary>
@@ -1952,6 +1967,9 @@
             I want to use BFS (breadth-first searching) to search for chains, which can avoid
             the redundant backtracking.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepSearcher.Properties">
             <summary>
@@ -2357,6 +2375,9 @@
             <param name="nishio">Indicates whether the searcher should search for nishio chains.</param>
             <param name="multiple">Indicates whether the searcher should search for multiple chains.</param>
             <param name="dynamic">Indicates whether the searcher should search for dynamic chains.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Chaining.FcStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.FcStepSearcher.Properties">
             <summary>
@@ -3079,6 +3100,9 @@
             Encapsulates a <b>junior exocet</b> (JE) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.JeStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.JeStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -3390,6 +3414,9 @@
             <summary>
             Encapsulates a <b>senior exocet</b> (SE) technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Exocets.SeStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Exocets.SeStepSearcher.Properties">
             <summary>
@@ -4020,6 +4047,9 @@
             Indicates the max size to search.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.ComplexFishStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4216,6 +4246,9 @@
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4324,6 +4357,9 @@
             Indicates whether the user checks the almost locked quadruple.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4412,6 +4448,9 @@
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Intersections.LcStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4424,6 +4463,12 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Intersections.LcStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IsOptionsFixedAttribute">
+            <summary>
+            Marks onto a <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>, to let the compiler know the specified step searcher
+            is fixed-ordering, and we can't modify the order in the settings UI.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.IStepSearcher">
             <summary>
@@ -4505,6 +4550,9 @@
             </summary>
             <param name="solution">The solution.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4572,6 +4620,9 @@
             <summary>
             Indicates the maximum length of the bowman bingo you want to search for.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepSearcher.Properties">
             <summary>
@@ -4692,6 +4743,9 @@
             Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.PomStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4771,6 +4825,9 @@
             <summary>
             Indicates whether the technique searcher only checks template deletes.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Properties">
             <summary>
@@ -5287,12 +5344,6 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">The progress result.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.PropertiesFixedAttribute">
-            <summary>
-            Marks onto a <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>, to let the compiler know the specified step searcher
-            is fixed-ordering, and we can't modify the order in the settings UI.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.QualifierAttribute">
             <summary>
             Indicates the qualifier of this step searcher.
@@ -5341,6 +5392,9 @@
             <summary>
             Encapsulates a <b>bi-value oddagon</b> technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Properties">
             <summary>
@@ -5573,6 +5627,9 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.MslsStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -5662,6 +5719,9 @@
             Encapsulates a <b>3-dimension sue de coq</b> technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.Sdc3dStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -5743,6 +5803,9 @@
             Cannibalistic SdCs can be found also.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SdcStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -5794,6 +5857,9 @@
             <summary>
             Encapsulates a <b>domino loop</b> technique.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.SkLoopStepSearcher.Properties">
             <summary>
@@ -5878,6 +5944,9 @@
             Encapsulates an <b>empty rectangle</b> (<b>ER</b>) technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.ErStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.ErStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -5942,6 +6011,9 @@
             <summary>
             Encapsulates a <b>guardian</b> technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.GuardianStepSearcher.Properties">
             <summary>
@@ -6036,6 +6108,9 @@
             <summary>
             Encapsulates a <b>two strong links</b> technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.Properties">
             <summary>
@@ -6296,6 +6371,9 @@
             point may be used a circle mark (<c>'o'</c>).
             </para>
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Properties">
             <summary>
@@ -6761,6 +6839,9 @@
             Encapsulates a <b>subset</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -6849,6 +6930,9 @@
             Indicates the step searcher for GSP technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.Gsp2StepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -6927,6 +7011,9 @@
             <summary>
             Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Symmetry.GspStepSearcher.Properties">
             <summary>
@@ -7306,6 +7393,9 @@
             technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -7385,6 +7475,9 @@
             Indicates whether the searcher should call the extended BUG checker
             to search for all true candidates no matter how difficult searching.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher.Properties">
             <summary>
@@ -7615,6 +7708,9 @@
             <summary>
             Encapsulates an <b>extended rectangle</b> technique searcher.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Properties">
             <summary>
@@ -7874,6 +7970,9 @@
             In fact the unique loop can also search for URs.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -8117,6 +8216,9 @@
             <remarks>
             All possible heptagons and octagons are in here.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher.Properties">
             <summary>
@@ -8544,6 +8646,9 @@
             All different patterns.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -8961,6 +9066,9 @@
             <summary>
             Indicates whether the searcher can search for extended URs.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Properties">
             <summary>
@@ -9789,6 +9897,9 @@
             Encapsulates a <b>reverse bi-value universal grave</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -10032,6 +10143,9 @@
             Indicates the patterns.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -10233,6 +10347,9 @@
             Encapsulates an <b>irregular wing</b> technique searcher.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -10377,6 +10494,9 @@
             <summary>
             Indicates the maximum size the searcher will search for. The maximum possible value is 9.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Options">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Properties">
             <summary>

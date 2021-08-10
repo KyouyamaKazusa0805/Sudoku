@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
@@ -54,6 +55,9 @@ namespace Sudoku.Solving.Manual.Chaining
 		}
 
 
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(33, DisplayingLevel: DisplayingLevel.C);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -62,6 +66,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(33, nameof(Technique.RegionFc))
 		{
 			DisplayLevel = 3
@@ -83,7 +88,8 @@ namespace Sudoku.Solving.Manual.Chaining
 			accumulator.AddRange(
 				from info in tempAccumulator.RemoveDuplicateItems()
 				orderby info.Difficulty, info.Complexity, info.SortKey
-				select info);
+				select info
+			);
 		}
 
 		/// <summary>
@@ -117,7 +123,8 @@ namespace Sudoku.Solving.Manual.Chaining
 							bool doContradiction = IsDynamic || IsNishio;
 
 							DoBinaryChaining(
-								accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction);
+								accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction
+							);
 
 							if (!IsNishio)
 							{
@@ -439,7 +446,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				isAbsurd,
 				IsMultiple,
 				IsNishio,
-				Level);
+				Level
+			);
 		}
 
 		/// <summary>
@@ -499,7 +507,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				isAbsurd,
 				IsMultiple,
 				IsNishio,
-				Level);
+				Level
+			);
 		}
 
 		/// <summary>
@@ -569,7 +578,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				sourceCell,
 				chains,
 				IsDynamic,
-				Level);
+				Level
+			);
 		}
 
 		/// <summary>
@@ -640,7 +650,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				digit,
 				chains,
 				IsDynamic,
-				Level);
+				Level
+			);
 		}
 	}
 }

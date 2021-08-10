@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -15,7 +16,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// This searcher is a trick, because it will check the assignments on
 	/// the terminal grid (I mean, the answer grid).
 	/// </remarks>
-	[DirectSearcher]
+	[DirectSearcher, IsOptionsFixed]
 	public sealed class BfStepSearcher : LastResortStepSearcher
 	{
 		/// <summary>
@@ -50,6 +51,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		public BfStepSearcher(in SudokuGrid solution) => _solution = solution;
 
 
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(
+			38,
+			EnabledAreas: EnabledAreas.Default,
+			DisplayingLevel: DisplayingLevel.E
+		);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -58,6 +66,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(38, nameof(Technique.BruteForce))
 		{
 			IsReadOnly = true,

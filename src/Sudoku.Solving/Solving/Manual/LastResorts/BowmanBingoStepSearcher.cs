@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
@@ -18,6 +19,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// This searcher only uses hidden singles and naked singles as the iteration condition. Therefore,
 	/// "Dynamic" Bowman's Bingo can't be found here.
 	/// </remarks>
+	[IsOptionsFixed]
 	public sealed class BowmanBingoStepSearcher : LastResortStepSearcher
 	{
 		/// <summary>
@@ -36,6 +38,12 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// </summary>
 		public int MaxLength { get; init; }
 
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(
+			19,
+			EnabledAreas: EnabledAreas.None,
+			DisabledReason: DisabledReason.LastResort
+		);
 
 		/// <summary>
 		/// Indicates the searcher properties.
@@ -45,6 +53,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(19, nameof(Technique.BowmanBingo))
 		{
 			DisplayLevel = 3,

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -14,6 +15,9 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// </summary>
 	public sealed partial class ErStepSearcher : SdpStepSearcher
 	{
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(12, DisplayingLevel: DisplayingLevel.B);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -22,6 +26,7 @@ namespace Sudoku.Solving.Manual.Sdps
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(12, nameof(Technique.EmptyRectangle))
 		{
 			DisplayLevel = 2

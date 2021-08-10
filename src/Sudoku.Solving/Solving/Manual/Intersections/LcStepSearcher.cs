@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -14,6 +15,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// </summary>
 	public sealed class LcStepSearcher : IntersectionStepSearcher
 	{
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(2, DisplayingLevel: DisplayingLevel.A);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -22,6 +26,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(2, nameof(Technique.Pointing))
 		{
 			DisplayLevel = 1

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
@@ -15,6 +16,9 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	public sealed class AlsWWingStepSearcher : AlsStepSearcher
 	{
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(30, DisplayingLevel: DisplayingLevel.B);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -23,6 +27,7 @@ namespace Sudoku.Solving.Manual.Alses
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(30, nameof(Technique.AlsWWing))
 		{
 			DisplayLevel = 2

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Techniques;
 
@@ -7,9 +8,12 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.
 	/// </summary>
-	[DirectSearcher]
+	[DirectSearcher, IsOptionsFixed]
 	public sealed partial class GspStepSearcher : SymmetryStepSearcher
 	{
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(default);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -18,6 +22,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(default, nameof(Technique.Gsp))
 		{
 			IsReadOnly = true

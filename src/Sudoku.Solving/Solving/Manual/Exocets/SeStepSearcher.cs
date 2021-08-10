@@ -18,6 +18,9 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// </summary>
 	public sealed class SeStepSearcher : ExocetStepSearcher
 	{
+		/// <inheritdoc/>
+		public override SearchingOptions Options { get; set; } = new(35, DisplayingLevel: DisplayingLevel.D);
+
 		/// <summary>
 		/// Indicates the searcher properties.
 		/// </summary>
@@ -26,6 +29,7 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// this static property in order to display on settings window. If the searcher doesn't contain,
 		/// when we open the settings window, it'll throw an exception to report about this.
 		/// </remarks>
+		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
 		public static TechniqueProperties Properties { get; } = new(35, nameof(Technique.Se))
 		{
 			DisplayLevel = 4
