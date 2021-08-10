@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS1591 // Because of the false-positive of the source generator
+﻿#pragma warning disable CS1591 // False-positive
 
 using System;
 using System.Collections.Generic;
