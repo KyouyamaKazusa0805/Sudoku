@@ -13,7 +13,6 @@ using System.Text;
 using System.Text.Json;
 using Sudoku.CodeGenerating;
 using Sudoku.Data.Extensions;
-using Sudoku.Versioning;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -32,7 +31,6 @@ namespace Sudoku.Data
 #endif
 	[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 	[AutoFormattable]
-	[NonVersionable]
 	public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>
 	{
 		/// <summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Versioning;
 
 namespace Sudoku.Solving.Manual
 {
@@ -41,7 +40,6 @@ namespace Sudoku.Solving.Manual
 	/// </remarks>
 	/// <seealso cref="StepSearcher"/>
 	/// <seealso cref="FastProperties"/>
-	[NonVersionable]
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class DirectSearcherAttribute : Attribute
 	{

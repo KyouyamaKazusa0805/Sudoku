@@ -2,7 +2,6 @@
 
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
-using Sudoku.Versioning;
 
 namespace Sudoku.Solving.Manual
 {
@@ -110,7 +109,6 @@ namespace Sudoku.Solving.Manual
 		/// Initialize the maps that used later.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
-		[NonVersionable]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void InitializeMaps(in SudokuGrid grid) =>
 			(EmptyMap, BivalueMap, CandMaps, DigitMaps, ValueMaps) = grid;

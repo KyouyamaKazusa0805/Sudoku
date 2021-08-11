@@ -1,5 +1,4 @@
-﻿using Sudoku.Versioning;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Globalization
 {
@@ -10,7 +9,7 @@ namespace Sudoku.Globalization
 	/// This <see langword="enum"/> is used for some formatted string output, i.e. a
 	/// multi-language string.
 	/// </remarks>
-	[Closed, NonVersionable]
+	[Closed]
 	public enum CountryCode : short
 	{
 		/// <summary>
