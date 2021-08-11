@@ -36,7 +36,6 @@ namespace Sudoku.Resources
 		/// For example,
 		/// if you want to get the <see cref="string"/> value from the key <c>"Bug"</c>, now you may
 		/// write <c>Current.Bug</c> or <c>Current["Bug"]</c> to get that value.
-		/// Before the version 0.3, you must write the code <c>TextResources.GetValue("Bug")</c>.
 		/// </para>
 		/// <para>
 		/// All supported methods are:
