@@ -105,7 +105,7 @@ namespace Sudoku.Solving.Manual
 #elif NISHIO_FORCING_CHAINS
 				new FcStepSearcher(nishio: true, multiple: false, dynamic: true),
 #else
-#warning You must define one conditional compilation symbols in 'COMPLEX_FISH' and 'NISHIO_FORCING_CHAINS'.
+#warning If both 'COMPLEX_FISH' and 'NISHIO_FORCING_CHAINS' aren't defined, the fish-like techniques won't be found.
 #endif
 				new FcStepSearcher(nishio: false, multiple: true, dynamic: false),
 				new BugMultipleWithFcStepSearcher(),
