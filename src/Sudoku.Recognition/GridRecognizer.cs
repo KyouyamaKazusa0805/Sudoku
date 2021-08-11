@@ -5,7 +5,6 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Recognition.Extensions;
 using static Sudoku.Recognition.Constants;
 using Cv = Emgu.CV.CvInvoke;
 using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
