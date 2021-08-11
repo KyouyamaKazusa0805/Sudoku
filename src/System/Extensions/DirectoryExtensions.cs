@@ -5,7 +5,7 @@ namespace System.IO
 	/// <summary>
 	/// The directory extensions.
 	/// </summary>
-	public static class DirectoryEx
+	public static class DirectoryExtensions
 	{
 		/// <summary>
 		/// Create the specified directory path when the path doesn't exist.

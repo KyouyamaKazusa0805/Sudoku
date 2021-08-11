@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Extensions;
+using System.Numerics;
 
 namespace Sudoku.Solving.Extensions
 {

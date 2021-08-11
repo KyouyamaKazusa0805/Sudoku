@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
+using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -54,7 +54,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 				{
 					var pMap = linkForEachDigit + digit;
 					*pMap = CandMaps[digit] & map;
-					n += MathEx.Min(
+					n += MathExtensions.Min(
 						PopCount((uint)pMap->RowMask),
 						PopCount((uint)pMap->ColumnMask),
 						PopCount((uint)pMap->BlockMask)
@@ -75,7 +75,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 							rMask = (uint)currentMap.RowMask,
 							cMask = (uint)currentMap.ColumnMask,
 							bMask = (uint)currentMap.BlockMask;
-						int temp = MathEx.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
+						int temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
 						var elimMap = Cells.Empty;
 						int check = 0;
 						if (PopCount(rMask) == temp)

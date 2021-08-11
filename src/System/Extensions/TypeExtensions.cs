@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension method on <see cref="Type"/>.
 	/// </summary>
 	/// <seealso cref="Type"/>
-	public static class TypeEx
+	public static class TypeExtensions
 	{
 		/// <summary>
 		/// Determine whether the type is the subclass of the specified one.

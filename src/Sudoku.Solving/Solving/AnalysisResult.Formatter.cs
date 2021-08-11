@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,7 +10,6 @@ using Sudoku.Solving.Manual.Singles;
 using Sudoku.Resources;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using CountryCode = Sudoku.Globalization.CountryCode;
-using Sudoku.Solving.Manual.Extensions;
 
 namespace Sudoku.Solving
 {

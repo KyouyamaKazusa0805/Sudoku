@@ -3,13 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="string"/>.
 	/// </summary>
 	/// <seealso cref="string"/>
-	public static class StringEx
+	public static class StringExtensions
 	{
 		/// <summary>
 		/// Indicates the regular expression to match all null lines and header spaces in their lines.

@@ -2,13 +2,13 @@
 using System.Collections;
 using static System.Numerics.BitOperations;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="BitArray"/>.
 	/// </summary>
 	/// <seealso cref="BitArray"/>
-	public static class BitArrayEx
+	public static class BitArrayExtensions
 	{
 		/// <summary>
 		/// Get the cardinality of the specified <see cref="BitArray"/>.

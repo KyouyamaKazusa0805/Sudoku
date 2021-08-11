@@ -1,4 +1,4 @@
-﻿using System.Extensions;
+﻿using System;
 using System.Windows.Controls;
 
 namespace Sudoku.Windows

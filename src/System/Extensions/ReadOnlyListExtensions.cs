@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace System.Extensions
+﻿namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IReadOnlyList{T}"/>.
 	/// </summary>
 	/// <seealso cref="IReadOnlyList{T}"/>
-	public static class ReadOnlyListEx
+	public static class ReadOnlyListExtensions
 	{
 		/// <summary>
 		/// Returns the list that is in the range specified as two parameters called

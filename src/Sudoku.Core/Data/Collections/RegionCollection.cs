@@ -11,7 +11,7 @@ namespace Sudoku.Data.Collections
 	/// Indicates a region collection.
 	/// </summary>
 	[AutoEquality(nameof(_mask))]
-	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Extensions" })]
+	[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Numerics" })]
 	public readonly ref partial struct RegionCollection
 	{
 		/// <summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
+using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -237,7 +237,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
+										new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+									);
 								}
 							}
 							foreach (int cell in otherCellsMap)

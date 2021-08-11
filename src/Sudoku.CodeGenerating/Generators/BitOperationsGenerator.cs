@@ -22,7 +22,7 @@ namespace Sudoku.CodeGenerating.Generators
 			}
 
 			const string separator = "\r\n\r\n\t\t";
-			const string typeName = "System.Extensions.BitOperationsEx";
+			const string typeName = "System.Numerics.BitOperationsExensions";
 
 			context.AddSource(typeName, null, G_GlobalFile());
 

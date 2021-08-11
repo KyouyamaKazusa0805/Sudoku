@@ -1,13 +1,12 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace System.Extensions
+namespace System.Text.Json
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Utf8JsonReader"/>.
 	/// </summary>
 	/// <seealso cref="Utf8JsonReader"/>
-	public static class Utf8JsonReaderEx
+	public static class Utf8JsonReaderExtensions
 	{
 		/// <summary>
 		/// Try to read an object.

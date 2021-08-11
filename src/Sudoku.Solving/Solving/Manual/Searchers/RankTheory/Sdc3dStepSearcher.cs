@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
+using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
@@ -145,7 +145,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 								for (
 									int
 										j = 1,
-										limit = MathEx.Min(
+										limit = MathExtensions.Min(
 											9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count
 										);
 									j < limit;
@@ -171,7 +171,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 
 										for (
 											int k = 1;
-											k <= MathEx.Min(
+											k <= MathExtensions.Min(
 												9 - i - j - currentBlockMap.Count - currentRowMap.Count,
 												rowMap.Count, columnMap.Count
 											);

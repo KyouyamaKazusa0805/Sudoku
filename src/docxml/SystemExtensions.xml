@@ -1130,6 +1130,137 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:System.Collections.Generic.CollectionExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/> and <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the
+            <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="values">
+            The values you want to add to the end of the collection.
+            </param>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
+            the specified list doesn't contain the specified element.
+            </summary>
+            <typeparam name="T">The type of all elements.</typeparam>
+            <param name="this">The list.</param>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="T:System.Collections.Generic.DictionaryExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.ToArray``3(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Converts the specified dictionary to an array, if each value can be iterated.
+            </summary>
+            <typeparam name="TKey">The type of the key of the dictionary.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <typeparam name="T">
+            The iterator type, which means the iteration type for the <typeparamref name="TValue"/>
+            instances.
+            </typeparam>
+            <param name="this">The dictionary.</param>
+            <returns>The result array.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.ListExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveDuplicateItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Remove duplicate items in the specified list.
+            </summary>
+            <typeparam name="TEquatable">The type of each elements.</typeparam>
+            <param name="this">The list.</param>
+            <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveDuplicateItems``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Remove duplicate items in the specified list.
+            </summary>
+            <typeparam name="TEquatable">The type of each elements.</typeparam>
+            <param name="this">The list.</param>
+            <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Remove the last element of the specified list, which is equivalent to code:
+            <code>
+            list.RemoveAt(list.Count - 1);
+            </code>
+            or
+            <code>
+            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
+            </code>
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <seealso cref="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)">
+            <summary>
+            Remove at the element in the specified index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="index">The index to remove.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Try to convert the current list to a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <returns>The result of the conversion.</returns>
+            <exception cref="T:System.InvalidCastException">
+            Throws when the specified list is neither <see cref="T:System.Collections.Generic.List`1"/> nor <typeparamref name="T"/>[].
+            </exception>
+        </member>
+        <member name="T:System.Collections.Generic.ReadOnlyListExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ReadOnlyListExtensions.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
+            <summary>
+            Returns the list that is in the range specified as two parameters called
+            <paramref name="start"/> and <paramref name="length"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="start">The start index.</param>
+            <param name="length">The end index.</param>
+            <returns>The list of the elements that is in the specified range.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ReadOnlyListExtensions.FindIndexOf``1(System.Collections.Generic.IReadOnlyList{``0},System.Predicate{``0})">
+            <summary>
+            Find the index of an element that satisfy the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="predicate">The condition.</param>
+            <returns>
+            The result index of that element. If the list doesn't contain any element to satisfy the condition,
+            the method will return -1 as the result.
+            </returns>
+        </member>
         <member name="T:System.Collections.Generic.KeyedTuple`2">
             <summary>
             Provides a tuple with a primary element, which means the tuple contains multiple items,
@@ -1407,26 +1538,26 @@
             Indicates the argument name that is of an enumeration type.
             </summary>
         </member>
-        <member name="T:System.Extensions.BitArrayEx">
+        <member name="T:System.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
             </summary>
             <seealso cref="T:System.Collections.BitArray"/>
         </member>
-        <member name="M:System.Extensions.BitArrayEx.GetCardinality(System.Collections.BitArray)">
+        <member name="M:System.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
             <summary>
             Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
             </summary>
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
-        <member name="T:System.Extensions.CloneableEx">
+        <member name="T:System.CloneableExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.ICloneable"/>.
             </summary>
             <seealso cref="T:System.ICloneable"/>
         </member>
-        <member name="M:System.Extensions.CloneableEx.TryCloneAs``1(System.ICloneable)">
+        <member name="M:System.CloneableExtensions.TryCloneAs``1(System.ICloneable)">
             <summary>
             Clone this object and try to cast to the specified type.
             If the type is invalid to cast, the return value will be <see langword="null"/>.
@@ -1441,7 +1572,7 @@
             <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:System.Extensions.CloneableEx.CloneAs``1(System.ICloneable)">
+        <member name="M:System.CloneableExtensions.CloneAs``1(System.ICloneable)">
             <summary>
             Clone this object and cast to the specified type no matter how.
             </summary>
@@ -1452,7 +1583,7 @@
             <param name="this">The object.</param>
             <returns>The cast result.</returns>
         </member>
-        <member name="M:System.Extensions.CloneableEx.As``1(System.ICloneable)">
+        <member name="M:System.CloneableExtensions.As``1(System.ICloneable)">
             <summary>
             Try to cast the current instance to the generic cloneable type <see cref="T:System.ICloneable`1"/>.
             </summary>
@@ -1461,1447 +1592,18 @@
             <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
             <seealso cref="T:System.ICloneable`1"/>
         </member>
-        <member name="T:System.Extensions.CollectionEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/> and <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
-            <seealso cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>
-        </member>
-        <member name="M:System.Extensions.CollectionEx.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Adds the elements of the specified collection to the end of the
-            <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="values">
-            The values you want to add to the end of the collection.
-            </param>
-        </member>
-        <member name="M:System.Extensions.CollectionEx.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
-            <summary>
-            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
-            the specified list doesn't contain the specified element.
-            </summary>
-            <typeparam name="T">The type of all elements.</typeparam>
-            <param name="this">The list.</param>
-            <param name="item">The item to add.</param>
-        </member>
-        <member name="T:System.Extensions.DictionaryEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
-        </member>
-        <member name="M:System.Extensions.DictionaryEx.ToArray``3(System.Collections.Generic.IDictionary{``0,``1})">
-            <summary>
-            Converts the specified dictionary to an array, if each value can be iterated.
-            </summary>
-            <typeparam name="TKey">The type of the key of the dictionary.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <typeparam name="T">
-            The iterator type, which means the iteration type for the <typeparamref name="TValue"/>
-            instances.
-            </typeparam>
-            <param name="this">The dictionary.</param>
-            <returns>The result array.</returns>
-        </member>
-        <member name="T:System.Extensions.DoubleEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Double"/>.
-            </summary>
-            <seealso cref="T:System.Double"/>
-        </member>
-        <member name="M:System.Extensions.DoubleEx.NearlyEquals(System.Double,System.Double)">
-            <summary>
-            Indicates whether the specified value is nearly equals to the current value.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.DoubleEx.NearlyEquals(System.Double,System.Double,System.Double)">
-            <summary>
-            Indicates whether the specified value is nearly equals to the current value.
-            If the differ of two values to compare is lower than the specified epsilon value,
-            the method will return <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value to compare.</param>
-            <param name="epsilon">The epsilon value (the minimal differ).</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.Extensions.EnumerableEx">
-            <summary>
-            Provides a set of static methods for querying objects that implement
-            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <remarks>This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.</remarks>
-            <seealso cref="T:System.Collections.IEnumerable"/>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-            <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="M:System.Extensions.EnumerableEx.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the specified list has only one element.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">The list.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumerableEx.Contains``1(System.Collections.Generic.IEnumerable{``0},``0[])">
-            <summary>
-            Check whether the list contains the element that is in the specified array.
-            </summary>
-            <typeparam name="TEquatable">The type of the element to check.</typeparam>
-            <param name="this">The list.</param>
-            <param name="elements">
-            The array that contains the target elements.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumerableEx.ContainsType``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the collection contains any elements that match the specified type.
-            </summary>
-            <typeparam name="T">The type to check.</typeparam>
-            <param name="this">The list.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumerableEx.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
-            <summary>
-            Get the index of the whole list, whose corresponding element is satisfy the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="predicate">The condition to check.</param>
-            <returns>
-            The index of the element satisfied the condition. If the list can't find that element,
-            return -1 as the result.
-            </returns>
-        </member>
-        <member name="T:System.Extensions.EnumEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Enum"/>.
-            </summary>
-            <seealso cref="T:System.Enum"/>
-        </member>
-        <member name="M:System.Extensions.EnumEx.IsFlag``1(``0)">
-            <summary>
-            Checks whether the current enumeration field is a flag.
-            </summary>
-            <typeparam name="TEnum">The type of the current field.</typeparam>
-            <param name="this">The current field to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumEx.Min``1(``0,``0)">
-            <summary>
-            Check which enumeration field is less.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The comparison result.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumEx.Max``1(``0,``0)">
-            <summary>
-            Check which enumeration field is greater.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The comparison result.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumEx.GetAllFlags``1(``0)">
-            <summary>
-            To get all possible flags from a specified enumeration instance.
-            </summary>
-            <typeparam name="TEnum">The type of that enumeration.</typeparam>
-            <param name="this">The field.</param>
-            <returns>
-            All flags. If the enumeration field doesn't contain any flags,
-            the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:System.Extensions.EnumEx.GetEnumerator``1(``0)">
-            <summary>
-            Get all possible flags that the current enumeration field set.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <returns>All flags.</returns>
-        </member>
-        <member name="M:System.Extensions.EnumEx.Flags``1(``0,``0)">
-            <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <param name="other">The other instance to check.</param>
-            <remarks>
-            This method is same as <see cref="M:System.Enum.HasFlag(System.Enum)"/>, but without boxing and unboxing operations.
-            </remarks>
-            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-            <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
-        </member>
-        <member name="M:System.Extensions.EnumEx.MultiFlags``1(``0,``0)">
-            <summary>
-            Determines whether the instance has the flags specified as <paramref name="flags"/>.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="flags">All flags used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.Extensions.FormatProviderEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
-            </summary>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="M:System.Extensions.FormatProviderEx.HasFormatted``1(System.IFormatProvider,``0@,System.String,System.String@)">
-            <summary>
-            To check whether the format provider has defined the format rule.
-            If the rule is defined, this method will return the string representation
-            according to the format rule.
-            </summary>
-            <param name="this">The format provider.</param>
-            <param name="obj">The object.</param>
-            <param name="format">The format string.</param>
-            <param name="result">
-            The result. If the format has been defined,
-            this value won't be <see langword="null"/>.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <remarks>
-            You should use this as:
-            <code>
-            if (formatProvider.HasFormatted(this, format, out string? result))
-            {
-                return result;
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="T:System.Extensions.GenericEx">
-            <summary>
-            Provides extension methods on generic type.
-            </summary>
-        </member>
-        <member name="M:System.Extensions.GenericEx.ToStringWithTrailingSpace``1(``0)">
-            <summary>
-            Get the string representation of the instance, with the trailing space after the result string value.
-            </summary>
-            <typeparam name="TNotNull">The type of the instance.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The result value.</returns>
-        </member>
-        <member name="T:System.Extensions.ListEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IList`1"/>
-        </member>
-        <member name="M:System.Extensions.ListEx.RemoveDuplicateItems``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Remove duplicate items in the specified list.
-            </summary>
-            <typeparam name="TEquatable">The type of each elements.</typeparam>
-            <param name="this">The list.</param>
-            <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:System.Extensions.ListEx.RemoveDuplicateItems``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Remove duplicate items in the specified list.
-            </summary>
-            <typeparam name="TEquatable">The type of each elements.</typeparam>
-            <param name="this">The list.</param>
-            <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:System.Extensions.ListEx.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Remove the last element of the specified list, which is equivalent to code:
-            <code>
-            list.RemoveAt(list.Count - 1);
-            </code>
-            or
-            <code>
-            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
-            </code>
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <seealso cref="M:System.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)"/>
-        </member>
-        <member name="M:System.Extensions.ListEx.RemoveAt``1(System.Collections.Generic.IList{``0},System.Index@)">
-            <summary>
-            Remove at the element in the specified index.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="index">The index to remove.</param>
-        </member>
-        <member name="M:System.Extensions.ListEx.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Try to convert the current list to a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <returns>The result of the conversion.</returns>
-            <exception cref="T:System.InvalidCastException">
-            Throws when the specified list is neither <see cref="T:System.Collections.Generic.List`1"/> nor <typeparamref name="T"/>[].
-            </exception>
-        </member>
-        <member name="T:System.Extensions.MathEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Math"/>.
-            </summary>
-            <seealso cref="T:System.Math"/>
-        </member>
-        <member name="M:System.Extensions.MathEx.Min(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Get the minimal one of three values.
-            </summary>
-            <param name="a">The first value.</param>
-            <param name="b">The second value.</param>
-            <param name="c">The third value.</param>
-            <returns>Which is the minimal value.</returns>
-        </member>
-        <member name="M:System.Extensions.MathEx.Max(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Get the maximum one of three values.
-            </summary>
-            <param name="a">The first value.</param>
-            <param name="b">The second value.</param>
-            <param name="c">The third value.</param>
-            <returns>Which is the maximum value.</returns>
-        </member>
-        <member name="T:System.Extensions.MemberInfoEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Reflection.MemberInfo"/>.
-            </summary>
-            <seealso cref="T:System.Reflection.MemberInfo"/>
-        </member>
-        <member name="M:System.Extensions.MemberInfoEx.IsDefined``1(System.Reflection.MemberInfo)">
-            <summary>
-            Indicates whether custom attributes of a specified type are applied to a specified member.
-            </summary>
-            <typeparam name="TAttribute">The type of that attribute.</typeparam>
-            <param name="this">The member information instance.</param>
-            <returns>
-            <see langword="true"/> if an attribute of the specified type is applied to <paramref name="this"/>;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="T:System.Extensions.Pointer">
-            <summary>
-            Provides methods on pointers.
-            </summary>
-            <remarks>
-            Different with other types, pointers can't be as <see langword="this"/> parameter.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.Pointer.Swap``1(``0*,``0*)">
-            <summary>
-            To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the variable.</typeparam>
-            <param name="left">The left variable.</param>
-            <param name="right">The right variable.</param>
-        </member>
-        <member name="M:System.Extensions.Pointer.StringLengthOf(System.Char*)">
-            <summary>
-            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <returns>The total length.</returns>
-            <remarks>
-            In C#, this function is unsafe because the implementation of
-            <see cref="T:System.String"/> types between C and C# is totally different.
-            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
-            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
-            However, C# not.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
-            <summary>
-            Get the new array from the pointer, with the specified start index.
-            </summary>
-            <typeparam name="TUnmanaged">
-            The type of the pointer element. Note that the type should be <see langword="unmanaged"/>
-            in order to use pointer handling. Therefore, <see langword="managed"/> types shouldn't be allowed.
-            </typeparam>
-            <param name="ptr">The pointer.</param>
-            <param name="length">The length of the array that pointer points to.</param>
-            <param name="index">The start index that you want to pick from.</param>
-            <returns>The array of elements.</returns>
-            <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
-            the parameter <paramref name="length"/> should keep the value 5 because the array contains
-            5 elements in this case.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.Pointer.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Get the new array from the pointer, with the specified start index.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <param name="length">The length of the array that pointer points to.</param>
-            <param name="index">The start index that you want to pick from.</param>
-            <param name="removeTrailingZeros">
-            Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-            the method will be same as <see cref="M:System.Extensions.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
-            </param>
-            <returns>The array of elements.</returns>
-            <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
-            the parameter <paramref name="length"/> should keep the value 5 because the array contains
-            5 elements in this case.
-            </remarks>
-            <seealso cref="M:System.Extensions.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
-        </member>
-        <member name="T:System.Extensions.ReadOnlyListEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
-        </member>
-        <member name="M:System.Extensions.ReadOnlyListEx.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
-            <summary>
-            Returns the list that is in the range specified as two parameters called
-            <paramref name="start"/> and <paramref name="length"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="start">The start index.</param>
-            <param name="length">The end index.</param>
-            <returns>The list of the elements that is in the specified range.</returns>
-        </member>
-        <member name="M:System.Extensions.ReadOnlyListEx.FindIndexOf``1(System.Collections.Generic.IReadOnlyList{``0},System.Predicate{``0})">
-            <summary>
-            Find the index of an element that satisfy the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="predicate">The condition.</param>
-            <returns>
-            The result index of that element. If the list doesn't contain any element to satisfy the condition,
-            the method will return -1 as the result.
-            </returns>
-        </member>
-        <member name="T:System.Extensions.ReadOnlySpanEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-        </member>
-        <member name="M:System.Extensions.ReadOnlySpanEx.Select``2(System.ReadOnlySpan{``0}@,System.Func{``0,``1})">
-            <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
-            </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
-            <example>
-            For example:
-            <code>
-            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
-            </code>
-            </example>
-        </member>
-        <member name="M:System.Extensions.ReadOnlySpanEx.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
-            <summary>
-            Get all subsets from the specified number of the values to take.
-            </summary>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>All subsets.</returns>
-        </member>
-        <member name="T:System.Extensions.SingleEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Single"/>.
-            </summary>
-            <seealso cref="T:System.Single"/>
-        </member>
-        <member name="M:System.Extensions.SingleEx.NearlyEquals(System.Single,System.Single)">
-            <summary>
-            Indicates whether the specified value is nearly equals to the current value.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.SingleEx.NearlyEquals(System.Single,System.Single,System.Single)">
-            <summary>
-            Indicates whether the specified value is nearly equals to the current value.
-            If the differ of two values to compare is lower than the specified epsilon value,
-            the method will return <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value to compare.</param>
-            <param name="epsilon">The epsilon value (the minimal differ).</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.Extensions.SpanEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Span`1"/>.
-            </summary>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="M:System.Extensions.SpanEx.Select``2(System.Span{``0}@,System.Func{``0,``1})">
-            <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
-            </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
-            <example>
-            For example:
-            <code>
-            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
-            </code>
-            </example>
-        </member>
-        <member name="M:System.Extensions.SpanEx.GetSubsets``1(System.Span{``0}@,System.Int32)">
-            <summary>
-            Get all subsets from the specified number of the values to take.
-            </summary>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>All subsets.</returns>
-        </member>
-        <member name="T:System.Extensions.StringBuilderEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <seealso cref="T:System.Text.StringBuilder"/>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.Reverse(System.Text.StringBuilder)">
-            <summary>
-            Reverse all characters in a specified string builder instance.
-            </summary>
-            <param name="this">
-            The instance to reverse all characters.
-            </param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.RemoveFrom(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Remove all characters hehind the character whose index is specified.
-            </summary>
-            <param name="this">The instance to remove characters.</param>
-            <param name="startIndex">The start index.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.RemoveFrom(System.Text.StringBuilder,System.Index@)">
-            <summary>
-            Remove all characters behind the character whose index is specified.
-            </summary>
-            <param name="this">The instance to remove characters.</param>
-            <param name="startIndex">The start index.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Remove the specified number of characters from the end of the string builder
-            instance.
-            </summary>
-            <param name="this">The instance to remove characters.</param>
-            <param name="length">The number of characters you want to remove.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendLine(System.Text.StringBuilder,System.Char)">
-            <summary>
-            Append a character to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <param name="this">The instance.</param>
-            <param name="value">The character you want to append.</param>
-            <returns>The reference of the current instance.</returns>
-            <remarks>
-            The extension method is used in order to avoid implicit conversion from
-            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
-            please use the method <see cref="M:System.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>.
-            </remarks>
-            <seealso cref="P:System.Environment.NewLine"/>
-            <seealso cref="M:System.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)"/>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendLine``1(System.Text.StringBuilder,``0)">
-            <summary>
-            Append a <see cref="T:System.String"/> representation of an object
-            to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <typeparam name="T">The type of the instance to add.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="obj">
-            The <see cref="T:System.String"/> representation of an object you want to append.
-            </param>
-            <returns>The reference of the current instance.</returns>
-            <remarks>
-            This method can solve the problem of boxing and unboxing.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendLines(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Append several lines into the <see cref="T:System.Text.StringBuilder"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-            <param name="lines">The lines you want to add.</param>
-            <returns>The reference of the parameter <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.NullableAppend(System.Text.StringBuilder,System.String)">
-            <summary>
-            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
-            the text is not <see langword="null"/>; otherwise, do nothing.
-            </summary>
-            <param name="this">The string builder.</param>
-            <param name="text">The text to add.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.NullableAppendLine(System.Text.StringBuilder,System.String)">
-            <summary>
-            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
-            the text is not <see langword="null"/>, and then add a terminator at the tail;
-            otherwise, do nothing.
-            </summary>
-            <param name="this">The string builder.</param>
-            <param name="text">The text to add.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
-            This method allows you defining a custom converter to convert the specified value into
-            a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Text.StringBuilder})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.Text.StringBuilder"/> representation.
-            This method allows you defining a custom converter to convert the specified value into
-            a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation,
-            and then append a new line as a separator. This method allows you defining a custom converter
-            to convert the specified value into a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation, and then
-            append a new line as a separator.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Extensions.StringBuilderEx.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
-            <summary>
-            Copy the specified string builder to the specified target.
-            </summary>
-            <param name="this">The base string builder.</param>
-            <param name="to">The target builder.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws if the target instance doesn't have enough space to store all characters
-            from the base one.
-            </exception>
-        </member>
-        <member name="T:System.Extensions.StringEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.String"/>.
-            </summary>
-            <seealso cref="T:System.String"/>
-        </member>
-        <member name="F:System.Extensions.StringEx.NullLinesOrHeaderSpaces">
-            <summary>
-            Indicates the regular expression to match all null lines and header spaces in their lines.
-            </summary>
-        </member>
-        <member name="F:System.Extensions.StringEx.MatchingTimeSpan">
-            <summary>
-            Indicates the time span that is used for matching.
-            </summary>
-        </member>
-        <member name="M:System.Extensions.StringEx.CountOf(System.String,System.Char)">
-            <summary>
-            Count how many specified characters are in the current string.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="character">The character to count.</param>
-            <returns>The number of characters found.</returns>
-        </member>
-        <member name="M:System.Extensions.StringEx.SatisfyPattern(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance is satisfied
-            the specified regular expression pattern or not.
-            </summary>
-            <param name="this">The value to check.</param>
-            <param name="pattern">
-            The regular expression pattern. If the value is <see langword="null"/>,
-            the return value is always <see langword="false"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-        </member>
-        <member name="M:System.Extensions.StringEx.IsMatch(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance can match the value
-            using the specified regular expression pattern or not.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-        </member>
-        <member name="M:System.Extensions.StringEx.ReplaceAt(System.String,System.Int32,System.Char)">
-            <summary>
-            Replace the character at the specified index with the new value.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="index">The index.</param>
-            <param name="charToInsert">The string to insert.</param>
-            <returns>The result string.</returns>
-        </member>
-        <member name="M:System.Extensions.StringEx.SliceViaCharacter(System.String,System.Char)">
-            <summary>
-            Slices the current <see cref="T:System.String"/> instance, via the specified character.
-            If the string contains that character, we'll slice the string to get the segment.
-            </summary>
-            <remarks>
-            Please note that even if the character exists in the string, we won't get the segment
-            containing that character.
-            </remarks>
-            <param name="this">The string.</param>
-            <param name="ch">The character to check.</param>
-            <returns>
-            The slice result. If the character doesn't exist in the string,
-            <see langword="null"/> will be returned.
-            </returns>
-        </member>
-        <member name="M:System.Extensions.StringEx.Match(System.String,System.String)">
-            <summary>
-            Searches the specified input string for the first occurrence of
-            the specified regular expression pattern.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The value after matching. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-        </member>
-        <member name="M:System.Extensions.StringEx.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the input string for the first occurrence of the specified regular
-            expression, using the specified matching options.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The matched string value. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
-        </member>
-        <member name="M:System.Extensions.StringEx.MatchAll(System.String,System.String)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
-            </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
-        </member>
-        <member name="M:System.Extensions.StringEx.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern, using the specified matching
-            options.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
-        </member>
-        <member name="M:System.Extensions.StringEx.Reserve(System.String,System.String)">
-            <summary>
-            Reserve all characters that satisfy the specified pattern.
-            </summary>
-            <param name="this">The string.</param>
-            <param name="reservePattern">
-            The pattern that reserved characters satisfied. All supported patterns are:
-            <list type="table">
-            <item>
-            <term><c>@"\d"</c></term>
-            <description>To match a digit.</description>
-            </item>
-            <item>
-            <term><c>@"\t"</c></term>
-            <description>To match a tab.</description>
-            </item>
-            <item>
-            <term><c>@"\w"</c></term>
-            <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
-            </item>
-            </list>
-            </param>
-            <returns>The result string.</returns>
-            <remarks>
-            For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
-            won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
-            </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
-            of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
-            </exception>
-        </member>
-        <member name="M:System.Extensions.StringEx.IsRegexPattern(System.String)">
-            <summary>
-            To check if the current string value is a valid regular
-            expression pattern or not.
-            </summary>
-            <param name="this">The value to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:System.Extensions.StringEx.TrimVerbatim(System.String)">
-            <summary>
-            Trim all spaces when they started a new line, or null lines.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The trimmed result.</returns>
-            <remarks>
-            Note that all null lines and header spaces are removed.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.StringEx.TrimEndNewLine(System.String)">
-            <summary>
-            Trim new-line characters from the tail of the string.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:System.Extensions.StringEx.SplitByNewLine(System.String)">
-            <summary>
-            Split the string with the fixed characters (new line).
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:System.Extensions.TypeEx">
-            <summary>
-            Provides extension method on <see cref="T:System.Type"/>.
-            </summary>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:System.Extensions.TypeEx.IsSubclassOf``1(System.Type)">
-            <summary>
-            Determine whether the type is the subclass of the specified one.
-            </summary>
-            <typeparam name="TClass">The specified type to check.</typeparam>
-            <param name="this">The type to check.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Extensions.TypeEx.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
-            <summary>
-            Determine whether the type contains a parameterless constructor.
-            </summary>
-            <param name="this">The type.</param>
-            <param name="flags">
-            The flags. The default value is
-            <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.Extensions.Utf8JsonReaderEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
-        </member>
-        <member name="M:System.Extensions.Utf8JsonReaderEx.ReadObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.Serialization.JsonConverter{``0},System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to read an object.
-            </summary>
-            <typeparam name="T">The object to read.</typeparam>
-            <param name="this">The reader instance.</param>
-            <param name="converter">The converter to convert the value.</param>
-            <param name="type">The type to convert.</param>
-            <param name="options">The options on deserialization.</param>
-            <returns>The instance.</returns>
-        </member>
-        <member name="T:System.Extensions.Utf8JsonWriterEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
-        </member>
-        <member name="M:System.Extensions.Utf8JsonWriterEx.WriteObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to write an object.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="value">The value to serialize.</param>
-            <param name="converter">The converter.</param>
-            <param name="options">The options on serialization.</param>
-        </member>
-        <member name="M:System.Extensions.Utf8JsonWriterEx.WriteObjects``1(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IEnumerable{``0},System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to write a series of objects.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="values">Values to serialize.</param>
-            <param name="converter">The converter.</param>
-            <param name="options">The options on serialization.</param>
-        </member>
-        <member name="T:System.Extensions.BitOperationsEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
-            </summary>
-            <seealso cref="T:System.Numerics.BitOperations"/>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.SByte)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Byte)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int16)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt16)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int32)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt32)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.Int64)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetAllSets(System.UInt64)">
-            <summary>
-            Find all offsets of set bits of the binary representation of a specified value.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All offsets.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.SByte)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.SByte"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Byte)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.Byte"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int16)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.Int16"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt16)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.UInt16"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int32)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.Int32"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt32)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.UInt32"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.Int64)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.Int64"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetEnumerator(System.UInt64)">
-            <summary>
-            <para>Extension get enumerator of the type <see cref="T:System.UInt64"/>.</para>
-            <para>
-            This method will allow you to use <see langword="foreach"/> loop to iterate on
-            all indices of set bits.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-            <returns>All indices of set bits.</returns>
-            <remarks>
-            This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
-            foreach (int setIndex in 17)
-            {
-            	// Do something...
-            }
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Byte,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value after the specified index,
-            whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int16,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value after the specified index,
-            whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int32,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value after the specified index,
-            whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.GetNextSet(System.Int64,System.Int32)">
-            <summary>
-            Find a index of the binary representation of a value after the specified index,
-            whose bit is set <see langword="true"/>.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="index">The index.</param>
-            <returns>The index.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Byte@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int16@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int32@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.ReverseBits(System.Int64@)">
-            <summary>
-            <para>Reverse all bits in a specified value.</para>
-            <para>
-            Note that the value is passed by <b>reference</b> though the
-            method is an extension method, and returns nothing.
-            </para>
-            </summary>
-            <param name="this">The value.</param>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Byte,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int16,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int32,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SetAt(System.Int64,System.Int32)">
-            <summary>
-            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
-            all set bits with the specified set bit order.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="order">The number of the order of set bits.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Byte,System.Int32)">
-            <summary>
-            Skip the specified number of set bits and iterate on the integer with other set bits.
-            </summary>
-            <param name="this">The integer to iterate.</param>
-            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
-            <returns>The byte value that only contains the other set bits.</returns>
-            <remarks>
-            For example:
-            <code>
-            byte value = 0b00010111;
-            foreach (int bitPos in value.SkipSetBit(2))
-            {
-                yield return bitPos + 1;
-            }
-            </code>
-            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
-            two of them, so the result set bit positions to iterate on are only 2 and 4.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int16,System.Int32)">
-            <summary>
-            Skip the specified number of set bits and iterate on the integer with other set bits.
-            </summary>
-            <param name="this">The integer to iterate.</param>
-            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
-            <returns>The short value that only contains the other set bits.</returns>
-            <remarks>
-            For example:
-            <code>
-            byte value = 0b00010111;
-            foreach (int bitPos in value.SkipSetBit(2))
-            {
-                yield return bitPos + 1;
-            }
-            </code>
-            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
-            two of them, so the result set bit positions to iterate on are only 2 and 4.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int32,System.Int32)">
-            <summary>
-            Skip the specified number of set bits and iterate on the integer with other set bits.
-            </summary>
-            <param name="this">The integer to iterate.</param>
-            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
-            <returns>The int value that only contains the other set bits.</returns>
-            <remarks>
-            For example:
-            <code>
-            byte value = 0b00010111;
-            foreach (int bitPos in value.SkipSetBit(2))
-            {
-                yield return bitPos + 1;
-            }
-            </code>
-            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
-            two of them, so the result set bit positions to iterate on are only 2 and 4.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.BitOperationsEx.SkipSetBit(System.Int64,System.Int32)">
-            <summary>
-            Skip the specified number of set bits and iterate on the integer with other set bits.
-            </summary>
-            <param name="this">The integer to iterate.</param>
-            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
-            <returns>The long value that only contains the other set bits.</returns>
-            <remarks>
-            For example:
-            <code>
-            byte value = 0b00010111;
-            foreach (int bitPos in value.SkipSetBit(2))
-            {
-                yield return bitPos + 1;
-            }
-            </code>
-            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
-            two of them, so the result set bit positions to iterate on are only 2 and 4.
-            </remarks>
-        </member>
-        <member name="M:System.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
-            <summary>
-            Deconstruct the instance to multiple values, which allows you use the value tuple syntax
-            to get the properties from an instance like:
-            <code>
-            var (variable1, variable2, variable3) = instance;
-            </code>
-            or like
-            <code>
-            (int variable1, double variable2, string? variable3) = instance;
-            </code>
-            </summary>
-            <remarks>
-            <para>
-            The method should be declared manually when the type is a normal <see langword="struct"/>
-            or <see langword="class"/>. If the method is in a <see langword="record"/>
-            (or a <see langword="record struct"/>), the deconstruct method will be generated
-            by the compiler automatically and returns <b>all properties</b>
-            to those <see langword="out"/> parameters.
-            </para>
-            <para>
-            Please note: If the deconstruct method is automatically generated by the compiler,
-            you can't create a deconstruct method manually with the same number of the parameters
-            than that auto method; otherwise, the method can't be called normally.
-            </para>
-            <para>
-            In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
-            </para>
-            </remarks>
-            <seealso cref="T:System.ValueTuple"/>
-        </member>
-        <member name="T:System.IO.DirectoryEx">
+        <member name="T:System.IO.DirectoryExtensions">
             <summary>
             The directory extensions.
             </summary>
         </member>
-        <member name="M:System.IO.DirectoryEx.CreateIfDoesNotExist(System.String)">
+        <member name="M:System.IO.DirectoryExtensions.CreateIfDoesNotExist(System.String)">
             <summary>
             Create the specified directory path when the path doesn't exist.
             </summary>
             <param name="path">The path.</param>
         </member>
-        <member name="M:System.IO.DirectoryEx.DeleteWhenNoFilesInIt(System.String)">
+        <member name="M:System.IO.DirectoryExtensions.DeleteWhenNoFilesInIt(System.String)">
             <summary>
             Delete the directory when the current directory doesn't contain any files.
             </summary>
@@ -3066,89 +1768,598 @@
             </list>
             </returns>
         </member>
-        <member name="T:System.ICloneable`1">
-            <inheritdoc cref="T:System.ICloneable"/>
-            <typeparam name="TClass">
-            The type of this instance. This type should be only a class because the cloning
-            operation is needed only in reference types, while the value types will be passed
-            by value, at this time all value members (fields and properties) will be copied
-            one by one.
-            </typeparam>
-            <remarks>
-            Different with <see cref="T:System.ICloneable"/>, the cloneation
-            has the same type with this existing instance.
-            </remarks>
-            <seealso cref="T:System.ICloneable"/>
-        </member>
-        <member name="M:System.ICloneable`1.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
-        </member>
-        <member name="M:System.ICloneable`1.System#ICloneable#Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:System.IValueComparable`1">
+        <member name="T:System.DoubleExtensions">
             <summary>
-            Defines a generalized comparison method that a <see langword="struct"/> implements
-            to create a type-specific comparison method for ordering or sorting its instances.
+            Provides extension methods on <see cref="T:System.Double"/>.
             </summary>
-            <typeparam name="TStruct">
-            The type of objects to compare. Here it should be a <see langword="struct"/>.
-            </typeparam>
+            <seealso cref="T:System.Double"/>
         </member>
-        <member name="M:System.IValueComparable`1.CompareTo(`0@)">
+        <member name="M:System.DoubleExtensions.NearlyEquals(System.Double,System.Double)">
             <summary>
-            Compares the current instance with another object of the same type and returns
-            an integer that indicates whether the current instance precedes, follows, or
-            occurs in the same position in the sort order as the other object.
+            Indicates whether the specified value is nearly equals to the current value.
             </summary>
-            <param name="other">An object to compare with this instance.</param>
+            <param name="this">The value.</param>
+            <param name="other">The other value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.DoubleExtensions.NearlyEquals(System.Double,System.Double,System.Double)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            If the differ of two values to compare is lower than the specified epsilon value,
+            the method will return <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="other">The other value to compare.</param>
+            <param name="epsilon">The epsilon value (the minimal differ).</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Linq.EnumerableExtensions">
+            <summary>
+            Provides a set of static methods for querying objects that implement
+            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <remarks>This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.</remarks>
+            <seealso cref="T:System.Collections.IEnumerable"/>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the specified list has only one element.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.Contains``1(System.Collections.Generic.IEnumerable{``0},``0[])">
+            <summary>
+            Check whether the list contains the element that is in the specified array.
+            </summary>
+            <typeparam name="TEquatable">The type of the element to check.</typeparam>
+            <param name="this">The list.</param>
+            <param name="elements">
+            The array that contains the target elements.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.ContainsType``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the collection contains any elements that match the specified type.
+            </summary>
+            <typeparam name="T">The type to check.</typeparam>
+            <param name="this">The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+            Get the index of the whole list, whose corresponding element is satisfy the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="predicate">The condition to check.</param>
             <returns>
-            A value that indicates the relative order of the objects being compared. The
-            return value has these meanings:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><![CDATA[< 0]]></c></term>
-            <description>This instance precedes other in the sort order.</description>
-            </item>
-            <item>
-            <term><c>0</c></term>
-            <description>This instance occurs in the same position in the sort order as other.</description>
-            </item>
-            <item>
-            <term><c><![CDATA[> 0]]></c></term>
-            <description>This instance follows other in the sort order.</description>
-            </item>
-            </list>
+            The index of the element satisfied the condition. If the list can't find that element,
+            return -1 as the result.
             </returns>
         </member>
-        <member name="M:System.IValueComparable`1.System#IComparable{TStruct}#CompareTo(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="T:System.IValueEquatable`1">
+        <member name="T:System.EnumExtensions">
             <summary>
-            Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
-            for detemining equality of instances.
+            Provides extension methods on <see cref="T:System.Enum"/>.
             </summary>
-            <typeparam name="TStruct">
-            The type of objects to compare. Here it should be a <see langword="struct"/>.
-            </typeparam>
+            <seealso cref="T:System.Enum"/>
         </member>
-        <member name="M:System.IValueEquatable`1.Equals(`0@)">
+        <member name="M:System.EnumExtensions.IsFlag``1(``0)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Checks whether the current enumeration field is a flag.
             </summary>
-            <param name="other">An object to compare with this object.</param>
+            <typeparam name="TEnum">The type of the current field.</typeparam>
+            <param name="this">The current field to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.EnumExtensions.Min``1(``0,``0)">
+            <summary>
+            Check which enumeration field is less.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
+            <param name="left">The left one.</param>
+            <param name="right">The right one.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="M:System.EnumExtensions.Max``1(``0,``0)">
+            <summary>
+            Check which enumeration field is greater.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
+            <param name="left">The left one.</param>
+            <param name="right">The right one.</param>
+            <returns>The comparison result.</returns>
+        </member>
+        <member name="M:System.EnumExtensions.GetAllFlags``1(``0)">
+            <summary>
+            To get all possible flags from a specified enumeration instance.
+            </summary>
+            <typeparam name="TEnum">The type of that enumeration.</typeparam>
+            <param name="this">The field.</param>
             <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
+            All flags. If the enumeration field doesn't contain any flags,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:System.EnumExtensions.GetEnumerator``1(``0)">
+            <summary>
+            Get all possible flags that the current enumeration field set.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="this">The current enumeration type instance.</param>
+            <returns>All flags.</returns>
+        </member>
+        <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
+            <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="this">The current enumeration type instance.</param>
+            <param name="other">The other instance to check.</param>
+            <remarks>
+            This method is same as <see cref="M:System.Enum.HasFlag(System.Enum)"/>, but without boxing and unboxing operations.
+            </remarks>
+            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
+            <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
+        </member>
+        <member name="M:System.EnumExtensions.MultiFlags``1(``0,``0)">
+            <summary>
+            Determines whether the instance has the flags specified as <paramref name="flags"/>.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration field.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="flags">All flags used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:System.FormatProviderExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
+            </summary>
+            <seealso cref="T:System.IFormatProvider"/>
+        </member>
+        <member name="M:System.FormatProviderExtensions.HasFormatted``1(System.IFormatProvider,``0@,System.String,System.String@)">
+            <summary>
+            To check whether the format provider has defined the format rule.
+            If the rule is defined, this method will return the string representation
+            according to the format rule.
+            </summary>
+            <param name="this">The format provider.</param>
+            <param name="obj">The object.</param>
+            <param name="format">The format string.</param>
+            <param name="result">
+            The result. If the format has been defined,
+            this value won't be <see langword="null"/>.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            You should use this as:
+            <code>
+            if (formatProvider.HasFormatted(this, format, out string? result))
+            {
+                return result;
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="T:System.GenericExtensions">
+            <summary>
+            Provides extension methods on generic type.
+            </summary>
+        </member>
+        <member name="M:System.GenericExtensions.ToStringWithTrailingSpace``1(``0)">
+            <summary>
+            Get the string representation of the instance, with the trailing space after the result string value.
+            </summary>
+            <typeparam name="TNotNull">The type of the instance.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The result value.</returns>
+        </member>
+        <member name="T:System.MathExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Math"/>.
+            </summary>
+            <seealso cref="T:System.Math"/>
+        </member>
+        <member name="M:System.MathExtensions.Min(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the minimal one of three values.
+            </summary>
+            <param name="a">The first value.</param>
+            <param name="b">The second value.</param>
+            <param name="c">The third value.</param>
+            <returns>Which is the minimal value.</returns>
+        </member>
+        <member name="M:System.MathExtensions.Max(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the maximum one of three values.
+            </summary>
+            <param name="a">The first value.</param>
+            <param name="b">The second value.</param>
+            <param name="c">The third value.</param>
+            <returns>Which is the maximum value.</returns>
+        </member>
+        <member name="T:System.Reflection.MemberInfoExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+            <seealso cref="T:System.Reflection.MemberInfo"/>
+        </member>
+        <member name="M:System.Reflection.MemberInfoExtensions.IsDefined``1(System.Reflection.MemberInfo)">
+            <summary>
+            Indicates whether custom attributes of a specified type are applied to a specified member.
+            </summary>
+            <typeparam name="TAttribute">The type of that attribute.</typeparam>
+            <param name="this">The member information instance.</param>
+            <returns>
+            <see langword="true"/> if an attribute of the specified type is applied to <paramref name="this"/>;
             otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
-            <inheritdoc/>
+        <member name="T:System.Pointer">
+            <summary>
+            Provides methods on pointers.
+            </summary>
+            <remarks>
+            Different with other types, pointers can't be as <see langword="this"/> parameter.
+            </remarks>
+        </member>
+        <member name="M:System.Pointer.Swap``1(``0*,``0*)">
+            <summary>
+            To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the variable.</typeparam>
+            <param name="left">The left variable.</param>
+            <param name="right">The right variable.</param>
+        </member>
+        <member name="M:System.Pointer.StringLengthOf(System.Char*)">
+            <summary>
+            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <returns>The total length.</returns>
+            <remarks>
+            In C#, this function is unsafe because the implementation of
+            <see cref="T:System.String"/> types between C and C# is totally different.
+            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
+            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+            However, C# not.
+            </remarks>
+        </member>
+        <member name="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
+            <summary>
+            Get the new array from the pointer, with the specified start index.
+            </summary>
+            <typeparam name="TUnmanaged">
+            The type of the pointer element. Note that the type should be <see langword="unmanaged"/>
+            in order to use pointer handling. Therefore, <see langword="managed"/> types shouldn't be allowed.
+            </typeparam>
+            <param name="ptr">The pointer.</param>
+            <param name="length">The length of the array that pointer points to.</param>
+            <param name="index">The start index that you want to pick from.</param>
+            <returns>The array of elements.</returns>
+            <remarks>
+            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            the parameter <paramref name="length"/> should keep the value 5 because the array contains
+            5 elements in this case.
+            </remarks>
+        </member>
+        <member name="M:System.Pointer.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get the new array from the pointer, with the specified start index.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <param name="length">The length of the array that pointer points to.</param>
+            <param name="index">The start index that you want to pick from.</param>
+            <param name="removeTrailingZeros">
+            Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
+            the method will be same as <see cref="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
+            </param>
+            <returns>The array of elements.</returns>
+            <remarks>
+            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            the parameter <paramref name="length"/> should keep the value 5 because the array contains
+            5 elements in this case.
+            </remarks>
+            <seealso cref="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:System.ReadOnlySpanExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.Select``2(System.ReadOnlySpan{``0}@,System.Func{``0,``1})">
+            <summary>
+            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
+            clause.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <typeparam name="TResult">The result type.</typeparam>
+            <param name="this">The list.</param>
+            <param name="selector">The selector that is used for conversion.</param>
+            <returns>The array of target result elements.</returns>
+            <example>
+            For example:
+            <code>
+            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
+            </code>
+            </example>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All subsets.</returns>
+        </member>
+        <member name="T:System.SingleExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Single"/>.
+            </summary>
+            <seealso cref="T:System.Single"/>
+        </member>
+        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="other">The other value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            If the differ of two values to compare is lower than the specified epsilon value,
+            the method will return <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="other">The other value to compare.</param>
+            <param name="epsilon">The epsilon value (the minimal differ).</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.SpanExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Span`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="M:System.SpanExtensions.Select``2(System.Span{``0}@,System.Func{``0,``1})">
+            <summary>
+            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
+            clause.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <typeparam name="TResult">The result type.</typeparam>
+            <param name="this">The list.</param>
+            <param name="selector">The selector that is used for conversion.</param>
+            <returns>The array of target result elements.</returns>
+            <example>
+            For example:
+            <code>
+            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
+            </code>
+            </example>
+        </member>
+        <member name="M:System.SpanExtensions.GetSubsets``1(System.Span{``0}@,System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All subsets.</returns>
+        </member>
+        <member name="T:System.Text.StringBuilderExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringBuilder"/>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.Reverse(System.Text.StringBuilder)">
+            <summary>
+            Reverse all characters in a specified string builder instance.
+            </summary>
+            <param name="this">
+            The instance to reverse all characters.
+            </param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.RemoveFrom(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Remove all characters hehind the character whose index is specified.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.RemoveFrom(System.Text.StringBuilder,System.Index@)">
+            <summary>
+            Remove all characters behind the character whose index is specified.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Remove the specified number of characters from the end of the string builder
+            instance.
+            </summary>
+            <param name="this">The instance to remove characters.</param>
+            <param name="length">The number of characters you want to remove.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendLine(System.Text.StringBuilder,System.Char)">
+            <summary>
+            Append a character to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <param name="this">The instance.</param>
+            <param name="value">The character you want to append.</param>
+            <returns>The reference of the current instance.</returns>
+            <remarks>
+            The extension method is used in order to avoid implicit conversion from
+            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
+            please use the method <see cref="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)"/>.
+            </remarks>
+            <seealso cref="P:System.Environment.NewLine"/>
+            <seealso cref="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)"/>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)">
+            <summary>
+            Append a <see cref="T:System.String"/> representation of an object
+            to the end of the specified string builder instance,
+            and then append a <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <typeparam name="T">The type of the instance to add.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="obj">
+            The <see cref="T:System.String"/> representation of an object you want to append.
+            </param>
+            <returns>The reference of the current instance.</returns>
+            <remarks>
+            This method can solve the problem of boxing and unboxing.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendLines(System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Append several lines into the <see cref="T:System.Text.StringBuilder"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+            <param name="lines">The lines you want to add.</param>
+            <returns>The reference of the parameter <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.NullableAppend(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
+            the text is not <see langword="null"/>; otherwise, do nothing.
+            </summary>
+            <param name="this">The string builder.</param>
+            <param name="text">The text to add.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.NullableAppendLine(System.Text.StringBuilder,System.String)">
+            <summary>
+            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
+            the text is not <see langword="null"/>, and then add a terminator at the tail;
+            otherwise, do nothing.
+            </summary>
+            <param name="this">The string builder.</param>
+            <param name="text">The text to add.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="contentList">All contents.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
+            This method allows you defining a custom converter to convert the specified value into
+            a string to be appended.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="contentList">All contents.</param>
+            <param name="converter">The converter method specified as a function pointer.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Text.StringBuilder})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.Text.StringBuilder"/> representation.
+            This method allows you defining a custom converter to convert the specified value into
+            a string to be appended.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="contentList">All contents.</param>
+            <param name="converter">The converter method specified as a function pointer.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation,
+            and then append a new line as a separator. This method allows you defining a custom converter
+            to convert the specified value into a string to be appended.
+            </summary>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="contentList">All contents.</param>
+            <param name="converter">The converter method specified as a function pointer.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation, and then
+            append a new line as a separator.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list.</param>
+            <param name="contentList">All contents.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            Copy the specified string builder to the specified target.
+            </summary>
+            <param name="this">The base string builder.</param>
+            <param name="to">The target builder.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws if the target instance doesn't have enough space to store all characters
+            from the base one.
+            </exception>
+        </member>
+        <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.ReadObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.Serialization.JsonConverter{``0},System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to read an object.
+            </summary>
+            <typeparam name="T">The object to read.</typeparam>
+            <param name="this">The reader instance.</param>
+            <param name="converter">The converter to convert the value.</param>
+            <param name="type">The type to convert.</param>
+            <param name="options">The options on deserialization.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="T:System.Text.Json.Utf8JsonWriterExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to write an object.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="value">The value to serialize.</param>
+            <param name="converter">The converter.</param>
+            <param name="options">The options on serialization.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObjects``1(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IEnumerable{``0},System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to write a series of objects.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="values">Values to serialize.</param>
+            <param name="converter">The converter.</param>
+            <param name="options">The options on serialization.</param>
         </member>
         <member name="T:System.Text.Json.IJsonSerializable`2">
             <summary>
@@ -3708,6 +2919,795 @@
         <member name="M:System.Text.ValueStringBuilder.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="F:System.StringExtensions.NullLinesOrHeaderSpaces">
+            <summary>
+            Indicates the regular expression to match all null lines and header spaces in their lines.
+            </summary>
+        </member>
+        <member name="F:System.StringExtensions.MatchingTimeSpan">
+            <summary>
+            Indicates the time span that is used for matching.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance is satisfied
+            the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <param name="pattern">
+            The regular expression pattern. If the value is <see langword="null"/>,
+            the return value is always <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.IsMatch(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance can match the value
+            using the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.ReplaceAt(System.String,System.Int32,System.Char)">
+            <summary>
+            Replace the character at the specified index with the new value.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="index">The index.</param>
+            <param name="charToInsert">The string to insert.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SliceViaCharacter(System.String,System.Char)">
+            <summary>
+            Slices the current <see cref="T:System.String"/> instance, via the specified character.
+            If the string contains that character, we'll slice the string to get the segment.
+            </summary>
+            <remarks>
+            Please note that even if the character exists in the string, we won't get the segment
+            containing that character.
+            </remarks>
+            <param name="this">The string.</param>
+            <param name="ch">The character to check.</param>
+            <returns>
+            The slice result. If the character doesn't exist in the string,
+            <see langword="null"/> will be returned.
+            </returns>
+        </member>
+        <member name="M:System.StringExtensions.Match(System.String,System.String)">
+            <summary>
+            Searches the specified input string for the first occurrence of
+            the specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The value after matching. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the input string for the first occurrence of the specified regular
+            expression, using the specified matching options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The matched string value. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.StringExtensions.MatchAll(System.String,System.String)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
+            </remarks>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:System.StringExtensions.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern, using the specified matching
+            options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.StringExtensions.Reserve(System.String,System.String)">
+            <summary>
+            Reserve all characters that satisfy the specified pattern.
+            </summary>
+            <param name="this">The string.</param>
+            <param name="reservePattern">
+            The pattern that reserved characters satisfied. All supported patterns are:
+            <list type="table">
+            <item>
+            <term><c>@"\d"</c></term>
+            <description>To match a digit.</description>
+            </item>
+            <item>
+            <term><c>@"\t"</c></term>
+            <description>To match a tab.</description>
+            </item>
+            <item>
+            <term><c>@"\w"</c></term>
+            <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The result string.</returns>
+            <remarks>
+            For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
+            won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
+            </remarks>
+            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
+            Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
+            of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
+            </exception>
+        </member>
+        <member name="M:System.StringExtensions.IsRegexPattern(System.String)">
+            <summary>
+            To check if the current string value is a valid regular
+            expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:System.StringExtensions.TrimVerbatim(System.String)">
+            <summary>
+            Trim all spaces when they started a new line, or null lines.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The trimmed result.</returns>
+            <remarks>
+            Note that all null lines and header spaces are removed.
+            </remarks>
+        </member>
+        <member name="M:System.StringExtensions.TrimEndNewLine(System.String)">
+            <summary>
+            Trim new-line characters from the tail of the string.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitByNewLine(System.String)">
+            <summary>
+            Split the string with the fixed characters (new line).
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:System.TypeExtensions">
+            <summary>
+            Provides extension method on <see cref="T:System.Type"/>.
+            </summary>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="M:System.TypeExtensions.IsSubclassOf``1(System.Type)">
+            <summary>
+            Determine whether the type is the subclass of the specified one.
+            </summary>
+            <typeparam name="TClass">The specified type to check.</typeparam>
+            <param name="this">The type to check.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.TypeExtensions.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            Determine whether the type contains a parameterless constructor.
+            </summary>
+            <param name="this">The type.</param>
+            <param name="flags">
+            The flags. The default value is
+            <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:System.ICloneable`1">
+            <inheritdoc cref="T:System.ICloneable"/>
+            <typeparam name="TClass">
+            The type of this instance. This type should be only a class because the cloning
+            operation is needed only in reference types, while the value types will be passed
+            by value, at this time all value members (fields and properties) will be copied
+            one by one.
+            </typeparam>
+            <remarks>
+            Different with <see cref="T:System.ICloneable"/>, the cloneation
+            has the same type with this existing instance.
+            </remarks>
+            <seealso cref="T:System.ICloneable"/>
+        </member>
+        <member name="M:System.ICloneable`1.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:System.ICloneable`1.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.IValueComparable`1">
+            <summary>
+            Defines a generalized comparison method that a <see langword="struct"/> implements
+            to create a type-specific comparison method for ordering or sorting its instances.
+            </summary>
+            <typeparam name="TStruct">
+            The type of objects to compare. Here it should be a <see langword="struct"/>.
+            </typeparam>
+        </member>
+        <member name="M:System.IValueComparable`1.CompareTo(`0@)">
+            <summary>
+            Compares the current instance with another object of the same type and returns
+            an integer that indicates whether the current instance precedes, follows, or
+            occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The
+            return value has these meanings:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><![CDATA[< 0]]></c></term>
+            <description>This instance precedes other in the sort order.</description>
+            </item>
+            <item>
+            <term><c>0</c></term>
+            <description>This instance occurs in the same position in the sort order as other.</description>
+            </item>
+            <item>
+            <term><c><![CDATA[> 0]]></c></term>
+            <description>This instance follows other in the sort order.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:System.IValueComparable`1.System#IComparable{TStruct}#CompareTo(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.IValueEquatable`1">
+            <summary>
+            Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
+            for detemining equality of instances.
+            </summary>
+            <typeparam name="TStruct">
+            The type of objects to compare. Here it should be a <see langword="struct"/>.
+            </typeparam>
+        </member>
+        <member name="M:System.IValueEquatable`1.Equals(`0@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Numerics.BitOperationsExensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
+            </summary>
+            <seealso cref="T:System.Numerics.BitOperations"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.SByte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.Byte)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.Int16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.UInt16)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.Int32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.UInt32)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.Int64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetAllSets(System.UInt64)">
+            <summary>
+            Find all offsets of set bits of the binary representation of a specified value.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All offsets.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.SByte)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.SByte"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Byte)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Byte"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int16)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int16"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt16)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt16"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int32)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int32"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt32)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt32"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int64)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.Int64"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt64)">
+            <summary>
+            <para>Extension get enumerator of the type <see cref="T:System.UInt64"/>.</para>
+            <para>
+            This method will allow you to use <see langword="foreach"/> loop to iterate on
+            all indices of set bits.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+            <returns>All indices of set bits.</returns>
+            <remarks>
+            This implementation will allow you use <see langword="foreach"/> loop:
+            <code>
+            foreach (int setIndex in 17)
+            {
+            	// Do something...
+            }
+            </code>
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetNextSet(System.Byte,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetNextSet(System.Int16,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetNextSet(System.Int32,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.GetNextSet(System.Int64,System.Int32)">
+            <summary>
+            Find a index of the binary representation of a value after the specified index,
+            whose bit is set <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="index">The index.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.ReverseBits(System.Byte@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.ReverseBits(System.Int16@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.ReverseBits(System.Int32@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.ReverseBits(System.Int64@)">
+            <summary>
+            <para>Reverse all bits in a specified value.</para>
+            <para>
+            Note that the value is passed by <b>reference</b> though the
+            method is an extension method, and returns nothing.
+            </para>
+            </summary>
+            <param name="this">The value.</param>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SetAt(System.Byte,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SetAt(System.Int16,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SetAt(System.Int32,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SetAt(System.Int64,System.Int32)">
+            <summary>
+            Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of
+            all set bits with the specified set bit order.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="order">The number of the order of set bits.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SkipSetBit(System.Byte,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The byte value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SkipSetBit(System.Int16,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The short value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SkipSetBit(System.Int32,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The int value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExensions.SkipSetBit(System.Int64,System.Int32)">
+            <summary>
+            Skip the specified number of set bits and iterate on the integer with other set bits.
+            </summary>
+            <param name="this">The integer to iterate.</param>
+            <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+            <returns>The long value that only contains the other set bits.</returns>
+            <remarks>
+            For example:
+            <code>
+            byte value = 0b00010111;
+            foreach (int bitPos in value.SkipSetBit(2))
+            {
+                yield return bitPos + 1;
+            }
+            </code>
+            You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+            two of them, so the result set bit positions to iterate on are only 2 and 4.
+            </remarks>
+        </member>
+        <member name="M:System.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
+            <summary>
+            Deconstruct the instance to multiple values, which allows you use the value tuple syntax
+            to get the properties from an instance like:
+            <code>
+            var (variable1, variable2, variable3) = instance;
+            </code>
+            or like
+            <code>
+            (int variable1, double variable2, string? variable3) = instance;
+            </code>
+            </summary>
+            <remarks>
+            <para>
+            The method should be declared manually when the type is a normal <see langword="struct"/>
+            or <see langword="class"/>. If the method is in a <see langword="record"/>
+            (or a <see langword="record struct"/>), the deconstruct method will be generated
+            by the compiler automatically and returns <b>all properties</b>
+            to those <see langword="out"/> parameters.
+            </para>
+            <para>
+            Please note: If the deconstruct method is automatically generated by the compiler,
+            you can't create a deconstruct method manually with the same number of the parameters
+            than that auto method; otherwise, the method can't be called normally.
+            </para>
+            <para>
+            In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
+            </para>
+            </remarks>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
     </members>
 </doc>

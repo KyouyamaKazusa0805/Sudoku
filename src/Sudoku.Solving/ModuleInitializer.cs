@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Extensions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Solving.Manual;

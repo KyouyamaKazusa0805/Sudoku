@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 
-namespace System.Extensions
+namespace System.Text
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StringBuilder"/>.
 	/// </summary>
 	/// <seealso cref="StringBuilder"/>
-	public static class StringBuilderEx
+	public static class StringBuilderExtensions
 	{
 		/// <summary>
 		/// Reverse all characters in a specified string builder instance.

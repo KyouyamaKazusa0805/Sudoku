@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="ReadOnlySpan{T}"/>.
+	/// Provides extension methods on <see cref="Span{T}"/>.
 	/// </summary>
-	/// <seealso cref="ReadOnlySpan{T}"/>
-	public static class ReadOnlySpanEx
+	/// <seealso cref="Span{T}"/>
+	public static class SpanExtensions
 	{
 		/// <summary>
 		/// The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
@@ -23,7 +23,7 @@ namespace System.Extensions
 		/// <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
 		/// </code>
 		/// </example>
-		public static TResult[] Select<T, TResult>(this in ReadOnlySpan<T> @this, Func<T, TResult> selector)
+		public static TResult[] Select<T, TResult>(this in Span<T> @this, Func<T, TResult> selector)
 		{
 			var result = new TResult[@this.Length];
 			int i = 0;
@@ -41,7 +41,7 @@ namespace System.Extensions
 		/// <param name="this">The array.</param>
 		/// <param name="count">The number of elements you want to take.</param>
 		/// <returns>All subsets.</returns>
-		public static IReadOnlyCollection<T[]> GetSubsets<T>(this in ReadOnlySpan<T> @this, int count)
+		public static IEnumerable<T[]> GetSubsets<T>(this in Span<T> @this, int count)
 		{
 			if (count == 0)
 			{
@@ -55,7 +55,7 @@ namespace System.Extensions
 
 			static void g(
 				int last, int count, int index, in Span<int> tempArray,
-				in ReadOnlySpan<T> @this, in IList<T[]> resultList)
+				in Span<T> @this, in IList<T[]> resultList)
 			{
 				for (int i = last; i >= index; i--)
 				{

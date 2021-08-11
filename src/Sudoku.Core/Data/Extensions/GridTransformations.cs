@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Extensions;
 using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Tables;
 

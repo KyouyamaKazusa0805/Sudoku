@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Extensions;
 using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
@@ -1235,12 +1234,12 @@ namespace Sudoku.Windows
 						total += difficulty;
 						min = Math.Min(difficulty, min);
 						max = Math.Max(difficulty, max);
-						minDifficulty = EnumEx.Min(difficultyLevel, minDifficulty);
-						maxDifficulty = EnumEx.Max(difficultyLevel, maxDifficulty);
+						minDifficulty = EnumExtensions.Min(difficultyLevel, minDifficulty);
+						maxDifficulty = EnumExtensions.Max(difficultyLevel, maxDifficulty);
 					}
 
 					summaryMax = Math.Max(summaryMax, max);
-					puzzleDifficulty = EnumEx.Max(puzzleDifficulty, maxDifficulty);
+					puzzleDifficulty = EnumExtensions.Max(puzzleDifficulty, maxDifficulty);
 
 					collection.Add(
 						new(

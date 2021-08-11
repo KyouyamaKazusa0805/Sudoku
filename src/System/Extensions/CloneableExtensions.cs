@@ -1,12 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ICloneable"/>.
 	/// </summary>
 	/// <seealso cref="ICloneable"/>
-	public static class CloneableEx
+	public static class CloneableExtensions
 	{
 		/// <summary>
 		/// Clone this object and try to cast to the specified type.

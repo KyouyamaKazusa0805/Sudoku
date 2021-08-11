@@ -1,4 +1,4 @@
-﻿using System.Extensions;
+﻿using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;

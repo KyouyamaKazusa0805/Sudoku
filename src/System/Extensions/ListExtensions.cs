@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IList{T}"/>.
 	/// </summary>
 	/// <seealso cref="IList{T}"/>
-	public static class ListEx
+	public static class ListExtensions
 	{
 		/// <summary>
 		/// Remove duplicate items in the specified list.

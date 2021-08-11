@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Enum"/>.
 	/// </summary>
 	/// <seealso cref="Enum"/>
-	public static class EnumEx
+	public static class EnumExtensions
 	{
 		/// <summary>
 		/// Checks whether the current enumeration field is a flag.

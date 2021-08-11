@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="IFormatProvider"/>.
 	/// </summary>
 	/// <seealso cref="IFormatProvider"/>
-	public static class FormatProviderEx
+	public static class FormatProviderExtensions
 	{
 		/// <summary>
 		/// To check whether the format provider has defined the format rule.
@@ -33,9 +33,7 @@ namespace System.Extensions
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasFormatted<TNotNull>(
-			[NotNullWhen(true)] this IFormatProvider? @this,
-			in TNotNull obj,
-			string? format,
+			[NotNullWhen(true)] this IFormatProvider? @this, in TNotNull obj, string? format,
 			[NotNullWhen(true)] out string? result)
 			where TNotNull : notnull
 		{

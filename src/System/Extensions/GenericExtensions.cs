@@ -1,11 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on generic type.
 	/// </summary>
-	public static class GenericEx
+	public static class GenericExtensions
 	{
 		/// <summary>
 		/// Get the string representation of the instance, with the trailing space after the result string value.

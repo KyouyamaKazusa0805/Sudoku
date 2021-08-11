@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Extensions;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Techniques;

@@ -470,7 +470,7 @@ namespace Sudoku.IO
 				string s = args[2];
 				if (Path.GetDirectoryName(s) is { } directoryName)
 				{
-					DirectoryEx.CreateIfDoesNotExist(directoryName);
+					DirectoryExtensions.CreateIfDoesNotExist(directoryName);
 
 					_painter.Draw().Save(s);
 				}

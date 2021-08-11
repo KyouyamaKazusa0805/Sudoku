@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ICollection{T}"/> and <see cref="IReadOnlyCollection{T}"/>.
 	/// </summary>
 	/// <seealso cref="ICollection{T}"/>
 	/// <seealso cref="IReadOnlyCollection{T}"/>
-	public static class CollectionEx
+	public static class CollectionExtensions
 	{
 		/// <summary>
 		/// Adds the elements of the specified collection to the end of the

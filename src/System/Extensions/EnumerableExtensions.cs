@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System.Linq
 {
 	/// <summary>
 	/// Provides a set of static methods for querying objects that implement
@@ -13,7 +12,7 @@ namespace System.Extensions
 	/// <seealso cref="IEnumerable"/>
 	/// <seealso cref="IEnumerable{T}"/>
 	/// <seealso cref="Enumerable"/>
-	public static class EnumerableEx
+	public static class EnumerableExtensions
 	{
 		/// <summary>
 		/// Check whether the specified list has only one element.

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Extensions;
+using System.Numerics;
 using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 

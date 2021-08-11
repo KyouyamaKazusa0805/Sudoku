@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace System.Extensions
+namespace System.Text.Json
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Utf8JsonWriter"/>.
 	/// </summary>
 	/// <seealso cref="Utf8JsonWriter"/>
-	public static class Utf8JsonWriterEx
+	public static class Utf8JsonWriterExtensions
 	{
 		/// <summary>
 		/// Try to write an object.

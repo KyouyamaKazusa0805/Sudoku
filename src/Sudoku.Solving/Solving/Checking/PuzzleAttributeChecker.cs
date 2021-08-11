@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Extensions;
 using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Stepping;

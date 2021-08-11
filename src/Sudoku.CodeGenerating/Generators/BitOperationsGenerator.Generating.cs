@@ -11,14 +11,13 @@ namespace Sudoku.CodeGenerating.Generators
 		/// </summary>
 		private const string LeadingText = @"#pragma warning disable 1591
 
-using System;
 using static System.Numerics.BitOperations;
 
 #nullable enable
 
-namespace System.Extensions
+namespace System.Numerics
 {
-	partial class BitOperationsEx
+	partial class BitOperationsExensions
 	{
 		";
 
@@ -88,10 +87,7 @@ namespace System.Extensions
 			var sb = new StringBuilder();
 			sb.AppendLine($@"#pragma warning disable 1591
 
-using System;
-using System.Numerics;
-
-namespace System.Extensions
+namespace System.Numerics
 {{
 	/// <summary>
 	/// Provides extension methods on <see cref=""BitOperations""/>.
@@ -99,7 +95,7 @@ namespace System.Extensions
 	/// <seealso cref=""BitOperations""/>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public static partial class BitOperationsEx
+	public static partial class BitOperationsExensions
 	{{");
 			foreach (string name in GetAllSetsTypes)
 			{

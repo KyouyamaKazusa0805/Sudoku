@@ -1,12 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Math"/>.
 	/// </summary>
 	/// <seealso cref="Math"/>
-	public static class MathEx
+	public static class MathExtensions
 	{
 		/// <summary>
 		/// Get the minimal one of three values.

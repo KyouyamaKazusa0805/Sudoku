@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-namespace System.Extensions
+namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Dictionary{TKey, TValue}"/>.
 	/// </summary>
 	/// <seealso cref="Dictionary{TKey, TValue}"/>
-	public static class DictionaryEx
+	public static class DictionaryExtensions
 	{
 		/// <summary>
 		/// Converts the specified dictionary to an array, if each value can be iterated.

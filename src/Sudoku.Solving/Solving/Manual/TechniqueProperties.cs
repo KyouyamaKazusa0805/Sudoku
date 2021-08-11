@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Extensions;
 using System.Reflection;
 using Sudoku.CodeGenerating;
 

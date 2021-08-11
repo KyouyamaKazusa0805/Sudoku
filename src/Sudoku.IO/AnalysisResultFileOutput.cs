@@ -59,7 +59,7 @@ namespace Sudoku.IO
 				{
 					// If the directory cannot be found, create it.
 					string directoryPath = $@"{path[..path.LastIndexOf('\\')]}\Assets";
-					DirectoryEx.CreateIfDoesNotExist(directoryPath);
+					DirectoryExtensions.CreateIfDoesNotExist(directoryPath);
 
 					// Get all pictures, and input into the document.
 					for (int i = 0, count = steps.Count; i < count; i++)
@@ -137,7 +137,7 @@ namespace Sudoku.IO
 						// If something is wrong occurred above, check it.
 						if (dirExists)
 						{
-							DirectoryEx.DeleteWhenNoFilesInIt(directoryPath);
+							DirectoryExtensions.DeleteWhenNoFilesInIt(directoryPath);
 						}
 					}
 				}

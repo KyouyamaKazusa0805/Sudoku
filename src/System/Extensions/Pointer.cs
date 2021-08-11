@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System.Extensions
+namespace System
 {
 	/// <summary>
 	/// Provides methods on pointers.

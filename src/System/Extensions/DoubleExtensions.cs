@@ -1,10 +1,10 @@
-﻿namespace System.Extensions
+﻿namespace System
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="float"/>.
+	/// Provides extension methods on <see cref="double"/>.
 	/// </summary>
-	/// <seealso cref="float"/>
-	public static class SingleEx
+	/// <seealso cref="double"/>
+	public static class DoubleExtensions
 	{
 		/// <summary>
 		/// Indicates whether the specified value is nearly equals to the current value.
@@ -12,8 +12,8 @@
 		/// <param name="this">The value.</param>
 		/// <param name="other">The other value.</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool NearlyEquals(this float @this, float other) =>
-			@this.NearlyEquals(other, float.Epsilon);
+		public static bool NearlyEquals(this double @this, double other) =>
+			@this.NearlyEquals(other, double.Epsilon);
 
 		/// <summary>
 		/// Indicates whether the specified value is nearly equals to the current value.
@@ -24,7 +24,7 @@
 		/// <param name="other">The other value to compare.</param>
 		/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
-		public static bool NearlyEquals(this float @this, float other, float epsilon) =>
+		public static bool NearlyEquals(this double @this, double other, double epsilon) =>
 			Math.Abs(@this - other) < epsilon;
 	}
 }

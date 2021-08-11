@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Extensions;
 using System.Globalization;
 using System.Windows.Data;
 using Sudoku.Solving.Manual;
