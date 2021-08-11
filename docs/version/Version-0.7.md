@@ -26,4 +26,5 @@
 * 将 `ICloneableEx` 静态类里的 `Cast` 扩展方法改名为 `As`；
 * 移动 `CellParser` 类型，从 `Sudouk.Data.Extensions` 命名空间移动到 `Sudoku.Data.Parsers` 命名空间下；
 * `Als` 结构里的 `StrongLinksMask` 属性的返回值类型从 `IEnumerable<short>` 改成了 `short[]`；
-* 完成对 `Sudoku.Windows` UI 项目下，技巧的提示文字的汉化（并改变原始使用 `ToString` 方法的导出逻辑，而创建并改用 `Format` 属性）。
+* 完成对 `Sudoku.Windows` UI 项目下，技巧的提示文字的汉化（并改变原始使用 `ToString` 方法的导出逻辑，而创建并改用 `Format` 属性）；
+* 所有的 `StepSearcher` 派生实体类的 `init` 属性均改成 `set` 属性提供以后的属性修改和变动。
