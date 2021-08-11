@@ -290,6 +290,16 @@
             <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
             <returns>The task.</returns>
         </member>
+        <member name="T:Sudoku.Solving.ModuleInitializer">
+            <summary>
+            Indicates the module initializer of this project.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.ModuleInitializer.Initialize">
+            <summary>
+            The initialize method.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.AnalysisResult">
             <summary>
             Provides an analysis result after a puzzle solved.
@@ -1879,6 +1889,22 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Alses.EripStepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Buffers.StepSearcherPool">
+            <summary>
+            Indicates a pool that stores the <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Buffers.StepSearcherPool.InnerCollection">
+            <summary>
+            The inner value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffers.StepSearcherPool.Searchers">
+            <summary>
+            Gets the <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.AicStepInfo">
             <summary>
@@ -4532,9 +4558,9 @@
             The order of cell offsets to get values.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.LastResorts.BfStepSearcher._solution">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.#ctor">
             <summary>
-            The solution.
+            Initializes a <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/> with no arguments.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.#ctor(Sudoku.Data.SudokuGrid@)">
@@ -4544,6 +4570,11 @@
             solution.
             </summary>
             <param name="solution">The solution.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Solution">
+            <summary>
+            Indicates the solution grid.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.BfStepSearcher.Options">
             <inheritdoc/>
@@ -4805,9 +4836,9 @@
             Encapsulates a <b>template</b> technique searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher._solution">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.#ctor">
             <summary>
-            Indicates the solution.
+            Initializes a <see cref="T:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher"/> instance with no arguments.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.#ctor(Sudoku.Data.SudokuGrid@)">
@@ -4819,6 +4850,11 @@
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.TemplateDeleteOnly">
             <summary>
             Indicates whether the technique searcher only checks template deletes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Solution">
+            <summary>
+            Indicates the solution grid.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.LastResorts.TemplateStepSearcher.Options">
@@ -6721,6 +6757,9 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetAll(System.Collections.Generic.IList{Sudoku.Solving.Manual.StepInfo},Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepSearcher.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.StepSearcher.GetOne(Sudoku.Data.SudokuGrid@)">

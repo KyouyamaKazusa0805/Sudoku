@@ -8,16 +8,16 @@
 		/// <summary>
 		/// Indicates whether the ALSes can be overlapped with each other.
 		/// </summary>
-		public bool AllowOverlapping { get; init; }
+		public bool AllowOverlapping { get; set; }
 
 		/// <summary>
 		/// Indicates whether the ALSes shows their regions rather than cells.
 		/// </summary>
-		public bool AlsShowRegions { get; init; }
+		public bool AlsShowRegions { get; set; }
 
 		/// <summary>
 		/// Indicates whether the solver will check ALS cycles.
 		/// </summary>
-		public bool AllowAlsCycles { get; init; }
+		public bool AllowAlsCycles { get; set; }
 	}
 }

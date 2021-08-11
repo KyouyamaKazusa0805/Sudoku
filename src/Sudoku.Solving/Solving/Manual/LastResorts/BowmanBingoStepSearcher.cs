@@ -36,7 +36,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <summary>
 		/// Indicates the maximum length of the bowman bingo you want to search for.
 		/// </summary>
-		public int MaxLength { get; init; }
+		public int MaxLength { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(

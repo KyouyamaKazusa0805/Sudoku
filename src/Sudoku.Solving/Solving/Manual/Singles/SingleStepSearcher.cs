@@ -20,12 +20,12 @@ namespace Sudoku.Solving.Manual.Singles
 		/// <summary>
 		/// Indicates whether the solver enables the technique full house.
 		/// </summary>
-		public bool EnableFullHouse { get; init; }
+		public bool EnableFullHouse { get; set; }
 
 		/// <summary>
 		/// Indicates whether the solver enables the technique last digit.
 		/// </summary>
-		public bool EnableLastDigit { get; init; }
+		public bool EnableLastDigit { get; set; }
 
 		/// <summary>
 		/// Indicates whether the solver shows the direct lines (cross-hatching information).
@@ -62,7 +62,7 @@ namespace Sudoku.Solving.Manual.Singles
 		/// point may be used a circle mark (<c>'o'</c>).
 		/// </para>
 		/// </remarks>
-		public bool ShowDirectLines { get; init; }
+		public bool ShowDirectLines { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);

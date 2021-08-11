@@ -1,3 +1,7 @@
 ﻿using System;
+using Sudoku.Solving.Manual.Buffers;
 
-Console.WriteLine("Hello, world!");
+foreach (var stepSearcher in StepSearcherPool.Searchers)
+{
+	Console.WriteLine(stepSearcher);
+}

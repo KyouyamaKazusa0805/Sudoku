@@ -14,22 +14,28 @@ namespace Sudoku.Solving.Manual.LastResorts
 	public sealed class TemplateStepSearcher : LastResortStepSearcher
 	{
 		/// <summary>
-		/// Indicates the solution.
+		/// Initializes a <see cref="TemplateStepSearcher"/> instance with no arguments.
 		/// </summary>
-		private readonly SudokuGrid _solution;
-
+		public TemplateStepSearcher()
+		{
+		}
 
 		/// <summary>
 		/// Initializes an instance with the specified solution.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
-		public TemplateStepSearcher(in SudokuGrid solution) => _solution = solution;
+		public TemplateStepSearcher(in SudokuGrid solution) => Solution = solution;
 
 
 		/// <summary>
 		/// Indicates whether the technique searcher only checks template deletes.
 		/// </summary>
-		public bool TemplateDeleteOnly { get; init; }
+		public bool TemplateDeleteOnly { get; set; }
+
+		/// <summary>
+		/// Indicates the solution grid.
+		/// </summary>
+		public SudokuGrid Solution { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
@@ -58,13 +64,18 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			if (Solution == SudokuGrid.Undefined)
+			{
+				return;
+			}
+
 			// Iterate on each digit.
 			for (int digit = 0; digit < 9; digit++)
 			{
 				if (!TemplateDeleteOnly)
 				{
 					// Check template sets.
-					var templateSetMap = _solution.ValuesMap[digit] & CandMaps[digit];
+					var templateSetMap = Solution.ValuesMap[digit] & CandMaps[digit];
 					if (templateSetMap.IsEmpty)
 					{
 						continue;
@@ -93,7 +104,7 @@ namespace Sudoku.Solving.Manual.LastResorts
 				}
 
 				// Then check template deletes.
-				var templateDeleteMap = CandMaps[digit] - _solution.ValuesMap[digit];
+				var templateDeleteMap = CandMaps[digit] - Solution.ValuesMap[digit];
 				if (templateDeleteMap.IsEmpty)
 				{
 					continue;

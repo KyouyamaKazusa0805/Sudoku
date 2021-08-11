@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 		/// <summary>
 		/// Indicates the maximum size the searcher will search for. The maximum possible value is 9.
 		/// </summary>
-		public int MaxSize { get; init; }
+		public int MaxSize { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);

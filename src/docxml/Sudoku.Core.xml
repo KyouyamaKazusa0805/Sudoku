@@ -6304,7 +6304,7 @@
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <summary>
-            Indicates the module initializer.
+            Indicates the module initializer of this project.
             </summary>
         </member>
         <member name="M:Sudoku.ModuleInitializer.Initialize">

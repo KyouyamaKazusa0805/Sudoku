@@ -22,12 +22,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// Indicates whether the UR can be incomplete. In other words,
 		/// some of UR candidates can be removed before the pattern forms.
 		/// </summary>
-		public bool AllowIncompleteUniqueRectangles { get; init; }
+		public bool AllowIncompleteUniqueRectangles { get; set; }
 
 		/// <summary>
 		/// Indicates whether the searcher can search for extended URs.
 		/// </summary>
-		public bool SearchForExtendedUniqueRectangles { get; init; }
+		public bool SearchForExtendedUniqueRectangles { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(8, DisplayingLevel.B);

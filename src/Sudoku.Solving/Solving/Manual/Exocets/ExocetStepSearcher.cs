@@ -14,7 +14,7 @@
 		/// <summary>
 		/// Indicates whether the searcher will find advanced eliminations.
 		/// </summary>
-		public bool CheckAdvanced { get; init; }
+		public bool CheckAdvanced { get; set; }
 
 
 		static unsafe ExocetStepSearcher()

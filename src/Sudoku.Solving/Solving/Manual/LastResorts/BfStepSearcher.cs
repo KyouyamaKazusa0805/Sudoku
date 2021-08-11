@@ -37,10 +37,11 @@ namespace Sudoku.Solving.Manual.LastResorts
 
 
 		/// <summary>
-		/// The solution.
+		/// Initializes a <see cref="BfStepSearcher"/> with no arguments.
 		/// </summary>
-		private readonly SudokuGrid _solution;
-
+		public BfStepSearcher()
+		{
+		}
 
 		/// <summary>
 		/// A trick. Initializes an instance with the solution grid.
@@ -48,8 +49,13 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// solution.
 		/// </summary>
 		/// <param name="solution">The solution.</param>
-		public BfStepSearcher(in SudokuGrid solution) => _solution = solution;
+		public BfStepSearcher(in SudokuGrid solution) => Solution = solution;
 
+
+		/// <summary>
+		/// Indicates the solution grid.
+		/// </summary>
+		public SudokuGrid Solution { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(
@@ -77,11 +83,16 @@ namespace Sudoku.Solving.Manual.LastResorts
 		/// <inheritdoc/>
 		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
 		{
+			if (Solution == SudokuGrid.Undefined)
+			{
+				return;
+			}
+
 			foreach (int offset in TryAndErrorOrder)
 			{
 				if (grid.GetStatus(offset) == CellStatus.Empty)
 				{
-					int cand = offset * 9 + _solution[offset];
+					int cand = offset * 9 + Solution[offset];
 					accumulator.Add(
 						new BfStepInfo(
 							new Conclusion[] { new(ConclusionType.Assignment, cand) },

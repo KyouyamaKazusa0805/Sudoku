@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 		/// Indicates whether the searcher should call the extended BUG checker
 		/// to search for all true candidates no matter how difficult searching.
 		/// </summary>
-		public bool SearchExtendedBugTypes { get; init; }
+		public bool SearchExtendedBugTypes { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(25, DisplayingLevel.B);

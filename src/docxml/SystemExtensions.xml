@@ -2390,6 +2390,17 @@
             <param name="this">The type to check.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.Extensions.TypeEx.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            Determine whether the type contains a parameterless constructor.
+            </summary>
+            <param name="this">The type.</param>
+            <param name="flags">
+            The flags. The default value is
+            <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
+            </param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.Extensions.Utf8JsonReaderEx">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.

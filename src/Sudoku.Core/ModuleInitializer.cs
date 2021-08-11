@@ -6,7 +6,7 @@ using Sudoku.Resources;
 namespace Sudoku
 {
 	/// <summary>
-	/// Indicates the module initializer.
+	/// Indicates the module initializer of this project.
 	/// </summary>
 	internal static class ModuleInitializer
 	{

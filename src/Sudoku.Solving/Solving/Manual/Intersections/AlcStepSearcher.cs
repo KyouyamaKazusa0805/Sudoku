@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Intersections
 		/// <summary>
 		/// Indicates whether the user checks the almost locked quadruple.
 		/// </summary>
-		public bool CheckAlmostLockedQuadruple { get; init; }
+		public bool CheckAlmostLockedQuadruple { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);

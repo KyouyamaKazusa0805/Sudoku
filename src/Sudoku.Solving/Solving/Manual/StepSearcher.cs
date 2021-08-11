@@ -22,7 +22,6 @@ namespace Sudoku.Solving.Manual
 		private const string NecessaryPropertyName = "Properties";
 
 
-		// MAKE BUFFER USING MODULE INITIALIZERS TO CREATE A LIST OF TECHNIQUE STEP SEARCHERS
 		/// <inheritdoc/>
 		public abstract SearchingOptions Options { get; set; }
 
@@ -46,6 +45,10 @@ namespace Sudoku.Solving.Manual
 
 		/// <inheritdoc/>
 		public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
+
+		/// <inheritdoc/>
+		public override string ToString() =>
+			$"{{ Type = {GetType().FullName}, Priority = {Options.Priority}, DisplayingLevel = {Options.DisplayingLevel} }}";
 
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

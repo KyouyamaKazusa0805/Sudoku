@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// <summary>
 		/// Indicates the max size to search.
 		/// </summary>
-		public int MaxSize { get; init; }
+		public int MaxSize { get; set; }
 
 		/// <inheritdoc/>
 		public override SearchingOptions Options { get; set; } = new(32, DisplayingLevel.B);
