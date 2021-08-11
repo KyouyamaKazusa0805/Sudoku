@@ -2536,16 +2536,6 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">The progress result.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.QualifierAttribute">
-            <summary>
-            Indicates the qualifier of this step searcher.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.QualifierAttribute.Qualifier">
-            <summary>
-            Indicates the qualifier.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Rarity">
             <summary>
             Indicates the rarity of the technique.
