@@ -3577,6 +3577,16 @@
             Indicates the dynamic double forcing chains.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.DynamicMultipleFcStepSearcher">
+            <summary>
+            Encapsulates an <b>dynamic multiple forcing chains</b> (<b>Dynamic Multiple FCs</b>) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.DynamicMultipleFcStepSearcher.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.Chaining.DynamicMultipleFcStepSearcher"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.FcStepSearcher">
             <summary>
             Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
@@ -3757,6 +3767,26 @@
         <member name="P:Sudoku.Solving.Manual.Chaining.LoopStepInfo.IsXCycle">
             <summary>
             Indicates whether the specified cycle is an X-Cycle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.MultipleFcStepSearcher">
+            <summary>
+            Encapsulates an <b>multiple forcing chains</b> (<b>Multiple FCs</b>) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.MultipleFcStepSearcher.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.Chaining.MultipleFcStepSearcher"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Chaining.NishioFcStepSearcher">
+            <summary>
+            Encapsulates an <b>nishio forcing chains</b> (<b>Nishio FCs</b>) technique searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Chaining.NishioFcStepSearcher.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.Chaining.NishioFcStepSearcher"/> instance.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo">

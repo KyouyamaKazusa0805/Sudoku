@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <summary>
 	/// Encapsulates an <b>forcing chains</b> (<b>FCs</b>) technique searcher.
 	/// </summary>
-	public sealed class FcStepSearcher : ChainingStepSearcher
+	public class FcStepSearcher : ChainingStepSearcher
 	{
 		/// <summary>
 		/// Indicates the information.
@@ -56,7 +56,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 
 		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(33, DisplayingLevel.C);
+		public sealed override SearchingOptions Options { get; set; } = new(33, DisplayingLevel.C);
 
 		/// <summary>
 		/// Indicates the searcher properties.
