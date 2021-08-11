@@ -3,10 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Extensions;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Define a batch rater.

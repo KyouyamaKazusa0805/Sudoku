@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Extensions;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons

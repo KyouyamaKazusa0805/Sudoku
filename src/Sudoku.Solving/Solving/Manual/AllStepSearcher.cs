@@ -9,7 +9,6 @@ using Sudoku.Globalization;
 using Sudoku.Models;
 using Sudoku.Resources;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Solving.Manual.Uniqueness;
 
 namespace Sudoku.Solving.Manual

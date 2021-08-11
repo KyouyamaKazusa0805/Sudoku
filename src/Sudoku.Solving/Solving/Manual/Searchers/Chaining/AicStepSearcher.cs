@@ -4,11 +4,9 @@ using System.Linq;
 using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
-using C = Sudoku.Solving.Manual.Extensions.Chaining;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -280,7 +278,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOn[^1];
 					pendingOn.RemoveLastElement();
 
-					var makeOff = C.GetOnToOff(grid, p, yEnabled);
+					var makeOff = ChainingHelper.GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
 					{
 						var pOn = new Node(pOff.Cell, pOff.Digit, true);
@@ -304,7 +302,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOff[^1];
 					pendingOff.RemoveLastElement();
 
-					var makeOn = C.GetOffToOn(grid, p, true, yEnabled, true);
+					var makeOn = ChainingHelper.GetOffToOn(grid, p, true, yEnabled, true);
 					foreach (var pOn in makeOn)
 					{
 						var pOff = new Node(pOn.Cell, pOn.Digit, false);
@@ -351,7 +349,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOn[^1];
 					pendingOn.RemoveLastElement();
 
-					var makeOff = C.GetOnToOff(grid, p, yEnabled);
+					var makeOff = ChainingHelper.GetOnToOff(grid, p, yEnabled);
 					foreach (var pOff in makeOff)
 					{
 						// Not processed yet.
@@ -366,7 +364,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					var p = pendingOff[^1];
 					pendingOff.RemoveLastElement();
 
-					var makeOn = C.GetOffToOn(grid, p, xEnabled, yEnabled, true);
+					var makeOn = ChainingHelper.GetOffToOn(grid, p, xEnabled, yEnabled, true);
 					foreach (var pOn in makeOn)
 					{
 						if (length >= 4 && pOn == source)

@@ -3,13 +3,14 @@ using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Solving.Manual.Chaining;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Node"/>.
+	/// Provides extension methods on <see cref="Node"/>, about extraction the <see cref="DrawingInfo"/>s.
 	/// </summary>
 	/// <seealso cref="Node"/>
-	public static class NodeEx
+	/// <seealso cref="DrawingInfo"/>
+	public static class DrawingInfoExtractor
 	{
 		/// <summary>
 		/// Get highlight candidate offsets through the specified target node.

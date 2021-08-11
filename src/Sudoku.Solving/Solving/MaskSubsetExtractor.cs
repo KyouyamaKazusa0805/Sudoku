@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Numerics;
 
-namespace Sudoku.Solving.Extensions
+namespace Sudoku.Solving
 {
 	/// <summary>
-	/// Provides the algorithms about sudoku solving (using basic implementation of sudoku data structures).
+	/// Provides the algorithms about the subset that uses the mask from sudoku grids.
 	/// </summary>
-	public static class Algorithms
+	public static class MaskSubsetExtractor
 	{
 		/// <summary>
 		/// Get all mask combinations.

@@ -1,13 +1,13 @@
 ﻿using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Cells"/>.
 	/// </summary>
 	/// <seealso cref="Cells"/>
-	public static class CellsEx
+	public static class CellsPatternHelper
 	{
 		/// <summary>
 		/// Check whether the cells form an empty cell.

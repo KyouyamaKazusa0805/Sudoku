@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sudoku.Data;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="IEnumerable{T}"/>.
+	/// Provides extension methods on checking a UL or a reverse BUG loop.
 	/// </summary>
-	/// <seealso cref="IEnumerable{T}"/>
-	public static class EnumerableEx
+	public static class Looping
 	{
 		/// <summary>
 		/// Check whether the current loop is valid UL-shaped loop.

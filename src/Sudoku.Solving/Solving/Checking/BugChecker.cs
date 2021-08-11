@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
-using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
 namespace Sudoku.Solving.Checking
 {
@@ -108,7 +106,7 @@ namespace Sudoku.Solving.Checking
 				mask = Puzzle.GetCandidates(multivalueCells[i]);
 
 				// eg. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
-				short[] pairList = SolvingAlgorithms.GetMaskSubsets(mask, 2);
+				short[] pairList = MaskSubsetExtractor.GetMaskSubsets(mask, 2);
 
 				// eg. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
 				pairs[i, 0] = (short)pairList.Length;

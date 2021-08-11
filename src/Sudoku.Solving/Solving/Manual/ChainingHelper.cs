@@ -7,13 +7,51 @@ using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides methods that do checking during chain searching.
 	/// </summary>
-	public static class Chaining
+	public static class ChainingHelper
 	{
+		/// <summary>
+		/// Get extra difficulty rating for a chain node sequence.
+		/// </summary>
+		/// <param name="length">The length.</param>
+		/// <returns>The difficulty.</returns>
+		public static decimal GetExtraDifficultyByLength(this int length)
+		{
+			decimal added = 0;
+			int ceil = 4;
+			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
+			{
+				added += .1M;
+				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
+			}
+
+			return added;
+		}
+
+		/// <summary>
+		/// Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+		/// </summary>
+		/// <param name="this">The list of cells.</param>
+		/// <param name="offset">The offset. The default value is 4.</param>
+		/// <returns>All links.</returns>
+		public static IReadOnlyList<Link> GetLinks(this IReadOnlyList<int> @this, int offset = 4)
+		{
+			var result = new List<Link>();
+
+			for (int i = 0, length = @this.Count - 1; i < length; i++)
+			{
+				result.Add(new(@this[i] * 9 + offset, @this[i + 1] * 9 + offset, LinkType.Line));
+			}
+
+			result.Add(new(@this[^1] * 9 + offset, @this[0] * 9 + offset, LinkType.Line));
+
+			return result;
+		}
+
 		/// <summary>
 		/// Get all available weak links.
 		/// </summary>

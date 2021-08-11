@@ -4017,6 +4017,34 @@
             <param name="separators">All separators.</param>
             <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Data.RegionCalculator">
+            <summary>
+            Provides extension methods on conversions between a cell and a region.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionCalculator.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionCalculator.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionCalculator.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.RegionCalculator.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
+            <summary>
+            Get the region index for the specified cell and the region type.
+            </summary>
+            <param name="this">The cell.</param>
+            <param name="label">The label to represent a region type.</param>
+            <returns>The region index.</returns>
+        </member>
         <member name="T:Sudoku.Data.RegionLabel">
             <summary>
             Indicates the region label.

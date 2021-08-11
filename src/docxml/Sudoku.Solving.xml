@@ -440,6 +440,16 @@
             </exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
+        <member name="P:Sudoku.Solving.AnalysisResult.Item(Sudoku.Techniques.Technique)">
+            <summary>
+            Gets the first <see cref="T:Sudoku.Solving.Manual.StepInfo"/> instance that matches the specified technique.
+            </summary>
+            <param name="code">The technique code to check and fetch.</param>
+            <returns>The step information instance as the result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the list doesn't contain any valid instance to get.
+            </exception>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1228,55 +1238,6 @@
             <param name="this">The puzzle.</param>
             <returns>The difficulty level.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Extensions.Algorithms">
-            <summary>
-            Provides the algorithms about sudoku solving (using basic implementation of sudoku data structures).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.Algorithms.GetMaskSubsets(System.Int16)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <returns>The result list.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.Algorithms.GetMaskSubsets(System.Int16,System.Int32)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <param name="size">The size.</param>
-            <returns>The result list.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int32[])">
-            <summary>
-            Create a <see cref="T:System.Int16"/> value, whose set bits are specified in the parameter
-            <paramref name="values"/>.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>The mask result.</returns>
-            <remarks>
-            For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
-            will be <c><![CDATA[1 << 3 | 1 << 6]]></c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int16[])">
-            <inheritdoc cref="M:Sudoku.Solving.Extensions.Algorithms.CreateBitsInt16(System.Int32[])"/>
-        </member>
-        <member name="T:Sudoku.Solving.Extensions.BatchRater">
-            <summary>
-            Define a batch rater.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Extensions.BatchRater.BatchRatingAsync(System.String,System.String)">
-            <summary>
-            To batch rating a series of puzzles being saved in <paramref name="inputPath"/>,
-            and output the puzzles and their rating results to <paramref name="outputPath"/>.
-            </summary>
-            <param name="inputPath">The input path.</param>
-            <param name="outputPath">The output path.</param>
-            <returns>The task of this operation.</returns>
-        </member>
         <member name="T:Sudoku.Solving.ISolver">
             <summary>
             Indicates an instance used for solving a sudoku puzzle.
@@ -1337,6 +1298,20 @@
             <returns>The task of that searching.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
         </member>
+        <member name="T:Sudoku.Solving.Manual.BatchRater">
+            <summary>
+            Define a batch rater.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.BatchRater.BatchRatingAsync(System.String,System.String)">
+            <summary>
+            To batch rating a series of puzzles being saved in <paramref name="inputPath"/>,
+            and output the puzzles and their rating results to <paramref name="outputPath"/>.
+            </summary>
+            <param name="inputPath">The input path.</param>
+            <param name="outputPath">The output path.</param>
+            <returns>The task of this operation.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Buffers.StepSearcherPool">
             <summary>
             Indicates a pool that stores the <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
@@ -1352,6 +1327,95 @@
             <summary>
             Gets the <see cref="T:Sudoku.Solving.Manual.StepSearcher"/>s.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.CellsPatternHelper">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.CellsPatternHelper.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty cell.
+            </summary>
+            <param name="this">The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ChainingHelper">
+            <summary>
+            Provides methods that do checking during chain searching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="this">The list of cells.</param>
+            <param name="offset">The offset. The default value is 4.</param>
+            <returns>All links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.GetOnToOff(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="enableFastProperties">
+            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.FastProperties"/>.
+            </param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <param name="isDynamic">
+            Indicates whether the current searcher is searching for dynamic chains. If so,
+            we can't use those static properties to optimize the performance.
+            </param>
+            <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+            <summary>
+            Add hidden parents of a cell.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">
+            Throws when the parent node of the specified node cannot be found.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ChainingHelper.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.Node})">
+            <summary>
+            Add hidden parents of a region.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="currRegion">The current region label.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">
+            Throws when the parent node of the specified node cannot be found.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Constants">
             <summary>
@@ -1579,6 +1643,36 @@
             Indicates the level is nightmare (Level E).
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.DrawingInfoExtractor">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Node"/>, about extraction the <see cref="T:Sudoku.Models.DrawingInfo"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Node"/>
+            <seealso cref="T:Sudoku.Models.DrawingInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.DrawingInfoExtractor.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="simpleChain">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepSearcher"/>. The
+            default value is <see langword="false"/>.
+            </param>
+            <returns>The candidate offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.DrawingInfoExtractor.GetLinks(Sudoku.Data.Node@,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="this">The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.EnabledAreas">
             <summary>
             Represents the data about where a step searcher can be enabled and used.
@@ -1599,150 +1693,13 @@
             Indicates the full searching mode (All steps will be found here).
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.AnalysisResultEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.AnalysisResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.AnalysisResult"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.AnalysisResultEx.Contains(Sudoku.Solving.AnalysisResult,Sudoku.Techniques.Technique)">
-            <summary>
-            To check whether the specified analysis result contains the specified technique.
-            </summary>
-            <param name="this">The instance.</param>
-            <param name="code">The technique code to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.CellsEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Cells"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Cells"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.CellsEx.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Check whether the cells form an empty cell.
-            </summary>
-            <param name="this">The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">The row.</param>
-            <param name="column">The column.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.Chaining">
-            <summary>
-            Provides methods that do checking during chain searching.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.GetOnToOff(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get all available weak links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <returns>All possible weak links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.GetOffToOn(Sudoku.Data.SudokuGrid@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Nullable{Sudoku.Data.SudokuGrid}@,System.Collections.Generic.ISet{Sudoku.Data.Node},System.Boolean)">
-            <summary>
-            Get all available strong links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <param name="enableFastProperties">
-            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.FastProperties"/>.
-            </param>
-            <param name="source">The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <param name="isDynamic">
-            Indicates whether the current searcher is searching for dynamic chains. If so,
-            we can't use those static properties to optimize the performance.
-            </param>
-            <returns>All possible strong links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,System.Collections.Generic.ISet{Sudoku.Data.Node})">
-            <summary>
-            Add hidden parents of a cell.
-            </summary>
-            <param name="p">The node.</param>
-            <param name="grid">The grid.</param>
-            <param name="source">The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:System.Exception">
-            Throws when the parent node of the specified node cannot be found.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Chaining.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.Node})">
-            <summary>
-            Add hidden parents of a region.
-            </summary>
-            <param name="p">The node.</param>
-            <param name="grid">The grid.</param>
-            <param name="source">The source grid.</param>
-            <param name="currRegion">The current region label.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:System.Exception">
-            Throws when the parent node of the specified node cannot be found.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.EnumerableEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.EnumerableEx.IsValidLoop(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Check whether the current loop is valid UL-shaped loop.
-            </summary>
-            <param name="loop">The loop.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.Int32Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int32"/>.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.BlockTable">
-            <summary>
-            The block table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.RowTable">
-            <summary>
-            The row table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Extensions.Int32Ex.ColumnTable">
-            <summary>
-            The column table.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Int32Ex.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
-            <summary>
-            Get the region index for the specified cell and the region type.
-            </summary>
-            <param name="this">The cell.</param>
-            <param name="label">The label to represent a region type.</param>
-            <returns>The region index.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.Int32Ex.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.ManualSolverEx">
+        <member name="T:Sudoku.Solving.Manual.ManualSolverExtensions">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.ManualSolverEx.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
             <summary>
             Get the searchers to enumerate on Sudoku Explainer mode.
             </summary>
@@ -1754,7 +1711,7 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.ManualSolverEx.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
             <summary>
             Get the searchers to enumerate on Hodoku mode.
             </summary>
@@ -1766,112 +1723,32 @@
             </param>
             <returns>The result.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.NodeEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Node"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Node"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.NodeEx.GetCandidateOffsets(Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get highlight candidate offsets through the specified target node.
-            </summary>
-            <param name="target">The target node.</param>
-            <param name="simpleChain">
-            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Chaining.AicStepSearcher"/>. The
-            default value is <see langword="false"/>.
-            </param>
-            <returns>The candidate offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.NodeEx.GetLinks(Sudoku.Data.Node@,System.Boolean)">
-            <summary>
-            Get the links through the specified target node.
-            </summary>
-            <param name="this">The target node.</param>
-            <param name="showAllLinks">
-            Indicates whether the current chain will display all chains (even contains the weak links
-            from the elimination node). The default value is <see langword="false"/>. If you want to
-            draw the AIC, the elimination weak links don't need drawing.
-            </param>
-            <returns>The link.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.ReadOnlyListEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.ReadOnlyListEx.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="this">The list of cells.</param>
-            <param name="offset">The offset. The default value is 4.</param>
-            <returns>All links.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.StepInfoEx">
+        <member name="T:Sudoku.Solving.Manual.StepInfoExtensions">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
             Check whether the current technique information is an ALS technique.
             </summary>
             <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
             <summary>
             Check whether the current technique information is a chaining-ruled technique.
             </summary>
             <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.StepInfoEx.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
             <summary>
             Check whether the current technique information is a uniqueness technique.
             </summary>
             <param name="this">The technique instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Extensions.SudokuGridEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.SudokuGridEx.Clean(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            To clean the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <remarks>
-            "To clean a grid" means we process this grid to fill with singles that is found
-            in <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>, and remove eliminations that is found
-            in <see cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>.
-            The process won't stop until the puzzle cannot use these techniques.
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Extensions.SudokuGridEx.IsSingleWhenRemoved(Sudoku.Data.SudokuGrid@,System.Int32)">
-            <summary>
-            Checks whether the next step is "single" technique after the specified candidate is removed.
-            The "single" techniques are:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleBlock"/></item>
-            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleRow"/></item>
-            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleColumn"/></item>
-            <item><see cref="F:Sudoku.Techniques.Technique.NakedSingle"/></item>
-            </list>
-            Full houses and last digits may not be found in this method due to the limitation of the algorithm.
-            </summary>
-            <param name="this">The grid to check.</param>
-            <param name="candidateRemoved">The candidate removed.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.FastProperties">
             <summary>
@@ -2059,6 +1936,18 @@
             <param name="step">The current step.</param>
             <param name="cloneation">The cloneation of the grid.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Looping">
+            <summary>
+            Provides extension methods on checking a UL or a reverse BUG loop.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Looping.IsValidLoop(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Check whether the current loop is valid UL-shaped loop.
+            </summary>
+            <param name="loop">The loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>
@@ -10017,6 +9906,42 @@
             <seealso cref="T:Sudoku.Solving.Manual.TechniqueProperties"/>.
             <seealso cref="T:Sudoku.Solving.Manual.AllStepSearcher"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Solvings">
+            <summary>
+            Provides extension methods to be used while solving.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Solvings.Clean(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            To clean the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <remarks>
+            "To clean a grid" means we process this grid to fill with singles that is found
+            in <see cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>, and remove eliminations that is found
+            in <see cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>.
+            The process won't stop until the puzzle cannot use these techniques.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.Singles.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Intersections.LcStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Solvings.IsSingleWhenRemoved(Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Checks whether the next step is "single" technique after the specified candidate is removed.
+            The "single" techniques are:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleBlock"/></item>
+            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleRow"/></item>
+            <item><see cref="F:Sudoku.Techniques.Technique.HiddenSingleColumn"/></item>
+            <item><see cref="F:Sudoku.Techniques.Technique.NakedSingle"/></item>
+            </list>
+            Full houses and last digits may not be found in this method due to the limitation of the algorithm.
+            </summary>
+            <param name="this">The grid to check.</param>
+            <param name="candidateRemoved">The candidate removed.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Stableness">
             <summary>
             Defines a stableness of a technique.
@@ -10626,6 +10551,41 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.MaskSubsetExtractor">
+            <summary>
+            Provides the algorithms about the subset that uses the mask from sudoku grids.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.MaskSubsetExtractor.GetMaskSubsets(System.Int16)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.MaskSubsetExtractor.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <param name="size">The size.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.MaskSubsetExtractor.CreateBitsInt16(System.Int32[])">
+            <summary>
+            Create a <see cref="T:System.Int16"/> value, whose set bits are specified in the parameter
+            <paramref name="values"/>.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>The mask result.</returns>
+            <remarks>
+            For example, if the <paramref name="values"/> are <c>{ 3, 6 }</c>, the return value
+            will be <c><![CDATA[1 << 3 | 1 << 6]]></c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.MaskSubsetExtractor.CreateBitsInt16(System.Int16[])">
+            <inheritdoc cref="M:Sudoku.Solving.MaskSubsetExtractor.CreateBitsInt16(System.Int32[])"/>
         </member>
         <member name="T:Sudoku.Solving.Text.FormatItemAttribute">
             <summary>

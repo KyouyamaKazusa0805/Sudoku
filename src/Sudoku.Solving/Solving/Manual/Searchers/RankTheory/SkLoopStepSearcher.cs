@@ -4,11 +4,9 @@ using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.FastProperties;
-using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
 namespace Sudoku.Solving.Manual.RankTheory
 {
@@ -99,7 +97,7 @@ namespace Sudoku.Solving.Manual.RankTheory
 				}
 
 				// Check all combinations.
-				short[] masks = SolvingAlgorithms.GetMaskSubsets(candidateMask);
+				short[] masks = MaskSubsetExtractor.GetMaskSubsets(candidateMask);
 				for (int j = masks.Length - 1; j >= 0; j--)
 				{
 					short mask = masks[j];

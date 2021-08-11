@@ -1,13 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Data
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="int"/>.
+	/// Provides extension methods on conversions between a cell and a region.
 	/// </summary>
-	/// <seealso cref="int"/>
-	public static class Int32Ex
+	public static class RegionCalculator
 	{
 		/// <summary>
 		/// The block table.
@@ -30,7 +28,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// </summary>
 		private static readonly int[] RowTable =
 		{
-			9, 9, 9, 9, 9, 9, 9, 9, 9,
+			 9,  9,  9,  9,  9,  9,  9,  9,  9,
 			10, 10, 10, 10, 10, 10, 10, 10, 10,
 			11, 11, 11, 11, 11, 11, 11, 11, 11,
 			12, 12, 12, 12, 12, 12, 12, 12, 12,
@@ -72,23 +70,5 @@ namespace Sudoku.Solving.Manual.Extensions
 				RegionLabel.Block => BlockTable
 			}
 		)[@this];
-
-		/// <summary>
-		/// Get extra difficulty rating for a chain node sequence.
-		/// </summary>
-		/// <param name="length">The length.</param>
-		/// <returns>The difficulty.</returns>
-		public static decimal GetExtraDifficultyByLength(this int length)
-		{
-			decimal added = 0;
-			int ceil = 4;
-			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
-			{
-				added += .1M;
-				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
-			}
-
-			return added;
-		}
 	}
 }

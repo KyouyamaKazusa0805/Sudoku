@@ -5,12 +5,10 @@ using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
-using C = Sudoku.Solving.Manual.Extensions.Chaining;
 
 namespace Sudoku.Solving.Manual.Chaining
 {
@@ -327,7 +325,7 @@ namespace Sudoku.Solving.Manual.Chaining
 					if (pendingOn.Count != 0)
 					{
 						var p = pendingOn.RemoveAt(0);
-						var makeOff = C.GetOnToOff(grid, p, !IsNishio);
+						var makeOff = ChainingHelper.GetOnToOff(grid, p, !IsNishio);
 
 						foreach (var pOff in makeOff)
 						{
@@ -348,7 +346,9 @@ namespace Sudoku.Solving.Manual.Chaining
 					else
 					{
 						var p = pendingOff.RemoveAt(0);
-						var makeOn = C.GetOffToOn(grid, p, true, !IsNishio, true, _savedGrid, toOff, IsDynamic);
+						var makeOn = ChainingHelper.GetOffToOn(
+							grid, p, true, !IsNishio, true, _savedGrid, toOff, IsDynamic
+						);
 
 						if (IsDynamic)
 						{

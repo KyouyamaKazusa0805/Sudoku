@@ -5,7 +5,6 @@ using System.Numerics;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;

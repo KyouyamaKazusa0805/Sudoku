@@ -1,10 +1,8 @@
 ﻿using System.Numerics;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
-using SolvingAlgorithms = Sudoku.Solving.Extensions.Algorithms;
 
 namespace Sudoku.Solving.Manual.Exocets
 {
@@ -118,7 +116,7 @@ namespace Sudoku.Solving.Manual.Exocets
 
 			// Iterate on each combination of non-base candidates.
 			// All cases: 1, 2, 3, 5, 12, 13, 15, 23, 25, 35, 123, 125, 135, 235, 1235.
-			foreach (short mask in SolvingAlgorithms.GetMaskSubsets(nonBaseCands))
+			foreach (short mask in MaskSubsetExtractor.GetMaskSubsets(nonBaseCands))
 			{
 				// Iterate on each region in 'regions'.
 				// All cases: block 2, column 4.

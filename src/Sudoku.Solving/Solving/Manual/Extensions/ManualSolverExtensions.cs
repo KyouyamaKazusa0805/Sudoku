@@ -3,13 +3,13 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Solving.Manual.LastResorts;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ManualSolver"/>.
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public static class ManualSolverEx
+	public static class ManualSolverExtensions
 	{
 		/// <summary>
 		/// Get the searchers to enumerate on Sudoku Explainer mode.

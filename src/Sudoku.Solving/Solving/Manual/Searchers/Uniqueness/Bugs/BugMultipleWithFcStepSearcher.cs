@@ -5,9 +5,7 @@ using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
-using C = Sudoku.Solving.Manual.Extensions.Chaining;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
@@ -125,7 +123,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				{
 					var p = pendingOn.Remove();
 
-					var makeOff = C.GetOnToOff(grid, p, true);
+					var makeOff = ChainingHelper.GetOnToOff(grid, p, true);
 					foreach (var pOff in makeOff)
 					{
 						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
@@ -145,7 +143,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 				else
 				{
 					var p = pendingOff.Remove();
-					var makeOn = C.GetOffToOn(grid, p, true, true, true);
+					var makeOn = ChainingHelper.GetOffToOn(grid, p, true, true, true);
 
 					foreach (var pOn in makeOn)
 					{

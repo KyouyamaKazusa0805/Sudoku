@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Windows.Extensions;
 
 namespace Sudoku.Windows

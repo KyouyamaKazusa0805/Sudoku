@@ -209,6 +209,18 @@ namespace Sudoku.Solving
 			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
 			: Steps[index];
 
+		/// <summary>
+		/// Gets the first <see cref="StepInfo"/> instance that matches the specified technique.
+		/// </summary>
+		/// <param name="code">The technique code to check and fetch.</param>
+		/// <returns>The step information instance as the result.</returns>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the list doesn't contain any valid instance to get.
+		/// </exception>
+		public StepInfo this[Technique code] => !(IsSolved && Steps is not null)
+			? throw new InvalidOperationException("The specified instance can't get the result.")
+			: Steps.First(step => step.TechniqueCode == code);
+
 
 		public override partial string ToString();
 

@@ -7,13 +7,12 @@ using Sudoku.Techniques;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.FastProperties;
 
-namespace Sudoku.Solving.Manual.Extensions
+namespace Sudoku.Solving.Manual
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="SudokuGrid"/>.
+	/// Provides extension methods to be used while solving.
 	/// </summary>
-	/// <seealso cref="SudokuGrid"/>
-	public static class SudokuGridEx
+	public static class Solvings
 	{
 		/// <summary>
 		/// To clean the grid.
@@ -72,7 +71,7 @@ namespace Sudoku.Solving.Manual.Extensions
 		public static bool IsSingleWhenRemoved(this in SudokuGrid @this, int candidateRemoved)
 		{
 			int cellRemoved = candidateRemoved / 9, digitRemoved = candidateRemoved % 9;
-			
+
 			// Hidden single check.
 			for (int digit = 0; digit < 9; digit++)
 			{
