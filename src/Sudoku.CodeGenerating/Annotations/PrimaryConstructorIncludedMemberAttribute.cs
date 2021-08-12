@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// Indicates the member should be included while generating primary constructors.

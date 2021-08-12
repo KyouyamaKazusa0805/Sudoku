@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// Indicates an attribute to mark a type, to indicate the type will be generated a default method

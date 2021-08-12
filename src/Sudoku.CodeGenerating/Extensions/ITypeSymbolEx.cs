@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis;
-using static Sudoku.CodeGenerating.Constants;
-
-namespace Sudoku.CodeGenerating.Extensions
+﻿namespace Sudoku.CodeGenerating.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ITypeSymbol"/>.

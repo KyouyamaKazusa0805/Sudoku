@@ -1,10 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using static Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
-using static Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
-using static Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
-using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	partial class Constants
 	{

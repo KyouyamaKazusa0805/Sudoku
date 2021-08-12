@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// To mark on a type, to tell the compiler that the compiler will automatically generate

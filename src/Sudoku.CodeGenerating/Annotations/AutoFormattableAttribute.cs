@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// To mark on a type, to tell the user and the compiler that the source generator

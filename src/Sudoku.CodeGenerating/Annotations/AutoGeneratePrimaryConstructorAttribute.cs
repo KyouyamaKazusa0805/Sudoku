@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// Indicates the marked <see langword="class"/> should generate primary constructor automatically.

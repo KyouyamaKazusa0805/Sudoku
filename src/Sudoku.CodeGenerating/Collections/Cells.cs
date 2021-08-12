@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Sudoku.CodeGenerating.Collections
+﻿namespace Sudoku.CodeGenerating.Collections
 {
 	/// <summary>
 	/// Encapsulates a lightweight data structure that is same as the collection type <c>Sudoku.Data.Cells</c>.

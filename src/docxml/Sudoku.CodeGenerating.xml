@@ -32,8 +32,6 @@
             </code>
             then you'll get the generated code:
             <code>
-            using System.Runtime.CompilerServices;
-            
             public static class ClassEx
             {
                 [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]

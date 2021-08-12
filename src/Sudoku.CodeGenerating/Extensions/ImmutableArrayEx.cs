@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
-
-namespace Sudoku.CodeGenerating.Extensions
+﻿namespace Sudoku.CodeGenerating.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ImmutableArray{T}"/>

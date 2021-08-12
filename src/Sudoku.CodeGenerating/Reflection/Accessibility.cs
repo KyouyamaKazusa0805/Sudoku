@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating.Reflection
+﻿namespace Sudoku.CodeGenerating.Reflection
 {
 	/// <summary>
 	/// Indicates the accessibility of a member.

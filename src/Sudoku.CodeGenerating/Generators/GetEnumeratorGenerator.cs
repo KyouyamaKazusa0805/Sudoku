@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Operations;
-using Sudoku.CodeGenerating.Extensions;
-using static Sudoku.CodeGenerating.Constants;
+﻿using Sudoku.CodeGenerating.Extensions;
 
 namespace Sudoku.CodeGenerating.Generators
 {
@@ -22,7 +16,7 @@ namespace Sudoku.CodeGenerating.Generators
 			foreach (var (type, attribute) in
 				from type in receiver.Candidates
 				let model = compilation.GetSemanticModel(type.Node.SyntaxTree)
-				select ((INamedTypeSymbol)model.GetDeclaredSymbol(type.Node)!, type.Attribute))
+				select (model.GetDeclaredSymbol(type.Node)!, type.Attribute))
 			{
 				var semanticModel = compilation.GetSemanticModel(attribute.SyntaxTree);
 				if (getGetEnumeratorCode(type, attribute, semanticModel) is { } c)

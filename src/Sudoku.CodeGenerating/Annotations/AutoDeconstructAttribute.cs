@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// Allows the type can be deconstructed to multiple elements.

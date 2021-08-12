@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating
 {
 	/// <summary>
 	/// Used on an assembly, to tell the compiler this assembly will generate
@@ -13,8 +11,6 @@ namespace Sudoku.CodeGenerating
 	/// </code>
 	/// then you'll get the generated code:
 	/// <code>
-	/// using System.Runtime.CompilerServices;
-	/// 
 	/// public static class ClassEx
 	/// {
 	///     [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]

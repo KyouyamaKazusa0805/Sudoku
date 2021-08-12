@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.CodeGenerating.Extensions
+﻿namespace Sudoku.CodeGenerating.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="int"/>.
