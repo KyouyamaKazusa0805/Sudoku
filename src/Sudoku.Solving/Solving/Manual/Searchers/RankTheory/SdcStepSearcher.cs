@@ -1,6 +1,4 @@
-﻿using static Sudoku.Constants;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>sue de coq</b> (SdC) technique searcher.

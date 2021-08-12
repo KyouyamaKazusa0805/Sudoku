@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.LastResorts;
-
-namespace Sudoku.Solving.Manual.Fishes
+﻿namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Encapsulates a <b>Hobiwan's fish</b> technique searcher.

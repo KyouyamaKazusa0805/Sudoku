@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Sudoku.Solving.Checking;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides a solver that use logical methods to solve a specified sudoku puzzle.

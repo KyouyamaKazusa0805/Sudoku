@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual;
-
-namespace Sudoku.Generating
+﻿namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides a puzzle generator with the technique filter.

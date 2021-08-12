@@ -1,7 +1,4 @@
-﻿using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual.Uniqueness;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides a step searcher that is different with <see cref="StepSearcher"/>.

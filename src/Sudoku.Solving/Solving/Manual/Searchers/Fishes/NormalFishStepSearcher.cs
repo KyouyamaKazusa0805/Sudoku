@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Fishes
+﻿using Pointer = System.Pointer;
+
+namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.

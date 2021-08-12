@@ -1,6 +1,5 @@
 ﻿#pragma warning disable CS1591 // False-positive
 
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving
 {

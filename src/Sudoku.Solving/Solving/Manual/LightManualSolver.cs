@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Singles;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides a light manual solver used for testing and checking backdoors.

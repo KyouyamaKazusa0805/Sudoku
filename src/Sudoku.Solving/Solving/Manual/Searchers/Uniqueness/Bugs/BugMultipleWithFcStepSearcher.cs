@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Checking;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Bugs
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
 	/// <summary>
 	/// Encapsulates a <b>bivalue universal grave multiple</b> (BUG + n) with forcing chains

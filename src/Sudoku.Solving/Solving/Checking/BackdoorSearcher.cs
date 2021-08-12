@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual;
-
-namespace Sudoku.Solving.Checking
+﻿namespace Sudoku.Solving.Checking
 {
 	/// <summary>
 	/// Provides a backdoor searcher.

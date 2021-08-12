@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Fishes
+﻿using Pointer = System.Pointer;
+
+namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Provides a usage of <b>fish</b> technique.

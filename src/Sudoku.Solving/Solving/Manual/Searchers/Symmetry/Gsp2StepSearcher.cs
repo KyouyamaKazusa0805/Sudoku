@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Symmetry
+﻿using Pointer = System.Pointer;
+
+namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.

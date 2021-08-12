@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.BruteForces;
-
-namespace Sudoku.Generating
+﻿namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Encapsulates a puzzle generator, whose basic algorithm is digging

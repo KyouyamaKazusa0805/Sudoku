@@ -1,6 +1,4 @@
-﻿using static Sudoku.Constants;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	partial class UrStepSearcher
 	{

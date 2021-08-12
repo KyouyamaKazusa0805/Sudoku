@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.LastResorts;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="ManualSolver"/>.

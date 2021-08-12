@@ -1,6 +1,4 @@
 ﻿using Sudoku.Data.Stepping;
-using Sudoku.Solving.BruteForces;
-using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Checking
 {

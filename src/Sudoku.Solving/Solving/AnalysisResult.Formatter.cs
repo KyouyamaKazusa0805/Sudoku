@@ -1,7 +1,4 @@
-﻿using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Singles;
-using static Sudoku.Solving.AnalysisResultFormattingOptions;
+﻿using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using CountryCode = Sudoku.Globalization.CountryCode;
 
 namespace Sudoku.Solving
@@ -178,7 +175,7 @@ namespace Sudoku.Solving
 							{
 								decimal difficulty = solvingStep.Difficulty;
 								currentTotal += difficulty;
-								currentMinimum = Math.Min(currentMinimum, difficulty);
+								currentMinimum = Min(currentMinimum, difficulty);
 							}
 
 							sb.Append($"({currentMinimum.ToString("0.0")}".PadLeft(6));

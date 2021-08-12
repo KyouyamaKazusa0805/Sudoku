@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Chaining;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Node"/>, about extraction the <see cref="DrawingInfo"/>s.

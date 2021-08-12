@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.LastResorts;
-
-namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Encapsulates a <b>guardian</b> technique searcher.

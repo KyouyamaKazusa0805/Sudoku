@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Singles;
-
-namespace Sudoku.Solving.Manual.LastResorts
+﻿namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
 	/// Encapsulates a <b>Bowman's bingo</b> technique searcher.

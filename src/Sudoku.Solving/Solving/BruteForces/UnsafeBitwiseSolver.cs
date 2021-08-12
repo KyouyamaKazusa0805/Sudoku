@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.BruteForces
+﻿using Pointer = System.Pointer;
+
+namespace Sudoku.Solving.BruteForces
 {
 	/// <summary>
 	/// Define an unsafe bitwise solver.

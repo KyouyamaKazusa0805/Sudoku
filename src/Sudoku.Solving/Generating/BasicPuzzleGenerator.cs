@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Sudoku.Generating
+﻿namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Encapsulates a puzzle generator, which provides the symmetry type constraint

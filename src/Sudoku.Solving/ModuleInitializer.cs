@@ -1,7 +1,4 @@
-﻿using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Buffers;
-
-namespace Sudoku.Solving
+﻿namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates the module initializer of this project.

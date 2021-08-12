@@ -1,6 +1,5 @@
-﻿using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual;
-using static Sudoku.Generating.IPuzzleGenerator;
+﻿using static Sudoku.Generating.IPuzzleGenerator;
+using Pointer = System.Pointer;
 
 namespace Sudoku.Generating
 {

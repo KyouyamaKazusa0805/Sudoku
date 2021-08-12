@@ -1,25 +1,5 @@
 ﻿#define COMPLEX_FISH
 
-using Sudoku.Solving.Manual.Alses;
-using Sudoku.Solving.Manual.Chaining;
-using Sudoku.Solving.Manual.Exocets;
-using Sudoku.Solving.Manual.Fishes;
-using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Solving.Manual.RankTheory;
-using Sudoku.Solving.Manual.Sdps;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
-using Sudoku.Solving.Manual.Uniqueness.Bugs;
-using Sudoku.Solving.Manual.Uniqueness.Extended;
-using Sudoku.Solving.Manual.Uniqueness.Loops;
-using Sudoku.Solving.Manual.Uniqueness.Polygons;
-using Sudoku.Solving.Manual.Uniqueness.Qiu;
-using Sudoku.Solving.Manual.Uniqueness.Rects;
-using Sudoku.Solving.Manual.Uniqueness.Reversal;
-using Sudoku.Solving.Manual.Uniqueness.Square;
-using Sudoku.Solving.Manual.Wings.Irregular;
-using Sudoku.Solving.Manual.Wings.Regular;
 
 namespace Sudoku.Solving.Manual
 {

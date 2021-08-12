@@ -1,6 +1,4 @@
-﻿using static Sudoku.Constants;
-
-namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates a normal ALS.

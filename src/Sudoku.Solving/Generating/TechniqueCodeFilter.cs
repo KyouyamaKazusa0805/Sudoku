@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Sudoku.Generating
+﻿namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Encapsulates a technique code filter that contains some of technique codes.

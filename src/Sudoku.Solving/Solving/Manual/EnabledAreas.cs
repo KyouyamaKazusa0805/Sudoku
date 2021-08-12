@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Represents the data about where a step searcher can be enabled and used.

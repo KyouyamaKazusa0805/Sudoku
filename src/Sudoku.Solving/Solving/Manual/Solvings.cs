@@ -1,8 +1,4 @@
-﻿using Sudoku.Solving.Manual.Intersections;
-using Sudoku.Solving.Manual.Singles;
-using Sudoku.Solving.Manual.Subsets;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods to be used while solving.

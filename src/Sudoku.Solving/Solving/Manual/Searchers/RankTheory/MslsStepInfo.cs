@@ -1,6 +1,4 @@
-﻿using static System.Math;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>multi-sector locked sets</b> technique.
