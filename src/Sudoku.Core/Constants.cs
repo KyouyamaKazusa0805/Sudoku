@@ -6,14 +6,14 @@
 public static partial class Constants
 {
 	/// <summary>
-	/// Indicates the invalid return value of <see cref="BitOperations.PopCount(uint)"/>.
+	/// Indicates the invalid return value of <see cref="PopCount(uint)"/>.
 	/// </summary>
-	/// <seealso cref="BitOperations.PopCount(uint)"/>
+	/// <seealso cref="PopCount(uint)"/>
 	public const int InvalidFirstSet = sizeof(uint) * 8;
 
 	/// <summary>
-	/// Indicates the invalid return value of <see cref="BitOperations.PopCount(ulong)"/>.
+	/// Indicates the invalid return value of <see cref="PopCount(ulong)"/>.
 	/// </summary>
-	/// <seealso cref="BitOperations.PopCount(ulong)"/>
+	/// <seealso cref="PopCount(ulong)"/>
 	public const int InvalidFirstSetLong = sizeof(ulong) * 8;
 }

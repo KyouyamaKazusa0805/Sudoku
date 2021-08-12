@@ -1,53 +1,52 @@
-﻿namespace System.Text.Json
+﻿namespace System.Text.Json;
+
+/// <summary>
+/// Provides extension methods on <see cref="Utf8JsonWriter"/>.
+/// </summary>
+/// <seealso cref="Utf8JsonWriter"/>
+public static class Utf8JsonWriterExtensions
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="Utf8JsonWriter"/>.
+	/// Try to write an object.
 	/// </summary>
-	/// <seealso cref="Utf8JsonWriter"/>
-	public static class Utf8JsonWriterExtensions
+	/// <typeparam name="T">The type of the value.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <param name="value">The value to serialize.</param>
+	/// <param name="converter">The converter.</param>
+	/// <param name="options">The options on serialization.</param>
+	public static void WriteObject<T>(
+		this Utf8JsonWriter @this, T value, JsonConverter<T>? converter, JsonSerializerOptions options)
 	{
-		/// <summary>
-		/// Try to write an object.
-		/// </summary>
-		/// <typeparam name="T">The type of the value.</typeparam>
-		/// <param name="this">The instance.</param>
-		/// <param name="value">The value to serialize.</param>
-		/// <param name="converter">The converter.</param>
-		/// <param name="options">The options on serialization.</param>
-		public static void WriteObject<T>(
-			this Utf8JsonWriter @this, T value, JsonConverter<T>? converter, JsonSerializerOptions options)
+		if (converter is not null)
 		{
-			if (converter is not null)
-			{
-				converter.Write(@this, value, options);
-			}
-			else
-			{
-				JsonSerializer.Serialize(@this, value, options);
-			}
+			converter.Write(@this, value, options);
+		}
+		else
+		{
+			JsonSerializer.Serialize(@this, value, options);
+		}
+	}
+
+	/// <summary>
+	/// Try to write a series of objects.
+	/// </summary>
+	/// <typeparam name="T">The type of the value.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <param name="values">Values to serialize.</param>
+	/// <param name="converter">The converter.</param>
+	/// <param name="options">The options on serialization.</param>
+	public static void WriteObjects<T>(
+		this Utf8JsonWriter @this, IEnumerable<T>? values, JsonConverter<T>? converter,
+		JsonSerializerOptions options)
+	{
+		if (values is null)
+		{
+			return;
 		}
 
-		/// <summary>
-		/// Try to write a series of objects.
-		/// </summary>
-		/// <typeparam name="T">The type of the value.</typeparam>
-		/// <param name="this">The instance.</param>
-		/// <param name="values">Values to serialize.</param>
-		/// <param name="converter">The converter.</param>
-		/// <param name="options">The options on serialization.</param>
-		public static void WriteObjects<T>(
-			this Utf8JsonWriter @this, IEnumerable<T>? values, JsonConverter<T>? converter,
-			JsonSerializerOptions options)
+		foreach (var value in values)
 		{
-			if (values is null)
-			{
-				return;
-			}
-
-			foreach (var value in values)
-			{
-				@this.WriteObject(value, converter, options);
-			}
+			@this.WriteObject(value, converter, options);
 		}
 	}
 }
