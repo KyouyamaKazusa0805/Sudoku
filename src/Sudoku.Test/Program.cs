@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System.Text;
 using Sudoku.Diagnostics;
 using Sudoku.Diagnostics.LanguageFeatures;
 
@@ -19,12 +20,12 @@ foreach (string file in fileCounter.FileList)
 		continue;
 	}
 
-	string content = await File.ReadAllTextAsync(file);
+	string content = await File.ReadAllTextAsync(file, Encoding.UTF8);
 
 	if (syntaxReplacer.Replace(content) is not { } resultCode)
 	{
 		continue;
 	}
 
-	await File.WriteAllTextAsync(file, resultCode);
+	await File.WriteAllTextAsync(file, resultCode, Encoding.UTF8);
 }
