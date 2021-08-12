@@ -1,9 +1,4 @@
-﻿#if DEBUG
-#else
-using System;
-#endif
-
-namespace System.Text
+﻿namespace System.Text
 {
 	/// <summary>
 	/// Encapsulates a string builder implementation that is used via a <see langword="struct"/>.
