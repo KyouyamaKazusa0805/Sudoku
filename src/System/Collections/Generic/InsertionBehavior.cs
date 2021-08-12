@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace System.Collections.Generic
+﻿namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Used internally to control behavior of insertion into a <see cref="ValueDictionary{TKey, TValue}"/>.

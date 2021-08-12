@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-
-namespace System
+﻿namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Enum"/>.

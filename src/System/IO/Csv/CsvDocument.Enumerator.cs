@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using Microsoft.VisualBasic.FileIO;
-
-namespace System.IO.Csv
+﻿namespace System.IO.Csv
 {
 	partial class CsvDocument
 	{

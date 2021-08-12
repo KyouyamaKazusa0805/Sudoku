@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-
-namespace System.Collections.Generic
+﻿namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Encapsulates a tree node.

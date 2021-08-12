@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace System.Reflection
+﻿namespace System.Reflection
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="MemberInfo"/>.

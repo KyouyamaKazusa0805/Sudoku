@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-
-namespace System.Collections.Generic
+﻿namespace System.Collections.Generic
 {
 	/// <summary>
 	/// Indicates a set which contains the different elements.

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace System.Text
+﻿namespace System.Text
 {
 	partial struct ValueStringBuilder
 	{

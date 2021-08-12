@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace System.Collections
+﻿namespace System.Collections
 {
 	/// <summary>
 	/// Encapsulates and provides the methods about hash code handling.

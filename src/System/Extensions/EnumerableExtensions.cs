@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-
-namespace System.Linq
+﻿namespace System.Linq
 {
 	/// <summary>
 	/// Provides a set of static methods for querying objects that implement

@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace System.IO
+﻿namespace System.IO
 {
 	/// <summary>
 	/// The directory extensions.

@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace System.Collections.Generic
+﻿namespace System.Collections.Generic
 {
 	partial struct ValueDictionary<TKey, TValue>
 	{

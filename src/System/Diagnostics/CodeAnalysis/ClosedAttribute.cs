@@ -9,8 +9,6 @@
 	/// operators can't be used here.
 	/// For example:
 	/// <code>
-	/// using System.Diagnostics.CodeAnalysis;
-	/// 
 	/// [Closed]
 	/// public enum Gender { Boy; Girl; }
 	/// </code>

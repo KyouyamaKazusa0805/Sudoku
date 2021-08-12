@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic.FileIO;
-
-namespace System.IO.Csv
+﻿namespace System.IO.Csv
 {
 	/// <summary>
 	/// Introduces a <c>*.csv</c> document.

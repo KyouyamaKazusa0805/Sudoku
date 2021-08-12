@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace System.Text.Json
+﻿namespace System.Text.Json
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Utf8JsonWriter"/>.

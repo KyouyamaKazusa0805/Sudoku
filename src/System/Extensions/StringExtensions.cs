@@ -1,8 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-
-namespace System
+﻿namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="string"/>.
