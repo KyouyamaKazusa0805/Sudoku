@@ -12,6 +12,8 @@
 		<RootNamespace>System</RootNamespace>
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
 		<Version>0.7</Version>
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

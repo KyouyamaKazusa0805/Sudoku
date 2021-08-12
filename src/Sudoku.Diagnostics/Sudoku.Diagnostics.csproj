@@ -10,6 +10,8 @@
 		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
 		<Version>0.7</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -1,4 +1,4 @@
-﻿#if false
+﻿using System.Runtime.Versioning;
 
 namespace System
 {
@@ -6,6 +6,7 @@ namespace System
 	/// Defines a parsable type.
 	/// </summary>
 	/// <typeparam name="T">The type to parse.</typeparam>
+	[RequiresPreviewFeatures]
 	public interface IParsable<T>
 	{
 		/// <summary>
@@ -32,5 +33,3 @@ namespace System
 		static abstract T Parse(string str);
 	}
 }
-
-#endif
