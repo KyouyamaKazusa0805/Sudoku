@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// <para>
@@ -11,7 +9,7 @@ namespace Sudoku.Solving.Manual
 	/// </para>
 	/// <para>
 	/// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-	/// properties such as <see cref="FastProperties.CandMaps"/> in its method
+	/// properties such as <see cref="CandMaps"/> in its method
 	/// <see cref="StepSearcher.GetAll(IList{StepInfo}, in SudokuGrid)"/>.
 	/// </para>
 	/// </summary>
@@ -19,15 +17,15 @@ namespace Sudoku.Solving.Manual
 	/// <para>
 	/// All disallowed properties are:
 	/// <list type="bullet">
-	/// <item><see cref="FastProperties.DigitMaps"/></item>
-	/// <item><see cref="FastProperties.ValueMaps"/></item>
-	/// <item><see cref="FastProperties.CandMaps"/></item>
-	/// <item><see cref="FastProperties.BivalueMap"/></item>
-	/// <item><see cref="FastProperties.EmptyMap"/></item>
+	/// <item><see cref="DigitMaps"/></item>
+	/// <item><see cref="ValueMaps"/></item>
+	/// <item><see cref="CandMaps"/></item>
+	/// <item><see cref="BivalueMap"/></item>
+	/// <item><see cref="EmptyMap"/></item>
 	/// </list>
 	/// The disallowed method is:
 	/// <list type="bullet">
-	/// <item><see cref="FastProperties.InitializeMaps(in SudokuGrid)"/></item>
+	/// <item><see cref="InitializeMaps(in SudokuGrid)"/></item>
 	/// </list>
 	/// </para>
 	/// <para>

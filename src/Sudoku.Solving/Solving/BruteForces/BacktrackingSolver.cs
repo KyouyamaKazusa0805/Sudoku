@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.Data;
-using Sudoku.Resources;
-
-namespace Sudoku.Solving.BruteForces
+﻿namespace Sudoku.Solving.BruteForces
 {
 	/// <summary>
 	/// Provides a solver using backtracking method.

@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness
+﻿namespace Sudoku.Solving.Manual.Uniqueness
 {
 	/// <summary>
 	/// Provides a usage of <b>uniqueness</b> technique.

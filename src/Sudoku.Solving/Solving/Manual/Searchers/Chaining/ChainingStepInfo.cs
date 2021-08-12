@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides a usage of <b>chain</b> technique.

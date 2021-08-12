@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Wings
+﻿namespace Sudoku.Solving.Manual.Wings
 {
 	/// <summary>
 	/// Provides a usage of <b>wing</b> technique.

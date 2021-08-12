@@ -1,8 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Extended
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
 	partial class XrStepSearcher
 	{

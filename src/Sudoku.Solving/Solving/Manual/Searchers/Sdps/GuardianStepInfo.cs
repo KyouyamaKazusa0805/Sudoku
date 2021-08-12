@@ -1,12 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Provides a usage of <b>guardian</b> technique.

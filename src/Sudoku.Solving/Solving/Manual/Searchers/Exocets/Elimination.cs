@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Resources;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// Encapsulates an instance to represent a series of eliminations in JE or SE.

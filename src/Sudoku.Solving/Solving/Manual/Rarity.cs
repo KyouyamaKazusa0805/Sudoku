@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates the rarity of the technique.

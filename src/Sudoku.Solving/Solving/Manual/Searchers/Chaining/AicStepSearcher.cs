@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Encapsulates an <b>(grouped) alternating inference chain</b> (<b>(grouped) AIC</b>) 

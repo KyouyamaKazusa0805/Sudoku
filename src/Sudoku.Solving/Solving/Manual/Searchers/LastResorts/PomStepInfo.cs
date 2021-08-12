@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.LastResorts
+﻿namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
 	/// Provides a usage of <b>pattern overlay method</b> (POM) technique.

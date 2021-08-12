@@ -1,7 +1,5 @@
 ﻿#nullable disable warnings
 
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual
 {

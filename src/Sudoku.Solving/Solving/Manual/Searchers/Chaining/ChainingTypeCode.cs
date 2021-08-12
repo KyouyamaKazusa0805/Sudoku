@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Indicates a type code for a chain.

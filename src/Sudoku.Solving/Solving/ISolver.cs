@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving
+﻿namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates an instance used for solving a sudoku puzzle.

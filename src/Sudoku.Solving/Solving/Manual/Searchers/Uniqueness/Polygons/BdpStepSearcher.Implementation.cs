@@ -1,12 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Polygons
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	partial class BdpStepSearcher
 	{

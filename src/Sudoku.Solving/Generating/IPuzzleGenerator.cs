@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Generating
+﻿namespace Sudoku.Generating
 {
 	/// <summary>
 	/// Provides data for all derived puzzle generators.

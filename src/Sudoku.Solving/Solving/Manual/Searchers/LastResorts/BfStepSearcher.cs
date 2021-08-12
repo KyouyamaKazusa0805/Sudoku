@@ -1,9 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.LastResorts
+﻿namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
 	/// Encapsulates a <b>brute force</b> (<b>BF</b>) technique searcher.

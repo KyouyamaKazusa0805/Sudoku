@@ -1,8 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Sudoku.Data;
-using Sudoku.Globalization;
-using Sudoku.Models;
-using Sudoku.Resources;
 using Sudoku.Solving.Checking;
 
 namespace Sudoku.Solving.Manual

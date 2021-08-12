@@ -1,7 +1,4 @@
-﻿using Sudoku.Data;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	partial class FastProperties
 	{

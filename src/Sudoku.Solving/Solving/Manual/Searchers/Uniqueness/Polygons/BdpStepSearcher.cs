@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Techniques;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Polygons
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	/// <summary>
 	/// Encapsulates a <b>Borescoper's deadly pattern</b> technique searcher.

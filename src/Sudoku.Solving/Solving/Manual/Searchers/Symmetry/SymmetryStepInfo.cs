@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Symmetry
+﻿namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
 	/// Provides a usage of <b>symmetry</b> technique.

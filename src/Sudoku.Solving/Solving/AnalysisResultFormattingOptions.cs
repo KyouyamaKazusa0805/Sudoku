@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Solving
+﻿namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Indicates the formatting options of <see cref="AnalysisResult"/> instance.

@@ -1,9 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.LastResorts
+﻿namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
 	/// Encapsulates a <b>pattern overlay method</b> (POM) technique searcher.

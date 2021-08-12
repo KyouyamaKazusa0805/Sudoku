@@ -1,13 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Qiu
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	/// <summary>
 	/// Provides a usage of <b>Qiu's deadly pattern type 3</b> (QDP) technique.

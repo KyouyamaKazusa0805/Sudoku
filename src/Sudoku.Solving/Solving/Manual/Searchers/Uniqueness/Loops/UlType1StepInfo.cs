@@ -1,7 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Provides a usage of <b>unique loop type 1</b> technique.

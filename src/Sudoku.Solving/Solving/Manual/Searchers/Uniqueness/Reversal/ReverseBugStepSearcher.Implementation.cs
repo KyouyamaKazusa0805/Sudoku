@@ -1,12 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Reversal
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 {
 	partial class ReverseBugStepSearcher
 	{

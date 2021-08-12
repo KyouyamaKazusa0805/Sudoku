@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Sudoku.Techniques;
 
 namespace Sudoku.Generating
 {

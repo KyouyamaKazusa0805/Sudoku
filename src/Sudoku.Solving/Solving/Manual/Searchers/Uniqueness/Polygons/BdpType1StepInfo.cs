@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Polygons
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	/// <summary>
 	/// Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.

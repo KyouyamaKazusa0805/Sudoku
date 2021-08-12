@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Bugs
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
 	/// <summary>
 	/// Provides a usage of <b>BUG + n</b> technique.

@@ -1,13 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
 	/// Encapsulates an <b>unique rectangle</b> (UR) or

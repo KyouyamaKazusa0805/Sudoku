@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Sudoku.Solving
+﻿namespace Sudoku.Solving
 {
 	/// <summary>
 	/// Provides the algorithms about the subset that uses the mask from sudoku grids.

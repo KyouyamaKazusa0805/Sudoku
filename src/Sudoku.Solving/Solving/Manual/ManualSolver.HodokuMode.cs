@@ -1,9 +1,5 @@
-﻿using System.Diagnostics;
-using Sudoku.Data;
-using Sudoku.Models;
-using Sudoku.Solving.Manual.Symmetry;
+﻿using Sudoku.Solving.Manual.Symmetry;
 using Sudoku.Solving.Manual.Uniqueness;
-using static Sudoku.Solving.Manual.FastProperties;
 
 namespace Sudoku.Solving.Manual
 {

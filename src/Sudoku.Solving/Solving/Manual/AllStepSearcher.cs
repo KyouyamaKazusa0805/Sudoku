@@ -1,9 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Globalization;
-using Sudoku.Models;
-using Sudoku.Resources;
-using Sudoku.Solving.Checking;
+﻿using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual.Uniqueness;
 
 namespace Sudoku.Solving.Manual

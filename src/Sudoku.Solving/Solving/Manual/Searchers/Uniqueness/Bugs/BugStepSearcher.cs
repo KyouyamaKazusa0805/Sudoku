@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Solving.Checking;
-using Sudoku.Techniques;
+﻿using Sudoku.Solving.Checking;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {

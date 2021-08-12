@@ -1,7 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Polygons
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	/// <summary>
 	/// Indicates the borescoper's deadly pattern.

@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides methods that do checking during chain searching.

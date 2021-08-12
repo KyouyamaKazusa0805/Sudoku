@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Models;
-using Sudoku.Solving.Manual.Chaining;
+﻿using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Solving.Manual
 {

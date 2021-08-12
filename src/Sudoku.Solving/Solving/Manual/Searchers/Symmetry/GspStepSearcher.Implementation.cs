@@ -1,9 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-
-namespace Sudoku.Solving.Manual.Symmetry
+﻿namespace Sudoku.Solving.Manual.Symmetry
 {
 	partial class GspStepSearcher
 	{

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Solving.Manual.Fishes
+﻿namespace Sudoku.Solving.Manual.Fishes
 {
 	partial record ComplexFishStepInfo
 	{

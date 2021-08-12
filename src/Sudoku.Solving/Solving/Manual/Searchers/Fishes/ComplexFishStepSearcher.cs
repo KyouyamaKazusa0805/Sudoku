@@ -1,13 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Solving.Manual.LastResorts;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.Constants;
-using static Sudoku.Solving.Manual.FastProperties;
+﻿using Sudoku.Solving.Manual.LastResorts;
 
 namespace Sudoku.Solving.Manual.Fishes
 {

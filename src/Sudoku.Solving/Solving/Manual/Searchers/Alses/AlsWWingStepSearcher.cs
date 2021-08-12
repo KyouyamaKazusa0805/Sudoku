@@ -1,13 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates an <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.

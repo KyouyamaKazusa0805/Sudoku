@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Provides a usage of <b>unique loop</b> (UL) technique.

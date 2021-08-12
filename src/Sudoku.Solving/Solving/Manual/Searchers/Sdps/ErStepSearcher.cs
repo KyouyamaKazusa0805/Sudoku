@@ -1,11 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Encapsulates an <b>empty rectangle</b> (<b>ER</b>) technique searcher.

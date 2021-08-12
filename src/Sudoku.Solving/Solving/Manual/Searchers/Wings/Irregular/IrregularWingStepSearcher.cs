@@ -1,13 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Wings.Irregular
+﻿namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
 	/// Encapsulates an <b>irregular wing</b> technique searcher.

@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	partial class UrStepSearcher
 	{

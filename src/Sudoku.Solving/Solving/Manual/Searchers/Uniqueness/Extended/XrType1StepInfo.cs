@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Extended
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Extended
 {
 	/// <summary>
 	/// Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.

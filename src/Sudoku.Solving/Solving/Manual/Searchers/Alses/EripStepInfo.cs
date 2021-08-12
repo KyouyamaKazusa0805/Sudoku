@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>empty rectangle intersection pair</b> (ERIP) technique.

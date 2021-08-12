@@ -1,7 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Qiu
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	/// <summary>
 	/// Encapsulates a pattern for Qiu's deadly pattern (QDP).

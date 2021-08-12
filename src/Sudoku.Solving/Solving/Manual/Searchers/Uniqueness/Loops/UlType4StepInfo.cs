@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Provides a usage of <b>unique loop type 4</b> technique.

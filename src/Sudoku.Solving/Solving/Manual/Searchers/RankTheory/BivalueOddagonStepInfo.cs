@@ -1,9 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>bi-value oddagon</b> technique.

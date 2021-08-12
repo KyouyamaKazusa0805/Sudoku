@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Polygons
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 {
 	/// <summary>
 	/// Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.

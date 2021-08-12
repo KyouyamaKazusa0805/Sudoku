@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Wings.Irregular
+﻿namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
 	/// Provides a usage of <b>W-Wing</b> technique.

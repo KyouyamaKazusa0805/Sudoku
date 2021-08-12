@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
+﻿using Sudoku.Data.Extensions;
 
 namespace Sudoku.Solving.Manual.Singles
 {

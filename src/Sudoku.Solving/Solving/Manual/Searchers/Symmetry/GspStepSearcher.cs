@@ -1,7 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Symmetry
+﻿namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement</b> (GSP) technique searcher.

@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on checking a UL or a reverse BUG loop.

@@ -1,14 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// Encapsulates a <b>senior exocet</b> (SE) technique searcher.

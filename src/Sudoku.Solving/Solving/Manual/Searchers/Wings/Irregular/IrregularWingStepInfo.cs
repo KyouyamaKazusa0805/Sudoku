@@ -1,7 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-
-namespace Sudoku.Solving.Manual.Wings.Irregular
+﻿namespace Sudoku.Solving.Manual.Wings.Irregular
 {
 	/// <summary>
 	/// Encapsulates a usage of <b>irregular wing</b> technique.

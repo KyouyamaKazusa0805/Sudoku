@@ -1,9 +1,5 @@
 ﻿#define COMPLEX_FISH
 
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Sudoku.Data;
-using Sudoku.Models;
 using Sudoku.Solving.Manual.Alses;
 using Sudoku.Solving.Manual.Chaining;
 using Sudoku.Solving.Manual.Exocets;

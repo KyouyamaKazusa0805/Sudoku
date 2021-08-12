@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Subsets
+﻿namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
 	/// Provides a usage of <b>subset</b> technique.

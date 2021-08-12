@@ -1,10 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Reversal
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 {
 	/// <summary>
 	/// Encapsulates a <b>reverse bi-value universal grave</b> technique searcher.

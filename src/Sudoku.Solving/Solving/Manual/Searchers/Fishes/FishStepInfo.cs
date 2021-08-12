@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Fishes
+﻿namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Provides a usage of <b>fish</b> technique.

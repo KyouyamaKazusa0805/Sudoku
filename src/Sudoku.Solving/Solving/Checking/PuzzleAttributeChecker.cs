@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Sudoku.Data;
-using Sudoku.Data.Stepping;
+﻿using Sudoku.Data.Stepping;
 using Sudoku.Solving.BruteForces;
 using Sudoku.Solving.Manual;
 

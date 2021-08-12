@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.LastResorts
+﻿namespace Sudoku.Solving.Manual.LastResorts
 {
 	/// <summary>
 	/// Provides a usage of <b>last resort</b> technique.

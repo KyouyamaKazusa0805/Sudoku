@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Solving.Manual.Singles;
+﻿using Sudoku.Solving.Manual.Singles;
 
 namespace Sudoku.Solving.Manual
 {

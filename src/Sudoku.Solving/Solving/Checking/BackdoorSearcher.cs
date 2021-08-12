@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Solving.Manual;
+﻿using Sudoku.Solving.Manual;
 
 namespace Sudoku.Solving.Checking
 {

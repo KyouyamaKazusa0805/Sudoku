@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Loops
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops
 {
 	/// <summary>
 	/// Encapsulates a <b>unique loop</b> (UL) technique searcher.

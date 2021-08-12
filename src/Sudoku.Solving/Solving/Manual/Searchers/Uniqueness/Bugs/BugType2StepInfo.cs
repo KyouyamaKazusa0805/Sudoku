@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Bugs
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave</b> (BUG) type 2 technique.

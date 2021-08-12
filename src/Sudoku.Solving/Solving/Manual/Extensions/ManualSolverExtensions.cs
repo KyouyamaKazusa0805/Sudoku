@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Solving.Manual.LastResorts;
+﻿using Sudoku.Solving.Manual.LastResorts;
 
 namespace Sudoku.Solving.Manual
 {

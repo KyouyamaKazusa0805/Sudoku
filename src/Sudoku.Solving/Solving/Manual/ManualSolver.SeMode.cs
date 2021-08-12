@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.Data;
-using Sudoku.Models;
-using Sudoku.Solving.Manual.Uniqueness;
-using static Sudoku.Solving.Manual.FastProperties;
+﻿using Sudoku.Solving.Manual.Uniqueness;
 
 namespace Sudoku.Solving.Manual
 {

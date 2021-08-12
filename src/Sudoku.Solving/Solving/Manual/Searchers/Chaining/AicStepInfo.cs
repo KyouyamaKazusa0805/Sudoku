@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides a usage of <b>(grouped) alternating inference chain</b> technique.

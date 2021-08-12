@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps
 {
 	/// <summary>
 	/// Provides a usage of <b>single-digit pattern</b> (SDP) technique.

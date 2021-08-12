@@ -1,10 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	partial class JeStepSearcher
 	{

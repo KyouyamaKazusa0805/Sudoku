@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.Data;
-using Sudoku.Resources;
-using static System.Math;
+﻿using static System.Math;
 
 namespace Sudoku.Solving.BruteForces
 {

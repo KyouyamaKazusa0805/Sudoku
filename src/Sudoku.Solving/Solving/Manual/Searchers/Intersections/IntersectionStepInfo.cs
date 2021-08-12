@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Intersections
+﻿namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
 	/// Provides a usage of <b>intersection</b> technique.

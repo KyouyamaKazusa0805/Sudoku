@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Encapsulates an <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.

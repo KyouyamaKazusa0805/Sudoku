@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
 	/// Provides a usage of <b>hidden unique rectangle</b> (HUR) or

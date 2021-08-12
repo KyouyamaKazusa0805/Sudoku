@@ -1,13 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Square
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	/// <summary>
 	/// Provides a usage of <b>unique square type 3</b> (US) technique.

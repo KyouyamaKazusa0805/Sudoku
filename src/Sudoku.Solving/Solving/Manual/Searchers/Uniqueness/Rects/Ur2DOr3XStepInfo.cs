@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
 	/// Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or

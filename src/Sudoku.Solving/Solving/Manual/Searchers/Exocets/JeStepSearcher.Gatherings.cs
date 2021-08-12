@@ -1,7 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	partial class JeStepSearcher
 	{

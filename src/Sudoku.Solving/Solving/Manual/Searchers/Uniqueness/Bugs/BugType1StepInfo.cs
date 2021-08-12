@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Bugs
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 {
 	/// <summary>
 	/// Provides a usage of <b>bivalue universal grave</b> (BUG) type 1 technique.

@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses
 {
 	/// <summary>
 	/// Provides a usage of <b>death blossom</b> technique.

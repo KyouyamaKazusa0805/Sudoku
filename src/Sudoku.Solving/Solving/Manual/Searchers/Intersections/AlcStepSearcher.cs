@@ -1,13 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Intersections
+﻿namespace Sudoku.Solving.Manual.Intersections
 {
 	/// <summary>
 	/// Encapsulates an <b>almost locked candidates</b> (ALC) technique searcher.

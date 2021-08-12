@@ -1,11 +1,5 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Singles
 {

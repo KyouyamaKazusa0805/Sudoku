@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Singles
+﻿namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
 	/// Provides a usage of <b>single</b> technique.

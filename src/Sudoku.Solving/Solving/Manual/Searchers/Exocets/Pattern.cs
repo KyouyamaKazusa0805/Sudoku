@@ -1,7 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// <para>

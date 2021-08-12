@@ -1,13 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Subsets
+﻿namespace Sudoku.Solving.Manual.Subsets
 {
 	/// <summary>
 	/// Provides a usage of <b>naked subset</b> technique.

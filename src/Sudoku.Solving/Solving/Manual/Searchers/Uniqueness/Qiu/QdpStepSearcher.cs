@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Qiu
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	/// <summary>
 	/// Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.

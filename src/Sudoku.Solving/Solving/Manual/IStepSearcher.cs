@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides the basic restraint of a <see cref="StepSearcher"/>.

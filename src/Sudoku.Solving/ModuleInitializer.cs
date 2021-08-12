@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Solving.Manual;
+﻿using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Buffers;
 
 namespace Sudoku.Solving

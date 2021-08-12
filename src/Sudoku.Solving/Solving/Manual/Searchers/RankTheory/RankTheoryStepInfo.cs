@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>rank theory</b> technique.

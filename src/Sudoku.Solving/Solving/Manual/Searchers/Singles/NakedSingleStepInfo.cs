@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Singles
+﻿namespace Sudoku.Solving.Manual.Singles
 {
 	/// <summary>
 	/// Indicates a usage of <b>naked single</b> technique.

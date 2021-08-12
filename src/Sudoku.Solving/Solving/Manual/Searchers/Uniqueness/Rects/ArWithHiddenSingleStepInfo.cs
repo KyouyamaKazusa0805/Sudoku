@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Rects
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Rects
 {
 	/// <summary>
 	/// Provides a usage of <b>avoidable rectangle + hidden single</b> technique.

@@ -1,7 +1,4 @@
-﻿using Sudoku.Drawing;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Exocets
+﻿namespace Sudoku.Solving.Manual.Exocets
 {
 	/// <summary>
 	/// Provides a usage of <b>junior exocet</b> (JE) technique.

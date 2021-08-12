@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates the options aiming to <see cref="StepSearcher"/>s while searching, which is the newer
@@ -43,11 +41,7 @@ namespace Sudoku.Solving.Manual
 	/// <seealso cref="TechniqueProperties"/>.
 	/// <seealso cref="AllStepSearcher"/>
 	[StructLayout(LayoutKind.Explicit)]
-#if false
 	public readonly record struct SearchingOptions(
-#else
-	public record SearchingOptions(
-#endif
 		[field: FieldOffset(4)] short Priority,
 		[field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
 		[field: FieldOffset(0)] EnabledAreas EnabledAreas = EnabledAreas.Default | EnabledAreas.FullSearching,

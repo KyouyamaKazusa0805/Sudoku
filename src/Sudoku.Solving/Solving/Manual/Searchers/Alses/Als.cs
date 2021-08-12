@@ -1,12 +1,4 @@
-﻿using System.Numerics;
-using System.Text;
-using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
+﻿using static Sudoku.Constants;
 
 namespace Sudoku.Solving.Manual.Alses
 {

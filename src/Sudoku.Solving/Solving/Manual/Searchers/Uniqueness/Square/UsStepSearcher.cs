@@ -1,8 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Techniques;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Square
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Square
 {
 	/// <summary>
 	/// Encapsulates a <b>uniqueness square</b> (US) technique searcher.

@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Define a batch rater.

@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Solving.Manual.Symmetry
+﻿namespace Sudoku.Solving.Manual.Symmetry
 {
 	/// <summary>
 	/// Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.

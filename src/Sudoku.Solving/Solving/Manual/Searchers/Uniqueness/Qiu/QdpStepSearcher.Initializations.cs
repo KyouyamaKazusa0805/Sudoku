@@ -1,7 +1,4 @@
-﻿using Sudoku.Data;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Solving.Manual.Uniqueness.Qiu
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 {
 	partial class QdpStepSearcher
 	{

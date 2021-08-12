@@ -1,11 +1,4 @@
-﻿using System.Numerics;
-using Sudoku.Data;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Encapsulates a <b>bi-value oddagon</b> technique searcher.

@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory
 {
 	/// <summary>
 	/// Provides a usage of <b>bi-value oddagon type 2</b> technique.

@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StepInfo"/>.

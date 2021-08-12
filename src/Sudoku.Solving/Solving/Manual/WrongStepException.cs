@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Sudoku.Data;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).

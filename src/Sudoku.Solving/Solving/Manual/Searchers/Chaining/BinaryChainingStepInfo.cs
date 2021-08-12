@@ -1,11 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Resources;
-using Sudoku.Solving.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining
 {
 	/// <summary>
 	/// Provides a usage of <b>contradiction forcing chains</b> and <b>double forcing chains</b> technique.

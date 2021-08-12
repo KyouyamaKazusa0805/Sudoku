@@ -1,13 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Models;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.FastProperties;
-
-namespace Sudoku.Solving.Manual.Fishes
+﻿namespace Sudoku.Solving.Manual.Fishes
 {
 	/// <summary>
 	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
