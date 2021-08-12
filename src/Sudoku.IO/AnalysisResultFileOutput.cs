@@ -1,9 +1,4 @@
-﻿using NPOI.XWPF.UserModel;
-using Sudoku.CodeGenerating;
-using Sudoku.Drawing;
-using Sudoku.Solving;
-
-namespace Sudoku.IO
+﻿namespace Sudoku.IO
 {
 	/// <summary>
 	/// Encapsulates a instance for saving analysis result.

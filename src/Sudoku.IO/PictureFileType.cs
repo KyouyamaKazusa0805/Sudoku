@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.IO
+﻿namespace Sudoku.IO
 {
 	/// <summary>
 	/// Encapsulates a picture type.

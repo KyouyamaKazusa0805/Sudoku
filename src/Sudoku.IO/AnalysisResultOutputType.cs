@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.IO
+﻿namespace Sudoku.IO
 {
 	/// <summary>
 	/// Indicates the analysis result output type.

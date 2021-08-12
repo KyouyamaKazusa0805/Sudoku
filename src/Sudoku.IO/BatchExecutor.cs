@@ -1,10 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Sudoku.CodeGenerating;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using PointConverter = Sudoku.Drawing.PointConverter;
-
-namespace Sudoku.IO
+﻿namespace Sudoku.IO
 {
 	/// <summary>
 	/// Encapsulates a batch code executor. This class stands for a instance
