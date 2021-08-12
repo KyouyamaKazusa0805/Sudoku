@@ -1,26 +1,25 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Loops;
+
+/// <summary>
+/// Provides a usage of <b>unique loop type 1</b> technique.
+/// </summary>
+/// <param name="Conclusions">All conclusions.</param>
+/// <param name="Views">All views.</param>
+/// <param name="Digit1">The digit 1.</param>
+/// <param name="Digit2">The digit 2.</param>
+/// <param name="Loop">The loop.</param>
+public sealed record UlType1StepInfo(
+	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+	int Digit1, int Digit2, in Cells Loop
+) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 {
-	/// <summary>
-	/// Provides a usage of <b>unique loop type 1</b> technique.
-	/// </summary>
-	/// <param name="Conclusions">All conclusions.</param>
-	/// <param name="Views">All views.</param>
-	/// <param name="Digit1">The digit 1.</param>
-	/// <param name="Digit2">The digit 2.</param>
-	/// <param name="Loop">The loop.</param>
-	public sealed record UlType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Digit1, int Digit2, in Cells Loop
-	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
-	{
-		/// <inheritdoc/>
-		public override int Type => 1;
+	/// <inheritdoc/>
+	public override int Type => 1;
 
 
-		/// <inheritdoc/>
-		public bool Equals(UlType1StepInfo? other) => base.Equals(other);
+	/// <inheritdoc/>
+	public bool Equals(UlType1StepInfo? other) => base.Equals(other);
 
-		/// <inheritdoc/>
-		public override int GetHashCode() => base.GetHashCode();
-	}
+	/// <inheritdoc/>
+	public override int GetHashCode() => base.GetHashCode();
 }

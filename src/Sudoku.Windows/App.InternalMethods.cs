@@ -1,26 +1,25 @@
 ﻿using System.Windows;
 using Sudoku.Data;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+partial class App
 {
-	partial class App
+	private partial Window ShowMainWindowDefault() => new MainWindow();
+
+	private partial Window? ShowMainWindowWithGridCode(string str)
 	{
-		private partial Window ShowMainWindowDefault() => new MainWindow();
-
-		private partial Window? ShowMainWindowWithGridCode(string str)
+		var targetGrid = str switch
 		{
-			var targetGrid = str switch
-			{
-				"%empty" => SudokuGrid.Empty,
-				_ when SudokuGrid.TryParse(str, out var grid) => grid,
-				_ => SudokuGrid.Undefined
-			};
+			"%empty" => SudokuGrid.Empty,
+			_ when SudokuGrid.TryParse(str, out var grid) => grid,
+			_ => SudokuGrid.Undefined
+		};
 
-			return targetGrid.IsUndefined ? null : new MainWindow(targetGrid);
-		}
+		return targetGrid.IsUndefined ? null : new MainWindow(targetGrid);
+	}
 
 #if AUTHOR_RESERVED && DEBUG
-		private partial Window ShowMainWindowWithDynamic() => new MainWindow(true);
+	private partial Window ShowMainWindowWithDynamic() => new MainWindow(true);
 #endif
-	}
 }

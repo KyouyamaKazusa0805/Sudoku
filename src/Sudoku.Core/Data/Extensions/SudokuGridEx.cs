@@ -1,28 +1,27 @@
-﻿namespace Sudoku.Data.Extensions
+﻿namespace Sudoku.Data.Extensions;
+
+/// <summary>
+/// Provides extension methods on <see cref="SudokuGrid"/>.
+/// </summary>
+/// <seealso cref="SudokuGrid"/>
+public static class SudokuGridEx
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="SudokuGrid"/>.
+	/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
 	/// </summary>
-	/// <seealso cref="SudokuGrid"/>
-	public static class SudokuGridEx
+	/// <param name="this">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>The <see cref="bool"/> result.</returns>
+	public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
 	{
-		/// <summary>
-		/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
-		/// </summary>
-		/// <param name="this">The grid.</param>
-		/// <param name="cell">The cell.</param>
-		/// <param name="digit">The digit.</param>
-		/// <returns>The <see cref="bool"/> result.</returns>
-		public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
+		foreach (int peerCell in PeerMaps[cell])
 		{
-			foreach (int peerCell in PeerMaps[cell])
+			if (@this[peerCell] == digit)
 			{
-				if (@this[peerCell] == digit)
-				{
-					return true;
-				}
+				return true;
 			}
-			return false;
 		}
+		return false;
 	}
 }

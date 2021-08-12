@@ -1,52 +1,51 @@
-﻿namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual;
+
+/// <summary>
+/// Provides extension methods on checking a UL or a reverse BUG loop.
+/// </summary>
+public static class Looping
 {
 	/// <summary>
-	/// Provides extension methods on checking a UL or a reverse BUG loop.
+	/// Check whether the current loop is valid UL-shaped loop.
 	/// </summary>
-	public static class Looping
+	/// <param name="loop">The loop.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	public static unsafe bool IsValidLoop(this IEnumerable<int> loop)
 	{
-		/// <summary>
-		/// Check whether the current loop is valid UL-shaped loop.
-		/// </summary>
-		/// <param name="loop">The loop.</param>
-		/// <returns>A <see cref="bool"/> value indicating that.</returns>
-		public static unsafe bool IsValidLoop(this IEnumerable<int> loop)
+		int visitedOddRegions = 0, visitedEvenRegions = 0;
+		bool isOdd;
+		foreach (int cell in loop)
 		{
-			int visitedOddRegions = 0, visitedEvenRegions = 0;
-			bool isOdd;
-			foreach (int cell in loop)
+			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+				int region = cell.ToRegion(label);
+				if (*&isOdd)
 				{
-					int region = cell.ToRegion(label);
-					if (*&isOdd)
+					if ((visitedOddRegions >> region & 1) != 0)
 					{
-						if ((visitedOddRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedOddRegions |= 1 << region;
-						}
+						return false;
 					}
 					else
 					{
-						if ((visitedEvenRegions >> region & 1) != 0)
-						{
-							return false;
-						}
-						else
-						{
-							visitedEvenRegions |= 1 << region;
-						}
+						visitedOddRegions |= 1 << region;
 					}
 				}
-
-				*&isOdd = !*&isOdd;
+				else
+				{
+					if ((visitedEvenRegions >> region & 1) != 0)
+					{
+						return false;
+					}
+					else
+					{
+						visitedEvenRegions |= 1 << region;
+					}
+				}
 			}
 
-			return visitedEvenRegions == visitedOddRegions;
+			*&isOdd = !*&isOdd;
 		}
+
+		return visitedEvenRegions == visitedOddRegions;
 	}
 }

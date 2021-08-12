@@ -1,89 +1,88 @@
-﻿namespace Sudoku.Data
+﻿namespace Sudoku.Data;
+
+partial struct SudokuGridSegment
 {
-	partial struct SudokuGridSegment
+	/// <summary>
+	/// The inner enumerator.
+	/// </summary>
+	public unsafe ref partial struct Enumerator
 	{
 		/// <summary>
-		/// The inner enumerator.
+		/// The pointer to the start value.
 		/// </summary>
-		public unsafe ref partial struct Enumerator
+		private readonly short* _start;
+
+
+		/// <summary>
+		/// The current pointer.
+		/// </summary>
+		private short* _currentPointer;
+
+		/// <summary>
+		/// Indicates the current mask.
+		/// </summary>
+		private short _currentMask;
+
+		/// <summary>
+		/// The current index.
+		/// </summary>
+		private int _currentIndex;
+
+
+		/// <summary>
+		/// Initializes an instance with the specified pointer to an array to iterate.
+		/// </summary>
+		/// <param name="arr">The pointer to an array.</param>
+		/// <remarks>
+		/// Note here we should point at the one-unit-lengthed memory before the array start.
+		/// </remarks>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Enumerator(short* arr) : this()
 		{
-			/// <summary>
-			/// The pointer to the start value.
-			/// </summary>
-			private readonly short* _start;
+			_currentPointer = _start = arr - 1;
+			_currentIndex = -1;
+		}
 
 
-			/// <summary>
-			/// The current pointer.
-			/// </summary>
-			private short* _currentPointer;
-
-			/// <summary>
-			/// Indicates the current mask.
-			/// </summary>
-			private short _currentMask;
-
-			/// <summary>
-			/// The current index.
-			/// </summary>
-			private int _currentIndex;
-
-
-			/// <summary>
-			/// Initializes an instance with the specified pointer to an array to iterate.
-			/// </summary>
-			/// <param name="arr">The pointer to an array.</param>
-			/// <remarks>
-			/// Note here we should point at the one-unit-lengthed memory before the array start.
-			/// </remarks>
+		/// <summary>
+		/// Gets the element in the collection at the current position of the enumerator.
+		/// </summary>
+		public readonly int Current
+		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public Enumerator(short* arr) : this()
+			get => _currentMask;
+		}
+
+
+		/// <summary>
+		/// Advances the enumerator to the next element of the collection.
+		/// </summary>
+		/// <returns>
+		/// <see langword="true"/> if the enumerator was successfully advanced to the next element;
+		/// <see langword="false"/> if the enumerator has passed the end of the collection.
+		/// </returns>
+		public bool MoveNext()
+		{
+			if (++_currentIndex == 10)
 			{
-				_currentPointer = _start = arr - 1;
-				_currentIndex = -1;
+				return false;
 			}
 
+			_currentPointer = _start + _currentIndex + 1;
+			_currentMask = *_currentPointer;
+			return true;
+		}
 
-			/// <summary>
-			/// Gets the element in the collection at the current position of the enumerator.
-			/// </summary>
-			public readonly int Current
-			{
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				get => _currentMask;
-			}
-
-
-			/// <summary>
-			/// Advances the enumerator to the next element of the collection.
-			/// </summary>
-			/// <returns>
-			/// <see langword="true"/> if the enumerator was successfully advanced to the next element;
-			/// <see langword="false"/> if the enumerator has passed the end of the collection.
-			/// </returns>
-			public bool MoveNext()
-			{
-				if (++_currentIndex == 10)
-				{
-					return false;
-				}
-
-				_currentPointer = _start + _currentIndex + 1;
-				_currentMask = *_currentPointer;
-				return true;
-			}
-
-			/// <summary>
-			/// Sets the enumerator to its initial position, which is before the first element
-			/// in the collection.
-			/// </summary>
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public void Reset()
-			{
-				_currentPointer = _start;
-				_currentIndex = -1;
-				_currentMask = default;
-			}
+		/// <summary>
+		/// Sets the enumerator to its initial position, which is before the first element
+		/// in the collection.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Reset()
+		{
+			_currentPointer = _start;
+			_currentIndex = -1;
+			_currentMask = default;
 		}
 	}
 }

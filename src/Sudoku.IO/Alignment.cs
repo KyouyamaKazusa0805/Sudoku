@@ -1,24 +1,23 @@
-﻿namespace Sudoku.IO
+﻿namespace Sudoku.IO;
+
+/// <summary>
+/// Indicates an alignment type.
+/// </summary>
+[Closed]
+public enum Alignment : byte
 {
 	/// <summary>
-	/// Indicates an alignment type.
+	/// Indicates the left alignment.
 	/// </summary>
-	[Closed]
-	public enum Alignment : byte
-	{
-		/// <summary>
-		/// Indicates the left alignment.
-		/// </summary>
-		Left,
+	Left,
 
-		/// <summary>
-		/// Indicates the middle alignment.
-		/// </summary>
-		Middle,
+	/// <summary>
+	/// Indicates the middle alignment.
+	/// </summary>
+	Middle,
 
-		/// <summary>
-		/// Indicates the right alignment.
-		/// </summary>
-		Right
-	}
+	/// <summary>
+	/// Indicates the right alignment.
+	/// </summary>
+	Right
 }

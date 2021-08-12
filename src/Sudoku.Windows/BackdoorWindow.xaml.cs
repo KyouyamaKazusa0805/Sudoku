@@ -9,82 +9,81 @@ using Sudoku.Data.Collections;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.MainWindow;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>BackdoorWindow.xaml</c>.
+/// </summary>
+public partial class BackdoorWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>BackdoorWindow.xaml</c>.
+	/// The puzzle.
 	/// </summary>
-	public partial class BackdoorWindow : Window
+	private readonly SudokuGrid _puzzle;
+
+
+	/// <summary>
+	/// Indicates the searching depth.
+	/// </summary>
+	private int _depth;
+
+
+	/// <summary>
+	/// Initializes an instance with the specified puzzle.
+	/// </summary>
+	/// <param name="puzzle">The puzzle.</param>
+	public BackdoorWindow(in SudokuGrid puzzle)
 	{
-		/// <summary>
-		/// The puzzle.
-		/// </summary>
-		private readonly SudokuGrid _puzzle;
+		InitializeComponent();
+
+		_puzzle = puzzle;
+		_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle.ToString("#")}";
+	}
 
 
-		/// <summary>
-		/// Indicates the searching depth.
-		/// </summary>
-		private int _depth;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified puzzle.
-		/// </summary>
-		/// <param name="puzzle">The puzzle.</param>
-		public BackdoorWindow(in SudokuGrid puzzle)
+	private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
+	{
+		var collections = await internalOperation();
+		async Task<IEnumerable<IReadOnlyList<Conclusion>>?> internalOperation()
 		{
-			InitializeComponent();
+			_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
+			_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];
 
-			_puzzle = puzzle;
-			_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle.ToString("#")}";
+			return await Task.Run(() =>
+			{
+				try { return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth); }
+				catch (InvalidPuzzleException) { return null; }
+			});
 		}
 
-
-		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
+		_labelStatus.ClearValue(ContentProperty);
+		if (collections is null)
 		{
-			var collections = await internalOperation();
-			async Task<IEnumerable<IReadOnlyList<Conclusion>>?> internalOperation()
-			{
-				_listBoxBackdoors.ClearValue(ItemsControl.ItemsSourceProperty);
-				_labelStatus.Content = (string)LangSource["BackdoorWhileSearching"];
+			Messagings.FailedToCheckDueToInvalidPuzzle();
 
-				return await Task.Run(() =>
-				{
-					try { return new BackdoorSearcher().SearchForBackdoors(_puzzle, _depth); }
-					catch (InvalidPuzzleException) { return null; }
-				});
-			}
-
-			_labelStatus.ClearValue(ContentProperty);
-			if (collections is null)
-			{
-				Messagings.FailedToCheckDueToInvalidPuzzle();
-
-				e.Handled = true;
-				return;
-			}
-
-			// This encapsulation is on purpose, because ref structs cannot be used in the async environment.
-			showBackdoors();
-			void showBackdoors()
-			{
-				var collectionStr = new List<string>();
-				foreach (var collection in collections)
-				{
-					collectionStr.Add(new ConclusionCollection(collection).ToString());
-				}
-
-				_listBoxBackdoors.ItemsSource = collectionStr;
-			}
+			e.Handled = true;
+			return;
 		}
 
-		private void ComboBoxDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		// This encapsulation is on purpose, because ref structs cannot be used in the async environment.
+		showBackdoors();
+		void showBackdoors()
 		{
-			if (sender is ComboBox comboBox)
+			var collectionStr = new List<string>();
+			foreach (var collection in collections)
 			{
-				_depth = comboBox.SelectedIndex;
+				collectionStr.Add(new ConclusionCollection(collection).ToString());
 			}
+
+			_listBoxBackdoors.ItemsSource = collectionStr;
+		}
+	}
+
+	private void ComboBoxDepth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is ComboBox comboBox)
+		{
+			_depth = comboBox.SelectedIndex;
 		}
 	}
 }

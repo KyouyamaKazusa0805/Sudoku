@@ -1,9 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps;
+
+/// <summary>
+/// Encapsulates a <b>single-digit pattern</b> (SDP) technique searcher.
+/// </summary>
+public abstract class SdpStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Encapsulates a <b>single-digit pattern</b> (SDP) technique searcher.
-	/// </summary>
-	public abstract class SdpStepSearcher : StepSearcher
-	{
-	}
 }

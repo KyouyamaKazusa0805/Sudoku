@@ -1,20 +1,19 @@
 ﻿using Application = Microsoft.Maui.Controls.Application;
 
-namespace Sudoku.UI
+namespace Sudoku.UI;
+
+/// <summary>
+/// Defines the interaction of this application.
+/// </summary>
+public partial class App : Application
 {
 	/// <summary>
-	/// Defines the interaction of this application.
+	/// Initializes an <see cref="App"/> instance without parameters.
 	/// </summary>
-	public partial class App : Application
+	public App()
 	{
-		/// <summary>
-		/// Initializes an <see cref="App"/> instance without parameters.
-		/// </summary>
-		public App()
-		{
-			InitializeComponent();
+		InitializeComponent();
 
-			MainPage = new MainPage();
-		}
+		MainPage = new MainPage();
 	}
 }

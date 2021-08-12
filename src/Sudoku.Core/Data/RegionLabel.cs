@@ -1,23 +1,22 @@
-﻿namespace Sudoku.Data
+﻿namespace Sudoku.Data;
+
+/// <summary>
+/// Indicates the region label.
+/// </summary>
+public enum RegionLabel : byte
 {
 	/// <summary>
-	/// Indicates the region label.
+	/// Indicates the block.
 	/// </summary>
-	public enum RegionLabel : byte
-	{
-		/// <summary>
-		/// Indicates the block.
-		/// </summary>
-		Block,
+	Block,
 
-		/// <summary>
-		/// Indicates the row.
-		/// </summary>
-		Row,
+	/// <summary>
+	/// Indicates the row.
+	/// </summary>
+	Row,
 
-		/// <summary>
-		/// Indicates the column.
-		/// </summary>
-		Column
-	}
+	/// <summary>
+	/// Indicates the column.
+	/// </summary>
+	Column
 }

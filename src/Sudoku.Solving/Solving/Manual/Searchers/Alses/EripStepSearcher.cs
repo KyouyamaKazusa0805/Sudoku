@@ -1,151 +1,150 @@
-﻿namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses;
+
+/// <summary>
+/// Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
+/// </summary>
+public sealed class EripStepSearcher : AlsStepSearcher
 {
+	/// <inheritdoc/>
+	public override SearchingOptions Options { get; set; } = new(28, DisplayingLevel.B);
+
 	/// <summary>
-	/// Encapsulates an <b>empty rectangle intersection pair</b> (ERIP) technique.
+	/// Indicates the searcher properties.
 	/// </summary>
-	public sealed class EripStepSearcher : AlsStepSearcher
+	/// <remarks>
+	/// Please note that all technique searches should contain
+	/// this static property in order to display on settings window. If the searcher doesn't contain,
+	/// when we open the settings window, it'll throw an exception to report about this.
+	/// </remarks>
+	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	public static TechniqueProperties Properties { get; } = new(28, nameof(Technique.Erip))
 	{
-		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(28, DisplayingLevel.B);
+		DisplayLevel = 2
+	};
 
-		/// <summary>
-		/// Indicates the searcher properties.
-		/// </summary>
-		/// <remarks>
-		/// Please note that all technique searches should contain
-		/// this static property in order to display on settings window. If the searcher doesn't contain,
-		/// when we open the settings window, it'll throw an exception to report about this.
-		/// </remarks>
-		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
-		public static TechniqueProperties Properties { get; } = new(28, nameof(Technique.Erip))
+
+	/// <inheritdoc/>
+	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	{
+		for (int i = 0, length = BivalueMap.Count, iterationLength = length - 1; i < iterationLength; i++)
 		{
-			DisplayLevel = 2
-		};
+			int c1 = BivalueMap[i];
 
-
-		/// <inheritdoc/>
-		public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
-		{
-			for (int i = 0, length = BivalueMap.Count, iterationLength = length - 1; i < iterationLength; i++)
+			short mask = grid.GetCandidates(c1);
+			int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
+			for (int j = i + 1; j < length; j++)
 			{
-				int c1 = BivalueMap[i];
+				int c2 = BivalueMap[j];
 
-				short mask = grid.GetCandidates(c1);
-				int d1 = TrailingZeroCount(mask), d2 = mask.GetNextSet(d1);
-				for (int j = i + 1; j < length; j++)
+				// Check the candidates that cell holds is totally same with 'c1'.
+				if (grid.GetCandidates(c2) != mask)
 				{
-					int c2 = BivalueMap[j];
+					continue;
+				}
 
-					// Check the candidates that cell holds is totally same with 'c1'.
-					if (grid.GetCandidates(c2) != mask)
+				// Check the two cells are not in same region.
+				if (new Cells { c1, c2 }.InOneRegion)
+				{
+					continue;
+				}
+
+				int block1 = c1.ToRegion(RegionLabel.Block), block2 = c2.ToRegion(RegionLabel.Block);
+				if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
+				{
+					continue;
+				}
+
+				// Check the block that two cells both see.
+				var interMap = new Cells { c1, c2 }.PeerIntersection;
+				var unionMap = new Cells(c1) | new Cells(c2);
+				foreach (int interCell in interMap)
+				{
+					int block = interCell.ToRegion(RegionLabel.Block);
+					var regionMap = RegionMaps[block];
+					var checkingMap = regionMap - unionMap & regionMap;
+					if (!(checkingMap & CandMaps[d1]).IsEmpty || !(checkingMap & CandMaps[d2]).IsEmpty)
 					{
 						continue;
 					}
 
-					// Check the two cells are not in same region.
-					if (new Cells { c1, c2 }.InOneRegion)
+					// Check whether two digits are both in the same empty rectangle.
+					int[] offsets = interMap.ToArray();
+					int inter1 = offsets[0], inter2 = offsets[1];
+					int b1 = inter1.ToRegion(RegionLabel.Block);
+					int b2 = inter2.ToRegion(RegionLabel.Block);
+					var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
+					var erCellsMap = regionMap & erMap;
+					short m = 0;
+					foreach (int cell in erCellsMap)
+					{
+						m |= grid.GetCandidates(cell);
+					}
+					if ((m & mask) != mask)
 					{
 						continue;
 					}
 
-					int block1 = c1.ToRegion(RegionLabel.Block), block2 = c2.ToRegion(RegionLabel.Block);
-					if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
+					// Check eliminations.
+					var conclusions = new List<Conclusion>();
+					int z = (interMap & regionMap)[0];
+					var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
+					var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
+					foreach (int elimCell in new Cells(c1Map | c2Map) { ~c1, ~c2 } - erMap)
+					{
+						if (grid.Exists(elimCell, d1) is true)
+						{
+							conclusions.Add(new(ConclusionType.Elimination, elimCell, d1));
+						}
+						if (grid.Exists(elimCell, d2) is true)
+						{
+							conclusions.Add(new(ConclusionType.Elimination, elimCell, d2));
+						}
+					}
+					if (conclusions.Count == 0)
 					{
 						continue;
 					}
 
-					// Check the block that two cells both see.
-					var interMap = new Cells { c1, c2 }.PeerIntersection;
-					var unionMap = new Cells(c1) | new Cells(c2);
-					foreach (int interCell in interMap)
+					var candidateOffsets = new List<DrawingInfo>();
+					foreach (int digit in grid.GetCandidates(c1))
 					{
-						int block = interCell.ToRegion(RegionLabel.Block);
-						var regionMap = RegionMaps[block];
-						var checkingMap = regionMap - unionMap & regionMap;
-						if (!(checkingMap & CandMaps[d1]).IsEmpty || !(checkingMap & CandMaps[d2]).IsEmpty)
+						candidateOffsets.Add(new(0, c1 * 9 + digit));
+					}
+					foreach (int digit in grid.GetCandidates(c2))
+					{
+						candidateOffsets.Add(new(0, c2 * 9 + digit));
+					}
+					foreach (int cell in erCellsMap)
+					{
+						foreach (int digit in grid.GetCandidates(cell))
 						{
-							continue;
-						}
-
-						// Check whether two digits are both in the same empty rectangle.
-						int[] offsets = interMap.ToArray();
-						int inter1 = offsets[0], inter2 = offsets[1];
-						int b1 = inter1.ToRegion(RegionLabel.Block);
-						int b2 = inter2.ToRegion(RegionLabel.Block);
-						var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
-						var erCellsMap = regionMap & erMap;
-						short m = 0;
-						foreach (int cell in erCellsMap)
-						{
-							m |= grid.GetCandidates(cell);
-						}
-						if ((m & mask) != mask)
-						{
-							continue;
-						}
-
-						// Check eliminations.
-						var conclusions = new List<Conclusion>();
-						int z = (interMap & regionMap)[0];
-						var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
-						var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
-						foreach (int elimCell in new Cells(c1Map | c2Map) { ~c1, ~c2 } - erMap)
-						{
-							if (grid.Exists(elimCell, d1) is true)
+							if (digit != d1 && digit != d2)
 							{
-								conclusions.Add(new(ConclusionType.Elimination, elimCell, d1));
+								continue;
 							}
-							if (grid.Exists(elimCell, d2) is true)
-							{
-								conclusions.Add(new(ConclusionType.Elimination, elimCell, d2));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
 
-						var candidateOffsets = new List<DrawingInfo>();
-						foreach (int digit in grid.GetCandidates(c1))
-						{
-							candidateOffsets.Add(new(0, c1 * 9 + digit));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
-						foreach (int digit in grid.GetCandidates(c2))
-						{
-							candidateOffsets.Add(new(0, c2 * 9 + digit));
-						}
-						foreach (int cell in erCellsMap)
-						{
-							foreach (int digit in grid.GetCandidates(cell))
+					}
+
+					accumulator.Add(
+						new EripStepInfo(
+							conclusions,
+							new View[]
 							{
-								if (digit != d1 && digit != d2)
+								new()
 								{
-									continue;
+									Candidates = candidateOffsets,
+									Regions = new DrawingInfo[] { new(0, block) }
 								}
-
-								candidateOffsets.Add(new(1, cell * 9 + digit));
-							}
-						}
-
-						accumulator.Add(
-							new EripStepInfo(
-								conclusions,
-								new View[]
-								{
-									new()
-									{
-										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, block) }
-									}
-								},
-								c1,
-								c2,
-								block,
-								d1,
-								d2
-							)
-						);
-					}
+							},
+							c1,
+							c2,
+							block,
+							d1,
+							d2
+						)
+					);
 				}
 			}
 		}

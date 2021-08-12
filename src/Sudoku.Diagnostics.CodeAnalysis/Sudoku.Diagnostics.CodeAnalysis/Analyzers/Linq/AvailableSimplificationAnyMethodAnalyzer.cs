@@ -6,97 +6,96 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+
+[CodeAnalyzer("SS0303")]
+public sealed partial class AvailableSimplificationAnyMethodAnalyzer : DiagnosticAnalyzer
 {
-	[CodeAnalyzer("SS0303")]
-	public sealed partial class AvailableSimplificationAnyMethodAnalyzer : DiagnosticAnalyzer
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
 	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.InvocationExpression });
-		}
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.InvocationExpression });
+	}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
-		{
-			if (
-				context.Node is not InvocationExpressionSyntax
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		if (
+			context.Node is not InvocationExpressionSyntax
+			{
+				Expression: MemberAccessExpressionSyntax
 				{
-					Expression: MemberAccessExpressionSyntax
+					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+					Expression: ParenthesizedExpressionSyntax
 					{
-						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-						Expression: ParenthesizedExpressionSyntax
+						Expression: QueryExpressionSyntax
 						{
-							Expression: QueryExpressionSyntax
+							FromClause:
 							{
-								FromClause:
+								Type: var typeToCast,
+								Expression: var expressionToIterate,
+								Identifier: { ValueText: var identifier } identifierToken
+							},
+							Body:
+							{
+								Clauses: { Count: 1 } clauses,
+								SelectOrGroup: SelectClauseSyntax
 								{
-									Type: var typeToCast,
-									Expression: var expressionToIterate,
-									Identifier: { ValueText: var identifier } identifierToken
-								},
-								Body:
-								{
-									Clauses: { Count: 1 } clauses,
-									SelectOrGroup: SelectClauseSyntax
+									Expression: IdentifierNameSyntax
 									{
-										Expression: IdentifierNameSyntax
-										{
-											Identifier: { ValueText: var identifierInSelectClause }
-										}
+										Identifier: { ValueText: var identifierInSelectClause }
 									}
 								}
 							}
-						},
-						Name: { Identifier: { ValueText: "Any" } anyToken }
+						}
 					},
-					ArgumentList: { Arguments: { Count: 0 } }
-				} node
-			)
-			{
-				return;
-			}
-
-			if (clauses[0] is not WhereClauseSyntax { Condition: var conditionExpr })
-			{
-				return;
-			}
-
-			if (identifier != identifierInSelectClause)
-			{
-				return;
-			}
-
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SS0303,
-					location: anyToken.GetLocation(),
-					properties: ImmutableDictionary.CreateRange(
-						new KeyValuePair<string, string?>[] { new("IdentifierName", identifier) }
-					),
-					messageArgs: null,
-					additionalLocations: typeToCast is null
-						? new[]
-						{
-							node.GetLocation(),
-							identifierToken.GetLocation(),
-							expressionToIterate.GetLocation(),
-							conditionExpr.GetLocation()
-						}
-						: new[]
-						{
-							node.GetLocation(),
-							identifierToken.GetLocation(),
-							expressionToIterate.GetLocation(),
-							conditionExpr.GetLocation(),
-							typeToCast.GetLocation()
-						}
-				)
-			);
+					Name: { Identifier: { ValueText: "Any" } anyToken }
+				},
+				ArgumentList: { Arguments: { Count: 0 } }
+			} node
+		)
+		{
+			return;
 		}
+
+		if (clauses[0] is not WhereClauseSyntax { Condition: var conditionExpr })
+		{
+			return;
+		}
+
+		if (identifier != identifierInSelectClause)
+		{
+			return;
+		}
+
+		context.ReportDiagnostic(
+			Diagnostic.Create(
+				descriptor: SS0303,
+				location: anyToken.GetLocation(),
+				properties: ImmutableDictionary.CreateRange(
+					new KeyValuePair<string, string?>[] { new("IdentifierName", identifier) }
+				),
+				messageArgs: null,
+				additionalLocations: typeToCast is null
+					? new[]
+					{
+						node.GetLocation(),
+						identifierToken.GetLocation(),
+						expressionToIterate.GetLocation(),
+						conditionExpr.GetLocation()
+					}
+					: new[]
+					{
+						node.GetLocation(),
+						identifierToken.GetLocation(),
+						expressionToIterate.GetLocation(),
+						conditionExpr.GetLocation(),
+						typeToCast.GetLocation()
+					}
+			)
+		);
 	}
 }

@@ -1,23 +1,22 @@
-﻿namespace Sudoku.Solving
+﻿namespace Sudoku.Solving;
+
+/// <summary>
+/// Indicates an instance used for solving a sudoku puzzle.
+/// </summary>
+public interface ISolver
 {
 	/// <summary>
-	/// Indicates an instance used for solving a sudoku puzzle.
+	/// Indicates the name of this solver.
 	/// </summary>
-	public interface ISolver
-	{
-		/// <summary>
-		/// Indicates the name of this solver.
-		/// </summary>
-		string SolverName { get; }
+	string SolverName { get; }
 
 
-		/// <summary>
-		/// To solve the specified puzzle.
-		/// </summary>
-		/// <param name="grid">The puzzle.</param>
-		/// <returns>
-		/// An <see cref="AnalysisResult"/> displaying all information of solving.
-		/// </returns>
-		AnalysisResult Solve(in SudokuGrid grid);
-	}
+	/// <summary>
+	/// To solve the specified puzzle.
+	/// </summary>
+	/// <param name="grid">The puzzle.</param>
+	/// <returns>
+	/// An <see cref="AnalysisResult"/> displaying all information of solving.
+	/// </returns>
+	AnalysisResult Solve(in SudokuGrid grid);
 }

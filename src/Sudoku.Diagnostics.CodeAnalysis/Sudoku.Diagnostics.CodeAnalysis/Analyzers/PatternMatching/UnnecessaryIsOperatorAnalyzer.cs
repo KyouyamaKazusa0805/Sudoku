@@ -8,56 +8,55 @@ using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+
+[CodeAnalyzer("SS0617F")]
+public sealed partial class UnnecessaryIsOperatorAnalyzer : DiagnosticAnalyzer
 {
-	[CodeAnalyzer("SS0617F")]
-	public sealed partial class UnnecessaryIsOperatorAnalyzer : DiagnosticAnalyzer
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
 	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.IsPatternExpression });
-		}
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.IsPatternExpression });
+	}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
-		{
-			var (semanticModel, _, originalNode, _, cancellationToken) = context;
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		var (semanticModel, _, originalNode, _, cancellationToken) = context;
 
-			if (
-				originalNode is not IsPatternExpressionSyntax
+		if (
+			originalNode is not IsPatternExpressionSyntax
+			{
+				Expression: var expr,
+				Pattern: RelationalPatternSyntax
 				{
-					Expression: var expr,
-					Pattern: RelationalPatternSyntax
-					{
-						OperatorToken: { RawKind: var kind },
-						Expression: var constantExpr
-					}
+					OperatorToken: { RawKind: var kind },
+					Expression: var constantExpr
 				}
-			)
-			{
-				return;
 			}
-
-			if (!semanticModel.TypeEquals(expr, constantExpr, cancellationToken: cancellationToken))
-			{
-				return;
-			}
-
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SS0617,
-					location: originalNode.GetLocation(),
-					messageArgs: null,
-					properties: ImmutableDictionary.CreateRange(
-						new KeyValuePair<string, string?>[] { new("OperatorToken", kind.ToString()) }
-					),
-					additionalLocations: new[] { expr.GetLocation(), constantExpr.GetLocation() }
-				)
-			);
+		)
+		{
+			return;
 		}
+
+		if (!semanticModel.TypeEquals(expr, constantExpr, cancellationToken: cancellationToken))
+		{
+			return;
+		}
+
+		context.ReportDiagnostic(
+			Diagnostic.Create(
+				descriptor: SS0617,
+				location: originalNode.GetLocation(),
+				messageArgs: null,
+				properties: ImmutableDictionary.CreateRange(
+					new KeyValuePair<string, string?>[] { new("OperatorToken", kind.ToString()) }
+				),
+				additionalLocations: new[] { expr.GetLocation(), constantExpr.GetLocation() }
+			)
+		);
 	}
 }

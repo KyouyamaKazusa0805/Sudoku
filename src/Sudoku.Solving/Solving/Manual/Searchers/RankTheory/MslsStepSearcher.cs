@@ -1,165 +1,164 @@
-﻿namespace Sudoku.Solving.Manual.RankTheory
+﻿namespace Sudoku.Solving.Manual.RankTheory;
+
+/// <summary>
+/// Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
+/// the real technique, different with the abstract class <see cref="MslsStepSearcher"/>.
+/// </summary>
+/// <seealso cref="MslsStepSearcher"/>
+public sealed partial class MslsStepSearcher : RankTheoryStepSearcher
 {
+	/// <inheritdoc/>
+	public override SearchingOptions Options { get; set; } = new(36, DisplayingLevel.D);
+
 	/// <summary>
-	/// Encapsulates a <b>multi-sector locked sets</b> (MSLS) technique. This searcher is
-	/// the real technique, different with the abstract class <see cref="MslsStepSearcher"/>.
+	/// Indicates the searcher properties.
 	/// </summary>
-	/// <seealso cref="MslsStepSearcher"/>
-	public sealed partial class MslsStepSearcher : RankTheoryStepSearcher
+	/// <remarks>
+	/// Please note that all technique searches should contain
+	/// this static property in order to display on settings window. If the searcher doesn't contain,
+	/// when we open the settings window, it'll throw an exception to report about this.
+	/// </remarks>
+	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	public static TechniqueProperties Properties { get; } = new(36, nameof(Technique.Msls))
 	{
-		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(36, DisplayingLevel.D);
+		DisplayLevel = 4
+	};
 
-		/// <summary>
-		/// Indicates the searcher properties.
-		/// </summary>
-		/// <remarks>
-		/// Please note that all technique searches should contain
-		/// this static property in order to display on settings window. If the searcher doesn't contain,
-		/// when we open the settings window, it'll throw an exception to report about this.
-		/// </remarks>
-		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
-		public static TechniqueProperties Properties { get; } = new(36, nameof(Technique.Msls))
+
+	/// <inheritdoc/>
+	public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	{
+		short* linkForEachRegion = stackalloc short[27];
+		var linkForEachDigit = stackalloc Cells[9];
+		for (int globalIndex = 0, iterationCount = Patterns.Count; globalIndex < iterationCount; globalIndex++)
 		{
-			DisplayLevel = 4
-		};
-
-
-		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
-		{
-			short* linkForEachRegion = stackalloc short[27];
-			var linkForEachDigit = stackalloc Cells[9];
-			for (int globalIndex = 0, iterationCount = Patterns.Count; globalIndex < iterationCount; globalIndex++)
+			Cells pattern = Patterns[globalIndex], map = EmptyMap & pattern;
+			if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
 			{
-				Cells pattern = Patterns[globalIndex], map = EmptyMap & pattern;
-				if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
-				{
-					continue;
-				}
+				continue;
+			}
 
-				int n = 0, count = map.Count;
+			int n = 0, count = map.Count;
+			for (int digit = 0; digit < 9; digit++)
+			{
+				var pMap = linkForEachDigit + digit;
+				*pMap = CandMaps[digit] & map;
+				n += MathExtensions.Min(
+					PopCount((uint)pMap->RowMask),
+					PopCount((uint)pMap->ColumnMask),
+					PopCount((uint)pMap->BlockMask)
+				);
+			}
+
+			if (n == count)
+			{
+				short canF = 0;
+				var canL = new Cells[9];
+				var conclusions = new List<Conclusion>();
+				var candidateOffsets = new List<DrawingInfo>();
 				for (int digit = 0; digit < 9; digit++)
 				{
-					var pMap = linkForEachDigit + digit;
-					*pMap = CandMaps[digit] & map;
-					n += MathExtensions.Min(
-						PopCount((uint)pMap->RowMask),
-						PopCount((uint)pMap->ColumnMask),
-						PopCount((uint)pMap->BlockMask)
-					);
-				}
-
-				if (n == count)
-				{
-					short canF = 0;
-					var canL = new Cells[9];
-					var conclusions = new List<Conclusion>();
-					var candidateOffsets = new List<DrawingInfo>();
-					for (int digit = 0; digit < 9; digit++)
+					short q = (short)(1 << digit);
+					var currentMap = linkForEachDigit[digit];
+					uint
+						rMask = (uint)currentMap.RowMask,
+						cMask = (uint)currentMap.ColumnMask,
+						bMask = (uint)currentMap.BlockMask;
+					int temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
+					var elimMap = Cells.Empty;
+					int check = 0;
+					if (PopCount(rMask) == temp)
 					{
-						short q = (short)(1 << digit);
-						var currentMap = linkForEachDigit[digit];
-						uint
-							rMask = (uint)currentMap.RowMask,
-							cMask = (uint)currentMap.ColumnMask,
-							bMask = (uint)currentMap.BlockMask;
-						int temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
-						var elimMap = Cells.Empty;
-						int check = 0;
-						if (PopCount(rMask) == temp)
+						check++;
+						foreach (int i in rMask)
 						{
-							check++;
-							foreach (int i in rMask)
-							{
-								int region = i + 9;
-								linkForEachRegion[region] |= q;
-								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
-							}
+							int region = i + 9;
+							linkForEachRegion[region] |= q;
+							elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 						}
-						if (PopCount(cMask) == temp)
+					}
+					if (PopCount(cMask) == temp)
+					{
+						check++;
+						foreach (int i in cMask)
 						{
-							check++;
-							foreach (int i in cMask)
-							{
-								int region = i + 18;
-								linkForEachRegion[region] |= q;
-								elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
-							}
+							int region = i + 18;
+							linkForEachRegion[region] |= q;
+							elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
 						}
-						if (PopCount(bMask) == temp)
+					}
+					if (PopCount(bMask) == temp)
+					{
+						check++;
+						foreach (int i in bMask)
 						{
-							check++;
-							foreach (int i in bMask)
-							{
-								linkForEachRegion[i] |= q;
-								elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
-							}
-						}
-
-						if (check > 1)
-						{
-							canF |= q;
-						}
-
-						elimMap &= CandMaps[digit];
-						if (elimMap.IsEmpty)
-						{
-							continue;
-						}
-
-						foreach (int cell in elimMap)
-						{
-							if (map.Contains(cell))
-							{
-								canL[digit].AddAnyway(cell);
-							}
-
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							linkForEachRegion[i] |= q;
+							elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
 						}
 					}
 
-					if (conclusions.Count == 0)
+					if (check > 1)
+					{
+						canF |= q;
+					}
+
+					elimMap &= CandMaps[digit];
+					if (elimMap.IsEmpty)
 					{
 						continue;
 					}
 
-					for (int region = 0; region < 27; region++)
+					foreach (int cell in elimMap)
 					{
-						short linkMask = linkForEachRegion[region];
-						if (linkMask == 0)
+						if (map.Contains(cell))
+						{
+							canL[digit].AddAnyway(cell);
+						}
+
+						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+					}
+				}
+
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				for (int region = 0; region < 27; region++)
+				{
+					short linkMask = linkForEachRegion[region];
+					if (linkMask == 0)
+					{
+						continue;
+					}
+
+					foreach (int cell in map & RegionMaps[region])
+					{
+						short cands = (short)(grid.GetCandidates(cell) & linkMask);
+						if (cands == 0)
 						{
 							continue;
 						}
 
-						foreach (int cell in map & RegionMaps[region])
+						foreach (int cand in cands)
 						{
-							short cands = (short)(grid.GetCandidates(cell) & linkMask);
-							if (cands == 0)
+							if (!canL[cand].Contains(cell))
 							{
-								continue;
-							}
-
-							foreach (int cand in cands)
-							{
-								if (!canL[cand].Contains(cell))
-								{
-									candidateOffsets.Add(
-										new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand)
-									);
-								}
+								candidateOffsets.Add(
+									new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand)
+								);
 							}
 						}
 					}
-
-					accumulator.Add(
-						new MslsStepInfo(
-							conclusions,
-							new View[] { new() { Candidates = candidateOffsets } },
-							map
-						)
-					);
 				}
+
+				accumulator.Add(
+					new MslsStepInfo(
+						conclusions,
+						new View[] { new() { Candidates = candidateOffsets } },
+						map
+					)
+				);
 			}
 		}
 	}

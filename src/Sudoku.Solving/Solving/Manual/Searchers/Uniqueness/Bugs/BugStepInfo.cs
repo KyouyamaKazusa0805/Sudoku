@@ -1,23 +1,22 @@
-﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs
+﻿namespace Sudoku.Solving.Manual.Uniqueness.Bugs;
+
+/// <summary>
+/// Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
+/// </summary>
+/// <param name="Conclusions">All conclusions.</param>
+/// <param name="Views">All views.</param>
+public abstract record BugStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+	: UniquenessStepInfo(Conclusions, Views)
 {
-	/// <summary>
-	/// Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
-	/// </summary>
-	/// <param name="Conclusions">All conclusions.</param>
-	/// <param name="Views">All views.</param>
-	public abstract record BugStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: UniquenessStepInfo(Conclusions, Views)
-	{
-		/// <inheritdoc/>
-		public override string? Acronym => "BUG";
+	/// <inheritdoc/>
+	public override string? Acronym => "BUG";
 
-		/// <inheritdoc/>
-		public override decimal Difficulty => 5.6M;
+	/// <inheritdoc/>
+	public override decimal Difficulty => 5.6M;
 
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
+	/// <inheritdoc/>
+	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
-		/// <inheritdoc/>
-		public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Bug;
-	}
+	/// <inheritdoc/>
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Bug;
 }

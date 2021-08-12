@@ -1,9 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining;
+
+/// <summary>
+/// Encapsulates a <b>chain</b> technique searcher.
+/// </summary>
+public abstract class ChainingStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Encapsulates a <b>chain</b> technique searcher.
-	/// </summary>
-	public abstract class ChainingStepSearcher : StepSearcher
-	{
-	}
 }

@@ -9,156 +9,155 @@ using Microsoft.CodeAnalysis.Operations;
 using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+
+[CodeAnalyzer("SS0615", "SS0616")]
+public sealed partial class NullableTypesPatternMatchingSuggestionAnalyzer : DiagnosticAnalyzer
 {
-	[CodeAnalyzer("SS0615", "SS0616")]
-	public sealed partial class NullableTypesPatternMatchingSuggestionAnalyzer : DiagnosticAnalyzer
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
 	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(
-				AnalyzeSyntaxNode,
-				new[]
-				{
-					SyntaxKind.SimpleMemberAccessExpression,
-					SyntaxKind.EqualsExpression,
-					SyntaxKind.NotEqualsExpression,
-					SyntaxKind.IsPatternExpression,
-					SyntaxKind.LogicalNotExpression
-				}
-			);
-		}
-
-
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
-		{
-			var (semanticModel, _, originalNode) = context;
-
-			switch (originalNode)
+		context.RegisterSyntaxNodeAction(
+			AnalyzeSyntaxNode,
+			new[]
 			{
-				// !obj.HasValue
-				case PrefixUnaryExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.LogicalNotExpression,
-					Operand: MemberAccessExpressionSyntax
-					{
-						Expression: var expr,
-						Name: { Identifier: { ValueText: "HasValue" } }
-					}
-				}
-				when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
-				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS0615,
-							location: originalNode.GetLocation(),
-							messageArgs: null,
-							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new("IsNull", "True"),
-									new("IsHasValue", "True")
-								}
-							),
-							additionalLocations: new[] { expr.GetLocation() }
-						)
-					);
+				SyntaxKind.SimpleMemberAccessExpression,
+				SyntaxKind.EqualsExpression,
+				SyntaxKind.NotEqualsExpression,
+				SyntaxKind.IsPatternExpression,
+				SyntaxKind.LogicalNotExpression
+			}
+		);
+	}
 
-					break;
-				}
 
-				// obj.HasValue
-				case MemberAccessExpressionSyntax
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		var (semanticModel, _, originalNode) = context;
+
+		switch (originalNode)
+		{
+			// !obj.HasValue
+			case PrefixUnaryExpressionSyntax
+			{
+				RawKind: (int)SyntaxKind.LogicalNotExpression,
+				Operand: MemberAccessExpressionSyntax
 				{
-					Parent: not PrefixUnaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalNotExpression },
 					Expression: var expr,
 					Name: { Identifier: { ValueText: "HasValue" } }
 				}
-				when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
-				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS0615,
-							location: originalNode.GetLocation(),
-							messageArgs: null,
-							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new("IsNull", "False"),
-									new("IsHasValue", "True")
-								}
-							),
-							additionalLocations: new[] { expr.GetLocation() }
-						)
-					);
-
-					break;
-				}
-
-				// obj == null
-				// obj != null
-				case BinaryExpressionSyntax
-				{
-					RawKind: var kind and (
-						(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-					),
-					Left: var leftExpr,
-					Right: var rightExpr
-				} binaryExpression
-				when semanticModel.GetOperation(binaryExpression) is IBinaryOperation { OperatorMethod: null }:
-				{
-					ExpressionSyntax? instanceExpr = null, nullExpr = null;
-					bool? isNullableValueType = null;
-					foreach (var (a, b) in new[] { (leftExpr, rightExpr), (rightExpr, leftExpr) })
-					{
-						if (
-							semanticModel.GetOperation(a) is
+			}
+			when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
+			{
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0615,
+						location: originalNode.GetLocation(),
+						messageArgs: null,
+						properties: ImmutableDictionary.CreateRange(
+							new KeyValuePair<string, string?>[]
 							{
-								Type: (isValueType: var isValueType, _, isNullable: true)
+								new("IsNull", "True"),
+								new("IsHasValue", "True")
 							}
-							&& b is LiteralExpressionSyntax { RawKind: (int)SyntaxKind.NullLiteralExpression }
-						)
-						{
-							instanceExpr = a;
-							nullExpr = b;
-							isNullableValueType = isValueType;
+						),
+						additionalLocations: new[] { expr.GetLocation() }
+					)
+				);
 
-							break;
-						}
-					}
+				break;
+			}
+
+			// obj.HasValue
+			case MemberAccessExpressionSyntax
+			{
+				Parent: not PrefixUnaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalNotExpression },
+				Expression: var expr,
+				Name: { Identifier: { ValueText: "HasValue" } }
+			}
+			when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
+			{
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0615,
+						location: originalNode.GetLocation(),
+						messageArgs: null,
+						properties: ImmutableDictionary.CreateRange(
+							new KeyValuePair<string, string?>[]
+							{
+								new("IsNull", "False"),
+								new("IsHasValue", "True")
+							}
+						),
+						additionalLocations: new[] { expr.GetLocation() }
+					)
+				);
+
+				break;
+			}
+
+			// obj == null
+			// obj != null
+			case BinaryExpressionSyntax
+			{
+				RawKind: var kind and (
+					(int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+				),
+				Left: var leftExpr,
+				Right: var rightExpr
+			} binaryExpression
+			when semanticModel.GetOperation(binaryExpression) is IBinaryOperation { OperatorMethod: null }:
+			{
+				ExpressionSyntax? instanceExpr = null, nullExpr = null;
+				bool? isNullableValueType = null;
+				foreach (var (a, b) in new[] { (leftExpr, rightExpr), (rightExpr, leftExpr) })
+				{
 					if (
-						(
-							InstanceExpressionNode: instanceExpr,
-							NullExpressionNode: nullExpr,
-							IsNvt: isNullableValueType
-						) is not (InstanceExpressionNode: not null, NullExpressionNode: not null, IsNvt: { } isNvt)
+						semanticModel.GetOperation(a) is
+						{
+							Type: (isValueType: var isValueType, _, isNullable: true)
+						}
+						&& b is LiteralExpressionSyntax { RawKind: (int)SyntaxKind.NullLiteralExpression }
 					)
 					{
-						return;
+						instanceExpr = a;
+						nullExpr = b;
+						isNullableValueType = isValueType;
+
+						break;
 					}
-
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: isNvt ? SS0615 : SS0616,
-							location: originalNode.GetLocation(),
-							messageArgs: null,
-							properties: ImmutableDictionary.CreateRange(
-								new KeyValuePair<string, string?>[]
-								{
-									new("IsNull", (kind == (int)SyntaxKind.EqualsExpression).ToString()),
-									new("IsHasValue", "False")
-								}
-							),
-							additionalLocations: new[] { instanceExpr.GetLocation() }
-						)
-					);
-
-					break;
 				}
+				if (
+					(
+						InstanceExpressionNode: instanceExpr,
+						NullExpressionNode: nullExpr,
+						IsNvt: isNullableValueType
+					) is not (InstanceExpressionNode: not null, NullExpressionNode: not null, IsNvt: { } isNvt)
+				)
+				{
+					return;
+				}
+
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: isNvt ? SS0615 : SS0616,
+						location: originalNode.GetLocation(),
+						messageArgs: null,
+						properties: ImmutableDictionary.CreateRange(
+							new KeyValuePair<string, string?>[]
+							{
+								new("IsNull", (kind == (int)SyntaxKind.EqualsExpression).ToString()),
+								new("IsHasValue", "False")
+							}
+						),
+						additionalLocations: new[] { instanceExpr.GetLocation() }
+					)
+				);
+
+				break;
 			}
 		}
 	}

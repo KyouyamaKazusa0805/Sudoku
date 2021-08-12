@@ -4,43 +4,42 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
-{
-	[CodeAnalyzer("SS0314")]
-	public sealed partial class WhereVarVariableAnalyzer : DiagnosticAnalyzer
-	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.WhereClause });
+[CodeAnalyzer("SS0314")]
+public sealed partial class WhereVarVariableAnalyzer : DiagnosticAnalyzer
+{
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
+	{
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
+
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.WhereClause });
+	}
+
+
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		if (context.Node is not WhereClauseSyntax { Condition: var condition })
+		{
+			return;
 		}
 
-
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		foreach (var possibleNode in condition.DescendantNodes())
 		{
-			if (context.Node is not WhereClauseSyntax { Condition: var condition })
+			if (possibleNode is not VarPatternSyntax { Designation: not DiscardDesignationSyntax })
 			{
-				return;
+				continue;
 			}
 
-			foreach (var possibleNode in condition.DescendantNodes())
-			{
-				if (possibleNode is not VarPatternSyntax { Designation: not DiscardDesignationSyntax })
-				{
-					continue;
-				}
-
-				context.ReportDiagnostic(
-					Diagnostic.Create(
-						descriptor: SS0314,
-						location: possibleNode.GetLocation(),
-						messageArgs: null
-					)
-				);
-			}
+			context.ReportDiagnostic(
+				Diagnostic.Create(
+					descriptor: SS0314,
+					location: possibleNode.GetLocation(),
+					messageArgs: null
+				)
+			);
 		}
 	}
 }

@@ -8,63 +8,62 @@ using Sudoku.Data;
 using Sudoku.Solving.Checking;
 using static Sudoku.Windows.MainWindow;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>BugNSearchWindow.xaml</c>.
+/// </summary>
+public partial class BugNSearchWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>BugNSearchWindow.xaml</c>.
+	/// The puzzle.
 	/// </summary>
-	public partial class BugNSearchWindow : Window
+	private readonly SudokuGrid _puzzle;
+
+
+	/// <summary>
+	/// Initializes an instance with the specified puzzle.
+	/// </summary>
+	/// <param name="puzzle">The puzzle.</param>
+	public BugNSearchWindow(in SudokuGrid puzzle)
 	{
-		/// <summary>
-		/// The puzzle.
-		/// </summary>
-		private readonly SudokuGrid _puzzle;
+		InitializeComponent();
+
+		_puzzle = puzzle;
+		_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle.ToString("#")}";
+	}
 
 
-		/// <summary>
-		/// Initializes an instance with the specified puzzle.
-		/// </summary>
-		/// <param name="puzzle">The puzzle.</param>
-		public BugNSearchWindow(in SudokuGrid puzzle)
+	private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
+	{
+		await internalOperation();
+
+		async Task internalOperation()
 		{
-			InitializeComponent();
+			_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
+			_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
 
-			_puzzle = puzzle;
-			_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle.ToString("#")}";
-		}
-
-
-		private async void ButtonStartSearching_Click(object sender, RoutedEventArgs e)
-		{
-			await internalOperation();
-
-			async Task internalOperation()
+			var trueCandidates = await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64);
+			var array = new KeyedTuple<int, string>[trueCandidates.Count];
+			int i = 0;
+			foreach (int candidate in new Candidates(trueCandidates))
 			{
-				_listBoxTrueCandidates.ClearValue(ItemsControl.ItemsSourceProperty);
-				_labelStatus.Content = (string)LangSource["BugMultipleWhileSearching"];
+				array[i++] = new(candidate, new Candidates { candidate }.ToString(), 2);
+			}
 
-				var trueCandidates = await new BugChecker(_puzzle).GetAllTrueCandidatesAsync(64);
-				var array = new KeyedTuple<int, string>[trueCandidates.Count];
-				int i = 0;
-				foreach (int candidate in new Candidates(trueCandidates))
-				{
-					array[i++] = new(candidate, new Candidates { candidate }.ToString(), 2);
-				}
-
-				_labelStatus.ClearValue(ContentProperty);
-				int count = array.Length;
-				if (count != 0)
-				{
-					_listBoxTrueCandidates.ItemsSource = array;
-					_labelStatus.Content =
-						$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
-						$"{count.ToString()} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
-						LangSource["BugMultipleSuccessfulCase"];
-				}
-				else
-				{
-					_labelStatus.Content = LangSource["BugMultipleFailCase"];
-				}
+			_labelStatus.ClearValue(ContentProperty);
+			int count = array.Length;
+			if (count != 0)
+			{
+				_listBoxTrueCandidates.ItemsSource = array;
+				_labelStatus.Content =
+					$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
+					$"{count.ToString()} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
+					LangSource["BugMultipleSuccessfulCase"];
+			}
+			else
+			{
+				_labelStatus.Content = LangSource["BugMultipleFailCase"];
 			}
 		}
 	}

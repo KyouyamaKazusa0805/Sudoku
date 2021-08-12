@@ -1,19 +1,18 @@
-﻿namespace Sudoku.Data
+﻿namespace Sudoku.Data;
+
+/// <summary>
+/// Provides a conclusion type.
+/// </summary>
+[Closed]
+public enum ConclusionType : byte
 {
 	/// <summary>
-	/// Provides a conclusion type.
+	/// Indicates the conclusion is a value filling into a cell.
 	/// </summary>
-	[Closed]
-	public enum ConclusionType : byte
-	{
-		/// <summary>
-		/// Indicates the conclusion is a value filling into a cell.
-		/// </summary>
-		Assignment,
+	Assignment,
 
-		/// <summary>
-		/// Indicates the conclusion is a candidate being remove from a cell.
-		/// </summary>
-		Elimination,
-	}
+	/// <summary>
+	/// Indicates the conclusion is a candidate being remove from a cell.
+	/// </summary>
+	Elimination,
 }

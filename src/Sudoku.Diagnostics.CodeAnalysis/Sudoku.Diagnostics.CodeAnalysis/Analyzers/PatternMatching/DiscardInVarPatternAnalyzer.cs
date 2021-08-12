@@ -5,66 +5,65 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
-{
-	[CodeAnalyzer("SS0611F", "SS0612F")]
-	public sealed partial class DiscardInVarPatternAnalyzer : DiagnosticAnalyzer
-	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.VarPattern });
+[CodeAnalyzer("SS0611F", "SS0612F")]
+public sealed partial class DiscardInVarPatternAnalyzer : DiagnosticAnalyzer
+{
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
+	{
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
+
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.VarPattern });
+	}
+
+
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		if (context.Node is not VarPatternSyntax { Designation: var designation } node)
+		{
+			return;
 		}
 
-
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		switch (designation)
 		{
-			if (context.Node is not VarPatternSyntax { Designation: var designation } node)
+			case DiscardDesignationSyntax
 			{
-				return;
+				Parent:
+					CasePatternSwitchLabelSyntax { WhenClause: null }
+					or SwitchExpressionArmSyntax { WhenClause: null }
+			}:
+			{
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0611,
+						location: node.GetLocation(),
+						messageArgs: new[] { node.ToString() }
+					)
+				);
+
+				break;
 			}
-
-			switch (designation)
+			case ParenthesizedVariableDesignationSyntax
 			{
-				case DiscardDesignationSyntax
-				{
-					Parent:
-						CasePatternSwitchLabelSyntax { WhenClause: null }
-						or SwitchExpressionArmSyntax { WhenClause: null }
-				}:
-				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS0611,
-							location: node.GetLocation(),
-							messageArgs: new[] { node.ToString() }
-						)
-					);
+				Parent:
+					CasePatternSwitchLabelSyntax { WhenClause: null }
+					or SwitchExpressionArmSyntax { WhenClause: null },
+				Variables: { Count: >= 2 } variables
+			}
+			when variables.All(static variable => variable is DiscardDesignationSyntax):
+			{
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS0612,
+						location: node.GetLocation(),
+						messageArgs: null
+					)
+				);
 
-					break;
-				}
-				case ParenthesizedVariableDesignationSyntax
-				{
-					Parent:
-						CasePatternSwitchLabelSyntax { WhenClause: null }
-						or SwitchExpressionArmSyntax { WhenClause: null },
-					Variables: { Count: >= 2 } variables
-				}
-				when variables.All(static variable => variable is DiscardDesignationSyntax):
-				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS0612,
-							location: node.GetLocation(),
-							messageArgs: null
-						)
-					);
-
-					break;
-				}
+				break;
 			}
 		}
 	}

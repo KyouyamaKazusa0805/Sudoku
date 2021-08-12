@@ -1,42 +1,41 @@
 ﻿using System.Windows;
 using Sudoku.IO;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>BatchWindow.xaml</c>.
+/// </summary>
+public partial class BatchWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>BatchWindow.xaml</c>.
+	/// The internal settings.
 	/// </summary>
-	public partial class BatchWindow : Window
+	private readonly WindowsSettings _settings;
+
+
+	/// <summary>
+	/// Initializes a <see cref="BatchWindow"/> instance, with a <see cref="WindowsSettings"/> instance.
+	/// </summary>
+	/// <param name="settings"></param>
+	public BatchWindow(WindowsSettings settings)
 	{
-		/// <summary>
-		/// The internal settings.
-		/// </summary>
-		private readonly WindowsSettings _settings;
+		InitializeComponent();
+
+		_settings = settings;
+	}
 
 
-		/// <summary>
-		/// Initializes a <see cref="BatchWindow"/> instance, with a <see cref="WindowsSettings"/> instance.
-		/// </summary>
-		/// <param name="settings"></param>
-		public BatchWindow(WindowsSettings settings)
+	private void ButtonBatch_Click(object sender, RoutedEventArgs e)
+	{
+		if (!BatchExecutor.TryParse(_textBoxBatch.Text, _settings, out var result))
 		{
-			InitializeComponent();
-
-			_settings = settings;
+			e.Handled = true;
+			return;
 		}
 
+		result.Execute();
 
-		private void ButtonBatch_Click(object sender, RoutedEventArgs e)
-		{
-			if (!BatchExecutor.TryParse(_textBoxBatch.Text, _settings, out var result))
-			{
-				e.Handled = true;
-				return;
-			}
-
-			result.Execute();
-
-			Messagings.SaveSuccess();
-		}
+		Messagings.SaveSuccess();
 	}
 }

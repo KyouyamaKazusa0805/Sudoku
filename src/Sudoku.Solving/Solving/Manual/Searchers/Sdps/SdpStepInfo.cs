@@ -1,22 +1,21 @@
-﻿namespace Sudoku.Solving.Manual.Sdps
+﻿namespace Sudoku.Solving.Manual.Sdps;
+
+/// <summary>
+/// Provides a usage of <b>single-digit pattern</b> (SDP) technique.
+/// </summary>
+/// <param name="Conclusions">All conclusions.</param>
+/// <param name="Views">All views.</param>
+/// <param name="Digit">The digit used.</param>
+public abstract record SdpStepInfo(
+	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit
+) : StepInfo(Conclusions, Views)
 {
-	/// <summary>
-	/// Provides a usage of <b>single-digit pattern</b> (SDP) technique.
-	/// </summary>
-	/// <param name="Conclusions">All conclusions.</param>
-	/// <param name="Views">All views.</param>
-	/// <param name="Digit">The digit used.</param>
-	public abstract record SdpStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit
-	) : StepInfo(Conclusions, Views)
-	{
-		/// <inheritdoc/>
-		public sealed override bool ShowDifficulty => base.ShowDifficulty;
+	/// <inheritdoc/>
+	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
-		/// <inheritdoc/>
-		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
+	/// <inheritdoc/>
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
 
-		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
-	}
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
 }

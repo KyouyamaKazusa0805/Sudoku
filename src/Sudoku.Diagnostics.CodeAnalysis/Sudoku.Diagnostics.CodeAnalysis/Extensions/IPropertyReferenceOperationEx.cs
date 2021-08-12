@@ -1,25 +1,24 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Extensions
+namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+
+/// <summary>
+/// Provides extension methods on <see cref="IPropertyReferenceOperation"/>.
+/// </summary>
+/// <seealso cref="IPropertyReferenceOperation"/>
+public static class IPropertyReferenceOperationEx
 {
 	/// <summary>
-	/// Provides extension methods on <see cref="IPropertyReferenceOperation"/>.
+	/// Checks whether the current instance has the same reference with the specified one.
 	/// </summary>
-	/// <seealso cref="IPropertyReferenceOperation"/>
-	public static class IPropertyReferenceOperationEx
+	/// <param name="this">The current instance.</param>
+	/// <param name="other">Another instance.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public static bool SameReferenceWith(
+		this IPropertyReferenceOperation @this, IPropertyReferenceOperation other)
 	{
-		/// <summary>
-		/// Checks whether the current instance has the same reference with the specified one.
-		/// </summary>
-		/// <param name="this">The current instance.</param>
-		/// <param name="other">Another instance.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool SameReferenceWith(
-			this IPropertyReferenceOperation @this, IPropertyReferenceOperation other)
-		{
-			IPropertySymbol property1 = @this.Property, property2 = other.Property;
-			return property1.ToDisplayString() == property2.ToDisplayString();
-		}
+		IPropertySymbol property1 = @this.Property, property2 = other.Property;
+		return property1.ToDisplayString() == property2.ToDisplayString();
 	}
 }

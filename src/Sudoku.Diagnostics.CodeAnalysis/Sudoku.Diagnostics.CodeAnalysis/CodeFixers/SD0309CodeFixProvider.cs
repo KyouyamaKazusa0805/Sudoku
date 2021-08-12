@@ -11,71 +11,70 @@ using Microsoft.CodeAnalysis.Extensions;
 using Microsoft.CodeAnalysis.Text.Extensions;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
+namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+
+[CodeFixProvider("SD0309")]
+public sealed partial class SD0309CodeFixProvider : CodeFixProvider
 {
-	[CodeFixProvider("SD0309")]
-	public sealed partial class SD0309CodeFixProvider : CodeFixProvider
+	/// <inheritdoc/>
+	public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 	{
-		/// <inheritdoc/>
-		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
-		{
-			var document = context.Document;
-			var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0309);
-			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var ((_, span), _) = diagnostic;
-			var node = root.FindNode(span, getInnermostNodeForTie: true);
+		var document = context.Document;
+		var diagnostic = context.Diagnostics.First(static d => d.Id == DiagnosticIds.SD0309);
+		var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
+		var ((_, span), _) = diagnostic;
+		var node = root.FindNode(span, getInnermostNodeForTie: true);
 
-			context.RegisterCodeFix(
-				CodeAction.Create(
-					title: CodeFixTitles.SD0309,
-					createChangedDocument: async c =>
+		context.RegisterCodeFix(
+			CodeAction.Create(
+				title: CodeFixTitles.SD0309,
+				createChangedDocument: async c =>
+				{
+					var (parent, replaceNode) = node switch
 					{
-						var (parent, replaceNode) = node switch
+						ImplicitArrayCreationExpressionSyntax
 						{
-							ImplicitArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
-								Initializer: var initializer
-							} => (p, z(p, initializer)),
+							Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
+							Initializer: var initializer
+						} => (p, z(p, initializer)),
 
-							ArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
-								Initializer: var initializer
-							} => (p, z(p, initializer)),
+						ArrayCreationExpressionSyntax
+						{
+							Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
+							Initializer: var initializer
+						} => (p, z(p, initializer)),
 
-							ImplicitStackAllocArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
-								Initializer: var initializer
-							} => (p, z(p, initializer)),
+						ImplicitStackAllocArrayCreationExpressionSyntax
+						{
+							Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
+							Initializer: var initializer
+						} => (p, z(p, initializer)),
 
-							StackAllocArrayCreationExpressionSyntax
-							{
-								Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
-								Initializer: var initializer
-							} => (p, z(p, initializer))
-						};
+						StackAllocArrayCreationExpressionSyntax
+						{
+							Parent: ArgumentSyntax { Parent: ArgumentListSyntax { Parent: var p } },
+							Initializer: var initializer
+						} => (p, z(p, initializer))
+					};
 
-						var editor = await DocumentEditor.CreateAsync(document, c);
-						editor.ReplaceNode(parent!, replaceNode);
+					var editor = await DocumentEditor.CreateAsync(document, c);
+					editor.ReplaceNode(parent!, replaceNode);
 
-						return document.WithSyntaxRoot(editor.GetChangedRoot());
-					},
-					equivalenceKey: nameof(CodeFixTitles.SD0309)
-				),
-				diagnostic
-			);
+					return document.WithSyntaxRoot(editor.GetChangedRoot());
+				},
+				equivalenceKey: nameof(CodeFixTitles.SD0309)
+			),
+			diagnostic
+		);
 
-			static SyntaxNode z(SyntaxNode? p, InitializerExpressionSyntax? initializer) => p switch
-			{
-				ObjectCreationExpressionSyntax { Type: var typeName } =>
-					SyntaxFactory.ObjectCreationExpression(typeName)
-					.WithInitializer(initializer),
-				ImplicitObjectCreationExpressionSyntax =>
-					SyntaxFactory.ImplicitObjectCreationExpression()
-					.WithInitializer(initializer)
-			};
-		}
+		static SyntaxNode z(SyntaxNode? p, InitializerExpressionSyntax? initializer) => p switch
+		{
+			ObjectCreationExpressionSyntax { Type: var typeName } =>
+				SyntaxFactory.ObjectCreationExpression(typeName)
+				.WithInitializer(initializer),
+			ImplicitObjectCreationExpressionSyntax =>
+				SyntaxFactory.ImplicitObjectCreationExpression()
+				.WithInitializer(initializer)
+		};
 	}
 }

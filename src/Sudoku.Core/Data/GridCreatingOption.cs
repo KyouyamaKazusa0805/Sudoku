@@ -1,19 +1,18 @@
-﻿namespace Sudoku.Data
+﻿namespace Sudoku.Data;
+
+/// <summary>
+/// Indicates the grid creating option.
+/// </summary>
+[Closed]
+public enum GridCreatingOption : byte
 {
 	/// <summary>
-	/// Indicates the grid creating option.
+	/// Indicates the option is none.
 	/// </summary>
-	[Closed]
-	public enum GridCreatingOption : byte
-	{
-		/// <summary>
-		/// Indicates the option is none.
-		/// </summary>
-		None,
+	None,
 
-		/// <summary>
-		/// Indicates each value should minus one before creation.
-		/// </summary>
-		MinusOne
-	}
+	/// <summary>
+	/// Indicates each value should minus one before creation.
+	/// </summary>
+	MinusOne
 }

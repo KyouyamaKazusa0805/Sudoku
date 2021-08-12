@@ -1,324 +1,323 @@
 ﻿using Pointer = System.Pointer;
 
-namespace Sudoku.Solving.Manual.Fishes
+namespace Sudoku.Solving.Manual.Fishes;
+
+/// <summary>
+/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
+/// </summary>
+public sealed class NormalFishStepSearcher : FishStepSearcher
 {
+	/// <inheritdoc/>
+	public override SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
+
 	/// <summary>
-	/// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
+	/// Indicates the searcher properties.
 	/// </summary>
-	public sealed class NormalFishStepSearcher : FishStepSearcher
+	/// <remarks>
+	/// Please note that all technique searches should contain
+	/// this static property in order to display on settings window. If the searcher doesn't contain,
+	/// when we open the settings window, it'll throw an exception to report about this.
+	/// </remarks>
+	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	public static TechniqueProperties Properties { get; } = new(4, nameof(Technique.XWing))
 	{
-		/// <inheritdoc/>
-		public override SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
+		DisplayLevel = 2
+	};
 
-		/// <summary>
-		/// Indicates the searcher properties.
-		/// </summary>
-		/// <remarks>
-		/// Please note that all technique searches should contain
-		/// this static property in order to display on settings window. If the searcher doesn't contain,
-		/// when we open the settings window, it'll throw an exception to report about this.
-		/// </remarks>
-		[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
-		public static TechniqueProperties Properties { get; } = new(4, nameof(Technique.XWing))
+
+	/// <inheritdoc/>
+	public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	{
+		int** r = stackalloc int*[9], c = stackalloc int*[9];
+		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
+		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
+
+		for (int digit = 0; digit < 9; digit++)
 		{
-			DisplayLevel = 2
-		};
-
-
-		/// <inheritdoc/>
-		public override unsafe void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
-		{
-			int** r = stackalloc int*[9], c = stackalloc int*[9];
-			Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
-			Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
-
-			for (int digit = 0; digit < 9; digit++)
+			if (ValueMaps[digit].Count > 5)
 			{
-				if (ValueMaps[digit].Count > 5)
-				{
-					continue;
-				}
+				continue;
+			}
 
-				// Gather.
-				for (int region = 9; region < 27; region++)
+			// Gather.
+			for (int region = 9; region < 27; region++)
+			{
+				if (!(RegionMaps[region] & CandMaps[digit]).IsEmpty)
 				{
-					if (!(RegionMaps[region] & CandMaps[digit]).IsEmpty)
+					if (region < 18)
 					{
-						if (region < 18)
-						{
 #pragma warning disable CA2014
-							if (r[digit] == null)
-							{
-								int* ptr = stackalloc int[10];
-								Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+						if (r[digit] == null)
+						{
+							int* ptr = stackalloc int[10];
+							Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
 
-								r[digit] = ptr;
-							}
+							r[digit] = ptr;
+						}
 #pragma warning restore CA2014
 
-							r[digit][++r[digit][0]] = region;
-						}
-						else
-						{
+						r[digit][++r[digit][0]] = region;
+					}
+					else
+					{
 #pragma warning disable CA2014
-							if (c[digit] == null)
-							{
-								int* ptr = stackalloc int[10];
-								Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
+						if (c[digit] == null)
+						{
+							int* ptr = stackalloc int[10];
+							Unsafe.InitBlock(ptr, 0, sizeof(int) * 10);
 
-								c[digit] = ptr;
-							}
+							c[digit] = ptr;
+						}
 #pragma warning restore CA2014
 
-							c[digit][++c[digit][0]] = region;
-						}
+						c[digit][++c[digit][0]] = region;
 					}
 				}
 			}
-
-			for (int size = 2; size <= 4; size++)
-			{
-				GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: true);
-				GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: false);
-				GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: true);
-				GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: false);
-			}
 		}
 
-		/// <summary>
-		/// Get all possible normal fishes.
-		/// </summary>
-		/// <param name="accumulator">The accumulator.</param>
-		/// <param name="grid">The grid.</param>
-		/// <param name="size">The size.</param>
-		/// <param name="r">The possible row table to iterate.</param>
-		/// <param name="c">The possible column table to iterate.</param>
-		/// <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
-		/// <param name="searchRow">
-		/// Indicates whether the searcher searches for fishes in the direction of rows.
-		/// </param>
-		private static unsafe void GetAll(
-			IList<StepInfo> accumulator, in SudokuGrid grid, int size, int** r, int** c,
-			bool withFin, bool searchRow)
+		for (int size = 2; size <= 4; size++)
 		{
-			// Iterate on each digit.
-			for (int digit = 0; digit < 9; digit++)
-			{
-				// Check the validity of the distribution for the current digit.
-				int* pBase = searchRow ? r[digit] : c[digit], pCover = searchRow ? c[digit] : r[digit];
-				if (pBase == null || pBase[0] <= size)
-				{
-					continue;
-				}
+			GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: true);
+			GetAll(accumulator, grid, size, r, c, withFin: false, searchRow: false);
+			GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: true);
+			GetAll(accumulator, grid, size, r, c, withFin: true, searchRow: false);
+		}
+	}
 
-				// Iterate on the base set combination.
-				foreach (int[] baseSets in Pointer.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
+	/// <summary>
+	/// Get all possible normal fishes.
+	/// </summary>
+	/// <param name="accumulator">The accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="size">The size.</param>
+	/// <param name="r">The possible row table to iterate.</param>
+	/// <param name="c">The possible column table to iterate.</param>
+	/// <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
+	/// <param name="searchRow">
+	/// Indicates whether the searcher searches for fishes in the direction of rows.
+	/// </param>
+	private static unsafe void GetAll(
+		IList<StepInfo> accumulator, in SudokuGrid grid, int size, int** r, int** c,
+		bool withFin, bool searchRow)
+	{
+		// Iterate on each digit.
+		for (int digit = 0; digit < 9; digit++)
+		{
+			// Check the validity of the distribution for the current digit.
+			int* pBase = searchRow ? r[digit] : c[digit], pCover = searchRow ? c[digit] : r[digit];
+			if (pBase == null || pBase[0] <= size)
+			{
+				continue;
+			}
+
+			// Iterate on the base set combination.
+			foreach (int[] baseSets in Pointer.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
+			{
+				// 'baseLine' is the map that contains all base set cells.
+				var baseLine = size switch
 				{
-					// 'baseLine' is the map that contains all base set cells.
-					var baseLine = size switch
+					2 => CandMaps[digit] & (RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]),
+					3 => CandMaps[digit] & (
+						RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
+						| RegionMaps[baseSets[2]]
+					),
+					4 => CandMaps[digit] & (
+						RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
+						| RegionMaps[baseSets[2]] | RegionMaps[baseSets[3]]
+					)
+				};
+
+				// Iterate on the cover set combination.
+				foreach (int[] coverSets in Pointer.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
+				{
+					// 'coverLine' is the map that contains all cover set cells.
+					var coverLine = size switch
 					{
-						2 => CandMaps[digit] & (RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]),
+						2 => CandMaps[digit] & (RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]),
 						3 => CandMaps[digit] & (
-							RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
-							| RegionMaps[baseSets[2]]
+							RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
+							| RegionMaps[coverSets[2]]
 						),
 						4 => CandMaps[digit] & (
-							RegionMaps[baseSets[0]] | RegionMaps[baseSets[1]]
-							| RegionMaps[baseSets[2]] | RegionMaps[baseSets[3]]
+							RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
+							| RegionMaps[coverSets[2]] | RegionMaps[coverSets[3]]
 						)
 					};
 
-					// Iterate on the cover set combination.
-					foreach (int[] coverSets in Pointer.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
+					// Now check the fins and the elimination cells.
+					Cells elimMap, fins = Cells.Empty;
+					if (!withFin)
 					{
-						// 'coverLine' is the map that contains all cover set cells.
-						var coverLine = size switch
+						// If the current searcher doesn't check fins,
+						// we'll just get the pure check:
+						// 1. Base set contain more cells than cover sets.
+						// 2. Elimination cells set isn't empty.
+						if (baseLine > coverLine || (elimMap = coverLine - baseLine).IsEmpty)
 						{
-							2 => CandMaps[digit] & (RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]),
-							3 => CandMaps[digit] & (
-								RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
-								| RegionMaps[coverSets[2]]
-							),
-							4 => CandMaps[digit] & (
-								RegionMaps[coverSets[0]] | RegionMaps[coverSets[1]]
-								| RegionMaps[coverSets[2]] | RegionMaps[coverSets[3]]
-							)
-						};
-
-						// Now check the fins and the elimination cells.
-						Cells elimMap, fins = Cells.Empty;
-						if (!withFin)
-						{
-							// If the current searcher doesn't check fins,
-							// we'll just get the pure check:
-							// 1. Base set contain more cells than cover sets.
-							// 2. Elimination cells set isn't empty.
-							if (baseLine > coverLine || (elimMap = coverLine - baseLine).IsEmpty)
-							{
-								continue;
-							}
+							continue;
 						}
-						else // Should check fins.
-						{
-							// All fins should be in the same block.
-							fins = baseLine - coverLine;
-							short blockMask = fins.BlockMask;
-							if (fins.IsEmpty || blockMask == 0 || (blockMask & blockMask - 1) != 0)
-							{
-								continue;
-							}
-
-							// Cover set shouldn't overlap with the block of all fins lying in.
-							int finBlock = TrailingZeroCount(blockMask);
-							if ((coverLine & RegionMaps[finBlock]).IsEmpty)
-							{
-								continue;
-							}
-
-							// Don't intersect.
-							if ((RegionMaps[finBlock] & coverLine - baseLine).IsEmpty)
-							{
-								continue;
-							}
-
-							// Finally, get the elimination cells.
-							elimMap = coverLine - baseLine & RegionMaps[finBlock];
-						}
-
-						// Gather the conclusions and candidates or regions to be highlighted.
-						var conclusions = new List<Conclusion>();
-						List<DrawingInfo> candidateOffsets = new(), regionOffsets = new();
-						foreach (int cell in elimMap)
-						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-						}
-						foreach (int cell in withFin ? baseLine - fins : baseLine)
-						{
-							candidateOffsets.Add(new(0, cell * 9 + digit));
-						}
-						if (withFin)
-						{
-							foreach (int cell in fins)
-							{
-								candidateOffsets.Add(new(1, cell * 9 + digit));
-							}
-						}
-						foreach (int baseSet in baseSets)
-						{
-							regionOffsets.Add(new(0, baseSet));
-						}
-						foreach (int coverSet in coverSets)
-						{
-							regionOffsets.Add(new(2, coverSet));
-						}
-
-						// Gather the result.
-						accumulator.Add(
-							new NormalFishStepInfo(
-								conclusions,
-								new[]
-								{
-									new() { Candidates = candidateOffsets, Regions = regionOffsets },
-									GetDirectView(grid, digit, baseSets, coverSets, fins, searchRow)
-								},
-								digit,
-								baseSets,
-								coverSets,
-								fins,
-								IsSashimi(baseSets, fins, digit)
-							)
-						);
 					}
+					else // Should check fins.
+					{
+						// All fins should be in the same block.
+						fins = baseLine - coverLine;
+						short blockMask = fins.BlockMask;
+						if (fins.IsEmpty || blockMask == 0 || (blockMask & blockMask - 1) != 0)
+						{
+							continue;
+						}
+
+						// Cover set shouldn't overlap with the block of all fins lying in.
+						int finBlock = TrailingZeroCount(blockMask);
+						if ((coverLine & RegionMaps[finBlock]).IsEmpty)
+						{
+							continue;
+						}
+
+						// Don't intersect.
+						if ((RegionMaps[finBlock] & coverLine - baseLine).IsEmpty)
+						{
+							continue;
+						}
+
+						// Finally, get the elimination cells.
+						elimMap = coverLine - baseLine & RegionMaps[finBlock];
+					}
+
+					// Gather the conclusions and candidates or regions to be highlighted.
+					var conclusions = new List<Conclusion>();
+					List<DrawingInfo> candidateOffsets = new(), regionOffsets = new();
+					foreach (int cell in elimMap)
+					{
+						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+					}
+					foreach (int cell in withFin ? baseLine - fins : baseLine)
+					{
+						candidateOffsets.Add(new(0, cell * 9 + digit));
+					}
+					if (withFin)
+					{
+						foreach (int cell in fins)
+						{
+							candidateOffsets.Add(new(1, cell * 9 + digit));
+						}
+					}
+					foreach (int baseSet in baseSets)
+					{
+						regionOffsets.Add(new(0, baseSet));
+					}
+					foreach (int coverSet in coverSets)
+					{
+						regionOffsets.Add(new(2, coverSet));
+					}
+
+					// Gather the result.
+					accumulator.Add(
+						new NormalFishStepInfo(
+							conclusions,
+							new[]
+							{
+								new() { Candidates = candidateOffsets, Regions = regionOffsets },
+								GetDirectView(grid, digit, baseSets, coverSets, fins, searchRow)
+							},
+							digit,
+							baseSets,
+							coverSets,
+							fins,
+							IsSashimi(baseSets, fins, digit)
+						)
+					);
 				}
 			}
 		}
+	}
 
-		/// <summary>
-		/// Get the direct fish view with the specified grid and the base sets.
-		/// </summary>
-		/// <param name="grid">The grid.</param>
-		/// <param name="digit">The digit.</param>
-		/// <param name="baseSets">The base sets.</param>
-		/// <param name="coverSets">The cover sets.</param>
-		/// <param name="fins">
-		/// The cells of the fin in the current fish.
-		/// </param>
-		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
-		/// <returns>The view.</returns>
-		private static View GetDirectView(
-			in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
+	/// <summary>
+	/// Get the direct fish view with the specified grid and the base sets.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="baseSets">The base sets.</param>
+	/// <param name="coverSets">The cover sets.</param>
+	/// <param name="fins">
+	/// The cells of the fin in the current fish.
+	/// </param>
+	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
+	/// <returns>The view.</returns>
+	private static View GetDirectView(
+		in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
+	{
+		// Get the highlight cells (necessary).
+		var cellOffsets = new List<DrawingInfo>();
+		var candidateOffsets = fins.IsEmpty ? null : new List<DrawingInfo>();
+		foreach (int baseSet in baseSets)
 		{
-			// Get the highlight cells (necessary).
-			var cellOffsets = new List<DrawingInfo>();
-			var candidateOffsets = fins.IsEmpty ? null : new List<DrawingInfo>();
-			foreach (int baseSet in baseSets)
+			foreach (int cell in RegionMaps[baseSet])
 			{
-				foreach (int cell in RegionMaps[baseSet])
+				switch (grid.Exists(cell, digit))
 				{
-					switch (grid.Exists(cell, digit))
+					case true:
 					{
-						case true:
+						if (fins.Contains(cell))
 						{
-							if (fins.Contains(cell))
-							{
-								cellOffsets.Add(new(1, cell));
-							}
-							else
-							{
-								continue;
-							}
-
-							break;
+							cellOffsets.Add(new(1, cell));
 						}
-						case false:
-						case null:
+						else
 						{
-							bool flag = false;
-							foreach (int c in ValueMaps[digit])
-							{
-								if (
-									RegionMaps[
-										c.ToRegion(
-											searchRow ? RegionLabel.Column : RegionLabel.Row
-										)
-									].Contains(cell)
-								)
-								{
-									flag = true;
-									break;
-								}
-							}
-							if (flag)
-							{
-								continue;
-							}
-
-							Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
-							foreach (int b in baseSets) baseMap |= RegionMaps[b];
-							foreach (int c in coverSets) coverMap |= RegionMaps[c];
-							baseMap &= coverMap;
-							if (baseMap.Contains(cell))
-							{
-								continue;
-							}
-
-							cellOffsets.Add(new(0, cell));
-							break;
+							continue;
 						}
+
+						break;
+					}
+					case false:
+					case null:
+					{
+						bool flag = false;
+						foreach (int c in ValueMaps[digit])
+						{
+							if (
+								RegionMaps[
+									c.ToRegion(
+										searchRow ? RegionLabel.Column : RegionLabel.Row
+									)
+								].Contains(cell)
+							)
+							{
+								flag = true;
+								break;
+							}
+						}
+						if (flag)
+						{
+							continue;
+						}
+
+						Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
+						foreach (int b in baseSets) baseMap |= RegionMaps[b];
+						foreach (int c in coverSets) coverMap |= RegionMaps[c];
+						baseMap &= coverMap;
+						if (baseMap.Contains(cell))
+						{
+							continue;
+						}
+
+						cellOffsets.Add(new(0, cell));
+						break;
 					}
 				}
 			}
-			foreach (int cell in ValueMaps[digit])
-			{
-				cellOffsets.Add(new(2, cell));
-			}
-
-			foreach (int cell in fins)
-			{
-				candidateOffsets!.Add(new(1, cell * 9 + digit));
-			}
-
-			return new() { Cells = cellOffsets, Candidates = candidateOffsets };
 		}
+		foreach (int cell in ValueMaps[digit])
+		{
+			cellOffsets.Add(new(2, cell));
+		}
+
+		foreach (int cell in fins)
+		{
+			candidateOffsets!.Add(new(1, cell * 9 + digit));
+		}
+
+		return new() { Cells = cellOffsets, Candidates = candidateOffsets };
 	}
 }

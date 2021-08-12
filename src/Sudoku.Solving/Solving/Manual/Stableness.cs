@@ -1,34 +1,33 @@
-﻿namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual;
+
+/// <summary>
+/// Defines a stableness of a technique.
+/// </summary>
+[Closed]
+public enum Stableness : byte
 {
 	/// <summary>
-	/// Defines a stableness of a technique.
+	/// Indicates the stableness is stable.
 	/// </summary>
-	[Closed]
-	public enum Stableness : byte
-	{
-		/// <summary>
-		/// Indicates the stableness is stable.
-		/// </summary>
-		Stable,
+	Stable,
 
-		/// <summary>
-		/// Indicates the stableness is less stable.
-		/// </summary>
-		LessStable,
+	/// <summary>
+	/// Indicates the stableness is less stable.
+	/// </summary>
+	LessStable,
 
-		/// <summary>
-		/// Indicates the stableness is less unstable.
-		/// </summary>
-		LessUnstable,
+	/// <summary>
+	/// Indicates the stableness is less unstable.
+	/// </summary>
+	LessUnstable,
 
-		/// <summary>
-		/// Indicates the stableness is unstable.
-		/// </summary>
-		Unstable,
+	/// <summary>
+	/// Indicates the stableness is unstable.
+	/// </summary>
+	Unstable,
 
-		/// <summary>
-		/// Indicates the stableness is most unstable.
-		/// </summary>
-		MostUnstable
-	}
+	/// <summary>
+	/// Indicates the stableness is most unstable.
+	/// </summary>
+	MostUnstable
 }

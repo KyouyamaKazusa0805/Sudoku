@@ -9,34 +9,33 @@ using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Extensions;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers
+namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+
+[CodeFixProvider("SD0102")]
+public sealed partial class SD0102CodeFixProvider : CodeFixProvider
 {
-	[CodeFixProvider("SD0102")]
-	public sealed partial class SD0102CodeFixProvider : CodeFixProvider
+	/// <inheritdoc/>
+	public override async Task RegisterCodeFixesAsync(CodeFixContext context)
 	{
-		/// <inheritdoc/>
-		public override async Task RegisterCodeFixesAsync(CodeFixContext context)
-		{
-			var document = context.Document;
-			var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SD0102));
-			var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
-			var ((_, span), _) = diagnostic;
-			var propertyDecl = (PropertyDeclarationSyntax)root.FindNode(span, getInnermostNodeForTie: true);
+		var document = context.Document;
+		var diagnostic = context.Diagnostics.First(static d => d.Id == nameof(DiagnosticIds.SD0102));
+		var root = (await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false))!;
+		var ((_, span), _) = diagnostic;
+		var propertyDecl = (PropertyDeclarationSyntax)root.FindNode(span, getInnermostNodeForTie: true);
 
-			context.RegisterCodeFix(
-				CodeAction.Create(
-					title: CodeFixTitles.SD0102,
-					createChangedDocument: async c =>
-					{
-						var editor = await DocumentEditor.CreateAsync(document, c);
-						editor.SetAccessibility(propertyDecl, Accessibility.Public);
+		context.RegisterCodeFix(
+			CodeAction.Create(
+				title: CodeFixTitles.SD0102,
+				createChangedDocument: async c =>
+				{
+					var editor = await DocumentEditor.CreateAsync(document, c);
+					editor.SetAccessibility(propertyDecl, Accessibility.Public);
 
-						return document.WithSyntaxRoot(editor.GetChangedRoot());
-					},
-					equivalenceKey: nameof(CodeFixTitles.SD0102)
-				),
-				diagnostic
-			);
-		}
+					return document.WithSyntaxRoot(editor.GetChangedRoot());
+				},
+				equivalenceKey: nameof(CodeFixTitles.SD0102)
+			),
+			diagnostic
+		);
 	}
 }

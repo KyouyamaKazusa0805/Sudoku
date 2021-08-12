@@ -1,55 +1,54 @@
-﻿namespace Sudoku.Solving.Manual.Chaining
+﻿namespace Sudoku.Solving.Manual.Chaining;
+
+/// <summary>
+/// Provides a usage of <b>cell forcing chains</b> technique.
+/// </summary>
+/// <param name="Conclusions">All conclusions.</param>
+/// <param name="Views">All views.</param>
+/// <param name="SourceCell">The source cell.</param>
+/// <param name="Chains">All branches.</param>
+/// <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
+/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
+public sealed record CellChainingStepInfo(
+	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+	int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level
+) : ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
 {
-	/// <summary>
-	/// Provides a usage of <b>cell forcing chains</b> technique.
-	/// </summary>
-	/// <param name="Conclusions">All conclusions.</param>
-	/// <param name="Views">All views.</param>
-	/// <param name="SourceCell">The source cell.</param>
-	/// <param name="Chains">All branches.</param>
-	/// <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
-	/// <param name="Level">Indicates the depth level of the dynamic chains.</param>
-	public sealed record CellChainingStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level
-	) : ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)
+	/// <inheritdoc/>
+	public override int FlatComplexity
 	{
-		/// <inheritdoc/>
-		public override int FlatComplexity
+		get
 		{
-			get
+			int result = 0;
+			foreach (var node in Chains.Values)
 			{
-				int result = 0;
-				foreach (var node in Chains.Values)
-				{
-					result += node.AncestorsCount;
-				}
-
-				return result;
+				result += node.AncestorsCount;
 			}
+
+			return result;
 		}
+	}
 
-		/// <inheritdoc/>
-		public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
+	/// <inheritdoc/>
+	public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
 
-		/// <inheritdoc/>
-		public override ChainingTypeCode SortKey =>
-			IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
+	/// <inheritdoc/>
+	public override ChainingTypeCode SortKey =>
+		IsDynamic ? ChainingTypeCode.DynamicCellFc : ChainingTypeCode.CellFc;
 
-		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
-		/// <inheritdoc/>
-		public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
+	/// <inheritdoc/>
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
 
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+	/// <inheritdoc/>
+	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
-		[FormatItem]
-		private string SourceCellStr
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new Cells { SourceCell }.ToString();
-		}
+	[FormatItem]
+	private string SourceCellStr
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new Cells { SourceCell }.ToString();
 	}
 }

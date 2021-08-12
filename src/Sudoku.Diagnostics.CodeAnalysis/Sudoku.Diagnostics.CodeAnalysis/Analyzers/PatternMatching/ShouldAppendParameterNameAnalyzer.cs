@@ -5,69 +5,68 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
-{
-	[CodeAnalyzer("SS0636")]
-	public sealed partial class ShouldAppendParameterNameAnalyzer : DiagnosticAnalyzer
-	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.RecursivePattern });
+[CodeAnalyzer("SS0636")]
+public sealed partial class ShouldAppendParameterNameAnalyzer : DiagnosticAnalyzer
+{
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
+	{
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
+
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.RecursivePattern });
+	}
+
+
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		var (semanticModel, _, originalNode) = context;
+
+		if (
+			context.Node is not RecursivePatternSyntax
+			{
+				Parent: not RecursivePatternSyntax
+				{
+					PositionalPatternClause: { Subpatterns: { Count: not 0 } }
+				},
+				PositionalPatternClause: { Subpatterns: { Count: not 0 } subpatterns }
+			} node
+		)
+		{
+			return;
 		}
 
+		recursion(subpatterns);
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+
+		void recursion(in SeparatedSyntaxList<SubpatternSyntax> subpatterns)
 		{
-			var (semanticModel, _, originalNode) = context;
-
-			if (
-				context.Node is not RecursivePatternSyntax
-				{
-					Parent: not RecursivePatternSyntax
-					{
-						PositionalPatternClause: { Subpatterns: { Count: not 0 } }
-					},
-					PositionalPatternClause: { Subpatterns: { Count: not 0 } subpatterns }
-				} node
-			)
+			foreach (var subpattern in subpatterns)
 			{
-				return;
-			}
-
-			recursion(subpatterns);
-
-
-			void recursion(in SeparatedSyntaxList<SubpatternSyntax> subpatterns)
-			{
-				foreach (var subpattern in subpatterns)
+				switch (subpattern.Pattern)
 				{
-					switch (subpattern.Pattern)
+					case RecursivePatternSyntax
 					{
-						case RecursivePatternSyntax
-						{
-							PositionalPatternClause: { Subpatterns: { Count: not 0 } nestedSubpatterns }
-						}:
-						{
-							recursion(nestedSubpatterns);
+						PositionalPatternClause: { Subpatterns: { Count: not 0 } nestedSubpatterns }
+					}:
+					{
+						recursion(nestedSubpatterns);
 
-							break;
-						}
-						case not (DiscardPatternSyntax or VarPatternSyntax) when subpattern.NameColon is null:
-						{
-							context.ReportDiagnostic(
-								Diagnostic.Create(
-									descriptor: SS0636,
-									location: subpattern.GetLocation(),
-									messageArgs: null
-								)
-							);
+						break;
+					}
+					case not (DiscardPatternSyntax or VarPatternSyntax) when subpattern.NameColon is null:
+					{
+						context.ReportDiagnostic(
+							Diagnostic.Create(
+								descriptor: SS0636,
+								location: subpattern.GetLocation(),
+								messageArgs: null
+							)
+						);
 
-							break;
-						}
+						break;
 					}
 				}
 			}

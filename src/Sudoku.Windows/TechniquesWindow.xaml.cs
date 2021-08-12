@@ -1,15 +1,14 @@
 ﻿using System.Windows;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>TechniquesWindow.xaml</c>.
+/// </summary>
+public partial class TechniquesWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>TechniquesWindow.xaml</c>.
+	/// Initializes a default <see cref="TechniquesWindow"/> instance.
 	/// </summary>
-	public partial class TechniquesWindow : Window
-	{
-		/// <summary>
-		/// Initializes a default <see cref="TechniquesWindow"/> instance.
-		/// </summary>
-		public TechniquesWindow() => InitializeComponent();
-	}
+	public TechniquesWindow() => InitializeComponent();
 }

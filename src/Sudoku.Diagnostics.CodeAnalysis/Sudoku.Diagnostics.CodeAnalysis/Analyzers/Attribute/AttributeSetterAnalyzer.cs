@@ -7,97 +7,96 @@ using Microsoft.CodeAnalysis.Diagnostics.Extensions;
 using Sudoku.CodeGenerating;
 using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
-{
-	[CodeAnalyzer("SS9007")]
-	public sealed partial class AttributeSetterAnalyzer : DiagnosticAnalyzer
-	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.ClassDeclaration });
+[CodeAnalyzer("SS9007")]
+public sealed partial class AttributeSetterAnalyzer : DiagnosticAnalyzer
+{
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
+	{
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
+
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.ClassDeclaration });
+	}
+
+
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		var (semanticModel, _, originalNode, _, cancellationToken) = context;
+
+		if (
+			originalNode is not ClassDeclarationSyntax
+			{
+				Members: { Count: not 0 } members,
+				BaseList: { Types: { Count: not 0 } types }
+			}
+		)
+		{
+			return;
 		}
 
-
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+		if (types[0] is not SimpleBaseTypeSyntax { Type: var type })
 		{
-			var (semanticModel, _, originalNode, _, cancellationToken) = context;
+			return;
+		}
 
+		if (
+			semanticModel.GetSymbolInfo(type, cancellationToken) is not
+			{
+				Symbol: INamedTypeSymbol symbol
+			}
+		)
+		{
+			return;
+		}
+
+		bool isAttribute = false;
+		for (
+			var symbolBaseType = symbol.BaseType;
+			symbolBaseType is not null;
+			symbolBaseType = symbolBaseType.BaseType
+		)
+		{
+			if (symbolBaseType.ToDisplayString(FormatOptions.TypeFormat) == typeof(Attribute).FullName)
+			{
+				isAttribute = true;
+				break;
+			}
+		}
+		if (!isAttribute)
+		{
+			return;
+		}
+
+		foreach (var member in members)
+		{
 			if (
-				originalNode is not ClassDeclarationSyntax
+				member is not PropertyDeclarationSyntax
 				{
-					Members: { Count: not 0 } members,
-					BaseList: { Types: { Count: not 0 } types }
+					AccessorList: { Accessors: { Count: not 0 } accessors }
 				}
 			)
 			{
-				return;
+				continue;
 			}
 
-			if (types[0] is not SimpleBaseTypeSyntax { Type: var type })
+			foreach (var accessor in accessors)
 			{
-				return;
-			}
-
-			if (
-				semanticModel.GetSymbolInfo(type, cancellationToken) is not
-				{
-					Symbol: INamedTypeSymbol symbol
-				}
-			)
-			{
-				return;
-			}
-
-			bool isAttribute = false;
-			for (
-				var symbolBaseType = symbol.BaseType;
-				symbolBaseType is not null;
-				symbolBaseType = symbolBaseType.BaseType
-			)
-			{
-				if (symbolBaseType.ToDisplayString(FormatOptions.TypeFormat) == typeof(Attribute).FullName)
-				{
-					isAttribute = true;
-					break;
-				}
-			}
-			if (!isAttribute)
-			{
-				return;
-			}
-
-			foreach (var member in members)
-			{
-				if (
-					member is not PropertyDeclarationSyntax
-					{
-						AccessorList: { Accessors: { Count: not 0 } accessors }
-					}
-				)
+				if (accessor is not { Keyword: { RawKind: (int)SyntaxKind.SetKeyword } keyword })
 				{
 					continue;
 				}
 
-				foreach (var accessor in accessors)
-				{
-					if (accessor is not { Keyword: { RawKind: (int)SyntaxKind.SetKeyword } keyword })
-					{
-						continue;
-					}
-
-					context.ReportDiagnostic(
-						Diagnostic.Create(
-							descriptor: SS9007,
-							location: keyword.GetLocation(),
-							messageArgs: null,
-							additionalLocations: new[] { accessor.GetLocation() }
-						)
-					);
-				}
+				context.ReportDiagnostic(
+					Diagnostic.Create(
+						descriptor: SS9007,
+						location: keyword.GetLocation(),
+						messageArgs: null,
+						additionalLocations: new[] { accessor.GetLocation() }
+					)
+				);
 			}
 		}
 	}

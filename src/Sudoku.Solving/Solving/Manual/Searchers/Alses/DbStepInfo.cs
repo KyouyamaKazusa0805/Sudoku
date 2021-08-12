@@ -1,60 +1,59 @@
-﻿namespace Sudoku.Solving.Manual.Alses
+﻿namespace Sudoku.Solving.Manual.Alses;
+
+/// <summary>
+/// Provides a usage of <b>death blossom</b> technique.
+/// </summary>
+/// <param name="Conclusions">All conclusions.</param>
+/// <param name="Views">All views.</param>
+/// <param name="Pivot">The pivot cell.</param>
+/// <param name="Petals">All ALSes used.</param>
+public sealed record DbStepInfo(
+	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+	int Pivot, IReadOnlyDictionary<int, Als> Petals
+) : AlsStepInfo(Conclusions, Views)
 {
-	/// <summary>
-	/// Provides a usage of <b>death blossom</b> technique.
-	/// </summary>
-	/// <param name="Conclusions">All conclusions.</param>
-	/// <param name="Views">All views.</param>
-	/// <param name="Pivot">The pivot cell.</param>
-	/// <param name="Petals">All ALSes used.</param>
-	public sealed record DbStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Pivot, IReadOnlyDictionary<int, Als> Petals
-	) : AlsStepInfo(Conclusions, Views)
+	/// <inheritdoc/>
+	public override decimal Difficulty => 8.0M + Petals.Count * .1M;
+
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
+
+	/// <inheritdoc/>
+	public override Technique TechniqueCode => Technique.DeathBlossom;
+
+	/// <inheritdoc/>
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+
+	/// <inheritdoc/>
+	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
+
+	[FormatItem]
+	private string PivotStr
 	{
-		/// <inheritdoc/>
-		public override decimal Difficulty => 8.0M + Petals.Count * .1M;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new Cells { Pivot }.ToString();
+	}
 
-		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
-
-		/// <inheritdoc/>
-		public override Technique TechniqueCode => Technique.DeathBlossom;
-
-		/// <inheritdoc/>
-		public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
-
-		/// <inheritdoc/>
-		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-		[FormatItem]
-		private string PivotStr
+	[FormatItem]
+	private unsafe string PetalsStr
+	{
+		get
 		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => new Cells { Pivot }.ToString();
-		}
+			const string separator = ", ";
 
-		[FormatItem]
-		private unsafe string PetalsStr
-		{
-			get
+			var sb = new ValueStringBuilder(stackalloc char[50]);
+			sb.AppendRange(Petals, &converter, separator);
+			return sb.ToString();
+
+
+			static string converter(KeyValuePair<int, Als> pair)
 			{
-				const string separator = ", ";
+				var sb = new ValueStringBuilder(stackalloc char[15]);
+				sb.Append(pair.Key + 1);
+				sb.Append(" - ");
+				sb.Append(pair.Value.ToString());
 
-				var sb = new ValueStringBuilder(stackalloc char[50]);
-				sb.AppendRange(Petals, &converter, separator);
 				return sb.ToString();
-
-
-				static string converter(KeyValuePair<int, Als> pair)
-				{
-					var sb = new ValueStringBuilder(stackalloc char[15]);
-					sb.Append(pair.Key + 1);
-					sb.Append(" - ");
-					sb.Append(pair.Value.ToString());
-
-					return sb.ToString();
-				}
 			}
 		}
 	}

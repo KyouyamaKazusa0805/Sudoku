@@ -4,61 +4,60 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Sudoku.CodeGenerating;
 
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+
+[CodeAnalyzer("SS0302")]
+public sealed partial class UnmeaningfulSelectClauseAnalyzer : DiagnosticAnalyzer
 {
-	[CodeAnalyzer("SS0302")]
-	public sealed partial class UnmeaningfulSelectClauseAnalyzer : DiagnosticAnalyzer
+	/// <inheritdoc/>
+	public override void Initialize(AnalysisContext context)
 	{
-		/// <inheritdoc/>
-		public override void Initialize(AnalysisContext context)
-		{
-			context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-			context.EnableConcurrentExecution();
+		context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+		context.EnableConcurrentExecution();
 
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.QueryExpression });
-		}
+		context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, new[] { SyntaxKind.QueryExpression });
+	}
 
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
-		{
-			if (
-				context.Node is not QueryExpressionSyntax
+	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	{
+		if (
+			context.Node is not QueryExpressionSyntax
+			{
+				FromClause:
 				{
-					FromClause:
+					Type: null,
+					Identifier: { ValueText: var identifier }
+				},
+				Body:
+				{
+					Clauses: { Count: 0 },
+					SelectOrGroup: SelectClauseSyntax
 					{
-						Type: null,
-						Identifier: { ValueText: var identifier }
-					},
-					Body:
-					{
-						Clauses: { Count: 0 },
-						SelectOrGroup: SelectClauseSyntax
+						Expression: IdentifierNameSyntax
 						{
-							Expression: IdentifierNameSyntax
-							{
-								Identifier: { ValueText: var selectClauseIdentifier }
-							}
-						},
-						Continuation: null
-					}
-				} node
-			)
-			{
-				return;
-			}
-
-			if (identifier != selectClauseIdentifier)
-			{
-				return;
-			}
-
-			context.ReportDiagnostic(
-				Diagnostic.Create(
-					descriptor: SS0302,
-					location: node.GetLocation(),
-					messageArgs: null
-				)
-			);
+							Identifier: { ValueText: var selectClauseIdentifier }
+						}
+					},
+					Continuation: null
+				}
+			} node
+		)
+		{
+			return;
 		}
+
+		if (identifier != selectClauseIdentifier)
+		{
+			return;
+		}
+
+		context.ReportDiagnostic(
+			Diagnostic.Create(
+				descriptor: SS0302,
+				location: node.GetLocation(),
+				messageArgs: null
+			)
+		);
 	}
 }

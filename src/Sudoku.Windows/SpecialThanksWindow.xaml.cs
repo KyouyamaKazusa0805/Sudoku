@@ -3,31 +3,30 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>ThankForWindow.xaml</c>.
+/// </summary>
+public partial class SpecialThanksWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>ThankForWindow.xaml</c>.
+	/// Initializes a default <see cref="SpecialThanksWindow"/> instance.
 	/// </summary>
-	public partial class SpecialThanksWindow : Window
+	public SpecialThanksWindow() => InitializeComponent();
+
+
+	private void Hyperlink_Click(object sender, RoutedEventArgs e)
 	{
-		/// <summary>
-		/// Initializes a default <see cref="SpecialThanksWindow"/> instance.
-		/// </summary>
-		public SpecialThanksWindow() => InitializeComponent();
-
-
-		private void Hyperlink_Click(object sender, RoutedEventArgs e)
+		if (sender is Hyperlink link)
 		{
-			if (sender is Hyperlink link)
+			try
 			{
-				try
-				{
-					Process.Start("explorer.exe", link.NavigateUri.AbsoluteUri);
-				}
-				catch (Exception ex)
-				{
-					Messagings.ShowExceptionMessage(ex);
-				}
+				Process.Start("explorer.exe", link.NavigateUri.AbsoluteUri);
+			}
+			catch (Exception ex)
+			{
+				Messagings.ShowExceptionMessage(ex);
 			}
 		}
 	}

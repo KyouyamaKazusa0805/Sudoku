@@ -1,32 +1,31 @@
 ﻿using System.Windows;
 using Sudoku.Generating;
 
-namespace Sudoku.Windows
+namespace Sudoku.Windows;
+
+/// <summary>
+/// Interaction logic for <c>TechniqueViewWindow.xaml</c>.
+/// </summary>
+public partial class TechniqueViewWindow : Window
 {
 	/// <summary>
-	/// Interaction logic for <c>TechniqueViewWindow.xaml</c>.
+	/// Initializes a default <see cref="TechniqueViewWindow"/> instance.
 	/// </summary>
-	public partial class TechniqueViewWindow : Window
+	public TechniqueViewWindow()
 	{
-		/// <summary>
-		/// Initializes a default <see cref="TechniqueViewWindow"/> instance.
-		/// </summary>
-		public TechniqueViewWindow()
-		{
-			InitializeComponent();
+		InitializeComponent();
 
-			ChosenTechniques = _techniqueList.ChosenTechniques;
-		}
-
-
-		/// <summary>
-		/// Indicates the techniques having chosen.
-		/// </summary>
-		public TechniqueCodeFilter ChosenTechniques { get; }
-
-
-		private void ButtonSelect_Click(object sender, RoutedEventArgs e) => DialogResult = true;
-
-		private void ButtonCancel_Click(object sender, RoutedEventArgs e) => DialogResult = false;
+		ChosenTechniques = _techniqueList.ChosenTechniques;
 	}
+
+
+	/// <summary>
+	/// Indicates the techniques having chosen.
+	/// </summary>
+	public TechniqueCodeFilter ChosenTechniques { get; }
+
+
+	private void ButtonSelect_Click(object sender, RoutedEventArgs e) => DialogResult = true;
+
+	private void ButtonCancel_Click(object sender, RoutedEventArgs e) => DialogResult = false;
 }
