@@ -20,7 +20,7 @@ partial class BitOperationsExensions
 	/// <summary>
 	/// Indicates the trailing text.
 	/// </summary>
-	private const string TrailingText = "\t}\r\n}";
+	private const string TrailingText = "}\r\n";
 
 
 	/// <summary>
