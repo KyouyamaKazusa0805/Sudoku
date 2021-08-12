@@ -1,7 +1,4 @@
-﻿using Sudoku.Globalization;
-using Sudoku.Resources;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Indicates a puzzle generating progress result.

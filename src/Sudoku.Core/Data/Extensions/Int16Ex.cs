@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data.Extensions
+﻿namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="short"/>.

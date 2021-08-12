@@ -1,9 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using Sudoku.Resources;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Indicates the module initializer of this project.

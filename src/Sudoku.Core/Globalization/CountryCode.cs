@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Globalization
+﻿namespace Sudoku.Globalization
 {
 	/// <summary>
 	/// Encapsulates a country code to tell different countries.

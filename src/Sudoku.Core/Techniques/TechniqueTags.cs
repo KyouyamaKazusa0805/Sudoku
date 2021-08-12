@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Sudoku.Techniques
+﻿namespace Sudoku.Techniques
 {
 	/// <summary>
 	/// Provides a series of tags to mark on a technique.

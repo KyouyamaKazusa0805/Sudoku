@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Sudoku.Data;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Indicates an error that throws when a sudoku grid has no solution

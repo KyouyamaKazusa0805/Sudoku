@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Indicates the exception that throws when the resource can't be found.

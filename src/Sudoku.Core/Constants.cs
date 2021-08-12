@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Encapsulates the class that stores all constants used in the whole project.

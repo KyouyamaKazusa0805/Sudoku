@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Provides extension methods on conversions between a cell and a region.

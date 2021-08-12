@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Sudoku.Data;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Indicates an exception that throws when the puzzle should have been solved before using a function.

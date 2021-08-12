@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Techniques
+﻿namespace Sudoku.Techniques
 {
 	/// <summary>
 	/// Represents a technique instance, which is used for comparison.

@@ -1,10 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Defines a segment that stores a part of a sudoku grid.

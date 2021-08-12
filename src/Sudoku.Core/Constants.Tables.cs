@@ -1,7 +1,5 @@
 ﻿#nullable disable warnings
 
-using Sudoku.Data;
-
 namespace Sudoku
 {
 	partial class Constants

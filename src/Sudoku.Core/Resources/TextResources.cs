@@ -2,9 +2,6 @@
 
 #nullable disable
 
-using System.Collections.Generic;
-using Sudoku.Globalization;
-
 namespace Sudoku.Resources
 {
 	/// <summary>

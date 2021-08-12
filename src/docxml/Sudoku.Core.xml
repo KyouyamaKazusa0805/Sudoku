@@ -2041,6 +2041,43 @@
         <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.Data.Crosshatch">
+            <summary>
+            Defines a crosshatching line that used for displaying in a picture.
+            </summary>
+            <param name="Start">The start position.</param>
+            <param name="End">The end position.</param>
+        </member>
+        <member name="M:Sudoku.Data.Crosshatch.#ctor(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Defines a crosshatching line that used for displaying in a picture.
+            </summary>
+            <param name="Start">The start position.</param>
+            <param name="End">The end position.</param>
+        </member>
+        <member name="M:Sudoku.Data.Crosshatch.Equals(Sudoku.Data.Crosshatch@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Crosshatch.op_Implicit(System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}@)~Sudoku.Data.Crosshatch">
+            <summary>
+            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Data.Crosshatch"/>.
+            </summary>
+            <param name="pair">The pair of crosshatching line data.</param>
+        </member>
+        <member name="T:Sudoku.Data.Crosshatch.JsonConverter">
+            <summary>
+            Indicates the JSON converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Crosshatch.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Crosshatch.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Crosshatch,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Data.Extensions.GridTransformations">
             <summary>
             Provides methods for <see cref="T:Sudoku.Data.Grid"/> instances on transformations.
@@ -6028,6 +6065,52 @@
         <member name="M:Sudoku.InvalidPuzzleException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Models.ColorIdentifier">
+            <summary>
+            Indicates the color identifier that used to identify the color.
+            </summary>
+            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
+            <param name="Id">Indicates the ID label.</param>
+            <param name="Color">Indicates the color.</param>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Indicates the color identifier that used to identify the color.
+            </summary>
+            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
+            <param name="Id">Indicates the ID label.</param>
+            <param name="Color">Indicates the color.</param>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.Equals(Sudoku.Models.ColorIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.GetHashCode">
+            <inheritdoc/>
+            <remarks>
+            We on purpose show the another property value. For example, if we uses ID
+            as the instance representing, the result value of get hash code will be the color value,
+            and vice versa.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.op_Equality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
+            <summary>
+            Checks whether two <see cref="T:Sudoku.Models.ColorIdentifier"/>s contains the same value.
+            </summary>
+            <param name="left">The left value to compare.</param>
+            <param name="right">The right value to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.op_Inequality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
+            <summary>
+            Checks whether two <see cref="T:Sudoku.Models.ColorIdentifier"/>s contains the different value.
+            </summary>
+            <param name="left">The left value to compare.</param>
+            <param name="right">The right value to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
             Encapsulates a drawing information pair for highlighting cells,
@@ -6226,6 +6309,112 @@
         </member>
         <member name="M:Sudoku.Models.IProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Models.PresentationData">
+            <summary>
+            Indicates the presentation data that is used for present the information.
+            </summary>
+            <param name="Cells">The cells.</param>
+            <param name="Candidates">The candidates.</param>
+            <param name="Regions">The regions.</param>
+            <param name="Links">The links.</param>
+            <param name="DirectLines">The direct lines.</param>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}})">
+            <summary>
+            Indicates the presentation data that is used for present the information.
+            </summary>
+            <param name="Cells">The cells.</param>
+            <param name="Candidates">The candidates.</param>
+            <param name="Regions">The regions.</param>
+            <param name="Links">The links.</param>
+            <param name="DirectLines">The direct lines.</param>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Equals(Sudoku.Models.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Contains``1(Sudoku.Models.PresentationDataKind,``0)">
+            <summary>
+            Checks whether the collection contains the specified element.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">The element to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.IndexOf``1(Sudoku.Models.PresentationDataKind,``0)">
+            <summary>
+            Checks whether the collection contains the specified element. If so, return the index of the element.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">The element to check.</param>
+            <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.ToSvgCode">
+            <summary>
+            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
+            </summary>
+            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Add``1(Sudoku.Models.PresentationDataKind,``0,Sudoku.Models.ColorIdentifier)">
+            <summary>
+            Append an element into the collection.
+            </summary>
+            <typeparam name="TStruct">The type of the element to add.</typeparam>
+            <param name="dataKind">The data kind to append.</param>
+            <param name="element">The element to add.</param>
+            <param name="color">The color identifier.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="dataKind"/> is out of range.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Remove``1(Sudoku.Models.PresentationDataKind,``0)">
+            <summary>
+            Removes the element out of the collection.
+            </summary>
+            <typeparam name="TStruct">The type of the element to remove.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.TryParse(System.String,Sudoku.Models.PresentationData@)">
+            <summary>
+            Try to parse a <see cref="T:System.String"/> value which is the SVG-format code
+            to a <see cref="T:Sudoku.Models.PresentationData"/> result.
+            </summary>
+            <param name="svgCode">The SVG <see cref="T:System.String"/> code.</param>
+            <param name="result">
+            The result. The value keeps <see langword="default"/> value
+            when the return value is <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the parse operation is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Parse(System.String)">
+            <summary>
+            Parse a <see cref="T:System.String"/> value which is the SVG-format code
+            to a <see cref="T:Sudoku.Models.PresentationData"/> result.
+            </summary>
+            <param name="svgCode">The SVG <see cref="T:System.String"/> code.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Models.ColorIdentifier}}@)">
+            <summary>
+            To ensure the collection isn't <see langword="null"/>. If <see langword="null"/>, the method
+            will initialize the instance specified as the parameter with the modifier <see langword="ref"/>,
+            which means the value can be re-assigned in this method.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="collection">The collection to initialize when <see langword="null"/>.</param>
+            <remarks>
+            The argument can be passed a <see langword="null"/>-able type,
+            and changes to a non-<see langword="null"/> value when the method has been executed wholly.
+            </remarks>
         </member>
         <member name="T:Sudoku.Models.PresentationDataKind">
             <summary>

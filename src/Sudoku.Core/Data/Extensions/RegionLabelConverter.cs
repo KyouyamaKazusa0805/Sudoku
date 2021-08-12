@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data.Extensions
+﻿namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Encapsulates the converter methods of conversions between <see cref="int"/>

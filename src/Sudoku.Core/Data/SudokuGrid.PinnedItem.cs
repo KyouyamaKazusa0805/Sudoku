@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	partial struct SudokuGrid
 	{

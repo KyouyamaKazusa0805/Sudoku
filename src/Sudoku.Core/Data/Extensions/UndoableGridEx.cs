@@ -1,5 +1,4 @@
 ﻿using Sudoku.Data.Stepping;
-using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data.Extensions
 {

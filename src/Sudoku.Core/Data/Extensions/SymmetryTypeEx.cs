@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Sudoku.Data.Extensions
+﻿namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides extension methods for <see cref="SymmetryType"/>.

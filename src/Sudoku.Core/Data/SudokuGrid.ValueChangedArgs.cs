@@ -1,10 +1,5 @@
 ﻿#undef NESTED_ANNOTATION
 
-
-#if NESTED_ANNOTATION
-using Sudoku.CodeGenerating;
-#endif
-
 namespace Sudoku.Data
 {
 	partial struct SudokuGrid

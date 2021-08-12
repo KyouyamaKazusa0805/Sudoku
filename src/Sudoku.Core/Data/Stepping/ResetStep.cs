@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data.Stepping
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a reset step.

@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	/// <summary>
 	/// Indicates an exception that throws when the module initializer failed to fetch the resource data,

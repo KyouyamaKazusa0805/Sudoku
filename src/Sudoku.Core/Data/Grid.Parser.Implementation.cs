@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	partial struct Grid
 	{

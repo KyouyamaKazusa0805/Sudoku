@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Techniques
+﻿namespace Sudoku.Techniques
 {
 	/// <summary>
 	/// Indicates a technique group.

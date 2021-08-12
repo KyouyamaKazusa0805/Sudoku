@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data.Parsers
+﻿namespace Sudoku.Data.Parsers
 {
 	/// <summary>
 	/// Encapsulates the cell parser that converts the string to an <see cref="int"/> value that

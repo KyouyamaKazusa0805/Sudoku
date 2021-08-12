@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a bit combination generator.

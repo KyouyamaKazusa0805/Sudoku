@@ -1,6 +1,4 @@
-﻿using System.Text;
-using Sudoku.CodeGenerating;
-using Sudoku.Data.Extensions;
+﻿using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data.Collections
 {

@@ -1,7 +1,4 @@
-﻿using System.Text;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Data.Collections
+﻿namespace Sudoku.Data.Collections
 {
 	/// <summary>
 	/// Provides a collection that contains the conclusions.

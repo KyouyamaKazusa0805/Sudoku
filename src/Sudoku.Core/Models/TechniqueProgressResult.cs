@@ -1,6 +1,4 @@
-﻿using Sudoku.Globalization;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Indicates a technique progress result.

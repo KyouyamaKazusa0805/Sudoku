@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	partial struct SudokuGridSegment
 	{

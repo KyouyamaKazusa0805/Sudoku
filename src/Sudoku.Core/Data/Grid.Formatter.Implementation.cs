@@ -1,8 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Sudoku.Data.Extensions;
-using static System.Numerics.BitOperations;
+﻿using Sudoku.Data.Extensions;
 
 namespace Sudoku.Data
 {

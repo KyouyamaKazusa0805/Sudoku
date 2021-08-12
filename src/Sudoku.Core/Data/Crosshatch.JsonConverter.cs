@@ -1,10 +1,4 @@
-﻿#if false
-
-using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	partial record struct Crosshatch
 	{
@@ -71,5 +65,3 @@ namespace Sudoku.Data
 		}
 	}
 }
-
-#endif

@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	/// <summary>
 	/// Encapsulates a conclusion representation while solving in logic.

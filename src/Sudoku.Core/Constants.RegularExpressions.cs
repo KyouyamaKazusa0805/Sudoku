@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Sudoku
+﻿namespace Sudoku
 {
 	partial class Constants
 	{

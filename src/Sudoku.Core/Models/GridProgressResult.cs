@@ -1,9 +1,4 @@
-﻿using System.Text;
-using Sudoku.CodeGenerating;
-using Sudoku.Globalization;
-using Sudoku.Resources;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Encapsulates a progress result used for report the current state.

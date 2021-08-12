@@ -1,6 +1,4 @@
-﻿using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Data.Extensions
+﻿namespace Sudoku.Data.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="SudokuGrid"/>.

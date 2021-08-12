@@ -1,8 +1,4 @@
-﻿using System.Text;
-using Sudoku.CodeGenerating;
-using static System.Numerics.BitOperations;
-
-namespace Sudoku.Data.Collections
+﻿namespace Sudoku.Data.Collections
 {
 	/// <summary>
 	/// Indicates a collection that contains the several digits.

@@ -1,12 +1,4 @@
-﻿#if false
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	partial record struct PresentationData
 	{
@@ -360,15 +352,11 @@ namespace Sudoku.Models
 		/// <typeparam name="TStruct">The type of the element.</typeparam>
 		/// <param name="collection">The collection to initialize when <see langword="null"/>.</param>
 		/// <remarks>
-		/// Althogh the parameter type doesn't specify the nullable notation <c>'?'</c>,
-		/// but this parameter is marked <see cref="AllowNullAttribute"/>, which means the argument can
-		/// also pass a <see langword="null"/>-able type, and changes to a non-<see langword="null"/> value
-		/// when the method has been executed wholly.
+		/// The argument can be passed a <see langword="null"/>-able type,
+		/// and changes to a non-<see langword="null"/> value when the method has been executed wholly.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void EnsureNotNull<TStruct>([AllowNull] ref IList<(TStruct, ColorIdentifier)> collection)
 			where TStruct : struct => collection ??= new List<(TStruct, ColorIdentifier)>();
 	}
 }
-
-#endif

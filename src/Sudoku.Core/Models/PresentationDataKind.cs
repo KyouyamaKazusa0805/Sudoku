@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Presents a kind to identify the inner presentation data.

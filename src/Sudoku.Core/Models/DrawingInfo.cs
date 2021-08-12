@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Encapsulates a drawing information pair for highlighting cells,

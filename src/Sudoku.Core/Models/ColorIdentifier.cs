@@ -1,9 +1,4 @@
-﻿#if false
-
-using System;
-using System.Runtime.InteropServices;
-
-namespace Sudoku.Models
+﻿namespace Sudoku.Models
 {
 	/// <summary>
 	/// Indicates the color identifier that used to identify the color.
@@ -64,5 +59,3 @@ namespace Sudoku.Models
 		public static bool operator !=(in ColorIdentifier left, in ColorIdentifier right) => !(left == right);
 	}
 }
-
-#endif

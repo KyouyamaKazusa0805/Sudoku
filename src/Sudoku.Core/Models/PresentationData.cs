@@ -1,11 +1,4 @@
-﻿#if false
-
-#pragma warning disable CS1591
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Sudoku.Data;
+﻿#pragma warning disable CS1591
 
 namespace Sudoku.Models
 {
@@ -23,7 +16,7 @@ namespace Sudoku.Models
 		[DisallowNull][property: DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
 		[DisallowNull][property: DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
 		[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines
-	) : IValueEquatable<PresentationData>, IParsable<PresentationData>
+	) : IValueEquatable<PresentationData>/*, IParsable<PresentationData>*/
 	{
 		public readonly partial bool Equals(in PresentationData other);
 		public readonly partial bool Contains<TStruct>(PresentationDataKind dataKind, TStruct element) where TStruct : struct;
@@ -41,5 +34,3 @@ namespace Sudoku.Models
 		public static bool operator !=(in PresentationData left, in PresentationData right) => !(left == right);
 	}
 }
-
-#endif
