@@ -1,5 +1,15 @@
-﻿using System.Drawing;
-using Sudoku.CodeGenerating;
+﻿global using System.Drawing;
+global using System.Drawing.Drawing2D;
+global using System.Drawing.Text;
+global using System.Numerics;
+global using System.Runtime.CompilerServices;
+global using System.Text.Encodings.Web;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using Sudoku.CodeGenerating;
+global using Sudoku.Data;
+global using Sudoku.Models;
+global using static System.Math;
 
 [assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B), Namespace = "Sudoku.Drawing.Extensions")]
 [assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y), Namespace = "Sudoku.Drawing.Extensions")]

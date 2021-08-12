@@ -1,14 +1,6 @@
-﻿using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Data.Extensions;
+﻿using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing.Extensions;
-using Sudoku.Models;
-using static System.Math;
 
 namespace Sudoku.Drawing
 {

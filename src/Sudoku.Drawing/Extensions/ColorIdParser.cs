@@ -1,6 +1,4 @@
-﻿using Sudoku.Models;
-
-namespace Sudoku.Drawing.Extensions
+﻿namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Encapsulates the color ID parser that converts the string to an <see cref="long"/> value that

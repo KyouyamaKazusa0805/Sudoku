@@ -1,10 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Sudoku.Data;
-
-namespace Sudoku.Drawing.Converters
+﻿namespace Sudoku.Drawing.Converters
 {
 	/// <summary>
 	/// Indicates a <see cref="ValueTuple{T1, T2}"/> JSON converter.

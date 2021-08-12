@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Sudoku.Models;
-
-namespace Sudoku.Drawing.Converters
+﻿namespace Sudoku.Drawing.Converters
 {
 	/// <summary>
 	/// Indicates a <see cref="DrawingInfo"/> JSON converter.

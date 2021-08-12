@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Sudoku.Drawing
+﻿namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Provides with a base class for program settings.

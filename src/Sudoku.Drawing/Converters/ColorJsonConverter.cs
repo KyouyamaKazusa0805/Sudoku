@@ -1,8 +1,4 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Sudoku.Drawing.Extensions;
+﻿using Sudoku.Drawing.Extensions;
 
 namespace Sudoku.Drawing.Converters
 {

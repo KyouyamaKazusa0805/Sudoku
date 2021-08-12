@@ -1,6 +1,4 @@
-﻿using Sudoku.Models;
-
-namespace Sudoku.Drawing.Extensions
+﻿namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Extracts the extension methods for color ID.

@@ -1,8 +1,4 @@
-﻿using System.Text.Json;
-using Sudoku.Data;
-using Sudoku.Models;
-
-namespace Sudoku.Drawing
+﻿namespace Sudoku.Drawing
 {
 	/// <summary>
 	/// Encapsulates a view when displaying the information on forms.

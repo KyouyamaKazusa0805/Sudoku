@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing.Extensions;
+﻿using Sudoku.Drawing.Extensions;
 
 namespace Sudoku.Drawing
 {

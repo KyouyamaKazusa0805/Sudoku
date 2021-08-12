@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-
-namespace Sudoku.Drawing.Extensions
+﻿namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Size"/> and <see cref="SizeF"/>.

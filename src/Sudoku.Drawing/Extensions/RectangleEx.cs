@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Sudoku.Drawing.Extensions
+﻿namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Rectangle"/> and <see cref="RectangleF"/>.

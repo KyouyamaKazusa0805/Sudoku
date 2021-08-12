@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Drawing2D;
-
-namespace Sudoku.Drawing.Extensions
+﻿namespace Sudoku.Drawing.Extensions
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Bitmap"/>.

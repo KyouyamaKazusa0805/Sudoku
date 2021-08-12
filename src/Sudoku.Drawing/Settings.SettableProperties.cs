@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Text.Json.Serialization;
-
-namespace Sudoku.Drawing
+﻿namespace Sudoku.Drawing
 {
 	partial class Settings
 	{
