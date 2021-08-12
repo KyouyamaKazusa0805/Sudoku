@@ -44,7 +44,7 @@
 			// Note that the parameter is unnecessary to pass.
 			var searchers = _solver.GetHodokuModeSearchers(null);
 
-			FastProperties.InitializeMaps(grid);
+			InitializeMaps(grid);
 			int i = -1;
 			var bag = new List<StepInfo>();
 			var progressResult = new TechniqueProgressResult(
