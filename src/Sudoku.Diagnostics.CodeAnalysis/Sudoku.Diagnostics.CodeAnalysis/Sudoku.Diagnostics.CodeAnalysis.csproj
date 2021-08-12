@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<Version>0.3</Version>
 		<IsPackable>false</IsPackable>
 		<PackageId>*$(MSBuildProjectFile)*</PackageId>

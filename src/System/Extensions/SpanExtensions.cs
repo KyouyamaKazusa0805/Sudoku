@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace System
+﻿namespace System
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Span{T}"/>.

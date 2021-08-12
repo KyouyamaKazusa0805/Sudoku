@@ -7,7 +7,7 @@
 		<Description>Provides all solving operations for a sudoku grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Solving.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>

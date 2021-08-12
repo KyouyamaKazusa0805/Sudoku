@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Diagnostics
+﻿namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Encapsulates a size unit converter.

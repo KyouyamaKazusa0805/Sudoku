@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<AssemblyName>SystemExtensions</AssemblyName>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Authors>Sunnie</Authors>

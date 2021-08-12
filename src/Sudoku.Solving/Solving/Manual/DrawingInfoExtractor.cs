@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using Sudoku.Models;
 using Sudoku.Solving.Manual.Chaining;
 

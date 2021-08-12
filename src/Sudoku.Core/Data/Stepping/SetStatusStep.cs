@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Data.Stepping
+﻿namespace Sudoku.Data.Stepping
 {
 	/// <summary>
 	/// Encapsulates a step for setting a cell status.

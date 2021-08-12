@@ -1,5 +1,4 @@
-﻿using System;
-using static Sudoku.Data.SudokuGrid;
+﻿using static Sudoku.Data.SudokuGrid;
 
 namespace Sudoku.Data.Stepping
 {

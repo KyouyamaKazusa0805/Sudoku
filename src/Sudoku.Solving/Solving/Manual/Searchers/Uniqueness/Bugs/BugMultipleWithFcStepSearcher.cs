@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;
 using Sudoku.Solving.Checking;

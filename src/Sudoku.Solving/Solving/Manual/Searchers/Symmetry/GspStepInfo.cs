@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
@@ -80,7 +79,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 					}
 
 					sb.RemoveFromEnd(separator.Length);
-					return $"{TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
+					return $"{(string)TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
 				}
 			}
 		}

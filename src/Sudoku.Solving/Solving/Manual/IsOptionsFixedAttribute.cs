@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Marks onto a <see cref="StepSearcher"/>, to let the compiler know the specified step searcher

@@ -6293,6 +6293,11 @@
         </member>
         <member name="M:Sudoku.Models.PuzzleGeneratingProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+            <remarks><i>
+            Before C# 10, <see langword="dynamic"/> type can be used as interpolation part
+            in a interpolation string; after C# 10 interpolation string doesn't handle
+            <see langword="dynamic"/> types, so we must append a type cast to <see cref="T:System.String"/>.
+            </i></remarks>
         </member>
         <member name="T:Sudoku.Models.TechniqueProgressResult">
             <summary>

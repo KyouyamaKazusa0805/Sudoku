@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Solving.Manual
+﻿namespace Sudoku.Solving.Manual
 {
 	/// <summary>
 	/// Indicates a reason why the searcher is disabled.

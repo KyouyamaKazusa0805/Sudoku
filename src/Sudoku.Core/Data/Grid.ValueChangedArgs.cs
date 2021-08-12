@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Data
+﻿namespace Sudoku.Data
 {
 	partial struct Grid
 	{

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
 using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Drawing;

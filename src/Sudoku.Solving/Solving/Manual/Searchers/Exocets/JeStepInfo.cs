@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sudoku.Drawing;
+﻿using Sudoku.Drawing;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Exocets

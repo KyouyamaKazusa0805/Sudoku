@@ -1,5 +1,4 @@
-﻿using System;
-using Sudoku.CodeGenerating;
+﻿using Sudoku.CodeGenerating;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Polygons

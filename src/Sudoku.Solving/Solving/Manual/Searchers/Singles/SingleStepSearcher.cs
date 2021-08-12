@@ -1,7 +1,5 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
-using System;
-using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Models;

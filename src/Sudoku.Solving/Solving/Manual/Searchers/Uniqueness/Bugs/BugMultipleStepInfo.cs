@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
 using Sudoku.Resources;
@@ -29,7 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 
 
 		/// <inheritdoc/>
-		public override string Name => $"{TextResources.Current.Bug} + {Candidates.Count.ToString()}";
+		public override string Name => $"{(string)TextResources.Current.Bug} + {Candidates.Count}";
 
 		/// <inheritdoc/>
 		public override string? Acronym => $"BUG + {Candidates.Count.ToString()}";

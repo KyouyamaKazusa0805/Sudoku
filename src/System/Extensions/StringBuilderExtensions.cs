@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace System.Text
+﻿namespace System.Text
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="StringBuilder"/>.

@@ -39,9 +39,14 @@ namespace Sudoku.Models
 
 
 		/// <inheritdoc cref="object.ToString"/>
+		/// <remarks><i>
+		/// Before C# 10, <see langword="dynamic"/> type can be used as interpolation part
+		/// in a interpolation string; after C# 10 interpolation string doesn't handle
+		/// <see langword="dynamic"/> types, so we must append a type cast to <see cref="string"/>.
+		/// </i></remarks>
 		public override string ToString() =>
 			GeneratingTrial == 1
 			? TextResources.Current.GeneratingProgressSingular
-			: $"{GeneratingTrial.ToString()} {TextResources.Current.GeneratingProgressPlural}";
+			: $"{GeneratingTrial} {(string)TextResources.Current.GeneratingProgressPlural}";
 	}
 }

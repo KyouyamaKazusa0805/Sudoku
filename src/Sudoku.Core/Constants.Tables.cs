@@ -1,6 +1,5 @@
 ﻿#nullable disable warnings
 
-using System.Collections.Generic;
 using Sudoku.Data;
 
 namespace Sudoku

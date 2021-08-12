@@ -1,5 +1,4 @@
-﻿using System.IO;
-using NPOI.XWPF.UserModel;
+﻿using NPOI.XWPF.UserModel;
 using Sudoku.CodeGenerating;
 using Sudoku.Drawing;
 using Sudoku.Solving;

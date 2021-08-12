@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sudoku.Diagnostics.LanguageFeatures
+﻿namespace Sudoku.Diagnostics.LanguageFeatures
 {
 	/// <summary>
 	/// Represents an exception to display the error information about a code is invalid to process.

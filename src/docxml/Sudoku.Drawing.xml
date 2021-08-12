@@ -422,10 +422,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.PointEx.Deconstruct(System.Drawing.Point@,System.Int32@,System.Int32@)">
             <summary>
@@ -454,10 +454,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.PointFEx.Deconstruct(System.Drawing.PointF@,System.Single@,System.Single@)">
             <summary>
@@ -486,10 +486,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeEx.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
             <summary>
@@ -518,10 +518,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.SizeFEx.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
             <summary>
@@ -550,10 +550,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Drawing.Extensions.RectangleFEx.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
             <summary>
@@ -582,10 +582,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="T:Sudoku.Drawing.GridPainter">
             <summary>

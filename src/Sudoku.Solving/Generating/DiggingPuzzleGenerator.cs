@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using Sudoku.Data;
 using Sudoku.Solving.BruteForces;
 using static Sudoku.Constants.Tables;

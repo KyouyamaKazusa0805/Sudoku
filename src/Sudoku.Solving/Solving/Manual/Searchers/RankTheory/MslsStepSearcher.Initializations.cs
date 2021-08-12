@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.RankTheory

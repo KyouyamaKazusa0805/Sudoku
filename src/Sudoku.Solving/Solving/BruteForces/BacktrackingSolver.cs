@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Sudoku.Data;
 using Sudoku.Resources;
 

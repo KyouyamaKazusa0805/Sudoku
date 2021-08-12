@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.Drawing;
-using Sudoku.Techniques;
 using Sudoku.Solving.Text;
+using Sudoku.Techniques;
 using static System.Math;
 
 namespace Sudoku.Solving.Manual.RankTheory

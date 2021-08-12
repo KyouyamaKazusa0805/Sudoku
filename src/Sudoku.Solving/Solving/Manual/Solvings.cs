@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using Sudoku.Solving.Manual.Intersections;
 using Sudoku.Solving.Manual.Singles;
 using Sudoku.Solving.Manual.Subsets;

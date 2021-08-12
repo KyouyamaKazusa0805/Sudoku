@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Sudoku.CodeGenerating;
 
 namespace Sudoku.Data

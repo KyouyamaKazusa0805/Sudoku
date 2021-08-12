@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Sudoku.Data;
+﻿using Sudoku.Data;
 using Sudoku.Drawing;
 
 namespace Sudoku.Solving.Manual.Uniqueness.Loops

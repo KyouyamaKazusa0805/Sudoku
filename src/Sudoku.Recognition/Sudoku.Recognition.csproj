@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates the operations about recognitions of a sudoku picture.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>

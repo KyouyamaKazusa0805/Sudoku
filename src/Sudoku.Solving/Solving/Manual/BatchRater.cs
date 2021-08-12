@@ -1,7 +1,4 @@
 ﻿using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Sudoku.Data;
 
 namespace Sudoku.Solving.Manual

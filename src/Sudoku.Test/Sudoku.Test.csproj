@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
+		<LangVersion>10.0</LangVersion>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Sunnie</Authors>
 		<Company>Sunnie</Company>
 		<Description>The debugging project.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<Version>0.7</Version>
-		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Test.xml</DocumentationFile>
 	</PropertyGroup>

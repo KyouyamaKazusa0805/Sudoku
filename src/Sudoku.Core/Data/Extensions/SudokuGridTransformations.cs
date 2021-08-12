@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Data.Extensions

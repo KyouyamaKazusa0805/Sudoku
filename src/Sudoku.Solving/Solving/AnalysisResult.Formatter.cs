@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Data;
+using Sudoku.Resources;
 using Sudoku.Solving.Checking;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Singles;
-using Sudoku.Resources;
 using static Sudoku.Solving.AnalysisResultFormattingOptions;
 using CountryCode = Sudoku.Globalization.CountryCode;
 
@@ -149,7 +146,7 @@ namespace Sudoku.Solving
 								options.Flags(ShowStepLabel)
 								? $@"{
 									TextResources.Current.AnalysisResultInStep
-								}{(bIndex + 1).ToString()}{TextResources.Current.Colon}"
+								}{(bIndex + 1).ToString()}{(string)TextResources.Current.Colon}"
 								: string.Empty
 							);
 							sb.Append(' ');

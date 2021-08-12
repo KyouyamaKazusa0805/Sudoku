@@ -7,7 +7,7 @@
 		<Authors>Sunnie</Authors>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
 		<Version>0.7</Version>
 		<Nullable>enable</Nullable>

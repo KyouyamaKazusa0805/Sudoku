@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Sudoku.Data;
 
 namespace Sudoku.Recognition

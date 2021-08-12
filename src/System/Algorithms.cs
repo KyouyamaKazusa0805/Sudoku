@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-namespace System
+﻿namespace System
 {
 	/// <summary>
 	/// Provides all algorithm processing methods.

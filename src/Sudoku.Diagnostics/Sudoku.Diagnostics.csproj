@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
 		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>

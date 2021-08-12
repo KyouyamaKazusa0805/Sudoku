@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Sudoku.CodeGenerating;
+﻿using Sudoku.CodeGenerating;
 using Sudoku.Data;
 using Sudoku.Globalization;
 using Sudoku.Models;

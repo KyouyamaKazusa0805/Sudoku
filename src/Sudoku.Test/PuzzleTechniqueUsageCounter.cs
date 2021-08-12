@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using Sudoku.Generating;
 using Sudoku.Globalization;
 using Sudoku.Resources;
@@ -87,7 +84,7 @@ namespace Sudoku.Test
 					Environment.NewLine,
 					from pair in techniqueDic
 					orderby pair.Value descending, pair.Key
-					select $"{TextResources.Current[pair.Key.ToString()]}: {pair.Value.ToString()}"
+					select $"{(string)TextResources.Current[pair.Key.ToString()]}: {pair.Value}"
 				)
 			);
 

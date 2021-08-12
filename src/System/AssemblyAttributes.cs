@@ -1,6 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Sudoku.CodeGenerating;
+﻿global using System.Runtime.CompilerServices;
+global using Sudoku.CodeGenerating;
 
 [assembly: InternalsVisibleTo("Sudoku.Core")]
 
