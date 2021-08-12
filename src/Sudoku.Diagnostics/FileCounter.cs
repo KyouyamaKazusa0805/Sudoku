@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using static Sudoku.Constants;
-
-namespace Sudoku.Diagnostics
+﻿namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Encapsulates a file counter.

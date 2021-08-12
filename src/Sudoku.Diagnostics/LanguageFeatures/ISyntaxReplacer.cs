@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Diagnostics.LanguageFeatures
+﻿namespace Sudoku.Diagnostics.LanguageFeatures
 {
 	/// <summary>
 	/// Presents a syntax replacer that changes the current code style to another.

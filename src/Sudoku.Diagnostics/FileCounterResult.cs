@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace Sudoku.Diagnostics
+﻿namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Encapsulates a result after <see cref="FileCounter"/>.

@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
-namespace Sudoku.Diagnostics.LanguageFeatures
+﻿namespace Sudoku.Diagnostics.LanguageFeatures
 {
 	/// <summary>
 	/// Introduces a syntax replacer that simplifies the syntax of the full namespace declaration

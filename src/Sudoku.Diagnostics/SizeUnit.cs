@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Diagnostics
+﻿namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Indicates a unit for a file size.

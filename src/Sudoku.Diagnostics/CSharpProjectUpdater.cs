@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Xml;
-
-namespace Sudoku.Diagnostics
+﻿namespace Sudoku.Diagnostics
 {
 	/// <summary>
 	/// Defines a C# project file <c>*.csproj</c> information updater.
