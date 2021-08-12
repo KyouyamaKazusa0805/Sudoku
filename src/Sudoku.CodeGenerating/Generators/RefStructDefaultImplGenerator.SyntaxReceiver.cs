@@ -1,26 +1,25 @@
-﻿namespace Sudoku.CodeGenerating.Generators
+﻿namespace Sudoku.CodeGenerating.Generators;
+
+partial class RefStructDefaultImplGenerator
 {
-	partial class RefStructDefaultImplGenerator
+	/// <summary>
+	/// Defines the syntax receiver.
+	/// </summary>
+	private sealed class SyntaxReceiver : ISyntaxReceiver
 	{
 		/// <summary>
-		/// Defines the syntax receiver.
+		/// Indicates all possible candidate types used.
 		/// </summary>
-		private sealed class SyntaxReceiver : ISyntaxReceiver
+		public IList<StructDeclarationSyntax> Types { get; } = new List<StructDeclarationSyntax>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			/// <summary>
-			/// Indicates all possible candidate types used.
-			/// </summary>
-			public IList<StructDeclarationSyntax> Types { get; } = new List<StructDeclarationSyntax>();
-
-
-			/// <inheritdoc/>
-			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+			if (syntaxNode is StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration
+				&& modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword))
 			{
-				if (syntaxNode is StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration
-					&& modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword))
-				{
-					Types.Add(declaration);
-				}
+				Types.Add(declaration);
 			}
 		}
 	}

@@ -1,63 +1,63 @@
 ﻿using Sudoku.CodeGenerating.Extensions;
 
-namespace Sudoku.CodeGenerating.Generators
-{
-	/// <summary>
-	/// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
-	/// </summary>
-	[Generator]
-	public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
-	{
-		/// <inheritdoc/>
-		public void Execute(GeneratorExecutionContext context)
-		{
-			var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-			var compilation = context.Compilation;
+namespace Sudoku.CodeGenerating.Generators;
 
-			foreach (var typeGroup in
+/// <summary>
+/// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
+/// </summary>
+[Generator]
+public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
+{
+	/// <inheritdoc/>
+	public void Execute(GeneratorExecutionContext context)
+	{
+		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
+		var compilation = context.Compilation;
+
+		foreach (var typeGroup in
 #pragma warning disable RS1024
-				from type in receiver.Types
-				let model = compilation.GetSemanticModel(type.SyntaxTree)
-				select (INamedTypeSymbol)model.GetDeclaredSymbol(type)! into type
-				group type by type.ContainingType is null
+			from type in receiver.Types
+			let model = compilation.GetSemanticModel(type.SyntaxTree)
+			select model.GetDeclaredSymbol(type)! into type
+			group type by type.ContainingType is null
 #pragma warning restore RS1024
-			)
+		)
+		{
+			Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key ? Q : R;
+			foreach (var type in typeGroup)
 			{
-				Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key ? Q : R;
-				foreach (var type in typeGroup)
-				{
-					f(context, type, compilation);
-				}
+				f(context, type, compilation);
 			}
 		}
+	}
 
-		/// <inheritdoc/>
-		public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+	/// <inheritdoc/>
+	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 
-		private void Q(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
-		{
-			type.DeconstructInfo(
-				false, out _, out string namespaceName, out string genericParametersList,
-				out _, out _, out string readonlyKeyword, out _
-			);
+	private void Q(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	{
+		type.DeconstructInfo(
+			false, out _, out string namespaceName, out string genericParametersList,
+			out _, out _, out string readonlyKeyword, out _
+		);
 
-			Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
-			var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
-			var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
-			var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
-			var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
+		Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
+		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
+		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
+		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
+		var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
 
-			var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
-			string equalsMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
-					&& c(parameters[0].Type, objectSymbol)
-					&& c(symbol.ReturnType, boolSymbol)
-			)
-				? @"// Can't generate 'Equals' because the method is impl'ed by user."
-				: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
+		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
+		string equalsMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
+				&& c(parameters[0].Type, objectSymbol)
+				&& c(symbol.ReturnType, boolSymbol)
+		)
+			? @"// Can't generate 'Equals' because the method is impl'ed by user."
+			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -66,14 +66,14 @@ namespace Sudoku.CodeGenerating.Generators
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
-			string getHashCodeMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, intSymbol)
-			)
-				? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
-				: $@"/// <inheritdoc cref=""object.GetHashCode""/>
+		string getHashCodeMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+				&& c(symbol.ReturnType, intSymbol)
+		)
+			? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
+			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -82,14 +82,14 @@ namespace Sudoku.CodeGenerating.Generators
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
-			string toStringMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, stringSymbol)
-			)
-				? @"// Can't generate 'ToString' because the method is impl'ed by user."
-				: $@"/// <inheritdoc cref=""object.ToString""/>
+		string toStringMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
+				&& c(symbol.ReturnType, stringSymbol)
+		)
+			? @"// Can't generate 'ToString' because the method is impl'ed by user."
+			: $@"/// <inheritdoc cref=""object.ToString""/>
 		/// <exception cref=""NotSupportedException"">Always throws.</exception>
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -98,10 +98,10 @@ namespace Sudoku.CodeGenerating.Generators
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
-			context.AddSource(
-				type.ToFileName(),
-				"RefStructDefaults",
-				$@"#pragma warning disable 809, IDE0005
+		context.AddSource(
+			type.ToFileName(),
+			"RefStructDefaults",
+			$@"#pragma warning disable 809, IDE0005
 
 using System;
 
@@ -120,141 +120,141 @@ namespace {namespaceName}
 #line default
 	}}
 }}"
-			);
+		);
+	}
+
+	private void R(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	{
+		type.DeconstructInfo(
+			false, out _, out string namespaceName, out string genericParametersList,
+			out _, out _, out string readonlyKeyword, out _
+		);
+
+		// If nested type, the 'genericParametersList' may contain the dot '.' such as
+		//
+		//     <TKey, TValue>.KeyCollection
+		//
+		// We should remove the characters before the dot.
+		if (!string.IsNullOrEmpty(genericParametersList)
+			&& genericParametersList.LastIndexOf('.') is var dot and not -1)
+		{
+			if (dot + 1 >= genericParametersList.Length)
+			{
+				return;
+			}
+
+			genericParametersList = genericParametersList.Substring(dot + 1);
+			if (genericParametersList.IndexOf('<') == -1)
+			{
+				genericParametersList = string.Empty;
+			}
 		}
 
-		private void R(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+		// Get outer types.
+		var outerTypes = new Stack<(INamedTypeSymbol Type, int Indenting)>();
+		int outerTypesCount = 0;
+		for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
+
+		string methodIndenting = new('\t', outerTypesCount + 2);
+		string typeIndenting = new('\t', outerTypesCount + 1);
+		for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
 		{
-			type.DeconstructInfo(
-				false, out _, out string namespaceName, out string genericParametersList,
-				out _, out _, out string readonlyKeyword, out _
+			outerTypes.Push((outer, outerTypesCount--));
+		}
+
+		StringBuilder outerTypeDeclarationsStart = new(), outerTypeDeclarationsEnd = new();
+		var indentingStack = new Stack<string>();
+		foreach (var (outerType, currentIndenting) in outerTypes)
+		{
+			outerType.DeconstructInfo(
+				false, out string outerFullTypeName, out _, out _, out _,
+				out string outerTypeKind, out _, out _
 			);
 
-			// If nested type, the 'genericParametersList' may contain the dot '.' such as
-			//
-			//     <TKey, TValue>.KeyCollection
-			//
-			// We should remove the characters before the dot.
-			if (!string.IsNullOrEmpty(genericParametersList)
-				&& genericParametersList.LastIndexOf('.') is var dot and not -1)
+			string outerGenericParametersList;
+			int lastDot = outerFullTypeName.LastIndexOf('.');
+			if (lastDot == -1)
 			{
-				if (dot + 1 >= genericParametersList.Length)
+				int lt = outerFullTypeName.IndexOf('<'), gt = outerFullTypeName.IndexOf('>');
+				if (lt == -1)
 				{
-					return;
+					outerGenericParametersList = string.Empty;
 				}
-
-				genericParametersList = genericParametersList.Substring(dot + 1);
-				if (genericParametersList.IndexOf('<') == -1)
+				else if (gt < lt)
 				{
-					genericParametersList = string.Empty;
-				}
-			}
-
-			// Get outer types.
-			var outerTypes = new Stack<(INamedTypeSymbol Type, int Indenting)>();
-			int outerTypesCount = 0;
-			for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
-
-			string methodIndenting = new('\t', outerTypesCount + 2);
-			string typeIndenting = new('\t', outerTypesCount + 1);
-			for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
-			{
-				outerTypes.Push((outer, outerTypesCount--));
-			}
-
-			StringBuilder outerTypeDeclarationsStart = new(), outerTypeDeclarationsEnd = new();
-			var indentingStack = new Stack<string>();
-			foreach (var (outerType, currentIndenting) in outerTypes)
-			{
-				outerType.DeconstructInfo(
-					false, out string outerFullTypeName, out _, out _, out _,
-					out string outerTypeKind, out _, out _
-				);
-
-				string outerGenericParametersList;
-				int lastDot = outerFullTypeName.LastIndexOf('.');
-				if (lastDot == -1)
-				{
-					int lt = outerFullTypeName.IndexOf('<'), gt = outerFullTypeName.IndexOf('>');
-					if (lt == -1)
-					{
-						outerGenericParametersList = string.Empty;
-					}
-					else if (gt < lt)
-					{
-						continue;
-					}
-					else
-					{
-						outerGenericParametersList = outerFullTypeName.Substring(lt, gt - lt + 1);
-					}
+					continue;
 				}
 				else
 				{
-					int start = lastDot + 1;
-					if (start >= outerFullTypeName.Length)
-					{
-						continue;
-					}
-
-					string temp = outerFullTypeName.Substring(start);
-					int lt = temp.IndexOf('<'), gt = temp.IndexOf('>');
-					if (lt == -1)
-					{
-						outerGenericParametersList = string.Empty;
-					}
-					else if (gt < lt)
-					{
-						continue;
-					}
-					else
-					{
-						outerGenericParametersList = temp.Substring(lt, gt - lt + 1);
-					}
+					outerGenericParametersList = outerFullTypeName.Substring(lt, gt - lt + 1);
+				}
+			}
+			else
+			{
+				int start = lastDot + 1;
+				if (start >= outerFullTypeName.Length)
+				{
+					continue;
 				}
 
-				string indenting = new('\t', currentIndenting);
-
-				outerTypeDeclarationsStart
-					.Append(indenting)
-					.Append("partial ")
-					.Append(outerTypeKind)
-					.Append(outerType.Name)
-					.AppendLine(outerGenericParametersList)
-					.Append(indenting)
-					.AppendLine("{");
-
-				indentingStack.Push(indenting);
+				string temp = outerFullTypeName.Substring(start);
+				int lt = temp.IndexOf('<'), gt = temp.IndexOf('>');
+				if (lt == -1)
+				{
+					outerGenericParametersList = string.Empty;
+				}
+				else if (gt < lt)
+				{
+					continue;
+				}
+				else
+				{
+					outerGenericParametersList = temp.Substring(lt, gt - lt + 1);
+				}
 			}
 
-			foreach (string indenting in indentingStack)
-			{
-				outerTypeDeclarationsEnd
-					.Append(indenting)
-					.AppendLine("}");
-			}
+			string indenting = new('\t', currentIndenting);
+
+			outerTypeDeclarationsStart
+				.Append(indenting)
+				.Append("partial ")
+				.Append(outerTypeKind)
+				.Append(outerType.Name)
+				.AppendLine(outerGenericParametersList)
+				.Append(indenting)
+				.AppendLine("{");
+
+			indentingStack.Push(indenting);
+		}
+
+		foreach (string indenting in indentingStack)
+		{
+			outerTypeDeclarationsEnd
+				.Append(indenting)
+				.AppendLine("}");
+		}
 
 
-			// Remove the last new line.
-			outerTypeDeclarationsStart.Remove(outerTypeDeclarationsStart.Length - 2, 2);
-			outerTypeDeclarationsEnd.Remove(outerTypeDeclarationsEnd.Length - 2, 2);
+		// Remove the last new line.
+		outerTypeDeclarationsStart.Remove(outerTypeDeclarationsStart.Length - 2, 2);
+		outerTypeDeclarationsEnd.Remove(outerTypeDeclarationsEnd.Length - 2, 2);
 
-			Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
-			var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
-			var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
-			var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
-			var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
+		Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
+		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
+		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
+		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
+		var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
 
-			var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
-			string equalsMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
-					&& c(parameters[0].Type, objectSymbol)
-					&& c(symbol.ReturnType, boolSymbol)
-			)
-				? $"{methodIndenting}// Can't generate 'Equals' because the method is impl'ed by user."
-				: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
+		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
+		string equalsMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
+				&& c(parameters[0].Type, objectSymbol)
+				&& c(symbol.ReturnType, boolSymbol)
+		)
+			? $"{methodIndenting}// Can't generate 'Equals' because the method is impl'ed by user."
+			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -263,14 +263,14 @@ namespace {namespaceName}
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
-			string getHashCodeMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, intSymbol)
-			)
-				? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
-				: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
+		string getHashCodeMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+				&& c(symbol.ReturnType, intSymbol)
+		)
+			? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
+			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -279,14 +279,14 @@ namespace {namespaceName}
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
-			string toStringMethod = Array.Exists(
-				methods,
-				symbol =>
-					symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
-					&& c(symbol.ReturnType, stringSymbol)
-			)
-				? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."
-				: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
+		string toStringMethod = Array.Exists(
+			methods,
+			symbol =>
+				symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
+				&& c(symbol.ReturnType, stringSymbol)
+		)
+			? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."
+			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -295,10 +295,10 @@ namespace {namespaceName}
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
 {methodIndenting}public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
-			context.AddSource(
-				type.ToFileName(),
-				"RefStructDefaults",
-				$@"#pragma warning disable 809, IDE0005
+		context.AddSource(
+			type.ToFileName(),
+			"RefStructDefaults",
+			$@"#pragma warning disable 809, IDE0005
 
 using System;
 using System.ComponentModel;
@@ -322,7 +322,6 @@ namespace {namespaceName}
 {typeIndenting}}}
 {outerTypeDeclarationsEnd}
 }}"
-			);
-		}
+		);
 	}
 }

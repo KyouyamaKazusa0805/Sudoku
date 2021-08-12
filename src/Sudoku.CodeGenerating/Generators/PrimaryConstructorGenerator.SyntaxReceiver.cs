@@ -1,26 +1,25 @@
-﻿namespace Sudoku.CodeGenerating.Generators
+﻿namespace Sudoku.CodeGenerating.Generators;
+
+partial class PrimaryConstructorGenerator
 {
-	partial class PrimaryConstructorGenerator
+	/// <summary>
+	/// Defines the syntax receiver.
+	/// </summary>
+	private sealed class SyntaxReceiver : ISyntaxReceiver
 	{
 		/// <summary>
-		/// Defines the syntax receiver.
+		/// Indicates all possible candidate <see langword="class"/>es used.
 		/// </summary>
-		private sealed class SyntaxReceiver : ISyntaxReceiver
+		public IList<ClassDeclarationSyntax> CandidateClasses { get; } = new List<ClassDeclarationSyntax>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			/// <summary>
-			/// Indicates all possible candidate <see langword="class"/>es used.
-			/// </summary>
-			public IList<ClassDeclarationSyntax> CandidateClasses { get; } = new List<ClassDeclarationSyntax>();
-
-
-			/// <inheritdoc/>
-			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+			// Any field with at least one attribute is a candidate for property generation.
+			if (syntaxNode is ClassDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
 			{
-				// Any field with at least one attribute is a candidate for property generation.
-				if (syntaxNode is ClassDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
-				{
-					CandidateClasses.Add(classDeclaration);
-				}
+				CandidateClasses.Add(classDeclaration);
 			}
 		}
 	}

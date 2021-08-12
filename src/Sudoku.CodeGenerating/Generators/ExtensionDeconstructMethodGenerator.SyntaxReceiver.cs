@@ -1,43 +1,42 @@
-﻿namespace Sudoku.CodeGenerating.Generators
+﻿namespace Sudoku.CodeGenerating.Generators;
+
+partial class ExtensionDeconstructMethodGenerator
 {
-	partial class ExtensionDeconstructMethodGenerator
+	/// <summary>
+	/// Indicates the inner syntax receiver.
+	/// </summary>
+	private sealed class SyntaxReceiver : ISyntaxReceiver
 	{
 		/// <summary>
-		/// Indicates the inner syntax receiver.
+		/// Indicates the attributes result that targets to a module.
 		/// </summary>
-		private sealed class SyntaxReceiver : ISyntaxReceiver
+		public IList<AttributeSyntax> Attributes { get; } = new List<AttributeSyntax>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			/// <summary>
-			/// Indicates the attributes result that targets to a module.
-			/// </summary>
-			public IList<AttributeSyntax> Attributes { get; } = new List<AttributeSyntax>();
-
-
-			/// <inheritdoc/>
-			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
-			{
-				if (
-					syntaxNode is not AttributeListSyntax
+			if (
+				syntaxNode is not AttributeListSyntax
+				{
+					Attributes: { Count: not 0 } attributes,
+					Target: { Identifier: { ValueText: "assembly" } }
+				}
+				|| attributes.Any(static attribute => attribute is
+				{
+					Name: IdentifierNameSyntax
 					{
-						Attributes: { Count: not 0 } attributes,
-						Target: { Identifier: { ValueText: "assembly" } }
+						Identifier: { ValueText: nameof(AutoDeconstructExtensionAttribute) }
 					}
-					|| attributes.Any(static attribute => attribute is
-					{
-						Name: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: nameof(AutoDeconstructExtensionAttribute) }
-						}
-					})
-				)
-				{
-					return;
-				}
+				})
+			)
+			{
+				return;
+			}
 
-				foreach (var attribute in attributes)
-				{
-					Attributes.Add(attribute);
-				}
+			foreach (var attribute in attributes)
+			{
+				Attributes.Add(attribute);
 			}
 		}
 	}

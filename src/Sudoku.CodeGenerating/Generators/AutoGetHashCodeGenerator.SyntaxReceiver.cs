@@ -1,26 +1,25 @@
-﻿namespace Sudoku.CodeGenerating.Generators
+﻿namespace Sudoku.CodeGenerating.Generators;
+
+partial class AutoGetHashCodeGenerator
 {
-	partial class AutoGetHashCodeGenerator
+	/// <summary>
+	/// Defines the syntax receiver.
+	/// </summary>
+	private sealed class SyntaxReceiver : ISyntaxReceiver
 	{
 		/// <summary>
-		/// Defines the syntax receiver.
+		/// Indicates all possible candidate types used.
 		/// </summary>
-		private sealed class SyntaxReceiver : ISyntaxReceiver
+		public IList<TypeDeclarationSyntax> Candidates { get; } = new List<TypeDeclarationSyntax>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			/// <summary>
-			/// Indicates all possible candidate types used.
-			/// </summary>
-			public IList<TypeDeclarationSyntax> Candidates { get; } = new List<TypeDeclarationSyntax>();
-
-
-			/// <inheritdoc/>
-			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+			// Any field with at least one attribute is a candidate for property generation.
+			if (syntaxNode is TypeDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
 			{
-				// Any field with at least one attribute is a candidate for property generation.
-				if (syntaxNode is TypeDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
-				{
-					Candidates.Add(classDeclaration);
-				}
+				Candidates.Add(classDeclaration);
 			}
 		}
 	}
