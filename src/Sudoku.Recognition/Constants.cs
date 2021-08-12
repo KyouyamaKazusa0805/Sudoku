@@ -1,6 +1,4 @@
-﻿using Emgu.CV.CvEnum;
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define the internal settings.

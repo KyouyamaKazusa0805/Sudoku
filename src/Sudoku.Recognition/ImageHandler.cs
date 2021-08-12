@@ -1,11 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using Emgu.CV;
-using Emgu.CV.Structure;
-using Emgu.CV.Util;
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Provides extension methods on <see cref="Bitmap"/>.

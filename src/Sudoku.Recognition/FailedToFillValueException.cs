@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Sudoku.Data;
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Indicates the exception that throws when the value is failed to fill into a cell.

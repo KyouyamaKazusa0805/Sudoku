@@ -1,19 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using Emgu.CV.OCR;
-using Sudoku.Data;
-using Sudoku.Data.Extensions;
-using static Sudoku.Recognition.Constants;
-using Cv = Emgu.CV.CvInvoke;
-using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
-
-#if MUST_DOWNLOAD_TRAINED_DATA
-using System.Net.Http;
-using System.Threading.Tasks;
-#endif
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define a recognizer.

@@ -1,8 +1,4 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Define a sudoku recognition service provider.

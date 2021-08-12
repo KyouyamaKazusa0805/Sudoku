@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Sudoku.Recognition
+﻿namespace Sudoku.Recognition
 {
 	/// <summary>
 	/// Indicates the exception that throws when the recognition tools hasn't been initialized
