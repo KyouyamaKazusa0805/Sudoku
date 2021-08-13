@@ -539,7 +539,7 @@
   "Format_SeStepInfo": "{Name}: Digits {DigitsStr} in base cells {BaseMapStr}, target cells {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
   "Format_SkLoopStepInfo": "{Name}: {CellsCountStr} cells {CellsStr} => {ElimStr}",
   "Format_TemplateStepInfo": "{Name}: Digit {DigitStr} => {ElimStr}",
-  "Format_TwoStringLinkStepInfo": "{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}",
+  "Format_TwoStringLinksStepInfo": "{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}",
   "Format_UlType1StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} => {ElimStr}",
   "Format_UlType2StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the extra digit {ExtraDigitStr} => {ElimStr}",
   "Format_UlType3StepInfo": "{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} with the naked {SubsetName} with extra digits {DigitsStr} in cells {SubsetCellsStr} => {ElimStr}",

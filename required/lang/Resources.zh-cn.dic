@@ -521,7 +521,7 @@
   "Format_SeStepInfo": "{Name}：数字 {DigitsStr}，基准单元格 {BaseMapStr}，目标单元格 {TargetMapStr}{LockedMemberQStr}{LockedMemberRStr}{AdditionalFormat} => {ElimStr}",
   "Format_SkLoopStepInfo": "{Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 => {ElimStr}",
   "Format_TemplateStepInfo": "{Name}：关于数字 {DigitStr} => {ElimStr}",
-  "Format_TwoStringLinkStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}",
+  "Format_TwoStringLinksStepInfo": "{Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} => {ElimStr}",
   "Format_UlType1StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构 => {ElimStr}",
   "Format_UlType2StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有额外数字 {ExtraDigitStr} => {ElimStr}",
   "Format_UlType3StepInfo": "{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构，带有显性{SubsetName}、额外数字 {DigitsStr}，单元格为 {SubsetCellsStr} => {ElimStr}",
