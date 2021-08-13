@@ -449,15 +449,6 @@ dotnet_diagnostic.CA2249.severity = silent
 dotnet_diagnostic.CS0618.severity = silent
 dotnet_style_prefer_simplified_interpolation = false
 
-# SD0101: A property named 'Properties' expected
-dotnet_diagnostic.SD0101.severity = none
-
-# SD0201: The specified key can't be found in the resource dictionary
-dotnet_diagnostic.SD0201.severity = none
-
-# SS0101: Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations
-dotnet_diagnostic.SS0101.severity = none
-
 
 # The separator. I don't know how to separate two parts, so... I find a joke to put into here.
 #
