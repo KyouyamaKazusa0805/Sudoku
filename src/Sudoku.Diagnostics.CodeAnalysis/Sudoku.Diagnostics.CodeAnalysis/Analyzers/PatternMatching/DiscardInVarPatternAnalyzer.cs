@@ -1,11 +1,4 @@
-﻿using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0611F", "SS0612F")]
 public sealed partial class DiscardInVarPatternAnalyzer : DiagnosticAnalyzer

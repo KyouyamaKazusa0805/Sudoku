@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS9005F")]
 public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer

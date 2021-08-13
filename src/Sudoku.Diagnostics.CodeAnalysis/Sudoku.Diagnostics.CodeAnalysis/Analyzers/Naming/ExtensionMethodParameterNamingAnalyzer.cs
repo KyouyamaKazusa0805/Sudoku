@@ -1,11 +1,4 @@
-﻿using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0502")]
 public sealed partial class ExtensionMethodParameterNamingAnalyzer : DiagnosticAnalyzer

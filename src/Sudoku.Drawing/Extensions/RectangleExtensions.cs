@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Drawing.Extensions;
+﻿namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="Rectangle"/> and <see cref="RectangleF"/>.
 /// </summary>
 /// <seealso cref="Rectangle"/>
 /// <seealso cref="RectangleF"/>
-public static class RectangleEx
+public static class RectangleExtensions
 {
 	/// <summary>
 	/// Create an instance with two points.

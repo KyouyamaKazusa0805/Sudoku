@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Drawing.Extensions;
+﻿namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods for <see cref="Graphics"/>.
 /// </summary>
-public static class GraphicsEx
+public static class GraphicsExtensions
 {
 	/// <summary>
 	/// Draw an <see cref="int"/> value onto the current graphics.
@@ -98,7 +98,7 @@ public static class GraphicsEx
 	public static void DrawRoundedRectangle(
 		this Graphics @this, Pen pen, in RectangleF rectangle, float circleRadius)
 	{
-		if (circleRadius > Math.Max(rectangle.Width, rectangle.Height))
+		if (circleRadius > Max(rectangle.Width, rectangle.Height))
 		{
 			throw new ArgumentOutOfRangeException(nameof(circleRadius));
 		}
@@ -158,7 +158,7 @@ public static class GraphicsEx
 	public static void FillRoundedRectangle(
 		this Graphics @this, Brush brush, in RectangleF rectangle, float circleRadius)
 	{
-		if (circleRadius >= Math.Max(rectangle.Width, rectangle.Height))
+		if (circleRadius >= Max(rectangle.Width, rectangle.Height))
 		{
 			throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius));
 		}
@@ -183,7 +183,8 @@ public static class GraphicsEx
 		r3 = new(rectangle.X, rectangle.Y + rectangle.Height - 2 * circleRadius, circleRadius * 2, circleRadius * 2);
 		r4 = new(rectangle.X + rectangle.Width - 2 * circleRadius,
 			rectangle.Y + rectangle.Height - 2 * circleRadius,
-			circleRadius * 2, circleRadius * 2);
+			circleRadius * 2, circleRadius * 2
+		);
 
 		var path = new GraphicsPath();
 		path.AddLine(p1, p2);

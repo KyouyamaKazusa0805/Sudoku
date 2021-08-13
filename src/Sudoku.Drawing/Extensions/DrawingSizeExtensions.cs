@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Drawing.Extensions;
+﻿namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="Size"/> and <see cref="SizeF"/>.
 /// </summary>
 /// <seealso cref="Size"/>
 /// <seealso cref="SizeF"/>
-public static partial class DrawingSizeEx
+public static partial class DrawingSizeExtensions
 {
 	/// <summary>
 	/// To truncate the size.

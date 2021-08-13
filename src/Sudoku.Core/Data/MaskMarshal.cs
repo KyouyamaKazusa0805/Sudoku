@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Data.Extensions;
+﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Provides extension methods on <see cref="short"/>.
+/// Provides extension methods on <see cref="short"/> value as a mask.
 /// </summary>
 /// <seealso cref="short"/>
-public static class Int16Ex
+public static class MaskMarshal
 {
 	/// <summary>
 	/// To get the cell status through a mask.

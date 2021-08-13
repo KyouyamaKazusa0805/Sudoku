@@ -1,12 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Microsoft.CodeAnalysis.Operations;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0601F", "SS0602", "SS0603")]
 public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer

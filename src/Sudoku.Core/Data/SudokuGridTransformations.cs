@@ -1,6 +1,6 @@
 ﻿using Pointer = System.Pointer;
 
-namespace Sudoku.Data.Extensions;
+namespace Sudoku.Data;
 
 /// <summary>
 /// Provides methods for <see cref="SudokuGrid"/> instances on transformations.

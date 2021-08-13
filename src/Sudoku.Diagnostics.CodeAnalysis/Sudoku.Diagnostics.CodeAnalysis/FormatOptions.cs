@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-
-namespace Sudoku.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Provides the format options.

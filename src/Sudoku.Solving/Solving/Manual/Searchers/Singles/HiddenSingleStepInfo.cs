@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Extensions;
-
-namespace Sudoku.Solving.Manual.Singles;
+﻿namespace Sudoku.Solving.Manual.Singles;
 
 /// <summary>
 /// Indicates a using of <b>hidden single</b> technique.

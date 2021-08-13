@@ -1,7 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Operations;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="ILocalReferenceOperation"/>.

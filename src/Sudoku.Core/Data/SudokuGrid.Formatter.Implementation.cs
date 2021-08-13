@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Extensions;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 partial struct SudokuGrid
 {

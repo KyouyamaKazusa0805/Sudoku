@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Data.Extensions;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Provides extension methods for <see cref="LinkType"/>.
 /// </summary>
 /// <seealso cref="LinkType"/>
-public static class LinkTypeEx
+public static class LinkTypeExtensions
 {
 	/// <summary>
 	/// Get the string notation of this current link type.

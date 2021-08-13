@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="ExpressionSyntax"/>.

@@ -11,7 +11,6 @@ global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.CodeGenerating;
 global using Sudoku.Data;
-global using Sudoku.Data.Extensions;
 global using static Sudoku.Recognition.Constants;
 global using Cv = Emgu.CV.CvInvoke;
 global using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;

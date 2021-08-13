@@ -193,11 +193,7 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	/// output as the method <see cref="Formatize(bool)"/> invoking.
 	/// </remarks>
 	/// <seealso cref="Formatize(bool)"/>
-	public
-#if false
-	sealed
-#endif
-	override string ToString() => Formatize();
+	public sealed override string ToString() => Formatize();
 
 	/// <summary>
 	/// Returns a string that only contains the name and the conclusions.

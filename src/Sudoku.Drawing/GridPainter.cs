@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Extensions;
-using Sudoku.Data.Stepping;
-using Sudoku.Drawing.Extensions;
+﻿using Sudoku.Data.Stepping;
 
 namespace Sudoku.Drawing;
 
@@ -359,7 +357,7 @@ public sealed record GridPainter(PointConverter Converter, Settings Preferences,
 				// Step 1: Get the left-up cell and right-down cell to construct a rectangle.
 				var p1 = Converter.GetMousePointInCenter(start[0]) - Converter.CellSize / 2;
 				var p2 = Converter.GetMousePointInCenter(start[^1]) + Converter.CellSize / 2;
-				var rect = RectangleEx.CreateInstance(p1, p2).Zoom(-offset);
+				var rect = RectangleExtensions.CreateInstance(p1, p2).Zoom(-offset);
 
 				// Step 2: Draw capsule.
 				using var pen = new Pen(Preferences.CrosshatchingOutlineColor, 3F);

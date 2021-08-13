@@ -1,9 +1,4 @@
-﻿using System.Threading;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="ArgumentSyntax"/>.

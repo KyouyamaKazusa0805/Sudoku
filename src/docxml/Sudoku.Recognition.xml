@@ -346,7 +346,7 @@
         <member name="M:Sudoku.Recognition.TesseractException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Emgu.CV.Structure.RotatedRectEx.Deconstruct(Emgu.CV.Structure.RotatedRect@,System.Drawing.PointF@,System.Drawing.SizeF@)">
+        <member name="M:Emgu.CV.Structure.RotatedRectExtensions.Deconstruct(Emgu.CV.Structure.RotatedRect@,System.Drawing.PointF@,System.Drawing.SizeF@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:

@@ -1,6 +1,4 @@
-﻿using Sudoku.Drawing.Extensions;
-
-namespace Sudoku.Drawing;
+﻿namespace Sudoku.Drawing;
 
 /// <summary>
 /// Provides converting operations for <see cref="Point"/> and
@@ -157,7 +155,7 @@ public sealed class PointConverter
 		int min = map[0], max = map[^1];
 		var pt1 = GetMousePointInCenter(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
 		var pt2 = GetMousePointInCenter(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
-		return RectangleEx.CreateInstance(pt1, pt2);
+		return RectangleExtensions.CreateInstance(pt1, pt2);
 	}
 
 	/// <summary>
@@ -200,7 +198,7 @@ public sealed class PointConverter
 	public RectangleF GetMouseRectangleViaRegion(int region)
 	{
 		var (l, r) = GetAnchorsViaRegion(region);
-		return RectangleEx.CreateInstance(l, r);
+		return RectangleExtensions.CreateInstance(l, r);
 	}
 
 	/// <summary>

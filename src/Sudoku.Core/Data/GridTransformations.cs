@@ -1,6 +1,6 @@
 ﻿using Pointer = System.Pointer;
 
-namespace Sudoku.Data.Extensions;
+namespace Sudoku.Data;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.
@@ -13,7 +13,7 @@ public static unsafe class GridTransformations
 	/// </summary>
 	private static readonly int[] ClockwiseTable =
 	{
-		72, 63, 54, 45, 36, 27, 18, 9, 0,
+		72, 63, 54, 45, 36, 27, 18,  9, 0,
 		73, 64, 55, 46, 37, 28, 19, 10, 1,
 		74, 65, 56, 47, 38, 29, 20, 11, 2,
 		75, 66, 57, 48, 39, 30, 21, 12, 3,
@@ -37,7 +37,7 @@ public static unsafe class GridTransformations
 		3, 12, 21, 30, 39, 48, 57, 66, 75,
 		2, 11, 20, 29, 38, 47, 56, 65, 74,
 		1, 10, 19, 28, 37, 46, 55, 64, 73,
-		0, 9, 18, 27, 36, 45, 54, 63, 72
+		0,  9, 18, 27, 36, 45, 54, 63, 72
 	};
 
 	/// <summary>
@@ -52,8 +52,8 @@ public static unsafe class GridTransformations
 		44, 43, 42, 41, 40, 39, 38, 37, 36,
 		35, 34, 33, 32, 31, 30, 29, 28, 27,
 		26, 25, 24, 23, 22, 21, 20, 19, 18,
-		17, 16, 15, 14, 13, 12, 11, 10, 9,
-		8, 7, 6, 5, 4, 3, 2, 1, 0
+		17, 16, 15, 14, 13, 12, 11, 10,  9,
+		 8,  7,  6,  5,  4,  3,  2,  1,  0
 	};
 
 

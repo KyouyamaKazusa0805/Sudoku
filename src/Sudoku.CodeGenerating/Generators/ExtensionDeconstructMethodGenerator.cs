@@ -40,10 +40,10 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
 		{
 			string? tempNamespace = argList.Arguments.FirstOrDefault(
-				static arg => arg is { NameEquals: { Name: { Identifier: { ValueText: "Namespace" } } } }
+				static arg => arg is { NameEquals.Name.Identifier.ValueText: "Namespace" }
 			)?.Expression.ToString();
 			string namespaceName = tempNamespace?.Substring(1, tempNamespace.Length - 2)
-				?? $"{symbol.ContainingNamespace}.Extensions";
+				?? $"{symbol.ContainingNamespace}";
 			string typeName = symbol.Name;
 			symbol.DeconstructInfo(
 				out string fullTypeName, out _, out string genericParametersList,
@@ -116,7 +116,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 
 namespace {namespaceName};
 
-public static partial class {typeName}Ex
+public static partial class {typeName}Extensions
 {{
 	{deconstructMethods}
 }}

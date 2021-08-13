@@ -2078,269 +2078,6 @@
         <member name="M:Sudoku.Data.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Crosshatch,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.Extensions.GridTransformations">
-            <summary>
-            Provides methods for <see cref="T:Sudoku.Data.Grid"/> instances on transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.CounterclockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.GridTransformations.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid@)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid@)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid@)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.Transpose(Sudoku.Data.Grid@)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid@)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateClockwise(Sudoku.Data.Grid@)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid@)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.RotatePi(Sudoku.Data.Grid@)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.Int16Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int16"/>.
-            </summary>
-            <seealso cref="T:System.Int16"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.Int16Ex.MaskToStatus(System.Int16)">
-            <summary>
-            To get the cell status through a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <returns>The cell status.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.LinkTypeEx">
-            <summary>
-            Provides extension methods for <see cref="T:Sudoku.Data.LinkType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.LinkType"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.LinkTypeEx.GetNotation(Sudoku.Data.LinkType)">
-            <summary>
-            Get the string notation of this current link type.
-            </summary>
-            <param name="this">The link type.</param>
-            <returns>The notation.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.RegionLabelConverter">
-            <summary>
-            Encapsulates the converter methods of conversions between <see cref="T:System.Int32"/>
-            and <see cref="T:Sudoku.Data.RegionLabel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.RegionLabel"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.RegionLabelConverter.ToLabel(System.Int32)">
-            <summary>
-            Get the label in the specified region.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>The region label.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.SudokuGridEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridEx.Duplicate(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
-            <summary>
-            Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.SudokuGridTransformations">
-            <summary>
-            Provides methods for <see cref="T:Sudoku.Data.SudokuGrid"/> instances on transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.CounterclockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Extensions.SudokuGridTransformations.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorLeftRight(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorTopBottom(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorDiagonal(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.Transpose(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.MirrorAntidiagonal(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotateClockwise(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotateCounterclockwise(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.RotatePi(Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SudokuGridTransformations.SwapTwoRegions(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.SymmetryTypeEx">
-            <summary>
-            Provides extension methods for <see cref="T:Sudoku.Data.SymmetryType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.SymmetryType"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.SymmetryTypeEx.GetName(Sudoku.Data.SymmetryType)">
-            <summary>
-            Get the name of the current symmetry type.
-            </summary>
-            <param name="this">The type.</param>
-            <returns>The name.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Extensions.UndoableGridEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Stepping.UndoableGrid"/>
-        </member>
-        <member name="M:Sudoku.Data.Extensions.UndoableGridEx.Duplicate(Sudoku.Data.Stepping.UndoableGrid,System.Int32,System.Int32)">
-            <summary>
-            Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
             Represents a sudoku grid. The type is the substitution plan of type <see cref="T:Sudoku.Data.SudokuGrid"/>.
@@ -3708,6 +3445,96 @@
             </para>
             </summary>
         </member>
+        <member name="T:Sudoku.Data.GridTransformations">
+            <summary>
+            Provides methods for <see cref="T:Sudoku.Data.Grid"/> instances on transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.CounterclockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorLeftRight(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorTopBottom(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorDiagonal(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.Transpose(Sudoku.Data.Grid@)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.MirrorAntidiagonal(Sudoku.Data.Grid@)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotateClockwise(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotateCounterclockwise(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.RotatePi(Sudoku.Data.Grid@)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.GridTransformations.SwapTwoRegions(Sudoku.Data.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
+        </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
             Encapsulates a link used for drawing.
@@ -3870,6 +3697,32 @@
             <summary>
             Indicates the link is used for rendering as a normal line (without start and end node).
             </summary>
+        </member>
+        <member name="T:Sudoku.Data.LinkTypeExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:Sudoku.Data.LinkType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.LinkType"/>
+        </member>
+        <member name="M:Sudoku.Data.LinkTypeExtensions.GetNotation(Sudoku.Data.LinkType)">
+            <summary>
+            Get the string notation of this current link type.
+            </summary>
+            <param name="this">The link type.</param>
+            <returns>The notation.</returns>
+        </member>
+        <member name="T:Sudoku.Data.MaskMarshal">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int16"/> value as a mask.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Data.MaskMarshal.MaskToStatus(System.Int16)">
+            <summary>
+            To get the cell status through a mask.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns>The cell status.</returns>
         </member>
         <member name="T:Sudoku.Data.Node">
             <summary>
@@ -4101,6 +3954,20 @@
             <summary>
             Indicates the column.
             </summary>
+        </member>
+        <member name="T:Sudoku.Data.RegionLabelConverter">
+            <summary>
+            Encapsulates the converter methods of conversions between <see cref="T:System.Int32"/>
+            and <see cref="T:Sudoku.Data.RegionLabel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.RegionLabel"/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabelConverter.ToLabel(System.Int32)">
+            <summary>
+            Get the label in the specified region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The region label.</returns>
         </member>
         <member name="T:Sudoku.Data.Stepping.AntiEliminationStep">
             <summary>
@@ -5731,6 +5598,21 @@
             </remarks>
             <seealso cref="T:System.ValueTuple"/>
         </member>
+        <member name="T:Sudoku.Data.SudokuGridExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridExtensions.Duplicate(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
+            <summary>
+            Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Data.SudokuGridSegment">
             <summary>
             Defines a segment that stores a part of a sudoku grid.
@@ -5953,6 +5835,96 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:Sudoku.Data.SudokuGridTransformations">
+            <summary>
+            Provides methods for <see cref="T:Sudoku.Data.SudokuGrid"/> instances on transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SudokuGrid"/>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridTransformations.CounterclockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.SudokuGridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.MirrorLeftRight(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.MirrorTopBottom(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.MirrorDiagonal(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.Transpose(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.MirrorAntidiagonal(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.RotateClockwise(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.RotateCounterclockwise(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.RotatePi(Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridTransformations.SwapTwoRegions(Sudoku.Data.SudokuGrid@,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
+        </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>
             Define a symmetry type.
@@ -6002,6 +5974,34 @@
             <summary>
             Indicates all symmetry types should be satisfied.
             </summary>
+        </member>
+        <member name="T:Sudoku.Data.SymmetryTypeExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:Sudoku.Data.SymmetryType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.SymmetryType"/>
+        </member>
+        <member name="M:Sudoku.Data.SymmetryTypeExtensions.GetName(Sudoku.Data.SymmetryType)">
+            <summary>
+            Get the name of the current symmetry type.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>The name.</returns>
+        </member>
+        <member name="T:Sudoku.Data.UndoableGridExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Stepping.UndoableGrid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Stepping.UndoableGrid"/>
+        </member>
+        <member name="M:Sudoku.Data.UndoableGridExtensions.Duplicate(Sudoku.Data.Stepping.UndoableGrid,System.Int32,System.Int32)">
+            <summary>
+            Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Globalization.CountryCode">
             <summary>

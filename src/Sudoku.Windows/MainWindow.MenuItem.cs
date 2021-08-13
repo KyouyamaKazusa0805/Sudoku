@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
-using Sudoku.Data.Extensions;
 using Sudoku.Data.Stepping;
 using Sudoku.Drawing;
 using Sudoku.Generating;

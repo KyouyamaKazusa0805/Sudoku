@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Editing;
-using Microsoft.CodeAnalysis.Extensions;
-using Microsoft.CodeAnalysis.Text.Extensions;
-using Sudoku.CodeGenerating;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
 
 [CodeFixProvider("SS9001")]
 public sealed partial class SS9001CodeFixProvider : CodeFixProvider

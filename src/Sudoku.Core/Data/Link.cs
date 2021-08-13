@@ -1,6 +1,4 @@
-﻿using Sudoku.Data.Extensions;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a link used for drawing.

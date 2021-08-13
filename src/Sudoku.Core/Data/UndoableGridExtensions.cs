@@ -1,10 +1,13 @@
-﻿namespace Sudoku.Data.Extensions;
+﻿using Sudoku.Data.Stepping;
+
+namespace Sudoku.Data;
 
 /// <summary>
-/// Provides extension methods on <see cref="SudokuGrid"/>.
+/// Provides extension methods on <see cref="UndoableGrid"/>.
 /// </summary>
-/// <seealso cref="SudokuGrid"/>
-public static class SudokuGridEx
+/// <seealso cref="UndoableGrid"/>
+[Obsolete("In the future, this class won't be used.", false)]
+public static class UndoableGridExtensions
 {
 	/// <summary>
 	/// Check whether the digit will be duplicate of its peers when it is filled in the specified cell.
@@ -13,7 +16,7 @@ public static class SudokuGridEx
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	public static bool Duplicate(this in SudokuGrid @this, int cell, int digit)
+	public static bool Duplicate(this UndoableGrid @this, int cell, int digit)
 	{
 		foreach (int peerCell in PeerMaps[cell])
 		{

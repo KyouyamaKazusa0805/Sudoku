@@ -1,11 +1,4 @@
-﻿using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Sudoku.CodeGenerating;
-using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
+﻿using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 

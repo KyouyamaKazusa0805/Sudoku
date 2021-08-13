@@ -1,7 +1,5 @@
 ﻿#pragma warning disable CS1591 // False-positive.
 
-using Sudoku.Data.Extensions;
-
 namespace Sudoku.Data;
 
 /// <summary>

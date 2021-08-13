@@ -1,6 +1,4 @@
-﻿using Sudoku.Drawing.Extensions;
-
-namespace Sudoku.Recognition;
+﻿namespace Sudoku.Recognition;
 
 /// <summary>
 /// Provides a grid field recognizer. If you want to know what is a <b>field</b>,

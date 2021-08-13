@@ -3704,7 +3704,7 @@
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>
         </member>
-        <member name="M:System.Extensions.IndexEx.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
+        <member name="M:System.IndexExtensions.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:

@@ -1,6 +1,4 @@
-﻿using Sudoku.Drawing.Extensions;
-
-namespace Sudoku.Drawing.Converters;
+﻿namespace Sudoku.Drawing.Converters;
 
 /// <summary>
 /// Indicates a <see cref="Color"/> JSON converter.
@@ -18,8 +16,7 @@ public sealed class ColorJsonConverter : JsonConverter<Color>
 	/// Throws when the current token isn't <c>"A"</c>, <c>"R"</c>, <c>"G"</c> or <c>"B"</c>.
 	/// </exception>
 	[SkipLocalsInit]
-	public override unsafe Color Read(
-		ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override unsafe Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		const int length = 4;
 		byte* span = stackalloc byte[length];

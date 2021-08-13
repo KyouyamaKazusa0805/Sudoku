@@ -1,14 +1,14 @@
 ﻿using DPoint = System.Drawing.Point;
 using DPointF = System.Drawing.PointF;
 
-namespace Sudoku.Drawing.Extensions;
+namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="DPoint"/> and <see cref="DPointF"/>.
 /// </summary>
 /// <seealso cref="DPoint"/>
 /// <seealso cref="DPointF"/>
-public static partial class DrawingPointEx
+public static partial class DrawingPointExtensions
 {
 	/// <summary>
 	/// To truncate the point.

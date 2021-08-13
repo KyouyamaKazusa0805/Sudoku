@@ -1,11 +1,4 @@
-﻿using System.Threading;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Diagnostics.Extensions;
-using Sudoku.CodeGenerating;
-using Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
 using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;

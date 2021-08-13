@@ -3755,7 +3755,7 @@
             Indicates the dictionary.
             </summary>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3782,12 +3782,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3814,12 +3814,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.ISymbol@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.ISymbol@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3846,12 +3846,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SyntaxNodeAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.ISymbol@,System.Threading.CancellationToken@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.ISymbol@,System.Threading.CancellationToken@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3878,12 +3878,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.OperationAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.IOperation@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.OperationAnalysisContext@,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.IOperation@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3910,12 +3910,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.SymbolAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext@,Microsoft.CodeAnalysis.ISymbol@,Microsoft.CodeAnalysis.Compilation@,System.Threading.CancellationToken@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.SymbolAnalysisContext@,Microsoft.CodeAnalysis.ISymbol@,Microsoft.CodeAnalysis.Compilation@,System.Threading.CancellationToken@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3942,12 +3942,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Diagnostics.Extensions.CompilationStartAnalysisContextEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.CompilationStartAnalysisContext,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions@)">
+        <member name="M:Microsoft.CodeAnalysis.Diagnostics.CompilationStartAnalysisContextExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostics.CompilationStartAnalysisContext,Microsoft.CodeAnalysis.Compilation@,Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -3974,12 +3974,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Text.Extensions.TextSpanEx.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@)">
+        <member name="M:Microsoft.CodeAnalysis.Text.TextSpanExtensions.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4006,12 +4006,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Text.Extensions.TextSpanEx.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@,System.Int32@)">
+        <member name="M:Microsoft.CodeAnalysis.Text.TextSpanExtensions.Deconstruct(Microsoft.CodeAnalysis.Text.TextSpan@,System.Int32@,System.Int32@,System.Int32@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4038,12 +4038,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.DiagnosticEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@)">
+        <member name="M:Microsoft.CodeAnalysis.DiagnosticExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4070,12 +4070,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.DiagnosticEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@,Microsoft.CodeAnalysis.DiagnosticSeverity@)">
+        <member name="M:Microsoft.CodeAnalysis.DiagnosticExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@,Microsoft.CodeAnalysis.DiagnosticSeverity@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4102,12 +4102,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.DiagnosticEx.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@,Microsoft.CodeAnalysis.DiagnosticSeverity@,Microsoft.CodeAnalysis.DiagnosticSeverity@)">
+        <member name="M:Microsoft.CodeAnalysis.DiagnosticExtensions.Deconstruct(Microsoft.CodeAnalysis.Diagnostic,Microsoft.CodeAnalysis.Location@,Microsoft.CodeAnalysis.DiagnosticDescriptor@,Microsoft.CodeAnalysis.DiagnosticSeverity@,Microsoft.CodeAnalysis.DiagnosticSeverity@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4134,12 +4134,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.DiagnosticDescriptorEx.Deconstruct(Microsoft.CodeAnalysis.DiagnosticDescriptor,System.String@,Microsoft.CodeAnalysis.LocalizableString@,Microsoft.CodeAnalysis.LocalizableString@,System.String@,Microsoft.CodeAnalysis.LocalizableString@,System.String@,Microsoft.CodeAnalysis.DiagnosticSeverity@,System.Boolean@,System.Collections.Generic.IEnumerable{System.String}@)">
+        <member name="M:Microsoft.CodeAnalysis.DiagnosticDescriptorExtensions.Deconstruct(Microsoft.CodeAnalysis.DiagnosticDescriptor,System.String@,Microsoft.CodeAnalysis.LocalizableString@,Microsoft.CodeAnalysis.LocalizableString@,System.String@,Microsoft.CodeAnalysis.LocalizableString@,System.String@,Microsoft.CodeAnalysis.DiagnosticSeverity@,System.Boolean@,System.Collections.Generic.IEnumerable{System.String}@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4166,12 +4166,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.LocationEx.Deconstruct(Microsoft.CodeAnalysis.Location,Microsoft.CodeAnalysis.SyntaxTree@,Microsoft.CodeAnalysis.Text.TextSpan@)">
+        <member name="M:Microsoft.CodeAnalysis.LocationExtensions.Deconstruct(Microsoft.CodeAnalysis.Location,Microsoft.CodeAnalysis.SyntaxTree@,Microsoft.CodeAnalysis.Text.TextSpan@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4198,12 +4198,12 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.Extensions.IParameterSymbolEx.Deconstruct(Microsoft.CodeAnalysis.IParameterSymbol,Microsoft.CodeAnalysis.ITypeSymbol@,System.String@)">
+        <member name="M:Microsoft.CodeAnalysis.IParameterSymbolExtensions.Deconstruct(Microsoft.CodeAnalysis.IParameterSymbol,Microsoft.CodeAnalysis.ITypeSymbol@,System.String@)">
             <summary>
             Deconstruct the instance to multiple values, which allows you use the value tuple syntax
             to get the properties from an instance like:
@@ -4230,10 +4230,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
     </members>
 </doc>
