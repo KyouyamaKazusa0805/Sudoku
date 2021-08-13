@@ -58,13 +58,13 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		)
 			? @"// Can't generate 'Equals' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
-		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		[global::System.Runtime.CompilerServices.CompilerGenerated]
-		public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
+	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -74,13 +74,13 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		)
 			? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
-		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		[global::System.Runtime.CompilerServices.CompilerGenerated]
-		public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
+	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 		string toStringMethod = Array.Exists(
 			methods,
@@ -90,13 +90,13 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		)
 			? @"// Can't generate 'ToString' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.ToString""/>
-		/// <exception cref=""NotSupportedException"">Always throws.</exception>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-		[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-		[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
-		[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
-		[global::System.Runtime.CompilerServices.CompilerGenerated]
-		public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
+	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 		context.AddSource(
 			type.ToFileName(),
@@ -107,19 +107,19 @@ using System;
 
 #nullable enable
 
-namespace {namespaceName}
+namespace {namespaceName};
+
+partial struct {type.Name}{genericParametersList}
 {{
-	partial struct {type.Name}{genericParametersList}
-	{{
 #line hidden
-		{equalsMethod}
+	{equalsMethod}
 
-		{getHashCodeMethod}
+	{getHashCodeMethod}
 
-		{toStringMethod}
+	{toStringMethod}
 #line default
-	}}
-}}"
+}}
+"
 		);
 	}
 
@@ -155,8 +155,8 @@ namespace {namespaceName}
 		int outerTypesCount = 0;
 		for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
 
-		string methodIndenting = new('\t', outerTypesCount + 2);
-		string typeIndenting = new('\t', outerTypesCount + 1);
+		string methodIndenting = new('\t', outerTypesCount + 1);
+		string typeIndenting = new('\t', outerTypesCount);
 		for (var outer = type.ContainingType; outer is not null; outer = outer.ContainingType)
 		{
 			outerTypes.Push((outer, outerTypesCount--));
@@ -213,7 +213,7 @@ namespace {namespaceName}
 				}
 			}
 
-			string indenting = new('\t', currentIndenting);
+			string indenting = new('\t', currentIndenting - 1);
 
 			outerTypeDeclarationsStart
 				.Append(indenting)
@@ -307,8 +307,8 @@ using System.Runtime.CompilerServices;
 
 #nullable enable
 
-namespace {namespaceName}
-{{
+namespace {namespaceName};
+
 {outerTypeDeclarationsStart}
 {typeIndenting}partial struct {type.Name}{genericParametersList}
 {typeIndenting}{{
@@ -321,7 +321,7 @@ namespace {namespaceName}
 #line default
 {typeIndenting}}}
 {outerTypeDeclarationsEnd}
-}}"
+"
 		);
 	}
 }

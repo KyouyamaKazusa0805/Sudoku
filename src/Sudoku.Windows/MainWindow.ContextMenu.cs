@@ -81,9 +81,9 @@ partial class MainWindow
 			var sb = new ValueStringBuilder(stackalloc char[50]);
 			foreach (string step in
 				from ListBoxItem item in _listBoxPaths.Items
-				let content = item.Content as StepTriplet
-				where content is not null
-				select content.Item3.ToFullString())
+				let c = item.Content is StepTriplet s ? new StepTriplet?(s) : null
+				where c is not null
+				select c.Value.Item3.ToFullString())
 			{
 				sb.AppendLine(step);
 			}
