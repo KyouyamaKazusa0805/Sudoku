@@ -1,21 +1,6 @@
 ﻿#pragma warning disable IDE0051
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Xml;
-using System.Xml.Serialization;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-using WColor = System.Windows.Media.Color;
 using WColorEx = Sudoku.Windows.Extensions.WindowsColorEx;
-using WPoint = System.Windows.Point;
 
 namespace Sudoku.Windows.CustomControls;
 

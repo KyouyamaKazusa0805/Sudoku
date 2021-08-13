@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
-using Sudoku.Drawing;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// To encapsulates a series of setting options for <see cref="MainWindow"/> utility.

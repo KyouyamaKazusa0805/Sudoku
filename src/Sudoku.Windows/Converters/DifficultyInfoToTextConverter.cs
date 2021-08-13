@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-using Sudoku.Solving.Manual;
-
-namespace Sudoku.Windows.Converters;
+﻿namespace Sudoku.Windows.Converters;
 
 /// <summary>
 /// Defines a converter that converts from a difficulty information to the text.

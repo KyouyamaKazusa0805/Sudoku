@@ -1,10 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading;
-using System.Windows;
-using Sudoku.Models;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>ProgressWindow.xaml</c>.

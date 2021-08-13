@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using Sudoku.Generating;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>TechniqueViewWindow.xaml</c>.

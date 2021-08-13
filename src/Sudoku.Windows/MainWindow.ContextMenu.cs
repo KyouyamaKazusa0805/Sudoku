@@ -1,14 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using Sudoku.Solving.BruteForces;
-using Sudoku.Windows.Extensions;
-using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
-using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 partial class MainWindow
 {

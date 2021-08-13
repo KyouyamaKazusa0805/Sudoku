@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-
-namespace Sudoku.Windows.Converters;
+﻿namespace Sudoku.Windows.Converters;
 
 /// <summary>
 /// Defines a width converter.

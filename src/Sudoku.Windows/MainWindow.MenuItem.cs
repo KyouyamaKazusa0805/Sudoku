@@ -1,29 +1,6 @@
 ﻿#pragma warning disable IDE1006
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
 using Sudoku.Data.Stepping;
-using Sudoku.Drawing;
-using Sudoku.Generating;
-using Sudoku.Globalization;
-using Sudoku.Models;
-using Sudoku.Solving.BruteForces;
-using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual;
-using Sudoku.Solving.Manual.Symmetry;
 
 namespace Sudoku.Windows;
 

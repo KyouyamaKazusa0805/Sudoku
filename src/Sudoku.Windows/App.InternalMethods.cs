@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using Sudoku.Data;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 partial class App
 {

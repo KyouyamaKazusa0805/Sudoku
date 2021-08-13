@@ -1,7 +1,4 @@
-﻿using Sudoku.Globalization;
-using Sudoku.Solving.Manual;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 partial class WindowsSettings
 {

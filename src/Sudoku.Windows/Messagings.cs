@@ -1,12 +1,4 @@
-﻿using System;
-using System.Windows;
-using Sudoku.Data;
-using Sudoku.Solving;
-using Sudoku.Solving.Manual;
-using static System.Environment;
-using static Sudoku.Windows.MainWindow;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Provides all messages used for <see cref="MessageBox"/> instance.
@@ -150,8 +142,8 @@ internal static class Messagings
 	/// <param name="ex">The exception.</param>
 	public static void FailedToLoadRecognitionTool(Exception ex) =>
 		MessageBox.Show(
-			$"{LangSource["CannotCalculate"]}{NewLine}" +
-			$"  {LangSource["Source"]}{ex.Source}{NewLine}" +
+			$"{LangSource["CannotCalculate"]}{Environment.NewLine}" +
+			$"  {LangSource["Source"]}{ex.Source}{Environment.NewLine}" +
 			$"  {LangSource["Message"]}{ex.Message}",
 			(string)LangSource["CaptionError"],
 			MessageBoxButton.OK, MessageBoxImage.Error);
@@ -162,7 +154,7 @@ internal static class Messagings
 	/// <param name="ex">The exception.</param>
 	public static void FailedToSaveConfig(Exception ex) =>
 		MessageBox.Show(
-			$"{LangSource["FailedToSaveConfig"]}{NewLine}" +
+			$"{LangSource["FailedToSaveConfig"]}{Environment.NewLine}" +
 			$"  {LangSource["Message"]}{ex.Message}",
 			(string)LangSource["CaptionWarning"]);
 
@@ -172,7 +164,7 @@ internal static class Messagings
 	/// <param name="ex">The exception.</param>
 	public static void FailedToSaveToClipboardDueToArgumentNullException(Exception ex) =>
 		MessageBox.Show(
-			$"{LangSource["FailedToSaveToClipboardDueToArgumentNullException"]}{NewLine}" +
+			$"{LangSource["FailedToSaveToClipboardDueToArgumentNullException"]}{Environment.NewLine}" +
 			$"  {LangSource["Message"]}{ex.Message}",
 			(string)LangSource["CaptionWarning"]);
 
@@ -272,8 +264,8 @@ internal static class Messagings
 			default:
 			{
 				MessageBox.Show(
-					$"{LangSource["FailedToSolveWithMessage1"]}{NewLine}" +
-					$"{LangSource["FailedToSolveWithMessage2"]}{NewLine}",
+					$"{LangSource["FailedToSolveWithMessage1"]}{Environment.NewLine}" +
+					$"{LangSource["FailedToSolveWithMessage2"]}{Environment.NewLine}",
 					(string)LangSource["CaptionWarning"]);
 
 				break;
@@ -365,8 +357,8 @@ internal static class Messagings
 	/// <returns>The <see cref="MessageBoxResult"/>.</returns>
 	public static MessageBoxResult AskWhileLoadingPicture() =>
 		MessageBox.Show(
-			$"{LangSource["AskWhileLoadingPicture1"]}{NewLine}" +
-			$"{LangSource["AskWhileLoadingPicture2"]}{NewLine}" +
+			$"{LangSource["AskWhileLoadingPicture1"]}{Environment.NewLine}" +
+			$"{LangSource["AskWhileLoadingPicture2"]}{Environment.NewLine}" +
 			LangSource["AskWhileLoadingPicture3"],
 			(string)LangSource["CaptionInfo"],
 			MessageBoxButton.YesNo);
@@ -377,7 +369,7 @@ internal static class Messagings
 	/// <returns>The <see cref="MessageBoxResult"/>.</returns>
 	public static MessageBoxResult AskWhileClearingStack() =>
 		MessageBox.Show(
-			$"{LangSource["AskWhileClearingStack1"]}{NewLine}" +
+			$"{LangSource["AskWhileClearingStack1"]}{Environment.NewLine}" +
 			LangSource["AskWhileClearingStack2"],
 			(string)LangSource["CaptionInfo"],
 			MessageBoxButton.YesNo);

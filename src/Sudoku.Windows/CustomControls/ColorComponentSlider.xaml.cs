@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Interaction logic for <c>ColorComponentSlider.xaml</c>.

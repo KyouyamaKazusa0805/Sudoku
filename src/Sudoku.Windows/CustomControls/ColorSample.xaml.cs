@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Interaction logic for <c>ColorSample.xaml</c>.
@@ -26,7 +19,7 @@ public partial class ColorSample : UserControl
 	/// <summary>
 	/// Indicates the current color chosen.
 	/// </summary>
-	public Color CurrentColor { get; set; } = Colors.White;
+	public WColor CurrentColor { get; set; } = Colors.White;
 
 
 	/// <summary>
@@ -49,7 +42,7 @@ public partial class ColorSample : UserControl
 			return;
 		}
 
-		if (Editable && Keyboard.IsKeyDown(Key.LeftCtrl))
+		if (Editable && Keyboard.IsKeyDown(LeftCtrl))
 		{
 			border.Background = new SolidColorBrush(CurrentColor);
 

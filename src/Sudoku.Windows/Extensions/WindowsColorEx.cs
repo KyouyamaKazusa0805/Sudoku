@@ -1,11 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using static System.Convert;
-using DColor = System.Drawing.Color;
-using WColor = System.Windows.Media.Color;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="WColor"/>.
@@ -120,13 +113,13 @@ public static partial class WindowsColorEx
 			fMin = brightness - brightness * saturation;
 		}
 
-		int iSextant = (int)Math.Floor(hue / 60F);
+		int iSextant = (int)Floor(hue / 60F);
 		if (hue >= 300F)
 		{
 			hue -= 360F;
 		}
 		hue /= 60F;
-		hue -= 2F * (float)Math.Floor((iSextant + 1F) % 6F / 2F);
+		hue -= 2F * (float)Floor((iSextant + 1F) % 6F / 2F);
 		fMid = iSextant % 2 == 0 ? hue * (fMax - fMin) + fMin : fMin - hue * (fMax - fMin);
 
 		byte iMax = (byte)(fMax * 255), iMid = (byte)(fMid * 255), iMin = (byte)(fMin * 255);
@@ -154,6 +147,7 @@ public static partial class WindowsColorEx
 		byte[] bytes = BitConverter.GetBytes(hls2Rgb(h, l, s));
 		return WColor.FromArgb(255, bytes[0], bytes[1], bytes[2]);
 
+
 		[DllImport("shlwapi.dll")]
 		static extern int hls2Rgb(int h, int l, int s);
 	}
@@ -165,5 +159,5 @@ public static partial class WindowsColorEx
 	/// <returns>The <see cref="WColor"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static WColor FromHex(string hex) =>
-		WColor.FromRgb(ToByte(hex[1..3], 16), ToByte(hex[3..5], 16), ToByte(hex[5..], 16));
+		WColor.FromRgb(Convert.ToByte(hex[1..3], 16), Convert.ToByte(hex[3..5], 16), Convert.ToByte(hex[5..], 16));
 }

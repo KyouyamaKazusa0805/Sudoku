@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using DSize = System.Drawing.Size;
-using DSizeF = System.Drawing.SizeF;
-using WSize = System.Windows.Size;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="WSize"/>.

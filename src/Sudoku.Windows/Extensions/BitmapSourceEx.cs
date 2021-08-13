@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Windows.Media.Imaging;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitmapSource"/>.

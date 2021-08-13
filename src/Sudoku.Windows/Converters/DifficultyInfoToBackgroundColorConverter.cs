@@ -1,12 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-using System.Windows.Media;
-using Sudoku.Solving.Manual;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-
-namespace Sudoku.Windows.Converters;
+﻿namespace Sudoku.Windows.Converters;
 
 /// <summary>
 /// Defines a converter that converts from a difficulty information to the background color information.
@@ -16,12 +8,12 @@ public sealed class DifficultyInfoToBackgroundColorConverter : IValueConverter
 	/// <inheritdoc/>
 	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
-		var diffColors = ColorPalette.DifficultyLevelColors;
+		var diffColors = WColorPalette.DifficultyLevelColors;
 		var difficultyLevel = (DifficultyLevel)value;
 
 		if (difficultyLevel == DifficultyLevel.Unknown)
 		{
-			return Brushes.White;
+			return WBrushes.White;
 		}
 
 		DifficultyLevel min = default, max = default;
@@ -38,14 +30,14 @@ public sealed class DifficultyInfoToBackgroundColorConverter : IValueConverter
 
 	Returning:
 		return min == DifficultyLevel.Unknown
-			? Brushes.White
+			? WBrushes.White
 			: i == 1
 				? diffColors.TryGetValue(min, out var pair)
-					? new SolidColorBrush(pair.Background.ToWColor())
-					: Brushes.White
+					? new WSolidColorBrush(pair.Background.ToWColor())
+					: WBrushes.White
 				: diffColors.TryGetValue(min, out var minPair) && diffColors.TryGetValue(max, out var maxPair)
-					? new LinearGradientBrush(minPair.Background.ToWColor(), maxPair.Background.ToWColor(), 0)
-					: Brushes.White;
+					? new WLinearGradientBrush(minPair.Background.ToWColor(), maxPair.Background.ToWColor(), 0)
+					: WBrushes.White;
 	}
 
 	/// <inheritdoc/>

@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>TechniquesWindow.xaml</c>.

@@ -1,14 +1,5 @@
 ﻿#pragma warning disable IDE1006
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using Sudoku.Data;
-using Sudoku.Data.Collections;
-using Sudoku.Solving.Checking;
-using static Sudoku.Windows.MainWindow;
-
 namespace Sudoku.Windows;
 
 /// <summary>

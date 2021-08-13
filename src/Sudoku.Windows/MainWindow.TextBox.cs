@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 partial class MainWindow
 {

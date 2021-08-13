@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Indicates the option using in initialization for a <see cref="ColorPickerWindow"/>.

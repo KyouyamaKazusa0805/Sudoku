@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls;
-using Sudoku.Resources;
-using Sudoku.Techniques;
-using static Sudoku.Windows.MainWindow;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Interaction logic for <c>TechniqueTreeView.xaml</c>.

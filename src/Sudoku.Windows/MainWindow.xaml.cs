@@ -1,30 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Drawing.Converters;
-using Sudoku.Globalization;
-using Sudoku.Resources;
-using Sudoku.Solving.Manual;
-using Sudoku.Windows.Data;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, Sudoku.Solving.Manual.StepInfo>;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>MainWindow.xaml</c>.
@@ -183,7 +157,7 @@ public partial class MainWindow : Window
 		{
 			double w = _gridMain.ColumnDefinitions[0].ActualWidth;
 			double h = _gridMain.RowDefinitions[0].ActualHeight;
-			_imageGrid.Height = _imageGrid.Width = Math.Min(w, h);
+			_imageGrid.Height = _imageGrid.Width = Min(w, h);
 			Settings.GridSize = w;
 			_currentPainter = new(new(_imageGrid.RenderSize.ToDSizeF()), Settings, _puzzle);
 
@@ -256,7 +230,7 @@ public partial class MainWindow : Window
 			when key.IsDigit()
 			&& getCell() is var cell and not -1 && _puzzle.GetStatus(cell) != CellStatus.Given:
 			{
-				int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - Key.D1 : e.Key - Key.NumPad1;
+				int digit = e.Key.IsDigitUpsideAlphabets() ? e.Key - D1 : e.Key - NumPad1;
 				switch (Keyboard.Modifiers)
 				{
 					// Input a digit.
@@ -285,17 +259,17 @@ public partial class MainWindow : Window
 
 				break;
 			}
-			case var key and (Key.OemMinus or Key.OemPlus)
-			when _currentViewIndex != -1 && _currentStepInfo is not null:
+			case var key and (OemMinus or OemPlus) when _currentViewIndex != -1 && _currentStepInfo is not null:
 			{
 				// Get the previous view or the next view.
 				var views = _currentStepInfo.Views;
 				int totalViewsCount = views.Count;
 				ref int i = ref _currentViewIndex;
-				i = Math.Abs(
-				(
-					key == Key.OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
-				) % totalViewsCount);
+				i = Abs(
+					(
+						key == OemMinus ? i - 1 is var j && j < 0 ? j + totalViewsCount : j : i + 1
+					) % totalViewsCount
+				);
 
 				_currentPainter.View = views[i];
 
@@ -310,10 +284,10 @@ public partial class MainWindow : Window
 				_focusedCells.Clear();
 				_focusedCells.AddAnyway(e.Key switch
 				{
-					Key.Up => cell - 9 < 0 ? cell + 72 : cell - 9,
-					Key.Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
+					Up => cell - 9 < 0 ? cell + 72 : cell - 9,
+					Down => cell + 9 >= 81 ? cell - 72 : cell + 9,
 					Key.Left => cell - 1 < 0 ? cell + 8 : cell - 1,
-					Key.Right => (cell + 1) % 81
+					Right => (cell + 1) % 81
 				});
 
 				_currentPainter.FocusedCells = _focusedCells;
@@ -322,7 +296,7 @@ public partial class MainWindow : Window
 
 				break;
 			}
-			case Key.Space:
+			case Space:
 			{
 				// View the intersection.
 				_previewMap = _focusedCells;
@@ -334,7 +308,7 @@ public partial class MainWindow : Window
 
 				break;
 			}
-			case Key.Tab:
+			case Tab:
 			{
 				// Move to next box row.
 				int cell = _focusedCells.IsEmpty ? 0 : _focusedCells[0];
@@ -347,7 +321,7 @@ public partial class MainWindow : Window
 
 				break;
 			}
-			case Key.Delete:
+			case Delete:
 			{
 				// Clear focused cells.
 				ClearViews();
@@ -358,7 +332,7 @@ public partial class MainWindow : Window
 
 				break;
 			}
-			case Key.Oem2 when getCandidate() is var cand and >= 0 and < 729: // Oem2: slash key '/'.
+			case Oem2 when getCandidate() is var cand and >= 0 and < 729: // Oem2: slash key '/'.
 			{
 				// Remove link.
 				_startCand = -1;
@@ -377,7 +351,7 @@ public partial class MainWindow : Window
 	{
 		base.OnKeyUp(e);
 
-		if (_previewMap is { } map && e.Key == Key.Space)
+		if (_previewMap is { } map && e.Key == Space)
 		{
 			_focusedCells = map;
 
@@ -419,22 +393,22 @@ public partial class MainWindow : Window
 	/// </summary>
 	private void DefineShortCuts()
 	{
-		AddShortCut(Key.C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
-		AddShortCut(Key.H, ModifierKeys.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
-		AddShortCut(Key.O, ModifierKeys.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
-		AddShortCut(Key.P, ModifierKeys.Control, null, MenuItemFileGetSnapshot_Click);
-		AddShortCut(Key.S, ModifierKeys.Control, null, MenuItemFileSave_Click);
-		AddShortCut(Key.V, ModifierKeys.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
-		AddShortCut(Key.Y, ModifierKeys.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
-		AddShortCut(Key.Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
-		AddShortCut(Key.F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
-		AddShortCut(Key.OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
-		AddShortCut(Key.F9, ModifierKeys.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
-		AddShortCut(Key.F10, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
-		AddShortCut(Key.F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
-		AddShortCut(Key.N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
-		AddShortCut(Key.C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
-		AddShortCut(Key.OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
+		AddShortCut(C, ModifierKeys.Control, null, MenuItemEditCopy_Click);
+		AddShortCut(H, ModifierKeys.Control, _menuItemGenerateHardPattern, MenuItemGenerateHardPattern_Click);
+		AddShortCut(O, ModifierKeys.Control, _menuItemFileOpen, MenuItemFileOpen_Click);
+		AddShortCut(P, ModifierKeys.Control, null, MenuItemFileGetSnapshot_Click);
+		AddShortCut(S, ModifierKeys.Control, null, MenuItemFileSave_Click);
+		AddShortCut(V, ModifierKeys.Control, _menuItemEditPaste, MenuItemEditPaste_Click);
+		AddShortCut(Y, ModifierKeys.Control, _menuItemEditRedo, MenuItemEditRedo_Click);
+		AddShortCut(Z, ModifierKeys.Control, _menuItemEditUndo, MenuItemEditUndo_Click);
+		AddShortCut(F5, ModifierKeys.Control, _menuItemEditRecomputeCandidates, MenuItemEditRecomputeCandidates_Click);
+		AddShortCut(OemTilde, ModifierKeys.Control, _menuItemEditFix, MenuItemEditFix_Click);
+		AddShortCut(F9, ModifierKeys.None, _menuItemAnalyzeAnalyze, MenuItemAnalyzeAnalyze_Click);
+		AddShortCut(F10, ModifierKeys.None, _menuItemAnalyzeSolve, MenuItemAnalyzeSolve_Click);
+		AddShortCut(F4, ModifierKeys.Alt, null, MenuItemFileQuit_Click);
+		AddShortCut(N, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditClear, MenuItemEditClear_Click);
+		AddShortCut(C, ModifierKeys.Control | ModifierKeys.Shift, null, MenuItemEditCopyCurrentGrid_Click);
+		AddShortCut(OemTilde, ModifierKeys.Control | ModifierKeys.Shift, _menuItemEditUnfix, MenuItemEditUnfix_Click);
 	}
 
 	/// <summary>
@@ -1177,7 +1151,7 @@ public partial class MainWindow : Window
 			var pathList = new List<ListBoxItem>();
 			foreach (var step in _analyisResult.Steps!)
 			{
-				var (fore, back) = ColorPalette.DifficultyLevelColors[step.DifficultyLevel];
+				var (fore, back) = WColorPalette.DifficultyLevelColors[step.DifficultyLevel];
 				var content = new StepTriplet((Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
 				{
 					(ShowStepLabel: true, ShowStepDifficulty: true) =>
@@ -1231,13 +1205,13 @@ public partial class MainWindow : Window
 					summary += difficulty;
 					summaryCount++;
 					total += difficulty;
-					min = Math.Min(difficulty, min);
-					max = Math.Max(difficulty, max);
+					min = Min(difficulty, min);
+					max = Max(difficulty, max);
 					minDifficulty = EnumExtensions.Min(difficultyLevel, minDifficulty);
 					maxDifficulty = EnumExtensions.Max(difficultyLevel, maxDifficulty);
 				}
 
-				summaryMax = Math.Max(summaryMax, max);
+				summaryMax = Max(summaryMax, max);
 				puzzleDifficulty = EnumExtensions.Max(puzzleDifficulty, maxDifficulty);
 
 				collection.Add(

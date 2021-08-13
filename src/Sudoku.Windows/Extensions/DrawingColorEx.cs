@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using DColor = System.Drawing.Color;
-using WColor = System.Windows.Media.Color;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="DColor"/>.

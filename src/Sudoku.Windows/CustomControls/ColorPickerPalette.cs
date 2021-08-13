@@ -1,16 +1,5 @@
 ﻿#pragma warning disable IDE0051
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Media;
-using System.Xml.Serialization;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-using DColor = System.Drawing.Color;
-using WColor = System.Windows.Media.Color;
-
 namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
@@ -66,7 +55,7 @@ public class ColorPickerPalette
 	{
 		BuiltInColors.Clear();
 		BuiltInColors.AddRange(
-			from color in ColorPalette.PaletteColors
+			from color in WColorPalette.PaletteColors
 			select new ColorInfo() { Color = color, HexString = color.ToHexString() }
 		);
 

@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using Sudoku.IO;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>BatchWindow.xaml</c>.

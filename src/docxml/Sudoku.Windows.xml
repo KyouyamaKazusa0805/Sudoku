@@ -1128,10 +1128,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Windows.Extensions.PointExtensions.Deconstruct(System.Windows.Point@,System.Double@,System.Double@)">
             <summary>
@@ -1160,10 +1160,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Windows.Extensions.ColorExtensions.Deconstruct(System.Windows.Media.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
             <summary>
@@ -1192,10 +1192,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="M:Sudoku.Windows.Extensions.SizeExtensions.Deconstruct(System.Windows.Size@,System.Double@,System.Double@)">
             <summary>
@@ -1224,10 +1224,10 @@
             </para>
             <para>
             In addition, the deconstruct methods can take <b>more than</b> 8 <see langword="out"/> parameters,
-            although a normal <see cref="!:ValueTuple"/> can only contain at most 8 parameters.
+            although a normal <see cref="T:System.ValueTuple"/> can only contain at most 8 parameters.
             </para>
             </remarks>
-            <seealso cref="!:ValueTuple"/>
+            <seealso cref="T:System.ValueTuple"/>
         </member>
         <member name="T:Sudoku.Windows.MainWindow">
             <summary>
@@ -2420,6 +2420,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

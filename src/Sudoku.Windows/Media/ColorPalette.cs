@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Media;
-using Sudoku.Solving.Manual;
-using DColor = System.Drawing.Color;
-using WColor = System.Windows.Media.Color;
-
-namespace Sudoku.Windows.Media;
+﻿namespace Sudoku.Windows.Media;
 
 /// <summary>
 /// Extracts the fixed colors.

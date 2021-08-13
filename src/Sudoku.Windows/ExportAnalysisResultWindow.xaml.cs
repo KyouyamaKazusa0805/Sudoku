@@ -1,13 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Win32;
-using Sudoku.Drawing;
-using Sudoku.IO;
-using Sudoku.Solving;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>ExportAnalysisResultWindow.xaml</c>.

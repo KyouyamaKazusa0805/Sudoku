@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using Sudoku.Techniques;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Interaction logic for <c>TechniqueBox.xaml</c>.

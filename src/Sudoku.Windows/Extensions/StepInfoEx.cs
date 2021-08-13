@@ -1,10 +1,4 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-using Sudoku.Data;
-using Sudoku.Drawing;
-using Sudoku.Solving.Manual;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="StepInfo"/>.

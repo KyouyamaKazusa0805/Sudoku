@@ -1,17 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using Sudoku.Windows.Extensions;
-using static System.Drawing.StringAlignment;
-using static System.Drawing.Text.TextRenderingHint;
-using static System.Windows.Input.Key;
-using DFontStyle = System.Drawing.FontStyle;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Interaction logic for <c>FontDialog.xaml</c>.
@@ -27,7 +14,7 @@ public partial class FontDialog : Window, IDisposable
 	/// <summary>
 	/// The internal brush.
 	/// </summary>
-	private readonly Brush _brush = new SolidBrush(Color.Black);
+	private readonly DBrush _brush = new SolidBrush(DColor.Black);
 
 
 	/// <summary>

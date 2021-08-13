@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual;
-
-namespace Sudoku.Windows.Data;
+﻿namespace Sudoku.Windows.Data;
 
 /// <summary>
 /// Indicates the difficulty information used for gather the technique information of a puzzle.

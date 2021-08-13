@@ -1,10 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Windows;
-using System.Windows.Media;
-using Sudoku.Windows.CustomControls;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>ColorPickerWindow.xaml</c>.
@@ -90,7 +84,7 @@ public partial class ColorPickerWindow : Window
 	/// otherwise, <see langword="false"/> (i.e. user canceled).
 	/// </returns>
 	public static bool ShowDialog(
-		[NotNullWhen(true)] out Color? color, ColorPickerOptions flags = ColorPickerOptions.None,
+		[NotNullWhen(true)] out WColor? color, ColorPickerOptions flags = ColorPickerOptions.None,
 		PickingColorEventHandler? customPreviewEventHandler = null)
 	{
 		if (flags.Flags(ColorPickerOptions.LoadCustomPalette))

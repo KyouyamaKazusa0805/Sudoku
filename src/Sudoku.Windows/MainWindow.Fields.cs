@@ -1,14 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
-using System.Windows.Input;
-using Sudoku.Data;
-using Sudoku.Data.Stepping;
-using Sudoku.Drawing;
-using Sudoku.Recognition;
-using Sudoku.Solving;
-using Sudoku.Solving.Manual;
-using WPoint = System.Windows.Point;
+﻿using Sudoku.Data.Stepping;
+using PointConverter = Sudoku.Drawing.PointConverter;
 
 namespace Sudoku.Windows;
 

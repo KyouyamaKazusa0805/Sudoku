@@ -1,13 +1,4 @@
-﻿using System;
-using System.Numerics;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using Sudoku.Data;
-using Sudoku.Windows.Extensions;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 partial class MainWindow
 {
@@ -21,7 +12,7 @@ partial class MainWindow
 
 	private void ImageGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 	{
-		if (sender is Image image)
+		if (sender is WImage image)
 		{
 			int getCell() => _pointConverter.GetCell(e.GetPosition(image).ToDPointF());
 			int getCandidate() => _pointConverter.GetCandidate(e.GetPosition(image).ToDPointF());
@@ -107,8 +98,8 @@ partial class MainWindow
 					int currentClickedCell = getCell();
 					int r1 = cell / 9, c1 = cell % 9;
 					int r2 = currentClickedCell / 9, c2 = currentClickedCell % 9;
-					int minRow = Math.Min(r1, r2), minColumn = Math.Min(c1, c2);
-					int maxRow = Math.Max(r1, r2), maxColumn = Math.Max(c1, c2);
+					int minRow = Min(r1, r2), minColumn = Min(c1, c2);
+					int maxRow = Max(r1, r2), maxColumn = Max(c1, c2);
 					for (int r = minRow; r <= maxRow; r++)
 					{
 						for (int c = minColumn; c <= maxColumn; c++)
@@ -180,7 +171,7 @@ partial class MainWindow
 
 	private void ImageGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 	{
-		if (sender is not Image image || _customDrawingMode == -1)
+		if (sender is not WImage image || _customDrawingMode == -1)
 		{
 			e.Handled = true;
 			return;

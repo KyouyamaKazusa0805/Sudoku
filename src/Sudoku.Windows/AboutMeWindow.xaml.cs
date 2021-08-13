@@ -1,10 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Documents;
-using static Sudoku.Windows.MainWindow;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>AboutMeWindow.xaml</c>.

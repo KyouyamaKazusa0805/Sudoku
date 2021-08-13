@@ -1,17 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Drawing.Text;
-using System.IO;
-using System.Text;
-using System.Windows;
-using Microsoft.Win32;
-using Sudoku.Data.Stepping;
-using Sudoku.Drawing;
-using static System.Drawing.StringAlignment;
-using static Sudoku.Windows.MainWindow;
-using DFontStyle = System.Drawing.FontStyle;
+﻿using Sudoku.Data.Stepping;
 
 namespace Sudoku.Windows;
 
@@ -177,14 +164,14 @@ public partial class PictureSavingPreferencesWindow : Window
 							using var g = Graphics.FromImage(result);
 							using var f = new Font(fontName, fontSize, DFontStyle.Bold);
 							using var sf = new StringFormat { Alignment = Center, LineAlignment = Center };
-							g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+							g.TextRenderingHint = ClearTypeGridFit;
 							g.SmoothingMode = SmoothingMode.HighQuality;
 							g.CompositingQuality = CompositingQuality.HighQuality;
 							g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-							g.Clear(Color.White);
+							g.Clear(DColor.White);
 							g.DrawImage(bitmap, 0, 0);
 							g.DrawString(
-								resultText, f, Brushes.Black, bitmap.Width >> 1,
+								resultText, f, DBrushes.Black, bitmap.Width >> 1,
 								bitmap.Height + (fontSize >> 1) + 8, sf);
 							SavePicture(result, fileName);
 						}

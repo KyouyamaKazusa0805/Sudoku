@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace Sudoku.Windows.CustomControls;
+﻿namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
 /// Indicates the color picker settings.

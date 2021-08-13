@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Media.Imaging;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Encapsulates a system clipboard (calls <see cref="Clipboard"/>).

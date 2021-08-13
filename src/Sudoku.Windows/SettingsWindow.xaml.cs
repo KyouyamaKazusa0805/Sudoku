@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using Sudoku.Solving.Manual;
-using Sudoku.Windows.CustomControls;
-using Sudoku.Windows.Extensions;
-using StepTriplet = System.Collections.Generic.KeyedTuple<string, int, System.Type>;
-
-namespace Sudoku.Windows;
+﻿namespace Sudoku.Windows;
 
 /// <summary>
 /// Interaction logic for <c>SettingsWindow.xaml</c>.
@@ -181,7 +168,7 @@ public partial class SettingsWindow : Window
 	/// </summary>
 	/// <param name="button">The button.</param>
 	/// <param name="color">The color.</param>
-	private void ChangeColor(Button button, in Color color)
+	private void ChangeColor(Button button, in WColor color)
 	{
 		button.Background = new SolidColorBrush(color);
 		button.Foreground =
@@ -230,7 +217,7 @@ public partial class SettingsWindow : Window
 			let props = triplet.Properties
 			select new ListBoxItem()
 			{
-				Content = new StepTriplet(
+				Content = new StepTypeTriplet(
 					$"({props.Priority.ToString()}) {triplet.SearcherName}",
 					props.Priority,
 					triplet.CurrentType
@@ -348,7 +335,7 @@ public partial class SettingsWindow : Window
 			_assigments += () =>
 			{
 				_labelModifiableFontName.FontFamily =
-					new FontFamily(
+					new WFontFamily(
 						Settings.ModifiableFontName = dialog.SelectedFont.Name
 					);
 				_labelModifiableFontName.Content = dialog.SelectedFont.Name;
@@ -585,7 +572,7 @@ public partial class SettingsWindow : Window
 		if (sender is CheckBox checkBox)
 		{
 			TechniqueProperties.FromType(
-				((StepTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
+				((StepTypeTriplet)((ListBoxItem)_listBoxPriority.SelectedItem).Content).Item3
 			)!.IsEnabled = checkBox.IsChecked ?? false;
 		}
 	}
@@ -596,7 +583,7 @@ public partial class SettingsWindow : Window
 			sender is TextBox { Text: var text } textBox && int.TryParse(text, out int value)
 			&& _listBoxPriority is
 			{
-				SelectedItem: ListBoxItem { Content: StepTriplet(_, _, Item3: var type, _) }
+				SelectedItem: ListBoxItem { Content: StepTypeTriplet(_, _, Item3: var type, _) }
 			}
 		)
 		{
@@ -622,7 +609,7 @@ public partial class SettingsWindow : Window
 			return;
 		}
 
-		var type = ((StepTriplet)draggedItem.Content).Item3;
+		var type = ((StepTypeTriplet)draggedItem.Content).Item3;
 		if (TechniqueProperties.FromType(type)!.IsReadOnly)
 		{
 			// We can't modify the status of any fixed technique searchers.
@@ -666,9 +653,9 @@ public partial class SettingsWindow : Window
 		{
 			for (int index = 0, count = _priorityControls.Count; index < count; index++)
 			{
-				var (name, _, type, _) = (StepTriplet)_priorityControls[index].Content;
+				var (name, _, type, _) = (StepTypeTriplet)_priorityControls[index].Content;
 
-				_priorityControls[index].Content = new StepTriplet(
+				_priorityControls[index].Content = new StepTypeTriplet(
 					$"({index.ToString()}) {name[(name.IndexOf(')') + 2)..]}",
 					index,
 					type

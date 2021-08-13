@@ -1,23 +1,5 @@
 ﻿#pragma warning disable IDE1006
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
-using Sudoku.Data;
-using Sudoku.Solving.Checking;
-using Sudoku.Solving.Manual;
-using Sudoku.Windows.Extensions;
-using Sudoku.Windows.Media;
-using InfoTriplet = System.Collections.Generic.KeyedTuple<string, Sudoku.Solving.Manual.StepInfo, bool>;
-
 namespace Sudoku.Windows;
 
 partial class MainWindow
@@ -73,7 +55,7 @@ partial class MainWindow
 			{
 				collection.AddRange(
 					from info in techniqueGroup
-					let pair = ColorPalette.DifficultyLevelColors[info.DifficultyLevel]
+					let pair = WColorPalette.DifficultyLevelColors[info.DifficultyLevel]
 					select new ListBoxItem
 					{
 						Content = new InfoTriplet(info.ToSimpleString(), info, true),

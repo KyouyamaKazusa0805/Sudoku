@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using DPoint = System.Drawing.Point;
-using DPointF = System.Drawing.PointF;
-using WPoint = System.Windows.Point;
-
-namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Windows.Extensions;
 
 /// <summary>
 /// Provides extension methods on <see cref="WPoint"/>, <see cref="DPoint"/>
