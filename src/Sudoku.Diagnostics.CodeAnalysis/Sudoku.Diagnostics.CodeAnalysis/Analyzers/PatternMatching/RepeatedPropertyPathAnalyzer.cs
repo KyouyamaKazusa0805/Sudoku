@@ -1,7 +1,4 @@
-﻿#warning SS0625 doesn't support now.
-
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0623", "SS0625")]
 public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
@@ -66,7 +63,7 @@ public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
 		// Due to current enviornment, the API doesn't support extended property pattern yet.
 		// Code for reference:
 		if (
-			context.Node is not ExtendedPropertyPatternClauseSyntax
+			context.Node is not PropertyPatternClauseSyntax
 			{
 				Subpatterns: { Count: >= 2 } subpatterns
 			}
@@ -78,19 +75,27 @@ public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
 		var listOfNames = (
 			from subpattern in subpatterns
 			let nameColonNode = subpattern.NameColon
-			where nameColonNode is not null
-			select (PatternNode: subpattern, nameColonNode.ToString())
+			where nameColonNode is not
+			{
+				Expression: MemberAccessExpressionSyntax
+				{
+					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression
+				}
+			}
+			let pair = (PatternNode: subpattern, ValueText: nameColonNode.ToString())
+			where pair.ValueText != nameColonNode.Name.Identifier.ValueText
+			select pair
 		).ToArray();
 
-		for (int i = 0, length = listOfNames.Length; i < length - 1; i++)
+		for (int i = 0, listLength = listOfNames.Length, length = listLength - 1; i < length; i++)
 		{
-			for (int j = i + 1; j < length; j++)
+			for (int j = i + 1; j < listLength; j++)
 			{
 				if (listOfNames[i].ValueText == listOfNames[j].ValueText)
 				{
 					context.ReportDiagnostic(
 						Diagnostic.Create(
-							descriptor: SS0623,
+							descriptor: SS0625,
 							location: listOfNames[j].PatternNode.GetLocation(),
 							messageArgs: null
 						)
@@ -98,6 +103,8 @@ public sealed partial class RepeatedPropertyPathAnalyzer : DiagnosticAnalyzer
 				}
 			}
 		}
-#endif
+#else
 	}
+#warning SS0625 doesn't support now.
+#endif
 }

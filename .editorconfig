@@ -449,9 +449,6 @@ dotnet_diagnostic.CA2249.severity = silent
 dotnet_diagnostic.CS0618.severity = silent
 dotnet_style_prefer_simplified_interpolation = false
 
-# SS0624: Available simplification for extended property patterns
-dotnet_diagnostic.SS0624.severity = none
-
 
 # The separator. I don't know how to separate two parts, so... I find a joke to put into here.
 #
