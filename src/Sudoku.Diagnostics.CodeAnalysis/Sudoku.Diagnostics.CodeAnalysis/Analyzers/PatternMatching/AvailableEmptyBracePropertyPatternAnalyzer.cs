@@ -28,8 +28,8 @@ public sealed partial class AvailableEmptyBracePropertyPatternAnalyzer : Diagnos
 				Expression: var expr,
 				Pattern: DeclarationPatternSyntax
 				{
-					Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } },
-					Designation: SingleVariableDesignationSyntax { Identifier: { ValueText: var variableName } }
+					Type: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword },
+					Designation: SingleVariableDesignationSyntax { Identifier.ValueText: var variableName }
 				}
 			}
 			when !expressionIsOfPointerTypeOrNull(expr):
@@ -69,22 +69,22 @@ public sealed partial class AvailableEmptyBracePropertyPatternAnalyzer : Diagnos
 						{
 							Pattern: ConstantPatternSyntax
 							{
-								Expression: { RawKind: (int)SyntaxKind.NullLiteralExpression }
+								Expression.RawKind: (int)SyntaxKind.NullLiteralExpression
 							}
 						} or RecursivePatternSyntax
 						{
 							PositionalPatternClause: null,
-							PropertyPatternClause: { Subpatterns: { Count: 0 } },
+							PropertyPatternClause.Subpatterns.Count: 0,
 							Designation: null
 						} or TypePatternSyntax
 						{
-							Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
+							Type: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword }
 						},
 						Right: VarPatternSyntax
 						{
 							Designation: SingleVariableDesignationSyntax
 							{
-								Identifier: { ValueText: var variableName }
+								Identifier.ValueText: var variableName
 							}
 						}
 					):
@@ -106,28 +106,22 @@ public sealed partial class AvailableEmptyBracePropertyPatternAnalyzer : Diagnos
 					case (
 						Left: VarPatternSyntax
 						{
-							Designation: SingleVariableDesignationSyntax
-							{
-								Identifier: { ValueText: var variableName }
-							}
+							Designation: SingleVariableDesignationSyntax { Identifier.ValueText: var variableName }
 						},
 						Right: UnaryPatternSyntax
 						{
 							Pattern: ConstantPatternSyntax
 							{
-								Expression: { RawKind: (int)SyntaxKind.NullLiteralExpression }
+								Expression.RawKind: (int)SyntaxKind.NullLiteralExpression
 							}
 						} or RecursivePatternSyntax
 						{
 							PositionalPatternClause: null,
-							PropertyPatternClause: { Subpatterns: { Count: 0 } },
+							PropertyPatternClause.Subpatterns.Count: 0,
 							Designation: null
 						} or TypePatternSyntax
 						{
-							Type: PredefinedTypeSyntax
-							{
-								Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword }
-							}
+							Type: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword }
 						}
 					):
 					{

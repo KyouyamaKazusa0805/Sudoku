@@ -42,18 +42,12 @@ public sealed partial class SudokuGridAnalyzer : DiagnosticAnalyzer
 				Expression: MemberAccessExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: IdentifierNameSyntax
-					{
-						Identifier: { ValueText: SudokuGridTypeName or GridTypeName }
-					},
+					Expression: IdentifierNameSyntax { Identifier.ValueText: SudokuGridTypeName or GridTypeName },
 					Name: IdentifierNameSyntax
 					{
-						Identifier:
-						{
-							ValueText: var fieldName and (
-								ValueChangedFuncPtrName or RefreshingCandidatesFuncPtrName
-							)
-						}
+						Identifier.ValueText: var fieldName and (
+							ValueChangedFuncPtrName or RefreshingCandidatesFuncPtrName
+						)
 					}
 				}
 			} node
@@ -65,7 +59,7 @@ public sealed partial class SudokuGridAnalyzer : DiagnosticAnalyzer
 		if (
 			node.ContainingTypeIs(static nodeTraversing => nodeTraversing is StructDeclarationSyntax
 			{
-				Identifier: { ValueText: SudokuGridTypeName }
+				Identifier.ValueText: SudokuGridTypeName
 			})
 		)
 		{

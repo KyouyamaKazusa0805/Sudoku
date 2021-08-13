@@ -21,7 +21,7 @@ public sealed partial class LetClauseAnalyzer : DiagnosticAnalyzer
 		if (
 			originalNode is not QueryExpressionSyntax
 			{
-				FromClause: { Identifier: { ValueText: var variableInFromClause } },
+				FromClause.Identifier.ValueText: var variableInFromClause,
 				Body:
 				{
 					Clauses: { Count: var count and not 0 } clauses,
@@ -51,7 +51,7 @@ public sealed partial class LetClauseAnalyzer : DiagnosticAnalyzer
 			var variableNames = new List<string> { variableInFromClause };
 			for (int j = 0; j < i; j++)
 			{
-				if (clauses[j] is LetClauseSyntax { Identifier: { ValueText: var currentVariableName } })
+				if (clauses[j] is LetClauseSyntax { Identifier.ValueText: var currentVariableName })
 				{
 					variableNames.Add(currentVariableName);
 				}
@@ -100,10 +100,9 @@ public sealed partial class LetClauseAnalyzer : DiagnosticAnalyzer
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			bool descendantsExistsVariableName(SyntaxNode node) =>
 				node.DescendantNodesAndSelf().Any(
-					node => node is IdentifierNameSyntax
-					{
-						Identifier: { ValueText: var tempVariableName }
-					} && variableNames.Contains(tempVariableName)
+					node =>
+						node is IdentifierNameSyntax { Identifier.ValueText: var tempVariableName }
+						&& variableNames.Contains(tempVariableName)
 				);
 		}
 	}

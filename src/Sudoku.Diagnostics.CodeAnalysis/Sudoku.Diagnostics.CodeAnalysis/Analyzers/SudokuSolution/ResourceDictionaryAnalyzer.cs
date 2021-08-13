@@ -48,10 +48,10 @@ public sealed partial class ResourceDictionaryAnalyzer : DiagnosticAnalyzer
 				Expression: MemberAccessExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: IdentifierNameSyntax { Identifier: { ValueText: "TextResources" } },
-					Name: IdentifierNameSyntax { Identifier: { ValueText: "Current" } }
+					Expression: IdentifierNameSyntax { Identifier.ValueText: "TextResources" },
+					Name: IdentifierNameSyntax { Identifier.ValueText: "Current" }
 				},
-				Name: IdentifierNameSyntax { Identifier: { ValueText: var key } } nameNode
+				Name: IdentifierNameSyntax { Identifier.ValueText: var key } nameNode
 			}
 		)
 		{

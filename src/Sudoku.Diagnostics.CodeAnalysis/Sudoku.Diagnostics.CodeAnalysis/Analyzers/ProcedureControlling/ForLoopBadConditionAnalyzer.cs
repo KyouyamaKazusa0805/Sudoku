@@ -58,7 +58,7 @@ public sealed partial class ForLoopBadConditionAnalyzer : DiagnosticAnalyzer
 							}
 
 							// Check whether the expression is a constant expression.
-							if (semanticModel.GetOperation(rightExpr) is { ConstantValue: { HasValue: true } })
+							if (semanticModel.GetOperation(rightExpr) is { ConstantValue.HasValue: true })
 							{
 								continue;
 							}

@@ -24,9 +24,9 @@ public sealed partial class ValueStringBuilderDisposeInvocationAnalyzer : Diagno
 				Expression: MemberAccessExpressionSyntax
 				{
 					Expression: var instance,
-					Name: { Identifier: { ValueText: "Dispose" } }
+					Name.Identifier.ValueText: "Dispose"
 				},
-				ArgumentList: { Arguments: { Count: 0 } }
+				ArgumentList.Arguments.Count: 0
 			}
 		)
 		{

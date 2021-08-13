@@ -108,7 +108,7 @@ public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 				newClauseNode.ArgumentList?.Arguments[0] is not
 				{
 					RawKind: (int)SyntaxKind.Argument,
-					Expression: IdentifierNameSyntax { Identifier: { ValueText: var variableName } }
+					Expression: IdentifierNameSyntax { Identifier.ValueText: var variableName }
 				}
 			)
 			{
@@ -122,12 +122,9 @@ public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 					node.DescendantNodes().ToArray(),
 					element => element is VariableDeclaratorSyntax
 					{
-						Identifier: { ValueText: var localVariableName }
+						Identifier.ValueText: var localVariableName
 					} && localVariableName == variableName
-				) is not VariableDeclaratorSyntax
-				{
-					Initializer: { Value: StackAllocArrayCreationExpressionSyntax }
-				}
+				) is not VariableDeclaratorSyntax { Initializer.Value: StackAllocArrayCreationExpressionSyntax }
 			)
 			{
 				continue;
@@ -139,7 +136,7 @@ public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 			{
 				case AssignmentExpressionSyntax
 				{
-					Left: IdentifierNameSyntax { Identifier: { ValueText: var identifierName } }
+					Left: IdentifierNameSyntax { Identifier.ValueText: var identifierName }
 				}:
 				{
 					var outParameters = new List<string>();
@@ -149,12 +146,7 @@ public sealed partial class SpanOrReadOnlySpanAnalyzer : DiagnosticAnalyzer
 						tempOperation = tempOperation.Parent
 					)
 					{
-						if (
-							tempOperation is IMethodReferenceOperation
-							{
-								Method: { Parameters: { Length: not 0 } parameters }
-							}
-						)
+						if (tempOperation is MRef { Method.Parameters: { Length: not 0 } parameters })
 						{
 							outParameters.AddRange(
 								from parameter in parameters

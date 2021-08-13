@@ -21,11 +21,7 @@ public sealed partial class UnnecessaryIsOperatorAnalyzer : DiagnosticAnalyzer
 			originalNode is not IsPatternExpressionSyntax
 			{
 				Expression: var expr,
-				Pattern: RelationalPatternSyntax
-				{
-					OperatorToken: { RawKind: var kind },
-					Expression: var constantExpr
-				}
+				Pattern: RelationalPatternSyntax { OperatorToken.RawKind: var kind, Expression: var constantExpr }
 			}
 		)
 		{

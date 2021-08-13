@@ -15,7 +15,7 @@ public sealed partial class UnmeaningfulOrderbyAnalyzer : DiagnosticAnalyzer
 
 	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 	{
-		if (context.Node is not QueryExpressionSyntax { Body: { Clauses: { Count: not 0 } clauses } } node)
+		if (context.Node is not QueryExpressionSyntax { Body.Clauses: { Count: not 0 } clauses } node)
 		{
 			return;
 		}
@@ -41,17 +41,11 @@ public sealed partial class UnmeaningfulOrderbyAnalyzer : DiagnosticAnalyzer
 						(Former: former, Latter: latter) is not (
 							Former:
 							{
-								Expression: IdentifierNameSyntax
-								{
-									Identifier: { ValueText: var formerIdentifier }
-								}
+								Expression: IdentifierNameSyntax { Identifier.ValueText: var formerIdentifier }
 							},
 							Latter:
 							{
-								Expression: IdentifierNameSyntax
-								{
-									Identifier: { ValueText: var latterIdentifier }
-								}
+								Expression: IdentifierNameSyntax { Identifier.ValueText: var latterIdentifier }
 							}
 						)
 					)

@@ -18,10 +18,10 @@ public sealed partial class AvailableCastAnalyzer : DiagnosticAnalyzer
 		if (
 			context.Node is not QueryExpressionSyntax
 			{
-				FromClause: { Type: null, Identifier: { ValueText: var identifier } } fromClause,
+				FromClause: { Type: null, Identifier.ValueText: var identifier } fromClause,
 				Body:
 				{
-					Clauses: { Count: 0 },
+					Clauses.Count: 0,
 					SelectOrGroup: SelectClauseSyntax
 					{
 						Expression: CastExpressionSyntax
@@ -29,7 +29,7 @@ public sealed partial class AvailableCastAnalyzer : DiagnosticAnalyzer
 							Type: var typeToCast,
 							Expression: IdentifierNameSyntax
 							{
-								Identifier: { ValueText: var identifierToCheck }
+								Identifier.ValueText: var identifierToCheck
 							} innerExpression
 						} castExpression
 					} selectClause

@@ -20,14 +20,11 @@ partial class ExtensionDeconstructMethodGenerator
 				syntaxNode is not AttributeListSyntax
 				{
 					Attributes: { Count: not 0 } attributes,
-					Target: { Identifier: { ValueText: "assembly" } }
+					Target.Identifier.ValueText: "assembly"
 				}
 				|| attributes.Any(static attribute => attribute is
 				{
-					Name: IdentifierNameSyntax
-					{
-						Identifier: { ValueText: nameof(AutoDeconstructExtensionAttribute) }
-					}
+					Name: IdentifierNameSyntax { Identifier.ValueText: nameof(AutoDeconstructExtensionAttribute) }
 				})
 			)
 			{

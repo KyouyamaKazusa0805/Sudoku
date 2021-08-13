@@ -16,7 +16,7 @@ partial class DeconstructMethodGenerator
 		/// <inheritdoc/>
 		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			if (syntaxNode is TypeDeclarationSyntax { AttributeLists: { Count: not 0 } } declaration)
+			if (syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: not 0 } declaration)
 			{
 				Candidates.Add(declaration);
 			}

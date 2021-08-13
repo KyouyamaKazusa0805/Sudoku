@@ -23,7 +23,7 @@ public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer
 				Parent: StructDeclarationSyntax,
 				Modifiers: { Count: not 0 } modifiers,
 				ExpressionBody: null,
-				AccessorList: { Accessors: { Count: var accessorsCount and not 0 } accessors }
+				AccessorList.Accessors: { Count: var accessorsCount and not 0 } accessors
 			} node
 		)
 		{
@@ -35,7 +35,7 @@ public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer
 			// readonly int Prop { get; }
 			1 when accessors[0] is
 			{
-				Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
+				Keyword.RawKind: (int)SyntaxKind.GetKeyword,
 				Modifiers: { Count: var count } getterModifiers,
 				Body: null,
 				ExpressionBody: null
@@ -47,7 +47,7 @@ public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer
 			// int Prop { readonly get; set; }
 			2 when accessors[0] is
 			{
-				Keyword: { RawKind: (int)SyntaxKind.GetKeyword },
+				Keyword.RawKind: (int)SyntaxKind.GetKeyword,
 				Modifiers: { Count: var count } getterModifiers,
 				Body: null,
 				ExpressionBody: null

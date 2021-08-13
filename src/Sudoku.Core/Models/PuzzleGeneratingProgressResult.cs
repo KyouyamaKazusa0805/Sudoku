@@ -44,5 +44,5 @@ public struct PuzzleGeneratingProgressResult : IProgressResult
 	public override string ToString() =>
 		GeneratingTrial == 1
 		? TextResources.Current.GeneratingProgressSingular
-		: $"{GeneratingTrial} {(string)TextResources.Current.GeneratingProgressPlural}";
+		: $"{GeneratingTrial.ToString()} {(string)TextResources.Current.GeneratingProgressPlural}";
 }

@@ -46,7 +46,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 			case BaseObjectCreationExpressionSyntax
 			{
 				ArgumentList: var argumentList,
-				Initializer: { Expressions: var expressions }
+				Initializer.Expressions: var expressions
 			} node
 			when semanticModel.GetOperation(node, cancellationToken) is IObjectCreationOperation
 			{
@@ -106,7 +106,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 							Operand: LiteralExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.NumericLiteralExpression,
-								Token: { ValueText: var v }
+								Token.ValueText: var v
 							}
 						} expr
 						when int.TryParse(v, out int realValue):
@@ -146,7 +146,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 							Operand: LiteralExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.NumericLiteralExpression,
-								Token: { ValueText: var v }
+								Token.ValueText: var v
 							}
 						} expr
 						when int.TryParse(v, out int realValue):
@@ -189,7 +189,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 							Operand: LiteralExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.NumericLiteralExpression,
-								Token: { ValueText: var v }
+								Token.ValueText: var v
 							}
 						} expr
 						when int.TryParse(v, out int realValue):
@@ -204,7 +204,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 									)
 								);
 							}
-							else if (argumentList is not { Arguments: { Count: not 0 } })
+							else if (argumentList is not { Arguments.Count: not 0 })
 							{
 								context.ReportDiagnostic(
 									Diagnostic.Create(

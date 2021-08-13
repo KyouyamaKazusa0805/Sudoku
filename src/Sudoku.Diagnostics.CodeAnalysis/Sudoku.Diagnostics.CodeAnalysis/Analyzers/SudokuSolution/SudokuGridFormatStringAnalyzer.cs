@@ -39,9 +39,9 @@ public sealed partial class SudokuGridFormatStringAnalyzer : DiagnosticAnalyzer
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 					Expression: var expression,
-					Name: { Identifier: { ValueText: "ToString" } } nameNode
+					Name: { Identifier.ValueText: "ToString" } nameNode
 				},
-				ArgumentList: { Arguments: { Count: var count } arguments }
+				ArgumentList.Arguments: { Count: var count } arguments
 			} node
 		)
 		{

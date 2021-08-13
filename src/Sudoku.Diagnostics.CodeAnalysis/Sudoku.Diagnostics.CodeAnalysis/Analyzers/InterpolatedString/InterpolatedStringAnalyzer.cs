@@ -44,7 +44,7 @@ public sealed partial class InterpolatedStringAnalyzer : DiagnosticAnalyzer
 				semanticModel.GetOperation(interpolation) is not IInterpolationOperation
 				{
 					Kind: OperationKind.Interpolation,
-					Expression: { Type: { IsValueType: true } }
+					Expression.Type.IsValueType: true
 				}
 			)
 			{

@@ -200,16 +200,10 @@ public sealed partial class PropertiesInStepSearcherAnalyzer : DiagnosticAnalyze
 		if (
 			propertyNode is not
 			{
-				Initializer:
-				{
-					Value:
-					{
-						RawKind: not (
-							(int)SyntaxKind.ObjectCreationExpression
-							or (int)SyntaxKind.ImplicitObjectCreationExpression
-						)
-					}
-				}
+				Initializer.Value.RawKind: not (
+					(int)SyntaxKind.ObjectCreationExpression
+					or (int)SyntaxKind.ImplicitObjectCreationExpression
+				)
 			}
 		)
 		{

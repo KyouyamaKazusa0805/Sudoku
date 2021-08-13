@@ -20,11 +20,8 @@ public sealed partial class ShouldAppendParameterNameAnalyzer : DiagnosticAnalyz
 		if (
 			context.Node is not RecursivePatternSyntax
 			{
-				Parent: not RecursivePatternSyntax
-				{
-					PositionalPatternClause: { Subpatterns: { Count: not 0 } }
-				},
-				PositionalPatternClause: { Subpatterns: { Count: not 0 } subpatterns }
+				Parent: not RecursivePatternSyntax { PositionalPatternClause.Subpatterns: { Count: not 0 } },
+				PositionalPatternClause.Subpatterns: { Count: not 0 } subpatterns
 			} node
 		)
 		{
@@ -42,7 +39,7 @@ public sealed partial class ShouldAppendParameterNameAnalyzer : DiagnosticAnalyz
 				{
 					case RecursivePatternSyntax
 					{
-						PositionalPatternClause: { Subpatterns: { Count: not 0 } nestedSubpatterns }
+						PositionalPatternClause.Subpatterns: { Count: not 0 } nestedSubpatterns
 					}:
 					{
 						recursion(nestedSubpatterns);

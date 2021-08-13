@@ -29,7 +29,7 @@ public sealed partial class ProxyEqualityAttributeAnalyzer : DiagnosticAnalyzer
 				AttributeLists: { Count: not 0 } attributes,
 				Modifiers: var modifiers,
 				ReturnType: var returnType,
-				ParameterList: { Parameters: { Count: var count } parameters },
+				ParameterList.Parameters: { Count: var count } parameters,
 				Identifier: var identifier
 			} node
 		)

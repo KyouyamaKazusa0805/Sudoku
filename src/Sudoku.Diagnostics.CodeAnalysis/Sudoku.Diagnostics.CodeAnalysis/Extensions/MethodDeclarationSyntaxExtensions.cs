@@ -32,19 +32,19 @@ public static class MethodDeclarationSyntaxExtensions
 			@this is not
 			{
 				// Name must be "Deconstruct".
-				Identifier: { ValueText: "Deconstruct" },
+				Identifier.ValueText: "Deconstruct",
 
 				// The number of parameters must be greater than 1 when works.
-				ParameterList: { Parameters: { Count: >= 2 } parameters },
+				ParameterList.Parameters: { Count: >= 2 } parameters,
 
 				// The deconstruct method shouldn't be a generic method.
-				TypeParameterList: not { Parameters: { Count: not 0 } },
+				TypeParameterList: not { Parameters.Count: not 0 },
 
 				// We don't support explicit interface method implementation checking now.
 				ExplicitInterfaceSpecifier: null,
 
 				// The return type must be "void".
-				ReturnType: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.VoidKeyword } },
+				ReturnType: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.VoidKeyword },
 
 				// Modifiers shouldn't contain the keyword 'static' (validate it later).
 				Modifiers: var modifiers

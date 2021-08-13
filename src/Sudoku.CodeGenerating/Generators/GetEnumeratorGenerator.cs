@@ -34,10 +34,7 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 				if (
 					attributeArg is
 					{
-						NameEquals:
-						{
-							Name: { Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.ReturnType) } }
-						},
+						NameEquals.Name.Identifier.ValueText: nameof(AutoGetEnumeratorAttribute.ReturnType),
 						Expression: var expr
 					}
 					&& semanticModel.GetOperation(expr) is ITypeOfOperation { TypeOperand: var operand }
@@ -62,7 +59,7 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 				where op is not null
 				from element in op.Initializer.ElementValues
 				select element as ILiteralOperation into literalOp
-				where literalOp is { ConstantValue: { HasValue: true } }
+				where literalOp is { ConstantValue.HasValue: true }
 				select $"using {literalOp.ConstantValue.Value};"
 			);
 
@@ -76,14 +73,8 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 				if (
 					attributeArgument is
 					{
-						NameEquals:
-						{
-							Name:
-							{
-								Identifier: { ValueText: nameof(AutoGetEnumeratorAttribute.MemberConversion) }
-							}
-						},
-						Expression: LiteralExpressionSyntax { Token: { ValueText: var text } }
+						NameEquals.Name.Identifier.ValueText: nameof(AutoGetEnumeratorAttribute.MemberConversion),
+						Expression: LiteralExpressionSyntax { Token.ValueText: var text }
 					}
 				)
 				{

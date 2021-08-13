@@ -20,7 +20,7 @@ public sealed partial class UnnecessaryNotInRelationPatternAnalyzer : Diagnostic
 			{
 				Pattern: RelationalPatternSyntax
 				{
-					OperatorToken: { RawKind: var relationalToken },
+					OperatorToken.RawKind: var relationalToken,
 					Expression: var relationalExpr
 				}
 			} node

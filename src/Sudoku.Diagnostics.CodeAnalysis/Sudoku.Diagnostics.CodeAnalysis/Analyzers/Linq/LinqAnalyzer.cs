@@ -54,9 +54,9 @@ public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 						Expression: var potentialNotTakeMethodInvocationNode,
-						Name: IdentifierNameSyntax { Identifier: { ValueText: "Count" } },
+						Name: IdentifierNameSyntax { Identifier.ValueText: "Count" },
 					},
-					ArgumentList: { Arguments: { Count: 0 } }
+					ArgumentList.Arguments.Count: 0
 				} invocationNode,
 				Right: var rightNode
 			}
@@ -74,9 +74,9 @@ public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 				Expression: MemberAccessExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Name: { Identifier: { ValueText: "Take" } }
+					Name.Identifier.ValueText: "Take"
 				},
-				ArgumentList: { Arguments: { Count: 1 } arguments }
+				ArgumentList.Arguments: { Count: 1 } arguments
 			}
 			&& arguments[0] is { Expression: var expr }
 			&& semanticModel.GetOperation(expr) is { Type: { } type }
@@ -145,9 +145,9 @@ public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 					Expression: var expr,
-					Name: { Identifier: { ValueText: "ElementAt" } } nameNode
+					Name: { Identifier.ValueText: "ElementAt" } nameNode
 				},
-				ArgumentList: { Arguments: { Count: 1 } arguments }
+				ArgumentList.Arguments: { Count: 1 } arguments
 			}
 		)
 		{
@@ -171,7 +171,7 @@ public sealed partial class LinqAnalyzer : DiagnosticAnalyzer
 				compilation.GetTypeByMetadataName("System.Index")
 			) is (var int32Symbol, var indexSymbol) && (
 				from possibleIndexerSymbol in typeSymbol.GetMembers().OfType<IPropertySymbol>()
-				where possibleIndexerSymbol is { IsIndexer: true, Parameters: { Length: 1 } }
+				where possibleIndexerSymbol is { IsIndexer: true, Parameters.Length: 1 }
 				let parameterType = possibleIndexerSymbol.Parameters[0].Type
 				where SymbolEqualityComparer.Default.Equals(parameterType, int32Symbol)
 				|| SymbolEqualityComparer.Default.Equals(parameterType, indexSymbol)

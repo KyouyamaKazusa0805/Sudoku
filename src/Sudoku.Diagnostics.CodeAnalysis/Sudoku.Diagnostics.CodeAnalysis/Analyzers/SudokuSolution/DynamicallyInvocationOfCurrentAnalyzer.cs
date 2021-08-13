@@ -44,13 +44,10 @@ public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticA
 					Expression: MemberAccessExpressionSyntax
 					{
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-						Expression: IdentifierNameSyntax { Identifier: { ValueText: "TextResources" } },
-						Name: IdentifierNameSyntax { Identifier: { ValueText: "Current" } }
+						Expression: IdentifierNameSyntax { Identifier.ValueText: "TextResources" },
+						Name: IdentifierNameSyntax { Identifier.ValueText: "Current" }
 					},
-					Name: IdentifierNameSyntax
-					{
-						Identifier: { ValueText: var methodName }
-					} identifierNameNode
+					Name: IdentifierNameSyntax { Identifier.ValueText: var methodName } identifierNameNode
 				},
 				ArgumentList: var argumentListNode
 			} node

@@ -32,7 +32,7 @@ public sealed partial class DirectSearcherUsageAnalyzer : DiagnosticAnalyzer
 		var stepSearcherSymbol = c("Sudoku.Solving.Manual.StepSearcher");
 		switch (operation)
 		{
-			case ILocalFunctionOperation { Body: { Locals: { Length: var length and not 0 } locals } }:
+			case ILocalFunctionOperation { Body.Locals: { Length: var length and not 0 } locals }:
 			{
 				checkAndReportLocal(locals, length == 1);
 
@@ -125,13 +125,13 @@ public sealed partial class DirectSearcherUsageAnalyzer : DiagnosticAnalyzer
 
 				switch (possibleMethodNode)
 				{
-					case LocalFunctionStatementSyntax { Body: { Statements: { Count: not 1 } statements } }
+					case LocalFunctionStatementSyntax { Body.Statements: { Count: not 1 } statements }
 					when containsThatMethodInvocation(statements, localIdentifier):
 					{
 						// Only find one valid invocation is okay.
 						return;
 					}
-					case MethodDeclarationSyntax { Body: { Statements: { Count: not 1 } statements } }
+					case MethodDeclarationSyntax { Body.Statements: { Count: not 1 } statements }
 					when containsThatMethodInvocation(statements, localIdentifier):
 					{
 						// Only find one valid invocation is okay.
@@ -184,13 +184,10 @@ public sealed partial class DirectSearcherUsageAnalyzer : DiagnosticAnalyzer
 							Expression: MemberAccessExpressionSyntax
 							{
 								RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-								Expression: IdentifierNameSyntax
-								{
-									Identifier: { ValueText: "FastProperties" }
-								} typeNode,
-								Name: { Identifier: { ValueText: "InitializeMaps" } }
+								Expression: IdentifierNameSyntax { Identifier.ValueText: "FastProperties" } typeNode,
+								Name.Identifier.ValueText: "InitializeMaps"
 							},
-							ArgumentList: { Arguments: { Count: 1 } arguments }
+							ArgumentList.Arguments: { Count: 1 } arguments
 						}
 					}
 					when semanticModel.GetSymbolInfo(typeNode) is { Symbol: var staticTypeSymbol }

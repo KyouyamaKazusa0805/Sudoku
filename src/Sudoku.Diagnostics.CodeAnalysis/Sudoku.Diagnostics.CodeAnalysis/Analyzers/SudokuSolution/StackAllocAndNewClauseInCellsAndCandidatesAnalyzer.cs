@@ -40,7 +40,7 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 		if (
 			originalNode is not BaseObjectCreationExpressionSyntax
 			{
-				ArgumentList: { Arguments: { Count: 1 } arguments }
+				ArgumentList.Arguments: { Count: 1 } arguments
 			} node
 		)
 		{

@@ -31,13 +31,13 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 		var vsbType = c("System.Text.ValueStringBuilder");
 		switch (originanlNode)
 		{
-			case LocalFunctionStatementSyntax { Body: { Statements: { Count: >= 2 } statements } }:
+			case LocalFunctionStatementSyntax { Body.Statements: { Count: >= 2 } statements }:
 			{
 				checkOnMethod(statements);
 
 				break;
 			}
-			case MethodDeclarationSyntax { Body: { Statements: { Count: >= 2 } statements } }:
+			case MethodDeclarationSyntax { Body.Statements: { Count: >= 2 } statements }:
 			{
 				checkOnMethod(statements);
 
@@ -66,7 +66,7 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 						{
 							Parent: EqualsValueClauseSyntax
 							{
-								Parent: VariableDeclaratorSyntax { Identifier: { ValueText: var variableName } }
+								Parent: VariableDeclaratorSyntax { Identifier.ValueText: var variableName }
 							}
 						} newClause
 					)
@@ -112,11 +112,11 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 											{
 												Expression: IdentifierNameSyntax
 												{
-													Identifier: { ValueText: var possibleVariableName }
+													Identifier.ValueText: var possibleVariableName
 												},
-												Name: { Identifier: { ValueText: "ToString" } }
+												Name.Identifier.ValueText: "ToString"
 											},
-											ArgumentList: { Arguments: { Count: 0 } }
+											ArgumentList.Arguments.Count: 0
 										}
 									)
 									{
@@ -173,7 +173,7 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 					{
 						Parent: EqualsValueClauseSyntax
 						{
-							Parent: VariableDeclaratorSyntax { Identifier: { ValueText: var variableName } }
+							Parent: VariableDeclaratorSyntax { Identifier.ValueText: var variableName }
 						}
 					} newClause
 				)
@@ -229,11 +229,11 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 										{
 											Expression: IdentifierNameSyntax
 											{
-												Identifier: { ValueText: var possibleVariableName }
+												Identifier.ValueText: var possibleVariableName
 											},
-											Name: { Identifier: { ValueText: "ToString" } }
+											Name.Identifier.ValueText: "ToString"
 										},
-										ArgumentList: { Arguments: { Count: 0 } }
+										ArgumentList.Arguments.Count: 0
 									}
 								)
 								{
@@ -294,7 +294,7 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 				if (
 					semanticModel.GetOperation(ancestor, cancellationToken) is not IInvocationOperation
 					{
-						Instance: ILocalReferenceOperation { Local: { Name: var possibleName } }
+						Instance: ILocalReferenceOperation { Local.Name: var possibleName }
 					}
 				)
 				{
@@ -332,7 +332,7 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 							currentStatementDescendant, cancellationToken
 						) is not IInvocationOperation
 						{
-							Instance: ILocalReferenceOperation { Local: { Name: var possibleName } }
+							Instance: ILocalReferenceOperation { Local.Name: var possibleName }
 						}
 					)
 					{

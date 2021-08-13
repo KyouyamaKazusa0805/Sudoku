@@ -15,7 +15,7 @@ public sealed partial class MultipleOrderbyClauseAnalyzer : DiagnosticAnalyzer
 
 	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 	{
-		if (context.Node is not QueryExpressionSyntax { Body: { Clauses: { Count: not 0 } clauses } } node)
+		if (context.Node is not QueryExpressionSyntax { Body.Clauses: { Count: not 0 } clauses } node)
 		{
 			return;
 		}
@@ -24,8 +24,8 @@ public sealed partial class MultipleOrderbyClauseAnalyzer : DiagnosticAnalyzer
 		{
 			if (
 				(Left: clauses[i], Right: clauses[i + 1]) is not (
-					Left: OrderByClauseSyntax { Orderings: { Count: not 0 } } formerClause,
-					Right: OrderByClauseSyntax { Orderings: { Count: not 0 } } latterClause
+					Left: OrderByClauseSyntax { Orderings.Count: not 0 } formerClause,
+					Right: OrderByClauseSyntax { Orderings.Count: not 0 } latterClause
 				)
 			)
 			{

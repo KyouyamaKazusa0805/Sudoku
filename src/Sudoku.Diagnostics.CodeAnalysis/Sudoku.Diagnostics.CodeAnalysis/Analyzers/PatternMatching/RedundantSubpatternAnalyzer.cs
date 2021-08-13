@@ -65,7 +65,7 @@ public sealed partial class RedundantSubpatternAnalyzer : DiagnosticAnalyzer
 					}
 					case
 					{
-						NameColon: { Name: { Identifier: { ValueText: var parameterName } } } nameColonNode,
+						NameColon: { Name.Identifier.ValueText: var parameterName } nameColonNode,
 						Pattern: not DiscardPatternSyntax
 					} currentSubpattern:
 					{

@@ -755,7 +755,7 @@ public sealed record GridPainter(PointConverter Converter, Settings Preferences,
 			}
 		}
 
-		if (this is { Preferences: { ShowCandidates: false }, Conclusions: not null })
+		if (this is { Preferences.ShowCandidates: false, Conclusions: not null })
 		{
 			foreach (var (type, cell, digit) in Conclusions)
 			{

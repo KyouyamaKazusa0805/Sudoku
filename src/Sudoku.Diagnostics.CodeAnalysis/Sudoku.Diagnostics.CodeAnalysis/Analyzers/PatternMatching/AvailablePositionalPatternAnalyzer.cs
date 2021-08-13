@@ -43,7 +43,7 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 			if (
 				semanticModel.GetOperation(currentNode) is IMethodBodyOperation
 				{
-					BlockBody: { Locals: { Length: not 0 } locals }
+					BlockBody.Locals: { Length: not 0 } locals
 				}
 			)
 			{
@@ -191,16 +191,16 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 						RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 						Expression: IdentifierNameSyntax
 						{
-							Identifier: { ValueText: var identifierName }
+							Identifier.ValueText: var identifierName
 						} identifierNameNode,
-						Name: { Identifier: { ValueText: var fieldOrPropertyName } }
+						Name.Identifier.ValueText: var fieldOrPropertyName
 					}
 				)
 				{
 					continue;
 				}
 
-				if (semanticModel.GetOperation(constant) is not { ConstantValue: { HasValue: true } })
+				if (semanticModel.GetOperation(constant) is not { ConstantValue.HasValue: true })
 				{
 					continue;
 				}

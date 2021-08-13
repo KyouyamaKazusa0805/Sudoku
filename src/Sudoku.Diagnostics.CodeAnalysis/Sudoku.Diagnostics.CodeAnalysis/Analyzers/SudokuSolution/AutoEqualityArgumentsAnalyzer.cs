@@ -53,7 +53,7 @@ public sealed partial class AutoEqualityArgumentsAnalyzer : DiagnosticAnalyzer
 							{
 								Name: IdentifierNameSyntax
 								{
-									Identifier: { ValueText: nameof(AutoEqualityAttribute) or "AutoEquality" }
+									Identifier.ValueText: nameof(AutoEqualityAttribute) or "AutoEquality"
 								}
 							}
 						)
@@ -68,7 +68,7 @@ public sealed partial class AutoEqualityArgumentsAnalyzer : DiagnosticAnalyzer
 		}
 
 	DetermineSyntaxNode:
-		if (attribute is not AttributeSyntax { ArgumentList: { Arguments: { Count: not 0 } arguments } })
+		if (attribute is not AttributeSyntax { ArgumentList.Arguments: { Count: not 0 } arguments })
 		{
 			return;
 		}
@@ -85,8 +85,8 @@ public sealed partial class AutoEqualityArgumentsAnalyzer : DiagnosticAnalyzer
 				{
 					Expression: InvocationExpressionSyntax
 					{
-						Expression: IdentifierNameSyntax { Identifier: { ValueText: "nameof" } },
-						ArgumentList: { Arguments: { Count: 1 } nameofArgs }
+						Expression: IdentifierNameSyntax { Identifier.ValueText: "nameof" },
+						ArgumentList.Arguments: { Count: 1 } nameofArgs
 					} expression
 				}
 			)

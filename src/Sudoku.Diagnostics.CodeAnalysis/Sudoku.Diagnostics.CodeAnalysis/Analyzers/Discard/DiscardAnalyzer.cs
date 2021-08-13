@@ -29,7 +29,7 @@ public sealed partial class DiscardAnalyzer : DiagnosticAnalyzer
 		if (
 			originalNode is not AssignmentExpressionSyntax
 			{
-				Left: IdentifierNameSyntax { Identifier: { ValueText: Discard } },
+				Left: IdentifierNameSyntax { Identifier.ValueText: Discard },
 				Right: var rightExpr and (LiteralExpressionSyntax or IdentifierNameSyntax)
 			} node
 		)
@@ -41,10 +41,10 @@ public sealed partial class DiscardAnalyzer : DiagnosticAnalyzer
 		// and the expression isn't a method, property, indexer, event or user-defined operator.
 		if (
 			semanticModel.GetOperation(rightExpr, cancellationToken) is
-				IMethodReferenceOperation // User-defined method.
-				or IPropertyReferenceOperation // User-defined property or indexer.
-				or IEventReferenceOperation // User-defined event.
-				or IConversionOperation { Conversion: { IsUserDefined: false } } // User-defined cast operator.
+				MRef // User-defined method.
+				or PRef // User-defined property or indexer.
+				or ERef // User-defined event.
+				or IConversionOperation { Conversion.IsUserDefined: false } // User-defined cast operator.
 				or IUnaryOperation { OperatorMethod: not null } // User-defined unary operator.
 				or IBinaryOperation { OperatorMethod: not null } // User-defined binary operator.
 		)

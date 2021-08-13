@@ -23,7 +23,7 @@ public sealed partial class ReadOnlyPropertyAnalyzer : DiagnosticAnalyzer
 				Parent: StructDeclarationSyntax,
 				AccessorList: null,
 				Initializer: null,
-				ExpressionBody: { Expression: var expr },
+				ExpressionBody.Expression: var expr,
 				Identifier: var identifier,
 				Modifiers: var modifiers
 			}
@@ -119,15 +119,13 @@ public sealed partial class ReadOnlyPropertyAnalyzer : DiagnosticAnalyzer
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		bool isReadOnlyMethodRef(SyntaxNode methodRef) =>
-			semanticModel.GetOperation(methodRef, cancellationToken) is IMethodReferenceOperation
-			{
-				Method: { IsReadOnly: true }
-			};
+			semanticModel.GetOperation(methodRef, cancellationToken) is MRef { Method.IsReadOnly: true };
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		bool isReadOnlyDataMemberRef(SyntaxNode dataMemberRef) =>
-			semanticModel.GetOperation(dataMemberRef, cancellationToken)
-			is IFieldReferenceOperation
-			or IPropertyReferenceOperation { Property: { IsReadOnly: true } };
+			semanticModel.GetOperation(dataMemberRef, cancellationToken) is FRef or PRef
+			{
+				Property.IsReadOnly: true
+			};
 	}
 }

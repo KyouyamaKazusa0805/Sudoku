@@ -46,7 +46,7 @@ public sealed partial class NullableValueTypeConstantPatternAnalyzer : Diagnosti
 			semanticModel.GetOperation(rightExpr) is not
 			{
 				Type: { } rightExprType,
-				ConstantValue: { HasValue: true }
+				ConstantValue.HasValue: true
 			}
 		)
 		{

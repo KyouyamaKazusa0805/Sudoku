@@ -42,8 +42,8 @@ public sealed partial class AutoAttributePropertiesAnalyzer : DiagnosticAnalyzer
 					attribute is not
 					{
 						Parent: AttributeListSyntax,
-						Name: IdentifierNameSyntax { Identifier: { ValueText: var text } } identifierName,
-						ArgumentList: { Arguments: var arguments }
+						Name: IdentifierNameSyntax { Identifier.ValueText: var text } identifierName,
+						ArgumentList.Arguments: var arguments
 					}
 				)
 				{

@@ -33,11 +33,7 @@ public sealed partial class NullableTypesPatternMatchingSuggestionAnalyzer : Dia
 			case PrefixUnaryExpressionSyntax
 			{
 				RawKind: (int)SyntaxKind.LogicalNotExpression,
-				Operand: MemberAccessExpressionSyntax
-				{
-					Expression: var expr,
-					Name: { Identifier: { ValueText: "HasValue" } }
-				}
+				Operand: MemberAccessExpressionSyntax { Expression: var expr, Name.Identifier.ValueText: "HasValue" }
 			}
 			when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
 			{
@@ -65,7 +61,7 @@ public sealed partial class NullableTypesPatternMatchingSuggestionAnalyzer : Dia
 			{
 				Parent: not PrefixUnaryExpressionSyntax { RawKind: (int)SyntaxKind.LogicalNotExpression },
 				Expression: var expr,
-				Name: { Identifier: { ValueText: "HasValue" } }
+				Name.Identifier.ValueText: "HasValue"
 			}
 			when semanticModel.GetOperation(expr) is { Type: (isValueType: true, _, isNullable: true) }:
 			{

@@ -5,14 +5,6 @@
 
 | 编号                                      | 严重性（诊断级别） | 诊断类别                  | 是否包含修补器 | 状态 |
 | ----------------------------------------- | ------------------ | ------------------------- | -------------- | ------ |
-| [SD0101](rules/Rule-SD0101) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0102](rules/Rule-SD0102) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0103](rules/Rule-SD0103) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0104](rules/Rule-SD0104) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0105](rules/Rule-SD0105) | ❌                  | StaticTechniqueProperties | ❌              |        |
-| [SD0106](rules/Rule-SD0106) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0107](rules/Rule-SD0107) | ❌                  | StaticTechniqueProperties | ✔              |        |
-| [SD0108](rules/Rule-SD0108) | ❌                  | StaticTechniqueProperties | ✔              |        |
 | [SD0201](rules/Rule-SD0201) | ❌                  | ResourceDictionary        | ❌              |        |
 | [SD0202](rules/Rule-SD0202) | ❌                  | Usage                     | ❌              |        |
 | [SD0203](rules/Rule-SD0203) | ❌                  | Usage                     | ❌              |        |
@@ -54,7 +46,6 @@
 | [SD0501](rules/Rule-SD0501) | ℹ | Naming | ✔ |  |
 | [SD0502](rules/Rule-SD0502) | ℹ | Naming | ✔ |  |
 | [SD9001](rules/Rule-SD9001) | ⚠ | Usage | ❌ | 待完成 |
-| [SS0101](rules/Rule-SS0101) | ⚠                  | Performance               | ✔              |        |
 | [SS0102](rules/Rule-SS0102) | ⚠                  | Usage                     | ✔              |        |
 | [SS0201](rules/Rule-SS0201) | ❌                  | Performance               | ❌              |        |
 | [SS0301](rules/Rule-SS0301) | ⚠                  | Performance               | ✔              |     |

@@ -18,7 +18,7 @@
 			this ExpressionSyntax? @this
 		) => @this is InvocationExpressionSyntax
 		{
-			Expression: IdentifierNameSyntax { Identifier: { ValueText: "nameof" } }
+			Expression: IdentifierNameSyntax { Identifier.ValueText: "nameof" }
 		};
 	}
 }

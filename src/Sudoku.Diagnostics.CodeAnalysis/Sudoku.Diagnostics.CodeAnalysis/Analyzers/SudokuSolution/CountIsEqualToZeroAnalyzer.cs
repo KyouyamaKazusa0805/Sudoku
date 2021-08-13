@@ -54,12 +54,12 @@ public sealed partial class CountIsEqualToZeroAnalyzer : DiagnosticAnalyzer
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 					Expression: var exprNode,
-					Name: { Identifier: { ValueText: CountPropertyName } }
+					Name.Identifier.ValueText: CountPropertyName
 				},
 				Right: LiteralExpressionSyntax
 				{
 					RawKind: (int)SyntaxKind.NumericLiteralExpression,
-					Token: { ValueText: ZeroString }
+					Token.ValueText: ZeroString
 				}
 			} node
 		)

@@ -18,8 +18,8 @@ public static class IMethodSymbolExtensions
 			{
 				Name: "Deconstruct",
 				Parameters: { Length: >= 2 } parameters,
-				TypeParameters: { IsEmpty: true },
-				ExplicitInterfaceImplementations: { IsEmpty: true },
+				TypeParameters.IsEmpty: true,
+				ExplicitInterfaceImplementations.IsEmpty: true,
 				DeclaredAccessibility: Accessibility.Public,
 				IsStatic: false
 			}

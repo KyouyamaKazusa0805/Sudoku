@@ -17,7 +17,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		foreach (var groupResult in
 			from attribute in receiver.Attributes
 			select attribute.ArgumentList into argList
-			where argList is { Arguments: { Count: >= 2 } }
+			where argList is { Arguments.Count: >= 2 }
 			let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax
 			where firstArg is not null
 			let semanticModel = compilation.GetSemanticModel(firstArg.SyntaxTree)

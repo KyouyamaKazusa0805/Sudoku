@@ -118,8 +118,8 @@ public sealed partial class ClosedEnumAnalyzer : DiagnosticAnalyzer
 		static bool condition(SemanticModel semanticModel, ExpressionSyntax operand) =>
 			semanticModel.GetOperation(operand) switch
 			{
-				IFieldReferenceOperation { Type: { } type } => innerCondition(type),
-				ILocalReferenceOperation { Local: { Type: var type } } => innerCondition(type),
+				FRef { Type: { } type } => innerCondition(type),
+				LRef { Local.Type: var type } => innerCondition(type),
 				_ => false
 			};
 

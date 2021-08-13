@@ -65,7 +65,7 @@ public sealed partial class UnncessaryEmptyBracePatternAnalyzer : DiagnosticAnal
 				if (
 					subpattern is not
 					{
-						NameColon: { Name: var nestedName },
+						NameColon.Name: var nestedName,
 						Pattern: RecursivePatternSyntax
 						{
 							PropertyPatternClause:

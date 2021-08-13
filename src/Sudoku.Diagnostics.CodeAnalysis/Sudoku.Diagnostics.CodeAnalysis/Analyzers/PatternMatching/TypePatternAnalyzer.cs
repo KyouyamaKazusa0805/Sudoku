@@ -40,7 +40,7 @@ public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 			{
 				switch (type)
 				{
-					case PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }:
+					case PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword }:
 					{
 						context.ReportDiagnostic(
 							Diagnostic.Create(
@@ -111,8 +111,8 @@ public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 				{
 					case PredefinedTypeSyntax
 					{
-						Parent: { Parent: not ParenthesizedExpressionSyntax },
-						Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword }
+						Parent.Parent: not ParenthesizedExpressionSyntax,
+						Keyword.RawKind: (int)SyntaxKind.ObjectKeyword
 					}
 					when designation is DiscardDesignationSyntax:
 					{
@@ -183,7 +183,7 @@ public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 					{
 						RawKind: (int)SyntaxKind.IsExpression,
 						Left: var expr,
-						Right: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
+						Right: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword }
 					} expression
 				}
 			} node:
@@ -209,7 +209,7 @@ public sealed partial class TypePatternAnalyzer : DiagnosticAnalyzer
 					RawKind: (int)SyntaxKind.NotPattern,
 					Pattern: TypePatternSyntax
 					{
-						Type: PredefinedTypeSyntax { Keyword: { RawKind: (int)SyntaxKind.ObjectKeyword } }
+						Type: PredefinedTypeSyntax { Keyword.RawKind: (int)SyntaxKind.ObjectKeyword }
 					}
 				}
 			} pattern:

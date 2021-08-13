@@ -15,7 +15,7 @@ public sealed partial class WhereClausePureBooleanAnalyzer : DiagnosticAnalyzer
 
 	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 	{
-		if (context.Node is not QueryExpressionSyntax { Body: { Clauses: { Count: not 0 } clauses } } node)
+		if (context.Node is not QueryExpressionSyntax { Body.Clauses: { Count: not 0 } clauses } node)
 		{
 			return;
 		}

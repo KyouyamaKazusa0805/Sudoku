@@ -92,14 +92,11 @@ public sealed partial class DiscardParameterAnalyzer : DiagnosticAnalyzer
 								{
 									Parent: InvocationExpressionSyntax
 									{
-										Expression: IdentifierNameSyntax
-										{
-											Identifier: { ValueText: "nameof" }
-										}
+										Expression: IdentifierNameSyntax { Identifier.ValueText: "nameof" }
 									}
 								}
 							},
-							Identifier: { ValueText: var possibleReference }
+							Identifier.ValueText: var possibleReference
 						} usage
 						when possibleReference == parameterName:
 						{

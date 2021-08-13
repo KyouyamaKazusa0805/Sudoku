@@ -24,9 +24,9 @@ public sealed partial class RecordToStringAnalyzer : DiagnosticAnalyzer
 				{
 					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 					Expression: var expr,
-					Name: { Identifier: { ValueText: "ToString" } }
+					Name.Identifier.ValueText: "ToString"
 				},
-				ArgumentList: { Arguments: { Count: 0 } }
+				ArgumentList.Arguments.Count: 0
 			}
 		)
 		{

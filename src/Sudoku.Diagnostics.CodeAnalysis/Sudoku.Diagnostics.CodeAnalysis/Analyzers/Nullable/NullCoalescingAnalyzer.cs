@@ -48,10 +48,7 @@ public sealed partial class NullCoalescingAnalyzer : DiagnosticAnalyzer
 			case IsPatternExpressionSyntax
 			{
 				Expression: var leftExpr,
-				Pattern: ConstantPatternSyntax
-				{
-					Expression: { RawKind: (int)SyntaxKind.NullLiteralExpression }
-				}
+				Pattern: ConstantPatternSyntax { Expression.RawKind: (int)SyntaxKind.NullLiteralExpression }
 			}:
 			{
 				innerCheck(semanticModel, leftExpr);

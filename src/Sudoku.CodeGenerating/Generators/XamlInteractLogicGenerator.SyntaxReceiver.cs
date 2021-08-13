@@ -17,7 +17,7 @@ partial class XamlInteractLogicGenerator
 		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
 			// Any field with at least one attribute is a candidate for property generation.
-			if (syntaxNode is ClassDeclarationSyntax { AttributeLists: { Count: not 0 } } classDeclaration)
+			if (syntaxNode is ClassDeclarationSyntax { AttributeLists.Count: not 0 } classDeclaration)
 			{
 				Candidates.Add(classDeclaration);
 			}

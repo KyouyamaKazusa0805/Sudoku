@@ -20,7 +20,7 @@ public sealed partial class ExtensionMethodParameterNamingAnalyzer : DiagnosticA
 			{
 				Identifier: { ValueText: var name } identifier,
 				Modifiers: { Count: not 0 } modifiers,
-				ParameterList: { Parameters: { Count: not 0 } parameters }
+				ParameterList.Parameters: { Count: not 0 } parameters
 			}
 		)
 		{
@@ -36,7 +36,7 @@ public sealed partial class ExtensionMethodParameterNamingAnalyzer : DiagnosticA
 			parameters[0] is not
 			{
 				Modifiers: var parameterModifiers,
-				Identifier: { ValueText: var parameterName }
+				Identifier.ValueText: var parameterName
 			} parameter
 		)
 		{

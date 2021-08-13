@@ -29,7 +29,7 @@ public sealed partial class FlaggedEnumFieldAnalyzer : DiagnosticAnalyzer
 					&& attributes.Any(
 						static attribute => attribute.Name is IdentifierNameSyntax
 						{
-							Identifier: { ValueText: "Flags" or nameof(FlagsAttribute) }
+							Identifier.ValueText: "Flags" or nameof(FlagsAttribute)
 						}
 					)
 			)

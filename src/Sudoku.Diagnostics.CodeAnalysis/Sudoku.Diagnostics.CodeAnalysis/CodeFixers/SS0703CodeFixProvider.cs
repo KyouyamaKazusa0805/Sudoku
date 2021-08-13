@@ -74,7 +74,7 @@ public sealed partial class SS0703CodeFixProvider : CodeFixProvider
 							Parent: VariableDeclarationSyntax
 							{
 								Type: NullableTypeSyntax { ElementType: var innerType } innerTypeNode,
-								Variables: { Count: 1 }
+								Variables.Count: 1
 							}
 						}
 					}

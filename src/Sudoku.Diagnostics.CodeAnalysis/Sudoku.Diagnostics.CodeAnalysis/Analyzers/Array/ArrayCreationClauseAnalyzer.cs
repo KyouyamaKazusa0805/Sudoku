@@ -18,7 +18,7 @@ public sealed partial class ArrayCreationClauseAnalyzer : DiagnosticAnalyzer
 		if (
 			context.Node is not VariableDeclarationSyntax
 			{
-				Type: ArrayTypeSyntax { RankSpecifiers: { Count: 1 } },
+				Type: ArrayTypeSyntax { RankSpecifiers.Count: 1 },
 				Variables: { Count: not 0 } variables
 			} node
 		)
@@ -31,14 +31,11 @@ public sealed partial class ArrayCreationClauseAnalyzer : DiagnosticAnalyzer
 			if (
 				variable is not
 				{
-					Initializer:
+					Initializer.Value: ArrayCreationExpressionSyntax
 					{
-						Value: ArrayCreationExpressionSyntax
-						{
-							Type: var type,
-							Initializer: { } initializer
-						} value
-					}
+						Type: var type,
+						Initializer: { } initializer
+					} value
 				}
 			)
 			{

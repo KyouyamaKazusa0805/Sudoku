@@ -32,7 +32,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 			case ObjectCreationExpressionSyntax
 			{
 				Type: var type,
-				ArgumentList: { Arguments: { Count: 1 } args }
+				ArgumentList.Arguments: { Count: 1 } args
 			}
 			when semanticModel.GetSymbolInfo(type, cancellationToken) is { Symbol: var possibleVsbSymbol }
 			&& SymbolEqualityComparer.Default.Equals(possibleVsbSymbol, vsbSymbol):
@@ -42,7 +42,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 				{
 					case ArrayCreationExpressionSyntax
 					{
-						Type: { ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } } }
+						Type.ElementType: PredefinedTypeSyntax { Keyword.ValueText: "char" }
 					}:
 					case ImplicitArrayCreationExpressionSyntax implicitArrayCreation
 					when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
@@ -65,7 +65,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 
 				break;
 			}
-			case ImplicitObjectCreationExpressionSyntax { ArgumentList: { Arguments: { Count: 1 } args } }
+			case ImplicitObjectCreationExpressionSyntax { ArgumentList.Arguments: { Count: 1 } args }
 			when semanticModel.GetOperation(originalNode, cancellationToken) is IObjectCreationOperation
 			{
 				Type: var possibleCharSymbol
@@ -76,7 +76,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 				{
 					case ArrayCreationExpressionSyntax
 					{
-						Type: { ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } } }
+						Type.ElementType: PredefinedTypeSyntax { Keyword.ValueText: "char" }
 					}:
 					case ImplicitArrayCreationExpressionSyntax implicitArrayCreation
 					when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
@@ -114,7 +114,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 			case ObjectCreationExpressionSyntax
 			{
 				Type: var type,
-				ArgumentList: { Arguments: { Count: 1 } args }
+				ArgumentList.Arguments: { Count: 1 } args
 			}
 			when semanticModel.GetSymbolInfo(type, cancellationToken) is { Symbol: var possibleVsbSymbol }
 			&& SymbolEqualityComparer.Default.Equals(possibleVsbSymbol, vsbSymbol):
@@ -126,7 +126,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 					{
 						Type: ArrayTypeSyntax
 						{
-							ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } },
+							ElementType: PredefinedTypeSyntax { Keyword.ValueText: "char" },
 							RankSpecifiers: { Count: 1 } rankSpecifiers
 						}
 					}
@@ -157,7 +157,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 					}
 					case ImplicitStackAllocArrayCreationExpressionSyntax
 					{
-						Initializer: { Expressions: { Count: var value and >= 300 } }
+						Initializer.Expressions.Count: var value and >= 300
 					} implicitArrayCreation
 					when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
 					{
@@ -182,7 +182,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 
 				break;
 			}
-			case ImplicitObjectCreationExpressionSyntax { ArgumentList: { Arguments: { Count: 1 } args } }
+			case ImplicitObjectCreationExpressionSyntax { ArgumentList.Arguments: { Count: 1 } args }
 			when semanticModel.GetOperation(originalNode, cancellationToken) is IObjectCreationOperation
 			{
 				Type: var possibleCharSymbol
@@ -195,7 +195,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 					{
 						Type: ArrayTypeSyntax
 						{
-							ElementType: PredefinedTypeSyntax { Keyword: { ValueText: "char" } },
+							ElementType: PredefinedTypeSyntax { Keyword.ValueText: "char" },
 							RankSpecifiers: { Count: 1 } rankSpecifiers
 						}
 					}
@@ -226,7 +226,7 @@ public sealed partial class ValueStringBuilderArgsAnalyzer : DiagnosticAnalyzer
 					}
 					case ImplicitStackAllocArrayCreationExpressionSyntax
 					{
-						Initializer: { Expressions: { Count: var value and >= 300 } }
+						Initializer.Expressions.Count: var value and >= 300
 					} implicitArrayCreation
 					when semanticModel.GetOperation(implicitArrayCreation) is IArrayCreationOperation
 					{

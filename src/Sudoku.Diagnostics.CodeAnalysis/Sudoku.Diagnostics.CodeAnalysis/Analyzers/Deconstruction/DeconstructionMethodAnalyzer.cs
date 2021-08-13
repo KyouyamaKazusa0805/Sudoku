@@ -21,7 +21,7 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 			{
 				Parent: { } parentNode,
 				Identifier: { ValueText: "Deconstruct" } identifier,
-				ParameterList: { Parameters: { Count: var parametersCount } parameters },
+				ParameterList.Parameters: { Count: var parametersCount } parameters,
 				Modifiers: var modifiers,
 				ReturnType: var returnType,
 				Body: var body,
@@ -51,7 +51,7 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 			where member switch
 			{
 				IFieldSymbol { IsStatic: false } => true,
-				IPropertySymbol { IsStatic: false, Parameters: { IsEmpty: true } } => true,
+				IPropertySymbol { IsStatic: false, Parameters.IsEmpty: true } => true,
 				_ => false
 			}
 			select member;

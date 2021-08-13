@@ -15,7 +15,7 @@ public sealed partial class OrderbyAfterWhereFilterAnalyzer : DiagnosticAnalyzer
 
 	private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 	{
-		if (context.Node is not QueryExpressionSyntax { Body: { Clauses: { Count: not 0 } clauses } })
+		if (context.Node is not QueryExpressionSyntax { Body.Clauses: { Count: not 0 } clauses })
 		{
 			return;
 		}
@@ -45,10 +45,7 @@ public sealed partial class OrderbyAfterWhereFilterAnalyzer : DiagnosticAnalyzer
 				if (
 					ordering is not
 					{
-						Expression: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: var identifier }
-						}
+						Expression: IdentifierNameSyntax { Identifier.ValueText: var identifier }
 					}
 				)
 				{
@@ -57,9 +54,9 @@ public sealed partial class OrderbyAfterWhereFilterAnalyzer : DiagnosticAnalyzer
 
 				if (
 					!(
-						leftExpr is IdentifierNameSyntax { Identifier: { ValueText: var leftIdentifier } }
+						leftExpr is IdentifierNameSyntax { Identifier.ValueText: var leftIdentifier }
 						&& leftIdentifier == identifier
-						|| rightExpr is IdentifierNameSyntax { Identifier: { ValueText: var rightIdentifier } }
+						|| rightExpr is IdentifierNameSyntax { Identifier.ValueText: var rightIdentifier }
 						&& rightIdentifier == identifier
 					)
 				)

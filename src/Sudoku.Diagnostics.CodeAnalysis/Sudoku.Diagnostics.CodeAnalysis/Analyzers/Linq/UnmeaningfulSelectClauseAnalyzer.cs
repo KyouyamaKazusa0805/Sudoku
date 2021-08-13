@@ -18,20 +18,13 @@ public sealed partial class UnmeaningfulSelectClauseAnalyzer : DiagnosticAnalyze
 		if (
 			context.Node is not QueryExpressionSyntax
 			{
-				FromClause:
-				{
-					Type: null,
-					Identifier: { ValueText: var identifier }
-				},
+				FromClause: { Type: null, Identifier.ValueText: var identifier },
 				Body:
 				{
-					Clauses: { Count: 0 },
+					Clauses.Count: 0,
 					SelectOrGroup: SelectClauseSyntax
 					{
-						Expression: IdentifierNameSyntax
-						{
-							Identifier: { ValueText: var selectClauseIdentifier }
-						}
+						Expression: IdentifierNameSyntax { Identifier.ValueText: var selectClauseIdentifier }
 					},
 					Continuation: null
 				}

@@ -84,7 +84,7 @@ public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyze
 				}
 				case
 				{
-					NameColon: { Name: { Identifier: { ValueText: var parameterName } } } nameColonNode,
+					NameColon: { Name.Identifier.ValueText: var parameterName } nameColonNode,
 					Pattern: var valuePattern
 				} subpattern:
 				{
@@ -189,7 +189,7 @@ public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyze
 					}
 					case RecursivePatternSyntax
 					{
-						PropertyPatternClause: { Subpatterns: { Count: >= 1 } nestedSubpatterns }
+						PropertyPatternClause.Subpatterns: { Count: >= 1 } nestedSubpatterns
 					}:
 					{
 						checkSS0613Recursively(context, nestedSubpatterns, discardPatterns);

@@ -98,7 +98,7 @@ public sealed partial class DefaultExpressionAnalyzer : DiagnosticAnalyzer
 			case BaseObjectCreationExpressionSyntax
 			{
 				Parent: var parentNode,
-				ArgumentList: { Arguments: { Count: 0 } },
+				ArgumentList.Arguments.Count: 0,
 				Initializer: null
 			} node
 			when semanticModel.GetOperation(node) is IObjectCreationOperation

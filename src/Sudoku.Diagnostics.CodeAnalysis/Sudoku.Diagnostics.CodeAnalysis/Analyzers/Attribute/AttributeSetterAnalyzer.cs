@@ -21,7 +21,7 @@ public sealed partial class AttributeSetterAnalyzer : DiagnosticAnalyzer
 			originalNode is not ClassDeclarationSyntax
 			{
 				Members: { Count: not 0 } members,
-				BaseList: { Types: { Count: not 0 } types }
+				BaseList.Types: { Count: not 0 } types
 			}
 		)
 		{
@@ -66,7 +66,7 @@ public sealed partial class AttributeSetterAnalyzer : DiagnosticAnalyzer
 			if (
 				member is not PropertyDeclarationSyntax
 				{
-					AccessorList: { Accessors: { Count: not 0 } accessors }
+					AccessorList.Accessors: { Count: not 0 } accessors
 				}
 			)
 			{

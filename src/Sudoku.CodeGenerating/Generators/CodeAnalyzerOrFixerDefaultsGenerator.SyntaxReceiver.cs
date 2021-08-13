@@ -16,7 +16,7 @@ partial class CodeAnalyzerOrFixerDefaultsGenerator
 		/// <inheritdoc/>
 		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			if (syntaxNode is ClassDeclarationSyntax { AttributeLists: { Count: not 0 } } declaration)
+			if (syntaxNode is ClassDeclarationSyntax { AttributeLists.Count: not 0 } declaration)
 			{
 				Candidates.Add(declaration);
 			}

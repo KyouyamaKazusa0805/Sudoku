@@ -38,15 +38,15 @@ public sealed partial class AvailableSimplificationAnyMethodAnalyzer : Diagnosti
 								{
 									Expression: IdentifierNameSyntax
 									{
-										Identifier: { ValueText: var identifierInSelectClause }
+										Identifier.ValueText: var identifierInSelectClause
 									}
 								}
 							}
 						}
 					},
-					Name: { Identifier: { ValueText: "Any" } anyToken }
+					Name.Identifier: { ValueText: "Any" } anyToken
 				},
-				ArgumentList: { Arguments: { Count: 0 } }
+				ArgumentList.Arguments.Count: 0
 			} node
 		)
 		{

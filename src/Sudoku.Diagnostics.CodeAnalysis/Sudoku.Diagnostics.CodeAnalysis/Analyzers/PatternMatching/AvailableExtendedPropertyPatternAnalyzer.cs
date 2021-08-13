@@ -19,7 +19,7 @@ public sealed partial class AvailableExtendedPropertyPatternAnalyzer : Diagnosti
 			context.Node is not RecursivePatternSyntax
 			{
 				PositionalPatternClause: null,
-				PropertyPatternClause: { Subpatterns: var subpatterns }
+				PropertyPatternClause.Subpatterns: var subpatterns
 			} node
 		)
 		{
@@ -34,11 +34,11 @@ public sealed partial class AvailableExtendedPropertyPatternAnalyzer : Diagnosti
 			if (
 				currentNode is not
 				{
-					NameColon: { Name: { Identifier: { ValueText: var baseText } } },
+					NameColon.Name.Identifier.ValueText: var baseText,
 					Pattern: RecursivePatternSyntax
 					{
 						Type: null,
-						PropertyPatternClause: { Subpatterns: { Count: var count } nestedSubpatterns },
+						PropertyPatternClause.Subpatterns: { Count: var count } nestedSubpatterns,
 						Designation: null
 					}
 				}
@@ -60,10 +60,7 @@ public sealed partial class AvailableExtendedPropertyPatternAnalyzer : Diagnosti
 						current.Pattern is not RecursivePatternSyntax
 						{
 							Type: null,
-							PropertyPatternClause:
-							{
-								Subpatterns: { Count: var innerCount } innerNestedSubpatterns
-							},
+							PropertyPatternClause.Subpatterns: { Count: var innerCount } innerNestedSubpatterns,
 							Designation: null
 						}
 					)

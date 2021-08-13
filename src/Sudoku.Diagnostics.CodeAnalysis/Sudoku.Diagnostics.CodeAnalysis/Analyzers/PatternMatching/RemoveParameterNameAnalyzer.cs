@@ -18,11 +18,8 @@ public sealed partial class RemoveParameterNameAnalyzer : DiagnosticAnalyzer
 		if (
 			context.Node is not RecursivePatternSyntax
 			{
-				Parent: not RecursivePatternSyntax
-				{
-					PositionalPatternClause: { Subpatterns: { Count: not 0 } }
-				},
-				PositionalPatternClause: { Subpatterns: { Count: not 0 } subpatterns }
+				Parent: not RecursivePatternSyntax { PositionalPatternClause.Subpatterns: { Count: not 0 } },
+				PositionalPatternClause.Subpatterns: { Count: not 0 } subpatterns
 			} node
 		)
 		{
@@ -40,7 +37,7 @@ public sealed partial class RemoveParameterNameAnalyzer : DiagnosticAnalyzer
 				{
 					case RecursivePatternSyntax
 					{
-						PositionalPatternClause: { Subpatterns: { Count: not 0 } nestedSubpatterns }
+						PositionalPatternClause.Subpatterns: { Count: not 0 } nestedSubpatterns
 					}:
 					{
 						recursion(nestedSubpatterns);
