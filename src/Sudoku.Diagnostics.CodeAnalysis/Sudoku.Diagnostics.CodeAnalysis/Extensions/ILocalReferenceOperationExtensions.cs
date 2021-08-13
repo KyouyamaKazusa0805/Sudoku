@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis.Operations;
 
 /// <summary>
 /// Provides extension methods on <see cref="ILocalReferenceOperation"/>.
 /// </summary>
 /// <seealso cref="ILocalReferenceOperation"/>
-public static class ILocalReferenceOperationEx
+public static class ILocalReferenceOperationExtensions
 {
 	/// <summary>
 	/// Checks whether the current instance has the same reference with the specified one.

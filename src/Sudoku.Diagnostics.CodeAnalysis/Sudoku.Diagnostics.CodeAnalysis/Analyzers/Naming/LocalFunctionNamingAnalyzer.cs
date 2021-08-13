@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0501")]
 public sealed partial class LocalFunctionNamingAnalyzer : DiagnosticAnalyzer

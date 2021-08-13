@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0618F", "SS0619F")]
 public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer

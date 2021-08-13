@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0101", "SD0102", "SD0103", "SD0104", "SD0105", "SD0106", "SD0107", "SD0108")]
 public sealed partial class PropertiesInStepSearcherAnalyzer : DiagnosticAnalyzer

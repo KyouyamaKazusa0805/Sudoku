@@ -1,12 +1,10 @@
-﻿using static Microsoft.CodeAnalysis.SymbolEqualityComparer;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="SemanticModel"/>.
 /// </summary>
 /// <seealso cref="SemanticModel"/>
-public static class SemanticModelEx
+public static class SemanticModelExtensions
 {
 	/// <summary>
 	/// <para>Checks whether the two <see cref="SyntaxNode"/>s hold the same type.</para>
@@ -39,6 +37,6 @@ public static class SemanticModelEx
 			(_, RKind: (int)SyntaxKind.NullLiteralExpression, LType: { IsValueType: true }, _) => false,
 			(_, _, LType: null, _) => throw new ArgumentException("The type can't be inferred.", nameof(left)),
 			(_, _, _, RType: null) => throw new ArgumentException("The type can't be inferred.", nameof(right)),
-			(_, _, var l, var r) => (withNullableChecking ? IncludeNullability : Default).Equals(l, r)
+			(_, _, var l, var r) => (withNullableChecking ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default).Equals(l, r)
 		};
 }

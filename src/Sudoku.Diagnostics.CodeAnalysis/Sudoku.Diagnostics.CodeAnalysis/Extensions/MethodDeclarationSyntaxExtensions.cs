@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 /// <summary>
 /// Provides extension methods on <see cref="MethodDeclarationSyntax"/>.
 /// </summary>
 /// <seealso cref="MethodDeclarationSyntax"/>
-public static class MethodDeclarationSyntaxEx
+public static class MethodDeclarationSyntaxExtensions
 {
 	/// <summary>
 	/// Determine whether the specified method syntax node is an valid deconstruction method

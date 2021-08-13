@@ -1,7 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-using Comparer = Microsoft.CodeAnalysis.SymbolEqualityComparer;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0403")]
 public sealed partial class DirectSearcherAttributeAnalyzer : DiagnosticAnalyzer
@@ -34,6 +31,7 @@ public sealed partial class DirectSearcherAttributeAnalyzer : DiagnosticAnalyzer
 	{
 		var (semanticModel, compilation, originalNode) = context;
 
+		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		var attributeSymbol = compilation.GetTypeByMetadataName(AttributeTypeName);
 		switch (originalNode)
 		{
@@ -45,7 +43,7 @@ public sealed partial class DirectSearcherAttributeAnalyzer : DiagnosticAnalyzer
 					break;
 				}
 
-				if (attributeList.All(a => !Comparer.Default.Equals(a.AttributeClass, attributeSymbol)))
+				if (attributeList.All(a => !f(a.AttributeClass, attributeSymbol)))
 				{
 					break;
 				}
@@ -69,7 +67,7 @@ public sealed partial class DirectSearcherAttributeAnalyzer : DiagnosticAnalyzer
 					break;
 				}
 
-				if (attributeList.All(a => !Comparer.Default.Equals(a.AttributeClass, attributeSymbol)))
+				if (attributeList.All(a => !f(a.AttributeClass, attributeSymbol)))
 				{
 					break;
 				}

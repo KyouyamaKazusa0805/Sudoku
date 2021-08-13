@@ -1,7 +1,5 @@
 ﻿#if false
 
-using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0703F", "SS0704F")]

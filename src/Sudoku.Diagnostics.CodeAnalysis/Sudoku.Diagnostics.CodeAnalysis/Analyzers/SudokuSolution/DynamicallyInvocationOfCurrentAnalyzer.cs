@@ -1,7 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-using P = Sudoku.Diagnostics.CodeAnalysis.ProjectNames;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0202", "SD0203", "SD0204", "SD0205", "SD0206")]
 public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticAnalyzer
@@ -25,7 +22,7 @@ public sealed partial class DynamicallyInvocationOfCurrentAnalyzer : DiagnosticA
 				semanticModel: var semanticModel,
 				compilation:
 				{
-					AssemblyName: not (P.Sudoku_Windows or P.Sudoku_UI or P.Sudoku_UI_WinUI)
+					AssemblyName: not (ProjectNames.Sudoku_Windows or ProjectNames.Sudoku_UI or ProjectNames.Sudoku_UI_WinUI)
 				} compilation,
 				node: var n,
 				_,

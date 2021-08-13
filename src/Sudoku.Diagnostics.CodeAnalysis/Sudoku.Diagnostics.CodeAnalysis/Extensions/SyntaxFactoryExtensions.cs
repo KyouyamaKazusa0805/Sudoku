@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 /// <summary>
 /// Provides the additional operations for <see cref="SyntaxFactory"/>.
 /// </summary>
 /// <seealso cref="SyntaxFactory"/>
-public static class SyntaxFactoryEx
+public static class SyntaxFactoryExtensions
 {
 	/// <summary>
 	/// Creates a syntax node that represents a <c>expr <see langword="is"/> { }</c>

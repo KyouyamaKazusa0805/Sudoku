@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 /// <summary>
 /// Provides extension methods on <see cref="ArgumentSyntax"/>.
 /// </summary>
 /// <seealso cref="ArgumentSyntax"/>
-public static class ArgumentSyntaxEx
+public static class ArgumentSyntaxExtensions
 {
 	/// <summary>
 	/// Gets the full name of the parameter.

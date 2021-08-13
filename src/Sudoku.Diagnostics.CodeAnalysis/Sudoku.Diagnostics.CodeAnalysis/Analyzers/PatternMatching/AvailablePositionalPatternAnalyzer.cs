@@ -1,5 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-using InfoTuple = System.ValueTuple<
+﻿using InfoTuple = System.ValueTuple<
 	string, // Local
 	string, // MemberName
 	Microsoft.CodeAnalysis.ITypeSymbol, // Type

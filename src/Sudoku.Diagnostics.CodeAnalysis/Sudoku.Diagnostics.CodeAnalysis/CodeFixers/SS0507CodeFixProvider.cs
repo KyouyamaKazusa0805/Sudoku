@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
 
 [CodeFixProvider("SS0507")]
 public sealed partial class SS0507CodeFixProvider : CodeFixProvider

@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
 
 [CodeFixProvider("SS0634")]
 public sealed partial class SS0634CodeFixProvider : CodeFixProvider
@@ -26,7 +24,7 @@ public sealed partial class SS0634CodeFixProvider : CodeFixProvider
 					var editor = await DocumentEditor.CreateAsync(document, c);
 					editor.ReplaceNode(
 						node,
-						SyntaxFactoryEx.IsEmptyPropertyPatternExpression(
+						SyntaxFactoryExtensions.IsEmptyPropertyPatternExpression(
 							expr,
 							variableName
 						)

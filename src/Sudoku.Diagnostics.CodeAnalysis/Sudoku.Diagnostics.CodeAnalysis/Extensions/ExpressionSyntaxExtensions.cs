@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 /// <summary>
 /// Provides extension methods on <see cref="ExpressionSyntax"/>.
 /// </summary>
 /// <seealso cref="ExpressionSyntax"/>
-public static class ExpressionSyntaxEx
+public static class ExpressionSyntaxExtensions
 {
 	/// <summary>
 	/// To check whether the expression is a simple expression.

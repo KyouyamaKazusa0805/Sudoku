@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SD0405")]
 public sealed partial class AutoEqualityArgumentsAnalyzer : DiagnosticAnalyzer

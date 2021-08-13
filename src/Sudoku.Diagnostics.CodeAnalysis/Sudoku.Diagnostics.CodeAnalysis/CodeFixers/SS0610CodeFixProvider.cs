@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
 
 [CodeFixProvider("SS0610")]
 public sealed partial class SS0610CodeFixProvider : CodeFixProvider
@@ -28,7 +26,7 @@ public sealed partial class SS0610CodeFixProvider : CodeFixProvider
 						isPatternExpr,
 						(IsNullable: isNullable, HasDesignation: hasDesignation) switch
 						{
-							(_, HasDesignation: true) => SyntaxFactoryEx.IsEmptyPropertyPatternExpression(
+							(_, HasDesignation: true) => SyntaxFactoryExtensions.IsEmptyPropertyPatternExpression(
 								expr,
 								getVariableName(diagnostic, root).Name
 							),

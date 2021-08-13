@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
 /// <summary>
-/// Provides extension methods on <see cref="string"/>.
+/// Provides extension methods on <see cref="string"/> value as an identifier.
 /// </summary>
 /// <seealso cref="string"/>
-public static class StringEx
+public static class IdentifierMarshal
 {
 	/// <summary>
 	/// To determine whether the string value is a camel-case identifier.

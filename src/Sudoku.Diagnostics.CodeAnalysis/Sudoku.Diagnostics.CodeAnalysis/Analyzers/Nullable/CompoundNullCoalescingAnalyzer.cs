@@ -1,9 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
-using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
-using PRef = Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation;
-
-namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [CodeAnalyzer("SS0701", "SS0705")]
 public sealed partial class CompoundNullCoalescingAnalyzer : DiagnosticAnalyzer

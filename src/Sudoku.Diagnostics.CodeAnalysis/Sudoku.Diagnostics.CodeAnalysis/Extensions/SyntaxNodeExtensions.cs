@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="SyntaxNode"/>.
 /// </summary>
 /// <seealso cref="SyntaxNode"/>
-public static class SyntaxNodeEx
+public static class SyntaxNodeExtensions
 {
 	/// <summary>
 	/// Check whether the containing type of the specified syntax node satisfies the

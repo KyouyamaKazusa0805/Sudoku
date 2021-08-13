@@ -1,14 +1,12 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis.Extensions;
-
-namespace Sudoku.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Defines an option that uses and specifies the case converting, which is used in
-/// <see cref="StringEx.ToCamelCase(string, CaseConvertingOption)"/>
-/// or <see cref="StringEx.ToPascalCase(string)"/>.
+/// <see cref="IdentifierMarshal.ToCamelCase(string, CaseConvertingOption)"/>
+/// or <see cref="IdentifierMarshal.ToPascalCase(string)"/>.
 /// </summary>
-/// <seealso cref="StringEx.ToCamelCase(string, CaseConvertingOption)"/>
-/// <seealso cref="StringEx.ToPascalCase(string)"/>
+/// <seealso cref="IdentifierMarshal.ToCamelCase(string, CaseConvertingOption)"/>
+/// <seealso cref="IdentifierMarshal.ToPascalCase(string)"/>
 public enum CaseConvertingOption
 {
 	/// <summary>

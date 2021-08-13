@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="INamedTypeSymbol"/>.
 /// </summary>
 /// <seealso cref="INamedTypeSymbol"/>
-public static class INamedTypeSymbolEx
+public static class INamedTypeSymbolExtensions
 {
 	/// <summary>
 	/// Check whether the current symbol derives from the specified type symbol.

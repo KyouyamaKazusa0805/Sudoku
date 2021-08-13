@@ -18,6 +18,10 @@ global using Microsoft.CodeAnalysis.Editing;
 global using Microsoft.CodeAnalysis.Operations;
 global using Microsoft.CodeAnalysis.Text;
 global using Sudoku.CodeGenerating;
+global using Sudoku.Diagnostics.CodeAnalysis;
+global using FRef = Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation;
+global using LRef = Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation;
+global using PRef = Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation;
 
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics.CodeAnalysis.CodeFixes")]
 

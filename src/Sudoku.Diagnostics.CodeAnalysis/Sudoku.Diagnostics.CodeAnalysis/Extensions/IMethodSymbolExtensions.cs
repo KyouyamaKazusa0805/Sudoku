@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="IMethodSymbol"/>.
 /// </summary>
 /// <seealso cref="IMethodSymbol"/>
-public static class IMethodSymbolEx
+public static class IMethodSymbolExtensions
 {
 	/// <summary>
 	/// To determine whether the specified method symbol is referenced to a deconstruction method.

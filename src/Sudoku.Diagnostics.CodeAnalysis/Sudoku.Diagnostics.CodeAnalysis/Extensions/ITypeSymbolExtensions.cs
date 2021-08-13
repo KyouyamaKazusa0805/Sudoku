@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="ITypeSymbol"/>.
 /// </summary>
 /// <seealso cref="ITypeSymbol"/>
-public static class ITypeSymbolEx
+public static class ITypeSymbolExtensions
 {
 	/// <summary>
 	/// Deconstruct the instance to multiple values.
