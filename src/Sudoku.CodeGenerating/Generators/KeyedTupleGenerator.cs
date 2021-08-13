@@ -22,14 +22,14 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 			int[] values = Enumerable.Range(1, length).ToArray();
 			string generics = string.Join(", ", from i in values select $"T{i}");
 			string commentsForGenericTypeParams = string.Join(
-				"\r\n\t",
+				"\r\n",
 				from i in values
 				select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{
 					generics
 				}}}.Item{i}""/>.</typeparam>"
 			);
 			string commentsForParams = string.Join(
-				"\r\n\t",
+				"\r\n",
 				from i in values select $@"/// <param name=""Item{i}"">The {i}{i.GetOrderSuffix()} item.</param>"
 			);
 			string typeParams = string.Join(", ", from i in values select $"T{i}");
@@ -41,7 +41,7 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 			string constructorParamList = string.Join(", ", from i in values select $"T{i} item{i}");
 			string constructorParamListWithoutType = string.Join(", ", from i in values select $"item{i}");
 			string commentsForConstructorParams = string.Join(
-				"\r\n\t\t",
+				"\r\n\t",
 				from i in values select $@"/// <param name=""item{i}"">The item {i}.</param>"
 			);
 			string indexerValues = string.Join(", ", from i in values select $@"{i} => Item{i}");
@@ -63,7 +63,7 @@ namespace System.Collections.Generic;
 /// <param name=""PriorKey"">The prior key.</param>
 [global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 [global::System.Runtime.CompilerServices.CompilerGenerated]
-public sealed record KeyedTuple<{typeParams}>({primaryConstructorParamList})
+public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamList})
 	: global::System.Runtime.CompilerServices.ITuple
 {{
 	/// <summary>
