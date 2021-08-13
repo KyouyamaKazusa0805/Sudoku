@@ -1,7 +1,4 @@
-﻿using DPoint = System.Drawing.Point;
-using DPointF = System.Drawing.PointF;
-
-namespace System.Drawing;
+﻿namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="DPoint"/> and <see cref="DPointF"/>.
