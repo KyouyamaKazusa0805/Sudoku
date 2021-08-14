@@ -1,31 +1,21 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Text;
-using Sudoku.Diagnostics;
-using Sudoku.Diagnostics.LanguageFeatures;
+//
+// string.Format
+//
+string a = "Hello";
+char b = ',';
+string c = "world";
+char d = '!';
+Console.WriteLine($"{a}{b}{c}{d}");
 
-var fileCounter = new FileCounter(
-	root: Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.FullName,
-	extension: "cs",
-	withBinOrObjDirectory: false
-);
+//
+// Imrpoved interpolated string
+//
+var s = new DefaultInterpolatedStringHandler();
+s.AppendFormatted("Hello");
+s.AppendFormatted(',');
+s.AppendFormatted("world");
+s.AppendFormatted('!');
 
-await fileCounter.CountUpAsync();
-
-var syntaxReplacer = new FileScopedNamespaceSyntaxReplacer();
-foreach (string file in fileCounter.FileList)
-{
-	if (file.StartsWith(@"P:\Projects\Common\Sudoku\src\Sudoku.CodeGenerating"))
-	{
-		continue;
-	}
-
-	string content = await File.ReadAllTextAsync(file, Encoding.UTF8);
-
-	if (syntaxReplacer.Replace(content) is not { } resultCode)
-	{
-		continue;
-	}
-
-	await File.WriteAllTextAsync(file, resultCode, Encoding.UTF8);
-}
+Console.WriteLine(s.ToStringAndClear());
