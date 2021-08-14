@@ -8,6 +8,7 @@
 /// <param name="LinkType">Indicates the link type.</param>
 [AutoDeconstruct(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 [AutoHashCode(nameof(EigenValue))]
+[AutoEquality(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType) : IValueEquatable<Link>, IJsonSerializable<Link, Link.JsonConverter>
 {
 	/// <summary>
@@ -34,12 +35,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// Indicates the eigen value.
 	/// </summary>
 	private int EigenValue => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
-
-
-	/// <inheritdoc/>
-	public bool Equals(in Link other) =>
-		((int)LinkType << 20 | StartCandidate << 10 | EndCandidate) ==
-		((int)other.LinkType << 20 | other.StartCandidate << 10 | other.EndCandidate);
 
 
 	/// <inheritdoc cref="object.ToString"/>

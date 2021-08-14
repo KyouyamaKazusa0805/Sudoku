@@ -1819,9 +1819,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -3480,9 +3477,6 @@
             <summary>
             Indicates the eigen value.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

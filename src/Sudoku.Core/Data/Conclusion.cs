@@ -19,6 +19,7 @@
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
+[AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
@@ -57,10 +58,6 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	public bool Equals(in Conclusion other) =>
-		Cell == other.Cell && Digit == other.Digit && ConclusionType == other.ConclusionType;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);

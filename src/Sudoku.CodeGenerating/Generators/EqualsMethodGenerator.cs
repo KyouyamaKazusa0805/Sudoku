@@ -62,6 +62,8 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 			string typeName = type.Name;
 			string objectEqualsMethod = type.IsRefLikeType
 				? "// This type is a ref struct, so 'bool Equals(object?) is useless."
+				: type.IsRecord && type.TypeKind == TypeKind.Struct
+				? "// This type is a record struct, so 'bool Equals(object?) can't be syntheized."
 				: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
