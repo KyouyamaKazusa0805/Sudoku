@@ -23,7 +23,7 @@ public sealed class StepInfoFormatizeGenerator : ISourceGenerator
 		var attributeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Text.FormatItemAttribute");
 
 		string attributes = string.Join(
-			"\r\n\t\t",
+			"\r\n\t",
 			from INamedTypeSymbol type in compilation.GetSymbolsWithName(static _ => true, SymbolFilter.Type, context.CancellationToken)
 			where type is { IsAbstract: false, IsGenericType: false }
 			let baseType = type.GetBaseTypes()
@@ -31,13 +31,15 @@ public sealed class StepInfoFormatizeGenerator : ISourceGenerator
 			let properties = type.GetMembers().OfType<IPropertySymbol>()
 			let fullName = type.ToDisplayString(FormatOptions.TypeFormat)
 			where properties.Any(p => p.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol)))
-			select $"[global::System.Diagnostics.CodeAnalysis.DynamicDependency(global::System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicProperties, typeof({fullName}), Condition = \"SOLUTION_WIDE_CODE_ANALYSIS\")]"
+			select $"[DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicProperties, typeof({fullName}), Condition = \"SOLUTION_WIDE_CODE_ANALYSIS\")]"
 		);
 
 		context.AddSource(
 			"Sudoku.Solving.Manual.StepInfo",
 			"DynamicDependencies",
 			$@"#pragma warning disable 1591
+
+using global::System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual;
 
