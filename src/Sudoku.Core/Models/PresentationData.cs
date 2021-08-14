@@ -38,8 +38,7 @@ public partial record struct PresentationData(
 	/// <param name="dataKind">The data kind.</param>
 	/// <param name="element">The element to check.</param>
 	/// <returns>An <see cref="int"/> index. If not found, return -1.</returns>
-	public readonly int IndexOf<TStruct>(PresentationDataKind dataKind, TStruct element)
-		where TStruct : struct
+	public readonly int IndexOf<TStruct>(PresentationDataKind dataKind, TStruct element) where TStruct : struct
 	{
 		switch (dataKind)
 		{

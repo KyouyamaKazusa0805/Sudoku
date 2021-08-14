@@ -216,7 +216,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 			select new KeyValuePair<char, int>(Base64List[i], i)
 		);
 
-		// Initializes events.//delegate*<ref Grid, in ValueChangedArgs, void>
+		// Initializes events.
 		ValueChanged = (delegate*<ref Grid, in ValueChangedArgs, void>)&onValueChanged;
 		RefreshingCandidates = (delegate*<ref Grid, void>)&onRefreshingCandidates;
 
