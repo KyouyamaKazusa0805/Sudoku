@@ -1827,36 +1827,16 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
-            <summary>
-            Determine whether the first instance is less than the second one.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_LessThanOrEqual(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
-            <summary>
-            Determine whether the first instance is less than or equals to the second one.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_GreaterThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
-            <summary>
-            Determine whether the first instance is greater than the second one.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_GreaterThanOrEqual(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
-            <summary>
-            Determine whether the first instance is greater than or equals to the second one.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Conclusion.JsonConverter">
             <summary>
@@ -3129,21 +3109,11 @@
         <member name="M:Sudoku.Data.Grid.ValueChangedArgs.Equals(Sudoku.Data.Grid.ValueChangedArgs@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Equality(Sudoku.Data.Grid.ValueChangedArgs,Sudoku.Data.Grid.ValueChangedArgs)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Data.Grid.ValueChangedArgs"/> instance hold a same value.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Equality(Sudoku.Data.Grid.ValueChangedArgs@,Sudoku.Data.Grid.ValueChangedArgs@)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Inequality(Sudoku.Data.Grid.ValueChangedArgs,Sudoku.Data.Grid.ValueChangedArgs)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Data.Grid.ValueChangedArgs"/> instance don't hold a same value.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Inequality(Sudoku.Data.Grid.ValueChangedArgs@,Sudoku.Data.Grid.ValueChangedArgs@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
             <summary>
@@ -5550,21 +5520,11 @@
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Equality(Sudoku.Data.SudokuGrid.ValueChangedArgs,Sudoku.Data.SudokuGrid.ValueChangedArgs)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Data.SudokuGrid.ValueChangedArgs"/> instance hold a same value.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Equality(Sudoku.Data.SudokuGrid.ValueChangedArgs@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Inequality(Sudoku.Data.SudokuGrid.ValueChangedArgs,Sudoku.Data.SudokuGrid.ValueChangedArgs)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Data.SudokuGrid.ValueChangedArgs"/> instance don't hold a same value.
-            </summary>
-            <param name="left">The first instance to compare.</param>
-            <param name="right">The second instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Inequality(Sudoku.Data.SudokuGrid.ValueChangedArgs@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
             <summary>
@@ -6096,20 +6056,10 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.op_Equality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
-            <summary>
-            Checks whether two <see cref="T:Sudoku.Models.ColorIdentifier"/>s contains the same value.
-            </summary>
-            <param name="left">The left value to compare.</param>
-            <param name="right">The right value to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.op_Inequality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
-            <summary>
-            Checks whether two <see cref="T:Sudoku.Models.ColorIdentifier"/>s contains the different value.
-            </summary>
-            <param name="left">The left value to compare.</param>
-            <param name="right">The right value to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
@@ -6402,6 +6352,12 @@
             </summary>
             <param name="svgCode">The SVG <see cref="T:System.String"/> code.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.op_Equality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.op_Inequality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Models.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Models.ColorIdentifier}}@)">
             <summary>

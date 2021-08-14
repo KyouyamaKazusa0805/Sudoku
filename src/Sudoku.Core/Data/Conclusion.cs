@@ -99,35 +99,15 @@ public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueC
 		}} {(Digit + 1).ToString()}";
 
 
-	/// <summary>
-	/// Determine whether the first instance is less than the second one.
-	/// </summary>
-	/// <param name="left">The first instance to compare.</param>
-	/// <param name="right">The second instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator <(in Conclusion left, in Conclusion right) => left.CompareTo(right) < 0;
 
-	/// <summary>
-	/// Determine whether the first instance is less than or equals to the second one.
-	/// </summary>
-	/// <param name="left">The first instance to compare.</param>
-	/// <param name="right">The second instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator <=(in Conclusion left, in Conclusion right) => left.CompareTo(right) <= 0;
 
-	/// <summary>
-	/// Determine whether the first instance is greater than the second one.
-	/// </summary>
-	/// <param name="left">The first instance to compare.</param>
-	/// <param name="right">The second instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator >(in Conclusion left, in Conclusion right) => left.CompareTo(right) > 0;
 
-	/// <summary>
-	/// Determine whether the first instance is greater than or equals to the second one.
-	/// </summary>
-	/// <param name="left">The first instance to compare.</param>
-	/// <param name="right">The second instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator >=(in Conclusion left, in Conclusion right) => left.CompareTo(right) >= 0;
 }

@@ -78,21 +78,11 @@ partial struct SudokuGrid
 			&& SetValue == other.SetValue;
 
 
-		/// <summary>
-		/// Determines whether two <see cref="ValueChangedArgs"/> instance hold a same value.
-		/// </summary>
-		/// <param name="left">The first instance to compare.</param>
-		/// <param name="right">The second instance to compare.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator ==(ValueChangedArgs left, ValueChangedArgs right) => left.Equals(right);
+		/// <inheritdoc/>
+		public static bool operator ==(in ValueChangedArgs left, in ValueChangedArgs right) => left.Equals(right);
 
-		/// <summary>
-		/// Determines whether two <see cref="ValueChangedArgs"/> instance don't hold a same value.
-		/// </summary>
-		/// <param name="left">The first instance to compare.</param>
-		/// <param name="right">The second instance to compare.</param>
-		/// <returns>A <see cref="bool"/> result.</returns>
-		public static bool operator !=(ValueChangedArgs left, ValueChangedArgs right) => !(left == right);
+		/// <inheritdoc/>
+		public static bool operator !=(in ValueChangedArgs left, in ValueChangedArgs right) => !(left == right);
 #endif
 	}
 }

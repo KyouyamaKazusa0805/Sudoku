@@ -21,4 +21,23 @@ public interface IValueEquatable<TStruct> : IEquatable<TStruct> where TStruct : 
 
 	/// <inheritdoc/>
 	bool IEquatable<TStruct>.Equals(TStruct other) => Equals(other);
+
+
+#if false
+	/// <summary>
+	/// Determine whether the two <typeparamref name="TStruct"/>-typed instance hold a same value to compare.
+	/// </summary>
+	/// <param name="left">The left instance to compare.</param>
+	/// <param name="right">The right instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	static abstract bool operator ==(in TStruct left, in TStruct right);
+
+	/// <summary>
+	/// Determine whether the two <typeparamref name="TStruct"/>-typed instance hold different values to compare.
+	/// </summary>
+	/// <param name="left">The left instance to compare.</param>
+	/// <param name="right">The right instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	static abstract bool operator !=(in TStruct left, in TStruct right);
+#endif
 }

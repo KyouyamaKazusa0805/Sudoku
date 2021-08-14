@@ -30,6 +30,9 @@ public partial record struct PresentationData(
 	public static partial bool TryParse(string svgCode, out PresentationData result);
 	public static partial PresentationData Parse(string svgCode);
 
+	/// <inheritdoc/>
 	public static bool operator ==(in PresentationData left, in PresentationData right) => left.Equals(in right);
+
+	/// <inheritdoc/>
 	public static bool operator !=(in PresentationData left, in PresentationData right) => !(left == right);
 }

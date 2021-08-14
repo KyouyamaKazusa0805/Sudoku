@@ -1117,14 +1117,4 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 			return false;
 		}
 	}
-
-
-#if false
-	/// <summary>
-	/// Implicit cast from <see cref="Grid"/> to <see cref="SudokuGrid"/>.
-	/// </summary>
-	/// <param name="this">The current type instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator SudokuGrid(in Grid @this) => @this.ToSudokuGrid();
-#endif
 }

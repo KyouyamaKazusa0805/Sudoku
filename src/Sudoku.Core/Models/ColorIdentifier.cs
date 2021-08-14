@@ -42,19 +42,9 @@ public readonly record struct ColorIdentifier(
 	}
 
 
-	/// <summary>
-	/// Checks whether two <see cref="ColorIdentifier"/>s contains the same value.
-	/// </summary>
-	/// <param name="left">The left value to compare.</param>
-	/// <param name="right">The right value to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator ==(in ColorIdentifier left, in ColorIdentifier right) => left.Equals(right);
 
-	/// <summary>
-	/// Checks whether two <see cref="ColorIdentifier"/>s contains the different value.
-	/// </summary>
-	/// <param name="left">The left value to compare.</param>
-	/// <param name="right">The right value to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	public static bool operator !=(in ColorIdentifier left, in ColorIdentifier right) => !(left == right);
 }
