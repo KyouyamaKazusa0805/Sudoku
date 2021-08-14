@@ -46,7 +46,7 @@ public sealed record BugType3StepInfo(
 	private string SizeStrZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNamesSize{Digits.Count.ToString()}"];
+		get => TextResources.Current[$"SubsetNamesSize{Digits.Count}"];
 	}
 
 	[FormatItem]

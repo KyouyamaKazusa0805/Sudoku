@@ -24,7 +24,7 @@ public sealed class NoSolutionException : Exception
 
 
 	/// <inheritdoc/>
-	public override string Message => $"This grid {InvalidGrid.ToString("#")} contains no valid solution.";
+	public override string Message => $"This grid {InvalidGrid:#} contains no valid solution.";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>

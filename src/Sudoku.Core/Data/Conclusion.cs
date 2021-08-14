@@ -67,11 +67,11 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() =>
-		$@"r{(Cell / 9 + 1).ToString()}c{(Cell % 9 + 1).ToString()} {ConclusionType switch
+		$@"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
 		{
 			ConclusionType.Assignment => "=",
 			ConclusionType.Elimination => "<>"
-		}} {(Digit + 1).ToString()}";
+		}} {Digit + 1}";
 
 
 	/// <inheritdoc/>

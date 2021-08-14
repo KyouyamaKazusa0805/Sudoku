@@ -172,14 +172,14 @@ public sealed partial record ComplexFishStepInfo(
 	private string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins.IsEmpty ? string.Empty : $"f{Exofins.ToString()} ";
+		get => Exofins.IsEmpty ? string.Empty : $"f{Exofins} ";
 	}
 
 	[FormatItem]
 	private string EndofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins.ToString()} ";
+		get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins} ";
 	}
 
 

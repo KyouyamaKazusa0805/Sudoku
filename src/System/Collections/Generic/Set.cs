@@ -273,7 +273,7 @@ public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatabl
 	}
 
 	/// <inheritdoc/>
-	public override string ToString() => $"Set (Count = {Count.ToString()})";
+	public override string ToString() => $"Set (Count = {Count})";
 
 	/// <inheritdoc/>
 	void ICollection<TEquatable>.Add(TEquatable item) => Add(item);

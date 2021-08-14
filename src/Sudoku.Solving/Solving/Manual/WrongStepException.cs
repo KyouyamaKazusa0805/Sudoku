@@ -28,7 +28,7 @@ public sealed class WrongStepException : Exception
 	/// <inheritdoc/>
 	public override string Message =>
 		$"This current step {WrongStep?.ToString() ?? string.Empty} may exist bug that causes the wrong handling. " +
-		$"The current grid is {InvalidGrid.ToString("#")}";
+		$"The current grid is {InvalidGrid:#}";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>

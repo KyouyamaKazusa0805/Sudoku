@@ -453,7 +453,7 @@ public partial class MainWindow : Window
 		int current = Settings.CurrentPuzzleNumber;
 		int max = _puzzlesText.Length;
 		LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
-		_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max}";
+		_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 		_textBoxJumpTo.IsEnabled = true;
 		UpdateDatabaseControls(current != 0, current != 0, current != max - 1, current != max - 1);
 	}
@@ -1112,7 +1112,7 @@ public partial class MainWindow : Window
 
 		// Get the specified dictionary.
 		ResourceDictionary? g(string p) => dictionaries.Find(d => d.Source.OriginalString == p);
-		if ((g($"Lang{countryCode.ToString()}.xaml") ?? g("LangEnUs.xaml")) is not { } rd)
+		if ((g($"Lang{countryCode}.xaml") ?? g("LangEnUs.xaml")) is not { } rd)
 		{
 			Messagings.FailedToLoadGlobalizationFile();
 			return;
@@ -1144,7 +1144,7 @@ public partial class MainWindow : Window
 				$"{LangSource["Comma"]}" +
 				$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 				$"{LangSource["TimeElapsed"]}" +
-				$"{_analyisResult.ElapsedTime.ToString("hh\\:mm\\.ss\\.fff")}" +
+				$"{_analyisResult.ElapsedTime:hh\\:mm\\.ss\\.fff}" +
 				$"{LangSource["Period"]}";
 
 			int i = 0;
@@ -1154,12 +1154,9 @@ public partial class MainWindow : Window
 				var (fore, back) = WColorPalette.DifficultyLevelColors[step.DifficultyLevel];
 				var content = new StepTriplet((Settings.ShowStepLabel, Settings.ShowStepDifficulty) switch
 				{
-					(ShowStepLabel: true, ShowStepDifficulty: true) =>
-						$"(#{(i + 1).ToString()}, {step.Difficulty.ToString()}) {step.ToSimpleString()}",
-					(ShowStepLabel: true, ShowStepDifficulty: false) =>
-						$"(#{(i + 1).ToString()}) {step.ToSimpleString()}",
-					(ShowStepLabel: false, ShowStepDifficulty: true) =>
-						$"({step.Difficulty.ToString()}) {step.ToSimpleString()}",
+					(ShowStepLabel: true, ShowStepDifficulty: true) => $"(#{i + 1}, {step.Difficulty}) {step.ToSimpleString()}",
+					(ShowStepLabel: true, ShowStepDifficulty: false) => $"(#{i + 1}) {step.ToSimpleString()}",
+					(ShowStepLabel: false, ShowStepDifficulty: true) => $"({step.Difficulty}) {step.ToSimpleString()}",
 					_ => step.ToSimpleString()
 				}, i++, step);
 
@@ -1189,7 +1186,7 @@ public partial class MainWindow : Window
 					orderby step.Difficulty
 					group step by (
 						Settings.DisplayAcronymRatherThanFullNameOfSteps
-						? TextResources.Current[$"TechniqueGroup{step.TechniqueGroup.ToString()}"]
+						? TextResources.Current[$"TechniqueGroup{step.TechniqueGroup}"]
 						: step.Name
 					)
 			)
@@ -1217,7 +1214,7 @@ public partial class MainWindow : Window
 				collection.Add(
 					new(
 						name, count, total,
-						min == max ? min.ToString("0.0") : $"{min.ToString("0.0")} - {max.ToString("0.0")}",
+						min == max ? min.ToString("0.0") : $"{min:0.0} - {max:0.0}",
 						minDifficulty | maxDifficulty
 					)
 				);

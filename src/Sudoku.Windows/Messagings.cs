@@ -76,8 +76,7 @@ internal static class Messagings
 	/// <param name="puzzlesCount">The number of puzzles successfully loading.</param>
 	public static void LoadDatabase(int puzzlesCount) =>
 		MessageBox.Show(
-			LangSource["LoadInfo"] +
-			$" {puzzlesCount.ToString()} {LangSource["LoadPuzzles"]}",
+			$"{LangSource["LoadInfo"]} {puzzlesCount} {LangSource["LoadPuzzles"]}",
 			(string)LangSource["CaptionInfo"]);
 
 	/// <summary>

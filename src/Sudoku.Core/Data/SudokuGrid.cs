@@ -162,10 +162,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	internal SudokuGrid(short[] masks)
 	{
 #if DEBUG
-		Debug.Assert(
-			masks.Length == Length,
-			$"The length of the array argument should be {Length.ToString()}."
-		);
+		Debug.Assert(masks.Length == Length, $"The length of the array argument should be {Length}.");
 #endif
 
 		fixed (short* pArray = masks, pValues = _values, pInitialValues = _initialValues)

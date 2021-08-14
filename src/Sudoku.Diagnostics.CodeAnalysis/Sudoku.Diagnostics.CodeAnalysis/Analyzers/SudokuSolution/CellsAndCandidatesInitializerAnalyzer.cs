@@ -176,7 +176,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 												new("RealValue", (realValue - 1).ToString())
 											}
 										),
-										messageArgs: new[] { $"~{(realValue - 1).ToString()}" }
+										messageArgs: new[] { $"~{realValue - 1}" }
 									)
 								);
 							}
@@ -239,7 +239,7 @@ public sealed partial class CellsAndCandidatesInitializerAnalyzer : DiagnosticAn
 									descriptor: SD0308,
 									location: comparisonNode.GetLocation(),
 									additionalLocations: new[] { comparisonNode.GetLocation() },
-									messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{(-v1 - 1).ToString()}" }
+									messageArgs: new[] { v1 >= 0 ? v1.ToString() : $"~{-v1 - 1}" }
 								)
 							);
 						}

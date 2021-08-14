@@ -71,10 +71,7 @@ partial struct Candidates
 			}
 			catch (InvalidOperationException ex)
 			{
-				throw new InvalidOperationException(
-					$"Data at the specified part is invalid: 'Part{(*&pos + 1).ToString()}'.",
-					ex
-				);
+				throw new InvalidOperationException($"Data at the specified part is invalid: 'Part{*&pos + 1}'.", ex);
 			}
 
 			return new(*&_0, *&_1, *&_2, *&_3, *&_4, *&_5, *&_6, *&_7, *&_8, *&_9, *&_10, *&_11);

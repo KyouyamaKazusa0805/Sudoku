@@ -38,7 +38,7 @@ public abstract partial record UlStepInfo(
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type.ToString()}");
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Ul;

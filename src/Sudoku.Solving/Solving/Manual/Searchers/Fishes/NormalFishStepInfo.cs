@@ -114,6 +114,6 @@ public sealed record NormalFishStepInfo(
 	private string FinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Fins.IsEmpty ? string.Empty : $"{FinSnippet}{Fins.ToString()}";
+		get => Fins.IsEmpty ? string.Empty : $"{FinSnippet}{Fins}";
 	}
 }

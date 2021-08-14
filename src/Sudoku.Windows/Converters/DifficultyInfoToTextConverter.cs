@@ -27,9 +27,7 @@ public sealed class DifficultyInfoToTextConverter : IValueConverter
 		}
 
 	Returning:
-		return min == DifficultyLevel.Unknown
-			? string.Empty
-			: i == 1 ? min.ToString() : $"{min.ToString()} - {max.ToString()}";
+		return min == DifficultyLevel.Unknown ? string.Empty : i == 1 ? min.ToString() : $"{min} - {max}";
 	}
 
 	/// <inheritdoc/>

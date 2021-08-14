@@ -22,7 +22,7 @@ public partial class BugNSearchWindow : Window
 		InitializeComponent();
 
 		_puzzle = puzzle;
-		_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle.ToString("#")}";
+		_labelGrid.Content = $"{LangSource["BugMultipleGrid"]}{_puzzle:#}";
 	}
 
 
@@ -50,7 +50,7 @@ public partial class BugNSearchWindow : Window
 				_listBoxTrueCandidates.ItemsSource = array;
 				_labelStatus.Content =
 					$"{LangSource[count == 1 ? "ThereIs" : "ThereAre"]} " +
-					$"{count.ToString()} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
+					$"{count} {LangSource[$"BugMultipleTrueCandidates{(count == 1 ? "Singular" : "Plural")}"]}. " +
 					LangSource["BugMultipleSuccessfulCase"];
 			}
 			else

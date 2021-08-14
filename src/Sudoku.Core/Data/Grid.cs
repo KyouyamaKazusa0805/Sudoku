@@ -185,10 +185,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	{
 		if (masks.Length != Length)
 		{
-			throw new ArgumentException(
-				$"The length of the array argument should be {Length.ToString()}.",
-				nameof(masks)
-			);
+			throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks));
 		}
 
 		fixed (short* pArray = masks, pValues = _values)

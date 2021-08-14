@@ -25,7 +25,7 @@ public sealed class PuzzleShouldHaveBeenSolvedException : Exception
 
 	/// <inheritdoc/>
 	public override string Message =>
-		$"The puzzle {InvalidGrid.ToString("#")} should have already been solved before using the current function.";
+		$"The puzzle {InvalidGrid:#} should have already been solved before using the current function.";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>

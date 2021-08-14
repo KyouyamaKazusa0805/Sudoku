@@ -37,6 +37,6 @@ public sealed record QdpType3StepInfo(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNamesSize{(ExtraCells.Count + 1).ToString()}"];
+		get => TextResources.Current[$"SubsetNamesSize{ExtraCells.Count + 1}"];
 	}
 }

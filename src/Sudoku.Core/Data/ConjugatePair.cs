@@ -83,6 +83,5 @@ public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>, I
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() =>
-		$"{new Cells { From }.ToString()} == {new Cells { To }.ToString()}({(Digit + 1).ToString()})";
+	public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
 }

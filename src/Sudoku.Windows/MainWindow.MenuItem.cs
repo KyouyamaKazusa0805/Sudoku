@@ -64,7 +64,7 @@ partial class MainWindow
 				UpdateDatabaseControls(false, false, true, true);
 
 				_textBoxJumpTo.IsEnabled = true;
-				_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length.ToString()}";
+				_labelPuzzleNumber.Content = $"1/{_puzzlesText.Length}";
 			}
 		}
 	}
@@ -1239,7 +1239,7 @@ partial class MainWindow
 
 			UpdateImageGrid();
 
-			_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new Candidates(trueCandidates).ToString()}";
+			_textBoxInfo.Text = $"{LangSource["AllTrueCandidates"]}{new Candidates(trueCandidates)}";
 		}
 	}
 

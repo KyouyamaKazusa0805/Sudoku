@@ -36,7 +36,7 @@ public sealed record QdpLockedTypeStepInfo(
 	private string Number
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Candidates.Count == 1 ? " the" : $" {Candidates.Count.ToString()}";
+		get => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
 	}
 
 	[FormatItem]

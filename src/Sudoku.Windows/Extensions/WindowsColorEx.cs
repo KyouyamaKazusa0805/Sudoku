@@ -39,8 +39,7 @@ public static partial class WindowsColorEx
 	/// <param name="this">The color.</param>
 	/// <returns>The target color.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static DColor ToDColor(this in WColor @this) =>
-		DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
+	public static DColor ToDColor(this in WColor @this) => DColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 
 	/// <summary>
 	/// Converts the <see cref="WColor"/> to the specified hex string.
@@ -51,7 +50,7 @@ public static partial class WindowsColorEx
 	public static string ToHexString(this in WColor @this)
 	{
 		var (a, r, g, b) = @this;
-		return $"#{a.ToString("X2")}{r.ToString("X2")}{g.ToString("X2")}{b.ToString("X2")}";
+		return $"#{a:X2}{r:X2}{g:X2}{b:X2}";
 	}
 
 	/// <summary>
@@ -93,12 +92,7 @@ public static partial class WindowsColorEx
 
 		if (saturation == 0)
 		{
-			return WColor.FromArgb(
-				a: (byte)alpha,
-				r: (byte)(brightness * 255),
-				g: (byte)(brightness * 255),
-				b: (byte)(brightness * 255)
-			);
+			return WColor.FromArgb((byte)alpha, (byte)(brightness * 255), (byte)(brightness * 255), (byte)(brightness * 255));
 		}
 
 		float fMax, fMid, fMin;

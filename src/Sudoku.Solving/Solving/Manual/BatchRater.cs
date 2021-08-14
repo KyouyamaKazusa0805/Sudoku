@@ -23,6 +23,8 @@ public static class BatchRater
 		// Then read all texts grouped them by new line.
 		string[] lines = await File.ReadAllLinesAsync(inputPath);
 
+		var solver = new ManualSolver();
+
 		// Now rating.
 #if CONSOLE || DEBUG
 		var stopwatch = new Stopwatch();
@@ -38,26 +40,23 @@ public static class BatchRater
 			}
 
 			// Solve it.
-			var (
-				_, _, total, max, pearl, diamond, _, _, _, stepCount, steps, _, _
-			) = new ManualSolver().Solve(grid);
+			var (_, _, total, max, pearl, diamond, _, _, _, stepCount, steps, _, _) = solver.Solve(grid);
 
 			// Check the number of chains used in the whole technique.
 			int chainingTechniquesCount = steps!.Count(static step => step.IsAlmostLockedSets || step.IsChaining);
 
 			// Append the text.
 			string textToAppend =
-				$"{grid.ToString("0")}\t{total.ToString("0.0")} {max.ToString("0.0")} " +
-				$"{pearl.ToString("0.0")} {diamond.ToString("0.0")} {stepCount.ToString()} " +
-				$"{chainingTechniquesCount.ToString()}\r\n";
+				$"{grid:0}\t{total:0.0} {max:0.0} {pearl:0.0} {diamond:0.0} " +
+				$"{stepCount} {chainingTechniquesCount}\r\n";
 
 			await File.AppendAllTextAsync(outputPath, textToAppend);
 
 			// Then output the information (progress).
 #if CONSOLE || DEBUG
 			string info =
-				$"Current: {(i + 1).ToString()}/{length.ToString()} ({((i + 1) * 100M / length).ToString("0.000")}%), " +
-				$"Elapsed: {stopwatch.Elapsed.ToString("hh\\:mm\\:ss\\.fff")}";
+				$"Current: {i + 1}/{length} ({(i + 1) * 100M / length:0.000}%), " +
+				$"Elapsed: {stopwatch.Elapsed:hh\\:mm\\:ss\\.fff}";
 #if DEBUG
 			Debug.Flush();
 			Debug.WriteLine(info);

@@ -24,7 +24,7 @@ public sealed class MultipleSolutionsException : Exception
 
 
 	/// <inheritdoc/>
-	public override string Message => $"This grid {InvalidGrid.ToString("#")} contains multiple solutions.";
+	public override string Message => $"This grid {InvalidGrid:#} contains multiple solutions.";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>

@@ -125,9 +125,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	{
 		if (binary.Length != Len)
 		{
-			throw new ArgumentException(
-				$"The length of the array should be {Len.ToString()}.", nameof(binary)
-			);
+			throw new ArgumentException($"The length of the array should be {Len}.", nameof(binary));
 		}
 
 		int count = 0;
@@ -158,10 +156,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	{
 		if (length != Len)
 		{
-			throw new ArgumentException(
-				$"Argument '{nameof(length)}' should be {Len.ToString()}.",
-				nameof(length)
-			);
+			throw new ArgumentException($"Argument '{nameof(length)}' should be {Len}.", nameof(length));
 		}
 
 		int count = 0;
@@ -424,7 +419,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		{
 			0 => "{ }",
 			1 when this[0] is var candidate && (candidate / 9, candidate % 9) is (var cell, var digit) =>
-				$"r{(cell / 9 + 1).ToString()}c{(cell % 9 + 1).ToString()}({(digit + 1).ToString()})",
+				$"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})",
 			_ => f(Offsets)
 		};
 

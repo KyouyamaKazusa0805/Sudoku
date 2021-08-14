@@ -29,7 +29,7 @@ public partial class TechniqueView : UserControl
 		var list = new List<TechniqueBox>();
 		foreach (var (name, technique, category) in
 			from technique in Enum.GetValues<Technique>()
-			let nullableCategory = LangSource[$"Group{technique.ToString()}"] as string
+			let nullableCategory = LangSource[$"Group{technique}"] as string
 			where nullableCategory is not null
 			select (TextResources.Current[technique.ToString()], technique, nullableCategory))
 		{
@@ -39,7 +39,7 @@ public partial class TechniqueView : UserControl
 				Category = $"{LangSource["Category"]}{category}"
 			};
 
-			box.CheckingChanged += (sender, _) =>
+			box.CheckingChanged += (sender, [Discard] _) =>
 			{
 				if (sender is CheckBox { Content: KeyedTuple<string, Technique>(_, var item, _) } box)
 				{

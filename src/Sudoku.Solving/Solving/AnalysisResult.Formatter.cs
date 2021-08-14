@@ -66,6 +66,8 @@ partial record AnalysisResult
 
 			return ToString(options, countryCode);
 
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool c(in string formatLower, char c) => formatLower.Contains(c);
 		}
 
@@ -94,7 +96,7 @@ partial record AnalysisResult
 			// Print header.
 			var sb = new ValueStringBuilder(300);
 			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
-			sb.AppendLine(puzzle.ToString("#"));
+			sb.AppendLine($"{puzzle:#}");
 			sb.Append((string)TextResources.Current.AnalysisResultSolvingTool);
 			sb.AppendLine(solverName);
 
@@ -116,8 +118,8 @@ partial record AnalysisResult
 						string infoStr = options.Flags(ShowSimple) ? info.ToSimpleString() : info.Formatize();
 						bool showDiff = options.Flags(ShowDifficulty) && info.ShowDifficulty;
 
-						string d = $"({info.Difficulty.ToString("0.0")}".PadLeft(5);
-						string s = (i + 1).ToString().PadLeft(4);
+						string d = $"({info.Difficulty,5:0.0}";
+						string s = $"{i + 1,4}";
 						string labelInfo = (ShowStepLabel: options.Flags(ShowStepLabel), ShowDiff: showDiff) switch
 						{
 							(ShowStepLabel: true, ShowDiff: true) => $"{s}, {d}) ",
@@ -138,8 +140,8 @@ partial record AnalysisResult
 						sb.Append(
 							options.Flags(ShowStepLabel)
 							? $@"{
-								TextResources.Current.AnalysisResultInStep
-							}{(bIndex + 1).ToString()}{(string)TextResources.Current.Colon}"
+								(string)TextResources.Current.AnalysisResultInStep
+							}{bIndex + 1}{(string)TextResources.Current.Colon}"
 							: string.Empty
 						);
 						sb.Append(' ');
@@ -159,10 +161,10 @@ partial record AnalysisResult
 				sb.AppendLine((string)TextResources.Current.AnalysisResultTechniqueUsed);
 				if (options.Flags(ShowStepDetail))
 				{
-					sb.Append((string)TextResources.Current.AnalysisResultMin.PadLeft(6));
+					sb.Append($"{(string)TextResources.Current.AnalysisResultMin,6}");
 					sb.Append(',');
 					sb.Append(' ');
-					sb.Append((string)TextResources.Current.AnalysisResultTotal.PadLeft(6));
+					sb.Append($"{(string)TextResources.Current.AnalysisResultTotal,6}");
 					sb.AppendLine((string)TextResources.Current.AnalysisResultTechniqueUsing);
 				}
 
@@ -178,15 +180,15 @@ partial record AnalysisResult
 							currentMinimum = Min(currentMinimum, difficulty);
 						}
 
-						sb.Append($"({currentMinimum.ToString("0.0")}".PadLeft(6));
+						sb.Append($"({currentMinimum,6:0.0}");
 						sb.Append(',');
 						sb.Append(' ');
-						sb.Append(currentTotal.ToString("0.0").PadLeft(6));
+						sb.Append($"{currentTotal,6:0.0}");
 						sb.Append(')');
 						sb.Append(' ');
 					}
 
-					sb.Append(solvingStepsGroup.Count().ToString().PadLeft(3));
+					sb.Append($"{solvingStepsGroup.Count(),3}");
 					sb.Append(' ');
 					sb.Append('*');
 					sb.Append(' ');
@@ -196,12 +198,12 @@ partial record AnalysisResult
 				if (options.Flags(ShowStepDetail))
 				{
 					sb.Append("  (---");
-					sb.Append(total.ToString().PadLeft(8));
+					sb.Append($"{total,8}");
 					sb.Append(')');
 					sb.Append(' ');
 				}
 
-				sb.Append(stepsCount.ToString().PadLeft(3));
+				sb.Append($"{stepsCount,3}");
 				sb.Append(' ');
 				sb.AppendLine(
 					stepsCount == 1
@@ -214,17 +216,17 @@ partial record AnalysisResult
 
 			// Print detail data.
 			sb.Append((string)TextResources.Current.AnalysisResultPuzzleRating);
-			sb.Append(max.ToString("0.0"));
+			sb.Append($"{max:0.0}");
 			sb.Append('/');
-			sb.Append(pearl.ToString("0.0"));
+			sb.Append($"{pearl:0.0}");
 			sb.Append('/');
-			sb.AppendLine(diamond.ToString("0.0"));
+			sb.AppendLine($"{diamond:0.0}");
 
 			// Print the solution (if not null).
 			if (solution is { } solutionNotNull)
 			{
 				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendLine(solutionNotNull.ToString("!"));
+				sb.AppendLine($"{solutionNotNull:!}");
 			}
 
 			// Print the elapsed time.
@@ -232,7 +234,7 @@ partial record AnalysisResult
 			sb.Append(hasSolved ? string.Empty : (string)TextResources.Current.AnalysisResultNot);
 			sb.AppendLine((string)TextResources.Current.AnalysisResultBeenSolved);
 			sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
-			sb.AppendLine(elapsed.ToString("hh\\:mm\\:ss\\.fff"));
+			sb.AppendLine($"{elapsed:hh\\:mm\\:ss\\.fff}");
 
 			a(ref sb, options.Flags(ShowSeparators));
 
@@ -255,7 +257,7 @@ partial record AnalysisResult
 					sb.Append(methodInfo.Name);
 					sb.Append(':');
 					sb.Append(' ');
-					sb.AppendLine(grid.ToString("0"));
+					sb.AppendLine($"{grid:0}");
 				}
 
 				a(ref sb, options.Flags(ShowSeparators));

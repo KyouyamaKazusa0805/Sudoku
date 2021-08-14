@@ -36,7 +36,7 @@ public sealed record UlType3StepInfo(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNames{(SubsetCells.Count + 1).ToString()}"];
+		get => TextResources.Current[$"SubsetNames{SubsetCells.Count + 1}"];
 	}
 
 

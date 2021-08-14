@@ -24,7 +24,7 @@ public sealed record BugMultipleStepInfo(
 	public override string Name => $"{(string)TextResources.Current.Bug} + {Candidates.Count}";
 
 	/// <inheritdoc/>
-	public override string? Acronym => $"BUG + {Candidates.Count.ToString()}";
+	public override string? Acronym => $"BUG + {Candidates.Count}";
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];

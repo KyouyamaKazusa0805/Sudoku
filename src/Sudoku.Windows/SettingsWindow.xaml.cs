@@ -217,11 +217,7 @@ public partial class SettingsWindow : Window
 			let props = triplet.Properties
 			select new ListBoxItem()
 			{
-				Content = new StepTypeTriplet(
-					$"({props.Priority.ToString()}) {triplet.SearcherName}",
-					props.Priority,
-					triplet.CurrentType
-				),
+				Content = new StepTypeTriplet($"({props.Priority}) {triplet.SearcherName}", props.Priority, triplet.CurrentType),
 				HorizontalContentAlignment = HorizontalAlignment.Left,
 				VerticalContentAlignment = VerticalAlignment.Center
 			});
@@ -244,7 +240,7 @@ public partial class SettingsWindow : Window
 		if (sender is Button button && ColorPickerWindow.ShowDialog(out var color) && color is { } c)
 		{
 			var target = c.ToDColor();
-			typeof(WindowsSettings).GetProperty($"Color{colorIndex.ToString()}")!.SetValue(settings, target);
+			typeof(WindowsSettings).GetProperty($"Color{colorIndex}")!.SetValue(settings, target);
 			ChangeColor(button, target.ToWColor());
 		}
 	}
@@ -656,7 +652,7 @@ public partial class SettingsWindow : Window
 				var (name, _, type, _) = (StepTypeTriplet)_priorityControls[index].Content;
 
 				_priorityControls[index].Content = new StepTypeTriplet(
-					$"({index.ToString()}) {name[(name.IndexOf(')') + 2)..]}",
+					$"({index}) {name[(name.IndexOf(')') + 2)..]}",
 					index,
 					type
 				);

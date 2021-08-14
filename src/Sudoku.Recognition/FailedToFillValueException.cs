@@ -33,7 +33,7 @@ public sealed class FailedToFillValueException : Exception
 
 	/// <inheritdoc/>
 	public override string Message =>
-		$"The tool can't fill the cell {new Cells { Cell }.ToString()} with the digit {(Digit + 1).ToString()}.";
+		$"The tool can't fill the cell {new Cells { Cell }} with the digit {Digit + 1}.";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>

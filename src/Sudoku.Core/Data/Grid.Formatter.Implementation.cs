@@ -205,9 +205,8 @@ partial struct Grid
 					sb.Append(status switch
 					{
 						CellStatus.Empty => Placeholder.ToString(),
-						CellStatus.Modifiable =>
-							WithModifiables ? $"+{(grid[c] + 1).ToString()}" : $"{Placeholder.ToString()}",
-						CellStatus.Given => $"{(grid[c] + 1).ToString()}"
+						CellStatus.Modifiable => WithModifiables ? $"+{grid[c] + 1}" : $"{Placeholder}",
+						CellStatus.Given => $"{grid[c] + 1}"
 					});
 				}
 			}
@@ -367,12 +366,12 @@ partial struct Grid
 											case CellStatus.Given:
 											case CellStatus.Modifiable when formatter.TreatValueAsGiven:
 											{
-												s = $"<{d.ToString()}>";
+												s = $"<{d}>";
 												break;
 											}
 											case CellStatus.Modifiable:
 											{
-												s = $"*{d.ToString()}*";
+												s = $"*{d}*";
 												break;
 											}
 											default:
@@ -418,7 +417,7 @@ partial struct Grid
 		/// <returns>The result.</returns>
 		private partial string ToMultiLineSimpleGridCore(in Grid grid)
 		{
-			string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder.ToString()}!" : Placeholder.ToString());
+			string t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 			return new StringBuilder()
 				.AppendLine(SubtleGridLines ? ".-------+-------+-------." : "+-------+-------+-------+")
 				.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])

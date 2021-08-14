@@ -68,7 +68,7 @@ public readonly ref partial struct RegionCollection
 		return Count switch
 		{
 			0 => string.Empty,
-			1 when TrailingZeroCount(_mask) is var r => $"{GetLabel(r / 9).ToString()}{(r % 9 + 1).ToString()}",
+			1 when TrailingZeroCount(_mask) is var r => $"{GetLabel(r / 9)}{r % 9 + 1}",
 			_ => f(this)
 		};
 

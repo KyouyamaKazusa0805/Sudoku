@@ -65,7 +65,7 @@ public sealed record Gsp2StepInfo(
 					int? value = MappingTable[i];
 
 					sb.Append(i + 1);
-					sb.Append(value is { } v && value != i ? $" -> {(v + 1).ToString()}" : string.Empty);
+					sb.Append(value is { } v && value != i ? $" -> {v + 1}" : string.Empty);
 					sb.Append(separator);
 				}
 

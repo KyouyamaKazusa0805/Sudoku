@@ -159,13 +159,13 @@ partial class MainWindow
 			(MenuItem)
 			@this
 			.GetType()
-			.GetField($"_menuItemImageGridSet{(i + 1).ToString()}", flags)!
+			.GetField($"_menuItemImageGridSet{i + 1}", flags)!
 			.GetValue(@this)!;
 		static MenuItem d(MainWindow @this, BindingFlags flags, int i) =>
 			(MenuItem)
 			@this
 			.GetType()
-			.GetField($"_menuItemImageGridDelete{(i + 1).ToString()}", flags)!
+			.GetField($"_menuItemImageGridDelete{i + 1}", flags)!
 			.GetValue(@this)!;
 	}
 

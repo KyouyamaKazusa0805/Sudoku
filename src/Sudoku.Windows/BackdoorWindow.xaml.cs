@@ -28,7 +28,7 @@ public partial class BackdoorWindow : Window
 		InitializeComponent();
 
 		_puzzle = puzzle;
-		_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle.ToString("#")}";
+		_labelGrid.Content = $"{LangSource["BackdoorGrid"]}{_puzzle:#}";
 	}
 
 

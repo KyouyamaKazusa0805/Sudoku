@@ -31,7 +31,7 @@ public partial class ErrorInfoWindow : Window
 	/// <returns>The instance.</returns>
 	public static ErrorInfoWindow Create(StepInfo errorStep, in SudokuGrid grid) => new()
 	{
-		ErrorText = $"{Application.Current.Resources["ErrorInfoGrid"]}{grid.ToString("#")}\r\n{errorStep}",
+		ErrorText = $"{Application.Current.Resources["ErrorInfoGrid"]}{grid:#}\r\n{errorStep}",
 		Picture = errorStep.CreateBitmap(grid).ToImageSource()
 	};
 
@@ -46,7 +46,7 @@ public partial class ErrorInfoWindow : Window
 	public static ErrorInfoWindow Create(string title, StepInfo errorStep, in SudokuGrid grid) => new()
 	{
 		Title = title,
-		ErrorText = $"{Application.Current.Resources["ErrorInfoGrid"]}{grid.ToString("#")}\r\n{errorStep}",
+		ErrorText = $"{Application.Current.Resources["ErrorInfoGrid"]}{grid:#}\r\n{errorStep}",
 		Picture = errorStep.CreateBitmap(grid).ToImageSource()
 	};
 }

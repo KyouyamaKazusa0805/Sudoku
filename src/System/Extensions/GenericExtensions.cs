@@ -13,5 +13,5 @@ public static class GenericExtensions
 	/// <returns>The result value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToStringWithTrailingSpace<TNotNull>(this TNotNull @this) where TNotNull : notnull =>
-		$"{@this.ToString()} ";
+		$"{@this} ";
 }

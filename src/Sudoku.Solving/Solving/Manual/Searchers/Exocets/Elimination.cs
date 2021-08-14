@@ -44,7 +44,7 @@ public readonly partial struct Elimination : IValueEquatable<Elimination>
 	/// <summary>
 	/// Indicates the header of the reason.
 	/// </summary>
-	private string Header => TextResources.Current[$"Exocet{Reason.ToString()}EliminationName"];
+	private string Header => TextResources.Current[$"Exocet{Reason}EliminationName"];
 
 
 	/// <inheritdoc/>

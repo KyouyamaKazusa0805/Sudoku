@@ -108,7 +108,7 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 		{
 			try
 			{
-				return TextResources.Current[$"{TechniqueCode.ToString()}Alias"]?.Split(new[] { ';', ' ' });
+				return TextResources.Current[$"{TechniqueCode}Alias"]?.Split(new[] { ';', ' ' });
 			}
 			catch (RuntimeBinderException)
 			{

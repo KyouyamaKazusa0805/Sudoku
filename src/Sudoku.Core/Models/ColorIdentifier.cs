@@ -29,7 +29,7 @@ public readonly record struct ColorIdentifier(
 	{
 		if (UseId)
 		{
-			return $"ID = {Id.ToString()}";
+			return $"ID = {Id}";
 		}
 		else
 		{
@@ -37,7 +37,7 @@ public readonly record struct ColorIdentifier(
 			byte r = (byte)(Color >> 16 & 255);
 			byte g = (byte)(Color >> 8 & 255);
 			byte b = (byte)(Color & 255);
-			return $"Color = #{a.ToString("X2")}{r.ToString("X2")}{g.ToString("X2")}{b.ToString("X2")}";
+			return $"Color = #{a:X2}{r:X2}{g:X2}{b:X2}";
 		}
 	}
 

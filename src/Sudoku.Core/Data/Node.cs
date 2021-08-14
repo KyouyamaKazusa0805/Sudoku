@@ -193,7 +193,7 @@ public partial struct Node : IValueEquatable<Node>
 	{
 		if (Parents is not { Count: not 0 })
 		{
-			return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()})";
+			return $"Candidate: {new Cells { Cell }}({Digit + 1})";
 		}
 		else
 		{
@@ -203,7 +203,7 @@ public partial struct Node : IValueEquatable<Node>
 				nodes.Add(cand);
 			}
 
-			return $"Candidate: {new Cells { Cell }.ToString()}({(Digit + 1).ToString()}), Parent(s): {nodes.ToString()}";
+			return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent(s): {nodes}";
 		}
 	}
 }

@@ -30,7 +30,7 @@ public partial class TechniqueTreeView : UserControl
 	{
 		var selection =
 			from technique in Enum.GetValues<Technique>()
-			let nullableCategory = LangSource[$"Group{technique.ToString()}"] as string
+			let nullableCategory = LangSource[$"Group{technique}"] as string
 			where nullableCategory is not null
 			select (
 				technique,
@@ -39,9 +39,7 @@ public partial class TechniqueTreeView : UserControl
 				Category: nullableCategory
 			);
 
-		var categories = new List<string>(
-			(from quadruple in selection select quadruple.Category).Distinct()
-		);
+		var categories = new List<string>((from quadruple in selection select quadruple.Category).Distinct());
 
 	Start:
 		// Iterate on each category, and add the missing nodes.

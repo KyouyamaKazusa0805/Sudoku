@@ -447,7 +447,6 @@ dotnet_diagnostic.CA2249.severity = silent
 # Other custom disabled cases.
 # May be deleted later in the future.
 dotnet_diagnostic.CS0618.severity = silent
-dotnet_style_prefer_simplified_interpolation = false
 
 
 # The separator. I don't know how to separate two parts, so... I find a joke to put into here.

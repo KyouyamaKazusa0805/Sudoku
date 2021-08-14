@@ -102,7 +102,7 @@ partial class MainWindow
 		LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 		UpdateDatabaseControls(false, false, true, true);
 
-		_labelPuzzleNumber.Content = $"1/{max.ToString()}";
+		_labelPuzzleNumber.Content = $"1/{max}";
 	}
 
 	private void ButtonPrev_Click(object sender, RoutedEventArgs e)
@@ -114,7 +114,7 @@ partial class MainWindow
 		bool condition = Settings.CurrentPuzzleNumber != 0;
 		UpdateDatabaseControls(condition, condition, true, true);
 
-		_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
+		_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 	}
 
 	private void ButtonNext_Click(object sender, RoutedEventArgs e)
@@ -126,7 +126,7 @@ partial class MainWindow
 		bool condition = Settings.CurrentPuzzleNumber != _puzzlesText.Length - 1;
 		UpdateDatabaseControls(true, true, condition, condition);
 
-		_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
+		_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 	}
 
 	private void ButtonLast_Click(object sender, RoutedEventArgs e)
@@ -136,7 +136,7 @@ partial class MainWindow
 		LoadPuzzle(_puzzlesText[current].TrimEndNewLine());
 		UpdateDatabaseControls(true, true, false, false);
 
-		_labelPuzzleNumber.Content = $"{(current + 1).ToString()}/{max.ToString()}";
+		_labelPuzzleNumber.Content = $"{current + 1}/{max}";
 	}
 
 	private void ButtonCellReset_Click(object sender, RoutedEventArgs e)

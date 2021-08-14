@@ -93,9 +93,7 @@ internal static class PuzzleTechniqueUsageCounter
 		WriteLine(
 			string.Join(
 				Environment.NewLine,
-				from pair in difficultyLevelDic
-				orderby pair.Key
-				select $"{pair.Key.ToString()}: {pair.Value.ToString()}"
+				from pair in difficultyLevelDic orderby pair.Key select $"{pair.Key}: {pair.Value}"
 			)
 		);
 	}

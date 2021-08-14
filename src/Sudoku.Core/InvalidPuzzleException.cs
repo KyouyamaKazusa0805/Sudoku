@@ -34,7 +34,7 @@ public sealed class InvalidPuzzleException : Exception
 
 	/// <inheritdoc/>
 	public override string Message =>
-		$"This grid {InvalidGrid.ToString("#")} is invalid{(Reason is null ? "." : $" because {Reason}.")}";
+		$"This grid {InvalidGrid:#} is invalid{(Reason is null ? "." : $" because {Reason}.")}";
 
 	/// <inheritdoc/>
 	public override string HelpLink =>
