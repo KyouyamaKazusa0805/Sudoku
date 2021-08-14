@@ -2077,12 +2077,6 @@
             <param name="this">The list.</param>
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
-            <example>
-            For example:
-            <code>
-            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
-            </code>
-            </example>
         </member>
         <member name="M:System.ReadOnlySpanExtensions.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
             <summary>
@@ -2133,12 +2127,6 @@
             <param name="this">The list.</param>
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
-            <example>
-            For example:
-            <code>
-            <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
-            </code>
-            </example>
         </member>
         <member name="M:System.SpanExtensions.GetSubsets``1(System.Span{``0}@,System.Int32)">
             <summary>

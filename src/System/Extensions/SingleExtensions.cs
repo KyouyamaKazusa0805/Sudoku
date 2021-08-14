@@ -13,8 +13,7 @@ public static class SingleExtensions
 	/// <param name="other">The other value.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool NearlyEquals(this float @this, float other) =>
-		@this.NearlyEquals(other, float.Epsilon);
+	public static bool NearlyEquals(this float @this, float other) => @this.NearlyEquals(other, float.Epsilon);
 
 	/// <summary>
 	/// Indicates whether the specified value is nearly equals to the current value.
@@ -26,6 +25,5 @@ public static class SingleExtensions
 	/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool NearlyEquals(this float @this, float other, float epsilon) =>
-		Math.Abs(@this - other) < epsilon;
+	public static bool NearlyEquals(this float @this, float other, float epsilon) => Abs(@this - other) < epsilon;
 }

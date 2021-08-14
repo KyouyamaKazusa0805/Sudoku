@@ -15,12 +15,6 @@ public static class SpanExtensions
 	/// <param name="this">The list.</param>
 	/// <param name="selector">The selector that is used for conversion.</param>
 	/// <returns>The array of target result elements.</returns>
-	/// <example>
-	/// For example:
-	/// <code>
-	/// <see langword="int"/>[] selection = <see langword="from"/> digit <see langword="in"/> 17.GetAllSets() <see langword="select"/> digit + 1;
-	/// </code>
-	/// </example>
 	public static TResult[] Select<T, TResult>(this in Span<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
