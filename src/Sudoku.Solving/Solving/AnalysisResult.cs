@@ -194,8 +194,8 @@ public sealed partial record AnalysisResult(
 	public StepInfo this[int index] => Steps is not { Count: not 0 }
 		? throw new InvalidOperationException("You can't extract any elements because of being null.")
 		: index >= Steps.Count || index < 0
-		? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
-		: Steps[index];
+			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
+			: Steps[index];
 
 	/// <summary>
 	/// Gets the first <see cref="StepInfo"/> instance that matches the specified technique.

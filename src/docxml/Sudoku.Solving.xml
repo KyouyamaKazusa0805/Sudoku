@@ -1693,63 +1693,6 @@
             Indicates the full searching mode (All steps will be found here).
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.ManualSolverExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
-            <summary>
-            Get the searchers to enumerate on Sudoku Explainer mode.
-            </summary>
-            <param name="this">The manual solver.</param>
-            <param name="solution">
-            The solution for a sudoku grid.
-            This parameter is necessary because some technique searchers will use this value,
-            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
-            <summary>
-            Get the searchers to enumerate on Hodoku mode.
-            </summary>
-            <param name="this">The manual solver.</param>
-            <param name="solution">
-            The solution for a sudoku grid.
-            This parameter is necessary because some technique searchers will use this value,
-            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
-            </param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepInfoExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is an ALS technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is a chaining-ruled technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is a uniqueness technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -2425,14 +2368,44 @@
             <param name="progress">The progress reporter.</param>
             <param name="progressResult">The progress result.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.ManualSolverExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetSeModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Get the searchers to enumerate on Sudoku Explainer mode.
+            </summary>
+            <param name="this">The manual solver.</param>
+            <param name="solution">
+            The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>.
+            </param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverExtensions.GetHodokuModeSearchers(Sudoku.Solving.Manual.ManualSolver,System.Nullable{Sudoku.Data.SudokuGrid}@)">
+            <summary>
+            Get the searchers to enumerate on Hodoku mode.
+            </summary>
+            <param name="this">The manual solver.</param>
+            <param name="solution">
+            The solution for a sudoku grid.
+            This parameter is necessary because some technique searchers will use this value,
+            such as <see cref="T:Sudoku.Solving.Manual.LastResorts.BfStepSearcher"/>. The default value is <see langword="null"/>.
+            </param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Rarity">
             <summary>
             Indicates the rarity of the technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Rarity.Default">
+        <member name="F:Sudoku.Solving.Manual.Rarity.VeryCommon">
             <summary>
-            Indicates the technique appears in all sudoku puzzles, such as <b>Hidden Single</b>.
+            Indicates the technique appears very commonly, such as <b>Hidden Single</b>.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Rarity.Common">
@@ -2440,9 +2413,14 @@
             Indicates the rarity is common.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Rarity.Rarely">
+        <member name="F:Sudoku.Solving.Manual.Rarity.Seldom">
             <summary>
-            Indicates the rarity is rarely.
+            Indicates the rarity is seldom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.OnlyForSpecialPuzzles">
+            <summary>
+            Indicates the technique only appears in the special puzzles, which are designed on purpose.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.Als">
@@ -10257,6 +10235,33 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.StepInfo.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.StepInfoExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the current technique information is an ALS technique.
+            </summary>
+            <param name="this">The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the current technique information is a chaining-ruled technique.
+            </summary>
+            <param name="this">The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
+            <summary>
+            Check whether the current technique information is a uniqueness technique.
+            </summary>
+            <param name="this">The technique instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepSearcher">
             <summary>

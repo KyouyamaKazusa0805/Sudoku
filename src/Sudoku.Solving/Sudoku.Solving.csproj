@@ -33,4 +33,8 @@
 		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Solving\Manual\Extensions\" />
+	</ItemGroup>
+
 </Project>

@@ -7,9 +7,9 @@
 public enum Rarity : byte
 {
 	/// <summary>
-	/// Indicates the technique appears in all sudoku puzzles, such as <b>Hidden Single</b>.
+	/// Indicates the technique appears very commonly, such as <b>Hidden Single</b>.
 	/// </summary>
-	Default,
+	VeryCommon,
 
 	/// <summary>
 	/// Indicates the rarity is common.
@@ -17,7 +17,12 @@ public enum Rarity : byte
 	Common,
 
 	/// <summary>
-	/// Indicates the rarity is rarely.
+	/// Indicates the rarity is seldom.
 	/// </summary>
-	Rarely
+	Seldom,
+
+	/// <summary>
+	/// Indicates the technique only appears in the special puzzles, which are designed on purpose.
+	/// </summary>
+	OnlyForSpecialPuzzles
 }
