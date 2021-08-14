@@ -6189,18 +6189,6 @@
             <param name="element">The element to check.</param>
             <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.ToSvgCode">
-            <summary>
-            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
-            </summary>
-            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Models.PresentationData.Add``1(Sudoku.Models.PresentationDataKind,``0,Sudoku.Models.ColorIdentifier)">
             <summary>
             Append an element into the collection.
@@ -6221,6 +6209,26 @@
             <param name="dataKind">The data kind.</param>
             <param name="element">The element.</param>
         </member>
+        <member name="M:Sudoku.Models.PresentationData.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.ToSvgCode">
+            <summary>
+            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
+            </summary>
+            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.Parse(System.String)">
+            <summary>
+            Parse a <see cref="T:System.String"/> value which is the SVG-format code
+            to a <see cref="T:Sudoku.Models.PresentationData"/> result.
+            </summary>
+            <param name="svgCode">The SVG <see cref="T:System.String"/> code.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Models.PresentationData.TryParse(System.String,Sudoku.Models.PresentationData@)">
             <summary>
             Try to parse a <see cref="T:System.String"/> value which is the SVG-format code
@@ -6232,20 +6240,6 @@
             when the return value is <see langword="false"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the parse operation is successful.</returns>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Parse(System.String)">
-            <summary>
-            Parse a <see cref="T:System.String"/> value which is the SVG-format code
-            to a <see cref="T:Sudoku.Models.PresentationData"/> result.
-            </summary>
-            <param name="svgCode">The SVG <see cref="T:System.String"/> code.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.op_Equality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.op_Inequality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Models.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Models.ColorIdentifier}}@)">
             <summary>
@@ -6259,6 +6253,12 @@
             The argument can be passed a <see langword="null"/>-able type,
             and changes to a non-<see langword="null"/> value when the method has been executed wholly.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.op_Equality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.op_Inequality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Models.PresentationDataKind">
             <summary>
