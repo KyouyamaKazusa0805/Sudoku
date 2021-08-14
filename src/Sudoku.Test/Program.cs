@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 //
 // string.Format
@@ -17,5 +18,14 @@ s.AppendFormatted("Hello");
 s.AppendFormatted(',');
 s.AppendFormatted("world");
 s.AppendFormatted('!');
-
 Console.WriteLine(s.ToStringAndClear());
+
+//
+// ValueStringBuilder
+//
+var v = new ValueStringBuilder();
+v.Append("Hello");
+v.Append(',');
+v.Append("world");
+v.Append('!');
+Console.WriteLine(v.ToString());
