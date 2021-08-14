@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Data;
 
-partial struct Link
+partial record struct Link
 {
 	/// <summary>
 	/// Defines a JSON converter that allows the current instance being serialized.

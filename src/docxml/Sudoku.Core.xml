@@ -1765,6 +1765,14 @@
             <summary>
             Encapsulates a conclusion representation while solving in logic.
             </summary>
+            <param name="ConclusionType">
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </param>
+            <param name="Cell">Indicates the cell.</param>
+            <param name="Digit">Indicates the digit.</param>
             <remarks>
             Two <see cref="T:Sudoku.Data.Conclusion"/>s can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Data.ConclusionType.Elimination"/> as the type), the instance
@@ -1775,40 +1783,34 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32,System.Int32)">
             <summary>
-            Initializes an instance with a conclusion type, a cell offset and a digit.
+            Encapsulates a conclusion representation while solving in logic.
             </summary>
-            <param name="conclusionType">The conclusion type.</param>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
+            <param name="ConclusionType">
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </param>
+            <param name="Cell">Indicates the cell.</param>
+            <param name="Digit">Indicates the digit.</param>
+            <remarks>
+            Two <see cref="T:Sudoku.Data.Conclusion"/>s can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Data.ConclusionType.Elimination"/> as the type), the instance
+            will be greater; if those two hold same conclusion type, but one of those two holds
+            the global index of the candidate position is greater, it is greater.
+            </remarks>
+            <seealso cref="F:Sudoku.Data.ConclusionType.Elimination"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.
             </summary>
-            <param name="conclusionType">The conclusion type.</param>
+            <param name="type">The conclusion type.</param>
             <param name="candidate">The candidate offset.</param>
-        </member>
-        <member name="P:Sudoku.Data.Conclusion.Cell">
-            <summary>
-            The cell offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Conclusion.Digit">
-            <summary>
-            The digit.
-            </summary>
         </member>
         <member name="P:Sudoku.Data.Conclusion.Candidate">
             <summary>
             Indicates the candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Conclusion.ConclusionType">
-            <summary>
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.SudokuGrid@)">
@@ -1816,6 +1818,9 @@
             Put this instance into the specified grid.
             </summary>
             <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -3061,59 +3066,21 @@
             <summary>
             Provides arguments for the event <see cref="F:Sudoku.Data.Grid.ValueChanged"/>.
             </summary>
+            <param name="Cell">Indicates the cell, which must be in range 0 to 80.</param>
+            <param name="OldMask">Indicates the original mask in this cell.</param>
+            <param name="NewMask">Indicates the new mask to modify the cell.</param>
+            <param name="SetValue">Indicates the set value. If the action is a deletion, the value should be -1.</param>
             <seealso cref="F:Sudoku.Data.Grid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.Grid.ValueChangedArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
-            Initializes the instance with some data.
+            Provides arguments for the event <see cref="F:Sudoku.Data.Grid.ValueChanged"/>.
             </summary>
-            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
-            <param name="oldMask">The old mask before modified.</param>
-            <param name="newMask">The mask to modify the cell.</param>
-            <param name="setValue">
-            The value to set on the cell. If the action is deletion,
-            this argument should be -1.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.Grid.ValueChangedArgs.Cell">
-            <summary>
-            The cell offset. Must be in range 0 to 80.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Grid.ValueChangedArgs.OldMask">
-            <summary>
-            The old mask before modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Grid.ValueChangedArgs.NewMask">
-            <summary>
-            The new mask after modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Grid.ValueChangedArgs.SetValue">
-            <summary>
-            The value. -1 when this value is not required.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.Deconstruct(System.Int32@,System.Int16@,System.Int16@,System.Int32@)">
-            <summary>
-            Deconstruct the instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.Equals(Sudoku.Data.Grid.ValueChangedArgs@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Equality(Sudoku.Data.Grid.ValueChangedArgs@,Sudoku.Data.Grid.ValueChangedArgs@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.op_Inequality(Sudoku.Data.Grid.ValueChangedArgs@,Sudoku.Data.Grid.ValueChangedArgs@)">
-            <inheritdoc/>
+            <param name="Cell">Indicates the cell, which must be in range 0 to 80.</param>
+            <param name="OldMask">Indicates the original mask in this cell.</param>
+            <param name="NewMask">Indicates the new mask to modify the cell.</param>
+            <param name="SetValue">Indicates the set value. If the action is a deletion, the value should be -1.</param>
+            <seealso cref="F:Sudoku.Data.Grid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.Grid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
             <summary>
@@ -3509,29 +3476,17 @@
             <summary>
             Encapsulates a link used for drawing.
             </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
         </member>
         <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkType)">
             <summary>
-            Initializes an instance with the specified start and end candidate, and a link type.
+            Encapsulates a link used for drawing.
             </summary>
-            <param name="startCandidate">The start candidate.</param>
-            <param name="endCandidate">The end candidate.</param>
-            <param name="linkType">The link type.</param>
-        </member>
-        <member name="P:Sudoku.Data.Link.StartCandidate">
-            <summary>
-            The start candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Link.EndCandidate">
-            <summary>
-            The end candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Link.LinkType">
-            <summary>
-            The link type.
-            </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
         </member>
         <member name="P:Sudoku.Data.Link.StartCell">
             <summary>
@@ -3557,6 +3512,9 @@
             <summary>
             Indicates the eigen value.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

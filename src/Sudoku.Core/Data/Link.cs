@@ -3,41 +3,14 @@
 /// <summary>
 /// Encapsulates a link used for drawing.
 /// </summary>
+/// <param name="StartCandidate">Indicates the start candidate.</param>
+/// <param name="EndCandidate">Indicates the end candidate.</param>
+/// <param name="LinkType">Indicates the link type.</param>
 [AutoDeconstruct(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 [AutoDeconstruct(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 [AutoHashCode(nameof(EigenValue))]
-[AutoEquality(nameof(EigenValue))]
-public readonly partial struct Link : IValueEquatable<Link>, IJsonSerializable<Link, Link.JsonConverter>
+public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType) : IValueEquatable<Link>, IJsonSerializable<Link, Link.JsonConverter>
 {
-	/// <summary>
-	/// Initializes an instance with the specified start and end candidate, and a link type.
-	/// </summary>
-	/// <param name="startCandidate">The start candidate.</param>
-	/// <param name="endCandidate">The end candidate.</param>
-	/// <param name="linkType">The link type.</param>
-	public Link(int startCandidate, int endCandidate, LinkType linkType)
-	{
-		StartCandidate = startCandidate;
-		EndCandidate = endCandidate;
-		LinkType = linkType;
-	}
-
-
-	/// <summary>
-	/// The start candidate.
-	/// </summary>
-	public int StartCandidate { get; }
-
-	/// <summary>
-	/// The end candidate.
-	/// </summary>
-	public int EndCandidate { get; }
-
-	/// <summary>
-	/// The link type.
-	/// </summary>
-	public LinkType LinkType { get; }
-
 	/// <summary>
 	/// Indicates the start cell.
 	/// </summary>
@@ -62,6 +35,12 @@ public readonly partial struct Link : IValueEquatable<Link>, IJsonSerializable<L
 	/// Indicates the eigen value.
 	/// </summary>
 	private int EigenValue => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
+
+
+	/// <inheritdoc/>
+	public bool Equals(in Link other) =>
+		((int)LinkType << 20 | StartCandidate << 10 | EndCandidate) ==
+		((int)other.LinkType << 20 | other.StartCandidate << 10 | other.EndCandidate);
 
 
 	/// <inheritdoc cref="object.ToString"/>

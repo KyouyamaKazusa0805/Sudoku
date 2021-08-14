@@ -3,6 +3,14 @@
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
 /// </summary>
+/// <param name="ConclusionType">
+/// The conclusion type to control the action of applying.
+/// If the type is <see cref="ConclusionType.Assignment"/>,
+/// this conclusion will be set value (Set a digit into a cell);
+/// otherwise, a candidate will be removed.
+/// </param>
+/// <param name="Cell">Indicates the cell.</param>
+/// <param name="Digit">Indicates the digit.</param>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
 /// (i.e. holds the value <see cref="ConclusionType.Elimination"/> as the type), the instance
@@ -12,55 +20,22 @@
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
 [AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-[AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
+public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
-	/// <summary>
-	/// Initializes an instance with a conclusion type, a cell offset and a digit.
-	/// </summary>
-	/// <param name="conclusionType">The conclusion type.</param>
-	/// <param name="cell">The cell offset.</param>
-	/// <param name="digit">The digit.</param>
-	public Conclusion(ConclusionType conclusionType, int cell, int digit)
-	{
-		ConclusionType = conclusionType;
-		Cell = cell;
-		Digit = digit;
-	}
-
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
 	/// </summary>
-	/// <param name="conclusionType">The conclusion type.</param>
+	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
-	public Conclusion(ConclusionType conclusionType, int candidate)
-		: this(conclusionType, candidate / 9, candidate % 9)
+	public Conclusion(ConclusionType type, int candidate) : this(type, candidate / 9, candidate % 9)
 	{
 	}
 
-
-	/// <summary>
-	/// The cell offset.
-	/// </summary>
-	public int Cell { get; }
-
-	/// <summary>
-	/// The digit.
-	/// </summary>
-	public int Digit { get; }
 
 	/// <summary>
 	/// Indicates the candidate.
 	/// </summary>
 	public int Candidate => Cell * 9 + Digit;
-
-	/// <summary>
-	/// The conclusion type to control the action of applying.
-	/// If the type is <see cref="ConclusionType.Assignment"/>,
-	/// this conclusion will be set value (Set a digit into a cell);
-	/// otherwise, a candidate will be removed.
-	/// </summary>
-	public ConclusionType ConclusionType { get; }
 
 
 	/// <summary>
@@ -83,6 +58,10 @@ public readonly partial struct Conclusion : IValueEquatable<Conclusion>, IValueC
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	public bool Equals(in Conclusion other) =>
+		Cell == other.Cell && Digit == other.Digit && ConclusionType == other.ConclusionType;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);

@@ -30,7 +30,7 @@ public partial struct Node : IValueEquatable<Node>
 	/// <param name="isOn">A <see cref="bool"/> value indicating whether the specified node is on.</param>
 	/// <param name="parent">The parent node.</param>
 	public Node(int cell, int digit, bool isOn, in Node parent) : this(cell, digit, isOn) =>
-		Parents = new List<Node> { parent };
+		Parents = new List<Node>(7) { parent };
 
 
 	/// <summary>
