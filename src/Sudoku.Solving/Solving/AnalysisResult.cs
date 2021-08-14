@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // False-positive
-
-namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving;
 
 /// <summary>
 /// Provides an analysis result after a puzzle solved.
@@ -211,10 +209,6 @@ public sealed partial record AnalysisResult(
 		? throw new InvalidOperationException("The specified instance can't get the result.")
 		: Steps.First(step => step.TechniqueCode == code);
 
-
-	public override partial string ToString();
-
-	public partial string ToString(string? format);
 
 	/// <summary>
 	/// Get the analysis result string using the specified format and the country code.

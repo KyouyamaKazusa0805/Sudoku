@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // False-positive
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
@@ -619,10 +617,6 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	/// <returns>An array of all set cell offsets.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
-
-	public override readonly partial string ToString();
-
-	public readonly partial string ToString(string? format);
 
 	/// <inheritdoc/>
 	/// <exception cref="FormatException">Throws when the format is invalid.</exception>

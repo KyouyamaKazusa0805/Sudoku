@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // False-positive。
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a sudoku grid using value type instead of reference type.
@@ -834,10 +832,6 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 
 		static string p(short v) => v.ToString();
 	}
-
-	public override readonly partial string ToString();
-
-	public readonly partial string ToString(string? format);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

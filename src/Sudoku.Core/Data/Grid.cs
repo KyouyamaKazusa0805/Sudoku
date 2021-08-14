@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // False-positive.
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Represents a sudoku grid. The type is the substitution plan of type <see cref="SudokuGrid"/>.
@@ -810,10 +808,6 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 		static string p(short v) => v.ToString();
 	}
-
-	public override readonly partial string ToString();
-
-	public readonly partial string ToString(string? format);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

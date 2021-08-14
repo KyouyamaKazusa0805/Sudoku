@@ -46,7 +46,7 @@ partial {typeKind}{type.Name}{genericParametersList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public override {readonlyKeyword}partial string ToString() => ToString(null, null);
+	public override {readonlyKeyword} string ToString() => ToString(null, null);
 
 	/// <summary>
 	/// Returns a string that represents the current object with the specified format string.
@@ -58,7 +58,7 @@ partial {typeKind}{type.Name}{genericParametersList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public {readonlyKeyword}partial string ToString(string? format) => ToString(format, null);
+	public {readonlyKeyword} string ToString(string? format) => ToString(format, null);
 }}
 "
 			);
