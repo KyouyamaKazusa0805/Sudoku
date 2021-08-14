@@ -43,9 +43,7 @@ public static class BatchRater
 			) = new ManualSolver().Solve(grid);
 
 			// Check the number of chains used in the whole technique.
-			int chainingTechniquesCount = steps!.Count(
-				static step => step.IsAlsTechnique() || step.IsChainingTechnique()
-			);
+			int chainingTechniquesCount = steps!.Count(static step => step.IsAlmostLockedSets || step.IsChaining);
 
 			// Append the text.
 			string textToAppend =

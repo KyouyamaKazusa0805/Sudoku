@@ -31,5 +31,6 @@
 * 所有的 `StepSearcher` 派生实体类的 `init` 属性均改成 `set` 属性提供以后的属性修改和变动；
 * 消除了所有的 `Extensions` 后缀的命名空间，为了确保代码的分配和风格和微软提供的库 API 一致，采用给扩展类添加 `Extensions`、`Marshal` 等后缀，并使用同类型命名空间的方式来消除自创的命名空间；
 * 将源代码生成器里的 `KeyedTuple` 泛型类型从 `record` 改成 `readonly record struct`；
+* 删除 `StepInfoExtensions` 类型，但把它们内部的方法用属性的形式直接放进了 `StepInfo` 记录类型里；
 * **重大修改：所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，并修改命名空间到这个类型自身的命名空间下。**；
 * 提升 C# 版本到 C# 10，更进新语法。

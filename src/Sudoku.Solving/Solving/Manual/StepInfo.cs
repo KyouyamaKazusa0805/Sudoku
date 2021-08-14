@@ -145,6 +145,83 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	public abstract DifficultyLevel DifficultyLevel { get; }
 
 	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+	/// (ALS in abbreviation).
+	/// </summary>
+	public bool IsAlmostLockedSets => HasTag(TechniqueTags.Als);
+
+	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+	/// <list type="bullet">
+	/// <item>
+	/// Wings
+	/// <list type="bullet">
+	/// <item><see cref="RegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+	/// <item>
+	/// <see cref="IrregularWingStepSearcher">Irregular wings</see>
+	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+	/// </item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Short chains
+	/// <list type="bullet">
+	/// <item>
+	/// <see cref="TwoStrongLinksStepSearcher">Two strong links</see>
+	/// (Skyscraper, Two-string kite, Turbot fish)
+	/// </item>
+	/// <item>
+	/// ALS chaining-like techniques
+	/// (<see cref="AlsXzStepSearcher">ALS-XZ</see>,
+	/// <see cref="AlsXyWingStepSearcher">ALS-XY-Wing</see>,
+	/// <see cref="AlsWWingStepSearcher">ALS-W-Wing</see>)
+	/// </item>
+	/// <item><see cref="ErStepSearcher">Empty rectangle</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Long chains
+	/// <list type="bullet">
+	/// <item><see cref="MultipleFcStepSearcher">Forcing chains</see></item>
+	/// <item><see cref="DynamicMultipleFcStepSearcher">Dynamic forcing chains</see></item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </summary>
+	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+
+	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
+	/// The deadly pattern techniques are:
+	/// <list type="bullet">
+	/// <item>
+	/// Bi-value patterns
+	/// <list type="bullet">
+	/// <item><see cref="UrStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
+	/// <item><see cref="UlStepSearcher">Unique loop</see></item>
+	/// <item><see cref="BugStepSearcher">Bi-value universal grave</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Multi-value patterns
+	/// <list type="bullet">
+	/// <item><see cref="XrStepSearcher">Extended rectangle</see></item>
+	/// <item><see cref="UsStepSearcher">Unique square</see></item>
+	/// <item><see cref="BdpStepSearcher">Borescoper's deadly pattern</see></item>
+	/// <item><see cref="QdpStepSearcher">Qiu's deadly pattern</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Other deadly patterns
+	/// <list type="bullet">
+	/// <item><see cref="ReverseBugStepSearcher">Reverse bi-value universal grave</see></item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </summary>
+	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
+
+	/// <summary>
 	/// Indicates the string representation of the conclusions.
 	/// </summary>
 	/// <remarks>
@@ -180,6 +257,7 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	/// one by one.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool HasTag(TechniqueTags flags) =>
 		flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
@@ -193,12 +271,14 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	/// output as the method <see cref="Formatize(bool)"/> invoking.
 	/// </remarks>
 	/// <seealso cref="Formatize(bool)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override string ToString() => Formatize();
 
 	/// <summary>
 	/// Returns a string that only contains the name and the conclusions.
 	/// </summary>
 	/// <returns>The string instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString() => $"{Name} => {ElimStr}";
 
 	/// <summary>
@@ -206,6 +286,7 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	/// This method is used for displaying details in text box control.
 	/// </summary>
 	/// <returns>The string instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual string ToFullString() => ToString();
 
 	/// <summary>

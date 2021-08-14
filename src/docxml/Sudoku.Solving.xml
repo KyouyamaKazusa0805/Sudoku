@@ -10072,6 +10072,83 @@
             The difficulty level of this step.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.IsAlmostLockedSets">
+            <summary>
+            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+            (ALS in abbreviation).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.IsChaining">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+            <list type="bullet">
+            <item>
+            Wings
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+            <item>
+            <see cref="T:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher">Irregular wings</see>
+            (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+            </item>
+            </list>
+            </item>
+            <item>
+            Short chains
+            <list type="bullet">
+            <item>
+            <see cref="T:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher">Two strong links</see>
+            (Skyscraper, Two-string kite, Turbot fish)
+            </item>
+            <item>
+            ALS chaining-like techniques
+            (<see cref="T:Sudoku.Solving.Manual.Alses.AlsXzStepSearcher">ALS-XZ</see>,
+            <see cref="T:Sudoku.Solving.Manual.Alses.AlsXyWingStepSearcher">ALS-XY-Wing</see>,
+            <see cref="T:Sudoku.Solving.Manual.Alses.AlsWWingStepSearcher">ALS-W-Wing</see>)
+            </item>
+            <item><see cref="T:Sudoku.Solving.Manual.Sdps.ErStepSearcher">Empty rectangle</see></item>
+            </list>
+            </item>
+            <item>
+            Long chains
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Chaining.MultipleFcStepSearcher">Forcing chains</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Chaining.DynamicMultipleFcStepSearcher">Dynamic forcing chains</see></item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepInfo.IsDeadlyPattern">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a deadly pattern.
+            The deadly pattern techniques are:
+            <list type="bullet">
+            <item>
+            Bi-value patterns
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher">Unique loop</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepSearcher">Bi-value universal grave</see></item>
+            </list>
+            </item>
+            <item>
+            Multi-value patterns
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher">Extended rectangle</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Square.UsStepSearcher">Unique square</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepSearcher">Borescoper's deadly pattern</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher">Qiu's deadly pattern</see></item>
+            </list>
+            </item>
+            <item>
+            Other deadly patterns
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepSearcher">Reverse bi-value universal grave</see></item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.StepInfo.ElimStr">
             <summary>
             Indicates the string representation of the conclusions.
@@ -10235,33 +10312,6 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.StepInfo.Format"/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.StepInfoExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsAlsTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is an ALS technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsChainingTechnique(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is a chaining-ruled technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.IsUniqueness(Sudoku.Solving.Manual.StepInfo)">
-            <summary>
-            Check whether the current technique information is a uniqueness technique.
-            </summary>
-            <param name="this">The technique instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepSearcher">
             <summary>
