@@ -19,7 +19,6 @@
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
-[AutoDeconstruct(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
