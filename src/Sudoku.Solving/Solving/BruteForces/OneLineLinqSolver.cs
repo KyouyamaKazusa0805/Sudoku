@@ -3,6 +3,7 @@
 /// <summary>
 /// Provides a solver using LINQ method.
 /// </summary>
+[ForStudyingOnly]
 public sealed class OneLineLinqSolver : ISolver
 {
 	/// <inheritdoc/>

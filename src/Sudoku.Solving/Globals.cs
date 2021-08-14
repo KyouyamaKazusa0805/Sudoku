@@ -45,6 +45,7 @@ global using Sudoku.Solving.Manual.Wings.Irregular;
 global using Sudoku.Solving.Manual.Wings.Regular;
 global using Sudoku.Solving.Text;
 global using Sudoku.Techniques;
+global using Sudoku.Versioning;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Constants;
