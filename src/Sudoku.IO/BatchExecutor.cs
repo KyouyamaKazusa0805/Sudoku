@@ -505,8 +505,7 @@ public sealed partial class BatchExecutor
 	/// <param name="settings">The settings.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	public static bool TryParse(
-		string batch, Settings settings, [NotNullWhen(true)] out BatchExecutor? result)
+	public static bool TryParse(string batch, Settings settings, [NotNullWhen(true)] out BatchExecutor? result)
 	{
 		string[] lines = batch.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 		if (lines.Length == 0)

@@ -11,7 +11,7 @@ namespace Sudoku.Data;
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
 [Obsolete("Please use the type '" + nameof(Grid) + "' instead.", false)]
-public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>
+public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>, IParsable<SudokuGrid>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1046,18 +1046,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
-	/// <summary>
-	/// <para>
-	/// Parses a string value and converts to this type.
-	/// </para>
-	/// <para>
-	/// If you want to parse a PM grid, we recommend you use the method
-	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
-	/// </para>
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="Parse(string, GridParsingOption)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static SudokuGrid Parse(string str) => new Parser(str).Parse();
 
@@ -1094,17 +1083,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	public static SudokuGrid Parse(string str, GridParsingOption gridParsingOption) =>
 		new Parser(str).Parse(gridParsingOption);
 
-	/// <summary>
-	/// Try to parse a string and converts to this type, and returns a
-	/// <see cref="bool"/> value indicating the result of the conversion.
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <param name="result">
-	/// The result parsed. If the conversion is failed,
-	/// this argument will be <see cref="Undefined"/>.
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="Undefined"/>
+	/// <inheritdoc/>
 	public static bool TryParse(string str, out SudokuGrid result)
 	{
 		try

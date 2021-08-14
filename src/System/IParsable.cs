@@ -1,6 +1,4 @@
-﻿using System.Runtime.Versioning;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Defines a parsable type.

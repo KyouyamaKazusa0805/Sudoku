@@ -6,7 +6,7 @@
 [AutoHashCode(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
-public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>, IJsonSerializable<Candidates, Candidates.JsonConverter>
+public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>, IJsonSerializable<Candidates, Candidates.JsonConverter>, IParsable<Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -620,6 +620,10 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	}
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Candidates Parse(string str) => Parse(str, CandidatesParsingOptions.All);
+
 	/// <summary>
 	/// Parse a <see cref="string"/> and convert to the <see cref="Candidates"/> instance.
 	/// </summary>
@@ -713,16 +717,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return result;
 	}
 
-	/// <summary>
-	/// Try to parse the specified <see cref="string"/>, and convert it to the <see cref="Candidates"/>
-	/// instance.
-	/// </summary>
-	/// <param name="str">The string to parse.</param>
-	/// <param name="result">The result that converted.</param>
-	/// <returns>
-	/// A <see cref="bool"/> result indicating whether the parsing operation
-	/// has been successfully executed.
-	/// </returns>
+	/// <inheritdoc/>
 	public static bool TryParse(string str, out Candidates result)
 	{
 		try

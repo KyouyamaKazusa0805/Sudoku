@@ -14,7 +14,7 @@ namespace Sudoku.Data;
 #endif
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
-public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>
+public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, IParsable<Grid>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).

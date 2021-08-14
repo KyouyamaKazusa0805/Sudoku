@@ -1,6 +1,4 @@
-﻿#define USE_DEFAULT_IMPL
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Defines a generalized comparison method that a <see langword="struct"/> implements

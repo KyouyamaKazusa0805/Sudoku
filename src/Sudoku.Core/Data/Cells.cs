@@ -15,7 +15,7 @@ namespace Sudoku.Data;
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 [AutoFormattable]
-public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>
+public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -952,12 +952,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 
-	/// <summary>
-	/// Parse a <see cref="string"/> and convert to the <see cref="Cells"/> instance.
-	/// </summary>
-	/// <param name="str">The string text.</param>
-	/// <returns>The result cell instance.</returns>
-	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
+	/// <inheritdoc/>
 	public static unsafe Cells Parse(string str)
 	{
 		var regex = new Regex(
@@ -1019,16 +1014,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		return result;
 	}
 
-	/// <summary>
-	/// Try to parse the specified <see cref="string"/>, and convert it to the <see cref="Cells"/>
-	/// instance.
-	/// </summary>
-	/// <param name="str">The string to parse.</param>
-	/// <param name="result">The result that converted.</param>
-	/// <returns>
-	/// A <see cref="bool"/> result indicating whether the parsing operation
-	/// has been successfully executed.
-	/// </returns>
+	/// <inheritdoc/>
 	public static bool TryParse(string str, out Cells result)
 	{
 		try

@@ -14,7 +14,7 @@ public partial record struct PresentationData(
 	[DisallowNull][property: DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
 	[DisallowNull][property: DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
 	[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines
-) : IValueEquatable<PresentationData>/*, IParsable<PresentationData>*/
+) : IValueEquatable<PresentationData>, IParsable<PresentationData>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -322,28 +322,14 @@ public partial record struct PresentationData(
 
 
 #pragma warning disable IDE0022
-	/// <summary>
-	/// Parse a <see cref="string"/> value which is the SVG-format code
-	/// to a <see cref="PresentationData"/> result.
-	/// </summary>
-	/// <param name="svgCode">The SVG <see cref="string"/> code.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	public static PresentationData Parse(string svgCode)
 	{
 		throw new NotImplementedException("I'll implement this method later.");
 	}
 #pragma warning restore IDE0022
 
-	/// <summary>
-	/// Try to parse a <see cref="string"/> value which is the SVG-format code
-	/// to a <see cref="PresentationData"/> result.
-	/// </summary>
-	/// <param name="svgCode">The SVG <see cref="string"/> code.</param>
-	/// <param name="result">
-	/// The result. The value keeps <see langword="default"/> value
-	/// when the return value is <see langword="false"/>.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating whether the parse operation is successful.</returns>
+	/// <inheritdoc/>
 	public static bool TryParse(string svgCode, out PresentationData result)
 	{
 		try
