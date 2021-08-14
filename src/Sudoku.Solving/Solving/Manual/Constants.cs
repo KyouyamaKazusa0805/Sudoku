@@ -60,7 +60,7 @@ internal static class Constants
 	public static readonly string[] SubsetNames =
 	{
 		string.Empty, "Single", "Pair", "Triple", "Quadruple",
-		"Quintuple", "Sextuple", "Septuple", "Octuple", "Nonuple"
+		"Quintuple", "Sextuple", "Septuple"
 	};
 
 	/// <summary>
