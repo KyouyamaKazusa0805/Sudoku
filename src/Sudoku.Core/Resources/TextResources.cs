@@ -1,6 +1,5 @@
 ﻿#pragma warning disable
-
-#nullable disable
+#nullable disable warnings
 
 namespace Sudoku.Resources;
 
