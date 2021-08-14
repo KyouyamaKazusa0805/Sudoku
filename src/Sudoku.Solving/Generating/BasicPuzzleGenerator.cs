@@ -7,8 +7,7 @@
 public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 {
 	/// <inheritdoc/>
-	public override SudokuGrid? Generate() =>
-		Generate(28, SymmetryType.Central, null, CountryCode.Default, null);
+	public override SudokuGrid? Generate() => Generate(28, SymmetryType.Central, null, CountryCode.Default, null);
 
 	/// <summary>
 	/// Generate a puzzle with the specified information.
