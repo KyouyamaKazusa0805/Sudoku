@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a view when displaying the information on forms.
 /// </summary>
-[Obsolete("Please use 'PresentationData' instead.", false)]
+[Obsolete($"Please use {nameof(PresentationData)} instead.", false)]
 public sealed class View : IEquatable<View>
 {
 	/// <summary>

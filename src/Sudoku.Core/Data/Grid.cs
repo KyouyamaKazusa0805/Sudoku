@@ -8,7 +8,7 @@
 /// </remarks>
 /// <seealso cref="SudokuGrid"/>
 #if DEBUG
-[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
+[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]

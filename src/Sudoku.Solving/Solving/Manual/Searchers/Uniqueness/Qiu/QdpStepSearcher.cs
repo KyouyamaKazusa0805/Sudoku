@@ -29,7 +29,7 @@ public sealed partial class QdpStepSearcher : UniquenessStepSearcher
 	/// <summary>
 	/// All different patterns.
 	/// </summary>
-	private static readonly Pattern[] Patterns = new Pattern[Constants.QdpTemplatesCount];
+	private static readonly Pattern[] Patterns = new Pattern[QdpTemplatesCount];
 
 
 	/// <inheritdoc/>
@@ -43,7 +43,7 @@ public sealed partial class QdpStepSearcher : UniquenessStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(26, nameof(Technique.QdpType1))
 	{
 		DisplayLevel = 2

@@ -11,7 +11,7 @@ public sealed partial class BdpStepSearcher : UniquenessStepSearcher
 	/// <remarks>
 	/// All possible heptagons and octagons are in here.
 	/// </remarks>
-	private static readonly Pattern[] Patterns = new Pattern[Constants.BdpTemplatesSize3Count];
+	private static readonly Pattern[] Patterns = new Pattern[BdpTemplatesSize3Count];
 
 
 	/// <inheritdoc/>
@@ -25,7 +25,7 @@ public sealed partial class BdpStepSearcher : UniquenessStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(17, nameof(Technique.BdpType1))
 	{
 		DisplayLevel = 2
@@ -40,13 +40,7 @@ public sealed partial class BdpStepSearcher : UniquenessStepSearcher
 			return;
 		}
 
-		for (
-			int
-				i = 0,
-				end = EmptyMap.Count == 7 ? Constants.BdpTemplatesSize3Count : Constants.BdpTemplatesSize4Count;
-			i < end;
-			i++
-		)
+		for (int i = 0, end = EmptyMap.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count; i < end; i++)
 		{
 			var pattern = Patterns[i];
 			if ((EmptyMap & pattern.Map) != pattern.Map)

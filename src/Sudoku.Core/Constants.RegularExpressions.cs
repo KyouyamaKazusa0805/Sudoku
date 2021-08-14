@@ -52,7 +52,7 @@ partial class Constants
 		/// <summary>
 		/// Indicates the unit in the basic PM grid.
 		/// </summary>
-		[Regex, Obsolete("We suggest you don't use this field, and use '" + nameof(PmGridUnit) + "' instead.")]
+		[Regex, Obsolete($"We suggest you don't use this field, and use '{nameof(PmGridUnit)}' instead.")]
 		public const string PmGridUnit_Old = @"(\<\d\>|\*\d\*|\d{1,9})";
 
 		/// <summary>
@@ -136,7 +136,7 @@ partial class Constants
 		/// </list>
 		/// </remarks>
 		[Regex]
-		public const string CandidateOrCandidateList = "(" + CandidateListShortForm + "|" + CandidateListPrepositionalForm + "|" + CandidateListPostpositionalForm + ")";
+		public const string CandidateOrCandidateList = $"({CandidateListShortForm}|{CandidateListPrepositionalForm}|{CandidateListPostpositionalForm})";
 
 		/// <summary>
 		/// Indicates the regular expression to match a conclusion.

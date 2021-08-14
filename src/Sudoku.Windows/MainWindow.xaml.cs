@@ -516,7 +516,7 @@ public partial class MainWindow : Window
 
 		// Check whether the resource dictionary files exist.
 		const string defaultLanguageFileName = "Resources.en-us.dic";
-		const string defaultLanguageFileIsRequired = "The file named '" + defaultLanguageFileName + "' is required.";
+		const string defaultLanguageFileIsRequired = $"The file named '{defaultLanguageFileName}' is required.";
 		if (!File.Exists($@"{folderPath}\{defaultLanguageFileName}"))
 		{
 			MessageBox.Show(

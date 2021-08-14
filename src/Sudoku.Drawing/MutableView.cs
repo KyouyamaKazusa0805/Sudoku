@@ -6,7 +6,7 @@
 /// in the current collection.
 /// </summary>
 /// <seealso cref="View"/>
-[Obsolete("Please use 'PresentationData' instead.", false)]
+[Obsolete($"Please use '{nameof(PresentationData)}' instead.", false)]
 public sealed class MutableView : IEquatable<MutableView>
 {
 	/// <summary>

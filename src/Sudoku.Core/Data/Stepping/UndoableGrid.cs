@@ -6,7 +6,7 @@ namespace Sudoku.Data.Stepping;
 /// Provides an undoable sudoku grid.
 /// </summary>
 #if DEBUG
-[DebuggerDisplay("{ToString(\"#.\")}")]
+[DebuggerDisplay($@"{{{nameof(ToString)}(""#."")}}")]
 #endif
 [Obsolete("In the future, this class won't be used.", false)]
 public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable

@@ -16,7 +16,7 @@
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority))]
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
-[Obsolete("Please use type '" + nameof(SearchingOptions) + "' instead.", false)]
+[Obsolete($"Please use type '{nameof(SearchingOptions)}' instead.", false)]
 public sealed partial record TechniqueProperties(int Priority, string DisplayLabel)
 {
 	/// <summary>

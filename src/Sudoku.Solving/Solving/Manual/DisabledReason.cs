@@ -30,6 +30,6 @@ public enum DisabledReason : short
 	/// Indicates the searcher can get correct <see cref="StepInfo"/>s, but the difference
 	/// of the difficulty among them are too big.
 	/// </summary>
-	[Obsolete("The type '" + nameof(SearchingOptions) + "' contains the value.", false)]
+	[Obsolete($"The type '{nameof(SearchingOptions)}' contains the value.", false)]
 	Unstable = 8
 }

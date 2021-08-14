@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeFixers;
 
-[CodeFixProvider("SS0609")] // Please update here.
+[CodeFixProvider("SS0609")]
 public sealed partial class SS0609CodeFixProvider : CodeFixProvider
 {
 	/// <inheritdoc/>

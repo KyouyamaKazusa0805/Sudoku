@@ -4,7 +4,7 @@
 /// Encapsulates a drawing information pair for highlighting cells,
 /// candidates and regions.
 /// </summary>
-[Obsolete("Please use Sudoku.Drawing.PaintingPair`1 instead.", false)]
+[Obsolete($"Please use '{nameof(ColorIdentifier)}' instead.", false)]
 [AutoDeconstruct(nameof(Id), nameof(Value))]
 [AutoEquality(nameof(Id), nameof(Value))]
 public readonly partial struct DrawingInfo : IValueEquatable<DrawingInfo>

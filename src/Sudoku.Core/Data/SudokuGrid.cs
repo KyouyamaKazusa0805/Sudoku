@@ -4,11 +4,11 @@
 /// Encapsulates a sudoku grid using value type instead of reference type.
 /// </summary>
 #if DEBUG
-[DebuggerDisplay("{" + nameof(ToString) + "(\".+:\"),nq}")]
+[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
-[Obsolete("Please use the type '" + nameof(Grid) + "' instead.", false)]
+[Obsolete($"Please use the type '{nameof(Grid)}' instead.", false)]
 public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>, IParsable<SudokuGrid>
 {
 	/// <summary>

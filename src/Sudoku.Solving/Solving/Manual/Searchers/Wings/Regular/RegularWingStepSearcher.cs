@@ -21,7 +21,7 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete("Please use the property '" + nameof(Options) + "' instead.", false)]
+	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(6, nameof(Technique.XyWing))
 	{
 		DisplayLevel = 2
@@ -34,7 +34,7 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
-		for (int size = 3, count = Math.Min(MaxSize, BivalueMap.Count); size <= count; size++)
+		for (int size = 3, count = Min(MaxSize, BivalueMap.Count); size <= count; size++)
 		{
 			// Iterate on each pivot cell.
 			foreach (int pivot in EmptyMap)
