@@ -1,6 +1,4 @@
-﻿using Pointer = System.Pointer;
-
-namespace Sudoku.Solving.Manual.Symmetry;
+﻿namespace Sudoku.Solving.Manual.Symmetry;
 
 /// <summary>
 /// Encapsulates a <b>Gurth's symmetrical placement 2</b> (GSP2) technique searcher.
@@ -221,7 +219,7 @@ public sealed class Gsp2StepSearcher : SymmetryStepSearcher
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				Pointer.Swap(pGrid + RegionCells[region1][i], pGrid + RegionCells[region2][i]);
+				PointerMarshal.Swap(pGrid + RegionCells[region1][i], pGrid + RegionCells[region2][i]);
 			}
 		}
 	}

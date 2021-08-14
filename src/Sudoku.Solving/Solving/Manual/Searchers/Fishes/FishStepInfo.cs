@@ -1,6 +1,4 @@
-﻿using Pointer = System.Pointer;
-
-namespace Sudoku.Solving.Manual.Fishes;
+﻿namespace Sudoku.Solving.Manual.Fishes;
 
 /// <summary>
 /// Provides a usage of <b>fish</b> technique.
@@ -89,6 +87,6 @@ public abstract record FishStepInfo(
 		}
 
 		// Parses via the buffer, and returns the result.
-		return Enum.Parse<Technique>(new string(Pointer.GetArrayFromStart(buffer, bufferLength, 0)));
+		return Enum.Parse<Technique>(new string(PointerMarshal.GetArrayFromStart(buffer, bufferLength, 0)));
 	}
 }

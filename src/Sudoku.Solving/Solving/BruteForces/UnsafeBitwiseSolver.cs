@@ -1,6 +1,4 @@
-﻿using Pointer = System.Pointer;
-
-namespace Sudoku.Solving.BruteForces;
+﻿namespace Sudoku.Solving.BruteForces;
 
 /// <summary>
 /// Define an unsafe bitwise solver.
@@ -297,7 +295,7 @@ public sealed unsafe partial class UnsafeBitwiseSolver : ISolver
 			_g = g;
 		}
 
-		switch (Pointer.StringLengthOf(board))
+		switch (PointerMarshal.StringLengthOf(board))
 		{
 			case 81:
 			{

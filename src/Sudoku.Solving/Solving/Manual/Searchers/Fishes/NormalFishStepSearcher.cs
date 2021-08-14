@@ -1,6 +1,4 @@
-﻿using Pointer = System.Pointer;
-
-namespace Sudoku.Solving.Manual.Fishes;
+﻿namespace Sudoku.Solving.Manual.Fishes;
 
 /// <summary>
 /// Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
@@ -112,7 +110,7 @@ public sealed class NormalFishStepSearcher : FishStepSearcher
 			}
 
 			// Iterate on the base set combination.
-			foreach (int[] baseSets in Pointer.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
+			foreach (int[] baseSets in PointerMarshal.GetArrayFromStart(pBase, 10, 1, true).GetSubsets(size))
 			{
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
@@ -129,7 +127,7 @@ public sealed class NormalFishStepSearcher : FishStepSearcher
 				};
 
 				// Iterate on the cover set combination.
-				foreach (int[] coverSets in Pointer.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
+				foreach (int[] coverSets in PointerMarshal.GetArrayFromStart(pCover, 10, 1, true).GetSubsets(size))
 				{
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch

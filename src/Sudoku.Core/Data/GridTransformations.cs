@@ -1,6 +1,4 @@
-﻿using Pointer = System.Pointer;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.
@@ -238,7 +236,7 @@ public static unsafe class GridTransformations
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				Pointer.Swap(pResult + RegionCells[region1][i], pThis + RegionCells[region2][i]);
+				PointerMarshal.Swap(pResult + RegionCells[region1][i], pThis + RegionCells[region2][i]);
 			}
 		}
 

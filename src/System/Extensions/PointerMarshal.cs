@@ -1,12 +1,9 @@
 ﻿namespace System;
 
 /// <summary>
-/// Provides methods on pointers.
+/// Provides methods for pointer handling.
 /// </summary>
-/// <remarks>
-/// Different with other types, pointers can't be as <see langword="this"/> parameter.
-/// </remarks>
-public static unsafe class Pointer
+public static unsafe class PointerMarshal
 {
 	/// <summary>
 	/// To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
@@ -15,7 +12,7 @@ public static unsafe class Pointer
 	/// <param name="left">The left variable.</param>
 	/// <param name="right">The right variable.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right) where TUnmanaged : unmanaged
+	public static void Swap<TUnmanaged>(TUnmanaged* left, TUnmanaged* right) where TUnmanaged : unmanaged
 	{
 		var temp = *left;
 		*left = *right;

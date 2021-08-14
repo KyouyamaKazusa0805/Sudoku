@@ -1995,15 +1995,12 @@
             otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="T:System.Pointer">
+        <member name="T:System.PointerMarshal">
             <summary>
-            Provides methods on pointers.
+            Provides methods for pointer handling.
             </summary>
-            <remarks>
-            Different with other types, pointers can't be as <see langword="this"/> parameter.
-            </remarks>
         </member>
-        <member name="M:System.Pointer.Swap``1(``0*,``0*)">
+        <member name="M:System.PointerMarshal.Swap``1(``0*,``0*)">
             <summary>
             To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
             </summary>
@@ -2011,7 +2008,7 @@
             <param name="left">The left variable.</param>
             <param name="right">The right variable.</param>
         </member>
-        <member name="M:System.Pointer.StringLengthOf(System.Char*)">
+        <member name="M:System.PointerMarshal.StringLengthOf(System.Char*)">
             <summary>
             Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
             </summary>
@@ -2025,7 +2022,7 @@
             However, C# not.
             </remarks>
         </member>
-        <member name="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
+        <member name="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
             <summary>
             Get the new array from the pointer, with the specified start index.
             </summary>
@@ -2044,7 +2041,7 @@
             5 elements in this case.
             </remarks>
         </member>
-        <member name="M:System.Pointer.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:System.PointerMarshal.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Get the new array from the pointer, with the specified start index.
             </summary>
@@ -2053,7 +2050,7 @@
             <param name="index">The start index that you want to pick from.</param>
             <param name="removeTrailingZeros">
             Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-            the method will be same as <see cref="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
+            the method will be same as <see cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
             </param>
             <returns>The array of elements.</returns>
             <remarks>
@@ -2062,7 +2059,7 @@
             the parameter <paramref name="length"/> should keep the value 5 because the array contains
             5 elements in this case.
             </remarks>
-            <seealso cref="M:System.Pointer.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
+            <seealso cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
         </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
