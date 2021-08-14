@@ -182,9 +182,7 @@ public sealed partial class SkLoopStepSearcher : RankTheoryStepSearcher
 
 						foreach (int digit in cands)
 						{
-							candidateOffsets.Add(
-								new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit)
-							);
+							candidateOffsets.Add(new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 						}
 					}
 				}

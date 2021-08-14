@@ -50,8 +50,7 @@ public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 		}
 
 
-		static void checkNotNullAndRecursively(
-			in SyntaxNodeAnalysisContext context, PatternSyntax[] nestedPatterns)
+		static void checkNotNullAndRecursively(in SyntaxNodeAnalysisContext context, PatternSyntax[] nestedPatterns)
 		{
 			foreach (var nestedPattern in nestedPatterns)
 			{
@@ -101,8 +100,7 @@ public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 			}
 		}
 
-		static void checkNullOrRecursively(
-			in SyntaxNodeAnalysisContext context, PatternSyntax[] nestedPatterns)
+		static void checkNullOrRecursively(in SyntaxNodeAnalysisContext context, PatternSyntax[] nestedPatterns)
 		{
 			foreach (var nestedPattern in nestedPatterns)
 			{
@@ -114,12 +112,8 @@ public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 						// Ignore the pattern 'null or T'.
 						Parent: not (
 							BinaryPatternSyntax and (
-								{
-									Left: ConstantPatternSyntax { Expression: IdentifierNameSyntax }
-								} or
-								{
-									Right: ConstantPatternSyntax { Expression: IdentifierNameSyntax }
-								}
+								{ Left: ConstantPatternSyntax { Expression: IdentifierNameSyntax } } or
+								{ Right: ConstantPatternSyntax { Expression: IdentifierNameSyntax } }
 							)
 						),
 #pragma warning restore IDE0055
@@ -146,14 +140,14 @@ public sealed partial class NotNullAndAndNullOrAnalyzer : DiagnosticAnalyzer
 						Right: var nestedRightPattern
 					}:
 					{
-						Recursion? action = kind switch
-						{
-							(int)SyntaxKind.AndPattern => checkNotNullAndRecursively,
-							(int)SyntaxKind.OrPattern => checkNullOrRecursively,
-							_ => null
-						};
-
-						action?.Invoke(context, new[] { nestedLeftPattern, nestedRightPattern });
+						(
+							kind switch
+							{
+								(int)SyntaxKind.AndPattern => checkNotNullAndRecursively,
+								(int)SyntaxKind.OrPattern => checkNullOrRecursively,
+								_ => (Recursion?)null
+							}
+						)?.Invoke(context, new[] { nestedLeftPattern, nestedRightPattern });
 
 						break;
 					}

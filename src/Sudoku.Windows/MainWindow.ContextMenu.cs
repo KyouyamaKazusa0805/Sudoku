@@ -102,10 +102,9 @@ partial class MainWindow
 	private void ContextMenuTechniquesApply_Click(object sender, RoutedEventArgs e)
 	{
 		if (
-			sender is MenuItem && _listBoxTechniques is
-			{
-				SelectedItem: ListBoxItem { Content: InfoTriplet(_, var info, Item3: true, _) triplet }
-			}
+			(sender, _listBoxTechniques) is (
+				MenuItem, { SelectedItem: ListBoxItem { Content: InfoTriplet(_, var info, Item3: true, _) triplet } }
+			)
 		)
 		{
 			ref var valueGrid = ref _puzzle.InnerGrid;

@@ -30,36 +30,36 @@ public sealed partial class StructReadOnlyModifierAnalyzer : DiagnosticAnalyzer
 			return;
 		}
 
-		Action? a = accessorsCount switch
-		{
-			// readonly int Prop { get; }
-			1 when accessors[0] is
+		(
+			accessorsCount switch
 			{
-				Keyword.RawKind: (int)SyntaxKind.GetKeyword,
-				Modifiers: { Count: var count } getterModifiers,
-				Body: null,
-				ExpressionBody: null
+				// readonly int Prop { get; }
+				1 when accessors[0] is
+				{
+					Keyword.RawKind: (int)SyntaxKind.GetKeyword,
+					Modifiers: { Count: var count } getterModifiers,
+					Body: null,
+					ExpressionBody: null
+				}
+				&& (count == 0 || count != 0 && getterModifiers.All(isNotReadOnlyKeyword))
+				&& modifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
+				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, node),
+
+				// int Prop { readonly get; set; }
+				2 when accessors[0] is
+				{
+					Keyword.RawKind: (int)SyntaxKind.GetKeyword,
+					Modifiers: { Count: var count } getterModifiers,
+					Body: null,
+					ExpressionBody: null
+				} getAccessor
+				&& (count == 0 || count != 0 && modifiers.All(isNotReadOnlyKeyword))
+				&& getterModifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
+				&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, getAccessor),
+
+				_ => (Action?)null
 			}
-			&& (count == 0 || count != 0 && getterModifiers.All(isNotReadOnlyKeyword))
-			&& modifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
-			&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, node),
-
-			// int Prop { readonly get; set; }
-			2 when accessors[0] is
-			{
-				Keyword.RawKind: (int)SyntaxKind.GetKeyword,
-				Modifiers: { Count: var count } getterModifiers,
-				Body: null,
-				ExpressionBody: null
-			} getAccessor
-			&& (count == 0 || count != 0 && modifiers.All(isNotReadOnlyKeyword))
-			&& getterModifiers.FirstOrDefault(isReadOnlyKeyword) is var possibleReadOnlyModifier
-			&& possibleReadOnlyModifier != default => () => f(possibleReadOnlyModifier, getAccessor),
-
-			_ => null
-		};
-
-		a?.Invoke();
+		)?.Invoke();
 
 
 		void f(SyntaxToken token, SyntaxNode node)

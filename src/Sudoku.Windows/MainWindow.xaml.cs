@@ -612,7 +612,9 @@ public partial class MainWindow : Window
 		CommandBindings.Add(
 			new(
 				command,
-				(sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)));
+				(sender, e) => ((matchControl?.IsEnabled ?? true) ? executed : null)?.Invoke(sender, e)
+			)
+		);
 	}
 
 	/// <summary>

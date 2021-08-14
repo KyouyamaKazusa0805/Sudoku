@@ -577,10 +577,7 @@ public partial class SettingsWindow : Window
 	{
 		if (
 			sender is TextBox { Text: var text } textBox && int.TryParse(text, out int value)
-			&& _listBoxPriority is
-			{
-				SelectedItem: ListBoxItem { Content: StepTypeTriplet(_, _, Item3: var type, _) }
-			}
+			&& _listBoxPriority is { SelectedItem: ListBoxItem { Content: StepTypeTriplet(_, _, Item3: var type, _) } }
 		)
 		{
 			// Here we can't use 'with' expression to modify the value.

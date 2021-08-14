@@ -36,7 +36,7 @@ public sealed partial class DiscardedPositionalPatternAnalyzer : DiagnosticAnaly
 			return;
 		}
 
-		if (semanticModel.GetOperation(expr) is not { Type: (_, _, isNullable: var isNullable) })
+		if (semanticModel.GetOperation(expr) is not { Type: (_, _, var isNullable) })
 		{
 			return;
 		}

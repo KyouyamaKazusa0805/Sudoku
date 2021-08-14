@@ -41,16 +41,22 @@ public partial class TechniqueView : UserControl
 
 			box.CheckingChanged += (sender, [Discard] _) =>
 			{
-				if (sender is CheckBox { Content: KeyedTuple<string, Technique>(_, var item, _) } box)
-				{
-					Func<Technique, TechniqueCodeFilter?>? f = box.IsChecked switch
+				if (
+					sender is CheckBox
 					{
-						true => ChosenTechniques.Add,
-						false => ChosenTechniques.Remove,
-						_ => null
-					};
-
-					f?.Invoke(item);
+						Content: KeyedTuple<string, Technique>(_, var item, _),
+						IsChecked: var isChecked
+					} box
+				)
+				{
+					(
+						isChecked switch
+						{
+							true => ChosenTechniques.Add,
+							false => ChosenTechniques.Remove,
+							_ => (Func<Technique, TechniqueCodeFilter>?)null
+						}
+					)?.Invoke(item);
 				}
 			};
 
