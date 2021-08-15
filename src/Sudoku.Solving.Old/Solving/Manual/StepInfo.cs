@@ -305,7 +305,7 @@ public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, I
 	/// </exception>
 	/// <seealso cref="Format"/>
 	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicProperties)]
-	public partial string Formatize(bool handleEscaping)
+	public string Formatize(bool handleEscaping = false)
 	{
 		// Check whether the format property is not null.
 		if (Format is not { } format)

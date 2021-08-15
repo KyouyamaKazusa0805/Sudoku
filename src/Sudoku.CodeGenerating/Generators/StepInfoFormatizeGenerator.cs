@@ -4,7 +4,9 @@
 /// Indicates the source generator that generates the code about the attributes to mark onto
 /// the method <c>Formatize</c> in the type <c>StepInfo</c>.
 /// </summary>
+#if false
 [Generator]
+#endif
 public sealed class StepInfoFormatizeGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>

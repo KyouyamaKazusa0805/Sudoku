@@ -8,7 +8,7 @@
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
-		<DocumentationFile>..\docxml\Sudoku.Solving.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Solving.Old.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PlatformTarget>AnyCPU</PlatformTarget>

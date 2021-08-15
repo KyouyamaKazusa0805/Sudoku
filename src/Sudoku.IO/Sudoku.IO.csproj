@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+		<ProjectReference Include="..\Sudoku.Solving.Old\Sudoku.Solving.Old.csproj" />
 		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
