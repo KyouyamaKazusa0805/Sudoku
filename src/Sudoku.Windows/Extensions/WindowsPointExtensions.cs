@@ -1,22 +1,11 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Windows;
 
 /// <summary>
-/// Provides extension methods on <see cref="WPoint"/>, <see cref="DPoint"/>
-/// and <see cref="DPointF"/>.
+/// Provides extension methods on <see cref="WPoint"/>.
 /// </summary>
 /// <seealso cref="WPoint"/>
-/// <seealso cref="DPoint"/>
-/// <seealso cref="DPointF"/>
-public static partial class PointEx
+public static partial class WindowsPointExtensions
 {
-	/// <summary>
-	/// Convert a <see cref="DPoint"/> to <see cref="WPoint"/>.
-	/// </summary>
-	/// <param name="this">The point to convert.</param>
-	/// <returns>The result of conversion.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WPoint ToWPoint(this in DPoint @this) => new(@this.X, @this.Y);
-
 	/// <summary>
 	/// Convert a <see cref="WPoint"/> to <see cref="DPoint"/>.
 	/// </summary>

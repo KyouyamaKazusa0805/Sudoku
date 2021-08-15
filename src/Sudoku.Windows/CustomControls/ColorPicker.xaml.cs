@@ -1,7 +1,5 @@
 ﻿#pragma warning disable IDE0051
 
-using WColorEx = Sudoku.Windows.Extensions.WindowsColorEx;
-
 namespace Sudoku.Windows.CustomControls;
 
 /// <summary>
@@ -348,8 +346,10 @@ public sealed partial class ColorPicker : UserControl
 		{
 			var z = Color.GetValueOrDefault();
 			SetColor(
-				WColorEx.FromAhsb(
-					(int)_aSlider._slider.Value, (float)value, z.GetSaturation(), z.GetBrightness()));
+				WindowsColorExtensions.FromAhsb(
+					(int)_aSlider._slider.Value, (float)value, z.GetSaturation(), z.GetBrightness()
+				)
+			);
 		}
 	}
 
@@ -359,8 +359,9 @@ public sealed partial class ColorPicker : UserControl
 		if (!_isSettingValues)
 		{
 			var z = Color.GetValueOrDefault();
-			Color = WColorEx.FromAhsb(
-				(int)_aSlider._slider.Value, z.GetHue(), (float)value, z.GetBrightness());
+			Color = WindowsColorExtensions.FromAhsb(
+				(int)_aSlider._slider.Value, z.GetHue(), (float)value, z.GetBrightness()
+			);
 
 			SetColor(Color);
 		}
@@ -372,8 +373,9 @@ public sealed partial class ColorPicker : UserControl
 		if (!_isSettingValues)
 		{
 			var z = Color.GetValueOrDefault();
-			Color = WColorEx.FromAhsb(
-				(int)_aSlider._slider.Value, z.GetHue(), z.GetSaturation(), (float)value);
+			Color = WindowsColorExtensions.FromAhsb(
+				(int)_aSlider._slider.Value, z.GetHue(), z.GetSaturation(), (float)value
+			);
 
 			SetColor(Color);
 		}
@@ -387,11 +389,12 @@ public sealed partial class ColorPicker : UserControl
 	/// </summary>
 	private void UpdateImageForHSV()
 	{
-		var img =
-			new BitmapImage(
-				new(
-					"pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png",
-					UriKind.RelativeOrAbsolute));
+		var img = new BitmapImage(
+			new(
+				"pack://application:,,,/Sudoku.Windows;component/Resources/ColorSample.png",
+				UriKind.RelativeOrAbsolute
+			)
+		);
 		float sliderHue = (float)_pickerHueSlider.Value;
 		if (sliderHue is <= 0 or >= 360F)
 		{
@@ -412,7 +415,7 @@ public sealed partial class ColorPicker : UserControl
 				writableImage.SetPixel(
 					x,
 					y,
-					WColorEx.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness())
+					WindowsColorExtensions.FromAhsb(255, newHue, pixel.GetSaturation(), pixel.GetBrightness())
 				);
 			}
 		}

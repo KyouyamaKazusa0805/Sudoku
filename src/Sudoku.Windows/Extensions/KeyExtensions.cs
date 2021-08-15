@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Windows.Input;
 
 /// <summary>
 /// Provides extension methods on <see cref="Key"/>.
 /// </summary>
 /// <seealso cref="Key"/>
-public static class KeyEx
+public static class KeyExtensions
 {
 	/// <summary>
 	/// Check whether the specified key is a digit key.

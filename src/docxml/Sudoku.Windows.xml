@@ -860,247 +860,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Sudoku.Windows.Extensions.BitmapEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Bitmap"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.BitmapEx.ToImageSource(System.Drawing.Bitmap)">
-            <summary>
-            Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
-            </summary>
-            <param name="this">The bitmap image.</param>
-            <returns>The target image result.</returns>
-            <seealso cref="T:System.Windows.Media.ImageSource"/>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.BitmapSourceEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Media.Imaging.BitmapSource"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.BitmapSourceEx.GetBitmapImage(System.Windows.Media.Imaging.BitmapSource)">
-            <summary>
-            Get the <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> from the specified <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
-            </summary>
-            <param name="this">The bitmap source.</param>
-            <returns>The image.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.DrawingColorEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Drawing.Color"/>.
-            </summary>
-            <seealso cref="T:System.Drawing.Color"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.DrawingColorEx.ToWColor(System.Drawing.Color@)">
-            <summary>
-            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>The target color.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.KeyEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Input.Key"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Input.Key"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigit(System.Windows.Input.Key,System.Boolean)">
-            <summary>
-            Check whether the specified key is a digit key.
-            </summary>
-            <param name="this">The key.</param>
-            <param name="fromZero">
-            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
-            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsNumPadDigit(System.Windows.Input.Key,System.Boolean)">
-            <summary>
-            Check whether the specified key is a digit key in number pad.
-            </summary>
-            <param name="this">The key.</param>
-            <param name="fromZero">
-            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
-            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsDigitUpsideAlphabets(System.Windows.Input.Key,System.Boolean)">
-            <summary>
-            Check whether the specified key is a digit key above those alphabets
-            in keyboard.
-            </summary>
-            <param name="this">The key.</param>
-            <param name="fromZero">
-            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
-            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsAlphabet(System.Windows.Input.Key)">
-            <summary>
-            Check whether the specified key is a letter.
-            </summary>
-            <param name="this">The key.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.KeyEx.IsArrow(System.Windows.Input.Key)">
-            <summary>
-            Check whether the specified key is a arrow key (up, down, left or right).
-            </summary>
-            <param name="this">The key.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.PointEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Point"/>, <see cref="T:System.Drawing.Point"/>
-            and <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Point"/>
-            <seealso cref="T:System.Drawing.Point"/>
-            <seealso cref="T:System.Drawing.PointF"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.PointEx.ToWPoint(System.Drawing.Point@)">
-            <summary>
-            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
-            </summary>
-            <param name="this">The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPoint(System.Windows.Point@)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
-            </summary>
-            <param name="this">The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.PointEx.ToDPointF(System.Windows.Point@)">
-            <summary>
-            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
-            </summary>
-            <param name="this">The point to convert.</param>
-            <returns>The result of conversion.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.PointEx.Truncate(System.Windows.Point@)">
-            <summary>
-            To truncate the point.
-            </summary>
-            <param name="this">The point to truncate.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.StepInfoEx">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.StepInfoEx.CreateBitmap(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Creates a new <see cref="T:System.Drawing.Bitmap"/> instance that uses the .
-            </summary>
-            <param name="this">The information.</param>
-            <param name="grid">The grid used.</param>
-            <returns>The <see cref="T:System.Drawing.Bitmap"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.WindowsColorEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Media.Color"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetHue(System.Windows.Media.Color@)">
-            <summary>
-            Get the hue from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetBrightness(System.Windows.Media.Color@)">
-            <summary>
-            Get the brightness from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.GetSaturation(System.Windows.Media.Color@)">
-            <summary>
-            Get the saturation from the specified <see cref="T:System.Windows.Media.Color"/>.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>A <see cref="T:System.Single"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToDColor(System.Windows.Media.Color@)">
-            <summary>
-            Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>The target color.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.ToHexString(System.Windows.Media.Color@)">
-            <summary>
-            Converts the <see cref="T:System.Windows.Media.Color"/> to the specified hex string.
-            </summary>
-            <param name="this">The color.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromAhsb(System.Int32,System.Single,System.Single,System.Single)">
-            <summary>
-            Get a color from alpha, hue, saturation and brightness.
-            </summary>
-            <param name="alpha">The alpha.</param>
-            <param name="hue">The hue.</param>
-            <param name="saturation">The saturation.</param>
-            <param name="brightness">The brightness.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when:
-            <list type="bullet">
-            <item><paramref name="alpha"/> is less than 0 or greater than 255.</item>
-            <item><paramref name="hue"/> is less than 0 or greater than 360.</item>
-            <item><paramref name="saturation"/> is less than 0 or greater than 1.</item>
-            <item><paramref name="brightness"/> is less than 0 or greater than 1.</item>
-            </list>
-            </exception>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHsl(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Get a new color from the specified H, S and L values.
-            </summary>
-            <param name="h">The H value.</param>
-            <param name="s">The S value.</param>
-            <param name="l">The L value.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsColorEx.FromHex(System.String)">
-            <summary>
-            Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
-            </summary>
-            <param name="hex">The hex string.</param>
-            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Windows.Extensions.WindowsSizeEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Windows.Size"/>.
-            </summary>
-            <seealso cref="T:System.Windows.Size"/>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSizeF(System.Windows.Size)">
-            <summary>
-            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
-            </summary>
-            <param name="this">The current size.</param>
-            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Windows.Extensions.WindowsSizeEx.ToDSize(System.Windows.Size)">
-            <summary>
-            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
-            </summary>
-            <param name="this">The current size.</param>
-            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
-        </member>
         <member name="T:Sudoku.Windows.MainWindow">
             <summary>
             Interaction logic for <c>MainWindow.xaml</c>.
@@ -2269,6 +2028,250 @@
             The main manual solver.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.StepInfoExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Solving.Manual.StepInfo"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepInfo"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfoExtensions.CreateBitmap(Sudoku.Solving.Manual.StepInfo,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Creates a new <see cref="T:System.Drawing.Bitmap"/> instance that uses the .
+            </summary>
+            <param name="this">The information.</param>
+            <param name="grid">The grid used.</param>
+            <returns>The <see cref="T:System.Drawing.Bitmap"/> instance.</returns>
+        </member>
+        <member name="T:System.Drawing.BitmapExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:System.Drawing.BitmapExtensions.ToImageSource(System.Drawing.Bitmap)">
+            <summary>
+            Convert the <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Windows.Media.ImageSource"/>.
+            </summary>
+            <param name="this">The bitmap image.</param>
+            <returns>The target image result.</returns>
+            <seealso cref="T:System.Windows.Media.ImageSource"/>
+        </member>
+        <member name="T:System.Drawing.DrawingColorExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Color"/>
+        </member>
+        <member name="M:System.Drawing.DrawingColorExtensions.ToWColor(System.Drawing.Color@)">
+            <summary>
+            Convert <see cref="T:System.Drawing.Color"/> to <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>The target color.</returns>
+        </member>
+        <member name="T:System.Drawing.DrawingPointExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Point"/>.
+            </summary>
+            <seealso cref="T:System.Drawing.Point"/>
+        </member>
+        <member name="M:System.Drawing.DrawingPointExtensions.ToWPoint(System.Drawing.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Drawing.Point"/> to <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <param name="this">The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="T:System.Windows.Media.Imaging.BitmapSourceExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Media.Imaging.BitmapSource"/>
+        </member>
+        <member name="M:System.Windows.Media.Imaging.BitmapSourceExtensions.GetBitmapImage(System.Windows.Media.Imaging.BitmapSource)">
+            <summary>
+            Get the <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> from the specified <see cref="T:System.Windows.Media.Imaging.BitmapSource"/>.
+            </summary>
+            <param name="this">The bitmap source.</param>
+            <returns>The image.</returns>
+        </member>
+        <member name="T:System.Windows.Media.WindowsColorExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Media.Color"/>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.GetHue(System.Windows.Media.Color@)">
+            <summary>
+            Get the hue from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.GetBrightness(System.Windows.Media.Color@)">
+            <summary>
+            Get the brightness from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.GetSaturation(System.Windows.Media.Color@)">
+            <summary>
+            Get the saturation from the specified <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>A <see cref="T:System.Single"/> value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.ToDColor(System.Windows.Media.Color@)">
+            <summary>
+            Convert <see cref="T:System.Windows.Media.Color"/> to <see cref="T:System.Drawing.Color"/>.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>The target color.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.ToHexString(System.Windows.Media.Color@)">
+            <summary>
+            Converts the <see cref="T:System.Windows.Media.Color"/> to the specified hex string.
+            </summary>
+            <param name="this">The color.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.FromAhsb(System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Get a color from alpha, hue, saturation and brightness.
+            </summary>
+            <param name="alpha">The alpha.</param>
+            <param name="hue">The hue.</param>
+            <param name="saturation">The saturation.</param>
+            <param name="brightness">The brightness.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when:
+            <list type="bullet">
+            <item><paramref name="alpha"/> is less than 0 or greater than 255.</item>
+            <item><paramref name="hue"/> is less than 0 or greater than 360.</item>
+            <item><paramref name="saturation"/> is less than 0 or greater than 1.</item>
+            <item><paramref name="brightness"/> is less than 0 or greater than 1.</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.FromHsl(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get a new color from the specified H, S and L values.
+            </summary>
+            <param name="h">The H value.</param>
+            <param name="s">The S value.</param>
+            <param name="l">The L value.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+        </member>
+        <member name="M:System.Windows.Media.WindowsColorExtensions.FromHex(System.String)">
+            <summary>
+            Get the specified color from the specified hex string such as "<c>#FFFFFF</c>".
+            </summary>
+            <param name="hex">The hex string.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
+        </member>
+        <member name="T:System.Windows.Input.KeyExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Input.Key"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Input.Key"/>
+        </member>
+        <member name="M:System.Windows.Input.KeyExtensions.IsDigit(System.Windows.Input.Key,System.Boolean)">
+            <summary>
+            Check whether the specified key is a digit key.
+            </summary>
+            <param name="this">The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Windows.Input.KeyExtensions.IsNumPadDigit(System.Windows.Input.Key,System.Boolean)">
+            <summary>
+            Check whether the specified key is a digit key in number pad.
+            </summary>
+            <param name="this">The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Windows.Input.KeyExtensions.IsDigitUpsideAlphabets(System.Windows.Input.Key,System.Boolean)">
+            <summary>
+            Check whether the specified key is a digit key above those alphabets
+            in keyboard.
+            </summary>
+            <param name="this">The key.</param>
+            <param name="fromZero">
+            Indicates whether the checking is from <see cref="F:System.Windows.Input.Key.D0"/>
+            or <see cref="F:System.Windows.Input.Key.NumPad0"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Windows.Input.KeyExtensions.IsAlphabet(System.Windows.Input.Key)">
+            <summary>
+            Check whether the specified key is a letter.
+            </summary>
+            <param name="this">The key.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Windows.Input.KeyExtensions.IsArrow(System.Windows.Input.Key)">
+            <summary>
+            Check whether the specified key is a arrow key (up, down, left or right).
+            </summary>
+            <param name="this">The key.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:System.Windows.WindowsPointExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Point"/>
+        </member>
+        <member name="M:System.Windows.WindowsPointExtensions.ToDPoint(System.Windows.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.Point"/>.
+            </summary>
+            <param name="this">The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:System.Windows.WindowsPointExtensions.ToDPointF(System.Windows.Point@)">
+            <summary>
+            Convert a <see cref="T:System.Windows.Point"/> to <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <param name="this">The point to convert.</param>
+            <returns>The result of conversion.</returns>
+        </member>
+        <member name="M:System.Windows.WindowsPointExtensions.Truncate(System.Windows.Point@)">
+            <summary>
+            To truncate the point.
+            </summary>
+            <param name="this">The point to truncate.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:System.Windows.WindowsSizeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Windows.Size"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Size"/>
+        </member>
+        <member name="M:System.Windows.WindowsSizeExtensions.ToDSizeF(System.Windows.Size)">
+            <summary>
+            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <param name="this">The current size.</param>
+            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
+        </member>
+        <member name="M:System.Windows.WindowsSizeExtensions.ToDSize(System.Windows.Size)">
+            <summary>
+            Convert the current size instance to another instance of type <see cref="T:System.Drawing.SizeF"/>.
+            </summary>
+            <param name="this">The current size.</param>
+            <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
+        </member>
         <member name="T:System.SystemClipboard">
             <summary>
             Encapsulates a system clipboard (calls <see cref="T:System.Windows.Clipboard"/>).
@@ -2292,6 +2295,36 @@
             Sets <see cref="F:System.Windows.DataFormats.Bitmap"/> data on the clipboard.
             </summary>
             <value>The bitmap source to set.</value>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

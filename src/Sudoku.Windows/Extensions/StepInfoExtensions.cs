@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides extension methods on <see cref="StepInfo"/>.
 /// </summary>
 /// <seealso cref="StepInfo"/>
-public static class StepInfoEx
+public static class StepInfoExtensions
 {
 	/// <summary>
 	/// Creates a new <see cref="Bitmap"/> instance that uses the .

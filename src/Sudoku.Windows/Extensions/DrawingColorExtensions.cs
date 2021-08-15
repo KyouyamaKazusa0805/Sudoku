@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="DColor"/>.
 /// </summary>
 /// <seealso cref="DColor"/>
-public static class DrawingColorEx
+public static class DrawingColorExtensions
 {
 	/// <summary>
 	/// Convert <see cref="DColor"/> to <see cref="WColor"/>.
@@ -12,6 +12,5 @@ public static class DrawingColorEx
 	/// <param name="this">The color.</param>
 	/// <returns>The target color.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WColor ToWColor(this in DColor @this) =>
-		WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
+	public static WColor ToWColor(this in DColor @this) => WColor.FromArgb(@this.A, @this.R, @this.G, @this.B);
 }

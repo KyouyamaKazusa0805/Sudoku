@@ -1,10 +1,12 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿using I = System.Windows.Interop.Imaging;
+
+namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="Bitmap"/>.
 /// </summary>
 /// <seealso cref="Bitmap"/>
-public static class BitmapEx
+public static class BitmapExtensions
 {
 	/// <summary>
 	/// Convert the <see cref="Bitmap"/> to <see cref="ImageSource"/>.
@@ -16,7 +18,7 @@ public static class BitmapEx
 	public static ImageSource ToImageSource(this Bitmap @this)
 	{
 		var hBitmap = @this.GetHbitmap();
-		var result = Imaging.CreateBitmapSourceFromHBitmap(
+		var result = I.CreateBitmapSourceFromHBitmap(
 			bitmap: hBitmap,
 			palette: IntPtr.Zero,
 			sourceRect: Int32Rect.Empty,
@@ -24,6 +26,7 @@ public static class BitmapEx
 		);
 		delete(hBitmap);
 		return result;
+
 
 		[method: DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
 		[return: MarshalAs(UnmanagedType.Bool)]

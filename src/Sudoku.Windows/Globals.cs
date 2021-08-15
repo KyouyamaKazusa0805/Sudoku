@@ -28,7 +28,6 @@ global using System.Windows.Controls.Primitives;
 global using System.Windows.Data;
 global using System.Windows.Documents;
 global using System.Windows.Input;
-global using System.Windows.Interop;
 global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 global using System.Xml;
@@ -53,7 +52,6 @@ global using Sudoku.Solving.Manual.Symmetry;
 global using Sudoku.Techniques;
 global using Sudoku.Windows.CustomControls;
 global using Sudoku.Windows.Data;
-global using Sudoku.Windows.Extensions;
 global using Sudoku.Windows.Media;
 global using static System.Drawing.StringAlignment;
 global using static System.Drawing.Text.TextRenderingHint;
@@ -83,7 +81,7 @@ global using WSize = System.Windows.Size;
 
 [assembly: AssemblyObsolete]
 
-[assembly: AutoDeconstructExtension(typeof(WImage), nameof(WImage.Width), nameof(WImage.Height), Namespace = "Sudoku.Windows.Extensions")]
-[assembly: AutoDeconstructExtension(typeof(WPoint), nameof(WPoint.X), nameof(WPoint.Y), Namespace = "Sudoku.Windows.Extensions")]
-[assembly: AutoDeconstructExtension(typeof(WColor), nameof(WColor.A), nameof(WColor.R), nameof(WColor.G), nameof(WColor.B), Namespace = "Sudoku.Windows.Extensions")]
-[assembly: AutoDeconstructExtension(typeof(WSize), nameof(WSize.Width), nameof(WSize.Height), Namespace = "Sudoku.Windows.Extensions")]
+[assembly: AutoDeconstructExtension(typeof(WImage), nameof(WImage.Width), nameof(WImage.Height))]
+[assembly: AutoDeconstructExtension(typeof(WPoint), nameof(WPoint.X), nameof(WPoint.Y))]
+[assembly: AutoDeconstructExtension(typeof(WColor), nameof(WColor.A), nameof(WColor.R), nameof(WColor.G), nameof(WColor.B))]
+[assembly: AutoDeconstructExtension(typeof(WSize), nameof(WSize.Width), nameof(WSize.Height))]

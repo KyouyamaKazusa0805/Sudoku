@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Windows;
 
 /// <summary>
 /// Provides extension methods on <see cref="WSize"/>.
 /// </summary>
 /// <seealso cref="WSize"/>
-public static partial class WindowsSizeEx
+public static partial class WindowsSizeExtensions
 {
 	/// <summary>
 	/// Convert the current size instance to another instance of type <see cref="DSizeF"/>.

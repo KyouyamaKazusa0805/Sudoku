@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Windows.Media;
 
 /// <summary>
 /// Provides extension methods on <see cref="WColor"/>.
 /// </summary>
 /// <seealso cref="WColor"/>
-public static partial class WindowsColorEx
+public static partial class WindowsColorExtensions
 {
 	/// <summary>
 	/// Get the hue from the specified <see cref="WColor"/>.
@@ -12,8 +12,7 @@ public static partial class WindowsColorEx
 	/// <param name="this">The color.</param>
 	/// <returns>A <see cref="float"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static float GetHue(this in WColor @this) =>
-		DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetHue();
+	public static float GetHue(this in WColor @this) => DColor.FromArgb(@this.A, @this.R, @this.G, @this.B).GetHue();
 
 	/// <summary>
 	/// Get the brightness from the specified <see cref="WColor"/>.

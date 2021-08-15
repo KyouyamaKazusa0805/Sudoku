@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Windows.Extensions;
+﻿namespace System.Windows.Media.Imaging;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitmapSource"/>.
 /// </summary>
 /// <seealso cref="BitmapSource"/>
-public static class BitmapSourceEx
+public static class BitmapSourceExtensions
 {
 	/// <summary>
 	/// Get the <see cref="BitmapImage"/> from the specified <see cref="BitmapSource"/>.
