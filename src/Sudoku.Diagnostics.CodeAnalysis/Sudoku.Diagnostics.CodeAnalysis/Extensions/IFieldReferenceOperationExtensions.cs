@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="IFieldReferenceOperation"/>.
 /// </summary>
 /// <seealso cref="IFieldReferenceOperation"/>
-public static class IFieldReferenceOperationExtensions
+internal static class IFieldReferenceOperationExtensions
 {
 	/// <summary>
 	/// Checks whether the current instance has the same reference with the specified one.

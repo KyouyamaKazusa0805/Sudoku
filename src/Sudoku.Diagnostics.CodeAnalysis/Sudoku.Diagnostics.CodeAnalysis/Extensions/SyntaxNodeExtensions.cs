@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="SyntaxNode"/>.
 /// </summary>
 /// <seealso cref="SyntaxNode"/>
-public static class SyntaxNodeExtensions
+internal static class SyntaxNodeExtensions
 {
 	/// <summary>
 	/// Check whether the containing type of the specified syntax node satisfies the
@@ -16,6 +16,7 @@ public static class SyntaxNodeExtensions
 	/// the node that used in traversing the iteration.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool ContainingTypeIs(this SyntaxNode @this, Predicate<SyntaxNode> predicate) =>
 		@this.Ancestors().Any(currentNode => predicate(currentNode));
 }

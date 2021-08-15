@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="ArgumentSyntax"/>.
 /// </summary>
 /// <seealso cref="ArgumentSyntax"/>
-public static class ArgumentSyntaxExtensions
+internal static class ArgumentSyntaxExtensions
 {
 	/// <summary>
 	/// Gets the full name of the parameter.
@@ -16,15 +16,12 @@ public static class ArgumentSyntaxExtensions
 	public static string? GetParamFullName(
 		this ArgumentSyntax @this, SemanticModel semanticModel, CancellationToken cancellationToken)
 	{
-		var exprNode = @this.Expression;
-		var operation = semanticModel.GetOperation(exprNode, cancellationToken);
-		if (operation is null)
-		{
-			return null;
-		}
-
-		var typeSymbol = operation.Type;
-		if (typeSymbol is null)
+		if (
+			semanticModel.GetOperation(@this.Expression, cancellationToken) is not
+			{
+				Type: { } typeSymbol
+			} operation
+		)
 		{
 			return null;
 		}

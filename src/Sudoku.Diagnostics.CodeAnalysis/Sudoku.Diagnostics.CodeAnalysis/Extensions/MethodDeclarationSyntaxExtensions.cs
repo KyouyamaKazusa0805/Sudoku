@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="MethodDeclarationSyntax"/>.
 /// </summary>
 /// <seealso cref="MethodDeclarationSyntax"/>
-public static class MethodDeclarationSyntaxExtensions
+internal static class MethodDeclarationSyntaxExtensions
 {
 	/// <summary>
 	/// Determine whether the specified method syntax node is an valid deconstruction method

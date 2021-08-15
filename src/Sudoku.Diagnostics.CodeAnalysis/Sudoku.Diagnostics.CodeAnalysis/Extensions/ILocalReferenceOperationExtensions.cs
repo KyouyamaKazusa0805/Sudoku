@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="ILocalReferenceOperation"/>.
 /// </summary>
 /// <seealso cref="ILocalReferenceOperation"/>
-public static class ILocalReferenceOperationExtensions
+internal static class ILocalReferenceOperationExtensions
 {
 	/// <summary>
 	/// Checks whether the current instance has the same reference with the specified one.

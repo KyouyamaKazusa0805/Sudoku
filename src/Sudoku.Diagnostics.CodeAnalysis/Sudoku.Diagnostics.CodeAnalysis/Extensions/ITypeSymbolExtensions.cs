@@ -4,21 +4,8 @@
 /// Provides extension methods on <see cref="ITypeSymbol"/>.
 /// </summary>
 /// <seealso cref="ITypeSymbol"/>
-public static class ITypeSymbolExtensions
+internal static class ITypeSymbolExtensions
 {
-	/// <summary>
-	/// Deconstruct the instance to multiple values.
-	/// </summary>
-	/// <param name="this">The type symbol instance.</param>
-	/// <param name="isValueType">
-	/// The <see cref="bool"/> value indicating whether the type is a value type.
-	/// </param>
-	/// <param name="isReferenceType">
-	/// The <see cref="bool"/> value indicating whether the type is a reference type.
-	/// </param>
-	/// <param name="isNullable">
-	/// The <see cref="bool"/> value indicating whether the type is a nullable type.
-	/// </param>
 	public static void Deconstruct(
 		this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
 	{

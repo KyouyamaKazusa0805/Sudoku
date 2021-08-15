@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="SemanticModel"/>.
 /// </summary>
 /// <seealso cref="SemanticModel"/>
-public static class SemanticModelExtensions
+internal static class SemanticModelExtensions
 {
 	/// <summary>
 	/// <para>Checks whether the two <see cref="SyntaxNode"/>s hold the same type.</para>
