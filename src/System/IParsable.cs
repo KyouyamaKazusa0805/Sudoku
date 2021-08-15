@@ -4,7 +4,6 @@
 /// Defines a parsable type.
 /// </summary>
 /// <typeparam name="T">The type to parse.</typeparam>
-[RequiresPreviewFeatures]
 public interface IParsable<T>
 {
 	/// <summary>
