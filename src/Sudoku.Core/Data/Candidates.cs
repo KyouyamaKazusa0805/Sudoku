@@ -668,6 +668,14 @@ public unsafe partial struct Candidates : ICellsOrCandidate<Candidates>
 	}
 
 	/// <inheritdoc/>
+	public static bool operator >(in Candidates left, in Candidates right) =>
+		!(left - right).IsEmpty;
+
+	/// <inheritdoc/>
+	public static bool operator <(in Candidates left, in Candidates right) =>
+		(left - right).IsEmpty;
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator &(in Candidates left, in Candidates right)
 	{
@@ -767,31 +775,27 @@ public unsafe partial struct Candidates : ICellsOrCandidate<Candidates>
 	public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
 
 
-	/// <summary>
-	/// Implicit cast from <see cref="int"/>[] to <see cref="Candidates"/>.
-	/// </summary>
-	/// <param name="array">The array.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidates(int[] array) => new(array);
+	public static implicit operator Candidates(int[] offsets) => new(offsets);
 
-	/// <summary>
-	/// Implicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
-	/// </summary>
-	/// <param name="map">The map.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Span<int>(in Candidates map) => map.ToSpan();
+	public static implicit operator Candidates(in Span<int> offsets) => new(offsets);
 
-	/// <summary>
-	/// Implicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
-	/// <param name="map">The map.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator ReadOnlySpan<int>(in Candidates map) => map.ToReadOnlySpan();
+	public static implicit operator Candidates(in ReadOnlySpan<int> offsets) => new(offsets);
 
-	/// <summary>
-	/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
-	/// </summary>
-	/// <param name="map">The map.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator int[](in Candidates map) => map.ToArray();
+	public static explicit operator int[](in Candidates offsets) => offsets.ToArray();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Span<int>(in Candidates offsets) => offsets.ToSpan();
+
+	///<inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator ReadOnlySpan<int>(in Candidates offsets) => offsets.ToReadOnlySpan();
 }

@@ -959,21 +959,11 @@ public partial struct Cells : ICellsOrCandidate<Cells>, IFormattable, IJsonSeria
 	public static Cells operator ~(in Cells offsets) =>
 		new(~offsets._high & 0xFFFFFFFFFFL, ~offsets._low & 0x1FFFFFFFFFFL);
 
-	/// <summary>
-	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >(in Cells left, in Cells right) => !(left - right).IsEmpty;
 
-	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
-	/// </summary>
-	/// <param name="left">The subtrahend.</param>
-	/// <param name="right">The subtractor.</param>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
 
@@ -995,6 +985,11 @@ public partial struct Cells : ICellsOrCandidate<Cells>, IFormattable, IJsonSeria
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ^(in Cells left, in Cells right) =>
 		new(left._high ^ right._high, left._low ^ right._low);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator %(in Cells @base, in Cells template) =>
+		(@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1040,44 +1035,28 @@ public partial struct Cells : ICellsOrCandidate<Cells>, IFormattable, IJsonSeria
 		return p;
 	}
 
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator %(in Cells @base, in Cells template) =>
-		(@base & template).PeerIntersection & template;
+	public static implicit operator Cells(int[] offsets) => new(offsets);
 
-
-	/// <summary>
-	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="cells">The cells.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(int[] cells) => new(cells);
+	public static implicit operator Cells(in Span<int> offsets) => new(offsets);
 
-	/// <summary>
-	/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="cells">The cells.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(in Span<int> cells) => new(cells);
+	public static implicit operator Cells(in ReadOnlySpan<int> offsets) => new(offsets);
 
-	/// <summary>
-	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="cells">The cells.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cells(in ReadOnlySpan<int> cells) => new(cells);
+	public static explicit operator int[](in Cells offsets) => offsets.ToArray();
 
-	/// <summary>
-	/// Implicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.
-	/// </summary>
-	/// <param name="map">The map.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Span<int>(in Cells map) => map.ToSpan();
+	public static explicit operator Span<int>(in Cells offsets) => offsets.ToSpan();
 
-	/// <summary>
-	/// Implicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
-	/// <param name="map">The map.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator ReadOnlySpan<int>(in Cells map) => map.ToReadOnlySpan();
+	public static explicit operator ReadOnlySpan<int>(in Cells offsets) => offsets.ToReadOnlySpan();
 }

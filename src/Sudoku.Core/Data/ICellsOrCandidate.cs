@@ -140,6 +140,22 @@ public unsafe interface ICellsOrCandidate<TCollection> : IEnumerable<int>, IValu
 	static abstract TCollection operator ~(in TCollection offsets);
 
 	/// <summary>
+	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	static abstract bool operator >(in TCollection left, in TCollection right);
+
+	/// <summary>
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	static abstract bool operator <(in TCollection left, in TCollection right);
+
+	/// <summary>
 	/// Get a <typeparamref name="TCollection"/> that contains all <paramref name="left"/> instance
 	/// but not in <paramref name="right"/> instance.
 	/// </summary>
@@ -181,4 +197,41 @@ public unsafe interface ICellsOrCandidate<TCollection> : IEnumerable<int>, IValu
 	/// <returns>The result map.</returns>
 	/// <seealso cref="PeerIntersection"/>
 	static abstract TCollection operator %(in TCollection @base, in TCollection template);
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="int"/>[] to <typeparamref name="TCollection"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract implicit operator TCollection(int[] offsets);
+
+	/// <summary>
+	/// Implicit cast from <see cref="Span{T}"/> to <typeparamref name="TCollection"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract implicit operator TCollection(in Span<int> offsets);
+
+	/// <summary>
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <typeparamref name="TCollection"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract implicit operator TCollection(in ReadOnlySpan<int> offsets);
+
+	/// <summary>
+	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="int"/>[].
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract explicit operator int[](in TCollection offsets);
+
+	/// <summary>
+	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="Span{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract explicit operator Span<int>(in TCollection offsets);
+
+	/// <summary>
+	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	static abstract explicit operator ReadOnlySpan<int>(in TCollection offsets);
 }
