@@ -52,7 +52,7 @@ partial class Constants
 		/// <summary>
 		/// Indicates the unit in the basic PM grid.
 		/// </summary>
-		[Regex, Obsolete($"We suggest you don't use this field, and use '{nameof(PmGridUnit)}' instead.")]
+		[Regex, Obsolete($"Please use the field '{nameof(PmGridUnit)}' instead.", false)]
 		public const string PmGridUnit_Old = @"(\<\d\>|\*\d\*|\d{1,9})";
 
 		/// <summary>
