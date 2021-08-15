@@ -555,320 +555,6 @@
             Indicates the project <c>Sudoku.UI.WinUI</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.CompilationEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.CompilationEx.GetTypeByMetadataName``1(Microsoft.CodeAnalysis.Compilation)">
-            <inheritdoc cref="M:Microsoft.CodeAnalysis.Compilation.GetTypeByMetadataName(System.String)"/>
-            <typeparam name="T">The type of the metadata type name to construct.</typeparam>
-            <param name="this">The compilation.</param>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.ExpressionSyntaxEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
-            </summary>
-            <seealso cref="T:Sudoku.CodeGenerating.Extensions.ExpressionSyntaxEx"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ExpressionSyntaxEx.IsNameOfExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
-            <summary>
-            To check whether the specified expression is a <see langword="nameof"/> expression.
-            </summary>
-            <param name="this">The expression node to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.GeneratorExecutionContextEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorExecutionContextEx.IsNotInProject(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String[])">
-            <summary>
-            To check whether the context isn't executed on the specified projects.
-            </summary>
-            <param name="this">The context.</param>
-            <param name="projectNames">The project names to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorExecutionContextEx.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
-            <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
-            </summary>
-            <param name="this">The current context.</param>
-            <param name="fileName">The file name. The file name may be same as the symbol name</param>
-            <param name="sourceGeneratorName">The source generator name.</param>
-            <param name="sourceCode">The source code.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorExecutionContextEx.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String,System.Text.Encoding)">
-            <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>,
-            </summary>
-            <param name="this">The current context.</param>
-            <param name="fileName">The file name. The file name may be same as the symbol name</param>
-            <param name="sourceGeneratorName">The source generator name.</param>
-            <param name="sourceCode">The source code.</param>
-            <param name="encoding">The encoding.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.GeneratorInitializationContextEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.GeneratorInitializationContextEx.FastRegister``1(Microsoft.CodeAnalysis.GeneratorInitializationContext@)">
-            <summary>
-            Fast invokes the method
-            <see cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>.
-            </summary>
-            <typeparam name="TSyntaxReceiver">The type of the syntax receiver.</typeparam>
-            <param name="this">The current initialization context.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
-            </summary>
-            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx.NullableMatches(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol}@,Microsoft.CodeAnalysis.NullableAnnotation[])">
-            <summary>
-            Matches the array of <see cref="T:Microsoft.CodeAnalysis.IParameterSymbol"/> instances, to check whether the
-            types matches the nullable annotation list.
-            </summary>
-            <param name="this">The array of parameter symbols.</param>
-            <param name="nullableAnnotations">The nullable annotation list to check.</param>
-            <returns>
-            Returns <see langword="true"/> when all parameters matches the corresponding nullable annotation;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ImmutableArrayEx.GetPath(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AdditionalText}@,System.Predicate{System.String})">
-            <summary>
-            Try to get the path in the additional file list that satisify the specified condition.
-            </summary>
-            <param name="this">The list of additional files.</param>
-            <param name="predicate">The condition</param>
-            <returns>
-            The file name found. If none of all files satisfies the condition, <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetTypeKindString(Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Get the type kind string.
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>The type kind string.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.MemberShouldAppendReadOnly(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
-            <summary>
-            Indicates whether the member should append <see langword="readonly"/> modifier.
-            </summary>
-            <param name="this">The type symbol.</param>
-            <param name="checkNotRefStruct">
-            Indicates whether the method should check whether the type is a <see langword="ref struct"/>
-            and not a <see langword="ref struct"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.MemberShouldAppendIn(Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Indicates whether the member should append <see langword="in"/> modifier.
-            </summary>
-            <param name="this">The type symbol.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.DeconstructInfo(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
-            <summary>
-            Get the detail information that represented as <see cref="T:System.String"/> values.
-            </summary>
-            <param name="this">The symbol.</param>
-            <param name="checkNotRefStruct">
-            Indicates whether the method will check whether the type is a <see langword="ref struct"/>.
-            </param>
-            <param name="fullTypeName">The full type name.</param>
-            <param name="namespaceName">The namespace name.</param>
-            <param name="genericParametersList">
-            The generic parameter list. The type parameter constraint will also include,
-            e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
-            </param>
-            <param name="genericParametersListWithoutConstraint">
-            The generic parameter list without type parameter constraint,
-            e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
-            </param>
-            <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
-            <param name="readonlyKeyword">The read-only keyword on members.</param>
-            <param name="isGeneric">Indicates whether the type is a generic type.</param>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetBaseTypes(Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Get all base types of this instance.
-            </summary>
-            <param name="this">The type.</param>
-            <returns>All base types.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetAttributeString(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            Get the attribute string representation from the specified type symbol.
-            </summary>
-            <param name="this">The type symbol.</param>
-            <param name="attributeSymbol">The attribute symbol to check.</param>
-            <returns>The result string.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.GetAttributeStrings(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            Get the attribute strings from the specified type symbol.
-            </summary>
-            <param name="this">The type symbol.</param>
-            <param name="attributeSymbol">The attribute symbol to check.</param>
-            <returns>The result string.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.INamedTypeSymbolEx.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Get the file name of the type symbol.
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>
-            The file name. Due to the limited file name and the algorithm, if:
-            <list type="bullet">
-            <item>
-            The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
-            Change them to <c>'['</c> and <c>']'</c>.
-            </item>
-            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
-            <item>The character is <c>' '</c>: Remove it.</item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.Int32Ex">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int32"/>.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.Int32Ex.GetOrderSuffix(System.Int32)">
-            <summary>
-            Get the order suffix.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>The order suffix.</returns>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.ISymbolEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ISymbolEx.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            To determine whether the specified symbol (should be property or field members)
-            has an initializer.
-            </summary>
-            <param name="this">The symbol to check.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ISymbolEx.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            Gets the member type string representation.
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>The result string.</returns>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.ITypeSymbolEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ITypeSymbolEx.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
-            <summary>
-            Get all members that belongs to the type and its base types
-            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>All members.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.ITypeSymbolEx.DeconstructInfo(Microsoft.CodeAnalysis.ITypeSymbol,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
-            <summary>
-            Get the detail information that represented as <see cref="T:System.String"/> values.
-            </summary>
-            <param name="this">The symbol.</param>
-            <param name="fullTypeName">The full type name.</param>
-            <param name="namespaceName">The namespace name.</param>
-            <param name="genericParametersList">
-            The generic parameter list. The type parameter constraint will also include,
-            e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
-            </param>
-            <param name="genericParametersListWithoutConstraint">
-            The generic parameter list without type parameter constraint,
-            e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
-            </param>
-            <param name="fullTypeNameWithoutConstraint">The full type name without constraint.</param>
-            <param name="constraint">The constraint.</param>
-            <param name="isGeneric">Indicates whether the type is a generic type.</param>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.StringEx">
-            <summary>
-            Provides extension methods on <see cref="T:System.String"/>.
-            </summary>
-            <seealso cref="T:System.String"/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.EndsWith(System.String,System.Char)">
-            <summary>
-            Check whether the last character is the specified character.
-            </summary>
-            <param name="this">The string.</param>
-            <param name="character">The character to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.CountOf(System.String,System.Char)">
-            <summary>
-            Count how many specified characters are in the current string.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="character">The character to count.</param>
-            <returns>The number of characters found.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.ToCamelCase(System.String)">
-            <summary>
-            Converts the current string into the camel case.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.GetMemberValues(System.String,System.Int32)">
-            <summary>
-            Separate the attribute string representation into multiple elements.
-            The attribute string will be like <c>Type({value1, value2, value3})</c>.
-            </summary>
-            <param name="this">The attribute string.</param>
-            <param name="tokenStartIndex">The token start index.</param>
-            <returns>The array of separated values.</returns>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Extensions.StringEx.SplitInfo(System.String)">
-            <summary>
-            To split the info on the <c>*.csv</c> file line.
-            </summary>
-            <param name="this">A line of the file.</param>
-            <returns>The <see cref="T:System.String"/>[] result.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Extensions.SyntaxReferenceEx">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
-        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator">
             <summary>
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
@@ -1465,6 +1151,323 @@
             <summary>
             Indicates the <see langword="private protected"/> modifier.
             </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.CompilationExtensions.GetTypeByMetadataName``1(Microsoft.CodeAnalysis.Compilation)">
+            <inheritdoc cref="M:Microsoft.CodeAnalysis.Compilation.GetTypeByMetadataName(System.String)"/>
+            <typeparam name="T">The type of the metadata type name to construct.</typeparam>
+            <param name="this">The compilation.</param>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntaxExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntaxExtensions.IsNameOfExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            To check whether the specified expression is a <see langword="nameof"/> expression.
+            </summary>
+            <param name="this">The expression node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.IsNotInProject(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String[])">
+            <summary>
+            To check whether the context isn't executed on the specified projects.
+            </summary>
+            <param name="this">The context.</param>
+            <param name="projectNames">The project names to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <param name="encoding">The encoding.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorInitializationContextExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorInitializationContextExtensions.FastRegister``1(Microsoft.CodeAnalysis.GeneratorInitializationContext@)">
+            <summary>
+            Fast invokes the method
+            <see cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>.
+            </summary>
+            <typeparam name="TSyntaxReceiver">The type of the syntax receiver.</typeparam>
+            <param name="this">The current initialization context.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetTypeKindString(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get the type kind string.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>The type kind string.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.MemberShouldAppendReadOnly(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Indicates whether the member should append <see langword="readonly"/> modifier.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="checkNotRefStruct">
+            Indicates whether the method should check whether the type is a <see langword="ref struct"/>
+            and not a <see langword="ref struct"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.MemberShouldAppendIn(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Indicates whether the member should append <see langword="in"/> modifier.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.DeconstructInfo(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
+            <summary>
+            Get the detail information that represented as <see cref="T:System.String"/> values.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="checkNotRefStruct">
+            Indicates whether the method will check whether the type is a <see langword="ref struct"/>.
+            </param>
+            <param name="fullTypeName">The full type name.</param>
+            <param name="namespaceName">The namespace name.</param>
+            <param name="genericParametersList">
+            The generic parameter list. The type parameter constraint will also include,
+            e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
+            </param>
+            <param name="genericParametersListWithoutConstraint">
+            The generic parameter list without type parameter constraint,
+            e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
+            </param>
+            <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
+            <param name="readonlyKeyword">The read-only keyword on members.</param>
+            <param name="isGeneric">Indicates whether the type is a generic type.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetBaseTypes(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get all base types of this instance.
+            </summary>
+            <param name="this">The type.</param>
+            <returns>All base types.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetAttributeString(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Get the attribute string representation from the specified type symbol.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetAttributeStrings(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Get the attribute strings from the specified type symbol.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get the file name of the type symbol.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>
+            The file name. Due to the limited file name and the algorithm, if:
+            <list type="bullet">
+            <item>
+            The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
+            Change them to <c>'['</c> and <c>']'</c>.
+            </item>
+            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
+            <item>The character is <c>' '</c>: Remove it.</item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            To determine whether the specified symbol (should be property or field members)
+            has an initializer.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Gets the member type string representation.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ITypeSymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all members that belongs to the type and its base types
+            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>All members.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.DeconstructInfo(Microsoft.CodeAnalysis.ITypeSymbol,System.String@,System.String@,System.String@,System.String@,System.String@,System.String@,System.Boolean@)">
+            <summary>
+            Get the detail information that represented as <see cref="T:System.String"/> values.
+            </summary>
+            <param name="this">The symbol.</param>
+            <param name="fullTypeName">The full type name.</param>
+            <param name="namespaceName">The namespace name.</param>
+            <param name="genericParametersList">
+            The generic parameter list. The type parameter constraint will also include,
+            e.g. <c><![CDATA[Namespace.TypeName<T> where T : class?]]></c>.
+            </param>
+            <param name="genericParametersListWithoutConstraint">
+            The generic parameter list without type parameter constraint,
+            e.g. <c><![CDATA[Namespace.TypeName<T>]]></c>.
+            </param>
+            <param name="fullTypeNameWithoutConstraint">The full type name without constraint.</param>
+            <param name="constraint">The constraint.</param>
+            <param name="isGeneric">Indicates whether the type is a generic type.</param>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.SyntaxReferenceExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+            </summary>
+            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.NullableMatches(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol}@,Microsoft.CodeAnalysis.NullableAnnotation[])">
+            <summary>
+            Matches the array of <see cref="T:Microsoft.CodeAnalysis.IParameterSymbol"/> instances, to check whether the
+            types matches the nullable annotation list.
+            </summary>
+            <param name="this">The array of parameter symbols.</param>
+            <param name="nullableAnnotations">The nullable annotation list to check.</param>
+            <returns>
+            Returns <see langword="true"/> when all parameters matches the corresponding nullable annotation;
+            otherwise, <see langword="false"/>.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the current length isn't equal to <paramref name="nullableAnnotations"/>.Length.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.GetPath(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AdditionalText}@,System.Predicate{System.String})">
+            <summary>
+            Try to get the path in the additional file list that satisify the specified condition.
+            </summary>
+            <param name="this">The list of additional files.</param>
+            <param name="predicate">The condition</param>
+            <returns>
+            The file name found. If none of all files satisfies the condition, <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="T:System.Int32Extensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:System.Int32Extensions.GetOrderSuffix(System.Int32)">
+            <summary>
+            Get the order suffix.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>The order suffix.</returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:System.StringExtensions.EndsWith(System.String,System.Char)">
+            <summary>
+            Check whether the last character is the specified character.
+            </summary>
+            <param name="this">The string.</param>
+            <param name="character">The character to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result</returns>
+        </member>
+        <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
+        <member name="M:System.StringExtensions.ToCamelCase(System.String)">
+            <summary>
+            Converts the current string into the camel case.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.StringExtensions.GetMemberValues(System.String,System.Int32)">
+            <summary>
+            Separate the attribute string representation into multiple elements.
+            The attribute string will be like <c>Type({value1, value2, value3})</c>.
+            </summary>
+            <param name="this">The attribute string.</param>
+            <param name="tokenStartIndex">The token start index.</param>
+            <returns>The array of separated values.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitInfo(System.String)">
+            <summary>
+            To split the info on the <c>*.csv</c> file line.
+            </summary>
+            <param name="this">A line of the file.</param>
+            <returns>The <see cref="T:System.String"/>[] result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>

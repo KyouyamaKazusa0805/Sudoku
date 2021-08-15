@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating.Extensions;
-
-namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.CodeGenerating.Generators;
 
 /// <summary>
 /// Define a keyed tuple generator.

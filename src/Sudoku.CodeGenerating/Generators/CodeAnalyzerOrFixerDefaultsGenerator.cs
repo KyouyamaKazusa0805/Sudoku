@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating.Extensions;
-
-namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.CodeGenerating.Generators;
 
 /// <summary>
 /// A generator that generates the code for code analyzer and fix defaults.

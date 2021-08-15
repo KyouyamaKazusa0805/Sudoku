@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating.Extensions;
-
-namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.CodeGenerating.Generators;
 
 /// <summary>
 /// Encapsulates a source generator that generates the source code for the constants initialization
@@ -23,16 +21,16 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 	/// </summary>
 	private static readonly int[] BlockTable =
 	{
-			0, 0, 0, 1, 1, 1, 2, 2, 2,
-			0, 0, 0, 1, 1, 1, 2, 2, 2,
-			0, 0, 0, 1, 1, 1, 2, 2, 2,
-			3, 3, 3, 4, 4, 4, 5, 5, 5,
-			3, 3, 3, 4, 4, 4, 5, 5, 5,
-			3, 3, 3, 4, 4, 4, 5, 5, 5,
-			6, 6, 6, 7, 7, 7, 8, 8, 8,
-			6, 6, 6, 7, 7, 7, 8, 8, 8,
-			6, 6, 6, 7, 7, 7, 8, 8, 8
-		};
+		0, 0, 0, 1, 1, 1, 2, 2, 2,
+		0, 0, 0, 1, 1, 1, 2, 2, 2,
+		0, 0, 0, 1, 1, 1, 2, 2, 2,
+		3, 3, 3, 4, 4, 4, 5, 5, 5,
+		3, 3, 3, 4, 4, 4, 5, 5, 5,
+		3, 3, 3, 4, 4, 4, 5, 5, 5,
+		6, 6, 6, 7, 7, 7, 8, 8, 8,
+		6, 6, 6, 7, 7, 7, 8, 8, 8,
+		6, 6, 6, 7, 7, 7, 8, 8, 8
+	};
 
 	/// <summary>
 	/// The row table.

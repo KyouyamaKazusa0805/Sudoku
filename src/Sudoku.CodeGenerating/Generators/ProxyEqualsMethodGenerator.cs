@@ -1,6 +1,4 @@
-﻿using Sudoku.CodeGenerating.Extensions;
-
-namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.CodeGenerating.Generators;
 
 /// <summary>
 /// Indicates a generator that generates the code about the equality method.

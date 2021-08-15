@@ -3539,21 +3539,6 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.Deconstruct(Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@,System.Boolean@,System.Boolean@)">
-            <summary>
-            Deconstruct the instance to multiple values.
-            </summary>
-            <param name="this">The type symbol instance.</param>
-            <param name="isValueType">
-            The <see cref="T:System.Boolean"/> value indicating whether the type is a value type.
-            </param>
-            <param name="isReferenceType">
-            The <see cref="T:System.Boolean"/> value indicating whether the type is a reference type.
-            </param>
-            <param name="isNullable">
-            The <see cref="T:System.Boolean"/> value indicating whether the type is a nullable type.
-            </param>
-        </member>
         <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.IsNullableType(Microsoft.CodeAnalysis.ITypeSymbol)">
             <summary>
             Determine whether the current type symbol is a nullable type. The nullable types
