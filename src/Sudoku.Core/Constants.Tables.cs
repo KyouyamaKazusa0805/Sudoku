@@ -5,8 +5,11 @@ namespace Sudoku;
 partial class Constants
 {
 	/// <summary>
-	/// The tables for grid processing. All fields will be initialized in the static constructor.
+	/// The tables for grid processing.
 	/// </summary>
+	/// <remarks><i>
+	/// All fields will be initialized in the static constructor, which is declared in the source generator.
+	/// </i></remarks>
 	public static partial class Tables
 	{
 		/// <summary>

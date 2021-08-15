@@ -196,8 +196,11 @@
         </member>
         <member name="T:Sudoku.Constants.Tables">
             <summary>
-            The tables for grid processing. All fields will be initialized in the static constructor.
+            The tables for grid processing.
             </summary>
+            <remarks><i>
+            All fields will be initialized in the static constructor, which is declared in the source generator.
+            </i></remarks>
         </member>
         <member name="F:Sudoku.Constants.Tables.Peers">
             <summary>
