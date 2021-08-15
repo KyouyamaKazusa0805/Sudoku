@@ -36,6 +36,8 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
+> C# 10 starts to support `global using` and `global using staic` directive, then we can directly reference and create the type used above even if you can't remember what namespace they stored.
+
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
 ### How to Compile the Solution

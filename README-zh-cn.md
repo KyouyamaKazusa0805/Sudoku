@@ -1,7 +1,5 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-
-
 # 向向的数独解决方案
 
 ## 特殊公告
@@ -19,24 +17,22 @@
 比如说，你可以使用如下的代码来解一道题：
 
 ```csharp
-using System;
-using Sudoku.Data;
-using Sudoku.Solving.Manual;
-
-// Parse a puzzle from the string text.
+// 读取一个字符串形式的数独盘面的代码信息，并解析为 'SudokuGrid' 类型的对象。
 var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
-// Declare a manual solver that uses techniques used by humans to solve a puzzle.
+// 声明实例化一个 'ManualSolver' 类型的实例，用于稍后的解题。
 var solver = new ManualSolver();
 
-// To solve a puzzle synchonously.
+// 以同步的形式解题。
 var analysisResult = solver.Solve(grid);
-// If you want to solve the puzzle asynchonously, just change the code to:
+// 如果你想要异步执行，只需要改变代码成这个样子：
 //var analysisResult = await solver.SolveAsync(grid, null);
 
-// Output the analysis result.
+// 输出分析结果。
 Console.WriteLine(analysisResult.ToString());
 ```
+
+> C# 10 开始支持 `global using` 和 `global using static` 指令，所以我们无需自行导入命名空间，如果你记不住它们的位置也可以直接使用这些类型了。
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
