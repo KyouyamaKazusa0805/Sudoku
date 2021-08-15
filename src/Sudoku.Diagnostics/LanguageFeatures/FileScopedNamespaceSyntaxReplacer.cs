@@ -29,6 +29,7 @@
 /// }
 /// </code>
 /// </remarks>
+[Obsolete("The project has already upgraded to C# 10, so this type can't be used in anyway.", true)]
 public sealed class FileScopedNamespaceSyntaxReplacer : ISyntaxReplacer
 {
 	/// <summary>
