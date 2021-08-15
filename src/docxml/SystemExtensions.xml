@@ -60,7 +60,7 @@
             3 cases in total.
             </returns>
         </member>
-        <member name="M:System.Algorithms.GetExtractedCombinations(System.Int32[][])">
+        <member name="M:System.Algorithms.GetExtractedCombinations``1(``0[][])">
             <summary>
             Get all combinations that each sub-array only choose one.
             </summary>
@@ -3152,7 +3152,7 @@
         </member>
         <member name="T:System.IParsable`1">
             <summary>
-            Defines a parsable type.
+            Defines a type that supports the custom parsing operations.
             </summary>
             <typeparam name="T">The type to parse.</typeparam>
         </member>
@@ -3161,7 +3161,7 @@
             Try to parse the specified string text, and get the same-meaning instance
             of type <typeparamref name="T"/>.
             </summary>
-            <param name="str">The string to parse.</param>
+            <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
             <param name="result">
             The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
             i.e. <see langword="default"/>(<typeparamref name="T"/>).
@@ -3175,9 +3175,12 @@
             Parse the specified string text, and get the same-meaning instance
             of type <typeparamref name="T"/>.
             </summary>
-            <param name="str">The string to parse.</param>
+            <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
             <returns>The result parsed.</returns>
             <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="str"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="T:System.IValueComparable`1">
             <summary>

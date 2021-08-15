@@ -150,7 +150,7 @@ public static class Algorithms
 	/// with the whole array.
 	/// </remarks>
 	[SkipLocalsInit]
-	public static unsafe IEnumerable<int[]> GetExtractedCombinations(this int[][] @this)
+	public static unsafe IEnumerable<T[]> GetExtractedCombinations<T>(this T[][] @this)
 	{
 		int length = @this.GetLength(0), resultCount = 1;
 		int* tempArray = stackalloc int[length];
@@ -160,7 +160,7 @@ public static class Algorithms
 			resultCount *= @this[i].Length;
 		}
 
-		int[][] result = new int[resultCount][];
+		var result = new T[resultCount][];
 		int m = -1, n = -1;
 		do
 		{
@@ -180,7 +180,7 @@ public static class Algorithms
 			if (m == length - 1)
 			{
 				n++;
-				result[n] = new int[m + 1];
+				result[n] = new T[m + 1];
 				for (int i = 0; i <= m; i++)
 				{
 					result[n][i] = @this[i][tempArray[i]];

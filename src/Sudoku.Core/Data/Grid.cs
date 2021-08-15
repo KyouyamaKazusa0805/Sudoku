@@ -1010,20 +1010,10 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
-	/// <summary>
-	/// <para>
-	/// Parses a string value and converts to this type.
-	/// </para>
-	/// <para>
-	/// If you want to parse a PM grid, we recommend you use the method
-	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
-	/// </para>
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="Parse(string, GridParsingOption)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str) => new Parser(str).Parse();
+	public static Grid Parse([NotNullWhen(true)] string? str) =>
+		str is null ? throw new ArgumentNullException(nameof(str)) : new Parser(str).Parse();
 
 	/// <summary>
 	/// <para>
@@ -1058,25 +1048,15 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
 		new Parser(str).Parse(gridParsingOption);
 
-	/// <summary>
-	/// Try to parse a string and converts to this type, and returns a
-	/// <see cref="bool"/> value indicating the result of the conversion.
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <param name="result">
-	/// The result parsed. If the conversion is failed,
-	/// this argument will be <see cref="Undefined"/>.
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="Undefined"/>
-	public static bool TryParse(string str, out Grid result)
+	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? str, out Grid result)
 	{
 		try
 		{
 			result = Parse(str);
 			return !result.IsUndefined;
 		}
-		catch (FormatException)
+		catch (Exception ex) when (ex is FormatException or ArgumentNullException)
 		{
 			result = Undefined;
 			return false;

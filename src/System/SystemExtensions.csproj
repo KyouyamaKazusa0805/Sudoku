@@ -25,6 +25,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="System.Runtime.Experimental" Version="6.0.0-preview.7.21377.19" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 

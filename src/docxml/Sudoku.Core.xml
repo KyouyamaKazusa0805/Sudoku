@@ -2251,18 +2251,7 @@
             <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String,System.Boolean)">
             <summary>
@@ -2294,17 +2283,7 @@
             <returns>The result instance had converted.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.Grid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed,
-            this argument will be <see cref="F:Sudoku.Data.Grid.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
             <summary>

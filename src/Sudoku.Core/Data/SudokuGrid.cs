@@ -173,18 +173,13 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	}
 
 
+	[SuppressMessage("CodeQuality", "IDE0079:Remove unnecessary suppression", Justification = "<Pending>")]
 	static SudokuGrid()
 	{
 		// Initializes the empty grid.
-#if !SOLUTION_WIDE_CODE_ANALYSIS
-#pragma warning disable IDE0079
-#endif
 #pragma warning disable SD0303
 		Empty = default;
 #pragma warning restore SD0303
-#if !SOLUTION_WIDE_CODE_ANALYSIS
-#pragma warning restore IDE0079
-#endif
 		fixed (short* p = Empty._values, q = Empty._initialValues)
 		{
 			int i = 0;
@@ -1039,7 +1034,8 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuGrid Parse(string str) => new Parser(str).Parse();
+	public static SudokuGrid Parse([NotNullWhen(true)] string? str) =>
+		str is null ? throw new ArgumentNullException(nameof(str)) : new Parser(str).Parse();
 
 	/// <summary>
 	/// <para>
@@ -1075,14 +1071,14 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 		new Parser(str).Parse(gridParsingOption);
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out SudokuGrid result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out SudokuGrid result)
 	{
 		try
 		{
 			result = Parse(str);
 			return !result.IsUndefined;
 		}
-		catch (FormatException)
+		catch (Exception ex) when (ex is ArgumentNullException or FormatException)
 		{
 			result = Undefined;
 			return false;

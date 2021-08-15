@@ -322,21 +322,21 @@ public partial record struct PresentationData(
 
 #pragma warning disable IDE0022
 	/// <inheritdoc/>
-	public static PresentationData Parse(string svgCode)
+	public static PresentationData Parse([NotNullWhen(true)] string? str)
 	{
 		throw new NotImplementedException("I'll implement this method later.");
 	}
 #pragma warning restore IDE0022
 
 	/// <inheritdoc/>
-	public static bool TryParse(string svgCode, out PresentationData result)
+	public static bool TryParse([NotNullWhen(true)] string? svgCode, out PresentationData result)
 	{
 		try
 		{
 			result = Parse(svgCode);
 			return true;
 		}
-		catch (FormatException)
+		catch (Exception ex) when (ex is ArgumentNullException or FormatException)
 		{
 			result = default;
 			return false;

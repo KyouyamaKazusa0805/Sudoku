@@ -873,8 +873,13 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 
 	/// <inheritdoc/>
-	public static unsafe Cells Parse(string str)
+	public static unsafe Cells Parse([NotNullWhen(true)] string? str)
 	{
+		if (str is null)
+		{
+			throw new ArgumentNullException(nameof(str));
+		}
+
 		var regex = new Regex(
 			RegularExpressions.CellOrCellList,
 			RegexOptions.ExplicitCapture,
@@ -935,14 +940,14 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Cells result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out Cells result)
 	{
 		try
 		{
 			result = Parse(str);
 			return true;
 		}
-		catch (FormatException)
+		catch (Exception ex) when (ex is ArgumentNullException or FormatException)
 		{
 			result = Empty;
 			return false;
