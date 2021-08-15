@@ -1,5 +1,5 @@
 ﻿using Sudoku.Data.Stepping;
-using PointConverter = Sudoku.Drawing.PointConverter;
+using PointConverter = Sudoku.Drawing.Old.PointConverter;
 
 namespace Sudoku.Windows;
 

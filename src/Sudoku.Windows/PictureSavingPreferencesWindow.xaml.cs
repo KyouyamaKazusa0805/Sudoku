@@ -65,8 +65,7 @@ public partial class PictureSavingPreferencesWindow : Window
 	/// <param name="grid">The grid.</param>
 	/// <param name="settings">The settings.</param>
 	/// <param name="targetPainter">The target painter.</param>
-	public PictureSavingPreferencesWindow(
-		UndoableGrid grid, WindowsSettings settings, GridPainter targetPainter)
+	public PictureSavingPreferencesWindow(UndoableGrid grid, WindowsSettings settings, GridPainter targetPainter)
 	{
 		InitializeComponent();
 		_settings = settings;

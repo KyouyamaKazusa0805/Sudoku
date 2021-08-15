@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Drawing</name>
+        <name>Sudoku.Drawing.Old</name>
     </assembly>
     <members>
         <member name="T:Sudoku.Drawing.Old.ColorId">

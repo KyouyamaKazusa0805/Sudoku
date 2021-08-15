@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Drawing.Old;
 
 /// <summary>
 /// Encapsulates the color ID parser that converts the string to an <see cref="long"/> value that

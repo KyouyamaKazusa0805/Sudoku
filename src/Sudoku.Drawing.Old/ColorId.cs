@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Drawing.Old;
 
 /// <summary>
 /// Extracts the extension methods for color ID.

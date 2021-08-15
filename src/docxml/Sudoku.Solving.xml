@@ -2452,7 +2452,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>almost locked set</b> (ALS) technique.
             </summary>
@@ -2497,7 +2497,7 @@
             <param name="WDigitsMask">The W digit mask.</param>
             <param name="X">The digit X.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsWWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>almost locked sets W-Wing</b> (ALS-W-Wing) technique.
             </summary>
@@ -2561,7 +2561,7 @@
             <param name="YDigitsMask">The Y digits mask.</param>
             <param name="ZDigitsMask">The Z digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXyWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides a usage of <b>almost locked sets XY-Wing</b> (ALS-XY-Wing) technique.
             </summary>
@@ -2645,7 +2645,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Alses.AlsXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>almost locked sets XZ rule</b> (ALS-XZ)
             or <b>extended subset principle</b> technique.
@@ -2728,7 +2728,7 @@
             <param name="Pivot">The pivot cell.</param>
             <param name="Petals">All ALSes used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
+        <member name="M:Sudoku.Solving.Manual.Alses.DbStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Solving.Manual.Alses.Als})">
             <summary>
             Provides a usage of <b>death blossom</b> technique.
             </summary>
@@ -2803,7 +2803,7 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.EripStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Alses.EripStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>empty rectangle intersection pair</b> (ERIP) technique.
             </summary>
@@ -2858,7 +2858,7 @@
             <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
             <param name="Target">The target node.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.AicStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean,System.Boolean,Sudoku.Data.Node@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.AicStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Boolean,System.Boolean,Sudoku.Data.Node@)">
             <summary>
             Provides a usage of <b>(grouped) alternating inference chain</b> technique.
             </summary>
@@ -3044,7 +3044,7 @@
             <param name="IsNishio">Indicates whether the chain is nishio.</param>
             <param name="Level">Indicates the dynamic level of the chain.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.BinaryChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>contradiction forcing chains</b> and <b>double forcing chains</b> technique.
             </summary>
@@ -3092,7 +3092,7 @@
             <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
             <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.CellChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>cell forcing chains</b> technique.
             </summary>
@@ -3136,7 +3136,7 @@
             <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
             <param name="Level">The dynamic searching level.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.ChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>chain</b> technique.
             </summary>
@@ -3462,7 +3462,7 @@
             <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
             <param name="Target">The destination node that is off.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.LoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean,System.Boolean,Sudoku.Data.Node@)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.LoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Boolean,System.Boolean,Sudoku.Data.Node@)">
             <summary>
             Provides a usage of <b>(grouped) continuous nice loop</b> technique.
             </summary>
@@ -3530,7 +3530,7 @@
             <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
             <param name="Level">Indicates the depth level of the dynamic chains.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Chaining.RegionChainingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>region forcing chains</b> technique.
             </summary>
@@ -3676,7 +3676,7 @@
             <param name="LockedMemberR">The locked member R.</param>
             <param name="Eliminations">The eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.ExocetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
             <summary>
             Provides a usage of <b>exocet</b> technique.
             </summary>
@@ -3772,7 +3772,7 @@
             <param name="LockedMemberR">The locked member R.</param>
             <param name="Eliminations">All eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.JeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
             <summary>
             Provides a usage of <b>junior exocet</b> (JE) technique.
             </summary>
@@ -4006,7 +4006,7 @@
             <param name="ExtraRegionsMask">The extra regions mask.</param>
             <param name="Eliminations">All eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
+        <member name="M:Sudoku.Solving.Manual.Exocets.SeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Exocets.Pattern@,System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Int32[],System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.Exocets.Elimination})">
             <summary>
             Provides a usage of <b>senior exocet</b> (SE) technique.
             </summary>
@@ -4094,7 +4094,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.ComplexFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>Hobiwan's fish</b> technique.
             </summary>
@@ -4309,7 +4309,7 @@
             <param name="BaseSets">The base sets.</param>
             <param name="CoverSets">The cover sets.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.FishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.FishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>fish</b> technique.
             </summary>
@@ -4408,7 +4408,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Fishes.NormalFishStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>normal fish</b> technique.
             </summary>
@@ -4521,7 +4521,7 @@
             <param name="TargetCells">All target cells.</param>
             <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.AlcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Provides a usage of <b>almost locked candidates</b> (ALC) technique.
             </summary>
@@ -4608,7 +4608,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Intersections.IntersectionStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>intersection</b> technique.
             </summary>
@@ -4636,7 +4636,7 @@
             <param name="BaseSet">The base region.</param>
             <param name="CoverSet">The cover region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Intersections.LcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Intersections.LcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>locked candidates</b> (LC) technique.
             </summary>
@@ -4686,7 +4686,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BfStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>brute force</b> (<b>BF</b>) technique.
             </summary>
@@ -4763,7 +4763,7 @@
             <param name="Views">All views.</param>
             <param name="ContradictionSeries">Indicates all conclusions that occurs a contradiction.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.BowmanBingoStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion})">
             <summary>
             Provides a usage of <b>Bowman's bingo</b> technique.
             </summary>
@@ -4875,7 +4875,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.LastResortStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>last resort</b> technique.
             </summary>
@@ -4900,7 +4900,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.PomStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.PomStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>pattern overlay method</b> (POM) technique.
             </summary>
@@ -4969,7 +4969,7 @@
             <param name="Views">All views.</param>
             <param name="IsTemplateDeletion">Indicates whether the current instance is template deletion.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.LastResorts.TemplateStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Boolean)">
             <summary>
             Provides a usage of <b>template</b> technique.
             </summary>
@@ -5046,7 +5046,7 @@
             <param name="Digit1">The digit 1.</param>
             <param name="Digit2">The digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon</b> technique.
             </summary>
@@ -5147,7 +5147,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraCell">The extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 1</b> technique.
             </summary>
@@ -5178,7 +5178,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 2</b> technique.
             </summary>
@@ -5210,7 +5210,7 @@
             <param name="ExtraDigits">All extra digits.</param>
             <param name="ExtraCells">All extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.BivalueOddagonType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>bi-value oddagon type 3</b> technique.
             </summary>
@@ -5242,7 +5242,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ExtraDigits">The extra digits.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.GroupedBivalueOddagonStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16)">
             <summary>
             Provides a usage of <b>grouped bi-value oddagon</b> technique.
             </summary>
@@ -5276,7 +5276,7 @@
             <param name="Views">All views.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.MslsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>multi-sector locked sets</b> technique.
             </summary>
@@ -5337,7 +5337,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.RankTheoryStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>rank theory</b> technique.
             </summary>
@@ -5368,7 +5368,7 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.Sdc3dStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>3-dimension sue de coq</b> technique.
             </summary>
@@ -5434,7 +5434,7 @@
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>sue de coq</b> (SdC) technique.
             </summary>
@@ -5509,7 +5509,7 @@
             <param name="Views">All views.</param>
             <param name="Cells">All cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.RankTheory.SkLoopStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>domino loop</b> technique.
             </summary>
@@ -5576,7 +5576,7 @@
             <param name="Block">The block that the empty rectangle lies in.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.ErStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.ErStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>empty rectangle</b> (<b>ER</b>) technique.
             </summary>
@@ -5638,7 +5638,7 @@
             <param name="Loop">The loop.</param>
             <param name="Guardians">All guardians.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.GuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>guardian</b> technique.
             </summary>
@@ -5712,7 +5712,7 @@
             <param name="Views">All views.</param>
             <param name="Digit">The digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.SdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.SdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32)">
             <summary>
             Provides a usage of <b>single-digit pattern</b> (SDP) technique.
             </summary>
@@ -5744,7 +5744,7 @@
             <param name="BaseRegion">The base region.</param>
             <param name="TargetRegion">The target region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>two strong links</b> technique.
             </summary>
@@ -5796,7 +5796,7 @@
             <param name="Cell">The cell.</param>
             <param name="Digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.FullHouseStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32)">
             <summary>
             Indicates a usage of <b>full house</b> technique.
             </summary>
@@ -5822,7 +5822,7 @@
             <param name="Region">The region.</param>
             <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Singles.HiddenSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Indicates a using of <b>hidden single</b> technique.
             </summary>
@@ -5851,7 +5851,7 @@
             <param name="Cell">The cell.</param>
             <param name="Digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.NakedSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32)">
             <summary>
             Indicates a usage of <b>naked single</b> technique.
             </summary>
@@ -5875,7 +5875,7 @@
             <param name="Cell">The cell.</param>
             <param name="Digit">The digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Singles.SingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>single</b> technique.
             </summary>
@@ -5974,7 +5974,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.HiddenSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>hidden subset</b> technique.
             </summary>
@@ -6001,7 +6001,7 @@
             <param name="Digits">All digits used.</param>
             <param name="IsLocked">Indicates whether the subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.NakedSubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             Provides a usage of <b>naked subset</b> technique.
             </summary>
@@ -6038,7 +6038,7 @@
             <param name="Cells">All cells used.</param>
             <param name="Digits">All digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Subsets.SubsetStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>subset</b> technique.
             </summary>
@@ -6099,7 +6099,7 @@
             contains multiple different symmetry types.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Int32[][],System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.Gsp2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.SymmetryType,System.Int32[][],System.Nullable{System.Int32}[])">
             <summary>
             Provides a usage of <b>Gurth's symmetrical placement 2</b> (GSP2) technique.
             </summary>
@@ -6209,7 +6209,7 @@
             contains multiple different symmetry types.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.GspStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
             Provides a usage of <b>Gurth's symmetrical placement</b> (GSP) technique.
             </summary>
@@ -6290,7 +6290,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Symmetry.SymmetryStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>symmetry</b> technique.
             </summary>
@@ -6319,7 +6319,7 @@
             <param name="Views">All views.</param>
             <param name="Candidates">All candidates used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>BUG + n</b> technique.
             </summary>
@@ -6353,7 +6353,7 @@
             <param name="Candidates">All candidates.</param>
             <param name="Chains">The sub-chains.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleWithFcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node})">
             <summary>
             Provides a usage of <b>BUG + n with forcing chains</b> technique.
             </summary>
@@ -6451,7 +6451,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) technique.
             </summary>
@@ -6550,7 +6550,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 1 technique.
             </summary>
@@ -6569,7 +6569,7 @@
             <param name="Digit">The digit.</param>
             <param name="Cells">All cell offsets.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 2 technique.
             </summary>
@@ -6600,7 +6600,7 @@
             <param name="Cells">All cells.</param>
             <param name="IsNaked">Indicates whether the subset is naked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 3 technique.
             </summary>
@@ -6627,7 +6627,7 @@
             <param name="Cells">All cells.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>bivalue universal grave</b> (BUG) type 4 technique.
             </summary>
@@ -6653,7 +6653,7 @@
             <param name="Cells">All cells.</param>
             <param name="ExtraCell">The extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Bugs.BugXzStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
             <summary>
             Provides a usage of <b>bivalue universal grave XZ rule</b> (BUG-XZ) technique.
             </summary>
@@ -6678,7 +6678,7 @@
             <param name="Cells">All cells.</param>
             <param name="DigitsMask">All digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) technique.
             </summary>
@@ -6789,7 +6789,7 @@
             <param name="Cells">All cells.</param>
             <param name="DigitsMask">All digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 1 technique.
             </summary>
@@ -6814,7 +6814,7 @@
             <param name="DigitsMask">All digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 2 technique.
             </summary>
@@ -6845,7 +6845,7 @@
             <param name="ExtraDigitsMask">All extra digits mask.</param>
             <param name="Region">The region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 3 technique.
             </summary>
@@ -6876,7 +6876,7 @@
             <param name="DigitsMask">All digits mask.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Extended.XrType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>extended rectangle</b> (XR) type 4 technique.
             </summary>
@@ -6905,7 +6905,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique loop</b> (UL) technique.
             </summary>
@@ -7052,7 +7052,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="Loop">The loop.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique loop type 1</b> technique.
             </summary>
@@ -7082,7 +7082,7 @@
             <param name="Loop">The loop.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Provides a usage of <b>unique loop type 2</b> technique.
             </summary>
@@ -7114,7 +7114,7 @@
             <param name="SubsetDigitsMask">The subset digits mask.</param>
             <param name="SubsetCells">The subset cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>unique loop type 3</b> technique.
             </summary>
@@ -7146,7 +7146,7 @@
             <param name="Loop">The loop.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Loops.UlType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>unique loop type 4</b> technique.
             </summary>
@@ -7175,7 +7175,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern</b> (BDP) technique.
             </summary>
@@ -7295,7 +7295,7 @@
             <param name="Map">The cells used.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 1</b> (BDP) technique.
             </summary>
@@ -7317,7 +7317,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 2</b> (BDP) technique.
             </summary>
@@ -7344,7 +7344,7 @@
             <param name="ExtraCells">The extra cells.</param>
             <param name="ExtraDigitsMask">The extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 3</b> (BDP) technique.
             </summary>
@@ -7382,7 +7382,7 @@
             </param>
             <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.BdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>Borescoper's deadly pattern type 4</b> (BDP) technique.
             </summary>
@@ -7537,7 +7537,7 @@
             <param name="Pattern">The pattern.</param>
             <param name="Candidates">The candidates.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern locked type</b> (QDP) technique.
             </summary>
@@ -7560,7 +7560,7 @@
             <param name="Views">All views.</param>
             <param name="Pattern">The pattern.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern</b> (QDP) technique.
             </summary>
@@ -7711,7 +7711,7 @@
             <param name="Pattern">The pattern.</param>
             <param name="Candidate">The candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int32)">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 1</b> (QDP) technique.
             </summary>
@@ -7732,7 +7732,7 @@
             <param name="Pattern">The pattern.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int32)">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 2</b> (QDP) technique.
             </summary>
@@ -7757,7 +7757,7 @@
             <param name="ExtraDigitsMask">The extra digits mask.</param>
             <param name="ExtraCells">The extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 3</b> (QDP) technique.
             </summary>
@@ -7782,7 +7782,7 @@
             <param name="Pattern">The pattern.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>Qiu's deadly pattern type 4</b> (QDP) technique.
             </summary>
@@ -7811,7 +7811,7 @@
             <param name="TargetRegion">The target region.</param>
             <param name="AbsoluteOffset">The absolute offset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.ArWithHiddenSingleStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>avoidable rectangle + hidden single</b> technique.
             </summary>
@@ -7848,7 +7848,7 @@
             <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.HiddenUrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
             <summary>
             Provides a usage of <b>hidden unique rectangle</b> (HUR) or
             <b>hidden avoidable rectangle</b> (HAR) technique.
@@ -7882,7 +7882,7 @@
             <param name="XyCell">The cell that only contains X and Y digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.Ur2DOr3XStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle + 2D (or 3X)</b> or
             <b>avoidable rectangle + 2D (or 3X)</b> technique.
@@ -7923,7 +7923,7 @@
             <param name="ConjugatePairs">All conjugate pairs.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrPlusStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{Sudoku.Data.ConjugatePair},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle plus</b> (UR+) or
             <b>avoidable rectangle plus</b> (AR+) technique.
@@ -7977,7 +7977,7 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or <b>avoidable rectangle</b> (AR) technique.
             </summary>
@@ -8517,7 +8517,7 @@
             <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) type 1 technique.
@@ -8551,7 +8551,7 @@
             <param name="ExtraDigit">The extra digit.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) type 2 (or type 5) technique.
@@ -8589,7 +8589,7 @@
             <param name="IsNaked">Indicates whether the subset is naked.</param>
              <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IReadOnlyList{System.Int32},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Boolean,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) type 3 technique.
@@ -8635,7 +8635,7 @@
             <param name="GuardianCells">The guardians.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Int32,Sudoku.Data.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithGuardianStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle + guardian</b> technique.
             </summary>
@@ -8680,7 +8680,7 @@
             <param name="LineCells">The line cells.</param>
             <param name="IntersectionCells">The intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithSdcStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32[],System.Boolean,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique rectangle + sue de coq</b> (UR + SDC) or
             <b>avoidable rectangle + sue de coq</b> (AR + SDC) technique.
@@ -8748,7 +8748,7 @@
             <param name="Cells">All UR cells.</param>
             <param name="AbsoluteOffset">The absolute offset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithUnknownCoveringStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle + unknown covering</b> technique.
             </summary>
@@ -8787,7 +8787,7 @@
             <param name="Pivots">The pivot cells.</param>
             <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrWithWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Techniques.Technique,System.Int32,System.Int32,System.Int32[],System.Boolean,System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             Provides a usage of <b>unique rectangle</b> (UR) or
             <b>avoidable rectangle</b> (AR) with wings technique.
@@ -8841,7 +8841,7 @@
             <param name="Digit1">Indicates the digit 1.</param>
             <param name="Digit2">Indicates the digit 2.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave</b> technique.
             </summary>
@@ -8938,7 +8938,7 @@
             form a deadly pattern.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave type 1</b> technique.
             </summary>
@@ -8974,7 +8974,7 @@
             <param name="Digit2">The digit 2 used.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave type 2</b> technique.
             </summary>
@@ -9008,7 +9008,7 @@
             <param name="DigitsMask">All extra digits used.</param>
             <param name="IsNaked">Indicates whether the subset is naked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int16,System.Boolean)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave type 3</b> technique.
             </summary>
@@ -9042,7 +9042,7 @@
             <param name="Digit2">The digit 2 used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Reversal.ReverseBugType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>reverse bi-value universal grave type 4</b> technique.
             </summary>
@@ -9072,7 +9072,7 @@
             <param name="Cells">The cells.</param>
             <param name="DigitsMask">The digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides a usage of <b>unique square</b> (US) technique.
             </summary>
@@ -9177,7 +9177,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType1StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>unique square type 1</b> (US) technique.
             </summary>
@@ -9200,7 +9200,7 @@
             <param name="DigitsMask">The digits mask.</param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType2StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides a usage of <b>unique square type 2</b> (US) technique.
             </summary>
@@ -9227,7 +9227,7 @@
             <param name="ExtraDigitsMask">The extra digits mask.</param>
             <param name="ExtraCells">The extra cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType3StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>unique square type 3</b> (US) technique.
             </summary>
@@ -9261,7 +9261,7 @@
             <param name="Digit2">The digit 2.</param>
             <param name="ConjugateRegion">The so-called conjugate region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Square.UsType4StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides a usage of <b>unique square type 4</b> (US) technique.
             </summary>
@@ -9283,7 +9283,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.UniquenessStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.UniquenessStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>uniqueness</b> technique.
             </summary>
@@ -9308,7 +9308,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Encapsulates a usage of <b>irregular wing</b> technique.
             </summary>
@@ -9351,7 +9351,7 @@
             <param name="EndCell">The end cell.</param>
             <param name="ConjugatePair">The conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Wings.Irregular.WWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides a usage of <b>W-Wing</b> technique.
             </summary>
@@ -9381,7 +9381,7 @@
             <param name="DigitsMask">The mask of all digits used.</param>
             <param name="Cells">The cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View},System.Int32,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View},System.Int32,System.Int32,System.Int16,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides a usage of <b>regular wing</b> technique.
             </summary>
@@ -9491,7 +9491,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Wings.WingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.Wings.WingStepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Provides a usage of <b>wing</b> technique.
             </summary>
@@ -9670,7 +9670,7 @@
             <param name="Conclusions">All conclusions.</param>
             <param name="Views">All views.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View})">
+        <member name="M:Sudoku.Solving.Manual.StepInfo.#ctor(System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion},System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.Old.View})">
             <summary>
             Encapsulates all information after searched a solving step,
             which include the conclusion, the difficulty and so on.

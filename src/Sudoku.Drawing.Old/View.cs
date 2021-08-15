@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+﻿namespace Sudoku.Drawing.Old;
 
 /// <summary>
 /// Encapsulates a view when displaying the information on forms.

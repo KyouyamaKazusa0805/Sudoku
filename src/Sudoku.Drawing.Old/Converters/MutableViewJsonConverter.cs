@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Drawing.Converters;
+﻿using Sudoku.Drawing.Old;
+
+namespace Sudoku.Drawing.Converters.Old;
 
 /// <summary>
 /// Indicates a <see cref="MutableView"/> JSON converter.

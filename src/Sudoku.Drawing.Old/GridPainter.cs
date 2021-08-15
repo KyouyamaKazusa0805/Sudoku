@@ -1,6 +1,6 @@
 ﻿using Sudoku.Data.Stepping;
 
-namespace Sudoku.Drawing;
+namespace Sudoku.Drawing.Old;
 
 /// <summary>
 /// Indicates the grid painter.
@@ -217,9 +217,9 @@ public sealed record GridPainter(PointConverter Converter, Settings Preferences,
 	/// <param name="offset">The drawing offset.</param>
 	/// <param name="view">The view instance.</param>
 	/// <param name="isView">
-	/// Indicates whether the current <paramref name="view"/> instance is <see cref="Drawing.View"/>.
+	/// Indicates whether the current <paramref name="view"/> instance is <see cref="Old.View"/>.
 	/// </param>
-	/// <seealso cref="Drawing.View"/>
+	/// <seealso cref="Old.View"/>
 	private void DrawViewIfNeedInternal(Graphics g, float offset, dynamic view, bool isView)
 	{
 		if (view.Regions is IEnumerable<DrawingInfo> regions) DrawRegions(g, regions, offset);
