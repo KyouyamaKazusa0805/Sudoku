@@ -1,4 +1,5 @@
-﻿global using System.Drawing;
+﻿global using System.Diagnostics.CodeAnalysis;
+global using System.Drawing;
 global using System.Drawing.Drawing2D;
 global using System.Drawing.Text;
 global using System.Numerics;
@@ -13,6 +14,8 @@ global using Sudoku.Models;
 global using static System.Math;
 global using DPoint = System.Drawing.Point;
 global using DPointF = System.Drawing.PointF;
+
+[assembly: AssemblyObsolete]
 
 [assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
 [assembly: AutoDeconstructExtension(typeof(DPoint), nameof(DPoint.X), nameof(DPoint.Y))]
