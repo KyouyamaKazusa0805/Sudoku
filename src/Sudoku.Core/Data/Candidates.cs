@@ -6,7 +6,7 @@
 [AutoHashCode(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
-public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Candidates>, IJsonSerializable<Candidates, Candidates.JsonConverter>, IParsable<Candidates>
+public unsafe partial struct Candidates : ICellsOrCandidate<Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -38,20 +38,8 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	/// <summary>
 	/// The inner binary values.
 	/// </summary>
-	private long _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
+	private long _0 = 0, _1 = 0, _2 = 0, _3 = 0, _4 = 0, _5 = 0, _6 = 0, _7 = 0, _8 = 0, _9 = 0, _10 = 0, _11 = 0;
 
-
-#if false
-	/// <summary>
-	/// Initializes a default instance of type <see cref="Candidates"/>.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates()
-	{
-		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
-		Count = 0;
-	}
-#endif
 
 	/// <summary>
 	///  Initializes an instance with another one.
@@ -231,23 +219,17 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	}
 
 
-	/// <summary>
-	/// Indicates whether the map has no set bits.
-	/// </summary>
+	/// <inheritdoc/>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Count == 0;
 	}
 
-	/// <summary>
-	/// Indicates how many bits are set <see langword="true"/>.
-	/// </summary>
-	public int Count { get; private set; }
+	/// <inheritdoc/>
+	public int Count { get; private set; } = 0;
 
-	/// <summary>
-	/// Indicates the map of cells, which is the peer intersections.
-	/// </summary>
+	/// <inheritdoc/>
 	public readonly Candidates PeerIntersection
 	{
 		get
@@ -295,13 +277,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	}
 
 
-	/// <summary>
-	/// Gets the result set candidate at the specified index.
-	/// </summary>
-	/// <param name="index">The index.</param>
-	/// <returns>
-	/// The candidate at that index. If the index is invalid, the return value will be -1.
-	/// </returns>
+	/// <inheritdoc/>
 	public readonly int this[int index]
 	{
 		get
@@ -319,11 +295,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	}
 
 
-	/// <summary>
-	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
-	/// </summary>
-	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
-	/// <param name="length">The length of that array.</param>
+	/// <inheritdoc/>
 	public readonly void CopyTo(int* arr, int length)
 	{
 		if (IsEmpty)
@@ -345,12 +317,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		}
 	}
 
-	/// <summary>
-	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
-	/// </summary>
-	/// <param name="span">
-	/// The target <see cref="Span{T}"/> instance.
-	/// </param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly void CopyTo(ref Span<int> span)
 	{
@@ -360,15 +327,11 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		}
 	}
 
-	/// <summary>
-	/// Check whether the specified candidate is in the current list.
-	/// </summary>
-	/// <param name="candidate">The candidate to check.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(int candidate) =>
+	public readonly bool Contains(int offset) =>
 	(
-		(candidate / Shifting) switch
+		(offset / Shifting) switch
 		{
 			0 => _0,
 			1 => _1,
@@ -382,13 +345,10 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 			9 => _9,
 			10 => _10,
 			11 => _11
-		} >> candidate % Shifting & 1
+		} >> offset % Shifting & 1
 	) != 0;
 
-	/// <summary>
-	/// Get all cell offsets whose bits are set <see langword="true"/>.
-	/// </summary>
-	/// <returns>An array of cell offsets.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
@@ -472,26 +432,13 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return result;
 	}
 
-	/// <summary>
-	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
+	/// <inheritdoc/>
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
-	/// <summary>
-	/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
+	/// <inheritdoc/>
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
-	/// <summary>
-	/// Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
-	/// </summary>
-	/// <param name="offset">
-	/// The cell offset. This value can be positive and negative. If 
-	/// negative, the offset will be assigned <see langword="false"/>
-	/// into the corresponding bit position of its absolute value.
-	/// </param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void Add(int offset)
@@ -511,57 +458,33 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		}
 	}
 
-	/// <summary>
-	/// Set the specified candidate as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="candidate">The candidate offset.</param>
-	/// <remarks>
-	/// Different with <see cref="Add(int)"/>, the method will process negative values,
-	/// but this won't.
-	/// </remarks>
-	/// <seealso cref="Add(int)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddAnyway(int candidate) => InternalAdd(candidate, true);
 
-	/// <summary>
-	/// Set the specified candidate as <see langword="false"/> value.
-	/// </summary>
-	/// <param name="candidate">The cell offset.</param>
-	/// <remarks>
-	/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
-	/// the negative value as the parameter.
-	/// </remarks>
-	/// <seealso cref="Add(int)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int candidate) => InternalAdd(candidate, false);
 
-	/// <summary>
-	/// Set the specified candidates as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="candidates">The candidate offsets.</param>
-	public void AddRange(in ReadOnlySpan<int> candidates)
+	/// <inheritdoc/>
+	public void AddRange(in ReadOnlySpan<int> offsets)
 	{
-		foreach (int candidate in candidates)
+		foreach (int candidate in offsets)
 		{
 			AddAnyway(candidate);
 		}
 	}
 
-	/// <summary>
-	/// Set the specified candidates as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="candidates">The candidate offsets.</param>
-	public void AddRange(IEnumerable<int> candidates)
+	/// <inheritdoc/>
+	public void AddRange(IEnumerable<int> offsets)
 	{
-		foreach (int candidate in candidates)
+		foreach (int candidate in offsets)
 		{
 			AddAnyway(candidate);
 		}
 	}
 
-	/// <summary>
-	/// Clear all bits.
-	/// </summary>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear()
 	{
@@ -569,18 +492,14 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		Count = 0;
 	}
 
-	/// <summary>
-	/// The add method.
-	/// </summary>
-	/// <param name="candidate">The candidate.</param>
-	/// <param name="value">The value.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InternalAdd(int candidate, bool value)
+	private void InternalAdd(int offset, bool value)
 	{
 		fixed (Candidates* pThis = &this)
 		{
-			bool older = Contains(candidate);
-			long* block = (candidate / Shifting) switch
+			bool older = Contains(offset);
+			long* block = (offset / Shifting) switch
 			{
 				0 => &pThis->_0,
 				1 => &pThis->_1,
@@ -597,7 +516,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 			};
 			if (value)
 			{
-				*block |= 1L << candidate % Shifting;
+				*block |= 1L << offset % Shifting;
 				if (!older)
 				{
 					Count++;
@@ -605,7 +524,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 			}
 			else
 			{
-				*block &= ~(1L << candidate % Shifting);
+				*block &= ~(1L << offset % Shifting);
 				if (older)
 				{
 					Count--;
@@ -623,14 +542,11 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	/// Parse a <see cref="string"/> and convert to the <see cref="Candidates"/> instance.
 	/// </summary>
 	/// <param name="str">The string text.</param>
-	/// <param name="options">
-	/// The options to parse. The default value is <see cref="CandidatesParsingOptions.All"/>.
-	/// </param>
-	/// <returns>The result cell instance.</returns>
+	/// <param name="options">The options to parse.</param>
+	/// <returns>The result instance.</returns>
 	/// <exception cref="ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
 	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
-	/// <seealso cref="CandidatesParsingOptions.All"/>
-	public static Candidates Parse(string str, CandidatesParsingOptions options = CandidatesParsingOptions.All)
+	public static Candidates Parse(string str, CandidatesParsingOptions options)
 	{
 		if (options is CandidatesParsingOptions.None or > CandidatesParsingOptions.All)
 		{
@@ -728,13 +644,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 	}
 
 
-	/// <summary>
-	/// Reverse status for all candidates, which means all <see langword="true"/> bits
-	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-	/// will be set <see langword="true"/>.
-	/// </summary>
-	/// <param name="map">The instance to negate.</param>
-	/// <returns>The negative result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ~(in Candidates map)
 	{
@@ -757,12 +667,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return new(result, Len);
 	}
 
-	/// <summary>
-	/// Get all candidates that two <see cref="Candidates"/>'s both contain.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The intersection result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator &(in Candidates left, in Candidates right)
 	{
@@ -783,12 +688,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return new(result, Len);
 	}
 
-	/// <summary>
-	/// Get all candidates from two <see cref="Candidates"/>s.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The union result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator |(in Candidates left, in Candidates right)
 	{
@@ -809,12 +709,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return new(result, Len);
 	}
 
-	/// <summary>
-	/// Get all candidates that only appears once in two <see cref="Candidates"/>s.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The symmetrical difference result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ^(in Candidates left, in Candidates right)
 	{
@@ -835,13 +730,7 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 		return new(result, Len);
 	}
 
-	/// <summary>
-	/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> candidates
-	/// but not in <paramref name="right"/> candidates.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator -(in Candidates left, in Candidates right)
 	{
@@ -861,6 +750,11 @@ public unsafe partial struct Candidates : IEnumerable<int>, IValueEquatable<Cand
 
 		return new(result, Len);
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Candidates operator %(in Candidates @base, in Candidates template) =>
+		(@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Simplified calls <see cref="Reduce(int)"/>.

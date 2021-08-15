@@ -548,19 +548,13 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Candidates.IsEmpty">
-            <summary>
-            Indicates whether the map has no set bits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Candidates.Count">
-            <summary>
-            Indicates how many bits are set <see langword="true"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Candidates.PeerIntersection">
-            <summary>
-            Indicates the map of cells, which is the peer intersections.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Candidates.Offsets">
             <summary>
@@ -568,41 +562,19 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Candidates.Item(System.Int32)">
-            <summary>
-            Gets the result set candidate at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>
-            The candidate at that index. If the index is invalid, the return value will be -1.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.CopyTo(System.Int32*,System.Int32)">
-            <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
-            <param name="length">The length of that array.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.CopyTo(System.Span{System.Int32}@)">
-            <summary>
-            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Contains(System.Int32)">
-            <summary>
-            Check whether the specified candidate is in the current list.
-            </summary>
-            <param name="candidate">The candidate to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.ToArray">
-            <summary>
-            Get all cell offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of cell offsets.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.GetSubviewMask(System.Int32,System.Int32)">
             <summary>
@@ -624,72 +596,31 @@
             <returns>The map of all cells chosen.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.ToSpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.ToReadOnlySpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Add(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
-            </summary>
-            <param name="offset">
-            The cell offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified candidate as <see langword="true"/> value.
-            </summary>
-            <param name="candidate">The candidate offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Remove(System.Int32)">
-            <summary>
-            Set the specified candidate as <see langword="false"/> value.
-            </summary>
-            <param name="candidate">The cell offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>, this method <b>can't</b> receive
-            the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Candidates.Add(System.Int32)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.AddRange(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified candidates as <see langword="true"/> value.
-            </summary>
-            <param name="candidates">The candidate offsets.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.InternalAdd(System.Int32,System.Boolean)">
-            <summary>
-            The add method.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Parse(System.String)">
             <inheritdoc/>
@@ -699,58 +630,31 @@
             Parse a <see cref="T:System.String"/> and convert to the <see cref="T:Sudoku.Data.Candidates"/> instance.
             </summary>
             <param name="str">The string text.</param>
-            <param name="options">
-            The options to parse. The default value is <see cref="F:Sudoku.Data.CandidatesParsingOptions.All"/>.
-            </param>
-            <returns>The result cell instance.</returns>
+            <param name="options">The options to parse.</param>
+            <returns>The result instance.</returns>
             <exception cref="T:System.ArgumentException">Throws when <paramref name="options"/> is invalid.</exception>
             <exception cref="T:System.FormatException">Throws when the specified text is invalid to parse.</exception>
-            <seealso cref="F:Sudoku.Data.CandidatesParsingOptions.All"/>
         </member>
         <member name="M:Sudoku.Data.Candidates.TryParse(System.String,Sudoku.Data.Candidates@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_OnesComplement(Sudoku.Data.Candidates@)">
-            <summary>
-            Reverse status for all candidates, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="map">The instance to negate.</param>
-            <returns>The negative result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_BitwiseAnd(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Get all candidates that two <see cref="T:Sudoku.Data.Candidates"/>'s both contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The intersection result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_BitwiseOr(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Get all candidates from two <see cref="T:Sudoku.Data.Candidates"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The union result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_ExclusiveOr(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Get all candidates that only appears once in two <see cref="T:Sudoku.Data.Candidates"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The symmetrical difference result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_Subtraction(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Get a <see cref="T:Sudoku.Data.Cells"/> that contains all <paramref name="left"/> candidates
-            but not in <paramref name="right"/> candidates.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Modulus(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.op_Division(Sudoku.Data.Candidates@,System.Int32)">
             <summary>
@@ -1022,9 +926,7 @@
             <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
         <member name="P:Sudoku.Data.Cells.IsEmpty">
-            <summary>
-            Indicates whether the map has no set bits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Cells.InOneRegion">
             <summary>
@@ -1071,10 +973,7 @@
             <seealso cref="F:Sudoku.Constants.InvalidFirstSet"/>
         </member>
         <member name="P:Sudoku.Data.Cells.Count">
-            <summary>
-            Indicates the total number of cells where the corresponding
-            value are set <see langword="true"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Cells.CoveredRegions">
             <summary>
@@ -1098,39 +997,21 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Cells.PeerIntersection">
-            <summary>
-            Indicates the map of cells, which is the peer intersections.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Cells.Offsets">
             <summary>
-            Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
+            Indicates the cell offsets in this collection.
             </summary>
         </member>
         <member name="P:Sudoku.Data.Cells.Item(System.Int32)">
-            <summary>
-            Get the cell offset at the specified position index.
-            </summary>
-            <param name="index">The index of position of all set bits.</param>
-            <returns>
-            This cell offset at the specified position index. If the value is invalid,
-            the return value will be <c>-1</c>.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.CopyTo(System.Int32*,System.Int32)">
-            <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
-            <param name="length">The length of that array.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.CopyTo(System.Span{System.Int32}@)">
-            <summary>
-            Copies the current instance to the tagret <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.AllSetsAreInOneRegion(System.Int32@)">
             <summary>
@@ -1148,11 +1029,7 @@
             <seealso cref="P:Sudoku.Data.Cells.InOneRegion"/>
         </member>
         <member name="M:Sudoku.Data.Cells.Contains(System.Int32)">
-            <summary>
-            Determine whether the map contains the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.GetSubviewMask(System.Int32)">
             <summary>
@@ -1176,26 +1053,17 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Cells.ToArray">
-            <summary>
-            Get all set cell offsets and returns them as an array.
-            </summary>
-            <returns>An array of all set cell offsets.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Cells.ToSpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.ToReadOnlySpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.Expand(System.Int32)">
             <summary>
@@ -1216,14 +1084,7 @@
             <seealso cref="P:Sudoku.Data.Cells.BlockMask"/>
         </member>
         <member name="M:Sudoku.Data.Cells.Add(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
-            </summary>
-            <param name="offset">
-            The cell offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
+            <inheritdoc/>
             <remarks>
             <para>
             For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
@@ -1244,44 +1105,25 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Set the specified cells as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The cells to add.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified cells as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The cells to add.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.Remove(System.Int32)">
-            <summary>
-            Set the specified cell as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The cell offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.Cells.Add(System.Int32)"/>, this method <b>can't</b> receive
-            the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Cells.Add(System.Int32)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.InternalAdd(System.Int32,System.Boolean)">
             <summary>
-            The internal operation for adding a cell.
+            The internal operation for adding an offset into the current collection.
             </summary>
-            <param name="cell">The cell to add into.</param>
+            <param name="offset">The cell to add into.</param>
             <param name="value">The value to add.</param>
         </member>
         <member name="M:Sudoku.Data.Cells.Parse(System.String)">
@@ -1291,13 +1133,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
-            <summary>
-            Reverse status for all cells, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="gridMap">The instance to negate.</param>
-            <returns>The negative result.</returns>
+            <inheritdoc/>
             <remarks>
             While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
             that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
@@ -1320,37 +1156,16 @@
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Get a <see cref="T:Sudoku.Data.Cells"/> that contains all <paramref name="left"/> instance
-            but not in <paramref name="right"/> instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_BitwiseAnd(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Get all cells that two <see cref="T:Sudoku.Data.Cells"/> instances both contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The intersection result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_BitwiseOr(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Get all cells from two <see cref="T:Sudoku.Data.Cells"/> instances.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The union result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_ExclusiveOr(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Get all cells that only appears once in two <see cref="T:Sudoku.Data.Cells"/> instances.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The symmetrical difference result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Multiply(Sudoku.Data.Cells@,System.Int32)">
             <summary>
@@ -1369,14 +1184,7 @@
             <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Modulus(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-            The operator is used for searching for and checking eliminations.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
-            <seealso cref="P:Sudoku.Data.Cells.PeerIntersection"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Implicit(System.Int32[])~Sudoku.Data.Cells">
             <summary>
@@ -3323,6 +3131,184 @@
             Throws when two specified region argument is not in valid range (0..27)
             or two regions are not in same region type.
             </exception>
+        </member>
+        <member name="T:Sudoku.Data.ICellsOrCandidate`1">
+            <summary>
+            Defines a collection that only used for <see cref="T:Sudoku.Data.Cells"/> or <see cref="T:Sudoku.Data.Candidates"/>.
+            </summary>
+            <typeparam name="TCollection">The type.</typeparam>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+            <seealso cref="T:Sudoku.Data.Candidates"/>
+        </member>
+        <member name="P:Sudoku.Data.ICellsOrCandidate`1.IsEmpty">
+            <summary>
+            Indicates whether the collection is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ICellsOrCandidate`1.Count">
+            <summary>
+            Indicates the number of the values stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ICellsOrCandidate`1.PeerIntersection">
+            <summary>
+            Indicates the <typeparamref name="TCollection"/> of intersections.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ICellsOrCandidate`1.Item(System.Int32)">
+            <summary>
+            Get the offset at the specified position index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>
+            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.CopyTo(System.Int32*,System.Int32)">
+            <summary>
+            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
+            </summary>
+            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="length">The length of that array.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the capacity isn't enough to store all values.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.CopyTo(System.Span{System.Int32}@)">
+            <summary>
+            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <param name="span">
+            The target <see cref="T:System.Span`1"/> instance.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.Contains(System.Int32)">
+            <summary>
+            Determine whether the map contains the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.ToArray">
+            <summary>
+            Get all offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.Add(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+            </summary>
+            <param name="offset">
+            The offset. This value can be positive and negative. If 
+            negative, the offset will be assigned <see langword="false"/>
+            into the corresponding bit position of its absolute value.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.AddAnyway(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> value.
+            </summary>
+            <param name="offset">The offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.ICellsOrCandidate`1.Add(System.Int32)"/>, the method will process negative values,
+            but this won't.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.ICellsOrCandidate`1.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.AddRange(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Set the specified offsets as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The offsets to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Set the specified offsets as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The offsets to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.Remove(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.ICellsOrCandidate`1.Add(System.Int32)"/>, this method <b>can't</b> receive the negative value as the parameter.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.ICellsOrCandidate`1.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.ToSpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.ToReadOnlySpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_OnesComplement(`0@)">
+            <summary>
+            Reverse status for all offsets, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="offsets">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_Subtraction(`0@,`0@)">
+            <summary>
+            Get a <typeparamref name="TCollection"/> that contains all <paramref name="left"/> instance
+            but not in <paramref name="right"/> instance.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_BitwiseAnd(`0@,`0@)">
+            <summary>
+            Get all cells that two <typeparamref name="TCollection"/> instances both contain.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The intersection result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_BitwiseOr(`0@,`0@)">
+            <summary>
+            Get all cells from two <typeparamref name="TCollection"/> instances.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The union result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_ExclusiveOr(`0@,`0@)">
+            <summary>
+            Get all cells that only appears once in two <typeparamref name="TCollection"/> instances.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The symmetrical difference result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidate`1.op_Modulus(`0@,`0@)">
+            <summary>
+            Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            The operator is used for searching for and checking eliminations.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
+            <seealso cref="P:Sudoku.Data.ICellsOrCandidate`1.PeerIntersection"/>
         </member>
         <member name="T:Sudoku.Data.Link">
             <summary>

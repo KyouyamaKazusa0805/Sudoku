@@ -13,7 +13,7 @@
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 [AutoFormattable]
-public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
+public partial struct Cells : ICellsOrCandidate<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -42,20 +42,8 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	/// which represents 81 bits. <see cref="_high"/> represent the higher
 	/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
 	/// </summary>
-	private long _high, _low;
+	private long _high = 0, _low = 0;
 
-
-#if false
-	/// <summary>
-	/// Initializes a default instance of type <see cref="Cells"/>.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells()
-	{
-		_high = _low = 0;
-		Count = 0;
-	}
-#endif
 
 	/// <summary>
 	/// Initializes an instance with the specified cell offset
@@ -208,9 +196,8 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	/// <param name="mid">Medium 27 bits.</param>
 	/// <param name="low">Lower 27 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int high, int mid, int low) : this(
-		(high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL),
-		(mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
+	public Cells(int high, int mid, int low)
+		: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 	{
 	}
 
@@ -240,9 +227,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 
-	/// <summary>
-	/// Indicates whether the map has no set bits.
-	/// </summary>
+	/// <inheritdoc/>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -323,11 +308,8 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		get => TrailingZeroCount(CoveredRegions & ~511);
 	}
 
-	/// <summary>
-	/// Indicates the total number of cells where the corresponding
-	/// value are set <see langword="true"/>.
-	/// </summary>
-	public int Count { get; private set; }
+	/// <inheritdoc/>
+	public int Count { get; private set; } = 0;
 
 	/// <summary>
 	/// Indicates all regions covered. This property is used to check all regions that all cells
@@ -369,9 +351,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 	}
 
-	/// <summary>
-	/// Indicates the map of cells, which is the peer intersections.
-	/// </summary>
+	/// <inheritdoc/>
 	public readonly Cells PeerIntersection
 	{
 		get
@@ -403,7 +383,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 	/// <summary>
-	/// Indicates all cell offsets whose corresponding value are set <see langword="true"/>.
+	/// Indicates the cell offsets in this collection.
 	/// </summary>
 	private readonly unsafe int[] Offsets
 	{
@@ -449,14 +429,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 
-	/// <summary>
-	/// Get the cell offset at the specified position index.
-	/// </summary>
-	/// <param name="index">The index of position of all set bits.</param>
-	/// <returns>
-	/// This cell offset at the specified position index. If the value is invalid,
-	/// the return value will be <c>-1</c>.
-	/// </returns>
+	/// <inheritdoc/>
 	public readonly int this[int index]
 	{
 		get
@@ -494,11 +467,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 
-	/// <summary>
-	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
-	/// </summary>
-	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
-	/// <param name="length">The length of that array.</param>
+	/// <inheritdoc/>
 	public readonly unsafe void CopyTo(int* arr, int length)
 	{
 		if (IsEmpty)
@@ -508,7 +477,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 
 		if (Count > length)
 		{
-			throw new ArgumentException("The capacity is not enough.", nameof(arr));
+			throw new InvalidOperationException("The capacity is not enough.");
 		}
 
 		long value;
@@ -535,12 +504,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		}
 	}
 
-	/// <summary>
-	/// Copies the current instance to the tagret <see cref="Span{T}"/> instance.
-	/// </summary>
-	/// <param name="span">
-	/// The target <see cref="Span{T}"/> instance.
-	/// </param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly unsafe void CopyTo(ref Span<int> span)
 	{
@@ -578,11 +542,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		return false;
 	}
 
-	/// <summary>
-	/// Determine whether the map contains the specified cell.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly unsafe bool Contains(int cell) =>
 		((cell / Shifting == 0 ? _low : _high) >> cell % Shifting & 1) != 0;
@@ -611,10 +571,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => ToString("b").GetHashCode();
 
-	/// <summary>
-	/// Get all set cell offsets and returns them as an array.
-	/// </summary>
-	/// <returns>An array of all set cell offsets.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
@@ -640,6 +597,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 			"T" or "t" => tableToString(this),
 			_ => throw new FormatException("The specified format is invalid.")
 		};
+
 
 		static string tableToString(in Cells @this)
 		{
@@ -780,17 +738,11 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		}
 	}
 
-	/// <summary>
-	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
-	/// <summary>
-	/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
@@ -825,14 +777,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		return result;
 	}
 
-	/// <summary>
-	/// Set the specified cell as <see langword="true"/> or <see langword="false"/> value.
-	/// </summary>
-	/// <param name="offset">
-	/// The cell offset. This value can be positive and negative. If 
-	/// negative, the offset will be assigned <see langword="false"/>
-	/// into the corresponding bit position of its absolute value.
-	/// </param>
+	/// <inheritdoc/>
 	/// <remarks>
 	/// <para>
 	/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
@@ -865,17 +810,11 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		}
 	}
 
-	/// <summary>
-	/// Set the specified cell as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offset">The cell offset.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddAnyway(int offset) => InternalAdd(offset, true);
 
-	/// <summary>
-	/// Set the specified cells as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offsets">The cells to add.</param>
+	/// <inheritdoc/>
 	public void AddRange(in ReadOnlySpan<int> offsets)
 	{
 		foreach (int cell in offsets)
@@ -884,10 +823,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		}
 	}
 
-	/// <summary>
-	/// Set the specified cells as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offsets">The cells to add.</param>
+	/// <inheritdoc/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
 		foreach (int cell in offsets)
@@ -896,39 +832,29 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		}
 	}
 
-	/// <summary>
-	/// Set the specified cell as <see langword="false"/> value.
-	/// </summary>
-	/// <param name="offset">The cell offset.</param>
-	/// <remarks>
-	/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive
-	/// the negative value as the parameter.
-	/// </remarks>
-	/// <seealso cref="Add(int)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset) => InternalAdd(offset, false);
 
-	/// <summary>
-	/// Clear all bits.
-	/// </summary>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
 
 	/// <summary>
-	/// The internal operation for adding a cell.
+	/// The internal operation for adding an offset into the current collection.
 	/// </summary>
-	/// <param name="cell">The cell to add into.</param>
+	/// <param name="offset">The cell to add into.</param>
 	/// <param name="value">The value to add.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InternalAdd(int cell, bool value)
+	private void InternalAdd(int offset, bool value)
 	{
-		if (cell is >= 0 and < 81)
+		if (offset is >= 0 and < 81)
 		{
-			ref long v = ref cell / Shifting == 0 ? ref _low : ref _high;
-			bool older = Contains(cell);
+			ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+			bool older = Contains(offset);
 			if (value)
 			{
-				v |= 1L << cell % Shifting;
+				v |= 1L << offset % Shifting;
 				if (!older)
 				{
 					Count++;
@@ -936,7 +862,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 			}
 			else
 			{
-				v &= ~(1L << cell % Shifting);
+				v &= ~(1L << offset % Shifting);
 				if (older)
 				{
 					Count--;
@@ -1024,20 +950,14 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	}
 
 
-	/// <summary>
-	/// Reverse status for all cells, which means all <see langword="true"/> bits
-	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
-	/// will be set <see langword="true"/>.
-	/// </summary>
-	/// <param name="gridMap">The instance to negate.</param>
-	/// <returns>The negative result.</returns>
+	/// <inheritdoc/>
 	/// <remarks>
 	/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
 	/// that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator ~(in Cells gridMap) =>
-		new(~gridMap._high & 0xFFFFFFFFFFL, ~gridMap._low & 0x1FFFFFFFFFFL);
+	public static Cells operator ~(in Cells offsets) =>
+		new(~offsets._high & 0xFFFFFFFFFFL, ~offsets._low & 0x1FFFFFFFFFFL);
 
 	/// <summary>
 	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
@@ -1057,42 +977,21 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
 
-	/// <summary>
-	/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> instance
-	/// but not in <paramref name="right"/> instance.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator -(in Cells left, in Cells right) => left & ~right;
 
-	/// <summary>
-	/// Get all cells that two <see cref="Cells"/> instances both contain.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The intersection result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator &(in Cells left, in Cells right) =>
 		new(left._high & right._high, left._low & right._low);
 
-	/// <summary>
-	/// Get all cells from two <see cref="Cells"/> instances.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The union result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator |(in Cells left, in Cells right) =>
 		new(left._high | right._high, left._low | right._low);
 
-	/// <summary>
-	/// Get all cells that only appears once in two <see cref="Cells"/> instances.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The symmetrical difference result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ^(in Cells left, in Cells right) =>
 		new(left._high ^ right._high, left._low ^ right._low);
@@ -1141,14 +1040,7 @@ public partial struct Cells : IEnumerable<int>, IValueEquatable<Cells>, IFormatt
 		return p;
 	}
 
-	/// <summary>
-	/// Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-	/// The operator is used for searching for and checking eliminations.
-	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="template">The template map that the base map to check and cover.</param>
-	/// <returns>The result map.</returns>
-	/// <seealso cref="PeerIntersection"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator %(in Cells @base, in Cells template) =>
 		(@base & template).PeerIntersection & template;
