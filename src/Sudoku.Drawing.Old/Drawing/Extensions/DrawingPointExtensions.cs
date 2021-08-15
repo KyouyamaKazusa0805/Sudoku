@@ -5,7 +5,7 @@
 /// </summary>
 /// <seealso cref="DPoint"/>
 /// <seealso cref="DPointF"/>
-public static partial class DrawingPointExtensions
+internal static partial class DrawingPointExtensions
 {
 	/// <summary>
 	/// To truncate the point.

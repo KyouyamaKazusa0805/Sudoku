@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="WColor"/>.
 /// </summary>
 /// <seealso cref="WColor"/>
-public static partial class WindowsColorExtensions
+internal static partial class WindowsColorExtensions
 {
 	/// <summary>
 	/// Get the hue from the specified <see cref="WColor"/>.

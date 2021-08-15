@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="StepInfo"/>.
 /// </summary>
 /// <seealso cref="StepInfo"/>
-public static class StepInfoExtensions
+internal static class StepInfoExtensions
 {
 	/// <summary>
 	/// Creates a new <see cref="Bitmap"/> instance that uses the .

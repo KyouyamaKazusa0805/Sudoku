@@ -5,7 +5,7 @@
 /// </summary>
 /// <seealso cref="Size"/>
 /// <seealso cref="SizeF"/>
-public static partial class DrawingSizeExtensions
+internal static partial class DrawingSizeExtensions
 {
 	/// <summary>
 	/// To truncate the size.

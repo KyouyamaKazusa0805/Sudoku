@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="DColor"/>.
 /// </summary>
 /// <seealso cref="DColor"/>
-public static class DrawingColorExtensions
+internal static class DrawingColorExtensions
 {
 	/// <summary>
 	/// Convert <see cref="DColor"/> to <see cref="WColor"/>.

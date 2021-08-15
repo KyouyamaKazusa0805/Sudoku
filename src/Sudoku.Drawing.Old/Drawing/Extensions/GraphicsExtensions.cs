@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides extension methods for <see cref="Graphics"/>.
 /// </summary>
-public static class GraphicsExtensions
+internal static class GraphicsExtensions
 {
 	/// <summary>
 	/// Draw an <see cref="int"/> value onto the current graphics.

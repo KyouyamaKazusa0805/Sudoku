@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="Key"/>.
 /// </summary>
 /// <seealso cref="Key"/>
-public static class KeyExtensions
+internal static class KeyExtensions
 {
 	/// <summary>
 	/// Check whether the specified key is a digit key.

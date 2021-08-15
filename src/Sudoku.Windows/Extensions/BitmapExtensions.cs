@@ -6,7 +6,7 @@ namespace System.Drawing;
 /// Provides extension methods on <see cref="Bitmap"/>.
 /// </summary>
 /// <seealso cref="Bitmap"/>
-public static class BitmapExtensions
+internal static class BitmapExtensions
 {
 	/// <summary>
 	/// Convert the <see cref="Bitmap"/> to <see cref="ImageSource"/>.

@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="Bitmap"/>.
 /// </summary>
 /// <seealso cref="Bitmap"/>
-public static class BitmapExtensions
+internal static class BitmapExtensions
 {
 	/// <summary>
 	/// Zoom a picture.

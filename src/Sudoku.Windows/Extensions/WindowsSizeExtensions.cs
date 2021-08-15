@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="WSize"/>.
 /// </summary>
 /// <seealso cref="WSize"/>
-public static partial class WindowsSizeExtensions
+internal static partial class WindowsSizeExtensions
 {
 	/// <summary>
 	/// Convert the current size instance to another instance of type <see cref="DSizeF"/>.

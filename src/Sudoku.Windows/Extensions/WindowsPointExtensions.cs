@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="WPoint"/>.
 /// </summary>
 /// <seealso cref="WPoint"/>
-public static partial class WindowsPointExtensions
+internal static partial class WindowsPointExtensions
 {
 	/// <summary>
 	/// Convert a <see cref="WPoint"/> to <see cref="DPoint"/>.

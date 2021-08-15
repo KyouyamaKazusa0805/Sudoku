@@ -5,7 +5,7 @@
 /// </summary>
 /// <seealso cref="Rectangle"/>
 /// <seealso cref="RectangleF"/>
-public static class RectangleExtensions
+internal static class RectangleExtensions
 {
 	/// <summary>
 	/// Create an instance with two points.
