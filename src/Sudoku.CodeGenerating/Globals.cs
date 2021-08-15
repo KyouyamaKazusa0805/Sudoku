@@ -24,7 +24,3 @@ global using static Sudoku.CodeGenerating.Constants;
 #if !NETSTANDARD2_1_OR_GREATER
 [module: SuppressMessage("Style", "IDE0057:Use range operator", Justification = "<Pending>")]
 #endif
-
-#if SOLUTION_WIDE_CODE_ANALYSIS
-[module: SuppressMessage("Performance", "SS0101:Please add 'ToString' method invocation to the interpolation part in order to prevent any box and unbox operations", Justification = "<Pending>")]
-#endif
