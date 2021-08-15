@@ -1,13 +1,13 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Defines a collection that only used for <see cref="Cells"/> or <see cref="Candidates"/>.
+/// Provides with a basic collection that is a <see cref="Cells"/> or a <see cref="Candidates"/> collection.
 /// </summary>
 /// <typeparam name="TCollection">The type.</typeparam>
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
-public unsafe interface ICellsOrCandidate<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
-	where TCollection : struct, ICellsOrCandidate<TCollection>
+public unsafe interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
+	where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>
 	/// Indicates whether the collection is empty.

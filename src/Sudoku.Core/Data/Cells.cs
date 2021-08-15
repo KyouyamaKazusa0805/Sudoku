@@ -13,7 +13,7 @@
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 [AutoFormattable]
-public partial struct Cells : ICellsOrCandidate<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
+public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
