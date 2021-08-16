@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Old;
+﻿namespace Sudoku.Drawing;
 
 partial class Settings
 {

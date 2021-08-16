@@ -13,7 +13,7 @@ global using Microsoft.CSharp.RuntimeBinder;
 global using Sudoku.CodeGenerating;
 global using Sudoku.Data;
 global using Sudoku.Data.Collections;
-global using Sudoku.Drawing.Old;
+global using Sudoku.Drawing;
 global using Sudoku.Globalization;
 global using Sudoku.Models;
 global using Sudoku.Resources;

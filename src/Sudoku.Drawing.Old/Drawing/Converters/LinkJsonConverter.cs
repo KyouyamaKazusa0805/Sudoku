@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Converters.Old;
+﻿namespace Sudoku.Drawing.Converters;
 
 /// <summary>
 /// Indicates a <see cref="Link"/> JSON converter.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Converters.Old;
+﻿namespace Sudoku.Drawing.Converters;
 
 /// <summary>
 /// Indicates a <see cref="ValueTuple{T1, T2}"/> JSON converter.

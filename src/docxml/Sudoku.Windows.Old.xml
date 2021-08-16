@@ -842,7 +842,7 @@
             The internal dictionary of all format characters.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.#ctor(Sudoku.Solving.AnalysisResult,Sudoku.Drawing.Old.Settings)">
+        <member name="M:Sudoku.Windows.ExportAnalysisResultWindow.#ctor(Sudoku.Solving.AnalysisResult,Sudoku.Drawing.Settings)">
             <summary>
             Initializes an instance with the specified analysis result.
             </summary>
@@ -941,10 +941,10 @@
         <member name="F:Sudoku.Windows.MainWindow._currentColor">
             <summary>
             Indicates the current color chosen (used in coloring mode).
-            See <see cref="P:Sudoku.Drawing.Old.Settings.PaletteColors"/> for more. If the value is
+            See <see cref="P:Sudoku.Drawing.Settings.PaletteColors"/> for more. If the value is
             <see cref="F:System.Int32.MinValue"/>, the current color is unavailable.
             </summary>
-            <seealso cref="P:Sudoku.Drawing.Old.Settings.PaletteColors"/>
+            <seealso cref="P:Sudoku.Drawing.Settings.PaletteColors"/>
             <seealso cref="F:System.Int32.MinValue"/>
         </member>
         <member name="F:Sudoku.Windows.MainWindow._database">
@@ -1007,8 +1007,8 @@
             <summary>
             The current technique information.
             </summary>
-            <remarks>This field is used for rendering a <see cref="T:Sudoku.Drawing.Old.View"/>.</remarks>
-            <seealso cref="T:Sudoku.Drawing.Old.View"/>
+            <remarks>This field is used for rendering a <see cref="T:Sudoku.Drawing.View"/>.</remarks>
+            <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
         <member name="F:Sudoku.Windows.MainWindow._currentPainter">
             <summary>
@@ -1095,10 +1095,10 @@
         </member>
         <member name="M:Sudoku.Windows.MainWindow.ClearViews">
             <summary>
-            Clear the current views (<see cref="T:Sudoku.Drawing.Old.View"/> and <see cref="T:Sudoku.Drawing.Old.MutableView"/>).
+            Clear the current views (<see cref="T:Sudoku.Drawing.View"/> and <see cref="T:Sudoku.Drawing.MutableView"/>).
             </summary>
-            <seealso cref="T:Sudoku.Drawing.Old.View"/>
-            <seealso cref="T:Sudoku.Drawing.Old.MutableView"/>
+            <seealso cref="T:Sudoku.Drawing.View"/>
+            <seealso cref="T:Sudoku.Drawing.MutableView"/>
         </member>
         <member name="M:Sudoku.Windows.MainWindow.LoadDatabaseIfWorth">
             <summary>
@@ -1593,7 +1593,7 @@
             Indicates the grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.Old.GridPainter)">
+        <member name="M:Sudoku.Windows.PictureSavingPreferencesWindow.#ctor(Sudoku.Data.Stepping.UndoableGrid,Sudoku.Windows.WindowsSettings,Sudoku.Drawing.GridPainter)">
             <summary>
             Initializes an instance with the specified size.
             </summary>
@@ -1854,7 +1854,7 @@
             To provides a default setting instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Windows.WindowsSettings.CoverBy(Sudoku.Drawing.Old.Settings)">
+        <member name="M:Sudoku.Windows.WindowsSettings.CoverBy(Sudoku.Drawing.Settings)">
             <summary>
             To cover all settings.
             </summary>

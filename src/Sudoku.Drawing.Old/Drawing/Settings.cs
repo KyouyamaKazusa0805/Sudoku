@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Old;
+﻿namespace Sudoku.Drawing;
 
 /// <summary>
 /// Provides with a base class for program settings.

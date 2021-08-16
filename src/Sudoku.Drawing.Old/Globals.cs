@@ -17,7 +17,6 @@ global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.CodeGenerating;
 global using Sudoku.Data;
-global using Sudoku.Drawing.Old;
 global using Sudoku.Models;
 global using static System.Math;
 global using static Sudoku.Recognition.Constants;

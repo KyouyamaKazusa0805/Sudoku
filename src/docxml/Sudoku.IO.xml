@@ -336,7 +336,7 @@
             <param name="args">The arguments.</param>
             <param name="valueFill">The value filling method.</param>
         </member>
-        <member name="M:Sudoku.IO.BatchExecutor.TryParse(System.String,Sudoku.Drawing.Old.Settings,Sudoku.IO.BatchExecutor@)">
+        <member name="M:Sudoku.IO.BatchExecutor.TryParse(System.String,Sudoku.Drawing.Settings,Sudoku.IO.BatchExecutor@)">
             <summary>
             Try to parse batch codes and convert to the 
             </summary>

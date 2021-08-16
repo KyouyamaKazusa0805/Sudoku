@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Old;
+﻿namespace Sudoku.Drawing;
 
 /// <summary>
 /// Provides converting operations for <see cref="Point"/> and

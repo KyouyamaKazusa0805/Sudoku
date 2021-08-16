@@ -50,11 +50,9 @@ internal static class RectangleExtensions
 	public static Rectangle Truncate(this in RectangleF @this) =>
 		new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
 
-#pragma warning disable CS1591
 	public static void Deconstruct(this in RectangleF @this, out PointF point, out SizeF size)
 	{
 		point = new(@this.X, @this.Y);
 		size = new(@this.Size);
 	}
-#pragma warning restore CS1591
 }
