@@ -34,5 +34,10 @@ public enum PresentationDataKind : byte
 	/// <summary>
 	/// Indicates the data kind is for direct lines.
 	/// </summary>
-	DirectLines
+	DirectLines,
+
+	/// <summary>
+	/// Indicates the data kind is for unknown value.
+	/// </summary>
+	UnknownValue
 }

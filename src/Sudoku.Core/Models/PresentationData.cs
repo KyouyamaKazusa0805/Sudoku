@@ -8,14 +8,28 @@
 /// <param name="Regions">The regions.</param>
 /// <param name="Links">The links.</param>
 /// <param name="DirectLines">The direct lines.</param>
+/// <param name="UnknownValues">The unknown values.</param>
 public partial record struct PresentationData(
 	[DisallowNull][property: DisallowNull] IList<(int Cell, ColorIdentifier Color)>? Cells,
 	[DisallowNull][property: DisallowNull] IList<(int Candidate, ColorIdentifier Color)>? Candidates,
 	[DisallowNull][property: DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
 	[DisallowNull][property: DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
-	[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines
+	[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
+	[DisallowNull][property: DisallowNull] IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
 ) : IValueEquatable<PresentationData>, IParsable<PresentationData>
 {
+	/// <summary>
+	/// Indicates the default instance of this type.
+	/// </summary>
+	public static readonly PresentationData Undefined;
+
+
+	/// <summary>
+	/// Indicates whether the current instance is undefined.
+	/// </summary>
+	public bool IsUndefiened => Equals(in Undefined);
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(in PresentationData other) => ToSvgCode() == other.ToSvgCode();
@@ -98,13 +112,26 @@ public partial record struct PresentationData(
 
 				return index;
 			}
-			case PresentationDataKind.DirectLines
-			when element is ValueTuple<Cells, Cells> e && DirectLines is not null:
+			case PresentationDataKind.DirectLines when element is Crosshatch e && DirectLines is not null:
 			{
 				int index = -1;
 				for (int i = 0, count = DirectLines.Count; i < count; i++)
 				{
 					if (DirectLines[i].DirectLine == e)
+					{
+						index = i;
+						break;
+					}
+				}
+
+				return index;
+			}
+			case PresentationDataKind.UnknownValue when element is UnknownValue e && UnknownValues is not null:
+			{
+				int index = -1;
+				for (int i = 0, count = UnknownValues.Count; i < count; i++)
+				{
+					if (UnknownValues[i].UnknownValue == e)
 					{
 						index = i;
 						break;
@@ -180,12 +207,18 @@ public partial record struct PresentationData(
 
 				break;
 			}
+			case PresentationDataKind.UnknownValue when element is UnknownValue e:
+			{
+				var collection = UnknownValues;
+				EnsureNotNull(ref collection);
+				UnknownValues = collection;
+				UnknownValues.Add((e, color));
+
+				break;
+			}
 			default:
 			{
-				throw new ArgumentOutOfRangeException(
-					"<unknown parameter>",
-					"The specified argument is invalid."
-				);
+				throw new ArgumentOutOfRangeException("<unknown parameter>", "The specified argument is invalid.");
 			}
 		}
 	}
@@ -290,12 +323,27 @@ public partial record struct PresentationData(
 
 				break;
 			}
+			case PresentationDataKind.UnknownValue when element is UnknownValue e && UnknownValues is not null:
+			{
+				int index = -1;
+				for (int i = 0, count = UnknownValues.Count; i < count; i++)
+				{
+					if (UnknownValues[i].UnknownValue == e)
+					{
+						index = i;
+						break;
+					}
+				}
+				if (index != -1)
+				{
+					UnknownValues.RemoveAt(index);
+				}
+
+				break;
+			}
 			default:
 			{
-				throw new ArgumentOutOfRangeException(
-					"<unknown parameter>",
-					"The specified argument is invalid."
-				);
+				throw new ArgumentOutOfRangeException("<unknown parameter>", "The specified argument is invalid.");
 			}
 		}
 	}
@@ -362,5 +410,5 @@ public partial record struct PresentationData(
 	public static bool operator ==(in PresentationData left, in PresentationData right) => left.Equals(in right);
 
 	/// <inheritdoc/>
-	public static bool operator !=(in PresentationData left, in PresentationData right) => !(left == right);
+	public static bool operator !=(in PresentationData left, in PresentationData right) => !left.Equals(in right);
 }

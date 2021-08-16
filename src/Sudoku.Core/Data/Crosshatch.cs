@@ -8,7 +8,7 @@
 public readonly partial record struct Crosshatch(in Cells Start, in Cells End) : IValueEquatable<Crosshatch>, IJsonSerializable<Crosshatch, Crosshatch.JsonConverter>
 {
 	/// <inheritdoc/>
-	public bool Equals(in Crosshatch comparer) => Start == comparer.Start && End == comparer.End;
+	public bool Equals(in Crosshatch other) => Start == other.Start && End == other.End;
 
 
 	/// <summary>

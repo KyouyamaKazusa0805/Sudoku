@@ -20,7 +20,7 @@ internal static class GraphicsExtensions
 		@this.DrawString(value.ToString(), font, brush, point);
 
 	/// <summary>
-	/// Draw the string representation an instance onto the current <see cref="Graphics"/> instance.
+	/// Draw the string representation of an instance onto the current <see cref="Graphics"/> instance.
 	/// </summary>
 	/// <typeparam name="TNotNull">The type of the value to draw.</typeparam>
 	/// <param name="this">The graphics instance.</param>

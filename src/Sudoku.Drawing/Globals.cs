@@ -2,6 +2,8 @@
 global using System.Drawing;
 global using System.Drawing.Drawing2D;
 global using System.Drawing.Imaging;
+global using System.Drawing.Text;
+global using System.Numerics;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Serialization;
@@ -12,6 +14,7 @@ global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.CodeGenerating;
 global using Sudoku.Data;
+global using Sudoku.Models;
 global using static System.Math;
 global using static Sudoku.Recognition.Constants;
 global using Cv = Emgu.CV.CvInvoke;

@@ -8,7 +8,7 @@ public interface IPointCalculator
 	/// <summary>
 	/// Indicates the default offset value.
 	/// </summary>
-	private protected const float DefaultOffset = 10F;
+	protected internal const float DefaultOffset = 10F;
 
 	/// <summary>
 	/// Indicates the number of anchors hold per region.
@@ -18,7 +18,7 @@ public interface IPointCalculator
 	/// of each digits (candidates also included). Each row or column always contains 27 candidates,
 	/// so this value is 27.
 	/// </remarks>
-	private protected const int AnchorsCount = 27;
+	protected internal const int AnchorsCount = 27;
 
 
 	/// <summary>

@@ -5584,6 +5584,45 @@
             <param name="digit">The digit.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Data.UnknownValue">
+            <summary>
+            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
+            </summary>
+            <param name="Cell">Indicates the cell that used and marked.</param>
+            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
+            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.#ctor(System.Int32,System.Char,System.Int16)">
+            <summary>
+            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
+            </summary>
+            <param name="Cell">Indicates the cell that used and marked.</param>
+            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
+            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.Equals(Sudoku.Data.UnknownValue@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.op_Equality(Sudoku.Data.UnknownValue@,Sudoku.Data.UnknownValue@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.op_Inequality(Sudoku.Data.UnknownValue@,Sudoku.Data.UnknownValue@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.UnknownValue.JsonConverter">
+            <summary>
+            Indicates the JSON converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.UnknownValue.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.UnknownValue.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.UnknownValue,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Globalization.CountryCode">
             <summary>
             Encapsulates a country code to tell different countries.
@@ -5651,16 +5690,78 @@
             Indicates the color identifier that used to identify the color.
             </summary>
             <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">Indicates the ID label.</param>
-            <param name="Color">Indicates the color.</param>
+            <param name="Id">
+            Indicates the ID label. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </param>
+            <param name="Color">
+            Indicates the color. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="false"/>.
+            </param>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Boolean,System.Int32,System.Int32)">
             <summary>
             Indicates the color identifier that used to identify the color.
             </summary>
             <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">Indicates the ID label.</param>
-            <param name="Color">Indicates the color.</param>
+            <param name="Id">
+            Indicates the ID label. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </param>
+            <param name="Color">
+            Indicates the color. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="false"/>.
+            </param>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Models.ColorIdentifier.A">
+            <summary>
+            Gets the alpha value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Models.ColorIdentifier.R">
+            <summary>
+            Gets the red value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Models.ColorIdentifier.G">
+            <summary>
+            Gets the green value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Models.ColorIdentifier.B">
+            <summary>
+            Gets the blue value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.TryGetColor(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+            Try to get the color value. If the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>,
+            the return value will be <see langword="false"/>.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>Returns whether the taking operation is successful.</returns>
+            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.Equals(Sudoku.Models.ColorIdentifier@)">
             <inheritdoc/>
@@ -5794,8 +5895,9 @@
             <param name="Regions">The regions.</param>
             <param name="Links">The links.</param>
             <param name="DirectLines">The direct lines.</param>
+            <param name="UnknownValues">The unknown values.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}})">
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
             <summary>
             Indicates the presentation data that is used for present the information.
             </summary>
@@ -5804,6 +5906,17 @@
             <param name="Regions">The regions.</param>
             <param name="Links">The links.</param>
             <param name="DirectLines">The direct lines.</param>
+            <param name="UnknownValues">The unknown values.</param>
+        </member>
+        <member name="F:Sudoku.Models.PresentationData.Undefined">
+            <summary>
+            Indicates the default instance of this type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Models.PresentationData.IsUndefiened">
+            <summary>
+            Indicates whether the current instance is undefined.
+            </summary>
         </member>
         <member name="M:Sudoku.Models.PresentationData.Equals(Sudoku.Models.PresentationData@)">
             <inheritdoc/>
@@ -5916,6 +6029,11 @@
         <member name="F:Sudoku.Models.PresentationDataKind.DirectLines">
             <summary>
             Indicates the data kind is for direct lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Models.PresentationDataKind.UnknownValue">
+            <summary>
+            Indicates the data kind is for unknown value.
             </summary>
         </member>
         <member name="T:Sudoku.Models.PuzzleGeneratingProgressResult">
