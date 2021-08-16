@@ -1140,7 +1140,7 @@ public partial class MainWindow : Window
 		if (_analyisResult.IsSolved)
 		{
 			_textBoxInfo.Text =
-				_analyisResult.SolvingStepsCount.ToStringWithTrailingSpace() +
+				$"{_analyisResult.SolvingStepsCount} " +
 				$"{(LangSource[_analyisResult.SolvingStepsCount == 1 ? "StepSingular" : "StepPlural"])}" +
 				$"{(Settings.LanguageCode == CountryCode.EnUs ? " " : string.Empty)}" +
 				$"{LangSource["Comma"]}" +
