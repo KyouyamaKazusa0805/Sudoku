@@ -115,12 +115,9 @@ public sealed partial record ComplexFishStepInfo(
 	{
 		get
 		{
-			var sb = new ValueStringBuilder(stackalloc char[50]);
-			sb.Append(FinModifier == FinModifiers.Normal ? string.Empty : $"{FinModifier} ");
-			sb.Append(ShapeModifier == ShapeModifiers.Basic ? string.Empty : $"{ShapeModifier }");
-			sb.Append(FishNames[Size]);
-
-			return sb.ToString();
+			string? fin = FinModifier == FinModifiers.Normal ? null : $"{FinModifier} ";
+			string? shape = ShapeModifier == ShapeModifiers.Basic ? null : $"{ShapeModifier }";
+			return $"{fin}{shape}{FishNames[Size]}";
 		}
 	}
 
