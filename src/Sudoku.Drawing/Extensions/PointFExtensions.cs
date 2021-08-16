@@ -1,11 +1,10 @@
 ﻿namespace System.Drawing;
 
 /// <summary>
-/// Provides extension methods on <see cref="Point"/> and <see cref="PointF"/>.
+/// Provides extension methods on <see cref="PointF"/>.
 /// </summary>
-/// <seealso cref="Point"/>
 /// <seealso cref="PointF"/>
-internal static partial class PointMarshal
+internal static class PointFExtensions
 {
 	/// <summary>
 	/// To truncate the point.

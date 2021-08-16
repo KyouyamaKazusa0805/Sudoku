@@ -1,11 +1,10 @@
 ﻿namespace System.Drawing;
 
 /// <summary>
-/// Provides extension methods on <see cref="Size"/> and <see cref="SizeF"/>.
+/// Provides extension methods on <see cref="SizeF"/>.
 /// </summary>
-/// <seealso cref="Size"/>
 /// <seealso cref="SizeF"/>
-internal static class SizeMarshal
+internal static class SizeFExtensions
 {
 	/// <summary>
 	/// To truncate the size.

@@ -30,7 +30,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{i + 1}";
 				nameDic[typeSymbol.Name] = i + 1;
-				context.AddSource($"{name}Ex", "DeconstructionMethods", getDeconstructionCode(typeSymbol, p));
+				context.AddSource($"{name}", "DeconstructionMethods", getDeconstructionCode(typeSymbol, p));
 			}
 		}
 
@@ -84,7 +84,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 
 namespace {namespaceName};
 
-public static partial class {typeName}Extensions
+public static partial class {typeName}_DeconstructionMethods
 {{
 	{deconstructMethods}
 }}
