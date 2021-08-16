@@ -17,7 +17,7 @@ internal sealed class GridRecognizer : IDisposable
 	/// Initializes an instance with the specified photo.
 	/// </summary>
 	/// <param name="photo">The photo.</param>
-	public GridRecognizer(Bitmap photo)
+	public GridRecognizer(d::Bitmap photo)
 	{
 		photo.CorrectOrientation();
 		_image = photo.ToImage<Bgr, byte>();
@@ -42,10 +42,10 @@ internal sealed class GridRecognizer : IDisposable
 	/// </summary>
 	/// <param name="edges">The edges.</param>
 	/// <returns>The points.</returns>
-	private PointF[] FindField(UMat edges)
+	private d::PointF[] FindField(UMat edges)
 	{
 		double maxRectArea = 0;
-		var biggestRectangle = new PointF[4];
+		var biggestRectangle = new d::PointF[4];
 		using var contours = new VectorOfVectorOfPoint();
 
 		// Finding contours and choosing needed.
@@ -80,13 +80,13 @@ internal sealed class GridRecognizer : IDisposable
 	/// </summary>
 	/// <param name="points">The points.</param>
 	/// <returns>The points.</returns>
-	private PointF[] GetFourCornerPoints(Point[] points)
+	private d::PointF[] GetFourCornerPoints(d::Point[] points)
 	{
 		// 1--2
 		// |  |
 		// 3--4
 
-		var corners = new PointF[4];
+		var corners = new d::PointF[4];
 		int maxSum = 0, maxDiff = 0, minSum = -1, minDiff = 0;
 		foreach (var point in points)
 		{
@@ -158,7 +158,7 @@ internal sealed class GridRecognizer : IDisposable
 	/// </summary>
 	/// <param name="field">The field.</param>
 	/// <returns>The image.</returns>
-	private Field CutField(PointF[] field)
+	private Field CutField(d::PointF[] field)
 	{
 		// Size for output image, recommendation: multiples of 9 and 6.
 		var resultField = new Field(RSize, RSize);
@@ -169,7 +169,7 @@ internal sealed class GridRecognizer : IDisposable
 			dst: resultField,
 			mapMatrix: Cv.GetPerspectiveTransform(
 				field,
-				new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }
+				new d::PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }
 			),
 			dsize: new(RSize, RSize)
 		);

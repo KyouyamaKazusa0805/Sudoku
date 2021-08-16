@@ -23,7 +23,7 @@ public static class ImageHandler
 	/// <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	public static bool IsRectangle(
-		this PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
+		this d::PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
 	{
 		if (contour.Length > 4)
 		{
@@ -67,7 +67,7 @@ public static class ImageHandler
 	/// To correct the orientation.
 	/// </summary>
 	/// <param name="this">The bitmap.</param>
-	public static void CorrectOrientation(this Bitmap @this)
+	public static void CorrectOrientation(this d::Bitmap @this)
 	{
 		if (Array.IndexOf(@this.PropertyIdList, 274) != -1)
 		{
@@ -80,37 +80,37 @@ public static class ImageHandler
 				}
 				case 2:
 				{
-					@this.RotateFlip(RotateFlipType.RotateNoneFlipX);
+					@this.RotateFlip(d::RotateFlipType.RotateNoneFlipX);
 					break;
 				}
 				case 3:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate180FlipNone);
+					@this.RotateFlip(d::RotateFlipType.Rotate180FlipNone);
 					break;
 				}
 				case 4:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate180FlipX);
+					@this.RotateFlip(d::RotateFlipType.Rotate180FlipX);
 					break;
 				}
 				case 5:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate90FlipX);
+					@this.RotateFlip(d::RotateFlipType.Rotate90FlipX);
 					break;
 				}
 				case 6:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate90FlipNone);
+					@this.RotateFlip(d::RotateFlipType.Rotate90FlipNone);
 					break;
 				}
 				case 7:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate270FlipX);
+					@this.RotateFlip(d::RotateFlipType.Rotate270FlipX);
 					break;
 				}
 				case 8:
 				{
-					@this.RotateFlip(RotateFlipType.Rotate270FlipNone);
+					@this.RotateFlip(d::RotateFlipType.Rotate270FlipNone);
 					break;
 				}
 			}
@@ -133,7 +133,7 @@ public static class ImageHandler
 	/// </typeparam>
 	/// <seealso cref="Image{TColor, TDepth}"/>
 	/// <seealso cref="Bitmap"/>
-	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
+	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this d::Bitmap bitmap)
 		where TColor : struct, IColor
 		where TDepth : new()
 	{
@@ -144,7 +144,7 @@ public static class ImageHandler
 		{
 			case PixelFormat.Format32bppRgb when colorIs<Bgr>() && depthIs<byte>():
 			{
-				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+				var data = bitmap.LockBits(new(d::Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				Cv.MixChannels(mat, image, new[] { 0, 0, 1, 1, 2, 2 });
@@ -168,7 +168,7 @@ public static class ImageHandler
 			}
 			case PixelFormat.Format32bppArgb:
 			{
-				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+				var data = bitmap.LockBits(new(d::Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				using var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				image.ConvertFrom(tmp);
@@ -183,7 +183,7 @@ public static class ImageHandler
 					bitmap.Palette, out var bTable, out var gTable, out var rTable, out var aTable
 				);
 
-				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+				var data = bitmap.LockBits(new(d::Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 				using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				using Mat a = new(), r = new(), g = new(), b = new();
 				using var mv = new VectorOfMat(new[] { b, g, r, a });
@@ -222,7 +222,7 @@ public static class ImageHandler
 			}
 			case PixelFormat.Format24bppRgb:
 			{
-				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+				var data = bitmap.LockBits(new(d::Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				using var tmp = new Image<Bgr, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				image.ConvertFrom(tmp);
@@ -234,7 +234,7 @@ public static class ImageHandler
 			{
 				int rows = size.Height;
 				int cols = size.Width;
-				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+				var data = bitmap.LockBits(new(d::Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				int fullByteCount = cols >> 3;
 				int partialBitCount = cols & 7;
@@ -337,11 +337,11 @@ public static class ImageHandler
 	/// </summary>
 	/// <param name="image">The image to copy data to.</param>
 	/// <param name="bmp">the bitmap to copy data from.</param>
-	private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
+	private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, d::Bitmap bmp)
 		where TColor : struct, IColor
 		where TDepth : new()
 	{
-		var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
+		var data = bmp.LockBits(new(d::Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 		using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
 		Cv.cvCopy(mat.Ptr, image.Ptr, IntPtr.Zero);
 		bmp.UnlockBits(data);
