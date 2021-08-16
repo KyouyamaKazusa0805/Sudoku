@@ -40,7 +40,7 @@ public sealed class RecognitionServiceProvider : IDisposable
 	/// Throws when the tool has not initialized yet.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuGrid Recognize(d::Bitmap image)
+	public SudokuGrid Recognize(Bitmap image)
 	{
 		if (IsInitialized)
 		{
