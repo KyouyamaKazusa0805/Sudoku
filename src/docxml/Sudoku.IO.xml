@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.IO</name>
+        <name>Sudoku.IO.Old</name>
     </assembly>
     <members>
         <member name="T:Sudoku.IO.Alignment">

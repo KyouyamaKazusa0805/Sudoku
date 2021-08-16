@@ -3,20 +3,20 @@
 
 ## 项目介绍
 
-|      | 项目                                                         | .NET 版本         | 类型         | 描述                                  | 维护状态 |
-| ---- | ------------------------------------------------------------ | ----------------- | ------------ | ------------------------------------- | -------- |
-| 默认 |                                                              | .NET 6            | 类库         |                                       | 正在维护 |
-|      | [`Sudoku.CodeGenerating`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGenerating) | .NET Standard 2.0 |              | 提供生成源代码的服务。                |          |
-|      | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) |                   |              | 对数独基本元素的主要数据结构的实现。  |          |
-|      | [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) |                   |              | 反射解决方案本身内容的存在。          |          |
-|      | [`Sudoku.Drawing.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing.Old) |                   |              | 用于绘制和渲染数独盘面。              | 弃用     |
-|      | [`Sudoku.IO`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO) |                   |              | 用于处理数独相关的文件操作。          |          |
-|      | [`Sudoku.Solving.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Old) |                   |              | 解题和出题的项目。                    | 弃用     |
-|      | [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) |                   | 终端         | 仅用于调试代码正确和健壮性。          | 不维护   |
-|      | [`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old) |                   | WPF          | WPF 项目，包含 UI 界面和控件。        | 不再维护 |
-|      | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI) |                   | MAUI         | MAUI 跨平台项目，包含 UI 界面和控件。 |          |
-|      | [`Sudoku.UI.WinUI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI.WinUI) |                   | MAUI (WinUI) | `Sudoku.UI` 的 Windows 系统使用部分。 |          |
-|      | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) |                   |              | 提供 .NET 库相关的扩展类型和操作。    |          |
+|        | 项目                                                         | .NET 版本         | 类型 | 描述                                  | 维护状态 |
+| ------ | ------------------------------------------------------------ | ----------------- | ---- | ------------------------------------- | -------- |
+| 默认值 |                                                              | .NET 6            | 类库 |                                       | 正在维护 |
+|        | [`Sudoku.CodeGenerating`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGenerating) | .NET Standard 2.0 |      | 提供生成源代码的服务。                |          |
+|        | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) |                   |      | 对数独基本元素的主要数据结构的实现。  |          |
+|        | [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) |                   |      | 反射解决方案本身内容的存在。          |          |
+|        | [`Sudoku.Drawing.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing.Old) |                   |      | 用于绘制和渲染数独盘面。              | 弃用     |
+|        | [`Sudoku.IO.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO.Old) |                   |      | 用于处理数独相关的文件操作。          | 弃用     |
+|        | [`Sudoku.Solving.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Old) |                   |      | 解题和出题的项目。                    | 弃用     |
+|        | [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) |                   | 终端 | 仅用于调试代码正确和健壮性。          | 不维护   |
+|        | [`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old) |                   | WPF  | WPF 项目，包含 UI 界面和控件。        | 弃用     |
+|        | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI) |                   | MAUI | MAUI 跨平台项目，包含 UI 界面和控件。 |          |
+|        | [`Sudoku.UI.WinUI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI.WinUI) |                   | MAUI | `Sudoku.UI` 的 Windows 系统使用部分。 |          |
+|        | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) |                   |      | 提供 .NET 库相关的扩展类型和操作。    |          |
 
 ## 其它文件夹介绍
 
