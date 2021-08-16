@@ -17,8 +17,6 @@ global using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 global using DPoint = System.Drawing.Point;
 global using DPointF = System.Drawing.PointF;
 
-[assembly: AssemblyObsolete]
-
 [assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
 [assembly: AutoDeconstructExtension(typeof(DPoint), nameof(DPoint.X), nameof(DPoint.Y))]
 [assembly: AutoDeconstructExtension(typeof(DPointF), nameof(DPointF.X), nameof(DPointF.Y))]
