@@ -26,7 +26,7 @@ global using static Sudoku.Constants.Tables;
 [assembly: InternalsVisibleTo("Sudoku.Drawing.Old")]
 [assembly: InternalsVisibleTo("Sudoku.Painting")]
 [assembly: InternalsVisibleTo("Sudoku.Solving")]
-[assembly: InternalsVisibleTo("Sudoku.Windows")]
+[assembly: InternalsVisibleTo("Sudoku.Windows.Old")]
 [assembly: InternalsVisibleTo("Sudoku.UI")]
 
 #if DEBUG

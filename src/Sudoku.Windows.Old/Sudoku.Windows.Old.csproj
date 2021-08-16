@@ -17,7 +17,7 @@
 		<LangVersion>preview</LangVersion>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>..\docxml\Sudoku.Windows.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Windows.Old.xml</DocumentationFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<Version>0.7</Version>
 		<Nullable>enable</Nullable>

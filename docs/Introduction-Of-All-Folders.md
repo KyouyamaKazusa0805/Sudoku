@@ -13,7 +13,7 @@
 |      | [`Sudoku.IO`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO) |                   |              | 用于处理数独相关的文件操作。          |          |
 |      | [`Sudoku.Solving.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Old) |                   |              | 解题和出题的项目。                    | 弃用     |
 |      | [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) |                   | 终端         | 仅用于调试代码正确和健壮性。          | 不维护   |
-|      | [`Sudoku.Windows`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows) |                   | WPF          | WPF 项目，包含 UI 界面和控件。        | 不再维护 |
+|      | [`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old) |                   | WPF          | WPF 项目，包含 UI 界面和控件。        | 不再维护 |
 |      | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI) |                   | MAUI         | MAUI 跨平台项目，包含 UI 界面和控件。 |          |
 |      | [`Sudoku.UI.WinUI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI.WinUI) |                   | MAUI (WinUI) | `Sudoku.UI` 的 Windows 系统使用部分。 |          |
 |      | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) |                   |              | 提供 .NET 库相关的扩展类型和操作。    |          |
