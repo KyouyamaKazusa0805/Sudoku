@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿#undef SUPPORT_COMPARISON_OPERATORS
+
+namespace System;
 
 /// <summary>
 /// Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
@@ -23,7 +25,7 @@ public interface IValueEquatable<TStruct> : IEquatable<TStruct> where TStruct : 
 	bool IEquatable<TStruct>.Equals(TStruct other) => Equals(other);
 
 
-#if false
+#if SUPPORT_COMPARISON_OPERATORS
 	/// <summary>
 	/// Determine whether the two <typeparamref name="TStruct"/>-typed instance hold a same value to compare.
 	/// </summary>

@@ -3170,6 +3170,23 @@
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
             </returns>
         </member>
+        <member name="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="T"/>.
+            </summary>
+            <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
+            <param name="formatProvider">
+            The custom format provider. When we has implmented the way to parse the custom value,
+            this argumetn will be useful. In the default case this argument will keep <see langword="null"/>
+            value indicating the argument shouldn't be used.
+            </param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="T"/>).
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.</returns>
+        </member>
         <member name="M:System.IParsable`1.Parse(System.String)">
             <summary>
             Parse the specified string text, and get the same-meaning instance
@@ -3181,6 +3198,19 @@
             <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="str"/> is <see langword="null"/>.
             </exception>
+        </member>
+        <member name="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="T"/>.
+            </summary>
+            <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
+            <param name="formatProvider">
+            The custom format provider. When we has implmented the way to parse the custom value,
+            this argumetn will be useful. In the default case this argument will keep <see langword="null"/>
+            value indicating the argument shouldn't be used.
+            </param>
+            <returns>The result parsed.</returns>
         </member>
         <member name="T:System.IValueComparable`1">
             <summary>

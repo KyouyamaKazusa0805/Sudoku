@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿#undef SUPPORT_COMPARISON_OPERATORS
+
+namespace System;
 
 /// <summary>
 /// Defines a generalized comparison method that a <see langword="struct"/> implements
@@ -43,7 +45,7 @@ public interface IValueComparable<TStruct> : IComparable<TStruct> where TStruct 
 	int IComparable<TStruct>.CompareTo(TStruct other) => CompareTo(other);
 
 
-#if false
+#if SUPPORT_COMPARISON_OPERATORS
 	/// <summary>
 	/// Determines whetehr the left-side <typeparamref name="TStruct"/>-typed instance holds a greater value
 	/// than the same-typed right-side one.
