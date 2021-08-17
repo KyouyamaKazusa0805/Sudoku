@@ -212,8 +212,7 @@
         </member>
         <member name="M:Sudoku.CodeGenerating.CodeFixProviderAttribute.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.CodeGenerating.CodeFixProviderAttribute"/> class instance using the specified
-            ID.
+            Initializes a <see cref="T:Sudoku.CodeGenerating.CodeFixProviderAttribute"/> class instance using the specified ID.
             </summary>
             <param name="supportedDiagnosticId">The ID of all supported diagnostic result.</param>
         </member>

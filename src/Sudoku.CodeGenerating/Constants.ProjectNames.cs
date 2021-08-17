@@ -1,43 +1,42 @@
-﻿namespace Sudoku.CodeGenerating
+﻿namespace Sudoku.CodeGenerating;
+
+partial class Constants
 {
-	partial class Constants
+	/// <summary>
+	/// Indicates the project names.
+	/// </summary>
+	public static class ProjectNames
 	{
 		/// <summary>
-		/// Indicates the project names.
+		/// Indicates the project <c>SystemExtensions</c>.
+		/// The project uses the namespace <c>System</c> to store types.
 		/// </summary>
-		public static class ProjectNames
-		{
-			/// <summary>
-			/// Indicates the project <c>SystemExtensions</c>.
-			/// The project uses the namespace <c>System</c> to store types.
-			/// </summary>
-			public const string SystemExtensions = "SystemExtensions";
+		public const string SystemExtensions = "SystemExtensions";
 
-			/// <summary>
-			/// Indicates the project <c>Sudouk.Core</c>.
-			/// The project uses the namespace <c>Sudoku</c> to store types.
-			/// </summary>
-			public const string Core = "Sudoku.Core";
+		/// <summary>
+		/// Indicates the project <c>Sudouk.Core</c>.
+		/// The project uses the namespace <c>Sudoku</c> to store types.
+		/// </summary>
+		public const string Core = "Sudoku.Core";
 
-			/// <summary>
-			/// Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
-			/// </summary>
-			public const string CodeAnalysis = "Sudoku.Diagnostics.CodeAnalysis";
+		/// <summary>
+		/// Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
+		/// </summary>
+		public const string CodeAnalysis = "Sudoku.Diagnostics.CodeAnalysis";
 
-			/// <summary>
-			/// Indicates the project <c>Sudoku.Solving</c>.
-			/// </summary>
-			public const string Solving = "Sudoku.Solving";
+		/// <summary>
+		/// Indicates the project <c>Sudoku.Solving</c>.
+		/// </summary>
+		public const string Solving = "Sudoku.Solving.Old";
 
-			/// <summary>
-			/// Indicates the project <c>Sudoku.UI</c>.
-			/// </summary>
-			public const string Maui = "Sudoku.UI";
+		/// <summary>
+		/// Indicates the project <c>Sudoku.UI</c>.
+		/// </summary>
+		public const string Maui = "Sudoku.UI";
 
-			/// <summary>
-			/// Indicates the project <c>Sudoku.UI.WinUI</c>.
-			/// </summary>
-			public const string Maui_WinUI = "Sudoku.UI.WinUI";
-		}
+		/// <summary>
+		/// Indicates the project <c>Sudoku.UI.WinUI</c>.
+		/// </summary>
+		public const string Maui_WinUI = "Sudoku.UI.WinUI";
 	}
 }
