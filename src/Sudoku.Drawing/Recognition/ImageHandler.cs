@@ -41,7 +41,7 @@ public static class ImageHandler
 		// Check angles between common sides.
 		for (int j = 0; j < 4; j++)
 		{
-			double angle = Math.Abs(sides[(j + 1) % sides.Length].GetExteriorAngleDegree(sides[j]));
+			double angle = Abs(sides[(j + 1) % sides.Length].GetExteriorAngleDegree(sides[j]));
 			if (angle < lowerAngle || angle > upperAngle)
 			{
 				return false;
