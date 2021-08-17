@@ -4,7 +4,6 @@
 /// Defines a type that supports the custom parsing operations.
 /// </summary>
 /// <typeparam name="T">The type to parse.</typeparam>
-[RequiresPreviewFeatures]
 public interface IParsable<T>
 {
 	/// <summary>
@@ -32,5 +31,5 @@ public interface IParsable<T>
 	/// Throws when the argument <paramref name="str"/> is <see langword="null"/>.
 	/// </exception>
 	[return: NotNullIfNotNull("str")]
-	static abstract T? Parse([NotNullWhen(true)] string? str);
+	static abstract T? Parse(string? str);
 }

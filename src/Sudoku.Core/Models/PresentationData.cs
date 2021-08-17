@@ -370,7 +370,8 @@ public partial record struct PresentationData(
 
 #pragma warning disable IDE0022
 	/// <inheritdoc/>
-	public static PresentationData Parse([NotNullWhen(true)] string? str)
+	[return: NotNullIfNotNull("str")]
+	public static PresentationData Parse(string? str)
 	{
 		throw new NotImplementedException("I'll implement this method later.");
 	}

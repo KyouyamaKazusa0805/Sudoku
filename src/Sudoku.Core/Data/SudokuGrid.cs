@@ -1033,8 +1033,9 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuGrid Parse([NotNullWhen(true)] string? str) =>
+	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[return: NotNullIfNotNull("str")]
+	public static SudokuGrid Parse(string? str) =>
 		str is null ? throw new ArgumentNullException(nameof(str)) : new Parser(str).Parse();
 
 	/// <summary>

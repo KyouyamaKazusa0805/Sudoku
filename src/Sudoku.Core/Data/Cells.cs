@@ -873,7 +873,8 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 
 	/// <inheritdoc/>
-	public static unsafe Cells Parse([NotNullWhen(true)] string? str)
+	[return: NotNullIfNotNull("str")]
+	public static unsafe Cells Parse(string? str)
 	{
 		if (str is null)
 		{
