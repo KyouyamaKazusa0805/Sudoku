@@ -82,18 +82,16 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	}
 
 
-#pragma warning disable IDE0055
 	partial void DrawGridAndBlockLines(Graphics g);
-	partial void DrawBackground       (Graphics g);
-	partial void DrawValue            (Graphics g);
-	partial void DrawFocusedCells     (Graphics g);
-	partial void DrawView             (Graphics g,                          in PresentationData view,         float offset);
-	partial void DrawEliminations     (Graphics g,                                                            float offset);
-	partial void DrawCells            (Graphics g, IEnumerable<(         int, ColorIdentifier)> cells                     );
-	partial void DrawCandidates       (Graphics g, IEnumerable<(         int, ColorIdentifier)> candidates,   float offset);
-	partial void DrawRegions          (Graphics g, IEnumerable<(         int, ColorIdentifier)> regions,      float offset);
-	partial void DrawLinks            (Graphics g, IEnumerable<(        Link, ColorIdentifier)> links,        float offset);
-	partial void DrawDirectLines      (Graphics g, IEnumerable<(  Crosshatch, ColorIdentifier)> directLines,  float offset);
-	partial void DrawUnknownValue     (Graphics g, IEnumerable<(UnknownValue, ColorIdentifier)> unknownValues             );
-#pragma warning restore IDE0055
+	partial void DrawBackground(Graphics g);
+	partial void DrawValue(Graphics g);
+	partial void DrawFocusedCells(Graphics g);
+	partial void DrawView(Graphics g, in PresentationData view, float offset);
+	partial void DrawEliminations(Graphics g, float offset);
+	partial void DrawCells(Graphics g, IEnumerable<(int, ColorIdentifier)> cells);
+	partial void DrawCandidates(Graphics g, IEnumerable<(int, ColorIdentifier)> candidates, float offset);
+	partial void DrawRegions(Graphics g, IEnumerable<(int, ColorIdentifier)> regions, float offset);
+	partial void DrawLinks(Graphics g, IEnumerable<(Link, ColorIdentifier)> links, float offset);
+	partial void DrawDirectLines(Graphics g, IEnumerable<(Crosshatch, ColorIdentifier)> directLines, float offset);
+	partial void DrawUnknownValue(Graphics g, IEnumerable<(UnknownValue, ColorIdentifier)> unknownValues);
 }

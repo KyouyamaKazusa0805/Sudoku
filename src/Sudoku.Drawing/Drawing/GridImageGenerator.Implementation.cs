@@ -49,14 +49,14 @@ partial record GridImageGenerator
 				case CellStatus.Empty when Preferences.ShowCandidates:
 				{
 					// Draw candidates.
-					int stepFillingCell = -1;
+					int unknownValueCell = -1;
 					if (View is { UnknownValues: not null })
 					{
 						foreach (var ((stepCell, _, _), _) in View.UnknownValues)
 						{
 							if (stepCell == cell)
 							{
-								stepFillingCell = stepCell;
+								unknownValueCell = stepCell;
 								break;
 							}
 						}
@@ -67,7 +67,7 @@ partial record GridImageGenerator
 						var point = Calculator.GetMousePointInCenter(cell, digit);
 						point.Y += vOffsetCandidate;
 						g.DrawValue(
-							digit + 1, fCandidate, stepFillingCell != -1 ? bCandidateLighter : bCandidate,
+							digit + 1, fCandidate, unknownValueCell != -1 ? bCandidateLighter : bCandidate,
 							point, DefaultStringFormat
 						);
 					}
@@ -332,14 +332,14 @@ partial record GridImageGenerator
 			if (!isOverlapped)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				int stepFillingCell = -1;
+				int unknownvalueCell = -1;
 				if (unknownValues is not null)
 				{
 					foreach (var ((fillingCell, fillingChar, _), _) in unknownValues)
 					{
 						if (fillingCell == cell)
 						{
-							stepFillingCell = fillingCell;
+							unknownvalueCell = fillingCell;
 							break;
 						}
 					}
@@ -348,28 +348,28 @@ partial record GridImageGenerator
 				if (id.UseId)
 				{
 					using var brush = new SolidBrush(
-						Color.FromArgb(stepFillingCell != -1 ? id.A : id.A >> 2, id.R, id.G, id.B)
+						Color.FromArgb(unknownvalueCell != -1 ? id.A : id.A >> 2, id.R, id.G, id.B)
 					);
 					g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 					// In direct view, candidates should be drawn also.
 					if (!Preferences.ShowCandidates)
 					{
-						d(cell, digit, vOffsetCandidate, stepFillingCell != -1 ? bCandidateLighter : bCandidate);
+						d(cell, digit, vOffsetCandidate, unknownvalueCell != -1 ? bCandidateLighter : bCandidate);
 					}
 				}
 				else if (Preferences.TryGetColor(id, out var color))
 				{
 					// In the normal case, I'll draw these circles.
 					using var brush = new SolidBrush(
-						stepFillingCell != -1 ? Color.FromArgb(color.A >> 2, color) : color
+						unknownvalueCell != -1 ? Color.FromArgb(color.A >> 2, color) : color
 					);
 					g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 					// In direct view, candidates should be drawn also.
 					if (!Preferences.ShowCandidates)
 					{
-						d(cell, digit, vOffsetCandidate, stepFillingCell != -1 ? bCandidateLighter : bCandidate);
+						d(cell, digit, vOffsetCandidate, unknownvalueCell != -1 ? bCandidateLighter : bCandidate);
 					}
 				}
 			}
@@ -379,14 +379,14 @@ partial record GridImageGenerator
 		{
 			foreach (var (type, cell, digit) in Conclusions)
 			{
-				int stepFillingCell = -1;
+				int unknownValueCell = -1;
 				if (unknownValues is not null)
 				{
 					foreach (var ((fillingCell, fillingChar, _), _) in unknownValues)
 					{
 						if (fillingCell == cell)
 						{
-							stepFillingCell = fillingCell;
+							unknownValueCell = fillingCell;
 							break;
 						}
 					}
@@ -394,7 +394,7 @@ partial record GridImageGenerator
 
 				if (type == ConclusionType.Elimination)
 				{
-					d(cell, digit, vOffsetCandidate, stepFillingCell != -1 ? bCandidateLighter : bCandidate);
+					d(cell, digit, vOffsetCandidate, unknownValueCell != -1 ? bCandidateLighter : bCandidate);
 				}
 			}
 		}
