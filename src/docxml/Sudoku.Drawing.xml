@@ -69,10 +69,10 @@
         </member>
         <member name="M:Sudoku.Drawing.GridImageGenerator.DrawBackground(System.Drawing.Graphics)">
             <summary>
-            Draw the background, where the color is specified in <see cref="!:Settings.BackgroundColor"/>.
+            Draw the background, where the color is specified in <see cref="P:Sudoku.Drawing.IPreference.BackgroundColor"/>.
             </summary>
             <param name="g">The graphics.</param>
-            <seealso cref="!:Settings.BackgroundColor"/>
+            <seealso cref="P:Sudoku.Drawing.IPreference.BackgroundColor"/>
         </member>
         <member name="M:Sudoku.Drawing.GridImageGenerator.DrawValue(System.Drawing.Graphics)">
             <summary>
@@ -119,7 +119,6 @@
             Draw regions.
             </summary>
             <param name="g">The graphics.</param>
-            <param name="regions">The regions.</param>
             <param name="offset">The drawing offset.</param>
             <remarks>This method is simply implemented, using cell filling.</remarks>
         </member>
@@ -595,6 +594,12 @@
             the specified picture size instance of type <see cref="T:System.Drawing.SizeF"/>, and an offset.
             </summary>
             <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
+            <param name="offset">
+            Indicates the offset to set to allow the output items moving a little bit left or right,
+            in order to correct the position on drawing. The default value is <c>10F</c>, which is specified
+            in <see cref="F:Sudoku.Drawing.IPointCalculator.DefaultOffset"/>
+            </param>
+            <seealso cref="F:Sudoku.Drawing.IPointCalculator.DefaultOffset"/>
         </member>
         <member name="P:Sudoku.Drawing.PointCalculator.Width">
             <inheritdoc/>
@@ -1148,26 +1153,26 @@
         </member>
         <member name="M:System.Drawing.PointExtensions.WithOffset(System.Drawing.Point@,System.Int32)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="!:DPointF.X"/> and <see cref="!:DPointF.Y"/>.
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">The point.</param>
             <param name="offset">The offset.</param>
             <returns>The result point.</returns>
-            <seealso cref="!:DPointF.X"/>
-            <seealso cref="!:DPointF.Y"/>
+            <seealso cref="P:System.Drawing.PointF.X"/>
+            <seealso cref="P:System.Drawing.PointF.Y"/>
         </member>
         <member name="M:System.Drawing.PointExtensions.WithOffset(System.Drawing.Point@,System.Int32,System.Int32)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="!:DPointF.X"/> and <see cref="!:DPointF.Y"/>.
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">The point.</param>
             <param name="xOffset">The X offset.</param>
             <param name="yOffset">The Y offset.</param>
             <returns>The result point.</returns>
-            <seealso cref="!:DPointF.X"/>
-            <seealso cref="!:DPointF.Y"/>
+            <seealso cref="P:System.Drawing.PointF.X"/>
+            <seealso cref="P:System.Drawing.PointF.Y"/>
         </member>
         <member name="T:System.Drawing.PointFExtensions">
             <summary>
@@ -1184,30 +1189,30 @@
         </member>
         <member name="M:System.Drawing.PointFExtensions.WithOffset(System.Drawing.PointF@,System.Single)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="!:DPointF.X"/> and <see cref="!:DPointF.Y"/>.
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">The point.</param>
             <param name="offset">The offset.</param>
             <returns>The result point.</returns>
-            <seealso cref="!:DPointF.X"/>
-            <seealso cref="!:DPointF.Y"/>
+            <seealso cref="P:System.Drawing.PointF.X"/>
+            <seealso cref="P:System.Drawing.PointF.Y"/>
         </member>
         <member name="M:System.Drawing.PointFExtensions.WithOffset(System.Drawing.PointF@,System.Single,System.Single)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
-            added into the properties <see cref="!:DPointF.X"/> and <see cref="!:DPointF.Y"/>.
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
+            added into the properties <see cref="P:System.Drawing.PointF.X"/> and <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">The point.</param>
             <param name="xOffset">The X offset.</param>
             <param name="yOffset">The Y offset.</param>
             <returns>The result point.</returns>
-            <seealso cref="!:DPointF.X"/>
-            <seealso cref="!:DPointF.Y"/>
+            <seealso cref="P:System.Drawing.PointF.X"/>
+            <seealso cref="P:System.Drawing.PointF.Y"/>
         </member>
         <member name="M:System.Drawing.PointFExtensions.WithX(System.Drawing.PointF@,System.Single)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
             added into the properties <see cref="P:System.Drawing.PointF.X"/>.
             </summary>
             <param name="this">The point.</param>
@@ -1217,7 +1222,7 @@
         </member>
         <member name="M:System.Drawing.PointFExtensions.WithY(System.Drawing.PointF@,System.Single)">
             <summary>
-            Get a new <see cref="!:DPointF"/> instance created by the original one, with the specified offset
+            Get a new <see cref="T:System.Drawing.PointF"/> instance created by the original one, with the specified offset
             added into the properties <see cref="P:System.Drawing.PointF.Y"/>.
             </summary>
             <param name="this">The point.</param>

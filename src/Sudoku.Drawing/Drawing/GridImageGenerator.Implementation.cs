@@ -113,10 +113,10 @@ partial record GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw the background, where the color is specified in <see cref="Settings.BackgroundColor"/>.
+	/// Draw the background, where the color is specified in <see cref="IPreference.BackgroundColor"/>.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <seealso cref="Settings.BackgroundColor"/>
+	/// <seealso cref="IPreference.BackgroundColor"/>
 	partial void DrawBackground(Graphics g) => g.Clear(Preferences.BackgroundColor);
 
 	/// <summary>
@@ -365,7 +365,6 @@ partial record GridImageGenerator
 	/// Draw regions.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="regions">The regions.</param>
 	/// <param name="offset">The drawing offset.</param>
 	/// <remarks>This method is simply implemented, using cell filling.</remarks>
 	partial void DrawRegions(Graphics g, float offset)

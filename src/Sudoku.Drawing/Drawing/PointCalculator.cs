@@ -12,6 +12,12 @@ public sealed class PointCalculator : IPointCalculator
 	/// the specified picture size instance of type <see cref="SizeF"/>, and an offset.
 	/// </summary>
 	/// <param name="size">The <see cref="SizeF"/> instance.</param>
+	/// <param name="offset">
+	/// Indicates the offset to set to allow the output items moving a little bit left or right,
+	/// in order to correct the position on drawing. The default value is <c>10F</c>, which is specified
+	/// in <see cref="DefaultOffset"/>
+	/// </param>
+	/// <seealso cref="DefaultOffset"/>
 	private PointCalculator(in SizeF size, float offset = DefaultOffset)
 	{
 		// Initialize sizes.
