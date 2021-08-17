@@ -87,6 +87,32 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Solving.BruteForces.BacktrackingSolver">
+            <summary>
+            Provides a solver using backtracking method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.BacktrackingSolver._grid">
+            <summary>
+            The temporary grid to solve.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.Solve(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.SolveAsync(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.InternalSolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
+            <summary>
+            Solve the puzzle backtrackingly.
+            </summary>
+            <param name="solutionsCount">The number of solutions.</param>
+            <param name="result">The result array.</param>
+            <param name="gridValues">All grid values.</param>
+            <param name="finishedCellsCount">The number of cells had finished.</param>
+            <exception cref="T:Sudoku.MultipleSolutionsException">Throws when the puzzle contains multiple solutions.</exception>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.BruteForceSolverResult">
             <summary>
             Encapsulates a solver result information that is created by a brute force solver.
@@ -101,12 +127,22 @@
         </member>
         <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.IsSolved">
             <inheritdoc/>
+            <remarks>The default value is <see langword="true"/>.</remarks>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.FailedReason">
+            <inheritdoc/>
+            <remarks>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</remarks>
+            <seealso cref="F:Sudoku.Solving.FailedReason.Nothing"/>
         </member>
         <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.Solution">
             <inheritdoc/>
+            <remarks>The default value is <see cref="F:Sudoku.Data.Grid.Undefined"/>.</remarks>
+            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
         </member>
         <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.ElapsedTime">
             <inheritdoc/>
+            <remarks>The default value is <see cref="F:System.TimeSpan.Zero"/>.</remarks>
+            <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
             <inheritdoc/>
@@ -168,12 +204,11 @@
             Pointer to the currently active slot.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(Sudoku.Data.Grid@)">
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
-            <exception cref="T:Sudoku.NoSolutionException">Throws when the puzzle has no valid solution.</exception>
-            <exception cref="T:Sudoku.MultipleSolutionsException">
-            Throws when the puzzle has multiple solutions.
-            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.SolveAsync(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.Char*,System.Char*,System.Int32)">
             <summary>
@@ -385,6 +420,85 @@
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.BruteForces.OneLineLinqSolver">
+            <summary>
+            Provides a solver using LINQ method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.Solve(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolveAsync(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolveStrings(System.String)">
+            <summary>
+            Internal solving method.
+            </summary>
+            <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
+            <returns>The result strings (i.e. All solutions).</returns>
+        </member>
+        <member name="T:Sudoku.Solving.FailedReason">
+            <summary>
+            Defines a reason why the <see cref="T:Sudoku.Solving.IPuzzleSolver"/> is failed to solve a puzzle.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.IPuzzleSolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has cancelled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
+            then an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.Unknown">
+            <summary>
+            Indicates the other reason to cause the error.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.IPuzzleSolver">
+            <summary>
+            Defines and provides with a solver that used for solving a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.IPuzzleSolver.Solve(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            To solve the specified puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be solved.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The solver result that provides the information after solving.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.IPuzzleSolver.SolveAsync(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            To solve the specified puzzle asynchronously.
+            </summary>
+            <param name="puzzle">The puzzle to be solved.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>
+            A task that holds the operation to solve the puzzle, whose inner value is the solver result
+            that provides the information after solving.
+            </returns>
+        </member>
         <member name="T:Sudoku.Solving.ISolverResult">
             <summary>
             Defines a result that created by a solver to represent a result of analysis after the solver calculated.
@@ -394,6 +508,13 @@
             <summary>
             Indicates whether the solver has solved the puzzle.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolverResult.FailedReason">
+            <summary>
+            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.ISolverResult.IsSolved"/>
+            keeps the <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.ISolverResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Solving.ISolverResult.OriginalPuzzle">
             <summary>

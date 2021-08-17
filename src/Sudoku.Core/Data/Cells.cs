@@ -544,8 +544,8 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe bool Contains(int cell) =>
-		((cell / Shifting == 0 ? _low : _high) >> cell % Shifting & 1) != 0;
+	public readonly unsafe bool Contains(int offset) =>
+		((offset / Shifting == 0 ? _low : _high) >> offset % Shifting & 1) != 0;
 
 	/// <summary>
 	/// Get the subview mask of this map.

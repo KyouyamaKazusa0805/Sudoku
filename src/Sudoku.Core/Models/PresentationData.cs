@@ -390,11 +390,11 @@ public partial record struct PresentationData(
 #pragma warning restore IDE0022
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? svgCode, out PresentationData result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out PresentationData result)
 	{
 		try
 		{
-			result = Parse(svgCode);
+			result = Parse(str);
 			return true;
 		}
 		catch (Exception ex) when (ex is ArgumentNullException or FormatException)

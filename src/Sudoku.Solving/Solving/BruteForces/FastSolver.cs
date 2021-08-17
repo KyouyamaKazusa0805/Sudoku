@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a fast solver.
 /// </summary>
-public sealed unsafe partial class FastSolver
+public sealed unsafe partial class FastSolver : IPuzzleSolver
 {
 	/// <summary>
 	/// All pencil marks set - 27 bits per band.
@@ -49,36 +49,32 @@ public sealed unsafe partial class FastSolver
 
 
 	/// <inheritdoc/>
-	/// <exception cref="NoSolutionException">Throws when the puzzle has no valid solution.</exception>
-	/// <exception cref="MultipleSolutionsException">
-	/// Throws when the puzzle has multiple solutions.
-	/// </exception>
-	public ISolverResult Solve(in Grid grid)
+	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var stopwatch = new Stopwatch();
 
-		string puzzle = grid.ToString("0");
-		fixed (char* p = puzzle)
+		string puzzleStr = puzzle.ToString("0");
+		char* solutionStr = stackalloc char[BufferLength];
+
+		stopwatch.Start();
+		fixed (char* pPuzzleStr = puzzleStr)
 		{
-			char* solutionStr = stackalloc char[BufferLength];
-
-			stopwatch.Start();
-			InternalSolve(p, solutionStr, 2);
-			stopwatch.Stop();
-
-			return _numSolutions switch
-			{
-				0 => throw new NoSolutionException(grid),
-				1 => new BruteForceSolverResult(grid)
-				{
-					IsSolved = true,
-					Solution = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)),
-					ElapsedTime = stopwatch.Elapsed
-				},
-				_ => throw new MultipleSolutionsException(grid),
-			};
+			InternalSolve(pPuzzleStr, solutionStr, 2);
 		}
+		stopwatch.Stop();
+
+		var solverResult = new BruteForceSolverResult(puzzle) { ElapsedTime = stopwatch.Elapsed };
+		return _numSolutions switch
+		{
+			0 => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution },
+			1 => solverResult with { Solution = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)) },
+			_ => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasMultipleSolutions }
+		};
 	}
+
+	/// <inheritdoc/>
+	public ValueTask<ISolverResult> SolveAsync(in Grid puzzle, CancellationToken cancellationToken = default) =>
+		new(Solve(puzzle, cancellationToken));
 
 	/// <summary>
 	/// The inner solver.

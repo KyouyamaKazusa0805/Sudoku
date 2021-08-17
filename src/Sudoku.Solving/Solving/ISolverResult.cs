@@ -11,6 +11,13 @@ public interface ISolverResult
 	bool IsSolved { get; init; }
 
 	/// <summary>
+	/// Indicates why the solving operation is failed. This property is useless when <see cref="IsSolved"/>
+	/// keeps the <see langword="true"/> value.
+	/// </summary>
+	/// <seealso cref="IsSolved"/>
+	FailedReason FailedReason { get; init; }
+
+	/// <summary>
 	/// Indicates the original sudoku puzzle to solve.
 	/// </summary>
 	Grid OriginalPuzzle { get; init; }

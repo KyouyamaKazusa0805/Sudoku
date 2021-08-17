@@ -28,7 +28,7 @@ public abstract partial record ReverseBugStepInfo(
 
 
 	/// <inheritdoc/>
-	public virtual bool Equals(ReverseBugStepInfo? obj) =>
-		obj is not null && Loop == obj.Loop
-		&& Digit1 == obj.Digit1 && Digit2 == obj.Digit2 && TechniqueCode == obj.TechniqueCode;
+	public virtual bool Equals(ReverseBugStepInfo? other) =>
+		other is not null && Loop == other.Loop
+		&& Digit1 == other.Digit1 && Digit2 == other.Digit2 && TechniqueCode == other.TechniqueCode;
 }

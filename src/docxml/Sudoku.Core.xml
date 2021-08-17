@@ -3141,9 +3141,9 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.Contains(System.Int32)">
             <summary>
-            Determine whether the map contains the specified cell.
+            Determine whether the map contains the specified offset.
             </summary>
-            <param name="cell">The cell.</param>
+            <param name="offset">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.ToArray">

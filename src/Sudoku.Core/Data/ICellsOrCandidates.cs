@@ -54,11 +54,11 @@ public unsafe interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IVal
 	void CopyTo(ref Span<int> span);
 
 	/// <summary>
-	/// Determine whether the map contains the specified cell.
+	/// Determine whether the map contains the specified offset.
 	/// </summary>
-	/// <param name="cell">The cell.</param>
+	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	bool Contains(int cell);
+	bool Contains(int offset);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.

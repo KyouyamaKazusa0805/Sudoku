@@ -460,11 +460,11 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddAnyway(int candidate) => InternalAdd(candidate, true);
+	public void AddAnyway(int offset) => InternalAdd(offset, true);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(int candidate) => InternalAdd(candidate, false);
+	public void Remove(int offset) => InternalAdd(offset, false);
 
 	/// <inheritdoc/>
 	public void AddRange(in ReadOnlySpan<int> offsets)

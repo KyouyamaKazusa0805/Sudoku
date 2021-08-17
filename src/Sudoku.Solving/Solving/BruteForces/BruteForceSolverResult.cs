@@ -7,12 +7,22 @@
 public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverResult
 {
 	/// <inheritdoc/>
-	public bool IsSolved { get; init; } = false;
+	/// <remarks>The default value is <see langword="true"/>.</remarks>
+	public bool IsSolved { get; init; } = true;
 
 	/// <inheritdoc/>
+	/// <remarks>The default value is <see cref="FailedReason.Nothing"/>.</remarks>
+	/// <seealso cref="FailedReason.Nothing"/>
+	public FailedReason FailedReason { get; init; } = FailedReason.Nothing;
+
+	/// <inheritdoc/>
+	/// <remarks>The default value is <see cref="Grid.Undefined"/>.</remarks>
+	/// <seealso cref="Grid.Undefined"/>
 	public Grid Solution { get; init; } = Grid.Undefined;
 
 	/// <inheritdoc/>
+	/// <remarks>The default value is <see cref="TimeSpan.Zero"/>.</remarks>
+	/// <seealso cref="TimeSpan.Zero"/>
 	public TimeSpan ElapsedTime { get; init; } = TimeSpan.Zero;
 
 
@@ -34,8 +44,6 @@ public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverRes
 		var sb = new ValueStringBuilder(300);
 		sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
 		sb.AppendLine($"{OriginalPuzzle:#}");
-		sb.Append((string)TextResources.Current.AnalysisResultSolvingTool);
-		sb.AppendLine((string)TextResources.Current.Bitwise);
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
