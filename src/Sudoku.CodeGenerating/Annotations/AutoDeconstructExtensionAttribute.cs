@@ -11,9 +11,10 @@
 /// </code>
 /// then you'll get the generated code:
 /// <code>
-/// public static class ClassEx
+/// public static partial class ClassExtensions
 /// {
-///     [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+///     [CompilerGenerated]
+///     [MethodImpl(MethodImplOptions.AggressiveInlining)] // May be included as aggressive inlining when need any optimizations.
 ///     public static void Deconstruct(this Class @this, out int a, out int b, out int c)
 ///     {
 ///         a = @this.A;
