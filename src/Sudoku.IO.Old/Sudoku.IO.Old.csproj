@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>preview</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DocumentationFile>..\docxml\Sudoku.IO.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.IO.Old.xml</DocumentationFile>
 		<Authors>Sunnie</Authors>
 		<Description>The IO operations for sudoku.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
