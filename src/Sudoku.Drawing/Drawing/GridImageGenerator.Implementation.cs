@@ -18,28 +18,25 @@ partial record GridImageGenerator
 
 		float cellWidth = Calculator.CellSize.Width;
 		float candidateWidth = Calculator.CandidateSize.Width;
-		float vOffsetValue = cellWidth / 9; // The vertical offset of rendering each value.
-		float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+		float vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
+		float vOffsetCandidate = candidateWidth / (AnchorsCount / 3); // The vertical offset of rendering each candidate.
 		float halfWidth = cellWidth / 2F;
 
-		using SolidBrush
-			bGiven = new(Preferences.GivenColor),
-			bModifiable = new(Preferences.ModifiableColor),
-			bCandidate = new(Preferences.CandidateColor),
-			bCandidateLighter = new(Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor));
-		using Font
-			fGiven = GetFont(
-				Preferences.GivenFontName, halfWidth, Preferences.ValueScale,
-				Preferences.GivenFontStyle
-			),
-			fModifiable = GetFont(
-				Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale,
-				Preferences.ModifiableFontStyle
-			),
-			fCandidate = GetFont(
-				Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale,
-				Preferences.CandidateFontStyle
-			);
+		using var bGiven = new SolidBrush(Preferences.GivenColor);
+		using var bModifiable = new SolidBrush(Preferences.ModifiableColor);
+		using var bCandidate = new SolidBrush(Preferences.CandidateColor);
+		using var bCandidateLighter = new SolidBrush(
+			Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor)
+		);
+		using var fGiven = GetFont(
+			Preferences.GivenFontName, halfWidth, Preferences.ValueScale, Preferences.GivenFontStyle
+		);
+		using var fModifiable = GetFont(
+			Preferences.ModifiableFontName, halfWidth, Preferences.ValueScale, Preferences.ModifiableFontStyle
+		);
+		using var fCandidate = GetFont(
+			Preferences.CandidateFontName, halfWidth, Preferences.CandidateScale, Preferences.CandidateFontStyle
+		);
 
 		for (int cell = 0; cell < 81; cell++)
 		{
@@ -49,25 +46,12 @@ partial record GridImageGenerator
 				case CellStatus.Empty when Preferences.ShowCandidates:
 				{
 					// Draw candidates.
-					int unknownValueCell = -1;
-					if (View is { UnknownValues: not null })
-					{
-						foreach (var ((stepCell, _, _), _) in View.UnknownValues)
-						{
-							if (stepCell == cell)
-							{
-								unknownValueCell = stepCell;
-								break;
-							}
-						}
-					}
-
+					bool overlaps = View.UnknownIdentifierOverlapsWithCell(cell);
 					foreach (int digit in (short)(mask & SudokuGrid.MaxCandidatesMask))
 					{
-						var point = Calculator.GetMousePointInCenter(cell, digit);
-						point.Y += vOffsetCandidate;
+						var point = Calculator.GetMousePointInCenter(cell, digit).WithY(vOffsetCandidate);
 						g.DrawValue(
-							digit + 1, fCandidate, unknownValueCell != -1 ? bCandidateLighter : bCandidate,
+							digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate,
 							point, DefaultStringFormat
 						);
 					}
@@ -77,8 +61,7 @@ partial record GridImageGenerator
 				case var status and (CellStatus.Modifiable or CellStatus.Given):
 				{
 					// Draw values.
-					var point = Calculator.GetMousePointInCenter(cell);
-					point.Y += vOffsetValue;
+					var point = Calculator.GetMousePointInCenter(cell).WithY(vOffsetValue);
 					g.DrawValue(
 						Puzzle[cell] + 1, status == CellStatus.Given ? fGiven : fModifiable,
 						status == CellStatus.Given ? bGiven : bModifiable, point, DefaultStringFormat
@@ -94,23 +77,21 @@ partial record GridImageGenerator
 	/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="view">The view instance.</param>
 	/// <param name="offset">The drawing offset.</param>
 	/// <seealso cref="View"/>
-	partial void DrawView(Graphics g, in PresentationData view, float offset)
+	partial void DrawView(Graphics g, float offset)
 	{
-		if (view.IsUndefiened)
+		if (View.IsUndefiened)
 		{
 			return;
 		}
 
-		var (c, a, r, l, d, u) = view;
-		if (r is not null) DrawRegions(g, r, offset);
-		if (c is not null) DrawCells(g, c);
-		if (a is not null) DrawCandidates(g, a, offset);
-		if (l is not null) DrawLinks(g, l, offset);
-		if (d is not null) DrawDirectLines(g, d, offset);
-		if (u is not null) DrawUnknownValue(g, u);
+		DrawRegions(g, offset);
+		DrawCells(g);
+		DrawCandidates(g, offset);
+		DrawLinks(g, offset);
+		DrawDirectLines(g, offset);
+		DrawUnknownValue(g);
 	}
 
 	/// <summary>
@@ -173,11 +154,14 @@ partial record GridImageGenerator
 			return;
 		}
 
-		using SolidBrush
-			elimBrush = new(Preferences.EliminationColor),
-			cannibalBrush = new(Preferences.CannibalismColor),
-			elimBrushLighter = new(Color.FromArgb(Preferences.EliminationColor.A >> 2, Preferences.EliminationColor)),
-			canniBrushLighter = new(Color.FromArgb(Preferences.CannibalismColor.A >> 2, Preferences.CannibalismColor));
+		using var elimBrush = new SolidBrush(Preferences.EliminationColor);
+		using var cannibalBrush = new SolidBrush(Preferences.CannibalismColor);
+		using var elimBrushLighter = new SolidBrush(
+			Color.FromArgb(Preferences.EliminationColor.A >> 2, Preferences.EliminationColor)
+		);
+		using var canniBrushLighter = new SolidBrush(
+			Color.FromArgb(Preferences.CannibalismColor.A >> 2, Preferences.CannibalismColor)
+		);
 		foreach (var (t, c, d) in Conclusions)
 		{
 			if (t != ConclusionType.Elimination)
@@ -185,20 +169,7 @@ partial record GridImageGenerator
 				continue;
 			}
 
-			int unknownIdentifierCell = -1;
-			if (View is { UnknownValues: { } unknownValues })
-			{
-				foreach (var ((fillingCell, _, _), _) in unknownValues)
-				{
-					if (fillingCell == c)
-					{
-						unknownIdentifierCell = fillingCell;
-						break;
-					}
-				}
-			}
-
-			bool isCannibalism = false;
+			bool isCanni = false;
 			if (View is not { Candidates: not null })
 			{
 				goto Drawing;
@@ -208,16 +179,15 @@ partial record GridImageGenerator
 			{
 				if (value == c * 9 + d)
 				{
-					isCannibalism = true;
+					isCanni = true;
 					break;
 				}
 			}
 
 		Drawing:
+			bool overlaps = View.UnknownIdentifierOverlapsWithCell(c);
 			g.FillEllipse(
-				isCannibalism
-					? unknownIdentifierCell != -1 ? canniBrushLighter : cannibalBrush
-					: unknownIdentifierCell != -1 ? elimBrushLighter : elimBrush,
+				isCanni ? overlaps ? canniBrushLighter : cannibalBrush : overlaps ? elimBrushLighter : elimBrush,
 				Calculator.GetMouseRectangle(c, d).Zoom(-offset / 3)
 			);
 		}
@@ -227,10 +197,14 @@ partial record GridImageGenerator
 	/// Draw direct lines. The direct lines are the information for hidden singles and naked singles.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="directLines">The direct lines.</param>
 	/// <param name="offset">The drawing offset.</param>
-	partial void DrawDirectLines(Graphics g, IEnumerable<(Crosshatch, ColorIdentifier)> directLines, float offset)
+	partial void DrawDirectLines(Graphics g, float offset)
 	{
+		if (View.DirectLines is not { } directLines)
+		{
+			return;
+		}
+
 		if (Preferences.ShowCandidates)
 		{
 			// Non-direct view (without candidates) don't show this function.
@@ -271,9 +245,13 @@ partial record GridImageGenerator
 	/// Draw cells.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="cells">The cells.</param>
-	partial void DrawCells(Graphics g, IEnumerable<(int, ColorIdentifier)> cells)
+	partial void DrawCells(Graphics g)
 	{
+		if (View.Cells is not { } cells)
+		{
+			return;
+		}
+
 		foreach (var (cell, id) in cells)
 		{
 			if (id.UseId)
@@ -293,24 +271,27 @@ partial record GridImageGenerator
 	/// Draw candidates.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="candidates">The candidates.</param>
 	/// <param name="offset">The drawing offsets.</param>
-	partial void DrawCandidates(Graphics g, IEnumerable<(int, ColorIdentifier)> candidates, float offset)
+	partial void DrawCandidates(Graphics g, float offset)
 	{
+		if (View.Candidates is not { } candidates)
+		{
+			return;
+		}
+
 		float cellWidth = Calculator.CellSize.Width;
 		float candidateWidth = Calculator.CandidateSize.Width;
 		float vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
 
-		using SolidBrush
-			bCandidate = new(Preferences.CandidateColor),
-			bCandidateLighter = new(Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor));
-		using var fCandidate =
-			GetFont(
-				Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale,
-				Preferences.CandidateFontStyle
-			);
+		using var bCandidate = new SolidBrush(Preferences.CandidateColor);
+		using var bCandidateLighter = new SolidBrush(
+			Color.FromArgb(Preferences.CandidateColor.A >> 2, Preferences.CandidateColor)
+		);
+		using var fCandidate = GetFont(
+			Preferences.CandidateFontName, cellWidth / 2F, Preferences.CandidateScale,
+			Preferences.CandidateFontStyle
+		);
 
-		var unknownValues = View.UnknownValues;
 		foreach (var (candidate, id) in candidates)
 		{
 			bool isOverlapped = false;
@@ -332,44 +313,29 @@ partial record GridImageGenerator
 			if (!isOverlapped)
 			{
 				int cell = candidate / 9, digit = candidate % 9;
-				int unknownvalueCell = -1;
-				if (unknownValues is not null)
-				{
-					foreach (var ((fillingCell, fillingChar, _), _) in unknownValues)
-					{
-						if (fillingCell == cell)
-						{
-							unknownvalueCell = fillingCell;
-							break;
-						}
-					}
-				}
+				bool overlaps = View.UnknownIdentifierOverlapsWithCell(cell);
 
 				if (id.UseId)
 				{
-					using var brush = new SolidBrush(
-						Color.FromArgb(unknownvalueCell != -1 ? id.A : id.A >> 2, id.R, id.G, id.B)
-					);
+					using var brush = new SolidBrush(Color.FromArgb(overlaps ? id.A : id.A >> 2, id.R, id.G, id.B));
 					g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 					// In direct view, candidates should be drawn also.
 					if (!Preferences.ShowCandidates)
 					{
-						d(cell, digit, vOffsetCandidate, unknownvalueCell != -1 ? bCandidateLighter : bCandidate);
+						d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
 					}
 				}
 				else if (Preferences.TryGetColor(id, out var color))
 				{
 					// In the normal case, I'll draw these circles.
-					using var brush = new SolidBrush(
-						unknownvalueCell != -1 ? Color.FromArgb(color.A >> 2, color) : color
-					);
+					using var brush = new SolidBrush(overlaps ? Color.FromArgb(color.A >> 2, color) : color);
 					g.FillEllipse(brush, Calculator.GetMouseRectangle(cell, digit).Zoom(-offset / 3));
 
 					// In direct view, candidates should be drawn also.
 					if (!Preferences.ShowCandidates)
 					{
-						d(cell, digit, vOffsetCandidate, unknownvalueCell != -1 ? bCandidateLighter : bCandidate);
+						d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
 					}
 				}
 			}
@@ -379,22 +345,10 @@ partial record GridImageGenerator
 		{
 			foreach (var (type, cell, digit) in Conclusions)
 			{
-				int unknownValueCell = -1;
-				if (unknownValues is not null)
-				{
-					foreach (var ((fillingCell, fillingChar, _), _) in unknownValues)
-					{
-						if (fillingCell == cell)
-						{
-							unknownValueCell = fillingCell;
-							break;
-						}
-					}
-				}
-
+				bool overlaps = View.UnknownIdentifierOverlapsWithCell(cell);
 				if (type == ConclusionType.Elimination)
 				{
-					d(cell, digit, vOffsetCandidate, unknownValueCell != -1 ? bCandidateLighter : bCandidate);
+					d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
 				}
 			}
 		}
@@ -414,8 +368,13 @@ partial record GridImageGenerator
 	/// <param name="regions">The regions.</param>
 	/// <param name="offset">The drawing offset.</param>
 	/// <remarks>This method is simply implemented, using cell filling.</remarks>
-	partial void DrawRegions(Graphics g, IEnumerable<(int, ColorIdentifier)> regions, float offset)
+	partial void DrawRegions(Graphics g, float offset)
 	{
+		if (View.Regions is not { } regions)
+		{
+			return;
+		}
+
 		foreach (var (region, id) in regions)
 		{
 			bool assigned = false;
@@ -467,8 +426,6 @@ partial record GridImageGenerator
 			{
 				var rect = Calculator.GetMouseRectangleViaRegion(region).Zoom(-offset / 3);
 				using var brush = new SolidBrush(Color.FromArgb(64, color));
-				//using var pen = new Pen(color, offset);
-				//g.DrawRectangle(pen, rect.Truncate());
 				g.FillRectangle(brush, rect);
 			}
 		}
@@ -478,10 +435,14 @@ partial record GridImageGenerator
 	/// Draw links.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="links">The links.</param>
 	/// <param name="offset">The offset.</param>
-	partial void DrawLinks(Graphics g, IEnumerable<(Link, ColorIdentifier)> links, float offset)
+	partial void DrawLinks(Graphics g, float offset)
 	{
+		if (View.Links is not { } links)
+		{
+			return;
+		}
+
 		// Gather all points used.
 		var points = new HashSet<PointF>();
 		var linkArray = links as (Link, ColorIdentifier)[] ?? links.ToArray();
@@ -503,12 +464,11 @@ partial record GridImageGenerator
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		var (cw, ch) = Calculator.CandidateSize;
-		using Pen
-			arrowPen = new(Preferences.ChainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) },
-			linePen = new(Preferences.ChainColor, 2F);
-
-		// This brush is used for drawing grouped nodes.
-		//using var groupedNodeBrush = new SolidBrush(Color.FromArgb(64, Color.Yellow));
+		using var linePen = new Pen(Preferences.ChainColor, 2F);
+		using var arrowPen = new Pen(Preferences.ChainColor, 2F)
+		{
+			CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F)
+		};
 
 		foreach (var ((start, end, type), _) in linkArray)
 		{
@@ -523,24 +483,6 @@ partial record GridImageGenerator
 			var pt2 = Calculator.GetMouseCenter(new() { end });
 			var (pt1x, pt1y) = pt1;
 			var (pt2x, pt2y) = pt2;
-
-			// Draw grouped node regions.
-			//if (startMap.Count != 1)
-			//{
-			//	g.FillRoundedRectangle(
-			//		groupedNodeBrush,
-			//		Calculator.GetMouseRectangle(startFullMap),
-			//		offset
-			//	);
-			//}
-			//if (endMap.Count != 1)
-			//{
-			//	g.FillRoundedRectangle(
-			//		groupedNodeBrush,
-			//		Calculator.GetMouseRectangle(endFullMap),
-			//		offset
-			//	);
-			//}
 
 			var penToDraw = type != LinkType.Line ? arrowPen : linePen;
 			if (type == LinkType.Line)
@@ -613,6 +555,7 @@ partial record GridImageGenerator
 				}
 			}
 		}
+
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void rotate(in PointF pt1, ref PointF pt2, double angle)
@@ -688,9 +631,13 @@ partial record GridImageGenerator
 	/// Draw unknown values.
 	/// </summary>
 	/// <param name="g">The graphics.</param>
-	/// <param name="unknownValues">The list of unknown values.</param>
-	partial void DrawUnknownValue(Graphics g, IEnumerable<(UnknownValue, ColorIdentifier)> unknownValues)
+	partial void DrawUnknownValue(Graphics g)
 	{
+		if (View.UnknownValues is not { } unknownValues)
+		{
+			return;
+		}
+
 		const string defaultFontName = "Times New Roman";
 
 		float cellWidth = Calculator.CellSize.Width;

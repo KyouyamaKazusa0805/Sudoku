@@ -5939,6 +5939,16 @@
             <param name="element">The element to check.</param>
             <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
         </member>
+        <member name="M:Sudoku.Models.PresentationData.UnknownIdentifierOverlapsWithCell(System.Int32)">
+            <summary>
+            Determines whether the unknown identifiers of the current instance
+            overlaps the specified cell. Of course the property <see cref="P:Sudoku.Models.PresentationData.UnknownValues"/>
+            shouldn't be <see langword="null"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:Sudoku.Models.PresentationData.UnknownValues"/>
+        </member>
         <member name="M:Sudoku.Models.PresentationData.Add``1(Sudoku.Models.PresentationDataKind,``0,Sudoku.Models.ColorIdentifier)">
             <summary>
             Append an element into the collection.

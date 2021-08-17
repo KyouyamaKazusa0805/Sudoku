@@ -9,14 +9,12 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// The square root of 2.
 	/// </summary>
-	protected internal const float SqrtOf2 = 1.41421356F;
+	protected internal const float SqrtOf2 = 1.4142135F;
 
 	/// <summary>
-	/// The rotate angle (45 degrees, i.e. <c><see cref="PI"/> / 4</c>).
-	/// This field is used for rotate the chains if some of them are overlapped.
+	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
 	/// </summary>
-	/// <seealso cref="PI"/>
-	protected internal const float RotateAngle = .78539816F;
+	protected internal const float RotateAngle = MathF.PI / 4;
 
 	/// <summary>
 	/// The text offset that corrects the pixel of the text output.
@@ -27,12 +25,11 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	private protected static readonly StringFormat DefaultStringFormat = new()
+	protected internal static readonly StringFormat DefaultStringFormat = new()
 	{
 		Alignment = StringAlignment.Center,
 		LineAlignment = StringAlignment.Center
 	};
-
 
 
 	/// <summary>
@@ -54,11 +51,6 @@ public interface IGridImageGenerator
 	/// Indicates the view.
 	/// </summary>
 	PresentationData View { get; set; }
-
-	/// <summary>
-	/// Indicates the custom view.
-	/// </summary>
-	PresentationData CustomView { get; set; }
 
 	/// <summary>
 	/// Indicates all conclusions.

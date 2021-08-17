@@ -148,6 +148,18 @@ public partial record struct PresentationData(
 	}
 
 	/// <summary>
+	/// Determines whether the unknown identifiers of the current instance
+	/// overlaps the specified cell. Of course the property <see cref="UnknownValues"/>
+	/// shouldn't be <see langword="null"/>.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="UnknownValues"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool UnknownIdentifierOverlapsWithCell(int cell) =>
+		UnknownValues?.Any(u => u.UnknownValue.Cell == cell) ?? false;
+
+	/// <summary>
 	/// Append an element into the collection.
 	/// </summary>
 	/// <typeparam name="TStruct">The type of the element to add.</typeparam>

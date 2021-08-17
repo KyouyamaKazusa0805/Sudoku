@@ -37,9 +37,6 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	public PresentationData View { get; set; }
 
 	/// <inheritdoc/>
-	public PresentationData CustomView { get; set; }
-
-	/// <inheritdoc/>
 	public IEnumerable<Conclusion>? Conclusions { get; set; }
 
 
@@ -72,8 +69,7 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 		g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 		g.CompositingQuality = CompositingQuality.HighQuality;
 
-		DrawView(g, View, TextOffset);
-		DrawView(g, CustomView, TextOffset);
+		DrawView(g, TextOffset);
 		DrawFocusedCells(g);
 		DrawEliminations(g, TextOffset);
 		DrawValue(g);
@@ -86,12 +82,12 @@ public partial record GridImageGenerator(IPointCalculator Calculator, IPreferenc
 	partial void DrawBackground(Graphics g);
 	partial void DrawValue(Graphics g);
 	partial void DrawFocusedCells(Graphics g);
-	partial void DrawView(Graphics g, in PresentationData view, float offset);
+	partial void DrawView(Graphics g, float offset);
 	partial void DrawEliminations(Graphics g, float offset);
-	partial void DrawCells(Graphics g, IEnumerable<(int, ColorIdentifier)> cells);
-	partial void DrawCandidates(Graphics g, IEnumerable<(int, ColorIdentifier)> candidates, float offset);
-	partial void DrawRegions(Graphics g, IEnumerable<(int, ColorIdentifier)> regions, float offset);
-	partial void DrawLinks(Graphics g, IEnumerable<(Link, ColorIdentifier)> links, float offset);
-	partial void DrawDirectLines(Graphics g, IEnumerable<(Crosshatch, ColorIdentifier)> directLines, float offset);
-	partial void DrawUnknownValue(Graphics g, IEnumerable<(UnknownValue, ColorIdentifier)> unknownValues);
+	partial void DrawCells(Graphics g);
+	partial void DrawCandidates(Graphics g, float offset);
+	partial void DrawRegions(Graphics g, float offset);
+	partial void DrawLinks(Graphics g, float offset);
+	partial void DrawDirectLines(Graphics g, float offset);
+	partial void DrawUnknownValue(Graphics g);
 }
