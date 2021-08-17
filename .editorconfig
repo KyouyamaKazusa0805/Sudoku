@@ -294,6 +294,9 @@ dotnet_diagnostic.IDE0072.severity = none
 dotnet_style_namespace_match_folder = false
 dotnet_diagnostic.IDE0130.severity = none
 
+# IDE0161: Convert to file-scoped namespace
+dotnet_diagnostic.IDE0161.severity = warning
+
 
 # CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive).
 dotnet_diagnostic.CS8509.severity = silent

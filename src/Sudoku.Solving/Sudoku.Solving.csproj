@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
+		<Authors>Sunnie</Authors>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
+		<Description>The project that provides human-analysis or brute forces for sudoku puzzles.</Description>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Solving.xml</DocumentationFile>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<RootNamespace>Sudoku</RootNamespace>
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Solving</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Generating.IPuzzleGenerator">
+            <summary>
+            Defines a puzzle generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.IPuzzleGenerator.Rng">
+            <summary>
+            Provides a random number generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.IPuzzleGenerator.Solver">
+            <summary>
+            Provides a default fast solver to solve the puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <summary>
+            Creates a sudoku grid puzzle.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>
+            The result puzzle generated. If cancelled, the return value will be <see cref="F:Sudoku.Data.Grid.Undefined"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Generating.IPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates a sudoku grid puzzle asynchronously.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>
+            The task of the operation that includes the result puzzle generated.
+            If cancelled, the inner result sudoku grid of the return value will be <see cref="F:Sudoku.Data.Grid.Undefined"/>.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Generating.SymmetricPuzzleGenerator">
+            <summary>
+            Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
+            of all givens while generating puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Int32,Sudoku.Data.SymmetryType,System.Threading.CancellationToken)">
+            <summary>
+            Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
+            a cancellation token to cancel the operation.
+            </summary>
+            <param name="max">The maximum number of givens generated.</param>
+            <param name="symmetryType">The symmetry type.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The result sudoku puzzle.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+            <summary>
+            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
+            </summary>
+            <param name="pPuzzle">The pointer that points to the puzzle.</param>
+            <param name="pSolution">
+            The pointer that points to the solution. The result value will be changed here.
+            </param>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GetCells(Sudoku.Data.SymmetryType,System.Int32,System.Int32)">
+            <summary>
+            Get the cells that is used for swapping via the specified symmetry type, and the specified row
+            and column value.
+            </summary>
+            <param name="symmetryType">The symmetry type.</param>
+            <param name="row">The row value.</param>
+            <param name="column">The column value.</param>
+            <returns>The cells.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+            <summary>
+            Check whether the digit in its peer cells has duplicate ones.
+            </summary>
+            <param name="ptrGrid">The pointer that pointes to a grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.BruteForceSolverResult">
+            <summary>
+            Encapsulates a solver result information that is created by a brute force solver.
+            </summary>
+            <param name="OriginalPuzzle"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Encapsulates a solver result information that is created by a brute force solver.
+            </summary>
+            <param name="OriginalPuzzle"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.IsSolved">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.ElapsedTime">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string representataion of the current instance using the specified formatting options
+            and the country code to specify the country information.
+            </summary>
+            <param name="countryCode">The country code.</param>
+            <returns>The string representation of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.FastSolver">
+            <summary>
+            Defines a fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.BitSet27">
+            <summary>
+            All pencil marks set - 27 bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.BufferLength">
+            <summary>
+            The buffer length of a solution puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._stack">
+            <summary>
+            Stack to store current and previous states.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._numSolutions">
+            <summary>
+            The number of solutions found so far.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._limitSolutions">
+            <summary>
+            The max number of solution we're looking for.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._singleApplied">
+            <summary>
+            Nasty global flag telling if <see cref="M:Sudoku.Solving.BruteForces.FastSolver.ApplySingleOrEmptyCells"/> found anything.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.BruteForces.FastSolver.ApplySingleOrEmptyCells"/>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._solution">
+            <summary>
+            Pointer to where to store the first solution. This value can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver._g">
+            <summary>
+            Pointer to the currently active slot.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(Sudoku.Data.Grid@)">
+            <inheritdoc/>
+            <exception cref="T:Sudoku.NoSolutionException">Throws when the puzzle has no valid solution.</exception>
+            <exception cref="T:Sudoku.MultipleSolutionsException">
+            Throws when the puzzle has multiple solutions.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.String,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.String,System.String@,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            The solution. The value keeps <see langword="null"/>
+            if you doesn't want to use this result.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.String,System.Text.ValueStringBuilder@,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            The solution receiver. This parameter is used when you want
+            to use the solution string. The receiver is represented as a <see cref="T:System.Text.ValueStringBuilder"/>.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+            <seealso cref="T:System.Text.ValueStringBuilder"/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.SetSolvedDigit(System.Int32,System.Int32)">
+            <summary>
+            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BruteForces.FastSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BruteForces.FastSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.SetSolvedMask(System.Int32,System.UInt32)">
+            <summary>
+            Set a cell as solved - used in various guess routines.
+            </summary>
+            <param name="band">The band.</param>
+            <param name="mask">The mask.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.InitSudoku(System.Char*)">
+            <summary>
+            Setup everything and load the puzzle.
+            </summary>
+            <param name="puzzle">The pointer that points to a puzzle buffer.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Update">
+            <summary>
+            Core of fast processing.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.ApplySingleOrEmptyCells">
+            <summary>
+            Find singles, bi-value cells, and impossible cells.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The internal solving method.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle string.</param>
+            <param name="solutionPtr">The pointer to the solution string.</param>
+            <param name="limit">The limitation for the number of all final solutions.</param>
+            <returns>The number of solutions found.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.ExtractSolution(System.Char*)">
+            <summary>
+            Extract solution as a string.
+            </summary>
+            <param name="solution">
+            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BruteForces.FastSolver.BufferLength"/>
+            of value of length.</b>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.GuessBiValueInCell">
+            <summary>
+            Try both options for cells with exactly two pencil marks.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.GuessFirstCell">
+            <summary>
+            Guess all possibilities in first unsolved cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Guess">
+            <summary>
+            Either already solved, or guess and recurse.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.FullUpdate">
+            <summary>
+            Get as far as possible without guessing.
+            </summary>
+            <returns>An <see cref="T:System.Byte"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.BitPos(System.UInt32)">
+            <summary>
+            Get the bit position.
+            </summary>
+            <param name="map">The map.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BruteForces.FastSolver.State">
+            <summary>
+            To describe a state for a current grid using binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.State.Bands">
+            <summary>
+            Pencil marks in bands by digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.State.PrevBands">
+            <summary>
+            Value of bands last time it was calculated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.State.UnsolvedCells">
+            <summary>
+            Bit vector of unsolved cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.State.UnsolvedRows">
+            <summary>
+            Bit vector of unsolved rows - three bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.State.Pairs">
+            <summary>
+            Bit vector of cells with exactly two pencil marks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblComplexMask">
+            <summary>
+            To keep mini rows still valid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblMaskSingle">
+            <summary>
+            Kill in other blocks locked column/box.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblShrinkSingle">
+            <summary>
+            Keep only rows with single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblRowUniq">
+            <remarks>
+            1 is row not defined in block mode <c>1</c> to <c>111</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblColumnSingle">
+            <summary>
+            Single in column applied to shrunk block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BruteForces.FastSolver.TblRowMask">
+            <summary>
+            Rows where single found: <c>000</c> to <c>111</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.ISolverResult">
+            <summary>
+            Defines a result that created by a solver to represent a result of analysis after the solver calculated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolverResult.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolverResult.OriginalPuzzle">
+            <summary>
+            Indicates the original sudoku puzzle to solve.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolverResult.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Data.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Solving.ISolverResult.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="M:Sudoku.Solving.ISolverResult.ToDisplayString">
+            <summary>
+            Get the string representation of the current instance.
+            </summary>
+            <returns>The string representation of the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.ISolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string representataion of the current instance using the country code
+            to specify the country information.
+            </summary>
+            <param name="countryCode">The country code.</param>
+            <returns>The string representation of the current instance.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.SolverResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Solving.ISolverResult"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowAttributes">
+            <summary>
+            Indicates the analysis result will append the attributes of the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowBackdoors">
+            <summary>
+            Indicates the analysis result will append the backdoors of the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
+        </member>
+    </members>
+</doc>

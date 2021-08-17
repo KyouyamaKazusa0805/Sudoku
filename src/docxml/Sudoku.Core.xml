@@ -6152,6 +6152,12 @@
             while solving, checking or generating a puzzle.
             </summary>
         </member>
+        <member name="M:Sudoku.MultipleSolutionsException.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.NoSolutionException"/> with the specified invalid grid.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+        </member>
         <member name="M:Sudoku.MultipleSolutionsException.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes a <see cref="T:Sudoku.MultipleSolutionsException"/> with the specified invalid grid.
@@ -6166,6 +6172,13 @@
         </member>
         <member name="P:Sudoku.MultipleSolutionsException.HelpLink">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.MultipleSolutionsException.InvalidPuzzle">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
         </member>
         <member name="P:Sudoku.MultipleSolutionsException.InvalidGrid">
             <summary>
@@ -6183,6 +6196,12 @@
             while solving, checking or generating a puzzle.
             </summary>
         </member>
+        <member name="M:Sudoku.NoSolutionException.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.NoSolutionException"/> with the specified invalid grid.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+        </member>
         <member name="M:Sudoku.NoSolutionException.#ctor(Sudoku.Data.SudokuGrid@)">
             <summary>
             Initializes a <see cref="T:Sudoku.NoSolutionException"/> with the specified invalid grid.
@@ -6197,6 +6216,13 @@
         </member>
         <member name="P:Sudoku.NoSolutionException.HelpLink">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.NoSolutionException.InvalidPuzzle">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
         </member>
         <member name="P:Sudoku.NoSolutionException.InvalidGrid">
             <summary>

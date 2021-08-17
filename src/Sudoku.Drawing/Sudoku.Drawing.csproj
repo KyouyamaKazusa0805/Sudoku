@@ -7,6 +7,7 @@
 		<Description>The project that provides APIs for the GDI+ drawing pictures about sudokus.</Description>
 		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<Nullable>enable</Nullable>
+		<DocumentationFile>..\docxml\Sudoku.Drawing.xml</DocumentationFile>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<RootNamespace>Sudoku</RootNamespace>
 		<LangVersion>preview</LangVersion>
