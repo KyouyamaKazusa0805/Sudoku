@@ -4,6 +4,57 @@
         <name>Sudoku.Solving</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
+            <summary>
+            Defines a puzzle generator that makes the given pattern as a hard one. However,
+            a <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
+            <summary>
+            Indicates the block factor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+            <summary>
+            Indicates the swapping factor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+            <summary>
+            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
+            </summary>
+            <param name="pPuzzle">The pointer that points to the puzzle.</param>
+            <param name="pSolution">
+            The pointer that points to the solution. The result value will be changed here.
+            </param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32*)">
+            <summary>
+            Creates a start pattern based on a base pattern.
+            </summary>
+            <param name="pattern">The base pattern.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32*)">
+            <summary>
+            To re-create the pattern.
+            </summary>
+            <param name="pattern">The pointer that points to an array of the pattern values.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+            <summary>
+            Check whether the digit in its peer cells has duplicate ones.
+            </summary>
+            <param name="ptrGrid">The pointer that pointes to a grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Generating.IPuzzleGenerator">
             <summary>
             Defines a puzzle generator.
@@ -252,6 +303,15 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
             <seealso cref="T:System.Text.ValueStringBuilder"/>
+        </member>
+        <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.Char*)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String,System.String@)"/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
             <summary>

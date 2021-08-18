@@ -2250,6 +2250,13 @@
             <returns>The result instance had converted.</returns>
             <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
         </member>
+        <member name="M:Sudoku.Data.Grid.Parse(System.Char*)">
+            <summary>
+            Parses a pointer that points to a string value and converts to this type.
+            </summary>
+            <param name="ptrStr">The pointer that points to string.</param>
+            <returns>The result instance.</returns>
+        </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String)">
             <inheritdoc/>
         </member>

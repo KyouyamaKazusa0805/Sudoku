@@ -1010,6 +1010,14 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
+	/// <summary>
+	/// Parses a pointer that points to a string value and converts to this type.
+	/// </summary>
+	/// <param name="ptrStr">The pointer that points to string.</param>
+	/// <returns>The result instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse([NotNull, DisallowNull] char* ptrStr) => Parse(new string(ptrStr));
+
 	/// <inheritdoc/>
 	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull("str")]

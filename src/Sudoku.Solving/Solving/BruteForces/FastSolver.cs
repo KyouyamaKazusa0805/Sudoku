@@ -83,7 +83,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
-	public long Solve([NotNull] char* puzzle, char* solution, int limit)
+	public long Solve([NotNull, DisallowNull] char* puzzle, char* solution, int limit)
 	{
 		char* solutionStr = stackalloc char[BufferLength];
 		try
@@ -119,7 +119,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 			{
 				if (solution != null)
 				{
-					Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+					UnsafeExtensions.CopyBlock(solution, solutionStr, BufferLength);
 				}
 			}
 		}
@@ -188,11 +188,22 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="grid">The grid.</param>
 	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
 	/// <seealso cref="CheckValidity(string, out string?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool CheckValidity([DisallowNull, NotNullWhen(true)] char* grid) => InternalSolve(grid, null, 2) == 1;
+
+	/// <summary>
+	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
+	/// any <see langword="out"/> parameters.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+	/// <seealso cref="CheckValidity(string, out string?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(string grid)
 	{
 		fixed (char* puzzle = grid)
 		{
-			return InternalSolve(puzzle, null, 2) == 1;
+			return CheckValidity(puzzle);
 		}
 	}
 
@@ -302,7 +313,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// </summary>
 	/// <param name="puzzle">The pointer that points to a puzzle buffer.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	private bool InitSudoku([NotNull] char* puzzle)
+	private bool InitSudoku([NotNull, DisallowNull] char* puzzle)
 	{
 		fixed (State* g = _stack)
 		{
@@ -312,7 +323,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 				g->Bands[band] = BitSet27;
 			}
 
-			Unsafe.InitBlock(g->PrevBands, 0, 108); // 108: sizeof(_g->PrevBands)
+			UnsafeExtensions.InitBlock(g->PrevBands, 0, 27);
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
@@ -632,7 +643,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 		// The core Update routine from zhouyundong.
 		// This copy has been optimized by champagne and JasonLion in minor ways.
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool updn([NotNull] uint* s, uint i, uint j, uint k, uint l)
+		bool updn([NotNull, DisallowNull] uint* s, uint i, uint j, uint k, uint l)
 		{
 			a = _g->Bands[i * 3 + j];
 			shrink = (uint)(TblShrinkMask[a & 0x1FF] | TblShrinkMask[(a >> 9) & 0x1FF] << 3 | TblShrinkMask[a >> 18] << 6);
@@ -753,7 +764,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve([NotNull] char* puzzle, char* solutionPtr, int limit)
+	private long InternalSolve([NotNull, DisallowNull] char* puzzle, char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;
@@ -787,7 +798,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/>
 	/// of value of length.</b>
 	/// </param>
-	private void ExtractSolution([NotNull] char* solution)
+	private void ExtractSolution([NotNull, DisallowNull] char* solution)
 	{
 		for (int cell = 0; cell < 81; cell++)
 		{
@@ -868,7 +879,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(State));
+					UnsafeExtensions.CopyBlock(_g + 1, _g, 1);
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.
