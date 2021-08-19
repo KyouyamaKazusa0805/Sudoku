@@ -63,14 +63,14 @@ public sealed class SingleStepSearcher : IStepSearcher
 	public bool ShowDirectLines { get; set; }
 
 	/// <inheritdoc/>
-	public Technique Identifier => Technique.HiddenSingleBlock;
+	public SearcherIdentifier Identifier => SearcherIdentifier.Single;
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyOne)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		if (!EnableFullHouse)
 		{
@@ -113,7 +113,7 @@ public sealed class SingleStepSearcher : IStepSearcher
 				digit
 			);
 
-			if (onlyOne)
+			if (onlyFindOne)
 			{
 				return step;
 			}
@@ -132,7 +132,7 @@ public sealed class SingleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				if (onlyOne)
+				if (onlyFindOne)
 				{
 					return step;
 				}
@@ -151,7 +151,7 @@ public sealed class SingleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				if (onlyOne)
+				if (onlyFindOne)
 				{
 					return step;
 				}
@@ -172,7 +172,7 @@ public sealed class SingleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				if (onlyOne)
+				if (onlyFindOne)
 				{
 					return step;
 				}
@@ -235,7 +235,7 @@ public sealed class SingleStepSearcher : IStepSearcher
 				digit
 			);
 
-			if (onlyOne)
+			if (onlyFindOne)
 			{
 				return step;
 			}
