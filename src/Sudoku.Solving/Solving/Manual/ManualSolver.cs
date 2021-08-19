@@ -98,7 +98,7 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 		{
 			switch ((IsSukaku: isSukaku, Searcher: searcher, This: this))
 			{
-				case (IsSukaku: true, Searcher: { Identifier: Technique.UrType1 }, _):
+				case (IsSukaku: true, Searcher: { Identifier: SearcherIdentifier.DeadlyPattern }, _):
 				{
 					// Sukaku puzzles can't use deadly pattern techniques.
 					continue;

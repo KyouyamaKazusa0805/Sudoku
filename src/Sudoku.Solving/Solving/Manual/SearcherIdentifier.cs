@@ -7,7 +7,12 @@
 public enum SearcherIdentifier
 {
 	/// <summary>
-	/// Indicates the sigle step searcher.
+	/// Indicates the single step searcher.
 	/// </summary>
 	Single,
+
+	/// <summary>
+	/// Indicates the deadly pattern searcher.
+	/// </summary>
+	DeadlyPattern
 }
