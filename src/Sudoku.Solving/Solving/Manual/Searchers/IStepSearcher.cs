@@ -33,14 +33,14 @@ public interface IStepSearcher
 	/// <description>Description of this case</description>
 	/// </listheader>
 	/// <item>
-	/// <term>Maybe <see langword="null"/> (i.e. <see cref="Step"/>?)</term>
+	/// <term>Maybe <see langword="null"/></term>
 	/// <description>
 	/// The argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
 	/// or the argument <paramref name="onlyFindOne"/> is <see langword="true"/>, but nothing found in this method.
 	/// </description>
 	/// </item>
 	/// <item>
-	/// <term>Not <see langword="null"/> (i.e. <see cref="Step"/>)</term>
+	/// <term>Not <see langword="null"/></term>
 	/// <description>
 	/// The argument <paramref name="onlyFindOne"/> is <see langword="true"/>, and found at least one step.
 	/// In this case the return value is the first found step.

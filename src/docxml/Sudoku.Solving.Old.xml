@@ -5948,9 +5948,6 @@
             </para>
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Singles.SingleStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
