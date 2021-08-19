@@ -42,6 +42,27 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	public void ApplyTo(ref Grid grid)
+	{
+		switch (ConclusionType)
+		{
+			case ConclusionType.Assignment:
+			{
+				grid[Cell] = Digit;
+				break;
+			}
+			case ConclusionType.Elimination:
+			{
+				grid[Cell, Digit] = false;
+				break;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Put this instance into the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
 	public void ApplyTo(ref SudokuGrid grid)
 	{
 		switch (ConclusionType)

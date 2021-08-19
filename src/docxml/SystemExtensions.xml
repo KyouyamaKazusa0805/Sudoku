@@ -3106,6 +3106,14 @@
             <param name="this">The type to check.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:System.TypeExtensions.HasImplemented``1(System.Type)">
+            <summary>
+            Determine whether the type has implemented the specified typed interface.
+            </summary>
+            <typeparam name="TInterface">The type of the interface.</typeparam>
+            <param name="this">The type to check.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:System.TypeExtensions.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
             <summary>
             Determine whether the type contains a parameterless constructor.

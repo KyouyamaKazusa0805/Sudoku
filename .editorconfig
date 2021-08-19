@@ -431,6 +431,9 @@ dotnet_diagnostic.CA1305.severity = none
 # CA1711: Identifiers should not have incorrect suffix
 dotnet_diagnostic.CA1711.severity = none
 
+# CA1716: Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = none
+
 # CA1725: Parameter names should match base declaration
 dotnet_diagnostic.CA1725.severity = warning
 

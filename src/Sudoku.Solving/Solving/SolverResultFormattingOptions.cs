@@ -44,11 +44,13 @@ public enum SolverResultFormattingOptions : short
 	/// <summary>
 	/// Indicates the analysis result will append the attributes of the grid.
 	/// </summary>
+	[Obsolete("The field is obsolete.", false)]
 	ShowAttributes = 64,
 
 	/// <summary>
 	/// Indicates the analysis result will append the backdoors of the grid.
 	/// </summary>
+	[Obsolete("The field is obsolete.", false)]
 	ShowBackdoors = 128,
 
 	/// <summary>

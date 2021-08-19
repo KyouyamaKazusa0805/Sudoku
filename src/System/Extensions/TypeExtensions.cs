@@ -17,6 +17,16 @@ public static class TypeExtensions
 		@this.IsSubclassOf(typeof(TClass));
 
 	/// <summary>
+	/// Determine whether the type has implemented the specified typed interface.
+	/// </summary>
+	/// <typeparam name="TInterface">The type of the interface.</typeparam>
+	/// <param name="this">The type to check.</param>
+	/// <returns>The <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool HasImplemented<TInterface>(this Type @this) where TInterface : class =>
+		typeof(TInterface).IsInterface && @this.GetInterfaces().OfType<TInterface>().Any();
+
+	/// <summary>
 	/// Determine whether the type contains a parameterless constructor.
 	/// </summary>
 	/// <param name="this">The type.</param>

@@ -138,6 +138,16 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Solving.ModuleInitializer">
+            <summary>
+            Indicates the module initializer of this project.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.ModuleInitializer.Initialize">
+            <summary>
+            The initialize method.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.BruteForces.BacktrackingSolver">
             <summary>
             Provides a solver using backtracking method.
@@ -509,6 +519,16 @@
             Indicates nothing goes wrong.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.FailedReason.PuzzleIsInvalid">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
+            Different with <see cref="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
         <member name="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution">
             <summary>
             Indicates the failed reason is that the puzzle doesn't contain a valid solution.
@@ -524,10 +544,26 @@
             Indicates the failed reason is that the user has cancelled the task.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver doesn't implemented some function
+            that causes the operation can't be finished.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.FailedReason.ExceptionThrown">
             <summary>
             Indicates the failed reason is that the solver has encountered an error and couldn't solve,
             then an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.FailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.FailedReason.Unknown">
@@ -609,6 +645,1496 @@
             </summary>
             <param name="countryCode">The country code.</param>
             <returns>The string representation of the current instance.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Buffer.FastProperties">
+            <summary>
+            Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
+            </summary>
+            <remarks>
+            <para>
+            The whole class is a <see langword="static"/> one, which means you can't use <see langword="new"/>
+            clause to create a new instance of this type. In contrast, the class is used for providing with
+            <see langword="static"/> properties used in a cyclic manual searching
+            (i.e. in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>).
+            </para>
+            <para>
+            Some step searchers rely on this class. If you want to call them alone, you should ensure the method
+            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> in this class is called before using these properties.
+            </para>
+            <para>
+            If a step searcher doesn't rely on this class, it'll be marked an attribute named
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>. If you find that the step searcher marks that attribute,
+            you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
+            can't call it everywhere unless you call the method <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>.
+            </para>
+            <para>
+            Please note, all names of properties in this class can also be found in <see cref="T:Sudoku.Data.Grid"/>,
+            which means you can also call the property by <see cref="T:Sudoku.Data.Grid"/>. Of course, some of them
+            doesn't contain the same one in <see cref="T:Sudoku.Data.Grid"/>, but you can find a same property whose
+            execution logic (handling logic) is totally same.
+            For example, <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/> is same as <see cref="P:Sudoku.Data.Grid.EmptyCells"/>. The difference
+            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/> until you have called
+            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>, while <see cref="P:Sudoku.Data.Grid.EmptyCells"/> can be used
+            everywhere, because it isn't an instant property (which means the calculation begins
+            when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
+            so their values can be got instantly, i.e. instant ones).
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap">
+            <summary>
+            The empty cells map.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.BivalueMap">
+            <summary>
+            The bi-value cells map.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps">
+            <summary>
+            The candidate maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.DigitMaps">
+            <summary>
+            The digit maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.ValueMaps">
+            <summary>
+            The value maps.
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are marked the attribute
+            <see cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.IsDirectAttribute"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Buffer.StepSearcherPool">
+            <summary>
+            Indicates a pool that stores the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Buffer.StepSearcherPool.Collection">
+            <summary>
+            The step searchers to find steps to apply to a certain puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Buffer.StepSearcherPool.Searchers">
+            <summary>
+            Gets the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Checkers.PuzzleChecker">
+            <summary>
+            Defines a puzzle checker.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Checkers.PuzzleChecker.Solver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.PuzzleChecker.IsValid(Sudoku.Data.Grid@)">
+            <summary>
+            Checks whether the specified grid contains a valid unique solution.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.PuzzleChecker.IsValid(Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Nullable{System.Boolean}@)">
+            <summary>
+            To check if a puzzle has only one solution or not.
+            </summary>
+            <param name="this">The puzzle to check.</param>
+            <param name="solutionIfValid">
+            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
+            </param>
+            <param name="sukaku">
+            Indicates whether the current mode is sukaku mode.
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle is a sukaku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle is a normal sudoku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle is invalid.</description>
+            </item>
+            </list>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Initializes an instance with the specified grid.
+            </summary>
+            <param name="grid">The current puzzle grid.</param>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.IsBugPattern">
+            <summary>
+            Indicates the current grid is a BUG+n pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.Puzzle">
+            <summary>
+            The grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.TrueCandidates">
+            <summary>
+            Indicates all true candidates (non-BUG candidates).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.GetAllTrueCandidates(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells
+            is below than the argument.
+            </summary>
+            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.GetAllTrueCandidatesAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells
+            is below than the argument asynchronously.
+            </summary>
+            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The task to get all true candidates.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved
+            unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.DisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.None">
+            <summary>
+            Indicates the searcher is normal one and isn't disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.DisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.A">
+            <summary>
+            Indicates the level is the easy (Level A).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.B">
+            <summary>
+            Indicates the level is medium (Level B).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.C">
+            <summary>
+            Indicates the level is hard (Level C).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.D">
+            <summary>
+            Indicates the level is fiendish (Level D).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.E">
+            <summary>
+            Indicates the level is nightmare (Level E).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.EnabledAreas">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Gathering">
+            <summary>
+            Indicates the gathering mode (All steps will be found here).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Experimental">
+            <summary>
+            Indicates the experimental function can use the step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IManualSolverOptions">
+            <summary>
+            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsHodokuMode">
+            <summary>
+            Indicates whether the solver uses Hodoku mode to solve a sudoku.
+            </summary>
+            <remarks>
+            <para>
+            <b>Hodoku mode</b> is a mode that imitates a sudoku-solving program called <i>Hodoku</i>
+            to solve a puzzle. In this case, all enabled step searchers will be in ascending order via their's own
+            priority, i.e. the value of the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.Priority"/>. On the other hand,
+            this option provides a basic and normal processing behavior of a <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> instance.
+            </para>
+            <para>
+            However, in this case the difficulty order (ascending or descending order) of steps
+            won't be guaranteed. For example, the possible difficulty rating of a step searched via a UR searcher
+            is between 4.5 and 4.8, and another rating of a step via a chain searcher is between 4.6 and 5.1.
+            If the UR searcher has a larger priority than chain searcher, the solver may find all UR steps firsly
+            in this case, and secondly searches for chains. In some cases, some UR steps found
+            has a larger difficulty rating value than some chain steps found, so the difficulty ratings
+            are unstrictly-handled (i.e. steps are out of ordered).
+            </para>
+            <para>
+            If you want to strictly handle the difficulty rating, we recommend you set this property value
+            as <see langword="false"/>, but the solver will be processed slower than the case setting the
+            <see langword="true"/> value.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Solving.Manual.SearchingOptions.Priority"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFastSearching">
+            <summary>
+            Indicates whether the solver will use fast searching mode to solve puzzles.
+            If the value is <see langword="true"/>, the solver will apply all steps after gathered.
+            In the normal case, solver only fetches the first found step to apply.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.OptimizedApplyingOrder">
+            <summary>
+            Indicates whether the solver will apply the steps via the asecending order.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IsDirectAttribute">
+            <summary>
+            <para>
+            Indicates the technique searcher can or can't be used in some scenarios
+            where they aren't in traversing mode to call
+            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)"/> in <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s one by one.
+            </para>
+            <para>
+            If <see langword="true"/>, the searcher can't use those <see langword="static"/>
+            properties such as <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps"/> in its method
+            <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)"/>.
+            </para>
+            </summary>
+            <remarks>
+            <para>
+            All disallowed properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.DigitMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.ValueMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.BivalueMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/></item>
+            </list>
+            The disallowed method is:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/></item>
+            </list>
+            </para>
+            <para>
+            Those properties or methods can optimize the performance to analyze a sudoku grid, but
+            sometimes they may cause a potential bug that is hard to find and fix. The attribute
+            is created and used for solving the problem.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IsOptionsFixedAttribute">
+            <summary>
+            Marks onto a <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>, to let the compiler know the specified step searcher
+            is fixed-ordering, and we can't modify the order in the settings UI.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IStepsGathererOptions">
+            <summary>
+            Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.StepsGatherer"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.IStepsGathererOptions.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ManualSolver">
+            <summary>
+            Provides a manual solver that solves a sudoku puzzle using the human minds and ways
+            to check and solve a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve_HodokuMode(Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Boolean,Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken)">
+            <summary>
+            The inner solving operation method.
+            </summary>
+            <param name="puzzle">The original puzzle to be solved.</param>
+            <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
+            <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
+            <param name="baseSolverResult">The base solver result already included the base information.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The solver result.</returns>
+            <exception cref="T:Sudoku.Solving.Manual.WrongStepException">Throws when found wrong steps to apply.</exception>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.RecordStep(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Solving.Manual.Step,Sudoku.Data.Grid@,System.Diagnostics.Stopwatch,System.Collections.Generic.ICollection{Sudoku.Data.Grid},Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken,Sudoku.Solving.Manual.ManualSolverResult@)">
+            <summary>
+            <para>
+            Records the current found and valid step into the specified collection. This method will also
+            check the validity of <paramref name="cancellationToken"/>. If user has cancelled the operation,
+            here we'll throw an exception and exit the operation directly.
+            </para>
+            <para>
+            Please note that if the argument <paramref name="result"/> isn't <see langword="null"/>, it'll mean
+            that the puzzle has been already solved, so this method will stop the stopwatch. Therefore, you don't
+            need to stop that stopwatch manually like the code <c>stopwatch.Stop();</c>.
+            </para>
+            </summary>
+            <param name="steps">The steps.</param>
+            <param name="step">The step.</param>
+            <param name="playground">The playground.</param>
+            <param name="stopwatch">The stopwatch.</param>
+            <param name="stepGrids">The step grids.</param>
+            <param name="baseSolverResult">Indicates the base solver result.</param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
+            <param name="result">The analysis result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.OperationCanceledException">
+            Throws when the current operation is cancelled.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.AreConclusionsValid(Sudoku.Data.Grid@,Sudoku.Solving.Manual.Step)">
+            <summary>
+            Peeks the validity of step, to check whether all conclusions are possibly correct.
+            </summary>
+            <param name="solution">The solution.</param>
+            <param name="step">The step to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFastSearching">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ManualSolverResult">
+            <summary>
+            Provides the solver result after <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> solves a puzzle.
+            </summary>
+            <param name="OriginalPuzzle"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Provides the solver result after <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> solves a puzzle.
+            </summary>
+            <param name="OriginalPuzzle"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.ElapsedTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.WrongStep">
+            <summary>
+            <para>
+            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/> keeps
+            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
+            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/> become invalid.
+            In this case we can check this property to get the wrong information to debug the error,
+            or tell the author himself directly, with the inner value of this property held.
+            </para>
+            <para>
+            However, if the puzzle is successful to be solved, the property won't contain any value,
+            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
+            of this property before using.
+            </para>
+            <para>
+            In general, this table will tell us the nullability of this property:
+            <list type="table">
+            <listheader>
+            <term>Nullability</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Not <see langword="null"/></term>
+            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>Other cases.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids">
+            <summary>
+            Indicates a list, whose element is the intermediate grid for each step.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Steps">
+            <summary>
+            Indicates all solving steps that the solver has recorded.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.MaxDifficulty">
+            <summary>
+            <para>Indicates the maximum difficulty of the puzzle.</para>
+            <para>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
+            the value will be the maximum value among all difficulty
+            ratings in solving steps. If the puzzle has not been solved,
+            or else the puzzle is solved by other solvers, this value will
+            be always <c>20.0M</c>.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.TotalDifficulty">
+            <summary>
+            <para>Indicates the total difficulty rating of the puzzle.</para>
+            <para>
+            When the puzzle is solved by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>,
+            the value will be the sum of all difficulty ratings of steps. If
+            the puzzle has not been solved, the value will be the sum of all
+            difficulty ratings of steps recorded in <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>.
+            However, if the puzzle is solved by other solvers, this value will
+            be <c>0</c>.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.PearlDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated
+            during only by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating
+            of the first solving step. If the puzzle has not solved or
+            the puzzle is solved by other solvers, this value will be always <c>0</c>.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.DiamondDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated
+            during only by <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating
+            of the first step before the first one whose conclusion is
+            <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>. If the puzzle has not solved
+            or solved by other solvers, this value will be <c>20.0M</c>.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
+            <seealso cref="T:Sudoku.Data.ConclusionType"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.SolvingStepsCount">
+            <summary>
+            Indicates the number of all solving steps recorded.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the puzzle.
+            If the puzzle has not solved or solved by other solvers,
+            this value will be <see cref="F:Sudoku.Solving.Manual.DifficultyLevel.Unknown"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Bottleneck">
+            <summary>
+            Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
+            <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/> is default case (not initialized or empty).
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Solving.Manual.Step"/> instance at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The step information.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/> is <see langword="null"/> or empty.
+            </exception>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Techniques.Technique)">
+            <summary>
+            Gets the first <see cref="T:Sudoku.Solving.Manual.Step"/> instance that matches the specified technique.
+            </summary>
+            <param name="code">The technique code to check and fetch.</param>
+            <returns>The step information instance as the result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the list doesn't contain any valid instance to get.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the analysis result string using the specified format and the country code.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result string.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)">
+            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Evaluator(,System.Decimal)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ManualSolverResult.Formatter">
+            <summary>
+            Provides operations for analysis result formatting.
+            </summary>
+            <param name="Result">Indicates the analysis result.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.#ctor(Sudoku.Solving.Manual.ManualSolverResult)">
+            <summary>
+            Provides operations for analysis result formatting.
+            </summary>
+            <param name="Result">Indicates the analysis result.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with the specified format string.
+            </summary>
+            <param name="format">
+            The format. If available, the parameter can be <see langword="null"/>.
+            </param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,System.IFormatProvider,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="formatProvider">The format provider.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the specified format contains other invalid characters
+            and the format provider can't work.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
+            <summary>
+            Get the string result with the specified formatting options.
+            </summary>
+            <param name="options">The options.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)">
+            <summary>
+            Get the string result with the specified formatting options and the country code.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="countryCode">The country code.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with the specified format string.
+            </summary>
+            <param name="format">
+            The format. If available, the parameter can be <see langword="null"/>.
+            </param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.MaskMarshal">
+            <summary>
+            Provides with a serial of methods that handles with masks.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.MaskMarshal.GetMaskSubsets(System.Int16)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.MaskMarshal.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <param name="size">The size.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Rarity">
+            <summary>
+            Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.VeryCommon">
+            <summary>
+            Indicates the technique appears very commonly, such as <b>Hidden Single</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Common">
+            <summary>
+            Indicates the rarity is common.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Seldom">
+            <summary>
+            Indicates the rarity is seldom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.OnlyForSpecialPuzzles">
+            <summary>
+            Indicates the technique only appears in the special puzzles, which are designed on purpose.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IStepSearcher">
+            <summary>
+            Defines a step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.Identifier">
+            <summary>
+            Indicates the value that identifies which type the step searcher is of.
+            The value may be also used in UI rendering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IStepSearcher.Options">
+            <summary>
+            Indicates the step searching options.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <summary>
+            Accumulate all possible steps into the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator to store each step.</param>
+            <param name="grid">The grid to search for techniques.</param>
+            <param name="onlyOne">
+            Indicates whether the method only searches for one <see cref="T:Sudoku.Solving.Manual.Step"/> instance.
+            </param>
+            <returns>
+            Returns the first found step. The nullability of the return value are as belows:
+            <list type="table">
+            <listheader>
+            <term>Nullability</term>
+            <description>Description of this case</description>
+            </listheader>
+            <item>
+            <term>Maybe <see langword="null"/> (i.e. <see cref="T:Sudoku.Solving.Manual.Step"/>?)</term>
+            <description>
+            The argument <paramref name="onlyOne"/> is <see langword="false"/>,
+            or the argument <paramref name="onlyOne"/> is <see langword="true"/>, but nothing found in this method.
+            </description>
+            </item>
+            <item>
+            <term>Not <see langword="null"/> (i.e. <see cref="T:Sudoku.Solving.Manual.Step"/>)</term>
+            <description>
+            The argument <paramref name="onlyOne"/> is <see langword="true"/>, and found at least one step.
+            In this case the return value is the first found step.
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher">
+            <summary>
+            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Full House</item>
+            <item>Last Digit</item>
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableFullHouse">
+            <summary>
+            Indicates whether the solver enables the technique full house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableLastDigit">
+            <summary>
+            Indicates whether the solver enables the technique last digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.ShowDirectLines">
+            <summary>
+            Indicates whether the solver shows the direct lines (cross-hatching information).
+            </summary>
+            <remarks>
+            <para>
+            <b>Direct line</b>s is a concept that describes the crosshatching information of a hidden single.
+            For example, in this following grid:
+            <code>
+            .---------.---------.---------.
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | .  .  1 | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            :---------+---------+---------:
+            | .  .  1 | x  x  x | .  .  . |
+            | .  .  . | x  .  x | .  .  . |
+            | .  .  . | x  x  x | 1  .  . |
+            :---------+---------+---------:
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | 1  .  . | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            '---------'---------'---------'
+            </code>
+            The start point of the direct lines are:
+            <list type="bullet">
+            <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c>.</item>
+            <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c>.</item>
+            <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c>.</item>
+            <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c>.</item>
+            </list>
+            </para>
+            <para>
+            All the end points may be displayed using a cross mark ('<c>x</c>'), and the start
+            point may be used a circle mark ('<c>o</c>').
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.SearchingOptions">
+            <summary>
+            Indicates the options aiming to <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/>.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </param>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.StepsGatherer"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisabledReason)">
+            <summary>
+            Indicates the options aiming to <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/>.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </param>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.StepsGatherer"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Stableness">
+            <summary>
+            Defines a stableness of a technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.Stable">
+            <summary>
+            Indicates the stableness is stable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.LessUnstable">
+            <summary>
+            Indicates the stableness is less unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.Unstable">
+            <summary>
+            Indicates the stableness is unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.ExtremelyUnstable">
+            <summary>
+            Indicates the stableness is expremely unstable.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Step">
+            <summary>
+            Provides with a possible step.
+            </summary>
+            <param name="Conclusions">Indicates the conclusions that the step can be eliminated or assigned to.</param>
+            <param name="Views">
+            Indicates the views of the step that may be displayed onto the screen using pictures.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a possible step.
+            </summary>
+            <param name="Conclusions">Indicates the conclusions that the step can be eliminated or assigned to.</param>
+            <param name="Views">
+            Indicates the views of the step that may be displayed onto the screen using pictures.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.ShowDifficulty">
+            <summary>
+            <para>
+            Indicates whether the difficulty rating of this technique should be
+            shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
+            doesn't need to show the difficulty (because the difficulty of this technique
+            is unstable).
+            </para>
+            <para>
+            If the value is <see langword="true"/>, the analysis result won't show the difficulty
+            of this instance.
+            </para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Name">
+            <summary>
+            Indicates the technique name. The default value is in the resource dictionary.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Format">
+            <summary>
+            Gets the format of the current instance.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
+            any valid formats here, the result value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            A <b>format</b> is the better way to format the result text of this technique information instance,
+            It'll be represented by the normal characters and the placeholders, e.g.
+            <code>
+            <![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]>
+            </code>
+            Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
+            format string, rather than a interpolated string.
+            </para>
+            <para>
+            Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> should be implemented before
+            the property invoked, you should creates those 3 properties, returns the corresponding correct string
+            result, makes them <see langword="private"/> or <see langword="protected"/> and marks the attribute
+            <see cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
+            The recommended implementation pattern is:
+            <code><![CDATA[
+            [FormatItem]
+            private string CellsStr
+            {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => Cells.ToString();
+            }
+            ]]></code>
+            You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
+            into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
+            <see href="#">README.md</see> in the <c>required</c> folder to learn more information.
+            </para>
+            <para>
+            Because this property will get the value from the resource dictionary, the property supports
+            multiple language switching, which is better than the normal methods <see cref="M:Sudoku.Solving.Manual.Step.ToString"/>
+            and <see cref="M:Sudoku.Solving.Manual.Step.ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Step.ToString"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Step.ToFullString"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Difficulty">
+            <summary>
+            The difficulty or this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.TechniqueCode">
+            <summary>
+            The technique code of this instance used for comparison
+            (e.g. search for specified puzzle that contains this technique).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.TechniqueTags">
+            <summary>
+            The technique tags of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.TechniqueGroup">
+            <summary>
+            The technique group that this technique instance belongs to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.DifficultyLevel">
+            <summary>
+            The difficulty level of this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Stableness">
+            <summary>
+            Indicates the stableness of this technique. The default value is <see cref="F:Sudoku.Solving.Manual.Stableness.Stable"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Stableness.Stable"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Rarity">
+            <summary>
+            Indicates the rarity of this technique appears.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.IsAlmostLockedSets">
+            <summary>
+            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+            (ALS in abbreviation).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.IsChaining">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+            <list type="bullet">
+            <item>
+            Wings
+            <list type="bullet">
+            <item><see cref="!:#">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+            <item>
+            <see cref="!:#">Irregular wings</see>
+            (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+            </item>
+            </list>
+            </item>
+            <item>
+            Short chains
+            <list type="bullet">
+            <item>
+            <see cref="!:#">Two strong links</see>
+            (Skyscraper, Two-string kite, Turbot fish)
+            </item>
+            <item>
+            ALS chaining-like techniques
+            (<see cref="!:#">ALS-XZ</see>,
+            <see cref="!:#">ALS-XY-Wing</see>,
+            <see cref="!:#">ALS-W-Wing</see>)
+            </item>
+            <item><see cref="!:#">Empty rectangle</see></item>
+            </list>
+            </item>
+            <item>
+            Long chains
+            <list type="bullet">
+            <item><see cref="!:#">Forcing chains</see></item>
+            <item><see cref="!:#">Dynamic forcing chains</see></item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.IsDeadlyPattern">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a deadly pattern.
+            The deadly pattern techniques are:
+            <list type="bullet">
+            <item>
+            Bi-value patterns
+            <list type="bullet">
+            <item><see cref="!:#">Unique rectangle</see> (i.e. Uniqueness test)</item>
+            <item><see cref="!:#">Unique loop</see></item>
+            <item><see cref="!:#">Bi-value universal grave</see></item>
+            </list>
+            </item>
+            <item>
+            Multi-value patterns
+            <list type="bullet">
+            <item><see cref="!:#">Extended rectangle</see></item>
+            <item><see cref="!:#">Unique square</see></item>
+            <item><see cref="!:#">Borescoper's deadly pattern</see></item>
+            <item><see cref="!:#">Qiu's deadly pattern</see></item>
+            </list>
+            </item>
+            <item>
+            Other deadly patterns
+            <list type="bullet">
+            <item><see cref="!:#">Reverse bi-value universal grave</see></item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.ElimStr">
+            <summary>
+            Indicates the string representation of the conclusions.
+            </summary>
+            <remarks>
+            Most of techniques uses eliminations
+            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+            the property will still use this name rather than <c>AssignmentStr</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.ApplyTo(Sudoku.Data.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.HasTag(Sudoku.Techniques.TechniqueTags)">
+            <summary>
+            Determine whether the current step information instance with the specified flags.
+            </summary>
+            <param name="flags">
+            The flags. If the argument contains more than one set bit, all flags will be checked
+            one by one.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.ToString">
+            <summary>
+            Returns a string that only contains the name and the basic information.
+            </summary>
+            <returns>The string instance.</returns>
+            <remarks>
+            This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
+            to prevent the compiler overriding the method; in additional, the default behavior is changed to
+            output as the method <see cref="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)"/> invoking.
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.ToSimpleString">
+            <summary>
+            Returns a string that only contains the name and the conclusions.
+            </summary>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.ToFullString">
+            <summary>
+            Returns a string that contains the name, the conclusions and its all details.
+            This method is used for displaying details in text box control.
+            </summary>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)">
+            <summary>
+            Formatizes the <see cref="P:Sudoku.Solving.Manual.Step.Format"/> property string and output the result.
+            </summary>
+            <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
+            <returns>The result string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the format is invalid. The possible cases are:
+            <list type="bullet">
+            <item>The format is <see langword="null"/>.</item>
+            <item>The interpolation part contains the empty value.</item>
+            <item>Missing the closed brace character <c>'}'</c>.</item>
+            <item>The number of interpolations failed to match.</item>
+            </list>
+            </exception>
+            <seealso cref="P:Sudoku.Solving.Manual.Step.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.StepsGatherer">
+            <summary>
+            Defines a steps gatherer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepsGatherer.Search(Sudoku.Data.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
+            <returns>The result grouped by technique names.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep">
+            <summary>
+            Provides with a step that is a <b>Full House</b> technique.
+            </summary>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Full House</b> technique.
+            </summary>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Region">Indicates the region used.</param>
+            <param name="EnableAndIsLastDigit">
+            Indicates whether the current step is a <b>Last Digit</b> technique usage.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Region">Indicates the region used.</param>
+            <param name="EnableAndIsLastDigit">
+            Indicates whether the current step is a <b>Last Digit</b> technique usage.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep">
+            <summary>
+            Provides with a step that is a <b>Naked Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Naked Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Singles.SingleStep">
+            <summary>
+            Provides with a step that is a <b>Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.SingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">
+            <summary>
+            Marks on a property to tell the user the property is only used for the formatting.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(Sudoku.Data.Grid@,Sudoku.Solving.Manual.Step)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.WrongStepException"/> with the specified invalid grid and the wrong step.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="wrongStep">The wrong step.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.InvalidPuzzle">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.WrongStepException.WrongStep">
+            <summary>
+            Indicates the wrong step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.SolverResultFormattingOptions">
             <summary>

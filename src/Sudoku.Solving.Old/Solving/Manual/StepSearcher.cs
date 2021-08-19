@@ -9,12 +9,11 @@ public abstract class StepSearcher : IStepSearcher
 	/// <summary>
 	/// Indicates the necessary property name.
 	/// </summary>
-	[Obsolete("The field is deprecated.", false)]
 	private const string NecessaryPropertyName = "Properties";
 
 
 	/// <inheritdoc/>
-	public abstract SearchingOptions Options { get; set; }
+	public virtual SearchingOptions Options { get; set; }
 
 	/// <summary>
 	/// Indicates all step searchers and their type info used in the current solution.
@@ -23,7 +22,6 @@ public abstract class StepSearcher : IStepSearcher
 	/// Please note that the return value is a list of elements that contain its type and its
 	/// searcher properties.
 	/// </remarks>
-	[Obsolete("The property is deprecated.", false)]
 	public static IEnumerable<(Type CurrentType, string SearcherName, TechniqueProperties Properties)> AllStepSearchers =>
 		from type in Assembly.GetExecutingAssembly().GetTypes()
 		where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()

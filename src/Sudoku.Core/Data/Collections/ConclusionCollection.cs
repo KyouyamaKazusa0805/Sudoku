@@ -19,6 +19,13 @@ public readonly ref partial struct ConclusionCollection
 	public ConclusionCollection(in ReadOnlySpan<Conclusion> collection) : this() => _collection = collection;
 
 	/// <summary>
+	/// Initializes an instance with the specified collection. 
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	public ConclusionCollection(in ImmutableArray<Conclusion> collection) : this() =>
+		_collection = collection.ToArray();
+
+	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>

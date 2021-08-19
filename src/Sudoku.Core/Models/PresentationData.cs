@@ -10,12 +10,12 @@
 /// <param name="DirectLines">The direct lines.</param>
 /// <param name="UnknownValues">The unknown values.</param>
 public partial record struct PresentationData(
-	[DisallowNull][property: DisallowNull] IList<(int Cell, ColorIdentifier Color)>? Cells,
-	[DisallowNull][property: DisallowNull] IList<(int Candidate, ColorIdentifier Color)>? Candidates,
-	[DisallowNull][property: DisallowNull] IList<(int Region, ColorIdentifier Color)>? Regions,
-	[DisallowNull][property: DisallowNull] IList<(Link Link, ColorIdentifier Color)>? Links,
-	[DisallowNull][property: DisallowNull] IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
-	[DisallowNull][property: DisallowNull] IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
+	IList<(int Cell, ColorIdentifier Color)>? Cells,
+	IList<(int Candidate, ColorIdentifier Color)>? Candidates,
+	IList<(int Region, ColorIdentifier Color)>? Regions,
+	IList<(Link Link, ColorIdentifier Color)>? Links,
+	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
+	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
 ) : IValueEquatable<PresentationData>, IParsable<PresentationData>
 {
 	/// <summary>

@@ -1,13 +1,19 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
-
-namespace Sudoku.Solving.Manual.Singles;
+namespace Sudoku.Solving.Manual.Searchers.Singles;
 
 /// <summary>
-/// Encapsulates a <b>single</b> technique searcher.
+/// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Full House</item>
+/// <item>Last Digit</item>
+/// <item>Hidden Single</item>
+/// <item>Naked Single</item>
+/// </list>
 /// </summary>
-[DirectSearcher, IsOptionsFixed]
-public sealed class SingleStepSearcher : StepSearcher
+[IsDirect]
+[IsOptionsFixed]
+public sealed class SingleStepSearcher : IStepSearcher
 {
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.
@@ -24,7 +30,7 @@ public sealed class SingleStepSearcher : StepSearcher
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// Direct lines is a concept that describes the crosshatching information of a hidden single.
+	/// <b>Direct line</b>s is a concept that describes the crosshatching information of a hidden single.
 	/// For example, in this following grid:
 	/// <code>
 	/// .---------.---------.---------.
@@ -43,37 +49,28 @@ public sealed class SingleStepSearcher : StepSearcher
 	/// </code>
 	/// The start point of the direct lines are:
 	/// <list type="bullet">
-	/// <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c></item>
-	/// <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c></item>
-	/// <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c></item>
-	/// <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c></item>
+	/// <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c>.</item>
+	/// <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c>.</item>
+	/// <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c>.</item>
+	/// <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c>.</item>
 	/// </list>
 	/// </para>
 	/// <para>
-	/// All the end points may be displayed using a cross mark (<c>'x'</c>), and the start
-	/// point may be used a circle mark (<c>'o'</c>).
+	/// All the end points may be displayed using a cross mark ('<c>x</c>'), and the start
+	/// point may be used a circle mark ('<c>o</c>').
 	/// </para>
 	/// </remarks>
 	public bool ShowDirectLines { get; set; }
 
-	/// <summary>
-	/// Indicates the searcher properties.
-	/// </summary>
-	/// <remarks>
-	/// Please note that all technique searches should contain
-	/// this static property in order to display on settings window. If the searcher doesn't contain,
-	/// when we open the settings window, it'll throw an exception to report about this.
-	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
-	public static TechniqueProperties Properties { get; } = new(1, nameof(Technique.NakedSingle))
-	{
-		DisplayLevel = 0,
-		IsReadOnly = true
-	};
+	/// <inheritdoc/>
+	public Technique Identifier => Technique.HiddenSingleBlock;
+
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);
 
 
 	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyOne)
 	{
 		if (!EnableFullHouse)
 		{
@@ -102,21 +99,26 @@ public sealed class SingleStepSearcher : StepSearcher
 			}
 
 			int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
-			accumulator.Add(
-				new FullHouseStepInfo(
-					new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
-					new View[]
+			var step = new FullHouseStep(
+				new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) }.ToImmutableArray(),
+				new PresentationData[]
+				{
+					new()
 					{
-						new()
-						{
-							Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-							Regions = new DrawingInfo[] { new(0, region) }
-						}
-					},
-					resultCell,
-					digit
-				)
+						Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
+						Regions = new[] { (region, (ColorIdentifier)0) }
+					}
+				}.ToImmutableArray(),
+				resultCell,
+				digit
 			);
+
+			if (onlyOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
 		}
 	CheckHiddenSingle:
 #if HIDDEN_SINGLE_BLOCK_FIRST
@@ -125,10 +127,17 @@ public sealed class SingleStepSearcher : StepSearcher
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
-				if (!g(accumulator, grid, digit, region))
+				if (g(accumulator, grid, digit, region) is not { } step)
 				{
 					continue;
 				}
+
+				if (onlyOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 
@@ -137,10 +146,17 @@ public sealed class SingleStepSearcher : StepSearcher
 		{
 			for (int digit = 0; digit < 9; digit++)
 			{
-				if (!g(accumulator, grid, digit, region))
+				if (g(accumulator, grid, digit, region) is not { } step)
 				{
 					continue;
 				}
+
+				if (onlyOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 #else
@@ -151,10 +167,17 @@ public sealed class SingleStepSearcher : StepSearcher
 		{
 			for (int region = 0; region < 27; region++)
 			{
-				if (!g(accumulator, grid, digit, region))
+				if (g(accumulator, grid, digit, region) is not { } step)
 				{
 					continue;
 				}
+
+				if (onlyOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 #endif
@@ -172,10 +195,10 @@ public sealed class SingleStepSearcher : StepSearcher
 			}
 
 			int digit = TrailingZeroCount(mask);
-			List<(Cells, Cells)>? directLines = null;
+			List<(Crosshatch, ColorIdentifier)>? directLines = null;
 			if (ShowDirectLines)
 			{
-				directLines = new();
+				directLines = new(6);
 				for (int i = 0; i < 9; i++)
 				{
 					if (digit != i)
@@ -185,7 +208,7 @@ public sealed class SingleStepSearcher : StepSearcher
 						{
 							if (grid[peerCell] == i)
 							{
-								directLines.Add((new() { peerCell }, Cells.Empty));
+								directLines.Add((new(new Cells { peerCell }, Cells.Empty), (ColorIdentifier)0));
 								flag = true;
 								break;
 							}
@@ -198,24 +221,32 @@ public sealed class SingleStepSearcher : StepSearcher
 				}
 			}
 
-			accumulator.Add(
-				new NakedSingleStepInfo(
-					new Conclusion[] { new(ConclusionType.Assignment, cell, digit) },
-					new View[]
+			var step = new NakedSingleStep(
+				new Conclusion[] { new(ConclusionType.Assignment, cell, digit) }.ToImmutableArray(),
+				new PresentationData[]
+				{
+					new()
 					{
-						new()
-						{
-							Candidates = new DrawingInfo[] { new(0, cell * 9 + digit) },
-							DirectLines = directLines
-						}
-					},
-					cell,
-					digit
-				)
+						Candidates = new[] { (cell * 9 + digit, (ColorIdentifier)0) },
+						DirectLines = directLines
+					}
+				}.ToImmutableArray(),
+				cell,
+				digit
 			);
+
+			if (onlyOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
 		}
 
-		bool g(IList<StepInfo> accumulator, in SudokuGrid grid, int digit, int region)
+		return null;
+
+
+		Step? g(ICollection<Step> accumulator, in Grid grid, int digit, int region)
 		{
 			// The main idea of hidden single is to search for a digit can only appear once in a region,
 			// so we should check all possibilities in a region to found whether the region exists a digit
@@ -239,13 +270,13 @@ public sealed class SingleStepSearcher : StepSearcher
 				// The digit has been filled into the region, or the digit
 				// appears more than once, which means the digit is invalid case for hidden single.
 				// Just skip it.
-				return false;
+				return null;
 			}
 
 			// Now here the digit is a hidden single. We should gather the information
 			// (painting or text information) on the step in order to display onto the UI.
 			bool enableAndIsLastDigit = false;
-			var cellOffsets = new List<DrawingInfo>();
+			var cellOffsets = new List<(int, ColorIdentifier)>();
 			if (EnableLastDigit)
 			{
 				// Sum up the number of appearing in the grid of 'digit'.
@@ -255,7 +286,7 @@ public sealed class SingleStepSearcher : StepSearcher
 					if (grid[i] == digit)
 					{
 						digitCount++;
-						cellOffsets.Add(new(0, i));
+						cellOffsets.Add((i, (ColorIdentifier)0));
 					}
 				}
 
@@ -263,10 +294,10 @@ public sealed class SingleStepSearcher : StepSearcher
 			}
 
 			// Get direct lines.
-			List<(Cells, Cells)>? directLines = null;
+			List<(Crosshatch, ColorIdentifier)>? directLines = null;
 			if (!enableAndIsLastDigit && ShowDirectLines)
 			{
-				directLines = new();
+				directLines = new(6);
 
 				// Step 1: Get all source cells that makes the result cell
 				// can't be filled with the result digit.
@@ -295,33 +326,29 @@ public sealed class SingleStepSearcher : StepSearcher
 					var removableCells = PeerMaps[cell] & tempMap;
 					if (!removableCells.IsEmpty)
 					{
-						directLines.Add((new() { cell }, removableCells));
+						directLines.Add((new(new() { cell }, removableCells), (ColorIdentifier)0));
 						tempMap -= removableCells;
 					}
 				}
 			}
 
-			accumulator.Add(
-				new HiddenSingleStepInfo(
-					new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) },
-					new View[]
+			return new HiddenSingleStep(
+				new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) }.ToImmutableArray(),
+				new PresentationData[]
+				{
+					new()
 					{
-						new()
-						{
-							Cells = enableAndIsLastDigit ? cellOffsets : null,
-							Candidates = new DrawingInfo[] { new(0, resultCell * 9 + digit) },
-							Regions = enableAndIsLastDigit ? null : new DrawingInfo[] { new(0, region) },
-							DirectLines = directLines
-						}
-					},
-					resultCell,
-					digit,
-					region,
-					enableAndIsLastDigit
-				)
+						Cells = enableAndIsLastDigit ? cellOffsets : null,
+						Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
+						Regions = enableAndIsLastDigit ? null : new[] { (region, (ColorIdentifier)0) },
+						DirectLines = directLines
+					}
+				}.ToImmutableArray(),
+				resultCell,
+				digit,
+				region,
+				enableAndIsLastDigit
 			);
-
-			return true;
 		}
 	}
 }

@@ -1276,6 +1276,12 @@
             </summary>
             <param name="collection">The collection.</param>
         </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@)">
+            <summary>
+            Initializes an instance with the specified collection. 
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
             <summary>
             Initializes an instance with the specified collection.
@@ -1549,6 +1555,12 @@
             <summary>
             Indicates the candidate.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -5660,6 +5672,14 @@
             that <see cref="T:Sudoku.MultipleSolutionsException"/> or <see cref="T:Sudoku.NoSolutionException"/> can't cover.
             </summary>
         </member>
+        <member name="M:Sudoku.InvalidPuzzleException.#ctor(Sudoku.Data.Grid@,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.InvalidPuzzleException"/> with the specified invalid grid,
+            and the reason why throws this exception instance.
+            </summary>
+            <param name="grid">The invalid sudoku grid.</param>
+            <param name="reason">The reason why the exception throws.</param>
+        </member>
         <member name="M:Sudoku.InvalidPuzzleException.#ctor(Sudoku.Data.SudokuGrid@,System.String)">
             <summary>
             Initializes a <see cref="T:Sudoku.InvalidPuzzleException"/> with the specified invalid grid,
@@ -5681,6 +5701,13 @@
         </member>
         <member name="P:Sudoku.InvalidPuzzleException.HelpLink">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.InvalidPuzzleException.InvalidPuzzle">
+            <summary>
+            Indicates the invalid sudoku grid. This property is also stored in the property
+            <see cref="P:System.Exception.Data"/>.
+            </summary>
+            <seealso cref="P:System.Exception.Data"/>
         </member>
         <member name="P:Sudoku.InvalidPuzzleException.InvalidGrid">
             <summary>
@@ -5721,6 +5748,23 @@
             if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="false"/>.
             </param>
             <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Models.ColorIdentifier"/> with the specified R, G, B value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Models.ColorIdentifier"/> with the specified A, R, G, B value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
         </member>
         <member name="P:Sudoku.Models.ColorIdentifier.A">
             <summary>
@@ -5789,6 +5833,13 @@
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.op_Inequality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Models.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Models.ColorIdentifier">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Models.ColorIdentifier"/>.
+            The value is initialized as the ID value.
+            </summary>
+            <param name="id">The ID.</param>
         </member>
         <member name="T:Sudoku.Models.DrawingInfo">
             <summary>
