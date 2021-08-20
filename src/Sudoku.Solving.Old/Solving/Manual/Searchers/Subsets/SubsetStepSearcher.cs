@@ -5,9 +5,6 @@
 /// </summary>
 public sealed class SubsetStepSearcher : StepSearcher
 {
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(3, DisplayingLevel.B);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>

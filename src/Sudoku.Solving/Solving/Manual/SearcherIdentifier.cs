@@ -22,6 +22,11 @@ public enum SearcherIdentifier
 	Subset,
 
 	/// <summary>
+	/// Indicates the fish searcher.
+	/// </summary>
+	Fish,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern

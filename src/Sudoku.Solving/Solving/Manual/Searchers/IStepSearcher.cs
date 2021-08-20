@@ -33,7 +33,7 @@ public interface IStepSearcher
 	/// <description>Description of this case</description>
 	/// </listheader>
 	/// <item>
-	/// <term>Maybe <see langword="null"/></term>
+	/// <term><see langword="null"/></term>
 	/// <description>
 	/// The argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
 	/// or the argument <paramref name="onlyFindOne"/> is <see langword="true"/>, but nothing found in this method.

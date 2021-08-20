@@ -1500,6 +1500,11 @@
             Indicates the subset searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.Fish">
+            <summary>
+            Indicates the fish searcher.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.DeadlyPattern">
             <summary>
             Indicates the deadly pattern searcher.
@@ -1538,7 +1543,7 @@
             <description>Description of this case</description>
             </listheader>
             <item>
-            <term>Maybe <see langword="null"/></term>
+            <term><see langword="null"/></term>
             <description>
             The argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
             or the argument <paramref name="onlyFindOne"/> is <see langword="true"/>, but nothing found in this method.
@@ -1604,6 +1609,86 @@
             all possible location where may form a locked candidate.
             </para>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher">
+            <summary>
+            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>X-Wing</item>
+            <item>Swordfish</item>
+            <item>Jellyfish</item>
+            <item>Finned X-Wing</item>
+            <item>Finned Swordfish</item>
+            <item>Finned Jellyfish</item>
+            <item>Sashimi X-Wing</item>
+            <item>Sashimi Swordfish</item>
+            <item>Sashimi Jellyfish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get all possible normal fishes.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="r">The possible row table to iterate.</param>
+            <param name="c">The possible column table to iterate.</param>
+            <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
+            <param name="searchRow">
+            Indicates whether the searcher searches for fishes in the direction of rows.
+            </param>
+            <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. All cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the fish is sashimi.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>If the fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(Sudoku.Data.Grid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Get the direct fish view with the specified grid and the base sets.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="fins">
+            The cells of the fin in the current fish.
+            </param>
+            <param name="searchRow">Indicates whether the current searcher searches row.</param>
+            <returns>The view.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
             <summary>
@@ -2100,6 +2185,144 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">
+            <summary>
+            Provides with a step that is an <b>Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
+            <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.FishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
+            <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.Size">
+            <summary>
+            Indicates the size of this fish instance.
+            </summary>
+            <remarks>
+            The name of the corresponding names are:
+            <list type="table">
+            <item>
+            <term>2</term>
+            <description>X-Wing</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>Swordfish</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>Jellyfish</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.Rank">
+            <summary>
+            Indicates the rank of the fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.FishStep.GetComplexFishTechniqueCodeFromName(System.String)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Techniques.Technique"/> code instance from the specified name, where the name belongs
+            to a complex fish name, such as "Finned Franken Swordfish".
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The <see cref="T:Sudoku.Techniques.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep">
+            <summary>
+            Provides with a step that is an <b>Normal Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseSetsMask"><inheritdoc/></param>
+            <param name="CoverSetsMask"><inheritdoc/></param>
+            <param name="Fins">Indicates the fins.</param>
+            <param name="IsSashimi">
+            Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish is a normal fish without any fins.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is an <b>Normal Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseSetsMask"><inheritdoc/></param>
+            <param name="CoverSetsMask"><inheritdoc/></param>
+            <param name="Fins">Indicates the fins.</param>
+            <param name="IsSashimi">
+            Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish is a normal fish without any fins.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep">
             <summary>
