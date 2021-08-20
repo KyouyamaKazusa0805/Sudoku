@@ -1480,6 +1480,11 @@
             Indicates the single step searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.LockedCandidates">
+            <summary>
+            Indicates the locked candidates searcher.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.DeadlyPattern">
             <summary>
             Indicates the deadly pattern searcher.
@@ -1534,7 +1539,58 @@
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher">
+            <summary>
+            Provides with a <b>Locked Candidates</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pointing</item>
+            <item>Claiming</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            <para>
+            The main idea of this searching operation:
+            </para>
+            <para>
+            <code>
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            </code>
+            For example, if the cells C form a locked candidates, there'll be two cases:
+            <list type="number">
+            <item><b>Pointing (Type 1)</b>: Cells A contains the digit, but cells B doesn't.</item>
+            <item><b>Claiming (Type 2)</b>: Cells B contains the digit, but cells A doesn't.</item>
+            </list>
+            </para>
+            <para>
+            <para>Therefore, the algorithm is:</para>
+            Use bitwise-or <c>operator |</c> to gather all candidate masks from cells A, cells B and cells C,
+            and suppose the notation <c>a</c> is the mask result for cells A, <c>b</c> is the mask result for cells B,
+            and <c>c</c> is the mask result for cells C. If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c>
+            is correct, the locked candidates exists, and the result of the expression
+            <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
+            </para>
+            <para>
+            Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
+            If both or neither, the digit won't contain the locked candidates structure.
+            Because of the optimization of the performance, we use the predefined table to iterate on
+            all possible location where may form a locked candidate.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
             <summary>
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
@@ -1545,17 +1601,17 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableFullHouse">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableFullHouse">
             <summary>
             Indicates whether the solver enables the technique full house.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableLastDigit">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableLastDigit">
             <summary>
             Indicates whether the solver enables the technique last digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.ShowDirectLines">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.ShowDirectLines">
             <summary>
             Indicates whether the solver shows the direct lines (cross-hatching information).
             </summary>
@@ -1592,13 +1648,13 @@
             </para>
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.Identifier">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.Identifier">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.SearchingOptions">
@@ -1735,6 +1791,23 @@
             of this instance.
             </para>
             <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.IsSstsStep">
+            <summary>
+            <para>Indicates whether the step is an SSTS (i.e. Simple Sudoku Technique Set) step.</para>
+            <para>
+            Here we define that the basic commonly appearing techniques are SSTS techniques:
+            <list type="bullet">
+            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
+            <item>Pointing, Claiming</item>
+            <item>Naked Pair, Naked Triple, Naked Quarduple</item>
+            <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
+            <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
+            <item>Locked Pair, Locked Triple</item>
+            </list>
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Step.Name">
@@ -1986,6 +2059,67 @@
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep">
+            <summary>
+            Provides with a step that is a <b>Locked Candidates</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
+            <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Locked Candidates</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
+            <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.IsSstsStep">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
@@ -2095,6 +2229,9 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.IsSstsStep">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.ShowDifficulty">
             <inheritdoc/>

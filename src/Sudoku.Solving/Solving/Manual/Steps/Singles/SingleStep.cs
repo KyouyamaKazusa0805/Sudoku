@@ -15,6 +15,9 @@ public abstract record SingleStep(
 ) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
+	public sealed override bool IsSstsStep => true;
+
+	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>

@@ -1,6 +1,6 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
-namespace Sudoku.Solving.Manual.Searchers.Singles;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:

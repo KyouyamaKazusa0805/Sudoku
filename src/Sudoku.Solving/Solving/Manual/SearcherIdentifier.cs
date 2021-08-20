@@ -12,6 +12,11 @@ public enum SearcherIdentifier
 	Single,
 
 	/// <summary>
+	/// Indicates the locked candidates searcher.
+	/// </summary>
+	LockedCandidates,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern

@@ -27,6 +27,23 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	public virtual bool ShowDifficulty => true;
 
 	/// <summary>
+	/// <para>Indicates whether the step is an SSTS (i.e. Simple Sudoku Technique Set) step.</para>
+	/// <para>
+	/// Here we define that the basic commonly appearing techniques are SSTS techniques:
+	/// <list type="bullet">
+	/// <item>Full House, Last Digit, Hidden Single, Naked Single</item>
+	/// <item>Pointing, Claiming</item>
+	/// <item>Naked Pair, Naked Triple, Naked Quarduple</item>
+	/// <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
+	/// <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
+	/// <item>Locked Pair, Locked Triple</item>
+	/// </list>
+	/// </para>
+	/// <para>The default value is <see langword="false"/>.</para>
+	/// </summary>
+	public virtual bool IsSstsStep => false;
+
+	/// <summary>
 	/// Indicates the technique name. The default value is in the resource dictionary.
 	/// </summary>
 	public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
