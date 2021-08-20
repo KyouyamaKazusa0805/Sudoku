@@ -17,6 +17,11 @@ public enum SearcherIdentifier
 	LockedCandidates,
 
 	/// <summary>
+	/// Indicates the subset searcher.
+	/// </summary>
+	Subset,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern

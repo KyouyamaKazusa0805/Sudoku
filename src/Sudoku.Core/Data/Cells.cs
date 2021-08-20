@@ -13,7 +13,7 @@
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 [AutoFormattable]
-public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
+public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -35,6 +35,13 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	/// The value of offsets.
 	/// </summary>
 	private const int BlockOffset = 0, RowOffset = 9, ColumnOffset = 18, Limit = 27;
+
+
+	/// <summary>
+	/// Indicates the number list of all possible factorize results from 0 to 10.
+	/// The value may be used while getting subsets of the current instance to optimize the performance.
+	/// </summary>
+	private static readonly int[] Factorizes = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800 };
 
 
 	/// <summary>
@@ -60,7 +67,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	/// </summary>
 	/// <param name="cells">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
-	public unsafe Cells(int* cells, int length) : this()
+	public Cells(int* cells, int length) : this()
 	{
 		for (int i = 0; i < length; i++)
 		{
@@ -83,7 +90,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 	/// </remarks>
 	/// <seealso cref="Cells(IEnumerable{int})"/>
-	public unsafe Cells(int[] cells) : this()
+	public Cells(int[] cells) : this()
 	{
 		fixed (int* ptr = cells)
 		{
@@ -385,7 +392,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	private readonly unsafe int[] Offsets
+	private readonly int[] Offsets
 	{
 		get
 		{
@@ -468,7 +475,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(int* arr, int length)
+	public readonly void CopyTo(int* arr, int length)
 	{
 		if (IsEmpty)
 		{
@@ -506,7 +513,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe void CopyTo(ref Span<int> span)
+	public readonly void CopyTo(ref Span<int> span)
 	{
 		fixed (int* arr = span)
 		{
@@ -544,7 +551,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe bool Contains(int offset) =>
+	public readonly bool Contains(int offset) =>
 		((offset / Shifting == 0 ? _low : _high) >> offset % Shifting & 1) != 0;
 
 	/// <summary>
@@ -575,27 +582,86 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
+	/// <summary>
+	/// Gets the subsets of the current collection, via the specified size
+	/// indicating the number of elements of the each subset.
+	/// </summary>
+	/// <param name="size">The size to get.</param>
+	/// <returns>All possible subsets.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when:
+	/// <list type="bullet">
+	/// <item>The argument <paramref name="size"/> is below or equal to 0.</item>
+	/// <item>
+	/// The argument <paramref name="size"/> is greater than the value of expression '<see cref="Count"/>'.
+	/// </item>
+	/// </list>
+	/// </exception>
+	public readonly IEnumerable<int[]> SubsetOfSize(int size)
+	{
+		if (size <= 0)
+		{
+			throw new ArgumentException("The specified argument value is invalid.", nameof(size));
+		}
+
+		int n = Count;
+		if (size > n)
+		{
+			throw new ArgumentException("The argument must less than or equal to 'Count'.", nameof(size));
+		}
+
+		int* buffer = stackalloc int[size];
+		var result = new List<int[]>(
+			size <= 10 && n <= 10 ? Factorizes[n] / (Factorizes[size] * Factorizes[n - size]) : 16
+		);
+
+		f(size, n, size, Offsets);
+		return result;
+
+
+		void f(int size, int last, int index, int[] offsets)
+		{
+			for (int i = last; i >= index; i--)
+			{
+				buffer[index - 1] = i - 1;
+				if (index > 1)
+				{
+					f(size, i - 1, index - 1, offsets);
+				}
+				else
+				{
+					int[] temp = new int[size];
+					for (int j = 0; j < size; j++)
+					{
+						temp[j] = offsets[buffer[j]];
+					}
+
+					result.Add(temp);
+				}
+			}
+		}
+	}
+
 	/// <inheritdoc/>
 	/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		if (formatProvider.HasFormatted(this, format, out string? result))
+		return formatProvider.HasFormatted(this, format, out string? result) switch
 		{
-			return result;
-		}
-
-		return format switch
-		{
-			null or "N" or "n" => Count switch
+			true => result,
+			_ => format switch
 			{
-				0 => "{ }",
-				1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
-				_ => normalToString(this)
-			},
-			"B" or "b" => binaryToString(this, false),
-			"T" or "t" => tableToString(this),
-			_ => throw new FormatException("The specified format is invalid.")
+				null or "N" or "n" => Count switch
+				{
+					0 => "{ }",
+					1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+					_ => normalToString(this)
+				},
+				"B" or "b" => binaryToString(this, false),
+				"T" or "t" => tableToString(this),
+				_ => throw new FormatException("The specified format is invalid.")
+			}
 		};
 
 
@@ -634,7 +700,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 			return sb.ToString();
 		}
 
-		static unsafe string normalToString(in Cells @this)
+		static string normalToString(in Cells @this)
 		{
 			const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
 			var sbRow = new ValueStringBuilder(stackalloc char[50]);
@@ -874,7 +940,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull("str")]
-	public static unsafe Cells Parse(string? str)
+	public static Cells Parse(string? str)
 	{
 		if (str is null)
 		{
@@ -1003,7 +1069,7 @@ public partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSeri
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	public static unsafe Candidates operator *(in Cells @base, int digit)
+	public static Candidates operator *(in Cells @base, int digit)
 	{
 		var result = Candidates.Empty;
 		int[] cells = @base.Offsets;

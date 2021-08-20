@@ -21,6 +21,7 @@ global using Sudoku.Solving.Manual.Checkers;
 global using Sudoku.Solving.Manual.Searchers;
 global using Sudoku.Solving.Manual.Steps.Singles;
 global using Sudoku.Solving.Manual.Steps.Intersections;
+global using Sudoku.Solving.Manual.Steps.Subsets;
 global using Sudoku.Solving.Manual.Text;
 global using Sudoku.Techniques;
 global using Sudoku.Versioning;

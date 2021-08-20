@@ -35,7 +35,7 @@ public sealed record LockedCandidatesStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Common;
+	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
 	private string DigitStr

@@ -7,19 +7,29 @@
 public enum Rarity : byte
 {
 	/// <summary>
-	/// Indicates the technique appears very commonly, such as <b>Hidden Single</b>.
+	/// Indicates the technique always appears, such as <b>Hidden Single</b>.
 	/// </summary>
-	VeryCommon,
+	Always,
 
 	/// <summary>
-	/// Indicates the rarity is common.
+	/// Indicates the rarity is often appears.
 	/// </summary>
-	Common,
+	Often,
 
 	/// <summary>
-	/// Indicates the rarity is seldom.
+	/// Indicates the rarity is sometimes appears.
+	/// </summary>
+	Sometimes,
+
+	/// <summary>
+	/// Indicates the rarity is seldom appears.
 	/// </summary>
 	Seldom,
+
+	/// <summary>
+	/// Indicates the rarity is hardly ever appears.
+	/// </summary>
+	HardlyEver,
 
 	/// <summary>
 	/// Indicates the technique only appears in the special puzzles, which are designed on purpose.

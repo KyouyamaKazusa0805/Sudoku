@@ -24,7 +24,7 @@ public sealed record HiddenSingleStep(
 	public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => EnableAndIsLastDigit || Region < 9 ? Rarity.VeryCommon : Rarity.Common;
+	public override Rarity Rarity => EnableAndIsLastDigit || Region < 9 ? Rarity.Always : Rarity.Often;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => EnableAndIsLastDigit

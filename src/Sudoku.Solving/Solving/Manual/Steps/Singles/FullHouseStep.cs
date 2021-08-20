@@ -21,7 +21,7 @@ public sealed record FullHouseStep(
 	public override Technique TechniqueCode => Technique.FullHouse;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.VeryCommon;
+	public override Rarity Rarity => Rarity.Always;
 
 	[FormatItem]
 	private string CellStr

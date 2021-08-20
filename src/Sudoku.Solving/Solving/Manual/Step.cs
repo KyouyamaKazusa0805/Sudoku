@@ -44,6 +44,83 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	public virtual bool IsSstsStep => false;
 
 	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+	/// (ALS in abbreviation).
+	/// </summary>
+	public bool IsAlmostLockedSets => HasTag(TechniqueTags.Als);
+
+	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+	/// <list type="bullet">
+	/// <item>
+	/// Wings
+	/// <list type="bullet">
+	/// <item><see cref="#">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+	/// <item>
+	/// <see cref="#">Irregular wings</see>
+	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+	/// </item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Short chains
+	/// <list type="bullet">
+	/// <item>
+	/// <see cref="#">Two strong links</see>
+	/// (Skyscraper, Two-string kite, Turbot fish)
+	/// </item>
+	/// <item>
+	/// ALS chaining-like techniques
+	/// (<see cref="#">ALS-XZ</see>,
+	/// <see cref="#">ALS-XY-Wing</see>,
+	/// <see cref="#">ALS-W-Wing</see>)
+	/// </item>
+	/// <item><see cref="#">Empty rectangle</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Long chains
+	/// <list type="bullet">
+	/// <item><see cref="#">Forcing chains</see></item>
+	/// <item><see cref="#">Dynamic forcing chains</see></item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </summary>
+	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+
+	/// <summary>
+	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
+	/// The deadly pattern techniques are:
+	/// <list type="bullet">
+	/// <item>
+	/// Bi-value patterns
+	/// <list type="bullet">
+	/// <item><see cref="#">Unique rectangle</see> (i.e. Uniqueness test)</item>
+	/// <item><see cref="#">Unique loop</see></item>
+	/// <item><see cref="#">Bi-value universal grave</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Multi-value patterns
+	/// <list type="bullet">
+	/// <item><see cref="#">Extended rectangle</see></item>
+	/// <item><see cref="#">Unique square</see></item>
+	/// <item><see cref="#">Borescoper's deadly pattern</see></item>
+	/// <item><see cref="#">Qiu's deadly pattern</see></item>
+	/// </list>
+	/// </item>
+	/// <item>
+	/// Other deadly patterns
+	/// <list type="bullet">
+	/// <item><see cref="#">Reverse bi-value universal grave</see></item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </summary>
+	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
+
+	/// <summary>
 	/// Indicates the technique name. The default value is in the resource dictionary.
 	/// </summary>
 	public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
@@ -145,83 +222,6 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	public abstract Rarity Rarity { get; }
 
 	/// <summary>
-	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets
-	/// (ALS in abbreviation).
-	/// </summary>
-	public bool IsAlmostLockedSets => HasTag(TechniqueTags.Als);
-
-	/// <summary>
-	/// Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
-	/// <list type="bullet">
-	/// <item>
-	/// Wings
-	/// <list type="bullet">
-	/// <item><see cref="#">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
-	/// <item>
-	/// <see cref="#">Irregular wings</see>
-	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
-	/// </item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// Short chains
-	/// <list type="bullet">
-	/// <item>
-	/// <see cref="#">Two strong links</see>
-	/// (Skyscraper, Two-string kite, Turbot fish)
-	/// </item>
-	/// <item>
-	/// ALS chaining-like techniques
-	/// (<see cref="#">ALS-XZ</see>,
-	/// <see cref="#">ALS-XY-Wing</see>,
-	/// <see cref="#">ALS-W-Wing</see>)
-	/// </item>
-	/// <item><see cref="#">Empty rectangle</see></item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// Long chains
-	/// <list type="bullet">
-	/// <item><see cref="#">Forcing chains</see></item>
-	/// <item><see cref="#">Dynamic forcing chains</see></item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
-
-	/// <summary>
-	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
-	/// The deadly pattern techniques are:
-	/// <list type="bullet">
-	/// <item>
-	/// Bi-value patterns
-	/// <list type="bullet">
-	/// <item><see cref="#">Unique rectangle</see> (i.e. Uniqueness test)</item>
-	/// <item><see cref="#">Unique loop</see></item>
-	/// <item><see cref="#">Bi-value universal grave</see></item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// Multi-value patterns
-	/// <list type="bullet">
-	/// <item><see cref="#">Extended rectangle</see></item>
-	/// <item><see cref="#">Unique square</see></item>
-	/// <item><see cref="#">Borescoper's deadly pattern</see></item>
-	/// <item><see cref="#">Qiu's deadly pattern</see></item>
-	/// </list>
-	/// </item>
-	/// <item>
-	/// Other deadly patterns
-	/// <list type="bullet">
-	/// <item><see cref="#">Reverse bi-value universal grave</see></item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
-
-	/// <summary>
 	/// Indicates the string representation of the conclusions.
 	/// </summary>
 	/// <remarks>
@@ -236,7 +236,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 		get => new ConclusionCollection(Conclusions).ToString();
 	}
 
-
+	
 	/// <summary>
 	/// Put this instance into the specified grid.
 	/// </summary>

@@ -18,7 +18,7 @@ public sealed record NakedSingleStep(
 	public override decimal Difficulty => 2.3M;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Rarity.Common;
+	public override Rarity Rarity => Rarity.Often;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.NakedSingle;
