@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Solving.Manual.Steps.Singles;
+
+namespace Sudoku.Solving.Manual;
 
 partial record ManualSolverResult
 {
@@ -162,8 +164,8 @@ partial record ManualSolverResult
 					sb.AppendLine((string)TextResources.Current.AnalysisResultTechniqueUsing);
 				}
 
-				var solvingStepsGrouped = from step in steps orderby step.Difficulty group step by step.Name;
-				foreach (var solvingStepsGroup in solvingStepsGrouped)
+				foreach (var solvingStepsGroup in
+					from step in steps orderby step.Difficulty group step by step.Name)
 				{
 					if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 					{
@@ -216,10 +218,10 @@ partial record ManualSolverResult
 			sb.AppendLine($"{diamond:0.0}");
 
 			// Print the solution (if not null).
-			if (solution is { } solutionNotNull)
+			if (!solution.IsUndefined)
 			{
 				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendLine($"{solutionNotNull:!}");
+				sb.AppendLine($"{solution:!}");
 			}
 
 			// Print the elapsed time.

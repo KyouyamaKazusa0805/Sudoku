@@ -1,5 +1,7 @@
 ﻿#define HIDDEN_SINGLE_BLOCK_FIRST
 
+using Sudoku.Solving.Manual.Steps.Singles;
+
 namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>

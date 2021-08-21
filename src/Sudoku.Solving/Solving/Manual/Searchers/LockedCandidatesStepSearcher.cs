@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿using Sudoku.Solving.Manual.Steps.Intersections;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Locked Candidates</b> step searcher.
