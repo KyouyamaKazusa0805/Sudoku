@@ -5859,7 +5859,7 @@
         </member>
         <member name="M:Sudoku.Models.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Models.ColorIdentifier">
             <summary>
-            Implicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Models.ColorIdentifier"/>.
+            Explicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Models.ColorIdentifier"/>.
             The value is initialized as the ID value.
             </summary>
             <param name="id">The ID.</param>

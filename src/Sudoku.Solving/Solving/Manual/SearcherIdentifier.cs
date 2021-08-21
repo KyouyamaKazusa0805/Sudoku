@@ -27,6 +27,11 @@ public enum SearcherIdentifier
 	Fish,
 
 	/// <summary>
+	/// Indiactes the elementary chain searcher.
+	/// </summary>
+	ElementaryChaining,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern

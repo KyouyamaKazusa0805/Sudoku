@@ -1,27 +1,27 @@
-﻿namespace Sudoku.Solving.Manual.Sdps;
+﻿using Sudoku.Solving.Manual.Steps.SingleDigitPatterns;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Encapsulates a <b>two strong links</b> technique searcher.
+/// Provides with a <b>Two-strong Links</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>Skyscraper</item>
+/// <item>Two-string Kite</item>
+/// <item>Turbot Fish</item>
+/// </list>
 /// </summary>
-public sealed class TwoStrongLinksStepSearcher : SdpStepSearcher
+public sealed class TwoStrongLinksStepSearcher : IStepSearcher
 {
-	/// <summary>
-	/// Indicates the searcher properties.
-	/// </summary>
-	/// <remarks>
-	/// Please note that all technique searches should contain
-	/// this static property in order to display on settings window. If the searcher doesn't contain,
-	/// when we open the settings window, it'll throw an exception to report about this.
-	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
-	public static TechniqueProperties Properties { get; } = new(5, nameof(Technique.TurbotFish))
-	{
-		DisplayLevel = 2
-	};
+	/// <inheritdoc/>
+	public SearcherIdentifier Identifier => SearcherIdentifier.ElementaryChaining;
+
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new(5, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		for (int digit = 0; digit < 9; digit++)
 		{
@@ -84,46 +84,49 @@ public sealed class TwoStrongLinksStepSearcher : SdpStepSearcher
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					var gridMap = PeerMaps[head] & PeerMaps[tail] & CandMaps[digit];
-					if (gridMap.IsEmpty)
+					if ((PeerMaps[head] & PeerMaps[tail] & CandMaps[digit]) is not { IsEmpty: false } gridMap)
 					{
 						continue;
 					}
 
-					var conclusions = new List<Conclusion>();
+					var conclusions = new Conclusion[gridMap.Count];
+					int currentConcusionIndex = 0;
 					foreach (int cell in gridMap)
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
+						conclusions[currentConcusionIndex++] = new(ConclusionType.Elimination, cell, digit);
 					}
 
-					accumulator.Add(
-						new TwoStrongLinksStepInfo(
-							conclusions,
-							new View[]
+					var step = new TwoStrongLinksStep(
+						conclusions.ToImmutableArray(),
+						new PresentationData[]
+						{
+							new()
 							{
-								new()
+								Candidates = new[]
 								{
-									Candidates = new DrawingInfo[]
-									{
-										new(0, cells1[c1Index] * 9 + digit),
-										new(0, cells2[c2Index] * 9 + digit),
-										new(0, head * 9 + digit),
-										new(0, tail * 9 + digit)
-									},
-									Regions = new DrawingInfo[] { new(1, sameRegion) }
-								}
-							},
-							digit,
-							r1,
-							r2
-						)
+									(cells1[c1Index] * 9 + digit, (ColorIdentifier)0),
+									(cells2[c2Index] * 9 + digit, (ColorIdentifier)0),
+									(head * 9 + digit, (ColorIdentifier)0),
+									(tail * 9 + digit, (ColorIdentifier)0)
+								},
+								Regions = new[] { (sameRegion, (ColorIdentifier)1) }
+							}
+						}.ToImmutableArray(),
+						digit,
+						r1,
+						r2
 					);
+
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
 				}
 			}
 		}
+
+		return null;
 	}
 }

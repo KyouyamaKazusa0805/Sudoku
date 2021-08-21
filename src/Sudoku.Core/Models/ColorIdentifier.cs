@@ -150,7 +150,7 @@ public readonly record struct ColorIdentifier(
 
 
 	/// <summary>
-	/// Implicit cast from <see cref="int"/> to <see cref="ColorIdentifier"/>.
+	/// Explicit cast from <see cref="int"/> to <see cref="ColorIdentifier"/>.
 	/// The value is initialized as the ID value.
 	/// </summary>
 	/// <param name="id">The ID.</param>

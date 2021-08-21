@@ -1505,6 +1505,11 @@
             Indicates the fish searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.ElementaryChaining">
+            <summary>
+            Indiactes the elementary chain searcher.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.DeadlyPattern">
             <summary>
             Indicates the deadly pattern searcher.
@@ -1561,7 +1566,8 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher">
             <summary>
-            Provides with a <b>Locked Candidates</b> step searcher. The step searcher will include the following techniques:
+            Provides with a <b>Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
             <list type="bullet">
             <item>Pointing</item>
             <item>Claiming</item>
@@ -1782,6 +1788,26 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher">
+            <summary>
+            Provides with a <b>Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Skyscraper</item>
+            <item>Two-string Kite</item>
+            <item>Turbot Fish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.SearchingOptions">
@@ -2383,6 +2409,72 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.IsSstsStep">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseRegion">Indicates the base region used.</param>
+            <param name="TargetRegion">Indicates the target region used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseRegion">Indicates the base region used.</param>
+            <param name="TargetRegion">Indicates the target region used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep">
