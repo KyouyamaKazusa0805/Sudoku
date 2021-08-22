@@ -311,7 +311,7 @@ public sealed partial class UrStepSearcher : UniquenessStepSearcher
 	private static bool IsSameRegionCell(int currentCell, int anotherCell, out int region)
 	{
 		int coveredRegions = new Cells { anotherCell, currentCell }.CoveredRegions;
-		if (coveredRegions != 0)
+		if (coveredRegions == 0)
 		{
 			region = 0;
 			return false;
