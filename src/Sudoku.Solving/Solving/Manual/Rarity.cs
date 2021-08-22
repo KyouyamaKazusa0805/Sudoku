@@ -32,7 +32,7 @@ public enum Rarity : byte
 	HardlyEver,
 
 	/// <summary>
-	/// Indicates the technique only appears in the special puzzles, which are designed on purpose.
+	/// Indicates the technique only appears in the special puzzles designed on purpose.
 	/// </summary>
 	OnlyForSpecialPuzzles
 }

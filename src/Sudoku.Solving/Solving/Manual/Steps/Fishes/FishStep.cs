@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.Fishes;
 
 /// <summary>
-/// Provides with a step that is an <b>Fish</b> technique.
+/// Provides with a step that is a <b>Fish</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

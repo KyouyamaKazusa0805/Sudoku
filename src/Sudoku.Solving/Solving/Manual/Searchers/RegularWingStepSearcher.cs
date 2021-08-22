@@ -1,32 +1,49 @@
-﻿namespace Sudoku.Solving.Manual.Wings.Regular;
+﻿using Sudoku.Solving.Manual.Steps.Wings.Regular;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Encapsulates a <b>regular wing</b> technique solver.
+/// Provides with a <b>Regular Wing</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>XY-Wing</item>
+/// <item>XYZ-Wing</item>
+/// <item>WXYZ-Wing</item>
+/// <item>VWXYZ-Wing</item>
+/// <item>UVWXYZ-Wing</item>
+/// <item>TUVWXYZ-Wing</item>
+/// <item>STUVWXYZ-Wing</item>
+/// <item>RSTUVWXYZ-Wing</item>
+/// </list>
 /// </summary>
-public sealed class RegularWingStepSearcher : WingStepSearcher
+public sealed class RegularWingStepSearcher : IStepSearcher
 {
+	/// <summary>
+	/// The inner field of the property <see cref="MaxSize"/>.
+	/// </summary>
+	/// <seealso cref="MaxSize"/>
+	private int _maxSize;
+
+
 	/// <summary>
 	/// Indicates the maximum size the searcher will search for. The maximum possible value is 9.
 	/// </summary>
-	public int MaxSize { get; set; }
-
-	/// <summary>
-	/// Indicates the searcher properties.
-	/// </summary>
-	/// <remarks>
-	/// Please note that all technique searches should contain
-	/// this static property in order to display on settings window. If the searcher doesn't contain,
-	/// when we open the settings window, it'll throw an exception to report about this.
-	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
-	public static TechniqueProperties Properties { get; } = new(6, nameof(Technique.XyWing))
+	/// <exception cref="ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
+	public int MaxSize
 	{
-		DisplayLevel = 2
-	};
+		get => _maxSize;
+		set => _maxSize = value > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
+	}
+
+	/// <inheritdoc/>
+	public SearcherIdentifier Identifier => SearcherIdentifier.RegularWing;
+
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
@@ -79,7 +96,7 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 						continue;
 					}
 
-					short union = mask, inter = (short)(SudokuGrid.MaxCandidatesMask & mask);
+					short union = mask, inter = (short)(Grid.MaxCandidatesMask & mask);
 					foreach (int cell in cells)
 					{
 						short m = grid.GetCandidates(cell);
@@ -104,17 +121,14 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 
 					// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 					int zDigit = TrailingZeroCount(maskToCheck);
-					var cellsMap = new Cells(cells);
-					if (
-						(new Cells(cellsMap) { pivot } & CandMaps[zDigit]).Count
-						!= (isIncomplete ? size - 1 : size)
-					)
+					var petals = new Cells(cells);
+					if ((new Cells(petals) { pivot } & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
 					{
 						continue;
 					}
 
 					// Check elimination map.
-					var elimMap = cellsMap.PeerIntersection;
+					var elimMap = petals.PeerIntersection;
 					if (!isIncomplete)
 					{
 						elimMap &= PeerMaps[pivot];
@@ -133,31 +147,38 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 					}
 
 					// Gather highlight candidates.
-					var candidateOffsets = new List<DrawingInfo>();
+					var candidateOffsets = new List<(int, ColorIdentifier)>(6);
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(digit == zDigit ? 1 : 0, cell * 9 + digit));
+							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == zDigit ? 1 : 0)));
 						}
 					}
 					foreach (int digit in grid.GetCandidates(pivot))
 					{
-						candidateOffsets.Add(new(digit == zDigit ? 1 : 0, pivot * 9 + digit));
+						candidateOffsets.Add((pivot * 9 + digit, (ColorIdentifier)(digit == zDigit ? 1 : 0)));
 					}
 
-					accumulator.Add(
-						new RegularWingStepInfo(
-							conclusions,
-							new View[] { new() { Candidates = candidateOffsets } },
-							pivot,
-							PopCount((uint)mask),
-							union,
-							cells
-						)
+					var step = new RegularWingStep(
+						conclusions.ToImmutableArray(),
+						new PresentationData[] { new() { Candidates = candidateOffsets } }.ToImmutableArray(),
+						pivot,
+						PopCount((uint)mask),
+						union,
+						petals
 					);
+
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
 				}
 			}
 		}
+
+		return null;
 	}
 }

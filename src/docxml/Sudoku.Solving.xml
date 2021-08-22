@@ -1476,7 +1476,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Rarity.OnlyForSpecialPuzzles">
             <summary>
-            Indicates the technique only appears in the special puzzles, which are designed on purpose.
+            Indicates the technique only appears in the special puzzles designed on purpose.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.SearcherIdentifier">
@@ -1508,6 +1508,11 @@
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.ElementaryChaining">
             <summary>
             Indiactes the elementary chain searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.RegularWing">
+            <summary>
+            Indicates the regular wing searcher.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.DeadlyPattern">
@@ -1542,24 +1547,22 @@
             </param>
             <returns>
             Returns the first found step. The nullability of the return value are as belows:
-            <list type="table">
-            <listheader>
-            <term>Nullability</term>
-            <description>Description of this case</description>
-            </listheader>
+            <list type="bullet">
             <item>
-            <term><see langword="null"/></term>
-            <description>
-            The argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the argument <paramref name="onlyFindOne"/> is <see langword="true"/>, but nothing found in this method.
-            </description>
+            <see langword="null"/>:
+            <list type="bullet">
+            <item><c><paramref name="onlyFindOne"/> == <see langword="false"/></c>.</item>
+            <item><c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, but <b>nothing</b> found.</item>
+            </list>
             </item>
             <item>
-            <term>Not <see langword="null"/></term>
-            <description>
-            The argument <paramref name="onlyFindOne"/> is <see langword="true"/>, and found at least one step.
+            Not <see langword="null"/>:
+            <list type="bullet">
+            <item>
+            <c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, and found <b>at least one step</b>.
             In this case the return value is the first found step.
-            </description>
+            </item>
+            </list>
             </item>
             </list>
             </returns>
@@ -1695,6 +1698,43 @@
             </param>
             <param name="searchRow">Indicates whether the current searcher searches row.</param>
             <returns>The view.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher">
+            <summary>
+            Provides with a <b>Regular Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>XY-Wing</item>
+            <item>XYZ-Wing</item>
+            <item>WXYZ-Wing</item>
+            <item>VWXYZ-Wing</item>
+            <item>UVWXYZ-Wing</item>
+            <item>TUVWXYZ-Wing</item>
+            <item>STUVWXYZ-Wing</item>
+            <item>RSTUVWXYZ-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher._maxSize">
+            <summary>
+            The inner field of the property <see cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
+            <summary>
+            Indicates the maximum size the searcher will search for. The maximum possible value is 9.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
             <summary>
@@ -2214,7 +2254,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">
             <summary>
-            Provides with a step that is an <b>Fish</b> technique.
+            Provides with a step that is a <b>Fish</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -2224,7 +2264,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Fishes.FishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is an <b>Fish</b> technique.
+            Provides with a step that is a <b>Fish</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -2735,6 +2775,130 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep">
+            <summary>
+            Provides with a step that is a <b>Regular Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pivot">Indicates the cell that blossomed its petals.</param>
+            <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
+            <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Regular Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pivot">Indicates the cell that blossomed its petals.</param>
+            <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
+            <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.IsIncomplete">
+            <summary>
+            Indicates whether the structure is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Size">
+            <summary>
+            Indicates the size of this regular wing.
+            </summary>
+            <remarks>
+            All names are:
+            <list type="table">
+            <item>
+            <term>2</term>
+            <description>XY-Wing</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>XYZ-Wing</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>WXYZ-Wing</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>VWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>6</term>
+            <description>UVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>7</term>
+            <description>TUVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>8</term>
+            <description>STUVWXYZ-Wing</description>
+            </item>
+            <item>
+            <term>9</term>
+            <description>RSTUVWXYZ-Wing</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.InternalName">
+            <summary>
+            Indicates the internal name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Wings.WingStep">
+            <summary>
+            Provides with a step that is a <b>Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a step that is a <b>Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.IsSstsStep">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.Stableness">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">

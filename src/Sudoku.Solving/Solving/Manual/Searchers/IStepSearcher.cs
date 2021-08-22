@@ -27,24 +27,22 @@ public interface IStepSearcher
 	/// </param>
 	/// <returns>
 	/// Returns the first found step. The nullability of the return value are as belows:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Nullability</term>
-	/// <description>Description of this case</description>
-	/// </listheader>
+	/// <list type="bullet">
 	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>
-	/// The argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
-	/// or the argument <paramref name="onlyFindOne"/> is <see langword="true"/>, but nothing found in this method.
-	/// </description>
+	/// <see langword="null"/>:
+	/// <list type="bullet">
+	/// <item><c><paramref name="onlyFindOne"/> == <see langword="false"/></c>.</item>
+	/// <item><c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, but <b>nothing</b> found.</item>
+	/// </list>
 	/// </item>
 	/// <item>
-	/// <term>Not <see langword="null"/></term>
-	/// <description>
-	/// The argument <paramref name="onlyFindOne"/> is <see langword="true"/>, and found at least one step.
+	/// Not <see langword="null"/>:
+	/// <list type="bullet">
+	/// <item>
+	/// <c><paramref name="onlyFindOne"/> == <see langword="true"/></c>, and found <b>at least one step</b>.
 	/// In this case the return value is the first found step.
-	/// </description>
+	/// </item>
+	/// </list>
 	/// </item>
 	/// </list>
 	/// </returns>

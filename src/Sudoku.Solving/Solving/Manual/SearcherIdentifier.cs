@@ -32,6 +32,11 @@ public enum SearcherIdentifier
 	ElementaryChaining,
 
 	/// <summary>
+	/// Indicates the regular wing searcher.
+	/// </summary>
+	RegularWing,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern

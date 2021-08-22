@@ -468,8 +468,10 @@ dotnet_diagnostic.CS0618.severity = silent
 # He said, "I didn't like her, Mother, because she said that three and three were six and then
 # she said that two and four were six too....."
 
+[src/Sudoku.Solving/Solving/Manual/Steps/**.cs]
 
-# Following settings is only enabled on 'Sudoku.UI' project because the compiler suggestion is too noisy :(
+# IDE0051: Remove unused private members
+dotnet_diagnostic.IDE0051.severity = none
 
 [src/Sudoku.UI/Sudoku.UI/**.{cs,xaml}]
 
