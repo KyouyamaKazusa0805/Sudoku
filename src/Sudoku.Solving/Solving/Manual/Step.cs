@@ -27,9 +27,9 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	public virtual bool ShowDifficulty => true;
 
 	/// <summary>
-	/// <para>Indicates whether the step is an SSTS (i.e. Simple Sudoku Technique Set) step.</para>
+	/// <para>Indicates whether the step is an EST (i.e. Elementary Sudoku Technique) step.</para>
 	/// <para>
-	/// Here we define that the basic commonly appearing techniques are SSTS techniques:
+	/// Here we define that the techniques often appearing and commonly to be used as below are ESTs:
 	/// <list type="bullet">
 	/// <item>Full House, Last Digit, Hidden Single, Naked Single</item>
 	/// <item>Pointing, Claiming</item>
@@ -39,9 +39,9 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// <item>Locked Pair, Locked Triple</item>
 	/// </list>
 	/// </para>
-	/// <para>The default value is <see langword="false"/>.</para>
+	/// <para>The default value of this property is <see langword="false"/>.</para>
 	/// </summary>
-	public virtual bool IsSstsStep => false;
+	public virtual bool IsElementary => false;
 
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets

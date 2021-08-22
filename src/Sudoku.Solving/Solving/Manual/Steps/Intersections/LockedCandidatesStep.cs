@@ -17,7 +17,7 @@ public sealed record LockedCandidatesStep(
 ) : IntersectionStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override bool IsSstsStep => true;
+	public override bool IsElementary => true;
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;

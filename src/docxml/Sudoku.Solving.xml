@@ -1986,11 +1986,11 @@
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Step.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Step.IsElementary">
             <summary>
-            <para>Indicates whether the step is an SSTS (i.e. Simple Sudoku Technique Set) step.</para>
+            <para>Indicates whether the step is an EST (i.e. Elementary Sudoku Technique) step.</para>
             <para>
-            Here we define that the basic commonly appearing techniques are SSTS techniques:
+            Here we define that the techniques often appearing and commonly to be used as below are ESTs:
             <list type="bullet">
             <item>Full House, Last Digit, Hidden Single, Naked Single</item>
             <item>Pointing, Claiming</item>
@@ -2000,7 +2000,7 @@
             <item>Locked Pair, Locked Triple</item>
             </list>
             </para>
-            <para>The default value is <see langword="false"/>.</para>
+            <para>The default value of this property is <see langword="false"/>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Step.IsAlmostLockedSets">
@@ -2272,7 +2272,7 @@
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.ShowDifficulty">
@@ -2448,7 +2448,7 @@
             <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
             <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.Difficulty">
@@ -2485,7 +2485,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.Name">
@@ -2648,7 +2648,7 @@
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.ShowDifficulty">
@@ -2775,7 +2775,7 @@
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.ShowDifficulty">
@@ -2913,7 +2913,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.IsSstsStep">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.Name">

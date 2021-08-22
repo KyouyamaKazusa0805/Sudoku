@@ -17,7 +17,7 @@ public abstract record FishStep(
 ) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public sealed override bool IsSstsStep => base.IsSstsStep;
+	public sealed override bool IsElementary => base.IsElementary;
 
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

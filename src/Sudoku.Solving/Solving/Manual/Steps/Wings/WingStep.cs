@@ -14,7 +14,7 @@ public abstract record WingStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
-	public sealed override bool IsSstsStep => base.IsSstsStep;
+	public sealed override bool IsElementary => base.IsElementary;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

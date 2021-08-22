@@ -17,7 +17,7 @@ public abstract record SubsetStep(
 ) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public sealed override bool IsSstsStep => true;
+	public sealed override bool IsElementary => true;
 
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
