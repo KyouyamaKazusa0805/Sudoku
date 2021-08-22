@@ -275,7 +275,7 @@ public sealed partial class UrStepSearcher : UniquenessStepSearcher
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private unsafe bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
+	private bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
 		!AllowIncompleteUniqueRectangles && list.Count(static pair => pair.Id == 0) != 8;
 
 	/// <summary>
