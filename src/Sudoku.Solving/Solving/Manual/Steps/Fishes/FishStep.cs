@@ -16,6 +16,18 @@ public abstract record FishStep(
 	int CoverSetsMask
 ) : Step(Conclusions, Views)
 {
+	/// <inheritdoc/>
+	public sealed override bool IsSstsStep => base.IsSstsStep;
+
+	/// <inheritdoc/>
+	public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+	/// <inheritdoc/>
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
 	/// <summary>
 	/// Indicates the size of this fish instance.
 	/// </summary>
@@ -42,9 +54,6 @@ public abstract record FishStep(
 	/// Indicates the rank of the fish.
 	/// </summary>
 	public int Rank => PopCount((uint)CoverSetsMask) - PopCount((uint)BaseSetsMask);
-
-	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.Fishes | TechniqueTags.RankTheory;

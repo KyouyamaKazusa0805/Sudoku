@@ -19,13 +19,19 @@ public abstract record SubsetStep(
 	/// <inheritdoc/>
 	public sealed override bool IsSstsStep => true;
 
+	/// <inheritdoc/>
+	public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
 	/// <summary>
 	/// Indicates the size of the subset.
 	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public sealed override bool ShowDifficulty => base.ShowDifficulty;
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;

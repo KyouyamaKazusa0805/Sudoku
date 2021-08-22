@@ -21,6 +21,9 @@ public abstract record SingleStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
 	public sealed override Stableness Stableness => base.Stableness;
 
 	/// <inheritdoc/>

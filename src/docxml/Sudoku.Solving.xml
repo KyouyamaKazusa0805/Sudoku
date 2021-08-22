@@ -2224,7 +2224,7 @@
             </summary>
             <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
             <returns>The result string.</returns>
-            <exception cref="T:System.ArgumentException">
+            <exception cref="T:System.InvalidOperationException">
             Throws when the format is invalid. The possible cases are:
             <list type="bullet">
             <item>The format is <see langword="null"/>.</item>
@@ -2272,6 +2272,18 @@
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.IsSstsStep">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.Size">
             <summary>
             Indicates the size of this fish instance.
@@ -2298,9 +2310,6 @@
             <summary>
             Indicates the rank of the fish.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.ShowDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Fishes.FishStep.TechniqueTags">
             <inheritdoc/>
@@ -2407,7 +2416,16 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.ShowDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Format">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.TechniqueTags">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep">
@@ -2439,9 +2457,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.TechniqueGroup">
             <inheritdoc/>
         </member>
@@ -2471,6 +2486,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.IsSstsStep">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.TechniqueTags">
@@ -2633,6 +2654,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.ShowDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.Name">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Singles.SingleStep.Stableness">
             <inheritdoc/>
         </member>
@@ -2754,12 +2778,18 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.IsSstsStep">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.Size">
             <summary>
             Indicates the size of the subset.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.ShowDifficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.DifficultyLevel">

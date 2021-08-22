@@ -237,7 +237,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 		get => new ConclusionCollection(Conclusions).ToString();
 	}
 
-	
+
 	/// <summary>
 	/// Put this instance into the specified grid.
 	/// </summary>
@@ -295,7 +295,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// </summary>
 	/// <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
 	/// <returns>The result string.</returns>
-	/// <exception cref="ArgumentException">
+	/// <exception cref="InvalidOperationException">
 	/// Throws when the format is invalid. The possible cases are:
 	/// <list type="bullet">
 	/// <item>The format is <see langword="null"/>.</item>
@@ -311,7 +311,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 		// Check whether the format property is not null.
 		if (Format is not { } format)
 		{
-			throw new ArgumentException("The format can't be null.");
+			throw new InvalidOperationException("The format can't be null.");
 		}
 
 		// Get the interpolation values, and extract them into a new collection to store the format values.
@@ -325,7 +325,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 			{
 				case (Left: '{', Right: '}'):
 				{
-					throw new ArgumentException("The interpolation part cannot contain empty value.");
+					throw new InvalidOperationException("The interpolation part cannot contain empty value.");
 				}
 				case (Left: '{', Right: '{'):
 				{
@@ -354,7 +354,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 					}
 					if (pos == -1)
 					{
-						throw new ArgumentException("Missing the closed brace character '}'.");
+						throw new InvalidOperationException("Missing the closed brace character '}'.");
 					}
 
 					sb.Append('{');
@@ -399,7 +399,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 		// Check the length validity.
 		if (formatCount != matchedFormats.Length)
 		{
-			throw new ArgumentException("The number of interpolations failed to match.");
+			throw new InvalidOperationException("The number of interpolations failed to match.");
 		}
 
 		// Format and return the value.

@@ -19,6 +19,12 @@ public abstract record SingleDigitPatternStep(
 	public sealed override bool IsSstsStep => base.IsSstsStep;
 
 	/// <inheritdoc/>
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
 
 	/// <inheritdoc/>

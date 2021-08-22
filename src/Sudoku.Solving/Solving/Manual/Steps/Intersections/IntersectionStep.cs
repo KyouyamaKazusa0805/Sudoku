@@ -14,5 +14,14 @@ public abstract record IntersectionStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
 	public sealed override Stableness Stableness => base.Stableness;
+
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => TechniqueTags.Intersections;
 }
