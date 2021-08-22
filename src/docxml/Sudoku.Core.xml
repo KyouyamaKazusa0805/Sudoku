@@ -1651,11 +1651,28 @@
             these two candidates is in the same region where all cells has only
             two position can fill this candidate.
             </remarks>
+            <param name="From">Indicates the cell that is the start cell.</param>
+            <param name="To">Indicates the cell that is end cell.</param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="Map">Indicates the pair of maps used.</param>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+            <summary>
+            Encapsulates a conjugate pair.
+            </summary>
+            <remarks>
+            <b>Conjugate pair</b> is a candidate pair (two candidates),
+            these two candidates is in the same region where all cells has only
+            two position can fill this candidate.
+            </remarks>
+            <param name="From">Indicates the cell that is the start cell.</param>
+            <param name="To">Indicates the cell that is end cell.</param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="Map">Indicates the pair of maps used.</param>
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
-            Initializes an instance with from and to cell offset
-            and a digit.
+            Initializes a <see cref="T:Sudoku.Data.ConjugatePair"/> instance with from and to cell offset and a digit.
             </summary>
             <param name="from">The from cell.</param>
             <param name="to">The to cell.</param>
@@ -1663,26 +1680,11 @@
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.#ctor(Sudoku.Data.Cells@,System.Int32)">
             <summary>
-            Initializes an instance with the map and the digit. The map should contains two cells,
-            the first one is the start one, and the second one is the end one.
+            Initializes a <see cref="T:Sudoku.Data.ConjugatePair"/> instance with the map and the digit.
+            The map should contains two cells, the first one is the start one, and the second one is the end one.
             </summary>
             <param name="map">The map.</param>
             <param name="digit">The digit.</param>
-        </member>
-        <member name="P:Sudoku.Data.ConjugatePair.From">
-            <summary>
-            Indicates the 'from' cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ConjugatePair.To">
-            <summary>
-            Indicates the 'to' cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ConjugatePair.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
         </member>
         <member name="P:Sudoku.Data.ConjugatePair.Line">
             <summary>
@@ -1693,20 +1695,7 @@
             <summary>
             Indicates the region that two cells lie in.
             </summary>
-            <remarks>
-            The return value will be an <see cref="T:System.Int32"/> indicating the covered region. Bits set 1
-            are covered regions.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Data.ConjugatePair.Map">
-            <summary>
-            Indicates the inner map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ConjugatePair.BaseHashCode">
-            <summary>
-            Indicates the base hash code.
-            </summary>
+            <remarks><inheritdoc cref="P:Sudoku.Data.Cells.CoveredRegions"/></remarks>
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -1727,9 +1716,6 @@
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.ConjugatePair,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Data.Crosshatch">
             <summary>

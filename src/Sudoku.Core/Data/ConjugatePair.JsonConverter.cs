@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Data;
 
-partial struct ConjugatePair
+partial record struct ConjugatePair
 {
 	/// <summary>
 	/// Defines a JSON converter that allows the current instance being serialized.

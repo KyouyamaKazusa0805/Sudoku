@@ -4466,9 +4466,6 @@
             Encapsulates a <b>normal fish</b> technique searcher. Fins can also be found.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Fishes.NormalFishStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -4662,9 +4659,6 @@
             <summary>
             Encapsulates a <b>locked candidates</b> (LC) technique searcher.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.LcStepSearcher.Options">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.LcStepSearcher.Properties">
             <summary>
@@ -5771,9 +5765,6 @@
             Encapsulates a <b>two strong links</b> technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.TwoStrongLinksStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -6066,9 +6057,6 @@
             <summary>
             Encapsulates a <b>subset</b> technique searcher.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.Options">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Subsets.SubsetStepSearcher.Properties">
             <summary>
@@ -9317,9 +9305,6 @@
             Encapsulates an <b>irregular wing</b> technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Irregular.IrregularWingStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -9464,9 +9449,6 @@
             <summary>
             Indicates the maximum size the searcher will search for. The maximum possible value is 9.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Options">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Wings.Regular.RegularWingStepSearcher.Properties">
             <summary>

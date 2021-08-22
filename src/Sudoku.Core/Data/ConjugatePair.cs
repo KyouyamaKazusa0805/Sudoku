@@ -8,78 +8,52 @@
 /// these two candidates is in the same region where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-[AutoHashCode(nameof(BaseHashCode), nameof(Map))]
+/// <param name="From">Indicates the cell that is the start cell.</param>
+/// <param name="To">Indicates the cell that is end cell.</param>
+/// <param name="Digit">Indicates the digit used.</param>
+/// <param name="Map">Indicates the pair of maps used.</param>
 [AutoEquality(nameof(Map), nameof(Digit))]
-public readonly partial struct ConjugatePair : IValueEquatable<ConjugatePair>, IJsonSerializable<ConjugatePair, ConjugatePair.JsonConverter>
+public readonly partial record struct ConjugatePair(int From, int To, int Digit, in Cells Map) : IValueEquatable<ConjugatePair>, IJsonSerializable<ConjugatePair, ConjugatePair.JsonConverter>
 {
 	/// <summary>
-	/// Initializes an instance with from and to cell offset
-	/// and a digit.
+	/// Initializes a <see cref="ConjugatePair"/> instance with from and to cell offset and a digit.
 	/// </summary>
 	/// <param name="from">The from cell.</param>
 	/// <param name="to">The to cell.</param>
 	/// <param name="digit">The digit.</param>
-	public ConjugatePair(int from, int to, int digit)
+	public ConjugatePair(int from, int to, int digit) : this(from, to, digit, new() { from, to })
 	{
-		Digit = digit;
-		From = from;
-		To = to;
-		Map = new() { from, to };
 	}
 
 	/// <summary>
-	/// Initializes an instance with the map and the digit. The map should contains two cells,
-	/// the first one is the start one, and the second one is the end one.
+	/// Initializes a <see cref="ConjugatePair"/> instance with the map and the digit.
+	/// The map should contains two cells, the first one is the start one, and the second one is the end one.
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	public ConjugatePair(in Cells map, int digit)
+	public ConjugatePair(in Cells map, int digit) : this(map[0], map[1], digit, map)
 	{
-		Digit = digit;
-		From = map[0];
-		To = map[1];
-		Map = map;
 	}
 
-
-	/// <summary>
-	/// Indicates the 'from' cell.
-	/// </summary>
-	public int From { get; }
-
-	/// <summary>
-	/// Indicates the 'to' cell.
-	/// </summary>
-	public int To { get; }
-
-	/// <summary>
-	/// Indicates the digit.
-	/// </summary>
-	public int Digit { get; }
 
 	/// <summary>
 	/// Indicates the line that two cells lie in.
 	/// </summary>
-	public int Line => Map.CoveredLine;
+	public int Line
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Map.CoveredLine;
+	}
 
 	/// <summary>
 	/// Indicates the region that two cells lie in.
 	/// </summary>
-	/// <remarks>
-	/// The return value will be an <see cref="int"/> indicating the covered region. Bits set 1
-	/// are covered regions.
-	/// </remarks>
-	public int Regions => Map.CoveredRegions;
-
-	/// <summary>
-	/// Indicates the inner map.
-	/// </summary>
-	public Cells Map { get; }
-
-	/// <summary>
-	/// Indicates the base hash code.
-	/// </summary>
-	private int BaseHashCode => Digit << 17;
+	/// <remarks><inheritdoc cref="Cells.CoveredRegions"/></remarks>
+	public int Regions
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Map.CoveredRegions;
+	}
 
 
 	/// <inheritdoc cref="object.ToString"/>
