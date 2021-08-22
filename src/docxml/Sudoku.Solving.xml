@@ -1515,6 +1515,11 @@
             Indicates the regular wing searcher.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.WWing">
+            <summary>
+            Indicates the W-Wing searcher.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.SearcherIdentifier.DeadlyPattern">
             <summary>
             Indicates the deadly pattern searcher.
@@ -1849,6 +1854,29 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.WWingStepSearcher">
+            <summary>
+            Provides with a <b>W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>W-Wing (George Woods' Wing)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.Identifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
+            be found in another searcher. In addition, these wings are not elementary and necessary techniques
+            so we doesn't need to list them.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.SearchingOptions">
             <summary>
@@ -2807,7 +2835,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -2818,7 +2846,7 @@
             <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -2829,12 +2857,12 @@
             <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.IsIncomplete">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.IsIncomplete">
             <summary>
             Indicates whether the structure is incomplete.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Size">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.Size">
             <summary>
             Indicates the size of this regular wing.
             </summary>
@@ -2876,22 +2904,22 @@
             </list>
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.Rarity">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Wings.Regular.RegularWingStep.InternalName">
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.InternalName">
             <summary>
             Indicates the internal name.
             </summary>
@@ -2929,6 +2957,42 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Wings.WingStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Wings.WWingStep">
+            <summary>
+            Provides with a step that is a <b>W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell.</param>
+            <param name="EndCell">Indicates the end cell.</param>
+            <param name="ConjugatePair">
+            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.EndCell"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides with a step that is a <b>W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell.</param>
+            <param name="EndCell">Indicates the end cell.</param>
+            <param name="ConjugatePair">
+            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.EndCell"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">

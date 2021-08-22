@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Wings.Regular;
+﻿namespace Sudoku.Solving.Manual.Steps.Wings;
 
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.

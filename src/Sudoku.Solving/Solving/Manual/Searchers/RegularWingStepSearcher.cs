@@ -1,4 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Wings.Regular;
+﻿using Sudoku.Solving.Manual.Steps.Wings;
 
 namespace Sudoku.Solving.Manual.Searchers;
 

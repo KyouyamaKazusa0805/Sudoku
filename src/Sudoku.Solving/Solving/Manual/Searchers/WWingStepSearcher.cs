@@ -1,23 +1,21 @@
-﻿namespace Sudoku.Solving.Manual.Wings.Irregular;
+﻿using Sudoku.Solving.Manual.Steps.Wings;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Encapsulates an <b>irregular wing</b> technique searcher.
+/// Provides with a <b>W-Wing</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>W-Wing (George Woods' Wing)</item>
+/// </list>
 /// </summary>
-public sealed class IrregularWingStepSearcher : StepSearcher
+public sealed class WWingStepSearcher : IStepSearcher
 {
-	/// <summary>
-	/// Indicates the searcher properties.
-	/// </summary>
-	/// <remarks>
-	/// Please note that all technique searches should contain
-	/// this static property in order to display on settings window. If the searcher doesn't contain,
-	/// when we open the settings window, it'll throw an exception to report about this.
-	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
-	public static TechniqueProperties Properties { get; } = new(7, nameof(Technique.WWing))
-	{
-		DisplayLevel = 2
-	};
+	/// <inheritdoc/>
+	public SearcherIdentifier Identifier => SearcherIdentifier.WWing;
+
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new(7, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>
@@ -26,13 +24,12 @@ public sealed class IrregularWingStepSearcher : StepSearcher
 	/// be found in another searcher. In addition, these wings are not elementary and necessary techniques
 	/// so we doesn't need to list them.
 	/// </remarks>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		if (BivalueMap.Count < 2)
 		{
-			// The grid with possible W-Wing structure should
-			// contain at least two empty cells (start and end cell).
-			return;
+			// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
+			goto NoPossibleSteps;
 		}
 
 		// Iterate on each cells.
@@ -86,21 +83,16 @@ public sealed class IrregularWingStepSearcher : StepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						var conjugateRegion = CandMaps[digit] & RegionMaps[region];
-						if (conjugateRegion.Count != 2)
+						if ((CandMaps[digit] & RegionMaps[region]) is not { Count: 2 } conjugate)
 						{
 							// The current region doesn't contain the conjugate pair of this digit.
 							continue;
 						}
 
 						// Check whether the cells are the same region as the head and the tail cell.
-						int a = conjugateRegion[0], b = conjugateRegion[1];
-						if (
-							!(
-								new Cells { c1, a }.InOneRegion && new Cells { c2, b }.InOneRegion
-								|| new Cells { c1, b }.InOneRegion && new Cells { c2, a }.InOneRegion
-							)
-						)
+						int a = conjugate[0], b = conjugate[1];
+						if (!new Cells { c1, a }.InOneRegion || !new Cells { c2, b }.InOneRegion
+							&& !new Cells { c1, b }.InOneRegion || !new Cells { c2, a }.InOneRegion)
 						{
 							continue;
 						}
@@ -121,33 +113,41 @@ public sealed class IrregularWingStepSearcher : StepSearcher
 						}
 
 						// Now W-Wing found. Store it into the accumulator.
-						accumulator.Add(
-							new WWingStepInfo(
-								conclusions,
-								new View[]
+						var step = new WWingStep(
+							conclusions.ToImmutableArray(),
+							new PresentationData[]
+							{
+								new()
 								{
-									new()
+									Candidates = new[]
 									{
-										Candidates = new DrawingInfo[]
-										{
-											new(0, c1 * 9 + anotherDigit),
-											new(0, c2 * 9 + anotherDigit),
-											new(1, c1 * 9 + digit),
-											new(1, c2 * 9 + digit),
-											new(1, a * 9 + digit),
-											new(1, b * 9 + digit)
-										},
-										Regions = new DrawingInfo[] { new(0, region) }
-									}
-								},
-								a,
-								b,
-								new(conjugateRegion, digit)
-							)
+										(c1 * 9 + anotherDigit, (ColorIdentifier)0),
+										(c2 * 9 + anotherDigit, (ColorIdentifier)0),
+										(c1 * 9 + digit, (ColorIdentifier)1),
+										(c2 * 9 + digit, (ColorIdentifier)1),
+										(a * 9 + digit, (ColorIdentifier)1),
+										(b * 9 + digit, (ColorIdentifier)1)
+									},
+									Regions = new[] { (region, (ColorIdentifier)0) }
+								}
+							}.ToImmutableArray(),
+							a,
+							b,
+							new(conjugate, digit)
 						);
+
+						if (onlyFindOne)
+						{
+							return step;
+						}
+
+						accumulator.Add(step);
 					}
 				}
 			}
 		}
+
+	NoPossibleSteps:
+		return null;
 	}
 }

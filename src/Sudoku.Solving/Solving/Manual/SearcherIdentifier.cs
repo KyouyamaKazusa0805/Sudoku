@@ -37,6 +37,11 @@ public enum SearcherIdentifier
 	RegularWing,
 
 	/// <summary>
+	/// Indicates the W-Wing searcher.
+	/// </summary>
+	WWing,
+
+	/// <summary>
 	/// Indicates the deadly pattern searcher.
 	/// </summary>
 	DeadlyPattern
