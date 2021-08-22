@@ -87,7 +87,8 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// </item>
 	/// </list>
 	/// </summary>
-	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+	public bool IsChaining =>
+		HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
