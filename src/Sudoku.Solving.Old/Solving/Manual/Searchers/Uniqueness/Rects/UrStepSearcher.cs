@@ -171,7 +171,7 @@ public sealed partial class UrStepSearcher : UniquenessStepSearcher
 									if (!arMode)
 									{
 										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-										
+
 										if (SearchForExtendedUniqueRectangles)
 										{
 											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -296,31 +296,21 @@ public sealed partial class UrStepSearcher : UniquenessStepSearcher
 		: cell == urCells[2] ? urCells[1] : urCells[0];
 
 	/// <summary>
-	/// Get a cell that is in the same region of the specified cell lies in.
+	/// Get whether two cells are in a same region.
 	/// </summary>
-	/// <param name="currentCell">The current cell.</param>
-	/// <param name="anotherCell">Another cell to check.</param>
+	/// <param name="cell1">The cell 1 to check.</param>
+	/// <param name="cell2">The cell 2 to check.</param>
 	/// <param name="region">
-	/// The result regions that both cells lie in.
-	/// If the cell can't be found, the parameter will be an empty array of type <see cref="int"/>.
+	/// The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
 	/// </param>
 	/// <returns>
 	/// The <see cref="bool"/> value indicating whether the another cell is same region as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsSameRegionCell(int currentCell, int anotherCell, out int region)
+	private static bool IsSameRegionCell(int cell1, int cell2, out int region)
 	{
-		int coveredRegions = new Cells { anotherCell, currentCell }.CoveredRegions;
-		if (coveredRegions == 0)
-		{
-			region = 0;
-			return false;
-		}
-		else
-		{
-			region = coveredRegions;
-			return true;
-		}
+		(bool r, region) = new Cells { cell1, cell2 }.CoveredRegions is var v and not 0 ? (true, v) : (false, 0);
+		return r;
 	}
 
 	/// <summary>
