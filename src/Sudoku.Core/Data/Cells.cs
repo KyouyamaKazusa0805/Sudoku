@@ -248,15 +248,38 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <seealso cref="AllSetsAreInOneRegion(out int)"/>
 	public readonly bool InOneRegion
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			for (int i = BlockOffset; i < Limit; i++)
-			{
-				if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
-				{
-					return true;
-				}
-			}
+#pragma warning disable IDE0055
+			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) return true;
+			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) return true;
+			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) return true;
+			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) return true;
+			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) return true;
+			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) return true;
+			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) return true;
+			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) return true;
+			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) return true;
+			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) return true;
+			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) return true;
+			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) return true;
+			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) return true;
+			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) return true;
+			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) return true;
+			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) return true;
+#pragma warning restore IDE0055
 
 			return false;
 		}
@@ -272,7 +295,21 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	public readonly short BlockMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CreateMask(BlockOffset, RowOffset);
+		get
+		{
+			short result = 0;
+			if (!(this & RegionMaps[0]).IsEmpty) result |= 1;
+			if (!(this & RegionMaps[1]).IsEmpty) result |= 2;
+			if (!(this & RegionMaps[2]).IsEmpty) result |= 4;
+			if (!(this & RegionMaps[3]).IsEmpty) result |= 8;
+			if (!(this & RegionMaps[4]).IsEmpty) result |= 16;
+			if (!(this & RegionMaps[5]).IsEmpty) result |= 32;
+			if (!(this & RegionMaps[6]).IsEmpty) result |= 64;
+			if (!(this & RegionMaps[7]).IsEmpty) result |= 128;
+			if (!(this & RegionMaps[8]).IsEmpty) result |= 256;
+
+			return result;
+		}
 	}
 
 	/// <summary>
@@ -285,7 +322,21 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	public readonly short RowMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CreateMask(RowOffset, ColumnOffset);
+		get
+		{
+			short result = 0;
+			if (!(this & RegionMaps[9]).IsEmpty) result |= 1;
+			if (!(this & RegionMaps[10]).IsEmpty) result |= 2;
+			if (!(this & RegionMaps[11]).IsEmpty) result |= 4;
+			if (!(this & RegionMaps[12]).IsEmpty) result |= 8;
+			if (!(this & RegionMaps[13]).IsEmpty) result |= 16;
+			if (!(this & RegionMaps[14]).IsEmpty) result |= 32;
+			if (!(this & RegionMaps[15]).IsEmpty) result |= 64;
+			if (!(this & RegionMaps[16]).IsEmpty) result |= 128;
+			if (!(this & RegionMaps[17]).IsEmpty) result |= 256;
+
+			return result;
+		}
 	}
 
 	/// <summary>
@@ -298,7 +349,21 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	public readonly short ColumnMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CreateMask(ColumnOffset, Limit);
+		get
+		{
+			short result = 0;
+			if (!(this & RegionMaps[18]).IsEmpty) result |= 1;
+			if (!(this & RegionMaps[19]).IsEmpty) result |= 2;
+			if (!(this & RegionMaps[20]).IsEmpty) result |= 4;
+			if (!(this & RegionMaps[21]).IsEmpty) result |= 8;
+			if (!(this & RegionMaps[22]).IsEmpty) result |= 16;
+			if (!(this & RegionMaps[23]).IsEmpty) result |= 32;
+			if (!(this & RegionMaps[24]).IsEmpty) result |= 64;
+			if (!(this & RegionMaps[25]).IsEmpty) result |= 128;
+			if (!(this & RegionMaps[26]).IsEmpty) result |= 256;
+
+			return result;
+		}
 	}
 
 	/// <summary>
@@ -333,16 +398,39 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	{
 		get
 		{
-			int resultRegions = 0;
-			for (int i = BlockOffset; i < Limit; i++)
-			{
-				if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
-				{
-					resultRegions |= 1 << i;
-				}
-			}
+			int z = 0;
 
-			return resultRegions;
+#pragma warning disable IDE0055
+			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) z |=       0x1;
+			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) z |=       0x2;
+			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) z |=       0x4;
+			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) z |=       0x8;
+			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) z |=      0x10;
+			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) z |=      0x20;
+			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) z |=      0x40;
+			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) z |=      0x80;
+			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) z |=     0x100;
+			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) z |=     0x200;
+			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) z |=     0x400;
+			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) z |=     0x800;
+			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) z |=    0x1000;
+			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) z |=    0x2000;
+			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) z |=    0x4000;
+			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) z |=    0x8000;
+			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) z |=   0x10000;
+			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) z |=   0x20000;
+			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) z |=   0x40000;
+			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) z |=   0x80000;
+			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) z |=  0x100000;
+			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) z |=  0x200000;
+			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) z |=  0x400000;
+			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) z |=  0x800000;
+			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) z |= 0x1000000;
+			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) z |= 0x2000000;
+			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) z |= 0x4000000;
+#pragma warning restore IDE0055
+
+			return z;
 		}
 	}
 
@@ -428,7 +516,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			int[] arr = new int[Count];
 			fixed (int* ptr = arr)
 			{
-				Unsafe.CopyBlock(ptr, result, (uint)(sizeof(int) * Count));
+				UnsafeExtensions.CopyBlock(ptr, result, (uint)Count);
 			}
 
 			return arr;
@@ -536,14 +624,35 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <seealso cref="InOneRegion"/>
 	public readonly bool AllSetsAreInOneRegion(out int region)
 	{
-		for (int i = BlockOffset; i < Limit; i++)
-		{
-			if ((_high & ~CellsCoverTable[i, 0]) == 0 && (_low & ~CellsCoverTable[i, 1]) == 0)
-			{
-				region = i;
-				return true;
-			}
-		}
+#pragma warning disable IDE0055
+		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { region =  0; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { region =  1; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { region =  2; return true; }
+		if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { region =  3; return true; }
+		if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { region =  4; return true; }
+		if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { region =  5; return true; }
+		if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { region =  6; return true; }
+		if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { region =  7; return true; }
+		if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { region =  8; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { region =  9; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { region = 10; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { region = 11; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { region = 12; return true; }
+		if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { region = 13; return true; }
+		if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { region = 14; return true; }
+		if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { region = 15; return true; }
+		if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { region = 16; return true; }
+		if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { region = 17; return true; }
+		if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { region = 18; return true; }
+		if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { region = 19; return true; }
+		if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { region = 20; return true; }
+		if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { region = 21; return true; }
+		if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { region = 22; return true; }
+		if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { region = 23; return true; }
+		if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { region = 24; return true; }
+		if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { region = 25; return true; }
+		if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { region = 26; return true; }
+#pragma warning restore IDE0055
 
 		region = -1;
 		return false;

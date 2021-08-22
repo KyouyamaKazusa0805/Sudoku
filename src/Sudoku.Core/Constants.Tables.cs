@@ -87,11 +87,5 @@ partial class Constants
 		/// </summary>
 		/// <seealso cref="IntersectionMaps"/>
 		internal static readonly byte[][] IntersectionBlockTable;
-
-		/// <summary>
-		/// Indicates the cover table that only used in <see cref="Cells"/>.
-		/// </summary>
-		/// <seealso cref="Cells"/>
-		internal static readonly long[,] CellsCoverTable;
 	}
 }

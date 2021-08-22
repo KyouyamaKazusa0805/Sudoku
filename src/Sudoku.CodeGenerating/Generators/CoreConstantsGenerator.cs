@@ -78,7 +78,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 		#region Initialize 'IntersectionBlockTable'
 		var intersectionBlockSb = new StringBuilder()
 			.AppendLine("new byte[54][]")
-			.AppendLine("\t\t\t\t{");
+			.AppendLine("\t\t\t{");
 		foreach (var (a, b, c) in IntersectionBlockCoreValues)
 		{
 			for (int i = 0; i < 3; i++)
@@ -90,13 +90,13 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 					.AppendLine($"new byte[] {{ {a,2}, {b,2} }},");
 			}
 		}
-		intersectionBlockSb.Append(new string('\t', 4)).Append('}');
+		intersectionBlockSb.Append("\t\t\t").Append('}');
 		#endregion
 
 		#region Initialize 'Peers'
 		var peersSb = new StringBuilder()
 			.AppendLine("new int[81][]")
-			.AppendLine("\t\t\t\t{");
+			.AppendLine("\t\t\t{");
 
 		for (int i = 0; i < 81; i++)
 		{
@@ -115,20 +115,20 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 				}
 			}
 
-			peersSb.Append(new string('\t', 5)).Append("new[] { ");
+			peersSb.Append("\t\t\t\t").Append("new[] { ");
 			for (int j = 0; j < 20; j++)
 			{
 				peersSb.Append($"{peers[j],2}, ");
 			}
 			peersSb.AppendLine("},");
 		}
-		peersSb.Append(new string('\t', 4)).Append('}');
+		peersSb.Append("\t\t\t").Append('}');
 		#endregion
 
 		#region Initialize 'RegionCells'
 		var regionCellsSb = new StringBuilder()
 			.AppendLine("new int[27][]")
-			.AppendLine("\t\t\t\t{");
+			.AppendLine("\t\t\t{");
 		for (int regionType = 0; regionType < 3; regionType++)
 		{
 			for (int index = 0; index < 9; index++)
@@ -150,7 +150,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 				}
 				regionCells[regionLabel] = cells;
 
-				regionCellsSb.Append(new string('\t', 5)).Append("new[] { ");
+				regionCellsSb.Append("\t\t\t\t").Append("new[] { ");
 				for (int j = 0; j < 9; j++)
 				{
 					regionCellsSb.Append($"{cells[j],2}, ");
@@ -158,27 +158,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 				regionCellsSb.AppendLine("},");
 			}
 		}
-		regionCellsSb.Append(new string('\t', 4)).Append('}');
-		#endregion
-
-		#region Initialize 'CellsCoverTable'
-		var coverTableSb = new StringBuilder()
-			.AppendLine("new long[,]")
-			.Append(new string('\t', 4))
-			.AppendLine("{");
-		for (int regionLabel = 0; regionLabel < 27; regionLabel++)
-		{
-			// Don't merge to one statement.
-			var cells = Cells.Empty;
-			cells.AddRange(regionCells[regionLabel]);
-
-			coverTableSb
-				.Append(new string('\t', 5))
-				.Append("{ ")
-				.Append(cells.ToString())
-				.AppendLine(" },");
-		}
-		coverTableSb.Append(new string('\t', 4)).Append('}');
+		regionCellsSb.Append("\t\t\t").Append('}');
 		#endregion
 
 
@@ -207,14 +187,11 @@ partial class Constants
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		static Tables()
 		{{
-#line hidden
 			IntersectionBlockTable = {intersectionBlockSb};
 
 			Peers = {peersSb};
 
 			RegionCells = {regionCellsSb};
-
-			CellsCoverTable = {coverTableSb};
 
 			PeerMaps = new Cells[81];
 			for (int i = 0; i < 81; i++) PeerMaps[i] = Peers[i];
@@ -239,11 +216,9 @@ partial class Constants
 
 				IntersectionMaps = dic;
 			}}
-#line default
 		}}
 
 
-#line hidden
 		/// <summary>
 		/// The inner comparer of <see cref=""ValueTuple{{T1, T2}}""/> used for
 		/// the field <see cref=""IntersectionMaps""/>.
@@ -259,7 +234,6 @@ partial class Constants
 			/// <inheritdoc/>
 			public int GetHashCode((byte Value1, byte Value2) obj) => obj.Value1 << 5 | obj.Value2;
 		}}
-#line default
 	}}
 }}
 "

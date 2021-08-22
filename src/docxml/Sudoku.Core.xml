@@ -275,12 +275,6 @@
             </summary>
             <seealso cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>
         </member>
-        <member name="F:Sudoku.Constants.Tables.CellsCoverTable">
-            <summary>
-            Indicates the cover table that only used in <see cref="T:Sudoku.Data.Cells"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Cells"/>
-        </member>
         <member name="M:Sudoku.Constants.Tables.#cctor">
             <summary>
             Initializes all constants for this type.
