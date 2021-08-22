@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>searcher</Title>
+			<Shortcut>searcher</Shortcut>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>stepsearchername</ID>
+					<Default>My</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>identifier</ID>
+					<Default>Default</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>priority</ID>
+					<Default>default(int)</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>level</ID>
+					<Default>default(DisplayingLevel)</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp" Delimiter="$">
+				<![CDATA[namespace Sudoku.Solving.Manual.Searchers;
+
+/// <summary>
+/// Provides with a <b>$stepsearchername$</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>$item$</item>
+/// </list>
+/// </summary>
+public sealed class $nameprefix$StepSearcher : IStepSearcher
+{
+	/// <inheritdoc/>
+	public SearcherIdentifier Identifier => SearcherIdentifier.$identifier$;
+
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new($priority$, $level$);
+
+
+	/// <inheritdoc/>
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	{
+		return null;$end$
+	}
+}
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

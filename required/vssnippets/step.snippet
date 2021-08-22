@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>step</Title>
+			<Shortcut>step</Shortcut>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>stepname</ID>
+					<Default>My</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>name</ID>
+					<Default>My</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>defaultgroup</ID>
+					<Default>Default</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>defaulttag</ID>
+					<Default>Default</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp" Delimiter="$">
+				<![CDATA[/// <summary>
+/// Provides with a step that is a <b>$stepname$</b> technique.
+/// </summary>
+/// <param name="Conclusions"><inheritdoc/></param>
+/// <param name="Views"><inheritdoc/></param>
+public abstract record $name$Step(
+	in ImmutableArray<Conclusion> Conclusions,
+	in ImmutableArray<PresentationData> Views
+) : Step(Conclusions, Views)
+{
+	/// <inheritdoc/>
+	public sealed override bool ShowDifficulty => base.ShowDifficulty;
+
+	/// <inheritdoc/>
+	public sealed override bool IsSstsStep => base.IsSstsStep;
+
+	/// <inheritdoc/>
+	public sealed override string Name => base.Name;
+
+	/// <inheritdoc/>
+	public sealed override string? Format => base.Format;
+
+	/// <inheritdoc/>
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.$defaultgroup$;
+
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => TechniqueTags.$defaulttag$;
+
+	/// <inheritdoc/>
+	public sealed override Stableness Stableness => base.Stableness;
+}
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
