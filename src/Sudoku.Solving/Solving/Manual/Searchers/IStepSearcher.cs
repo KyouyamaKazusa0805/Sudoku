@@ -20,7 +20,14 @@ public interface IStepSearcher
 	/// <summary>
 	/// Accumulate all possible steps into the specified accumulator.
 	/// </summary>
-	/// <param name="accumulator">The accumulator to store each step.</param>
+	/// <param name="accumulator">
+	/// <para>The accumulator to store each step.</para>
+	/// <para>
+	/// If <paramref name="onlyFindOne"/> is set to <see langword="true"/>,
+	/// this argument will become useless because we only finding one step is okay,
+	/// so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+	/// </para>
+	/// </param>
 	/// <param name="grid">The grid to search for techniques.</param>
 	/// <param name="onlyFindOne">
 	/// Indicates whether the method only searches for one <see cref="Step"/> instance.

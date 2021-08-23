@@ -27,6 +27,7 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// </summary>
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conclusion(ConclusionType type, int candidate) : this(type, candidate / 9, candidate % 9)
 	{
 	}
@@ -35,13 +36,18 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// <summary>
 	/// Indicates the candidate.
 	/// </summary>
-	public int Candidate => Cell * 9 + Digit;
+	public int Candidate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Cell * 9 + Digit;
+	}
 
 
 	/// <summary>
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ApplyTo(ref Grid grid)
 	{
 		switch (ConclusionType)
@@ -63,6 +69,7 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ApplyTo(ref SudokuGrid grid)
 	{
 		switch (ConclusionType)
@@ -81,18 +88,28 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
 		$@"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
 		{
 			ConclusionType.Assignment => "=",
 			ConclusionType.Elimination => "<>"
 		}} {Digit + 1}";
+
+	/// <summary>
+	/// Converts the current instance to an immutable array, that only contains one element (this).
+	/// </summary>
+	/// <returns>The immutable array.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ImmutableArray<Conclusion> AsImmutableArray() => ImmutableArray.Create(this);
 
 
 	/// <inheritdoc/>

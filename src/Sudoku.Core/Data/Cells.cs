@@ -671,6 +671,14 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetSubviewMask(int region) => this / region;
 
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode() => ToString("b").GetHashCode();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly int[] ToArray() => Offsets;
+
 	/// <summary>
 	/// To gets the cells that is in the cells that both <see langword="this"/>
 	/// and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
@@ -683,13 +691,48 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode() => ToString("b").GetHashCode();
+	/// <summary>
+	/// Creates an array of <see cref="Conclusion"/>s that uses the specified conclusion type
+	/// and the digit used.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="conclusionType">
+	/// The conclusion type. The default value is <see cref="ConclusionType.Elimination"/>.
+	/// </param>
+	/// <returns>The array of <see cref="Conclusion"/>s.</returns>
+	public readonly Conclusion[] ToConclusions(int digit, ConclusionType conclusionType = ConclusionType.Elimination)
+	{
+		var result = new Conclusion[Count];
+		int[] offsets = Offsets;
+		for (int i = 0; i < Count; i++)
+		{
+			result[i] = new(conclusionType, offsets[i], digit);
+		}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int[] ToArray() => Offsets;
+		return result;
+	}
+
+	/// <summary>
+	/// Creates an immutable array of <see cref="Conclusion"/>s that uses the specified conclusion type
+	/// and the digit used.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="conclusionType">
+	/// The conclusion type. The default value is <see cref="ConclusionType.Elimination"/>.
+	/// </param>
+	/// <returns>The immutable array of <see cref="Conclusion"/>s.</returns>
+	public readonly ImmutableArray<Conclusion> ToImmutableConclusions(
+		int digit, ConclusionType conclusionType = ConclusionType.Elimination)
+	{
+		var result = new Conclusion[Count];
+		int[] offsets = Offsets;
+		for (int i = 0; i < Count; i++)
+		{
+			result[i] = new(conclusionType, offsets[i], digit);
+		}
+
+		return ImmutableArray.Create(result);
+	}
 
 	/// <summary>
 	/// Gets the subsets of the current collection, via the specified size
