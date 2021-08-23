@@ -2280,6 +2280,630 @@
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.IsElementary">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep">
+            <summary>
+            Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="BaseCell"></param>
+            <param name="TargetCell"></param>
+            <param name="Region"></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="BaseCell"></param>
+            <param name="TargetCell"></param>
+            <param name="Region"></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.HiddenUniqueRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ConjugatePairs"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ConjugatePairs"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="XDigit">Indicates the digit X.</param>
+            <param name="YDigit">Indicates the digit Y.</param>
+            <param name="XyCell">Indicates the cell XY.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="XDigit">Indicates the digit X.</param>
+            <param name="YDigit">Indicates the digit Y.</param>
+            <param name="XyCell">Indicates the cell XY.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2">
+            <para>Indicates the technique code.</para>
+            <para>
+            Limited by the C# language, here we creates a new property <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.TechniqueCode2"/>
+            to pass the value and assign it to the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>. If write code
+            to place the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/> into the primary constructor as a parameter,
+            the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+            which isn't allowed in <see langword="record"/> types in the langugae design.
+            </para>
+            </param>
+            <param name="Digit1">Indicates the the first digit used in this unique rectangle pattern.</param>
+            <param name="Digit2">Indicates the the second digit used in this unique rectangle pattern.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="IsAvoidable">
+            <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>
+            <para>
+            For the designation and the implementation, <b>Avoidable Rectangle</b> and <b>Unique Rectangle</b>
+            are used as the same type.
+            </para>
+            </param>
+            <param name="AbsoluteOffset">
+            <para>Indicates the absolute offset.</para>
+            <para>
+            The value will be an <see cref="T:System.Int32"/> value to compare all possible cases
+            of unique rectangle structures to be iterated. The greater the value is,
+            the later the unique rectangle structure will be processed. The value must be between 0 and 485.
+            Other values are invalid and useless. The number of all possible unique rectangle structures is 486.
+            </para>
+            </param>
+            <seealso cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2">
+            <para>Indicates the technique code.</para>
+            <para>
+            Limited by the C# language, here we creates a new property <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.TechniqueCode2"/>
+            to pass the value and assign it to the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>. If write code
+            to place the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/> into the primary constructor as a parameter,
+            the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+            which isn't allowed in <see langword="record"/> types in the langugae design.
+            </para>
+            </param>
+            <param name="Digit1">Indicates the the first digit used in this unique rectangle pattern.</param>
+            <param name="Digit2">Indicates the the second digit used in this unique rectangle pattern.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="IsAvoidable">
+            <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>
+            <para>
+            For the designation and the implementation, <b>Avoidable Rectangle</b> and <b>Unique Rectangle</b>
+            are used as the same type.
+            </para>
+            </param>
+            <param name="AbsoluteOffset">
+            <para>Indicates the absolute offset.</para>
+            <para>
+            The value will be an <see cref="T:System.Int32"/> value to compare all possible cases
+            of unique rectangle structures to be iterated. The greater the value is,
+            the later the unique rectangle structure will be processed. The value must be between 0 and 485.
+            Other values are invalid and useless. The number of all possible unique rectangle structures is 486.
+            </para>
+            </param>
+            <seealso cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.D1Str">
+            <summary>
+            Indicates the digit 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.D2Str">
+            <summary>
+            Indicates the digit 2 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+            <param name="Region">Indicates the region used.</param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+            <param name="IsNaked">
+            <para>
+            Indicates whether the current instance uses a naked subset instead of a hidden subset to form the type 3.
+            </para>
+            <para>
+            In the default case, due to not having implemented the hidden subset cases,
+            the argument always keeps the value <see langword="true"/>. The possible values are:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The type 3 is with a naked subset.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The type 3 is with a hidden subset.</description>
+            </item>
+            </list>
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+            <param name="Region">Indicates the region used.</param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+            <param name="IsNaked">
+            <para>
+            Indicates whether the current instance uses a naked subset instead of a hidden subset to form the type 3.
+            </para>
+            <para>
+            In the default case, due to not having implemented the hidden subset cases,
+            the argument always keeps the value <see langword="true"/>. The possible values are:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The type 3 is with a naked subset.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The type 3 is with a hidden subset.</description>
+            </item>
+            </list>
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.ConjPairsStr">
+            <summary>
+            Indicates the conjugate pair string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="Block">Indicates the block that the Sue de Coq structure used.</param>
+            <param name="Line">Indicates the line that the Sue de Coq structure used.</param>
+            <param name="BlockMask">
+            Indicates the mask that contains all digits from the block of the Sue de Coq structure.
+            </param>
+            <param name="LineMask">
+            Indicates the mask that contains all digits from the line of the Sue de Coq structure.
+            </param>
+            <param name="IntersectionMask">
+            Indicates the mask that contains all digits from the intersection
+            of regions <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Line"/>
+            </param>
+            <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
+            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
+            <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
+            <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
+            <param name="IntersectionCells">
+            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            </param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="Block">Indicates the block that the Sue de Coq structure used.</param>
+            <param name="Line">Indicates the line that the Sue de Coq structure used.</param>
+            <param name="BlockMask">
+            Indicates the mask that contains all digits from the block of the Sue de Coq structure.
+            </param>
+            <param name="LineMask">
+            Indicates the mask that contains all digits from the line of the Sue de Coq structure.
+            </param>
+            <param name="IntersectionMask">
+            Indicates the mask that contains all digits from the intersection
+            of regions <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Line"/>
+            </param>
+            <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
+            <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
+            <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
+            <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
+            <param name="IntersectionCells">
+            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            </param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="TargetCell">Indicates the target cell.</param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="TargetCell">Indicates the target cell.</param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="Pivots">Indictaes the pivots used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TechniqueCode2"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="IsAvoidable"><inheritdoc/></param>
+            <param name="Pivots">Indictaes the pivots used.</param>
+            <param name="Petals">Indicates the petals used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
+            <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
