@@ -44,7 +44,7 @@ public abstract record UniqueRectangleStep(
 	in Cells Cells,
 	bool IsAvoidable,
 	int AbsoluteOffset
-) : DeadlyPatternStep(Conclusions, Views)
+) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode => TechniqueCode2;
@@ -81,4 +81,19 @@ public abstract record UniqueRectangleStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Cells(Cells).ToString();
 	}
+
+
+	/// <inheritdoc/>
+	public bool IsSameAs(UniqueRectangleStep other) =>
+		TechniqueCode == other.TechniqueCode && AbsoluteOffset == other.AbsoluteOffset
+		&& Digit1 == other.Digit1 && Digit2 == other.Digit2;
+
+	/// <inheritdoc/>
+	public bool NullableIsSameAs(UniqueRectangleStep? other) => (Left: this, Right: other) switch
+	{
+		(Left: null, Right: not null) => false,
+		(Left: not null, Right: null) => false,
+		(Left: null, Right: null) => true,
+		_ => IsSameAs(other)
+	};
 }

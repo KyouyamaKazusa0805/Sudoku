@@ -42,7 +42,7 @@ public enum SearcherIdentifier
 	WWing,
 
 	/// <summary>
-	/// Indicates the deadly pattern searcher.
+	/// Indicates the unique rectangle searcher.
 	/// </summary>
-	DeadlyPattern
+	UniqueRectangle
 }
