@@ -692,49 +692,6 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
 	/// <summary>
-	/// Creates an array of <see cref="Conclusion"/>s that uses the specified conclusion type
-	/// and the digit used.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="conclusionType">
-	/// The conclusion type. The default value is <see cref="ConclusionType.Elimination"/>.
-	/// </param>
-	/// <returns>The array of <see cref="Conclusion"/>s.</returns>
-	public readonly Conclusion[] ToConclusions(int digit, ConclusionType conclusionType = ConclusionType.Elimination)
-	{
-		var result = new Conclusion[Count];
-		int[] offsets = Offsets;
-		for (int i = 0; i < Count; i++)
-		{
-			result[i] = new(conclusionType, offsets[i], digit);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Creates an immutable array of <see cref="Conclusion"/>s that uses the specified conclusion type
-	/// and the digit used.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <param name="conclusionType">
-	/// The conclusion type. The default value is <see cref="ConclusionType.Elimination"/>.
-	/// </param>
-	/// <returns>The immutable array of <see cref="Conclusion"/>s.</returns>
-	public readonly ImmutableArray<Conclusion> ToImmutableConclusions(
-		int digit, ConclusionType conclusionType = ConclusionType.Elimination)
-	{
-		var result = new Conclusion[Count];
-		int[] offsets = Offsets;
-		for (int i = 0; i < Count; i++)
-		{
-			result[i] = new(conclusionType, offsets[i], digit);
-		}
-
-		return ImmutableArray.Create(result);
-	}
-
-	/// <summary>
 	/// Gets the subsets of the current collection, via the specified size
 	/// indicating the number of elements of the each subset.
 	/// </summary>

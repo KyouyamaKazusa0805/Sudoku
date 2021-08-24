@@ -857,6 +857,35 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The task to get all true candidates.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.ConclusionGathering">
+            <summary>
+            Provides the extension methods that used and called while gathering the conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ConclusionGathering.ToConclusions(Sudoku.Data.Cells@,System.Int32,Sudoku.Data.ConclusionType)">
+            <summary>
+            Creates an array of <see cref="T:Sudoku.Data.Conclusion"/>s
+            that uses the specified conclusion type and the digit used.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="digit">The digit.</param>
+            <param name="conclusionType">
+            The conclusion type. The default value is <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </param>
+            <returns>The array of <see cref="T:Sudoku.Data.Conclusion"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ConclusionGathering.ToImmutableConclusions(Sudoku.Data.Cells@,System.Int32,Sudoku.Data.ConclusionType)">
+            <summary>
+            Creates an immutable array of <see cref="T:Sudoku.Data.Conclusion"/>s
+            that uses the specified conclusion type and the digit used.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="digit">The digit.</param>
+            <param name="conclusionType">
+            The conclusion type. The default value is <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </param>
+            <returns>The immutable array of <see cref="T:Sudoku.Data.Conclusion"/>s.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Constants">
             <summary>
             Provides with the constants.

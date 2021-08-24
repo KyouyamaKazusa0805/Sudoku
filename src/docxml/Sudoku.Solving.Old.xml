@@ -8089,13 +8089,12 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.IsSameRegionCell(System.Int32,System.Int32,System.Int32@)">
             <summary>
-            Get a cell that is in the same region of the specified cell lies in.
+            Get whether two cells are in a same region.
             </summary>
-            <param name="currentCell">The current cell.</param>
-            <param name="anotherCell">Another cell to check.</param>
+            <param name="cell1">The cell 1 to check.</param>
+            <param name="cell2">The cell 2 to check.</param>
             <param name="region">
-            The result regions that both cells lie in.
-            If the cell can't be found, the parameter will be an empty array of type <see cref="T:System.Int32"/>.
+            The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
             </param>
             <returns>
             The <see cref="T:System.Boolean"/> value indicating whether the another cell is same region as the current one.
