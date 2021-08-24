@@ -1616,12 +1616,6 @@
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.AsImmutableArray">
-            <summary>
-            Converts the current instance to an immutable array, that only contains one element (this).
-            </summary>
-            <returns>The immutable array.</returns>
-        </member>
         <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>

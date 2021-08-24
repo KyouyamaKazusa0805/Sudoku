@@ -104,13 +104,6 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 			ConclusionType.Elimination => "<>"
 		}} {Digit + 1}";
 
-	/// <summary>
-	/// Converts the current instance to an immutable array, that only contains one element (this).
-	/// </summary>
-	/// <returns>The immutable array.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ImmutableArray<Conclusion> AsImmutableArray() => ImmutableArray.Create(this);
-
 
 	/// <inheritdoc/>
 	public static bool operator <(in Conclusion left, in Conclusion right) => left.CompareTo(right) < 0;
