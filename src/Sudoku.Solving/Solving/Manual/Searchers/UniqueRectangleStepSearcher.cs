@@ -1177,25 +1177,27 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |   ↓ corner1
+	/// | (ab )  abx
+	/// |  aby  (ab )  xy  *
+	/// |         ↑ corner2
+	/// </code>
+	/// </remarks>
 	private void Check2D(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		//   ↓ corner1
-		// (ab )  abx
-		//  aby  (ab )  xy  *
-		//         ↑ corner2
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
 		}
 
-		int[] otherCells = otherCellsMap.ToArray();
-		short o1 = grid.GetCandidates(otherCells[0]), o2 = grid.GetCandidates(otherCells[1]);
+		short o1 = grid.GetCandidates(otherCellsMap[0]), o2 = grid.GetCandidates(otherCellsMap[1]);
 		short o = (short)(o1 | o2);
 		if (
 			(
@@ -1218,7 +1220,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 		short xyMask = (short)(o ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = new Cells(otherCells).PeerIntersection - urCells;
+		var inter = otherCellsMap.PeerIntersection - urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1229,7 +1231,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			// 'xy' found.
 			// Now check eliminations.
 			var elimMap = inter & PeerMaps[possibleXyCell];
-			var conclusions = new List<Conclusion>();
+			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in elimMap)
 			{
 				if (grid.Exists(cell, x) is true)
@@ -1246,27 +1248,32 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				continue;
 			}
 
-			var candidateOffsets = new List<DrawingInfo>();
+			var candidateOffsets = new List<(int, ColorIdentifier)>(10);
 			foreach (int cell in urCells)
 			{
 				if (otherCellsMap.Contains(cell))
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
+						candidateOffsets.Add(
+							(
+								cell * 9 + digit,
+								(ColorIdentifier)((comparer >> digit & 1) == 0 ? 1 : 0)
+							)
+						);
 					}
 				}
 				else
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add((possibleXyCell * 9 + digit, (ColorIdentifier)1));
 			}
 
 			if (IsIncompleteUr(candidateOffsets))
@@ -1275,16 +1282,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			}
 
 			accumulator.Add(
-				new Ur2DOr3XStepInfo(
-					conclusions,
-					new View[]
+				new UniqueRectangle2DOr3XStep(
+					conclusions.ToImmutableArray(),
+					new PresentationData[]
 					{
 						new()
 						{
 							Cells = arMode ? GetHighlightCells(urCells) : null,
 							Candidates = candidateOffsets
 						}
-					},
+					}.ToImmutableArray(),
 					arMode ? Technique.ArPlus2D : Technique.UrPlus2D,
 					d1,
 					d2,
@@ -1311,27 +1318,33 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |   ↓ corner1, corner2
+	/// | (ab )  (ab )
+	/// |  |
+	/// |  | a
+	/// |  |
+	/// |  abx    aby
+	/// </code>
+	/// </remarks>
 	private void Check2B1SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		//   ↓ corner1, corner2
-		// (ab )  (ab )
-		//  |
-		//  | a
-		//  |
-		//  abx    aby
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
 		}
 
-		foreach (int cell in stackalloc[] { corner1, corner2 })
+		int* corners = stackalloc[] { corner1, corner2 };
+		int* digits = stackalloc[] { d1, d2 };
+		for (int cellIndex = 0; cellIndex < 2; cellIndex++)
 		{
+			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
 				if (!IsSameRegionCell(cell, otherCell, out int regions))
@@ -1346,8 +1359,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
+						int digit = digits[digitIndex];
 						if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 						{
 							continue;
@@ -1360,7 +1374,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
-						var conclusions = new List<Conclusion>();
+						var conclusions = new List<Conclusion>(4);
 						if (grid.Exists(elimCell, elimDigit) is true)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, elimDigit));
@@ -1370,7 +1384,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 							continue;
 						}
 
-						var candidateOffsets = new List<DrawingInfo>();
+						var candidateOffsets = new List<(int, ColorIdentifier)>(10);
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
@@ -1380,14 +1394,19 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										candidateOffsets.Add(
+											(
+												urCell * 9 + d,
+												(ColorIdentifier)(d == digit ? 1 : 0)
+											)
+										);
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										candidateOffsets.Add((urCell * 9 + d, (ColorIdentifier)0));
 									}
 								}
 							}
@@ -1398,9 +1417,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									if (urCell != elimCell || d1 != elimDigit)
 									{
 										candidateOffsets.Add(
-											new(
-												urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
-												urCell * 9 + d1
+											(
+												urCell * 9 + d1,
+												(ColorIdentifier)(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0))
 											)
 										);
 									}
@@ -1410,9 +1429,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									if (urCell != elimCell || d2 != elimDigit)
 									{
 										candidateOffsets.Add(
-											new(
-												urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
-												urCell * 9 + d2
+											(
+												urCell * 9 + d2,
+												(ColorIdentifier)(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0))
 											)
 										);
 									}
@@ -1426,17 +1445,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						accumulator.Add(
-							new UrPlusStepInfo(
-								conclusions,
-								new View[]
+							new UniqueRectangleWithConjugatePairStep(
+								conclusions.ToImmutableArray(),
+								new PresentationData[]
 								{
 									new()
 									{
 										Cells = arMode ? GetHighlightCells(urCells) : null,
 										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, region) }
+										Regions = new[] { (region, (ColorIdentifier)0) }
 									}
-								},
+								}.ToImmutableArray(),
 								Technique.UrPlus2B1SL,
 								d1,
 								d2,
@@ -1464,28 +1483,34 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |   ↓ corner1
+	/// | (ab )   aby
+	/// |  |
+	/// |  | a
+	/// |  |
+	/// |  abx   (ab )
+	/// |          ↑ corner2
+	/// </code>
+	/// </remarks>
 	private void Check2D1SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		//   ↓ corner1
-		// (ab )   aby
-		//  |
-		//  | a
-		//  |
-		//  abx   (ab )
-		//          ↑ corner2
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
 		}
 
-		foreach (int cell in stackalloc[] { corner1, corner2 })
+		int* corners = stackalloc[] { corner1, corner2 };
+		int* digits = stackalloc[] { d1, d2 };
+		for (int cellIndex = 0; cellIndex < 2; cellIndex++)
 		{
+			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
 				if (!IsSameRegionCell(cell, otherCell, out int regions))
@@ -1500,8 +1525,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						continue;
 					}
 
-					foreach (int digit in stackalloc[] { d1, d2 })
+					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
+						int digit = digits[digitIndex];
 						if (!IsConjugatePair(digit, new() { cell, otherCell }, region))
 						{
 							continue;
@@ -1513,7 +1539,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 							continue;
 						}
 
-						var conclusions = new List<Conclusion>();
+						var conclusions = new List<Conclusion>(4);
 						if (grid.Exists(elimCell, digit) is true)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
@@ -1523,7 +1549,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 							continue;
 						}
 
-						var candidateOffsets = new List<DrawingInfo>();
+						var candidateOffsets = new List<(int, ColorIdentifier)>(10);
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
@@ -1542,14 +1568,19 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
+										candidateOffsets.Add(
+											(
+												urCell * 9 + d,
+												(ColorIdentifier)(d == digit ? 1 : 0)
+											)
+										);
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(0, urCell * 9 + d));
+										candidateOffsets.Add((urCell * 9 + d, (ColorIdentifier)0));
 									}
 								}
 							}
@@ -1558,18 +1589,18 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								if (grid.Exists(urCell, d1) is true && (urCell != elimCell || d1 != digit))
 								{
 									candidateOffsets.Add(
-										new(
-											urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
-											urCell * 9 + d1
+										(
+											urCell * 9 + d1,
+											(ColorIdentifier)(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0))
 										)
 									);
 								}
 								if (grid.Exists(urCell, d2) is true && (urCell != elimCell || d2 != digit))
 								{
 									candidateOffsets.Add(
-										new(
-											urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
-											urCell * 9 + d2
+										(
+											urCell * 9 + d2,
+											(ColorIdentifier)(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0))
 										)
 									);
 								}
@@ -1582,17 +1613,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						accumulator.Add(
-							new UrPlusStepInfo(
-								conclusions,
-								new View[]
+							new UniqueRectangleWithConjugatePairStep(
+								conclusions.ToImmutableArray(),
+								new PresentationData[]
 								{
 									new()
 									{
 										Cells = arMode ? GetHighlightCells(urCells) : null,
 										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, region) }
+										Regions = new[] { (region, (ColorIdentifier)0) }
 									}
-								},
+								}.ToImmutableArray(),
 								Technique.UrPlus2D1SL,
 								d1,
 								d2,
@@ -1619,25 +1650,27 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="cornerCell">The corner cell.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |  ↓ cornerCell
+	/// | (ab )  abx
+	/// |  aby   abz   xy  *
+	/// </code>
+	/// Note: <c>z</c> is <c>x</c> or <c>y</c>.
+	/// </remarks>
 	private void Check3X(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 	{
-		//   ↓ cornerCell
-		// (ab )  abx
-		//  aby   abz   xy  *
-		// Note: 'z' is 'x' or 'y'.
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
 			return;
 		}
 
-		int[] offsets = otherCellsMap.ToArray();
-		int c1 = offsets[0], c2 = offsets[1], c3 = offsets[2];
+		int c1 = otherCellsMap[0], c2 = otherCellsMap[1], c3 = otherCellsMap[2];
 		short m1 = grid.GetCandidates(c1), m2 = grid.GetCandidates(c2), m3 = grid.GetCandidates(c3);
 		short mask = (short)((short)(m1 | m2) | m3);
 
@@ -1676,7 +1709,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			// Possible XY cell found.
 			// Now check eliminations.
-			var conclusions = new List<Conclusion>();
+			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in inter & PeerMaps[possibleXyCell])
 			{
 				if (grid.Exists(cell, x) is true)
@@ -1693,27 +1726,32 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				continue;
 			}
 
-			var candidateOffsets = new List<DrawingInfo>();
+			var candidateOffsets = new List<(int, ColorIdentifier)>(10);
 			foreach (int cell in urCells)
 			{
 				if (otherCellsMap.Contains(cell))
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
+						candidateOffsets.Add(
+							(
+								cell * 9 + digit,
+								(ColorIdentifier)((comparer >> digit & 1) == 0 ? 1 : 0)
+							)
+						);
 					}
 				}
 				else
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(0, cell * 9 + digit));
+						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add((possibleXyCell * 9 + digit, (ColorIdentifier)1));
 			}
 			if (IsIncompleteUr(candidateOffsets))
 			{
@@ -1721,16 +1759,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			}
 
 			accumulator.Add(
-				new Ur2DOr3XStepInfo(
-					conclusions,
-					new View[]
+				new UniqueRectangle2DOr3XStep(
+					conclusions.ToImmutableArray(),
+					new PresentationData[]
 					{
 						new()
 						{
 							Cells = arMode ? GetHighlightCells(urCells) : null,
 							Candidates = candidateOffsets
 						}
-					},
+					}.ToImmutableArray(),
 					arMode ? Technique.ArPlus3X : Technique.UrPlus3X,
 					d1,
 					d2,
@@ -1756,20 +1794,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="cornerCell">The corner cell.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |  ↓ cornerCell
+	/// | (ab )    abx
+	/// |           |
+	/// |           | b
+	/// |       a   |
+	/// |  aby-----abz
+	/// </code>
+	/// </remarks>
 	private void Check3X2SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 	{
-		//   ↓ cornerCell
-		// (ab )    abx
-		//           |
-		//           | b
-		//       a   |
-		//  aby-----abz
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
 			return;
@@ -1777,57 +1818,50 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		var pairs = stackalloc[] { (d1, d2), (d2, d1) };
+		for (int pairIndex = 0; pairIndex < 2; pairIndex++)
 		{
-			int[] offsets = adjacentCellsMap.ToArray();
-			int abxCell = offsets[0], abyCell = offsets[1];
-			var map1 = new Cells { abzCell, abxCell };
-			var map2 = new Cells { abzCell, abyCell };
-			if (!IsConjugatePair(b, map1, map1.CoveredLine)
-				|| !IsConjugatePair(a, map2, map2.CoveredLine))
+			var (a, b) = pairs[pairIndex];
+			int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
+			Cells map1 = new() { abzCell, abxCell }, map2 = new() { abzCell, abyCell };
+			if (!IsConjugatePair(b, map1, map1.CoveredLine) || !IsConjugatePair(a, map2, map2.CoveredLine))
 			{
 				continue;
 			}
 
-			var conclusions = new List<Conclusion>();
-			if (grid.Exists(abxCell, a) is true)
-			{
-				conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
-			}
-			if (grid.Exists(abyCell, b) is true)
-			{
-				conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
-			}
+			var conclusions = new List<Conclusion>(2);
+			if (grid.Exists(abxCell, a) is true) conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
+			if (grid.Exists(abyCell, b) is true) conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
 			if (conclusions.Count == 0)
 			{
 				continue;
 			}
 
-			var candidateOffsets = new List<DrawingInfo>();
+			var candidateOffsets = new List<(int, ColorIdentifier)>(6);
 			foreach (int digit in grid.GetCandidates(abxCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != a)
 				{
-					candidateOffsets.Add(new(digit == b ? 1 : 0, abxCell * 9 + digit));
+					candidateOffsets.Add((abxCell * 9 + digit, (ColorIdentifier)(digit == b ? 1 : 0)));
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abyCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != b)
 				{
-					candidateOffsets.Add(new(digit == a ? 1 : 0, abyCell * 9 + digit));
+					candidateOffsets.Add((abyCell * 9 + digit, (ColorIdentifier)(digit == a ? 1 : 0)));
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abzCell))
 			{
 				if (digit == a || digit == b)
 				{
-					candidateOffsets.Add(new(1, abzCell * 9 + digit));
+					candidateOffsets.Add((abzCell * 9 + digit, (ColorIdentifier)1));
 				}
 			}
 			foreach (int digit in comparer)
 			{
-				candidateOffsets.Add(new(0, cornerCell * 9 + digit));
+				candidateOffsets.Add((cornerCell * 9 + digit, (ColorIdentifier)0));
 			}
 			if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 6)
 			{
@@ -1835,21 +1869,21 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			}
 
 			accumulator.Add(
-				new UrPlusStepInfo(
-					conclusions,
-					new View[]
+				new UniqueRectangleWithConjugatePairStep(
+					conclusions.ToImmutableArray(),
+					new PresentationData[]
 					{
 						new()
 						{
 							Cells = arMode ? GetHighlightCells(urCells) : null,
 							Candidates = candidateOffsets,
-							Regions = new DrawingInfo[]
+							Regions = new[]
 							{
-								new(0, map1.CoveredLine),
-								new(1, map2.CoveredLine)
+								(map1.CoveredLine, (ColorIdentifier)0),
+								(map2.CoveredLine, (ColorIdentifier)1)
 							}
 						}
-					},
+					}.ToImmutableArray(),
 					Technique.UrPlus3X2SL,
 					d1,
 					d2,
@@ -1873,20 +1907,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="cornerCell">The corner cell.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |  ↓ cornerCell
+	/// | (ab )-----abx
+	/// |        a   |
+	/// |            | b
+	/// |            |
+	/// |  aby      abz
+	/// </code>
+	/// </remarks>
 	private void Check3N2SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 	{
-		//   ↓ cornerCell
-		// (ab )-----abx
-		//        a   |
-		//            | b
-		//            |
-		//  aby      abz
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
 			return;
@@ -1896,13 +1933,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		// the existence of strong link.
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
-		int[] offsets = adjacentCellsMap.ToArray();
-		int abxCell = offsets[0], abyCell = offsets[1];
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
+		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
+		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
+		int* digits = stackalloc[] { d1, d2 };
+		for (int cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
 		{
+			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = new Cells { begin, abzCell };
-			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
+				var (a, b) = digitPairs[digitPairIndex];
 				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -1917,41 +1958,37 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				}
 
 				// Step 3: Check eliminations.
-				var conclusions = new List<Conclusion>();
-				if (grid.Exists(end, a) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, end, a));
-				}
-				if (conclusions.Count == 0)
+				if (grid.Exists(end, a) is not true)
 				{
 					continue;
 				}
 
 				// Step 4: Check highlight candidates.
-				var candidateOffsets = new List<DrawingInfo>();
+				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 				}
-				foreach (int d in stackalloc[] { d1, d2 })
+				for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 				{
+					int d = digits[digitIndex];
 					if (grid.Exists(abzCell, d) is true)
 					{
-						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(0, end * 9 + d));
+						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)0));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1959,27 +1996,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[]
-				{
-					new(cornerCell, begin, a),
-					new(begin, abzCell, b)
-				};
+				var conjugatePairs = new ConjugatePair[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
 				accumulator.Add(
-					new UrPlusStepInfo(
-						conclusions,
-						new View[]
+					new UniqueRectangleWithConjugatePairStep(
+						new Conclusion(ConclusionType.Elimination, end, a).AsImmutableArray(),
+						new PresentationData[]
 						{
 							new()
 							{
 								Cells = arMode ? GetHighlightCells(urCells) : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[]
+								Regions = new[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									(conjugatePairs[0].Line, (ColorIdentifier)0),
+									(conjugatePairs[1].Line, (ColorIdentifier)1)
 								}
 							}
-						},
+						}.ToImmutableArray(),
 						Technique.UrPlus3N2SL,
 						d1,
 						d2,
@@ -2004,20 +2037,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="cornerCell">The corner cell.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |  ↓ cornerCell
+	/// | (ab )-----abx
+	/// |        a
+	/// |
+	/// |        b
+	/// |  aby -----abz
+	/// </code>
+	/// </remarks>
 	private void Check3U2SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 	{
-		//   ↓ cornerCell
-		// (ab )-----abx
-		//        a
-		//
-		//        b
-		//  aby -----abz
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
 			return;
@@ -2025,13 +2061,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
-		int[] offsets = adjacentCellsMap.ToArray();
-		int abxCell = offsets[0], abyCell = offsets[1];
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
+		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
+		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
+		for (int cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
 		{
+			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = new Cells { begin, abzCell };
-			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
+				var (a, b) = digitPairs[digitPairIndex];
 				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -2043,40 +2082,35 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conclusions = new List<Conclusion>();
-				if (grid.Exists(begin, a) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, begin, a));
-				}
-				if (conclusions.Count == 0)
+				if (grid.Exists(begin, a) is not true)
 				{
 					continue;
 				}
 
-				var candidateOffsets = new List<DrawingInfo>();
+				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
+						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2084,27 +2118,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[]
-				{
-					new(cornerCell, end, a),
-					new(begin, abzCell, b)
-				};
+				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, b) };
 				accumulator.Add(
-					new UrPlusStepInfo(
-						conclusions,
-						new View[]
+					new UniqueRectangleWithConjugatePairStep(
+						new Conclusion(ConclusionType.Elimination, begin, a).AsImmutableArray(),
+						new PresentationData[]
 						{
 							new()
 							{
 								Cells = arMode ? GetHighlightCells(urCells) : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[]
+								Regions = new[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									(conjugatePairs[0].Line, (ColorIdentifier)0),
+									(conjugatePairs[1].Line, (ColorIdentifier)1)
 								}
 							}
-						},
+						}.ToImmutableArray(),
 						Technique.UrPlus3U2SL,
 						d1,
 						d2,
@@ -2129,20 +2159,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="cornerCell">The corner cell.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |   ↓ cornerCell
+	/// | (ab )-----abx
+	/// |        a
+	/// |
+	/// |        a
+	/// |  aby -----abz
+	/// </code>
+	/// </remarks>
 	private void Check3E2SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
 	{
-		//   ↓ cornerCell
-		// (ab )-----abx
-		//        a
-		//
-		//        a
-		//  aby -----abz
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
 			return;
@@ -2150,13 +2183,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
-		int[] offsets = adjacentCellsMap.ToArray();
-		int abxCell = offsets[0], abyCell = offsets[1];
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
+		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
+		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
+		for (int cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
 		{
+			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = new Cells { begin, abzCell };
-			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
+				var (a, b) = digitPairs[digitPairIndex];
 				if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -2168,40 +2204,35 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conclusions = new List<Conclusion>();
-				if (grid.Exists(abzCell, b) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, abzCell, b));
-				}
-				if (conclusions.Count == 0)
+				if (grid.Exists(abzCell, b) is not true)
 				{
 					continue;
 				}
 
-				var candidateOffsets = new List<DrawingInfo>();
+				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
+					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, begin * 9 + d));
+						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
+						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(d == a ? 1 : 0, abzCell * 9 + d));
+						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2209,27 +2240,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[]
-				{
-					new(cornerCell, end, a),
-					new(begin, abzCell, a)
-				};
+				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, a) };
 				accumulator.Add(
-					new UrPlusStepInfo(
-						conclusions,
-						new View[]
+					new UniqueRectangleWithConjugatePairStep(
+						new Conclusion(ConclusionType.Elimination, abzCell, b).AsImmutableArray(),
+						new PresentationData[]
 						{
 							new()
 							{
 								Cells = arMode ? GetHighlightCells(urCells) : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[]
+								Regions = new[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line)
+									(conjugatePairs[0].Line, (ColorIdentifier)0),
+									(conjugatePairs[1].Line, (ColorIdentifier)1)
 								}
 							}
-						},
+						}.ToImmutableArray(),
 						Technique.UrPlus3E2SL,
 						d1,
 						d2,
@@ -2255,23 +2282,28 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |   ↓ corner1, corner2
+	/// | (abx)-----(aby)
+	/// |        a    |
+	/// |             | b
+	/// |        a    |
+	/// |  abz ----- abw
+	/// </code>
+	/// </remarks>
 	private void Check4X3SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		//   ↓ corner1, corner2
-		// (abx)-----(aby)
-		//        a    |
-		//             | b
-		//        a    |
-		//  abz ----- abw
 		var link1Map = new Cells { corner1, corner2 };
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
+		for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
+			var (a, b) = digitPairs[digitPairIndex];
 			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
@@ -2279,9 +2311,15 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			int abwCell = GetDiagonalCell(urCells, corner1);
 			int abzCell = new Cells(otherCellsMap) { ~abwCell }[0];
-			foreach (var (head, begin, end, extra) in
-				stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
+			var cellQuadruples = stackalloc[]
 			{
+				(corner2, corner1, abzCell, abwCell),
+				(corner1, corner2, abwCell, abzCell)
+			};
+
+			for (int cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
+			{
+				var (head, begin, end, extra) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = new Cells { begin, end };
 				if (!IsConjugatePair(b, link2Map, link2Map.CoveredLine))
 				{
@@ -2294,47 +2332,41 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var conclusions = new List<Conclusion>();
-				if (grid.Exists(head, b) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, head, b));
-				}
-				if (grid.Exists(extra, b) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, extra, b));
-				}
+				var conclusions = new List<Conclusion>(2);
+				if (grid.Exists(head, b) is true) conclusions.Add(new(ConclusionType.Elimination, head, b));
+				if (grid.Exists(extra, b) is true) conclusions.Add(new(ConclusionType.Elimination, extra, b));
 				if (conclusions.Count == 0)
 				{
 					continue;
 				}
 
-				var candidateOffsets = new List<DrawingInfo>();
+				var candidateOffsets = new List<(int, ColorIdentifier)>(6);
 				foreach (int d in grid.GetCandidates(head))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(1, head * 9 + d));
+						candidateOffsets.Add((head * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				foreach (int d in grid.GetCandidates(extra))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(1, extra * 9 + d));
+						candidateOffsets.Add((extra * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, begin * 9 + d));
+						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(1, end * 9 + d));
+						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)1));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Count) != (6, 2))
@@ -2349,22 +2381,22 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					new(end, extra, a)
 				};
 				accumulator.Add(
-					new UrPlusStepInfo(
-						conclusions,
-						new View[]
+					new UniqueRectangleWithConjugatePairStep(
+						conclusions.ToImmutableArray(),
+						new PresentationData[]
 						{
 							new()
 							{
 								Cells = arMode ? GetHighlightCells(urCells) : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[]
+								Regions = new[]
 								{
-									new(0, conjugatePairs[0].Line),
-									new(1, conjugatePairs[1].Line),
-									new(0, conjugatePairs[2].Line)
+									(conjugatePairs[0].Line, (ColorIdentifier)0),
+									(conjugatePairs[1].Line, (ColorIdentifier)1),
+									(conjugatePairs[2].Line, (ColorIdentifier)0)
 								}
 							}
-						},
+						}.ToImmutableArray(),
 						Technique.UrPlus4X3SL,
 						d1,
 						d2,
@@ -2390,33 +2422,43 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>The structures:</para>
+	/// <para>
+	/// Subtype 1:
+	/// <code>
+	/// |   ↓ corner1, corner2
+	/// | (abx)-----(aby)
+	/// |        a    |
+	/// |             | a
+	/// |        b    |
+	/// |  abz ----- abw
+	/// </code>
+	/// </para>
+	/// <para>
+	/// Subtype 2:
+	/// <code>
+	/// |   ↓ corner1, corner2
+	/// | (abx)-----(aby)
+	/// |   |    a    |
+	/// |   | b       | a
+	/// |   |         |
+	/// |  abz       abw
+	/// </code>
+	/// </para>
+	/// </remarks>
 	private void Check4C3SL(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
 		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		// Subtype 1:
-		//   ↓ corner1, corner2
-		// (abx)-----(aby)
-		//        a    |
-		//             | a
-		//        b    |
-		//  abz ----- abw
-		//
-		// Subtype 2:
-		//   ↓ corner1, corner2
-		// (abx)-----(aby)
-		//   |    a    |
-		//   | b       | a
-		//   |         |
-		//  abz       abw
-		var innerMaps = (stackalloc Cells[2]);
 		var link1Map = new Cells { corner1, corner2 };
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		var innerMaps = stackalloc Cells[2];
+		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
+		for (int digitPairIndex= 0; digitPairIndex< 2; digitPairIndex++)
 		{
+			var (a, b) = digitPairs[digitPairIndex];
 			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
@@ -2424,9 +2466,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			int end = GetDiagonalCell(urCells, corner1);
 			int extra = new Cells(otherCellsMap) { ~end }[0];
-			foreach (var (abx, aby, abw, abz) in
-				stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
+			var cellQuadruples = stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) };
+			for (int cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
 			{
+				var (abx, aby, abw, abz) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = new Cells { aby, abw };
 				if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 				{
@@ -2444,43 +2487,38 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						continue;
 					}
 
-					var conclusions = new List<Conclusion>();
-					if (grid.Exists(aby, b) is true)
-					{
-						conclusions.Add(new(ConclusionType.Elimination, aby, b));
-					}
-					if (conclusions.Count == 0)
+					if (grid.Exists(aby, b) is not true)
 					{
 						continue;
 					}
 
-					var candidateOffsets = new List<DrawingInfo>();
+					var candidateOffsets = new List<(int, ColorIdentifier)>(7);
 					foreach (int d in grid.GetCandidates(abx))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(i == 0 ? d == a ? 1 : 0 : 1, abx * 9 + d));
+							candidateOffsets.Add((abx * 9 + d, (ColorIdentifier)(i == 0 ? d == a ? 1 : 0 : 1)));
 						}
 					}
 					foreach (int d in grid.GetCandidates(abz))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(d == b ? 1 : 0, abz * 9 + d));
+							candidateOffsets.Add((abz * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
 						}
 					}
 					foreach (int d in grid.GetCandidates(aby))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
-							candidateOffsets.Add(new(1, aby * 9 + d));
+							candidateOffsets.Add((aby * 9 + d, (ColorIdentifier)1));
 						}
 					}
 					foreach (int d in grid.GetCandidates(abw))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(1, abw * 9 + d));
+							candidateOffsets.Add((abw * 9 + d, (ColorIdentifier)1));
 						}
 					}
 					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2496,22 +2534,22 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						new(offsets[0], offsets[1], b)
 					};
 					accumulator.Add(
-						new UrPlusStepInfo(
-							conclusions,
-							new View[]
+						new UniqueRectangleWithConjugatePairStep(
+							new Conclusion(ConclusionType.Elimination, aby, b).AsImmutableArray(),
+							new PresentationData[]
 							{
 								new()
 								{
 									Cells = arMode ? GetHighlightCells(urCells) : null,
 									Candidates = candidateOffsets,
-									Regions = new DrawingInfo[]
+									Regions = new[]
 									{
-										new(0, conjugatePairs[0].Line),
-										new(0, conjugatePairs[1].Line),
-										new(1, conjugatePairs[2].Line)
+										(conjugatePairs[0].Line, (ColorIdentifier)0),
+										(conjugatePairs[1].Line, (ColorIdentifier)0),
+										(conjugatePairs[2].Line, (ColorIdentifier)1)
 									}
 								}
-							},
+							}.ToImmutableArray(),
 							Technique.UrPlus4C3SL,
 							d1,
 							d2,
