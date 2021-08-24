@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </list>
 /// </summary>
 [IsDirect, IsOptionsFixed]
-public sealed class SingleStepSearcher : ISingleStepSearcher
+internal sealed class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool EnableFullHouse { get; set; }

@@ -1707,6 +1707,11 @@
             Indicates the maximum size of the searcher can search for.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ITwoStrongLinksStepSearcher">
+            <summary>
+            Defines a step searcher that searches for two-strong-link steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">
             <summary>
             Defines a step searcher that searches for unique rectangle steps.
@@ -1717,11 +1722,23 @@
             Indicates whether the UR can be incomplete. In other words,
             some of UR candidates can be removed before the pattern forms.
             </summary>
+            <remarks>
+            For example, the complete pattern is:
+            <code>
+            ab  |  ab
+            ab  |  ab
+            </code>
+            This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
+            The incomplete pattern may not contain all four <c>ab</c>s in the structure.
+            </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
             <summary>
             Indicates whether the searcher can search for extended URs.
             </summary>
+            <remarks>
+            The basic types are type 1 to type 6, all other types are extended ones.
+            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IWingStepSearcher">
             <summary>

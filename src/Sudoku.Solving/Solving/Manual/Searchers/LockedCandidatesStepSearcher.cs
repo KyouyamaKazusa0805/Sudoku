@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Claiming</item>
 /// </list>
 /// </summary>
-public sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
+internal sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(2, DisplayingLevel.A);

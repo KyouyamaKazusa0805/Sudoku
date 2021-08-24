@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-public sealed class TwoStrongLinksStepSearcher : ISingleDigitPatternStepSearcher
+internal sealed class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(5, DisplayingLevel.B);

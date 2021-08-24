@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Sashimi Jellyfish</item>
 /// </list>
 /// </summary>
-public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
+internal sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
