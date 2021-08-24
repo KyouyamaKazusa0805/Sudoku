@@ -89,29 +89,19 @@ public sealed class TwoStrongLinksStepSearcher : IStepSearcher
 						continue;
 					}
 
-					var conclusions = new Conclusion[gridMap.Count];
-					int currentConcusionIndex = 0;
-					foreach (int cell in gridMap)
-					{
-						conclusions[currentConcusionIndex++] = new(ConclusionType.Elimination, cell, digit);
-					}
-
 					var step = new TwoStrongLinksStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						gridMap.ToImmutableConclusions(digit),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
+							Candidates = new[]
 							{
-								Candidates = new[]
-								{
-									(cells1[c1Index] * 9 + digit, (ColorIdentifier)0),
-									(cells2[c2Index] * 9 + digit, (ColorIdentifier)0),
-									(head * 9 + digit, (ColorIdentifier)0),
-									(tail * 9 + digit, (ColorIdentifier)0)
-								},
-								Regions = new[] { (sameRegion, (ColorIdentifier)1) }
-							}
-						}.ToImmutableArray(),
+								(cells1[c1Index] * 9 + digit, (ColorIdentifier)0),
+								(cells2[c2Index] * 9 + digit, (ColorIdentifier)0),
+								(head * 9 + digit, (ColorIdentifier)0),
+								(tail * 9 + digit, (ColorIdentifier)0)
+							},
+							Regions = new[] { (sameRegion, (ColorIdentifier)1) }
+						}),
 						digit,
 						r1,
 						r2

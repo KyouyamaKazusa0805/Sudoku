@@ -102,15 +102,12 @@ public sealed class SingleStepSearcher : IStepSearcher
 
 			int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
-				new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) }.ToImmutableArray(),
-				new PresentationData[]
+				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
-						Regions = new[] { (region, (ColorIdentifier)0) }
-					}
-				}.ToImmutableArray(),
+					Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
+					Regions = new[] { (region, (ColorIdentifier)0) }
+				}),
 				resultCell,
 				digit
 			);
@@ -224,15 +221,12 @@ public sealed class SingleStepSearcher : IStepSearcher
 			}
 
 			var step = new NakedSingleStep(
-				new Conclusion[] { new(ConclusionType.Assignment, cell, digit) }.ToImmutableArray(),
-				new PresentationData[]
+				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cell, digit)),
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Candidates = new[] { (cell * 9 + digit, (ColorIdentifier)0) },
-						DirectLines = directLines
-					}
-				}.ToImmutableArray(),
+					Candidates = new[] { (cell * 9 + digit, (ColorIdentifier)0) },
+					DirectLines = directLines
+				}),
 				cell,
 				digit
 			);
@@ -335,17 +329,14 @@ public sealed class SingleStepSearcher : IStepSearcher
 			}
 
 			return new HiddenSingleStep(
-				new Conclusion[] { new(ConclusionType.Assignment, resultCell, digit) }.ToImmutableArray(),
-				new PresentationData[]
+				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Cells = enableAndIsLastDigit ? cellOffsets : null,
-						Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
-						Regions = enableAndIsLastDigit ? null : new[] { (region, (ColorIdentifier)0) },
-						DirectLines = directLines
-					}
-				}.ToImmutableArray(),
+					Cells = enableAndIsLastDigit ? cellOffsets : null,
+					Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
+					Regions = enableAndIsLastDigit ? null : new[] { (region, (ColorIdentifier)0) },
+					DirectLines = directLines
+				}),
 				resultCell,
 				digit,
 				region,

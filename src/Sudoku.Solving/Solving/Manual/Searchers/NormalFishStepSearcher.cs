@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Sashimi Jellyfish</item>
 /// </list>
 /// </summary>
-public sealed class NormalFishStepSearcher : IStepSearcher
+public sealed unsafe class NormalFishStepSearcher : IStepSearcher
 {
 	/// <inheritdoc/>
 	public SearcherIdentifier Identifier => SearcherIdentifier.Fish;
@@ -26,7 +26,7 @@ public sealed class NormalFishStepSearcher : IStepSearcher
 
 
 	/// <inheritdoc/>
-	public unsafe Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		int** r = stackalloc int*[9], c = stackalloc int*[9];
 		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
@@ -114,7 +114,7 @@ public sealed class NormalFishStepSearcher : IStepSearcher
 	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
-	private static unsafe Step? GetAll(
+	private unsafe Step? GetAll(
 		ICollection<Step> accumulator, in Grid grid, int size, int** r, int** c,
 		bool withFin, bool searchRow, bool onlyFindOne)
 	{
@@ -194,12 +194,7 @@ public sealed class NormalFishStepSearcher : IStepSearcher
 					}
 
 					// Gather the conclusions and candidates or regions to be highlighted.
-					var conclusions = new List<Conclusion>();
 					List<(int, ColorIdentifier)> candidateOffsets = new(), regionOffsets = new();
-					foreach (int cell in elimMap)
-					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-					}
 					foreach (int cell in withFin ? baseLine - fins : baseLine)
 					{
 						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
@@ -213,12 +208,12 @@ public sealed class NormalFishStepSearcher : IStepSearcher
 
 					// Gather the result.
 					var step = new NormalFishStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						elimMap.ToImmutableConclusions(digit),
+						ImmutableArray.Create(new PresentationData[]
 						{
 							new() { Candidates = candidateOffsets, Regions = regionOffsets },
 							GetDirectView(grid, digit, bs, cs, fins, searchRow)
-						}.ToImmutableArray(),
+						}),
 						digit,
 						new RegionCollection(bs).GetHashCode(), // The mask itself.
 						new RegionCollection(cs).GetHashCode(), // The mask itself.

@@ -105,32 +105,22 @@ public sealed class WWingStepSearcher : IStepSearcher
 							continue;
 						}
 
-						// Gather the eliminations.
-						var conclusions = new List<Conclusion>();
-						foreach (int cell in elimMap)
-						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, anotherDigit));
-						}
-
 						// Now W-Wing found. Store it into the accumulator.
 						var step = new WWingStep(
-							conclusions.ToImmutableArray(),
-							new PresentationData[]
+							elimMap.ToImmutableConclusions(anotherDigit),
+							ImmutableArray.Create(new PresentationData
 							{
-								new()
+								Candidates = new[]
 								{
-									Candidates = new[]
-									{
-										(c1 * 9 + anotherDigit, (ColorIdentifier)0),
-										(c2 * 9 + anotherDigit, (ColorIdentifier)0),
-										(c1 * 9 + digit, (ColorIdentifier)1),
-										(c2 * 9 + digit, (ColorIdentifier)1),
-										(a * 9 + digit, (ColorIdentifier)1),
-										(b * 9 + digit, (ColorIdentifier)1)
-									},
-									Regions = new[] { (region, (ColorIdentifier)0) }
-								}
-							}.ToImmutableArray(),
+									(c1 * 9 + anotherDigit, (ColorIdentifier)0),
+									(c2 * 9 + anotherDigit, (ColorIdentifier)0),
+									(c1 * 9 + digit, (ColorIdentifier)1),
+									(c2 * 9 + digit, (ColorIdentifier)1),
+									(a * 9 + digit, (ColorIdentifier)1),
+									(b * 9 + digit, (ColorIdentifier)1)
+								},
+								Regions = new[] { (region, (ColorIdentifier)0) }
+							}),
 							a,
 							b,
 							new(conjugate, digit)

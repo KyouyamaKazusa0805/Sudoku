@@ -101,14 +101,7 @@ public sealed class LockedCandidatesStepSearcher : IStepSearcher
 					continue;
 				}
 
-				// Gather the information,
-				// such as the type of the locked candidates, the located region, etc..
-				var conclusions = new List<Conclusion>();
-				foreach (int cell in elimMap)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, digit));
-				}
-
+				// Gather the information, such as the type of the locked candidates, the located region, etc..
 				var candidateOffsets = new List<(int, ColorIdentifier)>();
 				foreach (int cell in c & CandMaps[digit])
 				{
@@ -117,19 +110,12 @@ public sealed class LockedCandidatesStepSearcher : IStepSearcher
 
 				// Okay, now accumulate into the collection.
 				var step = new LockedCandidatesStep(
-					conclusions.ToImmutableArray(),
-					new PresentationData[]
+					elimMap.ToImmutableConclusions(digit),
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
-						{
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(r[0], (ColorIdentifier)0),
-								(r[1], (ColorIdentifier)1)
-							}
-						}
-					}.ToImmutableArray(),
+						Candidates = candidateOffsets,
+						Regions = new[] { (r[0], (ColorIdentifier)0), (r[1], (ColorIdentifier)1) }
+					}),
 					digit,
 					r[0],
 					r[1]

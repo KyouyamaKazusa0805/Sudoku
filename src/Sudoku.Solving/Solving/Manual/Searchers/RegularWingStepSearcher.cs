@@ -74,11 +74,7 @@ public sealed class RegularWingStepSearcher : IStepSearcher
 					// Check duplicate.
 					// If two cells contain same candidates, the wing can't be formed.
 					bool flag = false;
-					for (
-						int i = 0, length = cells.Length, iterationLength = length - 1;
-						i < iterationLength;
-						i++
-					)
+					for (int i = 0, length = cells.Length, outerLength = length - 1; i < outerLength; i++)
 					{
 						for (int j = i + 1; j < length; j++)
 						{
@@ -104,8 +100,7 @@ public sealed class RegularWingStepSearcher : IStepSearcher
 						inter &= m;
 					}
 
-					if (PopCount((uint)union) != size || inter != 0
-						&& (inter == 0 || (inter & inter - 1) != 0))
+					if (PopCount((uint)union) != size || inter != 0 && (inter == 0 || (inter & inter - 1) != 0))
 					{
 						continue;
 					}
@@ -139,13 +134,6 @@ public sealed class RegularWingStepSearcher : IStepSearcher
 						continue;
 					}
 
-					// Gather the eliminations.
-					var conclusions = new List<Conclusion>();
-					foreach (int cell in elimMap)
-					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, zDigit));
-					}
-
 					// Gather highlight candidates.
 					var candidateOffsets = new List<(int, ColorIdentifier)>(6);
 					foreach (int cell in cells)
@@ -161,8 +149,8 @@ public sealed class RegularWingStepSearcher : IStepSearcher
 					}
 
 					var step = new RegularWingStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[] { new() { Candidates = candidateOffsets } }.ToImmutableArray(),
+						elimMap.ToImmutableConclusions(zDigit),
+						ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
 						pivot,
 						PopCount((uint)mask),
 						union,

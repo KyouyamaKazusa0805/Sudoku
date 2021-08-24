@@ -55,11 +55,11 @@ public sealed class SubsetStepSearcher : IStepSearcher
 
 					// Naked subset found. Now check eliminations.
 					short flagMask = 0;
-					var conclusions = new List<Conclusion>();
+					var conclusions = new List<Conclusion>(18);
 					foreach (int digit in mask)
 					{
 						var map = cells % CandMaps[digit];
-						flagMask |= (short)(map.InOneRegion ? 0 : (1 << digit));
+						flagMask |= (short)(map.InOneRegion ? 0 : 1 << digit);
 
 						foreach (int cell in map)
 						{
@@ -71,7 +71,7 @@ public sealed class SubsetStepSearcher : IStepSearcher
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<(int, ColorIdentifier)>(16);
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
@@ -82,15 +82,12 @@ public sealed class SubsetStepSearcher : IStepSearcher
 
 					bool? isLocked = flagMask == mask ? true : flagMask != 0 ? false : null;
 					var step = new NakedSubsetStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.CreateRange(conclusions),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
-							{
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}
-						}.ToImmutableArray(),
+							Candidates = candidateOffsets,
+							Regions = new[] { (region, (ColorIdentifier)0) }
+						}),
 						region,
 						new(cells),
 						mask,
@@ -162,15 +159,12 @@ public sealed class SubsetStepSearcher : IStepSearcher
 					}
 
 					var step = new HiddenSubsetStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.CreateRange(conclusions),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
-							{
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}
-						}.ToImmutableArray(),
+							Candidates = candidateOffsets,
+							Regions = new[] { (region, (ColorIdentifier)0) }
+						}),
 						region,
 						map,
 						digitsMask

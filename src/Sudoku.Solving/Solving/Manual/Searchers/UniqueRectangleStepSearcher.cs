@@ -432,15 +432,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType1Step(
-				conclusions.ToImmutableArray(),
-				new PresentationData[]
+				ImmutableArray.CreateRange(conclusions),
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = arMode ? null : candidateOffsets
-					}
-				}.ToImmutableArray(),
+					Cells = arMode ? GetHighlightCells(urCells) : null,
+					Candidates = arMode ? null : candidateOffsets
+				}),
 				d1,
 				d2,
 				urCells,
@@ -523,14 +520,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				elimMap.ToImmutableConclusions(extraDigit),
-				new PresentationData[]
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets
-					}
-				}.ToImmutableArray(),
+					Cells = arMode ? GetHighlightCells(urCells) : null,
+					Candidates = candidateOffsets
+				}),
 				d1,
 				d2,
 				(IsAvoidableRectangle: arMode, IsType5: isType5) switch
@@ -678,16 +672,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
-							conclusions.ToImmutableArray(),
-							new PresentationData[]
+							ImmutableArray.CreateRange(conclusions),
+							ImmutableArray.Create(new PresentationData
 							{
-								new()
-								{
-									Cells = arMode ? cellOffsets : null,
-									Candidates = candidateOffsets,
-									Regions = new[] { (region, (ColorIdentifier)0) }
-								}
-							}.ToImmutableArray(),
+								Cells = arMode ? cellOffsets : null,
+								Candidates = candidateOffsets,
+								Regions = new[] { (region, (ColorIdentifier)0) }
+							}),
 							d1,
 							d2,
 							urCells,
@@ -801,15 +792,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
-						new PresentationData[]
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
-							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}
-						}.ToImmutableArray(),
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[] { (region, (ColorIdentifier)0) }
+						}),
 						Technique.UrType4,
 						d1,
 						d2,
@@ -904,14 +892,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				elimMap.ToImmutableConclusions(extraDigit),
-				new PresentationData[]
+				ImmutableArray.Create(new PresentationData
 				{
-					new()
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets
-					}
-				}.ToImmutableArray(),
+					Cells = arMode ? GetHighlightCells(urCells) : null,
+					Candidates = candidateOffsets
+				}),
 				d1,
 				d2,
 				arMode ? Technique.ArType5 : Technique.UrType5,
@@ -1027,15 +1012,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
 					conclusions,
-					new PresentationData[]
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)0) }
-						}
-					}.ToImmutableArray(),
+						Cells = arMode ? GetHighlightCells(urCells) : null,
+						Candidates = candidateOffsets,
+						Regions = new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)0) }
+					}),
 					Technique.UrType6,
 					d1,
 					d2,
@@ -1138,16 +1120,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
-					new Conclusion(ConclusionType.Elimination, abzCell, elimDigit).AsImmutableArray(),
-					new PresentationData[]
+					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, elimDigit)),
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[] { (r, (ColorIdentifier)0), (c, (ColorIdentifier)0) }
-						}
-					}.ToImmutableArray(),
+						Cells = arMode ? GetHighlightCells(urCells) : null,
+						Candidates = candidateOffsets,
+						Regions = new[] { (r, (ColorIdentifier)0), (c, (ColorIdentifier)0) }
+					}),
 					d1,
 					d2,
 					urCells,
@@ -1283,15 +1262,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					conclusions.ToImmutableArray(),
-					new PresentationData[]
+					ImmutableArray.CreateRange(conclusions),
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets
-						}
-					}.ToImmutableArray(),
+						Cells = arMode ? GetHighlightCells(urCells) : null,
+						Candidates = candidateOffsets
+					}),
 					arMode ? Technique.ArPlus2D : Technique.UrPlus2D,
 					d1,
 					d2,
@@ -1446,16 +1422,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								conclusions.ToImmutableArray(),
-								new PresentationData[]
+								ImmutableArray.CreateRange(conclusions),
+								ImmutableArray.Create(new PresentationData
 								{
-									new()
-									{
-										Cells = arMode ? GetHighlightCells(urCells) : null,
-										Candidates = candidateOffsets,
-										Regions = new[] { (region, (ColorIdentifier)0) }
-									}
-								}.ToImmutableArray(),
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new[] { (region, (ColorIdentifier)0) }
+								}),
 								Technique.UrPlus2B1SL,
 								d1,
 								d2,
@@ -1614,16 +1587,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								conclusions.ToImmutableArray(),
-								new PresentationData[]
+								ImmutableArray.CreateRange(conclusions),
+								ImmutableArray.Create(new PresentationData
 								{
-									new()
-									{
-										Cells = arMode ? GetHighlightCells(urCells) : null,
-										Candidates = candidateOffsets,
-										Regions = new[] { (region, (ColorIdentifier)0) }
-									}
-								}.ToImmutableArray(),
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets,
+									Regions = new[] { (region, (ColorIdentifier)0) }
+								}),
 								Technique.UrPlus2D1SL,
 								d1,
 								d2,
@@ -1712,14 +1682,8 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in inter & PeerMaps[possibleXyCell])
 			{
-				if (grid.Exists(cell, x) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, x));
-				}
-				if (grid.Exists(cell, y) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, cell, y));
-				}
+				if (grid.Exists(cell, x) is true) conclusions.Add(new(ConclusionType.Elimination, cell, x));
+				if (grid.Exists(cell, y) is true) conclusions.Add(new(ConclusionType.Elimination, cell, y));
 			}
 			if (conclusions.Count == 0)
 			{
@@ -1760,15 +1724,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					conclusions.ToImmutableArray(),
-					new PresentationData[]
+					ImmutableArray.CreateRange(conclusions),
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets
-						}
-					}.ToImmutableArray(),
+						Cells = arMode ? GetHighlightCells(urCells) : null,
+						Candidates = candidateOffsets
+					}),
 					arMode ? Technique.ArPlus3X : Technique.UrPlus3X,
 					d1,
 					d2,
@@ -1870,20 +1831,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
-					conclusions.ToImmutableArray(),
-					new PresentationData[]
+					ImmutableArray.CreateRange(conclusions),
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
+						Cells = arMode ? GetHighlightCells(urCells) : null,
+						Candidates = candidateOffsets,
+						Regions = new[]
 						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(map1.CoveredLine, (ColorIdentifier)0),
-								(map2.CoveredLine, (ColorIdentifier)1)
-							}
+							(map1.CoveredLine, (ColorIdentifier)0),
+							(map2.CoveredLine, (ColorIdentifier)1)
 						}
-					}.ToImmutableArray(),
+					}),
 					Technique.UrPlus3X2SL,
 					d1,
 					d2,
@@ -1999,20 +1957,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				var conjugatePairs = new ConjugatePair[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new Conclusion(ConclusionType.Elimination, end, a).AsImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[]
 							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(conjugatePairs[0].Line, (ColorIdentifier)0),
-									(conjugatePairs[1].Line, (ColorIdentifier)1)
-								}
+								(conjugatePairs[0].Line, (ColorIdentifier)0),
+								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
-						}.ToImmutableArray(),
+						}),
 						Technique.UrPlus3N2SL,
 						d1,
 						d2,
@@ -2121,20 +2076,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new Conclusion(ConclusionType.Elimination, begin, a).AsImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[]
 							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(conjugatePairs[0].Line, (ColorIdentifier)0),
-									(conjugatePairs[1].Line, (ColorIdentifier)1)
-								}
+								(conjugatePairs[0].Line, (ColorIdentifier)0),
+								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
-						}.ToImmutableArray(),
+						}),
 						Technique.UrPlus3U2SL,
 						d1,
 						d2,
@@ -2243,20 +2195,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, a) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new Conclusion(ConclusionType.Elimination, abzCell, b).AsImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[]
 							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(conjugatePairs[0].Line, (ColorIdentifier)0),
-									(conjugatePairs[1].Line, (ColorIdentifier)1)
-								}
+								(conjugatePairs[0].Line, (ColorIdentifier)0),
+								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
-						}.ToImmutableArray(),
+						}),
 						Technique.UrPlus3E2SL,
 						d1,
 						d2,
@@ -2382,21 +2331,18 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				};
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.CreateRange(conclusions),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[]
 							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(conjugatePairs[0].Line, (ColorIdentifier)0),
-									(conjugatePairs[1].Line, (ColorIdentifier)1),
-									(conjugatePairs[2].Line, (ColorIdentifier)0)
-								}
+								(conjugatePairs[0].Line, (ColorIdentifier)0),
+								(conjugatePairs[1].Line, (ColorIdentifier)1),
+								(conjugatePairs[2].Line, (ColorIdentifier)0)
 							}
-						}.ToImmutableArray(),
+						}),
 						Technique.UrPlus4X3SL,
 						d1,
 						d2,
@@ -2535,21 +2481,18 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					};
 					accumulator.Add(
 						new UniqueRectangleWithConjugatePairStep(
-							new Conclusion(ConclusionType.Elimination, aby, b).AsImmutableArray(),
-							new PresentationData[]
+							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, aby, b)),
+							ImmutableArray.Create(new PresentationData
 							{
-								new()
+								Cells = arMode ? GetHighlightCells(urCells) : null,
+								Candidates = candidateOffsets,
+								Regions = new[]
 								{
-									Cells = arMode ? GetHighlightCells(urCells) : null,
-									Candidates = candidateOffsets,
-									Regions = new[]
-									{
-										(conjugatePairs[0].Line, (ColorIdentifier)0),
-										(conjugatePairs[1].Line, (ColorIdentifier)0),
-										(conjugatePairs[2].Line, (ColorIdentifier)1)
-									}
+									(conjugatePairs[0].Line, (ColorIdentifier)0),
+									(conjugatePairs[1].Line, (ColorIdentifier)0),
+									(conjugatePairs[2].Line, (ColorIdentifier)1)
 								}
-							}.ToImmutableArray(),
+							}),
 							Technique.UrPlus4C3SL,
 							d1,
 							d2,
@@ -2727,14 +2670,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						accumulator.Add(
 							new UniqueRectangleWithWingStep(
 								elimMap.ToImmutableConclusions(elimDigit),
-								new PresentationData[]
+								ImmutableArray.Create(new PresentationData
 								{
-									new()
-									{
-										Cells = arMode ? GetHighlightCells(urCells) : null,
-										Candidates = candidateOffsets
-									}
-								}.ToImmutableArray(),
+									Cells = arMode ? GetHighlightCells(urCells) : null,
+									Candidates = candidateOffsets
+								}),
 								arMode ? Technique.ArXyWing : Technique.UrXyWing,
 								d1,
 								d2,
@@ -2849,14 +2789,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								accumulator.Add(
 									new UniqueRectangleWithWingStep(
 										elimMap.ToImmutableConclusions(elimDigit),
-										new PresentationData[]
+										ImmutableArray.Create(new PresentationData
 										{
-											new()
-											{
-												Cells = arMode ? GetHighlightCells(urCells) : null,
-												Candidates = candidateOffsets
-											}
-										}.ToImmutableArray(),
+											Cells = arMode ? GetHighlightCells(urCells) : null,
+											Candidates = candidateOffsets
+										}),
 										arMode ? Technique.ArXyzWing : Technique.UrXyzWing,
 										d1,
 										d2,
@@ -2976,14 +2913,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									accumulator.Add(
 										new UniqueRectangleWithWingStep(
 											elimMap.ToImmutableConclusions(elimDigit),
-											new PresentationData[]
+											ImmutableArray.Create(new PresentationData
 											{
-												new()
-												{
-													Cells = arMode ? GetHighlightCells(urCells) : null,
-													Candidates = candidateOffsets
-												}
-											}.ToImmutableArray(),
+												Cells = arMode ? GetHighlightCells(urCells) : null,
+												Candidates = candidateOffsets
+											}),
 											arMode ? Technique.ArWxyzWing : Technique.UrWxyzWing,
 											d1,
 											d2,
@@ -3294,16 +3228,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleWithSueDeCoqStep(
-						conclusions.ToImmutableArray(),
-						new PresentationData[]
+						ImmutableArray.CreateRange(conclusions),
+						ImmutableArray.Create(new PresentationData
 						{
-							new()
-							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)2) }
-							}
-						}.ToImmutableArray(),
+							Cells = arMode ? GetHighlightCells(urCells) : null,
+							Candidates = candidateOffsets,
+							Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)2) }
+						}),
 						digit1,
 						digit2,
 						urCells,
@@ -3499,8 +3430,8 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						short extraDigitMask = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithUnknownCoveringStep(
-								conclusions.ToImmutableArray(),
-								new PresentationData[]
+								ImmutableArray.CreateRange(conclusions),
+								ImmutableArray.Create(new PresentationData[]
 								{
 									new()
 									{
@@ -3530,7 +3461,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 											)
 										}
 									}
-								}.ToImmutableArray(),
+								}),
 								d1,
 								d2,
 								urCells,
@@ -3639,8 +3570,8 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						short extraDigitMask2 = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithUnknownCoveringStep(
-								conclusionsAnotherSubType.ToImmutableArray(),
-								new PresentationData[]
+								ImmutableArray.CreateRange(conclusionsAnotherSubType),
+								ImmutableArray.Create(new PresentationData[]
 								{
 									new()
 									{
@@ -3668,7 +3599,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 											(new(resultCell, extraDigitId2, extraDigitMask2), (ColorIdentifier)0)
 										}
 									}
-								}.ToImmutableArray(),
+								}),
 								d1,
 								d2,
 								urCells,
@@ -3768,18 +3699,15 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			accumulator.Add(
 				new UniqueRectangleWithGuardianStep(
 					elimMap.ToImmutableConclusions(guardianDigit),
-					new PresentationData[]
+					ImmutableArray.Create(new PresentationData
 					{
-						new()
+						Candidates = candidateOffsets,
+						Regions = new[]
 						{
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(regionCombination[0], (ColorIdentifier)0),
-								(regionCombination[1], (ColorIdentifier)0)
-							}
+							(regionCombination[0], (ColorIdentifier)0),
+							(regionCombination[1], (ColorIdentifier)0)
 						}
-					}.ToImmutableArray(),
+					}),
 					d1,
 					d2,
 					urCells,
@@ -3880,16 +3808,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
-							new Conclusion(ConclusionType.Elimination, baseCell, otherDigit).AsImmutableArray(),
-							new PresentationData[]
+							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, baseCell, otherDigit)),
+							ImmutableArray.Create(new PresentationData
 							{
-								new()
-								{
-									Cells = cellOffsets,
-									Candidates = candidateOffsets,
-									Regions = new[] { (sameRegion, (ColorIdentifier)0) }
-								}
-							}.ToImmutableArray(),
+								Cells = cellOffsets,
+								Candidates = candidateOffsets,
+								Regions = new[] { (sameRegion, (ColorIdentifier)0) }
+							}),
 							d1,
 							d2,
 							urCells,
