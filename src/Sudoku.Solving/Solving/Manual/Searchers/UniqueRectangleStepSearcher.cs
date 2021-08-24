@@ -2456,7 +2456,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		var link1Map = new Cells { corner1, corner2 };
 		var innerMaps = stackalloc Cells[2];
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (int digitPairIndex= 0; digitPairIndex< 2; digitPairIndex++)
+		for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
 			var (a, b) = digitPairs[digitPairIndex];
 			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
@@ -2578,28 +2578,35 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="size">The size of the wing to search.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>The structures:</para>
+	/// <para>
+	/// Subtype 1:
+	/// <code>
+	/// |   ↓ corner1
+	/// | (ab )  abxy  yz  xz
+	/// | (ab )  abxy  *
+	/// |   ↑ corner2
+	/// </code>
+	/// Note that the pair of cells <c>abxy</c> should be in the same region.
+	/// </para>
+	/// <para>
+	/// Subtype 2:
+	/// <code>
+	/// |   ↓ corner1
+	/// | (ab )  abx   xz
+	/// |  aby  (ab )  *   yz
+	/// |         ↑ corner2
+	/// </code>
+	/// </para>
+	/// </remarks>
 	private void CheckWing(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap,
-		int size, int index)
+		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode, short comparer,
+		int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int size, int index)
 	{
-		// Subtype 1:
-		//     ↓ corner1
-		//   (ab )  abxy  yz  xz
-		//   (ab )  abxy  *
-		//     ↑ corner2
-		// Note that 'abxy' cells should be in the same region.
-		//
-		// Subtype 2:
-		//     ↓ corner1
-		//   (ab )  abx   xz
-		//    aby  (ab )  *   yz
-		//           ↑ corner2
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
@@ -2630,11 +2637,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			var testMap = new Cells { otherCell1, otherCell2 }.PeerIntersection;
 			short extraDigitsMask = (short)(mask ^ comparer);
 			int[] cells = map.ToArray();
-			for (
-				int i1 = 0, length = cells.Length, iterationLengthOuter = length - size + 1;
-				i1 < iterationLengthOuter;
-				i1++
-			)
+			for (int i1 = 0, length = cells.Length, outerLength = length - size + 1; i1 < outerLength; i1++)
 			{
 				int c1 = cells[i1];
 				short m1 = grid.GetCandidates(c1);
@@ -2664,8 +2667,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						// Now check whether all cells found should see their corresponding
 						// cells in UR structure ('otherCells1' or 'otherCells2').
 						bool flag = true;
-						foreach (int cell in stackalloc[] { c1, c2 })
+						int* combinationCells = stackalloc[] { c1, c2 };
+						for (int cellIndex = 0; cellIndex < 2; cellIndex++)
 						{
+							int cell = combinationCells[cellIndex];
 							int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 							if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 							{
@@ -2679,7 +2684,6 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						// Now check eliminations.
-						var conclusions = new List<Conclusion>();
 						int elimDigit = TrailingZeroCount(m);
 						var elimMap = new Cells { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
@@ -2687,12 +2691,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 							continue;
 						}
 
-						foreach (int cell in elimMap)
-						{
-							conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
-						}
-
-						var candidateOffsets = new List<DrawingInfo>();
+						var candidateOffsets = new List<(int, ColorIdentifier)>(12);
 						foreach (int cell in urCells)
 						{
 							if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2700,11 +2699,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										new(
-											digit == elimDigit
-											? otherCellsMap.Contains(cell) ? 2 : 0
-											: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
-											cell * 9 + digit
+										(
+											cell * 9 + digit,
+											(ColorIdentifier)(
+												digit == elimDigit
+													? otherCellsMap.Contains(cell) ? 2 : 0
+													: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0
+											)
 										)
 									);
 								}
@@ -2712,11 +2713,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 						foreach (int digit in grid.GetCandidates(c1))
 						{
-							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+							candidateOffsets.Add((c1 * 9 + digit, (ColorIdentifier)(digit == elimDigit ? 2 : 1)));
 						}
 						foreach (int digit in grid.GetCandidates(c2))
 						{
-							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+							candidateOffsets.Add((c2 * 9 + digit, (ColorIdentifier)(digit == elimDigit ? 2 : 1)));
 						}
 						if (IsIncompleteUr(candidateOffsets))
 						{
@@ -2724,24 +2725,24 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						accumulator.Add(
-							new UrWithWingStepInfo(
-								conclusions,
-								new View[]
+							new UniqueRectangleWithWingStep(
+								elimMap.ToImmutableConclusions(elimDigit),
+								new PresentationData[]
 								{
 									new()
 									{
 										Cells = arMode ? GetHighlightCells(urCells) : null,
 										Candidates = candidateOffsets
 									}
-								},
+								}.ToImmutableArray(),
 								arMode ? Technique.ArXyWing : Technique.UrXyWing,
 								d1,
 								d2,
 								urCells,
 								arMode,
-								new[] { c1, c2 },
-								extraDigitsMask.GetAllSets().ToArray(),
+								new() { c1, c2 },
 								otherCellsMap,
+								extraDigitsMask,
 								index
 							)
 						);
@@ -2773,8 +2774,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								// Now check whether all cells found should see their corresponding
 								// cells in UR structure ('otherCells1' or 'otherCells2').
 								bool flag = true;
-								foreach (int cell in stackalloc[] { c1, c2, c3 })
+								int* combinationCells = stackalloc[] { c1, c2, c3 };
+								for (int cellIndex = 0; cellIndex < 3; cellIndex++)
 								{
+									int cell = combinationCells[cellIndex];
 									int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 									if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 									{
@@ -2788,7 +2791,6 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								}
 
 								// Now check eliminations.
-								var conclusions = new List<Conclusion>();
 								int elimDigit = TrailingZeroCount(m);
 								var elimMap = new Cells { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
 								if (elimMap.IsEmpty)
@@ -2796,12 +2798,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									continue;
 								}
 
-								foreach (int cell in elimMap)
-								{
-									conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
-								}
-
-								var candidateOffsets = new List<DrawingInfo>();
+								var candidateOffsets = new List<(int, ColorIdentifier)>();
 								foreach (int cell in urCells)
 								{
 									if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2809,9 +2806,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 										foreach (int digit in grid.GetCandidates(cell))
 										{
 											candidateOffsets.Add(
-												new(
-													(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
-													cell * 9 + digit
+												(
+													cell * 9 + digit,
+													(ColorIdentifier)((extraDigitsMask >> digit & 1) != 0 ? 1 : 0)
 												)
 											);
 										}
@@ -2819,15 +2816,30 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								}
 								foreach (int digit in grid.GetCandidates(c1))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+									candidateOffsets.Add(
+										(
+											c1 * 9 + digit,
+											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+										)
+									);
 								}
 								foreach (int digit in grid.GetCandidates(c2))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+									candidateOffsets.Add(
+										(
+											c2 * 9 + digit,
+											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+										)
+									);
 								}
 								foreach (int digit in grid.GetCandidates(c3))
 								{
-									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+									candidateOffsets.Add(
+										(
+											c3 * 9 + digit,
+											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+										)
+									);
 								}
 								if (IsIncompleteUr(candidateOffsets))
 								{
@@ -2835,24 +2847,24 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 								}
 
 								accumulator.Add(
-									new UrWithWingStepInfo(
-										conclusions,
-										new View[]
+									new UniqueRectangleWithWingStep(
+										elimMap.ToImmutableConclusions(elimDigit),
+										new PresentationData[]
 										{
 											new()
 											{
 												Cells = arMode ? GetHighlightCells(urCells) : null,
 												Candidates = candidateOffsets
 											}
-										},
+										}.ToImmutableArray(),
 										arMode ? Technique.ArXyzWing : Technique.UrXyzWing,
 										d1,
 										d2,
 										urCells,
 										arMode,
-										new[] { c1, c2, c3 },
-										extraDigitsMask.GetAllSets().ToArray(),
+										new() { c1, c2, c3 },
 										otherCellsMap,
+										extraDigitsMask,
 										index
 									)
 								);
@@ -2878,8 +2890,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									// Now check whether all cells found should see their corresponding
 									// cells in UR structure ('otherCells1' or 'otherCells2').
 									bool flag = true;
-									foreach (int cell in stackalloc[] { c1, c2, c3, c4 })
+									int* combinationCells = stackalloc[] { c1, c2, c3, c4 };
+									for (int cellIndex = 0; cellIndex < 4; cellIndex++)
 									{
+										int cell = combinationCells[cellIndex];
 										int extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 										if (!(testMap & CandMaps[extraDigit]).Contains(cell))
 										{
@@ -2893,21 +2907,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									}
 
 									// Now check eliminations.
-									var conclusions = new List<Conclusion>();
 									int elimDigit = TrailingZeroCount(m);
-									var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection
-										& CandMaps[elimDigit];
+									var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
 										continue;
 									}
 
-									foreach (int cell in elimMap)
-									{
-										conclusions.Add(new(ConclusionType.Elimination, cell, elimDigit));
-									}
-
-									var candidateOffsets = new List<DrawingInfo>();
+									var candidateOffsets = new List<(int, ColorIdentifier)>();
 									foreach (int cell in urCells)
 									{
 										if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2915,9 +2922,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													new(
-														(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
-														cell * 9 + digit
+													(
+														cell * 9 + digit,
+														(ColorIdentifier)(
+															(extraDigitsMask >> digit & 1) != 0 ? 1 : 0
+														)
 													)
 												);
 											}
@@ -2925,19 +2934,39 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									}
 									foreach (int digit in grid.GetCandidates(c1))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
+										candidateOffsets.Add(
+											(
+												c1 * 9 + digit,
+												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c2))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
+										candidateOffsets.Add(
+											(
+												c2 * 9 + digit,
+												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c3))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
+										candidateOffsets.Add(
+											(
+												c3 * 9 + digit,
+												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+											)
+										);
 									}
 									foreach (int digit in grid.GetCandidates(c4))
 									{
-										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c4 * 9 + digit));
+										candidateOffsets.Add(
+											(
+												c4 * 9 + digit,
+												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
+											)
+										);
 									}
 									if (IsIncompleteUr(candidateOffsets))
 									{
@@ -2945,24 +2974,24 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 									}
 
 									accumulator.Add(
-										new UrWithWingStepInfo(
-											conclusions,
-											new View[]
+										new UniqueRectangleWithWingStep(
+											elimMap.ToImmutableConclusions(elimDigit),
+											new PresentationData[]
 											{
 												new()
 												{
 													Cells = arMode ? GetHighlightCells(urCells) : null,
 													Candidates = candidateOffsets
 												}
-											},
+											}.ToImmutableArray(),
 											arMode ? Technique.ArWxyzWing : Technique.UrWxyzWing,
 											d1,
 											d2,
 											urCells,
 											arMode,
-											new[] { c1, c2, c3, c4 },
-											extraDigitsMask.GetAllSets().ToArray(),
+											new() { c1, c2, c3, c4 },
 											otherCellsMap,
+											extraDigitsMask,
 											index
 										)
 									);
@@ -2994,20 +3023,23 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
-	/// <param name="otherCellsMap">
-	/// The map of other cells during the current UR searching.
-	/// </param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The structure:
+	/// <code>
+	/// |           |   xyz
+	/// |  ab+ ab+  | abxyz abxyz
+	/// |           |   xyz
+	/// | ----------+------------
+	/// | (ab)(ab)  |
+	/// |  ↑ corner1, corner2
+	/// </code>
+	/// </remarks>
 	private void CheckSdc(
-		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode, short comparer,
-		int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, bool arMode,
+		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
 	{
-		//           |   xyz
-		//  ab+ ab+  | abxyz abxyz
-		//           |   xyz
-		// ----------+------------
-		// (ab)(ab)  |
-		//  ↑ corner1, corner2
 		bool notSatisfiedType3 = false;
 		short mergedMaskInOtherCells = 0;
 		foreach (int cell in otherCellsMap)
@@ -3040,8 +3072,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredRegions & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
 		var list = new List<Cells>(4);
-		foreach (bool cannibalMode in stackalloc[] { false, true })
+		bool* cannibalModes = stackalloc[] { false, true };
+		for (int cannibalModeIndex = 0; cannibalModeIndex < 2; cannibalModeIndex++)
 		{
+			bool cannibalMode = cannibalModes[cannibalModeIndex];
 			foreach (byte otherBlock in d)
 			{
 				var emptyCellsInInterMap = RegionMaps[otherBlock] & RegionMaps[line] & EmptyMap;
@@ -3151,9 +3185,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			}
 		}
 
+
 		static void checkGeneralizedSdc(
-			ICollection<UniqueRectangleStep> accumulator, in Grid grid, bool arMode, bool cannibalMode, int digit1,
-			int digit2, int[] urCells, int line, int block, short lineMask, short blockMask,
+			ICollection<UniqueRectangleStep> accumulator, in Grid grid, bool arMode, bool cannibalMode,
+			int digit1, int digit2, int[] urCells, int line, int block, short lineMask, short blockMask,
 			short selectedInterMask, short otherDigitsMask, in Cells elimMapLine, in Cells elimMapBlock,
 			in Cells currentLineMap, in Cells currentBlockMap, in Cells currentInterMap, int i, int j,
 			int index)
@@ -3186,7 +3221,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty || !elimMapIsolated.IsEmpty))
 			{
 				// Check eliminations.
-				var conclusions = new List<Conclusion>();
+				var conclusions = new List<Conclusion>(10);
 				foreach (int cell in elimMapBlock)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
@@ -3217,13 +3252,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				}
 
 				// Record highlight candidates and cells.
-				var candidateOffsets = new List<DrawingInfo>();
+				var candidateOffsets = new List<(int, ColorIdentifier)>();
 				foreach (int cell in urCells)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit)
+							(
+								cell * 9 + digit,
+								(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
+							)
 						);
 					}
 				}
@@ -3232,7 +3270,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit)
+							(
+								cell * 9 + digit,
+								(ColorIdentifier)(!cannibalMode && digit == digitIsolated ? 3 : 2)
+							)
 						);
 					}
 				}
@@ -3241,31 +3282,32 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							new(
-								digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2,
-								cell * 9 + digit
+							(
+								cell * 9 + digit,
+								(ColorIdentifier)(
+									digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2
+								)
 							)
 						);
 					}
 				}
 
 				accumulator.Add(
-					new UrWithSdcStepInfo(
-						conclusions,
-						new View[]
+					new UniqueRectangleWithSueDeCoqStep(
+						conclusions.ToImmutableArray(),
+						new PresentationData[]
 						{
 							new()
 							{
 								Cells = arMode ? GetHighlightCells(urCells) : null,
 								Candidates = candidateOffsets,
-								Regions = new DrawingInfo[] { new(0, block), new(2, line) }
+								Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)2) }
 							}
-						},
+						}.ToImmutableArray(),
 						digit1,
 						digit2,
 						urCells,
 						arMode,
-						index,
 						block,
 						line,
 						blockMask,
@@ -3275,7 +3317,8 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						maskIsolated,
 						currentBlockMap,
 						currentLineMap,
-						currentInterMap
+						currentInterMap,
+						index
 					)
 				);
 			}
@@ -3292,28 +3335,39 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>The structures:</para>
+	/// <para>
+	/// Subtype 1:
+	/// <code>
+	/// |      ↓urCellInSameBlock
+	/// | ab  abc      abc  ←anotherCell
+	/// |
+	/// |     abcx-----abcy ←resultCell
+	/// |           c
+	/// |      ↑targetCell
+	/// </code>
+	/// Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
+	/// </para>
+	/// <para>
+	/// Subtype 2:
+	/// <code>
+	/// | abcx   | ab  abc
+	/// |  |     |
+	/// |  | c   |
+	/// |  |     |
+	/// | abcy   |     abc
+	/// </code>
+	/// </para>
+	/// </remarks>
 	private void CheckUnknownCoveringUnique(
 		ICollection<UniqueRectangleStep> accumulator, in Grid grid, int[] urCells, short comparer,
 		int d1, int d2, int index)
 	{
-		// Type 1:
-		//      ↓urCellInSameBlock
-		// ab  abc      abc  ←anotherCell
-		//
-		//     abcx-----abcy ←resultCell
-		//           c
-		//      ↑targetCell
-		// Where the digit 'a' and 'b' in the down-left cell 'abcx' can be removed.
-		//
-		// Type 2:
-		// abcx   | ab  abc
-		//  |     |
-		//  | c   |
-		//  |     |
-		// abcy   |     abc
-
 		checkType1(grid);
-		//checkType2(grid);
+#if IMPLEMENTED
+		checkType2(grid);
+#endif
 
 		void checkType1(in Grid grid)
 		{
@@ -3409,74 +3463,86 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						// Gather views.
-						var candidateOffsets = new List<DrawingInfo> { new(1, targetCell * 9 + extraDigit) };
+						var candidateOffsets = new List<(int, ColorIdentifier)>
+						{
+							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
+						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d1));
+							candidateOffsets.Add((resultCell * 9 + d1, (ColorIdentifier)0));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsets.Add(new(0, resultCell * 9 + d2));
+							candidateOffsets.Add((resultCell * 9 + d2, (ColorIdentifier)0));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
+							candidateOffsets.Add((resultCell * 9 + extraDigit, (ColorIdentifier)1));
 						}
 
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
-							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
+							candidateOffsets.Add((urCellInSameBlock * 9 + digit, (ColorIdentifier)0));
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
-							candidateOffsets.Add(new(0, anotherCell * 9 + digit));
+							candidateOffsets.Add((anotherCell * 9 + digit, (ColorIdentifier)0));
 						}
-						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+						short _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
+						foreach (int digit in _xOr_yMask)
 						{
-							candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
+							candidateOffsets.Add((bivalueCellToCheck * 9 + digit, (ColorIdentifier)2));
 						}
 
 						// Add into the list.
+						char extraDigitId = (char)(extraDigit + '1');
+						short extraDigitMask = (short)(1 << extraDigit);
 						accumulator.Add(
-							new UrWithUnknownCoveringStepInfo(
-								conclusions,
-								new View[]
+							new UniqueRectangleWithUnknownCoveringStep(
+								conclusions.ToImmutableArray(),
+								new PresentationData[]
 								{
 									new()
 									{
-										Cells = new DrawingInfo[] { new(0, targetCell) },
+										Cells = new[] { (targetCell, (ColorIdentifier)0) },
 										Candidates = candidateOffsets,
-										Regions = new DrawingInfo[] { new(0, block), new(1, line) }
+										Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)1) }
 									},
 									new()
 									{
-										Candidates = new DrawingInfo[]
+										Candidates = new[]
 										{
-											new(1, resultCell * 9 + extraDigit),
-											new(1, targetCell * 9 + extraDigit)
+											(resultCell * 9 + extraDigit, (ColorIdentifier)1),
+											(targetCell * 9 + extraDigit, (ColorIdentifier)1)
 										},
-										StepFilling = new (int, char)[]
+										UnknownValues = new (UnknownValue, ColorIdentifier)[]
 										{
-											(bivalueCellToCheck, 'y'),
-											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '1')),
-											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '1'))
+											(new(bivalueCellToCheck, 'y', _xOr_yMask), (ColorIdentifier)0),
+											(new(targetCell, 'x', _xOr_yMask), (ColorIdentifier)0),
+											(
+												new(urCellInSameBlock, extraDigitId, extraDigitMask),
+												(ColorIdentifier)0
+											),
+											(new(anotherCell, 'x', _xOr_yMask), (ColorIdentifier)0),
+											(
+												new(resultCell, extraDigitId, extraDigitMask),
+												(ColorIdentifier)0
+											)
 										}
 									}
-								},
+								}.ToImmutableArray(),
 								d1,
 								d2,
+								urCells,
 								targetCell,
 								extraDigit,
-								urCells,
 								index
 							)
 						);
-					#endregion
-
-					#region Subtype 2
 					SubType2:
+						#endregion
+
+						#region Subtype 2
 						// The extra digit should form a conjugate pair in that line.
 						var anotherMap = new Cells { urCellInSameBlock, anotherCell };
 						int anotherLine = anotherMap.CoveredLine;
@@ -3502,92 +3568,112 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						}
 
 						// Gather views.
-						var candidateOffsetsAnotherSubtype = new List<DrawingInfo>
+						var candidateOffsetsAnotherSubtype = new List<(int, ColorIdentifier)>
 						{
-							new(1, targetCell * 9 + extraDigit)
+							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
 						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
+							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + d1, (ColorIdentifier)0));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
+							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + d2, (ColorIdentifier)0));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
+							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + extraDigit, (ColorIdentifier)1));
 						}
 
-						var candidateOffsetsAnotherSubtypeLighter = new List<DrawingInfo>
+						var candidateOffsetsAnotherSubtypeLighter = new List<(int, ColorIdentifier)>
 						{
-							new(1, resultCell * 9 + extraDigit),
-							new(1, targetCell * 9 + extraDigit)
+							(resultCell * 9 + extraDigit, (ColorIdentifier)1),
+							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
 						};
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									(urCellInSameBlock * 9 + digit, (ColorIdentifier)1)
+								);
+								candidateOffsetsAnotherSubtypeLighter.Add(
+									(urCellInSameBlock * 9 + digit, (ColorIdentifier)1)
+								);
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									(urCellInSameBlock * 9 + digit, (ColorIdentifier)0)
+								);
 							}
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									(anotherCell * 9 + digit, (ColorIdentifier)1)
+								);
+								candidateOffsetsAnotherSubtypeLighter.Add(
+									(anotherCell * 9 + digit, (ColorIdentifier)1)
+								);
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(
+									(anotherCell * 9 + digit, (ColorIdentifier)0)
+								);
 							}
 						}
-						foreach (int digit in grid.GetCandidates(bivalueCellToCheck))
+						short _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
+						foreach (int digit in _xOr_yMask2)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
+							candidateOffsetsAnotherSubtype.Add(
+								(bivalueCellToCheck * 9 + digit, (ColorIdentifier)2)
+							);
 						}
 
 						// Add into the list.
+						char extraDigitId2 = (char)(extraDigit + '1');
+						short extraDigitMask2 = (short)(1 << extraDigit);
 						accumulator.Add(
-							new UrWithUnknownCoveringStepInfo(
-								conclusionsAnotherSubType,
-								new View[]
+							new UniqueRectangleWithUnknownCoveringStep(
+								conclusionsAnotherSubType.ToImmutableArray(),
+								new PresentationData[]
 								{
 									new()
 									{
-										Cells = new DrawingInfo[] { new(0, targetCell) },
+										Cells = new[] { (targetCell, (ColorIdentifier)0) },
 										Candidates = candidateOffsetsAnotherSubtype,
-										Regions = new DrawingInfo[]
+										Regions = new[]
 										{
-											new(0, block),
-											new(1, line),
-											new(1, anotherLine)
+											(block, (ColorIdentifier)0),
+											(line, (ColorIdentifier)1),
+											(anotherLine, (ColorIdentifier)1)
 										}
 									},
 									new()
 									{
 										Candidates = candidateOffsetsAnotherSubtypeLighter,
-										StepFilling = new (int, char)[]
+										UnknownValues = new (UnknownValue, ColorIdentifier)[]
 										{
-											(bivalueCellToCheck, 'y'),
-											(targetCell, 'x'),
-											(urCellInSameBlock, (char)(extraDigit + '1')),
-											(anotherCell, 'x'),
-											(resultCell, (char)(extraDigit + '1'))
+											(new(bivalueCellToCheck, 'y', _xOr_yMask2), (ColorIdentifier)0),
+											(new(targetCell, 'x', _xOr_yMask2), (ColorIdentifier)0),
+											(
+												new(urCellInSameBlock, extraDigitId2, extraDigitMask2),
+												(ColorIdentifier)0
+											),
+											(new(anotherCell, 'x', _xOr_yMask2), (ColorIdentifier)0),
+											(new(resultCell, extraDigitId2, extraDigitMask2), (ColorIdentifier)0)
 										}
 									}
-								},
+								}.ToImmutableArray(),
 								d1,
 								d2,
+								urCells,
 								targetCell,
 								extraDigit,
-								urCells,
 								index
 							)
 						);
@@ -3597,12 +3683,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 			}
 		}
 
-#pragma warning disable
+#if IMPLEMENTED
 		void checkType2(in Grid grid)
 		{
 			// TODO: Check type 2.
 		}
-#pragma warning restore
+#endif
 	}
 
 	/// <summary>
@@ -3656,58 +3742,49 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (
-				!guardian2.IsEmpty && (guardian2.PeerIntersection & CandMaps[d2]) is { IsEmpty: false } b
-			)
+			else if (!guardian2.IsEmpty && (guardian2.PeerIntersection & CandMaps[d2]) is { IsEmpty: false } b)
 			{
 				targetElimMap = b;
 				guardianDigit = d2;
 				targetGuardianMap = guardian2;
 			}
 
-			if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap
-				|| guardianDigit == -1)
+			if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap || guardianDigit == -1)
 			{
 				continue;
 			}
 
-			var conclusions = new List<Conclusion>();
-			foreach (int cell in elimMap)
-			{
-				conclusions.Add(new(ConclusionType.Elimination, cell, guardianDigit));
-			}
-
-			var candidateOffsets = new List<DrawingInfo>();
+			var candidateOffsets = new List<(int, ColorIdentifier)>(16);
 			foreach (int cell in urCells)
 			{
-				candidateOffsets.Add(new(0, cell * 9 + d1));
-				candidateOffsets.Add(new(0, cell * 9 + d2));
+				candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
+				candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
 			}
 			foreach (int cell in guardianMap)
 			{
-				candidateOffsets.Add(new(1, cell * 9 + guardianDigit));
+				candidateOffsets.Add((cell * 9 + guardianDigit, (ColorIdentifier)1));
 			}
 
 			accumulator.Add(
-				new UrWithGuardianStepInfo(
-					conclusions,
-					new View[]
+				new UniqueRectangleWithGuardianStep(
+					elimMap.ToImmutableConclusions(guardianDigit),
+					new PresentationData[]
 					{
 						new()
 						{
 							Candidates = candidateOffsets,
-							Regions = new DrawingInfo[]
+							Regions = new[]
 							{
-								new(0, regionCombination[0]),
-								new(0, regionCombination[1])
+								(regionCombination[0], (ColorIdentifier)0),
+								(regionCombination[1], (ColorIdentifier)0)
 							}
 						}
-					},
+					}.ToImmutableArray(),
 					d1,
 					d2,
 					urCells,
-					guardianDigit,
 					guardianMap,
+					guardianDigit,
 					index
 				)
 			);
@@ -3771,16 +3848,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 					continue;
 				}
 
-				var otherCellsToCheck = RegionMaps[region] & CandMaps[otherDigit] & PeerMaps[anotherCell];
-				int sameRegions = new Cells(otherCellsToCheck) { anotherCell }.CoveredRegions;
+				var otherCells = RegionMaps[region] & CandMaps[otherDigit] & PeerMaps[anotherCell];
+				int sameRegions = new Cells(otherCells) { anotherCell }.CoveredRegions;
 				foreach (int sameRegion in sameRegions)
 				{
 					// Check whether all possible positions of the digit 'b' in this region only
 					// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-					if (
-						(new Cells(RegionMaps[sameRegion]) { ~anotherCell } & CandMaps[otherDigit])
-						!= otherCellsToCheck
-					)
+					if ((new Cells(RegionMaps[sameRegion]) { ~anotherCell } & CandMaps[otherDigit]) != otherCells)
 					{
 						continue;
 					}
@@ -3792,30 +3866,30 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 						continue;
 					}
 
-					var cellOffsets = new List<DrawingInfo>();
-					foreach (int cell in urCells)
-					{
-						cellOffsets.Add(new(0, cell));
-					}
+					var cellOffsets = new List<(int, ColorIdentifier)>();
+					foreach (int cell in urCells) cellOffsets.Add((cell, (ColorIdentifier)0));
 
-					var candidateOffsets = new List<DrawingInfo> { new(0, anotherCell * 9 + otherDigit) };
-					foreach (int cell in otherCellsToCheck)
+					var candidateOffsets = new List<(int, ColorIdentifier)>
 					{
-						candidateOffsets.Add(new(1, cell * 9 + otherDigit));
+						(anotherCell * 9 + otherDigit, (ColorIdentifier)0)
+					};
+					foreach (int cell in otherCells)
+					{
+						candidateOffsets.Add((cell * 9 + otherDigit, (ColorIdentifier)1));
 					}
 
 					accumulator.Add(
-						new ArWithHiddenSingleStepInfo(
-							new Conclusion[] { new(ConclusionType.Elimination, baseCell, otherDigit) },
-							new View[]
+						new AvoidableRectangleWithHiddenSingleStep(
+							new Conclusion(ConclusionType.Elimination, baseCell, otherDigit).AsImmutableArray(),
+							new PresentationData[]
 							{
 								new()
 								{
 									Cells = cellOffsets,
 									Candidates = candidateOffsets,
-									Regions = new DrawingInfo[] { new(0, sameRegion) }
+									Regions = new[] { (sameRegion, (ColorIdentifier)0) }
 								}
-							},
+							}.ToImmutableArray(),
 							d1,
 							d2,
 							urCells,
@@ -3830,6 +3904,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
 		}
 	}
 	#endregion
+
 
 	#region Patterns
 	/// <summary>

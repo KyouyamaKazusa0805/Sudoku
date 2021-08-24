@@ -1038,6 +1038,12 @@
             <param name="region">The region.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToArray">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Cells.PeerIntersectionLimitsWith(Sudoku.Data.Cells@)">
             <summary>
             To gets the cells that is in the cells that both <see langword="this"/>
@@ -1049,11 +1055,27 @@
             </param>
             <returns>The result map.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        <member name="M:Sudoku.Data.Cells.ToConclusions(System.Int32,Sudoku.Data.ConclusionType)">
+            <summary>
+            Creates an array of <see cref="T:Sudoku.Data.Conclusion"/>s that uses the specified conclusion type
+            and the digit used.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="conclusionType">
+            The conclusion type. The default value is <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </param>
+            <returns>The array of <see cref="T:Sudoku.Data.Conclusion"/>s.</returns>
         </member>
-        <member name="M:Sudoku.Data.Cells.ToArray">
-            <inheritdoc/>
+        <member name="M:Sudoku.Data.Cells.ToImmutableConclusions(System.Int32,Sudoku.Data.ConclusionType)">
+            <summary>
+            Creates an immutable array of <see cref="T:Sudoku.Data.Conclusion"/>s that uses the specified conclusion type
+            and the digit used.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="conclusionType">
+            The conclusion type. The default value is <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </param>
+            <returns>The immutable array of <see cref="T:Sudoku.Data.Conclusion"/>s.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.SubsetOfSize(System.Int32)">
             <summary>
@@ -1593,6 +1615,12 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.AsImmutableArray">
+            <summary>
+            Converts the current instance to an immutable array, that only contains one element (this).
+            </summary>
+            <returns>The immutable array.</returns>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
             <inheritdoc/>
