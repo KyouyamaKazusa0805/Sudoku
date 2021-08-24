@@ -16,13 +16,16 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Sashimi Jellyfish</item>
 /// </list>
 /// </summary>
-public sealed unsafe class NormalFishStepSearcher : IStepSearcher
+public sealed unsafe class NormalFishStepSearcher : IFishStepSearcher
 {
 	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.Fish;
+	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
 
 	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
+	/// <remarks>
+	/// I hide this member on purpose because 4 is the maximum size of subsets found in practice.
+	/// </remarks>
+	int IFishStepSearcher.MaxSize { get; set; } = 4;
 
 
 	/// <inheritdoc/>
@@ -74,7 +77,7 @@ public sealed unsafe class NormalFishStepSearcher : IStepSearcher
 			}
 		}
 
-		for (int size = 2; size <= 4; size++)
+		for (int size = 2; size <= ((IFishStepSearcher)this).MaxSize; size++)
 		{
 			if (GetAll(accumulator, grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
 			{

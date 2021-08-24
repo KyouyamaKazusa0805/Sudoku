@@ -6,12 +6,6 @@
 public interface IStepSearcher
 {
 	/// <summary>
-	/// Indicates the value that identifies which type the step searcher is of.
-	/// The value may be also used in UI rendering.
-	/// </summary>
-	SearcherIdentifier Identifier { get; }
-
-	/// <summary>
 	/// Indicates the step searching options.
 	/// </summary>
 	SearchingOptions Options { get; set; }

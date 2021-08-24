@@ -31,7 +31,7 @@ public sealed partial class StepsGatherer
 					// Skip the searcher that is disabled in this case.
 					continue;
 				}
-				case { Identifier: SearcherIdentifier.DeadlyPattern } when sukaku.Value:
+				case IUniqueRectangleStepSearcher when sukaku.Value:
 				{
 					// UR searchers will be disabled in sukaku mode.
 					continue;

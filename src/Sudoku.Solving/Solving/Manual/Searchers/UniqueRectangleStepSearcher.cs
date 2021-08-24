@@ -32,21 +32,13 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </item>
 /// </list>
 /// </summary>
-public sealed unsafe class UniqueRectangleStepSearcher : IStepSearcher
+public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
-	/// <summary>
-	/// Indicates whether the UR can be incomplete. In other words,
-	/// some of UR candidates can be removed before the pattern forms.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool AllowIncompleteUniqueRectangles { get; set; }
 
-	/// <summary>
-	/// Indicates whether the searcher can search for extended URs.
-	/// </summary>
-	public bool SearchForExtendedUniqueRectangles { get; set; }
-
 	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.UniqueRectangle;
+	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(8, DisplayingLevel.B);

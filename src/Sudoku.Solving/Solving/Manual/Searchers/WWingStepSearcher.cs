@@ -9,11 +9,8 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>W-Wing (George Woods' Wing)</item>
 /// </list>
 /// </summary>
-public sealed class WWingStepSearcher : IStepSearcher
+public sealed class WWingStepSearcher : IIregularWingStepSearcher
 {
-	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.WWing;
-
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(7, DisplayingLevel.B);
 

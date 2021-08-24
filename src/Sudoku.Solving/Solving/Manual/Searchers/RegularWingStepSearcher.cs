@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>RSTUVWXYZ-Wing</item>
 /// </list>
 /// </summary>
-public sealed class RegularWingStepSearcher : IStepSearcher
+public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <summary>
 	/// The inner field of the property <see cref="MaxSize"/>.
@@ -25,18 +25,12 @@ public sealed class RegularWingStepSearcher : IStepSearcher
 	private int _maxSize;
 
 
-	/// <summary>
-	/// Indicates the maximum size the searcher will search for. The maximum possible value is 9.
-	/// </summary>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
+	/// <inheritdoc/>
 	public int MaxSize
 	{
 		get => _maxSize;
 		set => _maxSize = value > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
 	}
-
-	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.RegularWing;
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);

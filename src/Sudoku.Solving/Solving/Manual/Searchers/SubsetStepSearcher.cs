@@ -18,19 +18,22 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Hidden Quadruple</item>
 /// </list>
 /// </summary>
-public sealed class SubsetStepSearcher : IStepSearcher
+public sealed class SubsetStepSearcher : ISubsetStepSearcher
 {
 	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.Subset;
+	public SearchingOptions Options { get; set; } = new(3, DisplayingLevel.B);
 
 	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(3, DisplayingLevel.B);
+	/// <remarks>
+	/// I hide this member on purpose because 4 is the maximum size of subsets found in practice.
+	/// </remarks>
+	int ISubsetStepSearcher.MaxSize { get; set; } = 4;
 
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		for (int size = 2; size <= 4; size++)
+		for (int size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
 		{
 			// Naked subsets.
 			for (int region = 0; region < 27; region++)
