@@ -1536,6 +1536,31 @@
             Indicates the maximum size the searcher can search for.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. All cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>If the fish is sashimi.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>If the fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>If the fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IIntersectionStepSearcher">
             <summary>
             Defines a step searcher that searches for intersection steps.
@@ -1544,6 +1569,16 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher">
             <summary>
             Defines a step searcher that searches for irregular wing steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ILockedCandidatesStepSearcher">
+            <summary>
+            Defines a step searcher that searches for locked candidates steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher">
+            <summary>
+            Defines a step searcher that searches for normal fish steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">
@@ -1785,31 +1820,6 @@
             </param>
             <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
             <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating that. All cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the fish is sashimi.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the fish is a normal finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>If the fish doesn't contain any fin.</description>
-            </item>
-            </list>
-            </returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(Sudoku.Data.Grid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
             <summary>

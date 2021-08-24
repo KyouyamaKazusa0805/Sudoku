@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Sashimi Jellyfish</item>
 /// </list>
 /// </summary>
-public sealed unsafe class NormalFishStepSearcher : IFishStepSearcher
+public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
@@ -221,7 +221,7 @@ public sealed unsafe class NormalFishStepSearcher : IFishStepSearcher
 						new RegionCollection(bs).GetHashCode(), // The mask itself.
 						new RegionCollection(cs).GetHashCode(), // The mask itself.
 						fins,
-						IsSashimi(bs, fins, digit)
+						IFishStepSearcher.IsSashimi(bs, fins, digit)
 					);
 
 					if (onlyFindOne)
@@ -235,49 +235,6 @@ public sealed unsafe class NormalFishStepSearcher : IFishStepSearcher
 		}
 
 		return null;
-	}
-
-	/// <summary>
-	/// Check whether the fish is sashimi.
-	/// </summary>
-	/// <param name="baseSets">The base sets.</param>
-	/// <param name="fins">All fins.</param>
-	/// <param name="digit">The digit.</param>
-	/// <returns>
-	/// A <see cref="bool"/> value indicating that. All cases are as belows:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>If the fish is sashimi.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>If the fish is a normal finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>If the fish doesn't contain any fin.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	private static bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
-	{
-		if (fins.IsEmpty)
-		{
-			return null;
-		}
-
-		bool isSashimi = false;
-		foreach (int baseSet in baseSets)
-		{
-			if ((RegionMaps[baseSet] - fins & CandMaps[digit]).Count == 1)
-			{
-				isSashimi = true;
-				break;
-			}
-		}
-
-		return isSashimi;
 	}
 
 	/// <summary>
