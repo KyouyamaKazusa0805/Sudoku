@@ -88,16 +88,7 @@ public abstract record UniqueRectangleStep(
 
 
 	/// <inheritdoc/>
-	public bool IsSameAs(UniqueRectangleStep other) =>
-		TechniqueCode == other.TechniqueCode && AbsoluteOffset == other.AbsoluteOffset
-		&& Digit1 == other.Digit1 && Digit2 == other.Digit2;
-
-	/// <inheritdoc/>
-	public bool NullableIsSameAs(UniqueRectangleStep? other) => (Left: this, Right: other) switch
-	{
-		(Left: null, Right: not null) => false,
-		(Left: not null, Right: null) => false,
-		(Left: null, Right: null) => true,
-		_ => IsSameAs(other)
-	};
+	public static bool Equals(UniqueRectangleStep left, UniqueRectangleStep right) =>
+		left.TechniqueCode == right.TechniqueCode && left.AbsoluteOffset == right.AbsoluteOffset
+		&& left.Digit1 == right.Digit1 && left.Digit2 == right.Digit2;
 }

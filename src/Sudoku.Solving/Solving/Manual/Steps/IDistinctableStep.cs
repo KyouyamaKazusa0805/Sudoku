@@ -8,13 +8,14 @@
 /// A <b>distinctable step</b> is a step that is with the unique information, in order that
 /// multiple steps can be distinctable.
 /// </remarks>
-public interface IDistinctableStep<in TClass> where TClass : class
+public interface IDistinctableStep<in TClass> : IStep where TClass : class
 {
 	/// <summary>
-	/// To compare two <typeparamref name="TClass"/>-typed elements, to check whether
-	/// two elements are same.
+	/// To compare 2 instances of type <typeparamref name="TClass"/>,
+	/// to determine whether 2 instances holds the same value.
 	/// </summary>
-	/// <param name="other">Other element to compare.</param>
+	/// <param name="left">Indicates the first instance to compare.</param>
+	/// <param name="right">Indicates the second instance to compare.</param>
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the elements are same.
 	/// <list type="table">
@@ -33,13 +34,5 @@ public interface IDistinctableStep<in TClass> where TClass : class
 	/// but <see langword="record"/>s are automatically implemented the method, which is useless
 	/// and unmeaningful.
 	/// </remarks>
-	bool IsSameAs(TClass other);
-
-	/// <summary>
-	/// Same as <see cref="IsSameAs(TClass)"/>, but with nullable annotation.
-	/// </summary>
-	/// <param name="other"><inheritdoc cref="IsSameAs(TClass)"/></param>
-	/// <returns><inheritdoc cref="IsSameAs(TClass)"/></returns>
-	/// <seealso cref="IsSameAs(TClass)"/>
-	bool NullableIsSameAs(TClass? other);
+	static abstract bool Equals(TClass left, TClass right);
 }
