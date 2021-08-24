@@ -190,7 +190,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 		fixed (short* pArray = masks, pValues = _values)
 		{
-			Unsafe.CopyBlock(pValues, pArray, sizeof(short) * Length);
+			UnsafeExtensions.CopyBlock(pValues, pArray, Length);
 		}
 	}
 
@@ -853,7 +853,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		short[] arr = ArrayPool<short>.Shared.Rent(Length);
 		fixed (short* pArr = arr, pGrid = this)
 		{
-			Unsafe.CopyBlock(pArr, pGrid, sizeof(short) * Length);
+			UnsafeExtensions.CopyBlock(pArr, pGrid, Length);
 		}
 
 		try
@@ -1044,8 +1044,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parser.CompatibleFirst"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, bool compatibleFirst) =>
-		new Parser(str, compatibleFirst).Parse();
+	public static Grid Parse(string str, bool compatibleFirst) => new Parser(str, compatibleFirst).Parse();
 
 	/// <summary>
 	/// Parses a string value and converts to this type, using a specified grid parsing type.
