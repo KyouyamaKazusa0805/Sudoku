@@ -10,9 +10,6 @@ public sealed class AlcStepSearcher : IntersectionStepSearcher
 	/// </summary>
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>

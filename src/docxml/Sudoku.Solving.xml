@@ -1521,6 +1521,84 @@
             Indicates the technique only appears in the special puzzles designed on purpose.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Pair</item>
+            <item>Almost Locked Triple</item>
+            <item>Almost Locked Quadruple</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Sudoku#Solving#Manual#Searchers#IAlmostLockedCandidatesStepSearcher#CheckForValues">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
+             <summary>
+             Process the calculation.
+             </summary>
+             <param name="result">The result.</param>
+             <param name="grid">The grid.</param>
+             <param name="size">The size.</param>
+             <param name="baseSet">The base set.</param>
+             <param name="coverSet">The cover set.</param>
+             <param name="a">The left grid map.</param>
+             <param name="b">The right grid map.</param>
+             <param name="c">The intersection.</param>
+             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+             <remarks>
+             <para>
+             The diagrams:
+             <code>
+             ALP:
+             abx aby | ab
+             abz     |
+            
+             ALT:
+             abcw abcx | abc abc
+             abcy abcz |
+             </code>
+             </para>
+             <para>Algorithm:</para>
+             <para>
+             If the cell <c>ab</c> (in ALP) or <c>abc</c> (in ALT) is filled with the digit <c>p</c>,
+             then the cells <c>abx</c> and <c>aby</c> (in ALP) and <c>abcw</c> and <c>abcx</c> (in ALT) can't
+             fill the digit <c>p</c>. Therefore the digit <c>p</c> can only be filled into the left-side block.
+             </para>
+             <para>
+             If the block only contains those cells that can contain the digit <c>p</c>, the ALP or ALT will be formed,
+             and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
+             </para>
+             </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked candidates steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
+            <summary>
+            Indicates whether the user checks the almost locked quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckForValues">
+            <summary>
+            Indicates whether the searcher checks for values (givens and modifiables)
+            to form an almost locked candidates. If the value is <see langword="true"/>,
+            some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
             <summary>
             Defines a step searcher that searches for deadly pattern steps.
@@ -3788,6 +3866,48 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
+            <param name="BaseCells">Indicates the base cells.</param>
+            <param name="TargetCells">Indicates the target cells.</param>
+            <param name="HasValueCell">Indicates whether the step contians value cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
+            <param name="BaseCells">Indicates the base cells.</param>
+            <param name="TargetCells">Indicates the target cells.</param>
+            <param name="HasValueCell">Indicates whether the step contians value cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.Size">
+            <summary>
+            Indicates the size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep">
