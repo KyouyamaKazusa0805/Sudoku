@@ -15,10 +15,6 @@
 					<Default>My</Default>
 				</Literal>
 				<Literal Editable="true">
-					<ID>identifier</ID>
-					<Default>Default</Default>
-				</Literal>
-				<Literal Editable="true">
 					<ID>priority</ID>
 					<Default>default(int)</Default>
 				</Literal>
@@ -42,9 +38,6 @@
 /// </summary>
 internal sealed class $nameprefix$StepSearcher : I$detail$StepSearcher
 {
-	/// <inheritdoc/>
-	public SearcherIdentifier Identifier => SearcherIdentifier.$identifier$;
-
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new($priority$, $level$);
 
