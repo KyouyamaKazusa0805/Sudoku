@@ -4111,8 +4111,9 @@
             </summary>
             <typeparam name="TClass">The type of the element to compare.</typeparam>
             <remarks>
-            A <b>distinctable step</b> is a step that is with the unique information, in order that
-            multiple steps can be distinctable.
+            A <b>distinctable step</b> is a step that is with the unique information,
+            in order that multiple steps of the same type can be recognized by the relative methods,
+            to filter and remove same-value instances.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Equals(`0,`0)">

@@ -5,8 +5,9 @@
 /// </summary>
 /// <typeparam name="TClass">The type of the element to compare.</typeparam>
 /// <remarks>
-/// A <b>distinctable step</b> is a step that is with the unique information, in order that
-/// multiple steps can be distinctable.
+/// A <b>distinctable step</b> is a step that is with the unique information,
+/// in order that multiple steps of the same type can be recognized by the relative methods,
+/// to filter and remove same-value instances.
 /// </remarks>
 public interface IDistinctableStep<in TClass> : IStep where TClass : class
 {
