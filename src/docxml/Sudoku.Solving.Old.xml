@@ -4569,9 +4569,6 @@
             Indicates whether the user checks the almost locked quadruple.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Intersections.AlcStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -6959,9 +6956,6 @@
             Encapsulates a <b>unique loop</b> (UL) technique searcher.
             In fact the unique loop can also search for URs.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.Options">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Loops.UlStepSearcher.Properties">
             <summary>
