@@ -26,6 +26,9 @@
 					<ID>level</ID>
 					<Default>default(DisplayingLevel)</Default>
 				</Literal>
+				<Literal Editable="true">
+					<ID>detail</ID>
+				</Literal>
 			</Declarations>
 			<Code Language="csharp" Delimiter="$">
 				<![CDATA[namespace Sudoku.Solving.Manual.Searchers;
@@ -37,7 +40,7 @@
 /// <item>$item$</item>
 /// </list>
 /// </summary>
-internal sealed class $nameprefix$StepSearcher : IStepSearcher
+internal sealed class $nameprefix$StepSearcher : I$detail$StepSearcher
 {
 	/// <inheritdoc/>
 	public SearcherIdentifier Identifier => SearcherIdentifier.$identifier$;

@@ -26,6 +26,10 @@
 					<ID>defaulttag</ID>
 					<Default>Default</Default>
 				</Literal>
+				<Literal Editable="true">
+					<ID>keyword</ID>
+					<Default>abstract</Default>
+				</Literal>
 			</Declarations>
 			<Code Language="csharp" Delimiter="$">
 				<![CDATA[/// <summary>
@@ -33,7 +37,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record $name$Step(
+public $keyword$ record $name$Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views
 ) : Step(Conclusions, Views)
