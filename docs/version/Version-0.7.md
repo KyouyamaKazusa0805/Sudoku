@@ -8,7 +8,8 @@
 * 修复源代码生成器 bug 导致 `Sudoku.UI.WinUI` 没有识别到，没有生成相应可使用代码（#158）；
 * 修复 `ref struct` 的源代码生成器 bug 导致嵌套类型的缩进错误（#160）；
 * 修复读取关联 `TwoStrongLinksStepInfo` 数据类型的 `Format` 属性和字典交互失败的问题（#163）；
-* `UrStepSearcher` 里有一个 `private` 的方法的代码是错误的执行行为（#165）。
+* `UrStepSearcher` 里有一个 `private` 的方法的代码是错误的执行行为（#165）；
+* 修复探长致命结构类型 4 的 bug 导致删数没有找全（#166，如图 1 所示）。
 
 ### 增加
 
@@ -36,3 +37,7 @@
 * 将一些项目的所有类型的命名空间添加上后缀 `Old`，自己也添加 `Old` 后缀，比如 `Sudoku.Drawing.Old`，暗示项目不再被别的项目引用；
 * **重大修改：所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，并修改命名空间到这个类型自身的命名空间下。**；
 * 提升 C# 版本到 C# 10，更进新语法。
+
+## 图片
+
+![图 1](https://user-images.githubusercontent.com/23616315/130937553-88ed0036-dd28-4c62-b52e-78c06aba3abe.png)

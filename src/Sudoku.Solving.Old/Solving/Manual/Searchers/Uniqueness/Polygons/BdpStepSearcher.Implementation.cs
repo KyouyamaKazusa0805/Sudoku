@@ -313,8 +313,7 @@ partial class BdpStepSearcher
 				// Iterate on each combination.
 				// Only one digit should be eliminated, and other digits should form a "conjugate region".
 				// In a so-called conjugate region, the digits can only appear in these cells in this region.
-				foreach (int[] combination in
-					(tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
+				foreach (int[] combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
 					short combinationMask = 0;
 					var combinationMap = Cells.Empty;
@@ -344,8 +343,13 @@ partial class BdpStepSearcher
 					}
 
 					// Type 4 forms. Now check eliminations.
-					int finalDigit = TrailingZeroCount(tempMask & ~combinationMask);
-					var elimMap = combinationMap & CandMaps[finalDigit];
+					short finalDigits = (short)(tempMask & ~combinationMask);
+					var possibleCandMaps = Cells.Empty;
+					foreach (int finalDigit in finalDigits)
+					{
+						possibleCandMaps |= CandMaps[finalDigit];
+					}
+					var elimMap = combinationMap & possibleCandMaps;
 					if (elimMap.IsEmpty)
 					{
 						continue;
@@ -354,7 +358,13 @@ partial class BdpStepSearcher
 					var conclusions = new List<Conclusion>();
 					foreach (int cell in elimMap)
 					{
-						conclusions.Add(new(ConclusionType.Elimination, cell, finalDigit));
+						foreach (int digit in finalDigits)
+						{
+							if (grid.Exists(cell, digit) is true)
+							{
+								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
+							}
+						}
 					}
 
 					var candidateOffsets = new List<DrawingInfo>();
