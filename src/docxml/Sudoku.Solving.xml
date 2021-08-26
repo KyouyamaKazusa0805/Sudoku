@@ -978,7 +978,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.DisplayingLevel.A">
             <summary>
-            Indicates the level is the easy (Level A).
+            Indicates the level is easy (Level A).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.DisplayingLevel.B">

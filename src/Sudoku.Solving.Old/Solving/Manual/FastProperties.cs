@@ -1,6 +1,5 @@
 ﻿#nullable disable warnings
 
-
 namespace Sudoku.Solving.Manual;
 
 /// <summary>

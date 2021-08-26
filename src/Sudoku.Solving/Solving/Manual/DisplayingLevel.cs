@@ -14,7 +14,7 @@ public enum DisplayingLevel : byte
 	None = 0,
 
 	/// <summary>
-	/// Indicates the level is the easy (Level A).
+	/// Indicates the level is easy (Level A).
 	/// </summary>
 	A,
 
