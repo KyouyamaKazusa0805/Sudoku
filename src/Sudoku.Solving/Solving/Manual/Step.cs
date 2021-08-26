@@ -102,7 +102,12 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 		{
 			try
 			{
-				return TextResources.Current[$"Format_{GetType().Name}"];
+				var type = GetType();
+				string key = type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
+					? $"Format_{name}"
+					: $"Format_{type.Name}";
+
+				return TextResources.Current[key];
 			}
 			catch (RuntimeBinderException)
 			{

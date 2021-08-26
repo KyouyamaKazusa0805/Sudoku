@@ -5232,6 +5232,21 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Text.FormatForwardAttribute">
+            <summary>
+            Marks onto a step type (inherited from <see cref="T:Sudoku.Solving.Manual.Step"/> and implemented the interface <see cref="T:Sudoku.Solving.Manual.Steps.IStep"/>),
+            to tell the runtime that the property <see cref="P:Sudoku.Solving.Manual.Step.Format"/> will get the value
+            through the specified identifier name.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Step"/>
+            <seealso cref="P:Sudoku.Solving.Manual.Step.Format"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Steps.IStep"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.FormatForwardAttribute.IdentifierName">
+            <summary>
+            Indicates the identifier that the name the runtime will get from the resource dictionary.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">
             <summary>
             Marks on a property to tell the user the property is only used for the formatting.
