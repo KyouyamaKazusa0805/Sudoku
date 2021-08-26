@@ -106,6 +106,13 @@ Please visit the following tables.
 
 [MIT License](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
 
+### Sudoku Technique References
+
+Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links to learn about more information.
+
+* [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
+* [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
+
 ### Author
 
 Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
