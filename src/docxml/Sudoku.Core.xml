@@ -1904,6 +1904,13 @@
              </remarks>
              <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
         </member>
+        <member name="M:Sudoku.Data.Grid.#cctor">
+            <summary>
+            Indicates the <see langword="static"/> constructor of type <see cref="T:Sudoku.Data.Grid"/>. This construtcor will
+            initialize some <see langword="static readonly"/> data members of this type that can't use
+            a simple expression to describe the initial value.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Grid.IsSolved">
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>,
@@ -1977,6 +1984,17 @@
         <member name="P:Sudoku.Data.Grid.EmptiesCount">
             <summary>
             Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Grid.NullRegions">
+            <summary>
+            <para>Indicates which regions are null regions.</para>
+            <para>A <b>Null Region</b> is a region whose hold cells are all empty cells.</para>
+            <para>
+            The property returns an <see cref="T:System.Int32"/> value as a mask that contains all possible regions.
+            For example, if the row 5, column 5 and block 5 (1-9) are null regions, the property will return
+            the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.Token">
@@ -2720,26 +2738,6 @@
         <member name="M:Sudoku.Data.Grid.Parser.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Grid.ValueChangedArgs">
-            <summary>
-            Provides arguments for the event <see cref="F:Sudoku.Data.Grid.ValueChanged"/>.
-            </summary>
-            <param name="Cell">Indicates the cell, which must be in range 0 to 80.</param>
-            <param name="OldMask">Indicates the original mask in this cell.</param>
-            <param name="NewMask">Indicates the new mask to modify the cell.</param>
-            <param name="SetValue">Indicates the set value. If the action is a deletion, the value should be -1.</param>
-            <seealso cref="F:Sudoku.Data.Grid.ValueChanged"/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ValueChangedArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
-            <summary>
-            Provides arguments for the event <see cref="F:Sudoku.Data.Grid.ValueChanged"/>.
-            </summary>
-            <param name="Cell">Indicates the cell, which must be in range 0 to 80.</param>
-            <param name="OldMask">Indicates the original mask in this cell.</param>
-            <param name="NewMask">Indicates the new mask to modify the cell.</param>
-            <param name="SetValue">Indicates the set value. If the action is a deletion, the value should be -1.</param>
-            <seealso cref="F:Sudoku.Data.Grid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

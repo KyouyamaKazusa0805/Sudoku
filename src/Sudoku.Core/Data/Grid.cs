@@ -195,6 +195,11 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	}
 
 
+	/// <summary>
+	/// Indicates the <see langword="static"/> constructor of type <see cref="Grid"/>. This construtcor will
+	/// initialize some <see langword="static readonly"/> data members of this type that can't use
+	/// a simple expression to describe the initial value.
+	/// </summary>
 	static Grid()
 	{
 		// Initializes the empty grid.
@@ -212,13 +217,13 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		);
 
 		// Initializes events.
-		ValueChanged = (delegate*<ref Grid, in ValueChangedArgs, void>)&onValueChanged;
+		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&onValueChanged;
 		RefreshingCandidates = (delegate*<ref Grid, void>)&onRefreshingCandidates;
 
 
-		static void onValueChanged(ref Grid @this, in ValueChangedArgs e)
+		static void onValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
 		{
-			if (e is { Cell: var cell, SetValue: var setValue and not -1 })
+			if (setValue != -1)
 			{
 				foreach (int peerCell in PeerMaps[cell])
 				{
@@ -388,6 +393,32 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// Indicates the total number of empty cells.
 	/// </summary>
 	public readonly int EmptiesCount => Triplet.A;
+
+	/// <summary>
+	/// <para>Indicates which regions are null regions.</para>
+	/// <para>A <b>Null Region</b> is a region whose hold cells are all empty cells.</para>
+	/// <para>
+	/// The property returns an <see cref="int"/> value as a mask that contains all possible regions.
+	/// For example, if the row 5, column 5 and block 5 (1-9) are null regions, the property will return
+	/// the result <see cref="int"/> value, <c>000010000_000010000_000010000</c> as binary.
+	/// </para>
+	/// </summary>
+	public readonly int NullRegions
+	{
+		get
+		{
+			int maskResult = 0;
+			for (int region = 0; region < 27; region++)
+			{
+				if ((EmptyCells & RegionMaps[region]).Count == 9)
+				{
+					maskResult |= 1 << region;
+				}
+			}
+
+			return maskResult;
+		}
+	}
 
 	/// <summary>
 	/// Gets the token of this sudoku grid.
@@ -580,10 +611,8 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 					// To trigger the event, which is used for eliminate
 					// all same candidates in peer cells.
-					((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(
-						ref this,
-						new(cell, copied, result, value)
-					);
+					var onValueChanged = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+					onValueChanged(ref this, cell, copied, result, value);
 
 					break;
 				}
@@ -609,7 +638,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if ((Cell: cell, Digit: digit) is (Cell: >= 0 and < Length, Digit: >= 0 and < RegionCellsCount))
+			if (cell is >= 0 and < Length && digit is >= 0 and < RegionCellsCount)
 			{
 				short copied = _values[cell];
 				if (value)
@@ -622,10 +651,8 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 				}
 
 				// To trigger the event.
-				((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(
-					ref this,
-					new(cell, copied, _values[cell], -1)
-				);
+				var onValueChanged = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+				onValueChanged(ref this, cell, copied, _values[cell], -1);
 			}
 		}
 	}
@@ -715,7 +742,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		{ IsDebuggerUndefined: true } => 0,
 #endif
 		{ IsEmpty: true } => 1,
-		_ => ToString("#").GetHashCode()
+		_ => $"{this:#}".GetHashCode()
 	};
 
 	/// <summary>
@@ -727,15 +754,14 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// </returns>
 	public readonly int[] ToArray()
 	{
-		var span = (stackalloc int[Length]);
+		int[] result = new int[Length];
 		for (int i = 0; i < Length; i++)
 		{
-			// 'this[i]' is always in range -1 to 8 (-1 is empty, and 0 to 8 is 1 to 9 for
-			// mankind representation).
-			span[i] = this[i] + 1;
+			// 'this[i]' is always between -1 and 8 (-1 is empty, and 0 to 8 is 1 to 9 for human representation).
+			result[i] = this[i] + 1;
 		}
 
-		return span.ToArray();
+		return result;
 	}
 
 	/// <summary>
@@ -906,7 +932,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		short copied = mask;
 		mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
 
-		((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copied, mask, -1));
+		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -921,7 +947,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		short copied = m;
 		m = mask;
 
-		((delegate*<ref Grid, in ValueChangedArgs, void>)ValueChanged)(ref this, new(cell, copied, m, -1));
+		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
 
 	/// <summary>
