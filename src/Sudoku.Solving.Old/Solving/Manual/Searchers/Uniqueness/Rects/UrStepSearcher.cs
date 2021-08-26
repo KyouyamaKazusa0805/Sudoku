@@ -17,9 +17,6 @@ public sealed partial class UrStepSearcher : UniquenessStepSearcher
 	/// </summary>
 	public bool SearchForExtendedUniqueRectangles { get; set; }
 
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(8, DisplayingLevel.B);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>

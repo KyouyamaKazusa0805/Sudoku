@@ -6696,9 +6696,6 @@
             Encapsulates an <b>extended rectangle</b> technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Extended.XrStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
@@ -8018,9 +8015,6 @@
             <summary>
             Indicates whether the searcher can search for extended URs.
             </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Options">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Uniqueness.Rects.UrStepSearcher.Properties">
             <summary>
