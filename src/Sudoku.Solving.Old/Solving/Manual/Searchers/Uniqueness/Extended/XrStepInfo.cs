@@ -12,7 +12,7 @@ public abstract record XrStepInfo(
 ) : UniquenessStepInfo(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.5M + (Cells.Count >> 1 - 2) * .1M;
+	public override decimal Difficulty => 4.5M + ((Cells.Count >> 1) - 2) * .1M;
 
 	/// <inheritdoc/>
 	public sealed override string? Acronym => "XR";

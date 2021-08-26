@@ -1602,6 +1602,107 @@
              </para>
              </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
+            <summary>
+            Provides with an <b>Extended Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Rectangle Type 1</item>
+            <item>Extended Rectangle Type 2</item>
+            <item>Extended Rectangle Type 3</item>
+            <item>Extended Rectangle Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos">
+            <summary>
+            Indicates all possible extended rectangle pattern combinations.
+            </summary>
+            <remarks>
+            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
+            <para>
+            Fit type (2 blocks spanned):
+            <code>
+            ab | ab
+            bc | bc
+            ac | ac
+            </code>
+            </para>
+            <para>
+            Fat type (3 blocks spanned):
+            <code>
+            ab | ac | bc
+            ab | ac | bc
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.#cctor">
+            <summary>
+            Defines a <see langword="static"/> constructor that initializes
+            the <see langword="static readonly"/> field <see cref="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="extraCells">The extra cells map.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigit">The extra digit.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraDigits">The extra digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Check type 4 and a part of type 1 that the method
+            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)"/>
+            cannot be found.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="normalDigits">The normal digits mask.</param>
+            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <returns>The first found step if worth.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
             <summary>
             Defines a step searcher that searches for almost locked candidates steps.
@@ -1622,6 +1723,11 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
             <summary>
             Defines a step searcher that searches for deadly pattern steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher">
+            <summary>
+            Defines a searcher that searches for extended rectangle steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
@@ -3189,6 +3295,178 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep">
+            <summary>
+            Provides with a step that is a <b>Extended Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Extended Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.Type">
+            <summary>
+            Indicates the type of the step. The value must be between 1 and 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
+            <param name="Region">Indicates the region that extra subset formed.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
+            <param name="Region">Indicates the region that extra subset formed.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep">

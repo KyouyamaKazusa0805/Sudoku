@@ -27,6 +27,9 @@
 					<Default>Default</Default>
 				</Literal>
 				<Literal Editable="true">
+					<ID>baseType</ID>
+				</Literal>
+				<Literal Editable="true">
 					<ID>keyword</ID>
 					<Default>abstract</Default>
 				</Literal>
@@ -40,7 +43,7 @@
 public $keyword$ record $name$Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views
-) : Step(Conclusions, Views)
+) : $baseType$Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
