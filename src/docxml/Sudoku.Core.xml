@@ -1277,6 +1277,145 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Data.ChainNode">
+            <summary>
+            Defines a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainNode._currentParentIndex">
+            <summary>
+            Indicates the number of parent nodes recorded in this collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainNode._parents">
+            <summary>
+            <para>Indicates all parents of the current node.</para>
+            <para>
+            The value is represented by the type <see cref="T:Sudoku.Data.ChainNode"/>** (i.e. a double pointer),
+            the first pointer mark stands for a basic reference to a real <see cref="T:Sudoku.Data.ChainNode"/>-typed instance
+            (i.e. a <see cref="T:Sudoku.Data.ChainNode"/>*), and the second pointer mark stands for the property
+            is an array of that type (i.e. a * to <see cref="T:Sudoku.Data.ChainNode"/>*).
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.ChainNode"/> instance using the specified cell, digit and a <see cref="T:System.Boolean"/>
+            value indicating whether the node is on.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Data.ChainNode*)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.ChainNode"/> instance using the specified cell, digit, a <see cref="T:System.Boolean"/>
+            value indicating whether the node is on, and a single node that represents the parent of the current node.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> value indicating whether the node is on.</param>
+            <param name="parent">Indicates the parent of the current node.</param>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.IsOn">
+            <summary>
+            A <see cref="T:System.Boolean"/> value indicating whether the node is on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.AncestorsCount">
+            <summary>
+            Get the total number of the ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.Root">
+            <summary>
+            <para>Indicates the root of the current chain.</para>
+            <para>
+            This property will regard the current instance as a pointer that points to a normal chain.
+            If the property <see cref="F:Sudoku.Data.ChainNode._parents"/> isn't <see langword="null"/>, then the property will search
+            for the parent node and check its parent node (i.e. the grandparents). When the <see cref="F:Sudoku.Data.ChainNode._parents"/>
+            is <see langword="null"/>, the node should be the root node, and then the method will return
+            the address that points to it.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Data.ChainNode._parents"/>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.Parents">
+            <summary>
+            Gets all parent nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainNode.Chain">
+            <summary>
+            Indicates the nodes that the current node lies in.
+            </summary>
+            <remarks>
+            For the performance optimization, the return type is a list of <see cref="T:System.IntPtr"/>s indicates
+            the pointer that points to each elements. If you want to get the real value, please cast the type
+            to <see cref="T:Sudoku.Data.ChainNode"/>*:
+            <code>
+            var list = Chain; // Get the value from the property.
+            if (list.Count != 0)
+            {
+                var p = (ChainNode*)list[0]; // For example, get the first element.
+            
+                // Code uses the variable 'p'.
+            }
+            </code>
+            </remarks>
+            <seealso cref="T:System.IntPtr"/>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.IsParentOf(Sudoku.Data.ChainNode*)">
+            <summary>
+            Determine whether the node is the parent of the specified node.
+            </summary>
+            <param name="node">The pointer that points to a chain node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.GetPinnableReference">
+            <summary>
+            Returns the reference to the first parent node.
+            </summary>
+            <returns>
+            The reference to the first element of parents. If <see cref="F:Sudoku.Data.ChainNode._parents"/> is <see langword="null"/>,
+            the return value is <see langword="ref"/> *(<see cref="T:Sudoku.Data.ChainNode"/>**)<see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.AddParent(Sudoku.Data.ChainNode*)">
+            <summary>
+            Append a chain node into the collection, as one of the parent nodes.
+            </summary>
+            <param name="ptr">The pointer that points to the chain node to be added.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the buffer is full.</exception>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.Dispose">
+            <summary>
+            Release the memory, and clear all memories of this instance
+            (specially for the property <see cref="F:Sudoku.Data.ChainNode._parents"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Data.ChainNode._parents"/>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.CreateParentsBlock">
+            <summary>
+            Initializes an creates the buffer.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
             Provides a collection that contains the conclusions.
