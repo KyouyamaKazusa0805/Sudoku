@@ -5,7 +5,7 @@
 /// </summary>
 [AutoEquality(nameof(Cell), nameof(Digit), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
-public unsafe partial struct ChainNode
+public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 {
 	/// <summary>
 	/// Indicates the number of parent nodes recorded in this collection.
@@ -20,7 +20,12 @@ public unsafe partial struct ChainNode
 	/// (i.e. a <see cref="ChainNode"/>*), and the second pointer mark stands for the property
 	/// is an array of that type (i.e. a * to <see cref="ChainNode"/>*).
 	/// </para>
+	/// <para>
+	/// In addition, the value stores the address value that points to the unmanaged memory, If you use out
+	/// of this instance, you <b>must</b> calls the method <see cref="Dispose"/> to release the memory.
+	/// </para>
 	/// </summary>
+	/// <seealso cref="Dispose"/>
 	private ChainNode** _parents = null;
 
 

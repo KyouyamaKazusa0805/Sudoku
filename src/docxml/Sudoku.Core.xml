@@ -1296,7 +1296,12 @@
             (i.e. a <see cref="T:Sudoku.Data.ChainNode"/>*), and the second pointer mark stands for the property
             is an array of that type (i.e. a * to <see cref="T:Sudoku.Data.ChainNode"/>*).
             </para>
+            <para>
+            In addition, the value stores the address value that points to the unmanaged memory, If you use out
+            of this instance, you <b>must</b> calls the method <see cref="M:Sudoku.Data.ChainNode.Dispose"/> to release the memory.
+            </para>
             </summary>
+            <seealso cref="M:Sudoku.Data.ChainNode.Dispose"/>
         </member>
         <member name="M:Sudoku.Data.ChainNode.#ctor(System.Int32,System.Int32,System.Boolean)">
             <summary>
