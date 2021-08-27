@@ -1,7 +1,8 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Defines a chain node.
+/// Defines a chain node, with basic information about the node. At the same time you can get the root node
+/// of the chain, using the current node as the tail node.
 /// </summary>
 [AutoEquality(nameof(Cell), nameof(Digit), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
@@ -222,6 +223,14 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 		}
 	}
 
+
+#pragma warning disable CS1591
+	public readonly void Deconstruct(out int candidate, out bool isOn)
+	{
+		candidate = Cell * 9 + Digit;
+		isOn = IsOn;
+	}
+#pragma warning restore CS1591
 
 	/// <summary>
 	/// Determine whether the node is the parent of the specified node.

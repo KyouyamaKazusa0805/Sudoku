@@ -1741,9 +1741,24 @@
             some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for alternating inference chain steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for chain steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
             <summary>
             Defines a step searcher that searches for deadly pattern steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for dynamic forcing chains steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">
@@ -1800,6 +1815,11 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for forcing chains steps.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IIntersectionStepSearcher">
             <summary>
@@ -3298,6 +3318,408 @@
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep">
+            <summary>
+            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled"><inheritdoc/></param>
+            <param name="YEnabled"><inheritdoc/></param>
+            <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode@)">
+            <summary>
+            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled"><inheritdoc/></param>
+            <param name="YEnabled"><inheritdoc/></param>
+            <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsXyChain">
+            <summary>
+            Indicates whether the specified chain is an XY-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsXChain">
+            <summary>
+            Indicates whether the specified chain is an X-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsMWing">
+            <summary>
+            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsSplitWing">
+            <summary>
+            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsHybridWing">
+            <summary>
+            Indicates whether the chain is Hybrid-Wing.
+            This wing has two types:
+            <list type="bullet">
+            <item><c>(x = y) - y = (y - z) = z</c></item>
+            <item><c>(x = y) - (y = z) - z = z</c></item>
+            </list>
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.IsLocalWing">
+            <summary>
+            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.ChainStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled">
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains X factor.</para>
+            <para>An <b>X factor</b> represents a chain relation about two same-digit strong link.</para>
+            </param>
+            <param name="YEnabled">
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains Y factor.</para>
+            <para>A <b>Y factor</b> represents a chain relation about two-digit strong link in a single cell.</para>
+            </param>
+            <param name="IsNishio">
+            Indicates whether the chain is about the technique <b>Nishio Forcing Chains</b>.
+            </param>
+            <param name="IsMultiple">
+            Indicates whether the chain is about the technique <b>Multiple Forcing Chains</b>.
+            </param>
+            <param name="IsDynamic">
+            Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
+            </param>
+            <param name="Level">
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
+            to the digit 0, 1, 2, 3, 4 and 5.
+            <list type="table">
+            <item>
+            <term>Level 0</term>
+            <description>The dynamic case is disabled. The chain isn't a dynamic chain at all.</description>
+            </item>
+            <item>
+            <term>Level 1</term>
+            <description>The chain is a normal dynamic forcing chains.</description>
+            </item>
+            <item>
+            <term>Level 2</term>
+            <description>
+            The chain is a dynamic forcing chains with grouped nodes, such as an X-Wing.
+            (i.e. <b>Dynamic Forcing Chains + Generalized Structure</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 3</term>
+            <description>
+            The chain is a dynamic forcing chains with normal AICs as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Alternating Inference Chain</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 4</term>
+            <description>
+            The chain is a dynamic forcing chains with normal forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Forcing Chains</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 5</term>
+            <description>
+            The chain is a dynamic forcing chains with dynamic forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Dynamic Forcing Chains</b>)
+            </description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled">
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains X factor.</para>
+            <para>An <b>X factor</b> represents a chain relation about two same-digit strong link.</para>
+            </param>
+            <param name="YEnabled">
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains Y factor.</para>
+            <para>A <b>Y factor</b> represents a chain relation about two-digit strong link in a single cell.</para>
+            </param>
+            <param name="IsNishio">
+            Indicates whether the chain is about the technique <b>Nishio Forcing Chains</b>.
+            </param>
+            <param name="IsMultiple">
+            Indicates whether the chain is about the technique <b>Multiple Forcing Chains</b>.
+            </param>
+            <param name="IsDynamic">
+            Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
+            </param>
+            <param name="Level">
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
+            to the digit 0, 1, 2, 3, 4 and 5.
+            <list type="table">
+            <item>
+            <term>Level 0</term>
+            <description>The dynamic case is disabled. The chain isn't a dynamic chain at all.</description>
+            </item>
+            <item>
+            <term>Level 1</term>
+            <description>The chain is a normal dynamic forcing chains.</description>
+            </item>
+            <item>
+            <term>Level 2</term>
+            <description>
+            The chain is a dynamic forcing chains with grouped nodes, such as an X-Wing.
+            (i.e. <b>Dynamic Forcing Chains + Generalized Structure</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 3</term>
+            <description>
+            The chain is a dynamic forcing chains with normal AICs as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Alternating Inference Chain</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 4</term>
+            <description>
+            The chain is a dynamic forcing chains with normal forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Forcing Chains</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 5</term>
+            <description>
+            The chain is a dynamic forcing chains with dynamic forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Dynamic Forcing Chains</b>)
+            </description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.IsElementary">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Equals(Sudoku.Solving.Manual.Steps.Chains.ChainStep,Sudoku.Solving.Manual.Steps.Chains.ChainStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep">
+            <summary>
+            Provides with a step that is a <b>Continuous Nice Loop</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled"><inheritdoc/></param>
+            <param name="YEnabled"><inheritdoc/></param>
+            <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode@)">
+            <summary>
+            Provides with a step that is a <b>Continuous Nice Loop</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="XEnabled"><inheritdoc/></param>
+            <param name="YEnabled"><inheritdoc/></param>
+            <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.IsNice">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.Rarity">
+            <inheritdoc/>
+            <remarks>
+            I separated them into three branches in that <see langword="switch"/> expression
+            in order to extend the branches in the future.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.IsXyCycle">
+            <summary>
+            Indicates whether the specified chain is an XY-Cycle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.IsXCycle">
+            <summary>
+            Indicates whether the specified cycle is an X-Cycle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ChainTypeCode">
+            <summary>
+            Indicates a type code for a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.MWing">
+            <summary>
+            Indicates the M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.SplitWing">
+            <summary>
+            Indicates the split wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.LocalWing">
+            <summary>
+            Indicates the local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.HybridWing">
+            <summary>
+            Indicates the hybrid wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.XChain">
+            <summary>
+            Indicates the X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.FishyCycle">
+            <summary>
+            Indicates the X-Cycle (Fishy Cycle).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.XyChain">
+            <summary>
+            Indicates the XY-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.XyCycle">
+            <summary>
+            Indicates the XY-Cycle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.ContinuousNiceLoop">
+            <summary>
+            Indicates the continuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.XyXChain">
+            <summary>
+            Indicates the XY-X-Chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DiscontinuousNiceLoop">
+            <summary>
+            Indicates the discontinuous nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.Aic">
+            <summary>
+            Indicates the alternating inference chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.CellFc">
+            <summary>
+            Indicates the cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.RegionFc">
+            <summary>
+            Indicates the region forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.ContradictionFc">
+            <summary>
+            Indicates the contradiction forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DoubleFc">
+            <summary>
+            Indicates the double forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicCellFc">
+            <summary>
+            Indicates the dynamic cell forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicRegionFc">
+            <summary>
+            Indicates the dynamic region forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicContradictionFc">
+            <summary>
+            Indicates the dynamic contradiction forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicDoubleFc">
+            <summary>
+            Indicates the dynamic double forcing chains.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
@@ -4419,6 +4841,40 @@
             Indicates the internal name.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IChainStep">
+            <summary>
+            Defines a chain step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IChainStep.FlatComplexity">
+            <summary>
+            Indicates the flat complexity.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IChainStep.SortKey">
+            <summary>
+            Indicates the sort key. The result will be a <see cref="T:Sudoku.Solving.Manual.Steps.ChainTypeCode"/> instance to describe
+            what and how the chain behaves. Please visit the type <see cref="T:Sudoku.Solving.Manual.Steps.ChainTypeCode"/>
+            to learn about more details for a chain.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.Steps.ChainTypeCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.IChainStep.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.IChainStep.ConclusionsEquals(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Boolean)">
+            <summary>
+            Determines whether two different list of <see cref="T:Sudoku.Data.Conclusion"/>s holds the same values.
+            </summary>
+            <param name="lConclusions">The first conclusion list to compare.</param>
+            <param name="rConclusions">The second conclusion list to compare.</param>
+            <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IDistinctableStep`1">
             <summary>
             Defines a step that can be distinctable.
@@ -4454,6 +4910,20 @@
             The method can be the same implemented as the method <see cref="M:System.Object.Equals(System.Object)"/>,
             but <see langword="record"/>s are automatically implemented the method, which is useless
             and unmeaningful.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ILoopStep">
+            <summary>
+            Defines a loop step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ILoopStep.IsNice">
+            <summary>
+            Indicates whether the loop is a nice loop.
+            </summary>
+            <remarks>
+            A <b>Nice</b> loop is a loop that all weak links can be gathered to remove candidates
+            (if possible removable candidates exist).
             </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep">

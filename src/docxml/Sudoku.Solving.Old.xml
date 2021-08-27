@@ -5597,9 +5597,6 @@
             Encapsulates an <b>empty rectangle</b> (<b>ER</b>) technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Sdps.ErStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Sdps.ErStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.

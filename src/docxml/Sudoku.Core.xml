@@ -1279,7 +1279,8 @@
         </member>
         <member name="T:Sudoku.Data.ChainNode">
             <summary>
-            Defines a chain node.
+            Defines a chain node, with basic information about the node. At the same time you can get the root node
+            of the chain, using the current node as the tail node.
             </summary>
         </member>
         <member name="F:Sudoku.Data.ChainNode._currentParentIndex">
