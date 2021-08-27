@@ -28,7 +28,7 @@ public abstract record SingleDigitPatternStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
 
 	/// <inheritdoc/>
 	public sealed override Stableness Stableness => base.Stableness;

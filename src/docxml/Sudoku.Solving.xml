@@ -1602,6 +1602,27 @@
              </para>
              </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
+            <summary>
+            Provides with a <b>Empty Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.LinkIds">
+            <summary>
+            Indicates all regions iterating on the specified block
+            forming an empty rectangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
             <summary>
             Provides with an <b>Extended Rectangle</b> step searcher.
@@ -1724,6 +1745,21 @@
             <summary>
             Defines a step searcher that searches for deadly pattern steps.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">
+            <summary>
+            Defines a step searcher that searches for an empty rectangle step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty rectangle.
+            </summary>
+            <param name="this">The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher">
             <summary>
@@ -4730,6 +4766,44 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.Steps.IStep.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides with a step that is an <b>Empty Rectangle</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.Rarity">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep">
             <summary>
