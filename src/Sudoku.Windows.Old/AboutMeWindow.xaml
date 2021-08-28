@@ -4,13 +4,15 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
-		Title="{DynamicResource AboutMeTitle}" Width="500" Height="120" ResizeMode="NoResize">
+		Title="{DynamicResource AboutMeTitle}" Width="500" Height="200" ResizeMode="NoResize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="100" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
@@ -29,6 +31,22 @@
 				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
 			<Hyperlink Click="GitHubLink_Click">
 				<Run Text="{DynamicResource AboutMeRealGitHub}"/>
+			</Hyperlink>
+		</TextBlock>
+		<Label Grid.Row="3" Grid.Column="0" Content="{DynamicResource AboutMeWikiPage}" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"
+				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
+			<Hyperlink Click="GitHubLink_Click">
+				<Run Text="{DynamicResource AboutMeWikiPageLink}"/>
+			</Hyperlink>
+		</TextBlock>
+		<Label Grid.Row="4" Grid.Column="0" Content="{DynamicResource AboutMeTutorialPage}" HorizontalAlignment="Center"
+			   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0"/>
+		<TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center"
+				   VerticalAlignment="Center" FontSize="16" Margin="10,0,10,0">
+			<Hyperlink Click="GitHubLink_Click">
+				<Run Text="{DynamicResource AboutMeTutorialPageLink}"/>
 			</Hyperlink>
 		</TextBlock>
 	</Grid>

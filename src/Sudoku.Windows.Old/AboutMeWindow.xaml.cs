@@ -25,4 +25,34 @@ public partial class AboutMeWindow : Window
 			}
 		}
 	}
+
+	private void WikiLink_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is Hyperlink)
+		{
+			try
+			{
+				Process.Start(new ProcessStartInfo((string)LangSource["AboutMeWikiPage"]));
+			}
+			catch (Exception ex)
+			{
+				Messagings.ShowExceptionMessage(ex);
+			}
+		}
+	}
+
+	private void TutorialLink_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is Hyperlink)
+		{
+			try
+			{
+				Process.Start(new ProcessStartInfo((string)LangSource["AboutMeTutorialPage"]));
+			}
+			catch (Exception ex)
+			{
+				Messagings.ShowExceptionMessage(ex);
+			}
+		}
+	}
 }

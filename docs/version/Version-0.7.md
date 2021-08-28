@@ -38,6 +38,10 @@
 * **重大修改：所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，并修改命名空间到这个类型自身的命名空间下。**；
 * 提升 C# 版本到 C# 10，更进新语法。
 
-## 图片
+## UI 变动
 
-![图 1](https://user-images.githubusercontent.com/23616315/130937553-88ed0036-dd28-4c62-b52e-78c06aba3abe.png)
+* 添加教程和 Wiki 链接到 `Sudoku.Windows.Old`（原 `Sudoku.Windows` 项目）的“关于”窗体里（#167）。
+
+# 图片
+
+![图 1](https://user-images.githubusercontent.com/23616315/130937553-88ed0036-dd28-4c62-b52e-78c06aba3abe.png "图 1.png")

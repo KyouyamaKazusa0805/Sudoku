@@ -151,6 +151,10 @@
 	<sys:String x:Key="AboutMeRealQq">747507738</sys:String>
 	<sys:String x:Key="AboutMeGithub">GitHub</sys:String>
 	<sys:String x:Key="AboutMeRealGitHub">https://github.com/SunnieShine</sys:String>
+	<sys:String x:Key="AboutMeWikiPage">Wiki 页面</sys:String>
+	<sys:String x:Key="AboutMeWikiPageLink">https://sunnieshine.github.io/Sudoku</sys:String>
+	<sys:String x:Key="AboutMeTutorialPage">教程页面</sys:String>
+	<sys:String x:Key="AboutMeTutorialPageLink">https://www.bilibili.com/video/BV1Mx411z7uq</sys:String>
 
 	<sys:String x:Key="BackdoorTitle">搜索后门…</sys:String>
 	<sys:String x:Key="BackdoorGrid">盘面：</sys:String>
