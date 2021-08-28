@@ -1127,26 +1127,6 @@
             Indicates whether the solver only displays the techniques with the same displaying level.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Looping">
-            <summary>
-            Provides with a serial of methods that checks for loops.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Looping.IsValidLoop(System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            Checks whether the specified loop of cells is a valid loop.
-            </summary>
-            <param name="loopCells">The loop cells.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Looping.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
-            <summary>
-            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
-            </summary>
-            <param name="this">The list of cells.</param>
-            <param name="offset">The offset. The default value is <c>4</c>.</param>
-            <returns>All links.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolver">
             <summary>
             Provides a manual solver that solves a sudoku puzzle using the human minds and ways
@@ -1992,6 +1972,19 @@
             Defines a step searcher that searches for locked candidates steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.ILoopLikeStepSearcher">
+            <summary>
+            Defines a step searcher that searches for loop-like steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.ILoopLikeStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="this">The list of cells.</param>
+            <param name="offset">The offset. The default value is <c>4</c>.</param>
+            <returns>All links.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher">
             <summary>
             Defines a step searcher that searches for normal fish steps.
@@ -2160,6 +2153,13 @@
             <summary>
             Defines a step searcher that searches for unique loop steps.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Checks whether the specified loop of cells is a valid loop.
+            </summary>
+            <param name="loopCells">The loop cells.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">
             <summary>

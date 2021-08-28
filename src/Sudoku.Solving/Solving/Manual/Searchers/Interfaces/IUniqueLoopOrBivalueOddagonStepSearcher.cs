@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a step searcher that searches for unique loop or bi-value oddagon steps.
 /// </summary>
-public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher
+public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopLikeStepSearcher
 {
 	/// <summary>
 	/// Searches for possible bi-value oddagon or unique loop patterns.
@@ -48,7 +48,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher
 				if (tempLoop[0] == nextCell && tempLoop.Count >= 6 && predicate())
 				{
 					// The loop is closed. Now construct the result pair.
-					loops.Add((loopMap, Looping.GetLinks(tempLoop)));
+					loops.Add((loopMap, GetLinks(tempLoop)));
 				}
 				else if (!loopMap.Contains(nextCell) && grid[nextCell, d1] && grid[nextCell, d2])
 				{

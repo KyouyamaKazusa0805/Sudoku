@@ -46,7 +46,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
 				grid, d1, d2, cell, (RegionLabel)255, 0, 2, ref loopMap,
-				tempLoop, () => Looping.IsValidLoop(tempLoop), loops
+				tempLoop, () => IUniqueLoopStepSearcher.IsValidLoop(tempLoop), loops
 			);
 
 			if (loops.Count == 0)
