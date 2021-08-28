@@ -1,4 +1,4 @@
-﻿# Lambda 拓展
+﻿﻿# Lambda 拓展
 C# 10 开始扩展 Lambda 表达式。C# 3 诞生 Lambda 表达式，基本够用。不过极少数时候不得不需要一些特殊情况的时候，Lambda 表达式就不够用了。比如
 
 * 给 Lambda 表达式的参数和返回值添加特性；
@@ -70,17 +70,17 @@ var f5 = string () => null;   // System.Func<string>
 
 ## 直接调用 Lambda
 
-Lambda 表达式还比本地函数简单一点，C# 10 开始允许 Lambda 及时声明及时调用。
+Lambda 表达式以前不支持直接调用，现在可以用 `var` 关键字表示其类型了，因此……还是不行 :(
+
+这个主要是因为会增加代码复杂度，降低可读性，以及分析器分析的复杂度等等，所以 C# 10 里仍然没有实现这个功能。不过现在有了 `var` 来表达类型，就不必那么复杂了：
 
 ```csharp
-int a = 30;
+var f = static (string s) => Console.WriteLine(s);
 
-(void (ref int a) => a++)(ref a);
+f("30");
 ```
 
-这里的 `(ref int a) => a++` 是一个 Lambda 表达式，然后后面直接跟上一个参数表列就可以直接调用。
-
-但需要注意的是，必须 Lambda 自身有了自然签名才可以直接调用，不然我不知道是啥类型的参数或者返回值。
+之类的。
 
 ## Lambda 对 `Delegate` 和 `object` 类型的隐式转换规则
 
