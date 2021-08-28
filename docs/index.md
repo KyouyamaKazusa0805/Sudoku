@@ -112,5 +112,6 @@ Please note that **NOT ALL** language features will be introduced below. I'll on
   * [源代码生成器](language-ref/Source-Generator)
 * C# 10
   * [Lambda 拓展](language-ref/Extended-Lambdas)
+  * [`static abstract` 接口成员](language-ref/Static-Abstracts-In-Interfaces)
 * 综合内容
   * [模式匹配](language-ref/Pattern-Matching)
