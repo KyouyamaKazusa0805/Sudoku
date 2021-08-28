@@ -51,8 +51,8 @@ public sealed unsafe record AlternatingInferenceChainStep(
 		{ IsSplitWing: true } => Technique.SplitWing,
 		{ IsHybridWing: true } => Technique.HybridWing,
 		{ IsLocalWing: true } => Technique.LocalWing,
-		{ Target.Chain: var chain } when ((ChainNode*)chain[^2])->Digit == ((ChainNode*)chain[1])->Digit =>
-			IsXyChain ? Technique.XyChain : Technique.Aic,
+		{ Target.Chain: var c, IsXyChain: var isXy } when ((ChainNode*)c[^2])->Digit == ((ChainNode*)c[1])->Digit =>
+			isXy ? Technique.XyChain : Technique.Aic,
 		_ => Conclusions.Length switch
 		{
 			1 => Technique.DiscontinuousNiceLoop,

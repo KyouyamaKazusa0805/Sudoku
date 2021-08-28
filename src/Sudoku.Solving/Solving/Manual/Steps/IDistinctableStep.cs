@@ -3,16 +3,16 @@
 /// <summary>
 /// Defines a step that can be distinctable.
 /// </summary>
-/// <typeparam name="TClass">The type of the element to compare.</typeparam>
+/// <typeparam name="TStep">The type of the element to compare.</typeparam>
 /// <remarks>
 /// A <b>distinctable step</b> is a step that is with the unique information,
 /// in order that multiple steps of the same type can be recognized by the relative methods,
 /// to filter and remove same-value instances.
 /// </remarks>
-public interface IDistinctableStep<in TClass> : IStep where TClass : class
+public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 {
 	/// <summary>
-	/// To compare 2 instances of type <typeparamref name="TClass"/>,
+	/// To compare 2 instances of type <typeparamref name="TStep"/>,
 	/// to determine whether 2 instances holds the same value.
 	/// </summary>
 	/// <param name="left">Indicates the first instance to compare.</param>
@@ -35,5 +35,5 @@ public interface IDistinctableStep<in TClass> : IStep where TClass : class
 	/// but <see langword="record"/>s are automatically implemented the method, which is useless
 	/// and unmeaningful.
 	/// </remarks>
-	static abstract bool Equals(TClass left, TClass right);
+	static abstract bool Equals(TStep left, TStep right);
 }

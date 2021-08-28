@@ -2936,9 +2936,6 @@
             the redundant backtracking.
             </remarks>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Chaining.AicStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Chaining.AicStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.

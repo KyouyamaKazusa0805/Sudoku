@@ -1602,6 +1602,53 @@
              </para>
              </remarks>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher">
+            <summary>
+            Provides with a <b>Alternating Inference Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Irregular Wings:
+            <list type="bullet">
+            <item>M-Wing</item>
+            <item>Local-Wing</item>
+            <item>Split-Wing</item>
+            <item>Hybrid-Wing</item>
+            <!--<item>Purple Cow</item>-->
+            </list>
+            </item>
+            <item>
+            Basic techniques:
+            <list type="bullet">
+            <item>
+            Alternating Infercence Chains:
+            <list type="bullet">
+            <item>X-Chain</item>
+            <item>XY-Chain</item>
+            <item>XY-X-Chain</item>
+            <item>Discontinuous Nice Loop</item>
+            <item>Normal Alternating Inference Chain</item>
+            </list>
+            </item>
+            <item>
+            Continuous Nice Loops:
+            <list type="bullet">
+            <item>Fishy Cycle (X-Cycle)</item>
+            <item>XY-Cycle</item>
+            <item>Normal Continuous Nice Loop</item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
             <summary>
             Provides with a <b>Empty Rectangle</b> step searcher.
@@ -1750,6 +1797,87 @@
             <summary>
             Defines a step searcher that searches for chain steps.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode*,System.Boolean)">
+            <summary>
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="pTarget">The target node.</param>
+            <param name="simpleChain">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>The candidate offsets.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode*,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="pTarget">The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{System.IntPtr},Sudoku.Data.ChainNode*)">
+            <summary>
+            Determine whether the specified list contains the specified node value.
+            </summary>
+            <param name="list">The list of nodes.</param>
+            <param name="p">The node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode*,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode*,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{System.IntPtr},System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="enableFastProperties">
+            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>.
+            </param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <param name="isDynamic">
+            Indicates whether the current searcher is searching for dynamic chains. If so,
+            we can't use those static properties to optimize the performance.
+            </param>
+            <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode*,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{System.IntPtr})">
+            <summary>
+            Add hidden parents of a cell.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode*,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{System.IntPtr})">
+            <summary>
+            Add hidden parents of a region.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="currRegion">The current region label.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
             <summary>
@@ -4879,7 +5007,7 @@
             <summary>
             Defines a step that can be distinctable.
             </summary>
-            <typeparam name="TClass">The type of the element to compare.</typeparam>
+            <typeparam name="TStep">The type of the element to compare.</typeparam>
             <remarks>
             A <b>distinctable step</b> is a step that is with the unique information,
             in order that multiple steps of the same type can be recognized by the relative methods,
@@ -4888,7 +5016,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Equals(`0,`0)">
             <summary>
-            To compare 2 instances of type <typeparamref name="TClass"/>,
+            To compare 2 instances of type <typeparamref name="TStep"/>,
             to determine whether 2 instances holds the same value.
             </summary>
             <param name="left">Indicates the first instance to compare.</param>
