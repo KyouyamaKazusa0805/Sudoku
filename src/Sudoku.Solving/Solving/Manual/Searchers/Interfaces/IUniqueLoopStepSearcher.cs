@@ -3,6 +3,6 @@
 /// <summary>
 /// Defines a step searcher that searches for unique loop steps.
 /// </summary>
-public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher
+public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 }

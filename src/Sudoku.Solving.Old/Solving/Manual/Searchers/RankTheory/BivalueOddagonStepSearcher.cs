@@ -5,9 +5,6 @@
 /// </summary>
 public sealed partial class BivalueOddagonStepSearcher : RankTheoryStepSearcher
 {
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>

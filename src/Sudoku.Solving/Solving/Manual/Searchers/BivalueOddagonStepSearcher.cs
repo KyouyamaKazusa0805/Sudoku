@@ -1,40 +1,39 @@
-﻿using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
+﻿using Sudoku.Solving.Manual.Steps.RankTheory;
 
 namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
-/// Provides with a <b>Unique Loop</b> step searcher.
+/// Provides with a <b>Bi-value Oddagon</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Unique Loop Type 1</item>
-/// <item>Unique Loop Type 2</item>
-/// <item>Unique Loop Type 3</item>
-/// <item>Unique Loop Type 4</item>
+/// <item>Bi-value Oddagon Type 1</item>
+/// <item>Bi-value Oddagon Type 2</item>
+/// <item>Bi-value Oddagon Type 3</item>
+/// <!--<item>Bi-value Oddagon Type 4</item>-->
 /// </list>
 /// </summary>
-internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+internal sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);
+	public SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		// A valid unique loop must contain at least 6 bivalue cells.
-		if (BivalueMap.Count < 6)
+		if (BivalueMap.Count < 4)
 		{
 			goto ReturnNull;
 		}
 
-		var resultAccumulator = new List<UniqueLoopStep>();
+		var resultAccumulator = new List<BivalueOddagonStep>();
 		var loops = new List<(Cells, IList<(Link, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);
 		var loopMap = Cells.Empty;
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		IOrderedEnumerable<UniqueLoopStep> resultList = default!;
+		IOrderedEnumerable<BivalueOddagonStep> resultList = default!;
 		foreach (int cell in BivalueMap)
 		{
 			short mask = grid.GetCandidates(cell);
@@ -46,7 +45,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
 				grid, d1, d2, cell, (RegionLabel)255, 0, 2, ref loopMap,
-				tempLoop, () => Looping.IsValidLoop(tempLoop), loops
+				tempLoop, () => isValid(ref loopMap), loops
 			);
 
 			if (loops.Count == 0)
@@ -75,9 +74,9 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 					}
 					default:
 					{
-						// Type 2, 3, 4.
+						// Type 2, 3.
 						// Here use default label to ensure the order of
-						// the handling will be 1->2->3->4.
+						// the handling will be 1->2->3.
 						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step2)
 						{
 							return step2;
@@ -88,10 +87,6 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step3)
 							{
 								return step3;
-							}
-							if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, links, extraCellsMap, comparer, onlyFindOne) is { } step4)
-							{
-								return step4;
 							}
 						}
 
@@ -107,7 +102,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 
 			resultList =
 				from step in StepAccumulating.Distinct(resultAccumulator)
-				orderby step.Loop.Count
+				orderby step.Loop.Count, step.TechniqueCode
 				select step;
 
 			if (onlyFindOne)
@@ -118,29 +113,30 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 			accumulator.AddRange(resultList);
 		}
 
+
 	ReturnNull:
-		// Invalid cases ('onlyFindOne' is false, the grid doesn't exist any possible ULs, etc.).
-		// Just return null is okay.
 		return null;
 
 	ReturnFirstElement:
 		return resultList.First();
+
+
+		static bool isValid(ref Cells cells)
+		{
+			foreach (int region in cells.Regions)
+			{
+				if ((cells & RegionMaps[region]).Count >= 3)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
 	}
 
-	/// <summary>
-	/// Check type 1.
-	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
-		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
+		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
@@ -152,23 +148,20 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<(int, ColorIdentifier)>(30);
 		foreach (int cell in new Cells(loop) { ~extraCell })
 		{
 			candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
 			candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
 		}
 
-		var step = new UniqueLoopType1Step(
+		var step = new BivalueOddagonType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets,
-				Links = links
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			loop,
 			d1,
 			d2,
-			loop
+			extraCell
 		);
 
 		if (onlyFindOne)
@@ -182,21 +175,8 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 		return null;
 	}
 
-	/// <summary>
-	/// Check type 2.
-	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <returns>The step is worth.</returns>
 	private Step? CheckType2(
-		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
+		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = 0;
@@ -208,7 +188,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 
 		if (mask == 0 || (mask & mask - 1) != 0)
 		{
-			return null;
+			goto ReturnNull;
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
@@ -227,16 +207,12 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 			}
 		}
 
-		var step = new UniqueLoopType2Step(
+		var step = new BivalueOddagonType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets,
-				Links = links
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			loop,
 			d1,
 			d2,
-			loop,
 			extraDigit
 		);
 
@@ -251,21 +227,8 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 		return null;
 	}
 
-	/// <summary>
-	/// Check type 3.
-	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <returns>The step is worth.</returns>
 	private Step? CheckType3(
-		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
+		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
@@ -278,6 +241,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 				break;
 			}
 		}
+
 		if (!extraCellsMap.InOneRegion || notSatisfiedType3)
 		{
 			goto ReturnNull;
@@ -298,7 +262,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 		{
 			if (!((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).IsEmpty)
 			{
-				continue;
+				goto ReturnNull;
 			}
 
 			int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
@@ -323,7 +287,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 						continue;
 					}
 
-					var conclusions = new List<Conclusion>();
+					var conclusions = new List<Conclusion>(16);
 					foreach (int digit in mask)
 					{
 						foreach (int cell in elimMap & CandMaps[digit])
@@ -342,10 +306,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
-								)
+								(cell * 9 + digit, (ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0))
 							);
 						}
 					}
@@ -357,7 +318,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 						}
 					}
 
-					var step = new UniqueLoopType3Step(
+					var step = new BivalueOddagonType3Step(
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(new PresentationData
 						{
@@ -365,11 +326,11 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 							Regions = new[] { (region, (ColorIdentifier)0) },
 							Links = links
 						}),
+						loop,
 						d1,
 						d2,
-						loop,
-						mask,
-						cells
+						cells,
+						mask
 					);
 
 					if (onlyFindOne)
@@ -379,95 +340,6 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 
 					accumulator.Add(step);
 				}
-			}
-		}
-
-	ReturnNull:
-		return null;
-	}
-
-	/// <summary>
-	/// Check type 4.
-	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="links">The links.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <returns>The step is worth.</returns>
-	private Step? CheckType4(
-		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
-	{
-		if (!extraCellsMap.InOneRegion)
-		{
-			goto ReturnNull;
-		}
-
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		foreach (int region in extraCellsMap.CoveredRegions)
-		{
-			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
-			{
-				var (digit, otherDigit) = digitPairs[digitPairIndex];
-				var map = RegionMaps[region] & CandMaps[digit];
-				if (map != (RegionMaps[region] & loop))
-				{
-					continue;
-				}
-
-				int first = extraCellsMap[0], second = extraCellsMap[1];
-				var conclusions = new List<Conclusion>(2);
-				if (grid.Exists(first, otherDigit) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, first, otherDigit));
-				}
-				if (grid.Exists(second, otherDigit) is true)
-				{
-					conclusions.Add(new(ConclusionType.Elimination, second, otherDigit));
-				}
-				if (conclusions.Count == 0)
-				{
-					continue;
-				}
-
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
-				foreach (int cell in loop - extraCellsMap)
-				{
-					foreach (int d in grid.GetCandidates(cell))
-					{
-						candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)0));
-					}
-				}
-				foreach (int cell in extraCellsMap)
-				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
-				}
-
-				var step = new UniqueLoopType4Step(
-					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = new[] { (region, (ColorIdentifier)0) },
-						Links = links
-					}),
-					d1,
-					d2,
-					loop,
-					new(first, second, digit)
-				);
-
-				if (onlyFindOne)
-				{
-					return step;
-				}
-
-				accumulator.Add(step);
 			}
 		}
 

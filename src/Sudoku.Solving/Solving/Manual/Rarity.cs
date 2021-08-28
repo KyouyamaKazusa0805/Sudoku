@@ -34,5 +34,10 @@ public enum Rarity : byte
 	/// <summary>
 	/// Indicates the technique only appears in the special puzzles designed on purpose.
 	/// </summary>
-	OnlyForSpecialPuzzles
+	OnlyForSpecialPuzzles,
+
+	/// <summary>
+	/// Indicates the technique can't appear because the technique will be replaced with another technique.
+	/// </summary>
+	ReplacedByOtherTechniques
 }

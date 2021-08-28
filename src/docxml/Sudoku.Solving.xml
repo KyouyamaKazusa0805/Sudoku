@@ -1541,6 +1541,11 @@
             Indicates the technique only appears in the special puzzles designed on purpose.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.ReplacedByOtherTechniques">
+            <summary>
+            Indicates the technique can't appear because the technique will be replaced with another technique.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Candidates</b> step searcher.
@@ -1647,6 +1652,24 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher">
+            <summary>
+            Provides with a <b>Bi-value Oddagon</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bi-value Oddagon Type 1</item>
+            <item>Bi-value Oddagon Type 2</item>
+            <item>Bi-value Oddagon Type 3</item>
+            <!--<item>Bi-value Oddagon Type 4</item>-->
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
@@ -1791,6 +1814,11 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
             <summary>
             Defines a step searcher that searches for alternating inference chain steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueOddagonStepSearcher">
+            <summary>
+            Defines a step searcher that searches for bi-value oddagon steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
@@ -1969,6 +1997,11 @@
             Defines a step searcher that searches for normal fish steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
+            <summary>
+            Defines a step searcher that searches for rank theory steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">
             <summary>
             Defines a step searcher that searches for regular wing steps.
@@ -2099,6 +2132,29 @@
             <summary>
             Defines a step searcher that searches for two-strong-link steps.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher">
+            <summary>
+            Defines a step searcher that searches for unique loop or bi-value oddagon steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}}}})">
+            <summary>
+            Searches for possible bi-value oddagon or unique loop patterns.
+            </summary>
+            <param name="grid">The sudoku grid.</param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <param name="cell">The current cell calculated.</param>
+            <param name="lastLabel">Indicates the last label used.</param>
+            <param name="exDigitsMask">The extra digits mask.</param>
+            <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
+            <param name="loopMap">Indicates the map of the loop.</param>
+            <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
+            <param name="predicate">
+            Indicates the condition that checks whether the procedured structure is a valid loop.
+            </param>
+            <param name="loops">The possible loops found.</param>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher">
             <summary>
@@ -2366,33 +2422,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}}}})">
-            <summary>
-            Searches for possible unique loop patterns.
-            </summary>
-            <param name="grid">The sudoku grid.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <param name="cell">The current cell calculated.</param>
-            <param name="loopMap">Indicates the map of the loop.</param>
-            <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
-            <param name="loops">The possible loops found.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}}}})">
-            <summary>
-            Searches for possible unique loop patterns.
-            </summary>
-            <param name="grid">The sudoku grid.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <param name="cell">The current cell calculated.</param>
-            <param name="lastLabel">Indicates the last label used.</param>
-            <param name="exDigitsMask">The extra digits mask.</param>
-            <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
-            <param name="loopMap">Indicates the map of the loop.</param>
-            <param name="tempLoop">Indicates the cells used of the loop, queued.</param>
-            <param name="loops">The possible loops found.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
             <summary>
@@ -5364,6 +5393,168 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.Steps.IStep.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop used.</param>
+            <param name="Digit1">Indicates the first digit.</param>
+            <param name="Digit2">Indicates the second digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop used.</param>
+            <param name="Digit1">Indicates the first digit.</param>
+            <param name="Digit2">Indicates the second digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep.Equals(Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep,Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraCell">Indicates the extra cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraCell">Indicates the extra cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Bi-value Oddagon Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Loop"><inheritdoc/></param>
+            <param name="Digit1"><inheritdoc/></param>
+            <param name="Digit2"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a step that is a <b>Rank Theory</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.IsElementary">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.Stableness">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep">
             <summary>

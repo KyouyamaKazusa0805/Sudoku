@@ -5063,9 +5063,6 @@
             Encapsulates a <b>bi-value oddagon</b> technique searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Options">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.RankTheory.BivalueOddagonStepSearcher.Properties">
             <summary>
             Indicates the searcher properties.
