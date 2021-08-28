@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a step searcher that searches for unique loop or bi-value oddagon steps.
 /// </summary>
-public unsafe interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher
+public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher
 {
 	/// <summary>
 	/// Searches for possible bi-value oddagon or unique loop patterns.
