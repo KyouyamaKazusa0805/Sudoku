@@ -20,9 +20,9 @@ public interface INumber<T> where T : INumber<T>
 然后，我们直接对这样的接口来完成操作：
 
 ```csharp
-public static T GetSum<T>(T[] list) where T : INumber<TNumber>
+public static T GetSum<T>(T[] list) where T : INumber<T>
 {
-    var result = TNumber.Default;
+    var result = T.Default;
 
     foreach (var element in list)
         result += element;
@@ -33,7 +33,7 @@ public static T GetSum<T>(T[] list) where T : INumber<TNumber>
 
 在这样的代码里，我们用到了 `Default` 属性和 `+` 运算符。C# 以前的接口都无法对这样的成员完成书写和实现，现在有了这样的语法后，我们就可以完美支持这一点了。
 
-> 特别注意语法 `TNumber.Default`。我们使用泛型参数名后直接跟上 `Default` 的方式来表达我要获取的是 `TNumber` 这个数据类型下的 `Default` 属性成员。为什么可以这么写呢？因为 `TNumber` 参数实现了 `INumber<TNumber>` 接口，而这个接口里自带 `Default` 成员。因此，我写 `TNumber.Default` 就意味着我直接取这个属性的值。
+> 特别注意语法 `T.Default`。我们使用泛型参数名后直接跟上 `Default` 的方式来表达我要获取的是 `T` 这个数据类型下的 `Default` 属性成员。为什么可以这么写呢？因为 `T` 参数实现了 `INumber<T>` 接口，而这个接口里自带 `Default` 成员。因此，我写 `T.Default` 就意味着我直接取这个属性的值。
 
 ## 语法
 
