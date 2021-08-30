@@ -3809,6 +3809,77 @@
             <seealso cref="P:System.IMinMaxValue`1.MinValue"/>
             <seealso cref="P:System.IMinMaxValue`1.MaxValue"/>
         </member>
+        <member name="M:System.GenericMath.IsFinite``1(``0)">
+            <summary>
+            Determine whether the specified number is finite one.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.GenericMath.IsInfinity``1(``0)">
+            <summary>
+            Determine whether the specified number is positive or negative infinity,
+            or in other words, equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            or <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+        </member>
+        <member name="M:System.GenericMath.IsNaN``1(``0)">
+            <summary>
+            Determine whether the specified number is equal to <see cref="P:System.IFloatingPoint`1.NaN"/>.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.IsNegative``1(``0)">
+            <summary>
+            Determine whether the specified number is negative.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.GenericMath.IsNegativeInfinity``1(``0)">
+            <summary>
+            Determine whether the specified number is equal to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/>.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+        </member>
+        <member name="M:System.GenericMath.IsPositiveInfinity``1(``0)">
+            <summary>
+            Determine whether the specified number is equal to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+        </member>
+        <member name="M:System.GenericMath.IsNormal``1(``0)">
+            <summary>
+            Determine whether the specified number is normal.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.GenericMath.IsSubnormal``1(``0)">
+            <summary>
+            Determine whether the specified number is subnormal.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:System.GenericMath.Log``1(``0)">
             <summary>
             Returns the natural (base <c>e</c>) logarithm of a specified number.

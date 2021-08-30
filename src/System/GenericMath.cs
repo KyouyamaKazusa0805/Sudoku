@@ -728,38 +728,96 @@ public static class GenericMath
 		where TInteger : IBinaryInteger<TInteger> =>
 		TFloatingPoint.ILogB<TInteger>(value);
 
+	/// <summary>
+	/// Determine whether the specified number is finite one.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsFinite<T>(T value) where T : IFloatingPoint<T> => T.IsFinite(value);
+	public static bool IsFinite<TFloatingPoint>(TFloatingPoint value)
+		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+		TFloatingPoint.IsFinite(value);
 
+	/// <summary>
+	/// Determine whether the specified number is positive or negative infinity,
+	/// or in other words, equals to <see cref="IFloatingPoint{TSelf}.NegativeInfinity"/>
+	/// or <see cref="IFloatingPoint{TSelf}.PositiveInfinity"/>.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The value.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="IFloatingPoint{TSelf}.PositiveInfinity"/>
+	/// <seealso cref="IFloatingPoint{TSelf}.NegativeInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsInfinity<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> => TFloatingPoint.IsInfinity(value);
+		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+		TFloatingPoint.IsInfinity(value);
 
+	/// <summary>
+	/// Determine whether the specified number is equal to <see cref="IFloatingPoint{TSelf}.NaN"/>.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNaN<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNaN(value);
 
+	/// <summary>
+	/// Determine whether the specified number is negative.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNegative<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNegative(value);
 
+	/// <summary>
+	/// Determine whether the specified number is equal to <see cref="IFloatingPoint{TSelf}.NegativeInfinity"/>.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="IFloatingPoint{TSelf}.NegativeInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNegativeInfinity<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNegativeInfinity(value);
 
+	/// <summary>
+	/// Determine whether the specified number is equal to <see cref="IFloatingPoint{TSelf}.PositiveInfinity"/>.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <seealso cref="IFloatingPoint{TSelf}.PositiveInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsPositiveInfinity<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsPositiveInfinity(value);
 
+	/// <summary>
+	/// Determine whether the specified number is normal.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNormal<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNormal(value);
 
+	/// <summary>
+	/// Determine whether the specified number is subnormal.
+	/// </summary>
+	/// <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+	/// <param name="value">The number.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSubnormal<TFloatingPoint>(TFloatingPoint value)
 		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
