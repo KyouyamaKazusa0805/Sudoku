@@ -3156,6 +3156,967 @@
             <param name="source">The start adressof the source block.</param>
             <param name="elementCount">Indicates how many elements is in the block.</param>
         </member>
+        <member name="T:System.GenericMath">
+            <summary>
+            Provides with methods for math operations, same as types <see cref="T:System.Math"/> and <see cref="T:System.MathF"/>,
+            but uses generic.
+            </summary>
+            <seealso cref="T:System.Math"/>
+            <seealso cref="T:System.MathF"/>
+        </member>
+        <member name="M:System.GenericMath.Abs``1(``0)">
+            <summary>
+            Returns the absolute value of a value.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The absolute result.</returns>
+        </member>
+        <member name="M:System.GenericMath.DivRem``1(``0,``0)">
+            <summary>
+            Produces the quotient and the remainder of two numbers.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+            <param name="dividend">The dividend.</param>
+            <param name="divisor">The divisor.</param>
+            <returns>The quotient and the remainder of the specified numbers.</returns>
+        </member>
+        <member name="M:System.GenericMath.Clamp``1(``0,``0,``0)">
+            <summary>
+            Clamps the specified value. If the value is less than <paramref name="min"/>,
+            the return value will be the same as <paramref name="min"/>; if the value is greater than
+            <paramref name="max"/>, the return value will be the same as <paramref name="max"/>; else
+            the <paramref name="value"/> itself. The details are displayed
+            in the <see href="#returns">returns</see> part.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+            <param name="value">The value to check.</param>
+            <param name="min">The minimum number.</param>
+            <param name="max">The maximum number.</param>
+            <returns>
+            The result. Returns:
+            <list type="table">
+            <item>
+            <term>The value same as <paramref name="min"/></term>
+            <description>If the <paramref name="value"/> is less than <paramref name="min"/>.</description>
+            </item>
+            <item>
+            <term>The value same as <paramref name="max"/></term>
+            <description>If the <paramref name="value"/> is greater than <paramref name="max"/>.</description>
+            </item>
+            <item>
+            <term>The value same as <paramref name="value"/></term>
+            <description>Other cases.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:System.GenericMath.Max``1(``0,``0)">
+            <summary>
+            Get the maximum value between <paramref name="val1"/> and <paramref name="val2"/>.
+            </summary>
+            <typeparam name="TNumber">The type of the value to check.</typeparam>
+            <param name="val1">The first value to check.</param>
+            <param name="val2">The second value to check.</param>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:System.GenericMath.Min``1(``0,``0)">
+            <summary>
+            Get the minimum value between <paramref name="val1"/> and <paramref name="val2"/>.
+            </summary>
+            <typeparam name="TNumber">The type of the value to check.</typeparam>
+            <param name="val1">The first value to check.</param>
+            <param name="val2">The second value to check.</param>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:System.GenericMath.Sign``1(``0)">
+            <summary>
+            Get the sign of the value.
+            </summary>
+            <typeparam name="TNumber">The type of the value.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The sign value.</returns>
+        </member>
+        <member name="M:System.GenericMath.Cos``1(``0)">
+            <summary>
+            Returns the cosine of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The cosine of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Cosh``1(``0)">
+            <summary>
+            Returns the hyperbolic cosine of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The hyperbolic cosine of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Sin``1(``0)">
+            <summary>
+            Returns the sine of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The sine of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Sinh``1(``0)">
+            <summary>
+            Returns the hyperbolic sine of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The hyperbolic sine of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Tan``1(``0)">
+            <summary>
+            Returns the tangent of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The tangent of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Tanh``1(``0)">
+            <summary>
+            Returns the hyperbolic tangent of the specified angle.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            Returns the possible values as below:
+            <list type="table">
+            <item>
+            <term>Normal cases</term>
+            <description>The hyperbolic tangent of <paramref name="angle"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description>Returns <see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Acos``1(``0)">
+            <summary>
+            Returns the angle whose cosine is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="angle"/> <![CDATA[< 1]]> or <paramref name="angle"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="angle"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Acosh``1(``0)">
+            <summary>
+            Returns the angle whose hyperbolic cosine is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="angle"/> <![CDATA[< 1]]> or <paramref name="angle"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="angle"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Asin``1(``0)">
+            <summary>
+            Returns the angle whose sine is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="angle"/> <![CDATA[< 1]]> or <paramref name="angle"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="angle"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Asinh``1(``0)">
+            <summary>
+            Returns the angle whose hyperbolic sine is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="angle"/> <![CDATA[< 1]]> or <paramref name="angle"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="angle"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Atan``1(``0)">
+            <summary>
+            Returns the angle whose tangent is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the angle. The angle must be a floating point.</typeparam>
+            <param name="angle">The angle.</param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="angle"/> <![CDATA[< 1]]> or <paramref name="angle"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="angle"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Atan2``1(``0,``0)">
+            <summary>
+            Returns the angle whose tangent is the quotient of two specified numbers.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="y">The <c>y</c> coordinate of a point.</param>
+            <param name="x">The <c>x</c> coordinate of a point.</param>
+            <returns>
+            <para>
+            An angle, <c>theta</c>, measured in radians, such that <c><![CDATA[-pi <= theta <= pi]]></c>,
+            and <c>tan(<c>theta</c>) = <paramref name="y"/> / <paramref name="x"/></c>,
+            where <c>(<paramref name="x"/>, <paramref name="y"/>)</c> is a point in the Cartesian plane.
+            </para>
+            <para>
+            Observe the following:
+            <list type="bullet">
+            <item>For (<paramref name="x"/>, <paramref name="y"/>) in quadrant 1, <![CDATA[0 < theta < pi/2]]>.</item>
+            <item>For (<paramref name="x"/>, <paramref name="y"/>) in quadrant 2, <![CDATA[pi/2 < theta <= pi]]>.</item>
+            <item>For (<paramref name="x"/>, <paramref name="y"/>) in quadrant 3, <![CDATA[-pi < theta < -pi/2]]>.</item>
+            <item>For (<paramref name="x"/>, <paramref name="y"/>) in quadrant 4, <![CDATA[-pi/2 < theta < 0]]>.</item>
+            </list>
+            </para>
+            <para>
+            For points on the boundaries of the quadrants, the return value is the following:
+            <list type="bullet">
+            <item>If <paramref name="y"/> is <c>0</c> and <paramref name="x"/> isn't negative, <c>theta</c> = 0.</item>
+            <item>If <paramref name="y"/> is <c>0</c> and <paramref name="x"/> is negative, <c>theta</c> = pi.</item>
+            <item>If <paramref name="y"/> is positive and <paramref name="x"/> is 0, <c>theta</c> = pi/2.</item>
+            <item>If <paramref name="y"/> is negative and <paramref name="x"/> is 0, <c>theta</c> = -pi/2.</item>
+            <item>If <paramref name="y"/> is <c>0</c> and <paramref name="y"/> is <c>0</c>, <c>theta</c> = 0.</item>
+            <item>
+            If <paramref name="x"/> or <paramref name="y"/> is <see cref="P:System.IFloatingPoint`1.NaN"/>,
+            or if <paramref name="x"/> and <paramref name="y"/> are
+            either <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/> or
+            <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/>, <see cref="P:System.IFloatingPoint`1.NaN"/>.
+            </item>
+            </list>
+            </para>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Atanh``1(``0)">
+            <summary>
+            Returns the angle whose hyperbolic tangent is the specified value.
+            </summary>
+            <typeparam name="TFloatingPoint"></typeparam>
+            <param name="value"></param>
+            <returns>
+            The angle, theta, measured in radians, such that:
+            <list type="table">
+            <item>
+            <term><![CDATA[0 <= theta <= pi]]></term>
+            <description>Normal case</description>
+            </item>
+            <item>
+            <term><paramref name="value"/> <![CDATA[< 1]]> or <paramref name="value"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><paramref name="value"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Sqrt``1(``0)">
+            <summary>
+            Returns the square root of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            One of the values in the following table.
+            <list type="table">
+            <item>
+            <term>Non-negative number (i.e. <![CDATA[>= 0]]>)</term>
+            <description>The positive square root of <paramref name="value"/>.</description>
+            </item>
+            <item>
+            <term>Negative</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Cbrt``1(``0)">
+            <summary>
+            Returns the cube root of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            One of the values in the following table.
+            <list type="table">
+            <item>
+            <term>Non-negative number (i.e. <![CDATA[>= 0]]>)</term>
+            <description>The positive cube root of <paramref name="value"/>.</description>
+            </item>
+            <item>
+            <term>Negative</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equals to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Ceiling``1(``0)">
+            <summary>
+            Returns the smallest integral value that is greater than or equal to the specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            The smallest integral value that is greater than or equal to <paramref name="value"/>.
+            Note that this method returns a <typeparamref name="TFloatingPoint"/> instead of an integral type.
+            </returns>
+        </member>
+        <member name="M:System.GenericMath.Floor``1(``0)">
+            <summary>
+            Returns the biggest integral value that is less than or equal to the specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            The biggest integral value that is less than or equal to <paramref name="value"/>.
+            Note that this method returns a <typeparamref name="TFloatingPoint"/> instead of an integral type.
+            </returns>
+        </member>
+        <member name="M:System.GenericMath.Truncate``1(``0)">
+            <summary>
+            Calculates the integral part of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            The integral part of <paramref name="value"/>; that is, the number that remains
+            after any fractional digits have been discarded.
+            </returns>
+        </member>
+        <member name="M:System.GenericMath.Exp``1(``0)">
+            <summary>
+            Returns <c>e</c> raised to the specified power.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">A number specifying a power.</param>
+            <returns>
+            The number <c>e</c> raised to the power <paramref name="value"/>. Returns:
+            <list type="table">
+            <item>
+            <term>
+            <paramref name="value"/> equals <see cref="P:System.IFloatingPoint`1.NaN"/> or
+            <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            </term>
+            <description>That value is returned.</description>
+            </item>
+            <item>
+            <term><paramref name="value"/> equals <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></term>
+            <description>0 is returned.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.IEEERemainder``1(``0,``0)">
+            <summary>
+            Returns the remainder resulting from the division of a specified number by another specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the dividend and the divisor.</typeparam>
+            <param name="dividend">The dividend.</param>
+            <param name="divisor">The divisor.</param>
+            <returns>
+            <para>
+            A number equal to <c><paramref name="dividend"/> - <paramref name="divisor"/> * Q</c>,
+            where <c>Q</c> is the quotient of <c><paramref name="dividend"/> / <paramref name="divisor"/></c>
+            rounded to the nearest integer (if <c><paramref name="dividend"/> / <paramref name="divisor"/></c>
+            falls halfway between two integers, the even integer is returned).
+            </para>
+            <para>
+            Returns:
+            <list type="table">
+            <item>
+            <term>If <c><paramref name="dividend"/> - <paramref name="divisor"/> * Q</c> is 0</term>
+            <description>
+            The value <c>+0</c> is returned if f <paramref name="dividend"/> is positive
+            or <c>-0</c> if <paramref name="dividend"/> is negative.
+            </description>
+            </item>
+            <item>
+            <term>If <paramref name="divisor"/> = 0</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/> is returned.</description>
+            </item>
+            </list>
+            </para>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.ILogB``2(``0)">
+            <summary>
+            Returns the base 2 integer logarithm of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <typeparam name="TInteger">The type of the return value.</typeparam>
+            <param name="value">The number whose logarithm is to be found.</param>
+            <returns>
+            One of the values in the following table:
+            <list type="table">
+            <listheader>
+            <term><paramref name="value"/> parameter</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term>Default</term>
+            <description>
+            The base 2 integer log of <paramref name="value"/>, i.e. <c>(int)log2(<paramref name="value"/>)</c>.
+            </description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description>-<see cref="P:System.IMinMaxValue`1.MinValue"/>.</description>
+            </item>
+            <item>
+            <term>
+            Equal to <see cref="P:System.IFloatingPoint`1.NaN"/>, <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            or <see cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            </term>
+            <description>-<see cref="P:System.IMinMaxValue`1.MaxValue"/>.</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IMinMaxValue`1.MinValue"/>
+            <seealso cref="P:System.IMinMaxValue`1.MaxValue"/>
+        </member>
+        <member name="M:System.GenericMath.Log``1(``0)">
+            <summary>
+            Returns the natural (base <c>e</c>) logarithm of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number whose logarithm is to be found.</param>
+            <returns>
+            One of the values in the following table:
+            <list type="table">
+            <listheader>
+            <term><paramref name="value"/> parameter</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term>Positive</term>
+            <description>
+            The natural logarithm of <paramref name="value"/>; that is,
+            <c>ln d</c>, or <c>log e <paramref name="value"/></c>.
+            </description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description><see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></description>
+            </item>
+            <item>
+            <term>Negative</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/>.</description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>.</term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Log``1(``0,``0)">
+            <summary>
+            Returns the logarithm of a specified number in a specified base.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number whose logarithm is to be found.</param>
+            <param name="newBase">The base of the logarithm.</param>
+            <returns>
+            One of the values in the following table:
+            <list type="table">
+            <listheader>
+            <term><paramref name="value"/> and <paramref name="newBase"/></term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term>
+            <paramref name="value"/> <![CDATA[> 0]]>, <![CDATA[0 <]]> <paramref name="newBase"/> <![CDATA[< 1]]>
+            or <paramref name="newBase"/> <![CDATA[> 1]]>
+            </term>
+            <description>log <paramref name="newBase"/> (<paramref name="value"/>)</description>
+            </item>
+            <item>
+            <term><paramref name="value"/> <![CDATA[< 0]]>, any value</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Any value, <paramref name="newBase"/> <![CDATA[< 0]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term><paramref name="value"/> != 1, <paramref name="newBase"/> = 0</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>
+            <paramref name="value"/> != 1,
+            <paramref name="newBase"/> = <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            </term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term><paramref name="value"/> = <see cref="P:System.IFloatingPoint`1.NaN"/>, any value</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Any value, <paramref name="newBase"/> = <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Any value, <paramref name="newBase"/> = 1</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term><paramref name="value"/> = 0, <![CDATA[0 <]]> <paramref name="newBase"/> <![CDATA[< 1]]>
+            </term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></description>
+            </item>
+            <item>
+            <term><paramref name="value"/> = 0, <paramref name="newBase"/> <![CDATA[> 1]]></term>
+            <description><see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></description>
+            </item>
+            <item>
+            <term>
+            <paramref name="value"/> = <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>,
+            <![CDATA[0 <]]> <paramref name="newBase"/> <![CDATA[< 1]]>
+            </term>
+            <description><see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></description>
+            </item>
+            <item>
+            <term>
+            <paramref name="value"/> = <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <paramref name="newBase"/> <![CDATA[> 1]]>
+            </term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></description>
+            </item>
+            <item>
+            <term><paramref name="value"/> = 1, <paramref name="newBase"/> = 0</term>
+            <description>0</description>
+            </item>
+            <item>
+            <term>
+            <paramref name="value"/> = 1,
+            <paramref name="newBase"/> = <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            </term>
+            <description>0</description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Log10``1(``0)">
+            <summary>
+            Returns the base 10 logarithm of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            One of the values in the following table:
+            <list type="table">
+            <listheader>
+            <term><paramref name="value"/> parameter</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term>Positive</term>
+            <description>The base 10 log of d; that is, <c>log 10 <paramref name="value"/></c>.</description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description><see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></description>
+            </item>
+            <item>
+            <term>Negative</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Log2``1(``0)">
+            <summary>
+            Returns the base 2 logarithm of a specified number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">The number.</param>
+            <returns>
+            One of the values in the following table:
+            <list type="table">
+            <listheader>
+            <term><paramref name="value"/> parameter</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term>Positive</term>
+            <description>The base 2 log of d; that is, <c>log 2 <paramref name="value"/></c>.</description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description><see cref="P:System.IFloatingPoint`1.NegativeInfinity"/></description>
+            </item>
+            <item>
+            <term>Negative</term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.NaN"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.NaN"/></description>
+            </item>
+            <item>
+            <term>Equal to <see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></term>
+            <description><see cref="P:System.IFloatingPoint`1.PositiveInfinity"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:System.IFloatingPoint`1.PositiveInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NegativeInfinity"/>
+            <seealso cref="P:System.IFloatingPoint`1.NaN"/>
+        </member>
+        <member name="M:System.GenericMath.Pow``1(``0,``0)">
+            <summary>
+            Returns a specified number raised to the specified power.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">A double-precision floating-point number to be raised to a power.</param>
+            <param name="power">A double-precision floating-point number that specifies a power.</param>
+            <returns>The number <paramref name="value"/> raised to the power <paramref name="power"/>.</returns>
+        </member>
+        <member name="M:System.GenericMath.Round``1(``0)">
+            <summary>
+            Rounds a double-precision floating-point value to the nearest integral value,
+            and rounds midpoint values to the nearest even number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">A double-precision floating-point number to be rounded.</param>
+            <returns>
+            <para>
+            The integer nearest <paramref name="value"/>.
+            If the fractional component of <paramref name="value"/> is halfway between two integers,
+            one of which is even and the other odd, then the even number is returned.
+            </para>
+            <para>
+            Note that this method returns a <typeparamref name="TFloatingPoint"/> instead of an integral type.
+            </para>
+            </returns>
+        </member>
+        <member name="M:System.GenericMath.Round``1(``0,System.MidpointRounding)">
+            <summary>
+            Rounds a double-precision floating-point value to the nearest integer, and uses
+            the specified rounding convention for midpoint values.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <param name="value">A double-precision floating-point number to be rounded.</param>
+            <param name="mode">Specification for how to round value if it is midway between two other numbers.</param>
+            <returns>
+            <para>
+            The integer nearest value. If value is halfway between two integers, one of which
+            is even and the other odd, then mode determines which of the two is returned.
+            </para>
+            <para>
+            Note that this method returns a <typeparamref name="TFloatingPoint"/> instead of an integral type.
+            </para>
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mode"/> is not a valid value of <see cref="T:System.MidpointRounding"/>.
+            </exception>
+        </member>
+        <member name="M:System.GenericMath.Round``2(``0,``1)">
+            <summary>
+            Rounds a double-precision floating-point value to a specified number of fractional digits,
+            and rounds midpoint values to the nearest even number.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the <paramref name="value"/>.</typeparam>
+            <typeparam name="TInteger">The type of <paramref name="digits"/>.</typeparam>
+            <param name="value">A double-precision floating-point number to be rounded.</param>
+            <param name="digits">The number of fractional digits in the return value.</param>
+            <returns>
+            The number nearest to value that contains a number of fractional digits equal to digits.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="digits"/> is less than 0 or greater than 15.
+            </exception>
+        </member>
+        <member name="M:System.GenericMath.Round``2(``0,``1,System.MidpointRounding)">
+            <summary>
+            Rounds a double-precision floating-point value to a specified number of fractional digits,
+            and uses the specified rounding convention for midpoint values.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the <paramref name="value"/>.</typeparam>
+            <typeparam name="TInteger">The type of <paramref name="digits"/>.</typeparam>
+            <param name="value">A double-precision floating-point number to be rounded.</param>
+            <param name="digits">The number of fractional digits in the return value.</param>
+            <param name="mode">Specification for how to round value if it is midway between two other numbers.</param>
+            <returns>
+            The number nearest to value that has a number of fractional digits equal to digits.
+            If value has fewer fractional digits than digits, value is returned unchanged.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="digits"/> is less than 0 or greater than 15.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mode"/> is not a valid value of <see cref="T:System.MidpointRounding"/>.
+            </exception>
+            <seealso cref="T:System.MidpointRounding"/>
+        </member>
+        <member name="M:System.GenericMath.ScaleB``2(``0,``1)">
+            <summary>
+            Returns <c><paramref name="value"/> * 2 ^ <paramref name="scale"/></c> computed efficiently.
+            </summary>
+            <typeparam name="TFloatingPoint">The type of the number.</typeparam>
+            <typeparam name="TInteger">The type of the return value.</typeparam>
+            <param name="value">A double-precision floating-point number that specifies the base value.</param>
+            <param name="scale">An integer that specifies the power.</param>
+            <returns><c><paramref name="value"/> * 2 ^ <paramref name="scale"/></c> computed efficiently.</returns>
+        </member>
         <member name="T:System.ICloneable`1">
             <inheritdoc cref="T:System.ICloneable"/>
             <typeparam name="TClass">
