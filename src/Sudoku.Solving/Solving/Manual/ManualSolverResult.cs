@@ -8,7 +8,7 @@
 [AutoDeconstruct(nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(OriginalPuzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, ReturnType = typeof(ImmutableArray<Step>.Enumerator), MemberConversion = "@.*")]
 [AutoFormattable]
-public sealed partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolverResult, IFormattable
+public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolverResult, IFormattable
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
@@ -80,7 +80,7 @@ public sealed partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolve
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public unsafe decimal MaxDifficulty => Evaluator(&Enumerable.Max<Step>, 20.0M);
+	public decimal MaxDifficulty => Evaluator(&Enumerable.Max<Step>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -95,7 +95,7 @@ public sealed partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolve
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => Evaluator(&Enumerable.Sum<Step>, 0);
+	public decimal TotalDifficulty => Evaluator(&Enumerable.Sum<Step>, 0);
 
 	/// <summary>
 	/// <para>
@@ -234,7 +234,7 @@ public sealed partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolve
 	/// </exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
-	public Step this[int index] => Steps is not { IsDefaultOrEmpty: false, Length: not 0 }
+	public Step this[int index] => Steps is not { Length: not 0 }
 		? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
 		: index >= Steps.Length || index < 0
 			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
@@ -289,8 +289,8 @@ public sealed partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolve
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private unsafe decimal Evaluator(delegate*<IEnumerable<Step>, Func<Step, decimal>, decimal> executor, decimal d) =>
-		!Steps.IsDefaultOrEmpty && Steps.Length != 0
-			? executor(Steps, static step => step.ShowDifficulty ? step.Difficulty : 0)
-			: d;
+	private decimal Evaluator(delegate*<IEnumerable<Step>, Func<Step, decimal>, decimal> executor, decimal d) =>
+		Steps is not { Length: not 0 }
+			? d
+			: executor(Steps, static step => step.ShowDifficulty ? step.Difficulty : 0);
 }
