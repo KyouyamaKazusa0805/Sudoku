@@ -1282,6 +1282,35 @@
             Defines a chain node, with basic information about the node. At the same time you can get the root node
             of the chain, using the current node as the tail node.
             </summary>
+            <remarks>
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            <code>
+            |  (4)  |  (3)  |  (2)  |  (1)  |
+            |-------|-------|-------|-------|
+            32     24      16       8       0
+            </code>
+            Where:
+            <list type="table">
+            <item>
+            <term>Part <c>(1)</c>, bits 0..8</term>
+            <description>The mask of the digit used. The value only uses 4 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(2)</c>, bits 8..16</term>
+            <description>The mask of the cell used. The value only uses 7 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(3)</c>, bits 16..24</term>
+            <description>
+            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+            </description>
+            </item>
+            <item>
+            <term>Part <c>(4)</c>, bits 24..32</term>
+            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+            </item>
+            </list>
+            </remarks>
             <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
         </member>
         <member name="M:Sudoku.Data.Chain.#ctor(System.Int32)">
@@ -1289,7 +1318,41 @@
             Defines a chain node, with basic information about the node. At the same time you can get the root node
             of the chain, using the current node as the tail node.
             </summary>
+            <remarks>
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            <code>
+            |  (4)  |  (3)  |  (2)  |  (1)  |
+            |-------|-------|-------|-------|
+            32     24      16       8       0
+            </code>
+            Where:
+            <list type="table">
+            <item>
+            <term>Part <c>(1)</c>, bits 0..8</term>
+            <description>The mask of the digit used. The value only uses 4 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(2)</c>, bits 8..16</term>
+            <description>The mask of the cell used. The value only uses 7 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(3)</c>, bits 16..24</term>
+            <description>
+            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+            </description>
+            </item>
+            <item>
+            <term>Part <c>(4)</c>, bits 24..32</term>
+            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+            </item>
+            </list>
+            </remarks>
             <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+        </member>
+        <member name="F:Sudoku.Data.Chain.Undefined">
+            <summary>
+            Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
+            </summary>
         </member>
         <member name="F:Sudoku.Data.Chain._rawParents">
             <summary>

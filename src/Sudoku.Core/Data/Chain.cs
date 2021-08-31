@@ -4,12 +4,47 @@
 /// Defines a chain node, with basic information about the node. At the same time you can get the root node
 /// of the chain, using the current node as the tail node.
 /// </summary>
+/// <remarks>
+/// The data structure uses an <see cref="int"/> value to represent an instance. The bit usage details is as below:
+/// <code>
+/// |  (4)  |  (3)  |  (2)  |  (1)  |
+/// |-------|-------|-------|-------|
+/// 32     24      16       8       0
+/// </code>
+/// Where:
+/// <list type="table">
+/// <item>
+/// <term>Part <c>(1)</c>, bits 0..8</term>
+/// <description>The mask of the digit used. The value only uses 4 bits.</description>
+/// </item>
+/// <item>
+/// <term>Part <c>(2)</c>, bits 8..16</term>
+/// <description>The mask of the cell used. The value only uses 7 bits.</description>
+/// </item>
+/// <item>
+/// <term>Part <c>(3)</c>, bits 16..24</term>
+/// <description>
+/// The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+/// </description>
+/// </item>
+/// <item>
+/// <term>Part <c>(4)</c>, bits 24..32</term>
+/// <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+/// </item>
+/// </list>
+/// </remarks>
 /// <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
 [AutoEquality(nameof(Mask))]
 [AutoDeconstruct(nameof(Candidate), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
 public unsafe partial record struct Chain(int Mask) : IValueEquatable<Chain>
 {
+	/// <summary>
+	/// Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
+	/// </summary>
+	public static readonly Chain Undefined;
+
+
 	/// <summary>
 	/// Indicates the parents.
 	/// </summary>
@@ -186,22 +221,22 @@ public unsafe partial record struct Chain(int Mask) : IValueEquatable<Chain>
 	/// <returns>Returns the root of the chain.</returns>
 	/// <seealso cref="Parents"/>
 	/// <seealso cref="ParentsCount"/>
-	public readonly ref readonly Chain Root
+	public readonly Chain Root
 	{
 		get
 		{
 			if (ParentsCount == 0)
 			{
-				return ref Unsafe.NullRef<Chain>();
+				return Undefined;
 			}
 
-			ref readonly var result = ref _rawParents![0];
+			var result = _rawParents![0];
 			while (result._rawParents is { } p)
 			{
-				result = ref p[0];
+				result = p[0];
 			}
 
-			return ref result;
+			return result;
 		}
 	}
 
@@ -254,10 +289,10 @@ public unsafe partial record struct Chain(int Mask) : IValueEquatable<Chain>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public readonly bool IsParentOf(Chain node)
 	{
-		ref readonly var temp = ref node;
+		var temp = node;
 		while (temp.ParentsCount != 0)
 		{
-			temp = ref temp._rawParents![0];
+			temp = temp._rawParents![0];
 			if (temp == this)
 			{
 				return true;
