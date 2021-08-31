@@ -1277,6 +1277,162 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Data.Chain">
+            <summary>
+            Defines a chain node, with basic information about the node. At the same time you can get the root node
+            of the chain, using the current node as the tail node.
+            </summary>
+            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+        </member>
+        <member name="M:Sudoku.Data.Chain.#ctor(System.Int32)">
+            <summary>
+            Defines a chain node, with basic information about the node. At the same time you can get the root node
+            of the chain, using the current node as the tail node.
+            </summary>
+            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+        </member>
+        <member name="F:Sudoku.Data.Chain._rawParents">
+            <summary>
+            Indicates the parents.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Chain.#ctor(System.Byte,System.Byte,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Chain"/> instance using the specified cell, digit and the status
+            value as a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Chain.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.Chain@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Chain"/> instance using the specified cell, digit,
+            the status value as a <see cref="T:System.Boolean"/> value, and a parent node.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+            <param name="parent">The parent node.</param>
+        </member>
+        <member name="M:Sudoku.Data.Chain.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.Chain[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Chain"/> instance using the specified cell, digit,
+            the status value as a <see cref="T:System.Boolean"/> value, and the parent nodes.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+            <param name="parents">The parent nodes.</param>
+        </member>
+        <member name="P:Sudoku.Data.Chain.Parents">
+            <summary>
+            Gets the possible useful parents.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Chain.IsOn">
+            <summary>
+            Indicates whether the node is at the <b>on</b> status.
+            </summary>
+            <remarks>
+            The possible <b>status</b>es of the node are <b>on</b> and <b>off</b>, where:
+            <list type="table">
+            <listheader>
+            <term>Status</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>On</term>
+            <description>
+            The digit is true in the cell, which means the digit should be filled in this cell.
+            </description>
+            </item>
+            <item>
+            <term>Off</term>
+            <description>
+            The digit is false in the cell, which means the digit should be eliminated from this cell.
+            </description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.Chain.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Chain.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Chain.ParentsCount">
+            <summary>
+            Indicates the total number of parent nodes.
+            </summary>
+            <!--<value>The number of cells to assign.</value>-->
+            <!--<returns>The number of parents.</returns>-->
+        </member>
+        <member name="P:Sudoku.Data.Chain.AncestorsCount">
+            <summary>
+            Indicates the total number of the ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Chain.Candidate">
+            <summary>
+            Indicates the candidate used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Chain.Root">
+            <summary>
+            <para>Indicates the root of the current chain.</para>
+            <para>
+            If the property <see cref="P:Sudoku.Data.Chain.Parents"/> isn't <see langword="null"/>,
+            then the property will search for the parent node and check its parent node recursively
+            (i.e. checks the grandparents, great-grandparents, etc.).
+            </para>
+            </summary>
+            <returns>Returns the root of the chain.</returns>
+            <seealso cref="P:Sudoku.Data.Chain.Parents"/>
+            <seealso cref="P:Sudoku.Data.Chain.ParentsCount"/>
+        </member>
+        <member name="P:Sudoku.Data.Chain.WholeChain">
+            <summary>
+            Indicates the nodes that the current node lies in.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Chain.IsParentOf(Sudoku.Data.Chain)">
+            <summary>
+            Determine whether the node is the parent of the specified node.
+            </summary>
+            <param name="node">The chain node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Chain.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Chain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Chain.AddParent(Sudoku.Data.Chain)">
+            <summary>
+            Append a chain node into the collection, as one of the parent nodes.
+            </summary>
+            <param name="chain">The chain node to be added.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the inner parent nodes collection is full.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Chain.ConstructMask(System.Byte,System.Byte,System.Boolean,System.Byte)">
+            <summary>
+            Constructs the mask.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="isOn">The on/off status.</param>
+            <param name="parentsCount">The number of parents.</param>
+            <returns>The mask.</returns>
+        </member>
         <member name="T:Sudoku.Data.ChainNode">
             <summary>
             Defines a chain node, with basic information about the node. At the same time you can get the root node
