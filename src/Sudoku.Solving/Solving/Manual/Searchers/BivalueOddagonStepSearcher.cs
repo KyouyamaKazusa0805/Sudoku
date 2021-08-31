@@ -101,7 +101,7 @@ internal sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSea
 			}
 
 			resultList =
-				from step in StepAccumulating.Distinct(resultAccumulator)
+				from step in IDistinctableStep<BivalueOddagonStep>.Distinct(resultAccumulator)
 				orderby step.Loop.Count, step.TechniqueCode
 				select step;
 

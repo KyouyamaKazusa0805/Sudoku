@@ -106,7 +106,7 @@ internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, I
 			}
 
 			resultList =
-				from step in StepAccumulating.Distinct(resultAccumulator)
+				from step in IDistinctableStep<UniqueLoopStep>.Distinct(resultAccumulator)
 				orderby step.Loop.Count
 				select step;
 

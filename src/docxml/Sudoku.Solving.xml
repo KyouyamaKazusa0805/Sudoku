@@ -3445,19 +3445,6 @@
         <member name="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.StepAccumulating">
-            <summary>
-            Provides methods for step accumulating.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.StepAccumulating.Distinct``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Distinct the list, that is, remove all duplicate elements in this list.
-            </summary>
-            <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
-            <param name="list">The list of steps to be processed.</param>
-            <returns>The list of steps.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.StepsGatherer">
             <summary>
             Defines a steps gatherer.
@@ -5068,6 +5055,14 @@
             but <see langword="record"/>s are automatically implemented the method, which is useless
             and unmeaningful.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Distinct the list, that is, remove all duplicate elements in this list.
+            </summary>
+            <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
+            <param name="list">The list of steps to be processed.</param>
+            <returns>The list of steps.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ILoopStep">
             <summary>

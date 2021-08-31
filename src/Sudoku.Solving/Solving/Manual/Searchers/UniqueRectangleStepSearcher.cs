@@ -63,7 +63,7 @@ internal sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepS
 
 		// Sort and remove duplicate instances if worth.
 		var resultList =
-			from step in StepAccumulating.Distinct(list)
+			from step in IDistinctableStep<UniqueRectangleStep>.Distinct(list)
 			orderby step.TechniqueCode, step.AbsoluteOffset
 			select step;
 		if (onlyFindOne)

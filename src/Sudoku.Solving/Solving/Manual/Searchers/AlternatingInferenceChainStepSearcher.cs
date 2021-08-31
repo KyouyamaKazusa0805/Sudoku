@@ -61,7 +61,7 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 		}
 
 		accumulator.AddRange(
-			from step in StepAccumulating.Distinct(list)
+			from step in IDistinctableStep<ChainStep>.Distinct(list)
 			orderby step.Difficulty, step.FlatComplexity, (byte)step.SortKey
 			select step
 		);
