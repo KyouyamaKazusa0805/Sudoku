@@ -1806,23 +1806,23 @@
             Defines a step searcher that searches for chain steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode*,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode,System.Boolean)">
             <summary>
             Get highlight candidate offsets through the specified target node.
             </summary>
-            <param name="pTarget">The target node.</param>
-            <param name="simpleChain">
+            <param name="target">The target node.</param>
+            <param name="isSimpleAic">
             Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
             The default value is <see langword="false"/>.
             </param>
             <returns>The candidate offsets.</returns>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode*,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode,System.Boolean)">
             <summary>
             Get the links through the specified target node.
             </summary>
-            <param name="pTarget">The target node.</param>
+            <param name="target">The target node.</param>
             <param name="showAllLinks">
             Indicates whether the current chain will display all chains (even contains the weak links
             from the elimination node). The default value is <see langword="false"/>. If you want to
@@ -1830,15 +1830,15 @@
             </param>
             <returns>The link.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{System.IntPtr},Sudoku.Data.ChainNode*)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{Sudoku.Data.ChainNode},Sudoku.Data.ChainNode)">
             <summary>
             Determine whether the specified list contains the specified node value.
             </summary>
             <param name="list">The list of nodes.</param>
-            <param name="p">The node to check.</param>
+            <param name="node">The node to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode*,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean)">
             <summary>
             Get all available weak links.
             </summary>
@@ -1847,7 +1847,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode*,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{System.IntPtr},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode},System.Boolean)">
             <summary>
             Get all available strong links.
             </summary>
@@ -1866,7 +1866,7 @@
             </param>
             <returns>All possible strong links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode*,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{System.IntPtr})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
             <summary>
             Add hidden parents of a cell.
             </summary>
@@ -1876,7 +1876,7 @@
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode*,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{System.IntPtr})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
             <summary>
             Add hidden parents of a region.
             </summary>
@@ -3472,7 +3472,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
             <summary>
             Provides with a step that is a <b>Alternating Inference Chain</b> technique.
             </summary>
@@ -3711,7 +3711,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
             <summary>
             Provides with a step that is a <b>Continuous Nice Loop</b> technique.
             </summary>

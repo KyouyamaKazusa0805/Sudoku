@@ -13,7 +13,7 @@ public sealed record ContinuousNiceLoopStep(
 	in ImmutableArray<PresentationData> Views,
 	bool XEnabled,
 	bool YEnabled,
-	in ChainNode Target
+	ChainNode Target
 ) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0), ILoopStep
 {
 	/// <inheritdoc/>

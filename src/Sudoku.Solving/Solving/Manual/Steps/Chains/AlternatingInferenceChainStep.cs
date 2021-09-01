@@ -13,7 +13,7 @@ public sealed unsafe record AlternatingInferenceChainStep(
 	in ImmutableArray<PresentationData> Views,
 	bool XEnabled,
 	bool YEnabled,
-	in ChainNode Target
+	ChainNode Target
 ) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0)
 {
 	/// <inheritdoc/>
@@ -51,8 +51,7 @@ public sealed unsafe record AlternatingInferenceChainStep(
 		{ IsSplitWing: true } => Technique.SplitWing,
 		{ IsHybridWing: true } => Technique.HybridWing,
 		{ IsLocalWing: true } => Technique.LocalWing,
-		{ Target.Chain: var c, IsXyChain: var isXy } when ((ChainNode*)c[^2])->Digit == ((ChainNode*)c[1])->Digit =>
-			isXy ? Technique.XyChain : Technique.Aic,
+		{ Target.WholeChain: var c, IsXyChain: var isXy } when c[^2].Digit == c[1].Digit => isXy ? Technique.XyChain : Technique.Aic,
 		_ => Conclusions.Length switch
 		{
 			1 => Technique.DiscontinuousNiceLoop,
@@ -128,13 +127,13 @@ public sealed unsafe record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			var chain = Target.Chain;
-			var (a, _) = *(ChainNode*)chain[1];
-			var (b, _) = *(ChainNode*)chain[2];
-			var (c, _) = *(ChainNode*)chain[3];
-			var (d, _) = *(ChainNode*)chain[4];
-			var (e, _) = *(ChainNode*)chain[5];
-			var (f, _) = *(ChainNode*)chain[6];
+			var chain = Target.WholeChain;
+			var (a, _) = chain[1];
+			var (b, _) = chain[2];
+			var (c, _) = chain[3];
+			var (d, _) = chain[4];
+			var (e, _) = chain[5];
+			var (f, _) = chain[6];
 
 			return a / 9 == b / 9 && d / 9 == e / 9
 				&& b % 9 == c % 9 && c % 9 == d % 9
@@ -158,13 +157,13 @@ public sealed unsafe record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			var chain = Target.Chain;
-			var (a, _) = *(ChainNode*)chain[1];
-			var (b, _) = *(ChainNode*)chain[2];
-			var (c, _) = *(ChainNode*)chain[3];
-			var (d, _) = *(ChainNode*)chain[4];
-			var (e, _) = *(ChainNode*)chain[5];
-			var (f, _) = *(ChainNode*)chain[6];
+			var chain = Target.WholeChain;
+			var (a, _) = chain[1];
+			var (b, _) = chain[2];
+			var (c, _) = chain[3];
+			var (d, _) = chain[4];
+			var (e, _) = chain[5];
+			var (f, _) = chain[6];
 
 			return a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
 				&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
@@ -190,13 +189,13 @@ public sealed unsafe record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			var chain = Target.Chain;
-			var (a, _) = *(ChainNode*)chain[1];
-			var (b, _) = *(ChainNode*)chain[2];
-			var (c, _) = *(ChainNode*)chain[3];
-			var (d, _) = *(ChainNode*)chain[4];
-			var (e, _) = *(ChainNode*)chain[5];
-			var (f, _) = *(ChainNode*)chain[6];
+			var chain = Target.WholeChain;
+			var (a, _) = chain[1];
+			var (b, _) = chain[2];
+			var (c, _) = chain[3];
+			var (d, _) = chain[4];
+			var (e, _) = chain[5];
+			var (f, _) = chain[6];
 
 			return a / 9 == b / 9 && d / 9 == e / 9
 				&& b % 9 == c % 9 && c % 9 == d % 9
@@ -226,13 +225,13 @@ public sealed unsafe record AlternatingInferenceChainStep(
 				return false;
 			}
 
-			var chain = Target.Chain;
-			var (a, _) = *(ChainNode*)chain[1];
-			var (b, _) = *(ChainNode*)chain[2];
-			var (c, _) = *(ChainNode*)chain[3];
-			var (d, _) = *(ChainNode*)chain[4];
-			var (e, _) = *(ChainNode*)chain[5];
-			var (f, _) = *(ChainNode*)chain[6];
+			var chain = Target.WholeChain;
+			var (a, _) = chain[1];
+			var (b, _) = chain[2];
+			var (c, _) = chain[3];
+			var (d, _) = chain[4];
+			var (e, _) = chain[5];
+			var (f, _) = chain[6];
 
 			return b / 9 == c / 9 && d / 9 == e / 9
 				&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;

@@ -74,73 +74,58 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	private Step? GetAll(
 		ICollection<ChainStep> accumulator, in Grid grid, bool xEnabled, bool yEnabled, bool onlyFindOne)
 	{
-		var listOfUnmanagedAllocations = new List<IntPtr>();
-		try
+		foreach (byte cell in EmptyMap)
 		{
-			foreach (int cell in EmptyMap)
+			short mask = grid.GetCandidates(cell);
+			if (PopCount((uint)mask) >= 2)
 			{
-				short mask = grid.GetCandidates(cell);
-				if (PopCount((uint)mask) >= 2)
+				// Iterate on all candidates that aren't alone.
+				foreach (byte digit in mask)
 				{
-					// Iterate on all candidates that aren't alone.
-					foreach (int digit in mask)
+					var pOn = new ChainNode(cell, digit, true);
+					if (DoUnaryChaining(accumulator, grid, pOn, xEnabled, yEnabled, onlyFindOne) is { } step)
 					{
-						var pOn = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-						*pOn = new(cell, digit, true);
-
-						listOfUnmanagedAllocations.Add((IntPtr)pOn);
-
-						if (DoUnaryChaining(accumulator, grid, pOn, xEnabled, yEnabled, onlyFindOne) is { } step)
-						{
-							return step;
-						}
+						return step;
 					}
 				}
 			}
+		}
 
-			return null;
-		}
-		finally
-		{
-			// TODO: Release the unmanaged memory if no longer being used.
-			//foreach (ChainNode* p in listOfUnmanagedAllocations)
-			//{
-			//	p->Dispose();
-			//}
-		}
+		return null;
 	}
 
 	private Step? DoUnaryChaining(
-		ICollection<ChainStep> accumulator, in Grid grid, [NotNull, DisallowNull] ChainNode* pOn,
+		ICollection<ChainStep> accumulator, in Grid grid, ChainNode pOn,
 		bool xEnabled, bool yEnabled, bool onlyFindOne)
 	{
-		if (PopCount((uint)grid.GetCandidates(pOn->Cell)) > 2 && !xEnabled)
+		if (PopCount((uint)grid.GetCandidates(pOn.Cell)) > 2 && !xEnabled)
 		{
 			// Y-Chains can only start with the bi-value cell.
 			goto ReturnNull;
 		}
 
-		List<IntPtr> loops = new(), chains = new();
-		Set<IntPtr> onToOn = new() { (IntPtr)pOn }, onToOff = new();
+		List<ChainNode> loops = new(), chains = new();
+		Set<ChainNode> onToOn = new() { pOn }, onToOff = new();
 		DoLoops(grid, onToOn, onToOff, xEnabled, yEnabled, loops, pOn);
 
 		if (xEnabled)
 		{
 			// AICs with off implication.
-			onToOn = new() { (IntPtr)pOn };
+			onToOn = new() { pOn };
 			onToOff = new();
 			DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
 
 			// AICs with on implication.
-			var pOff = new ChainNode(pOn->Cell, pOn->Digit, false);
+			var pOff = new ChainNode(pOn.Cell, pOn.Digit, false);
 			onToOn = new();
-			onToOff = new() { (IntPtr)(&pOff) };
-			DoAic(grid, onToOn, onToOff, yEnabled, chains, &pOff);
+			onToOff = new() { pOff };
+			DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
 		}
 
-		foreach (ChainNode* pDestOn in loops)
+		foreach (var pDestOn in loops)
 		{
-			if ((pDestOn->Chain.Count & 1) == 0 && CreateLoopHint(grid, pDestOn, xEnabled, yEnabled) is { } result)
+			if ((pDestOn.WholeChain.Count & 1) == 0
+				&& CreateLoopHint(grid, pDestOn, xEnabled, yEnabled) is { } result)
 			{
 				if (onlyFindOne)
 				{
@@ -150,7 +135,7 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 				accumulator.Add(result);
 			}
 		}
-		foreach (ChainNode* pTarget in chains)
+		foreach (var pTarget in chains)
 		{
 			if (CreateAicHint(grid, pTarget, xEnabled, yEnabled) is { } result)
 			{
@@ -168,56 +153,59 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	}
 
 	private void DoAic(
-		in Grid grid, ISet<IntPtr> onToOn, ISet<IntPtr> onToOff, bool yEnabled, IList<IntPtr> chains,
-		[NotNull, DisallowNull] ChainNode* source)
+		in Grid grid, ISet<ChainNode> onToOn, ISet<ChainNode> onToOff,
+		bool yEnabled, IList<ChainNode> chains, ChainNode source)
 	{
-		List<IntPtr> pendingOn = new(onToOn), pendingOff = new(onToOff);
+		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
 		{
 			while (pendingOn.Count != 0)
 			{
-				var p = (ChainNode*)pendingOn[^1];
+				var p = pendingOn[^1];
 				pendingOn.RemoveLastElement();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
-				foreach (ChainNode* pOff in makeOff)
+				foreach (var pOff in makeOff)
 				{
-					if (source->Cell == pOff->Cell && source->Digit == pOff->Digit && source->IsOn)
+					var (sourceCell, sourceDigit, sourceIsOn) = source;
+					var (pOffCell, pOffDigit, _) = pOff;
+
+					if (sourceCell == pOffCell && sourceDigit == pOffDigit && sourceIsOn)
 					{
 						// Loopy contradiction (AIC) found.
-						chains.AddIfDoesNotContain((IntPtr)pOff);
+						chains.AddIfDoesNotContain(pOff);
 					}
 
-					if (!onToOff.Contains((IntPtr)pOff))
+					if (!onToOff.Contains(pOff))
 					{
 						// Not processed yet.
-						pendingOff.Add((IntPtr)pOff);
-						onToOff.Add((IntPtr)pOff);
+						pendingOff.Add(pOff);
+						onToOff.Add(pOff);
 					}
 				}
 			}
 
 			while (pendingOff.Count != 0)
 			{
-				var p = (ChainNode*)pendingOff[^1];
+				var p = pendingOff[^1];
 				pendingOff.RemoveLastElement();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, true, yEnabled, true);
-				foreach (ChainNode* pOn in makeOn)
+				foreach (var pOn in makeOn)
 				{
-					var pOff = new ChainNode(pOn->Cell, pOn->Digit, false);
-					if (*source == pOff)
+					var pOff = new ChainNode(pOn.Cell, pOn.Digit, false);
+					if (source == pOff)
 					{
 						// Loopy contradiction (AIC) found.
-						chains.AddIfDoesNotContain((IntPtr)pOn);
+						chains.AddIfDoesNotContain(pOn);
 					}
 
 					if (!pOff.IsParentOf(p) && !IChainStepSearcher.ListContainsNode(onToOn, pOn))
 					{
 						// Not processed yet.
-						pendingOn.Add((IntPtr)pOn);
-						onToOn.Add((IntPtr)pOn);
+						pendingOn.Add(pOn);
+						onToOn.Add(pOn);
 					}
 				}
 			}
@@ -225,11 +213,10 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	}
 
 	private void DoLoops(
-		in Grid grid, ISet<IntPtr> onToOn, ISet<IntPtr> onToOff,
-		bool xEnabled, bool yEnabled, IList<IntPtr> loops, [NotNull, DisallowNull] ChainNode* source)
+		in Grid grid, ISet<ChainNode> onToOn, ISet<ChainNode> onToOff,
+		bool xEnabled, bool yEnabled, IList<ChainNode> loops, ChainNode source)
 	{
-		var pendingOn = new List<IntPtr>(onToOn);
-		var pendingOff = new List<IntPtr>(onToOff);
+		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		int length = 0;
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
@@ -237,7 +224,7 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 			length++;
 			while (pendingOn.Count != 0)
 			{
-				var p = (ChainNode*)pendingOn[^1];
+				var p = pendingOn[^1];
 				pendingOn.RemoveLastElement();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
@@ -252,31 +239,30 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 			length++;
 			while (pendingOff.Count != 0)
 			{
-				var p = (ChainNode*)pendingOff[^1];
+				var p = pendingOff[^1];
 				pendingOff.RemoveLastElement();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, xEnabled, yEnabled, true);
-				foreach (ChainNode* pOn in makeOn)
+				foreach (var pOn in makeOn)
 				{
-					if (length >= 4 && *pOn == *source)
+					if (length >= 4 && pOn == source)
 					{
 						// Loop found.
-						loops.Add((IntPtr)pOn);
+						loops.Add(pOn);
 					}
 
 					if (!IChainStepSearcher.ListContainsNode(onToOn, pOn))
 					{
 						// Not processed yet.
-						pendingOn.AddIfDoesNotContain((IntPtr)pOn);
-						onToOn.Add((IntPtr)pOn);
+						pendingOn.AddIfDoesNotContain(pOn);
+						onToOn.Add(pOn);
 					}
 				}
 			}
 		}
 	}
 
-	private ContinuousNiceLoopStep? CreateLoopHint(
-		in Grid grid, [NotNull, DisallowNull] ChainNode* destOn, bool xEnabled, bool yEnabled)
+	private ContinuousNiceLoopStep? CreateLoopHint(in Grid grid, ChainNode destOn, bool xEnabled, bool yEnabled)
 	{
 		var conclusions = new List<Conclusion>();
 		var links = IChainStepSearcher.GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
@@ -300,33 +286,28 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 			return null;
 		}
 
-		var candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOn, simpleChain: true);
+		var candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOn, true);
 
-		var (destCandidate, _) = *(ChainNode*)destOn->Chain[^1];
+		var (destCandidate, _) = destOn.WholeChain[^1];
 		candidateOffsets.Add((destCandidate, (ColorIdentifier)0));
 
 		return new(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets,
-				Links = links
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
 			xEnabled,
 			yEnabled,
-			*destOn
+			destOn
 		);
 	}
 
-	private AlternatingInferenceChainStep? CreateAicHint(
-		in Grid grid, [NotNull, DisallowNull] ChainNode* target, bool xEnabled, bool yEnabled)
+	private AlternatingInferenceChainStep? CreateAicHint(in Grid grid, ChainNode target, bool xEnabled, bool yEnabled)
 	{
 		var conclusions = new List<Conclusion>();
-		if (!target->IsOn)
+		if (!target.IsOn)
 		{
 			// Get eliminations as an AIC.
-			var (startCandidate, _) = *(ChainNode*)target->Chain[1];
-			var (endCandidate, _) = *(ChainNode*)target->Chain[^2];
+			var (startCandidate, _) = target.WholeChain[1];
+			var (endCandidate, _) = target.WholeChain[^2];
 			var elimMap = new Candidates { startCandidate, endCandidate }.PeerIntersection;
 			if (elimMap.IsEmpty)
 			{
@@ -355,12 +336,12 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 			ImmutableArray.CreateRange(conclusions),
 			ImmutableArray.Create(new PresentationData
 			{
-				Candidates = IChainStepSearcher.GetCandidateOffsets(target, simpleChain: true),
+				Candidates = IChainStepSearcher.GetCandidateOffsets(target, true),
 				Links = IChainStepSearcher.GetLinks(target)
 			}),
 			xEnabled,
 			yEnabled,
-			*target
+			target
 		);
 	}
 }

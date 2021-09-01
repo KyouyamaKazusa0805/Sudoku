@@ -4,80 +4,167 @@
 /// Defines a chain node, with basic information about the node. At the same time you can get the root node
 /// of the chain, using the current node as the tail node.
 /// </summary>
-[AutoEquality(nameof(Cell), nameof(Digit), nameof(IsOn))]
+/// <remarks>
+/// The data structure uses an <see cref="int"/> value to represent an instance. The bit usage details is as below:
+/// <code>
+/// |  (4)  |  (3)  |  (2)  |  (1)  |
+/// |-------|-------|-------|-------|
+/// 32     24      16       8       0
+/// </code>
+/// Where:
+/// <list type="table">
+/// <item>
+/// <term>Part <c>(1)</c>, bits 0..8</term>
+/// <description>The mask of the digit used. The value only uses 4 bits.</description>
+/// </item>
+/// <item>
+/// <term>Part <c>(2)</c>, bits 8..16</term>
+/// <description>The mask of the cell used. The value only uses 7 bits.</description>
+/// </item>
+/// <item>
+/// <term>Part <c>(3)</c>, bits 16..24</term>
+/// <description>
+/// The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+/// </description>
+/// </item>
+/// <item>
+/// <term>Part <c>(4)</c>, bits 24..32</term>
+/// <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+/// </item>
+/// </list>
+/// </remarks>
+/// <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+[AutoEquality(nameof(Mask))]
+[AutoDeconstruct(nameof(Candidate), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
-public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
+public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainNode>
 {
 	/// <summary>
-	/// Indicates the number of parent nodes recorded in this collection.
+	/// Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
 	/// </summary>
-	private int _currentParentIndex = 0;
-
-	/// <summary>
-	/// <para>Indicates all parents of the current node.</para>
-	/// <para>
-	/// The value is represented by the type <see cref="ChainNode"/>** (i.e. a double pointer),
-	/// the first pointer mark stands for a basic reference to a real <see cref="ChainNode"/>-typed instance
-	/// (i.e. a <see cref="ChainNode"/>*), and the second pointer mark stands for the property
-	/// is an array of that type (i.e. a * to <see cref="ChainNode"/>*).
-	/// </para>
-	/// <para>
-	/// In addition, the value stores the address value that points to the unmanaged memory, If you use out
-	/// of this instance, you <b>must</b> calls the method <see cref="Dispose"/> to release the memory.
-	/// </para>
-	/// </summary>
-	/// <seealso cref="Dispose"/>
-	private ChainNode** _parents = null;
+	public static readonly ChainNode Undefined;
 
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit and a <see cref="bool"/>
-	/// value indicating whether the node is on.
+	/// Indicates the parents.
+	/// </summary>
+	private ChainNode[]? _rawParents = null;
+
+
+	/// <summary>
+	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit and the status
+	/// value as a <see cref="bool"/> value.
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
 	/// <param name="digit">The digit used.</param>
-	/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
+	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(int cell, int digit, bool isOn)
+	public ChainNode(byte cell, byte digit, bool isOn) : this(ConstructMask(cell, digit, isOn))
 	{
-		Cell = cell;
-		Digit = digit;
-		IsOn = isOn;
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit, a <see cref="bool"/>
-	/// value indicating whether the node is on, and a single node that represents the parent of the current node.
+	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit,
+	/// the status value as a <see cref="bool"/> value, and a parent node.
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
 	/// <param name="digit">The digit used.</param>
-	/// <param name="isOn">A <see cref="bool"/> value indicating whether the node is on.</param>
-	/// <param name="parent">Indicates the parent of the current node.</param>
+	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
+	/// <param name="parent">The parent node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(int cell, int digit, bool isOn, [DisallowNull] ChainNode* parent) : this(cell, digit, isOn)
+	public ChainNode(byte cell, byte digit, bool isOn, in ChainNode parent) : this(ConstructMask(cell, digit, isOn, 1))
 	{
-		CreateParentsBlock();
-		_parents[_currentParentIndex++] = parent;
+		_rawParents = new ChainNode[7];
+		_rawParents[0] = parent;
 	}
+
+	/// <summary>
+	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit,
+	/// the status value as a <see cref="bool"/> value, and the parent nodes.
+	/// </summary>
+	/// <param name="cell">The cell used.</param>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
+	/// <param name="parents">The parent nodes.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal ChainNode(byte cell, byte digit, bool isOn, ChainNode[] parents)
+		: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) =>
+		_rawParents = parents;
 
 
 	/// <summary>
-	/// A <see cref="bool"/> value indicating whether the node is on.
+	/// Gets the possible useful parents.
 	/// </summary>
-	public bool IsOn { get; }
+	public readonly ChainNode[]? Parents
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _rawParents?[..ParentsCount];
+	}
+
+	/// <summary>
+	/// Indicates whether the node is at the <b>on</b> status.
+	/// </summary>
+	/// <remarks>
+	/// The possible <b>status</b>es of the node are <b>on</b> and <b>off</b>, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Status</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>On</term>
+	/// <description>
+	/// The digit is true in the cell, which means the digit should be filled in this cell.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term>Off</term>
+	/// <description>
+	/// The digit is false in the cell, which means the digit should be eliminated from this cell.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	public readonly bool IsOn
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (Mask >> 16 & 1) != 0;
+	}
 
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; }
+	public readonly byte Cell
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (byte)(Mask >> 8 & 255);
+	}
 
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public int Digit { get; }
+	public readonly byte Digit
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (byte)(Mask & 255);
+	}
 
 	/// <summary>
-	/// Get the total number of the ancestors.
+	/// Indicates the total number of parent nodes.
+	/// </summary>
+	/// <!--<value>The number of cells to assign.</value>-->
+	/// <!--<returns>The number of parents.</returns>-->
+	public byte ParentsCount
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		readonly get => (byte)(Mask >> 24 & 7);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private set => Mask = Mask & ((1 << 24) - 1) | value << 24;
+	}
+
+	/// <summary>
+	/// Indicates the total number of the ancestors.
 	/// </summary>
 	public readonly int AncestorsCount
 	{
@@ -89,12 +176,22 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 				next = new();
 				foreach (var p in todo)
 				{
-					if (!ancestors.Contains(p))
+					bool alreadyContains = false;
+					foreach (var ancestor in ancestors)
+					{
+						if (ancestor == p)
+						{
+							alreadyContains = true;
+							break;
+						}
+					}
+
+					if (!alreadyContains)
 					{
 						ancestors.Add(p);
-						for (int i = 0, count = p._currentParentIndex; i < count; i++)
+						for (int i = 0, count = p.ParentsCount; i < count; i++)
 						{
-							next.Add(*p._parents[i]);
+							next.Add(p._rawParents![i]);
 						}
 					}
 				}
@@ -105,56 +202,38 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 	}
 
 	/// <summary>
-	/// <para>Indicates the root of the current chain.</para>
-	/// <para>
-	/// This property will regard the current instance as a pointer that points to a normal chain.
-	/// If the property <see cref="_parents"/> isn't <see langword="null"/>, then the property will search
-	/// for the parent node and check its parent node (i.e. the grandparents). When the <see cref="_parents"/>
-	/// is <see langword="null"/>, the node should be the root node, and then the method will return
-	/// the address that points to it.
-	/// </para>
+	/// Indicates the candidate used.
 	/// </summary>
-	/// <seealso cref="_parents"/>
-	[NotNull]
-	public readonly ChainNode* Root
+	public readonly short Candidate
 	{
-		get
-		{
-			fixed (ChainNode* pThis = &this)
-			{
-				if (_currentParentIndex == 0)
-				{
-					return pThis;
-				}
-
-				ChainNode* p;
-				for (
-					p = pThis;
-					p->_parents is var parents and not null && parents[0]->_currentParentIndex != 0;
-					p = p->_parents[0]
-				) ;
-
-				return p;
-			}
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (short)(Mask & 1023);
 	}
 
 	/// <summary>
-	/// Gets all parent nodes.
+	/// <para>Indicates the root of the current chain.</para>
+	/// <para>
+	/// If the property <see cref="Parents"/> isn't <see langword="null"/>,
+	/// then the property will search for the parent node and check its parent node recursively
+	/// (i.e. checks the grandparents, great-grandparents, etc.).
+	/// </para>
 	/// </summary>
-	public readonly ChainNode*[]? Parents
+	/// <returns>Returns the root of the chain.</returns>
+	/// <seealso cref="Parents"/>
+	/// <seealso cref="ParentsCount"/>
+	public readonly ChainNode Root
 	{
 		get
 		{
-			if (_parents == null)
+			if (ParentsCount == 0)
 			{
-				return null;
+				return Undefined;
 			}
 
-			var result = new ChainNode*[_currentParentIndex];
-			fixed (ChainNode** pResult = result)
+			var result = _rawParents![0];
+			while (result._rawParents is { } p)
 			{
-				Unsafe.CopyBlock(pResult, _parents, (uint)(sizeof(ChainNode*) * _currentParentIndex));
+				result = p[0];
 			}
 
 			return result;
@@ -164,41 +243,21 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 	/// <summary>
 	/// Indicates the nodes that the current node lies in.
 	/// </summary>
-	/// <remarks>
-	/// For the performance optimization, the return type is a list of <see cref="IntPtr"/>s indicates
-	/// the pointer that points to each elements. If you want to get the real value, please cast the type
-	/// to <see cref="ChainNode"/>*:
-	/// <code>
-	/// var list = Chain; // Get the value from the property.
-	/// if (list.Count != 0)
-	/// {
-	///     var p = (ChainNode*)list[0]; // For example, get the first element.
-	/// 
-	///     // Code uses the variable 'p'.
-	/// }
-	/// </code>
-	/// </remarks>
-	/// <seealso cref="IntPtr"/>
-	public readonly IReadOnlyList<IntPtr> Chain
+	public readonly IReadOnlyList<ChainNode> WholeChain
 	{
 		get
 		{
-			List<IntPtr> todo;
-			fixed (ChainNode* pThis = &this)
-			{
-				todo = new() { (IntPtr)pThis };
-			}
-
-			List<IntPtr> tempList = new(), done = new();
+			List<ChainNode> todo = new() { this }, tempList = new(), done = new(), next = new();
 			while (todo.Count != 0)
 			{
-				var next = new List<IntPtr>();
-				foreach (ChainNode* p in todo)
+				next.Clear();
+
+				foreach (var p in todo)
 				{
 					bool contains = false;
-					foreach (ChainNode* node in done)
+					foreach (var node in done)
 					{
-						if (*node == *p)
+						if (node == p)
 						{
 							contains = true;
 							break;
@@ -207,11 +266,11 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 
 					if (!contains)
 					{
-						done.Add((IntPtr)p);
-						tempList.Add((IntPtr)p);
-						for (int i = 0, count = p->_currentParentIndex; i < count; i++)
+						done.Add(p);
+						tempList.Add(p);
+						for (int i = 0, count = p.ParentsCount; i < count; i++)
 						{
-							next.Add((IntPtr)p->_parents[i]);
+							next.Add(p._rawParents![i]);
 						}
 					}
 				}
@@ -224,26 +283,18 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 	}
 
 
-#pragma warning disable CS1591
-	public readonly void Deconstruct(out int candidate, out bool isOn)
-	{
-		candidate = Cell * 9 + Digit;
-		isOn = IsOn;
-	}
-#pragma warning restore CS1591
-
 	/// <summary>
 	/// Determine whether the node is the parent of the specified node.
 	/// </summary>
-	/// <param name="node">The pointer that points to a chain node.</param>
+	/// <param name="node">The chain node.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public readonly bool IsParentOf([NotNull, DisallowNull] ChainNode* node)
+	public readonly bool IsParentOf(ChainNode node)
 	{
-		var pTest = node;
-		while (pTest->_currentParentIndex != 0)
+		var temp = node;
+		while (temp.ParentsCount != 0)
 		{
-			pTest = pTest->_parents[0];
-			if (*pTest == this)
+			temp = temp._rawParents![0];
+			if (temp == this)
 			{
 				return true;
 			}
@@ -253,37 +304,23 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	public override readonly int GetHashCode()
-	{
-		if (_parents is null)
-		{
-			return 0;
-		}
-
-		var hashCode = new HashCode();
-		for (int i = 0; i < _currentParentIndex; i++)
-		{
-			var (cell, digit, isOn) = *_parents[i];
-			hashCode.Add((isOn ? 729 : 0) + cell * 9 + digit);
-		}
-
-		return hashCode.ToHashCode();
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString()
 	{
-		if (_currentParentIndex == 0)
+		if (ParentsCount == 0)
 		{
 			return $"Candidate: {new Cells { Cell }}({Digit + 1})";
 		}
 		else
 		{
 			var nodes = Candidates.Empty;
-			for (int i = 0; i < _currentParentIndex; i++)
+			for (int i = 0; i < ParentsCount; i++)
 			{
-				var parent = _parents[i];
-				nodes.AddAnyway(parent->Cell * 9 + parent->Digit);
+				var parent = _rawParents![i];
+				nodes.AddAnyway(parent.Candidate);
 			}
 
 			return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent(s): {nodes}";
@@ -291,63 +328,48 @@ public unsafe partial struct ChainNode : IValueEquatable<ChainNode>, IDisposable
 	}
 
 	/// <summary>
-	/// Returns the reference to the first parent node.
-	/// </summary>
-	/// <returns>
-	/// The reference to the first element of parents. If <see cref="_parents"/> is <see langword="null"/>,
-	/// the return value is <see langword="ref"/> *(<see cref="ChainNode"/>**)<see langword="null"/>.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ref readonly ChainNode* GetPinnableReference() =>
-		ref _currentParentIndex == 0 ? ref *(ChainNode**)null : ref _parents[0];
-
-	/// <summary>
 	/// Append a chain node into the collection, as one of the parent nodes.
 	/// </summary>
-	/// <param name="ptr">The pointer that points to the chain node to be added.</param>
-	/// <exception cref="InvalidOperationException">Throws when the buffer is full.</exception>
+	/// <param name="chain">The chain node to be added.</param>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the inner parent nodes collection is full.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddParent([NotNull, DisallowNull] ChainNode* ptr)
+	public void AddParent(ChainNode chain)
 	{
-		if (_parents == null)
+		switch (ParentsCount)
 		{
-			CreateParentsBlock();
-		}
-
-		if (_currentParentIndex >= 7)
-		{
-			throw new InvalidOperationException(
-				"You can't append any elements into the collection because the buffer can only stores 7 elements."
-			);
-		}
-
-		_parents[_currentParentIndex++] = ptr;
-	}
-
-	/// <summary>
-	/// Release the memory, and clear all memories of this instance
-	/// (specially for the property <see cref="_parents"/>).
-	/// </summary>
-	/// <seealso cref="_parents"/>
-	public void Dispose()
-	{
-		foreach (ChainNode* ptr in Chain)
-		{
-			if (ptr->_parents != null)
+			case 0:
 			{
-				NativeMemory.Free(ptr->_parents);
+				_rawParents = new ChainNode[7];
+				ParentsCount = 1;
+
+				break;
+			}
+			case >= 7:
+			{
+				throw new InvalidOperationException(
+					"Can't append any elements into the collection due to the list being full."
+				);
+			}
+			default:
+			{
+				_rawParents![ParentsCount++] = chain;
+
+				break;
 			}
 		}
 	}
 
 	/// <summary>
-	/// Initializes an creates the buffer.
+	/// Constructs the mask.
 	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="isOn">The on/off status.</param>
+	/// <param name="parentsCount">The number of parents.</param>
+	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[MemberNotNull(nameof(_parents))]
-	private void CreateParentsBlock()
-	{
-		_parents = (ChainNode**)NativeMemory.Alloc((nuint)sizeof(ChainNode*) * 7);
-		_currentParentIndex = 0;
-	}
+	private static int ConstructMask(byte cell, byte digit, bool isOn, byte parentsCount = 0) =>
+		parentsCount << 24 | (isOn ? 1 : 0) << 16 | cell << 8 | digit;
 }

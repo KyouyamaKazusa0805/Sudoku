@@ -8,33 +8,31 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <summary>
 	/// Get highlight candidate offsets through the specified target node.
 	/// </summary>
-	/// <param name="pTarget">The target node.</param>
-	/// <param name="simpleChain">
+	/// <param name="target">The target node.</param>
+	/// <param name="isSimpleAic">
 	/// Indicates whether the current caller is in <see cref="IAlternatingInferenceChainStepSearcher"/>.
 	/// The default value is <see langword="false"/>.
 	/// </param>
 	/// <returns>The candidate offsets.</returns>
 	/// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
-	protected static IList<(int Offset, ColorIdentifier Identifier)> GetCandidateOffsets(
-		[NotNull, DisallowNull] ChainNode* pTarget, bool simpleChain = false)
+	protected static IList<(int, ColorIdentifier)> GetCandidateOffsets(ChainNode target, bool isSimpleAic = false)
 	{
 		var result = new List<(int, ColorIdentifier)>();
-		var chain = pTarget->Chain;
-		var (pCandidate, _) = *(ChainNode*)chain[0];
-		if (!simpleChain)
+		var chain = target.WholeChain;
+		var (pCandidate, _) = chain[0];
+		if (!isSimpleAic)
 		{
 			result.Add((pCandidate, (ColorIdentifier)2));
 		}
 
 		for (int i = 0, count = chain.Count; i < count; i++)
 		{
-			var p = (ChainNode*)chain[i];
-			if (p->Parents is { } parents)
+			if (chain[i].Parents is { } parents)
 			{
 				foreach (var pr in parents)
 				{
-					var (prCandidate, prIsOn) = *pr;
-					if (simpleChain && i != count - 2 || !simpleChain)
+					var (prCandidate, prIsOn) = pr;
+					if (isSimpleAic && i != count - 2 || !isSimpleAic)
 					{
 						result.AddIfDoesNotContain((prCandidate, (ColorIdentifier)(prIsOn ? 1 : 0)));
 					}
@@ -48,26 +46,25 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <summary>
 	/// Get the links through the specified target node.
 	/// </summary>
-	/// <param name="pTarget">The target node.</param>
+	/// <param name="target">The target node.</param>
 	/// <param name="showAllLinks">
 	/// Indicates whether the current chain will display all chains (even contains the weak links
 	/// from the elimination node). The default value is <see langword="false"/>. If you want to
 	/// draw the AIC, the elimination weak links don't need drawing.
 	/// </param>
 	/// <returns>The link.</returns>
-	protected static IList<(Link Link, ColorIdentifier Identifier)> GetLinks(
-		[NotNull, DisallowNull] ChainNode* pTarget, bool showAllLinks = false)
+	protected static IList<(Link, ColorIdentifier)> GetLinks(ChainNode target, bool showAllLinks = false)
 	{
 		var result = new List<(Link, ColorIdentifier)>();
-		var chain = pTarget->Chain;
+		var chain = target.WholeChain;
 		for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 		{
-			var p = (ChainNode*)chain[i];
-			var (pCandidate, pIsOn) = *p;
-			var parents = p->Parents;
+			var p = chain[i];
+			var (pCandidate, pIsOn) = p;
+			var parents = p.Parents;
 			for (int j = 0, parentsCount = parents?.Length ?? 0; j < parentsCount; j++)
 			{
-				var (prCandidate, prIsOn) = *parents![j];
+				var (prCandidate, prIsOn) = parents![j];
 				result.Add(
 					(
 						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
@@ -89,13 +86,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// Determine whether the specified list contains the specified node value.
 	/// </summary>
 	/// <param name="list">The list of nodes.</param>
-	/// <param name="p">The node to check.</param>
+	/// <param name="node">The node to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static bool ListContainsNode(ICollection<IntPtr> list, [NotNull, DisallowNull] ChainNode* p)
+	protected static bool ListContainsNode(ICollection<ChainNode> list, ChainNode node)
 	{
-		foreach (ChainNode* pNode in list)
+		foreach (var pNode in list)
 		{
-			if (*pNode == *p)
+			if (pNode == node)
 			{
 				return true;
 			}
@@ -111,22 +108,18 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <param name="p">The current node.</param>
 	/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 	/// <returns>All possible weak links.</returns>
-	[return: CallerNeedRelease]
-	protected static ISet<IntPtr> GetOnToOff(in Grid grid, [NotNull, DisallowNull] ChainNode* p, bool yEnabled)
+	protected static ISet<ChainNode> GetOnToOff(in Grid grid, ChainNode p, bool yEnabled)
 	{
-		var result = new Set<IntPtr>();
+		var result = new Set<ChainNode>();
 
 		if (yEnabled)
 		{
 			// First rule: Other candidates for this cell get off.
-			for (int digit = 0; digit < 9; digit++)
+			for (byte digit = 0; digit < 9; digit++)
 			{
-				if (digit != p->Digit && grid.Exists(p->Cell, digit) is true)
+				if (digit != p.Digit && grid.Exists(p.Cell, digit) is true)
 				{
-					var pNode = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-					*pNode = new(p->Cell, digit, false, p);
-
-					result.Add((IntPtr)pNode);
+					result.Add(new(p.Cell, digit, false, p));
 				}
 			}
 		}
@@ -134,16 +127,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		// Second rule: Other positions for this digit get off.
 		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 		{
-			int region = p->Cell.ToRegion(label);
+			int region = RegionCalculator.ToRegion(p.Cell, label);
 			for (int pos = 0; pos < 9; pos++)
 			{
-				int cell = RegionCells[region][pos];
-				if (cell != p->Cell && grid.Exists(cell, p->Digit) is true)
+				byte cell = (byte)RegionCells[region][pos];
+				if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 				{
-					var pNode = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-					*pNode = new(cell, p->Digit, false, p);
-
-					result.Add((IntPtr)pNode);
+					result.Add(new(cell, p.Digit, false, p));
 				}
 			}
 		}
@@ -187,26 +177,23 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// </param>
 	/// <returns>All possible strong links.</returns>
 #endif
-	[return: CallerNeedRelease]
-	protected static ISet<IntPtr> GetOffToOn(
-		in Grid grid, [NotNull, DisallowNull] ChainNode* p, bool xEnabled, bool yEnabled,
-		bool enableFastProperties,
-		in Grid source = default,
+	protected static ISet<ChainNode> GetOffToOn(
+		in Grid grid, ChainNode p, bool xEnabled, bool yEnabled,
+		bool enableFastProperties, in Grid source = default,
 #if DEBUG
-		ISet<IntPtr>? offNodes = null,
+		ISet<ChainNode>? offNodes = null,
 #endif
 		bool isDynamic = false
 	)
 	{
-		var result = new Set<IntPtr>();
+		var result = new Set<ChainNode>();
 		if (yEnabled)
 		{
 			// First rule: If there's only two candidates in this cell, the other one gets on.
-			short mask = (short)(grid.GetCandidates(p->Cell) & ~(1 << p->Digit));
-			if (g(grid, p->Cell, isDynamic, enableFastProperties) && mask != 0 && (mask & mask - 1) == 0)
+			short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
+			if (g(grid, p.Cell, isDynamic, enableFastProperties) && mask != 0 && (mask & mask - 1) == 0)
 			{
-				var pOn = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-				*pOn = new(p->Cell, TrailingZeroCount(mask), true, p);
+				var pOn = new ChainNode(p.Cell, (byte)TrailingZeroCount(mask), true, p);
 
 				if (
 #if DEBUG
@@ -217,13 +204,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 				)
 				{
 #if DEBUG
-					AddHiddenParentsOfCell(pOn, grid, source, offNodes);
+					AddHiddenParentsOfCell(ref pOn, grid, source, offNodes);
 #else
-					AddHiddenParentsOfCell(pOn, grid, source);
+					AddHiddenParentsOfCell(ref pOn, grid, source);
 #endif
 				}
 
-				result.Add((IntPtr)pOn);
+				result.Add(pOn);
 			}
 		}
 
@@ -232,14 +219,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			// Second rule: If there's only two positions for this candidate, the other ont gets on.
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = p->Cell.ToRegion(label);
+				int region = RegionCalculator.ToRegion(p.Cell, label);
 				var cells = new Cells(
-					h(grid, p->Digit, region, isDynamic, enableFastProperties) & RegionMaps[region]
-				) { ~p->Cell };
+					h(grid, p.Digit, region, isDynamic, enableFastProperties) & RegionMaps[region]
+				) { ~p.Cell };
 				if (cells.Count == 1)
 				{
-					var pOn = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-					*pOn = new(cells[0], p->Digit, true, p);
+					var pOn = new ChainNode((byte)cells[0], p.Digit, true, p);
 
 					if (
 #if DEBUG
@@ -250,13 +236,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					)
 					{
 #if DEBUG
-						AddHiddenParentsOfRegion(pOn, grid, source, label, offNodes);
+						AddHiddenParentsOfRegion(ref pOn, grid, source, label, offNodes);
 #else
-						AddHiddenParentsOfRegion(pOn, grid, source, label);
+						AddHiddenParentsOfRegion(ref pOn, grid, source, label);
 #endif
 					}
 
-					result.Add((IntPtr)pOn);
+					result.Add(pOn);
 				}
 			}
 		}
@@ -265,8 +251,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool g(in Grid grid, int cell, bool isDynamic, bool enableFastProperties) =>
-			isDynamic
+		static bool g(in Grid grid, int cell, bool isDynamic, bool enableFastProperties) => isDynamic
 			? PopCount((uint)grid.GetCandidates(cell)) == 2
 			: enableFastProperties ? BivalueMap.Contains(cell) : grid.BivalueCells.Contains(cell);
 
@@ -311,22 +296,22 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfCell(
 #if DEBUG
-		[CallerNeedRelease, NotNull, DisallowNull] ChainNode* p, in Grid grid, in Grid source, ISet<IntPtr> offNodes
+		ref ChainNode p, in Grid grid, in Grid source, ISet<ChainNode> offNodes
 #else
-		[CallerNeedRelease, NotNull, DisallowNull] ChainNode* p, in Grid grid, in Grid source
+		ref ChainNode p, in Grid grid, in Grid source
 #endif
 	)
 	{
-		foreach (int digit in (short)(source.GetCandidates(p->Cell) & ~grid.GetCandidates(p->Cell)))
+		foreach (byte digit in (short)(source.GetCandidates(p.Cell) & ~grid.GetCandidates(p.Cell)))
 		{
 			// Add a hidden parent.
-			var parent = new ChainNode(p->Cell, digit, false);
+			var parent = new ChainNode(p.Cell, digit, false);
 
 #if DEBUG
 			bool alreadyContains = false;
-			foreach (ChainNode* pNode in offNodes)
+			foreach (var pNode in offNodes)
 			{
-				if (*pNode == parent)
+				if (pNode == parent)
 				{
 					alreadyContains = true;
 					break;
@@ -339,9 +324,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			}
 #endif
 
-			var pParent = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-			*pParent = parent;
-			p->AddParent(pParent);
+			p.AddParent(parent);
 		}
 	}
 
@@ -366,25 +349,23 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfRegion(
 #if DEBUG
-		[CallerNeedRelease, NotNull, DisallowNull] ChainNode* p, in Grid grid, in Grid source,
-		RegionLabel currRegion, ISet<IntPtr> offNodes
+		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion, ISet<ChainNode> offNodes
 #else
-		[CallerNeedRelease, NotNull, DisallowNull] ChainNode* p, in Grid grid, in Grid source,
-		RegionLabel currRegion
+		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion
 #endif
 	)
 	{
-		int region = p->Cell.ToRegion(currRegion);
-		foreach (int pos in (short)(m(source, p->Digit, region) & ~m(grid, p->Digit, region)))
+		int region = RegionCalculator.ToRegion(p.Cell, currRegion);
+		foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 		{
 			// Add a hidden parent.
-			var parent = new ChainNode(RegionCells[region][pos], p->Digit, false);
+			var parent = new ChainNode((byte)RegionCells[region][pos], p.Digit, false);
 
 #if DEBUG
 			bool alreadyContains = false;
-			foreach (ChainNode* pNode in offNodes)
+			foreach (var pNode in offNodes)
 			{
-				if (*pNode == parent)
+				if (pNode == parent)
 				{
 					alreadyContains = true;
 					break;
@@ -396,9 +377,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			}
 #endif
 
-			var pParent = (ChainNode*)NativeMemory.Alloc((nuint)sizeof(ChainNode));
-			*pParent = parent;
-			p->AddParent(pParent);
+			p.AddParent(parent);
 		}
 
 

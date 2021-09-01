@@ -106,11 +106,11 @@ public abstract record ChainStep(
 		(
 			Left: AlternatingInferenceChainStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
 			Right: AlternatingInferenceChainStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
-		) when lTarget == rTarget && *lRoot == *rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
+		) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
 		(
 			Left: ContinuousNiceLoopStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
 			Right: ContinuousNiceLoopStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
-		) when lTarget == rTarget && *lRoot == *rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
+		) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
 		// TODO: Other possible chain types checking.
 		_ => false
 	};
