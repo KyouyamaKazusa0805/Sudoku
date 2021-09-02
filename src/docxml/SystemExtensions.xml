@@ -1504,6 +1504,37 @@
             Indicates the argument name that is of an enumeration type.
             </summary>
         </member>
+        <member name="T:System.ArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Array"/>.
+            </summary>
+            <seealso cref="T:System.Array"/>
+        </member>
+        <member name="M:System.ArrayExtensions.First``1(``0[],System.Predicate{``0})">
+            <summary>
+            Gets the first element that satisfies the specified condition.
+            </summary>
+            <typeparam name="T">The type of the each element.</typeparam>
+            <param name="this">The array to be iterated.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>
+            The first element that satisfies the specified condition.
+            If none found, return <see langword="default"/>(<typeparamref name="T"/>).
+            </returns>
+        </member>
+        <member name="M:System.ArrayExtensions.FirstOnThrow``1(``0[],System.Predicate{``0})">
+            <summary>
+            Gets the first element that satisfies the specified condition, and throws an exception
+            to report the invalid case if none possible elements found.
+            </summary>
+            <typeparam name="T">The type of the each element.</typeparam>
+            <param name="this">The array to be interated.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>
+            The first element that satisfies the specified condition.
+            </returns>
+            <exception cref="T:System.ArgumentException">Throws when none possible elements found.</exception>
+        </member>
         <member name="T:System.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

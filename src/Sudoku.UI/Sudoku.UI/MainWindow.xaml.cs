@@ -54,23 +54,24 @@ public sealed partial class MainWindow : Window
 	/// <param name="args">The arguments provided.</param>
 	private void NavigationView_Main_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 	{
-		string? tag = args.InvokedItemContainer.Tag as string;
+		if (args is not { InvokedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
+		{
+			return;
+		}
+
 		var type = Frame_NavigationView_Main.CurrentSourcePageType;
 		try
 		{
-			var (_, pageType, header) = NavigationInfoList.First(triplet =>
+			var (_, pageType, header) = NavigationInfoList.FirstOnThrow(triplet =>
 			{
 				var (a, b, c) = triplet;
 				return a == tag && b != type && c is not null;
 			});
 
 			sender.Header = header;
-			Frame_NavigationView_Main.NavigateToType(pageType, null, new FrameNavigationOptions
-			{
-				TransitionInfoOverride = args.RecommendedNavigationTransitionInfo
-			});
+			Frame_NavigationView_Main.NavigateToType(pageType, null, new() { TransitionInfoOverride = info });
 		}
-		catch (InvalidOperationException)
+		catch (ArgumentException)
 		{
 		}
 	}
