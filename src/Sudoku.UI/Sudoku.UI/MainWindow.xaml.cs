@@ -25,7 +25,7 @@ public sealed partial class MainWindow : Window
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeControls()
 	{
-		Title = (string)Application.Current.Resources["MainWindowTitle"];
+		Title = Ui.Current.MainWindowTitle;
 	}
 
 
@@ -39,10 +39,10 @@ public sealed partial class MainWindow : Window
 		string? tag = args.InvokedItemContainer.Tag as string;
 		var (pageType, header) = tag switch
 		{
-			_ when tag == (string)Application.Current.Resources["MainWindow_NavigationViewItem_Tag_SudokuPanel"] =>
-				(typeof(SudokuPanelPage), (string)Application.Current.Resources["MainWindow_NavigationViewItem_Content_SudokuPanel"]),
-			_ when tag == (string)Application.Current.Resources["MainWindow_NavigationViewItem_Tag_About"] =>
-				(typeof(AboutPage), (string)Application.Current.Resources["MainWindow_NavigationViewItem_Content_About"]),
+			_ when tag == Ui.Current.MainWindow_NavigationViewItem_Tag_SudokuPanel =>
+				(typeof(SudokuPanelPage), Ui.Current.MainWindow_NavigationViewItem_Content_SudokuPanel),
+			_ when tag == Ui.Current.MainWindow_NavigationViewItem_Tag_About =>
+				(typeof(AboutPage), Ui.Current.MainWindow_NavigationViewItem_Content_About),
 			_ => (null, null)
 		};
 
