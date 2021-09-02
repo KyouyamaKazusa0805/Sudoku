@@ -11,7 +11,7 @@
 		ItemInvoked="NavigationView_Main_ItemInvoked">
 		<NavigationView.MenuItems>
 			<NavigationViewItem
-				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit"
+				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit" CacheMode="BitmapCache"
 				Content="{StaticResource MainWindow_NavigationViewItem_Content_SudokuPanel}"
 				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}">
 			</NavigationViewItem>

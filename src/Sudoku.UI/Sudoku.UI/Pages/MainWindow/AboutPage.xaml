@@ -13,8 +13,9 @@
 	<Page.Resources>
 		<!--Custom resources-->
 		<x:Double x:Key="FontSizeDefault">16</x:Double>
-		<Thickness x:Key="NormalThickness">4, 8, 4, 8</Thickness>
-		<Thickness x:Key="DoubleThickness">4, 16, 4, 16</Thickness>
+		<Thickness x:Key="NoVerticalThickness">10, 0, 10, 0</Thickness>
+		<Thickness x:Key="NormalThickness">10, 8, 10, 8</Thickness>
+		<Thickness x:Key="DoubleThickness">10, 16, 10, 16</Thickness>
 		
 		<!--Styles-->
 		<Style x:Key="ItemTerm" TargetType="TextBlock">
@@ -73,7 +74,7 @@
 		<TextBlock
 			Text="{StaticResource AboutPage_Title_Repo}" Style="{ThemeResource TitleTextBlockStyle}"
 			Margin="{StaticResource DoubleThickness}" />
-		<TextBlock Margin="{StaticResource NormalThickness}">
+		<TextBlock Margin="{StaticResource NoVerticalThickness}">
 			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
 				<Run Text="{x:Bind Path=ui:HyperLinks.RepoLink}" />
 			</Hyperlink>
