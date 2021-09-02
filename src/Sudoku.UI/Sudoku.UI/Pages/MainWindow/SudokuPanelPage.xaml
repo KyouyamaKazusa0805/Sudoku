@@ -1,0 +1,15 @@
+﻿<Page
+	x:Class="Sudoku.UI.Pages.MainWindow.SudokuPanelPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:interactions="using:Sudoku.UI.Interactions"
+	mc:Ignorable="d"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.DataContext>
+		<interactions:SudokuPanelModel x:Name="ViewModel" />
+	</Page.DataContext>
+
+	<TextBlock FontSize="64" FontWeight="Bold" Text="Hello, world!" />
+</Page>

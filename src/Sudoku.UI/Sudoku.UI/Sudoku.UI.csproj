@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<RootNamespace>Sudoku.UI</RootNamespace>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<Platforms>x86;x64;arm64</Platforms>
+		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<UseWinUI>true</UseWinUI>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Pages\MainWindow\AboutPage.xaml" />
+		<None Remove="Pages\MainWindow\SudokuPanelPage.xaml" />
+		<None Remove="Resources\Dic_1033.xaml" />
+		<None Remove="Resources\Dic_2052.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.ProjectReunion" Version="0.8.3" />
+		<PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.3" />
+		<PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.3" />
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Pages\MainWindow\AboutPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Resources\Dic_1033.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Resources\Dic_2052.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Pages\MainWindow\SudokuPanelPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+</Project>

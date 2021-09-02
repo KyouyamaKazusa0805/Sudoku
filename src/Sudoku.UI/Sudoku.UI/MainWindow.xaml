@@ -1,0 +1,29 @@
+﻿<Window
+	x:Class="Sudoku.UI.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+	<NavigationView
+		x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="False"
+		IsBackButtonVisible="Collapsed" PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
+		ItemInvoked="NavigationView_Main_ItemInvoked">
+		<NavigationView.MenuItems>
+			<NavigationViewItem
+				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit"
+				Content="{StaticResource MainWindow_NavigationViewItem_Content_SudokuPanel}"
+				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}">
+			</NavigationViewItem>
+		</NavigationView.MenuItems>
+		<NavigationView.FooterMenuItems>
+			<NavigationViewItem
+				x:Name="NavigationViewItem_About" Icon="Account"
+				Content="{StaticResource MainWindow_NavigationViewItem_Content_About}"
+				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_About}">
+			</NavigationViewItem>
+		</NavigationView.FooterMenuItems>
+		<Frame x:Name="Frame_NavigationView_Main" />
+	</NavigationView>
+
+</Window>
