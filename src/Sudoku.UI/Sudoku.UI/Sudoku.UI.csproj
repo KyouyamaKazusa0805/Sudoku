@@ -13,6 +13,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="CustomControls\SudokuPanel.xaml" />
 		<None Remove="Pages\MainWindow\AboutPage.xaml" />
 		<None Remove="Pages\MainWindow\SudokuPanelPage.xaml" />
 		<None Remove="Resources\Dic_1033.xaml" />
@@ -66,5 +67,14 @@
 		<Page Update="Pages\MainWindow\SudokuPanelPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Themes\Generic.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="CustomControls\SudokuPanel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 </Project>
