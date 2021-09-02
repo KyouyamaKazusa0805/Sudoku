@@ -8,6 +8,24 @@
 public sealed partial class MainWindow : Window
 {
 	/// <summary>
+	/// Indiates the navigation list.
+	/// </summary>
+	private static readonly (string Tag, Type Type, string Content)[] NavigationInfoList = new[]
+	{
+		(
+			(string)UiResources.Current.MainWindow_NavigationViewItem_Tag_SudokuPanel,
+			typeof(SudokuPanelPage),
+			(string)UiResources.Current.MainWindow_NavigationViewItem_Content_SudokuPanel
+		),
+		(
+			(string)UiResources.Current.MainWindow_NavigationViewItem_Tag_About,
+			typeof(AboutPage),
+			(string)UiResources.Current.MainWindow_NavigationViewItem_Content_About
+		)
+	};
+
+
+	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -25,7 +43,7 @@ public sealed partial class MainWindow : Window
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void InitializeControls()
 	{
-		Title = Ui.Current.MainWindowTitle;
+		Title = UiResources.Current.MainWindowTitle;
 	}
 
 
@@ -37,25 +55,23 @@ public sealed partial class MainWindow : Window
 	private void NavigationView_Main_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 	{
 		string? tag = args.InvokedItemContainer.Tag as string;
-		var (pageType, header) = tag switch
+		var type = Frame_NavigationView_Main.CurrentSourcePageType;
+		try
 		{
-			_ when tag == Ui.Current.MainWindow_NavigationViewItem_Tag_SudokuPanel =>
-				(typeof(SudokuPanelPage), Ui.Current.MainWindow_NavigationViewItem_Content_SudokuPanel),
-			_ when tag == Ui.Current.MainWindow_NavigationViewItem_Tag_About =>
-				(typeof(AboutPage), Ui.Current.MainWindow_NavigationViewItem_Content_About),
-			_ => (null, null)
-		};
+			var (_, pageType, header) = NavigationInfoList.First(triplet =>
+			{
+				var (a, b, c) = triplet;
+				return a == tag && b == type && c is not null;
+			});
 
-		if (pageType == Frame_NavigationView_Main.CurrentSourcePageType || header is null)
-		{
-			// No switch.
-			return;
+			sender.Header = header;
+			Frame_NavigationView_Main.NavigateToType(pageType, null, new FrameNavigationOptions
+			{
+				TransitionInfoOverride = args.RecommendedNavigationTransitionInfo
+			});
 		}
-
-		sender.Header = header;
-		Frame_NavigationView_Main.NavigateToType(pageType, null, new FrameNavigationOptions
+		catch (InvalidOperationException)
 		{
-			TransitionInfoOverride = args.RecommendedNavigationTransitionInfo
-		});
+		}
 	}
 }

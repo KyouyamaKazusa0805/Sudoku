@@ -30,6 +30,20 @@
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
+	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->
+	<!--Loading start-->
+	<ItemGroup>
+		<Compile Remove="Resources\UiResources.RealImpl.cs" Visible="false" />
+	</ItemGroup>
+
+	<Target Name="ResourceHandlingMethods" BeforeTargets="BeforeBuild">
+		<ItemGroup>
+			<Compile Remove="Resources\UiResources.cs" Visible="false" />
+			<Compile Include="Resources\UiResources.RealImpl.cs" Visible="false" />
+		</ItemGroup>
+	</Target>
+	<!--Loading end-->
+
 	<ItemGroup>
 		<Page Update="Pages\MainWindow\AboutPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
