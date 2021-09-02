@@ -1,11 +1,13 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--MainWindow-->
 	<x:String x:Key="MainWindow_NavigationView_Title">数独</x:String>
 	<x:String x:Key="MainWindowTitle">向向的数独解决方案</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">关于</x:String>
 
+	<!--AboutPage-->
 	<x:String x:Key="AboutPage_Title_BasicInfo">基本信息</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorNameDescription">向向 (Sunnie)</x:String>

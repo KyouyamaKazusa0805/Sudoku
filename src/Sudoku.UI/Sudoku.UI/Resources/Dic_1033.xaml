@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--MainWindow-->
 	<x:String x:Key="MainWindowTitle">Sunnie's Sudoku Solution</x:String>
 	<x:String x:Key="MainWindow_NavigationView_Title">Sudoku</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_SudokuPanel">SudokuPanel</x:String>
@@ -8,6 +9,7 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">Sudoku panel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">About</x:String>
 
+	<!--AboutPage-->
 	<x:String x:Key="AboutPage_Title_BasicInfo">Basic information</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">Author name</x:String>
 	<x:String x:Key="AboutPage_AuthorNameDescription">Sunnie</x:String>
