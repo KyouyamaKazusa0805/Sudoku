@@ -27,9 +27,9 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// <item>
 	/// Wings
 	/// <list type="bullet">
-	/// <item><see cref="#">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+	/// <item><see cref="IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
 	/// <item>
-	/// <see cref="#">Irregular wings</see>
+	/// <see cref="IIregularWingStepSearcher">Irregular wings</see>
 	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
 	/// </item>
 	/// </list>
@@ -38,7 +38,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// Short chains
 	/// <list type="bullet">
 	/// <item>
-	/// <see cref="#">Two strong links</see>
+	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see>
 	/// (Skyscraper, Two-string kite, Turbot fish)
 	/// </item>
 	/// <item>
@@ -47,7 +47,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// <see cref="#">ALS-XY-Wing</see>,
 	/// <see cref="#">ALS-W-Wing</see>)
 	/// </item>
-	/// <item><see cref="#">Empty rectangle</see></item>
+	/// <item><see cref="IEmptyRectangleStepSearcher">Empty rectangle</see></item>
 	/// </list>
 	/// </item>
 	/// <item>
@@ -68,15 +68,15 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// <item>
 	/// Bi-value patterns
 	/// <list type="bullet">
-	/// <item><see cref="#">Unique rectangle</see> (i.e. Uniqueness test)</item>
-	/// <item><see cref="#">Unique loop</see></item>
+	/// <item><see cref="IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
+	/// <item><see cref="IUniqueLoopStepSearcher">Unique loop</see></item>
 	/// <item><see cref="#">Bi-value universal grave</see></item>
 	/// </list>
 	/// </item>
 	/// <item>
 	/// Multi-value patterns
 	/// <list type="bullet">
-	/// <item><see cref="#">Extended rectangle</see></item>
+	/// <item><see cref="IExtendedRectangleStepSearcher">Extended rectangle</see></item>
 	/// <item><see cref="#">Unique square</see></item>
 	/// <item><see cref="#">Borescoper's deadly pattern</see></item>
 	/// <item><see cref="#">Qiu's deadly pattern</see></item>
