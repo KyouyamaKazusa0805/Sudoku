@@ -6,7 +6,10 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">关于</x:String>
 
+	<x:String x:Key="AboutPage_Title_BasicInfo">基本信息</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">作者</x:String>
-	<x:String x:Key="AboutPage_AuthorNameDescription">Sunnie（向向）</x:String>
+	<x:String x:Key="AboutPage_AuthorNameDescription">向向 (Sunnie)</x:String>
 	<x:String x:Key="AboutPage_SudokuReferenceTerm">数独参考</x:String>
+	<x:String x:Key="AboutPage_ProjectWikiTerm">项目 Wiki</x:String>
+	<x:String x:Key="AboutPage_Title_Repo">仓库</x:String>
 </ResourceDictionary>

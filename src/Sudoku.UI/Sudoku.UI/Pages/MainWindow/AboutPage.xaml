@@ -4,53 +4,80 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="using:Sudoku.UI"
 	xmlns:interactions="using:Sudoku.UI.Interactions"
-	mc:Ignorable="d"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	mc:Ignorable="d" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
 		<interactions:AboutPageModel x:Name="ViewModel" />
 	</Page.DataContext>
 	<Page.Resources>
+		<!--Custom resources-->
 		<x:Double x:Key="FontSizeDefault">16</x:Double>
+		<Thickness x:Key="NormalThickness">4, 8, 4, 8</Thickness>
+		<Thickness x:Key="DoubleThickness">4, 16, 4, 16</Thickness>
+		
+		<!--Styles-->
 		<Style x:Key="ItemTerm" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Grid.Column" Value="0" />
-			<Setter Property="Margin" Value="5, 8, 5, 8" />
+			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 			<Setter Property="FontSize" Value="{StaticResource FontSizeDefault}" />
 		</Style>
 		<Style x:Key="ItemDescription" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="Grid.Column" Value="1" />
-			<Setter Property="Margin" Value="5, 8, 5, 8" />
+			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 			<Setter Property="FontSize" Value="{StaticResource FontSizeDefault}" />
 		</Style>
 	</Page.Resources>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
+	<StackPanel>
+		<TextBlock
+			Style="{ThemeResource TitleTextBlockStyle}" Text="{StaticResource AboutPage_Title_BasicInfo}"
+			Margin="{StaticResource DoubleThickness}" />
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 
+			<TextBlock
+				Style="{ThemeResource ItemTerm}" Grid.Row="0"
+				Text="{StaticResource AboutPage_AuthorNameTerm}" />
+			<TextBlock
+				Style="{ThemeResource ItemDescription}" Grid.Row="0"
+				Text="{StaticResource AboutPage_AuthorNameDescription}" />
+			<TextBlock
+				Style="{ThemeResource ItemTerm}" Grid.Row="1"
+				Text="{StaticResource AboutPage_SudokuReferenceTerm}" />
+			<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="1">
+				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.VideoTutorial}">
+					<Run Text="{x:Bind Path=ui:HyperLinks.VideoTutorialLink}" />
+				</Hyperlink>
+			</TextBlock>
+			<TextBlock
+				Style="{ThemeResource ItemTerm}" Grid.Row="2"
+				Text="{StaticResource AboutPage_ProjectWikiTerm}" />
+			<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="2">
+				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.ProjectWiki}">
+					<Run Text="{x:Bind Path=ui:HyperLinks.ProjectWikiLink}" />
+				</Hyperlink>
+			</TextBlock>
+		</Grid>
 		<TextBlock
-			Style="{ThemeResource ItemTerm}" Grid.Row="0"
-			Text="{StaticResource AboutPage_AuthorNameTerm}" />
-		<TextBlock
-			Style="{ThemeResource ItemDescription}" Grid.Row="0"
-			Text="{StaticResource AboutPage_AuthorNameDescription}" />
-		<TextBlock
-			Style="{ThemeResource ItemTerm}" Grid.Row="1"
-			Text="{StaticResource AboutPage_SudokuReferenceTerm}" />
-		<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="1">
-			<Hyperlink NavigateUri="https://www.bilibili.com/video/BV1Mx411z7uq">
-				<Run Text="{StaticResource AboutPage_SudokuReferenceDescription}" />
+			Text="{StaticResource AboutPage_Title_Repo}" Style="{ThemeResource TitleTextBlockStyle}"
+			Margin="{StaticResource DoubleThickness}" />
+		<TextBlock Margin="{StaticResource NormalThickness}">
+			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
+				<Run Text="{x:Bind Path=ui:HyperLinks.RepoLink}" />
 			</Hyperlink>
 		</TextBlock>
-	</Grid>
+	</StackPanel>
 
 </Page>

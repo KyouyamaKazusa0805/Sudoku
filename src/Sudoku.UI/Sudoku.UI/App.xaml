@@ -4,20 +4,13 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<Application.Resources>
-
 		<ResourceDictionary>
-
 			<ResourceDictionary.MergedDictionaries>
-
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-
 				<ResourceDictionary Source="Resources/Dic_1033.xaml" />
 				<ResourceDictionary Source="Resources/Dic_2052.xaml" />
-
 			</ResourceDictionary.MergedDictionaries>
-
 		</ResourceDictionary>
-
 	</Application.Resources>
 
 </Application>

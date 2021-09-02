@@ -8,8 +8,10 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">Sudoku panel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">About</x:String>
 
+	<x:String x:Key="AboutPage_Title_BasicInfo">Basic information</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">Author name</x:String>
 	<x:String x:Key="AboutPage_AuthorNameDescription">Sunnie</x:String>
 	<x:String x:Key="AboutPage_SudokuReferenceTerm">Sudoku Reference</x:String>
-	<x:String x:Key="AboutPage_SudokuReferenceDescription">https://www.bilibili.com/video/BV1Mx411z7uq</x:String>
+	<x:String x:Key="AboutPage_ProjectWikiTerm">Project Wiki</x:String>
+	<x:String x:Key="AboutPage_Title_Repo">Repository</x:String>
 </ResourceDictionary>
