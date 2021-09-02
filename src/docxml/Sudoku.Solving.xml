@@ -1578,6 +1578,16 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.Dynamic.IDynamicForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for dynamic forcing chains steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for forcing chains steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher">
             <summary>
             Defines a step searcher that searches for alternating inference chain steps.
@@ -1668,16 +1678,6 @@
             <param name="currRegion">The current region label.</param>
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IDynamicForcingChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for dynamic forcing chains steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IForcingChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for forcing chains steps.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher">
             <summary>
