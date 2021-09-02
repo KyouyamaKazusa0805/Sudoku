@@ -61,7 +61,7 @@ public sealed partial class MainWindow : Window
 			var (_, pageType, header) = NavigationInfoList.First(triplet =>
 			{
 				var (a, b, c) = triplet;
-				return a == tag && b == type && c is not null;
+				return a == tag && b != type && c is not null;
 			});
 
 			sender.Header = header;
