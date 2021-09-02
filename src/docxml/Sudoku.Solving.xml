@@ -896,6 +896,11 @@
             Indicates the invalid first set value
             after called <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>.
             </summary>
+            <remarks>
+            For more details you want to learn about, please visit
+            <see href="https://github.com/dotnet/runtime/blob/a67d5680186ead0c9afdab7e004389c979d5fc1f/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L467">this link</see>
+            to get the inner code.
+            </remarks>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
         </member>
