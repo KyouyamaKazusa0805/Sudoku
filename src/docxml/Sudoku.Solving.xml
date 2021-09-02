@@ -1526,68 +1526,7 @@
             Indicates the technique can't appear because the technique will be replaced with another technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Candidates</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Almost Locked Pair</item>
-            <item>Almost Locked Triple</item>
-            <item>Almost Locked Quadruple</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.Sudoku#Solving#Manual#Searchers#IAlmostLockedCandidatesStepSearcher#CheckForValues">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
-             <summary>
-             Process the calculation.
-             </summary>
-             <param name="result">The result.</param>
-             <param name="grid">The grid.</param>
-             <param name="size">The size.</param>
-             <param name="baseSet">The base set.</param>
-             <param name="coverSet">The cover set.</param>
-             <param name="a">The left grid map.</param>
-             <param name="b">The right grid map.</param>
-             <param name="c">The intersection.</param>
-             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-             <remarks>
-             <para>
-             The diagrams:
-             <code>
-             ALP:
-             abx aby | ab
-             abz     |
-            
-             ALT:
-             abcw abcx | abc abc
-             abcy abcz |
-             </code>
-             </para>
-             <para>Algorithm:</para>
-             <para>
-             If the cell <c>ab</c> (in ALP) or <c>abc</c> (in ALT) is filled with the digit <c>p</c>,
-             then the cells <c>abx</c> and <c>aby</c> (in ALP) and <c>abcw</c> and <c>abcx</c> (in ALT) can't
-             fill the digit <c>p</c>. Therefore the digit <c>p</c> can only be filled into the left-side block.
-             </para>
-             <para>
-             If the block only contains those cells that can contain the digit <c>p</c>, the ALP or ALT will be formed,
-             and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
-             </para>
-             </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher">
             <summary>
             Provides with a <b>Alternating Inference Chain</b> step searcher.
             The step searcher will include the following techniques:
@@ -1628,52 +1567,114 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher">
             <summary>
-            Provides with a <b>Bi-value Oddagon</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Bi-value Oddagon Type 1</item>
-            <item>Bi-value Oddagon Type 2</item>
-            <item>Bi-value Oddagon Type 3</item>
-            <!--<item>Bi-value Oddagon Type 4</item>-->
-            </list>
+            Defines a step searcher that searches for alternating inference chain steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher">
             <summary>
-            Provides with a <b>Empty Rectangle</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Empty Rectangle</item>
-            </list>
+            Defines a step searcher that searches for chain steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.LinkIds">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode,System.Boolean)">
             <summary>
-            Indicates all regions iterating on the specified block
-            forming an empty rectangle.
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="isSimpleAic">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher"/>.
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>The candidate offsets.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{Sudoku.Data.ChainNode},Sudoku.Data.ChainNode)">
+            <summary>
+            Determine whether the specified list contains the specified node value.
+            </summary>
+            <param name="list">The list of nodes.</param>
+            <param name="node">The node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean)">
+            <summary>
+            Get all available weak links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <returns>All possible weak links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode},System.Boolean)">
+            <summary>
+            Get all available strong links.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="p">The current node.</param>
+            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
+            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
+            <param name="enableFastProperties">
+            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>.
+            </param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <param name="isDynamic">
+            Indicates whether the current searcher is searching for dynamic chains. If so,
+            we can't use those static properties to optimize the performance.
+            </param>
+            <returns>All possible strong links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
+            <summary>
+            Add hidden parents of a cell.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
+            <summary>
+            Add hidden parents of a region.
+            </summary>
+            <param name="p">The node.</param>
+            <param name="grid">The grid.</param>
+            <param name="source">The source grid.</param>
+            <param name="currRegion">The current region label.</param>
+            <param name="offNodes">All off nodes.</param>
+            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IDynamicForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for dynamic forcing chains steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for forcing chains steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher">
             <summary>
             Provides with an <b>Extended Rectangle</b> step searcher.
             The step searcher will include the following techniques:
@@ -1685,7 +1686,7 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos">
+        <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.PatternInfos">
             <summary>
             Indicates all possible extended rectangle pattern combinations.
             </summary>
@@ -1708,20 +1709,20 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.#cctor">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.#cctor">
             <summary>
             Defines a <see langword="static"/> constructor that initializes
-            the <see langword="static readonly"/> field <see cref="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos"/>.
+            the <see langword="static readonly"/> field <see cref="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.PatternInfos"/>.
             </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.PatternInfos"/>
+            <seealso cref="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.PatternInfos"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1734,7 +1735,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1747,7 +1748,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1760,10 +1761,10 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Check type 4 and a part of type 1 that the method
-            <see cref="M:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)"/>
+            <see cref="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean)"/>
             cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
@@ -1774,160 +1775,836 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher">
-            <summary>
-            Defines a step searcher that searches for almost locked candidates steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
-            <summary>
-            Indicates whether the user checks the almost locked quadruple.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IAlmostLockedCandidatesStepSearcher.CheckForValues">
-            <summary>
-            Indicates whether the searcher checks for values (givens and modifiables)
-            to form an almost locked candidates. If the value is <see langword="true"/>,
-            some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for alternating inference chain steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IBivalueOddagonStepSearcher">
-            <summary>
-            Defines a step searcher that searches for bi-value oddagon steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for chain steps.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode,System.Boolean)">
-            <summary>
-            Get highlight candidate offsets through the specified target node.
-            </summary>
-            <param name="target">The target node.</param>
-            <param name="isSimpleAic">
-            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
-            The default value is <see langword="false"/>.
-            </param>
-            <returns>The candidate offsets.</returns>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode,System.Boolean)">
-            <summary>
-            Get the links through the specified target node.
-            </summary>
-            <param name="target">The target node.</param>
-            <param name="showAllLinks">
-            Indicates whether the current chain will display all chains (even contains the weak links
-            from the elimination node). The default value is <see langword="false"/>. If you want to
-            draw the AIC, the elimination weak links don't need drawing.
-            </param>
-            <returns>The link.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{Sudoku.Data.ChainNode},Sudoku.Data.ChainNode)">
-            <summary>
-            Determine whether the specified list contains the specified node value.
-            </summary>
-            <param name="list">The list of nodes.</param>
-            <param name="node">The node to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean)">
-            <summary>
-            Get all available weak links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <returns>All possible weak links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode},System.Boolean)">
-            <summary>
-            Get all available strong links.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="p">The current node.</param>
-            <param name="xEnabled">Indicates whether the X-Chains are enabled.</param>
-            <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
-            <param name="enableFastProperties">
-            Indicates whether the caller has enabled <see cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>.
-            </param>
-            <param name="source">The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <param name="isDynamic">
-            Indicates whether the current searcher is searching for dynamic chains. If so,
-            we can't use those static properties to optimize the performance.
-            </param>
-            <returns>All possible strong links.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
-            <summary>
-            Add hidden parents of a cell.
-            </summary>
-            <param name="p">The node.</param>
-            <param name="grid">The grid.</param>
-            <param name="source">The source grid.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
-            <summary>
-            Add hidden parents of a region.
-            </summary>
-            <param name="p">The node.</param>
-            <param name="grid">The grid.</param>
-            <param name="source">The source grid.</param>
-            <param name="currRegion">The current region label.</param>
-            <param name="offNodes">All off nodes.</param>
-            <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IDeadlyPatternStepSearcher">
-            <summary>
-            Defines a step searcher that searches for deadly pattern steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for dynamic forcing chains steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">
-            <summary>
-            Defines a step searcher that searches for an empty rectangle step.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Check whether the cells form an empty rectangle.
-            </summary>
-            <param name="this">The empty cell grid map.</param>
-            <param name="block">The block.</param>
-            <param name="row">The row.</param>
-            <param name="column">The column.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.IExtendedRectangleStepSearcher">
             <summary>
             Defines a searcher that searches for extended rectangle steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IFishStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.IDeadlyPatternStepSearcher">
+            <summary>
+            Defines a step searcher that searches for deadly pattern steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.IUniqueLoopStepSearcher">
+            <summary>
+            Defines a step searcher that searches for unique loop steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.IUniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Checks whether the specified loop of cells is a valid loop.
+            </summary>
+            <param name="loopCells">The loop cells.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher">
+            <summary>
+            Provides with a <b>Unique Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Loop Type 1</item>
+            <item>Unique Loop Type 2</item>
+            <item>Unique Loop Type 3</item>
+            <item>Unique Loop Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="loop">The loop.</param>
+            <param name="links">The links.</param>
+            <param name="extraCellsMap">The extra cells map.</param>
+            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
+            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <returns>The step is worth.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher">
+            <summary>
+            Defines a step searcher that searches for unique rectangle steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
+            <summary>
+            Indicates whether the UR can be incomplete. In other words,
+            some of UR candidates can be removed before the pattern forms.
+            </summary>
+            <remarks>
+            For example, the complete pattern is:
+            <code>
+            ab  |  ab
+            ab  |  ab
+            </code>
+            This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
+            The incomplete pattern may not contain all four <c>ab</c>s in the structure.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
+            <summary>
+            Indicates whether the searcher can search for extended URs.
+            </summary>
+            <remarks>
+            The basic types are type 1 to type 6, all other types are extended ones.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher">
+            <summary>
+            Provides with a <b>Unique Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
+            <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
+            <item>Unique Rectangle Type 4, 6</item>
+            <item>Hidden Unique/Avoidable Rectangle</item>
+            </list>
+            </item>
+            <item>
+            Unique Rectangle with structures:
+            <list type="bullet">
+            <item>Unique Rectangle with Conjugate Pair</item>
+            <item>Avoidable Rectangle with Hidden Single</item>
+            <item>Unique Rectangle with Unknown Covering</item>
+            <item>Unique Rectangle with Sue de Coq</item>
+            <item>Unique Rectangle with Guardian</item>
+            </list>
+            </item>
+            <item>
+            Miscellaneous:
+            <list type="bullet">
+            <item>Unique Rectangle 2D, 3X</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Boolean)">
+            <summary>
+            Get all possible hints from the grid.
+            </summary>
+            <param name="gathered">The list stored the result.</param>
+            <param name="grid">The grid.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Data.Grid@,System.Int32[],System.Boolean)">
+            <summary>
+            Check preconditions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+            <returns>Indicates whether the UR is passed to check.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            To determine whether the specified region forms a conjugate pair
+            of the specified digit, and the cells where they contain the digit
+            is same as the given map contains.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}})">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="list">The list to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
+            <summary>
+            Get a cell that can't see each other.
+            </summary>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified argument <paramref name="cell"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.IsSameRegionCell(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Get whether two cells are in a same region.
+            </summary>
+            <param name="cell1">The cell 1 to check.</param>
+            <param name="cell2">The cell 2 to check.</param>
+            <param name="region">
+            The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
+            </param>
+            <returns>
+            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same region as the current one.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
+            <summary>
+            Get all highlight cells.
+            </summary>
+            <param name="urCells">The all UR cells used.</param>
+            <returns>The list of highlight cells.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 1.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ cornerCell
+            | (abc) ab
+            |  ab   ab
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 2.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ corner1, corner2
+            | (abc) (abc)
+            |  ab    ab
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ corner1, corner2
+            | (ab ) (ab )
+            |  abx   aby
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 4.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ corner1, corner2
+            | (ab ) ab
+            |  abx  aby
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 5.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab ) abc
+            |  abc  abc
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check type 6.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ corner1
+            | (ab )  aby
+            |  abx  (ab)
+            |        ↑corner2
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check hidden UR.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab ) abx
+            |  aby  abz
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+2D.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ corner1
+            | (ab )  abx
+            |  aby  (ab )  xy  *
+            |         ↑ corner2
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+2B/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ corner1, corner2
+            | (ab )  (ab )
+            |  |
+            |  | a
+            |  |
+            |  abx    aby
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+2D/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ corner1
+            | (ab )   aby
+            |  |
+            |  | a
+            |  |
+            |  abx   (ab )
+            |          ↑ corner2
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+3X.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab )  abx
+            |  aby   abz   xy  *
+            </code>
+            Note: <c>z</c> is <c>x</c> or <c>y</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+3X/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab )    abx
+            |           |
+            |           | b
+            |       a   |
+            |  aby-----abz
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+3N/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab )-----abx
+            |        a   |
+            |            | b
+            |            |
+            |  aby      abz
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+3U/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |  ↓ cornerCell
+            | (ab )-----abx
+            |        a
+            |
+            |        b
+            |  aby -----abz
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+3E/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ cornerCell
+            | (ab )-----abx
+            |        a
+            |
+            |        a
+            |  aby -----abz
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+4X/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |   ↓ corner1, corner2
+            | (abx)-----(aby)
+            |        a    |
+            |             | b
+            |        a    |
+            |  abz ----- abw
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+4C/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code>
+            |   ↓ corner1, corner2
+            | (abx)-----(aby)
+            |        a    |
+            |             | a
+            |        b    |
+            |  abz ----- abw
+            </code>
+            </para>
+            <para>
+            Subtype 2:
+            <code>
+            |   ↓ corner1, corner2
+            | (abx)-----(aby)
+            |   |    a    |
+            |   | b       | a
+            |   |         |
+            |  abz       abw
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+            <summary>
+            Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="size">The size of the wing to search.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code>
+            |   ↓ corner1
+            | (ab )  abxy  yz  xz
+            | (ab )  abxy  *
+            |   ↑ corner2
+            </code>
+            Note that the pair of cells <c>abxy</c> should be in the same region.
+            </para>
+            <para>
+            Subtype 2:
+            <code>
+            |   ↓ corner1
+            | (ab )  abx   xz
+            |  aby  (ab )  *   yz
+            |         ↑ corner2
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckSdc(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check UR+SdC.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code>
+            |           |   xyz
+            |  ab+ ab+  | abxyz abxyz
+            |           |   xyz
+            | ----------+------------
+            | (ab)(ab)  |
+            |  ↑ corner1, corner2
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckUnknownCoveringUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR+Unknown covering.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code>
+            |      ↓urCellInSameBlock
+            | ab  abc      abc  ←anotherCell
+            |
+            |     abcx-----abcy ←resultCell
+            |           c
+            |      ↑targetCell
+            </code>
+            Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
+            </para>
+            <para>
+            Subtype 2:
+            <code>
+            | abcx   | ab  abc
+            |  |     |
+            |  | c   |
+            |  |     |
+            | abcy   |     abc
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckGuardianUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR+Guardian.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+            <summary>
+            Check AR+Hidden single.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Patterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher">
             <summary>
             Defines a step searcher that searches for fish steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.MaxSize">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher.MaxSize">
             <summary>
             Indicates the maximum size the searcher can search for.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher.IsSashimi(System.Int32[],Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
             </summary>
@@ -1952,25 +2629,68 @@
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IForcingChainStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.INormalFishStepSearcher">
             <summary>
-            Defines a step searcher that searches for forcing chains steps.
+            Defines a step searcher that searches for normal fish steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IIntersectionStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher">
             <summary>
-            Defines a step searcher that searches for intersection steps.
+            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>X-Wing</item>
+            <item>Swordfish</item>
+            <item>Jellyfish</item>
+            <item>Finned X-Wing</item>
+            <item>Finned Swordfish</item>
+            <item>Finned Jellyfish</item>
+            <item>Sashimi X-Wing</item>
+            <item>Sashimi Swordfish</item>
+            <item>Sashimi Jellyfish</item>
+            </list>
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher">
-            <summary>
-            Defines a step searcher that searches for irregular wing steps.
-            </summary>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher.Options">
+            <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ILockedCandidatesStepSearcher">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher.Sudoku#Solving#Manual#Searchers#Fishes#IFishStepSearcher#MaxSize">
+            <inheritdoc/>
+            <remarks>
+            I hide this member on purpose because 4 is the maximum size of subsets found in practice.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Defines a step searcher that searches for locked candidates steps.
+            Get all possible normal fishes.
             </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="size">The size.</param>
+            <param name="r">The possible row table to iterate.</param>
+            <param name="c">The possible column table to iterate.</param>
+            <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
+            <param name="searchRow">
+            Indicates whether the searcher searches for fishes in the direction of rows.
+            </param>
+            <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.NormalFishStepSearcher.GetDirectView(Sudoku.Data.Grid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
+            <summary>
+            Get the direct fish view with the specified grid and the base sets.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="baseSets">The base sets.</param>
+            <param name="coverSets">The cover sets.</param>
+            <param name="fins">
+            The cells of the fin in the current fish.
+            </param>
+            <param name="searchRow">Indicates whether the current searcher searches row.</param>
+            <returns>The view.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ILoopLikeStepSearcher">
             <summary>
@@ -1984,84 +2704,6 @@
             <param name="this">The list of cells.</param>
             <param name="offset">The offset. The default value is <c>4</c>.</param>
             <returns>All links.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.INormalFishStepSearcher">
-            <summary>
-            Defines a step searcher that searches for normal fish steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IRankTheoryStepSearcher">
-            <summary>
-            Defines a step searcher that searches for rank theory steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">
-            <summary>
-            Defines a step searcher that searches for regular wing steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher.MaxSize">
-            <summary>
-            Indicates the maximum size the searcher will search for. The maximum possible value is 9.
-            </summary>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ISingleDigitPatternStepSearcher">
-            <summary>
-            Defines a step searcher that searches for single-digit-pattern steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher">
-            <summary>
-            Defines a step searcher that searches for single steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableFullHouse">
-            <summary>
-            Indicates whether the solver enables the technique full house.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.EnableLastDigit">
-            <summary>
-            Indicates whether the solver enables the technique last digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ISingleStepSearcher.ShowDirectLines">
-            <summary>
-            Indicates whether the solver shows the direct lines (cross-hatching information).
-            </summary>
-            <remarks>
-            <para>
-            <b>Direct line</b>s is a concept that describes the crosshatching information of a hidden single.
-            For example, in this following grid:
-            <code>
-            .---------.---------.---------.
-            | .  .  . | .  .  . | .  .  . |
-            | .  .  . | .  .  1 | .  .  . |
-            | .  .  . | .  .  . | .  .  . |
-            :---------+---------+---------:
-            | .  .  1 | x  x  x | .  .  . |
-            | .  .  . | x  .  x | .  .  . |
-            | .  .  . | x  x  x | 1  .  . |
-            :---------+---------+---------:
-            | .  .  . | .  .  . | .  .  . |
-            | .  .  . | 1  .  . | .  .  . |
-            | .  .  . | .  .  . | .  .  . |
-            '---------'---------'---------'
-            </code>
-            The start point of the direct lines are:
-            <list type="bullet">
-            <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c>.</item>
-            <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c>.</item>
-            <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c>.</item>
-            <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c>.</item>
-            </list>
-            </para>
-            <para>
-            All the end points may be displayed using a cross mark ('<c>x</c>'), and the start
-            point may be used a circle mark ('<c>o</c>').
-            </para>
-            </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IStepSearcher">
             <summary>
@@ -2111,21 +2753,6 @@
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher">
-            <summary>
-            Defines a step searcher that searches for subset steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.ISubsetStepSearcher.MaxSize">
-            <summary>
-            Indicates the maximum size of the searcher can search for.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.ITwoStrongLinksStepSearcher">
-            <summary>
-            Defines a step searcher that searches for two-strong-link steps.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher">
             <summary>
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
@@ -2149,52 +2776,95 @@
             </param>
             <param name="loops">The possible loops found.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique loop steps.
+            Provides with an <b>Almost Locked Candidates</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Pair</item>
+            <item>Almost Locked Triple</item>
+            <item>Almost Locked Quadruple</item>
+            </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            Checks whether the specified loop of cells is a valid loop.
-            </summary>
-            <param name="loopCells">The loop cells.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
+            <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher.Sudoku#Solving#Manual#Searchers#Intersections#IAlmostLockedCandidatesStepSearcher#CheckForValues">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Intersections.AlmostLockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
+             <summary>
+             Process the calculation.
+             </summary>
+             <param name="result">The result.</param>
+             <param name="grid">The grid.</param>
+             <param name="size">The size.</param>
+             <param name="baseSet">The base set.</param>
+             <param name="coverSet">The cover set.</param>
+             <param name="a">The left grid map.</param>
+             <param name="b">The right grid map.</param>
+             <param name="c">The intersection.</param>
+             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+             <remarks>
+             <para>
+             The diagrams:
+             <code>
+             ALP:
+             abx aby | ab
+             abz     |
+            
+             ALT:
+             abcw abcx | abc abc
+             abcy abcz |
+             </code>
+             </para>
+             <para>Algorithm:</para>
+             <para>
+             If the cell <c>ab</c> (in ALP) or <c>abc</c> (in ALT) is filled with the digit <c>p</c>,
+             then the cells <c>abx</c> and <c>aby</c> (in ALP) and <c>abcw</c> and <c>abcx</c> (in ALT) can't
+             fill the digit <c>p</c>. Therefore the digit <c>p</c> can only be filled into the left-side block.
+             </para>
+             <para>
+             If the block only contains those cells that can contain the digit <c>p</c>, the ALP or ALT will be formed,
+             and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
+             </para>
+             </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Intersections.IAlmostLockedCandidatesStepSearcher">
             <summary>
-            Defines a step searcher that searches for unique rectangle steps.
+            Defines a step searcher that searches for almost locked candidates steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.IAlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
             <summary>
-            Indicates whether the UR can be incomplete. In other words,
-            some of UR candidates can be removed before the pattern forms.
-            </summary>
-            <remarks>
-            For example, the complete pattern is:
-            <code>
-            ab  |  ab
-            ab  |  ab
-            </code>
-            This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
-            The incomplete pattern may not contain all four <c>ab</c>s in the structure.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
-            <summary>
-            Indicates whether the searcher can search for extended URs.
-            </summary>
-            <remarks>
-            The basic types are type 1 to type 6, all other types are extended ones.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IWingStepSearcher">
-            <summary>
-            Defines a step searcher that searches for wing steps.
+            Indicates whether the user checks the almost locked quadruple.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.IAlmostLockedCandidatesStepSearcher.CheckForValues">
+            <summary>
+            Indicates whether the searcher checks for values (givens and modifiables)
+            to form an almost locked candidates. If the value is <see langword="true"/>,
+            some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Intersections.IIntersectionStepSearcher">
+            <summary>
+            Defines a step searcher that searches for intersection steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Intersections.ILockedCandidatesStepSearcher">
+            <summary>
+            Defines a step searcher that searches for locked candidates steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Intersections.LockedCandidatesStepSearcher">
             <summary>
             Provides with a <b>Locked Candidates</b> step searcher.
             The step searcher will include the following techniques:
@@ -2204,10 +2874,10 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Intersections.LockedCandidatesStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Intersections.LockedCandidatesStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             <para>
@@ -2243,96 +2913,150 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher">
             <summary>
-            Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>X-Wing</item>
-            <item>Swordfish</item>
-            <item>Jellyfish</item>
-            <item>Finned X-Wing</item>
-            <item>Finned Swordfish</item>
-            <item>Finned Jellyfish</item>
-            <item>Sashimi X-Wing</item>
-            <item>Sashimi Swordfish</item>
-            <item>Sashimi Jellyfish</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.Sudoku#Solving#Manual#Searchers#IFishStepSearcher#MaxSize">
-            <inheritdoc/>
-            <remarks>
-            I hide this member on purpose because 4 is the maximum size of subsets found in practice.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Get all possible normal fishes.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="size">The size.</param>
-            <param name="r">The possible row table to iterate.</param>
-            <param name="c">The possible column table to iterate.</param>
-            <param name="withFin">Indicates whether the searcher will check for the existence of fins.</param>
-            <param name="searchRow">
-            Indicates whether the searcher searches for fishes in the direction of rows.
-            </param>
-            <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.NormalFishStepSearcher.GetDirectView(Sudoku.Data.Grid@,System.Int32,System.Int32[],System.Int32[],Sudoku.Data.Cells@,System.Boolean)">
-            <summary>
-            Get the direct fish view with the specified grid and the base sets.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="coverSets">The cover sets.</param>
-            <param name="fins">
-            The cells of the fin in the current fish.
-            </param>
-            <param name="searchRow">Indicates whether the current searcher searches row.</param>
-            <returns>The view.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher">
-            <summary>
-            Provides with a <b>Regular Wing</b> step searcher.
+            Provides with a <b>Bi-value Oddagon</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>XY-Wing</item>
-            <item>XYZ-Wing</item>
-            <item>WXYZ-Wing</item>
-            <item>VWXYZ-Wing</item>
-            <item>UVWXYZ-Wing</item>
-            <item>TUVWXYZ-Wing</item>
-            <item>STUVWXYZ-Wing</item>
-            <item>RSTUVWXYZ-Wing</item>
+            <item>Bi-value Oddagon Type 1</item>
+            <item>Bi-value Oddagon Type 2</item>
+            <item>Bi-value Oddagon Type 3</item>
+            <!--<item>Bi-value Oddagon Type 4</item>-->
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher._maxSize">
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IBivalueOddagonStepSearcher">
             <summary>
-            The inner field of the property <see cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>.
+            Defines a step searcher that searches for bi-value oddagon steps.
             </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.MaxSize">
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IRankTheoryStepSearcher">
+            <summary>
+            Defines a step searcher that searches for rank theory steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher">
+            <summary>
+            Provides with a <b>Empty Rectangle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.Options">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="F:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher.LinkIds">
+            <summary>
+            Indicates all regions iterating on the specified block
+            forming an empty rectangle.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IEmptyRectangleStepSearcher">
+            <summary>
+            Defines a step searcher that searches for an empty rectangle step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IEmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Data.Cells@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Check whether the cells form an empty rectangle.
+            </summary>
+            <param name="this">The empty cell grid map.</param>
+            <param name="block">The block.</param>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.ISingleDigitPatternStepSearcher">
+            <summary>
+            Defines a step searcher that searches for single-digit-pattern steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.ITwoStrongLinksStepSearcher">
+            <summary>
+            Defines a step searcher that searches for two-strong-link steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.TwoStrongLinksStepSearcher">
+            <summary>
+            Provides with a <b>Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Skyscraper</item>
+            <item>Two-string Kite</item>
+            <item>Turbot Fish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.TwoStrongLinksStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SingleStepSearcher">
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher">
+            <summary>
+            Defines a step searcher that searches for single steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher.EnableFullHouse">
+            <summary>
+            Indicates whether the solver enables the technique full house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher.EnableLastDigit">
+            <summary>
+            Indicates whether the solver enables the technique last digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher.ShowDirectLines">
+            <summary>
+            Indicates whether the solver shows the direct lines (cross-hatching information).
+            </summary>
+            <remarks>
+            <para>
+            <b>Direct line</b>s is a concept that describes the crosshatching information of a hidden single.
+            For example, in this following grid:
+            <code>
+            .---------.---------.---------.
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | .  .  1 | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            :---------+---------+---------:
+            | .  .  1 | x  x  x | .  .  . |
+            | .  .  . | x  .  x | .  .  . |
+            | .  .  . | x  x  x | 1  .  . |
+            :---------+---------+---------:
+            | .  .  . | .  .  . | .  .  . |
+            | .  .  . | 1  .  . | .  .  . |
+            | .  .  . | .  .  . | .  .  . |
+            '---------'---------'---------'
+            </code>
+            The start point of the direct lines are:
+            <list type="bullet">
+            <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c>.</item>
+            <item><c>r2c6(1)</c>, removes the cases of digit 1 for cells <c>r456c6</c>.</item>
+            <item><c>r6c7(1)</c>, removes the cases of digit 1 for cells <c>r6c456</c>.</item>
+            <item><c>r8c4(1)</c>, removes the cases of digit 1 for cells <c>r456c4</c>.</item>
+            </list>
+            </para>
+            <para>
+            All the end points may be displayed using a cross mark ('<c>x</c>'), and the start
+            point may be used a circle mark ('<c>o</c>').
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher">
             <summary>
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
@@ -2343,22 +3067,32 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableFullHouse">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableFullHouse">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.EnableLastDigit">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableLastDigit">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.ShowDirectLines">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.ShowDirectLines">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Subsets.ISubsetStepSearcher">
+            <summary>
+            Defines a step searcher that searches for subset steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Subsets.ISubsetStepSearcher.MaxSize">
+            <summary>
+            Indicates the maximum size of the searcher can search for.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Subsets.SubsetStepSearcher">
             <summary>
             Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
@@ -2376,805 +3110,71 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Subsets.SubsetStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.Sudoku#Solving#Manual#Searchers#ISubsetStepSearcher#MaxSize">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Subsets.SubsetStepSearcher.Sudoku#Solving#Manual#Searchers#Subsets#ISubsetStepSearcher#MaxSize">
             <inheritdoc/>
             <remarks>
             I hide this member on purpose because 4 is the maximum size of subsets found in practice.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.SubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Subsets.SubsetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Wings.IIregularWingStepSearcher">
             <summary>
-            Provides with a <b>Two-strong Links</b> step searcher.
+            Defines a step searcher that searches for irregular wing steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Wings.IRegularWingStepSearcher">
+            <summary>
+            Defines a step searcher that searches for regular wing steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Wings.IRegularWingStepSearcher.MaxSize">
+            <summary>
+            Indicates the maximum size the searcher will search for. The maximum possible value is 9.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <c>value</c> is greater than 9.</exception>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Wings.IWingStepSearcher">
+            <summary>
+            Defines a step searcher that searches for wing steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher">
+            <summary>
+            Provides with a <b>Regular Wing</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Skyscraper</item>
-            <item>Two-string Kite</item>
-            <item>Turbot Fish</item>
+            <item>XY-Wing</item>
+            <item>XYZ-Wing</item>
+            <item>WXYZ-Wing</item>
+            <item>VWXYZ-Wing</item>
+            <item>UVWXYZ-Wing</item>
+            <item>TUVWXYZ-Wing</item>
+            <item>STUVWXYZ-Wing</item>
+            <item>RSTUVWXYZ-Wing</item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.Options">
+        <member name="F:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher._maxSize">
+            <summary>
+            The inner field of the property <see cref="P:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher.MaxSize"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher.MaxSize"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher.MaxSize">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.TwoStrongLinksStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher">
-            <summary>
-            Provides with a <b>Unique Loop</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Unique Loop Type 1</item>
-            <item>Unique Loop Type 2</item>
-            <item>Unique Loop Type 3</item>
-            <item>Unique Loop Type 4</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.Options">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Wings.RegularWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
-            <summary>
-            Check type 1.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 2.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 3.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
-            <summary>
-            Check type 4.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="loop">The loop.</param>
-            <param name="links">The links.</param>
-            <param name="extraCellsMap">The extra cells map.</param>
-            <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-            <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-            <returns>The step is worth.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher">
-            <summary>
-            Provides with a <b>Unique Rectangle</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Basic types:
-            <list type="bullet">
-            <item>Unique/Avoidable Rectangle Type 1, 2, 3, 5</item>
-            <item>Unique Rectangle Type 4, 6</item>
-            <item>Hidden Unique/Avoidable Rectangle</item>
-            </list>
-            </item>
-            <item>
-            Unique Rectangle with structures:
-            <list type="bullet">
-            <item>Unique Rectangle with Conjugate Pair</item>
-            <item>Avoidable Rectangle with Hidden Single</item>
-            <item>Unique Rectangle with Unknown Covering</item>
-            <item>Unique Rectangle with Sue de Coq</item>
-            <item>Unique Rectangle with Guardian</item>
-            </list>
-            </item>
-            <item>
-            Miscellaneous:
-            <list type="bullet">
-            <item>Unique Rectangle 2D, 3X</item>
-            </list>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Options">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Boolean)">
-            <summary>
-            Get all possible hints from the grid.
-            </summary>
-            <param name="gathered">The list stored the result.</param>
-            <param name="grid">The grid.</param>
-            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Data.Grid@,System.Int32[],System.Boolean)">
-            <summary>
-            Check preconditions.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-            <returns>Indicates whether the UR is passed to check.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            To determine whether the specified region forms a conjugate pair
-            of the specified digit, and the cells where they contain the digit
-            is same as the given map contains.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="map">The map.</param>
-            <param name="region">The region.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}})">
-            <summary>
-            Check whether the highlight UR candidates is incomplete.
-            </summary>
-            <param name="list">The list to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
-            <summary>
-            Get a cell that can't see each other.
-            </summary>
-            <param name="urCells">The UR cells.</param>
-            <param name="cell">The current cell.</param>
-            <returns>The diagonal cell.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified argument <paramref name="cell"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsSameRegionCell(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Get whether two cells are in a same region.
-            </summary>
-            <param name="cell1">The cell 1 to check.</param>
-            <param name="cell2">The cell 2 to check.</param>
-            <param name="region">
-            The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
-            </param>
-            <returns>
-            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same region as the current one.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
-            <summary>
-            Get all highlight cells.
-            </summary>
-            <param name="urCells">The all UR cells used.</param>
-            <returns>The list of highlight cells.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 1.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ cornerCell
-            | (abc) ab
-            |  ab   ab
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 2.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ corner1, corner2
-            | (abc) (abc)
-            |  ab    ab
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 3.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">
-            The map of other cells during the current UR searching.
-            </param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ corner1, corner2
-            | (ab ) (ab )
-            |  abx   aby
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 4.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">
-            The map of other cells during the current UR searching.
-            </param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ corner1, corner2
-            | (ab ) ab
-            |  abx  aby
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 5.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab ) abc
-            |  abc  abc
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check type 6.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ corner1
-            | (ab )  aby
-            |  abx  (ab)
-            |        ↑corner2
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check hidden UR.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab ) abx
-            |  aby  abz
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+2D.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ corner1
-            | (ab )  abx
-            |  aby  (ab )  xy  *
-            |         ↑ corner2
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+2B/1SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ corner1, corner2
-            | (ab )  (ab )
-            |  |
-            |  | a
-            |  |
-            |  abx    aby
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+2D/1SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ corner1
-            | (ab )   aby
-            |  |
-            |  | a
-            |  |
-            |  abx   (ab )
-            |          ↑ corner2
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+3X.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab )  abx
-            |  aby   abz   xy  *
-            </code>
-            Note: <c>z</c> is <c>x</c> or <c>y</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+3X/2SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab )    abx
-            |           |
-            |           | b
-            |       a   |
-            |  aby-----abz
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+3N/2SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab )-----abx
-            |        a   |
-            |            | b
-            |            |
-            |  aby      abz
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+3U/2SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |  ↓ cornerCell
-            | (ab )-----abx
-            |        a
-            |
-            |        b
-            |  aby -----abz
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+3E/2SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ cornerCell
-            | (ab )-----abx
-            |        a
-            |
-            |        a
-            |  aby -----abz
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+4X/3SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |   ↓ corner1, corner2
-            | (abx)-----(aby)
-            |        a    |
-            |             | b
-            |        a    |
-            |  abz ----- abw
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+4C/3SL.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            <para>The structures:</para>
-            <para>
-            Subtype 1:
-            <code>
-            |   ↓ corner1, corner2
-            | (abx)-----(aby)
-            |        a    |
-            |             | a
-            |        b    |
-            |  abz ----- abw
-            </code>
-            </para>
-            <para>
-            Subtype 2:
-            <code>
-            |   ↓ corner1, corner2
-            | (abx)-----(aby)
-            |   |    a    |
-            |   | b       | a
-            |   |         |
-            |  abz       abw
-            </code>
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32)">
-            <summary>
-            Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="size">The size of the wing to search.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            <para>The structures:</para>
-            <para>
-            Subtype 1:
-            <code>
-            |   ↓ corner1
-            | (ab )  abxy  yz  xz
-            | (ab )  abxy  *
-            |   ↑ corner2
-            </code>
-            Note that the pair of cells <c>abxy</c> should be in the same region.
-            </para>
-            <para>
-            Subtype 2:
-            <code>
-            |   ↓ corner1
-            | (ab )  abx   xz
-            |  aby  (ab )  *   yz
-            |         ↑ corner2
-            </code>
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSdc(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check UR+SdC.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The structure:
-            <code>
-            |           |   xyz
-            |  ab+ ab+  | abxyz abxyz
-            |           |   xyz
-            | ----------+------------
-            | (ab)(ab)  |
-            |  ↑ corner1, corner2
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckUnknownCoveringUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Check UR+Unknown covering.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="comparer">The comparer.</param>
-            <param name="d1">The digit 1.</param>
-            <param name="d2">The digit 2.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            <para>The structures:</para>
-            <para>
-            Subtype 1:
-            <code>
-            |      ↓urCellInSameBlock
-            | ab  abc      abc  ←anotherCell
-            |
-            |     abcx-----abcy ←resultCell
-            |           c
-            |      ↑targetCell
-            </code>
-            Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
-            </para>
-            <para>
-            Subtype 2:
-            <code>
-            | abcx   | ab  abc
-            |  |     |
-            |  | c   |
-            |  |     |
-            | abcy   |     abc
-            </code>
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckGuardianUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Check UR+Guardian.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="index">The index.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
-            <summary>
-            Check AR+Hidden single.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">
-            The map of other cells during the current UR searching.
-            </param>
-            <param name="index">The index.</param>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Patterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.WWingStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Wings.WWingStepSearcher">
             <summary>
             Provides with a <b>W-Wing</b> step searcher.
             The step searcher will include the following techniques:
@@ -3183,10 +3183,10 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.Options">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Wings.WWingStepSearcher.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Wings.WWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
             <remarks>
             In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
