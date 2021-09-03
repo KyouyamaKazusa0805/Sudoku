@@ -23,6 +23,12 @@ public static class HyperLinks
 	/// <seealso cref="ProjectWiki"/>
 	public const string ProjectWikiLink = "https://sunnieshine.github.io/Sudoku";
 
+	/// <summary>
+	/// Indicates the direct link that referenced by <see cref="RepoGitee"/>.
+	/// </summary>
+	/// <seealso cref="RepoGitee"/>
+	public const string RepoGiteeLink = "https://gitee.com/SunnieShine/Sudoku";
+
 
 	/// <summary>
 	/// Indicates the website that is the series of video-formed sudoku tutorial.
@@ -30,7 +36,7 @@ public static class HyperLinks
 	public static readonly Uri VideoTutorial = new(VideoTutorialLink);
 
 	/// <summary>
-	/// Indicates the website that is the repository site on GitHub.
+	/// Indicates the website that is the GitHub repository site, which is the main repository site.
 	/// </summary>
 	public static readonly Uri Repo = new(RepoLink);
 
@@ -38,4 +44,9 @@ public static class HyperLinks
 	/// Indicates the website that is the project wiki related to the repository on GitHub.
 	/// </summary>
 	public static readonly Uri ProjectWiki = new(ProjectWikiLink);
+
+	/// <summary>
+	/// Indicates the website that is the Gitee repository site.
+	/// </summary>
+	public static readonly Uri RepoGitee = new(RepoGiteeLink);
 }

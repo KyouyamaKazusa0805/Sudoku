@@ -72,11 +72,19 @@
 			</TextBlock>
 		</Grid>
 		<TextBlock
-			Text="{StaticResource AboutPage_Title_Repo}" Style="{ThemeResource TitleTextBlockStyle}"
+			Text="{StaticResource AboutPage_Disclaimer_Term}" Style="{ThemeResource TitleTextBlockStyle}"
 			Margin="{StaticResource DoubleThickness}" />
+		<TextBox
+			IsReadOnly="True" AutomationProperties.Name="multi-line TextBox" TextWrapping="Wrap"
+			Text="{StaticResource AboutPage_Disclaimer_Description}"
+			Margin="{StaticResource NoVerticalThickness}" />
 		<TextBlock Margin="{StaticResource NoVerticalThickness}">
 			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
-				<Run Text="{x:Bind Path=ui:HyperLinks.RepoLink}" />
+				<Run Text="GitHub" />
+			</Hyperlink>
+			<Run Text=", " />
+			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.RepoGitee}">
+				<Run Text="Gitee" />
 			</Hyperlink>
 		</TextBlock>
 	</StackPanel>

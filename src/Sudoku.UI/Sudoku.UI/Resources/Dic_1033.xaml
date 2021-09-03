@@ -18,5 +18,8 @@
 	<x:String x:Key="AboutPage_AuthorNameDescription">Sunnie</x:String>
 	<x:String x:Key="AboutPage_SudokuReferenceTerm">Sudoku Reference</x:String>
 	<x:String x:Key="AboutPage_ProjectWikiTerm">Project Wiki</x:String>
-	<x:String x:Key="AboutPage_Title_Repo">Repository</x:String>
+	<x:String x:Key="AboutPage_Disclaimer_Term">Disclaimer</x:String>
+	<x:String x:Key="AboutPage_Disclaimer_Description" xml:space="preserve">THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+		
+Copyright (c) Sunnie. All rights reserved.</x:String>
 </ResourceDictionary>
