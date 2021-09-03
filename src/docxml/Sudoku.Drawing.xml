@@ -211,6 +211,9 @@
             <param name="scale">The scale that decides the result font size.</param>
             <param name="style">The style that decides the font style of the text in the picture.</param>
             <returns>The font.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when <paramref name="fontName"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.Drawing.IPointCalculator">
             <summary>

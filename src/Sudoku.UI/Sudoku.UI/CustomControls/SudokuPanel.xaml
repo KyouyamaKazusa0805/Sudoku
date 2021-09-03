@@ -3,14 +3,23 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:interactions="using:Sudoku.UI.Interactions"
-	mc:Ignorable="d">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	xmlns:interactions="using:Sudoku.UI.Interactions">
 	<UserControl.DataContext>
 		<interactions:SudokuPanelDataContext />
 	</UserControl.DataContext>
 
-	<Grid>
-		<TextBlock FontSize="64" FontWeight="Bold" Text="Hello, world!" />
-	</Grid>
+	<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock FontSize="64" FontWeight="Bold" Text="Hello, world!" />
+		</Grid>
+	</StackPanel>
 </UserControl>

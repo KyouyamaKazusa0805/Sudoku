@@ -10,6 +10,34 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Indiates the navigation list.
 	/// </summary>
+	/// <remarks>
+	/// The triplet contains three values, where:
+	/// <list type="table">
+	/// <item>
+	/// <term><c>Tag</c></term>
+	/// <description>
+	/// The tag of the <see cref="NavigationViewItem"/> instance, i.e. the property
+	/// <see cref="FrameworkElement.Tag"/>.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>Type</c></term>
+	/// <description>
+	/// The type that the <see cref="Frame"/> instance bounds with a <see cref="NavigationView"/> instance
+	/// can navigate and redirect to the specified page.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><c>Content</c></term>
+	/// <description>The content of the page, i.e. the property <see cref="ContentControl.Content"/>.</description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="NavigationView"/>
+	/// <seealso cref="NavigationViewItem"/>
+	/// <seealso cref="Frame"/>
+	/// <seealso cref="FrameworkElement.Tag"/>
+	/// <seealso cref="ContentControl.Content"/>
 	private static readonly (string Tag, Type Type, string Content)[] NavigationInfoList = new[]
 	{
 		(
@@ -34,18 +62,8 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 
 		InitializeControls();
-		InitializeEvents();
 	}
 
-
-	/// <summary>
-	/// Initializes the events.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InitializeEvents()
-	{
-		NavigationView_Main.ItemInvoked += NavigationView_Main_ItemInvoked;
-	}
 
 	/// <summary>
 	/// Initializes the controls.
@@ -64,25 +82,52 @@ public sealed partial class MainWindow : Window
 	/// <param name="args">The arguments provided.</param>
 	private void NavigationView_Main_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 	{
-		if (args is not { InvokedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
+		if (
+			(Sender: sender, Args: args) is not
+			(
+				Sender:
+				{
+					Header: var navigationViewHeader,
+					Content: Frame
+					{
+						Name: nameof(Frame_NavigationView_Main),
+						CurrentSourcePageType: var type
+					} frame
+				},
+				Args:
+				{
+					InvokedItemContainer.Tag: string tag,
+					RecommendedNavigationTransitionInfo: var info,
+					IsSettingsInvoked: var settingsInvoked
+				}
+			)
+		)
 		{
 			return;
 		}
 
-		var type = Frame_NavigationView_Main.CurrentSourcePageType;
-		try
+		var fno = new FrameNavigationOptions { TransitionInfoOverride = info };
+		if (settingsInvoked)
 		{
-			var (_, pageType, header) = NavigationInfoList.FirstOnThrow(triplet =>
-			{
-				var (a, b, c) = triplet;
-				return a == tag && b != type && c is not null;
-			});
-
-			sender.Header = header;
-			Frame_NavigationView_Main.NavigateToType(pageType, null, new() { TransitionInfoOverride = info });
+			sender.Header = UiResources.Current.MainWindow_NavigationViewItem_Content_Settings;
+			frame.NavigateToType(typeof(SettingsPage), null, fno);
 		}
-		catch (ArgumentException ex) when (ex.InnerException is InvalidOperationException)
+		else
 		{
+			try
+			{
+				var (_, pageType, header) = NavigationInfoList.FirstOnThrow(triplet =>
+				{
+					var (a, b, c) = triplet;
+					return a == tag && b != type && c is not null;
+				});
+
+				sender.Header = header;
+				frame.NavigateToType(pageType, null, fno);
+			}
+			catch
+			{
+			}
 		}
 	}
 }

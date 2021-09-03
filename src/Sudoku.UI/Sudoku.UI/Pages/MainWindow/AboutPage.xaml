@@ -11,13 +11,6 @@
 		<interactions:AboutPageDataContext x:Name="ViewModel" />
 	</Page.DataContext>
 	<Page.Resources>
-		<!--Custom resources-->
-		<x:Double x:Key="FontSizeDefault">16</x:Double>
-		<Thickness x:Key="NoVerticalThickness">10, 0, 10, 0</Thickness>
-		<Thickness x:Key="NormalThickness">10, 8, 10, 8</Thickness>
-		<Thickness x:Key="DoubleThickness">10, 16, 10, 16</Thickness>
-		
-		<!--Styles-->
 		<Style x:Key="ItemTerm" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Grid.Column" Value="0" />
@@ -32,7 +25,7 @@
 		</Style>
 	</Page.Resources>
 
-	<StackPanel>
+	<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
 		<TextBlock
 			Style="{ThemeResource TitleTextBlockStyle}" Text="{StaticResource AboutPage_Title_BasicInfo}"
 			Margin="{StaticResource DoubleThickness}" />

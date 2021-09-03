@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<None Remove="CustomControls\SudokuPanel.xaml" />
 		<None Remove="Pages\MainWindow\AboutPage.xaml" />
+		<None Remove="Pages\MainWindow\SettingsPage.xaml" />
 		<None Remove="Pages\MainWindow\SudokuPanelPage.xaml" />
 		<None Remove="Resources\Dic_1033.xaml" />
 		<None Remove="Resources\Dic_2052.xaml" />
@@ -31,6 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 	</ItemGroup>
 
 	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->
@@ -45,6 +47,12 @@
 			<Compile Include="Resources\UiResources.RealImpl.cs" Visible="false" />
 		</ItemGroup>
 	</Target>
+
+	<ItemGroup>
+	  <Page Update="Pages\MainWindow\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
 	<!--Loading end-->
 
 	<ItemGroup>
@@ -70,13 +78,13 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Themes\Generic.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="CustomControls\SudokuPanel.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="CustomControls\SudokuPanel.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>

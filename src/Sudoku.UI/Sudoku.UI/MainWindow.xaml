@@ -6,22 +6,21 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 
 	<NavigationView
-		x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="False"
-		IsBackButtonVisible="Collapsed" PaneTitle="{StaticResource MainWindow_NavigationView_Title}">
+		x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="True"
+		IsBackEnabled="False" IsBackButtonVisible="Collapsed"
+		PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
+		ItemInvoked="NavigationView_Main_ItemInvoked">
 		<NavigationView.MenuItems>
 			<NavigationViewItem
 				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit" CacheMode="BitmapCache"
 				Content="{StaticResource MainWindow_NavigationViewItem_Content_SudokuPanel}"
-				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}">
-			</NavigationViewItem>
-		</NavigationView.MenuItems>
-		<NavigationView.FooterMenuItems>
+				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}" />
+			<NavigationViewItemSeparator />
 			<NavigationViewItem
 				x:Name="NavigationViewItem_About" Icon="Account"
 				Content="{StaticResource MainWindow_NavigationViewItem_Content_About}"
-				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_About}">
-			</NavigationViewItem>
-		</NavigationView.FooterMenuItems>
+				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_About}" />
+		</NavigationView.MenuItems>
 		<Frame x:Name="Frame_NavigationView_Main" />
 	</NavigationView>
 

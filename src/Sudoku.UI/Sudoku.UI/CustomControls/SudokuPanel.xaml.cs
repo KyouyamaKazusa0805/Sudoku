@@ -8,6 +8,5 @@ public sealed partial class SudokuPanel : UserControl
 	/// <summary>
 	/// Initializes a <see cref="SudokuPanel"/> instance.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPanel() => InitializeComponent();
 }

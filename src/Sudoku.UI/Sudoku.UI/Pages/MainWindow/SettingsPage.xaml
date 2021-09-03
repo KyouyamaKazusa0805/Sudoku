@@ -1,0 +1,32 @@
+﻿<Page
+	x:Class="Sudoku.UI.Pages.MainWindow.SettingsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	xmlns:interactions="using:Sudoku.UI.Interactions"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.DataContext>
+		<interactions:SettingsPageDataContext />
+	</Page.DataContext>
+	<Page.Resources>
+		<Style x:Key="LongTextBlock" TargetType="TextBlock">
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
+		</Style>
+	</Page.Resources>
+
+	<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
+		<TextBlock Text="{StaticResource SettingsPage_Intro}" Style="{ThemeResource LongTextBlock}" />
+		<TextBlock
+			Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
+			Text="{StaticResource SettingsPage_SearchTitle}" />
+		<TextBlock Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
+		<AutoSuggestBox Margin="{StaticResource NormalThickness}" />
+
+		<!--Basic options-->
+		<!--Technique details-->
+		<!--Technique options-->
+		<!--Color palette-->
+	</StackPanel>
+</Page>

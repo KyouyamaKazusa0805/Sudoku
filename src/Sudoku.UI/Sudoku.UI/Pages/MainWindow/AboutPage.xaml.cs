@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.UI.Pages.MainWindow;
 
 /// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
+/// Indicates the page that contains the author and program information.
 /// </summary>
 public sealed partial class AboutPage : Page
 {

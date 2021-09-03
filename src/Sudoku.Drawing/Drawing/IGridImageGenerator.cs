@@ -9,23 +9,23 @@ public interface IGridImageGenerator
 	/// <summary>
 	/// The square root of 2.
 	/// </summary>
-	protected internal const float SqrtOf2 = 1.4142135F;
+	protected const float SqrtOf2 = 1.4142135F;
 
 	/// <summary>
 	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
 	/// </summary>
-	protected internal const float RotateAngle = MathF.PI / 4;
+	protected const float RotateAngle = MathF.PI / 4;
 
 	/// <summary>
 	/// The text offset that corrects the pixel of the text output.
 	/// </summary>
-	protected internal const float TextOffset = 6F;
+	protected const float TextOffset = 6F;
 
 
 	/// <summary>
 	/// Indicates the default string format.
 	/// </summary>
-	protected internal static readonly StringFormat DefaultStringFormat = new()
+	protected static readonly StringFormat DefaultStringFormat = new()
 	{
 		Alignment = StringAlignment.Center,
 		LineAlignment = StringAlignment.Center
@@ -76,7 +76,10 @@ public interface IGridImageGenerator
 	/// <param name="scale">The scale that decides the result font size.</param>
 	/// <param name="style">The style that decides the font style of the text in the picture.</param>
 	/// <returns>The font.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when <paramref name="fontName"/> is <see langword="null"/>.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected internal static Font GetFont(string fontName, float size, decimal scale, FontStyle style) =>
-		new(fontName, size * (float)scale, style);
+	protected static Font GetFont(string? fontName, float size, decimal scale, FontStyle style) =>
+		new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
 }

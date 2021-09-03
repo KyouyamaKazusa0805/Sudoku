@@ -38,17 +38,17 @@ public interface IPreference : ICloneable<IPreference>
 	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
-	string GivenFontName { get; set; }
+	string? GivenFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of modifiable digits to render.
 	/// </summary>
-	string ModifiableFontName { get; set; }
+	string? ModifiableFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of candidate digits to render.
 	/// </summary>
-	string CandidateFontName { get; set; }
+	string? CandidateFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the givens.
