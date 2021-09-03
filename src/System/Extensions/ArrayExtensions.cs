@@ -50,6 +50,10 @@ public static class ArrayExtensions
 			}
 		}
 
-		throw new ArgumentException("Can't fetch the result due to none satisfied elements.", nameof(@this));
+		throw new ArgumentException(
+			"Can't fetch the result due to none satisfied elements.",
+			nameof(@this),
+			new InvalidOperationException("None possible elements found.")
+		);
 	}
 }

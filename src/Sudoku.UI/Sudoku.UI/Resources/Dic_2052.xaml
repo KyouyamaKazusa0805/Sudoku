@@ -7,6 +7,9 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">关于</x:String>
 
+	<!--SudokuPage-->
+	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">此处展示各操作的详情信息</x:String>
+
 	<!--AboutPage-->
 	<x:String x:Key="AboutPage_Title_BasicInfo">基本信息</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">作者</x:String>

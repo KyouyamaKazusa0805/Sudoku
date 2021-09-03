@@ -2,6 +2,7 @@
 global using System.Diagnostics.CodeAnalysis;
 global using System.Dynamic;
 global using System.Runtime.CompilerServices;
+global using System.Runtime.Versioning;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
 global using Sudoku.UI.CustomControls;

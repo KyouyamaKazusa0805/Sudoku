@@ -9,8 +9,23 @@
 	mc:Ignorable="d"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
-		<interactions:SudokuPanelPageModel x:Name="ViewModel" />
+		<interactions:SudokuPanelPageDataContext />
 	</Page.DataContext>
 
-	<c:SudokuPanel x:Name="SudokuPanel_Main" />
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="100" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+		<TextBox
+			x:Name="TextBox_Info" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True"
+			PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />
+	</Grid>
 </Page>

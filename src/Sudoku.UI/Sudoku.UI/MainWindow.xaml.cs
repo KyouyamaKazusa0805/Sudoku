@@ -34,8 +34,18 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 
 		InitializeControls();
+		InitializeEvents();
 	}
 
+
+	/// <summary>
+	/// Initializes the events.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InitializeEvents()
+	{
+		NavigationView_Main.ItemInvoked += NavigationView_Main_ItemInvoked;
+	}
 
 	/// <summary>
 	/// Initializes the controls.
@@ -71,7 +81,7 @@ public sealed partial class MainWindow : Window
 			sender.Header = header;
 			Frame_NavigationView_Main.NavigateToType(pageType, null, new() { TransitionInfoOverride = info });
 		}
-		catch (ArgumentException)
+		catch (ArgumentException ex) when (ex.InnerException is InvalidOperationException)
 		{
 		}
 	}

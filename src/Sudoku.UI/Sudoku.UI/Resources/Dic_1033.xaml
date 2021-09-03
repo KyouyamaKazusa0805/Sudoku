@@ -9,6 +9,9 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">Sudoku panel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">About</x:String>
 
+	<!--SudokuPage-->
+	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">Here displays the details for operations</x:String>
+
 	<!--AboutPage-->
 	<x:String x:Key="AboutPage_Title_BasicInfo">Basic information</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">Author name</x:String>

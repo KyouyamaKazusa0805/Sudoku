@@ -7,8 +7,7 @@
 
 	<NavigationView
 		x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="False"
-		IsBackButtonVisible="Collapsed" PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
-		ItemInvoked="NavigationView_Main_ItemInvoked">
+		IsBackButtonVisible="Collapsed" PaneTitle="{StaticResource MainWindow_NavigationView_Title}">
 		<NavigationView.MenuItems>
 			<NavigationViewItem
 				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit" CacheMode="BitmapCache"
