@@ -6,37 +6,25 @@
 /// <seealso cref="SudokuPanel"/>
 public sealed class SudokuPanelDataContext : IDataContext<SudokuPanelDataContext>
 {
-	///// <summary>
-	///// Indicates the default size of the each picture.
-	///// </summary>
-	//private const float DefaultSize = 540;
+	/// <summary>
+	/// Indicates the calculator that calculates the pixels and interactes with sudoku data structures.
+	/// </summary>
+	[DisallowNull]
+	public PointCalculator? PointCalculator { get; set; }
 
+	/// <summary>
+	/// Indicates the image generator that can generates the images which can be shown
+	/// on the <see cref="Image"/> control instances.
+	/// </summary>
+	/// <seealso cref="Image"/>
+	[DisallowNull]
+	public GridImageGenerator? ImageGenerator { get; set; }
 
-	///// <summary>
-	///// Indicates the point calculator.
-	///// </summary>
-	//private readonly IPointCalculator _pointCalculator;
-
-	///// <summary>
-	///// Indicates the image generator.
-	///// </summary>
-	//private readonly IGridImageGenerator _imageGenerator;
-
-	///// <summary>
-	///// Indicates the preference instance.
-	///// </summary>
-	//private readonly IPreference _preference;
-
-
-	///// <summary>
-	///// Initializes a <see cref="SudokuPanelDataContext"/> instance.
-	///// </summary>
-	//public SudokuPanelDataContext()
-	//{
-	//	_pointCalculator = PointCalculator.CreateConverter(DefaultSize);
-	//	_preference = new Preference();
-	//	_imageGenerator = new GridImageGenerator(_pointCalculator, _preference, SudokuGrid.Empty);
-	//}
+	/// <summary>
+	/// Indicates the instance that stores the settings interacting with UI that can be changed by user.
+	/// </summary>
+	[DisallowNull]
+	public Preference? Preference { get; set; }
 
 
 	/// <inheritdoc/>
