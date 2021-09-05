@@ -18,8 +18,8 @@
 			<RowDefinition Height="100" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="560" />
+			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
 		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
