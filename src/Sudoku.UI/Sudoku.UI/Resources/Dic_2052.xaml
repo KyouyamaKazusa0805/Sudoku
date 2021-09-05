@@ -7,10 +7,10 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">关于</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_Settings">设置项</x:String>
-	<x:String x:Key="MainWindow_PivotItem_Summary">技巧信息</x:String>
-	<x:String x:Key="MainWindow_PivotItem_SolvingPath">解题路径</x:String>
-	<x:String x:Key="MainWindow_PivotItem_PossibleStepsGathering">所有可能步骤</x:String>
-	<x:String x:Key="MainWindow_PivotItem_CustomDrawing">绘图</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_Summary">技巧信息</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_SolvingPath">解题路径</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_StepsGathering">所有可能步骤</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_CustomDrawing">绘图</x:String>
 
 	<!--SudokuPage-->
 	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">此处展示各操作的详情信息</x:String>

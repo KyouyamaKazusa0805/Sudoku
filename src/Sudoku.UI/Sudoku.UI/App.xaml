@@ -12,6 +12,7 @@
 			</ResourceDictionary.MergedDictionaries>
 			<x:Double x:Key="FontSizeDefault">16</x:Double>
 			<Thickness x:Key="StackPanelDefaultPadding">8, 8, 8, 8</Thickness>
+			<Thickness x:Key="SplitViewDefaultPadding">8, 8, 8, 8</Thickness>
 			<Thickness x:Key="NoVerticalThickness">10, 0, 10, 0</Thickness>
 			<Thickness x:Key="NormalThickness">10, 8, 10, 8</Thickness>
 			<Thickness x:Key="DoubleThickness">10, 16, 10, 16</Thickness>

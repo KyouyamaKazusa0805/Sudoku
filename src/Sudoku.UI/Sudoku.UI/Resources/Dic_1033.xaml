@@ -7,13 +7,17 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_SudokuPanel">SudokuPanel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_About">About</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_Settings">Settings</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Tag_Summary">Summary</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Tag_SolvingPath">SolvingPath</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Tag_StepsGathering">StepGathering</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Tag_CustomDrawing">Drawing</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">Sudoku panel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">About</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_Settings">Settings</x:String>
-	<x:String x:Key="MainWindow_PivotItem_Summary">Summary</x:String>
-	<x:String x:Key="MainWindow_PivotItem_SolvingPath">Solving Path</x:String>
-	<x:String x:Key="MainWindow_PivotItem_PossibleStepsGathering">Step Gathering</x:String>
-	<x:String x:Key="MainWindow_PivotItem_CustomDrawing">Drawing</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_Summary">Summary</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_SolvingPath">Solving Path</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_StepsGathering">Step Gathering</x:String>
+	<x:String x:Key="MainWindow_NavigationViewItem_Content_CustomDrawing">Drawing</x:String>
 
 	<!--SudokuPage-->
 	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">Here displays the details for operations</x:String>
