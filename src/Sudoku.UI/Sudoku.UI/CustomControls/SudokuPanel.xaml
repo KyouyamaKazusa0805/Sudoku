@@ -22,7 +22,7 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<Image x:Name="Image" Grid.Column="0" Width="540" Height="540" Margin="5, 5, 5, 5" />
+		<Image x:Name="Image" Grid.Column="0" Width="540" Height="{x:Bind Width}" Margin="5, 5, 5, 5" />
 		<NavigationView Grid.Column="1" Style="{ThemeResource BaseNavigationView}">
 			<NavigationView.MenuItems>
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_Summary}" />

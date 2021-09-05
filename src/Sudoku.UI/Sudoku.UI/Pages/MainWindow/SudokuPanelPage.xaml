@@ -13,18 +13,13 @@
 
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="100" />
+			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="560" />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
 
-		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" />
 		<TextBox
-			x:Name="TextBox_Info" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True"
+			x:Name="TextBox_Info" Grid.Row="1" IsReadOnly="True" Height="100"
 			PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />
 	</Grid>
 </Page>
