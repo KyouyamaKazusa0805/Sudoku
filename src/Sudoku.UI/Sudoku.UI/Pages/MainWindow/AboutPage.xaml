@@ -16,12 +16,14 @@
 			<Setter Property="Grid.Column" Value="0" />
 			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 			<Setter Property="FontSize" Value="{StaticResource FontSizeDefault}" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
 		<Style x:Key="ItemDescription" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="Grid.Column" Value="1" />
 			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 			<Setter Property="FontSize" Value="{StaticResource FontSizeDefault}" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
 	</Page.Resources>
 
@@ -69,9 +71,9 @@
 			Margin="{StaticResource DoubleThickness}" />
 		<TextBox
 			IsReadOnly="True" AutomationProperties.Name="multi-line TextBox" TextWrapping="Wrap"
-			Text="{StaticResource AboutPage_Disclaimer_Description}"
+			BorderThickness="0" Text="{StaticResource AboutPage_Disclaimer_Description}"
 			Margin="{StaticResource NoVerticalThickness}" />
-		<TextBlock Margin="{StaticResource NoVerticalThickness}">
+		<TextBlock Margin="{StaticResource NoVerticalThickness}" HorizontalAlignment="Left">
 			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
 				<Run Text="GitHub" />
 			</Hyperlink>
