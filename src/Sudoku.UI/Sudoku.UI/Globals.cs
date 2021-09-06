@@ -1,11 +1,13 @@
 ﻿global using System;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Drawing;
 global using System.Dynamic;
 global using System.Linq;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
+global using Microsoft.UI.Xaml.Media.Imaging;
 global using Microsoft.UI.Xaml.Navigation;
 global using Sudoku.Drawing;
 global using Sudoku.UI.CustomControls;

@@ -8,13 +8,6 @@
 	<UserControl.DataContext>
 		<interactions:SudokuPanelDataContext />
 	</UserControl.DataContext>
-	<UserControl.Resources>
-		<Style x:Key="BaseNavigationView" TargetType="NavigationView">
-			<Setter Property="PaneDisplayMode" Value="Top" />
-			<Setter Property="IsBackButtonVisible" Value="Collapsed" />
-			<Setter Property="IsSettingsVisible" Value="False" />
-		</Style>
-	</UserControl.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -22,8 +15,10 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<Image x:Name="Image" Grid.Column="0" Width="540" Height="{x:Bind Width}" Margin="5, 5, 5, 5" />
-		<NavigationView Grid.Column="1" Style="{ThemeResource BaseNavigationView}">
+		<Image x:Name="Image" Grid.Column="0" Width="540" Height="540" Margin="5, 5, 5, 5" />
+		<NavigationView
+			Grid.Column="1" PaneDisplayMode="Top"
+			IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
 			<NavigationView.MenuItems>
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_Summary}" />
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_SolvingPath}" />
