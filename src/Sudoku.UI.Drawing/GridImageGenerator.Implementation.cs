@@ -335,10 +335,12 @@ partial record GridImageGenerator
 				else if (((IPreference)Preferences).TryGetColor(id, out var color))
 				{
 					// In the normal case, I'll draw these circles.
-					var brush = new SolidColorBrush(
-						overlaps ? Color.FromArgb((byte)(color.A >> 2), color.R, color.G, color.B) : color
+					g.AddCircle(
+						row, column, size,
+						new SolidColorBrush(
+							overlaps ? Color.FromArgb((byte)(color.A >> 2), color.R, color.G, color.B) : color
+						)
 					);
-					g.AddCircle(row, column, size, brush);
 
 					// In direct view, candidates should be drawn also.
 					if (!Preferences.ShowCandidates)
@@ -439,8 +441,10 @@ partial record GridImageGenerator
 					2 => (PointCalculator.AnchorsCount, 1)
 				};
 
-				var brush = new SolidColorBrush(Color.FromArgb(byte.MaxValue >> 2, color.R, color.G, color.B));
-				g.AddRectangle(row, column, rowSpan, columnSpan, brush);
+				g.AddRectangle(
+					row, column, rowSpan, columnSpan,
+					new SolidColorBrush(Color.FromArgb(byte.MaxValue >> 2, color.R, color.G, color.B))
+				);
 			}
 		}
 	}
