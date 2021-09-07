@@ -48,12 +48,7 @@ partial class Constants
 		/// <summary>
 		/// Indicates the first cell offset for each region.
 		/// </summary>
-		public static readonly int[] RegionFirst =
-		{
-			0, 3, 6, 27, 30, 33, 54, 57, 60,
-			0, 9, 18, 27, 36, 45, 54, 63, 72,
-			0, 1, 2, 3, 4, 5, 6, 7, 8
-		};
+		public static readonly int[] RegionFirst;
 
 		/// <summary>
 		/// Indicates all grid maps that a grid contains.

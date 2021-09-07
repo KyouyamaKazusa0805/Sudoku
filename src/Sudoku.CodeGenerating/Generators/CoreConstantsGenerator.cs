@@ -161,6 +161,15 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 		regionCellsSb.Append("\t\t\t").Append('}');
 		#endregion
 
+		#region Initialize 'RegionFirst'
+		string regionFirstString = @"new[]
+			{
+				0, 3, 6, 27, 30, 33, 54, 57, 60,
+				0, 9, 18, 27, 36, 45, 54, 63, 72,
+				0, 1, 2, 3, 4, 5, 6, 7, 8
+			}";
+		#endregion
+
 
 		context.AddSource(
 			"Sudoku.Constants.Tables",
@@ -192,6 +201,8 @@ partial class Constants
 			Peers = {peersSb};
 
 			RegionCells = {regionCellsSb};
+
+			RegionFirst = {regionFirstString};
 
 			PeerMaps = new Cells[81];
 			for (int i = 0; i < 81; i++) PeerMaps[i] = Peers[i];
