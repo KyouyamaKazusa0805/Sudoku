@@ -235,6 +235,11 @@
             '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
             </example>
         </member>
+        <member name="F:Sudoku.Constants.Tables.RegionFirst">
+            <summary>
+            Indicates the first cell offset for each region.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Tables.RegionMaps">
             <summary>
             Indicates all grid maps that a grid contains.
