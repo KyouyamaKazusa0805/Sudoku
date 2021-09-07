@@ -36,7 +36,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj" />
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
-		<ProjectReference Include="..\..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 	</ItemGroup>
 
 	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->

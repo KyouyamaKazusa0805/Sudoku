@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
 	xmlns:i="using:Sudoku.UI.Interactions"
 	xmlns:c="using:Sudoku.UI.CustomControls"
+	xmlns:d="using:Sudoku.UI.Drawing"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
 		<i:SudokuPanelPageDataContext />
@@ -17,7 +18,17 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" />
+		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0">
+			<c:SudokuPanel.Preference>
+				<d:Preference x:Name="_preference" />
+			</c:SudokuPanel.Preference>
+			<c:SudokuPanel.PointCalculator>
+				<d:PointCalculator x:Name="_pointCalculator" ControlSize="540, 540" Offset="10" />
+			</c:SudokuPanel.PointCalculator>
+			<!--<c:SudokuPanel.GridImageGenerator>
+				<d:GridImageGenerator Calculator="{x:Bind _pointCalculator}" Preferences="{x:Bind _preference}" />
+			</c:SudokuPanel.GridImageGenerator>-->
+		</c:SudokuPanel>
 		<TextBox
 			x:Name="TextBox_Info" Grid.Row="1" IsReadOnly="True" Height="100"
 			PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />

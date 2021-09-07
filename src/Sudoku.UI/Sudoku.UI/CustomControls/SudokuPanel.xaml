@@ -4,20 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:q="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
-	xmlns:i="using:Sudoku.UI.Interactions"
-	xmlns:d="using:Sudoku.UI.Drawing">
+	xmlns:i="using:Sudoku.UI.Interactions">
 	<UserControl.DataContext>
 		<i:SudokuPanelDataContext />
 	</UserControl.DataContext>
-	<UserControl.Resources>
-		<!--<d:PointCalculator
-			x:Key="PointCalculator" x:Name="_calculator" Offset="10" ControlSize="540, 540">
-		</d:PointCalculator>
-		<d:Preference x:Key="Preference" x:Name="_preference" />
-		<d:GridImageGenerator
-			x:Key="GridImageGenerator" x:Name="_gig"
-			Preferences="{StaticResource Preference}" Calculator="{StaticResource PointCalculator}" />-->
-	</UserControl.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
