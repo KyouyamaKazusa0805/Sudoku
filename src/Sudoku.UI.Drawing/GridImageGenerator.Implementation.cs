@@ -41,7 +41,10 @@ partial record GridImageGenerator
 					{
 						var (r, c) = Calculator.GetGridRowAndColumn(cell, digit);
 
-						g.AddText(r, c, digit, overlaps ? bCandLighter : bCand, fpCand.Font, fpCand.FontSize);
+						g.AddText(
+							r, c, digit, overlaps ? bCandLighter : bCand, fpCand.Font, fpCand.FontSize,
+							fontStyle: Preferences.CandidateFontStyle
+						);
 					}
 
 					break;
@@ -51,7 +54,10 @@ partial record GridImageGenerator
 					// Draw modifiables.
 					var (r, c) = Calculator.GetGridRowAndColumn(cell);
 
-					g.AddText(r, c, Puzzle[cell] + 1, bGiven, fpGiven.Font, fpGiven.FontSize);
+					g.AddText(
+						r, c, Puzzle[cell] + 1, bGiven, fpGiven.Font, fpGiven.FontSize,
+						fontStyle: Preferences.ModifiableFontStyle
+					);
 
 					break;
 				}
@@ -60,7 +66,10 @@ partial record GridImageGenerator
 					// Draw givens.
 					var (r, c) = Calculator.GetGridRowAndColumn(cell);
 
-					g.AddText(r, c, Puzzle[cell] + 1, bMod, fpMod.Font, fpMod.FontSize);
+					g.AddText(
+						r, c, Puzzle[cell] + 1, bMod, fpMod.Font, fpMod.FontSize,
+						fontStyle: Preferences.GivenFontStyle
+					);
 
 					break;
 				}
@@ -376,7 +385,7 @@ partial record GridImageGenerator
 		{
 			var (cf, cs) = GetFont(Preferences.CandidateFontName, cellWidth / 2, Preferences.CandidateScale);
 			var (r, c) = Calculator.GetGridRowAndColumn(cell, digit);
-			g.AddText(r, c, digit, brush, cf, cs);
+			g.AddText(r, c, digit, brush, cf, cs, fontStyle: Preferences.CandidateFontStyle);
 		}
 	}
 
@@ -665,7 +674,7 @@ partial record GridImageGenerator
 		{
 			var (row, column) = Calculator.GetGridRowAndColumn(cell);
 
-			g.AddText(row, column, character, brush, ff, fs);
+			g.AddText(row, column, character, brush, ff, fs, fontStyle: Preferences.UnknownIdentfierFontStyle);
 		}
 	}
 }

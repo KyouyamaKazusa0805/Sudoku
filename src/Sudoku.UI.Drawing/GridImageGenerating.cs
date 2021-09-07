@@ -36,17 +36,21 @@ internal static class GridImageGenerating
 	/// Indicates the alignment that constraints for the column.
 	/// The default value is <see cref="VerticalAlignment.Stretch"/>.
 	/// </param>
+	/// <param name="fontStyle">
+	/// Indicates the font style. The default value is <see cref="FontStyle.Normal"/>.
+	/// </param>
 	/// <seealso cref="TextBlock"/>
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="Brush"/>
 	/// <seealso cref="FontFamily"/>
 	/// <seealso cref="HorizontalAlignment"/>
 	/// <seealso cref="VerticalAlignment"/>
+	/// <seealso cref="FontStyle"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddText(
 		this Grid @this, int row, int column, int digit, Brush foreground, FontFamily font,
 		double fontSize, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
-		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch)
+		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch, FontStyle fontStyle = FontStyle.Normal)
 	{
 		var tb = new TextBlock
 		{
@@ -55,7 +59,8 @@ internal static class GridImageGenerating
 			Foreground = foreground,
 			Text = (digit + 1).ToString(),
 			FontFamily = font,
-			FontSize = fontSize
+			FontSize = fontSize,
+			FontStyle = fontStyle
 		};
 
 		Grid.SetRow(tb, row);
@@ -87,17 +92,21 @@ internal static class GridImageGenerating
 	/// Indicates the alignment that constraints for the column.
 	/// The default value is <see cref="VerticalAlignment.Stretch"/>.
 	/// </param>
+	/// <param name="fontStyle">
+	/// Indicates the font style. The default value is <see cref="FontStyle.Normal"/>.
+	/// </param>
 	/// <seealso cref="TextBlock"/>
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="Brush"/>
 	/// <seealso cref="FontFamily"/>
 	/// <seealso cref="HorizontalAlignment"/>
 	/// <seealso cref="VerticalAlignment"/>
+	/// <seealso cref="FontStyle"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddText<TNotNull>(
 		this Grid @this, int row, int column, TNotNull character, Brush foreground, FontFamily font,
 		double fontSize, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
-		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch)
+		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch, FontStyle fontStyle = FontStyle.Normal)
 		where TNotNull : notnull
 	{
 		var tb = new TextBlock
@@ -107,7 +116,8 @@ internal static class GridImageGenerating
 			Foreground = foreground,
 			Text = character.ToString(),
 			FontFamily = font,
-			FontSize = fontSize
+			FontSize = fontSize,
+			FontStyle = fontStyle
 		};
 
 		Grid.SetRow(tb, row);
