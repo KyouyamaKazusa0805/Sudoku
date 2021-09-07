@@ -258,26 +258,7 @@ internal static class GridImageGenerating
 		this Grid @this, double l1x1, double l1y1, double l1x2, double l1y2,
 		double l2x1, double l2y1, double l2x2, double l2y2, Brush cross, double strokeSize)
 	{
-		var l1 = new Line
-		{
-			X1 = l1x1,
-			X2 = l1x2,
-			Y1 = l1y1,
-			Y2 = l1y2,
-			Stroke = cross,
-			StrokeThickness = strokeSize
-		};
-		var l2 = new Line
-		{
-			X1 = l2x1,
-			X2 = l2x2,
-			Y1 = l2y1,
-			Y2 = l2y2,
-			Stroke = cross,
-			StrokeThickness = strokeSize
-		};
-
-		@this.Children.Add(l1);
-		@this.Children.Add(l2);
+		@this.AddLine(l1x1, l1y1, l1x2, l1y2, cross, strokeSize);
+		@this.AddLine(l2x1, l2y1, l2x2, l2y2, cross, strokeSize);
 	}
 }
