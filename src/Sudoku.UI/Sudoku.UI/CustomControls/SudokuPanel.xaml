@@ -2,12 +2,22 @@
 	x:Class="Sudoku.UI.CustomControls.SudokuPanel"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-	xmlns:interactions="using:Sudoku.UI.Interactions">
+	xmlns:q="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
+	xmlns:i="using:Sudoku.UI.Interactions"
+	xmlns:d="using:Sudoku.UI.Drawing">
 	<UserControl.DataContext>
-		<interactions:SudokuPanelDataContext />
+		<i:SudokuPanelDataContext />
 	</UserControl.DataContext>
+	<UserControl.Resources>
+		<!--<d:PointCalculator
+			x:Key="PointCalculator" x:Name="_calculator" Offset="10" ControlSize="540, 540">
+		</d:PointCalculator>
+		<d:Preference x:Key="Preference" x:Name="_preference" />
+		<d:GridImageGenerator
+			x:Key="GridImageGenerator" x:Name="_gig"
+			Preferences="{StaticResource Preference}" Calculator="{StaticResource PointCalculator}" />-->
+	</UserControl.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -15,10 +25,9 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<Image x:Name="Image" Grid.Column="0" Width="540" Height="540" Margin="5, 5, 5, 5" />
+		<Canvas x:Name="BaseCanvas" Grid.Column="0" Margin="5, 5, 5, 5" Width="550" Height="550" />
 		<NavigationView
-			Grid.Column="1" PaneDisplayMode="Top"
-			IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+			Grid.Column="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
 			<NavigationView.MenuItems>
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_Summary}" />
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_SolvingPath}" />

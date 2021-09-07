@@ -40,6 +40,7 @@ public sealed class PointCalculator
 	/// <summary>
 	/// Indicates the control size.
 	/// </summary>
+	[TypeConverter(typeof(String2SizeConverter))]
 	public Size ControlSize { get; set; }
 
 	/// <summary>

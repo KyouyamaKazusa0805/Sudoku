@@ -3,15 +3,7 @@
 /// <summary>
 /// Defines and encapsulates a data structure that provides the operations to draw a sudoku puzzle.
 /// </summary>
-/// <param name="Calculator">
-/// Indicates the <see cref="PointCalculator"/> instance that calculates the pixels to help the inner
-/// methods to handle and draw the picture used for displaying onto the UI projects.
-/// </param>
-/// <param name="Preferences">
-/// Indicates the <see cref="Preference"/> instance that stores the default preferences
-/// that decides the drawing behavior.
-/// </param>
-public sealed partial record GridImageGenerator(PointCalculator Calculator, Preference Preferences)
+public sealed partial class GridImageGenerator
 {
 	/// <summary>
 	/// The square root of 2.
@@ -32,19 +24,25 @@ public sealed partial record GridImageGenerator(PointCalculator Calculator, Pref
 	/// <summary>
 	/// Indicates the drawing width.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the property <see cref="Calculator"/> is <see langword="null"/>.
+	/// </exception>
 	public double Width
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Calculator.Width;
+		get => Calculator?.Width ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
 	}
 
 	/// <summary>
 	/// Indicates the drawing height.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the property <see cref="Calculator"/> is <see langword="null"/>.
+	/// </exception>
 	public double Height
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Calculator.Height;
+		get => Calculator?.Height ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
 	}
 
 	/// <summary>
@@ -67,9 +65,28 @@ public sealed partial record GridImageGenerator(PointCalculator Calculator, Pref
 	/// </summary>
 	public IEnumerable<Conclusion>? Conclusions { get; set; }
 
+	/// <summary>
+	/// Indicates the <see cref="PointCalculator"/> instance that calculates the pixels to help the inner
+	/// methods to handle and draw the picture used for displaying onto the UI projects.
+	/// </summary>
+	[DisallowNull]
+	public PointCalculator? Calculator { get; set; }
 
-	/// <inheritdoc/>
-	public Canvas Draw()
+	/// <summary>
+	/// Indicates the <see cref="Preference"/> instance that stores the default preferences
+	/// that decides the drawing behavior.
+	/// </summary>
+	[DisallowNull]
+	public Preference? Preferences { get; set; }
+
+
+	/// <summary>
+	/// Creates the <see cref="Shape"/> controls via the current data structure.
+	/// </summary>
+	/// <param name="baseCanvas">
+	/// The <see cref="Canvas"/> control instance to store those children controls.
+	/// </param>
+	public void DrawOnto(Canvas baseCanvas)
 	{
 		var grid = new Grid();
 		for (int i = 0; i < PointCalculator.AnchorsCount; i++)
@@ -86,9 +103,7 @@ public sealed partial record GridImageGenerator(PointCalculator Calculator, Pref
 		DrawEliminations(grid);
 		DrawValue(grid);
 
-		var canvas = new Canvas();
-		canvas.Children.Add(grid);
-		return canvas;
+		baseCanvas.Children.Add(grid);
 	}
 
 

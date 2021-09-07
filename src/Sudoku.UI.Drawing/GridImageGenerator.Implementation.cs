@@ -1,8 +1,6 @@
-﻿using LinkType = Sudoku.Data.LinkType;
+﻿namespace Sudoku.UI.Drawing;
 
-namespace Sudoku.UI.Drawing;
-
-partial record GridImageGenerator
+partial class GridImageGenerator
 {
 	/// <summary>
 	/// Draw givens, modifiables and candidates, where the values are specified as a grid.
@@ -10,7 +8,7 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawValue(Grid g)
 	{
-		if (Puzzle.IsUndefined)
+		if (this is not { Puzzle.IsUndefined: false, Calculator: not null, Preferences: not null })
 		{
 			return;
 		}
@@ -101,7 +99,7 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawFocusedCells(Grid g)
 	{
-		if (FocusedCells.IsEmpty)
+		if (this is not { FocusedCells.IsEmpty: false, Calculator: not null, Preferences: not null })
 		{
 			return;
 		}
@@ -122,9 +120,12 @@ partial record GridImageGenerator
 	/// <seealso cref="IPreference.BackgroundColor"/>
 	partial void DrawBackground(Grid g)
 	{
-		var (x, y) = Calculator.ControlSize;
+		if (this is not { Calculator.ControlSize: var (x, y), Preferences.BackgroundColor: var color })
+		{
+			return;
+		}
 
-		g.AddBackground(x, y, new SolidColorBrush(Preferences.BackgroundColor));
+		g.AddBackground(x, y, new SolidColorBrush(color));
 	}
 
 	/// <summary>
@@ -133,6 +134,11 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawGridAndBlockLines(Grid g)
 	{
+		if (this is not { Calculator: not null, Preferences: not null })
+		{
+			return;
+		}
+
 		const int length = PointCalculator.AnchorsCount + 1;
 		var gridPoints = Calculator.GridPoints;
 		for (int i = 0; i < length; i += PointCalculator.AnchorsCount / 9)
@@ -166,7 +172,7 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawEliminations(Grid g)
 	{
-		if (Conclusions is null)
+		if (this is not { Conclusions: not null, Preferences: not null, Calculator: not null })
 		{
 			return;
 		}
@@ -219,7 +225,14 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawDirectLines(Grid g)
 	{
-		if (this is not { View.DirectLines: { } directLines, Preferences.ShowCandidates: false })
+		if (
+			this is not
+			{
+				Calculator: not null,
+				View.DirectLines: { } directLines,
+				Preferences.ShowCandidates: false
+			}
+		)
 		{
 			return;
 		}
@@ -265,24 +278,25 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawCells(Grid g)
 	{
-		if (View.Cells is not { } cells)
+		if (this is not { View.Cells: { } cells, Calculator: not null, Preferences: not null })
 		{
 			return;
 		}
 
+		const int z = PointCalculator.AnchorsCount / 9;
 		foreach (var (cell, id) in cells)
 		{
 			var (row, column) = Calculator.GetGridRowAndColumn(cell);
 			if (id is { UseId: false, A: var cA, R: var cR, G: var cG, B: var cB })
 			{
 				g.AddRectangle(
-					row, column, 3, 3, new SolidColorBrush(Color.FromArgb(cA, cR, cG, cB))
+					row, column, z, z, new SolidColorBrush(Color.FromArgb(cA, cR, cG, cB))
 				);
 			}
 			else if (((IPreference)Preferences).TryGetColor(id, out var color))
 			{
 				g.AddRectangle(
-					row, column, 3, 3, new SolidColorBrush(Color.FromArgb(64, color.R, color.G, color.B))
+					row, column, z, z, new SolidColorBrush(Color.FromArgb(64, color.R, color.G, color.B))
 				);
 			}
 		}
@@ -395,7 +409,7 @@ partial record GridImageGenerator
 	/// <param name="g">The <see cref="Grid"/> instance.</param>
 	partial void DrawRegions(Grid g)
 	{
-		if (View.Regions is not { } regions)
+		if (this is not { View.Regions: { } regions, Preferences: not null, Calculator: not null })
 		{
 			return;
 		}
@@ -475,6 +489,7 @@ partial record GridImageGenerator
 		if (
 			this is not
 			{
+				Preferences: not null,
 				View.Links: { } links,
 				Calculator: { Offset: var offset, CandidateSize: var (cw, ch) }
 			}
@@ -503,8 +518,8 @@ partial record GridImageGenerator
 			var penToDraw = new SolidColorBrush(Preferences.ChainColor);
 			var dashStyleArray = type switch
 			{
-				LinkType.Strong => null,
-				LinkType.Weak => new DoubleCollection { 3 },
+				ChainLinkType.Strong => null,
+				ChainLinkType.Weak => new DoubleCollection { 3 },
 				_ => new DoubleCollection { 6 }
 			};
 
@@ -512,7 +527,7 @@ partial record GridImageGenerator
 			var (pt1x, pt1y) = pt1;
 			var (pt2x, pt2y) = pt2;
 
-			if (type == LinkType.Line)
+			if (type == ChainLinkType.Line)
 			{
 				g.AddLine(pt1, pt2, penToDraw, strokeThickness, PenLineCap.Triangle, dashStyleArray);
 			}
