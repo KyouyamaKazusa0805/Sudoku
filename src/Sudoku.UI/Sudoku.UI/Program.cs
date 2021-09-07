@@ -1,4 +1,4 @@
-﻿#pragma warning disable
+﻿#pragma warning disable IDE0005
 
 using System.Threading;
 using Microsoft.UI.Dispatching;

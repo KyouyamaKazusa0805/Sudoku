@@ -11,6 +11,9 @@
 		<i:AboutPageDataContext x:Name="ViewModel" />
 	</Page.DataContext>
 	<Page.Resources>
+		<Style x:Key="BrokenLinkTextBlock" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="#FF383838" />
+		</Style>
 		<Style x:Key="ItemTerm" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Grid.Column" Value="0" />
@@ -27,61 +30,107 @@
 		</Style>
 	</Page.Resources>
 
-	<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
-		<TextBlock
-			Style="{ThemeResource TitleTextBlockStyle}" Text="{StaticResource AboutPage_Title_BasicInfo}"
-			Margin="{StaticResource DoubleThickness}" />
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
+	<ScrollViewer
+		IsVerticalScrollChainingEnabled="True" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled"
+		HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+		<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
+			<!--Basic introduction-->
+			<TextBlock
+				Text="{StaticResource AboutPage_Title_BasicInfo}" Style="{ThemeResource TitleTextBlockStyle}"
+				Margin="{StaticResource DoubleThickness}" />
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
 
+				<TextBlock
+					Style="{ThemeResource ItemTerm}" Grid.Row="0"
+					Text="{StaticResource AboutPage_AuthorNameTerm}" />
+				<TextBlock
+					Style="{ThemeResource ItemDescription}" Grid.Row="0"
+					Text="{StaticResource AboutPage_AuthorNameDescription}" />
+				<TextBlock
+					Style="{ThemeResource ItemTerm}" Grid.Row="1"
+					Text="{StaticResource AboutPage_SudokuReferenceTerm}" />
+				<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="1">
+					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.VideoTutorial}">
+						<Run Text="{x:Bind Path=ui:HyperLinks.VideoTutorialLink}" />
+					</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Style="{ThemeResource ItemTerm}" Grid.Row="2"
+					Text="{StaticResource AboutPage_ProjectWikiTerm}" />
+				<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="2">
+					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.ProjectWiki}">
+						<Run Text="{x:Bind Path=ui:HyperLinks.ProjectWikiLink}" />
+					</Hyperlink>
+				</TextBlock>
+			</Grid>
+
+			<!--Special Thanks-->
 			<TextBlock
-				Style="{ThemeResource ItemTerm}" Grid.Row="0"
-				Text="{StaticResource AboutPage_AuthorNameTerm}" />
+				Text="{StaticResource AboutPage_SpecialThanksTitle}" Style="{ThemeResource TitleTextBlockStyle}"
+				Margin="{StaticResource DoubleThickness}" />
 			<TextBlock
-				Style="{ThemeResource ItemDescription}" Grid.Row="0"
-				Text="{StaticResource AboutPage_AuthorNameDescription}" />
+				Text="{StaticResource AboutPage_SpecialThanksInfo}" Margin="{StaticResource NormalThickness}" />
+			<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
+				<TextBlock Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks1}">
+						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks1Link}" />
+					</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Text="{StaticResource AboutPage_SpecialThanks1}"
+					Margin="{StaticResource NormalThickness}" />
+				<TextBlock Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks2}">
+						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks2Link}" />
+					</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Text="{StaticResource AboutPage_SpecialThanks2}"
+					Margin="{StaticResource NormalThickness}" />
+				<TextBlock Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks3}">
+						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks3Link}" />
+					</Hyperlink>
+				</TextBlock>
+				<TextBlock
+					Text="{StaticResource AboutPage_SpecialThanks3}"
+					Margin="{StaticResource NormalThickness}" />
+				<TextBlock
+					Text="{x:Bind Path=ui:HyperLinks.SpecialThanks4Link}"
+					Style="{ThemeResource BrokenLinkTextBlock}" Margin="{StaticResource NormalThickness}" />
+				<TextBlock
+					Text="{StaticResource AboutPage_SpecialThanks4}"
+					Margin="{StaticResource NormalThickness}" />
+			</StackPanel>
+
+			<!--Disclaimer-->
 			<TextBlock
-				Style="{ThemeResource ItemTerm}" Grid.Row="1"
-				Text="{StaticResource AboutPage_SudokuReferenceTerm}" />
-			<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="1">
-				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.VideoTutorial}">
-					<Run Text="{x:Bind Path=ui:HyperLinks.VideoTutorialLink}" />
+				Text="{StaticResource AboutPage_Disclaimer_Term}" Style="{ThemeResource TitleTextBlockStyle}"
+				Margin="{StaticResource DoubleThickness}" />
+			<TextBox
+				IsReadOnly="True" AutomationProperties.Name="multi-line TextBox" TextWrapping="Wrap"
+				BorderThickness="0" Text="{StaticResource AboutPage_Disclaimer_Description}"
+				Margin="{StaticResource NoVerticalThickness}" />
+			<TextBlock Margin="{StaticResource NoVerticalThickness}" HorizontalAlignment="Left">
+				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
+					<Run Text="GitHub" />
+				</Hyperlink>
+				<Run Text=", " />
+				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.RepoGitee}">
+					<Run Text="Gitee" />
 				</Hyperlink>
 			</TextBlock>
-			<TextBlock
-				Style="{ThemeResource ItemTerm}" Grid.Row="2"
-				Text="{StaticResource AboutPage_ProjectWikiTerm}" />
-			<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="2">
-				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.ProjectWiki}">
-					<Run Text="{x:Bind Path=ui:HyperLinks.ProjectWikiLink}" />
-				</Hyperlink>
-			</TextBlock>
-		</Grid>
-		<TextBlock
-			Text="{StaticResource AboutPage_Disclaimer_Term}" Style="{ThemeResource TitleTextBlockStyle}"
-			Margin="{StaticResource DoubleThickness}" />
-		<TextBox
-			IsReadOnly="True" AutomationProperties.Name="multi-line TextBox" TextWrapping="Wrap"
-			BorderThickness="0" Text="{StaticResource AboutPage_Disclaimer_Description}"
-			Margin="{StaticResource NoVerticalThickness}" />
-		<TextBlock Margin="{StaticResource NoVerticalThickness}" HorizontalAlignment="Left">
-			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
-				<Run Text="GitHub" />
-			</Hyperlink>
-			<Run Text=", " />
-			<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.RepoGitee}">
-				<Run Text="Gitee" />
-			</Hyperlink>
-		</TextBlock>
-	</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
 
 </Page>

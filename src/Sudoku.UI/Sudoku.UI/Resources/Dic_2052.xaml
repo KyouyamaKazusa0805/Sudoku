@@ -21,6 +21,12 @@
 	<x:String x:Key="AboutPage_AuthorNameDescription">向向 (Sunnie)</x:String>
 	<x:String x:Key="AboutPage_SudokuReferenceTerm">数独参考</x:String>
 	<x:String x:Key="AboutPage_ProjectWikiTerm">项目 Wiki</x:String>
+	<x:String x:Key="AboutPage_SpecialThanksTitle">鸣谢栏</x:String>
+	<x:String x:Key="AboutPage_SpecialThanksInfo">这里陈列所有这个程序使用或参考了的项目和工程。感谢你们！</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks1">数独 OCR 程序 (基于 Emgu.CV)</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks2">Fsss2 (使用暴力破解算法和逻辑填数技巧的快速数独计算器)</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks3">Hodoku (一个数独分析器)</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks4">Sudoku Explainer (链接无法访问)</x:String>
 	<x:String x:Key="AboutPage_Disclaimer_Term">免责声明</x:String>
 
 	<!--SettingsPage-->
