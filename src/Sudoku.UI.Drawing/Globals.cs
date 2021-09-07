@@ -11,8 +11,10 @@ global using Sudoku.Models;
 global using Windows.Foundation;
 global using Windows.UI;
 global using Windows.UI.Text;
+global using static System.Math;
 global using static Sudoku.Constants.Tables;
 global using Grid = Microsoft.UI.Xaml.Controls.Grid;
+global using Path = Microsoft.UI.Xaml.Shapes.Path;
 global using SudokuGrid = Sudoku.Data.Grid;
 
 [assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y))]

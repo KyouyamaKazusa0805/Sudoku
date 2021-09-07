@@ -5974,6 +5974,12 @@
             </param>
             <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
         </member>
+        <member name="F:Sudoku.Models.ColorIdentifier.UnexpectedOperationException">
+            <summary>
+            Returns the <see cref="T:System.InvalidOperationException"/> instance to report the unexpected operation
+            for getting the A, R, G, B value.
+            </summary>
+        </member>
         <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte)">
             <summary>
             Initializes a <see cref="T:Sudoku.Models.ColorIdentifier"/> with the specified R, G, B value.

@@ -21,6 +21,14 @@ public readonly record struct ColorIdentifier(
 ) : IValueEquatable<ColorIdentifier>
 {
 	/// <summary>
+	/// Returns the <see cref="InvalidOperationException"/> instance to report the unexpected operation
+	/// for getting the A, R, G, B value.
+	/// </summary>
+	private static readonly InvalidOperationException UnexpectedOperationException =
+		new("Can't take the value because the current operation uses ID.");
+
+
+	/// <summary>
 	/// Initializes a <see cref="ColorIdentifier"/> with the specified R, G, B value.
 	/// </summary>
 	/// <param name="r">The red value.</param>
@@ -54,9 +62,7 @@ public readonly record struct ColorIdentifier(
 	public byte A
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(Color >> 24 & 255);
+		get => UseId ? throw UnexpectedOperationException : (byte)(Color >> 24 & 255);
 	}
 
 	/// <summary>
@@ -69,9 +75,7 @@ public readonly record struct ColorIdentifier(
 	public byte R
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(Color >> 16 & 255);
+		get => UseId ? throw UnexpectedOperationException : (byte)(Color >> 16 & 255);
 	}
 
 	/// <summary>
@@ -84,9 +88,7 @@ public readonly record struct ColorIdentifier(
 	public byte G
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(Color >> 8 & 255);
+		get => UseId ? throw UnexpectedOperationException : (byte)(Color >> 8 & 255);
 	}
 
 	/// <summary>
@@ -99,9 +101,7 @@ public readonly record struct ColorIdentifier(
 	public byte B
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => UseId
-			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
-			: (byte)(Color & 255);
+		get => UseId ? throw UnexpectedOperationException : (byte)(Color & 255);
 	}
 
 

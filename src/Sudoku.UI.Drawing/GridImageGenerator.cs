@@ -21,7 +21,7 @@ public sealed partial record GridImageGenerator(PointCalculator Calculator, Pref
 	/// <summary>
 	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
 	/// </summary>
-	public const double RotateAngle = Math.PI / 4;
+	public const double RotateAngle = PI / 4;
 
 	/// <summary>
 	/// The text offset that corrects the pixel of the text output.

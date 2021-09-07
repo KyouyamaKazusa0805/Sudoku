@@ -61,7 +61,7 @@ public sealed class PointCalculator
 	/// Indicates the absolutely points in grid cross-lines.
 	/// This property will be assigned later (and not <see langword="null"/>).
 	/// </summary>
-	/// <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
+	/// <remarks>Note that the size of this array is always 28 x 28.</remarks>
 	public Point[,] GridPoints
 	{
 		get
@@ -81,111 +81,27 @@ public sealed class PointCalculator
 		}
 	}
 
-
 	/// <summary>
-	/// Get the focus cell offset via a mouse point.
+	/// Get the center point of a candidate via the cell and the digit value.
 	/// </summary>
-	/// <param name="point">The mouse point.</param>
-	/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
+	/// <param name="cell">The cell offset.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>The mouse point.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCell(in Point point)
+	public Point GetCenterPoint(int cell, int digit)
 	{
-		var (x, y) = point.WithOffset(-Offset);
-		if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
-		{
-			// Invalid case.
-			return -1;
-		}
-
-		var (cw, ch) = CellSize;
-		int result = (int)(y / ch) * 9 + (int)(x / cw);
-		return result is >= 0 and < 81 ? result : -1;
-	}
-
-	/// <summary>
-	/// Get the focus candidate offset via a mouse point.
-	/// </summary>
-	/// <param name="point">The mouse point.</param>
-	/// <returns>The candidate offset.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCandidate(in Point point)
-	{
-		var (x, y) = point;
 		var (cw, ch) = CandidateSize;
-		return GetCell(point) * 9 + (int)((y - Offset) / ch) % 3 * 3 + (int)((x - Offset) / cw) % 3;
+		var (x, y) = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
+		return new(x + cw / 2, y + ch / 2);
 	}
 
 	/// <summary>
-	/// Get the center mouse point of all candidates.
+	/// Get the center point of a candidate via the candidate offset value.
 	/// </summary>
-	/// <param name="map">The map of candidates.</param>
-	/// <returns>The center mouse point.</returns>
+	/// <param name="candidate">The candidate offset.</param>
+	/// <returns>The mouse point.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Point GetMouseCenter(in Candidates map)
-	{
-		int min = map[0], max = map[^1];
-		var (x1, y1) = GetGridRowAndColumn(min / 9, min % 9);
-		var (x2, y2) = GetGridRowAndColumn(max / 9, max % 9);
-		return new((x1 + x2) / 2, (y1 + y2) / 2);
-	}
-
-	///// <summary>
-	///// Get the rectangle from all candidates.
-	///// </summary>
-	///// <param name="map">The candidates.</param>
-	///// <returns>The rectangle.</returns>
-	//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	//public Rect GetMouseRectangle(in Candidates map)
-	//{
-	//	var (cw, ch) = CandidateSize;
-	//	int min = map[0], max = map[^1];
-	//	var pt1 = GetGridRowAndColumn(min / 9, min % 9).WithOffset(-cw / 2, -ch / 2);
-	//	var pt2 = GetGridRowAndColumn(max / 9, max % 9).WithOffset(cw / 2, ch / 2);
-	//	return new(pt1, pt2);
-	//}
-
-	///// <summary>
-	///// Get the rectangle (4 mouse points) via the specified cell.
-	///// </summary>
-	///// <param name="cell">The cell.</param>
-	///// <returns>The rectangle.</returns>
-	//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	//public Rect GetMouseRectangleViaCell(int cell)
-	//{
-	//	var (cw, ch) = CellSize;
-	//	var (x, y) = GetGridRowAndColumn(cell);
-	//	return new(x - cw / 2, y - ch / 2, cw, ch);
-	//}
-
-	///// <summary>
-	///// Get the rectangle (4 mouse points) for the specified cell
-	///// and digit of a candidate.
-	///// </summary>
-	///// <param name="cell">The cell.</param>
-	///// <param name="digit">The digit.</param>
-	///// <returns>The rectangle.</returns>
-	//[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	//public Rect GetMouseRectangle(int cell, int digit)
-	//{
-	//	var (cw, ch) = CandidateSize;
-	//	var (x, y) = GetGridRowAndColumn(cell, digit);
-	//	return new(x - cw / 2, y - ch / 2, cw, ch);
-	//}
-
-	/// <summary>
-	/// Get the rectangle (4 mouse points) via the specified region.
-	/// </summary>
-	/// <param name="region">The region.</param>
-	/// <returns>The rectangle.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the region is less than 0 or greater than 26.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Rect GetMouseRectangleViaRegion(int region)
-	{
-		var (l, r) = GetAnchorsViaRegion(region);
-		return new(l, r);
-	}
+	public Point GetCenterPoint(int candidate) => GetCenterPoint(candidate / 9, candidate % 9);
 
 	/// <summary>
 	/// Gets two points that specifies and represents the anchors of this region.

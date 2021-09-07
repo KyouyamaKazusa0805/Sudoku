@@ -7,6 +7,28 @@
 internal static class PointExtensions
 {
 	/// <summary>
+	/// Compares two <see cref="Point"/>s, to determine whether the current point is nearly equal to another one.
+	/// </summary>
+	/// <param name="this">The current <see cref="Point"/> instance.</param>
+	/// <param name="other">Another <see cref="Point"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool NearlyEquals(this in Point @this, in Point other) =>
+		@this.X.NearlyEquals(other.X) && @this.Y.NearlyEquals(other.Y);
+
+	/// <summary>
+	/// Compares two <see cref="Point"/>s, to determine whether the current point is nearly equal to another one,
+	/// using the specified epsilon to compare.
+	/// </summary>
+	/// <param name="this">The current <see cref="Point"/> instance.</param>
+	/// <param name="other">Another <see cref="Point"/> instance.</param>
+	/// <param name="epsilon">Indicates the epsilon to compare.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool NearlyEquals(this in Point @this, in Point other, double epsilon) =>
+		@this.X.NearlyEquals(other.X, epsilon) && @this.Y.NearlyEquals(other.Y, epsilon);
+
+	/// <summary>
 	/// To truncate the point.
 	/// </summary>
 	/// <param name="this">The point to truncate.</param>
