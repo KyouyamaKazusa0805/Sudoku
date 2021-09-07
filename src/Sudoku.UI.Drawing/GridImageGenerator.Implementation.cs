@@ -121,61 +121,26 @@ partial record GridImageGenerator
 		var gridPoints = Calculator.GridPoints;
 		for (int i = 0; i < length; i += PointCalculator.AnchorsCount / 9)
 		{
-			var (rx1, ry1) = gridPoints[i, 0];
-			var (rx2, ry2) = gridPoints[i, PointCalculator.AnchorsCount];
-			var (cx1, cy1) = gridPoints[0, i];
-			var (cx2, cy2) = gridPoints[PointCalculator.AnchorsCount, i];
-			var l1 = new Line
-			{
-				X1 = rx1,
-				Y1 = ry1,
-				X2 = rx2,
-				Y2 = ry2,
-				Stroke = new SolidColorBrush(Preferences.GridLineColor),
-				StrokeThickness = Preferences.GridLineWidth
-			};
-			var l2 = new Line
-			{
-				X1 = cx1,
-				Y1 = cy1,
-				X2 = cx2,
-				Y2 = cy2,
-				Stroke = new SolidColorBrush(Preferences.GridLineColor),
-				StrokeThickness = Preferences.GridLineWidth
-			};
-
-			g.Children.Add(l1);
-			g.Children.Add(l2);
+			g.AddLine(
+				gridPoints[i, 0], gridPoints[i, PointCalculator.AnchorsCount],
+				new SolidColorBrush(Preferences.GridLineColor), Preferences.GridLineWidth
+			);
+			g.AddLine(
+				gridPoints[0, i], gridPoints[PointCalculator.AnchorsCount, i],
+				new SolidColorBrush(Preferences.GridLineColor), Preferences.GridLineWidth
+			);
 		}
 
 		for (int i = 0; i < length; i += PointCalculator.AnchorsCount / 3)
 		{
-			var (rx1, ry1) = gridPoints[i, 0];
-			var (rx2, ry2) = gridPoints[i, PointCalculator.AnchorsCount];
-			var (cx1, cy1) = gridPoints[0, i];
-			var (cx2, cy2) = gridPoints[PointCalculator.AnchorsCount, i];
-
-			var l1 = new Line
-			{
-				X1 = rx1,
-				Y1 = ry1,
-				X2 = rx2,
-				Y2 = ry2,
-				Stroke = new SolidColorBrush(Preferences.BlockLineColor),
-				StrokeThickness = Preferences.BlockLineWidth
-			};
-			var l2 = new Line
-			{
-				X1 = cx1,
-				Y1 = cy1,
-				X2 = cx2,
-				Y2 = cy2,
-				Stroke = new SolidColorBrush(Preferences.BlockLineColor),
-				StrokeThickness = Preferences.BlockLineWidth
-			};
-
-			g.Children.Add(l1);
-			g.Children.Add(l2);
+			g.AddLine(
+				gridPoints[i, 0], gridPoints[i, PointCalculator.AnchorsCount],
+				new SolidColorBrush(Preferences.BlockLineColor), Preferences.BlockLineWidth
+			);
+			g.AddLine(
+				gridPoints[0, i], gridPoints[PointCalculator.AnchorsCount, i],
+				new SolidColorBrush(Preferences.BlockLineColor), Preferences.BlockLineWidth
+			);
 		}
 	}
 
@@ -400,9 +365,9 @@ partial record GridImageGenerator
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		void d(int cell, int digit, Brush brush)
 		{
-			var (candFont, candSize) = GetFont(Preferences.CandidateFontName, cellWidth / 2, Preferences.CandidateScale);
+			var (cf, cs) = GetFont(Preferences.CandidateFontName, cellWidth / 2, Preferences.CandidateScale);
 			var (r, c) = Calculator.GetGridRowAndColumn(cell, digit);
-			g.AddTextBlock(r, c, digit, brush, candFont, candSize);
+			g.AddTextBlock(r, c, digit, brush, cf, cs);
 		}
 	}
 
@@ -458,17 +423,7 @@ partial record GridImageGenerator
 						l = l.WithOffset(w, h);
 						r = r.WithOffset(-w, -h);
 
-						var line = new Line
-						{
-							X1 = l.X,
-							X2 = r.X,
-							Y1 = l.Y,
-							Y2 = r.Y,
-							Stroke = brush,
-							StrokeThickness = TextOffset / 2
-						};
-
-						g.Children.Add(line);
+						g.AddLine(l, r, brush, TextOffset / 2);
 
 						break;
 					}

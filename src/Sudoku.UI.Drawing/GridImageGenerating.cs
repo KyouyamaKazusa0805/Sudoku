@@ -189,6 +189,57 @@ internal static class GridImageGenerating
 	}
 
 	/// <summary>
+	/// Add a <see cref="Line"/> instance into the collection.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <param name="x1">The X1 value of the line.</param>
+	/// <param name="y1">The Y1 value of the line.</param>
+	/// <param name="x2">The X2 value of the line.</param>
+	/// <param name="y2">The Y2 value of the line.</param>
+	/// <param name="stroke">The stroke of the line.</param>
+	/// <param name="strokeSize">The stroke thickness of the line.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void AddLine(
+		this Grid @this, double x1, double y1, double x2, double y2, Brush stroke, double strokeSize)
+	{
+		var line = new Line
+		{
+			X1 = x1,
+			X2 = x2,
+			Y1 = y1,
+			Y2 = y2,
+			Stroke = stroke,
+			StrokeThickness = strokeSize
+		};
+
+		@this.Children.Add(line);
+	}
+
+	/// <summary>
+	/// Add a <see cref="Line"/> instance into the collection.
+	/// </summary>
+	/// <param name="this">The <see cref="Grid"/> instance.</param>
+	/// <param name="p1">Indicates the first point used in this line.</param>
+	/// <param name="p2">Indicates the second point used in this line.</param>
+	/// <param name="stroke">The stroke of the line.</param>
+	/// <param name="strokeSize">The stroke thickness of the line.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void AddLine(this Grid @this, in Point p1, in Point p2, Brush stroke, double strokeSize)
+	{
+		var line = new Line
+		{
+			X1 = p1.X,
+			X2 = p2.X,
+			Y1 = p1.Y,
+			Y2 = p2.Y,
+			Stroke = stroke,
+			StrokeThickness = strokeSize
+		};
+
+		@this.Children.Add(line);
+	}
+
+	/// <summary>
 	/// Add cross sign into the <see cref="Grid"/> collection.
 	/// </summary>
 	/// <param name="this">The <see cref="Grid"/> instance.</param>
