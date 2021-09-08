@@ -18,8 +18,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType1(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (abc) ab
@@ -102,8 +111,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType2(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ corner1 and corner2
 		// (abc) (abc)
@@ -203,8 +222,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType3Naked(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//  ↓ corner1, corner2
 		// (ab ) (ab )
@@ -350,8 +379,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType4(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//  ↓ corner1, corner2
 		// (ab ) ab
@@ -467,8 +506,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType5(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//  ↓ cornerCell
 		// (ab ) abc
@@ -566,8 +614,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckType6(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//  ↓ corner1
 		// (ab )  aby
@@ -591,7 +649,13 @@ partial class UrStepSearcher
 		}
 
 		void gather(
-			in SudokuGrid grid, in Cells otherCellsMap, bool isRow, int digit, int region1, int region2)
+			in SudokuGrid grid,
+			in Cells otherCellsMap,
+			bool isRow,
+			int digit,
+			int region1,
+			int region2
+		)
 		{
 			if (
 				(
@@ -693,8 +757,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckHidden(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//  ↓ cornerCell
 		// (ab ) abx

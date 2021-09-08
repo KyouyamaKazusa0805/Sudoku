@@ -85,8 +85,11 @@ public sealed class AicStepSearcher : ChainingStepSearcher
 	/// Indicates whether the strong links in cells are enabled to search for.
 	/// </param>
 	private void DoUnaryChaining(
-		IList<ChainingStepInfo> accumulator, in SudokuGrid grid, in Node pOn,
-		bool xEnabled, bool yEnabled)
+		IList<ChainingStepInfo> accumulator,
+		in SudokuGrid grid,
+		in Node pOn,
+		bool xEnabled, bool yEnabled
+	)
 	{
 		if (PopCount((uint)grid.GetCandidates(pOn.Cell)) > 2 && !xEnabled)
 		{
@@ -252,8 +255,13 @@ public sealed class AicStepSearcher : ChainingStepSearcher
 	/// <param name="chains">The chain nodes.</param>
 	/// <param name="source">The source node.</param>
 	private void DoAic(
-		in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff, bool yEnabled, IList<Node> chains,
-		in Node source)
+		in SudokuGrid grid,
+		ISet<Node> onToOn,
+		ISet<Node> onToOff,
+		bool yEnabled,
+		IList<Node> chains,
+		in Node source
+	)
 	{
 		var pendingOn = new List<Node>(onToOn);
 		var pendingOff = new List<Node>(onToOff);
@@ -321,8 +329,14 @@ public sealed class AicStepSearcher : ChainingStepSearcher
 	/// <param name="loops">The loop nodes.</param>
 	/// <param name="source">The source node.</param>
 	private void DoLoops(
-		in SudokuGrid grid, ISet<Node> onToOn, ISet<Node> onToOff,
-		bool xEnabled, bool yEnabled, IList<Node> loops, in Node source)
+		in SudokuGrid grid,
+		ISet<Node> onToOn,
+		ISet<Node> onToOff,
+		bool xEnabled,
+		bool yEnabled,
+		IList<Node> loops,
+		in Node source
+	)
 	{
 		var pendingOn = new List<Node>(onToOn);
 		var pendingOff = new List<Node>(onToOff);

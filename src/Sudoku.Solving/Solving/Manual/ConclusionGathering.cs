@@ -16,7 +16,10 @@ public static class ConclusionGathering
 	/// </param>
 	/// <returns>The array of <see cref="Conclusion"/>s.</returns>
 	public static Conclusion[] ToConclusions(
-		this in Cells @this, int digit, ConclusionType conclusionType = ConclusionType.Elimination)
+		this in Cells @this,
+		int digit,
+		ConclusionType conclusionType = ConclusionType.Elimination
+	)
 	{
 		var result = new Conclusion[@this.Count];
 		int[] offsets = @this.ToArray();
@@ -39,7 +42,10 @@ public static class ConclusionGathering
 	/// </param>
 	/// <returns>The immutable array of <see cref="Conclusion"/>s.</returns>
 	public static ImmutableArray<Conclusion> ToImmutableConclusions(
-		this in Cells @this, int digit, ConclusionType conclusionType = ConclusionType.Elimination)
+		this in Cells @this,
+		int digit,
+		ConclusionType conclusionType = ConclusionType.Elimination
+	)
 	{
 		var result = new Conclusion[@this.Count];
 		int[] offsets = @this.ToArray();

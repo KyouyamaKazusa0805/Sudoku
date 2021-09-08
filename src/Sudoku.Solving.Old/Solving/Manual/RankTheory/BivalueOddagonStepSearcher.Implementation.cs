@@ -13,8 +13,14 @@ partial class BivalueOddagonStepSearcher
 	/// <param name="links">The links.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	partial void CheckType1(
-		IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
-		IReadOnlyList<Link> links, in Cells extraCellsMap)
+		IList<BivalueOddagonStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		IReadOnlyList<Link> links,
+		in Cells extraCellsMap
+	)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>();
@@ -62,8 +68,14 @@ partial class BivalueOddagonStepSearcher
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	partial void CheckType2(
-		IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-		in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
+		IList<BivalueOddagonStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop, IReadOnlyList<Link> links,
+		in Cells extraCellsMap,
+		short comparer
+	)
 	{
 		short mask = 0;
 		foreach (int cell in extraCellsMap)
@@ -123,8 +135,15 @@ partial class BivalueOddagonStepSearcher
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	partial void CheckType3(
-		IList<BivalueOddagonStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-		in Cells loop, IReadOnlyList<Link> links, in Cells extraCellsMap, short comparer)
+		IList<BivalueOddagonStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		IReadOnlyList<Link> links,
+		in Cells extraCellsMap,
+		short comparer
+	)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)

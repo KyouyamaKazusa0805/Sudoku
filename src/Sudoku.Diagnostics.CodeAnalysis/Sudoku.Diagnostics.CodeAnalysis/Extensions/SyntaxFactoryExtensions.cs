@@ -98,7 +98,10 @@ internal static class SyntaxFactoryExtensions
 	/// </param>
 	/// <returns>The syntax node.</returns>
 	public static IsPatternExpressionSyntax IsEmptyPropertyPatternExpression(
-		ExpressionSyntax expr, string variableName, bool isNegated = false)
+		ExpressionSyntax expr,
+		string variableName,
+		bool isNegated = false
+	)
 	{
 		var propertyPattern =
 			SyntaxFactory.RecursivePattern()

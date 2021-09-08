@@ -16,7 +16,11 @@ public static class Utf8JsonReaderExtensions
 	/// <param name="options">The options on deserialization.</param>
 	/// <returns>The instance.</returns>
 	public static T? ReadObject<T>(
-		this ref Utf8JsonReader @this, JsonConverter<T>? converter, Type type, JsonSerializerOptions options)
+		this ref Utf8JsonReader @this,
+		JsonConverter<T>? converter,
+		Type type,
+		JsonSerializerOptions options
+	)
 	{
 		if (converter is not null)
 		{

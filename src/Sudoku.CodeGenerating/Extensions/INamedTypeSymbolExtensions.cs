@@ -66,9 +66,16 @@ internal static class INamedTypeSymbolExtensions
 	/// <param name="isGeneric">Indicates whether the type is a generic type.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void DeconstructInfo(
-		this INamedTypeSymbol @this, bool checkNotRefStruct, out string fullTypeName, out string namespaceName,
-		out string genericParametersList, out string genericParametersListWithoutConstraint,
-		out string typeKind, out string readonlyKeyword, out bool isGeneric)
+		this INamedTypeSymbol @this,
+		bool checkNotRefStruct,
+		out string fullTypeName,
+		out string namespaceName,
+		out string genericParametersList,
+		out string genericParametersListWithoutConstraint,
+		out string typeKind,
+		out string readonlyKeyword,
+		out bool isGeneric
+	)
 	{
 		fullTypeName = @this.ToDisplayString(FormatOptions.TypeFormat);
 		namespaceName = @this.ContainingNamespace.ToDisplayString();

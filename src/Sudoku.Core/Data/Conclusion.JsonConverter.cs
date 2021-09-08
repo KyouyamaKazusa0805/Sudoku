@@ -15,7 +15,10 @@ partial record struct Conclusion
 		/// <inheritdoc/>
 		/// <exception cref="InvalidOperationException">Throws when the specified data is invalid.</exception>
 		public override Conclusion Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			while (reader.Read())
 			{

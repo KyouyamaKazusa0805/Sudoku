@@ -575,8 +575,14 @@ partial record GridImageGenerator
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void adjust(
-			in PointF pt1, in PointF pt2, out PointF p1, out PointF p2, double alpha,
-			double candidateSize, float offset)
+			in PointF pt1,
+			in PointF pt2,
+			out PointF p1,
+			out PointF p2,
+			double alpha,
+			double candidateSize,
+			float offset
+		)
 		{
 			p1 = pt1;
 			p2 = pt2;
@@ -591,8 +597,16 @@ partial record GridImageGenerator
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void cut(
-			ref PointF pt1, ref PointF pt2, float offset, float cw, float ch,
-			float pt1x, float pt1y, float pt2x, float pt2y)
+			ref PointF pt1,
+			ref PointF pt2,
+			float offset,
+			float cw,
+			float ch,
+			float pt1x,
+			float pt1y,
+			float pt2x,
+			float pt2y
+		)
 		{
 			float slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
 			float x = cw / (float)Sqrt(1 + slope * slope);

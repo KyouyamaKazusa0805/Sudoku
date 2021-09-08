@@ -13,8 +13,14 @@ partial class BdpStepSearcher
 	/// <param name="centerMask">The center mask.</param>
 	/// <param name="map">The map.</param>
 	partial void CheckType1(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-		short cornerMask2, short centerMask, in Cells map)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Pattern pattern,
+		short cornerMask1,
+		short cornerMask2,
+		short centerMask,
+		in Cells map
+	)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -87,8 +93,14 @@ partial class BdpStepSearcher
 	/// <param name="centerMask">The center mask.</param>
 	/// <param name="map">The map.</param>
 	partial void CheckType2(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern, short cornerMask1,
-		short cornerMask2, short centerMask, in Cells map)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Pattern pattern,
+		short cornerMask1,
+		short cornerMask2,
+		short centerMask,
+		in Cells map
+	)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -151,8 +163,14 @@ partial class BdpStepSearcher
 	/// <param name="centerMask">The center mask.</param>
 	/// <param name="map">The map.</param>
 	partial void CheckType3(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
-		short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Pattern pattern,
+		short cornerMask1,
+		short cornerMask2,
+		short centerMask,
+		in Cells map
+	)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int region in map.Regions)
@@ -280,8 +298,14 @@ partial class BdpStepSearcher
 	/// <param name="centerMask">The center mask.</param>
 	/// <param name="map">The map.</param>
 	partial void CheckType4(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Pattern pattern,
-		short cornerMask1, short cornerMask2, short centerMask, in Cells map)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Pattern pattern,
+		short cornerMask1,
+		short cornerMask2,
+		short centerMask,
+		in Cells map
+	)
 	{
 		// The type 4 may be complex and terrible to process.
 		// All regions that the pattern lies in should be checked.

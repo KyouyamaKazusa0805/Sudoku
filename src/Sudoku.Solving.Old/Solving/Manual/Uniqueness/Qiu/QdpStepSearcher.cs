@@ -83,8 +83,12 @@ public sealed partial class QdpStepSearcher : UniquenessStepSearcher
 				}
 
 				static void f(
-					in SudokuGrid grid, in Cells map, ref short appearedDigitsMask,
-					ref short distinctionMask, ref int appearedParts)
+					in SudokuGrid grid,
+					in Cells map,
+					ref short appearedDigitsMask,
+					ref short distinctionMask,
+					ref int appearedParts
+				)
 				{
 					bool flag = false;
 					int[] offsets = map.ToArray();

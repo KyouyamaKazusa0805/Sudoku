@@ -82,8 +82,9 @@ public sealed class BackdoorSearcher
 	/// </param>
 	/// <returns>The task to calculate all conclusions.</returns>
 	public async Task<IEnumerable<IReadOnlyList<Conclusion>>> SearchForBackdoorsExactAsync(
-		SudokuGrid grid, int depth) =>
-		await Task.Run(() => SearchForBackdoorsExact(grid, depth));
+		SudokuGrid grid,
+		int depth
+	) => await Task.Run(() => SearchForBackdoorsExact(grid, depth));
 
 
 	/// <summary>
@@ -96,7 +97,10 @@ public sealed class BackdoorSearcher
 	/// Throws when the grid is invalid (has no solution or multiple solutions).
 	/// </exception>
 	private static void SearchForBackdoors(
-		IList<IReadOnlyList<Conclusion>> result, in SudokuGrid grid, int depth)
+		IList<IReadOnlyList<Conclusion>> result,
+		in SudokuGrid grid,
+		int depth
+	)
 	{
 		if (!grid.IsValid(out SudokuGrid solution))
 		{

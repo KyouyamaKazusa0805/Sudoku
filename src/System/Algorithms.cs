@@ -104,8 +104,13 @@ public static class Algorithms
 
 
 		static void g(
-			int last, int count, int index, in Span<int> tempArray, IReadOnlyList<T> @this,
-			in IList<T[]> resultList)
+			int last,
+			int count,
+			int index,
+			in Span<int> tempArray,
+			IReadOnlyList<T> @this,
+			in IList<T[]> resultList
+		)
 		{
 			for (int i = last; i >= index; i--)
 			{

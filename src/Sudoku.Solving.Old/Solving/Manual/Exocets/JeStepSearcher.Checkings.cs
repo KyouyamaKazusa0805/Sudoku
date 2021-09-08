@@ -42,7 +42,12 @@ partial class JeStepSearcher
 	/// </param>
 	/// <returns>The <see cref="bool"/> value.</returns>
 	private unsafe partial bool CheckTarget(
-		in SudokuGrid grid, int pos1, int pos2, int baseCands, out short ahsOrConjugatePairCands)
+		in SudokuGrid grid,
+		int pos1,
+		int pos2,
+		int baseCands,
+		out short ahsOrConjugatePairCands
+	)
 	{
 		// According to the puzzle, we just describe for the TQ1 and TQ2 ({23567} and 9).
 		// .------------------------.---------------------.-----------------------.

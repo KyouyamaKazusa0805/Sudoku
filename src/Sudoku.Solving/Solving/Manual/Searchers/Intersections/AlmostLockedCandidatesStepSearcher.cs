@@ -84,8 +84,16 @@ internal sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidat
 	/// </para>
 	/// </remarks>
 	private static Step? GetAll(
-		ICollection<Step> result, in Grid grid, int size, int baseSet, int coverSet,
-		in Cells a, in Cells b, in Cells c, bool onlyFindOne)
+		ICollection<Step> result,
+		in Grid grid,
+		int size,
+		int baseSet,
+		int coverSet,
+		in Cells a,
+		in Cells b,
+		in Cells c,
+		bool onlyFindOne
+	)
 	{
 		// Iterate on each cell combination.
 		foreach (int[] cells in (a & EmptyMap).SubsetOfSize(size - 1))

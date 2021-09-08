@@ -14,7 +14,10 @@ partial record struct Crosshatch
 
 		/// <inheritdoc/>
 		public override unsafe Crosshatch Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			Cells start, end;
 			string? pos = null;

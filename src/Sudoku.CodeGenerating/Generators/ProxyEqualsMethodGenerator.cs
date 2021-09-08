@@ -39,10 +39,8 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 				select member
 			).First();
 
-			if (
-				type.IsReferenceType
-				&& !methods.Parameters.NullableMatches(NullableAnnotation.Annotated, NullableAnnotation.Annotated)
-			)
+			if (type.IsReferenceType
+				&& !methods.Parameters.NullableMatches(NullableAnnotation.Annotated, NullableAnnotation.Annotated))
 			{
 				continue;
 			}

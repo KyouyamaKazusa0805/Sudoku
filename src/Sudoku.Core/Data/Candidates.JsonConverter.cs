@@ -16,8 +16,11 @@ partial struct Candidates
 		/// <exception cref="InvalidOperationException">
 		/// Throws when the specified part contains the invalid data (such as the wrong type) while reading.
 		/// </exception>
-		public unsafe override Candidates Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override unsafe Candidates Read(
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			byte pos;
 			long _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;

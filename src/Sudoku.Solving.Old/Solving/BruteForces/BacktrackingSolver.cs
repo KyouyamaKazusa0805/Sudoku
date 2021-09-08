@@ -61,7 +61,11 @@ public sealed class BacktrackingSolver : ISolver
 	/// Throws when the puzzle contains multiple solutions.
 	/// </exception>
 	private void BacktrackinglySolve(
-		ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
+		ref int solutionsCount,
+		ref int[]? result,
+		int[] gridValues,
+		int finishedCellsCount
+	)
 	{
 		if (finishedCellsCount == 81)
 		{

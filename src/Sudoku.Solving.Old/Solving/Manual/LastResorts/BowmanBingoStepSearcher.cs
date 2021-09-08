@@ -181,7 +181,10 @@ public sealed class BowmanBingoStepSearcher : LastResortStepSearcher
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
 	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(
-		in SudokuGrid grid, int cell, int digit)
+		in SudokuGrid grid,
+		int cell,
+		int digit
+	)
 	{
 		var list = new List<int>();
 		foreach (int c in PeerMaps[cell] & CandMaps[digit])

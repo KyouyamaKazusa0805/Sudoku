@@ -68,7 +68,11 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 	/// <param name="finishedCellsCount">The number of cells had finished.</param>
 	/// <exception cref="MultipleSolutionsException">Throws when the puzzle contains multiple solutions.</exception>
 	private void InternalSolve(
-		ref int solutionsCount, ref int[]? result, int[] gridValues, int finishedCellsCount)
+		ref int solutionsCount,
+		ref int[]? result,
+		int[] gridValues,
+		int finishedCellsCount
+	)
 	{
 		if (finishedCellsCount == 81)
 		{

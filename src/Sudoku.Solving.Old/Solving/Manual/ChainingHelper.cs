@@ -101,8 +101,15 @@ public static class ChainingHelper
 	/// </param>
 	/// <returns>All possible strong links.</returns>
 	public static ISet<Node> GetOffToOn(
-		in SudokuGrid grid, in Node p, bool xEnabled, bool yEnabled, bool enableFastProperties,
-		in SudokuGrid? source = null, ISet<Node>? offNodes = null, bool isDynamic = false)
+		in SudokuGrid grid,
+		in Node p,
+		bool xEnabled,
+		bool yEnabled,
+		bool enableFastProperties,
+		in SudokuGrid? source = null,
+		ISet<Node>? offNodes = null,
+		bool isDynamic = false
+	)
 	{
 		var result = new Set<Node>();
 		if (yEnabled)
@@ -187,7 +194,11 @@ public static class ChainingHelper
 	/// Throws when the parent node of the specified node cannot be found.
 	/// </exception>
 	private static void AddHiddenParentsOfCell(
-		ref Node p, in SudokuGrid grid, in SudokuGrid source, ISet<Node> offNodes)
+		ref Node p,
+		in SudokuGrid grid,
+		in SudokuGrid source,
+		ISet<Node> offNodes
+	)
 	{
 		foreach (int digit in (short)(source.GetCandidates(p.Cell) & ~grid.GetCandidates(p.Cell)))
 		{
@@ -211,7 +222,11 @@ public static class ChainingHelper
 	/// Throws when the parent node of the specified node cannot be found.
 	/// </exception>
 	private static void AddHiddenParentsOfRegion(
-		ref Node p, in SudokuGrid grid, in SudokuGrid source, RegionLabel currRegion, ISet<Node> offNodes)
+		ref Node p, in SudokuGrid grid,
+		in SudokuGrid source,
+		RegionLabel currRegion,
+		ISet<Node> offNodes
+	)
 	{
 		int region = p.Cell.ToRegion(currRegion);
 		foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))

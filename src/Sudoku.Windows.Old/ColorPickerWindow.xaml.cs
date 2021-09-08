@@ -84,8 +84,10 @@ public partial class ColorPickerWindow : Window
 	/// otherwise, <see langword="false"/> (i.e. user canceled).
 	/// </returns>
 	public static bool ShowDialog(
-		[NotNullWhen(true)] out WColor? color, ColorPickerOptions flags = ColorPickerOptions.None,
-		PickingColorEventHandler? customPreviewEventHandler = null)
+		[NotNullWhen(true)] out WColor? color,
+		ColorPickerOptions flags = ColorPickerOptions.None,
+		PickingColorEventHandler? customPreviewEventHandler = null
+	)
 	{
 		if (flags.Flags(ColorPickerOptions.LoadCustomPalette))
 		{

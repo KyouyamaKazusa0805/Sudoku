@@ -17,7 +17,10 @@ partial record struct ConjugatePair
 		/// Throws when the specified value is invalid to parse.
 		/// </exception>
 		public override ConjugatePair Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			while (reader.Read())
 			{

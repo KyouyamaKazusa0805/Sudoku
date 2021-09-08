@@ -40,7 +40,10 @@ public sealed class BugMultipleWithFcStepSearcher : UniquenessStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="trueCandidates">All true candidates.</param>
 	private void CheckMultipleWithForcingChains(
-		IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		IReadOnlyList<int> trueCandidates
+	)
 	{
 		var tempAccumulator = new List<BugMultipleWithFcStepInfo>();
 
@@ -167,7 +170,10 @@ public sealed class BugMultipleWithFcStepSearcher : UniquenessStepSearcher
 	/// <returns>The result information instance.</returns>
 	/// <seealso cref="CheckMultipleWithForcingChains(IList{StepInfo}, in SudokuGrid, IReadOnlyList{int})"/>
 	private static BugMultipleWithFcStepInfo? CreateEliminationHint(
-		IReadOnlyList<int> trueCandidates, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+		IReadOnlyList<int> trueCandidates,
+		in Node target,
+		IReadOnlyDictionary<int, Set<Node>> outcomes
+	)
 	{
 		// Build removable nodes.
 		var conclusions = new List<Conclusion>

@@ -36,8 +36,11 @@ public sealed partial class ManualSolver : ISolver
 	/// </para>
 	/// </remarks>
 	public async Task<AnalysisResult?> SolveAsync(
-		SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs,
-		CancellationToken? cancellationToken = null)
+		SudokuGrid grid,
+		IProgress<IProgressResult>? progress,
+		CountryCode countryCode = CountryCode.EnUs,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		return await (cancellationToken is { } ct ? Task.Run(innerAnalysis, ct) : Task.Run(innerAnalysis));
 
@@ -63,8 +66,11 @@ public sealed partial class ManualSolver : ISolver
 	/// <param name="cancellationToken">The cancellation token that is used to cancel the operation.</param>
 	/// <returns>The analysis result.</returns>
 	public unsafe AnalysisResult Solve(
-		in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode = CountryCode.EnUs,
-		CancellationToken? cancellationToken = null)
+		in SudokuGrid grid,
+		IProgress<IProgressResult>? progress,
+		CountryCode countryCode = CountryCode.EnUs,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		if (grid.IsValid(out var solution, out bool? sukaku))
 		{

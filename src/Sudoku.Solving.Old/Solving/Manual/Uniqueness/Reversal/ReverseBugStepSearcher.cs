@@ -106,7 +106,12 @@ public sealed partial class ReverseBugStepSearcher : UniquenessStepSearcher
 	/// <param name="d2">The digit 2.</param>
 	/// <returns>All possible loops.</returns>
 	private static IReadOnlyList<(Cells Loop, IReadOnlyList<Link> Links)> FindPossibleLoops(
-		in SudokuGrid grid, int cell1, int cell2, int d1, int d2)
+		in SudokuGrid grid,
+		int cell1,
+		int cell2,
+		int d1,
+		int d2
+	)
 	{
 		var result = new List<(Cells, IReadOnlyList<Link>)>();
 		var loop = new List<int> { cell1 };
@@ -123,8 +128,12 @@ public sealed partial class ReverseBugStepSearcher : UniquenessStepSearcher
 		}
 
 		void f(
-			in SudokuGrid grid, in Cells values,
-			int cell, int anotherDigit, short digitsMask, int lastEmptyCellsCount)
+			in SudokuGrid grid,
+			in Cells values,
+			int cell, int anotherDigit,
+			short digitsMask,
+			int lastEmptyCellsCount
+		)
 		{
 			if (lastEmptyCellsCount < 0)
 			{
@@ -135,8 +144,7 @@ public sealed partial class ReverseBugStepSearcher : UniquenessStepSearcher
 			loopMap.AddAnyway(cell);
 
 			foreach (int nextCell in
-				PeerMaps[cell] - new Cells { loop[^2], cell }.PeerIntersection
-				& DigitMaps[anotherDigit])
+				PeerMaps[cell] - new Cells { loop[^2], cell }.PeerIntersection & DigitMaps[anotherDigit])
 			{
 				if (loop[0] == nextCell && loop.Count >= 4 && loop.IsValidLoop())
 				{

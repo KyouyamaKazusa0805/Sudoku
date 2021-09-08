@@ -322,20 +322,23 @@ partial struct SudokuGrid
 						}
 						default: // Print values and tabs.
 						{
-							p(
-								this, valuesByRow[i switch
-								{
-									1 or 2 or 3 or 4 => i - 1,
-									5 or 6 or 7 or 8 => i - 2,
-									9 or 10 or 11 or 12 => i - 3
-								}], '|', '|', maxLengths
-							);
+							p(this, valuesByRow[i switch
+							{
+								1 or 2 or 3 or 4 => i - 1,
+								5 or 6 or 7 or 8 => i - 2,
+								9 or 10 or 11 or 12 => i - 3
+							}], '|', '|', maxLengths);
 
 							break;
 
+
 							void p(
-								in Formatter formatter, IList<short> valuesByRow, char c1, char c2,
-								int* maxLengths)
+								in Formatter formatter,
+								IList<short> valuesByRow,
+								char c1,
+								char c2,
+								int* maxLengths
+							)
 							{
 								sb.Append(c1);
 								printValues(formatter, valuesByRow, 0, 2, maxLengths);
@@ -345,9 +348,14 @@ partial struct SudokuGrid
 								printValues(formatter, valuesByRow, 6, 8, maxLengths);
 								sb.AppendLine(c1);
 
+
 								void printValues(
-									in Formatter formatter, IList<short> valuesByRow,
-									int start, int end, int* maxLengths)
+									in Formatter formatter,
+									IList<short> valuesByRow,
+									int start,
+									int end,
+									int* maxLengths
+								)
 								{
 									sb.Append(' ');
 									for (int i = start; i <= end; i++)

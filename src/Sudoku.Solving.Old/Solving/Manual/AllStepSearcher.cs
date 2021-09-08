@@ -31,8 +31,11 @@ public sealed partial class AllStepSearcher
 	/// <returns>The result grouped by technique names.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	public IEnumerable<IGrouping<string, StepInfo>> Search(
-		in SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode,
-		CancellationToken? cancellationToken)
+		in SudokuGrid grid,
+		IProgress<IProgressResult>? progress,
+		CountryCode countryCode,
+		CancellationToken? cancellationToken
+	)
 	{
 		if (grid.IsSolved || !grid.IsValid(out bool? sukaku))
 		{
@@ -137,8 +140,11 @@ public sealed partial class AllStepSearcher
 	/// <returns>The task of that searching.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	public async Task<IEnumerable<IGrouping<string, StepInfo>>?> SearchAsync(
-		SudokuGrid grid, IProgress<IProgressResult>? progress, CountryCode countryCode,
-		CancellationToken? cancellationToken)
+		SudokuGrid grid,
+		IProgress<IProgressResult>? progress,
+		CountryCode countryCode,
+		CancellationToken? cancellationToken
+	)
 	{
 		return await (cancellationToken is { } t ? Task.Run(innerSearch, t) : Task.Run(innerSearch));
 

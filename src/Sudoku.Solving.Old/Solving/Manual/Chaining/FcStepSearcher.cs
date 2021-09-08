@@ -170,8 +170,15 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
 	/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 	private void DoBinaryChaining(
-		IList<ChainingStepInfo> accumulator, ref SudokuGrid grid, in Node pOn, in Node pOff,
-		Set<Node> onToOn, Set<Node> onToOff, bool doReduction, bool doContradiction)
+		IList<ChainingStepInfo> accumulator,
+		ref SudokuGrid grid,
+		in Node pOn,
+		in Node pOff,
+		Set<Node> onToOn,
+		Set<Node> onToOff,
+		bool doReduction,
+		bool doContradiction
+	)
 	{
 		Set<Node> offToOn = new(), offToOff = new();
 
@@ -233,8 +240,12 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 	/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 	private void DoRegionChaining(
-		IList<ChainingStepInfo> accumulator, ref SudokuGrid grid, int cell, int digit,
-		Set<Node> onToOn, Set<Node> onToOff)
+		IList<ChainingStepInfo> accumulator,
+		ref SudokuGrid grid,
+		int cell,
+		int digit,
+		Set<Node> onToOn, Set<Node> onToOff
+	)
 	{
 		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 		{
@@ -380,7 +391,12 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStepInfo CreateChainingOnHint(
-		in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
+		in Node destOn,
+		in Node destOff,
+		in Node source,
+		in Node target,
+		bool isAbsurd
+	)
 	{
 		// Get views.
 		var appendedInfo = new DrawingInfo(0, target.Cell * 9 + target.Digit);
@@ -448,7 +464,12 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStepInfo CreateChainingOffHint(
-		in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
+		in Node destOn,
+		in Node destOff,
+		in Node source,
+		in Node target,
+		bool isAbsurd
+	)
 	{
 		// Get views.
 		var cellOffset = new DrawingInfo[] { new(0, destOn.Cell) };
@@ -508,7 +529,11 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="outcomes">All outcomes (conclusions).</param>
 	/// <returns>The information instance.</returns>
 	private CellChainingStepInfo CreateCellFcHint(
-		in SudokuGrid grid, int sourceCell, in Node target, IReadOnlyDictionary<int, Set<Node>> outcomes)
+		in SudokuGrid grid,
+		int sourceCell,
+		in Node target,
+		IReadOnlyDictionary<int, Set<Node>> outcomes
+	)
 	{
 		var (targetCandidate, targetIsOn) = target;
 
@@ -579,7 +604,11 @@ public class FcStepSearcher : ChainingStepSearcher
 	/// <param name="outcomes">All outcomes (conclusions).</param>
 	/// <returns>The technique information instance.</returns>
 	private RegionChainingStepInfo CreateRegionFcHint(
-		int region, int digit, in Node target, IDictionary<int, Set<Node>> outcomes)
+		int region,
+		int digit,
+		in Node target,
+		IDictionary<int, Set<Node>> outcomes
+	)
 	{
 		var (targetCandidate, targetIsOn) = target;
 

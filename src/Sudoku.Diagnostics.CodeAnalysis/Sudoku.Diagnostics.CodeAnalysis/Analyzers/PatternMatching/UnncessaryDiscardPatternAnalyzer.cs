@@ -169,8 +169,10 @@ public sealed partial class UnncessaryDiscardPatternAnalyzer : DiagnosticAnalyze
 
 
 		static void checkSS0613Recursively(
-			in SyntaxNodeAnalysisContext context, in SeparatedSyntaxList<SubpatternSyntax> subpatterns,
-			IList<SubpatternSyntax> discardPatterns)
+			in SyntaxNodeAnalysisContext context,
+			in SeparatedSyntaxList<SubpatternSyntax> subpatterns,
+			IList<SubpatternSyntax> discardPatterns
+		)
 		{
 			foreach (var subpattern in subpatterns)
 			{

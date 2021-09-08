@@ -118,8 +118,15 @@ internal sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
 	private unsafe Step? GetAll(
-		ICollection<Step> accumulator, in Grid grid, int size, int** r, int** c,
-		bool withFin, bool searchRow, bool onlyFindOne)
+		ICollection<Step> accumulator,
+		in Grid grid,
+		int size,
+		int** r,
+		int** c,
+		bool withFin,
+		bool searchRow,
+		bool onlyFindOne
+	)
 	{
 		// Iterate on each digit.
 		for (int digit = 0; digit < 9; digit++)
@@ -250,7 +257,13 @@ internal sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
 	private static PresentationData GetDirectView(
-		in Grid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
+		in Grid grid,
+		int digit,
+		int[] baseSets,
+		int[] coverSets,
+		in Cells fins,
+		bool searchRow
+	)
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<(int, ColorIdentifier)>();

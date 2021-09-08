@@ -25,7 +25,9 @@ public sealed class CSharpProjectUpdater
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The task.</returns>
 	public async Task IncreaseVersionAsync(
-		string? leadingString = null, CancellationToken cancellationToken = default)
+		string? leadingString = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		var fileCounter = new FileCounter(SolutionPath, "csproj", false);
 		await fileCounter.CountUpAsync(cancellationToken);
@@ -85,8 +87,10 @@ public sealed class CSharpProjectUpdater
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The task.</returns>
 	public async Task UpdateNullableAsync(
-		string nullableValue, string? leadingString = null,
-		CancellationToken cancellationToken = default)
+		string nullableValue,
+		string? leadingString = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		var fileCounter = new FileCounter(SolutionPath, "csproj", false);
 		await fileCounter.CountUpAsync(cancellationToken);

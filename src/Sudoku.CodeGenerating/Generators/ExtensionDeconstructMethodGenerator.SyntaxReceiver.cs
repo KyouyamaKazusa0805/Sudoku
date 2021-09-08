@@ -24,7 +24,10 @@ partial class ExtensionDeconstructMethodGenerator
 				}
 				|| attributes.Any(static attribute => attribute is
 				{
-					Name: IdentifierNameSyntax { Identifier.ValueText: nameof(AutoDeconstructExtensionAttribute) }
+					Name: IdentifierNameSyntax
+					{
+						Identifier.ValueText: nameof(AutoDeconstructExtensionAttribute)
+					}
 				})
 			)
 			{

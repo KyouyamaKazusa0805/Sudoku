@@ -16,16 +16,10 @@ partial struct Grid
 		/// be multi-line.
 		/// </param>
 		public Formatter(bool multiline) : this(
-			placeholder: '.',
-			multiline: multiline,
-			withModifiables: false,
-			withCandidates: false,
-			treatValueAsGiven: false,
-			subtleGridLines: false,
-			hodokuCompatible: false,
-			sukaku: false,
-			excel: false,
-			openSudoku: false)
+			placeholder: '.', multiline: multiline, withModifiables: false,
+			withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
+			hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false
+		)
 		{
 		}
 
@@ -53,9 +47,17 @@ partial struct Grid
 		/// Indicates whether the formatter will output as open sudoku format.
 		/// </param>
 		private Formatter(
-			char placeholder, bool multiline, bool withModifiables, bool withCandidates,
-			bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible, bool sukaku,
-			bool excel, bool openSudoku)
+			char placeholder,
+			bool multiline,
+			bool withModifiables,
+			bool withCandidates,
+			bool treatValueAsGiven,
+			bool subtleGridLines,
+			bool hodokuCompatible,
+			bool sukaku,
+			bool excel,
+			bool openSudoku
+		)
 		{
 			Placeholder = placeholder;
 			Multiline = multiline;

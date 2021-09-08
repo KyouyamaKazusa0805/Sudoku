@@ -198,8 +198,19 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Candidates(
-		long _0, long _1, long _2, long _3, long _4, long _5, long _6, long _7, long _8,
-		long _9, long _10, long _11)
+		long _0,
+		long _1,
+		long _2,
+		long _3,
+		long _4,
+		long _5,
+		long _6,
+		long _7,
+		long _8,
+		long _9,
+		long _10,
+		long _11
+	)
 	{
 		this._0 = _0;
 		this._1 = _1;
@@ -573,10 +584,8 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		foreach (Match match in matches)
 		{
 			string value = match.Value;
-			if (
-				options.Flags(CandidatesParsingOptions.ShortForm)
-				&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm)
-			)
+			if (options.Flags(CandidatesParsingOptions.ShortForm)
+				&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm))
 			{
 				result.AddAnyway((value[1] - '1') * 81 + (value[2] - '1') * 9 + value[0] - '1');
 			}

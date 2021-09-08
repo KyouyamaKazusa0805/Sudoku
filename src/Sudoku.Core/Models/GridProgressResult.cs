@@ -17,8 +17,11 @@ public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, 
 	/// <param name="initialCandidatesCount">The number of unsolved candidates in the initial grid.</param>
 	/// <param name="countryCode">The country code.</param>
 	public GridProgressResult(
-		int currentCandidatesCount, int currentCellsCount, int initialCandidatesCount,
-		CountryCode countryCode)
+		int currentCandidatesCount,
+		int currentCellsCount,
+		int initialCandidatesCount,
+		CountryCode countryCode
+	)
 	{
 		CurrentCandidatesCount = currentCandidatesCount;
 		CurrentCellsCount = currentCellsCount;

@@ -14,8 +14,12 @@ partial class JeStepSearcher
 	/// </param>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	private partial bool GatherBasic(
-		in SudokuGrid grid, ref Candidates elims, int cell, short baseCands,
-		short baseCandsWithAhsOrConjugatePair)
+		in SudokuGrid grid,
+		ref Candidates elims,
+		int cell,
+		short baseCands,
+		short baseCandsWithAhsOrConjugatePair
+	)
 	{
 		// Now get eliminations.
 		// Firstly, we should get the possible digits that can be eliminated.

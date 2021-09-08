@@ -20,7 +20,9 @@ internal static class ImmutableArrayExtensions
 	/// Throws when the current length isn't equal to <paramref name="nullableAnnotations"/>.Length.
 	/// </exception>
 	public static bool NullableMatches(
-		this in ImmutableArray<IParameterSymbol> @this, params NullableAnnotation[] nullableAnnotations)
+		this in ImmutableArray<IParameterSymbol> @this,
+		params NullableAnnotation[] nullableAnnotations
+	)
 	{
 		if (@this.Length != nullableAnnotations.Length)
 		{

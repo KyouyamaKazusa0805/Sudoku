@@ -605,7 +605,11 @@ public partial class MainWindow : Window
 	/// <param name="executed">The execution.</param>
 	/// <seealso cref="UIElement.IsEnabled"/>
 	private void AddShortCut(
-		Key key, ModifierKeys modifierKeys, UIElement? matchControl, ExecutedRoutedEventHandler executed)
+		Key key,
+		ModifierKeys modifierKeys,
+		UIElement? matchControl,
+		ExecutedRoutedEventHandler executed
+	)
 	{
 		var command = new RoutedCommand();
 		command.InputGestures.Add(new KeyGesture(key, modifierKeys));

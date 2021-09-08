@@ -58,7 +58,9 @@ public sealed partial class UnncessaryEmptyBracePatternAnalyzer : DiagnosticAnal
 
 
 		void checkSS0614Recursively(
-			in SyntaxNodeAnalysisContext context, in SeparatedSyntaxList<SubpatternSyntax> subpatterns)
+			in SyntaxNodeAnalysisContext context,
+			in SeparatedSyntaxList<SubpatternSyntax> subpatterns
+		)
 		{
 			foreach (var subpattern in subpatterns)
 			{
@@ -82,8 +84,7 @@ public sealed partial class UnncessaryEmptyBracePatternAnalyzer : DiagnosticAnal
 
 				switch (count)
 				{
-					case 0
-					when semanticModel.GetOperation(nestedName) is
+					case 0 when semanticModel.GetOperation(nestedName) is
 					{
 						Type: (isValueType: true, _, isNullable: false)
 					} && nestedDesignation is null or DiscardDesignationSyntax:

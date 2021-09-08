@@ -44,9 +44,12 @@ public class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	/// <returns>The grid.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	public SudokuGrid? Generate(
-		int backdoorFilterDepth, IProgress<IProgressResult>? progress,
+		int backdoorFilterDepth,
+		IProgress<IProgressResult>? progress,
 		DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-		CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		CountryCode countryCode = CountryCode.Default,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		PuzzleGeneratingProgressResult
 			defaultValue = default,
@@ -131,9 +134,12 @@ public class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 	/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 	/// <returns>The task.</returns>
 	public async Task<SudokuGrid?> GenerateAsync(
-		int backdoorFilterDepth, IProgress<IProgressResult>? progress,
+		int backdoorFilterDepth,
+		IProgress<IProgressResult>? progress,
 		DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-		CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		CountryCode countryCode = CountryCode.Default,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		return await (cancellationToken is { } t ? Task.Run(innerGenerate, t) : Task.Run(innerGenerate));
 

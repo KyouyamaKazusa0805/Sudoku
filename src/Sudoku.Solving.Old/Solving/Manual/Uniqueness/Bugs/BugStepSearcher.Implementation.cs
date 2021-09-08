@@ -58,7 +58,10 @@ partial class BugStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="trueCandidates">All true candidates.</param>
 	partial void CheckType3Naked(
-		IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		IReadOnlyList<int> trueCandidates
+	)
 	{
 		// Check whether all true candidates lie in a same region.
 		var map = new Cells(from c in trueCandidates group c by c / 9 into z select z.Key);
@@ -164,7 +167,10 @@ partial class BugStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="trueCandidates">All true candidates.</param>
 	partial void CheckType4(
-		IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		IReadOnlyList<int> trueCandidates
+	)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -290,7 +296,10 @@ partial class BugStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="trueCandidates">All true candidates.</param>
 	partial void CheckMultiple(
-		IList<StepInfo> accumulator, in SudokuGrid grid, IReadOnlyList<int> trueCandidates)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		IReadOnlyList<int> trueCandidates
+	)
 	{
 		if (trueCandidates.Count > 18)
 		{

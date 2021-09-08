@@ -60,8 +60,10 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSS0501AndSS0505(
-		SyntaxNodeAnalysisContext context, SeparatedSyntaxList<ParameterSyntax> parameters,
-		SyntaxToken identifier)
+		SyntaxNodeAnalysisContext context,
+		SeparatedSyntaxList<ParameterSyntax> parameters,
+		SyntaxToken identifier
+	)
 	{
 		if (parameters.Count < 2)
 		{
@@ -90,7 +92,10 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSudokuSS0502AndSS0504(
-		SyntaxNodeAnalysisContext context, SyntaxTokenList modifiers, SyntaxToken identifier)
+		SyntaxNodeAnalysisContext context,
+		SyntaxTokenList modifiers,
+		SyntaxToken identifier
+	)
 	{
 		if (modifiers.Any(ContainsStaticKeyword))
 		{
@@ -118,15 +123,13 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSS0503(
-		SyntaxNodeAnalysisContext context, TypeSyntax returnType, ITypeSymbol type,
-		Compilation compilation)
+		SyntaxNodeAnalysisContext context,
+		TypeSyntax returnType,
+		ITypeSymbol type,
+		Compilation compilation
+	)
 	{
-		if (
-			SymbolEqualityComparer.Default.Equals(
-				type,
-				compilation.GetSpecialType(SpecialType.System_Void)
-			)
-		)
+		if (SymbolEqualityComparer.Default.Equals(type, compilation.GetSpecialType(SpecialType.System_Void)))
 		{
 			return;
 		}
@@ -141,9 +144,13 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSS0506AndSS0507(
-		SyntaxNodeAnalysisContext context, SeparatedSyntaxList<ParameterSyntax> parameters,
-		SemanticModel semanticModel, BlockSyntax? body, ArrowExpressionClauseSyntax? expressionBody,
-		IEnumerable<ISymbol> members)
+		SyntaxNodeAnalysisContext context,
+		SeparatedSyntaxList<ParameterSyntax> parameters,
+		SemanticModel semanticModel,
+		BlockSyntax? body,
+		ArrowExpressionClauseSyntax? expressionBody,
+		IEnumerable<ISymbol> members
+	)
 	{
 		checkSS0507();
 
@@ -193,6 +200,7 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 			}
 		}
 
+
 		void checkSS0506(ExpressionSyntax expression)
 		{
 			if (expression is not AssignmentExpressionSyntax { Right: var rightExpr })
@@ -218,8 +226,13 @@ public sealed partial class DeconstructionMethodAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSS0508(
-		SyntaxNodeAnalysisContext context, SemanticModel semanticModel, SyntaxNode node,
-		SyntaxToken identifier, ITypeSymbol type, int parametersCount)
+		SyntaxNodeAnalysisContext context,
+		SemanticModel semanticModel,
+		SyntaxNode node,
+		SyntaxToken identifier,
+		ITypeSymbol type,
+		int parametersCount
+	)
 	{
 		var methodSymbol = (IMethodSymbol)semanticModel.GetDeclaredSymbol(node)!;
 		foreach (var deconstructionMethod in type.GetAllDeconstructionMethods())

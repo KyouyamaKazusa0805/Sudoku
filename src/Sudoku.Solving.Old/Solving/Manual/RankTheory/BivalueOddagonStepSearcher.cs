@@ -95,8 +95,13 @@ public sealed partial class BivalueOddagonStepSearcher : RankTheoryStepSearcher
 			/*Don't convert to method or static local function*/
 			void f(
 				in SudokuGrid grid,
-				int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask,
-				int allowedExtraCellsCount)
+				int d1,
+				int d2,
+				int cell,
+				RegionLabel lastLabel,
+				short exDigitsMask,
+				int allowedExtraCellsCount
+			)
 			{
 				loopMap.AddAnyway(cell);
 				tempLoop.Add(cell);

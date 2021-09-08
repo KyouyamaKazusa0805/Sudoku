@@ -72,7 +72,12 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 
 
 	private Step? GetAll(
-		ICollection<ChainStep> accumulator, in Grid grid, bool xEnabled, bool yEnabled, bool onlyFindOne)
+		ICollection<ChainStep> accumulator,
+		in Grid grid,
+		bool xEnabled,
+		bool yEnabled,
+		bool onlyFindOne
+	)
 	{
 		foreach (byte cell in EmptyMap)
 		{
@@ -95,8 +100,13 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	}
 
 	private Step? DoUnaryChaining(
-		ICollection<ChainStep> accumulator, in Grid grid, ChainNode pOn,
-		bool xEnabled, bool yEnabled, bool onlyFindOne)
+		ICollection<ChainStep> accumulator,
+		in Grid grid,
+		ChainNode pOn,
+		bool xEnabled,
+		bool yEnabled,
+		bool onlyFindOne
+	)
 	{
 		if (PopCount((uint)grid.GetCandidates(pOn.Cell)) > 2 && !xEnabled)
 		{
@@ -153,8 +163,13 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	}
 
 	private void DoAic(
-		in Grid grid, ISet<ChainNode> onToOn, ISet<ChainNode> onToOff,
-		bool yEnabled, IList<ChainNode> chains, ChainNode source)
+		in Grid grid,
+		ISet<ChainNode> onToOn,
+		ISet<ChainNode> onToOff,
+		bool yEnabled,
+		IList<ChainNode> chains,
+		ChainNode source
+	)
 	{
 		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
 
@@ -213,8 +228,14 @@ internal sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatin
 	}
 
 	private void DoLoops(
-		in Grid grid, ISet<ChainNode> onToOn, ISet<ChainNode> onToOff,
-		bool xEnabled, bool yEnabled, IList<ChainNode> loops, ChainNode source)
+		in Grid grid,
+		ISet<ChainNode> onToOn,
+		ISet<ChainNode> onToOff,
+		bool xEnabled,
+		bool yEnabled,
+		IList<ChainNode> loops,
+		ChainNode source
+	)
 	{
 		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
 

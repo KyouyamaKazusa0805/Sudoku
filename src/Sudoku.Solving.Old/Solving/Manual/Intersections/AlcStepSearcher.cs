@@ -55,8 +55,15 @@ public sealed class AlcStepSearcher : IntersectionStepSearcher
 	/// <param name="b">The right grid map.</param>
 	/// <param name="c">The intersection.</param>
 	private static void GetAll(
-		IList<StepInfo> result, in SudokuGrid grid, int size, int baseSet, int coverSet,
-		in Cells a, in Cells b, in Cells c)
+		IList<StepInfo> result,
+		in SudokuGrid grid,
+		int size,
+		int baseSet,
+		int coverSet,
+		in Cells a,
+		in Cells b,
+		in Cells c
+	)
 	{
 		// The diagrams:
 		//   ALP:

@@ -24,8 +24,11 @@ internal static class MethodDeclarationSyntaxExtensions
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool IsDeconstructionMethod(
-		this MethodDeclarationSyntax @this, bool checkMemberExistence = false,
-		SemanticModel? semanticModel = null, CancellationToken cancellationToken = default)
+		this MethodDeclarationSyntax @this,
+		bool checkMemberExistence = false,
+		SemanticModel? semanticModel = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		// Check some general properties.
 		if (

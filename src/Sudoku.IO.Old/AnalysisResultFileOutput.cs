@@ -40,11 +40,14 @@ public sealed partial class AnalysisResultFileOutput
 	/// <param name="alignment">The alignment.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	public bool TryExport(
-		string path, int size, bool saveStepGridPictures,
+		string path,
+		int size,
+		bool saveStepGridPictures,
 		AnalysisResultFormattingOptions format,
 		PictureFileType pictureFileType = PictureFileType.Png,
 		AnalysisResultOutputType outputType = AnalysisResultOutputType.Text,
-		Alignment alignment = Alignment.Middle)
+		Alignment alignment = Alignment.Middle
+	)
 	{
 		try
 		{

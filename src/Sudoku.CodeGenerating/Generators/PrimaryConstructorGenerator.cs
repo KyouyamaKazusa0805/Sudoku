@@ -99,8 +99,12 @@ partial class {type.Name}{genericParametersList}
 	/// <seealso cref="PrimaryConstructorIncludedMemberAttribute"/>
 	/// <seealso cref="PrimaryConstructorIgnoredMemberAttribute"/>
 	private static IReadOnlyList<(string Type, string ParameterName, string Name, IEnumerable<AttributeData> Attributes)> GetMembers(
-		INamedTypeSymbol type, bool handleRecursively, INamedTypeSymbol? attributeSymbol,
-		INamedTypeSymbol? addAttributeSymbol, INamedTypeSymbol? removeAttributeSymbol)
+		INamedTypeSymbol type,
+		bool handleRecursively,
+		INamedTypeSymbol? attributeSymbol,
+		INamedTypeSymbol? addAttributeSymbol,
+		INamedTypeSymbol? removeAttributeSymbol
+	)
 	{
 		var result = new List<(string, string, string, IEnumerable<AttributeData>)>(
 			(

@@ -25,7 +25,9 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 
 
 		static ITypeSymbol? getReturnType(
-			AttributeArgumentListSyntax attributeArgumentList, SemanticModel semanticModel)
+			AttributeArgumentListSyntax attributeArgumentList,
+			SemanticModel semanticModel
+		)
 		{
 			foreach (var attributeArg in attributeArgumentList.Arguments)
 			{
@@ -46,7 +48,9 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 		}
 
 		static string getExtraNamespaces(
-			in SeparatedSyntaxList<AttributeArgumentSyntax> attributeArguments, SemanticModel semanticModel)
+			in SeparatedSyntaxList<AttributeArgumentSyntax> attributeArguments,
+			SemanticModel semanticModel
+		)
 		{
 			string p = string.Join(
 				"\r\n",
@@ -84,7 +88,10 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 		}
 
 		string? getGetEnumeratorCode(
-			INamedTypeSymbol symbol, AttributeSyntax attribute, SemanticModel semanticModel)
+			INamedTypeSymbol symbol,
+			AttributeSyntax attribute,
+			SemanticModel semanticModel
+		)
 		{
 			symbol.DeconstructInfo(
 				false, out string fullTypeName, out string namespaceName, out string genericParameterList,

@@ -20,9 +20,19 @@ partial class UrStepSearcher
 	/// <param name="size">The size of the wing to search.</param>
 	/// <param name="index">The index.</param>
 	partial void CheckWing(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap,
-		int size, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int size,
+		int index
+	)
 	{
 		// Subtype 1:
 		//     ↓ corner1
@@ -435,8 +445,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckSdc(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode, short comparer,
-		int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//           |   xyz
 		//  ab+ ab+  | abxyz abxyz
@@ -588,11 +608,28 @@ partial class UrStepSearcher
 		}
 
 		static void checkGeneralizedSdc(
-			IList<UrStepInfo> accumulator, in SudokuGrid grid, bool arMode, bool cannibalMode, int digit1,
-			int digit2, int[] urCells, int line, int block, short lineMask, short blockMask,
-			short selectedInterMask, short otherDigitsMask, in Cells elimMapLine, in Cells elimMapBlock,
-			in Cells currentLineMap, in Cells currentBlockMap, in Cells currentInterMap, int i, int j,
-			int index)
+			IList<UrStepInfo> accumulator,
+			in SudokuGrid grid,
+			bool arMode,
+			bool cannibalMode,
+			int digit1,
+			int digit2,
+			int[] urCells,
+			int line,
+			int block,
+			short lineMask,
+			short blockMask,
+			short selectedInterMask,
+			short otherDigitsMask,
+			in Cells elimMapLine,
+			in Cells elimMapBlock,
+			in Cells currentLineMap,
+			in Cells currentBlockMap,
+			in Cells currentInterMap,
+			int i,
+			int j,
+			int index
+		)
 		{
 			short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 			short maskIsolated = (short)(
@@ -729,8 +766,14 @@ partial class UrStepSearcher
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="index">The index.</param>
 	partial void CheckUnknownCoveringUnique(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer,
-		int d1, int d2, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		short comparer,
+		int d1,
+		int d2,
+		int index
+	)
 	{
 		// Type 1:
 		//      ↓urCellInSameBlock
@@ -1052,8 +1095,14 @@ partial class UrStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
 	partial void CheckGuardianUnique(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, short comparer,
-		int d1, int d2, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		short comparer,
+		int d1,
+		int d2,
+		int index
+	)
 	{
 		var cells = new Cells(urCells);
 
@@ -1165,8 +1214,16 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void CheckHiddenSingleAvoidable(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, int d1, int d2,
-		int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		// ↓corner1
 		// a   | aby  -  -

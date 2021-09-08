@@ -48,9 +48,17 @@ internal static class GridImageGenerating
 	/// <seealso cref="FontStyle"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddText(
-		this Grid @this, int row, int column, int digit, Brush foreground, FontFamily font,
-		double fontSize, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
-		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch, FontStyle fontStyle = FontStyle.Normal)
+		this Grid @this,
+		int row,
+		int column,
+		int digit,
+		Brush foreground,
+		FontFamily font,
+		double fontSize,
+		HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
+		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch,
+		FontStyle fontStyle = FontStyle.Normal
+	)
 	{
 		var tb = new TextBlock
 		{
@@ -176,8 +184,15 @@ internal static class GridImageGenerating
 	/// <seealso cref="PointCalculator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddRectangle(
-		this Grid @this, int row, int column, int rowSpan, int columnSpan,
-		Brush fill, double radiusX = 0, double radiusY = 0)
+		this Grid @this,
+		int row,
+		int column,
+		int rowSpan,
+		int columnSpan,
+		Brush fill,
+		double radiusX = 0,
+		double radiusY = 0
+	)
 	{
 		var rectangle = new Rectangle
 		{
@@ -215,8 +230,14 @@ internal static class GridImageGenerating
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddCircle(
-		this Grid @this, int row, int column, double size, Brush fill,
-		Brush? stroke = null, double strokeThickness = double.NaN)
+		this Grid @this,
+		int row,
+		int column,
+		double size,
+		Brush fill,
+		Brush? stroke = null,
+		double strokeThickness = double.NaN
+	)
 	{
 		switch ((Stroke: stroke, StrokeSize: strokeThickness))
 		{
@@ -286,8 +307,14 @@ internal static class GridImageGenerating
 	/// <param name="dashArray">Indicates the dash array. The default value is <see langword="null"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddLine(
-		this Grid @this, in Point p1, in Point p2, Brush stroke, double strokeSize,
-		PenLineCap lineCap = PenLineCap.Flat, DoubleCollection? dashArray = null)
+		this Grid @this,
+		in Point p1,
+		in Point p2,
+		Brush stroke,
+		double strokeSize,
+		PenLineCap lineCap = PenLineCap.Flat,
+		DoubleCollection? dashArray = null
+	)
 	{
 		var line = new Line
 		{
@@ -342,8 +369,15 @@ internal static class GridImageGenerating
 	/// <param name="dashArray">The dash array. The default is <see langword="null"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddBezier(
-		this Grid @this, in Point start, in Point p1, in Point p2, in Point end,
-		double strokeThickness, PenLineCap lineCap = PenLineCap.Flat, DoubleCollection? dashArray = null)
+		this Grid @this,
+		in Point start,
+		in Point p1,
+		in Point p2,
+		in Point end,
+		double strokeThickness,
+		PenLineCap lineCap = PenLineCap.Flat,
+		DoubleCollection? dashArray = null
+	)
 	{
 		var pathFigure = new PathFigure { StartPoint = start };
 		var pathData = new PathGeometry();
@@ -375,8 +409,18 @@ internal static class GridImageGenerating
 	/// <param name="strokeSize">The size of the cross stroke thickness.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddCross(
-		this Grid @this, double l1x1, double l1y1, double l1x2, double l1y2,
-		double l2x1, double l2y1, double l2x2, double l2y2, Brush cross, double strokeSize)
+		this Grid @this,
+		double l1x1,
+		double l1y1,
+		double l1x2,
+		double l1y2,
+		double l2x1,
+		double l2y1,
+		double l2x2,
+		double l2y2,
+		Brush cross,
+		double strokeSize
+	)
 	{
 		@this.AddLine(l1x1, l1y1, l1x2, l1y2, cross, strokeSize);
 		@this.AddLine(l2x1, l2y1, l2x2, l2y2, cross, strokeSize);

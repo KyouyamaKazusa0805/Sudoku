@@ -12,8 +12,13 @@ partial class XrStepSearcher
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigit">The extra digit.</param>
 	partial void CheckType1(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
-		in Cells extraCells, short normalDigits, int extraDigit)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Cells allCellsMap,
+		in Cells extraCells,
+		short normalDigits,
+		int extraDigit
+	)
 	{
 		var conclusions = new List<Conclusion>();
 		var candidateOffsets = new List<DrawingInfo>();
@@ -63,8 +68,13 @@ partial class XrStepSearcher
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigit">The extra digit.</param>
 	partial void CheckType2(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
-		in Cells extraCells, short normalDigits, int extraDigit)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Cells allCellsMap,
+		in Cells extraCells,
+		short normalDigits,
+		int extraDigit
+	)
 	{
 		var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
@@ -108,8 +118,13 @@ partial class XrStepSearcher
 	/// <param name="extraDigits">The extra digits mask.</param>
 	/// <param name="extraCellsMap">The map of extra cells.</param>
 	partial void CheckType3Naked(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
-		short normalDigits, short extraDigits, in Cells extraCellsMap)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Cells allCellsMap,
+		short normalDigits,
+		short extraDigits,
+		in Cells extraCellsMap
+	)
 	{
 		foreach (int region in extraCellsMap.CoveredRegions)
 		{
@@ -205,8 +220,12 @@ partial class XrStepSearcher
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraCellsMap">The map of extra cells.</param>
 	partial void CheckType14(
-		IList<StepInfo> accumulator, in SudokuGrid grid, in Cells allCellsMap,
-		short normalDigits, in Cells extraCellsMap)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		in Cells allCellsMap,
+		short normalDigits,
+		in Cells extraCellsMap
+	)
 	{
 		switch (extraCellsMap.Count)
 		{

@@ -62,10 +62,15 @@ internal static class ITypeSymbolExtensions
 	/// <param name="isGeneric">Indicates whether the type is a generic type.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void DeconstructInfo(
-		this ITypeSymbol @this, out string fullTypeName, out string namespaceName,
-		out string genericParametersList, out string genericParametersListWithoutConstraint,
-		out string fullTypeNameWithoutConstraint, out string constraint,
-		out bool isGeneric)
+		this ITypeSymbol @this,
+		out string fullTypeName,
+		out string namespaceName,
+		out string genericParametersList,
+		out string genericParametersListWithoutConstraint,
+		out string fullTypeNameWithoutConstraint,
+		out string constraint,
+		out bool isGeneric
+	)
 	{
 		fullTypeName = @this.ToDisplayString(FormatOptions.TypeFormat);
 		namespaceName = @this.ContainingNamespace.ToDisplayString();

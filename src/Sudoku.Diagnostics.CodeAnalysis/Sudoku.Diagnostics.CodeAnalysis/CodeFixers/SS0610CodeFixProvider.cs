@@ -56,8 +56,11 @@ public sealed partial class SS0610CodeFixProvider : CodeFixProvider
 			diagnostic
 		);
 
+
 		static (string Name, SingleVariableDesignationSyntax Node) getVariableName(
-			Diagnostic diagnostic, SyntaxNode root)
+			Diagnostic diagnostic,
+			SyntaxNode root
+		)
 		{
 			var (_, designationSpan) = diagnostic.AdditionalLocations[2];
 			var node = (SingleVariableDesignationSyntax)root.FindNode(

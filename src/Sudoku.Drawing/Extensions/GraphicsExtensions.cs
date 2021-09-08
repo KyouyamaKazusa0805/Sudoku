@@ -85,7 +85,11 @@ internal static class GraphicsExtensions
 	/// <paramref name="rectangle"/>.
 	/// </exception>
 	public static void DrawRoundedRectangle(
-		this Graphics @this, Pen pen, in RectangleF rectangle, float circleRadius)
+		this Graphics @this,
+		Pen pen,
+		in RectangleF rectangle,
+		float circleRadius
+	)
 	{
 		if (circleRadius > Max(rectangle.Width, rectangle.Height))
 		{
@@ -142,7 +146,11 @@ internal static class GraphicsExtensions
 	/// <paramref name="rectangle"/>.
 	/// </exception>
 	public static void FillRoundedRectangle(
-		this Graphics @this, Brush brush, in RectangleF rectangle, float circleRadius)
+		this Graphics @this,
+		Brush brush,
+		in RectangleF rectangle,
+		float circleRadius
+	)
 	{
 		if (circleRadius >= Max(rectangle.Width, rectangle.Height))
 		{

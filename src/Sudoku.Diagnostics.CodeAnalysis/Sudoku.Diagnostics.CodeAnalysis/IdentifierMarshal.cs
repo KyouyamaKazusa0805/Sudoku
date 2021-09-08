@@ -25,7 +25,9 @@ public static class IdentifierMarshal
 	/// The result name. If the name can't be converted, <see langword="null"/> will be returned.
 	/// </returns>
 	public static unsafe string? ToCamelCase(
-		this string @this, CaseConvertingOption caseConvertingOption = CaseConvertingOption.None)
+		this string @this,
+		CaseConvertingOption caseConvertingOption = CaseConvertingOption.None
+	)
 	{
 		switch (@this[0])
 		{

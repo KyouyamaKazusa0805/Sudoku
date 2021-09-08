@@ -46,8 +46,13 @@ public static class SpanExtensions
 
 
 		static void g(
-			int last, int count, int index, in Span<int> tempArray,
-			in Span<T> @this, in IList<T[]> resultList)
+			int last,
+			int count,
+			int index,
+			in Span<int> tempArray,
+			in Span<T> @this,
+			in IList<T[]> resultList
+		)
 		{
 			for (int i = last; i >= index; i--)
 			{

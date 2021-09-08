@@ -7,7 +7,11 @@
 internal static class ITypeSymbolExtensions
 {
 	public static void Deconstruct(
-		this ITypeSymbol @this, out bool isValueType, out bool isReferenceType, out bool isNullable)
+		this ITypeSymbol @this,
+		out bool isValueType,
+		out bool isReferenceType,
+		out bool isNullable
+	)
 	{
 		isValueType = @this.IsValueType;
 		isReferenceType = @this.IsReferenceType;

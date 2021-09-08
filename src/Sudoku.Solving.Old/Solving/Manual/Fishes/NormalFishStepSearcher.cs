@@ -93,8 +93,14 @@ public sealed class NormalFishStepSearcher : FishStepSearcher
 	/// Indicates whether the searcher searches for fishes in the direction of rows.
 	/// </param>
 	private static unsafe void GetAll(
-		IList<StepInfo> accumulator, in SudokuGrid grid, int size, int** r, int** c,
-		bool withFin, bool searchRow)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		int size,
+		int** r,
+		int** c,
+		bool withFin,
+		bool searchRow
+	)
 	{
 		// Iterate on each digit.
 		for (int digit = 0; digit < 9; digit++)
@@ -241,7 +247,13 @@ public sealed class NormalFishStepSearcher : FishStepSearcher
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
 	private static View GetDirectView(
-		in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
+		in SudokuGrid grid,
+		int digit,
+		int[] baseSets,
+		int[] coverSets,
+		in Cells fins,
+		bool searchRow
+	)
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<DrawingInfo>();

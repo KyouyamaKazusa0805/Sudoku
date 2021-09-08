@@ -14,7 +14,10 @@ internal static class ArgumentSyntaxExtensions
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>The full name.</returns>
 	public static string? GetParamFullName(
-		this ArgumentSyntax @this, SemanticModel semanticModel, CancellationToken cancellationToken)
+		this ArgumentSyntax @this,
+		SemanticModel semanticModel,
+		CancellationToken cancellationToken
+	)
 	{
 		if (
 			semanticModel.GetOperation(@this.Expression, cancellationToken) is not

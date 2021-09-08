@@ -29,9 +29,16 @@ partial class ManualSolver
 	/// </exception>
 	/// <seealso cref="GridProgressResult"/>
 	private static unsafe AnalysisResult SolveNaively(
-		ManualSolver @this, in SudokuGrid grid, ref SudokuGrid cloneation, IList<StepInfo> steps,
-		in SudokuGrid solution, bool sukaku, ref GridProgressResult progressResult,
-		IProgress<IProgressResult>? progress, CancellationToken? cancellationToken)
+		ManualSolver @this,
+		in SudokuGrid grid,
+		ref SudokuGrid cloneation,
+		IList<StepInfo> steps,
+		in SudokuGrid solution,
+		bool sukaku,
+		ref GridProgressResult progressResult,
+		IProgress<IProgressResult>? progress,
+		CancellationToken? cancellationToken
+	)
 	{
 		// Check symmetry first.
 		var stepGrids = new List<SudokuGrid>();

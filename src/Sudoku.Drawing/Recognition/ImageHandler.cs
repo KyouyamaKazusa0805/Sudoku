@@ -23,7 +23,11 @@ public static class ImageHandler
 	/// <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	public static bool IsRectangle(
-		this PointF[] contour, int lowerAngle = 75, int upperAngle = 105, double ratio = .35)
+		this PointF[] contour,
+		int lowerAngle = 75,
+		int upperAngle = 105,
+		double ratio = .35
+	)
 	{
 		if (contour.Length > 4)
 		{
@@ -312,8 +316,12 @@ public static class ImageHandler
 	/// <param name="rTable">Lookup table for the R channel.</param>
 	/// <param name="aTable">Lookup table for the A channel.</param>
 	public static void ColorPaletteToLookupTable(
-		ColorPalette palette, out Matrix<byte> bTable,
-		out Matrix<byte> gTable, out Matrix<byte> rTable, out Matrix<byte> aTable)
+		ColorPalette palette,
+		out Matrix<byte> bTable,
+		out Matrix<byte> gTable,
+		out Matrix<byte> rTable,
+		out Matrix<byte> aTable
+	)
 	{
 		bTable = new(256, 1);
 		gTable = new(256, 1);

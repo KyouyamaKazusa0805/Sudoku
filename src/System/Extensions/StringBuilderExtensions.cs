@@ -160,7 +160,10 @@ public static class StringBuilderExtensions
 	/// <param name="converter">The converter method specified as a function pointer.</param>
 	/// <returns>The reference of the current instance.</returns>
 	public static StringBuilder AppendRange<TElement>(
-		this StringBuilder @this, IEnumerable<TElement?> contentList, Func<TElement?, string> converter)
+		this StringBuilder @this,
+		IEnumerable<TElement?> contentList,
+		Func<TElement?, string> converter
+	)
 	{
 		foreach (var content in contentList)
 		{
@@ -181,8 +184,10 @@ public static class StringBuilderExtensions
 	/// <param name="converter">The converter method specified as a function pointer.</param>
 	/// <returns>The reference of the current instance.</returns>
 	public static StringBuilder AppendRange<TElement>(
-		this StringBuilder @this, IEnumerable<TElement?> contentList,
-		Func<TElement?, StringBuilder> converter)
+		this StringBuilder @this,
+		IEnumerable<TElement?> contentList,
+		Func<TElement?, StringBuilder> converter
+	)
 	{
 		foreach (var content in contentList)
 		{
@@ -203,7 +208,10 @@ public static class StringBuilderExtensions
 	/// <param name="converter">The converter method specified as a function pointer.</param>
 	/// <returns>The reference of the current instance.</returns>
 	public static StringBuilder AppendLineRange<TElement>(
-		this StringBuilder @this, IEnumerable<TElement?> contentList, Func<TElement?, string> converter)
+		this StringBuilder @this,
+		IEnumerable<TElement?> contentList,
+		Func<TElement?, string> converter
+	)
 	{
 		foreach (var content in contentList)
 		{

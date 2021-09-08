@@ -627,8 +627,16 @@ partial class GridImageGenerator
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void cut(
-			ref Point pt1, ref Point pt2, double offset, double cw, double ch,
-			double pt1x, double pt1y, double pt2x, double pt2y)
+			ref Point pt1,
+			ref Point pt2,
+			double offset,
+			double cw,
+			double ch,
+			double pt1x,
+			double pt1y,
+			double pt2x,
+			double pt2y
+		)
 		{
 			double slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
 			double x = cw / Sqrt(1 + slope * slope);

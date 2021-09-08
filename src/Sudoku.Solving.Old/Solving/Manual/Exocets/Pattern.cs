@@ -55,8 +55,18 @@ public readonly partial struct Pattern : IValueEquatable<Pattern>
 	/// <param name="mr1">The mirror R1 cell.</param>
 	/// <param name="mr2">The mirror R2 cell.</param>
 	public Pattern(
-		int base1, int base2, int tq1, int tq2, int tr1, int tr2, in Cells crossline,
-		in Cells mq1, in Cells mq2, in Cells mr1, in Cells mr2)
+		int base1,
+		int base2,
+		int tq1,
+		int tq2,
+		int tr1,
+		int tr2,
+		in Cells crossline,
+		in Cells mq1,
+		in Cells mq2,
+		in Cells mr1,
+		in Cells mr2
+	)
 	{
 		CrossLine = crossline;
 		Base1 = base1;

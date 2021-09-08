@@ -15,19 +15,19 @@ partial struct SudokuGrid
 
 		/// <inheritdoc/>
 		public override SudokuGrid Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			while (reader.Read())
 			{
-				switch (reader.TokenType)
+				if (reader.TokenType != JsonTokenType.String)
 				{
-					case JsonTokenType.String:
-					{
-						return reader.GetString() is not string code || !TryParse(code, out var grid)
-							? Undefined
-							: grid;
-					}
+					continue;
 				}
+
+				return reader.GetString() is not string code || !TryParse(code, out var grid) ? Undefined : grid;
 			}
 
 			return Undefined;

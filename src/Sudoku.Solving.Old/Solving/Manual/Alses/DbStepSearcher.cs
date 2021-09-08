@@ -242,8 +242,12 @@ public sealed class DbStepSearcher : AlsStepSearcher
 	/// <param name="death">The death table.</param>
 	/// <param name="alses">The ALS list.</param>
 	private static void ProcessDeathAlsInfo(
-		in SudokuGrid grid, Cells[] candMaps, short[] checkedCandidates,
-		int[,] death, IReadOnlyList<Als> alses)
+		in SudokuGrid grid,
+		Cells[] candMaps,
+		short[] checkedCandidates,
+		int[,] death,
+		IReadOnlyList<Als> alses
+	)
 	{
 		int max = 0, i = 0;
 		foreach (var (_, region, digitsMask, map, _, _) in alses)

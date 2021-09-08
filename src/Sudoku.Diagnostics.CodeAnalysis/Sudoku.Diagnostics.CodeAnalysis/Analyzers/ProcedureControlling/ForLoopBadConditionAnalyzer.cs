@@ -33,8 +33,12 @@ public sealed partial class ForLoopBadConditionAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void AnalyzeSyntaxNodeRecursively(
-		in SyntaxNodeAnalysisContext context, ForStatementSyntax forStatement, SyntaxNode originalNode,
-		SemanticModel semanticModel, in CancellationToken cancellationToken)
+		in SyntaxNodeAnalysisContext context,
+		ForStatementSyntax forStatement,
+		SyntaxNode originalNode,
+		SemanticModel semanticModel,
+		in CancellationToken cancellationToken
+	)
 	{
 		switch (originalNode)
 		{

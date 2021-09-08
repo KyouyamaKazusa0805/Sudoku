@@ -55,8 +55,11 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 	}
 
 	private static void AnalyzeSyntaxNode(
-		SyntaxNodeAnalysisContext context, SemanticModel semanticModel,
-		BinaryExpressionSyntax node, ImmutableArray<ILocalSymbol> locals)
+		SyntaxNodeAnalysisContext context,
+		SemanticModel semanticModel,
+		BinaryExpressionSyntax node,
+		ImmutableArray<ILocalSymbol> locals
+	)
 	{
 		// Suppose we have a varible named 'v':
 		// The expression should be detected, as the goal:
@@ -279,8 +282,12 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 	}
 
 	private static void CheckRecordPrimaryConstructor(
-		SyntaxNodeAnalysisContext context, BinaryExpressionSyntax node, ITypeSymbol localType,
-		IReadOnlyList<InfoTuple> info, string identifier)
+		SyntaxNodeAnalysisContext context,
+		BinaryExpressionSyntax node,
+		ITypeSymbol localType,
+		IReadOnlyList<InfoTuple> info,
+		string identifier
+	)
 	{
 		if (localType is not { IsRecord: true })
 		{
@@ -324,8 +331,12 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 	}
 
 	private static void CheckNormalDeconstructionMethod(
-		SyntaxNodeAnalysisContext context, SyntaxNode node, ITypeSymbol localType,
-		IReadOnlyList<InfoTuple> info, string identifier)
+		SyntaxNodeAnalysisContext context,
+		SyntaxNode node,
+		ITypeSymbol localType,
+		IReadOnlyList<InfoTuple> info,
+		string identifier
+	)
 	{
 		// Same type, same variable, and satistied equals or not equals expression, and variable matched.
 		// Now we should check the type symbol, and get all possible deconstruction methods
@@ -368,8 +379,11 @@ public sealed partial class AvailablePositionalPatternAnalyzer : DiagnosticAnaly
 	}
 
 	private static bool ReportSS0606(
-		SyntaxNodeAnalysisContext context, SyntaxNode node,
-		IReadOnlyList<InfoTuple> info, string identifier)
+		SyntaxNodeAnalysisContext context,
+		SyntaxNode node,
+		IReadOnlyList<InfoTuple> info,
+		string identifier
+	)
 	{
 		var positionalPatternExprSb = new StringBuilder()
 			.Append(identifier)

@@ -63,7 +63,10 @@ public sealed partial class ProxyEqualityAttributeAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSD0406(
-		SyntaxNodeAnalysisContext context, SyntaxTokenList modifiers, SyntaxToken identifier)
+		SyntaxNodeAnalysisContext context,
+		SyntaxTokenList modifiers,
+		SyntaxToken identifier
+	)
 	{
 		if (modifiers.Any(static modifier => modifier.RawKind == (int)SyntaxKind.StaticKeyword))
 		{
@@ -80,8 +83,12 @@ public sealed partial class ProxyEqualityAttributeAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSD0407(
-		SyntaxNodeAnalysisContext context, TypeSyntax returnType, SemanticModel semanticModel,
-		Compilation compilation, CancellationToken cancellationToken)
+		SyntaxNodeAnalysisContext context,
+		TypeSyntax returnType,
+		SemanticModel semanticModel,
+		Compilation compilation,
+		CancellationToken cancellationToken
+	)
 	{
 		if (
 			SymbolEqualityComparer.Default.Equals(
@@ -103,9 +110,12 @@ public sealed partial class ProxyEqualityAttributeAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSD0408(
-		SyntaxNodeAnalysisContext context, MethodDeclarationSyntax node,
-		SeparatedSyntaxList<ParameterSyntax> parameters, SemanticModel semanticModel,
-		CancellationToken cancellationToken)
+		SyntaxNodeAnalysisContext context,
+		MethodDeclarationSyntax node,
+		SeparatedSyntaxList<ParameterSyntax> parameters,
+		SemanticModel semanticModel,
+		CancellationToken cancellationToken
+	)
 	{
 		if (node.Parent is not TypeDeclarationSyntax type)
 		{
@@ -143,9 +153,12 @@ public sealed partial class ProxyEqualityAttributeAnalyzer : DiagnosticAnalyzer
 	}
 
 	private static void CheckSD0409(
-		SyntaxNodeAnalysisContext context, MethodDeclarationSyntax node,
-		INamedTypeSymbol? attributeSymbol, SemanticModel semanticModel,
-		CancellationToken cancellationToken)
+		SyntaxNodeAnalysisContext context,
+		MethodDeclarationSyntax node,
+		INamedTypeSymbol? attributeSymbol,
+		SemanticModel semanticModel,
+		CancellationToken cancellationToken
+	)
 	{
 		if (node.Parent is not TypeDeclarationSyntax type)
 		{

@@ -281,7 +281,10 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 
 
 		void finalStepPhase1(
-			SyntaxNode toStringInvocationNode, SyntaxNode expressionStatement, string variableNameToCheck)
+			SyntaxNode toStringInvocationNode,
+			SyntaxNode expressionStatement,
+			string variableNameToCheck
+		)
 		{
 			foreach (var ancestor in toStringInvocationNode.Ancestors())
 			{

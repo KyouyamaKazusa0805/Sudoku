@@ -19,8 +19,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check2D(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ corner1
 		// (ab )  abx
@@ -153,8 +163,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check2B1SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ corner1, corner2
 		// (ab )  (ab )
@@ -306,8 +326,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check2D1SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ corner1
 		// (ab )   aby
@@ -461,8 +491,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check3X(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (ab )  abx
@@ -598,8 +637,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check3X2SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (ab )    abx
@@ -715,8 +763,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check3N2SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (ab )-----abx
@@ -846,8 +903,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check3U2SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (ab )-----abx
@@ -971,8 +1037,17 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check3E2SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int cornerCell, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int cornerCell,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ cornerCell
 		// (ab )-----abx
@@ -1097,8 +1172,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check4X3SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		//   ↓ corner1, corner2
 		// (abx)-----(aby)
@@ -1232,8 +1317,18 @@ partial class UrStepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	partial void Check4C3SL(
-		IList<UrStepInfo> accumulator, in SudokuGrid grid, int[] urCells, bool arMode,
-		short comparer, int d1, int d2, int corner1, int corner2, in Cells otherCellsMap, int index)
+		IList<UrStepInfo> accumulator,
+		in SudokuGrid grid,
+		int[] urCells,
+		bool arMode,
+		short comparer,
+		int d1,
+		int d2,
+		int corner1,
+		int corner2,
+		in Cells otherCellsMap,
+		int index
+	)
 	{
 		// Subtype 1:
 		//   ↓ corner1, corner2

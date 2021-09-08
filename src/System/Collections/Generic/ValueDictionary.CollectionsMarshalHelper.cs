@@ -32,7 +32,10 @@ partial struct ValueDictionary<TKey, TValue>
 		/// while the ref <typeparamref name="TValue"/> is in use.
 		/// </remarks>
 		public static ref TValue GetValueRefOrAddDefault(
-			ref ValueDictionary<TKey, TValue> dictionary, TKey key, out bool exists)
+			ref ValueDictionary<TKey, TValue> dictionary,
+			TKey key,
+			out bool exists
+		)
 		{
 			// NOTE: this method is mirrored by 'Dictionary<TKey, TValue>.TryInsert' above.
 			// If you make any changes here, make sure to keep that version in sync as well.

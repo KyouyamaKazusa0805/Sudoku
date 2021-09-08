@@ -14,7 +14,10 @@ partial record struct UnknownValue
 
 		/// <inheritdoc/>
 		public override unsafe UnknownValue Read(
-			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+			ref Utf8JsonReader reader,
+			Type typeToConvert,
+			JsonSerializerOptions options
+		)
 		{
 			int cell;
 			char identifier;

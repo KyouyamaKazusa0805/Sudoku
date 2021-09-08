@@ -220,7 +220,10 @@ partial class ManualSolver
 	/// <param name="progress">The progress reporter.</param>
 	/// <param name="progressResult">The progress result.</param>
 	private static void ReportProgress(
-		in SudokuGrid cloneation, IProgress<IProgressResult> progress, ref GridProgressResult progressResult)
+		in SudokuGrid cloneation,
+		IProgress<IProgressResult> progress,
+		ref GridProgressResult progressResult
+	)
 	{
 		progressResult.CurrentCandidatesCount = cloneation.CandidatesCount;
 		progressResult.CurrentCellsCount = cloneation.EmptiesCount;

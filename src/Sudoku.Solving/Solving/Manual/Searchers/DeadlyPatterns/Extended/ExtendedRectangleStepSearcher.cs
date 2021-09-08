@@ -278,8 +278,14 @@ internal sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSear
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType1(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
-		in Cells extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
+		ICollection<Step> accumulator,
+		in Grid grid,
+		in Cells allCellsMap,
+		in Cells extraCells,
+		short normalDigits,
+		int extraDigit,
+		bool onlyFindOne
+	)
 	{
 		var conclusions = new List<Conclusion>();
 		var candidateOffsets = new List<(int, ColorIdentifier)>();
@@ -342,8 +348,14 @@ internal sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSear
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType2(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
-		in Cells extraCells, short normalDigits, int extraDigit, bool onlyFindOne)
+		ICollection<Step> accumulator,
+		in Grid grid,
+		in Cells allCellsMap,
+		in Cells extraCells,
+		short normalDigits,
+		int extraDigit,
+		bool onlyFindOne
+	)
 	{
 		var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
@@ -393,8 +405,14 @@ internal sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSear
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType3Naked(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
-		short normalDigits, short extraDigits, in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<Step> accumulator,
+		in Grid grid,
+		in Cells allCellsMap,
+		short normalDigits,
+		short extraDigits,
+		in Cells extraCellsMap,
+		bool onlyFindOne
+	)
 	{
 		foreach (int region in extraCellsMap.CoveredRegions)
 		{
@@ -501,8 +519,13 @@ internal sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSear
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
-		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
-		short normalDigits, in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<Step> accumulator,
+		in Grid grid,
+		in Cells allCellsMap,
+		short normalDigits,
+		in Cells extraCellsMap,
+		bool onlyFindOne
+	)
 	{
 		switch (extraCellsMap.Count)
 		{

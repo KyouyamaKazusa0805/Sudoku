@@ -86,7 +86,11 @@ public sealed class ComplexFishStepSearcher : FishStepSearcher
 	/// <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
 	/// <param name="digit">The current digit used.</param>
 	private unsafe void GetAll(
-		IList<StepInfo> accumulator, in SudokuGrid grid, IList<Conclusion>?[] pomElims, int digit)
+		IList<StepInfo> accumulator,
+		in SudokuGrid grid,
+		IList<Conclusion>?[] pomElims,
+		int digit
+	)
 	{
 		const RegionLabel bothLines = (RegionLabel)3;
 

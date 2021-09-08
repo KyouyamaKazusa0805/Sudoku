@@ -9,7 +9,10 @@ partial class GspStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="info">The step information result.</param>
 	private static unsafe partial void CheckDiagonal(
-		IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
+		IList<Conclusion> result,
+		in SudokuGrid grid,
+		out GspStepInfo? info
+	)
 	{
 		info = null;
 
@@ -139,7 +142,10 @@ partial class GspStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="info">The step information result.</param>
 	private static unsafe partial void CheckAntiDiagonal(
-		IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
+		IList<Conclusion> result,
+		in SudokuGrid grid,
+		out GspStepInfo? info
+	)
 	{
 		info = null;
 
@@ -270,7 +276,10 @@ partial class GspStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="info">The step information result.</param>
 	private static unsafe partial void CheckCentral(
-		IList<Conclusion> result, in SudokuGrid grid, out GspStepInfo? info)
+		IList<Conclusion> result,
+		in SudokuGrid grid,
+		out GspStepInfo? info
+	)
 	{
 		info = null;
 

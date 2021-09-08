@@ -14,8 +14,15 @@ partial class ReverseBugStepSearcher
 	/// <param name="links">The links.</param>
 	/// <param name="comparer">The comparer.</param>
 	partial void CheckType1(
-		IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2,
-		in Cells loop, int extraCell, IReadOnlyList<Link> links, short comparer)
+		IList<ReverseBugStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		int extraCell,
+		IReadOnlyList<Link> links,
+		short comparer
+	)
 	{
 		var conclusions = new List<Conclusion>();
 		if (grid.Exists(extraCell, d1) is true)
@@ -62,8 +69,15 @@ partial class ReverseBugStepSearcher
 	/// <param name="links">The links.</param>
 	/// <param name="comparer">The comparer.</param>
 	partial void CheckType2(
-		IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
-		in Cells extraCells, IReadOnlyList<Link> links, short comparer)
+		IList<ReverseBugStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		in Cells extraCells,
+		IReadOnlyList<Link> links,
+		short comparer
+	)
 	{
 		short mask = 0;
 		foreach (int cell in extraCells)
@@ -113,8 +127,15 @@ partial class ReverseBugStepSearcher
 	}
 
 	partial void CheckType3(
-		IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
-		in Cells extraCells, IReadOnlyList<Link> links, short comparer)
+		IList<ReverseBugStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		in Cells extraCells,
+		IReadOnlyList<Link> links,
+		short comparer
+	)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCells)
@@ -228,8 +249,15 @@ partial class ReverseBugStepSearcher
 	}
 
 	partial void CheckType4(
-		IList<ReverseBugStepInfo> accumulator, in SudokuGrid grid, int d1, int d2, in Cells loop,
-		in Cells extraCells, IReadOnlyList<Link> links, short comparer)
+		IList<ReverseBugStepInfo> accumulator,
+		in SudokuGrid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		in Cells extraCells,
+		IReadOnlyList<Link> links,
+		short comparer
+	)
 	{
 		if (!extraCells.InOneRegion)
 		{

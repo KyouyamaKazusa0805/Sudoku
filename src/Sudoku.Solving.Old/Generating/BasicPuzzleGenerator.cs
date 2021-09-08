@@ -28,8 +28,12 @@ public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	/// <seealso cref="SymmetryType"/>
 	public SudokuGrid Generate(
-		int max, SymmetryType symmetricalType, IProgress<IProgressResult>? progress,
-		CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		int max,
+		SymmetryType symmetricalType,
+		IProgress<IProgressResult>? progress,
+		CountryCode countryCode = CountryCode.Default,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		PuzzleGeneratingProgressResult
 			defaultValue = default,
@@ -134,8 +138,12 @@ public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 	/// <returns>The task.</returns>
 	/// <seealso cref="SymmetryType"/>
 	public async Task<SudokuGrid?> GenerateAsync(
-		int max, SymmetryType symmetricalType, IProgress<IProgressResult> progress,
-		CountryCode countryCode = CountryCode.Default, CancellationToken? cancellationToken = null)
+		int max,
+		SymmetryType symmetricalType,
+		IProgress<IProgressResult> progress,
+		CountryCode countryCode = CountryCode.Default,
+		CancellationToken? cancellationToken = null
+	)
 	{
 		return await (cancellationToken is { } t ? Task.Run(innerGenerate, t) : Task.Run(innerGenerate));
 
