@@ -27,11 +27,8 @@ public sealed partial class GridImageGenerator
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the property <see cref="Calculator"/> is <see langword="null"/>.
 	/// </exception>
-	public double Width
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Calculator?.Width ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
-	}
+	public double Width =>
+		Calculator?.Width ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
 
 	/// <summary>
 	/// Indicates the drawing height.
@@ -39,11 +36,8 @@ public sealed partial class GridImageGenerator
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the property <see cref="Calculator"/> is <see langword="null"/>.
 	/// </exception>
-	public double Height
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Calculator?.Height ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
-	}
+	public double Height =>
+		Calculator?.Height ?? throw new InvalidOperationException($"The value can be get if and only if {nameof(Calculator)} isn't null.");
 
 	/// <summary>
 	/// Indicates the focused cells.
@@ -53,7 +47,7 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// Indicates the puzzle.
 	/// </summary>
-	public SudokuGrid Puzzle { get; set; } = SudokuGrid.Empty;
+	public SudokuGrid Puzzle { get; set; }/* = SudokuGrid.Empty;*/
 
 	/// <summary>
 	/// Indicates the view.
