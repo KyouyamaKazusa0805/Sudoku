@@ -17,10 +17,6 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 For example, you can use the code like this to solve a puzzle:
 
 ```csharp
-using System;
-using Sudoku.Data;
-using Sudoku.Solving.Manual;
-
 // Parse a puzzle from the string text.
 var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
