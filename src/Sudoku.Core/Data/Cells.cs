@@ -204,7 +204,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <param name="low">Lower 27 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(int high, int mid, int low)
-		: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
+	: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 	{
 	}
 

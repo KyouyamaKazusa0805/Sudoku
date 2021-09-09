@@ -39,7 +39,8 @@ public sealed class CodeIsInvalidException : InvalidOperationException
 	/// <param name="code">The code.</param>
 	/// <param name="innerException">The inner exception.</param>
 	public CodeIsInvalidException(string? code, Exception innerException)
-		: base(InvalidMessage, innerException) => Code = code;
+	: base(InvalidMessage, innerException) =>
+		Code = code;
 
 	/// <summary>
 	/// Initializes a <see cref="CodeIsInvalidException"/> instance with the specified error message, the code
@@ -49,7 +50,8 @@ public sealed class CodeIsInvalidException : InvalidOperationException
 	/// <param name="code">The code.</param>
 	/// <param name="innerException">The inner exception.</param>
 	public CodeIsInvalidException(string message, string? code, Exception innerException)
-		: base(message, innerException) => Code = code;
+	: base(message, innerException) =>
+		Code = code;
 
 
 	/// <inheritdoc/>

@@ -25,7 +25,7 @@ public sealed class InvalidRegexStringException : Exception
 
 	/// <inheritdoc/>
 	public InvalidRegexStringException(string message, Exception innerException)
-		: base(message, innerException)
+	: base(message, innerException)
 	{
 	}
 
@@ -36,7 +36,8 @@ public sealed class InvalidRegexStringException : Exception
 	/// <param name="regex">The regular expression.</param>
 	/// <param name="innerException">The inner expression.</param>
 	public InvalidRegexStringException(string message, string regex, Exception innerException)
-		: base(message, innerException) => WrongRegexString = regex;
+	: base(message, innerException) =>
+		WrongRegexString = regex;
 
 
 	/// <summary>

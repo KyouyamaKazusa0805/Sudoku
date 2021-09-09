@@ -23,8 +23,7 @@ public sealed class AssemblyFailedToLoadException : Exception
 	}
 
 	/// <inheritdoc/>
-	private AssemblyFailedToLoadException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
+	private AssemblyFailedToLoadException(SerializationInfo info, StreamingContext context) : base(info, context)
 	{
 	}
 

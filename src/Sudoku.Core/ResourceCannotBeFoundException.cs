@@ -18,7 +18,7 @@ public sealed class ResourceCannotBeFoundException : Exception
 
 	/// <inheritdoc/>
 	private ResourceCannotBeFoundException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
+	: base(info, context)
 	{
 	}
 

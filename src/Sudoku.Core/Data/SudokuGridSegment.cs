@@ -48,7 +48,7 @@ public unsafe ref partial struct SudokuGridSegment
 	/// <param name="index">The index.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuGridSegment(in SudokuGrid grid, RegionLabel regionLabel, int index)
-		: this(grid, (int)regionLabel * 9 + index)
+	: this(grid, (int)regionLabel * 9 + index)
 	{
 	}
 

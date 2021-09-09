@@ -24,7 +24,7 @@ public sealed class FileCounter
 	/// so, the counter will sum up all files with all extensions.
 	/// </param>
 	public FileCounter(string root, string? extension)
-		: this(root, $@".+\.{extension}$", true, new List<string>())
+	: this(root, $@".+\.{extension}$", true, new List<string>())
 	{
 	}
 
@@ -43,7 +43,7 @@ public sealed class FileCounter
 	/// <c>bin</c> and <c>obj</c>.
 	/// </param>
 	public FileCounter(string root, string? extension, bool withBinOrObjDirectory)
-		: this(root, $@".+\.{extension}$", withBinOrObjDirectory, new List<string>())
+	: this(root, $@".+\.{extension}$", withBinOrObjDirectory, new List<string>())
 	{
 	}
 

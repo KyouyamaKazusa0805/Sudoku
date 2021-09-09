@@ -88,7 +88,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <param name="parents">The parent nodes.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal ChainNode(byte cell, byte digit, bool isOn, ChainNode[] parents)
-		: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) =>
+	: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) =>
 		_rawParents = parents;
 
 

@@ -18,7 +18,7 @@ public sealed class PuzzleShouldHaveBeenSolvedException : Exception
 
 	/// <inheritdoc/>
 	private PuzzleShouldHaveBeenSolvedException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
+	: base(info, context)
 	{
 	}
 

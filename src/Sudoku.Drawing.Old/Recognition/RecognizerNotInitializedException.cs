@@ -16,7 +16,7 @@ public sealed class RecognizerNotInitializedException : Exception
 
 	/// <inheritdoc/>
 	private RecognizerNotInitializedException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
+	: base(info, context)
 	{
 	}
 
