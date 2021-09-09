@@ -59,8 +59,7 @@ public static class GenericMath
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TNumber Clamp<TNumber>(TNumber value, TNumber min, TNumber max)
-		where TNumber : INumber<TNumber> =>
+	public static TNumber Clamp<TNumber>(TNumber value, TNumber min, TNumber max) where TNumber : INumber<TNumber> =>
 		TNumber.Clamp(value, min, max);
 
 	/// <summary>
@@ -434,7 +433,8 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Atan<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> => TFloatingPoint.Atan(angle);
+		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+		TFloatingPoint.Atan(angle);
 
 	/// <summary>
 	/// Returns the angle whose tangent is the quotient of two specified numbers.
