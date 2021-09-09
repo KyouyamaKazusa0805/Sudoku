@@ -16,7 +16,7 @@ public static unsafe class UnsafeExtensions
 	/// <seealso cref="Unsafe.InitBlock(void*, byte, uint)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void InitBlock<TUnmanaged>(TUnmanaged* startAddress, byte value, uint elementCount)
-		where TUnmanaged : unmanaged =>
+	where TUnmanaged : unmanaged =>
 		Unsafe.InitBlock(startAddress, value, (uint)(sizeof(TUnmanaged) * elementCount));
 
 	/// <summary>
@@ -28,6 +28,6 @@ public static unsafe class UnsafeExtensions
 	/// <param name="elementCount">Indicates how many elements is in the block.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void CopyBlock<TUnmanaged>(TUnmanaged* destination, TUnmanaged* source, uint elementCount)
-		where TUnmanaged : unmanaged =>
+	where TUnmanaged : unmanaged =>
 		Unsafe.CopyBlock(destination, source, (uint)(sizeof(TUnmanaged) * elementCount));
 }

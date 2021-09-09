@@ -15,6 +15,6 @@ internal static class GeneratorInitializationContextExtensions
 	/// <seealso cref="GeneratorInitializationContext.RegisterForSyntaxNotifications(SyntaxReceiverCreator)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void FastRegister<TSyntaxReceiver>(this ref GeneratorInitializationContext @this)
-		where TSyntaxReceiver : ISyntaxReceiver, new() =>
+	where TSyntaxReceiver : ISyntaxReceiver, new() =>
 		@this.RegisterForSyntaxNotifications(static () => new TSyntaxReceiver());
 }

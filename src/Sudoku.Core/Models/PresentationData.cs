@@ -43,7 +43,8 @@ public partial record struct PresentationData(
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains<TStruct>(PresentationDataKind dataKind, TStruct element)
-		where TStruct : struct => IndexOf(dataKind, element) != -1;
+	where TStruct : struct =>
+		IndexOf(dataKind, element) != -1;
 
 	/// <summary>
 	/// Checks whether the collection contains the specified element. If so, return the index of the element.
@@ -170,7 +171,7 @@ public partial record struct PresentationData(
 	/// Throws when the argument <paramref name="dataKind"/> is out of range.
 	/// </exception>
 	public void Add<TStruct>(PresentationDataKind dataKind, TStruct element, ColorIdentifier color)
-		where TStruct : struct
+	where TStruct : struct
 	{
 		switch (dataKind)
 		{
@@ -417,7 +418,8 @@ public partial record struct PresentationData(
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static void EnsureNotNull<TStruct>([AllowNull] ref IList<(TStruct, ColorIdentifier)> collection)
-		where TStruct : struct => collection ??= new List<(TStruct, ColorIdentifier)>();
+	where TStruct : struct =>
+		collection ??= new List<(TStruct, ColorIdentifier)>();
 
 	/// <inheritdoc/>
 	public static bool operator ==(in PresentationData left, in PresentationData right) => left.Equals(in right);

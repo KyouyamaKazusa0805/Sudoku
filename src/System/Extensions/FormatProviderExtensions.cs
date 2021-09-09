@@ -30,9 +30,11 @@ public static class FormatProviderExtensions
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool HasFormatted<TNotNull>(
-		[NotNullWhen(true)] this IFormatProvider? @this, in TNotNull obj, string? format,
-		[NotNullWhen(true)] out string? result)
-		where TNotNull : notnull
+		[NotNullWhen(true)] this IFormatProvider? @this,
+		in TNotNull obj,
+		string? format,
+		[NotNullWhen(true)] out string? result
+	) where TNotNull : notnull
 	{
 		if (@this?.GetFormat(obj.GetType()) is ICustomFormatter customFormatter)
 		{

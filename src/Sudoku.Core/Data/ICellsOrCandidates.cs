@@ -7,7 +7,7 @@
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
 public unsafe interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
-	where TCollection : struct, ICellsOrCandidates<TCollection>
+where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>
 	/// Indicates whether the collection is empty.

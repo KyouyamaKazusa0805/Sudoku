@@ -580,7 +580,7 @@ public ref partial struct ValueStringBuilder
 	/// <param name="list">The list of elements.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
 	public void AppendRange<TUnmanaged>(IEnumerable<TUnmanaged> list, string? separator = null)
-		where TUnmanaged : unmanaged
+	where TUnmanaged : unmanaged
 	{
 		foreach (var element in list)
 		{
@@ -605,8 +605,10 @@ public ref partial struct ValueStringBuilder
 	/// <param name="converter">The converter.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
 	public unsafe void AppendRange<TUnmanaged>(
-		IEnumerable<TUnmanaged> list, delegate*<TUnmanaged, string?> converter, string? separator = null)
-		where TUnmanaged : unmanaged
+		IEnumerable<TUnmanaged> list,
+		delegate*<TUnmanaged, string?> converter,
+		string? separator = null
+	) where TUnmanaged : unmanaged
 	{
 		foreach (var element in list)
 		{
@@ -631,7 +633,7 @@ public ref partial struct ValueStringBuilder
 	/// <param name="length">The length of the list.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
 	public unsafe void AppendRange<TUnmanaged>(TUnmanaged* list, int length, string? separator = null)
-		where TUnmanaged : unmanaged
+	where TUnmanaged : unmanaged
 	{
 		int index = 0;
 		for (var p = list; index < length; index++, p++)
@@ -658,8 +660,12 @@ public ref partial struct ValueStringBuilder
 	/// <param name="converter">The converter.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
 	public unsafe void AppendRange<TUnmanaged>(
-		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string? separator = null)
-		where TUnmanaged : unmanaged
+		TUnmanaged* list,
+		int length,
+		delegate*<TUnmanaged, string?> converter,
+		string? separator = null
+	)
+	where TUnmanaged : unmanaged
 	{
 		int index = 0;
 		for (var p = list; index < length; index++, p++)

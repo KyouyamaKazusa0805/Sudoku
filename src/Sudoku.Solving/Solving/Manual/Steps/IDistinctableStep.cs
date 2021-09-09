@@ -45,7 +45,7 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	public static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
-		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
+	where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
 	{
 		var resultList = new List<TDistinctableStep>();
 		for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)

@@ -112,10 +112,17 @@ internal static class GridImageGenerating
 	/// <seealso cref="FontStyle"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddText<TNotNull>(
-		this Grid @this, int row, int column, TNotNull character, Brush foreground, FontFamily font,
-		double fontSize, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
-		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch, FontStyle fontStyle = FontStyle.Normal)
-		where TNotNull : notnull
+		this Grid @this,
+		int row,
+		int column,
+		TNotNull character,
+		Brush foreground,
+		FontFamily font,
+		double fontSize,
+		HorizontalAlignment horizontalAlignment = HorizontalAlignment.Stretch,
+		VerticalAlignment verticalAlignment = VerticalAlignment.Stretch,
+		FontStyle fontStyle = FontStyle.Normal
+	) where TNotNull : notnull
 	{
 		var tb = new TextBlock
 		{

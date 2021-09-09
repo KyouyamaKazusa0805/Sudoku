@@ -322,8 +322,11 @@ public sealed partial class ValueStringBuilderDisposeAnalyzer : DiagnosticAnalyz
 		}
 
 		void finalStepPhase2<TSyntaxNode>(
-			ref int i, int count, IReadOnlyList<TSyntaxNode> statements, string? variableNameToCheck)
-			where TSyntaxNode : SyntaxNode
+			ref int i,
+			int count,
+			IReadOnlyList<TSyntaxNode> statements,
+			string? variableNameToCheck
+		) where TSyntaxNode : SyntaxNode
 		{
 			while (++i < count)
 			{

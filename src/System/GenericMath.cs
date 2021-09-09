@@ -27,7 +27,7 @@ public static class GenericMath
 	/// <returns>The quotient and the remainder of the specified numbers.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static (TNumber Quotient, TNumber Remainder) DivRem<TNumber>(TNumber dividend, TNumber divisor)
-		where TNumber : INumber<TNumber> =>
+	where TNumber : INumber<TNumber> =>
 		TNumber.DivRem(dividend, divisor);
 
 	/// <summary>
@@ -59,7 +59,8 @@ public static class GenericMath
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TNumber Clamp<TNumber>(TNumber value, TNumber min, TNumber max) where TNumber : INumber<TNumber> =>
+	public static TNumber Clamp<TNumber>(TNumber value, TNumber min, TNumber max)
+	where TNumber : INumber<TNumber> =>
 		TNumber.Clamp(value, min, max);
 
 	/// <summary>
@@ -124,7 +125,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Cos<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Cos(angle);
 
 	/// <summary>
@@ -158,7 +159,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Cosh<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Cosh(angle);
 
 	/// <summary>
@@ -192,7 +193,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Sin<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Sin(angle);
 
 	/// <summary>
@@ -226,7 +227,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Sinh<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Sinh(angle);
 
 	/// <summary>
@@ -260,7 +261,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Tan<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Tan(angle);
 
 	/// <summary>
@@ -294,7 +295,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Tanh<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Tanh(angle);
 
 	/// <summary>
@@ -322,7 +323,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Acos<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Acos(angle);
 
 	/// <summary>
@@ -350,7 +351,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Acosh<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Acosh(angle);
 
 	/// <summary>
@@ -378,7 +379,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Asin<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Asin(angle);
 
 	/// <summary>
@@ -406,7 +407,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Asinh<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> => TFloatingPoint.Asinh(angle);
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> => TFloatingPoint.Asinh(angle);
 
 	/// <summary>
 	/// Returns the angle whose tangent is the specified value.
@@ -433,7 +434,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Atan<TFloatingPoint>(TFloatingPoint angle)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Atan(angle);
 
 	/// <summary>
@@ -479,7 +480,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Atan2<TFloatingPoint>(TFloatingPoint y, TFloatingPoint x)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Atan2(y, x);
 
 	/// <summary>
@@ -507,7 +508,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Atanh<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Atanh(value);
 
 	/// <summary>
@@ -541,7 +542,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Sqrt<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Sqrt(value);
 
 	/// <summary>
@@ -575,7 +576,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Cbrt<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Cbrt(value);
 
 	/// <summary>
@@ -589,7 +590,7 @@ public static class GenericMath
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Ceiling<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Ceiling(value);
 
 	/// <summary>
@@ -603,7 +604,7 @@ public static class GenericMath
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Floor<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Floor(value);
 
 	/// <summary>
@@ -617,7 +618,7 @@ public static class GenericMath
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Truncate<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Truncate(value);
 
 	/// <summary>
@@ -646,7 +647,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Exp<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Exp(value);
 
 	/// <summary>
@@ -682,7 +683,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint IEEERemainder<TFloatingPoint>(TFloatingPoint dividend, TFloatingPoint divisor)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IEEERemainder(dividend, divisor);
 
 	/// <summary>
@@ -724,8 +725,8 @@ public static class GenericMath
 	/// <seealso cref="IMinMaxValue{TSelf}.MaxValue"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TInteger ILogB<TFloatingPoint, TInteger>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint>
-		where TInteger : IBinaryInteger<TInteger> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint>
+	where TInteger : IBinaryInteger<TInteger> =>
 		TFloatingPoint.ILogB<TInteger>(value);
 
 	/// <summary>
@@ -736,7 +737,7 @@ public static class GenericMath
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsFinite<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsFinite(value);
 
 	/// <summary>
@@ -751,7 +752,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NegativeInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsInfinity<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsInfinity(value);
 
 	/// <summary>
@@ -763,7 +764,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNaN<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNaN(value);
 
 	/// <summary>
@@ -774,7 +775,7 @@ public static class GenericMath
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNegative<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNegative(value);
 
 	/// <summary>
@@ -786,7 +787,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NegativeInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNegativeInfinity<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNegativeInfinity(value);
 
 	/// <summary>
@@ -798,7 +799,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.PositiveInfinity"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsPositiveInfinity<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsPositiveInfinity(value);
 
 	/// <summary>
@@ -809,7 +810,7 @@ public static class GenericMath
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsNormal<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsNormal(value);
 
 	/// <summary>
@@ -820,7 +821,7 @@ public static class GenericMath
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSubnormal<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.IsSubnormal(value);
 
 	/// <summary>
@@ -865,7 +866,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Log<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Log(value);
 
 	/// <summary>
@@ -960,7 +961,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Log<TFloatingPoint>(TFloatingPoint value, TFloatingPoint newBase)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Log(value, newBase);
 
 	/// <summary>
@@ -1002,7 +1003,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Log10<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Log10(value);
 
 	/// <summary>
@@ -1044,7 +1045,7 @@ public static class GenericMath
 	/// <seealso cref="IFloatingPoint{TSelf}.NaN"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Log2<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Log2(value);
 
 	/// <summary>
@@ -1056,7 +1057,7 @@ public static class GenericMath
 	/// <returns>The number <paramref name="value"/> raised to the power <paramref name="power"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Pow<TFloatingPoint>(TFloatingPoint value, TFloatingPoint power)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Pow(value, power);
 
 	/// <summary>
@@ -1077,7 +1078,7 @@ public static class GenericMath
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Round<TFloatingPoint>(TFloatingPoint value)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Round(value);
 
 	/// <summary>
@@ -1101,7 +1102,7 @@ public static class GenericMath
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Round<TFloatingPoint>(TFloatingPoint value, MidpointRounding mode)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint> =>
 		TFloatingPoint.Round(value, mode);
 
 	/// <summary>
@@ -1120,8 +1121,8 @@ public static class GenericMath
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Round<TFloatingPoint, TInteger>(TFloatingPoint value, TInteger digits)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint>
-		where TInteger : IBinaryInteger<TInteger> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint>
+	where TInteger : IBinaryInteger<TInteger> =>
 		TFloatingPoint.Round(value, digits);
 
 	/// <summary>
@@ -1146,8 +1147,8 @@ public static class GenericMath
 	/// <seealso cref="MidpointRounding"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint Round<TFloatingPoint, TInteger>(TFloatingPoint value, TInteger digits, MidpointRounding mode)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint>
-		where TInteger : IBinaryInteger<TInteger> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint>
+	where TInteger : IBinaryInteger<TInteger> =>
 		TFloatingPoint.Round(value, digits, mode);
 
 	/// <summary>
@@ -1160,7 +1161,7 @@ public static class GenericMath
 	/// <returns><c><paramref name="value"/> * 2 ^ <paramref name="scale"/></c> computed efficiently.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TFloatingPoint ScaleB<TFloatingPoint, TInteger>(TFloatingPoint value, TInteger scale)
-		where TFloatingPoint : IFloatingPoint<TFloatingPoint>
-		where TInteger : IBinaryInteger<TInteger> =>
+	where TFloatingPoint : IFloatingPoint<TFloatingPoint>
+	where TInteger : IBinaryInteger<TInteger> =>
 		TFloatingPoint.ScaleB(value, scale);
 }

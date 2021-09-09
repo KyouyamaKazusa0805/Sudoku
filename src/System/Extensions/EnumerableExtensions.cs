@@ -46,7 +46,7 @@ public static class EnumerableExtensions
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool Contains<TEquatable>(this IEnumerable<TEquatable> @this, params TEquatable[] elements)
-		where TEquatable : IEquatable<TEquatable>
+	where TEquatable : IEquatable<TEquatable>
 	{
 		if (elements.Length == 1)
 		{

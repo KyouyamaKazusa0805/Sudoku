@@ -6,8 +6,8 @@
 /// <typeparam name="TSelf">The type of the instance.</typeparam>
 /// <typeparam name="TConverter">The type of the converter bound with.</typeparam>
 public interface IJsonSerializable<TSelf, in TConverter>
-	where TSelf : IJsonSerializable<TSelf, TConverter>
-	where TConverter : JsonConverter<TSelf>, new()
+where TSelf : IJsonSerializable<TSelf, TConverter>
+where TConverter : JsonConverter<TSelf>, new()
 {
 	/// <summary>
 	/// Indicates the JSON serializer option instance that used

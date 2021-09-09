@@ -20,8 +20,8 @@ public static class JsonSerializerOptionsExtensions
 	/// (i.e. a/an <typeparamref name="TConverter"/> instance).
 	/// </returns>
 	public static JsonConverter<TSelf> GetConverter<TSelf, TConverter>(this JsonSerializerOptions @this)
-		where TSelf : IJsonSerializable<TSelf, TConverter>
-		where TConverter : JsonConverter<TSelf>, new()
+	where TSelf : IJsonSerializable<TSelf, TConverter>
+	where TConverter : JsonConverter<TSelf>, new()
 	{
 		try
 		{
@@ -46,9 +46,11 @@ public static class JsonSerializerOptionsExtensions
 	/// <returns>The reference of the current instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static JsonSerializerOptions AppendConverter<TSelf, TConverter>(
-		this JsonSerializerOptions @this, TConverter converter)
-		where TSelf : IJsonSerializable<TSelf, TConverter>
-		where TConverter : JsonConverter<TSelf>, new()
+		this JsonSerializerOptions @this,
+		TConverter converter
+	)
+	where TSelf : IJsonSerializable<TSelf, TConverter>
+	where TConverter : JsonConverter<TSelf>, new()
 	{
 		@this.Converters.Add(converter);
 		return @this;

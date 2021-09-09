@@ -130,8 +130,8 @@ public static class ImageHandler
 	/// <seealso cref="Image{TColor, TDepth}"/>
 	/// <seealso cref="Bitmap"/>
 	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
-		where TColor : struct, IColor
-		where TDepth : new()
+	where TColor : struct, IColor
+	where TDepth : new()
 	{
 		var size = bitmap.Size;
 		var image = new Image<TColor, TDepth>(size);
@@ -346,8 +346,8 @@ public static class ImageHandler
 	/// <param name="image">The image to copy data to.</param>
 	/// <param name="bmp">the bitmap to copy data from.</param>
 	private static void CopyFromBitmap<TColor, TDepth>(this Image<TColor, TDepth> image, Bitmap bmp)
-		where TColor : struct, IColor
-		where TDepth : new()
+	where TColor : struct, IColor
+	where TDepth : new()
 	{
 		var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 		using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);

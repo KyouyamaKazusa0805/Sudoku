@@ -6,7 +6,7 @@
 /// <typeparam name="TEquatable">The type of the element.</typeparam>
 [AutoGetEnumerator(nameof(_list), MemberConversion = "@.*")]
 public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>>, ISet<TEquatable>
-	where TEquatable : IEquatable<TEquatable>
+where TEquatable : IEquatable<TEquatable>
 {
 	/// <summary>
 	/// The inner list.

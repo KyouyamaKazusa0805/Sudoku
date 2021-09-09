@@ -13,7 +13,7 @@ public static class ListExtensions
 	/// <param name="this">The list.</param>
 	/// <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
 	public static List<TEquatable> RemoveDuplicateItems<TEquatable>(this List<TEquatable> @this)
-		where TEquatable : IEquatable<TEquatable>
+	where TEquatable : IEquatable<TEquatable>
 	{
 		var set = new Set<TEquatable>(@this);
 		@this.Clear();
@@ -29,7 +29,7 @@ public static class ListExtensions
 	/// <param name="this">The list.</param>
 	/// <returns>Returns the reference of the argument <paramref name="this"/>.</returns>
 	public static IList<TEquatable> RemoveDuplicateItems<TEquatable>(this IList<TEquatable> @this)
-		where TEquatable : IEquatable<TEquatable>
+	where TEquatable : IEquatable<TEquatable>
 	{
 		var set = new Set<TEquatable>(@this);
 		@this.Clear();

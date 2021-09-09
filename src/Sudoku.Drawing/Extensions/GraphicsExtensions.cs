@@ -31,8 +31,13 @@ internal static class GraphicsExtensions
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void DrawValue<TNotNull>(
-		this Graphics @this, TNotNull value, Font font, Brush brush, in PointF point, StringFormat stringFormat)
-		where TNotNull : notnull => @this.DrawString(value.ToString(), font, brush, point, stringFormat);
+		this Graphics @this,
+		TNotNull value,
+		Font font,
+		Brush brush,
+		in PointF point,
+		StringFormat stringFormat
+	) where TNotNull : notnull => @this.DrawString(value.ToString(), font, brush, point, stringFormat);
 
 	/// <summary>
 	/// Draw a cross sign (<c>x</c>).

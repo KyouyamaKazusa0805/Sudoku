@@ -18,8 +18,8 @@ public static class DictionaryExtensions
 	/// <param name="this">The dictionary.</param>
 	/// <returns>The result array.</returns>
 	public static T[][] ToArray<TKey, TValue, T>(this IDictionary<TKey, TValue> @this)
-		where TKey : notnull
-		where TValue : IEnumerable<T>
+	where TKey : notnull
+	where TValue : IEnumerable<T>
 	{
 		var keys = @this.Keys;
 		var result = new T[keys.Count][];
