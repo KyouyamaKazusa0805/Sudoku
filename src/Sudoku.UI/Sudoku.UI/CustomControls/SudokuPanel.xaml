@@ -15,7 +15,44 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<Canvas x:Name="BaseCanvas" Grid.Column="0" Margin="5, 5, 5, 5" Width="550" Height="550" />
+		<Canvas x:Name="BaseCanvas" Grid.Column="0" Margin="15, 5, 15, 5" Width="560" Height="560">
+			<Canvas.Resources>
+				<x:Double x:Key="S1">10</x:Double>
+				<x:Double x:Key="S2">70</x:Double>
+				<x:Double x:Key="S3">130</x:Double>
+				<x:Double x:Key="S4">190</x:Double>
+				<x:Double x:Key="S5">250</x:Double>
+				<x:Double x:Key="S6">310</x:Double>
+				<x:Double x:Key="S7">370</x:Double>
+				<x:Double x:Key="S8">430</x:Double>
+				<x:Double x:Key="S9">490</x:Double>
+				<x:Double x:Key="S10">550</x:Double>
+			</Canvas.Resources>
+
+			<!--Grid lines-->
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S1}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S4}" X2="{StaticResource S10}" Y2="{StaticResource S4}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S7}" X2="{StaticResource S10}" Y2="{StaticResource S7}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S10}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S1}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S4}" Y1="{StaticResource S1}" X2="{StaticResource S4}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S7}" Y1="{StaticResource S1}" X2="{StaticResource S7}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S10}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+
+			<!--Block lines-->
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S2}" X2="{StaticResource S10}" Y2="{StaticResource S2}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S3}" X2="{StaticResource S10}" Y2="{StaticResource S3}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S5}" X2="{StaticResource S10}" Y2="{StaticResource S5}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S6}" X2="{StaticResource S10}" Y2="{StaticResource S6}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S8}" X2="{StaticResource S10}" Y2="{StaticResource S8}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S9}" X2="{StaticResource S10}" Y2="{StaticResource S9}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S2}" Y1="{StaticResource S1}" X2="{StaticResource S2}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S3}" Y1="{StaticResource S1}" X2="{StaticResource S3}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S5}" Y1="{StaticResource S1}" X2="{StaticResource S5}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S6}" Y1="{StaticResource S1}" X2="{StaticResource S6}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S8}" Y1="{StaticResource S1}" X2="{StaticResource S8}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S9}" Y1="{StaticResource S1}" X2="{StaticResource S9}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+		</Canvas>
 		<NavigationView
 			Grid.Column="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
 			<NavigationView.MenuItems>
