@@ -38,13 +38,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString()
-	{
-		var sb = new ValueStringBuilder(stackalloc char[100]);
-		sb.Append(new Candidates { StartCandidate }.ToString());
-		sb.Append(LinkType.GetNotation());
-		sb.Append(new Candidates { EndCandidate }.ToString());
-
-		return sb.ToString();
-	}
+	public override string ToString() =>
+		$"{new Candidates { StartCandidate }}{LinkType.GetNotation()}{new Candidates { EndCandidate }}";
 }

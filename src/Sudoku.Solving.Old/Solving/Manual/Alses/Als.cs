@@ -139,29 +139,10 @@ public readonly partial struct Als : IValueEquatable<Als>
 	}
 
 	/// <inheritdoc/>
-	public override string ToString()
-	{
-		var sb = new ValueStringBuilder(stackalloc char[50]);
-
-		if (IsBivalueCell)
-		{
-			sb.Append(new DigitCollection(DigitsMask).ToString(null));
-			sb.Append('/');
-			sb.Append(Map.ToString());
-		}
-		else
-		{
-			sb.Append(new DigitCollection(DigitsMask).ToString(null));
-			sb.Append('/');
-			sb.Append(Map.ToString());
-			sb.Append(' ');
-			sb.Append("in");
-			sb.Append(' ');
-			sb.Append(new RegionCollection(Region).ToString());
-		}
-
-		return sb.ToString();
-	}
+	public override string ToString() =>
+		IsBivalueCell
+			? $"{new DigitCollection(DigitsMask).ToString(null)}/{Map}"
+			: $"{new DigitCollection(DigitsMask).ToString(null)}/{Map} in {new RegionCollection(Region).ToString()}";
 
 
 	/// <summary>

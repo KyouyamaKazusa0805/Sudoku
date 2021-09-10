@@ -64,7 +64,8 @@ partial class MainWindow
 						BorderThickness = default,
 						HorizontalContentAlignment = HorizontalAlignment.Left,
 						VerticalContentAlignment = VerticalAlignment.Center
-					});
+					}
+				);
 			}
 
 			// Group them by its name.
@@ -75,23 +76,15 @@ partial class MainWindow
 				goto CloseDialog;
 			}
 
-			groupDescriptions.Add(new PropertyGroupDescription(z()));
+			groupDescriptions.Add(
+				new PropertyGroupDescription(
+					$"{nameof(Content)}.{nameof(InfoTriplet.Item2)}.{nameof(StepInfo.Name)}"
+				)
+			);
 			_listBoxTechniques.ItemsSource = srcView;
 
 		CloseDialog:
 			dialog.Close();
-		}
-
-		static string z()
-		{
-			var sb = new ValueStringBuilder(stackalloc char[17]);
-			sb.Append(nameof(Content));
-			sb.Append('.');
-			sb.Append(nameof(InfoTriplet.Item2));
-			sb.Append('.');
-			sb.Append(nameof(StepInfo.Name));
-
-			return sb.ToString();
 		}
 	}
 

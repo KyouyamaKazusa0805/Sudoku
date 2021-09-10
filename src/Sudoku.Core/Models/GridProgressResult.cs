@@ -63,14 +63,13 @@ public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, 
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString()
-	{
-		var sb = new ValueStringBuilder(stackalloc char[50]);
-		sb.Append((string)TextResources.Current.UnsolvedCells);
-		sb.Append(CurrentCellsCount.ToString());
-		sb.Append((string)TextResources.Current.UnsolvedCandidates);
-		sb.Append(CurrentCandidatesCount.ToString());
-
-		return sb.ToString();
-	}
+	public override readonly string ToString() => $@"{
+		(string)TextResources.Current.UnsolvedCells
+	}{
+		CurrentCellsCount
+	}{
+		(string)TextResources.Current.UnsolvedCandidates
+	}{
+		CurrentCandidatesCount
+	}";
 }

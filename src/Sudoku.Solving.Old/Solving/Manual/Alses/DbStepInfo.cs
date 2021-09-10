@@ -46,15 +46,7 @@ public sealed record DbStepInfo(
 			return sb.ToString();
 
 
-			static string converter(KeyValuePair<int, Als> pair)
-			{
-				var sb = new ValueStringBuilder(stackalloc char[15]);
-				sb.Append(pair.Key + 1);
-				sb.Append(" - ");
-				sb.Append(pair.Value.ToString());
-
-				return sb.ToString();
-			}
+			static string converter(KeyValuePair<int, Als> pair) => $"{pair.Key - 1} - {pair.Value}";
 		}
 	}
 }
