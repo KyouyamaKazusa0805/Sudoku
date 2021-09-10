@@ -1048,7 +1048,6 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 
 	/// <inheritdoc/>
-	[return: NotNullIfNotNull("str")]
 	public static Cells Parse(string? str)
 	{
 		if (str is null)
@@ -1063,8 +1062,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 		);
 
 		// Check whether the match is successful.
-		var matches = regex.Matches(str);
-		if (matches.Count == 0)
+		if (regex.Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
