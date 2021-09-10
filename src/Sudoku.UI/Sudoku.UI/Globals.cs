@@ -7,6 +7,5 @@ global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Navigation;
 global using Sudoku.UI.CustomControls;
-global using Sudoku.UI.Drawing;
 global using Sudoku.UI.Pages.MainWindow;
 global using Sudoku.UI.Resources;

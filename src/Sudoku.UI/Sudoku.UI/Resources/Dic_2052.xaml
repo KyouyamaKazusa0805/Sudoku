@@ -13,6 +13,8 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_CustomDrawing">绘图</x:String>
 
 	<!--SudokuPage-->
+	<x:String x:Key="SudokuPage_AppBarButton_Open">打开一个文件</x:String>
+	<x:String x:Key="SudokuPage_AppBarButton_Copy">复制题目代码</x:String>
 	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">此处展示各操作的详情信息</x:String>
 
 	<!--AboutPage-->

@@ -20,6 +20,8 @@
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_CustomDrawing">Drawing</x:String>
 
 	<!--SudokuPage-->
+	<x:String x:Key="SudokuPage_AppBarButton_Open">Open a file</x:String>
+	<x:String x:Key="SudokuPage_AppBarButton_Copy">Copy puzzle code</x:String>
 	<x:String x:Key="SudokuPage_TextBox_Info_PlaceholderText">Here displays the details for operations</x:String>
 
 	<!--AboutPage-->
@@ -38,7 +40,7 @@
 	<x:String x:Key="AboutPage_Disclaimer_Description" xml:space="preserve">THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 		
 Copyright (c) Sunnie. All rights reserved.</x:String>
-	
+
 	<!--SettingsPage-->
 	<x:String x:Key="SettingsPage_Intro">
 		Here displays the preferences of the program, which allows you to change the options, values,

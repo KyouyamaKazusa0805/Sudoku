@@ -15,6 +15,7 @@
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
@@ -34,9 +35,28 @@
 				</NavigationView.MenuItems>
 			</NavigationView>
 			-->
+			<CommandBar
+				Grid.Row="1" Background="Transparent"
+				IsOpen="False" DefaultLabelPosition="Right">
+				<!--
+				<CommandBar.SecondaryCommands />
+				-->
+
+				<AppBarButton Icon="Add" Label="{StaticResource SudokuPage_AppBarButton_Open}">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="O" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+				<AppBarSeparator />
+				<AppBarButton Icon="Copy" Label="{StaticResource SudokuPage_AppBarButton_Copy}">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="C" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+			</CommandBar>
 			<TextBox
-			x:Name="TextBox_Info" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" Height="100"
-			PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />
+				x:Name="TextBox_Info" Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Height="100"
+				PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />
 		</Grid>
 	</ScrollViewer>
 </Page>
