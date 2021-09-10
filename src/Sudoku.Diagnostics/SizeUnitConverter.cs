@@ -11,6 +11,9 @@ public static class SizeUnitConverter
 	/// <param name="bytes">The bytes.</param>
 	/// <param name="sizeUnit">The size unit.</param>
 	/// <returns>The value of the specified size unit.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="sizeUnit"/> is invalid.
+	/// </exception>
 	public static decimal ConvertTo(long bytes, SizeUnit sizeUnit) => bytes / sizeUnit switch
 	{
 		SizeUnit.Byte => 1M,
@@ -33,8 +36,7 @@ public static class SizeUnitConverter
 	/// <returns>The value of the specified size unit.</returns>
 	public static decimal Convert(long bytes, out SizeUnit unit)
 	{
-		decimal size; /*mixed-tuple*/
-		(unit, size) = bytes switch
+		(unit, decimal size) = bytes switch
 		{
 			<= 1024L => (SizeUnit.Byte, 1M),
 			<= 1048576L => (SizeUnit.Kilobyte, 1024M),

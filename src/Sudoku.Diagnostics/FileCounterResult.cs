@@ -23,43 +23,19 @@ public sealed record FileCounterResult(
 )
 {
 	/// <inheritdoc/>
-	public override string ToString()
-	{
-		var sb = new ValueStringBuilder(300);
-		sb.AppendLine("Results:");
-		sb.Append("* Code lines: ");
-		sb.AppendLine(ResultLines);
-		sb.Append("* Files: ");
-		sb.AppendLine(FilesCount);
-		sb.Append("* Characters: ");
-		sb.AppendLine(CharactersCount);
-		sb.Append("* Bytes: ");
-		sb.Append(SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000"));
-		sb.Append(' ');
-		sb.Append(ToString(unit));
-		sb.Append(" (");
-		sb.Append(Bytes);
-		sb.AppendLine(" Bytes)");
-		sb.Append("* Time elapsed: ");
-		sb.AppendLine(Elapsed.ToString("hh\\:mm\\.ss\\.fff"));
-		sb.Append("About more information, please call each property in this instance.");
-
-		return sb.ToString();
-	}
-
-
-	/// <summary>
-	/// Gets the specified string notation for a <see cref="SizeUnit"/> instance.
-	/// </summary>
-	/// <param name="this">The instance.</param>
-	/// <returns>The string result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string ToString(SizeUnit @this) => @this switch
-	{
-		SizeUnit.Byte => "B",
-		SizeUnit.Kilobyte => "KB",
-		SizeUnit.Megabyte => "MB",
-		SizeUnit.Gigabyte => "GB",
-		SizeUnit.Terabyte => "TB"
-	};
+	public override string ToString() =>
+		$@"Results:
+* Code lines: {ResultLines}
+* Files: {FilesCount}
+* Characters: {CharactersCount}
+* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit):.000} {unit switch
+		{
+			SizeUnit.Byte => "B",
+			SizeUnit.Kilobyte => "KB",
+			SizeUnit.Megabyte => "MB",
+			SizeUnit.Gigabyte => "GB",
+			SizeUnit.Terabyte => "TB"
+		}} ({Bytes} Bytes)
+* Time elapsed: {Elapsed:hh\:mm\.ss\.fff}
+About more information, please call each property in this instance.";
 }

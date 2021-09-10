@@ -160,13 +160,6 @@
         <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString(Sudoku.Diagnostics.SizeUnit)">
-            <summary>
-            Gets the specified string notation for a <see cref="T:Sudoku.Diagnostics.SizeUnit"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-            <returns>The string result.</returns>
-        </member>
         <member name="T:Sudoku.Diagnostics.LanguageFeatures.CodeIsInvalidException">
             <summary>
             Represents an exception to display the error information about a code is invalid to process.
@@ -430,6 +423,9 @@
             <param name="bytes">The bytes.</param>
             <param name="sizeUnit">The size unit.</param>
             <returns>The value of the specified size unit.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="sizeUnit"/> is invalid.
+            </exception>
         </member>
         <member name="M:Sudoku.Diagnostics.SizeUnitConverter.Convert(System.Int64,Sudoku.Diagnostics.SizeUnit@)">
             <summary>
