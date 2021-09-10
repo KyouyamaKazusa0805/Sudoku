@@ -11,15 +11,32 @@
 		<i:SudokuPanelPageDataContext />
 	</Page.DataContext>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition />
-		</Grid.RowDefinitions>
+	<ScrollViewer Style="{ThemeResource ScrollViewerDefaults}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-		<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" />
-		<TextBox
-			x:Name="TextBox_Info" Grid.Row="1" IsReadOnly="True" Height="100"
+			<c:SudokuPanel x:Name="SudokuPanel_Main" Grid.Row="0" />
+			<!--
+			<NavigationView
+				Grid.Column="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+				<NavigationView.MenuItems>
+					<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_Summary}" />
+					<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_SolvingPath}" />
+					<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_StepsGathering}" />
+					<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_CustomDrawing}" />
+				</NavigationView.MenuItems>
+			</NavigationView>
+			-->
+			<TextBox
+			x:Name="TextBox_Info" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" Height="100"
 			PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />
-	</Grid>
+		</Grid>
+	</ScrollViewer>
 </Page>

@@ -30,9 +30,7 @@
 		</Style>
 	</Page.Resources>
 
-	<ScrollViewer
-		IsVerticalScrollChainingEnabled="True" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled"
-		HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+	<ScrollViewer Style="{ThemeResource ScrollViewerDefaults}">
 		<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
 			<!--Basic introduction-->
 			<TextBlock

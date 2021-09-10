@@ -61,16 +61,5 @@
 			<Line X1="{StaticResource S8}" Y1="{StaticResource S1}" X2="{StaticResource S8}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
 			<Line X1="{StaticResource S9}" Y1="{StaticResource S1}" X2="{StaticResource S9}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
 		</Canvas>
-		<!--
-		<NavigationView
-			Grid.Column="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
-			<NavigationView.MenuItems>
-				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_Summary}" />
-				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_SolvingPath}" />
-				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_StepsGathering}" />
-				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_CustomDrawing}" />
-			</NavigationView.MenuItems>
-		</NavigationView>
-		-->
 	</Grid>
 </UserControl>
