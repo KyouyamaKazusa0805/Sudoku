@@ -27,32 +27,41 @@
 				<x:Double x:Key="S8">430</x:Double>
 				<x:Double x:Key="S9">490</x:Double>
 				<x:Double x:Key="S10">550</x:Double>
+				<Style x:Key="GridLine" TargetType="Line">
+					<Setter Property="Stroke" Value="White" />
+					<Setter Property="StrokeThickness" Value="3" />
+				</Style>
+				<Style x:Key="BlockLine" TargetType="Line">
+					<Setter Property="Stroke" Value="White" />
+					<Setter Property="StrokeThickness" Value="1" />
+				</Style>
 			</Canvas.Resources>
 
 			<!--Grid lines-->
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S1}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S4}" X2="{StaticResource S10}" Y2="{StaticResource S4}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S7}" X2="{StaticResource S10}" Y2="{StaticResource S7}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S10}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S1}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S4}" Y1="{StaticResource S1}" X2="{StaticResource S4}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S7}" Y1="{StaticResource S1}" X2="{StaticResource S7}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
-			<Line X1="{StaticResource S10}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="3" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S1}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S4}" X2="{StaticResource S10}" Y2="{StaticResource S4}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S7}" X2="{StaticResource S10}" Y2="{StaticResource S7}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S10}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S1}" X2="{StaticResource S1}" Y2="{StaticResource S10}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S4}" Y1="{StaticResource S1}" X2="{StaticResource S4}" Y2="{StaticResource S10}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S7}" Y1="{StaticResource S1}" X2="{StaticResource S7}" Y2="{StaticResource S10}" Style="{ThemeResource GridLine}" />
+			<Line X1="{StaticResource S10}" Y1="{StaticResource S1}" X2="{StaticResource S10}" Y2="{StaticResource S10}" Style="{ThemeResource GridLine}" />
 
 			<!--Block lines-->
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S2}" X2="{StaticResource S10}" Y2="{StaticResource S2}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S3}" X2="{StaticResource S10}" Y2="{StaticResource S3}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S5}" X2="{StaticResource S10}" Y2="{StaticResource S5}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S6}" X2="{StaticResource S10}" Y2="{StaticResource S6}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S8}" X2="{StaticResource S10}" Y2="{StaticResource S8}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S1}" Y1="{StaticResource S9}" X2="{StaticResource S10}" Y2="{StaticResource S9}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S2}" Y1="{StaticResource S1}" X2="{StaticResource S2}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S3}" Y1="{StaticResource S1}" X2="{StaticResource S3}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S5}" Y1="{StaticResource S1}" X2="{StaticResource S5}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S6}" Y1="{StaticResource S1}" X2="{StaticResource S6}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S8}" Y1="{StaticResource S1}" X2="{StaticResource S8}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
-			<Line X1="{StaticResource S9}" Y1="{StaticResource S1}" X2="{StaticResource S9}" Y2="{StaticResource S10}" Stroke="White" StrokeThickness="1" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S2}" X2="{StaticResource S10}" Y2="{StaticResource S2}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S3}" X2="{StaticResource S10}" Y2="{StaticResource S3}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S5}" X2="{StaticResource S10}" Y2="{StaticResource S5}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S6}" X2="{StaticResource S10}" Y2="{StaticResource S6}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S8}" X2="{StaticResource S10}" Y2="{StaticResource S8}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S1}" Y1="{StaticResource S9}" X2="{StaticResource S10}" Y2="{StaticResource S9}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S2}" Y1="{StaticResource S1}" X2="{StaticResource S2}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S3}" Y1="{StaticResource S1}" X2="{StaticResource S3}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S5}" Y1="{StaticResource S1}" X2="{StaticResource S5}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S6}" Y1="{StaticResource S1}" X2="{StaticResource S6}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S8}" Y1="{StaticResource S1}" X2="{StaticResource S8}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
+			<Line X1="{StaticResource S9}" Y1="{StaticResource S1}" X2="{StaticResource S9}" Y2="{StaticResource S10}" Style="{ThemeResource BlockLine}" />
 		</Canvas>
+		<!--
 		<NavigationView
 			Grid.Column="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
 			<NavigationView.MenuItems>
@@ -62,5 +71,6 @@
 				<NavigationViewItem Content="{StaticResource MainWindow_NavigationViewItem_Content_CustomDrawing}" />
 			</NavigationView.MenuItems>
 		</NavigationView>
+		-->
 	</Grid>
 </UserControl>
