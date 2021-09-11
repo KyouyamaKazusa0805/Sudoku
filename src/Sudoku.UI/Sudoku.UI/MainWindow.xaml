@@ -4,24 +4,39 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-	<NavigationView
-		x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="True"
-		IsBackEnabled="False" IsBackButtonVisible="Collapsed"
-		PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
-		ItemInvoked="NavigationView_Main_ItemInvoked">
-		<NavigationView.MenuItems>
-			<NavigationViewItem
-				x:Name="NavigationViewItem_SudokuPanel" Icon="Edit" CacheMode="BitmapCache"
-				Content="{StaticResource MainWindow_NavigationViewItem_Content_SudokuPanel}"
-				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}" />
-			<NavigationViewItemSeparator />
-			<NavigationViewItem
-				x:Name="NavigationViewItem_About" Icon="Account"
-				Content="{StaticResource MainWindow_NavigationViewItem_Content_About}"
-				Tag="{StaticResource MainWindow_NavigationViewItem_Tag_About}" />
-		</NavigationView.MenuItems>
-		<Frame x:Name="Frame_NavigationView_Main" />
-	</NavigationView>
-
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="188" />
+			</Grid.ColumnDefinitions>
+			<TextBlock
+				Text="Sunnie's Sudoku Solution" x:Name="CustomTitleBar" Margin="5, 5, 5, 5"
+				HorizontalAlignment="Center" VerticalAlignment="Center"
+				x:FieldModifier="Internal" />
+		</Grid>
+		<NavigationView
+			Grid.Row="1" x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="True"
+			IsBackEnabled="False" IsBackButtonVisible="Collapsed"
+			PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
+			ItemInvoked="NavigationView_Main_ItemInvoked">
+			<NavigationView.MenuItems>
+				<NavigationViewItem
+					x:Name="NavigationViewItem_SudokuPanel" Icon="Edit" CacheMode="BitmapCache"
+					Content="{StaticResource MainWindow_NavigationViewItem_Content_SudokuPanel}"
+					Tag="{StaticResource MainWindow_NavigationViewItem_Tag_SudokuPanel}" />
+				<NavigationViewItemSeparator />
+				<NavigationViewItem
+					x:Name="NavigationViewItem_About" Icon="Account"
+					Content="{StaticResource MainWindow_NavigationViewItem_Content_About}"
+					Tag="{StaticResource MainWindow_NavigationViewItem_Tag_About}" />
+			</NavigationView.MenuItems>
+			<Frame x:Name="Frame_NavigationView_Main" />
+		</NavigationView>
+	</Grid>
 </Window>

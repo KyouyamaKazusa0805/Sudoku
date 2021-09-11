@@ -25,7 +25,10 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched([Discard] LaunchActivatedEventArgs args)
 	{
-		_window = new MainWindow();
+		var mainWindow = new MainWindow { ExtendsContentIntoTitleBar = true };
+		mainWindow.SetTitleBar(mainWindow.CustomTitleBar);
+
+		_window = mainWindow;
 		_window.Activate();
 	}
 }
