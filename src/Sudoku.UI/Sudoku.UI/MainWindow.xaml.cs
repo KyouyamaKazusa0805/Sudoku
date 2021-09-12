@@ -1,6 +1,4 @@
-﻿#undef HIDE_TITLE_BAR_ICON
-
-namespace Sudoku.UI;
+﻿namespace Sudoku.UI;
 
 /// <summary>
 /// The type that provides with the <see cref="Window"/> instances
@@ -59,76 +57,7 @@ public sealed partial class MainWindow : Window
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public MainWindow()
-	{
-		InitializeComponent();
-
-		HideTitleBarIcon();
-		InitializeControls();
-	}
-
-
-	/// <summary>
-	/// Initializes the controls.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InitializeControls()
-	{
-		Title = UiResources.Current.MainWindowTitle;
-	}
-
-	/// <summary>
-	/// Hide the title bar icon.
-	/// </summary>
-	[Conditional("HIDE_TITLE_BAR_ICON")]
-	private void HideTitleBarIcon()
-	{
-		const int WM_COMMAND = 0x111;
-
-		var toggleDesktopCommand = new IntPtr(0x7402);
-		sendMessage(g(), WM_COMMAND, toggleDesktopCommand, IntPtr.Zero);
-
-
-		static IntPtr g()
-		{
-			IntPtr hShellViewWin = IntPtr.Zero, hWorkerW = IntPtr.Zero;
-
-			var hProgman = findWindow("Progman", "Program Manager");
-			var hDesktopWnd = getDesktopWindow();
-
-			// If the main Program Manager window is found.
-			if (hProgman != IntPtr.Zero)
-			{
-				// Get and load the main List view window containing the icons.
-				hShellViewWin = findWindowEx(hProgman, IntPtr.Zero, "SHELLDLL_DefView", null);
-				if (hShellViewWin == IntPtr.Zero)
-				{
-					// When this fails (picture rotation is turned ON, toggledesktop shell cmd used ),
-					// then look for the WorkerW windows list to get the correct desktop list handle.
-					// As there can be multiple WorkerW windows, iterate through all to get the correct one.
-					do
-					{
-						hWorkerW = findWindowEx(hDesktopWnd, hWorkerW, "WorkerW", null);
-						hShellViewWin = findWindowEx(hWorkerW, IntPtr.Zero, "SHELLDLL_DefView", null);
-					} while (hShellViewWin == IntPtr.Zero && hWorkerW != IntPtr.Zero);
-				}
-			}
-
-			return hShellViewWin;
-		}
-
-		[DllImport("user32", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-		static extern IntPtr sendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-
-		[DllImport("user32", EntryPoint = "FindWindow", SetLastError = true)]
-		static extern IntPtr findWindow(string lpClassName, string lpWindowName);
-
-		[DllImport("user32", EntryPoint = "FindWindowEx", SetLastError = true)]
-		static extern IntPtr findWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string? windowTitle);
-
-		[DllImport("user32", EntryPoint = "GetDesktopWindow", SetLastError = false)]
-		static extern IntPtr getDesktopWindow();
-	}
+	public MainWindow() => InitializeComponent();
 
 
 	/// <summary>

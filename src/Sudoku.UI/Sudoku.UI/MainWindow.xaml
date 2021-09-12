@@ -10,16 +10,26 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-		<Grid>
+		<!--Title bar-->
+		<Grid x:Name="CustomTitleBar" x:FieldModifier="Internal">
 			<Grid.ColumnDefinitions>
+				<!--Title text block-->
 				<ColumnDefinition />
-				<ColumnDefinition Width="188" />
+				<!--Minimize, Maximize and close buttons-->
+				<ColumnDefinition Width="{StaticResource TitleBarButtonsWidth}" />
 			</Grid.ColumnDefinitions>
-			<TextBlock
-				Text="Sunnie's Sudoku Solution" x:Name="CustomTitleBar" Margin="5, 5, 5, 5"
-				HorizontalAlignment="Center" VerticalAlignment="Center"
-				x:FieldModifier="Internal" />
+
+			<!--Title text block content-->
+			<Grid
+				Background="Transparent" Height="{StaticResource TitleBarHeight}"
+				HorizontalAlignment="Stretch" VerticalAlignment="Top">
+				<TextBlock
+					Text="{StaticResource MainWindowTitle}" Style="{ThemeResource CaptionTextBlockStyle}"
+					HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Grid>
 		</Grid>
+
+		<!--Menu-->
 		<NavigationView
 			Grid.Row="1" x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="True"
 			IsBackEnabled="False" IsBackButtonVisible="Collapsed"
