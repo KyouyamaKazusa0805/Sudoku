@@ -27,8 +27,8 @@
 			<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
 				<TextBlock Text="{StaticResource SettingsPage_Intro}" Style="{ThemeResource LongTextBlock}" />
 				<TextBlock
-				Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
-				Text="{StaticResource SettingsPage_SearchTitle}" />
+					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
+					Text="{StaticResource SettingsPage_SearchTitle}" />
 				<TextBlock Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
 				<AutoSuggestBox Margin="{StaticResource NormalThickness}" />
 
