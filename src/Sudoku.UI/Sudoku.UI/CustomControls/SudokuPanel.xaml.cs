@@ -35,7 +35,8 @@ public sealed partial class SudokuPanel : UserControl
 
 		CreateCandidateControls();
 		CreateCellBorders();
-		CreateCandidateBorders();
+		CreateCandidateEllipses();
+		CreateRegionBorders();
 	}
 
 
@@ -97,9 +98,9 @@ public sealed partial class SudokuPanel : UserControl
 	}
 
 	/// <summary>
-	/// Creates candidate borders.
+	/// Creates candidate ellipses.
 	/// </summary>
-	private void CreateCandidateBorders()
+	private void CreateCandidateEllipses()
 	{
 		for (int candidate = 0; candidate < 729; candidate++)
 		{
@@ -120,6 +121,72 @@ public sealed partial class SudokuPanel : UserControl
 			MainSudokuGrid.Children.Add(ellipse);
 
 			_highlightCandidatePool[candidate] = ellipse;
+		}
+	}
+
+	/// <summary>
+	/// Creates region borders.
+	/// </summary>
+	private void CreateRegionBorders()
+	{
+		int region = 0;
+		for (; region < 9; region++)
+		{
+			var border = new Border
+			{
+				BorderThickness = new(1.5),
+				Visibility = Visibility.Collapsed,
+				BorderBrush = new SolidColorBrush(Colors.Blue),
+				Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
+				Style = (Style)UiResources.Current.HighlightRegionStyle
+			};
+
+			Grid.SetRow(border, region switch { 0 or 3 or 6 => 0, 1 or 4 or 7 => 9, 2 or 5 or 8 => 18 });
+			Grid.SetColumn(border, region switch { 0 or 1 or 2 => 0, 3 or 4 or 5 => 9, 6 or 7 or 8 => 18 });
+			Grid.SetRowSpan(border, 9);
+			Grid.SetColumnSpan(border, 9);
+
+			MainSudokuGrid.Children.Add(border);
+
+			_highlightRegionPool[region] = border;
+		}
+		for (; region < 18; region++)
+		{
+			var border = new Border
+			{
+				BorderThickness = new(1.5),
+				Visibility = Visibility.Collapsed,
+				BorderBrush = new SolidColorBrush(Colors.Blue),
+				Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
+				Style = (Style)UiResources.Current.HighlightRegionStyle
+			};
+
+			Grid.SetRow(border, region % 9 * 3);
+			Grid.SetColumn(border, 0);
+			Grid.SetColumnSpan(border, 9);
+
+			MainSudokuGrid.Children.Add(border);
+
+			_highlightRegionPool[region] = border;
+		}
+		for (; region < 27; region++)
+		{
+			var border = new Border
+			{
+				BorderThickness = new(1.5),
+				Visibility = Visibility.Collapsed,
+				BorderBrush = new SolidColorBrush(Colors.Blue),
+				Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
+				Style = (Style)UiResources.Current.HighlightRegionStyle
+			};
+
+			Grid.SetRow(border, 0);
+			Grid.SetRowSpan(border, 9);
+			Grid.SetColumn(border, region % 9 * 3);
+
+			MainSudokuGrid.Children.Add(border);
+
+			_highlightRegionPool[region] = border;
 		}
 	}
 }

@@ -10,10 +10,10 @@
 	</UserControl.DataContext>
 
 	<Grid
-		x:Name="MainSudokuGrid"
+		x:Name="MainSudokuGrid" Margin="30, 30, 0, 25"
 		Width="{StaticResource SudokuGridDefaultWidthAndHeight}"
 		Height="{StaticResource SudokuGridDefaultWidthAndHeight}"
-		Margin="30, 30, 0, 25" HorizontalAlignment="Center" VerticalAlignment="Center">
+		HorizontalAlignment="Center" VerticalAlignment="Center">
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition />

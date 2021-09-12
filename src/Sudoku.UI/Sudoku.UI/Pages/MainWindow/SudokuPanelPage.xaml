@@ -6,7 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
 	xmlns:i="using:Sudoku.UI.Interactions"
 	xmlns:c="using:Sudoku.UI.CustomControls"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	NavigationCacheMode="Enabled">
 	<Page.DataContext>
 		<i:SudokuPanelPageDataContext />
 	</Page.DataContext>

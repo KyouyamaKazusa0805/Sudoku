@@ -45,6 +45,9 @@
 			<Style x:Key="HighlightCandidateStyle" TargetType="Ellipse">
 				<Setter Property="Tag" Value="HighlightCandidate" />
 			</Style>
+			<Style x:Key="HighlightRegionStyle" TargetType="Border">
+				<Setter Property="Tag" Value="HighlightRegion" />
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 
