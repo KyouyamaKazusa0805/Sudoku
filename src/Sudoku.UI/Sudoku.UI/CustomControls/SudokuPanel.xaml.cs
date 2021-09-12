@@ -18,7 +18,7 @@ public sealed partial class SudokuPanel : UserControl
 	/// <summary>
 	/// The pool of highlight candidates.
 	/// </summary>
-	private readonly Border[] _highlightCandidatePool = new Border[729];
+	private readonly Ellipse[] _highlightCandidatePool = new Ellipse[729];
 
 	/// <summary>
 	/// The pool of highlight regions.
@@ -35,6 +35,7 @@ public sealed partial class SudokuPanel : UserControl
 
 		CreateCandidateControls();
 		CreateCellBorders();
+		CreateCandidateBorders();
 	}
 
 
@@ -92,6 +93,33 @@ public sealed partial class SudokuPanel : UserControl
 			MainSudokuGrid.Children.Add(border);
 
 			_highlightCellPool[cell] = border;
+		}
+	}
+
+	/// <summary>
+	/// Creates candidate borders.
+	/// </summary>
+	private void CreateCandidateBorders()
+	{
+		for (int candidate = 0; candidate < 729; candidate++)
+		{
+			int cell = candidate / 9, digit = candidate % 9;
+			var ellipse = new Ellipse
+			{
+				StrokeThickness = 1.5,
+				Visibility = Visibility.Collapsed,
+				Stroke = new SolidColorBrush(Colors.Blue),
+				Fill = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
+				Style = (Style)UiResources.Current.HighlightCandidateStyle
+			};
+
+			int row = cell / 9, column = cell % 9;
+			Grid.SetRow(ellipse, row / 3 + digit / 3);
+			Grid.SetColumn(ellipse, column / 3 + digit % 3);
+
+			MainSudokuGrid.Children.Add(ellipse);
+
+			_highlightCandidatePool[candidate] = ellipse;
 		}
 	}
 }

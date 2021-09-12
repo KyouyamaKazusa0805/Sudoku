@@ -37,10 +37,13 @@
 			<Style x:Key="CandidateControlStyle" TargetType="TextBlock">
 				<Setter Property="HorizontalAlignment" Value="Center" />
 				<Setter Property="VerticalAlignment" Value="Center" />
-				<Setter Property="Tag" Value="CC" />
+				<Setter Property="Tag" Value="CandidateControl" />
 			</Style>
 			<Style x:Key="HighlightCellStyle" TargetType="Border">
-				<Setter Property="Tag" Value="HC" />
+				<Setter Property="Tag" Value="HighlightCell" />
+			</Style>
+			<Style x:Key="HighlightCandidateStyle" TargetType="Ellipse">
+				<Setter Property="Tag" Value="HighlightCandidate" />
 			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
