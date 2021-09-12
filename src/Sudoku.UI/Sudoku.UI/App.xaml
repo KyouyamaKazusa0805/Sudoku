@@ -34,6 +34,14 @@
 				<Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
 				<Setter Property="VerticalScrollBarVisibility" Value="Visible" />
 			</Style>
+			<Style x:Key="CandidateControlStyle" TargetType="TextBlock">
+				<Setter Property="HorizontalAlignment" Value="Center" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Tag" Value="CC" />
+			</Style>
+			<Style x:Key="HighlightCellStyle" TargetType="Border">
+				<Setter Property="Tag" Value="HC" />
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 
