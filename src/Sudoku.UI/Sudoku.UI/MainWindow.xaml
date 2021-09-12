@@ -33,7 +33,6 @@
 		<NavigationView
 			Grid.Row="1" x:Name="NavigationView_Main" PaneDisplayMode="Left" IsSettingsVisible="True"
 			IsBackEnabled="False" IsBackButtonVisible="Collapsed"
-			PaneTitle="{StaticResource MainWindow_NavigationView_Title}"
 			ItemInvoked="NavigationView_Main_ItemInvoked">
 			<NavigationView.MenuItems>
 				<NavigationViewItem

@@ -2,7 +2,6 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<!--MainWindow-->
-	<x:String x:Key="MainWindow_NavigationView_Title">数独</x:String>
 	<x:String x:Key="MainWindowTitle">向向的数独解决方案</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_About">关于</x:String>
@@ -20,15 +19,15 @@
 	<!--AboutPage-->
 	<x:String x:Key="AboutPage_Title_BasicInfo">基本信息</x:String>
 	<x:String x:Key="AboutPage_AuthorNameTerm">作者</x:String>
-	<x:String x:Key="AboutPage_AuthorNameDescription">向向 (Sunnie)</x:String>
+	<x:String x:Key="AboutPage_AuthorNameDescription">向向（SunnieShine）</x:String>
 	<x:String x:Key="AboutPage_SudokuReferenceTerm">数独参考</x:String>
 	<x:String x:Key="AboutPage_ProjectWikiTerm">项目 Wiki</x:String>
 	<x:String x:Key="AboutPage_SpecialThanksTitle">鸣谢栏</x:String>
 	<x:String x:Key="AboutPage_SpecialThanksInfo">这里陈列所有这个程序使用或参考了的项目和工程。感谢你们！</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks1">数独 OCR 程序 (基于 Emgu.CV)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks2">Fsss2 (使用暴力破解算法和逻辑填数技巧的快速数独计算器)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks3">Hodoku (一个数独分析器)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks4">Sudoku Explainer (链接无法访问)</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks1">数独 OCR 程序（基于 Emgu.CV）。</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks2">Fsss2（使用暴力破解算法和逻辑填数技巧的快速数独计算器）。</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks3">Hodoku 仓库的网站（一个数独分析器）。</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks4">Sudoku Explainer 的官方网站（链接此时已经无法访问）。</x:String>
 	<x:String x:Key="AboutPage_Disclaimer_Term">免责声明</x:String>
 
 	<!--SettingsPage-->

@@ -3,7 +3,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<!--MainWindow-->
 	<x:String x:Key="MainWindowTitle">Sunnie's Sudoku Solution</x:String>
-	<x:String x:Key="MainWindow_NavigationView_Title">Sudoku</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_SudokuPanel">SudokuPanel</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_About">About</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_Settings">Settings</x:String>
@@ -32,10 +31,10 @@
 	<x:String x:Key="AboutPage_ProjectWikiTerm">Project Wiki</x:String>
 	<x:String x:Key="AboutPage_SpecialThanksTitle">Special thanks</x:String>
 	<x:String x:Key="AboutPage_SpecialThanksInfo">Here displays all open-source programs that the program used or referenced. Thanks you!</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks1">Sudoku OCR program (based on Emgu.CV)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks2">Fsss2 (The fast sudoku solver using brute force and logical assignment skills)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks3">Hodoku (A sudoku analyzer)</x:String>
-	<x:String x:Key="AboutPage_SpecialThanks4">Sudoku Explainer (Link is broken)</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks1">Sudoku OCR program (based on Emgu.CV).</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks2">Fsss2 (The fast sudoku solver using brute force and logical assignment skills).</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks3">Hodoku repo link (A sudoku analyzer).</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks4">Sudoku Explainer website (Link is currently broken).</x:String>
 	<x:String x:Key="AboutPage_Disclaimer_Term">Disclaimer</x:String>
 	<x:String x:Key="AboutPage_Disclaimer_Description" xml:space="preserve">THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 		

@@ -5,7 +5,7 @@
 	xmlns:q="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
 	xmlns:i="using:Sudoku.UI.Interactions"
-	xmlns:c="using:Sudoku.UI.CustomControls"
+	xmlns:c="using:Sudoku.UI.CustomControls" xmlns:data="using:Sudoku.UI.Data"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	NavigationCacheMode="Enabled">
 	<Page.DataContext>
