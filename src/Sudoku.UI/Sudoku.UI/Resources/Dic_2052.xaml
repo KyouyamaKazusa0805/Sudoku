@@ -35,4 +35,5 @@
 	<x:String x:Key="SettingsPage_Intro">此处陈列和展示程序使用的偏好设置项，这意味着你可以调整这个页面里的选项、数值及参数数据为另外的值，以此影响程序执行，使得程序执行特定行为的时候（比如解题、生成题目等）表现出不同于默认情况下不同的情况。</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">搜索设置项</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">如果你找不到设置项，可以在这里搜索你想找的项目。</x:String>
+	<x:String x:Key="SettingsPage_Save">保存</x:String>
 </ResourceDictionary>

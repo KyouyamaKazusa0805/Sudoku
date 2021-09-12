@@ -50,4 +50,5 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">Search for item</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
+	<x:String x:Key="SettingsPage_Save">Save</x:String>
 </ResourceDictionary>
