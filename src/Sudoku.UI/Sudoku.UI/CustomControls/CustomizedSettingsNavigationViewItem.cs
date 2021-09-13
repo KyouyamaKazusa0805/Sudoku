@@ -36,7 +36,7 @@ public class CustomizedSettingsNavigationView : NavigationView
 
 
 	/// <summary>
-	/// Initializes a <see cref="SettingsNavigationViewItem"/> instance.
+	/// Initializes a <see cref="CustomizedSettingsNavigationView"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CustomizedSettingsNavigationView() => DefaultStyleKey = typeof(CustomizedSettingsNavigationView);

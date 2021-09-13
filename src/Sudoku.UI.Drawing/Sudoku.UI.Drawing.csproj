@@ -11,6 +11,7 @@
 		<UseWinUI>true</UseWinUI>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<Nullable>enable</Nullable>
+		<DocumentationFile>..\..\docxml\Sudoku.UI.Drawing.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

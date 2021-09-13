@@ -85,13 +85,10 @@ internal static class GridImageGenerating
 	/// <param name="column">The column that the control is added to.</param>
 	/// <param name="character">The character.</param>
 	/// <param name="foreground">
-	/// The <see cref="Brush"/> instance that represents the foreground of the text
-	/// whose value is from argument <paramref name="digit"/>.
+	/// The <see cref="Brush"/> instance that represents the foreground of the text.
 	/// </param>
 	/// <param name="font">The <see cref="FontFamily"/> instance.</param>
-	/// <param name="fontSize">
-	/// Indicates the size of the text whose value is from argument <paramref name="digit"/>.
-	/// </param>
+	/// <param name="fontSize">Indicates the size of the text.</param>
 	/// <param name="horizontalAlignment">
 	/// Indicates the alignment that constraints for the row.
 	/// The default value is <see cref="HorizontalAlignment.Stretch"/>.

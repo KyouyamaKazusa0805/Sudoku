@@ -6,12 +6,20 @@
 /// <param name="BaseGrid">
 /// The <see cref="Grid"/> instance that stores and displays the <see cref="Shape"/>s.
 /// </param>
-/// <param name="CandidateTextBlockPool">The pool of candidate text blocks.</param>
-/// <param name="HighlightCellPool">The pool of highlight cells.</param>
-/// <param name="HighlightCandidatePool">The pool of highlight candidates.</param>
-/// <param name="HighlightRegionPool">The pool of highlight regions.</param>
+/// <param name="CandidateTextBlockPool">Indicates the pool of candidate <see cref="TextBlock"/>s.</param>
+/// <param name="CellTextBlockPool">Indicates the pool of cell <see cref="TextBlock"/>s.</param>
+/// <param name="HighlightCellPool">
+/// Indicates the pool of highlight cells displaying via <see cref="Border"/>s.
+/// </param>
+/// <param name="HighlightCandidatePool">
+/// Indicates the pool of highlight candidates displaying via <see cref="Ellipse"/>s.
+/// </param>
+/// <param name="HighlightRegionPool">
+/// Indicates the pool of highlight regions displaying via <see cref="Border"/>s.
+/// </param>
 public sealed record SudokuGridCanvas(
 	Grid BaseGrid,
+	TextBlock[] CellTextBlockPool,
 	TextBlock[] CandidateTextBlockPool,
 	Border[] HighlightCellPool,
 	Ellipse[] HighlightCandidatePool,
@@ -24,10 +32,11 @@ public sealed record SudokuGridCanvas(
 	/// </summary>
 	/// <param name="baseGrid">The base <see cref="Grid"/> instance.</param>
 	public SudokuGridCanvas(Grid baseGrid)
-	: this(baseGrid, new TextBlock[729], new Border[81], new Ellipse[729], new Border[27])
+	: this(baseGrid, new TextBlock[81], new TextBlock[729], new Border[81], new Ellipse[729], new Border[27])
 	{
 		CreateMainGridOutlines();
 
+		CreateCellControls();
 		CreateCandidateControls();
 		CreateCellBorders();
 		CreateCandidateEllipses();
@@ -100,7 +109,40 @@ public sealed record SudokuGridCanvas(
 	}
 
 	/// <summary>
-	/// Creates candidates.
+	/// Creates cell <see cref="TextBlock"/>s.
+	/// </summary>
+	private void CreateCellControls()
+	{
+		for (int cell = 0; cell < 81; cell++)
+		{
+			var tb = new TextBlock
+			{
+				Text = (cell % 9 + 1).ToString(),
+				Visibility = Visibility.Visible,
+				Foreground = new SolidColorBrush(Colors.WhiteSmoke),
+				FontSize = 40,
+#if DEBUG
+				FontFamily = new("Fira Code"),
+#else
+				FontFamily = new("Times New Roman"),
+#endif
+				Style = (Style)UiResources.Current.CellControlStyle
+			};
+
+			int row = cell / 9, column = cell % 9;
+			Grid.SetRow(tb, row * 3);
+			Grid.SetRowSpan(tb, 3);
+			Grid.SetColumn(tb, column * 3);
+			Grid.SetColumnSpan(tb, 3);
+
+			BaseGrid.Children.Add(tb);
+
+			CellTextBlockPool[cell] = tb;
+		}
+	}
+
+	/// <summary>
+	/// Creates candidate <see cref="TextBlock"/>s.
 	/// </summary>
 	private void CreateCandidateControls()
 	{
@@ -110,7 +152,7 @@ public sealed record SudokuGridCanvas(
 			var tb = new TextBlock
 			{
 				Text = (digit + 1).ToString(),
-				Visibility = Visibility.Visible,
+				Visibility = Visibility.Collapsed,
 				Foreground = new SolidColorBrush(Colors.Gray),
 				FontSize = 12,
 				FontFamily = new("Times New Roman"),
@@ -118,7 +160,6 @@ public sealed record SudokuGridCanvas(
 			};
 
 			int row = cell / 9, column = cell % 9;
-
 			Grid.SetRow(tb, row * 3 + digit / 3);
 			Grid.SetColumn(tb, column * 3 + digit % 3);
 

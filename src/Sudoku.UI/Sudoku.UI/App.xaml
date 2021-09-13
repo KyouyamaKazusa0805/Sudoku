@@ -46,6 +46,12 @@
 				<Setter Property="BorderBrush" Value="White" />
 				<Setter Property="Tag" Value="{x:Null}" />
 			</Style>
+			<Style x:Key="CellControlStyle" TargetType="TextBlock">
+				<Setter Property="HorizontalAlignment" Value="Center" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="HorizontalTextAlignment" Value="Center" />
+				<Setter Property="Tag" Value="CellControl" />
+			</Style>
 			<Style x:Key="CandidateControlStyle" TargetType="TextBlock">
 				<Setter Property="HorizontalAlignment" Value="Center" />
 				<Setter Property="VerticalAlignment" Value="Center" />

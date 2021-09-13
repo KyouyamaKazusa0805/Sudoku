@@ -15,6 +15,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
+		<DocumentationFile>..\..\docxml\Sudoku.UI.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

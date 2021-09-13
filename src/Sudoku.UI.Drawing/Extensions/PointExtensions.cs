@@ -1,9 +1,9 @@
 ﻿namespace Windows.Foundation;
 
 /// <summary>
-/// Provides extension methods on <see cref="PointF"/>.
+/// Provides extension methods on <see cref="Point"/>.
 /// </summary>
-/// <seealso cref="PointF"/>
+/// <seealso cref="Point"/>
 internal static class PointExtensions
 {
 	/// <summary>
@@ -37,50 +37,50 @@ internal static class PointExtensions
 	public static Point Truncate(this in Point @this) => new((int)@this.X, (int)@this.Y);
 
 	/// <summary>
-	/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-	/// added into the properties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
+	/// Get a new <see cref="Point"/> instance created by the original one, with the specified offset
+	/// added into the properties <see cref="Point.X"/> and <see cref="Point.Y"/>.
 	/// </summary>
 	/// <param name="this">The point.</param>
 	/// <param name="offset">The offset.</param>
 	/// <returns>The result point.</returns>
-	/// <seealso cref="PointF.X"/>
-	/// <seealso cref="PointF.Y"/>
+	/// <seealso cref="Point.X"/>
+	/// <seealso cref="Point.Y"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point WithOffset(this in Point @this, double offset) => new(@this.X + offset, @this.Y + offset);
 
 	/// <summary>
-	/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-	/// added into the properties <see cref="PointF.X"/> and <see cref="PointF.Y"/>.
+	/// Get a new <see cref="Point"/> instance created by the original one, with the specified offset
+	/// added into the properties <see cref="Point.X"/> and <see cref="Point.Y"/>.
 	/// </summary>
 	/// <param name="this">The point.</param>
 	/// <param name="xOffset">The X offset.</param>
 	/// <param name="yOffset">The Y offset.</param>
 	/// <returns>The result point.</returns>
-	/// <seealso cref="PointF.X"/>
-	/// <seealso cref="PointF.Y"/>
+	/// <seealso cref="Point.X"/>
+	/// <seealso cref="Point.Y"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point WithOffset(this in Point @this, double xOffset, double yOffset) =>
 		new(@this.X + xOffset, @this.Y + yOffset);
 
 	/// <summary>
-	/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-	/// added into the properties <see cref="PointF.X"/>.
+	/// Get a new <see cref="Point"/> instance created by the original one, with the specified offset
+	/// added into the properties <see cref="Point.X"/>.
 	/// </summary>
 	/// <param name="this">The point.</param>
 	/// <param name="xOffset">The X offset.</param>
 	/// <returns>The result point.</returns>
-	/// <seealso cref="PointF.X"/>
+	/// <seealso cref="Point.X"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point WithX(this in Point @this, double xOffset) => new(@this.X + xOffset, @this.Y);
 
 	/// <summary>
-	/// Get a new <see cref="PointF"/> instance created by the original one, with the specified offset
-	/// added into the properties <see cref="PointF.Y"/>.
+	/// Get a new <see cref="Point"/> instance created by the original one, with the specified offset
+	/// added into the properties <see cref="Point.Y"/>.
 	/// </summary>
 	/// <param name="this">The point.</param>
 	/// <param name="yOffset">The Y offset.</param>
 	/// <returns>The result point.</returns>
-	/// <seealso cref="PointF.Y"/>
+	/// <seealso cref="Point.Y"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point WithY(this in Point @this, double yOffset) => new(@this.X, @this.Y + yOffset);
 }
