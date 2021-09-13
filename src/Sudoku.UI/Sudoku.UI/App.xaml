@@ -25,14 +25,26 @@
 			<Thickness x:Key="NoVerticalThickness">10, 0, 10, 0</Thickness>
 			<Thickness x:Key="NormalThickness">10, 8, 10, 8</Thickness>
 			<Thickness x:Key="DoubleThickness">10, 16, 10, 16</Thickness>
+			<Thickness x:Key="SudokuGridMarginDefault">30, 30, 0, 25</Thickness>
 
 			<!--Styles-->
+			<Style x:Key="SudokuGridDefaultStyles" TargetType="Grid">
+				<Setter Property="Width" Value="{StaticResource SudokuGridSizeDefault}" />
+				<Setter Property="Height" Value="{StaticResource SudokuGridSizeDefault}" />
+				<Setter Property="Margin" Value="{StaticResource SudokuGridMarginDefault}" />
+				<Setter Property="HorizontalAlignment" Value="Center" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+			</Style>
 			<Style x:Key="ScrollViewerDefaults" TargetType="ScrollViewer">
 				<Setter Property="IsVerticalScrollChainingEnabled" Value="True" />
 				<Setter Property="HorizontalScrollMode" Value="Enabled" />
 				<Setter Property="VerticalScrollMode" Value="Enabled" />
 				<Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
 				<Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+			</Style>
+			<Style x:Key="SudokuGridOutlineStyle" TargetType="Border">
+				<Setter Property="BorderBrush" Value="White" />
+				<Setter Property="Tag" Value="{x:Null}" />
 			</Style>
 			<Style x:Key="CandidateControlStyle" TargetType="TextBlock">
 				<Setter Property="HorizontalAlignment" Value="Center" />

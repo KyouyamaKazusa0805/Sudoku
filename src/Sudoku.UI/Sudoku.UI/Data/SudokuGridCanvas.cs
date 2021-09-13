@@ -26,12 +26,67 @@ public sealed record SudokuGridCanvas(
 	public SudokuGridCanvas(Grid baseGrid)
 	: this(baseGrid, new TextBlock[729], new Border[81], new Ellipse[729], new Border[27])
 	{
+		CreateMainGridOutlines();
+
 		CreateCandidateControls();
 		CreateCellBorders();
 		CreateCandidateEllipses();
 		CreateRegionBorders();
 	}
 
+
+	/// <summary>
+	/// Generates the outlines of the sudoku grid.
+	/// </summary>
+	private void CreateMainGridOutlines()
+	{
+		for (int i = 0; i < 27; i++)
+		{
+			BaseGrid.RowDefinitions.Add(new());
+			BaseGrid.ColumnDefinitions.Add(new());
+		}
+
+		for (int i = 0; i <= 27; i += 9)
+		{
+			if (i == 27)
+			{
+				f(bottom: 3, row: 26, columnSpan: 27);
+				f(right: 3, column: 26, rowSpan: 27);
+			}
+			else
+			{
+				f(top: 3, row: i, columnSpan: 27);
+				f(left: 3, column: i, rowSpan: 27);
+			}
+		}
+
+		for (int i = 0; i < 27; i += 3)
+		{
+			f(top: 1, row: i, columnSpan: 27);
+			f(left: 1, column: i, rowSpan: 27);
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void f(
+			double left = 0, double top = 0, double right = 0, double bottom = 0,
+			int row = 0, int column = 0, int rowSpan = 1, int columnSpan = 1
+		)
+		{
+			var border = new Border
+			{
+				BorderThickness = new(left, top, right, bottom),
+				Style = (Style)UiResources.Current.SudokuGridOutlineStyle
+			};
+
+			Grid.SetRow(border, row);
+			Grid.SetRowSpan(border, rowSpan);
+			Grid.SetColumn(border, column);
+			Grid.SetColumnSpan(border, columnSpan);
+
+			BaseGrid.Children.Add(border);
+		}
+	}
 
 	/// <summary>
 	/// Creates candidates.
