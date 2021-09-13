@@ -46,24 +46,34 @@ public sealed record SudokuGridCanvas(
 			BaseGrid.ColumnDefinitions.Add(new());
 		}
 
-		for (int i = 0; i <= 27; i += 9)
+		for (int i = 0; i <= 27; i += 3)
 		{
-			if (i == 27)
+			switch (i)
 			{
-				f(bottom: 3, row: 26, columnSpan: 27);
-				f(right: 3, column: 26, rowSpan: 27);
-			}
-			else
-			{
-				f(top: 3, row: i, columnSpan: 27);
-				f(left: 3, column: i, rowSpan: 27);
-			}
-		}
+				case 0:
+				case 9:
+				case 18:
+				{
+					f(top: 3, row: i, columnSpan: 27);
+					f(left: 3, column: i, rowSpan: 27);
 
-		for (int i = 0; i < 27; i += 3)
-		{
-			f(top: 1, row: i, columnSpan: 27);
-			f(left: 1, column: i, rowSpan: 27);
+					break;
+				}
+				case 27:
+				{
+					f(bottom: 3, row: 26, columnSpan: 27);
+					f(right: 3, column: 26, rowSpan: 27);
+
+					break;
+				}
+				default:
+				{
+					f(top: 1, row: i, columnSpan: 27);
+					f(left: 1, column: i, rowSpan: 27);
+
+					break;
+				}
+			}
 		}
 
 
