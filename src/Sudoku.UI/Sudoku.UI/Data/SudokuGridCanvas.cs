@@ -40,13 +40,14 @@ public sealed record SudokuGridCanvas(
 	/// </summary>
 	private void CreateMainGridOutlines()
 	{
-		for (int i = 0; i < 27; i++)
+		const int size = 27;
+		for (int i = 0; i < size; i++)
 		{
 			BaseGrid.RowDefinitions.Add(new());
 			BaseGrid.ColumnDefinitions.Add(new());
 		}
 
-		for (int i = 0; i <= 27; i += 3)
+		for (int i = 0; i <= size; i += 3)
 		{
 			switch (i)
 			{
@@ -54,22 +55,22 @@ public sealed record SudokuGridCanvas(
 				case 9:
 				case 18:
 				{
-					f(top: 3, row: i, columnSpan: 27);
-					f(left: 3, column: i, rowSpan: 27);
+					f(top: 3, row: i, columnSpan: size);
+					f(left: 3, column: i, rowSpan: size);
 
 					break;
 				}
 				case 27:
 				{
-					f(bottom: 3, row: 26, columnSpan: 27);
-					f(right: 3, column: 26, rowSpan: 27);
+					f(bottom: 3, row: 26, columnSpan: size);
+					f(right: 3, column: 26, rowSpan: size);
 
 					break;
 				}
 				default:
 				{
-					f(top: 1, row: i, columnSpan: 27);
-					f(left: 1, column: i, rowSpan: 27);
+					f(top: 1, row: i, columnSpan: size);
+					f(left: 1, column: i, rowSpan: size);
 
 					break;
 				}
