@@ -6408,33 +6408,6 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.ModuleInitializer">
-            <summary>
-            Indicates the module initializer of this project.
-            </summary>
-        </member>
-        <member name="M:Sudoku.ModuleInitializer.Initialize">
-            <summary>
-            The initialize method.
-            </summary>
-            <exception cref="T:Sudoku.AssemblyFailedToLoadException">
-            Throws when the deserialization operation is failed.
-            </exception>
-        </member>
-        <member name="M:Sudoku.ModuleInitializer.DeserializeResourceDictionary(System.String,System.String,System.Boolean@)">
-            <summary>
-            Deserialize the resource dictionary. If failed, throw an exception.
-            </summary>
-            <param name="langSourceInstanceName">The name of the language resource instance.</param>
-            <param name="path">The path to deserialize.</param>
-            <param name="result">
-            The result that indicates whether the deserialization operation
-            is successful.
-            </param>
-            <exception cref="T:Sudoku.AssemblyFailedToLoadException">
-            Throws when the specified files don't exist.
-            </exception>
-        </member>
         <member name="T:Sudoku.MultipleSolutionsException">
             <summary>
             Indicates an error that throws when a sudoku grid has multiple solutions

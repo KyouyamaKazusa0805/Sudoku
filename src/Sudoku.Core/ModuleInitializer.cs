@@ -1,8 +1,14 @@
-﻿namespace Sudoku;
+﻿#if !WIN_UI_PROJECT
+
+namespace Sudoku;
 
 /// <summary>
 /// Indicates the module initializer of this project.
 /// </summary>
+/// <remarks>
+/// This type will be compiled and executed if the compilation symbol <c>WIN_UI_PROJECT</c>
+/// <b>isn't</b> configured in this project.
+/// </remarks>
 internal static class ModuleInitializer
 {
 	/// <summary>
@@ -14,8 +20,8 @@ internal static class ModuleInitializer
 	[ModuleInitializer]
 	public static void Initialize()
 	{
-		DeserializeResourceDictionary(nameof(TextResources.LangSourceEnUs), Paths.LangSourceEnUs, out _);
-		DeserializeResourceDictionary(nameof(TextResources.LangSourceZhCn), Paths.LangSourceZhCn, out _);
+		DeserializeResourceDictionary(nameof(TextResources.LangSourceEnUs), Paths.LangSourceEnUs);
+		DeserializeResourceDictionary(nameof(TextResources.LangSourceZhCn), Paths.LangSourceZhCn);
 	}
 
 	/// <summary>
@@ -23,23 +29,22 @@ internal static class ModuleInitializer
 	/// </summary>
 	/// <param name="langSourceInstanceName">The name of the language resource instance.</param>
 	/// <param name="path">The path to deserialize.</param>
-	/// <param name="result">
-	/// The result that indicates whether the deserialization operation
-	/// is successful.
-	/// </param>
 	/// <exception cref="AssemblyFailedToLoadException">
 	/// Throws when the specified files don't exist.
 	/// </exception>
+	/// <remarks>
+	/// The exception throwing is relative with the conditional compilation symbol <c>WIN_UI_PROJECT</c>.
+	/// If the proejct configured the symbol <c>WIN_UI_PROJECT</c>,
+	/// <b>nothing</b> would happen when any error encountered.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static void DeserializeResourceDictionary(
-		string langSourceInstanceName, string path, [DoesNotReturnIf(false)] out bool result)
+	private static void DeserializeResourceDictionary(string langSourceInstanceName, string path)
 	{
 		if (!TextResources.Deserialize(langSourceInstanceName, path))
 		{
-			result = false;
 			throw new AssemblyFailedToLoadException(Assembly.GetExecutingAssembly().FullName, path);
 		}
-
-		result = true;
 	}
 }
+
+#endif

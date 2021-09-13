@@ -9,5 +9,7 @@
 		<i:SudokuPanelDataContext />
 	</UserControl.DataContext>
 
-	<Grid x:Name="MainSudokuGrid" Style="{ThemeResource SudokuGridDefaultStyles}" />
+	<Grid
+		x:Name="MainSudokuGrid" Style="{ThemeResource SudokuGridDefaultStyles}" AllowDrop="True"
+		DragEnter="MainSudokuGrid_DragEnterAsync" />
 </UserControl>

@@ -102,6 +102,13 @@
             Indicates the grid canvas.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.MainSudokuGrid_DragEnterAsync(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
+            <summary>
+            Triggers when the specified object received a file that dragged-and-dropped here.
+            </summary>
+            <param name="_"></param>
+            <param name="e">The event data provided.</param>
+        </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -155,6 +162,11 @@
             Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
             </param>
         </member>
+        <member name="F:Sudoku.UI.Data.SudokuGridCanvas.Solver">
+            <summary>
+            Indicates the solver that checks the uniqueness of sudoku puzzles.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Microsoft.UI.Xaml.Controls.Grid)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Data.SudokuGridCanvas"/> instance with the specified <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance
@@ -162,35 +174,12 @@
             </summary>
             <param name="baseGrid">The base <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
         </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateMainGridOutlines">
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.LoadSudoku(Sudoku.Data.Grid@)">
             <summary>
-            Generates the outlines of the sudoku grid.
+            Load the sudoku puzzle.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateCellControls">
-            <summary>
-            Creates cell <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateCandidateControls">
-            <summary>
-            Creates candidate <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateCellBorders">
-            <summary>
-            Creates cell borders.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateCandidateEllipses">
-            <summary>
-            Creates candidate ellipses.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateRegionBorders">
-            <summary>
-            Creates region borders.
-            </summary>
+            <param name="sudoku">The sudoku.</param>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the load opertion is failed.</exception>
         </member>
         <member name="T:Sudoku.UI.HyperLinks">
             <summary>
