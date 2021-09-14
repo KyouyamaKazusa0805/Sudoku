@@ -14,37 +14,36 @@
 		DragEnter="MainSudokuGrid_DragEnterAsync">
 		<Grid.Resources>
 			<!--Styles-->
-			<Style x:Key="DefaultCloseContentDialogStyle" TargetType="ContentDialog">
+			<Style x:Key="DefaultCloseContentDialogStyle" TargetType="TeachingTip">
 				<Setter Property="Title" Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Title}" />
 				<Setter
-					Property="CloseButtonText"
+					Property="CloseButtonContent"
 					Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Close}" />
-				<Setter Property="DefaultButton" Value="Close" />
 			</Style>
 
 			<!--Content dialogs-->
-			<ContentDialog
+			<TeachingTip
 				x:Name="FailedDragPuzzleFile_FileFormatFailed"
 				Style="{ThemeResource DefaultCloseContentDialogStyle}">
 				<TextBlock
 					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_FileFormatFailed}"
 					TextWrapping="Wrap" />
-			</ContentDialog>
-			<ContentDialog
+			</TeachingTip>
+			<TeachingTip
 				x:Name="FailedDragPuzzleFile_UniquenessFailed"
 				Style="{ThemeResource DefaultCloseContentDialogStyle}">
 				<TextBlock
 					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed}"
 					TextWrapping="Wrap" />
-			</ContentDialog>
-			<ContentDialog
+			</TeachingTip>
+			<TeachingTip
 				x:Name="FailedDragPuzzleFile_UndefinedFailed"
 				Style="{ThemeResource DefaultCloseContentDialogStyle}">
 				<TextBlock
 					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed}"
 					TextWrapping="Wrap" />
-			</ContentDialog>
-			<ContentDialog
+			</TeachingTip>
+			<TeachingTip
 				x:Name="FailedDragPuzzleFile_DebuggerUndefinedFailed"
 				Style="{ThemeResource DefaultCloseContentDialogStyle}">
 				<TextBlock TextWrapping="Wrap">
@@ -53,7 +52,7 @@
 						FontWeight="Bold" FontStyle="Italic" TextDecorations="Strikethrough"
 						Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2}" />
 				</TextBlock>
-			</ContentDialog>
+			</TeachingTip>
 		</Grid.Resources>
 	</Grid>
 </UserControl>

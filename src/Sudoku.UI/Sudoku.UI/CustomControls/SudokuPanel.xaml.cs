@@ -112,14 +112,14 @@ public sealed partial class SudokuPanel : UserControl
 			catch (InvalidPuzzleException ex)
 			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed)
 			{
-				await FailedDragPuzzleFile_UndefinedFailed.ShowAsync();
+				FailedDragPuzzleFile_UndefinedFailed.IsOpen = true;
 
 				goto ExceptionThrownButHandled;
 			}
 			catch (InvalidPuzzleException ex)
 			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed)
 			{
-				await FailedDragPuzzleFile_UniquenessFailed.ShowAsync();
+				FailedDragPuzzleFile_UniquenessFailed.IsOpen = true;
 
 				goto ExceptionThrownButHandled;
 			}
@@ -127,14 +127,14 @@ public sealed partial class SudokuPanel : UserControl
 			catch (InvalidPuzzleException ex)
 			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1)
 			{
-				await FailedDragPuzzleFile_DebuggerUndefinedFailed.ShowAsync();
+				FailedDragPuzzleFile_DebuggerUndefinedFailed.IsOpen = true;
 
 				goto ExceptionThrownButHandled;
 			}
 #endif
 
 		ShowInvalidFileFormatDialog:
-			await FailedDragPuzzleFile_FileFormatFailed.ShowAsync();
+			FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
 			return;
 
 		Successful:
