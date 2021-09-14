@@ -23,7 +23,6 @@
 		<None Remove="Pages\MainWindow\AboutPage.xaml" />
 		<None Remove="Pages\MainWindow\SettingsPage.xaml" />
 		<None Remove="Pages\MainWindow\SudokuPanelPage.xaml" />
-		<None Remove="Resources\ContentDialogs.xaml" />
 		<None Remove="Resources\Dic_1033.xaml" />
 		<None Remove="Resources\Dic_2052.xaml" />
 	</ItemGroup>
@@ -53,12 +52,6 @@
 			<Compile Include="Resources\UiResources.RealImpl.cs" Visible="false" />
 		</ItemGroup>
 	</Target>
-
-	<ItemGroup>
-	  <Page Update="Resources\ContentDialogs.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
 
 	<ItemGroup>
 		<Page Update="Pages\MainWindow\SettingsPage.xaml">

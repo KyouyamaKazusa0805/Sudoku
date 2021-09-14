@@ -92,6 +92,16 @@
             Defines a basic sudoku panel.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.TextFormat">
+            <summary>
+            Indicates the format that is the text one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.SudokuFormat">
+            <summary>
+            Indicates the format that is the sudoku puzzle one.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.CustomControls.SudokuPanel"/> instance.

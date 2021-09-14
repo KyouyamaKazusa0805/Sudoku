@@ -11,5 +11,49 @@
 
 	<Grid
 		x:Name="MainSudokuGrid" Style="{ThemeResource SudokuGridDefaultStyles}" AllowDrop="True"
-		DragEnter="MainSudokuGrid_DragEnterAsync" />
+		DragEnter="MainSudokuGrid_DragEnterAsync">
+		<Grid.Resources>
+			<!--Styles-->
+			<Style x:Key="DefaultCloseContentDialogStyle" TargetType="ContentDialog">
+				<Setter Property="Title" Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Title}" />
+				<Setter
+					Property="CloseButtonText"
+					Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Close}" />
+				<Setter Property="DefaultButton" Value="Close" />
+			</Style>
+
+			<!--Content dialogs-->
+			<ContentDialog
+				x:Name="FailedDragPuzzleFile_FileFormatFailed"
+				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				<TextBlock
+					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_FileFormatFailed}"
+					TextWrapping="Wrap" />
+			</ContentDialog>
+			<ContentDialog
+				x:Name="FailedDragPuzzleFile_UniquenessFailed"
+				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				<TextBlock
+					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed}"
+					TextWrapping="Wrap" />
+			</ContentDialog>
+			<ContentDialog
+				x:Name="FailedDragPuzzleFile_UndefinedFailed"
+				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				<TextBlock
+					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed}"
+					TextWrapping="Wrap" />
+			</ContentDialog>
+			<ContentDialog
+				x:Name="FailedDragPuzzleFile_DebuggerUndefinedFailed"
+				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				<TextBlock TextWrapping="Wrap">
+					<Run Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1}" />
+					<Run
+						FontWeight="Bold" FontStyle="Italic" TextDecorations="Strikethrough"
+						Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2}" />
+				</TextBlock>
+			</ContentDialog>
+		</Grid.Resources>
+	</Grid>
 </UserControl>

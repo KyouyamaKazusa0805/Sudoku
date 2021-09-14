@@ -13,9 +13,6 @@
 				<!--Native resource dictionary-->
 				<ResourceDictionary Source="Resources/Dic_1033.xaml" />
 				<ResourceDictionary Source="Resources/Dic_2052.xaml" />
-
-				<!--Other dictionaries-->
-				<ResourceDictionary Source="Resources/ContentDialogs.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<!--Title bar defaults-->
