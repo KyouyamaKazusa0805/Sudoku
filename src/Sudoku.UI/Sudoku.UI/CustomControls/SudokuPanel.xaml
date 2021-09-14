@@ -8,9 +8,19 @@
 	<UserControl.DataContext>
 		<i:SudokuPanelDataContext />
 	</UserControl.DataContext>
+	<UserControl.Resources>
+		<Style x:Name="SudokuGridDefaultStyles" TargetType="Grid">
+			<Setter Property="Width" Value="{StaticResource SudokuGridSizeDefault}" />
+			<Setter Property="Height" Value="{StaticResource SudokuGridSizeDefault}" />
+			<Setter Property="Margin" Value="{StaticResource SudokuGridMarginDefault}" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="AllowDrop" Value="True" />
+		</Style>
+	</UserControl.Resources>
 
 	<Grid
-		x:Name="MainSudokuGrid" Style="{ThemeResource SudokuGridDefaultStyles}" AllowDrop="True"
+		x:Name="MainSudokuGrid" Style="{ThemeResource SudokuGridDefaultStyles}"
 		DragEnter="MainSudokuGrid_DragEnterAsync">
 		<Grid.Resources>
 			<!--Styles-->

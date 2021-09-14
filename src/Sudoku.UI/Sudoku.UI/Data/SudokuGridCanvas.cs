@@ -98,7 +98,7 @@ public sealed record SudokuGridCanvas(
 				var border = new Border
 				{
 					BorderThickness = new(left, top, right, bottom),
-					Style = (Style)UiResources.Current.SudokuGridOutlineStyle
+					BorderBrush = new SolidColorBrush(Colors.White)
 				};
 
 				Grid.SetRow(border, row);
@@ -120,12 +120,10 @@ public sealed record SudokuGridCanvas(
 					Visibility = Visibility.Collapsed,
 					Foreground = new SolidColorBrush(Colors.WhiteSmoke),
 					FontSize = 40,
-#if DEBUG
 					FontFamily = new("Fira Code"),
-#else
-					FontFamily = new("Times New Roman"),
-#endif
-					Style = (Style)UiResources.Current.CellControlStyle
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					HorizontalTextAlignment = TextAlignment.Center
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -150,9 +148,11 @@ public sealed record SudokuGridCanvas(
 					Text = (digit + 1).ToString(),
 					Visibility = Visibility.Visible,
 					Foreground = new SolidColorBrush(Colors.Gray),
-					FontSize = 12,
+					FontSize = 14,
 					FontFamily = new("Times New Roman"),
-					Style = (Style)UiResources.Current.CandidateControlStyle
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					HorizontalTextAlignment = TextAlignment.Center
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -174,8 +174,7 @@ public sealed record SudokuGridCanvas(
 					BorderThickness = new(1.5),
 					Visibility = Visibility.Collapsed,
 					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
-					Style = (Style)UiResources.Current.HighlightCellStyle
+					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -200,8 +199,7 @@ public sealed record SudokuGridCanvas(
 					StrokeThickness = 1.5,
 					Visibility = Visibility.Collapsed,
 					Stroke = new SolidColorBrush(Colors.Blue),
-					Fill = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
-					Style = (Style)UiResources.Current.HighlightCandidateStyle
+					Fill = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -224,8 +222,7 @@ public sealed record SudokuGridCanvas(
 					BorderThickness = new(1.5),
 					Visibility = Visibility.Collapsed,
 					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
-					Style = (Style)UiResources.Current.HighlightRegionStyle
+					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
 				};
 
 				Grid.SetRow(border, region switch { 0 or 3 or 6 => 0, 1 or 4 or 7 => 9, 2 or 5 or 8 => 18 });
@@ -244,8 +241,7 @@ public sealed record SudokuGridCanvas(
 					BorderThickness = new(1.5),
 					Visibility = Visibility.Collapsed,
 					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
-					Style = (Style)UiResources.Current.HighlightRegionStyle
+					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
 				};
 
 				Grid.SetRow(border, region % 9 * 3);
@@ -263,8 +259,7 @@ public sealed record SudokuGridCanvas(
 					BorderThickness = new(1.5),
 					Visibility = Visibility.Collapsed,
 					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255)),
-					Style = (Style)UiResources.Current.HighlightRegionStyle
+					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
 				};
 
 				Grid.SetRow(border, 0);
