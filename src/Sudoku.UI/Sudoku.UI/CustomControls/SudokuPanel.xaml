@@ -31,7 +31,7 @@
 					Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Close}" />
 			</Style>
 
-			<!--Content dialogs-->
+			<!--Teaching tips-->
 			<TeachingTip
 				x:Name="FailedDragPuzzleFile_FileFormatFailed"
 				Style="{ThemeResource DefaultCloseContentDialogStyle}">
