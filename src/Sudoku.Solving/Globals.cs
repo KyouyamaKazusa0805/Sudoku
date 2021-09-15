@@ -39,10 +39,6 @@ global using static Sudoku.Constants.Tables;
 global using static Sudoku.Solving.Manual.Buffer.FastProperties;
 global using static Sudoku.Solving.Manual.Constants;
 
-#if false && (SOLUTION_WIDE_CODE_ANALYSIS || CODE_ANALYSIS)
-[module: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-#endif
-
 #if DEBUG
 [assembly: InternalsVisibleTo("Sudoku.Test")]
 #endif
