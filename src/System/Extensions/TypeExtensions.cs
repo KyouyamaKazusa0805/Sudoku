@@ -22,9 +22,14 @@ public static class TypeExtensions
 	/// <typeparam name="TInterface">The type of the interface.</typeparam>
 	/// <param name="this">The type to check.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified type argument isn't an <see langword="interface"/> type.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool HasImplemented<TInterface>(this Type @this) where TInterface : class =>
-		typeof(TInterface).IsInterface && @this.GetInterfaces().OfType<TInterface>().Any();
+		typeof(TInterface).IsInterface
+			? @this.GetInterfaces().OfType<TInterface>().Any()
+			: throw new InvalidOperationException("The type argument must be an interface.");
 
 	/// <summary>
 	/// Determine whether the type contains a parameterless constructor.

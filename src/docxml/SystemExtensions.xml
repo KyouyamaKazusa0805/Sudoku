@@ -3144,6 +3144,9 @@
             <typeparam name="TInterface">The type of the interface.</typeparam>
             <param name="this">The type to check.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified type argument isn't an <see langword="interface"/> type.
+            </exception>
         </member>
         <member name="M:System.TypeExtensions.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
             <summary>
