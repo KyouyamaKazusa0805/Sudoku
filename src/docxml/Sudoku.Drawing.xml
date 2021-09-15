@@ -760,12 +760,12 @@
         </member>
         <member name="F:Sudoku.Recognition.Constants.Font">
             <summary>
-            Indicates the font.
+            Indicates the font face.
             </summary>
         </member>
         <member name="F:Sudoku.Recognition.Constants.ChainApprox">
             <summary>
-            Indicates the ChainApprox.
+            Indicates the behavior that specifies and executes the chain approximation algorithm.
             </summary>
         </member>
         <member name="T:Sudoku.Recognition.FailedToFillValueException">

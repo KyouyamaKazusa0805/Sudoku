@@ -51,12 +51,12 @@ internal static class Constants
 	public const int ThOcrMax = 255;
 
 	/// <summary>
-	/// Indicates the font.
+	/// Indicates the font face.
 	/// </summary>
 	public const FontFace Font = FontFace.HersheyPlain;
 
 	/// <summary>
-	/// Indicates the ChainApprox.
+	/// Indicates the behavior that specifies and executes the chain approximation algorithm.
 	/// </summary>
 	public const ChainApproxMethod ChainApprox = ChainApproxMethod.ChainApproxNone;
 }
