@@ -6,11 +6,6 @@
 public interface IPuzzleGenerator
 {
 	/// <summary>
-	/// Provides a random number generator.
-	/// </summary>
-	protected internal static readonly Random Rng = new();
-
-	/// <summary>
 	/// Provides a default fast solver to solve the puzzle.
 	/// </summary>
 	protected internal static readonly FastSolver Solver = new();

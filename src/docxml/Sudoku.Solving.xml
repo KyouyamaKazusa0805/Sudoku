@@ -60,11 +60,6 @@
             Defines a puzzle generator.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.IPuzzleGenerator.Rng">
-            <summary>
-            Provides a random number generator.
-            </summary>
-        </member>
         <member name="F:Sudoku.Generating.IPuzzleGenerator.Solver">
             <summary>
             Provides a default fast solver to solve the puzzle.

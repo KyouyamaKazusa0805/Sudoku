@@ -47,7 +47,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 			string result;
 			do
 			{
-				var selectedType = allTypes[Rng.Next(count)];
+				var selectedType = allTypes[Random.Shared.Next(count)];
 				fixed (char* pTempSolution = tempSolution)
 				{
 					UnsafeExtensions.CopyBlock(pSolution, pTempSolution, 81);
@@ -59,7 +59,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 					int cell;
 					do
 					{
-						cell = Rng.Next(0, 81);
+						cell = Random.Shared.Next(0, 81);
 					} while (totalMap.Contains(cell));
 
 					int r = cell / 9, c = cell % 9;
@@ -105,7 +105,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 			{
 				while (true)
 				{
-					int cell = Rng.Next(0, 81);
+					int cell = Random.Shared.Next(0, 81);
 					if (!map.Contains(cell))
 					{
 						map.AddAnyway(cell);
@@ -118,7 +118,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);

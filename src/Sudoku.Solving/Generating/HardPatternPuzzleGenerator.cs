@@ -95,7 +95,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				while (true)
 				{
-					int cell = Rng.Next(0, 81);
+					int cell = Random.Shared.Next(0, 81);
 					if (!map.Contains(cell))
 					{
 						map.AddAnyway(cell);
@@ -108,7 +108,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
@@ -123,7 +123,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		int a = 54, b = 0;
 		for (int i = 0; i < 9; i++)
 		{
-			int n = (int)(Rng.NextDouble() * 6);
+			int n = (int)(Random.Shared.NextDouble() * 6);
 			for (int j = 0; j < 3; j++)
 			{
 				for (int k = 0; k < 3; k++)
@@ -145,19 +145,19 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	{
 		for (int i = 23; i >= 0; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + (int)((i + 1) * Rng.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + (int)((i + 1) * Random.Shared.NextDouble()));
 		}
 		for (int i = 47; i >= 24; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 24 + (int)((i - 23) * Rng.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 24 + (int)((i - 23) * Random.Shared.NextDouble()));
 		}
 		for (int i = 53; i >= 48; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 48 + (int)((i - 47) * Rng.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 48 + (int)((i - 47) * Random.Shared.NextDouble()));
 		}
 		for (int i = 80; i >= 54; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 54 + (int)(27 * Rng.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 54 + (int)(27 * Random.Shared.NextDouble()));
 		}
 	}
 
