@@ -11,7 +11,7 @@
 /// <param name="XDigitsMask">The X digits mask.</param>
 /// <param name="YDigitsMask">The Y digits mask.</param>
 /// <param name="ZDigitsMask">The Z digits mask.</param>
-public sealed record AlsXyWingStepInfo(
+public sealed record class AlsXyWingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
 	in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask
 ) : AlsStepInfo(Conclusions, Views)

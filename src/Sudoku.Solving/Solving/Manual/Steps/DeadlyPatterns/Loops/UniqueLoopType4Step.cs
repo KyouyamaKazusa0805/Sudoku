@@ -9,7 +9,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record UniqueLoopType4Step(
+public sealed record class UniqueLoopType4Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

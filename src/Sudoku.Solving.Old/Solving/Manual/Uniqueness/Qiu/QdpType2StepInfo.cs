@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Pattern">The pattern.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record QdpType2StepInfo(
+public sealed record class QdpType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern, int ExtraDigit
 ) : QdpStepInfo(Conclusions, Views, Pattern)
 {

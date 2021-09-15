@@ -11,7 +11,7 @@
 [AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).*")]
 [AutoFormattable]
-public sealed partial record AnalysisResult(
+public sealed partial record class AnalysisResult(
 	string SolverName,
 	in SudokuGrid Puzzle,
 	[property: MemberNotNullWhen(returnValue: true, nameof(AnalysisResult.Solution))] bool IsSolved,

@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Pattern">The pattern.</param>
 /// <param name="Candidates">The candidates.</param>
-public sealed record QdpLockedTypeStepInfo(
+public sealed record class QdpLockedTypeStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Pattern Pattern, IReadOnlyList<int> Candidates
 ) : QdpStepInfo(Conclusions, Views, Pattern)

@@ -7,7 +7,7 @@ namespace Sudoku.Solving.Manual;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in ImmutableArray<PresentationData> Views) : IStep
+public abstract record class Step(in ImmutableArray<Conclusion> Conclusions, in ImmutableArray<PresentationData> Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;

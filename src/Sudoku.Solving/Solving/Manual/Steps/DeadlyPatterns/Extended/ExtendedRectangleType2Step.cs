@@ -8,7 +8,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-public sealed record ExtendedRectangleType2Step(
+public sealed record class ExtendedRectangleType2Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	in Cells Cells,

@@ -2,7 +2,7 @@
 
 namespace Sudoku.Solving.Manual;
 
-partial record ManualSolverResult
+partial record class ManualSolverResult
 {
 	/// <summary>
 	/// Provides operations for analysis result formatting.

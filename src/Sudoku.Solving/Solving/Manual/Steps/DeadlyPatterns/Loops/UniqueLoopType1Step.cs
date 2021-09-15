@@ -8,7 +8,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
-public sealed record UniqueLoopType1Step(
+public sealed record class UniqueLoopType1Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

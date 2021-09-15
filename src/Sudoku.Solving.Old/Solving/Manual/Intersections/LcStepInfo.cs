@@ -8,7 +8,7 @@
 /// <param name="Digit">The digit.</param>
 /// <param name="BaseSet">The base region.</param>
 /// <param name="CoverSet">The cover region.</param>
-public sealed record LcStepInfo(
+public sealed record class LcStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit, int BaseSet, int CoverSet
 ) : IntersectionStepInfo(Conclusions, Views)

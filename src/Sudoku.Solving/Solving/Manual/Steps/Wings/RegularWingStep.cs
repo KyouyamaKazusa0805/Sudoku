@@ -9,7 +9,7 @@
 /// <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
-public sealed record RegularWingStep(
+public sealed record class RegularWingStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Pivot,

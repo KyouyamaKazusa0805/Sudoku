@@ -9,7 +9,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-public sealed record BivalueOddagonType2Step(
+public sealed record class BivalueOddagonType2Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	in Cells Loop,

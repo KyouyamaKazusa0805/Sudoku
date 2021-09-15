@@ -17,7 +17,7 @@
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
 [Obsolete($"Please use type '{nameof(SearchingOptions)}' instead.", false)]
-public sealed partial record TechniqueProperties(int Priority, string DisplayLabel)
+public sealed partial record class TechniqueProperties(int Priority, string DisplayLabel)
 {
 	/// <summary>
 	/// Indicates whether the technique is enabled. The default value is <see langword="true"/>.

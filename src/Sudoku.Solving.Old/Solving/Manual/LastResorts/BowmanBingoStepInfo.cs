@@ -6,7 +6,7 @@
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
 /// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradiction.</param>
-public sealed record BowmanBingoStepInfo(
+public sealed record class BowmanBingoStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	IReadOnlyList<Conclusion> ContradictionSeries
 ) : LastResortStepInfo(Conclusions, Views)

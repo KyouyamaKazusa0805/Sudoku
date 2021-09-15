@@ -9,7 +9,7 @@
 /// <param name="PivotCandidatesCount">The number of candidates that is in the pivot.</param>
 /// <param name="DigitsMask">The mask of all digits used.</param>
 /// <param name="Cells">The cells used.</param>
-public sealed record RegularWingStepInfo(
+public sealed record class RegularWingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
 	int PivotCandidatesCount, short DigitsMask, IReadOnlyList<int> Cells
 ) : WingStepInfo(Conclusions, Views)

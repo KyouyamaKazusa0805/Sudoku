@@ -9,7 +9,7 @@
 /// <param name="Digits">All digits.</param>
 /// <param name="Cells">All cells.</param>
 /// <param name="IsNaked">Indicates whether the subset is naked.</param>
-public sealed record BugType3StepInfo(
+public sealed record class BugType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	IReadOnlyList<int> TrueCandidates, IReadOnlyList<int> Digits,
 	IReadOnlyList<int> Cells, bool IsNaked

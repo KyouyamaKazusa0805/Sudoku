@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Digit">The digit.</param>
 /// <param name="Cells">All cell offsets.</param>
-public sealed record BugType2StepInfo(
+public sealed record class BugType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> Cells
 ) : BugStepInfo(Conclusions, Views)
 {

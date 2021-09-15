@@ -11,7 +11,7 @@
 /// </remarks>
 /// <seealso cref="IntPtr"/>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed unsafe record ResetStep(IntPtr OldMasks, IntPtr NewMasks) : IStep
+public sealed unsafe record class ResetStep(IntPtr OldMasks, IntPtr NewMasks) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void DoStepTo(UndoableGrid grid)

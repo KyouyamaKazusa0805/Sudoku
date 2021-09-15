@@ -9,7 +9,7 @@ namespace Sudoku.Data.Stepping;
 /// <param name="Digit">The current digit to assign.</param>
 /// <param name="Snapshot">The grid snapshot.</param>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed record AssignmentStep(int Cell, int Digit, in SudokuGrid Snapshot) : IStep
+public sealed record class AssignmentStep(int Cell, int Digit, in SudokuGrid Snapshot) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void UndoStepTo(UndoableGrid grid)

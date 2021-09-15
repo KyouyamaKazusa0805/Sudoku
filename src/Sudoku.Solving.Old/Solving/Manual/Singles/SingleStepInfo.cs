@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Cell">The cell.</param>
 /// <param name="Digit">The digit.</param>
-public abstract record SingleStepInfo(
+public abstract record class SingleStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit
 ) : StepInfo(Conclusions, Views)
 {

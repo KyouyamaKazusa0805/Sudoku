@@ -8,7 +8,7 @@
 /// <param name="Pattern">The pattern.</param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
 /// <param name="ExtraCells">The extra cells.</param>
-public sealed record QdpType3StepInfo(
+public sealed record class QdpType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern,
 	short ExtraDigitsMask, IReadOnlyList<int> ExtraCells
 ) : QdpStepInfo(Conclusions, Views, Pattern)

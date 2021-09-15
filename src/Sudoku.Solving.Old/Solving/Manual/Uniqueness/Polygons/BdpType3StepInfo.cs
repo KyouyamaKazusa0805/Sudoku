@@ -9,7 +9,7 @@
 /// <param name="DigitsMask">The digits mask.</param>
 /// <param name="ExtraCells">The extra cells.</param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
-public sealed record BdpType3StepInfo(
+public sealed record class BdpType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Map, short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask
 ) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)

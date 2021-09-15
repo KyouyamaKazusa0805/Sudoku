@@ -11,7 +11,7 @@
 /// <param name="ExtraDigit">The extra digit.</param>
 /// <param name="Cells">All UR cells.</param>
 /// <param name="AbsoluteOffset">The absolute offset.</param>
-public sealed record UrWithUnknownCoveringStepInfo(
+public sealed record class UrWithUnknownCoveringStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, int TargetCell, int ExtraDigit, int[] Cells, int AbsoluteOffset
 ) : UrStepInfo(Conclusions, Views, Technique.UrUnknownCovering, Digit1, Digit2, Cells, false, AbsoluteOffset)

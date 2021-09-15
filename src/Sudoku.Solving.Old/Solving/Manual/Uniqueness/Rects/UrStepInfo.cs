@@ -20,7 +20,7 @@
 /// <param name="Cells">All cells.</param>
 /// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public abstract record UrStepInfo(
+public abstract record class UrStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset
 ) : UniquenessStepInfo(Conclusions, Views)

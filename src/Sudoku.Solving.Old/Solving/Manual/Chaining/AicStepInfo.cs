@@ -8,7 +8,7 @@
 /// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
 /// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 /// <param name="Target">The target node.</param>
-public sealed record AicStepInfo(
+public sealed record class AicStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	bool XEnabled, bool YEnabled, in Node Target
 ) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)

@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Cells">The cells.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-public abstract record UsStepInfo(
+public abstract record class UsStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask
 ) : UniquenessStepInfo(Conclusions, Views)
 {

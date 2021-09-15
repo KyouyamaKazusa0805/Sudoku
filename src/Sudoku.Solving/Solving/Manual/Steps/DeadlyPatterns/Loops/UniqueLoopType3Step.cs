@@ -10,7 +10,7 @@
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-public sealed record UniqueLoopType3Step(
+public sealed record class UniqueLoopType3Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

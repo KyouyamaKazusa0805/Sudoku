@@ -7,7 +7,7 @@ namespace Sudoku.Data.Stepping;
 /// </summary>
 /// <param name="AllCells">Indicates all cells to fix.</param>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed record FixStep(in Cells AllCells) : IStep
+public sealed record class FixStep(in Cells AllCells) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void DoStepTo(UndoableGrid grid)

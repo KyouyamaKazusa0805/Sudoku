@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-public sealed record FullHouseStep(
+public sealed record class FullHouseStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Cell,

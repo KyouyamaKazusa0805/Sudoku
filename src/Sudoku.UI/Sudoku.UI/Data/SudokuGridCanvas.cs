@@ -17,7 +17,7 @@
 /// <param name="HighlightRegionPool">
 /// Indicates the pool of highlight regions displaying via <see cref="Border"/>s.
 /// </param>
-public sealed record SudokuGridCanvas(
+public sealed record class SudokuGridCanvas(
 	Grid BaseGrid,
 	TextBlock[] CellTextBlockPool,
 	TextBlock[] CandidateTextBlockPool,

@@ -9,7 +9,7 @@
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="Loop">The loop.</param>
 /// <param name="ConjugatePair">The conjugate pair.</param>
-public sealed record UlType4StepInfo(
+public sealed record class UlType4StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, in Cells Loop, in ConjugatePair ConjugatePair
 ) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)

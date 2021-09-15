@@ -7,7 +7,7 @@
 /// <param name="OldMask">Indicates the old mask.</param>
 /// <param name="NewMask">Indicates the new mask.</param>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed record SetMaskStep(int Cell, short OldMask, short NewMask) : IStep
+public sealed record class SetMaskStep(int Cell, short OldMask, short NewMask) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void DoStepTo(UndoableGrid grid)

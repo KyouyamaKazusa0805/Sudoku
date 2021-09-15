@@ -15,7 +15,7 @@
 /// <param name="ExtraDigits">The extra digits.</param>
 /// <param name="Pivots">The pivot cells.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public sealed record UrWithWingStepInfo(
+public sealed record class UrWithWingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 	IEnumerable<int> ExtraCells, IEnumerable<int> ExtraDigits, IEnumerable<int> Pivots, int AbsoluteOffset

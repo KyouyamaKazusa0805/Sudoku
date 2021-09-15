@@ -12,7 +12,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public record UniqueRectangleWithConjugatePairStep(
+public record class UniqueRectangleWithConjugatePairStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	Technique TechniqueCode2,

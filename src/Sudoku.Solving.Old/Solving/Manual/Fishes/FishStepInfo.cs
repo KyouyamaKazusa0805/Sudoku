@@ -8,7 +8,7 @@
 /// <param name="Digit">The digit used.</param>
 /// <param name="BaseSets">The base sets.</param>
 /// <param name="CoverSets">The cover sets.</param>
-public abstract record FishStepInfo(
+public abstract record class FishStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 	IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets
 ) : StepInfo(Conclusions, Views)

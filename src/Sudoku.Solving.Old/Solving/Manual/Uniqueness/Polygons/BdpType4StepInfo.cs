@@ -19,7 +19,7 @@
 /// </para>
 /// </param>
 /// <param name="ExtraMask">Indicates the mask of digits that is the combination.</param>
-public sealed record BdpType4StepInfo(
+public sealed record class BdpType4StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Map, short DigitsMask, in Cells ConjugateRegion, short ExtraMask
 ) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)

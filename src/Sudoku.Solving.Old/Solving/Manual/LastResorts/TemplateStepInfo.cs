@@ -6,7 +6,7 @@
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
 /// <param name="IsTemplateDeletion">Indicates whether the current instance is template deletion.</param>
-public sealed record TemplateStepInfo(
+public sealed record class TemplateStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool IsTemplateDeletion
 ) : LastResortStepInfo(Conclusions, Views)
 {

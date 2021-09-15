@@ -7,7 +7,7 @@
 /// <param name="OldStatus">The old status.</param>
 /// <param name="NewStatus">The new status.</param>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed record SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
+public sealed record class SetStatusStep(int Cell, CellStatus OldStatus, CellStatus NewStatus) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void DoStepTo(UndoableGrid grid)

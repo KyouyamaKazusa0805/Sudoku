@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Cells">All cells.</param>
 /// <param name="DigitsMask">All digits mask.</param>
-public sealed record XrType1StepInfo(
+public sealed record class XrType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask
 ) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 {

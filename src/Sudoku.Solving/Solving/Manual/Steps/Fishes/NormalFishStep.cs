@@ -26,7 +26,7 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record NormalFishStep(
+public sealed record class NormalFishStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit,

@@ -9,7 +9,7 @@
 /// <param name="Chains">All branches.</param>
 /// <param name="IsDynamic">Indicates whether the chain is dynamic.</param>
 /// <param name="Level">Indicates the depth level of the dynamic chains.</param>
-public sealed record CellChainingStepInfo(
+public sealed record class CellChainingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int SourceCell, IReadOnlyDictionary<int, Node> Chains, bool IsDynamic, int Level
 ) : ChainingStepInfo(Conclusions, Views, default, default, default, true, IsDynamic, Level)

@@ -12,6 +12,6 @@
 /// The difficulty that describes minimum and maximum difficulty of the current technique.
 /// </param>
 /// <param name="DifficultyLevel">Indicates the difficulty level.</param>
-public sealed record DifficultyInfo(
+public sealed record class DifficultyInfo(
 	string? Technique, int Count, decimal Total, string MinToMax, DifficultyLevel DifficultyLevel
 );

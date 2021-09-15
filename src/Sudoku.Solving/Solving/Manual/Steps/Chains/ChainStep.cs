@@ -66,7 +66,7 @@ namespace Sudoku.Solving.Manual.Steps.Chains;
 /// </item>
 /// </list>
 /// </param>
-public abstract record ChainStep(
+public abstract record class ChainStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	bool XEnabled,

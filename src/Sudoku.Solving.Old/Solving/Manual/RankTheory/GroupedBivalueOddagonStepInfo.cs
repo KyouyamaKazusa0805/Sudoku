@@ -9,7 +9,7 @@
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="ExtraDigits">The extra digits.</param>
-public sealed record GroupedBivalueOddagonStepInfo(
+public sealed record class GroupedBivalueOddagonStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Loop, int Digit1, int Digit2, short ExtraDigits
 ) : RankTheoryStepInfo(Conclusions, Views)

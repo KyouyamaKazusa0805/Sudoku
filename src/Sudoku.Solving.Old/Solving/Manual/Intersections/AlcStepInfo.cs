@@ -9,7 +9,7 @@
 /// <param name="BaseCells">All base cells.</param>
 /// <param name="TargetCells">All target cells.</param>
 /// <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
-public sealed record AlcStepInfo(
+public sealed record class AlcStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, short DigitsMask,
 	in Cells BaseCells, in Cells TargetCells, bool HasValueCell
 ) : IntersectionStepInfo(Conclusions, Views)

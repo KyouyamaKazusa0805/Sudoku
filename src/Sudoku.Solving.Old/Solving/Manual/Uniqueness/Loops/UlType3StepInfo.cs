@@ -10,7 +10,7 @@
 /// <param name="Loop">The loop.</param>
 /// <param name="SubsetDigitsMask">The subset digits mask.</param>
 /// <param name="SubsetCells">The subset cells.</param>
-public sealed record UlType3StepInfo(
+public sealed record class UlType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
 	in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells
 ) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)

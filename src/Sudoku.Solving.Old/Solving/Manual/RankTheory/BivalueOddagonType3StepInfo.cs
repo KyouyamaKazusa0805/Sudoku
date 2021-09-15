@@ -10,7 +10,7 @@
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="ExtraDigits">All extra digits.</param>
 /// <param name="ExtraCells">All extra cells.</param>
-public sealed record BivalueOddagonType3StepInfo(
+public sealed record class BivalueOddagonType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Loop, int Digit1, int Digit2, short ExtraDigits, in Cells ExtraCells
 ) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)

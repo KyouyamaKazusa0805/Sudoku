@@ -9,7 +9,7 @@
 /// <param name="EndoTargetCell">The endo target cell.</param>
 /// <param name="ExtraRegionsMask">The extra regions mask.</param>
 /// <param name="Eliminations">All eliminations.</param>
-public sealed record SeStepInfo(
+public sealed record class SeStepInfo(
 	IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
 	int EndoTargetCell, int[]? ExtraRegionsMask, IReadOnlyList<Elimination> Eliminations
 ) : ExocetStepInfo(Views, Exocet, Digits, null, null, Eliminations)

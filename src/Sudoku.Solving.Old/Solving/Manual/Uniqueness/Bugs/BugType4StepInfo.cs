@@ -8,7 +8,7 @@
 /// <param name="Digits">All digits.</param>
 /// <param name="Cells">All cells.</param>
 /// <param name="ConjugatePair">The conjugate pair.</param>
-public sealed record BugType4StepInfo(
+public sealed record class BugType4StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, in ConjugatePair ConjugatePair
 ) : BugStepInfo(Conclusions, Views)

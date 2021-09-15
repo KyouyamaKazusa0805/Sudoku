@@ -9,7 +9,7 @@
 [AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel))]
 [AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel), nameof(Conclusions))]
 [AutoDeconstruct(nameof(Name), nameof(Difficulty), nameof(DifficultyLevel), nameof(Conclusions), nameof(Views))]
-public abstract partial record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+public abstract partial record class StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 {
 	/// <summary>
 	/// <para>

@@ -15,7 +15,7 @@
 /// <param name="YDigit">The Y digit.</param>
 /// <param name="XyCell">The cell that only contains X and Y digit.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public sealed record Ur2DOr3XStepInfo(
+public sealed record class Ur2DOr3XStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 	int XDigit, int YDigit, int XyCell, int AbsoluteOffset

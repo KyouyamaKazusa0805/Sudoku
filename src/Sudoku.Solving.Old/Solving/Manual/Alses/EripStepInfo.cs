@@ -10,7 +10,7 @@
 /// <param name="Region">The region that empty rectangle forms.</param>
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
-public sealed record EripStepInfo(
+public sealed record class EripStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int StartCell, int EndCell, int Region, int Digit1, int Digit2
 ) : AlsStepInfo(Conclusions, Views)

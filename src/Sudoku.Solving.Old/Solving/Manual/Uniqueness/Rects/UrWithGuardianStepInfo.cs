@@ -11,7 +11,7 @@
 /// <param name="GuardianDigit">The guardian digit.</param>
 /// <param name="GuardianCells">The guardians.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public sealed record UrWithGuardianStepInfo(
+public sealed record class UrWithGuardianStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, int[] Cells, int GuardianDigit, in Cells GuardianCells, int AbsoluteOffset
 ) : UrStepInfo(Conclusions, Views, Technique.UrGuardian, Digit1, Digit2, Cells, false, AbsoluteOffset)

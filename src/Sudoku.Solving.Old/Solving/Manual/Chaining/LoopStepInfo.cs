@@ -8,7 +8,7 @@
 /// <param name="XEnabled">Indicates whether the chain is enabled X strong relations.</param>
 /// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 /// <param name="Target">The destination node that is off.</param>
-public sealed record LoopStepInfo(
+public sealed record class LoopStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	bool XEnabled, bool YEnabled, in Node Target
 ) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)

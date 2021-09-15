@@ -13,7 +13,7 @@
 /// </param>
 /// <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
 /// <param name="Level">The dynamic searching level.</param>
-public abstract record ChainingStepInfo(
+public abstract record class ChainingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	bool XEnabled, bool YEnabled, bool IsNishio, bool IsMultiple, bool IsDynamic, int Level
 ) : StepInfo(Conclusions, Views)

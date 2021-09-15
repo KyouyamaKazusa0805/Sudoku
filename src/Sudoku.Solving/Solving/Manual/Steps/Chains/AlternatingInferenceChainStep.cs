@@ -8,7 +8,7 @@
 /// <param name="XEnabled"><inheritdoc/></param>
 /// <param name="YEnabled"><inheritdoc/></param>
 /// <param name="Target">Indicates the target cell.</param>
-public sealed unsafe record AlternatingInferenceChainStep(
+public sealed unsafe record class AlternatingInferenceChainStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	bool XEnabled,

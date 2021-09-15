@@ -11,7 +11,7 @@
 /// <param name="TargetCell">Indicates the target cell.</param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithUnknownCoveringStep(
+public sealed record class UniqueRectangleWithUnknownCoveringStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

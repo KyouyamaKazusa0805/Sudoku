@@ -43,7 +43,7 @@ using global::System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving.Manual;
 
-partial record StepInfo
+partial record class StepInfo
 {{
 	{attributes}
 	public partial string Formatize(bool handleEscaping = false);

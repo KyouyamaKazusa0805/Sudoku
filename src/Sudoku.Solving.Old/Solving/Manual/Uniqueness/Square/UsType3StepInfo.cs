@@ -9,7 +9,7 @@
 /// <param name="DigitsMask">The digits mask.</param>
 /// <param name="ExtraDigitsMask">The extra digits mask.</param>
 /// <param name="ExtraCells">The extra cells.</param>
-public sealed record UsType3StepInfo(
+public sealed record class UsType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
 	short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 {

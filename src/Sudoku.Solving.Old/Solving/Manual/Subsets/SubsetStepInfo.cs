@@ -8,7 +8,7 @@
 /// <param name="Region">The region that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
 /// <param name="Digits">All digits used.</param>
-public abstract record SubsetStepInfo(
+public abstract record class SubsetStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Region, in Cells Cells, IReadOnlyList<int> Digits
 ) : StepInfo(Conclusions, Views)

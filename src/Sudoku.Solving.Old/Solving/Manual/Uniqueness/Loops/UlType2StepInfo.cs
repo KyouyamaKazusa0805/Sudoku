@@ -9,7 +9,7 @@
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="Loop">The loop.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record UlType2StepInfo(
+public sealed record class UlType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, in Cells Loop, int ExtraDigit
 ) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)

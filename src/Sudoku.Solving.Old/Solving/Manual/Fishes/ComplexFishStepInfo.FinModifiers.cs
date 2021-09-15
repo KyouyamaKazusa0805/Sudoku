@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Solving.Manual.Fishes;
 
-partial record ComplexFishStepInfo
+partial record class ComplexFishStepInfo
 {
 	/// <summary>
 	/// Indicates the fin modifiers.

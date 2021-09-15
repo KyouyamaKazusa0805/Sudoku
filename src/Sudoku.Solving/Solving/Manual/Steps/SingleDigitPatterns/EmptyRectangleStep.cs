@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record EmptyRectangleStep(
+public sealed record class EmptyRectangleStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit,

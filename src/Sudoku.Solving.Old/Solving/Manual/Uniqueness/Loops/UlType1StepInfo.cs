@@ -8,7 +8,7 @@
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="Loop">The loop.</param>
-public sealed record UlType1StepInfo(
+public sealed record class UlType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, in Cells Loop
 ) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)

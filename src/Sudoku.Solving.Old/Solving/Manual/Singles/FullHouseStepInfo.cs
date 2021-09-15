@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Cell">The cell.</param>
 /// <param name="Digit">The digit.</param>
-public sealed record FullHouseStepInfo(
+public sealed record class FullHouseStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit
 ) : SingleStepInfo(Conclusions, Views, Cell, Digit)
 {

@@ -10,7 +10,7 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="Region">Indicates the region that extra subset formed.</param>
-public sealed record ExtendedRectangleType3Step(
+public sealed record class ExtendedRectangleType3Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	in Cells Cells,

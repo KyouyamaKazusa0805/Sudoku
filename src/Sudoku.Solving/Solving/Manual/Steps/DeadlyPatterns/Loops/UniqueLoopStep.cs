@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-public abstract record UniqueLoopStep(
+public abstract record class UniqueLoopStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,
