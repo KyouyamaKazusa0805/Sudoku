@@ -84,7 +84,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 			for (int i = 0; i < 3; i++)
 			{
 				intersectionBlockSb
-					.Append(new string('\t', 5))
+					.Append(new string('\t', 4))
 					.Append($"new byte[] {{ {b,2}, {c,2} }}, ")
 					.Append($"new byte[] {{ {a,2}, {c,2} }}, ")
 					.AppendLine($"new byte[] {{ {a,2}, {b,2} }},");

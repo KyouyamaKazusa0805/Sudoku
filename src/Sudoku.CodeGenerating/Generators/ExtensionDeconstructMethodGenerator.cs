@@ -68,7 +68,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 				select $@"out {memberType} {member.ToCamelCase()}"
 			);
 			string assignments = string.Join(
-				"\r\n\t\t\t",
+				"\r\n\t\t",
 				from member in members select $"{member.ToCamelCase()} = @this.{member};"
 			);
 			string deconstructMethods = $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
