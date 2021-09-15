@@ -24,10 +24,10 @@ global using static Sudoku.Recognition.Constants;
 global using Cv = Emgu.CV.CvInvoke;
 global using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
 
-[assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
-[assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y))]
-[assembly: AutoDeconstructExtension(typeof(PointF), nameof(PointF.X), nameof(PointF.Y))]
-[assembly: AutoDeconstructExtension(typeof(Size), nameof(Size.Width), nameof(Size.Height))]
-[assembly: AutoDeconstructExtension(typeof(SizeF), nameof(SizeF.Width), nameof(SizeF.Height))]
-[assembly: AutoDeconstructExtension(typeof(RectangleF), nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]
-[assembly: AutoDeconstructExtension(typeof(RotatedRect), nameof(RotatedRect.Center), nameof(RotatedRect.Size))]
+[assembly: AutoDeconstructExtension<Color>(nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
+[assembly: AutoDeconstructExtension<Point>(nameof(Point.X), nameof(Point.Y))]
+[assembly: AutoDeconstructExtension<PointF>(nameof(PointF.X), nameof(PointF.Y))]
+[assembly: AutoDeconstructExtension<Size>(nameof(Size.Width), nameof(Size.Height))]
+[assembly: AutoDeconstructExtension<SizeF>(nameof(SizeF.Width), nameof(SizeF.Height))]
+[assembly: AutoDeconstructExtension<RectangleF>(nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]
+[assembly: AutoDeconstructExtension<RotatedRect>(nameof(RotatedRect.Center), nameof(RotatedRect.Size))]

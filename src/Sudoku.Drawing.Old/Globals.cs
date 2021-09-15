@@ -37,10 +37,10 @@ global using System.Threading.Tasks;
 
 [assembly: AssemblyObsolete]
 
-[assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
-[assembly: AutoDeconstructExtension(typeof(DPoint), nameof(DPoint.X), nameof(DPoint.Y))]
-[assembly: AutoDeconstructExtension(typeof(DPointF), nameof(DPointF.X), nameof(DPointF.Y))]
-[assembly: AutoDeconstructExtension(typeof(Size), nameof(Size.Width), nameof(Size.Height))]
-[assembly: AutoDeconstructExtension(typeof(SizeF), nameof(SizeF.Width), nameof(SizeF.Height))]
-[assembly: AutoDeconstructExtension(typeof(RectangleF), nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]
-[assembly: AutoDeconstructExtension(typeof(RotatedRect), nameof(RotatedRect.Center), nameof(RotatedRect.Size), Namespace = "Emgu.CV.Structure")]
+[assembly: AutoDeconstructExtension<Color>(nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
+[assembly: AutoDeconstructExtension<DPoint>(nameof(DPoint.X), nameof(DPoint.Y))]
+[assembly: AutoDeconstructExtension<DPointF>(nameof(DPointF.X), nameof(DPointF.Y))]
+[assembly: AutoDeconstructExtension<Size>(nameof(Size.Width), nameof(Size.Height))]
+[assembly: AutoDeconstructExtension<SizeF>(nameof(SizeF.Width), nameof(SizeF.Height))]
+[assembly: AutoDeconstructExtension<RectangleF>(nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]
+[assembly: AutoDeconstructExtension<RotatedRect>(nameof(RotatedRect.Center), nameof(RotatedRect.Size), Namespace = "Emgu.CV.Structure")]

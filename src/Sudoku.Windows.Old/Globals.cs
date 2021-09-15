@@ -81,7 +81,7 @@ global using WSize = System.Windows.Size;
 
 [assembly: AssemblyObsolete]
 
-[assembly: AutoDeconstructExtension(typeof(WImage), nameof(WImage.Width), nameof(WImage.Height))]
-[assembly: AutoDeconstructExtension(typeof(WPoint), nameof(WPoint.X), nameof(WPoint.Y))]
-[assembly: AutoDeconstructExtension(typeof(WColor), nameof(WColor.A), nameof(WColor.R), nameof(WColor.G), nameof(WColor.B))]
-[assembly: AutoDeconstructExtension(typeof(WSize), nameof(WSize.Width), nameof(WSize.Height))]
+[assembly: AutoDeconstructExtension<WImage>(nameof(WImage.Width), nameof(WImage.Height))]
+[assembly: AutoDeconstructExtension<WPoint>(nameof(WPoint.X), nameof(WPoint.Y))]
+[assembly: AutoDeconstructExtension<WColor>(nameof(WColor.A), nameof(WColor.R), nameof(WColor.G), nameof(WColor.B))]
+[assembly: AutoDeconstructExtension<WSize>(nameof(WSize.Width), nameof(WSize.Height))]

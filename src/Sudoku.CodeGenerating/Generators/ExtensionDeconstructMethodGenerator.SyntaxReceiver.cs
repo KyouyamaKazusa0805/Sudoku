@@ -22,14 +22,31 @@ partial class ExtensionDeconstructMethodGenerator
 					Attributes: { Count: not 0 } attributes,
 					Target.Identifier.ValueText: "assembly"
 				}
-				|| attributes.Any(static attribute => attribute is
-				{
-					Name: IdentifierNameSyntax
-					{
-						Identifier.ValueText: nameof(AutoDeconstructExtensionAttribute)
-					}
-				})
 			)
+			{
+				return;
+			}
+
+			bool listContainsGenericAttribute = false;
+			foreach (var attribute in attributes)
+			{
+				if (
+					attribute is
+					{
+						Name: GenericNameSyntax
+						{
+							Identifier.ValueText:
+								"AutoDeconstructExtension"
+								or "AutoDeconstructExtensionAttribute"
+						}
+					}
+				)
+				{
+					listContainsGenericAttribute = true;
+					break;
+				}
+			}
+			if (!listContainsGenericAttribute)
 			{
 				return;
 			}

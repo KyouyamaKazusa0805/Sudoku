@@ -14,15 +14,16 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		var nameDic = new Dictionary<string, int>();
 		foreach (var groupResult in
 			from attribute in receiver.Attributes
-			select attribute.ArgumentList into argList
-			where argList is { Arguments.Count: >= 2 }
-			let firstArg = argList.Arguments[0].Expression as TypeOfExpressionSyntax
-			where firstArg is not null
-			let semanticModel = compilation.GetSemanticModel(firstArg.SyntaxTree)
-			let operation = semanticModel.GetOperation(firstArg) as ITypeOfOperation
-			where operation is not null
-			let type = operation.TypeOperand
-			group (argList, type) by type.ToDisplayString(FormatOptions.TypeFormat))
+			let argList = attribute.ArgumentList
+			where argList is { Arguments.Count: >= 1 }
+			select (Name: attribute.Name as GenericNameSyntax, attribute.ArgumentList) into pair
+			let typeArgList = pair.Name?.TypeArgumentList
+			where typeArgList is { Arguments.Count: 1 }
+			let firstTypeArg = typeArgList.Arguments[0]
+			let semanticModel = compilation.GetSemanticModel(firstTypeArg.SyntaxTree)
+			let type = semanticModel.GetTypeInfo(firstTypeArg, context.CancellationToken).Type
+			where type is not null
+			group (pair.ArgumentList, type) by type.ToDisplayString(FormatOptions.TypeFormat))
 		{
 			string key = groupResult.Key;
 			foreach (var (p, typeSymbol) in groupResult)

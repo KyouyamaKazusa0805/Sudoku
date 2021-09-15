@@ -25,7 +25,7 @@ global using Path = Microsoft.UI.Xaml.Shapes.Path;
 global using SudokuGrid = Sudoku.Data.Grid;
 global using ChainLinkType = Sudoku.Data.LinkType;
 
-[assembly: AutoDeconstructExtension(typeof(Point), nameof(Point.X), nameof(Point.Y))]
-[assembly: AutoDeconstructExtension(typeof(Size), nameof(Size.Width), nameof(Size.Height))]
-[assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
-[assembly: AutoDeconstructExtension(typeof(Color), nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
+[assembly: AutoDeconstructExtension<Point>(nameof(Point.X), nameof(Point.Y))]
+[assembly: AutoDeconstructExtension<Size>(nameof(Size.Width), nameof(Size.Height))]
+[assembly: AutoDeconstructExtension<Color>(nameof(Color.R), nameof(Color.G), nameof(Color.B))]
+[assembly: AutoDeconstructExtension<Color>(nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]

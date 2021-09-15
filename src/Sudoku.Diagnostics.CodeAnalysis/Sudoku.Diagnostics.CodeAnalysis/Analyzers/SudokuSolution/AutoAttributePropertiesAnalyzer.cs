@@ -99,7 +99,7 @@ public sealed partial class AutoAttributePropertiesAnalyzer : DiagnosticAnalyzer
 
 						goto ArgumentsChecking_Case1;
 					}
-					case nameof(AutoDeconstructExtensionAttribute) or "AutoDeconstructExtension":
+					case "AutoDeconstructExtensionAttribute" or "AutoDeconstructExtension":
 					{
 						if (arguments.Count < 3)
 						{

@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<Description>The project that introduces some drawing APIs for later uses in Sudoku.UI.</Description>
 		<Authors>Sunnie</Authors>
+		<LangVersion>preview</LangVersion>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>

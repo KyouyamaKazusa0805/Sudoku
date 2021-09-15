@@ -1,20 +1,20 @@
 ﻿namespace Sudoku.CodeGenerating;
 
 /// <summary>
-/// Used on an assembly, to tell the compiler this assembly will generate
-/// a extension method called <c>Deconstruct</c>.
+/// Used on an assembly, to tell the compiler this assembly will generate a serial of extension methods called
+/// <c>Deconstruct</c> that used for deconstruction of an instance.
 /// </summary>
 /// <remarks>
+/// <para>
 /// For example, if you write the code like:
-/// <code>
-/// [assembly: AutoDeconstructExtension(typeof(Class), nameof(Class.A), nameof(Class.B), nameof(Class.C))]
-/// </code>
+/// <code><![CDATA[
+/// [assembly: AutoDeconstructExtension<Class>(nameof(Class.A), nameof(Class.B), nameof(Class.C))]
+/// ]]></code>
 /// then you'll get the generated code:
-/// <code>
+/// <code><![CDATA[
 /// public static partial class ClassExtensions
 /// {
-///     [CompilerGenerated]
-///     [MethodImpl(MethodImplOptions.AggressiveInlining)] // May be included as aggressive inlining when need any optimizations.
+///     [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
 ///     public static void Deconstruct(this Class @this, out int a, out int b, out int c)
 ///     {
 ///         a = @this.A;
@@ -22,22 +22,25 @@
 ///         c = @this.C;
 ///     }
 /// }
-/// </code>
+/// ]]></code>
+/// </para>
+/// <para>
+/// Please note that this attribute is a generic attribute, which is introduced in C# 10.
+/// If you don't know this feature (generic attribute), please visit
+/// <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-10.0/generic-attributes.md">
+/// this link
+/// </see>
+/// for more information.
+/// </para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public sealed class AutoDeconstructExtensionAttribute : Attribute
+public sealed class AutoDeconstructExtensionAttribute<T> : Attribute
 {
 	/// <summary>
-	/// Initializes an <see cref="AutoDeconstructAttribute"/> instance with the specified type
-	/// and the members.
+	/// Initializes an <see cref="AutoDeconstructAttribute"/> instance with the members.
 	/// </summary>
-	/// <param name="type">The type.</param>
 	/// <param name="memberNames">The member names.</param>
-	public AutoDeconstructExtensionAttribute(Type type, params string[] memberNames)
-	{
-		TypeToGenerate = type;
-		MemberNames = memberNames;
-	}
+	public AutoDeconstructExtensionAttribute(params string[] memberNames) => MemberNames = memberNames;
 
 
 	/// <summary>
@@ -50,9 +53,4 @@ public sealed class AutoDeconstructExtensionAttribute : Attribute
 	/// Indicates the member names.
 	/// </summary>
 	public string[] MemberNames { get; }
-
-	/// <summary>
-	/// Indicates the type to generate the "<c>Deconstruct</c>" method.
-	/// </summary>
-	public Type TypeToGenerate { get; }
 }
