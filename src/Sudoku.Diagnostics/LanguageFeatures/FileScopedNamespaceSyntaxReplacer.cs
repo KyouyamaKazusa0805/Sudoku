@@ -162,7 +162,7 @@ public sealed class FileScopedNamespaceSyntaxReplacer : ISyntaxReplacer
 					string line = splits[i];
 					_ = line.Length switch
 					{
-						> 4 when line.StartsWith("    ") => sb.AppendLine(line[4..]),
+						> 4 when line.StartsWith("    ", StringComparison.Ordinal) => sb.AppendLine(line[4..]),
 						> 1 when line.StartsWith('\t') => sb.AppendLine(line[1..]),
 						0 => sb.AppendLine(),
 						_ => sb.AppendLine(line)
@@ -170,6 +170,6 @@ public sealed class FileScopedNamespaceSyntaxReplacer : ISyntaxReplacer
 				}
 			}
 		}) : null;
-		return result is not null && result.EndsWith("\r\n\r\n") ? result[..^2] : result;
+		return result?.EndsWith("\r\n\r\n", StringComparison.Ordinal) ?? false ? result[..^2] : result;
 	}
 }

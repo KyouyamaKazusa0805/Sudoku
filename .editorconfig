@@ -456,6 +456,9 @@ dotnet_diagnostic.CA2244.severity = error
 # CA2249: Consider using 'string.Contains' instead of 'string.IndexOf'
 dotnet_diagnostic.CA2249.severity = silent
 
+# CA2255: The 'ModuleInitializer' attribute should not be used in libraries
+dotnet_diagnostic.CA2255.severity = none
+
 
 # Other custom disabled cases.
 # May be deleted later in the future.

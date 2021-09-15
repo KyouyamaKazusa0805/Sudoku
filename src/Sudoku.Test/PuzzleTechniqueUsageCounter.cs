@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Sudoku.Generating;
 using Sudoku.Globalization;
 using Sudoku.Resources;

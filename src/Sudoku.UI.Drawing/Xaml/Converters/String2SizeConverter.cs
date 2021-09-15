@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Sudoku.UI.Drawing.Xaml.Converters;
+﻿namespace Sudoku.UI.Drawing.Xaml.Converters;
 
 /// <summary>
 /// Provides a type converter that can converts from a <see cref="string"/> into a <see cref="Size"/> instance.

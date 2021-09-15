@@ -1,4 +1,6 @@
-﻿global using System.Diagnostics.CodeAnalysis;
+﻿global using System;
+global using System.Diagnostics.CodeAnalysis;
+global using System.IO;
 global using System.Runtime.CompilerServices;
 global using NPOI.XWPF.UserModel;
 global using Sudoku.CodeGenerating;
