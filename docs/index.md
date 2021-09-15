@@ -80,18 +80,6 @@ This section you'll find the details about this solution.
 
 
 
-## 语义分析 (Code Analysis)
-
-In this section, you'll find the code analyzers and fixers about this solution. This solution provides you with code analyzers that analyzes the code written and find the diagnostic result about this solution or .NET analyzers can't analyze on this case. Code analyzers can be separated to two parts: 1) About solution, 2) About syntax. You'll find them below.
-
-这一节将给出整个解决方案的代码分析和修补工具。解决方案甚至贴心地给你提供了语义分析器，可对你书写的代码进行代码分析。分析类别分项目相关和语法相关两类分析诊断信息，详情请参考本节的内容。
-
-* [什么是语义分析器](code-analysis/What-Is-A-Code-Analyzer)
-* [分类表](code-analysis/Code-Analysis-Table)
-* [代码分析规则集](code-analysis/Code-Analysis-Rule-List)
-
-
-
 ## C# 语法选讲 (Language Features)
 
 This section provides you with newer C# programming language features and their details. If you don't know when or how to use them, see them below.
