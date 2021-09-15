@@ -59,8 +59,6 @@ global using static Sudoku.Constants.Tables;
 global using static Sudoku.Solving.Manual.Constants;
 global using static Sudoku.Solving.Manual.FastProperties;
 
-[assembly: AssemblyObsolete]
-
 #if DEBUG
 [assembly: InternalsVisibleTo("Sudoku.Test")]
 #endif

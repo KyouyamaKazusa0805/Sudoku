@@ -79,8 +79,6 @@ global using WSolidColorBrush = System.Windows.Media.SolidColorBrush;
 global using WPoint = System.Windows.Point;
 global using WSize = System.Windows.Size;
 
-[assembly: AssemblyObsolete]
-
 [assembly: AutoDeconstructExtension<WImage>(nameof(WImage.Width), nameof(WImage.Height))]
 [assembly: AutoDeconstructExtension<WPoint>(nameof(WPoint.X), nameof(WPoint.Y))]
 [assembly: AutoDeconstructExtension<WColor>(nameof(WColor.A), nameof(WColor.R), nameof(WColor.G), nameof(WColor.B))]

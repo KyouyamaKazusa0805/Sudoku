@@ -35,8 +35,6 @@ global using System.Net.Http;
 global using System.Threading.Tasks;
 #endif
 
-[assembly: AssemblyObsolete]
-
 [assembly: AutoDeconstructExtension<Color>(nameof(Color.A), nameof(Color.R), nameof(Color.G), nameof(Color.B))]
 [assembly: AutoDeconstructExtension<DPoint>(nameof(DPoint.X), nameof(DPoint.Y))]
 [assembly: AutoDeconstructExtension<DPointF>(nameof(DPointF.X), nameof(DPointF.Y))]

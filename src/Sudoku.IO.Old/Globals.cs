@@ -10,5 +10,3 @@ global using Sudoku.Solving;
 global using PointConverter = Sudoku.Drawing.PointConverter;
 
 [assembly: InternalsVisibleTo("Sudoku.UI")]
-
-[assembly: AssemblyObsolete]
