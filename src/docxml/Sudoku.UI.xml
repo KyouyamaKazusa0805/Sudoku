@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.App._window">
+            <summary>
+            The main window.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.  Other entry points
+            will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="args">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Sudoku.UI.App.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView">
+            <summary>
+            Defines a customized settings option navigation view.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsNavigationViewItemName">
+            <summary>
+            Indicates the settings navigation view item default name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemTextProperty">
+            <summary>
+            Indicates the dependency object that binds with the property <see cref="P:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView._settingsItem">
+            <summary>
+            Indicates the inner settings view item.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemText">
+            <summary>
+            Indicates the text content that displays in the menu item.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.OnApplyTemplate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.UpdateSettingsItemText">
+            <summary>
+            Update the property <see cref="P:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>
+        </member>
+        <member name="T:Sudoku.UI.CustomControls.SudokuPanel">
+            <summary>
+            Defines a basic sudoku panel.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.TextFormat">
+            <summary>
+            Indicates the format that is the text one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.SudokuFormat">
+            <summary>
+            Indicates the format that is the sudoku puzzle one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.CustomControls.SudokuPanel"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.CustomControls.SudokuPanel.GridCanvas">
+            <summary>
+            Indicates the grid canvas.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.MainSudokuGrid_DragEnterAsync(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
+            <summary>
+            Triggers when the specified object received a file that dragged-and-dropped here.
+            </summary>
+            <param name="_"></param>
+            <param name="e">The event data provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.SudokuGridCanvas">
+            <summary>
+            Provides the canvas that stores the sudoku grid details.
+            </summary>
+            <param name="BaseGrid">
+            The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </param>
+            <param name="CandidateTextBlockPool">Indicates the pool of candidate <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="CellTextBlockPool">Indicates the pool of cell <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="HighlightCellPool">
+            Indicates the pool of highlight cells displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+            <param name="HighlightCandidatePool">
+            Indicates the pool of highlight candidates displaying via <see cref="T:Microsoft.UI.Xaml.Shapes.Ellipse"/>s.
+            </param>
+            <param name="HighlightRegionPool">
+            Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+        </member>
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.Border[],Microsoft.UI.Xaml.Shapes.Ellipse[],Microsoft.UI.Xaml.Controls.Border[])">
+            <summary>
+            Provides the canvas that stores the sudoku grid details.
+            </summary>
+            <param name="BaseGrid">
+            The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </param>
+            <param name="CandidateTextBlockPool">Indicates the pool of candidate <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="CellTextBlockPool">Indicates the pool of cell <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="HighlightCellPool">
+            Indicates the pool of highlight cells displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+            <param name="HighlightCandidatePool">
+            Indicates the pool of highlight candidates displaying via <see cref="T:Microsoft.UI.Xaml.Shapes.Ellipse"/>s.
+            </param>
+            <param name="HighlightRegionPool">
+            Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+        </member>
+        <member name="F:Sudoku.UI.Data.SudokuGridCanvas.Solver">
+            <summary>
+            Indicates the solver that checks the uniqueness of sudoku puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Microsoft.UI.Xaml.Controls.Grid)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.SudokuGridCanvas"/> instance with the specified <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance
+            indicating the base control stores those values.
+            </summary>
+            <param name="baseGrid">The base <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.LoadSudoku(Sudoku.Data.Grid@)">
+            <summary>
+            Load the sudoku puzzle.
+            </summary>
+            <param name="sudoku">The sudoku.</param>
+            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the load opertion is failed.</exception>
+        </member>
+        <member name="T:Sudoku.UI.HyperLinks">
+            <summary>
+            Provides with the links that references and links to a website.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.VideoTutorialLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.VideoTutorial"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.VideoTutorial"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.RepoLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.Repo"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.Repo"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.ProjectWikiLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.ProjectWiki"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.ProjectWiki"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.RepoGiteeLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.RepoGitee"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.RepoGitee"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks1Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks1"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks1"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks2Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks2"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks2"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks3Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks3"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks3"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks4Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks4"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks4"/>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.VideoTutorial">
+            <summary>
+            Indicates the website that is the series of video-formed sudoku tutorial.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.Repo">
+            <summary>
+            Indicates the website that is the GitHub repository site, which is the main repository site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.ProjectWiki">
+            <summary>
+            Indicates the website that is the project wiki related to the repository on GitHub.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.RepoGitee">
+            <summary>
+            Indicates the website that is the Gitee repository site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks1">
+            <summary>
+            Indicates the website that is the first site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks2">
+            <summary>
+            Indicates the website that is the second site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks3">
+            <summary>
+            Indicates the website that is the third site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks4">
+            <summary>
+            Indicates the website that is the fourth site of the special thanks list.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MainWindow">
+            <summary>
+            The type that provides with the <see cref="T:Microsoft.UI.Xaml.Window"/> instances
+            which the current UI project starts and launches.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="F:Sudoku.UI.MainWindow.NavigationInfoList">
+            <summary>
+            Indiates the navigation list.
+            </summary>
+            <remarks>
+            The triplet contains three values, where:
+            <list type="table">
+            <item>
+            <term><c>Tag</c></term>
+            <description>
+            The tag of the <see cref="T:Microsoft.UI.Xaml.Controls.NavigationViewItem"/> instance, i.e. the property
+            <see cref="P:Microsoft.UI.Xaml.FrameworkElement.Tag"/>.
+            </description>
+            </item>
+            <item>
+            <term><c>Type</c></term>
+            <description>
+            The type that the <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/> instance bounds with a <see cref="T:Microsoft.UI.Xaml.Controls.NavigationView"/> instance
+            can navigate and redirect to the specified page.
+            </description>
+            </item>
+            <item>
+            <term><c>Content</c></term>
+            <description>The content of the page, i.e. the property <see cref="P:Microsoft.UI.Xaml.Controls.ContentControl.Content"/>.</description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.NavigationView"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.NavigationViewItem"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+            <seealso cref="P:Microsoft.UI.Xaml.FrameworkElement.Tag"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.ContentControl.Content"/>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.NavigationView_Main_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)">
+            <summary>
+            Invokes when the user switches the page to another one in the control <see cref="F:Sudoku.UI.MainWindow.NavigationView_Main"/>.
+            </summary>
+            <param name="sender">The instance which triggered this event.</param>
+            <param name="args">The arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Pages.MainWindow.AboutPage">
+            <summary>
+            Indicates the page that contains the author and program information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.AboutPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Pages.MainWindow.AboutPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.AboutPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Pages.MainWindow.SettingsPage">
+            <summary>
+            Indicates the page that contains the settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SettingsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Pages.MainWindow.SudokuPanelPage">
+            <summary>
+            Indicates the page that contains the basic sudoku panel.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SudokuPanelPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SudokuPanelPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SudokuPanelPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SudokuPanelPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SudokuPanelPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Resources.UiResources">
+            <summary>
+            Provides the methods that handles with resource dictionary.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Resources.UiResources.Current">
+            <summary>
+            Gets the default handler that interacts with resource dictionary.
+            </summary>
+            <remarks>
+            <para>
+            This is a <see langword="dynamic"/> instance, which means you can get anything you want
+            using the following code style to get the items in this class:
+            <list type="bullet">
+            <item><c>Current.PropertyName</c> (Property invokes)</item>
+            <item><c>Current[PropertyIndex]</c> (Indexer invokes)</item>
+            </list>
+            </para>
+            <para>
+            For example,
+            if you want to get the <see cref="T:System.String"/> value from the key <c>"Bug"</c>, now you may
+            write <c>Current.Bug</c> or <c>Current["Bug"]</c> to get that value.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Resources.UiResources.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Resources.UiResources.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -5,11 +5,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="using:Sudoku.UI"
-	xmlns:i="using:Sudoku.UI.Interactions"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-	<Page.DataContext>
-		<i:AboutPageDataContext x:Name="ViewModel" />
-	</Page.DataContext>
 	<Page.Resources>
 		<Style x:Key="BrokenLinkTextBlock" TargetType="TextBlock">
 			<Setter Property="Foreground" Value="#FF383838" />
