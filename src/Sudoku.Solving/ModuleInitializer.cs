@@ -17,7 +17,7 @@ internal static class ModuleInitializer
 		where type.HasImplemented<IStepSearcher>() && !type.IsAbstract && type.ContainsParameterlessConstructor()
 		select Activator.CreateInstance(type) as IStepSearcher into instance
 		where instance is not null
-		orderby instance.Options.Priority ascending
+		orderby instance.Options.Priority
 		select instance
 	).ToArray();
 }
