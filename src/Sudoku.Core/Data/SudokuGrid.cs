@@ -793,13 +793,12 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	/// </param>
 	/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[return: MaybeNullWhenNotDefined("pinnedItem")]
 	public readonly ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 		ref pinnedItem == PinnedItem.CurrentGrid
-		? ref GetPinnableReference()
-		: ref pinnedItem == PinnedItem.InitialGrid
-		? ref _initialValues[0]
-		: ref *(short*)null;
+			? ref GetPinnableReference()
+			: ref pinnedItem == PinnedItem.InitialGrid
+				? ref _initialValues[0]
+				: ref *(short*)null;
 
 	/// <summary>
 	/// Get all masks and print them.

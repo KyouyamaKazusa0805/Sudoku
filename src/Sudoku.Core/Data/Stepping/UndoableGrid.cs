@@ -232,7 +232,6 @@ public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable
 	/// <param name="pinnedItem">The item you want to fix. If </param>
 	/// <returns>A reference to the element of the <see cref="SudokuGrid"/> at index zero.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[return: MaybeNullWhenNotDefined("pinnedItem")]
 	public ref readonly short GetPinnableReference(PinnedItem pinnedItem) =>
 		ref _innerGrid.GetPinnableReference(pinnedItem);
 

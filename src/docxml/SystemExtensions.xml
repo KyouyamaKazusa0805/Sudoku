@@ -1481,24 +1481,6 @@
             Indicates the marked parameter is a discard and can't be used.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenNotDefinedAttribute">
-            <summary>
-            Indicates the return value may be <see langword="null"/> when the specified enumeration-typed
-            argument isn't defined.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenNotDefinedAttribute.#ctor(System.String)">
-            <summary>
-            Initializes the <see cref="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenNotDefinedAttribute"/> instance
-            with a specified argument name.
-            </summary>
-            <param name="argumentName">The argument name.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenNotDefinedAttribute.ArgumentName">
-            <summary>
-            Indicates the argument name that is of an enumeration type.
-            </summary>
-        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Array"/>.
