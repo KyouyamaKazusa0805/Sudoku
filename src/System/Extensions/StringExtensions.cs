@@ -57,11 +57,9 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	public static bool SatisfyPattern(this string @this, [NotNullWhen(true)] string? pattern) =>
-		pattern is not null && (
-			pattern.IsRegexPattern()
+		pattern?.IsRegexPattern() ?? false
 			? @this.Match(pattern) == @this
-			: throw new InvalidRegexStringException { WrongRegexString = pattern }
-		);
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Check whether the specified string instance can match the value
@@ -79,9 +77,10 @@ public static class StringExtensions
 	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 	/// expression pattern.
 	/// </exception>
-	public static bool IsMatch(this string @this, string pattern) => pattern.IsRegexPattern()
-		? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
-		: throw new InvalidRegexStringException { WrongRegexString = pattern };
+	public static bool IsMatch(this string @this, string pattern) =>
+		pattern.IsRegexPattern()
+			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Replace the character at the specified index with the new value.
@@ -97,7 +96,7 @@ public static class StringExtensions
 		resultPtr[@this.Length] = '\0';
 		fixed (char* pThis = @this)
 		{
-			Unsafe.CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
+			UnsafeExtensions.CopyBlock(resultPtr, pThis, (uint)@this.Length);
 		}
 
 		resultPtr[index] = charToInsert;
@@ -141,9 +140,10 @@ public static class StringExtensions
 	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 	/// expression pattern.
 	/// </exception>
-	public static string? Match(this string @this, string pattern) => pattern.IsRegexPattern()
-		? @this.Match(pattern, RegexOptions.None)
-		: throw new InvalidRegexStringException { WrongRegexString = pattern };
+	public static string? Match(this string @this, string pattern) =>
+		pattern.IsRegexPattern()
+			? @this.Match(pattern, RegexOptions.None)
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Searches the input string for the first occurrence of the specified regular
@@ -167,10 +167,10 @@ public static class StringExtensions
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	public static string? Match(this string @this, string pattern, RegexOptions regexOption) =>
 		pattern.IsRegexPattern()
-		? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
-		? value
-		: null
-		: throw new InvalidRegexStringException { WrongRegexString = pattern };
+			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
+				? value
+				: null
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -191,9 +191,10 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
-	public static string[] MatchAll(this string @this, string pattern) => pattern.IsRegexPattern()
-		? @this.MatchAll(pattern, RegexOptions.None)
-		: throw new InvalidRegexStringException { WrongRegexString = pattern };
+	public static string[] MatchAll(this string @this, string pattern) =>
+		pattern.IsRegexPattern()
+			? @this.MatchAll(pattern, RegexOptions.None)
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -323,10 +324,11 @@ public static class StringExtensions
 	/// <remarks>
 	/// Note that all null lines and header spaces are removed.
 	/// </remarks>
-	public static string TrimVerbatim(this string @this) => Regex.Replace(
-		@this, NullLinesOrHeaderSpaces,
-		string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan
-	);
+	public static string TrimVerbatim(this string @this) =>
+		Regex.Replace(
+			@this, NullLinesOrHeaderSpaces,
+			string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan
+		);
 
 	/// <summary>
 	/// Trim new-line characters from the tail of the string.
