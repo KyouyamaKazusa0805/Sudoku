@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Wings;
-
-namespace Sudoku.Solving.Manual.Searchers.Wings;
+﻿namespace Sudoku.Solving.Manual.Searchers.Wings;
 
 /// <summary>
 /// Provides with a <b>Regular Wing</b> step searcher.

@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
-
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
+﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
 
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.

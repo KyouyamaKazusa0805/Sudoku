@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
-
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
+﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.

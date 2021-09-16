@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Chains;
-
-namespace Sudoku.Solving.Manual.Searchers.Chains;
+﻿namespace Sudoku.Solving.Manual.Searchers.Chains;
 
 /// <summary>
 /// Provides with a <b>Alternating Inference Chain</b> step searcher.

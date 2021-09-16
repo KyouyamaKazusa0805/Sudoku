@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Subsets;
-
-namespace Sudoku.Solving.Manual.Searchers.Subsets;
+﻿namespace Sudoku.Solving.Manual.Searchers.Subsets;
 
 /// <summary>
 /// Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:

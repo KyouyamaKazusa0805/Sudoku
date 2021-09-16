@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.RankTheory;
-
-namespace Sudoku.Solving.Manual.Searchers.RankTheory;
+﻿namespace Sudoku.Solving.Manual.Searchers.RankTheory;
 
 /// <summary>
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.

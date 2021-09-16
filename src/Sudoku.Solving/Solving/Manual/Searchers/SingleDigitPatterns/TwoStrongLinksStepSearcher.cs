@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.SingleDigitPatterns;
-
-namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
+﻿namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 
 /// <summary>
 /// Provides with a <b>Two-strong Links</b> step searcher.

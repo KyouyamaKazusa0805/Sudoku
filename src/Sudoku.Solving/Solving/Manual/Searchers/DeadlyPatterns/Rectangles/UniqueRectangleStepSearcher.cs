@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
-
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
 
 /// <summary>
 /// Provides with a <b>Unique Rectangle</b> step searcher.

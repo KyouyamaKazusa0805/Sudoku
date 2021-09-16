@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Fishes;
-
-namespace Sudoku.Solving.Manual.Searchers.Fishes;
+﻿namespace Sudoku.Solving.Manual.Searchers.Fishes;
 
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
