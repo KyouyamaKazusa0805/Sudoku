@@ -43,9 +43,10 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 			{
 				return solverResult with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
 			}
-			catch
 #if DEBUG || TRACE
-			(Exception ex)
+			catch (Exception ex)
+#else
+			catch
 #endif
 			{
 #if DEBUG
@@ -102,7 +103,7 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 		{
 			switch ((IsSukaku: isSukaku, Searcher: searcher, This: this))
 			{
-				case (IsSukaku: true, Searcher: IUniqueRectangleStepSearcher, _):
+				case (IsSukaku: true, Searcher: IDeadlyPatternStepSearcher, _):
 				{
 					// Sukaku puzzles can't use deadly pattern techniques.
 					continue;
@@ -159,11 +160,11 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 					{
 						// If the searcher is only used in the fast mode, just skip it.
 						if (
-							(
+							Enumerable.FirstOrDefault<Step>(
 								OptimizedApplyingOrder
 									? from info in tempSteps orderby info.Difficulty select info
-									: (IEnumerable<Step>)tempSteps
-							).FirstOrDefault() is not { } step
+									: tempSteps
+							) is not { } step
 						)
 						{
 							// If current step can't find any steps,

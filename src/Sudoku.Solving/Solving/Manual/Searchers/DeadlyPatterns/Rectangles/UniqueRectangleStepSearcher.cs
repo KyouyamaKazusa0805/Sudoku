@@ -32,7 +32,8 @@ namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
 /// </item>
 /// </list>
 /// </summary>
-internal sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
+[StepSearcher<UniqueRectangleStepSearcher>]
+public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool AllowIncompleteUniqueRectangles { get; set; }

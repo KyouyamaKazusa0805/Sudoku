@@ -12,7 +12,8 @@ namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
 /// <item>Extended Rectangle Type 4</item>
 /// </list>
 /// </summary>
-internal sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
+[StepSearcher<ExtendedRectangleStepSearcher>]
+public sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <summary>
 	/// Indicates all possible extended rectangle pattern combinations.

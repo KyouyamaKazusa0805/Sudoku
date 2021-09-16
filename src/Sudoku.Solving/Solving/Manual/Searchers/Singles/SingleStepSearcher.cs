@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Searchers.Singles;
 /// <item>Naked Single</item>
 /// </list>
 /// </summary>
-[IsDirect, IsOptionsFixed]
-internal sealed class SingleStepSearcher : ISingleStepSearcher
+[StepSearcher<SingleStepSearcher>(IsDirect = true, IsOptionsFixed = true)]
+public sealed class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool EnableFullHouse { get; set; }

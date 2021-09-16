@@ -7,7 +7,10 @@ namespace Sudoku.Solving.Manual;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class Step(in ImmutableArray<Conclusion> Conclusions, in ImmutableArray<PresentationData> Views) : IStep
+public abstract record class Step(
+	in ImmutableArray<Conclusion> Conclusions,
+	in ImmutableArray<PresentationData> Views
+) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;
@@ -59,7 +62,8 @@ public abstract record class Step(in ImmutableArray<Conclusion> Conclusions, in 
 	/// </item>
 	/// </list>
 	/// </summary>
-	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+	public bool IsChaining =>
+		HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
@@ -103,11 +107,12 @@ public abstract record class Step(in ImmutableArray<Conclusion> Conclusions, in 
 			try
 			{
 				var type = GetType();
-				string key = type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
-					? $"Format_{name}"
-					: $"Format_{type.Name}";
 
-				return TextResources.Current[key];
+				return TextResources.Current[
+					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
+						? $"Format_{name}"
+						: $"Format_{type.Name}"
+				];
 			}
 			catch (RuntimeBinderException)
 			{
@@ -147,11 +152,7 @@ public abstract record class Step(in ImmutableArray<Conclusion> Conclusions, in 
 	}
 
 	/// <inheritdoc/>
-	string IStep.ElimStr
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ElimStr;
-	}
+	string IStep.ElimStr => ElimStr;
 
 
 	/// <inheritdoc/>

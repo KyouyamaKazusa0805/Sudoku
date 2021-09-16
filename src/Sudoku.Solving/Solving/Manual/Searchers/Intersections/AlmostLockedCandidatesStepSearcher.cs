@@ -11,7 +11,8 @@ namespace Sudoku.Solving.Manual.Searchers.Intersections;
 /// <item>Almost Locked Quadruple</item>
 /// </list>
 /// </summary>
-internal sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
+[StepSearcher<AlmostLockedCandidatesStepSearcher>]
+public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAlmostLockedQuadruple { get; set; }

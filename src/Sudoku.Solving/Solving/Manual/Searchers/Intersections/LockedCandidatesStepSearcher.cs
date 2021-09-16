@@ -10,7 +10,8 @@ namespace Sudoku.Solving.Manual.Searchers.Intersections;
 /// <item>Claiming</item>
 /// </list>
 /// </summary>
-internal sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
+[StepSearcher<LockedCandidatesStepSearcher>]
+public sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(2, DisplayingLevel.A);

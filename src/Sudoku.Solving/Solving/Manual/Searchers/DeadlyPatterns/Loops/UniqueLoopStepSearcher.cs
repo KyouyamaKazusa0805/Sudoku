@@ -12,7 +12,8 @@ namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-internal sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+[StepSearcher<UniqueLoopStepSearcher>]
+public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);

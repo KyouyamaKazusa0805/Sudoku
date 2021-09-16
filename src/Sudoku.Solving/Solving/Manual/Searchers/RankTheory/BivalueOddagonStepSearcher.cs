@@ -6,13 +6,14 @@ namespace Sudoku.Solving.Manual.Searchers.RankTheory;
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Bi-value Oddagon Type 1</item>
+/// <!--<item>Bi-value Oddagon Type 1</item>-->
 /// <item>Bi-value Oddagon Type 2</item>
 /// <item>Bi-value Oddagon Type 3</item>
 /// <!--<item>Bi-value Oddagon Type 4</item>-->
 /// </list>
 /// </summary>
-internal sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
+[StepSearcher<BivalueOddagonStepSearcher>]
+public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);

@@ -18,7 +18,8 @@ namespace Sudoku.Solving.Manual.Searchers.Subsets;
 /// <item>Hidden Quadruple</item>
 /// </list>
 /// </summary>
-internal sealed class SubsetStepSearcher : ISubsetStepSearcher
+[StepSearcher<SubsetStepSearcher>]
+public sealed class SubsetStepSearcher : ISubsetStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(3, DisplayingLevel.B);

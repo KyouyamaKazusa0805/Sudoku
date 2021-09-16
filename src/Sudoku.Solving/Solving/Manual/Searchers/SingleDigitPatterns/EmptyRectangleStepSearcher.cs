@@ -9,7 +9,8 @@ namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 /// <item>Empty Rectangle</item>
 /// </list>
 /// </summary>
-internal sealed class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
+[StepSearcher<EmptyRectangleStepSearcher>]
+public sealed class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(12, DisplayingLevel.B);

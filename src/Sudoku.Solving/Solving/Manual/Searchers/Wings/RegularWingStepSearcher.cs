@@ -16,7 +16,8 @@ namespace Sudoku.Solving.Manual.Searchers.Wings;
 /// <item>RSTUVWXYZ-Wing</item>
 /// </list>
 /// </summary>
-internal sealed class RegularWingStepSearcher : IRegularWingStepSearcher
+[StepSearcher<RegularWingStepSearcher>]
+public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <summary>
 	/// The inner field of the property <see cref="MaxSize"/>.
