@@ -6,17 +6,6 @@
 public sealed partial class SudokuPanel : UserControl
 {
 	/// <summary>
-	/// Indicates the format that is the text one.
-	/// </summary>
-	private const string TextFormat = ".txt";
-
-	/// <summary>
-	/// Indicates the format that is the sudoku puzzle one.
-	/// </summary>
-	private const string SudokuFormat = ".sudoku";
-
-
-	/// <summary>
 	/// Initializes a <see cref="SudokuPanel"/> instance.
 	/// </summary>
 	public SudokuPanel()
@@ -135,11 +124,10 @@ public sealed partial class SudokuPanel : UserControl
 
 		ShowInvalidFileFormatDialog:
 			FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
-			return;
 
 		Successful:
 		ExceptionThrownButHandled:
-			return;
+			;
 		}
 	}
 }

@@ -76,11 +76,15 @@ public sealed record class NormalFishStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
-	private string InternalName => $@"{
-		IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty }
-	}{
-		Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" }
-	}";
+	private string InternalName
+	{
+		get
+		{
+			string finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
+			string fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
+			return $@"{finModifier}{fishName}";
+		}
+	}
 
 	[FormatItem]
 	private string DigitStr
