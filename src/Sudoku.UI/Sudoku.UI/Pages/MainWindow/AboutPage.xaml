@@ -56,8 +56,7 @@
 				<TextBlock
 					x:Name="TextBlockVideoTutorial" Tag="VideoTutorial"
 					Style="{ThemeResource ItemDescription}" Grid.Row="1">
-					<Hyperlink
-						NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockVideoTutorial.Tag)}">
+					<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockVideoTutorial.Tag)}">
 						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockVideoTutorial.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
