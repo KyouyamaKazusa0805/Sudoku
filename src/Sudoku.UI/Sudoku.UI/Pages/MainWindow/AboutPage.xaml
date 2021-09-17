@@ -4,7 +4,7 @@
 	xmlns:q="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="q"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:ui="using:Sudoku.UI"
+	xmlns:c="using:Sudoku.UI.Data.ValueConverters"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Resources>
 		<Style x:Key="BrokenLinkTextBlock" TargetType="TextBlock">
@@ -53,17 +53,22 @@
 				<TextBlock
 					Style="{ThemeResource ItemTerm}" Grid.Row="1"
 					Text="{StaticResource AboutPage_SudokuReferenceTerm}" />
-				<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="1">
-					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.VideoTutorial}">
-						<Run Text="{x:Bind Path=ui:HyperLinks.VideoTutorialLink}" />
+				<TextBlock
+					x:Name="TextBlockVideoTutorial" Tag="VideoTutorial"
+					Style="{ThemeResource ItemDescription}" Grid.Row="1">
+					<Hyperlink
+						NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockVideoTutorial.Tag)}">
+						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockVideoTutorial.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
 				<TextBlock
 					Style="{ThemeResource ItemTerm}" Grid.Row="2"
 					Text="{StaticResource AboutPage_ProjectWikiTerm}" />
-				<TextBlock Style="{ThemeResource ItemDescription}" Grid.Row="2">
-					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.ProjectWiki}">
-						<Run Text="{x:Bind Path=ui:HyperLinks.ProjectWikiLink}" />
+				<TextBlock
+					x:Name="TextBlockProjectWiki" Tag="ProjectWiki"
+					Style="{ThemeResource ItemDescription}" Grid.Row="2">
+					<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockProjectWiki.Tag)}">
+						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockProjectWiki.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
 			</Grid>
@@ -73,34 +78,42 @@
 				Text="{StaticResource AboutPage_SpecialThanksTitle}" Style="{ThemeResource TitleTextBlockStyle}"
 				Margin="{StaticResource DoubleThickness}" />
 			<TextBlock
-				Text="{StaticResource AboutPage_SpecialThanksInfo}" Margin="{StaticResource NormalThickness}" />
+				Text="{StaticResource AboutPage_SpecialThanksInfo}"
+				Margin="{StaticResource NormalThickness}" />
 			<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
-				<TextBlock Margin="{StaticResource NormalThickness}">
-					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks1}">
-						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks1Link}" />
+				<TextBlock
+					x:Name="TextBlockSpecialThanks1" Tag="SpecialThanks1"
+					Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockSpecialThanks1.Tag)}">
+						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockSpecialThanks1.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
 				<TextBlock
 					Text="{StaticResource AboutPage_SpecialThanks1}"
 					Margin="{StaticResource NormalThickness}" />
-				<TextBlock Margin="{StaticResource NormalThickness}">
-					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks2}">
-						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks2Link}" />
+				<TextBlock
+					x:Name="TextBlockSpecialThanks2" Tag="SpecialThanks2"
+					Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockSpecialThanks2.Tag)}">
+						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockSpecialThanks2.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
 				<TextBlock
 					Text="{StaticResource AboutPage_SpecialThanks2}"
 					Margin="{StaticResource NormalThickness}" />
-				<TextBlock Margin="{StaticResource NormalThickness}">
-					<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.SpecialThanks3}">
-						<Run Text="{x:Bind Path=ui:HyperLinks.SpecialThanks3Link}" />
+				<TextBlock
+					x:Name="TextBlockSpecialThanks3" Tag="SpecialThanks3"
+					Margin="{StaticResource NormalThickness}">
+					<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri(TextBlockSpecialThanks3.Tag)}">
+						<Run Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockSpecialThanks3.Tag)}" />
 					</Hyperlink>
 				</TextBlock>
 				<TextBlock
 					Text="{StaticResource AboutPage_SpecialThanks3}"
 					Margin="{StaticResource NormalThickness}" />
 				<TextBlock
-					Text="{x:Bind Path=ui:HyperLinks.SpecialThanks4Link}"
+					x:Name="TextBlockSpecialThanks4" Tag="SpecialThanks4"
+					Text="{x:Bind c:HyperLinkConverter.FetchString(TextBlockSpecialThanks4.Tag)}"
 					Style="{ThemeResource BrokenLinkTextBlock}" Margin="{StaticResource NormalThickness}" />
 				<TextBlock
 					Text="{StaticResource AboutPage_SpecialThanks4}"
@@ -116,11 +129,11 @@
 				BorderThickness="0" Text="{StaticResource AboutPage_Disclaimer_Description}"
 				Margin="{StaticResource NoVerticalThickness}" />
 			<TextBlock Margin="{StaticResource NoVerticalThickness}" HorizontalAlignment="Left">
-				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.Repo}">
+				<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri('Repo')}">
 					<Run Text="GitHub" />
 				</Hyperlink>
 				<Run Text=", " />
-				<Hyperlink NavigateUri="{x:Bind Path=ui:HyperLinks.RepoGitee}">
+				<Hyperlink NavigateUri="{x:Bind c:HyperLinkConverter.FetchUri('RepoGitee')}">
 					<Run Text="Gitee" />
 				</Hyperlink>
 			</TextBlock>

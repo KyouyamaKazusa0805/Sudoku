@@ -47,6 +47,138 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Constants">
+            <summary>
+            Provides with the constants for this project.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Constants.Formats">
+            <summary>
+            Provides with the file format strings.
+            </summary>
+            <remarks>
+            <para>The strings can be used in the file type checking in <see cref="T:Microsoft.UI.Xaml.DragEventArgs"/>.</para>
+            <para>
+            The code example:
+            <code><![CDATA[
+            if (e.DataView is var view && view.Contains(StandardDataFormats.StorageItems))
+            {
+                var item = await view.GetStorageItemsAsync();
+                if (item is [StorageFile { FileType: TextFormat, Path: var path }, ..])
+                {
+                    string content = await File.ReadAllTextAsync(path, cancellationToken);
+                    
+                    // Code using the variable 'content'.
+                }
+            }
+            ]]></code>
+            </para>
+            </remarks>
+            <seealso cref="T:Microsoft.UI.Xaml.DragEventArgs"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.Formats.TextFormat">
+            <summary>
+            Indicates the text file format (<c>*.txt</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.Formats.SudokuFormat">
+            <summary>
+            Indicates the sudoku file format (<c>*.sudoku</c>).
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Constants.HyperLinks">
+            <summary>
+            Provides with the links that references and links to a website.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.VideoTutorialLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.VideoTutorial"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.VideoTutorial"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.RepoLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.Repo"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.Repo"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.ProjectWikiLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.ProjectWiki"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.ProjectWiki"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.RepoGiteeLink">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.RepoGitee"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.RepoGitee"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks1Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks1"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks1"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks2Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks2"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks2"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks3Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks3"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks3"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks4Link">
+            <summary>
+            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks4"/>.
+            </summary>
+            <seealso cref="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks4"/>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.VideoTutorial">
+            <summary>
+            Indicates the website that is the series of video-formed sudoku tutorial.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.Repo">
+            <summary>
+            Indicates the website that is the GitHub repository site, which is the main repository site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.ProjectWiki">
+            <summary>
+            Indicates the website that is the project wiki related to the repository on GitHub.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.RepoGitee">
+            <summary>
+            Indicates the website that is the Gitee repository site.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks1">
+            <summary>
+            Indicates the website that is the first site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks2">
+            <summary>
+            Indicates the website that is the second site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks3">
+            <summary>
+            Indicates the website that is the third site of the special thanks list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Constants.HyperLinks.SpecialThanks4">
+            <summary>
+            Indicates the website that is the fourth site of the special thanks list.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.CustomControls.CustomizedSettingsNavigationView">
             <summary>
             Defines a customized settings option navigation view.
@@ -90,16 +222,6 @@
         <member name="T:Sudoku.UI.CustomControls.SudokuPanel">
             <summary>
             Defines a basic sudoku panel.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.TextFormat">
-            <summary>
-            Indicates the format that is the text one.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CustomControls.SudokuPanel.SudokuFormat">
-            <summary>
-            Indicates the format that is the sudoku puzzle one.
             </summary>
         </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.#ctor">
@@ -191,98 +313,43 @@
             <param name="sudoku">The sudoku.</param>
             <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the load opertion is failed.</exception>
         </member>
-        <member name="T:Sudoku.UI.HyperLinks">
+        <member name="T:Sudoku.UI.Data.ValueConverters.HyperLinkConverter">
             <summary>
-            Provides with the links that references and links to a website.
+            Defines a converter that allows the UI uses the key to get the inner value
+            of types <see cref="T:System.Uri"/> and <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.HyperLinks.VideoTutorialLink">
+        <member name="F:Sudoku.UI.Data.ValueConverters.HyperLinkConverter.PublicStatic">
             <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.VideoTutorial"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.VideoTutorial"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.RepoLink">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.Repo"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.Repo"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.ProjectWikiLink">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.ProjectWiki"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.ProjectWiki"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.RepoGiteeLink">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.RepoGitee"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.RepoGitee"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks1Link">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks1"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks1"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks2Link">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks2"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks2"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks3Link">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks3"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks3"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks4Link">
-            <summary>
-            Indicates the direct link that referenced by <see cref="F:Sudoku.UI.HyperLinks.SpecialThanks4"/>.
-            </summary>
-            <seealso cref="F:Sudoku.UI.HyperLinks.SpecialThanks4"/>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.VideoTutorial">
-            <summary>
-            Indicates the website that is the series of video-formed sudoku tutorial.
+            Indicates the binding flags to fetch in the below methods.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.HyperLinks.Repo">
+        <member name="M:Sudoku.UI.Data.ValueConverters.HyperLinkConverter.FetchUri(System.String)">
             <summary>
-            Indicates the website that is the GitHub repository site, which is the main repository site.
+            Try to convert the specified value to a <see cref="T:System.Uri"/>.
             </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The <see cref="T:System.Uri"/> instance. If failed to convert, <see langword="null"/> will be returned.
+            </returns>
         </member>
-        <member name="F:Sudoku.UI.HyperLinks.ProjectWiki">
+        <member name="M:Sudoku.UI.Data.ValueConverters.HyperLinkConverter.FetchUri(System.Object)">
             <summary>
-            Indicates the website that is the project wiki related to the repository on GitHub.
+            Try to convert the specified value to a <see cref="T:System.Uri"/>.
             </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The <see cref="T:System.Uri"/> instance. If failed to convert, <see langword="null"/> will be returned.
+            </returns>
         </member>
-        <member name="F:Sudoku.UI.HyperLinks.RepoGitee">
+        <member name="M:Sudoku.UI.Data.ValueConverters.HyperLinkConverter.FetchString(System.Object)">
             <summary>
-            Indicates the website that is the Gitee repository site.
+            Try to convert the specified value to a <see cref="T:System.String"/>.
             </summary>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks1">
-            <summary>
-            Indicates the website that is the first site of the special thanks list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks2">
-            <summary>
-            Indicates the website that is the second site of the special thanks list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks3">
-            <summary>
-            Indicates the website that is the third site of the special thanks list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.HyperLinks.SpecialThanks4">
-            <summary>
-            Indicates the website that is the fourth site of the special thanks list.
-            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The <see cref="T:System.String"/> instance. If failed to convert, <see langword="null"/> will be returned.
+            </returns>
         </member>
         <member name="T:Sudoku.UI.MainWindow">
             <summary>
