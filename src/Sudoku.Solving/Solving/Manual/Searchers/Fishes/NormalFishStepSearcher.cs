@@ -14,7 +14,7 @@
 /// <item>Sashimi Jellyfish</item>
 /// </list>
 /// </summary>
-[StepSearcher<NormalFishStepSearcher>]
+[StepSearcher]
 public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 {
 	/// <inheritdoc/>

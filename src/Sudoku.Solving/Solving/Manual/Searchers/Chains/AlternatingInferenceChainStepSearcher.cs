@@ -39,7 +39,7 @@
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher<AlternatingInferenceChainStepSearcher>]
+[StepSearcher]
 public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <inheritdoc/>

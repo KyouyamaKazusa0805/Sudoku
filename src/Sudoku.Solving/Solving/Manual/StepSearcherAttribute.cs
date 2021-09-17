@@ -3,17 +3,9 @@
 /// <summary>
 /// To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
 /// </summary>
-/// <typeparam name="TStepSearcher">
-/// <para>Indicates the type of the step searcher marked.</para>
-/// <para><i>
-/// The type should be a <see langword="class"/> and implemented <see cref="IStepSearcher"/>,
-/// and contains a parameterless constructor.
-/// </i></para>
-/// </typeparam>
 /// <seealso cref="IStepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public sealed class StepSearcherAttribute<TStepSearcher> : Attribute
-where TStepSearcher : class, IStepSearcher, new()
+public sealed class StepSearcherAttribute : Attribute
 {
 	/// <summary>
 	/// <para>Indicates whether the option is fixed that can't be modified in UI.</para>
@@ -25,7 +17,8 @@ where TStepSearcher : class, IStepSearcher, new()
 	/// <para>
 	/// Indicates the technique searcher can or can't be used in some scenarios
 	/// where they aren't in traversing mode to call
-	/// <see cref="IStepSearcher.GetAll(ICollection{Step}, in Grid, bool)"/> in <see cref="IStepSearcher"/>s one by one.
+	/// <see cref="IStepSearcher.GetAll(ICollection{Step}, in Grid, bool)"/>
+	/// in <see cref="IStepSearcher"/>s one by one.
 	/// </para>
 	/// <para>
 	/// If <see langword="true"/>, the searcher can't use those <see langword="static"/>

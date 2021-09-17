@@ -9,7 +9,7 @@
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher<TwoStrongLinksStepSearcher>]
+[StepSearcher]
 public sealed class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>

@@ -10,7 +10,7 @@
 /// <!--<item>Bi-value Oddagon Type 4</item>-->
 /// </list>
 /// </summary>
-[StepSearcher<BivalueOddagonStepSearcher>]
+[StepSearcher]
 public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>

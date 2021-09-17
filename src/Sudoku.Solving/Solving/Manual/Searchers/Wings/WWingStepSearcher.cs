@@ -7,7 +7,7 @@
 /// <item>W-Wing (George Woods' Wing)</item>
 /// </list>
 /// </summary>
-[StepSearcher<WWingStepSearcher>]
+[StepSearcher]
 public sealed class WWingStepSearcher : IIregularWingStepSearcher
 {
 	/// <inheritdoc/>

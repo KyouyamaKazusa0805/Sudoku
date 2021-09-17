@@ -12,12 +12,13 @@ internal static class ModuleInitializer
 #if false
 	[MemberNotNull(nameof(StepSearcherPool.InnerCollection))]
 #endif
-	public static void Initialize() => StepSearcherPool.Collection = (
-		from type in typeof(ModuleInitializer).Assembly.GetTypes()
-		where type.GetCustomAttribute(typeof(StepSearcherAttribute<>)) is not null && !type.IsAbstract
-		select Activator.CreateInstance(type) as IStepSearcher into instance
-		where instance is not null
-		orderby instance.Options.Priority
-		select instance
-	).ToArray();
+	public static void Initialize() =>
+		StepSearcherPool.Collection = (
+			from type in typeof(ModuleInitializer).Assembly.GetTypes()
+			where type.IsDefined<StepSearcherAttribute>() && !type.IsAbstract && type.ContainsParameterlessConstructor()
+			select Activator.CreateInstance(type) as IStepSearcher into instance
+			where instance is not null
+			orderby instance.Options.Priority
+			select instance
+		).ToArray();
 }

@@ -10,7 +10,7 @@
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher<UniqueLoopStepSearcher>]
+[StepSearcher]
 public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 	/// <inheritdoc/>

@@ -16,7 +16,7 @@
 /// <item>Hidden Quadruple</item>
 /// </list>
 /// </summary>
-[StepSearcher<SubsetStepSearcher>]
+[StepSearcher]
 public sealed class SubsetStepSearcher : ISubsetStepSearcher
 {
 	/// <inheritdoc/>

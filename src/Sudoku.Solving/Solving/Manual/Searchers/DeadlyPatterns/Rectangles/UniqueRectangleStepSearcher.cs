@@ -30,7 +30,7 @@
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher<UniqueRectangleStepSearcher>]
+[StepSearcher]
 public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>

@@ -14,7 +14,7 @@
 /// <item>RSTUVWXYZ-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher<RegularWingStepSearcher>]
+[StepSearcher]
 public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <summary>

@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Buffer;
 /// </para>
 /// <para>
 /// If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+/// <see cref="StepSearcherAttribute.IsDirect"/>.
 /// If you find that the step searcher marks that attribute,
 /// you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
 /// can't call it everywhere unless you call the method <see cref="InitializeMaps"/>.
@@ -38,7 +38,7 @@ namespace Sudoku.Solving.Manual.Buffer;
 /// </remarks>
 /// <seealso cref="InitializeMaps"/>
 /// <seealso cref="ManualSolver"/>
-/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 /// <seealso cref="Grid"/>
 internal static class FastProperties
 {
@@ -48,10 +48,10 @@ internal static class FastProperties
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+	/// <see cref="StepSearcherAttribute.IsDirect"/>.
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
-	/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+	/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 	public static Cells EmptyMap { get; private set; }
 
 	/// <summary>
@@ -60,10 +60,10 @@ internal static class FastProperties
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+	/// <see cref="StepSearcherAttribute.IsDirect"/>.
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
-	/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+	/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 	public static Cells BivalueMap { get; private set; }
 
 	/// <summary>
@@ -72,10 +72,10 @@ internal static class FastProperties
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+	/// <see cref="StepSearcherAttribute.IsDirect"/>.
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
-	/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+	/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 	public static Cells[] CandMaps { get; private set; }
 
 	/// <summary>
@@ -84,10 +84,10 @@ internal static class FastProperties
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+	/// <see cref="StepSearcherAttribute.IsDirect"/>.
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
-	/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+	/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 	public static Cells[] DigitMaps { get; private set; }
 
 	/// <summary>
@@ -96,10 +96,10 @@ internal static class FastProperties
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="InitializeMaps"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are marked the attribute
-	/// <see cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>.
+	/// <see cref="StepSearcherAttribute.IsDirect"/>.
 	/// </remarks>
 	/// <seealso cref="InitializeMaps"/>
-	/// <seealso cref="StepSearcherAttribute{TStepSearcher}.IsDirect"/>
+	/// <seealso cref="StepSearcherAttribute.IsDirect"/>
 	public static Cells[] ValueMaps { get; private set; }
 
 

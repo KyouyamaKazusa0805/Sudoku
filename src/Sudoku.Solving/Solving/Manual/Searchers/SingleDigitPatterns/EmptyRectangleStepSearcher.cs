@@ -7,7 +7,7 @@
 /// <item>Empty Rectangle</item>
 /// </list>
 /// </summary>
-[StepSearcher<EmptyRectangleStepSearcher>]
+[StepSearcher]
 public sealed class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <inheritdoc/>

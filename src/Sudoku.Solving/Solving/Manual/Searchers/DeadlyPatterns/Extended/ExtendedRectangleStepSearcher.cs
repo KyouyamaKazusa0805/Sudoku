@@ -10,7 +10,7 @@
 /// <item>Extended Rectangle Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher<ExtendedRectangleStepSearcher>]
+[StepSearcher]
 public sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <summary>

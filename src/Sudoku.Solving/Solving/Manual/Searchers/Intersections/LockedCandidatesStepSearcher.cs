@@ -8,7 +8,7 @@
 /// <item>Claiming</item>
 /// </list>
 /// </summary>
-[StepSearcher<LockedCandidatesStepSearcher>]
+[StepSearcher]
 public sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>

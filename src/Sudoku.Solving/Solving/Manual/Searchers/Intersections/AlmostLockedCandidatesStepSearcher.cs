@@ -9,7 +9,7 @@
 /// <item>Almost Locked Quadruple</item>
 /// </list>
 /// </summary>
-[StepSearcher<AlmostLockedCandidatesStepSearcher>]
+[StepSearcher]
 public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
