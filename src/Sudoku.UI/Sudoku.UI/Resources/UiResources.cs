@@ -3,6 +3,11 @@
 /// <summary>
 /// Provides the methods that handles with resource dictionary.
 /// </summary>
+/// <remarks><i>
+/// Please note that this type is implemented in another file which is invisible for us. The only way
+/// to see them is to find and open them in the file explorer. They're in the real folders but not
+/// in this solution.
+/// </i></remarks>
 internal sealed class UiResources : DynamicObject
 {
 	/// <summary>
