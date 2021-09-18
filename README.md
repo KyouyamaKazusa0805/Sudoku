@@ -17,6 +17,12 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 For example, you can use the code like this to solve a puzzle:
 
 ```csharp
+#if !NET6_0_OR_GREATER
+using System;
+using Sudoku.Data;
+using Sudoku.Solving.Manual;
+#endif
+
 // Parse a puzzle from the string text.
 var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
@@ -31,8 +37,6 @@ var analysisResult = solver.Solve(grid);
 // Output the analysis result.
 Console.WriteLine(analysisResult.ToString());
 ```
-
-> C# 10 starts to support `global using` and `global using staic` directive, then we can directly reference and create the type used above even if you can't remember what namespace they stored.
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
@@ -69,7 +73,7 @@ Please visit the following tables.
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
-> In addition, you can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D
+> You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D
 >
 > In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
 
@@ -81,7 +85,7 @@ Please visit the following tables.
     * [x] WPF
     * [ ] ~~UWP (This may not be considered)~~
     * [ ] WinUI 3
-    * [x] ~~Winform (Impl'ed, but deprecated, so it has been removed)~~
+    * [x] ~~Winform (Implemented but deprecated, removed)~~
   * [ ] MAUI
     * [ ] Android
     * [ ] iOS
@@ -89,14 +93,14 @@ Please visit the following tables.
     * [ ] Other
 * [ ] Platform Robots (Dependabot)
   * [ ] Bilibili (Should the platform provide APIs)
-  * [x] ~~QICQ (Impl'ed, but I has removed yet, but don't worry because I'll re-upload 'em)~~
+  * [x] ~~QICQ (Implemented, but I has removed yet, but don't worry because I'll re-upload them)~~
   * [ ] WeChat
   * [ ] Others...
 * [ ] Wiki Documentation
   * [x] Basic Docs
   * [ ] Sudoku Tutorial
 * [x] Visual Studio Extensions
-  * [x] Code Analyzer (**Sudoku Solution Guardian**)
+  * [x] ~~Code Analyzer (**Sudoku Solution Guardian**, removed temporarily)~~
 
 ### Open Resource License
 
@@ -104,7 +108,7 @@ Please visit the following tables.
 
 ### Sudoku Technique References
 
-Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links to learn about more information.
+Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links to learn about more information. In Chinese.
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)

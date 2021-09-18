@@ -17,6 +17,15 @@
 比如说，你可以使用如下的代码来解一道题：
 
 ```csharp
+#if !NET6_0_OR_GREATER
+// C# 10 开始使用 global using 指令来按程序集级别添加命名空间的引用，因此这段代码此时是可以不写的。
+// 虽然项目是按 C# 10 语法书写的，因此这段代码是可以不写出来的；
+// 不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
+using System;
+using Sudoku.Data;
+using Sudoku.Solving.Manual;
+#endif
+
 // 读取一个字符串形式的数独盘面的代码信息，并解析为 'SudokuGrid' 类型的对象。
 var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
@@ -32,8 +41,6 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
-> C# 10 开始支持 `global using` 和 `global using static` 指令，所以我们无需自行导入命名空间，如果你记不住它们的位置也可以直接使用这些类型了。
-
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 ### 如何编译解决方案
@@ -42,7 +49,7 @@ Console.WriteLine(analysisResult.ToString());
 
 ### 关于该仓库的克隆仓库（Fork）以及代码更新推并请求（Pull Requests）
 
-当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于[ MIT 开源协议](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
+当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
 
 另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
 
@@ -96,7 +103,7 @@ Console.WriteLine(analysisResult.ToString());
   * [x] 基本文档
   * [ ] 数独教程
 * [x] Visual Studio 数独相关插件
-  * [x] 数独解决方案的代码分析器（Sudoku Solution Guardian）
+  * [x] ~~数独解决方案的代码分析器（Sudoku Solution Guardian，暂时删掉了）~~
 
 ### 项目开源许可证
 
@@ -104,7 +111,7 @@ Console.WriteLine(analysisResult.ToString());
 
 ### 数独技巧参考
 
-我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接来了解它们。
+我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接来了解它们。是中文链接。
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
