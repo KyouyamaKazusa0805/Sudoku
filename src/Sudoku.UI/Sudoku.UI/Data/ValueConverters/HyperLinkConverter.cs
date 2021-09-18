@@ -30,11 +30,10 @@ public static class HyperLinkConverter
 	/// <returns>
 	/// The <see cref="Uri"/> instance. If failed to convert, <see langword="null"/> will be returned.
 	/// </returns>
+	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull("value")]
 	public static Uri? FetchUri(object? value) =>
-		value is string str
-			? typeof(HyperLinks).GetField(str, PublicStatic)?.GetValue(null) as Uri
-			: null;
+		value is string str ? typeof(HyperLinks).GetField(str, PublicStatic)?.GetValue(null) as Uri : null;
 
 	/// <summary>
 	/// Try to convert the specified value to a <see cref="string"/>.
@@ -43,9 +42,10 @@ public static class HyperLinkConverter
 	/// <returns>
 	/// The <see cref="string"/> instance. If failed to convert, <see langword="null"/> will be returned.
 	/// </returns>
+	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull("value")]
 	public static string? FetchString(object? value) =>
-		value is string str
-			? typeof(HyperLinks).GetField($"{str}Link", PublicStatic)?.GetValue(null) as string
-			: null;
+		value is not string str
+			? null
+			: typeof(HyperLinks).GetField($"{str}Link", PublicStatic)?.GetValue(null) as string;
 }
