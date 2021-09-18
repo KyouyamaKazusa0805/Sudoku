@@ -290,8 +290,7 @@
             </summary>
             <param name="puzzle">The puzzle.</param>
             <param name="solution">
-            The solution. The value keeps <see langword="null"/>
-            if you doesn't want to use this result.
+            The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
             </param>
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>

@@ -94,7 +94,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 		{
 			if (solution != null)
 			{
-				Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+				UnsafeExtensions.CopyBlock(solution, solutionStr, BufferLength);
 			}
 		}
 	}
@@ -130,8 +130,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// </summary>
 	/// <param name="puzzle">The puzzle.</param>
 	/// <param name="solution">
-	/// The solution. The value keeps <see langword="null"/>
-	/// if you doesn't want to use this result.
+	/// The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
 	/// </param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
