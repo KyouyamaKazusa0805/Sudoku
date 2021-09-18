@@ -214,61 +214,45 @@ public sealed record class SudokuGridCanvas(
 
 		void createRegionBorders()
 		{
-			int region = 0;
-			for (; region < 9; region++)
+			int[] blockRowFactor = { 0, 9, 18, 0, 9, 18, 0, 9, 18 };
+			int[] blockColumnFactor = { 0, 0, 0, 9, 9, 9, 18, 18, 18 };
+			double uniformBorderThickness = 1.5;
+			var borderBrush = new SolidColorBrush(Colors.Blue);
+			var background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255));
+
+			f(0, uniformBorderThickness, borderBrush, background);
+			f(9, uniformBorderThickness, borderBrush, background);
+			f(18, uniformBorderThickness, borderBrush, background);
+
+
+			void f(int start, double uniformBorderThickness, Brush borderBrush, Brush background)
 			{
-				var border = new Border
+				for (int region = start; region < start + 9; region++)
 				{
-					BorderThickness = new(1.5),
-					Visibility = Visibility.Collapsed,
-					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
-				};
+					var (row, column, rowSpan, columnSpan) = start switch
+					{
+						0 => (blockRowFactor[region], blockColumnFactor[region], 9, 9),
+						9 => (region % 9 * 3, 0, 1, 9),
+						18 => (0, region % 9 * 3, 9, 1)
+					};
 
-				Grid.SetRow(border, region switch { 0 or 3 or 6 => 0, 1 or 4 or 7 => 9, 2 or 5 or 8 => 18 });
-				Grid.SetColumn(border, region switch { 0 or 1 or 2 => 0, 3 or 4 or 5 => 9, 6 or 7 or 8 => 18 });
-				Grid.SetRowSpan(border, 9);
-				Grid.SetColumnSpan(border, 9);
+					var border = new Border
+					{
+						BorderThickness = new(uniformBorderThickness),
+						Visibility = Visibility.Collapsed,
+						BorderBrush = borderBrush,
+						Background = background
+					};
 
-				BaseGrid.Children.Add(border);
+					Grid.SetRow(border, row);
+					Grid.SetColumn(border, column);
+					Grid.SetRowSpan(border, rowSpan);
+					Grid.SetColumnSpan(border, columnSpan);
 
-				HighlightRegionPool[region] = border;
-			}
-			for (; region < 18; region++)
-			{
-				var border = new Border
-				{
-					BorderThickness = new(1.5),
-					Visibility = Visibility.Collapsed,
-					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
-				};
+					BaseGrid.Children.Add(border);
 
-				Grid.SetRow(border, region % 9 * 3);
-				Grid.SetColumn(border, 0);
-				Grid.SetColumnSpan(border, 9);
-
-				BaseGrid.Children.Add(border);
-
-				HighlightRegionPool[region] = border;
-			}
-			for (; region < 27; region++)
-			{
-				var border = new Border
-				{
-					BorderThickness = new(1.5),
-					Visibility = Visibility.Collapsed,
-					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
-				};
-
-				Grid.SetRow(border, 0);
-				Grid.SetRowSpan(border, 9);
-				Grid.SetColumn(border, region % 9 * 3);
-
-				BaseGrid.Children.Add(border);
-
-				HighlightRegionPool[region] = border;
+					HighlightRegionPool[region] = border;
+				}
 			}
 		}
 	}
