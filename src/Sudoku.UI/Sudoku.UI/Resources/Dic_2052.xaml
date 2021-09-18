@@ -36,12 +36,14 @@
 	<x:String x:Key="SettingsPage_SearchIntro">如果你找不到设置项，可以在这里搜索你想找的项目。</x:String>
 	<x:String x:Key="SettingsPage_Save">保存</x:String>
 
-	<!--Content dialogs-->
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Title">载入题目文件失败</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Close">关闭</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_FileFormatFailed">载入题目文件失败：文件格式不支持。</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed">载入题目文件失败：文件包含的题目并非唯一解。</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed">载入题目文件失败：文件包含的题目是未定义状态。</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1">载入题目文件失败：文件包含的题目是未定义状态。</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2">该情况仅出现在调试模式下。</x:String>
+	<!--Teaching tips-->
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Title">载入题目文件失败</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Close">关闭</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_FileFormatFailed">载入题目文件失败：文件格式不支持。</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_MultipleFilesSelected">您只能拖拽一个文件进来导入哦！</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_UniquenessFailed">载入题目文件失败：文件包含的题目并非唯一解。</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_UndefinedFailed">载入题目文件失败：文件包含的题目是未定义状态。</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1">载入题目文件失败：文件包含的题目是未定义状态。</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2">该情况仅出现在调试模式下。</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleText_Content_TextFailed">载入题目代码失败：题目代码为空。</x:String>
 </ResourceDictionary>

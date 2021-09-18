@@ -51,12 +51,14 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
 
-	<!--Content dialogs-->
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Title">Failed to load puzzle</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Close">Close</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_FileFormatFailed">Failed to load puzzle, because the file format is invalid.</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed">Failed to load puzzle, because the puzzle doesn't contain valid unique solution.</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed">Failed to load puzzle, because the puzzle is at the undefined status.</x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1" xml:space="preserve">Failed to load puzzle, because the puzzle is at the undefined status. </x:String>
-	<x:String x:Key="ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2">The case is only appears in debugging mode.</x:String>
+	<!--Teaching tips-->
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Title">Failed to load puzzle</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Close">Close</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_FileFormatFailed">Failed to load puzzle, because the file format is invalid.</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_MultipleFilesSelected">You must only drag and drop one file :)</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_UniquenessFailed">Failed to load puzzle, because the puzzle doesn't contain valid unique solution.</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_UndefinedFailed">Failed to load puzzle, because the puzzle is at the undefined status.</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1" xml:space="preserve">Failed to load puzzle, because the puzzle is at the undefined status. </x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2">The case is only appears in debugging mode.</x:String>
+	<x:String x:Key="TeachingTip_FailedDragPuzzleText_Content_TextFailed">Failed to load puzzle, because the text is empty.</x:String>
 </ResourceDictionary>

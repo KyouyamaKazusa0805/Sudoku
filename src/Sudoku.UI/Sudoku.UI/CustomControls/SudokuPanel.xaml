@@ -20,44 +20,53 @@
 		DragEnter="MainSudokuGrid_DragEnterAsync">
 		<Grid.Resources>
 			<!--Styles-->
-			<Style x:Key="DefaultCloseContentDialogStyle" TargetType="TeachingTip">
-				<Setter Property="Title" Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Title}" />
+			<Style x:Key="DefaultTeachingTipStyle" TargetType="TeachingTip">
+				<Setter Property="Title" Value="{StaticResource TeachingTip_FailedDragPuzzleFile_Title}" />
 				<Setter
 					Property="CloseButtonContent"
-					Value="{StaticResource ContentDialog_FailedDragPuzzleFile_Close}" />
+					Value="{StaticResource TeachingTip_FailedDragPuzzleFile_Close}" />
 			</Style>
 
 			<!--Teaching tips-->
 			<TeachingTip
-				x:Name="FailedDragPuzzleFile_FileFormatFailed"
-				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				x:Name="FailedDragPuzzleFile_FileFormatFailed" Style="{ThemeResource DefaultTeachingTipStyle}">
 				<TextBlock
-					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_FileFormatFailed}"
+					Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_FileFormatFailed}"
 					TextWrapping="Wrap" />
 			</TeachingTip>
 			<TeachingTip
-				x:Name="FailedDragPuzzleFile_UniquenessFailed"
-				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				x:Name="FailedDragPuzzleFile_MultipleFilesSelected"
+				Style="{ThemeResource DefaultTeachingTipStyle}">
 				<TextBlock
-					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed}"
+					Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_MultipleFilesSelected}"
 					TextWrapping="Wrap" />
 			</TeachingTip>
 			<TeachingTip
-				x:Name="FailedDragPuzzleFile_UndefinedFailed"
-				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				x:Name="FailedDragPuzzleFile_UniquenessFailed" Style="{ThemeResource DefaultTeachingTipStyle}">
 				<TextBlock
-					Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed}"
+					Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_UniquenessFailed}"
+					TextWrapping="Wrap" />
+			</TeachingTip>
+			<TeachingTip
+				x:Name="FailedDragPuzzleFile_UndefinedFailed" Style="{ThemeResource DefaultTeachingTipStyle}">
+				<TextBlock
+					Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_UndefinedFailed}"
 					TextWrapping="Wrap" />
 			</TeachingTip>
 			<TeachingTip
 				x:Name="FailedDragPuzzleFile_DebuggerUndefinedFailed"
-				Style="{ThemeResource DefaultCloseContentDialogStyle}">
+				Style="{ThemeResource DefaultTeachingTipStyle}">
 				<TextBlock TextWrapping="Wrap">
-					<Run Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1}" />
+					<Run Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1}" />
 					<Run
 						FontWeight="Bold" FontStyle="Italic" TextDecorations="Strikethrough"
-						Text="{StaticResource ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2}" />
+						Text="{StaticResource TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed2}" />
 				</TextBlock>
+			</TeachingTip>
+			<TeachingTip x:Name="FailedDragPuzzleText_TextFailed" Style="{ThemeResource DefaultTeachingTipStyle}">
+				<TextBlock
+					Text="{StaticResource TeachingTip_FailedDragPuzzleText_Content_TextFailed}"
+					TextWrapping="Wrap" />
 			</TeachingTip>
 		</Grid.Resources>
 	</Grid>

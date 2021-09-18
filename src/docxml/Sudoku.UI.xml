@@ -238,7 +238,7 @@
             <summary>
             Triggers when the specified object received a file that dragged-and-dropped here.
             </summary>
-            <param name="_"></param>
+            <param name="sender"><inheritdoc cref="M:Microsoft.UI.Xaml.DragEventHandler.Invoke(System.Object,Microsoft.UI.Xaml.DragEventArgs)"/></param>
             <param name="e">The event data provided.</param>
         </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.InitializeComponent">
@@ -548,6 +548,25 @@
             <summary>
             GetXmlnsDefinitions()
             </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.TeachingTipExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.TeachingTip"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.TeachingTip"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.TeachingTipExtensions.Open(Microsoft.UI.Xaml.Controls.TeachingTip)">
+            <summary>
+            Opens the specified <see cref="T:Microsoft.UI.Xaml.Controls.TeachingTip"/> instance if worth.
+            </summary>
+            <param name="this">
+            The specified <see cref="T:Microsoft.UI.Xaml.Controls.TeachingTip"/> instance that may be <see langword="null"/>.
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the <see cref="T:Microsoft.UI.Xaml.Controls.TeachingTip"/> instance
+            can be successfully opened. If <see langword="true"/>, the argument <paramref name="this"/>
+            shouldn't <see langword="null"/>.
+            </returns>
         </member>
     </members>
 </doc>

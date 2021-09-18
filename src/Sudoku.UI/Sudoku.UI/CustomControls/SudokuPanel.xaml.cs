@@ -25,9 +25,9 @@ public sealed partial class SudokuPanel : UserControl
 	/// <summary>
 	/// Triggers when the specified object received a file that dragged-and-dropped here.
 	/// </summary>
-	/// <param name="_"></param>
+	/// <param name="sender"><inheritdoc cref="DragEventHandler.Invoke(object, DragEventArgs)"/></param>
 	/// <param name="e">The event data provided.</param>
-	private async void MainSudokuGrid_DragEnterAsync([Discard] object _, DragEventArgs e)
+	private async void MainSudokuGrid_DragEnterAsync([Discard] object sender, DragEventArgs e)
 	{
 		try
 		{
@@ -52,82 +52,112 @@ public sealed partial class SudokuPanel : UserControl
 		{
 			// For the consideration of the compatibility, the resource dictionary in project 'Sudoku.Core'
 			// must throw an exception here, because the interaction type 'TextResources' is deprecated here.
+			
+			// This case is just a trick. This project is always a Windows UI project.
 			throw;
 		}
 #endif
+#if DEBUG
 		catch
 		{
 		}
+#endif
 
 
 		async Task i(CancellationToken cancellationToken = default)
 		{
-			// The argument 'sender' holds the same value as the property 'e.OriginalSource' holds,
-			// so just check one.
+			// Directly gets the 'e.DataView' value.
+			// Argument 'sender' holds the same value as the property 'e.OriginalSource' holds. Just check one.
 			if (e is not { DataView: var view, OriginalSource: Grid })
 			{
-				goto ShowInvalidFileFormatDialog;
+				FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
+				return;
 			}
 
-			if (!view.Contains(StandardDataFormats.StorageItems))
-			{
-				goto ShowInvalidFileFormatDialog;
-			}
+			var puzzle = SudokuGrid.Undefined;
 
-			if (await view.GetStorageItemsAsync() is not { Count: not 0 } items)
+			// Checks whether the drag data is a file.
+			if (view.Contains(StandardDataFormats.StorageItems))
 			{
-				goto ShowInvalidFileFormatDialog;
-			}
+				// Checks whether the drag item contains only one file.
+				// User can drag multiple files, but we only allows the user drag one file.
+				if (await view.GetStorageItemsAsync() is not { Count: 1 } items)
+				{
+					FailedDragPuzzleFile_MultipleFilesSelected.IsOpen = true;
+					return;
+				}
 
-			if (items[0] is not StorageFile { FileType: TextFormat or SudokuFormat, Path: var path })
-			{
-				goto ShowInvalidFileFormatDialog;
-			}
+				// Checks whether the drag file type and the path.
+				if (items[0] is not StorageFile { FileType: TextFormat or SudokuFormat, Path: var path })
+				{
+					FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
+					return;
+				}
 
-			string content = await File.ReadAllTextAsync(path, cancellationToken);
-			if (!SudokuGrid.TryParse(content, out var result))
+				// Here we got the file path. Now get the specified file content, and parse the inner value.
+				string content = await File.ReadAllTextAsync(path, cancellationToken);
+				if (!SudokuGrid.TryParse(content, out var result))
+				{
+					FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
+					return;
+				}
+
+				puzzle = result;
+			}
+			// Checks whether the drag data is a text content.
+			else if (view.Contains(StandardDataFormats.Text))
 			{
-				goto ShowInvalidFileFormatDialog;
+				// Checks whether the drag text isn't empty or null.
+				string? text = await view.GetTextAsync();
+				if (string.IsNullOrWhiteSpace(text))
+				{
+					FailedDragPuzzleText_TextFailed.IsOpen = true;
+					return;
+				}
+
+				// Here we got the valid text content. Now parse the value to a sudoku type instance.
+				if (!SudokuGrid.TryParse(text, out var result))
+				{
+					FailedDragPuzzleText_TextFailed.IsOpen = true;
+					return;
+				}
+
+				puzzle = result;
+			}
+			else
+			{
+				// Other drag data types are invalid.
+				FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
+				return;
 			}
 
 			try
 			{
-				// Try to load sudoku.
+				// Try to load sudoku puzzle.
 				// If found any possible cases, just check them, and them report the error cases.
-				GridCanvas.LoadSudoku(result);
-
-				goto Successful;
+				GridCanvas.LoadSudoku(puzzle);
 			}
 			catch (InvalidPuzzleException ex)
-			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed)
 			{
-				FailedDragPuzzleFile_UndefinedFailed.IsOpen = true;
+				// Show the teaching tip to display the error information.
+				(
+					ex.Reason switch
+					{
+						var r when r == UiResources.Current.TeachingTip_FailedDragPuzzleFile_Content_UndefinedFailed =>
+							FailedDragPuzzleFile_UndefinedFailed,
 
-				goto ExceptionThrownButHandled;
-			}
-			catch (InvalidPuzzleException ex)
-			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed)
-			{
-				FailedDragPuzzleFile_UniquenessFailed.IsOpen = true;
+						var r when r == UiResources.Current.TeachingTip_FailedDragPuzzleFile_Content_UniquenessFailed =>
+							FailedDragPuzzleFile_UniquenessFailed,
 
-				goto ExceptionThrownButHandled;
-			}
 #if DEBUG
-			catch (InvalidPuzzleException ex)
-			when (ex.Reason == UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1)
-			{
-				FailedDragPuzzleFile_DebuggerUndefinedFailed.IsOpen = true;
-
-				goto ExceptionThrownButHandled;
-			}
+						var r when r == UiResources.Current.TeachingTip_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1 =>
+							FailedDragPuzzleFile_DebuggerUndefinedFailed,
 #endif
 
-		ShowInvalidFileFormatDialog:
-			FailedDragPuzzleFile_FileFormatFailed.IsOpen = true;
-
-		Successful:
-		ExceptionThrownButHandled:
-			;
+						_ => null
+					}
+				).Open();
+			}
 		}
 	}
 }
