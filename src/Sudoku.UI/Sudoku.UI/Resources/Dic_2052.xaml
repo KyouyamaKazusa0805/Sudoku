@@ -51,7 +51,7 @@
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">“退化鱼”技巧在翻译时包含“鱼鳍”一词</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro">退化鱼也可以包含“鱼鳍”一词作为技巧名的一部分，即也可以叫“鱼鳍退化鱼”。该选项能够变更显示技巧名的行为。</x:String>
 	<x:String x:Key="SettingsPage_Option_UseSizedFishName">使用“n 阶鱼”来按规格表示鱼的名字</x:String>
-	<x:String x:Key="SettingsPage_Option_UseSizedFishName_Intro">所有规格为 1 到 7 的鱼都有自己的特殊名称，比如“剑鱼”表示规格为 3 的鱼，“水母”则表示规格为 4 的鱼。此设置项用于更改显示该鱼名称的行为。如果开启此选项，该技巧名将按鱼的规格显示技巧名，比如“三阶鱼”之类的。</x:String>
+	<x:String x:Key="SettingsPage_Option_UseSizedFishName_Intro">所有规格为 1 到 7 的鱼都有自己的特殊名称，比如“剑鱼”表示规格为 3 的鱼，“水母”则表示规格为 4 的鱼。此设置项用于更改显示该鱼名称的行为。如果开启此选项，程序将按鱼的规格显示技巧名，比如“三阶鱼”之类的。</x:String>
 
 	<!--Teaching tips-->
 	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Title">载入题目文件失败</x:String>
