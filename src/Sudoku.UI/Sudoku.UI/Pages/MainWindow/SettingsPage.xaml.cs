@@ -44,7 +44,8 @@ public sealed partial class SettingsPage : Page
 	private void AddPossibleSearchValues(ICollection<(string, string[])> collection)
 	{
 		const string p = "SettingsPage_Option_"; // Of length 20.
-		const int l = 20; // The length of 'p'.
+		const string q = "_Intro"; // Of length 6.
+		const int l = 20, m = 6; // The length of 'p' and 'q'.
 
 		foreach (var mergedDictionary in
 			from mergedDictionary in Application.Current.Resources.MergedDictionaries
@@ -53,7 +54,7 @@ public sealed partial class SettingsPage : Page
 		{
 			foreach (var kvp in mergedDictionary)
 			{
-				if (kvp is (key: string { Length: >= l } k, value: string v) && k[..l] == p)
+				if (kvp is (key: string { Length: >= l } k, value: string v) && k[..l] == p && k[^m..] != q)
 				{
 					collection.Add((v, v.Contains(' ') ? v.Split(' ') : new[] { v }));
 				}

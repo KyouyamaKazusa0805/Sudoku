@@ -10,6 +10,18 @@
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 		</Style>
+		<Style x:Key="OptionItemTextBlock" TargetType="TextBlock">
+			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="18" />
+		</Style>
+		<Style x:Key="RoundedCornerStackPanel" TargetType="StackPanel">
+			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="BorderThickness" Value="1.8" />
+			<Setter Property="Background" Value="#20CCCCCC" />
+			<Setter Property="CornerRadius" Value="10" />
+		</Style>
 	</Page.Resources>
 
 	<Grid>
@@ -34,22 +46,47 @@
 					SuggestionChosen="AutoSuggestBox_OptionSearcher_SuggestionChosen" />
 
 				<!--Basic options-->
+				<!--
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
 					Text="{StaticResource SettingsPage_UiBasicOptions}" />
+				-->
 
 				<!--Technique options-->
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
-					Text="{StaticResource SettingsPage_TechniqueOptions}"/>
+					Text="{StaticResource SettingsPage_TechniqueOptions}" />
 				<TextBlock
-					Margin="{StaticResource NormalThickness}"
-					Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
-				<ToggleSwitch
-					x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
-					Margin="{StaticResource NormalThickness}"
-					OnContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent}"
-					OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}" />
+					Style="{ThemeResource LongTextBlock}"
+					Text="{StaticResource SettingsPage_TechniqueOptions_Description}" />
+
+				<TextBlock
+					Style="{ThemeResource SubtitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
+					Text="{StaticResource SettingsPage_TitleOption_Fish}" />
+				<StackPanel Style="{ThemeResource RoundedCornerStackPanel}">
+					<TextBlock
+						Style="{ThemeResource OptionItemTextBlock}"
+						Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
+					<TextBlock
+						Style="{ThemeResource LongTextBlock}"
+						Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro}" />
+					<ToggleSwitch
+						x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
+						Margin="{StaticResource NormalThickness}"
+						OnContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent}"
+						OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}" />
+
+					<TextBlock
+						Style="{ThemeResource OptionItemTextBlock}"
+						Text="{StaticResource SettingsPage_Option_UseSizedFishName}" />
+					<TextBlock
+						Style="{ThemeResource LongTextBlock}"
+						Text="{StaticResource SettingsPage_Option_UseSizedFishName_Intro}" />
+					<ToggleSwitch
+						x:Name="ToggleSwitch_UseSizedFishName" Margin="{StaticResource NormalThickness}"
+						OnContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OnContent}"
+						OffContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OffContent}" />
+				</StackPanel>
 
 				<!--Technique Priority-->
 
