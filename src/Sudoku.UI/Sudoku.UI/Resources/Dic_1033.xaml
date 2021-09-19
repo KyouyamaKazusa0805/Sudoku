@@ -52,6 +52,10 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">Search for item</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
+	<x:String x:Key="SettingsPage_UiBasicOptions">UI basic options</x:String>
+	<x:String x:Key="SettingsPage_TechniqueOptions">Technique options</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent">True (e.g. Finned Sashimi Swordfish)</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent">False (e.g. Sashimi Swordfish)</x:String>
 
 	<!--SettingsPage Searching option values-->
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">Sashimi fishes contains the keyword Finned as technique displaying</x:String>

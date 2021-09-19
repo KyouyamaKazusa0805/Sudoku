@@ -37,6 +37,10 @@
 	<x:String x:Key="SettingsPage_SearchTitle">搜索设置项</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">如果你找不到设置项，可以在这里搜索你想找的项目。</x:String>
 	<x:String x:Key="SettingsPage_Save">保存</x:String>
+	<x:String x:Key="SettingsPage_UiBasicOptions">界面基本设置</x:String>
+	<x:String x:Key="SettingsPage_TechniqueOptions">技巧设置</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent">是（如：鱼鳍退化鱼）</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent">否（如：退化鱼）</x:String>
 
 	<!--SettingsPage Searching option values-->
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">“退化鱼”技巧在翻译时包含“鱼鳍”一词</x:String>

@@ -35,21 +35,20 @@
 				<!--Basic options-->
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
-					Text="UI basic Options" />
+					Text="{StaticResource SettingsPage_UiBasicOptions}" />
 
 				<!--Technique options-->
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
-					Text="Technique options"/>
+					Text="{StaticResource SettingsPage_TechniqueOptions}"/>
 				<TextBlock
-					x:Name="Option_SashimiFishContainsKeywordFinned"
 					Margin="{StaticResource NormalThickness}"
 					Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
 				<ToggleSwitch
 					x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
 					Margin="{StaticResource NormalThickness}"
-					OnContent="True (e.g. Finned Sashimi Swordfish)"
-					OffContent="False (e.g. Sashimi Swordfish)" />
+					OnContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent}"
+					OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}" />
 
 				<!--Technique Priority-->
 
