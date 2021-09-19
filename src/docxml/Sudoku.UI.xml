@@ -485,7 +485,7 @@
             <summary>
             Triggers when the one element found is chosen.
             </summary>
-            <param name="sender"></param>
+            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance that triggers this event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeComponent">

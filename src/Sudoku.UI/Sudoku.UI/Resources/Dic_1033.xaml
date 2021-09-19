@@ -50,6 +50,7 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 		with the different behavior than the default cases.
 	</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">Search for item</x:String>
+	<x:String x:Key="SettingsPage_AutoSuggestBox_PlaceholderText">Input a value to search</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions">UI basic options</x:String>

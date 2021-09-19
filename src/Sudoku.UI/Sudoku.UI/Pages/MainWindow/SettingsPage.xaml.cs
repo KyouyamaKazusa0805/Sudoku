@@ -83,10 +83,10 @@ public sealed partial class SettingsPage : Page
 	/// <summary>
 	/// Triggers when the one element found is chosen.
 	/// </summary>
-	/// <param name="sender"></param>
+	/// <param name="sender">The <see cref="AutoSuggestBox"/> instance that triggers this event.</param>
 	/// <param name="args">The event arguments provided.</param>
 	private void AutoSuggestBox_OptionSearcher_SuggestionChosen(
-		[Discard] AutoSuggestBox sender,
+		AutoSuggestBox sender,
 		AutoSuggestBoxSuggestionChosenEventArgs args
 	)
 	{
@@ -98,6 +98,8 @@ public sealed partial class SettingsPage : Page
 				{
 					case TextBlock { Text: var text } tb when text == itemValue:
 					{
+						sender.ClearValue(AutoSuggestBox.TextProperty);
+
 						tb.Focus(FocusState.Programmatic);
 						break;
 					}

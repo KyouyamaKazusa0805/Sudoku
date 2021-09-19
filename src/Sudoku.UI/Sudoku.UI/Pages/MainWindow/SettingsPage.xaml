@@ -28,6 +28,7 @@
 					Text="{StaticResource SettingsPage_SearchTitle}" />
 				<TextBlock Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
 				<AutoSuggestBox
+					PlaceholderText="{StaticResource SettingsPage_AutoSuggestBox_PlaceholderText}"
 					Margin="{StaticResource NormalThickness}"
 					TextChanged="AutoSuggestBox_OptionSearcher_TextChanged"
 					SuggestionChosen="AutoSuggestBox_OptionSearcher_SuggestionChosen" />
