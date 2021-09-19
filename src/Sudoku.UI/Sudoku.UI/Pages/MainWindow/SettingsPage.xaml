@@ -20,17 +20,39 @@
 
 		<!--Settings-->
 		<ScrollViewer Grid.Row="0" Style="{ThemeResource ScrollViewerDefaults}">
-			<StackPanel Padding="{StaticResource StackPanelDefaultPadding}">
+			<StackPanel x:Name="SettingsPanel" Padding="{StaticResource StackPanelDefaultPadding}">
+				<!--Introduction-->
 				<TextBlock Text="{StaticResource SettingsPage_Intro}" Style="{ThemeResource LongTextBlock}" />
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
 					Text="{StaticResource SettingsPage_SearchTitle}" />
 				<TextBlock Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
-				<AutoSuggestBox Margin="{StaticResource NormalThickness}" />
+				<AutoSuggestBox
+					Margin="{StaticResource NormalThickness}"
+					TextChanged="AutoSuggestBox_OptionSearcher_TextChanged"
+					SuggestionChosen="AutoSuggestBox_OptionSearcher_SuggestionChosen" />
 
 				<!--Basic options-->
-				<!--Technique details-->
+				<TextBlock
+					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
+					Text="UI basic Options" />
+
 				<!--Technique options-->
+				<TextBlock
+					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
+					Text="Technique options"/>
+				<TextBlock
+					x:Name="Option_SashimiFishContainsKeywordFinned"
+					Margin="{StaticResource NormalThickness}"
+					Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
+				<ToggleSwitch
+					x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
+					Margin="{StaticResource NormalThickness}"
+					OnContent="True (e.g. Finned Sashimi Swordfish)"
+					OffContent="False (e.g. Sashimi Swordfish)" />
+
+				<!--Technique Priority-->
+
 				<!--Color palette-->
 			</StackPanel>
 		</ScrollViewer>

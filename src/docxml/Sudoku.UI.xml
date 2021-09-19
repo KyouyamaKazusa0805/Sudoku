@@ -448,10 +448,45 @@
             Indicates the page that contains the settings.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage.DictionaryNameRegex">
+            <summary>
+            Indicates the regular expression that matches a dictionary file name (a <see cref="T:System.Uri"/> string).
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._valuesToBeSearched">
+            <summary>
+            Indicates the list of possible searching option values that is provided to be searched for later.
+            </summary>
+            <remarks>
+            The collection is <see cref="T:System.Collections.Generic.ICollection`1"/> of type (<see cref="T:System.String"/>, <see cref="T:System.String"/>[]).
+            Each items will be a <see cref="T:System.String"/>[] because the details will be searched by each word.
+            </remarks>
+        </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SettingsPage"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AddPossibleSearchValues(System.Collections.Generic.ICollection{System.ValueTuple{System.String,System.String[]}})">
+            <summary>
+            Add setting property items into the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+            <remarks><i>This method is only called by constructor.</i></remarks>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AutoSuggestBox_OptionSearcher_TextChanged(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs)">
+            <summary>
+            Triggers when the value of the property <see cref="P:Microsoft.UI.Xaml.Controls.AutoSuggestBox.Text"/> is changed.
+            </summary>
+            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance to trigger the event.</param>
+            <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AutoSuggestBox_OptionSearcher_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
+            <summary>
+            Triggers when the one element found is chosen.
+            </summary>
+            <param name="sender"></param>
+            <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeComponent">
             <summary>

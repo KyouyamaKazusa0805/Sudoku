@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<x:String x:Key="CountryId">2052</x:String>
+
 	<!--MainWindow-->
 	<x:String x:Key="MainWindowTitle">向向的数独解决方案</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Content_SudokuPanel">数独盘面</x:String>
@@ -35,6 +37,9 @@
 	<x:String x:Key="SettingsPage_SearchTitle">搜索设置项</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">如果你找不到设置项，可以在这里搜索你想找的项目。</x:String>
 	<x:String x:Key="SettingsPage_Save">保存</x:String>
+
+	<!--SettingsPage Searching option values-->
+	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">“退化鱼”技巧在翻译时包含“鱼鳍”一词</x:String>
 
 	<!--Teaching tips-->
 	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Title">载入题目文件失败</x:String>

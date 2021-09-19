@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<x:String x:Key="CountryId">1033</x:String>
+
 	<!--MainWindow-->
 	<x:String x:Key="MainWindowTitle">Sunnie's Sudoku Solution</x:String>
 	<x:String x:Key="MainWindow_NavigationViewItem_Tag_SudokuPanel">SudokuPanel</x:String>
@@ -50,6 +52,9 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">Search for item</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
+
+	<!--SettingsPage Searching option values-->
+	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">Sashimi fishes contains the keyword Finned as technique displaying</x:String>
 
 	<!--Teaching tips-->
 	<x:String x:Key="TeachingTip_FailedDragPuzzleFile_Title">Failed to load puzzle</x:String>
