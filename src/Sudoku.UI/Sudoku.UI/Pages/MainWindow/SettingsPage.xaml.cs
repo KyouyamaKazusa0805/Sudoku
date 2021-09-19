@@ -72,7 +72,7 @@ public sealed partial class SettingsPage : Page
 	) => sender.ItemsSource = (Sender: sender, Args: args) switch
 	{
 		(_, Args: { Reason: not AutoSuggestionBoxTextChangeReason.UserInput }) => null,
-		(Sender: { Text: var q }, _) => (
+		(Sender: { Text: var q }, _) when !string.IsNullOrWhiteSpace(q) => (
 			from pair in _valuesToBeSearched
 			where Array.Exists(pair.Keywords, k => k.Contains(q, StringComparison.OrdinalIgnoreCase))
 			select pair.Key
