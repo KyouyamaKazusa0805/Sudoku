@@ -508,6 +508,34 @@
             <param name="result">The result color got.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.UI.Data.PreferenceBinding">
+            <summary>
+            Provides a binding relation that binds a method that sets a value in the type <see cref="T:Sudoku.UI.Data.Preference"/>,
+            and a <see cref="T:Sudoku.UI.Data.Preference"/> instance.
+            </summary>
+            <param name="Control">The control.</param>
+            <param name="ItemSetter">
+            Indicates a serial of methods that sets an item in <see cref="T:Sudoku.UI.Data.Preference"/>.
+            </param>
+            <param name="ControlRestoration">
+            Indicates a serial of methods that restores the state of a control bound with the setting item.
+            </param>
+            <seealso cref="T:Sudoku.UI.Data.Preference"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.PreferenceBinding.#ctor(Microsoft.UI.Xaml.FrameworkElement,System.Action,System.Action{Microsoft.UI.Xaml.FrameworkElement})">
+            <summary>
+            Provides a binding relation that binds a method that sets a value in the type <see cref="T:Sudoku.UI.Data.Preference"/>,
+            and a <see cref="T:Sudoku.UI.Data.Preference"/> instance.
+            </summary>
+            <param name="Control">The control.</param>
+            <param name="ItemSetter">
+            Indicates a serial of methods that sets an item in <see cref="T:Sudoku.UI.Data.Preference"/>.
+            </param>
+            <param name="ControlRestoration">
+            Indicates a serial of methods that restores the state of a control bound with the setting item.
+            </param>
+            <seealso cref="T:Sudoku.UI.Data.Preference"/>
+        </member>
         <member name="T:Sudoku.UI.Data.SudokuGridCanvas">
             <summary>
             Provides the canvas that stores the sudoku grid details.
@@ -714,7 +742,7 @@
             Each items will be a <see cref="T:System.String"/>[] because the details will be searched by each word.
             </remarks>
         </member>
-        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._intermediateSettingSteps">
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._boundSteps">
             <summary>
             Indicates the queue of steps used as temporary records.
             </summary>
@@ -729,14 +757,36 @@
             Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SettingsPage"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.BindSettingStep(System.Action,System.Action,System.Action)">
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.BindItem(System.String,System.Object,Microsoft.UI.Xaml.FrameworkElement,Windows.UI.Color)">
             <summary>
             Register the specified step into the step collection. When the <see cref="F:Sudoku.UI.Pages.MainWindow.SettingsPage.Button_Save"/>
             is clicked, all steps will be executed.
             </summary>
-            <param name="setter">The preference item setter method.</param>
-            <param name="effect">The control effect method.</param>
-            <param name="restore">The restore method.</param>
+            <param name="propertyName">
+            The name to set. For example, if you want to assign the property <see cref="P:Sudoku.UI.Data.Preference.ShowCandidates"/>
+            to <see langword="true"/>, this argument will be
+            <c><see langword="nameof"/>(<see cref="T:Sudoku.UI.Data.Preference"/>.ShowCandidates)</c> or just
+            <c>"ShowCandidates"</c>.
+            </param>
+            <param name="value">
+            The value to set. For example, if you want to assign the property <see cref="P:Sudoku.UI.Data.Preference.ShowCandidates"/>
+            to <see langword="true"/>, this argument will be <c><see langword="true"/></c>.
+            </param>
+            <param name="control">The control.</param>
+            <param name="effect">
+            The effect color that <paramref name="control"/> will set its foreground.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the property name <paramref name="propertyName"/> doesn't exist in the type.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the property found but can't write (i.e. The property <see cref="P:System.Reflection.PropertyInfo.CanWrite"/>
+            returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.MissingMemberException">
+            Throws when the type <see cref="T:Sudoku.UI.Data.Preference"/> doesn't exist such property
+            specified in <paramref name="propertyName"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AddPossibleSearchValues(System.Collections.Generic.ICollection{System.ValueTuple{System.String,System.String[]}})">
             <summary>
@@ -875,6 +925,68 @@
             <summary>
             GetXmlnsDefinitions()
             </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.ApplicationRequestedThemes">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Application"/> about <see cref="P:Microsoft.UI.Xaml.Application.RequestedTheme"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Application.RequestedTheme"/>
+            <remarks><i>
+            For more information you can visit
+            <see href="https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.application.requestedtheme">
+            this page
+            </see>
+            learn about details.
+            </i></remarks>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.ApplicationRequestedThemes.GetForegroundColor">
+            <summary>
+            Gets the requested theme color that applies as the foreground color of a control.
+            </summary>
+            <returns>
+            A <see cref="T:Windows.UI.Color"/> instance:
+            <list type="table">
+            <listheader>
+            <term><see cref="P:Microsoft.UI.Xaml.Application.RequestedTheme"/> value</term>
+            <description>The result <see cref="T:Windows.UI.Color"/></description>
+            </listheader>
+            <item>
+            <term><see cref="F:Microsoft.UI.Xaml.ApplicationTheme.Light"/></term>
+            <description><see cref="P:Microsoft.UI.Colors.Black"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Microsoft.UI.Xaml.ApplicationTheme.Dark"/></term>
+            <description><see cref="P:Microsoft.UI.Colors.White"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:Microsoft.UI.Colors.Black"/>
+            <seealso cref="P:Microsoft.UI.Colors.White"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.ApplicationRequestedThemes.GetBackgroundColor">
+            <summary>
+            Gets the requested theme color that applies as the background color of a control.
+            </summary>
+            <returns>
+            A <see cref="T:Windows.UI.Color"/> instance:
+            <list type="table">
+            <listheader>
+            <term><see cref="P:Microsoft.UI.Xaml.Application.RequestedTheme"/> value</term>
+            <description>The result <see cref="T:Windows.UI.Color"/></description>
+            </listheader>
+            <item>
+            <term><see cref="F:Microsoft.UI.Xaml.ApplicationTheme.Light"/></term>
+            <description><see cref="P:Microsoft.UI.Colors.White"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Microsoft.UI.Xaml.ApplicationTheme.Dark"/></term>
+            <description><see cref="P:Microsoft.UI.Colors.Black"/></description>
+            </item>
+            </list>
+            </returns>
+            <seealso cref="P:Microsoft.UI.Colors.Black"/>
+            <seealso cref="P:Microsoft.UI.Colors.White"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.TeachingTipExtensions">
             <summary>

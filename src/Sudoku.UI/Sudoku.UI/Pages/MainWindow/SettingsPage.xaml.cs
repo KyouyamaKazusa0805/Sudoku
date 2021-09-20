@@ -27,7 +27,7 @@ public sealed partial class SettingsPage : Page
 	/// <summary>
 	/// Indicates the queue of steps used as temporary records.
 	/// </summary>
-	private readonly List<(Action PreferenceItemSetter, Action Restore)> _intermediateSettingSteps = new();
+	private readonly List<PreferenceBinding> _boundSteps = new();
 
 	/// <summary>
 	/// Indicates the preferences.
@@ -50,15 +50,59 @@ public sealed partial class SettingsPage : Page
 	/// Register the specified step into the step collection. When the <see cref="Button_Save"/>
 	/// is clicked, all steps will be executed.
 	/// </summary>
-	/// <param name="setter">The preference item setter method.</param>
-	/// <param name="effect">The control effect method.</param>
-	/// <param name="restore">The restore method.</param>
-	private void BindSettingStep(Action setter, Action effect, Action restore)
+	/// <param name="propertyName">
+	/// The name to set. For example, if you want to assign the property <see cref="Preference.ShowCandidates"/>
+	/// to <see langword="true"/>, this argument will be
+	/// <c><see langword="nameof"/>(<see cref="Preference"/>.ShowCandidates)</c> or just
+	/// <c>"ShowCandidates"</c>.
+	/// </param>
+	/// <param name="value">
+	/// The value to set. For example, if you want to assign the property <see cref="Preference.ShowCandidates"/>
+	/// to <see langword="true"/>, this argument will be <c><see langword="true"/></c>.
+	/// </param>
+	/// <param name="control">The control.</param>
+	/// <param name="effect">
+	/// The effect color that <paramref name="control"/> will set its foreground.
+	/// </param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the property name <paramref name="propertyName"/> doesn't exist in the type.
+	/// </exception>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the property found but can't write (i.e. The property <see cref="PropertyInfo.CanWrite"/>
+	/// returns <see langword="false"/>).
+	/// </exception>
+	/// <exception cref="MissingMemberException">
+	/// Throws when the type <see cref="Preference"/> doesn't exist such property
+	/// specified in <paramref name="propertyName"/>.
+	/// </exception>
+	private void BindItem(string propertyName, object value, FrameworkElement control, Color effect)
 	{
-		_intermediateSettingSteps.Add((setter, restore));
+		const string foregroundPropertyName = "Foreground";
+		var foregroundPropertyInfo = control.GetType().GetProperty(foregroundPropertyName);
 
-		Button_Save.IsEnabled = true;
-		effect();
+		_boundSteps.Add(typeof(Preference).GetProperty(propertyName) switch
+		{
+			null => throw new ArgumentException(
+				$"The property '{propertyName}' doesn't exist in the type {typeof(Preference)}.",
+				nameof(propertyName)
+			),
+			{ CanWrite: false } => throw new InvalidOperationException("The property found but can't write."),
+			var propertyInfo => foregroundPropertyInfo switch
+			{
+				null => throw new MissingMemberException(typeof(Preference).FullName, foregroundPropertyName),
+				_ => new PreferenceBinding(
+					control,
+					() => propertyInfo.SetValue(_preference, value),
+					control => foregroundPropertyInfo.SetValue(
+						control,
+						new SolidColorBrush(ApplicationRequestedThemes.GetForegroundColor())
+					)
+				)
+			}
+		});
+
+		Button_Save.SetValue(IsEnabledProperty, true);
+		foregroundPropertyInfo.SetValue(control, new SolidColorBrush(effect));
 	}
 
 	/// <summary>
@@ -96,7 +140,7 @@ public sealed partial class SettingsPage : Page
 	private void AutoSuggestBox_OptionSearcher_TextChanged(
 		AutoSuggestBox sender,
 		AutoSuggestBoxTextChangedEventArgs args
-	) => sender.ItemsSource = (Sender: sender, Args: args) switch
+	) => sender.SetValue(ItemsControl.ItemsSourceProperty, (Sender: sender, Args: args) switch
 	{
 		(_, Args: { Reason: not AutoSuggestionBoxTextChangeReason.UserInput }) => null,
 		(Sender: { Text: var q }, _) when !string.IsNullOrWhiteSpace(q) => (
@@ -105,7 +149,7 @@ public sealed partial class SettingsPage : Page
 			select pair.Key
 		).ToArray(),
 		_ => null
-	};
+	});
 
 	/// <summary>
 	/// Triggers when the one element found is chosen.
@@ -117,20 +161,33 @@ public sealed partial class SettingsPage : Page
 		AutoSuggestBoxSuggestionChosenEventArgs args
 	)
 	{
-		if (args.SelectedItem is string itemValue)
+		switch ((Sender: sender, Args: args, SettingsPanel))
 		{
-			foreach (var control in SettingsPanel.Children)
+			case (
+				Sender: { Text: var senderText },
+				Args: { SelectedItem: string itemValue },
+				SettingsPanel: { Children: var controls }
+			)
+			when !string.IsNullOrWhiteSpace(senderText):
 			{
-				switch (control)
+				foreach (var control in controls)
 				{
-					case TextBlock { Text: var text } tb when text == itemValue:
+					switch (control)
 					{
-						sender.ClearValue(AutoSuggestBox.TextProperty);
+						case TextBlock { Text: var text, FocusState: FocusState.Unfocused } tb
+						when text == itemValue:
+						{
+							sender.ClearValue(TextBlock.TextProperty);
+							tb.Focus(FocusState.Programmatic);
 
-						tb.Focus(FocusState.Programmatic);
-						break;
+							continue;
+						}
+
+						// TODO: Wait for other controls adding.
 					}
 				}
+
+				break;
 			}
 		}
 	}
@@ -147,14 +204,14 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		foreach (var (setter, restore) in _intermediateSettingSteps)
+		foreach (var (control, setter, restore) in _boundSteps)
 		{
 			setter();
-			restore();
+			restore(control);
 		}
 
-		_intermediateSettingSteps.Clear();
-		button.IsEnabled = false;
+		_boundSteps.Clear();
+		button.SetValue(IsEnabledProperty, false);
 	}
 
 	/// <summary>
@@ -169,10 +226,11 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		BindSettingStep(
-			() => _preference.SashimiFishContainsKeywordFinned = isOn,
-			() => OptionItem_SashimiFishContainsKeywordFinned.Foreground = new SolidColorBrush(Colors.Gold),
-			() => OptionItem_SashimiFishContainsKeywordFinned.Foreground = new SolidColorBrush(Colors.White)
+		BindItem(
+			nameof(Preference.SashimiFishContainsKeywordFinned),
+			isOn,
+			OptionItem_SashimiFishContainsKeywordFinned,
+			Colors.Gold
 		);
 	}
 
@@ -188,10 +246,11 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		BindSettingStep(
-			() => _preference.UseSizedFishName = isOn,
-			() => OptionItem_UseSizedFishName.Foreground = new SolidColorBrush(Colors.Gold),
-			() => OptionItem_UseSizedFishName.Foreground = new SolidColorBrush(Colors.White)
+		BindItem(
+			nameof(Preference.UseSizedFishName),
+			isOn,
+			OptionItem_UseSizedFishName,
+			Colors.Gold
 		);
 	}
 }

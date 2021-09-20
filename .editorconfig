@@ -269,33 +269,6 @@ dotnet_naming_style.start_with__t_.word_separator =
 dotnet_naming_style.start_with__t_.capitalization = pascal_case
 
 
-
-# IDE0001: Simplify Names
-dotnet_diagnostic.IDE0001.severity = suggestion
-
-# IDE0002: Simplify Member Access
-dotnet_diagnostic.IDE0002.severity = suggestion
-
-# IDE0005: Using directive is unnecessary
-dotnet_diagnostic.IDE0005.severity = suggestion
-
-# IDE0010: Add missing cases
-dotnet_diagnostic.IDE0010.severity = none
-
-# IDE0058: Expression value is never used
-csharp_style_unused_value_expression_statement_preference = discard_variable:none
-
-# IDE0072: Add missing cases
-dotnet_diagnostic.IDE0072.severity = none
-
-# IDE0130: Namespace does not match folder structure
-dotnet_style_namespace_match_folder = false
-dotnet_diagnostic.IDE0130.severity = none
-
-# IDE0161: Convert to file-scoped namespace
-dotnet_diagnostic.IDE0161.severity = warning
-
-
 # CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive).
 dotnet_diagnostic.CS8509.severity = silent
 
@@ -414,6 +387,31 @@ dotnet_diagnostic.CS8846.severity = silent
 dotnet_diagnostic.CS8907.severity = error
 
 
+# IDE0001: Simplify Names
+dotnet_diagnostic.IDE0001.severity = suggestion
+
+# IDE0002: Simplify Member Access
+dotnet_diagnostic.IDE0002.severity = suggestion
+
+# IDE0005: Using directive is unnecessary
+dotnet_diagnostic.IDE0005.severity = suggestion
+
+# IDE0010: Add missing cases
+dotnet_diagnostic.IDE0010.severity = none
+
+# IDE0058: Expression value is never used
+csharp_style_unused_value_expression_statement_preference = discard_variable:none
+
+# IDE0072: Add missing cases
+dotnet_diagnostic.IDE0072.severity = none
+
+# IDE0080: Remove unnecessary suppression operator
+dotnet_diagnostic.IDE0080.severity = none
+
+# IDE0161: Convert to file-scoped namespace
+dotnet_diagnostic.IDE0161.severity = warning
+
+
 # CA1000: Do not declare static members on generic types
 dotnet_diagnostic.CA1000.severity = none
 
@@ -466,3 +464,7 @@ dotnet_diagnostic.CA2255.severity = none
 # Other custom disabled cases.
 # May be deleted later in the future.
 dotnet_diagnostic.CS0618.severity = silent
+
+# IDE0130: Namespace does not match folder structure
+dotnet_style_namespace_match_folder = false
+dotnet_diagnostic.IDE0130.severity = none
