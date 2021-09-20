@@ -38,7 +38,8 @@
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
 					Text="{StaticResource SettingsPage_SearchTitle}" />
-				<TextBlock Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
+				<TextBlock
+					Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
 				<AutoSuggestBox
 					PlaceholderText="{StaticResource SettingsPage_AutoSuggestBox_PlaceholderText}"
 					Margin="{StaticResource NormalThickness}"
@@ -64,28 +65,42 @@
 					Style="{ThemeResource SubtitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
 					Text="{StaticResource SettingsPage_TitleOption_Fish}" />
 				<StackPanel Style="{ThemeResource RoundedCornerStackPanel}">
-					<TextBlock
-						Style="{ThemeResource OptionItemTextBlock}"
-						Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
-					<TextBlock
-						Style="{ThemeResource LongTextBlock}"
-						Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro}" />
 					<ToggleSwitch
 						x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
 						Margin="{StaticResource NormalThickness}"
 						OnContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent}"
-						OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}" />
+						OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}"
+						Toggled="ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled">
+						<ToggleSwitch.Header>
+							<StackPanel>
+								<TextBlock
+									x:Name="OptionItem_SashimiFishContainsKeywordFinned"
+									Style="{ThemeResource OptionItemTextBlock}"
+									Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
+								<TextBlock
+									Style="{ThemeResource LongTextBlock}"
+									Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro}" />
+							</StackPanel>
+						</ToggleSwitch.Header>
+					</ToggleSwitch>
 
-					<TextBlock
-						Style="{ThemeResource OptionItemTextBlock}"
-						Text="{StaticResource SettingsPage_Option_UseSizedFishName}" />
-					<TextBlock
-						Style="{ThemeResource LongTextBlock}"
-						Text="{StaticResource SettingsPage_Option_UseSizedFishName_Intro}" />
 					<ToggleSwitch
 						x:Name="ToggleSwitch_UseSizedFishName" Margin="{StaticResource NormalThickness}"
 						OnContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OnContent}"
-						OffContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OffContent}" />
+						OffContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OffContent}"
+						Toggled="ToggleSwitch_UseSizedFishName_Toggled">
+						<ToggleSwitch.Header>
+							<StackPanel>
+								<TextBlock
+									x:Name="OptionItem_UseSizedFishName"
+									Style="{ThemeResource OptionItemTextBlock}"
+									Text="{StaticResource SettingsPage_Option_UseSizedFishName}" />
+								<TextBlock
+									Style="{ThemeResource LongTextBlock}"
+									Text="{StaticResource SettingsPage_Option_UseSizedFishName_Intro}" />
+							</StackPanel>
+						</ToggleSwitch.Header>
+					</ToggleSwitch>
 				</StackPanel>
 
 				<!--Technique Priority-->
@@ -97,7 +112,10 @@
 		<!--Buttons-->
 		<Border Grid.Row="1" BorderBrush="White" BorderThickness="0, 1, 0, 0" />
 		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button Margin="40, 40, 40, 40" x:Name="Button_Save" Content="{StaticResource SettingsPage_Save}" />
+			<Button
+				x:Name="Button_Save" Margin="40, 40, 40, 40" IsEnabled="False"
+				Content="{StaticResource SettingsPage_Save}"
+				Click="Button_Save_Click" />
 		</StackPanel>
 	</Grid>
 </Page>

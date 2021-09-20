@@ -1,236 +1,270 @@
-﻿namespace Sudoku.UI.Drawing;
+﻿namespace Sudoku.UI.Data;
 
 /// <summary>
-/// Defines the basic preferences.
+/// Provides with the preference instance.
 /// </summary>
-public interface IPreference : ICloneable<IPreference>
+public sealed class Preference : ICloneable<Preference>
 {
 	/// <summary>
 	/// Indicates whether the form shows candidates.
 	/// </summary>
-	bool ShowCandidates { get; set; }
+	public bool ShowCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates whether the grid painter will use new algorithm to render a region (lighter).
 	/// </summary>
-	bool ShowLightRegion { get; set; }
+	public bool ShowLightRegion { get; set; }
+
+	/// <summary>
+	/// Indicates whether the sashimi fishes are displayed with the modifier "finned", i.e. Finned Sashimi Fish.
+	/// </summary>
+	public bool SashimiFishContainsKeywordFinned { get; set; }
+
+	/// <summary>
+	/// Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..
+	/// </summary>
+	public bool UseSizedFishName { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of values.
 	/// </summary>
-	decimal ValueScale { get; set; }
+	public decimal ValueScale { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of candidates.
 	/// </summary>
-	decimal CandidateScale { get; set; }
+	public decimal CandidateScale { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line width of the sudoku grid to render.
 	/// </summary>
-	double GridLineWidth { get; set; }
+	public double GridLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the block line width of the sudoku grid to render.
 	/// </summary>
-	double BlockLineWidth { get; set; }
+	public double BlockLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the size of the cross-hatching outline width.
 	/// </summary>
-	double CrosshatchingOutlineWidth { get; set; }
+	public double CrosshatchingOutlineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the stroke thickness of the cross-hatching inner cross sign.
 	/// </summary>
-	double CrossSignWidth { get; set; }
+	public double CrossSignWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
-	string? GivenFontName { get; set; }
+	public string? GivenFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of modifiable digits to render.
 	/// </summary>
-	string? ModifiableFontName { get; set; }
+	public string? ModifiableFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font of candidate digits to render.
 	/// </summary>
-	string? CandidateFontName { get; set; }
+	public string? CandidateFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
-	FontStyle GivenFontStyle { get; set; }
+	public FontStyle GivenFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the modifiables.
 	/// </summary>
-	FontStyle ModifiableFontStyle { get; set; }
+	public FontStyle ModifiableFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of the candidates.
 	/// </summary>
-	FontStyle CandidateFontStyle { get; set; }
+	public FontStyle CandidateFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the font style of an unknown identifier.
 	/// </summary>
-	FontStyle UnknownIdentfierFontStyle { get; set; }
+	public FontStyle UnknownIdentfierFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the given digits to render.
 	/// </summary>
-	Color GivenColor { get; set; }
+	public Color GivenColor { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable digits to render.
 	/// </summary>
-	Color ModifiableColor { get; set; }
+	public Color ModifiableColor { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate digits to render.
 	/// </summary>
-	Color CandidateColor { get; set; }
+	public Color CandidateColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color used for painting for focused cells.
 	/// </summary>
-	Color FocusedCellColor { get; set; }
+	public Color FocusedCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	Color EliminationColor { get; set; }
+	public Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	Color CannibalismColor { get; set; }
+	public Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color.
 	/// </summary>
-	Color ChainColor { get; set; }
+	public Color ChainColor { get; set; }
 
 	/// <summary>
 	/// Indicates the background color of the sudoku grid to render.
 	/// </summary>
-	Color BackgroundColor { get; set; }
+	public Color BackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the grid line color of the sudoku grid to render.
 	/// </summary>
-	Color GridLineColor { get; set; }
+	public Color GridLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the block line color of the sudoku grid to render.
 	/// </summary>
-	Color BlockLineColor { get; set; }
+	public Color BlockLineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching outline.
 	/// </summary>
-	Color CrosshatchingOutlineColor { get; set; }
+	public Color CrosshatchingOutlineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching inner.
 	/// </summary>
-	Color CrosshatchingInnerColor { get; set; }
+	public Color CrosshatchingInnerColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the unknown identifier color.
 	/// </summary>
-	Color UnknownIdentifierColor { get; set; }
+	public Color UnknownIdentifierColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the cross sign.
 	/// </summary>
-	Color CrossSignColor { get; set; }
+	public Color CrossSignColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color 1.
 	/// </summary>
-	Color Color1 { get; set; }
+	public Color Color1 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 2.
 	/// </summary>
-	Color Color2 { get; set; }
+	public Color Color2 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 3.
 	/// </summary>
-	Color Color3 { get; set; }
+	public Color Color3 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 4.
 	/// </summary>
-	Color Color4 { get; set; }
+	public Color Color4 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 5.
 	/// </summary>
-	Color Color5 { get; set; }
+	public Color Color5 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 6.
 	/// </summary>
-	Color Color6 { get; set; }
+	public Color Color6 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 7.
 	/// </summary>
-	Color Color7 { get; set; }
+	public Color Color7 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 8.
 	/// </summary>
-	Color Color8 { get; set; }
+	public Color Color8 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 9.
 	/// </summary>
-	Color Color9 { get; set; }
+	public Color Color9 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 10.
 	/// </summary>
-	Color Color10 { get; set; }
+	public Color Color10 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 11.
 	/// </summary>
-	Color Color11 { get; set; }
+	public Color Color11 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 12.
 	/// </summary>
-	Color Color12 { get; set; }
+	public Color Color12 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 13.
 	/// </summary>
-	Color Color13 { get; set; }
+	public Color Color13 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 14.
 	/// </summary>
-	Color Color14 { get; set; }
+	public Color Color14 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 15.
 	/// </summary>
-	Color Color15 { get; set; }
+	public Color Color15 { get; set; }
 
+
+	/// <inheritdoc/>
+	public Preference Clone()
+	{
+		var result = new Preference();
+		foreach (var property in from property in GetType().GetProperties() where property.CanWrite select property)
+		{
+			property.SetValue(result, property.GetValue(this));
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Copies and covers the current instance via the newer instance.
 	/// </summary>
 	/// <param name="newPreferences">The newer instance to copy.</param>
-	void CoverBy(IPreference newPreferences);
+	public void CoverBy(Preference newPreferences)
+	{
+		if (newPreferences is not Preference p)
+		{
+			return;
+		}
+
+		foreach (var property in from property in GetType().GetProperties() where property.CanWrite select property)
+		{
+			property.SetValue(this, property.GetValue(p));
+		}
+	}
+
 
 	/// <summary>
 	/// Try to get the result color value.
@@ -238,7 +272,7 @@ public interface IPreference : ICloneable<IPreference>
 	/// <param name="colorIdentifier">The color identifier.</param>
 	/// <param name="result">The result color got.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	protected internal bool TryGetColor(ColorIdentifier colorIdentifier, out Color result)
+	internal bool TryGetColor(ColorIdentifier colorIdentifier, out Color result)
 	{
 		if (colorIdentifier.UseId)
 		{

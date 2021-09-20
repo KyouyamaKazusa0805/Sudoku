@@ -22,7 +22,17 @@ public sealed partial class SettingsPage : Page
 	/// The collection is <see cref="ICollection{T}"/> of type (<see cref="string"/>, <see cref="string"/>[]).
 	/// Each items will be a <see cref="string"/>[] because the details will be searched by each word.
 	/// </remarks>
-	private readonly ICollection<(string Key, string[] Keywords)> _valuesToBeSearched = new List<(string, string[])>();
+	private readonly List<(string Key, string[] Keywords)> _valuesToBeSearched = new();
+
+	/// <summary>
+	/// Indicates the queue of steps used as temporary records.
+	/// </summary>
+	private readonly List<(Action PreferenceItemSetter, Action Restore)> _intermediateSettingSteps = new();
+
+	/// <summary>
+	/// Indicates the preferences.
+	/// </summary>
+	private readonly Preference _preference = new();
 
 
 	/// <summary>
@@ -35,6 +45,21 @@ public sealed partial class SettingsPage : Page
 		AddPossibleSearchValues(_valuesToBeSearched);
 	}
 
+
+	/// <summary>
+	/// Register the specified step into the step collection. When the <see cref="Button_Save"/>
+	/// is clicked, all steps will be executed.
+	/// </summary>
+	/// <param name="setter">The preference item setter method.</param>
+	/// <param name="effect">The control effect method.</param>
+	/// <param name="restore">The restore method.</param>
+	private void BindSettingStep(Action setter, Action effect, Action restore)
+	{
+		_intermediateSettingSteps.Add((setter, restore));
+
+		Button_Save.IsEnabled = true;
+		effect();
+	}
 
 	/// <summary>
 	/// Add setting property items into the specified collection.
@@ -61,6 +86,7 @@ public sealed partial class SettingsPage : Page
 			}
 		}
 	}
+
 
 	/// <summary>
 	/// Triggers when the value of the property <see cref="AutoSuggestBox.Text"/> is changed.
@@ -107,5 +133,65 @@ public sealed partial class SettingsPage : Page
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Triggers when a <see cref="Button"/> instance is clicked.
+	/// </summary>
+	/// <param name="sender">The <see cref="Button"/> instance triggered the event.</param>
+	/// <param name="e"></param>
+	private void Button_Save_Click(object sender, [Discard] RoutedEventArgs e)
+	{
+		if (sender is not Button button)
+		{
+			return;
+		}
+
+		foreach (var (setter, restore) in _intermediateSettingSteps)
+		{
+			setter();
+			restore();
+		}
+
+		_intermediateSettingSteps.Clear();
+		button.IsEnabled = false;
+	}
+
+	/// <summary>
+	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
+	/// </summary>
+	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
+	/// <param name="e"></param>
+	private void ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(object sender, [Discard] RoutedEventArgs e)
+	{
+		if (sender is not ToggleSwitch { IsOn: var isOn })
+		{
+			return;
+		}
+
+		BindSettingStep(
+			() => _preference.SashimiFishContainsKeywordFinned = isOn,
+			() => OptionItem_SashimiFishContainsKeywordFinned.Foreground = new SolidColorBrush(Colors.Gold),
+			() => OptionItem_SashimiFishContainsKeywordFinned.Foreground = new SolidColorBrush(Colors.White)
+		);
+	}
+
+	/// <summary>
+	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
+	/// </summary>
+	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
+	/// <param name="e"></param>
+	private void ToggleSwitch_UseSizedFishName_Toggled(object sender, [Discard] RoutedEventArgs e)
+	{
+		if (sender is not ToggleSwitch { IsOn: var isOn })
+		{
+			return;
+		}
+
+		BindSettingStep(
+			() => _preference.UseSizedFishName = isOn,
+			() => OptionItem_UseSizedFishName.Foreground = new SolidColorBrush(Colors.Gold),
+			() => OptionItem_UseSizedFishName.Foreground = new SolidColorBrush(Colors.White)
+		);
 	}
 }

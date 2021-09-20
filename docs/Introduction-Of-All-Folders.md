@@ -1,4 +1,4 @@
-﻿﻿# 文件夹介绍
+﻿﻿﻿# 文件夹介绍
 这个解决方案由如下文件夹构成。
 
 ## 项目介绍
@@ -15,7 +15,6 @@
 |        | [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) |                   | 终端  | 仅用于调试代码正确和健壮性。         | 不维护   |
 |        | [`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old) |                   | WPF   | WPF 项目，包含 UI 界面和控件。       | 弃用     |
 |        | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI) |                   | WinUI | WinUI 项目，提供给桌面端的 UI 内容。 |          |
-|        | [`Sudoku.UI.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI.Drawing) |                   | WinUI | 给桌面端提供绘图操作的项目。         |          |
 |        | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) |                   |       | 提供 .NET 库相关的扩展类型和操作。   |          |
 
 ## 其它文件夹介绍

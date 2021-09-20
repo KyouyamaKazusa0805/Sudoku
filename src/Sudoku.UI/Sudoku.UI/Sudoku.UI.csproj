@@ -35,7 +35,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Sudoku.UI.Drawing\Sudoku.UI.Drawing.csproj" />
 		<ProjectReference Include="..\..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
 	</ItemGroup>

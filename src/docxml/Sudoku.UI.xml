@@ -256,6 +256,258 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Preference">
+            <summary>
+            Provides with the preference instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ShowCandidates">
+            <summary>
+            Indicates whether the form shows candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ShowLightRegion">
+            <summary>
+            Indicates whether the grid painter will use new algorithm to render a region (lighter).
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.SashimiFishContainsKeywordFinned">
+            <summary>
+            Indicates whether the sashimi fishes are displayed with the modifier "finned", i.e. Finned Sashimi Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.UseSizedFishName">
+            <summary>
+            Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ValueScale">
+            <summary>
+            Indicates the scale of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateScale">
+            <summary>
+            Indicates the scale of candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.GridLineWidth">
+            <summary>
+            Indicates the grid line width of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.BlockLineWidth">
+            <summary>
+            Indicates the block line width of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CrosshatchingOutlineWidth">
+            <summary>
+            Indicates the size of the cross-hatching outline width.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CrossSignWidth">
+            <summary>
+            Indicates the stroke thickness of the cross-hatching inner cross sign.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.GivenFontName">
+            <summary>
+            Indicates the font of given digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ModifiableFontName">
+            <summary>
+            Indicates the font of modifiable digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateFontName">
+            <summary>
+            Indicates the font of candidate digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.GivenFontStyle">
+            <summary>
+            Indicates the font style of the givens.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ModifiableFontStyle">
+            <summary>
+            Indicates the font style of the modifiables.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateFontStyle">
+            <summary>
+            Indicates the font style of the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.UnknownIdentfierFontStyle">
+            <summary>
+            Indicates the font style of an unknown identifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.GivenColor">
+            <summary>
+            Indicates the given digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ModifiableColor">
+            <summary>
+            Indicates the modifiable digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateColor">
+            <summary>
+            Indicates the candidate digits to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.FocusedCellColor">
+            <summary>
+            Indicates the color used for painting for focused cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.BackgroundColor">
+            <summary>
+            Indicates the background color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.GridLineColor">
+            <summary>
+            Indicates the grid line color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.BlockLineColor">
+            <summary>
+            Indicates the block line color of the sudoku grid to render.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CrosshatchingOutlineColor">
+            <summary>
+            Indicates the color of the crosshatching outline.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CrosshatchingInnerColor">
+            <summary>
+            Indicates the color of the crosshatching inner.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.UnknownIdentifierColor">
+            <summary>
+            Indicates the color of the unknown identifier color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CrossSignColor">
+            <summary>
+            Indicates the color of the cross sign.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color1">
+            <summary>
+            Indicates the color 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color2">
+            <summary>
+            Indicates the color 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color3">
+            <summary>
+            Indicates the color 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color4">
+            <summary>
+            Indicates the color 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color5">
+            <summary>
+            Indicates the color 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color6">
+            <summary>
+            Indicates the color 6.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color7">
+            <summary>
+            Indicates the color 7.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color8">
+            <summary>
+            Indicates the color 8.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color9">
+            <summary>
+            Indicates the color 9.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color10">
+            <summary>
+            Indicates the color 10.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color11">
+            <summary>
+            Indicates the color 11.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color12">
+            <summary>
+            Indicates the color 12.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color13">
+            <summary>
+            Indicates the color 13.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color14">
+            <summary>
+            Indicates the color 14.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.Color15">
+            <summary>
+            Indicates the color 15.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Preference.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.Preference.CoverBy(Sudoku.UI.Data.Preference)">
+            <summary>
+            Copies and covers the current instance via the newer instance.
+            </summary>
+            <param name="newPreferences">The newer instance to copy.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Preference.TryGetColor(Sudoku.Models.ColorIdentifier,Windows.UI.Color@)">
+            <summary>
+            Try to get the result color value.
+            </summary>
+            <param name="colorIdentifier">The color identifier.</param>
+            <param name="result">The result color got.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.UI.Data.SudokuGridCanvas">
             <summary>
             Provides the canvas that stores the sudoku grid details.
@@ -462,10 +714,29 @@
             Each items will be a <see cref="T:System.String"/>[] because the details will be searched by each word.
             </remarks>
         </member>
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._intermediateSettingSteps">
+            <summary>
+            Indicates the queue of steps used as temporary records.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._preference">
+            <summary>
+            Indicates the preferences.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SettingsPage"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.BindSettingStep(System.Action,System.Action,System.Action)">
+            <summary>
+            Register the specified step into the step collection. When the <see cref="F:Sudoku.UI.Pages.MainWindow.SettingsPage.Button_Save"/>
+            is clicked, all steps will be executed.
+            </summary>
+            <param name="setter">The preference item setter method.</param>
+            <param name="effect">The control effect method.</param>
+            <param name="restore">The restore method.</param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AddPossibleSearchValues(System.Collections.Generic.ICollection{System.ValueTuple{System.String,System.String[]}})">
             <summary>
@@ -487,6 +758,27 @@
             </summary>
             <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance that triggers this event.</param>
             <param name="args">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.Button_Save_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when a <see cref="T:Microsoft.UI.Xaml.Controls.Button"/> instance is clicked.
+            </summary>
+            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.Button"/> instance triggered the event.</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance is toggled.
+            </summary>
+            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance toggled.</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_UseSizedFishName_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance is toggled.
+            </summary>
+            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance toggled.</param>
+            <param name="e"></param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeComponent">
             <summary>
