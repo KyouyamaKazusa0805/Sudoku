@@ -54,15 +54,25 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions">UI basic options</x:String>
+	<x:String x:Key="SettingsPage_UiBasicOptions_Description">Here displays the options about the UI, e.g. the appearance of the program that you look.</x:String>
 	<x:String x:Key="SettingsPage_TechniqueOptions">Technique options</x:String>
 	<x:String x:Key="SettingsPage_TechniqueOptions_Description">Here displays the options about the techniques, such as the searching and displaying for a technique.</x:String>
 	<x:String x:Key="SettingsPage_TitleOption_Fish">Fishes</x:String>
-	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent">True (e.g. Finned Sashimi Swordfish)</x:String>
-	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent">False (e.g. Sashimi Swordfish)</x:String>
-	<x:String x:Key="SettingsPage_ToggleSwitch_UseSizedFishName_OnContent">True (e.g. 3-Fish)</x:String>
-	<x:String x:Key="SettingsPage_ToggleSwitch_UseSizedFishName_OffContent">False (e.g. Swordfish)</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_ApplicationTheme_OnContent">Dark theme</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_ApplicationTheme_OffContent">Light theme</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent">On (e.g. Finned Sashimi Swordfish)</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent">Off (e.g. Sashimi Swordfish)</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_UseSizedFishName_OnContent">On (e.g. 3-Fish)</x:String>
+	<x:String x:Key="SettingsPage_ToggleSwitch_UseSizedFishName_OffContent">Off (e.g. Swordfish)</x:String>
 
 	<!--SettingsPage Searching option values-->
+	<x:String x:Key="SettingsPage_Option_ApplicationTheme">The application theme</x:String>
+	<x:String x:Key="SettingsPage_Option_ApplicationTheme_Intro">
+		Change the value via toggling the button to switch the application theme,
+		which makes the whole application displays the controls differently. For example, if using light theme,
+		all controls will be displayed with the black foreground and white background; but if using dark theme,
+		all controls will be displayed with the white foreground and black background.
+	</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">Sashimi fishes contains the keyword "Finned" as technique displaying</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro">
 		Sashimi fishes can also contain the keyword "Finned" as its name, i.e. "Finned Sashimi Fish".

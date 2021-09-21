@@ -27,6 +27,7 @@
 			<Thickness x:Key="SplitViewDefaultPadding">8, 8, 8, 8</Thickness>
 			<Thickness x:Key="NoVerticalThickness">10, 0, 10, 0</Thickness>
 			<Thickness x:Key="NormalThickness">10, 8, 10, 8</Thickness>
+			<Thickness x:Key="NormalThicknessWithoutLeftAndRight">0, 8, 0, 8</Thickness>
 			<Thickness x:Key="DoubleThickness">10, 16, 10, 16</Thickness>
 			<Thickness x:Key="SudokuGridMarginDefault">30, 30, 0, 25</Thickness>
 

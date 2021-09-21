@@ -6,16 +6,6 @@
 public sealed partial class SettingsPage : Page
 {
 	/// <summary>
-	/// Indicates the regular expression that matches a dictionary file name (a <see cref="Uri"/> string).
-	/// </summary>
-	private static readonly Regex DictionaryNameRegex = new(
-		@"Dic_\d{4,5}\.xaml",
-		RegexOptions.IgnoreCase,
-		TimeSpan.FromSeconds(5)
-	);
-
-
-	/// <summary>
 	/// Indicates the list of possible searching option values that is provided to be searched for later.
 	/// </summary>
 	/// <remarks>
@@ -27,7 +17,7 @@ public sealed partial class SettingsPage : Page
 	/// <summary>
 	/// Indicates the queue of steps used as temporary records.
 	/// </summary>
-	private readonly List<PreferenceBinding> _boundSteps = new();
+	private readonly NotifyChangedList<PreferenceBinding> _boundSteps = new();
 
 	/// <summary>
 	/// Indicates the preferences.
@@ -41,69 +31,23 @@ public sealed partial class SettingsPage : Page
 	public SettingsPage()
 	{
 		InitializeComponent();
+		InitializeFields();
 
 		AddPossibleSearchValues(_valuesToBeSearched);
 	}
 
 
 	/// <summary>
-	/// Register the specified step into the step collection. When the <see cref="Button_Save"/>
-	/// is clicked, all steps will be executed.
+	/// Initializes fields.
 	/// </summary>
-	/// <param name="propertyName">
-	/// The name to set. For example, if you want to assign the property <see cref="Preference.ShowCandidates"/>
-	/// to <see langword="true"/>, this argument will be
-	/// <c><see langword="nameof"/>(<see cref="Preference"/>.ShowCandidates)</c> or just
-	/// <c>"ShowCandidates"</c>.
-	/// </param>
-	/// <param name="value">
-	/// The value to set. For example, if you want to assign the property <see cref="Preference.ShowCandidates"/>
-	/// to <see langword="true"/>, this argument will be <c><see langword="true"/></c>.
-	/// </param>
-	/// <param name="control">The control.</param>
-	/// <param name="effect">
-	/// The effect color that <paramref name="control"/> will set its foreground.
-	/// </param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the property name <paramref name="propertyName"/> doesn't exist in the type.
-	/// </exception>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the property found but can't write (i.e. The property <see cref="PropertyInfo.CanWrite"/>
-	/// returns <see langword="false"/>).
-	/// </exception>
-	/// <exception cref="MissingMemberException">
-	/// Throws when the type <see cref="Preference"/> doesn't exist such property
-	/// specified in <paramref name="propertyName"/>.
-	/// </exception>
-	private void BindItem(string propertyName, object value, FrameworkElement control, Color effect)
+	/// <remarks><i>This method is only called by constructor.</i></remarks>
+	private void InitializeFields() => _boundSteps.ElementAdded += (sender, [Discard] _) =>
 	{
-		const string foregroundPropertyName = "Foreground";
-		var foregroundPropertyInfo = control.GetType().GetProperty(foregroundPropertyName);
-
-		_boundSteps.Add(typeof(Preference).GetProperty(propertyName) switch
+		if (sender is NotifyChangedList<PreferenceBinding> { Count: not 0 } i)
 		{
-			null => throw new ArgumentException(
-				$"The property '{propertyName}' doesn't exist in the type {typeof(Preference)}.",
-				nameof(propertyName)
-			),
-			{ CanWrite: false } => throw new InvalidOperationException("The property found but can't write."),
-			var propertyInfo => foregroundPropertyInfo switch
-			{
-				null => throw new MissingMemberException(typeof(Preference).FullName, foregroundPropertyName),
-				_ => new PreferenceBinding(
-					control,
-					() => propertyInfo.SetValue(_preference, value),
-					control => foregroundPropertyInfo.SetValue(
-						control,
-						new SolidColorBrush(ApplicationRequestedThemes.GetForegroundColor())
-					)
-				)
-			}
-		});
-
-		Button_Save.SetValue(IsEnabledProperty, true);
-		foregroundPropertyInfo.SetValue(control, new SolidColorBrush(effect));
-	}
+			Button_Save.SetValue(IsEnabledProperty, true);
+		}
+	};
 
 	/// <summary>
 	/// Add setting property items into the specified collection.
@@ -116,10 +60,7 @@ public sealed partial class SettingsPage : Page
 		const string q = "_Intro"; // Of length 6.
 		const int l = 20, m = 6; // The length of 'p' and 'q'.
 
-		foreach (var mergedDictionary in
-			from mergedDictionary in Application.Current.Resources.MergedDictionaries
-			where DictionaryNameRegex.IsMatch(mergedDictionary.Source.ToString())
-			select mergedDictionary)
+		foreach (var mergedDictionary in UiResources.Dictionaries)
 		{
 			foreach (var kvp in mergedDictionary)
 			{
@@ -226,11 +167,11 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		BindItem(
-			nameof(Preference.SashimiFishContainsKeywordFinned),
-			isOn,
-			OptionItem_SashimiFishContainsKeywordFinned,
-			Colors.Gold
+		_boundSteps.Add(
+			new(
+				OptionItem_SashimiFishContainsKeywordFinned,
+				() => _preference.SashimiFishContainsKeywordFinned = isOn
+			)
 		);
 	}
 
@@ -246,11 +187,34 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
-		BindItem(
-			nameof(Preference.UseSizedFishName),
-			isOn,
-			OptionItem_UseSizedFishName,
-			Colors.Gold
+		_boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
+	}
+
+	/// <summary>
+	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
+	/// </summary>
+	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
+	/// <param name="e"></param>
+	private void ToggleSwitch_ApplicationTheme_Toggled(object sender, [Discard] RoutedEventArgs e)
+	{
+		if (sender is not ToggleSwitch { IsOn: var isOn })
+		{
+			return;
+		}
+
+		_boundSteps.Add(
+			new(
+				OptionItem_ApplicationTheme,
+				() =>
+				{
+					var resultTheme = isOn ? ApplicationTheme.Dark : ApplicationTheme.Light;
+
+					_preference.ApplicationTheme = resultTheme;
+#if !DEBUG
+					Application.Current.RequestedTheme = resultTheme;
+#endif
+				}
+			)
 		);
 	}
 }

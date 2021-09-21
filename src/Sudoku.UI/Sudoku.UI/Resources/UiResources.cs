@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Resources;
+﻿#pragma warning disable
+
+namespace Sudoku.UI.Resources;
 
 /// <summary>
 /// Provides the methods that handles with resource dictionary.
@@ -29,4 +31,10 @@ internal sealed class UiResources : DynamicObject
 	/// </para>
 	/// </remarks>
 	public static readonly dynamic Current = new UiResources();
+
+
+	/// <summary>
+	/// A simplified way to get the resource dictonaries.
+	/// </summary>
+	public static extern IEnumerable<ResourceDictionary> Dictionaries { get; }
 }

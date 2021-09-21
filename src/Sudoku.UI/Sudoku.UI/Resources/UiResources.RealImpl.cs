@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Resources;
+﻿using System.Text.RegularExpressions;
+
+namespace Sudoku.UI.Resources;
 
 /// <summary>
 /// Provides the methods that handles with resource dictionary.
@@ -24,6 +26,24 @@ internal sealed class UiResources : DynamicObject
 	/// </para>
 	/// </remarks>
 	public static readonly dynamic Current = new UiResources();
+
+	/// <summary>
+	/// Indicates the regular expression that matches a dictionary file name (a <see cref="Uri"/> string).
+	/// </summary>
+	private static readonly Regex DictionaryNameRegex = new(
+		@"Dic_\d{4,5}\.xaml",
+		RegexOptions.IgnoreCase,
+		TimeSpan.FromSeconds(5)
+	);
+
+
+	/// <summary>
+	/// A simplified way to get the resource dictonaries.
+	/// </summary>
+	public static IEnumerable<ResourceDictionary> Dictionaries =>
+		from mergedDictionary in Application.Current.Resources.MergedDictionaries
+		where DictionaryNameRegex.IsMatch(mergedDictionary.Source.ToString())
+		select mergedDictionary;
 
 
 	/// <inheritdoc/>

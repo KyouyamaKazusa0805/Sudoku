@@ -91,6 +91,11 @@ public sealed class Preference : ICloneable<Preference>
 	public FontStyle UnknownIdentfierFontStyle { get; set; }
 
 	/// <summary>
+	/// Indicates the application theme that the program behaves and displays the UI.
+	/// </summary>
+	public ApplicationTheme ApplicationTheme { get; set; }
+
+	/// <summary>
 	/// Indicates the given digits to render.
 	/// </summary>
 	public Color GivenColor { get; set; }

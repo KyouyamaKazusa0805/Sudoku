@@ -4,19 +4,24 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:q="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
+	xmlns:c="using:Sudoku.UI.Data.ValueConverters"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Resources>
 		<Style x:Key="LongTextBlock" TargetType="TextBlock">
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 		</Style>
+		<Style x:Key="LongTextBlockInner" TargetType="TextBlock">
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="Margin" Value="{StaticResource NormalThicknessWithoutLeftAndRight}" />
+		</Style>
 		<Style x:Key="OptionItemTextBlock" TargetType="TextBlock">
-			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="18" />
 		</Style>
 		<Style x:Key="RoundedCornerStackPanel" TargetType="StackPanel">
 			<Setter Property="Margin" Value="{StaticResource NormalThickness}" />
+			<Setter Property="Padding" Value="{StaticResource NormalThickness}" />
 			<Setter Property="BorderBrush" Value="White" />
 			<Setter Property="BorderThickness" Value="1.8" />
 			<Setter Property="Background" Value="#20CCCCCC" />
@@ -43,15 +48,38 @@
 				<AutoSuggestBox
 					PlaceholderText="{StaticResource SettingsPage_AutoSuggestBox_PlaceholderText}"
 					Margin="{StaticResource NormalThickness}"
+					CornerRadius="{x:Bind c:CornerRadiusCalculator.Create(FontSize)}"
 					TextChanged="AutoSuggestBox_OptionSearcher_TextChanged"
 					SuggestionChosen="AutoSuggestBox_OptionSearcher_SuggestionChosen" />
 
 				<!--Basic options-->
-				<!--
 				<TextBlock
 					Style="{ThemeResource TitleTextBlockStyle}" Margin="{StaticResource DoubleThickness}"
 					Text="{StaticResource SettingsPage_UiBasicOptions}" />
-				-->
+				<TextBlock
+					Style="{ThemeResource LongTextBlock}"
+					Text="{StaticResource SettingsPage_UiBasicOptions_Description}" />
+
+				<StackPanel Style="{ThemeResource RoundedCornerStackPanel}">
+					<ToggleSwitch
+						x:Name="ToggleSwitch_ApplicationTheme"
+						Margin="{StaticResource NormalThickness}"
+						OnContent="{StaticResource SettingsPage_ToggleSwitch_ApplicationTheme_OnContent}"
+						OffContent="{StaticResource SettingsPage_ToggleSwitch_ApplicationTheme_OffContent}"
+						Toggled="ToggleSwitch_ApplicationTheme_Toggled">
+						<ToggleSwitch.Header>
+							<StackPanel>
+								<TextBlock
+									x:Name="OptionItem_ApplicationTheme"
+									Style="{ThemeResource OptionItemTextBlock}"
+									Text="{StaticResource SettingsPage_Option_ApplicationTheme}" />
+								<TextBlock
+									Style="{ThemeResource LongTextBlockInner}"
+									Text="{StaticResource SettingsPage_Option_ApplicationTheme_Intro}" />
+							</StackPanel>
+						</ToggleSwitch.Header>
+					</ToggleSwitch>
+				</StackPanel>
 
 				<!--Technique options-->
 				<TextBlock
@@ -78,7 +106,7 @@
 									Style="{ThemeResource OptionItemTextBlock}"
 									Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
 								<TextBlock
-									Style="{ThemeResource LongTextBlock}"
+									Style="{ThemeResource LongTextBlockInner}"
 									Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro}" />
 							</StackPanel>
 						</ToggleSwitch.Header>
@@ -96,7 +124,7 @@
 									Style="{ThemeResource OptionItemTextBlock}"
 									Text="{StaticResource SettingsPage_Option_UseSizedFishName}" />
 								<TextBlock
-									Style="{ThemeResource LongTextBlock}"
+									Style="{ThemeResource LongTextBlockInner}"
 									Text="{StaticResource SettingsPage_Option_UseSizedFishName_Intro}" />
 							</StackPanel>
 						</ToggleSwitch.Header>
