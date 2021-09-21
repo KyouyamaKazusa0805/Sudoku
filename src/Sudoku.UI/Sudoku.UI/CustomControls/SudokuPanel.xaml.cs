@@ -12,14 +12,14 @@ public sealed partial class SudokuPanel : UserControl
 	{
 		InitializeComponent();
 
-		GridCanvas = new(MainSudokuGrid);
+		InitializeProperties();
 	}
 
 
 	/// <summary>
 	/// Indicates the grid canvas.
 	/// </summary>
-	public SudokuGridCanvas GridCanvas { get; }
+	public SudokuGridCanvas GridCanvas { get; private set; } = null!;
 
 
 	/// <summary>
