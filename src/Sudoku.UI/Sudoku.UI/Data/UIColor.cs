@@ -351,7 +351,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// <seealso cref="UIColor(double, double, double, double)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static byte ArgbArgCheck(double arg, [CallerArgumentExpression("arg")] string? argName = null) =>
-		(byte)(int)(byte.MaxValue * (arg is >= 0 and <= 1 ? arg : throw new ArgumentOutOfRangeException(argName)));
+		(byte)(byte.MaxValue * (arg is >= 0 and <= 1 ? arg : throw new ArgumentOutOfRangeException(argName)));
 
 
 	/// <summary>
