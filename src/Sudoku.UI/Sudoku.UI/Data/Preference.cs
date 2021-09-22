@@ -33,9 +33,9 @@ public sealed class Preference : ICloneable<Preference>
 
 	/// <summary>
 	/// <para>Indicates the scale of candidates.</para>
-	/// <para>The default value is <c>0.2(6)</c>, i.e. <c>4.0 / 15.0</c>.</para>
+	/// <para>The default value is <c>0.8</c>, i.e. <c>12.0 / 15.0</c>.</para>
 	/// </summary>
-	public decimal CandidateScale { get; set; } = 4M / 15M;
+	public decimal CandidateScale { get; set; } = 12M / 15M;
 
 	/// <summary>
 	/// <para>Indicates the grid line width of the sudoku grid to render.</para>

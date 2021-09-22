@@ -175,7 +175,7 @@ public sealed record class SudokuGridCanvas(
 							? Preference.CandidateColorLight
 							: Preference.CandidateColorDark
 					),
-					FontSize = (double)(60 * Preference.CandidateScale),
+					FontSize = (double)(60M * Preference.CandidateScale / 3M),
 					FontFamily = new(Preference.CandidateFontName),
 					FontStyle = Preference.CandidateFontStyle,
 					HorizontalAlignment = HorizontalAlignment.Center,
