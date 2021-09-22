@@ -341,15 +341,18 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// </summary>
 	/// <param name="arg">The argument to check.</param>
 	/// <param name="argName">
-	/// The argument name. This argument will be automatically generated the value,
+	/// <para>Indicates the argument name.</para>
+	/// <para>
+	/// This argument will be automatically generated the value,
 	/// so you don't need to re-assign a new value, because this argument is marked
-	/// <c>[<see cref="CallerArgumentExpressionAttribute"/>("arg")]</c>.
+	/// <c>[CallerArgumentExpression("arg")]</c>.
+	/// </para>
 	/// </param>
 	/// <returns>The result converted.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when argument is invalid.</exception>
 	/// <seealso cref="UIColor(double, double, double)"/>
 	/// <seealso cref="UIColor(double, double, double, double)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[MethodImpl(MethodImplOptions.NoInlining)]
 	private static byte ArgbArgCheck(double arg, [CallerArgumentExpression("arg")] string? argName = null) =>
 		(byte)(byte.MaxValue * (arg is >= 0 and <= 1 ? arg : throw new ArgumentOutOfRangeException(argName)));
 

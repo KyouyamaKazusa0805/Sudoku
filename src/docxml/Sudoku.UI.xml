@@ -983,7 +983,7 @@
         <member name="M:Sudoku.UI.Data.UIColor.TryParse(System.String,Sudoku.UI.Data.UIColor@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Data.UIColor.ArgbArgumentCheck(System.Double,System.String)">
+        <member name="M:Sudoku.UI.Data.UIColor.ArgbArgCheck(System.Double,System.String)">
             <summary>
             The argument checking method that is only used in constructor
             <see cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double)"/> and <see cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double,System.Double)"/>
@@ -992,7 +992,14 @@
             an <see cref="T:System.ArgumentOutOfRangeException"/> instance will be thrown.
             </summary>
             <param name="arg">The argument to check.</param>
-            <param name="argName">The argument name.</param>
+            <param name="argName">
+            <para>Indicates the argument name.</para>
+            <para>
+            This argument will be automatically generated the value,
+            so you don't need to re-assign a new value, because this argument is marked
+            <c>[CallerArgumentExpression("arg")]</c>.
+            </para>
+            </param>
             <returns>The result converted.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is invalid.</exception>
             <seealso cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double)"/>
