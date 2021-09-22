@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:q="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="q"
-	xmlns:c="using:Sudoku.UI.CustomControls" xmlns:data="using:Sudoku.UI.Data"
+	xmlns:c="using:Sudoku.UI.CustomControls"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	NavigationCacheMode="Enabled">
 
@@ -32,13 +32,10 @@
 				</NavigationView.MenuItems>
 			</NavigationView>
 			-->
+			<!--
 			<CommandBar
 				Grid.Row="1" Background="Transparent"
 				IsOpen="False" DefaultLabelPosition="Right">
-				<!--
-				<CommandBar.SecondaryCommands />
-				-->
-
 				<AppBarButton Icon="Add" Label="{StaticResource SudokuPage_AppBarButton_Open}">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control" Key="O" />
@@ -51,6 +48,7 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 			</CommandBar>
+			-->
 			<TextBox
 				x:Name="TextBox_Info" Grid.Row="2" Grid.ColumnSpan="2" IsReadOnly="True" Height="100"
 				PlaceholderText="{StaticResource SudokuPage_TextBox_Info_PlaceholderText}" />

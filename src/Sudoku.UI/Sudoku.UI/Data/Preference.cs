@@ -26,24 +26,28 @@ public sealed class Preference : ICloneable<Preference>
 	public bool UseSizedFishName { get; set; }
 
 	/// <summary>
-	/// Indicates the scale of values.
+	/// <para>Indicates the scale of values.</para>
+	/// <para>The default value is <c>0.(6)</c>, i.e. <c>2.0 / 3.0</c>.</para>
 	/// </summary>
-	public decimal ValueScale { get; set; }
+	public decimal ValueScale { get; set; } = 2M / 3M;
 
 	/// <summary>
-	/// Indicates the scale of candidates.
+	/// <para>Indicates the scale of candidates.</para>
+	/// <para>The default value is <c>0.2(6)</c>, i.e. <c>4.0 / 15.0</c>.</para>
 	/// </summary>
-	public decimal CandidateScale { get; set; }
+	public decimal CandidateScale { get; set; } = 4M / 15M;
 
 	/// <summary>
-	/// Indicates the grid line width of the sudoku grid to render.
+	/// <para>Indicates the grid line width of the sudoku grid to render.</para>
+	/// <para>The default value is <c>1</c>.</para>
 	/// </summary>
-	public double GridLineWidth { get; set; }
+	public double GridLineWidth { get; set; } = 1;
 
 	/// <summary>
-	/// Indicates the block line width of the sudoku grid to render.
+	/// <para>Indicates the block line width of the sudoku grid to render.</para>
+	/// <para>The default value is <c>3</c>.</para>
 	/// </summary>
-	public double BlockLineWidth { get; set; }
+	public double BlockLineWidth { get; set; } = 3;
 
 	/// <summary>
 	/// Indicates the size of the cross-hatching outline width.
@@ -56,39 +60,78 @@ public sealed class Preference : ICloneable<Preference>
 	public double CrossSignWidth { get; set; }
 
 	/// <summary>
+	/// <para>Indicates the width of the highlight cell borders.</para>
+	/// <para>The default value is <c>1.5</c>.</para>
+	/// </summary>
+	public double CellBorderWidth { get; set; } = 1.5;
+
+	/// <summary>
+	/// <para>Indicates the width of the highlight candidate borders.</para>
+	/// <para>The default value is <c>1.5</c>.</para>
+	/// </summary>
+	public double CandidateBorderWidth { get; set; } = 1.5;
+
+	/// <summary>
+	/// <para>Indicates the width of the highlight region borders.</para>
+	/// <para>The default value is <c>1.5</c>.</para>
+	/// </summary>
+	public double RegionBorderWidth { get; set; } = 1.5;
+
+#if AUTHOR_RESERVED
+	/// <summary>
+	/// <para>Indicates the font of given digits to render.</para>
+	/// <para>The default value is <c>Fira Code</c>.</para>
+	/// </summary>
+	public string? GivenFontName { get; set; } = "Fira Code";
+#else
+	/// <summary>
 	/// Indicates the font of given digits to render.
 	/// </summary>
 	public string? GivenFontName { get; set; }
+#endif
 
+#if AUTHOR_RESERVED
+	/// <summary>
+	/// <para>Indicates the font of modifiable digits to render.</para>
+	/// <para>The default value is <c>Fira Code</c>.</para>
+	/// </summary>
+	public string? ModifiableFontName { get; set; } = "Fira Code";
+#else
 	/// <summary>
 	/// Indicates the font of modifiable digits to render.
 	/// </summary>
 	public string? ModifiableFontName { get; set; }
+#endif
 
 	/// <summary>
-	/// Indicates the font of candidate digits to render.
+	/// <para>Indicates the font of candidate digits to render.</para>
+	/// <para>The default value is <c>Times New Roman</c>.</para>
 	/// </summary>
-	public string? CandidateFontName { get; set; }
+	public string? CandidateFontName { get; set; } = "Times New Roman";
 
 	/// <summary>
-	/// Indicates the font style of the givens.
+	/// <para>Indicates the font style of the givens.</para>
+	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle GivenFontStyle { get; set; }
+	public FontStyle GivenFontStyle { get; set; } = FontStyle.Normal;
 
 	/// <summary>
-	/// Indicates the font style of the modifiables.
+	/// <para>Indicates the font style of the modifiables.</para>
+	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle ModifiableFontStyle { get; set; }
+	public FontStyle ModifiableFontStyle { get; set; } = FontStyle.Normal;
 
 	/// <summary>
-	/// Indicates the font style of the candidates.
+	/// <para>Indicates the font style of the candidates.</para>
+	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle CandidateFontStyle { get; set; }
+	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Normal;
 
 	/// <summary>
-	/// Indicates the font style of an unknown identifier.
+	/// <para>Indicates the font style of an unknown identifier.</para>
+	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle UnknownIdentfierFontStyle { get; set; }
+	public FontStyle UnknownIdentfierFontStyle { get; set; } = FontStyle.Normal;
 
 	/// <summary>
 	/// Indicates the application theme that the program behaves and displays the UI.
@@ -96,149 +139,247 @@ public sealed class Preference : ICloneable<Preference>
 	public ApplicationTheme ApplicationTheme { get; set; }
 
 	/// <summary>
-	/// Indicates the given digits to render.
+	/// <para>Indicates the given digits to render which is used in light mode.</para>
+	/// <para>The default value is <c>~<see cref="Colors.WhiteSmoke"/></c>.</para>
 	/// </summary>
-	public Color GivenColor { get; set; }
+	public UIColor GivenColorLight { get; set; } = ~(UIColor)Colors.WhiteSmoke;
 
 	/// <summary>
-	/// Indicates the modifiable digits to render.
+	/// <para>Indicates the given digits to render which is used in dark mode.</para>
+	/// <para>The default value is <c><see cref="Colors.WhiteSmoke"/></c>.</para>
 	/// </summary>
-	public Color ModifiableColor { get; set; }
+	public UIColor GivenColorDark { get; set; } = Colors.WhiteSmoke;
 
 	/// <summary>
-	/// Indicates the candidate digits to render.
+	/// Indicates the color that renders modifiable digits which is used in light mode.
 	/// </summary>
-	public Color CandidateColor { get; set; }
+	public UIColor ModifiableColorLight { get; set; } = Colors.Blue;
+
+	/// <summary>
+	/// <para>Indicates the color that renders modifiable digits which is used in dark mode.</para>
+	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor ModifiableColorDark { get; set; } = new(86, 156, 214);
+
+	/// <summary>
+	/// <para>Indicates the candidate digits to render which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Gray"/></c>.</para>
+	/// </summary>
+	public UIColor CandidateColorLight { get; set; } = Colors.Gray;
+
+	/// <summary>
+	/// <para>Indicates the candidate digits to render which is used in dark mode.</para>
+	/// <para>The default value is <c>~<see cref="Colors.Gray"/></c>.</para>
+	/// </summary>
+	public UIColor CandidateColorDark { get; set; } = ~(UIColor)Colors.Gray;
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight cell borders which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
+	/// </summary>
+	public UIColor CellBorderColorLight { get; set; } = Colors.Blue;
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight cell borders which is used in dark mode.</para>
+	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor CellBorderColorDark { get; set; } = new(86, 156, 214);
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight candidate borders which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
+	/// </summary>
+	public UIColor CandidateBorderColorLight { get; set; } = Colors.Blue;
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight candidate borders which is used in dark mode.</para>
+	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor CandidateBorderColorDark { get; set; } = new(86, 156, 214);
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight region borders which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
+	/// </summary>
+	public UIColor RegionBorderColorLight { get; set; } = Colors.Blue;
+
+	/// <summary>
+	/// <para>Indicates the color of the highlight region borders which is used in dark mode.</para>
+	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor RegionBorderColorDark { get; set; } = new(86, 156, 214);
+
+	/// <summary>
+	/// <para>Indicates the background color of the highlight cell borders which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+	/// </summary>
+	public UIColor CellBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+
+	/// <summary>
+	/// <para>Indicates the background color of the highlight cell borders which is used in dark mode.</para>
+	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor CellBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
+
+	/// <summary>
+	/// <para>
+	/// Indicates the background color of the highlight candidate borders which is used in light mode.
+	/// </para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+	/// </summary>
+	public UIColor CandidateBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+
+	/// <summary>
+	/// <para>
+	/// Indicates the background color of the highlight candidate borders which is used in dark mode.
+	/// </para>
+	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor CandidateBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
+
+	/// <summary>
+	/// <para>Indicates the background color of the highlight region borders which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+	/// </summary>
+	public UIColor RegionBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+
+	/// <summary>
+	/// <para>Indicates the background color of the highlight region borders which is used in dark mode.</para>
+	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
+	/// </summary>
+	public UIColor RegionBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
 
 	/// <summary>
 	/// Indicates the color used for painting for focused cells.
 	/// </summary>
-	public Color FocusedCellColor { get; set; }
+	public UIColor FocusedCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	public Color EliminationColor { get; set; }
+	public UIColor EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	public Color CannibalismColor { get; set; }
+	public UIColor CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color.
 	/// </summary>
-	public Color ChainColor { get; set; }
+	public UIColor ChainColor { get; set; }
 
 	/// <summary>
 	/// Indicates the background color of the sudoku grid to render.
 	/// </summary>
-	public Color BackgroundColor { get; set; }
+	public UIColor BackgroundColor { get; set; }
 
 	/// <summary>
-	/// Indicates the grid line color of the sudoku grid to render.
+	/// <para>Indicates the grid line color of the sudoku grid to render which is used in light mode.</para>
+	/// <para>The default value is <c><see cref="Colors.Black"/></c>.</para>
 	/// </summary>
-	public Color GridLineColor { get; set; }
+	public UIColor GridLineColorLight { get; set; } = Colors.Black;
 
 	/// <summary>
-	/// Indicates the block line color of the sudoku grid to render.
+	/// <para>Indicates the grid line color of the sudoku grid to render which is used in dark mode.</para>
+	/// <para>The default value is <c><see cref="Colors.White"/></c>.</para>
 	/// </summary>
-	public Color BlockLineColor { get; set; }
+	public UIColor GridLineColorDark { get; set; } = Colors.White;
 
 	/// <summary>
 	/// Indicates the color of the crosshatching outline.
 	/// </summary>
-	public Color CrosshatchingOutlineColor { get; set; }
+	public UIColor CrosshatchingOutlineColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching inner.
 	/// </summary>
-	public Color CrosshatchingInnerColor { get; set; }
+	public UIColor CrosshatchingInnerColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the unknown identifier color.
 	/// </summary>
-	public Color UnknownIdentifierColor { get; set; }
+	public UIColor UnknownIdentifierColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the cross sign.
 	/// </summary>
-	public Color CrossSignColor { get; set; }
+	public UIColor CrossSignColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color 1.
 	/// </summary>
-	public Color Color1 { get; set; }
+	public UIColor Color1 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 2.
 	/// </summary>
-	public Color Color2 { get; set; }
+	public UIColor Color2 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 3.
 	/// </summary>
-	public Color Color3 { get; set; }
+	public UIColor Color3 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 4.
 	/// </summary>
-	public Color Color4 { get; set; }
+	public UIColor Color4 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 5.
 	/// </summary>
-	public Color Color5 { get; set; }
+	public UIColor Color5 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 6.
 	/// </summary>
-	public Color Color6 { get; set; }
+	public UIColor Color6 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 7.
 	/// </summary>
-	public Color Color7 { get; set; }
+	public UIColor Color7 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 8.
 	/// </summary>
-	public Color Color8 { get; set; }
+	public UIColor Color8 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 9.
 	/// </summary>
-	public Color Color9 { get; set; }
+	public UIColor Color9 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 10.
 	/// </summary>
-	public Color Color10 { get; set; }
+	public UIColor Color10 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 11.
 	/// </summary>
-	public Color Color11 { get; set; }
+	public UIColor Color11 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 12.
 	/// </summary>
-	public Color Color12 { get; set; }
+	public UIColor Color12 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 13.
 	/// </summary>
-	public Color Color13 { get; set; }
+	public UIColor Color13 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 14.
 	/// </summary>
-	public Color Color14 { get; set; }
+	public UIColor Color14 { get; set; }
 
 	/// <summary>
 	/// Indicates the color 15.
 	/// </summary>
-	public Color Color15 { get; set; }
+	public UIColor Color15 { get; set; }
 
 
 	/// <inheritdoc/>

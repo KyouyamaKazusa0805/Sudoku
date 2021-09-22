@@ -240,6 +240,11 @@
             Indicates the grid canvas.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.CustomControls.SudokuPanel.Preference">
+            <summary>
+            Indicates the preference used.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.MainSudokuGrid_DragEnterAsync(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
             <summary>
             Triggers when the specified object received a file that dragged-and-dropped here.
@@ -289,22 +294,26 @@
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ValueScale">
             <summary>
-            Indicates the scale of values.
+            <para>Indicates the scale of values.</para>
+            <para>The default value is <c>0.(6)</c>, i.e. <c>2.0 / 3.0</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CandidateScale">
             <summary>
-            Indicates the scale of candidates.
+            <para>Indicates the scale of candidates.</para>
+            <para>The default value is <c>0.2(6)</c>, i.e. <c>4.0 / 15.0</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.GridLineWidth">
             <summary>
-            Indicates the grid line width of the sudoku grid to render.
+            <para>Indicates the grid line width of the sudoku grid to render.</para>
+            <para>The default value is <c>1</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.BlockLineWidth">
             <summary>
-            Indicates the block line width of the sudoku grid to render.
+            <para>Indicates the block line width of the sudoku grid to render.</para>
+            <para>The default value is <c>3</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CrosshatchingOutlineWidth">
@@ -317,39 +326,64 @@
             Indicates the stroke thickness of the cross-hatching inner cross sign.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Data.Preference.CellBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight cell borders.</para>
+            <para>The default value is <c>1.5</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight candidate borders.</para>
+            <para>The default value is <c>1.5</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.RegionBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight region borders.</para>
+            <para>The default value is <c>1.5</c>.</para>
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Data.Preference.GivenFontName">
             <summary>
-            Indicates the font of given digits to render.
+            <para>Indicates the font of given digits to render.</para>
+            <para>The default value is <c>Fira Code</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ModifiableFontName">
             <summary>
-            Indicates the font of modifiable digits to render.
+            <para>Indicates the font of modifiable digits to render.</para>
+            <para>The default value is <c>Fira Code</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CandidateFontName">
             <summary>
-            Indicates the font of candidate digits to render.
+            <para>Indicates the font of candidate digits to render.</para>
+            <para>The default value is <c>Times New Roman</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.GivenFontStyle">
             <summary>
-            Indicates the font style of the givens.
+            <para>Indicates the font style of the givens.</para>
+            <para>The default value is <c><see cref="F:Windows.UI.Text.FontStyle.Normal"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ModifiableFontStyle">
             <summary>
-            Indicates the font style of the modifiables.
+            <para>Indicates the font style of the modifiables.</para>
+            <para>The default value is <c><see cref="F:Windows.UI.Text.FontStyle.Normal"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CandidateFontStyle">
             <summary>
-            Indicates the font style of the candidates.
+            <para>Indicates the font style of the candidates.</para>
+            <para>The default value is <c><see cref="F:Windows.UI.Text.FontStyle.Normal"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.UnknownIdentfierFontStyle">
             <summary>
-            Indicates the font style of an unknown identifier.
+            <para>Indicates the font style of an unknown identifier.</para>
+            <para>The default value is <c><see cref="F:Windows.UI.Text.FontStyle.Normal"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ApplicationTheme">
@@ -357,19 +391,115 @@
             Indicates the application theme that the program behaves and displays the UI.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Preference.GivenColor">
+        <member name="P:Sudoku.UI.Data.Preference.GivenColorLight">
             <summary>
-            Indicates the given digits to render.
+            <para>Indicates the given digits to render which is used in light mode.</para>
+            <para>The default value is <c>~<see cref="P:Microsoft.UI.Colors.WhiteSmoke"/></c>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Preference.ModifiableColor">
+        <member name="P:Sudoku.UI.Data.Preference.GivenColorDark">
             <summary>
-            Indicates the modifiable digits to render.
+            <para>Indicates the given digits to render which is used in dark mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.WhiteSmoke"/></c>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Preference.CandidateColor">
+        <member name="P:Sudoku.UI.Data.Preference.ModifiableColorLight">
             <summary>
-            Indicates the candidate digits to render.
+            Indicates the color that renders modifiable digits which is used in light mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.ModifiableColorDark">
+            <summary>
+            <para>Indicates the color that renders modifiable digits which is used in dark mode.</para>
+            <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateColorLight">
+            <summary>
+            <para>Indicates the candidate digits to render which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Gray"/></c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateColorDark">
+            <summary>
+            <para>Indicates the candidate digits to render which is used in dark mode.</para>
+            <para>The default value is <c>~<see cref="P:Microsoft.UI.Colors.Gray"/></c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CellBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight cell borders which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CellBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight cell borders which is used in dark mode.</para>
+            <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight candidate borders which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight candidate borders which is used in dark mode.</para>
+            <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.RegionBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight region borders which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.RegionBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight region borders which is used in dark mode.</para>
+            <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CellBorderBackgroundColorLight">
+            <summary>
+            <para>Indicates the background color of the highlight cell borders which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CellBorderBackgroundColorDark">
+            <summary>
+            <para>Indicates the background color of the highlight cell borders which is used in dark mode.</para>
+            <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateBorderBackgroundColorLight">
+            <summary>
+            <para>
+            Indicates the background color of the highlight candidate borders which is used in light mode.
+            </para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.CandidateBorderBackgroundColorDark">
+            <summary>
+            <para>
+            Indicates the background color of the highlight candidate borders which is used in dark mode.
+            </para>
+            <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.RegionBorderBackgroundColorLight">
+            <summary>
+            <para>Indicates the background color of the highlight region borders which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Blue"/></c> with the alpha <c>64</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Preference.RegionBorderBackgroundColorDark">
+            <summary>
+            <para>Indicates the background color of the highlight region borders which is used in dark mode.</para>
+            <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.FocusedCellColor">
@@ -397,14 +527,16 @@
             Indicates the background color of the sudoku grid to render.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Preference.GridLineColor">
+        <member name="P:Sudoku.UI.Data.Preference.GridLineColorLight">
             <summary>
-            Indicates the grid line color of the sudoku grid to render.
+            <para>Indicates the grid line color of the sudoku grid to render which is used in light mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.Black"/></c>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.Preference.BlockLineColor">
+        <member name="P:Sudoku.UI.Data.Preference.GridLineColorDark">
             <summary>
-            Indicates the block line color of the sudoku grid to render.
+            <para>Indicates the grid line color of the sudoku grid to render which is used in dark mode.</para>
+            <para>The default value is <c><see cref="P:Microsoft.UI.Colors.White"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CrosshatchingOutlineColor">
@@ -600,6 +732,9 @@
             <summary>
             Provides the canvas that stores the sudoku grid details.
             </summary>
+            <param name="Preference">
+            Indicates the <see cref="T:Sudoku.UI.Data.Preference"/> instance that stores the base settings.
+            </param>
             <param name="BaseGrid">
             The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
             </param>
@@ -615,10 +750,13 @@
             Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
             </param>
         </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.Border[],Microsoft.UI.Xaml.Shapes.Ellipse[],Microsoft.UI.Xaml.Controls.Border[])">
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Sudoku.UI.Data.Preference,Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.Border[],Microsoft.UI.Xaml.Shapes.Ellipse[],Microsoft.UI.Xaml.Controls.Border[])">
             <summary>
             Provides the canvas that stores the sudoku grid details.
             </summary>
+            <param name="Preference">
+            Indicates the <see cref="T:Sudoku.UI.Data.Preference"/> instance that stores the base settings.
+            </param>
             <param name="BaseGrid">
             The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
             </param>
@@ -639,11 +777,12 @@
             Indicates the solver that checks the uniqueness of sudoku puzzles.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Microsoft.UI.Xaml.Controls.Grid)">
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.#ctor(Sudoku.UI.Data.Preference,Microsoft.UI.Xaml.Controls.Grid)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Data.SudokuGridCanvas"/> instance with the specified <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance
             indicating the base control stores those values.
             </summary>
+            <param name="preference">Indicates the <see cref="T:Sudoku.UI.Data.Preference"/> instance.</param>
             <param name="baseGrid">The base <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
         </member>
         <member name="M:Sudoku.UI.Data.SudokuGridCanvas.LoadSudoku(Sudoku.Data.Grid@)">
@@ -652,6 +791,12 @@
             </summary>
             <param name="sudoku">The sudoku.</param>
             <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the load opertion is failed.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.RefreshCandidates(Sudoku.Data.Grid@)">
+            <summary>
+            To refresh given and candidate controls via the <see cref="T:Sudoku.Data.Grid"/> instance.
+            </summary>
+            <param name="sudoku">The base sudoku grid.</param>
         </member>
         <member name="T:Sudoku.UI.Data.UIColor">
             <summary>
@@ -768,6 +913,31 @@
             <param name="g">The green value.</param>
             <param name="b">The blue value.</param>
         </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified R, G and B weights.
+            </summary>
+            <param name="rWeight">The red weight. The argument must be between 0 and 1.</param>
+            <param name="gWeight">The green weight. The argument must be between 0 and 1.</param>
+            <param name="bWeight">The blue weight. The argument must be between 0 and 1.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when one argument of <paramref name="rWeight"/>, <paramref name="gWeight"/>
+            and <paramref name="bWeight"/> isn't between 0 and 1.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified A, R, G and B weights.
+            </summary>
+            <param name="aWeight">The alpha weight. The argument must be between 0 and 1.</param>
+            <param name="rWeight">The red weight. The argument must be between 0 and 1.</param>
+            <param name="gWeight">The green weight. The argument must be between 0 and 1.</param>
+            <param name="bWeight">The blue weight. The argument must be between 0 and 1.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when one argument of <paramref name="aWeight"/>, <paramref name="rWeight"/>,
+            <paramref name="gWeight"/> and <paramref name="bWeight"/> isn't between 0 and 1.
+            </exception>
+        </member>
         <member name="P:Sudoku.UI.Data.UIColor.Mask">
             <summary>
             Indicates the mask.
@@ -813,12 +983,32 @@
         <member name="M:Sudoku.UI.Data.UIColor.TryParse(System.String,Sudoku.UI.Data.UIColor@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Data.UIColor.ArgbArgumentCheck(System.Double,System.String)">
+            <summary>
+            The argument checking method that is only used in constructor
+            <see cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double)"/> and <see cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double,System.Double)"/>
+            to check whether the specified value
+            is between 0 and 1. If so, return the converted value; otherwise,
+            an <see cref="T:System.ArgumentOutOfRangeException"/> instance will be thrown.
+            </summary>
+            <param name="arg">The argument to check.</param>
+            <param name="argName">The argument name.</param>
+            <returns>The result converted.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is invalid.</exception>
+            <seealso cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double)"/>
+            <seealso cref="M:Sudoku.UI.Data.UIColor.#ctor(System.Double,System.Double,System.Double,System.Double)"/>
+        </member>
         <member name="M:Sudoku.UI.Data.UIColor.op_OnesComplement(Sudoku.UI.Data.UIColor)">
             <summary>
-            Reverses a <see cref="T:Sudoku.UI.Data.UIColor"/>, that converts the base color to the reverse one.
+            Reverses a <see cref="T:Sudoku.UI.Data.UIColor"/>, that converts the A, R, G, B values of the base color
+            to the reverse value, which is equivalent to <c>255 - value</c>.
             </summary>
             <param name="baseColor">The base color.</param>
             <returns>The <see cref="T:Sudoku.UI.Data.UIColor"/> result.</returns>
+            <remarks>
+            Please note that the operator <b>doesn't</b> negate the alpha value,
+            i.e. the value of the property <see cref="P:Sudoku.UI.Data.UIColor.A"/>.
+            </remarks>
         </member>
         <member name="M:Sudoku.UI.Data.UIColor.op_Implicit(Sudoku.UI.Data.UIColor)~Windows.UI.Color">
             <summary>
@@ -826,9 +1016,9 @@
             </summary>
             <param name="color">The <see cref="T:Sudoku.UI.Data.UIColor"/> instance.</param>
         </member>
-        <member name="M:Sudoku.UI.Data.UIColor.op_Explicit(Windows.UI.Color)~Sudoku.UI.Data.UIColor">
+        <member name="M:Sudoku.UI.Data.UIColor.op_Implicit(Windows.UI.Color)~Sudoku.UI.Data.UIColor">
             <summary>
-            Explicit cast from <see cref="T:Windows.UI.Color"/> to <see cref="T:Sudoku.UI.Data.UIColor"/>.
+            Implicit cast from <see cref="T:Windows.UI.Color"/> to <see cref="T:Sudoku.UI.Data.UIColor"/>.
             </summary>
             <param name="color">The <see cref="T:Windows.UI.Color"/> instance.</param>
         </member>
@@ -1162,6 +1352,11 @@
         <member name="F:Sudoku.UI.Resources.UiResources.DictionaryNameRegex">
             <summary>
             Indicates the regular expression that matches a dictionary file name (a <see cref="T:System.Uri"/> string).
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Resources.UiResources.LightOrDarkMode">
+            <summary>
+            Indicates the current UI project uses the light mode or the dark mode.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Resources.UiResources.Dictionaries">

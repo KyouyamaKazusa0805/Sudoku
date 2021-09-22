@@ -21,6 +21,11 @@ public sealed partial class SudokuPanel : UserControl
 	/// </summary>
 	public SudokuGridCanvas GridCanvas { get; private set; } = null!;
 
+	/// <summary>
+	/// Indicates the preference used.
+	/// </summary>
+	public Preference Preference { get; } = new();
+
 
 	/// <summary>
 	/// Triggers when the specified object received a file that dragged-and-dropped here.

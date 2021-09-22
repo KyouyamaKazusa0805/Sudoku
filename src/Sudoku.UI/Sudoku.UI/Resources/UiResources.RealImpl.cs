@@ -38,6 +38,11 @@ internal sealed class UiResources : DynamicObject
 
 
 	/// <summary>
+	/// Indicates the current UI project uses the light mode or the dark mode.
+	/// </summary>
+	public static ApplicationTheme LightOrDarkMode => Application.Current.RequestedTheme;
+
+	/// <summary>
 	/// A simplified way to get the resource dictonaries.
 	/// </summary>
 	public static IEnumerable<ResourceDictionary> Dictionaries =>

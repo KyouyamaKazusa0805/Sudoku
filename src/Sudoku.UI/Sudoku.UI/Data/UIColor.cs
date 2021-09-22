@@ -91,6 +91,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// Initializes a <see cref="UIColor"/> instance with the specified mask.
 	/// </summary>
 	/// <param name="mask">The mask.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(int mask)
 	: this(
 		(byte)(mask >> 24 & byte.MaxValue),
@@ -107,6 +108,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// </summary>
 	/// <param name="alpha">The alpha value.</param>
 	/// <param name="baseColor">The base color.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(byte alpha, Color baseColor) : this(alpha, baseColor.R, baseColor.G, baseColor.B)
 	{
 	}
@@ -117,6 +119,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// </summary>
 	/// <param name="alpha">The alpha value.</param>
 	/// <param name="baseColor">The base color.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(byte alpha, UIColor baseColor) : this(alpha, baseColor.R, baseColor.G, baseColor.B)
 	{
 	}
@@ -127,7 +130,50 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// <param name="r">The red value.</param>
 	/// <param name="g">The green value.</param>
 	/// <param name="b">The blue value.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(byte r, byte g, byte b) : this(byte.MaxValue, r, g, b)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="UIColor"/> instance with the specified R, G and B weights.
+	/// </summary>
+	/// <param name="rWeight">The red weight. The argument must be between 0 and 1.</param>
+	/// <param name="gWeight">The green weight. The argument must be between 0 and 1.</param>
+	/// <param name="bWeight">The blue weight. The argument must be between 0 and 1.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when one argument of <paramref name="rWeight"/>, <paramref name="gWeight"/>
+	/// and <paramref name="bWeight"/> isn't between 0 and 1.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public UIColor(double rWeight, double gWeight, double bWeight)
+	: this(
+		ArgbArgumentCheck(rWeight, nameof(rWeight)),
+		ArgbArgumentCheck(gWeight, nameof(gWeight)),
+		ArgbArgumentCheck(bWeight, nameof(bWeight))
+	)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="UIColor"/> instance with the specified A, R, G and B weights.
+	/// </summary>
+	/// <param name="aWeight">The alpha weight. The argument must be between 0 and 1.</param>
+	/// <param name="rWeight">The red weight. The argument must be between 0 and 1.</param>
+	/// <param name="gWeight">The green weight. The argument must be between 0 and 1.</param>
+	/// <param name="bWeight">The blue weight. The argument must be between 0 and 1.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when one argument of <paramref name="aWeight"/>, <paramref name="rWeight"/>,
+	/// <paramref name="gWeight"/> and <paramref name="bWeight"/> isn't between 0 and 1.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public UIColor(double aWeight, double rWeight, double gWeight, double bWeight)
+	: this(
+		ArgbArgumentCheck(aWeight, nameof(aWeight)),
+		ArgbArgumentCheck(rWeight, nameof(rWeight)),
+		ArgbArgumentCheck(gWeight, nameof(gWeight)),
+		ArgbArgumentCheck(bWeight, nameof(bWeight))
+	)
 	{
 	}
 
@@ -135,27 +181,46 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// <summary>
 	/// Indicates the mask.
 	/// </summary>
-	private int Mask => A << 24 | R << 16 | G << 8 | B;
+	private int Mask
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => A << 24 | R << 16 | G << 8 | B;
+	}
 
 	/// <summary>
 	/// Indicates the <see cref="UIColor"/> instance only contains the R, G, B values.
 	/// </summary>
-	private UIColor RgbColorInstance => new(R, G, B);
+	private UIColor RgbColorInstance
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new(R, G, B);
+	}
 
 	/// <inheritdoc/>
-	static UIColor IMinMaxValue<UIColor>.MinValue => MinValue;
+	static UIColor IMinMaxValue<UIColor>.MinValue
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => MinValue;
+	}
 
 	/// <inheritdoc/>
-	static UIColor IMinMaxValue<UIColor>.MaxValue => MaxValue;
+	static UIColor IMinMaxValue<UIColor>.MaxValue
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => MaxValue;
+	}
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(UIColor other) => Mask == other.Mask;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null, null);
 
 	/// <summary>
@@ -163,10 +228,12 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// </summary>
 	/// <param name="format">The format.</param>
 	/// <returns>The value of the current instance in the specified format.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format) => ToString(format, null);
 
 	/// <inheritdoc/>
 	/// <exception cref="FormatException">Throws when the <paramref name="format"/> is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format, IFormatProvider? formatProvider) =>
 		formatProvider.HasFormatted(this, format, out string? result) ? result : format switch
 		{
@@ -176,10 +243,12 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 		};
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IValueEquatable<UIColor>.Equals(in UIColor other) => Equals(other);
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static UIColor Parse(string? str)
 	{
 		return parseArgb(str ?? throw new ArgumentNullException(nameof(str)), out var resultArgb)
@@ -261,15 +330,38 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 		}
 	}
 
+	/// <summary>
+	/// The argument checking method that is only used in constructor
+	/// <see cref="UIColor(double, double, double)"/> and <see cref="UIColor(double, double, double, double)"/>
+	/// to check whether the specified value
+	/// is between 0 and 1. If so, return the converted value; otherwise,
+	/// an <see cref="ArgumentOutOfRangeException"/> instance will be thrown.
+	/// </summary>
+	/// <param name="arg">The argument to check.</param>
+	/// <param name="argName">The argument name.</param>
+	/// <returns>The result converted.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when argument is invalid.</exception>
+	/// <seealso cref="UIColor(double, double, double)"/>
+	/// <seealso cref="UIColor(double, double, double, double)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static byte ArgbArgumentCheck(double arg, string argName) =>
+		(byte)(int)(byte.MaxValue * (arg is >= 0 and <= 1 ? arg : throw new ArgumentOutOfRangeException(argName)));
+
 
 	/// <summary>
-	/// Reverses a <see cref="UIColor"/>, that converts the base color to the reverse one.
+	/// Reverses a <see cref="UIColor"/>, that converts the A, R, G, B values of the base color
+	/// to the reverse value, which is equivalent to <c>255 - value</c>.
 	/// </summary>
 	/// <param name="baseColor">The base color.</param>
 	/// <returns>The <see cref="UIColor"/> result.</returns>
+	/// <remarks>
+	/// Please note that the operator <b>doesn't</b> negate the alpha value,
+	/// i.e. the value of the property <see cref="A"/>.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static UIColor operator ~(UIColor baseColor) =>
 		new(
-			(byte)(byte.MaxValue - baseColor.A),
+			baseColor.A,
 			(byte)(byte.MaxValue - baseColor.R),
 			(byte)(byte.MaxValue - baseColor.G),
 			(byte)(byte.MaxValue - baseColor.B)
@@ -280,11 +372,13 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// Implicit cast from <see cref="UIColor"/> to <see cref="Color"/>.
 	/// </summary>
 	/// <param name="color">The <see cref="UIColor"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Color(UIColor color) => Color.FromArgb(color.A, color.R, color.G, color.B);
 
 	/// <summary>
-	/// Explicit cast from <see cref="Color"/> to <see cref="UIColor"/>.
+	/// Implicit cast from <see cref="Color"/> to <see cref="UIColor"/>.
 	/// </summary>
 	/// <param name="color">The <see cref="Color"/> instance.</param>
-	public static explicit operator UIColor(Color color) => new(color.A, color.R, color.G, color.B);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator UIColor(Color color) => new(color.A, color.R, color.G, color.B);
 }

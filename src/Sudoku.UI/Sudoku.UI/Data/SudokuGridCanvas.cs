@@ -3,6 +3,9 @@
 /// <summary>
 /// Provides the canvas that stores the sudoku grid details.
 /// </summary>
+/// <param name="Preference">
+/// Indicates the <see cref="Data.Preference"/> instance that stores the base settings.
+/// </param>
 /// <param name="BaseGrid">
 /// The <see cref="Grid"/> instance that stores and displays the <see cref="Shape"/>s.
 /// </param>
@@ -18,6 +21,7 @@
 /// Indicates the pool of highlight regions displaying via <see cref="Border"/>s.
 /// </param>
 public sealed record class SudokuGridCanvas(
+	Preference Preference,
 	Grid BaseGrid,
 	TextBlock[] CellTextBlockPool,
 	TextBlock[] CandidateTextBlockPool,
@@ -36,9 +40,13 @@ public sealed record class SudokuGridCanvas(
 	/// Initializes a <see cref="SudokuGridCanvas"/> instance with the specified <see cref="Grid"/> instance
 	/// indicating the base control stores those values.
 	/// </summary>
+	/// <param name="preference">Indicates the <see cref="Data.Preference"/> instance.</param>
 	/// <param name="baseGrid">The base <see cref="Grid"/> instance.</param>
-	public SudokuGridCanvas(Grid baseGrid)
-	: this(baseGrid, new TextBlock[81], new TextBlock[729], new Border[81], new Ellipse[729], new Border[27])
+	public SudokuGridCanvas(Preference preference, Grid baseGrid)
+	: this(
+		preference, baseGrid, new TextBlock[81], new TextBlock[729],
+		new Border[81], new Ellipse[729], new Border[27]
+	)
 	{
 		createMainGridOutlines();
 
@@ -66,22 +74,22 @@ public sealed record class SudokuGridCanvas(
 					case 9:
 					case 18:
 					{
-						f(top: 3, row: i, columnSpan: size);
-						f(left: 3, column: i, rowSpan: size);
+						f(top: Preference.BlockLineWidth, row: i, columnSpan: size);
+						f(left: Preference.BlockLineWidth, column: i, rowSpan: size);
 
 						break;
 					}
 					case 27:
 					{
-						f(bottom: 3, row: 26, columnSpan: size);
-						f(right: 3, column: 26, rowSpan: size);
+						f(bottom: Preference.BlockLineWidth, row: 26, columnSpan: size);
+						f(right: Preference.BlockLineWidth, column: 26, rowSpan: size);
 
 						break;
 					}
 					default:
 					{
-						f(top: 1, row: i, columnSpan: size);
-						f(left: 1, column: i, rowSpan: size);
+						f(top: Preference.GridLineWidth, row: i, columnSpan: size);
+						f(left: Preference.GridLineWidth, column: i, rowSpan: size);
 
 						break;
 					}
@@ -98,7 +106,11 @@ public sealed record class SudokuGridCanvas(
 				var border = new Border
 				{
 					BorderThickness = new(left, top, right, bottom),
-					BorderBrush = new SolidColorBrush(Colors.White)
+					BorderBrush = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.GridLineColorLight
+							: Preference.GridLineColorDark
+					)
 				};
 
 				Grid.SetRow(border, row);
@@ -116,11 +128,19 @@ public sealed record class SudokuGridCanvas(
 			{
 				var tb = new TextBlock
 				{
+#if AUTHOR_RESERVED
+					// Unmeaningful initialization... :D
 					Text = (cell % 9 + 1).ToString(),
+#endif
 					Visibility = Visibility.Collapsed,
-					Foreground = new SolidColorBrush(Colors.WhiteSmoke),
-					FontSize = 40,
-					FontFamily = new("Fira Code"),
+					Foreground = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.GivenColorLight
+							: Preference.GivenColorDark
+					),
+					FontSize = (double)(60 * Preference.ValueScale),
+					FontFamily = new(Preference.GivenFontName),
+					FontStyle = Preference.GivenFontStyle,
 					HorizontalAlignment = HorizontalAlignment.Center,
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalTextAlignment = TextAlignment.Center
@@ -145,11 +165,19 @@ public sealed record class SudokuGridCanvas(
 				int cell = candidate / 9, digit = candidate % 9;
 				var tb = new TextBlock
 				{
+#if AUTHOR_RESERVED
+					// Unmeaningful initialization.
 					Text = (digit + 1).ToString(),
+#endif
 					Visibility = Visibility.Visible,
-					Foreground = new SolidColorBrush(Colors.Gray),
-					FontSize = 14,
-					FontFamily = new("Times New Roman"),
+					Foreground = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.CandidateColorLight
+							: Preference.CandidateColorDark
+					),
+					FontSize = (double)(60 * Preference.CandidateScale),
+					FontFamily = new(Preference.CandidateFontName),
+					FontStyle = Preference.CandidateFontStyle,
 					HorizontalAlignment = HorizontalAlignment.Center,
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalTextAlignment = TextAlignment.Center
@@ -171,10 +199,18 @@ public sealed record class SudokuGridCanvas(
 			{
 				var border = new Border
 				{
-					BorderThickness = new(1.5),
+					BorderThickness = new(Preference.CellBorderWidth),
 					Visibility = Visibility.Collapsed,
-					BorderBrush = new SolidColorBrush(Colors.Blue),
-					Background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
+					BorderBrush = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.CellBorderColorLight
+							: Preference.CellBorderColorDark
+					),
+					Background = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.CellBorderBackgroundColorLight
+							: Preference.CellBorderBackgroundColorDark
+					)
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -196,10 +232,18 @@ public sealed record class SudokuGridCanvas(
 				int cell = candidate / 9, digit = candidate % 9;
 				var ellipse = new Ellipse
 				{
-					StrokeThickness = 1.5,
+					StrokeThickness = Preference.CandidateBorderWidth,
 					Visibility = Visibility.Collapsed,
-					Stroke = new SolidColorBrush(Colors.Blue),
-					Fill = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255))
+					Stroke = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.CandidateBorderColorLight
+							: Preference.CandidateBorderColorDark
+					),
+					Fill = new SolidColorBrush(
+						UiResources.LightOrDarkMode == ApplicationTheme.Light
+							? Preference.CandidateBorderBackgroundColorLight
+							: Preference.CandidateBorderBackgroundColorDark
+					)
 				};
 
 				int row = cell / 9, column = cell % 9;
@@ -216,16 +260,24 @@ public sealed record class SudokuGridCanvas(
 		{
 			int[] blockRowFactor = { 0, 9, 18, 0, 9, 18, 0, 9, 18 };
 			int[] blockColumnFactor = { 0, 0, 0, 9, 9, 9, 18, 18, 18 };
-			double uniformBorderThickness = 1.5;
-			var borderBrush = new SolidColorBrush(Colors.Blue);
-			var background = new SolidColorBrush(Color.FromArgb(64, 0, 0, 255));
+			double uniformBorderThickness = Preference.RegionBorderWidth;
+			var borderBrush = new SolidColorBrush(
+				UiResources.LightOrDarkMode == ApplicationTheme.Light
+					? Preference.RegionBorderColorLight
+					: Preference.RegionBorderColorDark
+			);
+			var background = new SolidColorBrush(
+				UiResources.LightOrDarkMode == ApplicationTheme.Light
+					? Preference.RegionBorderBackgroundColorLight
+					: Preference.RegionBorderBackgroundColorDark
+			);
 
 			f(0, uniformBorderThickness, borderBrush, background);
 			f(9, uniformBorderThickness, borderBrush, background);
 			f(18, uniformBorderThickness, borderBrush, background);
 
 
-			void f(int start, double uniformBorderThickness, Brush borderBrush, Brush background)
+			void f(int start, double uniformLength, Brush borderBrush, Brush background)
 			{
 				for (int region = start; region < start + 9; region++)
 				{
@@ -238,7 +290,7 @@ public sealed record class SudokuGridCanvas(
 
 					var border = new Border
 					{
-						BorderThickness = new(uniformBorderThickness),
+						BorderThickness = new(uniformLength),
 						Visibility = Visibility.Collapsed,
 						BorderBrush = borderBrush,
 						Background = background
@@ -269,20 +321,27 @@ public sealed record class SudokuGridCanvas(
 			sudoku switch
 			{
 #if DEBUG
-				{ IsDebuggerUndefined: true } =>
-					UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1,
+				{ IsDebuggerUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1,
 #endif
-				{ IsUndefined: true } =>
-					UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed,
-				_ when !Solver.CheckValidity($"{sudoku:0}") =>
-					UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed,
-				_ => null
-			} is string errorInfo
+				{ IsUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed,
+				_ => !Solver.CheckValidity($"{sudoku:0}")
+					? (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed
+					: null
+			} is { } errorInfo
 		)
 		{
 			throw new InvalidPuzzleException(sudoku, errorInfo);
 		}
 
+		RefreshCandidates(sudoku);
+	}
+
+	/// <summary>
+	/// To refresh given and candidate controls via the <see cref="SudokuGrid"/> instance.
+	/// </summary>
+	/// <param name="sudoku">The base sudoku grid.</param>
+	private void RefreshCandidates(in SudokuGrid sudoku)
+	{
 		for (int cell = 0; cell < 81; cell++)
 		{
 			switch (sudoku.GetStatus(cell))

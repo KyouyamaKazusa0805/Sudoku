@@ -6,5 +6,6 @@ partial class SudokuPanel
 	/// Initializes property values.
 	/// </summary>
 	/// <remarks><i>This method is only called by constructor.</i></remarks>
-	private void InitializeProperties() => GridCanvas = new(MainSudokuGrid);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InitializeProperties() => GridCanvas = new(Preference, MainSudokuGrid);
 }
