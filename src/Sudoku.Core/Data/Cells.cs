@@ -1050,10 +1050,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <inheritdoc/>
 	public static Cells Parse(string? str)
 	{
-		if (str is null)
-		{
-			throw new ArgumentNullException(nameof(str));
-		}
+		ArgumentNullException.ThrowIfNull(str);
 
 		var regex = new Regex(
 			RegularExpressions.CellOrCellList,

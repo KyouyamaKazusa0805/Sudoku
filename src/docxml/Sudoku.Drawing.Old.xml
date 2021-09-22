@@ -1330,9 +1330,7 @@
             The result value (must be between 1 and 9). If the recognition is failed,
             the value will be <c>0</c>.
             </returns>
-            <exception cref="T:System.NullReferenceException">
-            Throws when the inner tool isn't been initialized.
-            </exception>
+            <exception cref="T:System.ArgumentNullException">Throws when the inner tool isn't been initialized.</exception>
             <exception cref="T:Sudoku.Recognition.TesseractException">Throws when the OCR engine error.</exception>
         </member>
         <member name="M:Sudoku.Recognition.InternalServiceProvider.InitTesseract(System.String,System.String)">

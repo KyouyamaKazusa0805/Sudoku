@@ -68,16 +68,11 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// The result value (must be between 1 and 9). If the recognition is failed,
 	/// the value will be <c>0</c>.
 	/// </returns>
-	/// <exception cref="NullReferenceException">
-	/// Throws when the inner tool isn't been initialized.
-	/// </exception>
+	/// <exception cref="ArgumentNullException">Throws when the inner tool isn't been initialized.</exception>
 	/// <exception cref="TesseractException">Throws when the OCR engine error.</exception>
 	private int RecognizeCellNumber(Field cellImg)
 	{
-		if (_ocr is null)
-		{
-			throw new NullReferenceException($"{nameof(_ocr)} cannot be null here.");
-		}
+		ArgumentNullException.ThrowIfNull(_ocr);
 
 		// Convert the image to gray-scale and filter out the noisy points.
 		var imgGray = new Mat();

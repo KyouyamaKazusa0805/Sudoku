@@ -148,9 +148,9 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(double rWeight, double gWeight, double bWeight)
 	: this(
-		ArgbArgumentCheck(rWeight, nameof(rWeight)),
-		ArgbArgumentCheck(gWeight, nameof(gWeight)),
-		ArgbArgumentCheck(bWeight, nameof(bWeight))
+		ArgbArgCheck(rWeight, nameof(rWeight)),
+		ArgbArgCheck(gWeight, nameof(gWeight)),
+		ArgbArgCheck(bWeight, nameof(bWeight))
 	)
 	{
 	}
@@ -169,10 +169,10 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UIColor(double aWeight, double rWeight, double gWeight, double bWeight)
 	: this(
-		ArgbArgumentCheck(aWeight, nameof(aWeight)),
-		ArgbArgumentCheck(rWeight, nameof(rWeight)),
-		ArgbArgumentCheck(gWeight, nameof(gWeight)),
-		ArgbArgumentCheck(bWeight, nameof(bWeight))
+		ArgbArgCheck(aWeight, nameof(aWeight)),
+		ArgbArgCheck(rWeight, nameof(rWeight)),
+		ArgbArgCheck(gWeight, nameof(gWeight)),
+		ArgbArgCheck(bWeight, nameof(bWeight))
 	)
 	{
 	}
@@ -251,7 +251,9 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static UIColor Parse(string? str)
 	{
-		return parseArgb(str ?? throw new ArgumentNullException(nameof(str)), out var resultArgb)
+		ArgumentNullException.ThrowIfNull(str);
+
+		return parseArgb(str, out var resultArgb)
 			? resultArgb
 			: parseBracket(str, out var resultBracket)
 				? resultBracket
@@ -338,13 +340,17 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// an <see cref="ArgumentOutOfRangeException"/> instance will be thrown.
 	/// </summary>
 	/// <param name="arg">The argument to check.</param>
-	/// <param name="argName">The argument name.</param>
+	/// <param name="argName">
+	/// The argument name. This argument will be automatically generated the value,
+	/// so you don't need to re-assign a new value, because this argument is marked
+	/// <c>[<see cref="CallerArgumentExpressionAttribute"/>("arg")]</c>.
+	/// </param>
 	/// <returns>The result converted.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when argument is invalid.</exception>
 	/// <seealso cref="UIColor(double, double, double)"/>
 	/// <seealso cref="UIColor(double, double, double, double)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static byte ArgbArgumentCheck(double arg, string argName) =>
+	private static byte ArgbArgCheck(double arg, [CallerArgumentExpression("arg")] string? argName = null) =>
 		(byte)(int)(byte.MaxValue * (arg is >= 0 and <= 1 ? arg : throw new ArgumentOutOfRangeException(argName)));
 
 
