@@ -301,7 +301,7 @@
         <member name="P:Sudoku.UI.Data.Preference.CandidateScale">
             <summary>
             <para>Indicates the scale of candidates.</para>
-            <para>The default value is <c>0.8</c>, i.e. <c>12.0 / 15.0</c>.</para>
+            <para>The default value is <c>0.8</c>, i.e. <c>4.0 / 5.0</c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.GridLineWidth">
