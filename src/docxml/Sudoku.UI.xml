@@ -653,6 +653,185 @@
             <param name="sudoku">The sudoku.</param>
             <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the load opertion is failed.</exception>
         </member>
+        <member name="T:Sudoku.UI.Data.UIColor">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Data.UIColor"/> instance that can converts to a <see cref="T:Windows.UI.Color"/>.
+            </summary>
+            <param name="A">The alpha value.</param>
+            <param name="R">The red value.</param>
+            <param name="G">The green value.</param>
+            <param name="B">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Data.UIColor"/> instance that can converts to a <see cref="T:Windows.UI.Color"/>.
+            </summary>
+            <param name="A">The alpha value.</param>
+            <param name="R">The red value.</param>
+            <param name="G">The green value.</param>
+            <param name="B">The blue value.</param>
+        </member>
+        <member name="F:Sudoku.UI.Data.UIColor.MinValue">
+            <summary>
+            Indicates the min value of the <see cref="T:Sudoku.UI.Data.UIColor"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.UIColor.MaxValue">
+            <summary>
+            Indicates the max value of the <see cref="T:Sudoku.UI.Data.UIColor"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.UIColor.MatchTimeout">
+            <summary>
+            Indicates the match timeout.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Data.UIColor.ArgbValidator">
+            <summary>
+            Indicates the regular expression instance that matches an ARGB format color.
+            </summary>
+            <remarks>
+            All possible match types:
+            <list type="table">
+            <listheader>
+            <term>Type</term>
+            <description>Example</description>
+            </listheader>
+            <item>
+            <term>RGB repeat</term>
+            <description>#CDE (i.e. #FFCCDDEE)</description>
+            </item>
+            <item>
+            <term>RGB repeat with alpha value</term>
+            <description>#FFCDE (i.e. #FFCCDDEE)</description>
+            </item>
+            <item>
+            <term>RGB</term>
+            <description>#CCDDEE (i.e. #CCDDEE)</description>
+            </item>
+            <item>
+            <term>ARGB</term>
+            <description>#FFCCDDEE</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.Data.UIColor.BracketValidator">
+            <summary>
+            Indicates the regular expression instance that matches a bracket format color.
+            </summary>
+            <remarks>
+            All possible match types:
+            <list type="table">
+            <listheader>
+            <term>Type</term>
+            <description>Example</description>
+            </listheader>
+            <item>
+            <term>RGB</term>
+            <description>(255, 255, 255) (i.e. #FFFFFFFF)</description>
+            </item>
+            <item>
+            <term>ARGB</term>
+            <description>(255, 255, 255, 255) (i.e. #FFFFFFFF)</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified mask.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Byte,Windows.UI.Color)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified alpha value
+            and the base <see cref="T:Windows.UI.Color"/> instance.
+            </summary>
+            <param name="alpha">The alpha value.</param>
+            <param name="baseColor">The base color.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Byte,Sudoku.UI.Data.UIColor)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified alpha value
+            and the base <see cref="T:Sudoku.UI.Data.UIColor"/> instance.
+            </summary>
+            <param name="alpha">The alpha value.</param>
+            <param name="baseColor">The base color.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.UIColor"/> instance with the specified R, G, B value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.UIColor.Mask">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.UIColor.RgbColorInstance">
+            <summary>
+            Indicates the <see cref="T:Sudoku.UI.Data.UIColor"/> instance only contains the R, G, B values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.UIColor.System#IMinMaxValue{Sudoku#UI#Data#UIColor}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Data.UIColor.System#IMinMaxValue{Sudoku#UI#Data#UIColor}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.Equals(Sudoku.UI.Data.UIColor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.ToString(System.String)">
+            <summary>
+            Formats the value of the current instance using the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The value of the current instance in the specified format.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+            <exception cref="T:System.FormatException">Throws when the <paramref name="format"/> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.System#IValueEquatable{Sudoku#UI#Data#UIColor}#Equals(Sudoku.UI.Data.UIColor@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.TryParse(System.String,Sudoku.UI.Data.UIColor@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.op_OnesComplement(Sudoku.UI.Data.UIColor)">
+            <summary>
+            Reverses a <see cref="T:Sudoku.UI.Data.UIColor"/>, that converts the base color to the reverse one.
+            </summary>
+            <param name="baseColor">The base color.</param>
+            <returns>The <see cref="T:Sudoku.UI.Data.UIColor"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.op_Implicit(Sudoku.UI.Data.UIColor)~Windows.UI.Color">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.UI.Data.UIColor"/> to <see cref="T:Windows.UI.Color"/>.
+            </summary>
+            <param name="color">The <see cref="T:Sudoku.UI.Data.UIColor"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.op_Explicit(Windows.UI.Color)~Sudoku.UI.Data.UIColor">
+            <summary>
+            Explicit cast from <see cref="T:Windows.UI.Color"/> to <see cref="T:Sudoku.UI.Data.UIColor"/>.
+            </summary>
+            <param name="color">The <see cref="T:Windows.UI.Color"/> instance.</param>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.CornerRadiusCalculator">
             <summary>
             Defines a simple calculator for <see cref="T:Microsoft.UI.Xaml.CornerRadius"/>.

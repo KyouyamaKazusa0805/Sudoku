@@ -334,8 +334,9 @@ public sealed record class SudokuGridCanvas(
 
 			ModifiableOrGiven:
 				{
-					CellTextBlockPool[cell].Visibility = Visibility.Visible;
-					CellTextBlockPool[cell].Text = (sudoku[cell] + 1).ToString();
+					ref var element = ref CellTextBlockPool[cell];
+					element.Visibility = Visibility.Visible;
+					element.Text = (sudoku[cell] + 1).ToString();
 
 					break;
 				}
