@@ -53,13 +53,13 @@
 			<Compile Include="Resources\UiResources.RealImpl.cs" Visible="false" />
 		</ItemGroup>
 	</Target>
+	<!--Loading end-->
 
 	<ItemGroup>
 		<Page Update="Pages\MainWindow\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
-	<!--Loading end-->
 
 	<ItemGroup>
 		<Page Update="Pages\MainWindow\AboutPage.xaml">
