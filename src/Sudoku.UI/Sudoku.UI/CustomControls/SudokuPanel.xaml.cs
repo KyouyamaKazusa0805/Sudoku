@@ -52,7 +52,7 @@ public sealed partial class SudokuPanel : UserControl
 			throw;
 		}
 #endif
-#if !WIN_UI_PROJECT
+#if !WINDOWS_APP
 		catch (TypeInitializationException ex) when (ex is { InnerException: AssemblyFailedToLoadException })
 		{
 			// For the consideration of the compatibility, the resource dictionary in project 'Sudoku.Core'

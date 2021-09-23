@@ -23,6 +23,10 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Constants;
 global using static Sudoku.Constants.Tables;
 
+#if !WINDOWS_APP
+global using System.Reflection;
+#endif
+
 [assembly: InternalsVisibleTo("Sudoku.Bot")]
 [assembly: InternalsVisibleTo("Sudoku.CodeAnalysis")]
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]

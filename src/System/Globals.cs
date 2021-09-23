@@ -20,7 +20,7 @@ global using static System.Numerics.BitOperations;
 
 [assembly: InternalsVisibleTo("Sudoku.Core")]
 
-#if WIN_UI_PROJECT
+#if WINDOWS_APP
 [assembly: InternalsVisibleTo("Sudoku.UI")]
 #endif
 

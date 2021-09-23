@@ -1,4 +1,4 @@
-﻿#if !WIN_UI_PROJECT
+﻿#if !WINDOWS_APP
 
 namespace Sudoku;
 
@@ -6,7 +6,7 @@ namespace Sudoku;
 /// Indicates the module initializer of this project.
 /// </summary>
 /// <remarks>
-/// This type will be compiled and executed if the compilation symbol <c>WIN_UI_PROJECT</c>
+/// This type will be compiled and executed if the compilation symbol <c>WINDOWS_APP</c>
 /// <b>isn't</b> configured in this project.
 /// </remarks>
 internal static class ModuleInitializer
@@ -33,8 +33,8 @@ internal static class ModuleInitializer
 	/// Throws when the specified files don't exist.
 	/// </exception>
 	/// <remarks>
-	/// The exception throwing is relative with the conditional compilation symbol <c>WIN_UI_PROJECT</c>.
-	/// If the proejct configured the symbol <c>WIN_UI_PROJECT</c>,
+	/// The exception throwing is relative with the conditional compilation symbol <c>WINDOWS_APP</c>.
+	/// If the proejct configured the symbol <c>WINDOWS_APP</c>,
 	/// <b>nothing</b> would happen when any error encountered.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
