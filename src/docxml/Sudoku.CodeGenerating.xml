@@ -28,9 +28,7 @@
             <remarks>
             <para>
             For example, if you write the code like:
-            <code><![CDATA[
-            [assembly: AutoDeconstructExtension<Class>(nameof(Class.A), nameof(Class.B), nameof(Class.C))]
-            ]]></code>
+            <code><![CDATA[[assembly: AutoDeconstructExtension<Class>(nameof(Class.A), nameof(Class.B), nameof(Class.C))]]]></code>
             then you'll get the generated code:
             <code><![CDATA[
             public static partial class ClassExtensions
