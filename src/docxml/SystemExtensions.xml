@@ -1954,72 +1954,6 @@
             otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="T:System.PointerMarshal">
-            <summary>
-            Provides methods for pointer handling.
-            </summary>
-        </member>
-        <member name="M:System.PointerMarshal.Swap``1(``0*,``0*)">
-            <summary>
-            To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the variable.</typeparam>
-            <param name="left">The left variable.</param>
-            <param name="right">The right variable.</param>
-        </member>
-        <member name="M:System.PointerMarshal.StringLengthOf(System.Char*)">
-            <summary>
-            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <returns>The total length.</returns>
-            <remarks>
-            In C#, this function is unsafe because the implementation of
-            <see cref="T:System.String"/> types between C and C# is totally different.
-            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
-            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
-            However, C# not.
-            </remarks>
-        </member>
-        <member name="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
-            <summary>
-            Get the new array from the pointer, with the specified start index.
-            </summary>
-            <typeparam name="TUnmanaged">
-            The type of the pointer element. Note that the type should be <see langword="unmanaged"/>
-            in order to use pointer handling. Therefore, <see langword="managed"/> types shouldn't be allowed.
-            </typeparam>
-            <param name="ptr">The pointer.</param>
-            <param name="length">The length of the array that pointer points to.</param>
-            <param name="index">The start index that you want to pick from.</param>
-            <returns>The array of elements.</returns>
-            <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
-            the parameter <paramref name="length"/> should keep the value 5 because the array contains
-            5 elements in this case.
-            </remarks>
-        </member>
-        <member name="M:System.PointerMarshal.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Get the new array from the pointer, with the specified start index.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <param name="length">The length of the array that pointer points to.</param>
-            <param name="index">The start index that you want to pick from.</param>
-            <param name="removeTrailingZeros">
-            Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-            the method will be same as <see cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
-            </param>
-            <returns>The array of elements.</returns>
-            <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
-            the parameter <paramref name="length"/> should keep the value 5 because the array contains
-            5 elements in this case.
-            </remarks>
-            <seealso cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
-        </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
@@ -3127,31 +3061,6 @@
             <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.UnsafeExtensions">
-            <summary>
-            Provides with extension methods that extended from the <see langword="static class"/> <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
-            </summary>
-            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
-        </member>
-        <member name="M:System.UnsafeExtensions.InitBlock``1(``0*,System.Byte,System.UInt32)">
-            <summary>
-            Same as <see cref="M:System.Runtime.CompilerServices.Unsafe.InitBlock(System.Void*,System.Byte,System.UInt32)"/>, but using generic.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the elements in the block.</typeparam>
-            <param name="startAddress">The start address of the block.</param>
-            <param name="value">The value to initialize.</param>
-            <param name="elementCount">Indicates how many elements is in the block.</param>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.InitBlock(System.Void*,System.Byte,System.UInt32)"/>
-        </member>
-        <member name="M:System.UnsafeExtensions.CopyBlock``1(``0*,``0*,System.UInt32)">
-            <summary>
-            Same as <see cref="M:System.Runtime.CompilerServices.Unsafe.CopyBlock(System.Void*,System.Void*,System.UInt32)"/>, but using generic.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the elements in the block.</typeparam>
-            <param name="destination">The start address of destination block.</param>
-            <param name="source">The start adressof the source block.</param>
-            <param name="elementCount">Indicates how many elements is in the block.</param>
         </member>
         <member name="T:System.GenericMath">
             <summary>
@@ -4300,6 +4209,97 @@
         </member>
         <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
             <inheritdoc/>
+        </member>
+        <member name="T:System.PointerMarshal">
+            <summary>
+            Provides methods for pointer handling.
+            </summary>
+        </member>
+        <member name="M:System.PointerMarshal.Swap``1(``0*,``0*)">
+            <summary>
+            To swap the two variables using pointers when the pointee is an <see langword="unmanaged"/> type.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the variable.</typeparam>
+            <param name="left">The left variable.</param>
+            <param name="right">The right variable.</param>
+        </member>
+        <member name="M:System.PointerMarshal.StringLengthOf(System.Char*)">
+            <summary>
+            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <returns>The total length.</returns>
+            <remarks>
+            In C#, this function is unsafe because the implementation of
+            <see cref="T:System.String"/> types between C and C# is totally different.
+            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
+            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+            However, C# not.
+            </remarks>
+        </member>
+        <member name="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)">
+            <summary>
+            Get the new array from the pointer, with the specified start index.
+            </summary>
+            <typeparam name="TUnmanaged">
+            The type of the pointer element. Note that the type should be <see langword="unmanaged"/>
+            in order to use pointer handling. Therefore, <see langword="managed"/> types shouldn't be allowed.
+            </typeparam>
+            <param name="ptr">The pointer.</param>
+            <param name="length">The length of the array that pointer points to.</param>
+            <param name="index">The start index that you want to pick from.</param>
+            <returns>The array of elements.</returns>
+            <remarks>
+            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            the parameter <paramref name="length"/> should keep the value 5 because the array contains
+            5 elements in this case.
+            </remarks>
+        </member>
+        <member name="M:System.PointerMarshal.GetArrayFromStart(System.Int32*,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get the new array from the pointer, with the specified start index.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <param name="length">The length of the array that pointer points to.</param>
+            <param name="index">The start index that you want to pick from.</param>
+            <param name="removeTrailingZeros">
+            Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
+            the method will be same as <see cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
+            </param>
+            <returns>The array of elements.</returns>
+            <remarks>
+            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            the parameter <paramref name="length"/> should keep the value 5 because the array contains
+            5 elements in this case.
+            </remarks>
+            <seealso cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:System.UnsafeExtensions">
+            <summary>
+            Provides with extension methods that extended from the <see langword="static class"/> <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
+            </summary>
+            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
+        </member>
+        <member name="M:System.UnsafeExtensions.InitBlock``1(``0*,System.Byte,System.UInt32)">
+            <summary>
+            Same as <see cref="M:System.Runtime.CompilerServices.Unsafe.InitBlock(System.Void*,System.Byte,System.UInt32)"/>, but using generic.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the elements in the block.</typeparam>
+            <param name="startAddress">The start address of the block.</param>
+            <param name="value">The value to initialize.</param>
+            <param name="elementCount">Indicates how many elements is in the block.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.InitBlock(System.Void*,System.Byte,System.UInt32)"/>
+        </member>
+        <member name="M:System.UnsafeExtensions.CopyBlock``1(``0*,``0*,System.UInt32)">
+            <summary>
+            Same as <see cref="M:System.Runtime.CompilerServices.Unsafe.CopyBlock(System.Void*,System.Void*,System.UInt32)"/>, but using generic.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the elements in the block.</typeparam>
+            <param name="destination">The start address of destination block.</param>
+            <param name="source">The start adressof the source block.</param>
+            <param name="elementCount">Indicates how many elements is in the block.</param>
         </member>
         <member name="T:System.Numerics.BitOperationsExensions">
             <summary>
