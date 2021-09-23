@@ -183,12 +183,12 @@ public static partial class BitOperationsExensions
 	/// <returns>All indices of set bits.</returns>
 	/// <remarks>
 	/// This implementation will allow you use <see langword=""foreach""/> loop:
-	/// <code>
+	/// <code><![CDATA[
 	/// foreach (int setIndex in 17)
 	/// {{
 	/// 	// Do something...
 	/// }}
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
@@ -313,13 +313,13 @@ public static partial class BitOperationsExensions
 	/// <returns>The {typeName} value that only contains the other set bits.</returns>
 	/// <remarks>
 	/// For example:
-	/// <code>
+	/// <code><![CDATA[
 	/// byte value = 0b00010111;
 	/// foreach (int bitPos in value.SkipSetBit(2))
 	/// {{
 	///     yield return bitPos + 1;
 	/// }}
-	/// </code>
+	/// ]]></code>
 	/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
 	/// two of them, so the result set bit positions to iterate on are only 2 and 4.
 	/// </remarks>

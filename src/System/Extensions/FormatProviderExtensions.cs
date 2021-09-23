@@ -21,12 +21,12 @@ public static class FormatProviderExtensions
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	/// <remarks>
 	/// You should use this as:
-	/// <code>
+	/// <code><![CDATA[
 	/// if (formatProvider.HasFormatted(this, format, out string? result))
 	/// {
 	///	    return result;
 	/// }
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool HasFormatted<TNotNull>(

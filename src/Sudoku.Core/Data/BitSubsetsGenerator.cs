@@ -5,12 +5,12 @@
 /// </summary>
 /// <remarks>
 /// You can use this struct like this:
-/// <code>
+/// <code><![CDATA[
 /// foreach (short mask in new BitSubsetsGenerator(9, 3))
 /// {
 ///     // Do something to use the mask.
 /// }
-/// </code>
+/// ]]></code>
 /// </remarks>
 [AutoGetEnumerator(nameof(_enumerator), ReturnType = typeof(Enumerator))]
 public readonly ref partial struct BitSubsetsGenerator

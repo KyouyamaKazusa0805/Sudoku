@@ -1169,13 +1169,9 @@
         <member name="M:System.Collections.Generic.ListExtensions.RemoveLastElement``1(System.Collections.Generic.IList{``0})">
             <summary>
             Remove the last element of the specified list, which is equivalent to code:
-            <code>
-            list.RemoveAt(list.Count - 1);
-            </code>
+            <code><![CDATA[list.RemoveAt(list.Count - 1);]]></code>
             or
-            <code>
-            list.RemoveAt(^1); // Call extension method 'RemoveAt'.
-            </code>
+            <code><![CDATA[list.RemoveAt(^1); // Call extension method 'RemoveAt'.]]></code>
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The list.</param>
@@ -1466,10 +1462,10 @@
             of which you can only uses those constant values from declared fields. Therefore <b>all</b>
             operators can't be used here.
             For example:
-            <code>
+            <code><![CDATA[
             [Closed]
             public enum Gender { Boy; Girl; }
-            </code>
+            ]]></code>
             The code snippet means the type <c>Gender</c> is a closed enumeration type,
             so you can't use any arithmetic operators (such as the <see langword="operator"/> <c>+</c>)
             to calculate and get the new result of this type, because the operator may get the result that isn't
@@ -1909,12 +1905,12 @@
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
             <remarks>
             You should use this as:
-            <code>
+            <code><![CDATA[
             if (formatProvider.HasFormatted(this, format, out string? result))
             {
                 return result;
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="T:System.MathExtensions">
@@ -2424,7 +2420,7 @@
             </remarks>
             <example>
             You can use this struct like this:
-            <code>
+            <code><![CDATA[
             var sb = new ValueStringBuilder(stackalloc char[100]);
             
             // Appending operations...
@@ -2434,7 +2430,7 @@
             sb.Append('!');
             
             Console.WriteLine(sb.ToString()); // Dispose method will be called here.
-            </code>
+            ]]></code>
             </example>
             <seealso cref="M:System.Text.ValueStringBuilder.#ctor"/>
         </member>
@@ -2492,13 +2488,9 @@
             </para>
             <para>
             You can also use the constructor: <see cref="M:System.Text.ValueStringBuilder.#ctor(System.Int32)"/> like:
-            <code>
-            var sb = new ValueStringBuilder(10);
-            </code>
+            <code><![CDATA[var sb = new ValueStringBuilder(10);]]></code>
             The code is nearly equivalent to
-            <code>
-            var sb = new ValueStringBuilder(stackalloc char[10]);
-            </code>
+            <code><![CDATA[var sb = new ValueStringBuilder(stackalloc char[10]);]]></code>
             but uses shared array pool (i.e. the property <see cref="P:System.Buffers.ArrayPool`1.Shared"/>)
             to create the buffer rather than using <see cref="T:System.Span`1"/>.
             </para>
@@ -4383,12 +4375,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Byte)">
@@ -4403,12 +4395,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int16)">
@@ -4423,12 +4415,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt16)">
@@ -4443,12 +4435,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int32)">
@@ -4463,12 +4455,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt32)">
@@ -4483,12 +4475,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.Int64)">
@@ -4503,12 +4495,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetEnumerator(System.UInt64)">
@@ -4523,12 +4515,12 @@
             <returns>All indices of set bits.</returns>
             <remarks>
             This implementation will allow you use <see langword="foreach"/> loop:
-            <code>
+            <code><![CDATA[
             foreach (int setIndex in 17)
             {
             	// Do something...
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="M:System.Numerics.BitOperationsExensions.GetNextSet(System.Byte,System.Int32)">
@@ -4652,13 +4644,13 @@
             <returns>The byte value that only contains the other set bits.</returns>
             <remarks>
             For example:
-            <code>
+            <code><![CDATA[
             byte value = 0b00010111;
             foreach (int bitPos in value.SkipSetBit(2))
             {
                 yield return bitPos + 1;
             }
-            </code>
+            ]]></code>
             You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>
@@ -4672,13 +4664,13 @@
             <returns>The short value that only contains the other set bits.</returns>
             <remarks>
             For example:
-            <code>
+            <code><![CDATA[
             byte value = 0b00010111;
             foreach (int bitPos in value.SkipSetBit(2))
             {
                 yield return bitPos + 1;
             }
-            </code>
+            ]]></code>
             You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>
@@ -4692,13 +4684,13 @@
             <returns>The int value that only contains the other set bits.</returns>
             <remarks>
             For example:
-            <code>
+            <code><![CDATA[
             byte value = 0b00010111;
             foreach (int bitPos in value.SkipSetBit(2))
             {
                 yield return bitPos + 1;
             }
-            </code>
+            ]]></code>
             You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>
@@ -4712,13 +4704,13 @@
             <returns>The long value that only contains the other set bits.</returns>
             <remarks>
             For example:
-            <code>
+            <code><![CDATA[
             byte value = 0b00010111;
             foreach (int bitPos in value.SkipSetBit(2))
             {
                 yield return bitPos + 1;
             }
-            </code>
+            ]]></code>
             You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>

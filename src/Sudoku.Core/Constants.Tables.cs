@@ -67,13 +67,13 @@ partial class Constants
 		/// <summary>
 		/// <para>
 		/// Indicates all maps that forms the each intersection. The pattern will be like:
-		/// <code>
+		/// <code><![CDATA[
 		/// .-------.-------.-------.
 		/// | C C C | A A A | A A A |
 		/// | B B B | . . . | . . . |
 		/// | B B B | . . . | . . . |
 		/// '-------'-------'-------'
-		/// </code>
+		/// ]]></code>
 		/// </para>
 		/// <para>
 		/// In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.

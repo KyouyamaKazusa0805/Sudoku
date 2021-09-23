@@ -6,11 +6,11 @@
 /// </summary>
 /// <remarks>
 /// The data structure uses an <see cref="int"/> value to represent an instance. The bit usage details is as below:
-/// <code>
+/// <code><![CDATA[
 /// |  (4)  |  (3)  |  (2)  |  (1)  |
 /// |-------|-------|-------|-------|
 /// 32     24      16       8       0
-/// </code>
+/// ]]></code>
 /// Where:
 /// <list type="table">
 /// <item>

@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
-/// <code>
+/// <code><![CDATA[
 /// .-------.-------.-------.
 /// | . . . | . . . | . . . |
 /// | . . . | . . . | . . . |
@@ -16,7 +16,7 @@
 /// | . . . | . . . | . . . |
 /// | . . . | . . . | . . . |
 /// '-------'-------'-------'
-/// </code>
+/// ]]></code>
 /// Where:
 /// <list type="table">
 /// <item><term>P</term><description>Pair Cells.</description></item>

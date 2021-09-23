@@ -2601,9 +2601,7 @@
             <para>The names of all subsets by their sizes.</para>
             <para>
             For example, if you want to get the name of the size 3, the code will be
-            <code>
-            string name = TechniqueStrings.SubsetNames[3];
-            </code>
+            <code><![CDATA[string name = TechniqueStrings.SubsetNames[3];]]></code>
             Here the digit <c>3</c> is the size you want to get.
             </para>
             </summary>
@@ -2618,9 +2616,7 @@
             <para>The names of all regular wings by their sizes.</para>
             <para>
             For example, if you want to get the name of the size 3, the code will be
-            <code>
-            string name = TechniqueStrings.RegularWingNames[3];
-            </code>
+            <code><![CDATA[string name = TechniqueStrings.RegularWingNames[3];]]></code>
             Here the digit <c>3</c> is the size you want to get.
             </para>
             </summary>
@@ -3144,7 +3140,7 @@
             <summary>
             <para>
             Indicates an exocet pattern. The pattern will be like:
-            <code>
+            <code><![CDATA[
             .-------.-------.-------.
             | B B E | E . . | E . . |
             | . . E | Q . . | R . . |
@@ -3158,7 +3154,7 @@
             | . . S | S . . | S . . |
             | . . S | S . . | S . . |
             '-------'-------'-------'
-            </code>
+            ]]></code>
             Where:
             <list type="table">
             <item><term>B</term><description>Base Cells.</description></item>
@@ -5982,7 +5978,7 @@
             <para>
             Direct lines is a concept that describes the crosshatching information of a hidden single.
             For example, in this following grid:
-            <code>
+            <code><![CDATA[
             .---------.---------.---------.
             | .  .  . | .  .  . | .  .  . |
             | .  .  . | .  .  1 | .  .  . |
@@ -5996,7 +5992,7 @@
             | .  .  . | 1  .  . | .  .  . |
             | .  .  . | .  .  . | .  .  . |
             '---------'---------'---------'
-            </code>
+            ]]></code>
             The start point of the direct lines are:
             <list type="bullet">
             <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c></item>
@@ -6148,9 +6144,7 @@
             <para>
             A <b>format</b> is the better way to format the result text of this technique information instance,
             It'll be represented by the normal characters and the placeholders, e.g.
-            <code>
-            <![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]>
-            </code>
+            <code><![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]></code>
             Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
             format string, rather than a interpolated string.
             </para>
@@ -7935,11 +7929,11 @@
             <remarks>
             <para>
             This mask is of type <see cref="T:System.Int64"/>:
-            <code>
+            <code><![CDATA[
             0      7     14     21     28     35     42     49     56
             ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
             |-------|-------|-------|-------|-------|-------|-------|-------|
-            </code>
+            ]]></code>
             where the bit [0..56] is for 8 cells, the last 7 bits determine the pattern is a
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
             </para>
@@ -8105,7 +8099,7 @@
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpStepSearcher">
             <summary>
             Encapsulates a <b>Qiu's deadly pattern</b> technique searcher.
-            <code>
+            <code><![CDATA[
             .-------.-------.-------.
             | . . . | . . . | . . . |
             | . . . | . . . | . . . |
@@ -8119,7 +8113,7 @@
             | . . . | . . . | . . . |
             | . . . | . . . | . . . |
             '-------'-------'-------'
-            </code>
+            ]]></code>
             Where:
             <list type="table">
             <item><term>P</term><description>Pair Cells.</description></item>

@@ -22,7 +22,7 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// <para>
 	/// <b>Direct line</b>s is a concept that describes the crosshatching information of a hidden single.
 	/// For example, in this following grid:
-	/// <code>
+	/// <code><![CDATA[
 	/// .---------.---------.---------.
 	/// | .  .  . | .  .  . | .  .  . |
 	/// | .  .  . | .  .  1 | .  .  . |
@@ -36,7 +36,7 @@ public interface ISingleStepSearcher : IStepSearcher
 	/// | .  .  . | 1  .  . | .  .  . |
 	/// | .  .  . | .  .  . | .  .  . |
 	/// '---------'---------'---------'
-	/// </code>
+	/// ]]></code>
 	/// The start point of the direct lines are:
 	/// <list type="bullet">
 	/// <item><c>r4c3(1)</c>, removes the cases of digit 1 for cells <c>r4c456</c>.</item>

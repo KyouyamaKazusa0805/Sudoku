@@ -6,7 +6,7 @@
 /// </summary>
 /// <remarks>
 /// Below C# 10, the namespace should be declared with a explicit block:
-/// <code>
+/// <code><![CDATA[
 /// namespace TestProject
 /// {
 ///     class Program
@@ -16,9 +16,9 @@
 ///         }
 ///     }
 /// }
-/// </code>
+/// ]]></code>
 /// From C# 10, we can use a comma and ignore the indentation:
-/// <code>
+/// <code><![CDATA[
 /// namespace TestProject;
 /// 
 /// class Program
@@ -27,7 +27,7 @@
 ///     {
 ///     }
 /// }
-/// </code>
+/// ]]></code>
 /// </remarks>
 [Obsolete("The project has already upgraded to C# 10, so this type can't be used in anyway.", true)]
 public sealed class FileScopedNamespaceSyntaxReplacer : ISyntaxReplacer

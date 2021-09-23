@@ -12,11 +12,11 @@ public readonly partial struct Pattern : IValueEquatable<Pattern>
 	/// <remarks>
 	/// <para>
 	/// This mask is of type <see cref="long"/>:
-	/// <code>
+	/// <code><![CDATA[
 	/// 0      7     14     21     28     35     42     49     56
 	/// ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
 	/// |-------|-------|-------|-------|-------|-------|-------|-------|
-	/// </code>
+	/// ]]></code>
 	/// where the bit [0..56] is for 8 cells, the last 7 bits determine the pattern is a
 	/// heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
 	/// </para>

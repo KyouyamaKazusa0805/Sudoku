@@ -374,11 +374,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |   ↓ cornerCell
 	/// | (abc) ab
 	/// |  ab   ab
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType1(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -463,11 +463,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |   ↓ corner1, corner2
 	/// | (abc) (abc)
 	/// |  ab    ab
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType2(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -570,11 +570,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |  ↓ corner1, corner2
 	/// | (ab ) (ab )
 	/// |  abx   aby
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType3Naked(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -732,11 +732,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |  ↓ corner1, corner2
 	/// | (ab ) ab
 	/// |  abx  aby
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType4(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -856,11 +856,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |  ↓ cornerCell
 	/// | (ab ) abc
 	/// |  abc  abc
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType5(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -963,12 +963,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |  ↓ corner1
 	/// | (ab )  aby
 	/// |  abx  (ab)
 	/// |        ↑corner2
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckType6(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1098,11 +1098,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |  ↓ cornerCell
 	/// | (ab ) abx
 	/// |  aby  abz
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void CheckHidden(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1218,12 +1218,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
+	/// <code><![CDATA[
 	/// |   ↓ corner1
 	/// | (ab )  abx
 	/// |  aby  (ab )  xy  *
 	/// |         ↑ corner2
-	/// </code>
+	/// ]]></code>
 	/// </remarks>
 	private void Check2D(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1366,14 +1366,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |   ↓ corner1, corner2
-	/// | (ab )  (ab )
-	/// |  |
-	/// |  | a
-	/// |  |
-	/// |  abx    aby
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1, corner2
+	///' (ab )  (ab )
+	///'  |
+	///'  | a
+	///'  |
+	///'  abx    aby
+	/// ]]></code>
 	/// </remarks>
 	private void Check2B1SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1538,15 +1538,15 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |   ↓ corner1
-	/// | (ab )   aby
-	/// |  |
-	/// |  | a
-	/// |  |
-	/// |  abx   (ab )
-	/// |          ↑ corner2
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1
+	///' (ab )   aby
+	///'  |
+	///'  | a
+	///'  |
+	///'  abx   (ab )
+	///'          ↑ corner2
+	/// ]]></code>
 	/// </remarks>
 	private void Check2D1SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1712,11 +1712,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |  ↓ cornerCell
-	/// | (ab )  abx
-	/// |  aby   abz   xy  *
-	/// </code>
+	/// <code><![CDATA[
+	///'  ↓ cornerCell
+	///' (ab )  abx
+	///'  aby   abz   xy  *
+	/// ]]></code>
 	/// Note: <c>z</c> is <c>x</c> or <c>y</c>.
 	/// </remarks>
 	private void Check3X(
@@ -1856,14 +1856,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |  ↓ cornerCell
-	/// | (ab )    abx
-	/// |           |
-	/// |           | b
-	/// |       a   |
-	/// |  aby-----abz
-	/// </code>
+	/// <code><![CDATA[
+	///'  ↓ cornerCell
+	///' (ab )    abx
+	///'           |
+	///'           | b
+	///'       a   |
+	///'  aby-----abz
+	/// ]]></code>
 	/// </remarks>
 	private void Check3X2SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -1975,14 +1975,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |  ↓ cornerCell
-	/// | (ab )-----abx
-	/// |        a   |
-	/// |            | b
-	/// |            |
-	/// |  aby      abz
-	/// </code>
+	/// <code><![CDATA[
+	///'  ↓ cornerCell
+	///' (ab )-----abx
+	///'        a   |
+	///'            | b
+	///'            |
+	///'  aby      abz
+	/// ]]></code>
 	/// </remarks>
 	private void Check3N2SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -2111,14 +2111,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |  ↓ cornerCell
-	/// | (ab )-----abx
-	/// |        a
-	/// |
-	/// |        b
-	/// |  aby -----abz
-	/// </code>
+	/// <code><![CDATA[
+	///'  ↓ cornerCell
+	///' (ab )-----abx
+	///'        a
+	///'
+	///'        b
+	///'  aby -----abz
+	/// ]]></code>
 	/// </remarks>
 	private void Check3U2SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -2239,14 +2239,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |   ↓ cornerCell
-	/// | (ab )-----abx
-	/// |        a
-	/// |
-	/// |        a
-	/// |  aby -----abz
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ cornerCell
+	///' (ab )-----abx
+	///'        a
+	///'
+	///'        a
+	///'  aby -----abz
+	/// ]]></code>
 	/// </remarks>
 	private void Check3E2SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -2368,14 +2368,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |   ↓ corner1, corner2
-	/// | (abx)-----(aby)
-	/// |        a    |
-	/// |             | b
-	/// |        a    |
-	/// |  abz ----- abw
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1, corner2
+	///' (abx)-----(aby)
+	///'        a    |
+	///'             | b
+	///'        a    |
+	///'  abz ----- abw
+	/// ]]></code>
 	/// </remarks>
 	private void Check4X3SL(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -2517,25 +2517,25 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <para>The structures:</para>
 	/// <para>
 	/// Subtype 1:
-	/// <code>
-	/// |   ↓ corner1, corner2
-	/// | (abx)-----(aby)
-	/// |        a    |
-	/// |             | a
-	/// |        b    |
-	/// |  abz ----- abw
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1, corner2
+	///' (abx)-----(aby)
+	///'        a    |
+	///'             | a
+	///'        b    |
+	///'  abz ----- abw
+	/// ]]></code>
 	/// </para>
 	/// <para>
 	/// Subtype 2:
-	/// <code>
-	/// |   ↓ corner1, corner2
-	/// | (abx)-----(aby)
-	/// |   |    a    |
-	/// |   | b       | a
-	/// |   |         |
-	/// |  abz       abw
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1, corner2
+	///' (abx)-----(aby)
+	///'   |    a    |
+	///'   | b       | a
+	///'   |         |
+	///'  abz       abw
+	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	private void Check4C3SL(
@@ -2681,22 +2681,22 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <para>The structures:</para>
 	/// <para>
 	/// Subtype 1:
-	/// <code>
-	/// |   ↓ corner1
-	/// | (ab )  abxy  yz  xz
-	/// | (ab )  abxy  *
-	/// |   ↑ corner2
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1
+	///' (ab )  abxy  yz  xz
+	///' (ab )  abxy  *
+	///'   ↑ corner2
+	/// ]]></code>
 	/// Note that the pair of cells <c>abxy</c> should be in the same region.
 	/// </para>
 	/// <para>
 	/// Subtype 2:
-	/// <code>
-	/// |   ↓ corner1
-	/// | (ab )  abx   xz
-	/// |  aby  (ab )  *   yz
-	/// |         ↑ corner2
-	/// </code>
+	/// <code><![CDATA[
+	///'   ↓ corner1
+	///' (ab )  abx   xz
+	///'  aby  (ab )  *   yz
+	///'         ↑ corner2
+	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	private void CheckWing(
@@ -3125,14 +3125,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="index">The index.</param>
 	/// <remarks>
 	/// The structure:
-	/// <code>
-	/// |           |   xyz
-	/// |  ab+ ab+  | abxyz abxyz
-	/// |           |   xyz
-	/// | ----------+------------
-	/// | (ab)(ab)  |
-	/// |  ↑ corner1, corner2
-	/// </code>
+	/// <code><![CDATA[
+	///'           |   xyz
+	///'  ab+ ab+  | abxyz abxyz
+	///'           |   xyz
+	///' ----------+------------
+	///' (ab)(ab)  |
+	///'  ↑ corner1, corner2
+	/// ]]></code>
 	/// </remarks>
 	private void CheckSdc(
 		ICollection<UniqueRectangleStep> accumulator,
@@ -3461,25 +3461,25 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <para>The structures:</para>
 	/// <para>
 	/// Subtype 1:
-	/// <code>
-	/// |      ↓urCellInSameBlock
-	/// | ab  abc      abc  ←anotherCell
-	/// |
-	/// |     abcx-----abcy ←resultCell
-	/// |           c
-	/// |      ↑targetCell
-	/// </code>
+	/// <code><![CDATA[
+	///'      ↓urCellInSameBlock
+	///' ab  abc      abc  ←anotherCell
+	///'
+	///'     abcx-----abcy ←resultCell
+	///'           c
+	///'      ↑targetCell
+	/// ]]></code>
 	/// Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
 	/// </para>
 	/// <para>
 	/// Subtype 2:
-	/// <code>
-	/// | abcx   | ab  abc
-	/// |  |     |
-	/// |  | c   |
-	/// |  |     |
-	/// | abcy   |     abc
-	/// </code>
+	/// <code><![CDATA[
+	///' abcx   | ab  abc
+	///'  |     |
+	///'  | c   |
+	///'  |     |
+	///' abcy   |     abc
+	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	private void CheckUnknownCoveringUnique(

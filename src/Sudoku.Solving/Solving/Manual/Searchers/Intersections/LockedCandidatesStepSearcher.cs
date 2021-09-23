@@ -21,13 +21,13 @@ public sealed class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 	/// The main idea of this searching operation:
 	/// </para>
 	/// <para>
-	/// <code>
+	/// <code><![CDATA[
 	/// .-------.-------.-------.
 	/// | C C C | A A A | A A A |
 	/// | B B B | . . . | . . . |
 	/// | B B B | . . . | . . . |
 	/// '-------'-------'-------'
-	/// </code>
+	/// ]]></code>
 	/// For example, if the cells C form a locked candidates, there'll be two cases:
 	/// <list type="number">
 	/// <item><b>Pointing (Type 1)</b>: Cells A contains the digit, but cells B doesn't.</item>

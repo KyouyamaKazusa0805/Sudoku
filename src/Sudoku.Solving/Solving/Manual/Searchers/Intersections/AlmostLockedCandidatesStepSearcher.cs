@@ -61,7 +61,7 @@ public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidates
 	/// <remarks>
 	/// <para>
 	/// The diagrams:
-	/// <code>
+	/// <code><![CDATA[
 	/// ALP:
 	/// abx aby | ab
 	/// abz     |
@@ -69,7 +69,7 @@ public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidates
 	/// ALT:
 	/// abcw abcx | abc abc
 	/// abcy abcz |
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// <para>Algorithm:</para>
 	/// <para>

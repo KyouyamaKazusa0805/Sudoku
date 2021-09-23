@@ -292,22 +292,18 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	/// <para>
 	/// The debugger can't recognize fixed buffer.
 	/// The fixed buffer whose code is like:
-	/// <code>
-	/// private fixed short _values[81];
-	/// </code>
+	/// <code><![CDATA[private fixed short _values[81];]]></code>
 	/// However, internally, the field <c>_values</c> is implemented
 	/// with a fixed buffer using a inner struct, which is just like:
-	/// <code>
+	/// <code><![CDATA[
 	/// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
 	/// private struct FixedBuffer
 	/// {
 	///     public short _internalValue;
 	/// }
-	/// </code>
+	/// ]]></code>
 	/// And that field:
-	/// <code>
-	/// private FixedBuffer _fixedField;
-	/// </code>
+	/// <code><![CDATA[private FixedBuffer _fixedField;]]></code>
 	/// From the code we can learn that only 2 bytes of the inner struct can be detected,
 	/// because the buffer struct only contains 2 bytes data.
 	/// </para>

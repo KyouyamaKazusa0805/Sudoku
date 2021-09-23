@@ -221,7 +221,7 @@
             </summary>
             <remarks>
             Below C# 10, the namespace should be declared with a explicit block:
-            <code>
+            <code><![CDATA[
             namespace TestProject
             {
                 class Program
@@ -231,9 +231,9 @@
                     }
                 }
             }
-            </code>
+            ]]></code>
             From C# 10, we can use a comma and ignore the indentation:
-            <code>
+            <code><![CDATA[
             namespace TestProject;
             
             class Program
@@ -242,7 +242,7 @@
                 {
                 }
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="F:Sudoku.Diagnostics.LanguageFeatures.FileScopedNamespaceSyntaxReplacer.RequiredStringsCount">

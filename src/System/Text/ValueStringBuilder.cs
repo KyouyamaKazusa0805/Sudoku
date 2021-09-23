@@ -8,7 +8,7 @@
 /// </remarks>
 /// <example>
 /// You can use this struct like this:
-/// <code>
+/// <code><![CDATA[
 /// var sb = new ValueStringBuilder(stackalloc char[100]);
 /// 
 /// // Appending operations...
@@ -18,7 +18,7 @@
 /// sb.Append('!');
 /// 
 /// Console.WriteLine(sb.ToString()); // Dispose method will be called here.
-/// </code>
+/// ]]></code>
 /// </example>
 /// <seealso cref="ValueStringBuilder()"/>
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
@@ -87,13 +87,9 @@ public ref partial struct ValueStringBuilder
 	/// </para>
 	/// <para>
 	/// You can also use the constructor: <see cref="ValueStringBuilder(int)"/> like:
-	/// <code>
-	/// var sb = new ValueStringBuilder(10);
-	/// </code>
+	/// <code><![CDATA[var sb = new ValueStringBuilder(10);]]></code>
 	/// The code is nearly equivalent to
-	/// <code>
-	/// var sb = new ValueStringBuilder(stackalloc char[10]);
-	/// </code>
+	/// <code><![CDATA[var sb = new ValueStringBuilder(stackalloc char[10]);]]></code>
 	/// but uses shared array pool (i.e. the property <see cref="ArrayPool{T}.Shared"/>)
 	/// to create the buffer rather than using <see cref="Span{T}"/>.
 	/// </para>

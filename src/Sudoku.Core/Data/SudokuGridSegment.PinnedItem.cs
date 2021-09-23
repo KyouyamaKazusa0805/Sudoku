@@ -11,12 +11,12 @@ partial struct SudokuGridSegment
 	/// if called <see cref="GetPinnableReference()"/> (parameterless method), the default value is
 	/// <see cref="Masks"/>, and we'll get the table that contains all current statuses of the
 	/// curect collection using a <see cref="short"/>*. The code should be:
-	/// <code>
+	/// <code><![CDATA[
 	/// fixed (short* s = segment)
 	/// {
 	///     // Do something...
 	/// }
-	/// </code>
+	/// ]]></code>
 	/// The code is equivalent to
 	/// <code><![CDATA[
 	/// fixed (short* s = &segment.GetPinnableReference())

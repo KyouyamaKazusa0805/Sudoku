@@ -20,18 +20,18 @@ public sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearch
 	/// <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
 	/// <para>
 	/// Fit type (2 blocks spanned):
-	/// <code>
+	/// <code><![CDATA[
 	/// ab | ab
 	/// bc | bc
 	/// ac | ac
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// <para>
 	/// Fat type (3 blocks spanned):
-	/// <code>
+	/// <code><![CDATA[
 	/// ab | ac | bc
 	/// ab | ac | bc
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	private static readonly IReadOnlyList<(Cells Cells, IReadOnlyList<(int Left, int Right)> PairCells, int Size)> PatternInfos;

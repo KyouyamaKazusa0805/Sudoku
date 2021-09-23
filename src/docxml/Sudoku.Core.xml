@@ -258,13 +258,13 @@
             <summary>
             <para>
             Indicates all maps that forms the each intersection. The pattern will be like:
-            <code>
+            <code><![CDATA[
             .-------.-------.-------.
             | C C C | A A A | A A A |
             | B B B | . . . | . . . |
             | B B B | . . . | . . . |
             '-------'-------'-------'
-            </code>
+            ]]></code>
             </para>
             <para>
             In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
@@ -307,12 +307,12 @@
             </summary>
             <remarks>
             You can use this struct like this:
-            <code>
+            <code><![CDATA[
             foreach (short mask in new BitSubsetsGenerator(9, 3))
             {
                 // Do something to use the mask.
             }
-            </code>
+            ]]></code>
             </remarks>
         </member>
         <member name="F:Sudoku.Data.BitSubsetsGenerator._enumerator">
@@ -855,13 +855,9 @@
             <para>
             In some case, you can use object initializer instead.
             You can use the code
-            <code>
-            var map = new Cells { 0, 3, 5 };
-            </code>
+            <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
             instead of the code
-            <code>
-            var map = new Cells(stackalloc[] { 0, 3, 5 });
-            </code>
+            <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
             </para>
             </remarks>
         </member>
@@ -878,13 +874,9 @@
             <para>
             In some case, you can use object initializer instead.
             You can use the code
-            <code>
-            var map = new Cells { 0, 3, 5 };
-            </code>
+            <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
             instead of the code
-            <code>
-            var map = new Cells(stackalloc[] { 0, 3, 5 });
-            </code>
+            <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
             </para>
             </remarks>
         </member>
@@ -1109,15 +1101,14 @@
             <inheritdoc/>
             <remarks>
             <para>
-            For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
-            <code>
-            var map = new Cells(xxx) { ~1 };
-            </code>
+            For example, if the offset is <c>-2</c> (<c>~1</c>), the <c>[1]</c>
+            will be assigned <see langword="false"/>:
+            <code><![CDATA[var map = new Cells(xxx) { ~1 };]]></code>
             which is equivalent to:
-            <code>
+            <code><![CDATA[
             var map = new Cells(xxx);
             map[1] = false;
-            </code>
+            ]]></code>
             </para>
             <para>
             Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
@@ -1289,11 +1280,11 @@
             </summary>
             <remarks>
             The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
-            <code>
+            <code><![CDATA[
             |  (4)  |  (3)  |  (2)  |  (1)  |
             |-------|-------|-------|-------|
             32     24      16       8       0
-            </code>
+            ]]></code>
             Where:
             <list type="table">
             <item>
@@ -1325,11 +1316,11 @@
             </summary>
             <remarks>
             The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
-            <code>
+            <code><![CDATA[
             |  (4)  |  (3)  |  (2)  |  (1)  |
             |-------|-------|-------|-------|
             32     24      16       8       0
-            </code>
+            ]]></code>
             Where:
             <list type="table">
             <item>
@@ -3138,7 +3129,7 @@
             </para>
             <para>
             For example:
-            <code>
+            <code><![CDATA[
             .----------.----------.----------.
             |  .  4  6 |  . +1  . |  3 +7 +5 |
             | +3 +8  1 | +5  4  7 | +2 +9 +6 |
@@ -3152,7 +3143,7 @@
             | +4  .  8 |  1  9  . |  5  .  . |
             |  .  .  9 |  .  . +5 |  4  8  . |
             '----------'----------'----------'
-            </code>
+            ]]></code>
             </para>
             </summary>
         </member>
@@ -3163,7 +3154,7 @@
             </para>
             <para>
             For example:
-            <code>
+            <code><![CDATA[
             080630040
             200085009
             090000081
@@ -3173,39 +3164,37 @@
             970000030
             400850007
             010094050
-            </code>
+            ]]></code>
             </para>
             </summary>
         </member>
         <member name="F:Sudoku.Data.GridParsingOption.Sukaku">
-            <summary>
-            <para>
-            Sukaku sudoku format (only contains the digits and the whitespace).
-            </para>
-            <para>
-            For example:
-            <code>
-             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
-             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
-            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
-            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-            </code>
-            </para>
-            </summary>
+             <summary>
+             <para>
+             Sukaku sudoku format (only contains the digits and the whitespace).
+             </para>
+             <para>
+             For example:
+             <code><![CDATA[
+            '  23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
+            '  23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
+            '  23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
+            ' 123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
+            '  23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
+            ' 123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
+            '  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            '  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            '  23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             ]]></code>
+             </para>
+             </summary>
         </member>
         <member name="F:Sudoku.Data.GridParsingOption.SukakuSingleLine">
             <summary>
             <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
             <para>
             For example:
-            <code>
-            023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009
-            </code>
+            <code><![CDATA[023406789123456700003050780120050789003006009123456009100056089023456080123000789003456789023006700023006700120056780100006789120400780000406789103000080020450000003406089020056709120050080100000700120056780120000709123056000123050080000450089123050709100456089003400780100450009003400009120400009123056709003000700023406000000406009123006000000056709003406700120050009103056089103456709003056009120456009123456780023400000103406709003056789020406700100050009020400000100006789020006789020456780123056080120400700000406789120400080023456789003006080020456789103450709123400009123400080023406700123406709103400080123456009120456789023406709023450080100406080103056009100400009123000789100400709100406780123050700000050080023406009]]></code>
             </para>
             </summary>
         </member>
@@ -3216,7 +3205,7 @@
             </para>
             <para>
             For example:
-            <code>
+            <code><![CDATA[
             1			7	8	9	4	5	6
             4	5	6	1	2	3	7	8	9
             7	8	9	4	5	6	1	2	
@@ -3226,7 +3215,7 @@
             	9	1	5	6	7	2	3	4
             2	3	4	8	9	1	5	6	7
             5	6	7	2	3	4			1
-            </code>
+            ]]></code>
             </para>
             </summary>
         </member>
@@ -3237,9 +3226,7 @@
             </para>
             <para>
             For example:
-            <code>
-            0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0
-            </code>
+            <code><![CDATA[0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0]]></code>
             </para>
             </summary>
         </member>
@@ -4485,22 +4472,18 @@
             <para>
             The debugger can't recognize fixed buffer.
             The fixed buffer whose code is like:
-            <code>
-            private fixed short _values[81];
-            </code>
+            <code><![CDATA[private fixed short _values[81];]]></code>
             However, internally, the field <c>_values</c> is implemented
             with a fixed buffer using a inner struct, which is just like:
-            <code>
+            <code><![CDATA[
             [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
             private struct FixedBuffer
             {
                 public short _internalValue;
             }
-            </code>
+            ]]></code>
             And that field:
-            <code>
-            private FixedBuffer _fixedField;
-            </code>
+            <code><![CDATA[private FixedBuffer _fixedField;]]></code>
             From the code we can learn that only 2 bytes of the inner struct can be detected,
             because the buffer struct only contains 2 bytes data.
             </para>
@@ -5326,12 +5309,12 @@
             if called <see cref="M:Sudoku.Data.SudokuGrid.GetPinnableReference"/> (parameterless method), the default value is
             <see cref="F:Sudoku.Data.SudokuGrid.PinnedItem.CurrentGrid"/>, and we'll get the table that contains all current statuses of the
             current grid using a <see cref="T:System.Int16"/>*. The code should be:
-            <code>
+            <code><![CDATA[
             fixed (short* s = grid)
             {
                 // Do something...
             }
-            </code>
+            ]]></code>
             The code is equivalent to
             <code><![CDATA[
             fixed (short* s = &grid.GetPinnableReference())
@@ -5616,12 +5599,12 @@
             if called <see cref="M:Sudoku.Data.SudokuGridSegment.GetPinnableReference"/> (parameterless method), the default value is
             <see cref="F:Sudoku.Data.SudokuGridSegment.PinnedItem.Masks"/>, and we'll get the table that contains all current statuses of the
             curect collection using a <see cref="T:System.Int16"/>*. The code should be:
-            <code>
+            <code><![CDATA[
             fixed (short* s = segment)
             {
                 // Do something...
             }
-            </code>
+            ]]></code>
             The code is equivalent to
             <code><![CDATA[
             fixed (short* s = &segment.GetPinnableReference())

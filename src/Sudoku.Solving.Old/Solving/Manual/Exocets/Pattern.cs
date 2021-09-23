@@ -3,7 +3,7 @@
 /// <summary>
 /// <para>
 /// Indicates an exocet pattern. The pattern will be like:
-/// <code>
+/// <code><![CDATA[
 /// .-------.-------.-------.
 /// | B B E | E . . | E . . |
 /// | . . E | Q . . | R . . |
@@ -17,7 +17,7 @@
 /// | . . S | S . . | S . . |
 /// | . . S | S . . | S . . |
 /// '-------'-------'-------'
-/// </code>
+/// ]]></code>
 /// Where:
 /// <list type="table">
 /// <item><term>B</term><description>Base Cells.</description></item>

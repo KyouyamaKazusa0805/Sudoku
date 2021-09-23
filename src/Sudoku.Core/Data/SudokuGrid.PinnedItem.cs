@@ -11,12 +11,12 @@ partial struct SudokuGrid
 	/// if called <see cref="GetPinnableReference()"/> (parameterless method), the default value is
 	/// <see cref="CurrentGrid"/>, and we'll get the table that contains all current statuses of the
 	/// current grid using a <see cref="short"/>*. The code should be:
-	/// <code>
+	/// <code><![CDATA[
 	/// fixed (short* s = grid)
 	/// {
 	///     // Do something...
 	/// }
-	/// </code>
+	/// ]]></code>
 	/// The code is equivalent to
 	/// <code><![CDATA[
 	/// fixed (short* s = &grid.GetPinnableReference())

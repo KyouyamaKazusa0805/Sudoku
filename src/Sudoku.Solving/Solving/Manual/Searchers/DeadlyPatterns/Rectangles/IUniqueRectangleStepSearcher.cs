@@ -11,10 +11,10 @@ public interface IUniqueRectangleStepSearcher : IDeadlyPatternStepSearcher
 	/// </summary>
 	/// <remarks>
 	/// For example, the complete pattern is:
-	/// <code>
+	/// <code><![CDATA[
 	/// ab  |  ab
 	/// ab  |  ab
-	/// </code>
+	/// ]]></code>
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
 	/// The incomplete pattern may not contain all four <c>ab</c>s in the structure.
 	/// </remarks>

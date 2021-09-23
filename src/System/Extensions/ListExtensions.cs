@@ -40,13 +40,9 @@ public static class ListExtensions
 
 	/// <summary>
 	/// Remove the last element of the specified list, which is equivalent to code:
-	/// <code>
-	/// list.RemoveAt(list.Count - 1);
-	/// </code>
+	/// <code><![CDATA[list.RemoveAt(list.Count - 1);]]></code>
 	/// or
-	/// <code>
-	/// list.RemoveAt(^1); // Call extension method 'RemoveAt'.
-	/// </code>
+	/// <code><![CDATA[list.RemoveAt(^1); // Call extension method 'RemoveAt'.]]></code>
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The list.</param>

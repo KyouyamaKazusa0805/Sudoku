@@ -121,13 +121,9 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <para>
 	/// In some case, you can use object initializer instead.
 	/// You can use the code
-	/// <code>
-	/// var map = new Cells { 0, 3, 5 };
-	/// </code>
+	/// <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
 	/// instead of the code
-	/// <code>
-	/// var map = new Cells(stackalloc[] { 0, 3, 5 });
-	/// </code>
+	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
 	/// </para>
 	/// </remarks>
 	public Cells(in Span<int> cells) : this()
@@ -150,13 +146,9 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <para>
 	/// In some case, you can use object initializer instead.
 	/// You can use the code
-	/// <code>
-	/// var map = new Cells { 0, 3, 5 };
-	/// </code>
+	/// <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
 	/// instead of the code
-	/// <code>
-	/// var map = new Cells(stackalloc[] { 0, 3, 5 });
-	/// </code>
+	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
 	/// </para>
 	/// </remarks>
 	public Cells(in ReadOnlySpan<int> cells) : this()
@@ -955,15 +947,14 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <para>
-	/// For example, if the offset is -2 (~1), the [1] will be assigned <see langword="false"/>:
-	/// <code>
-	/// var map = new Cells(xxx) { ~1 };
-	/// </code>
+	/// For example, if the offset is <c>-2</c> (<c>~1</c>), the <c>[1]</c>
+	/// will be assigned <see langword="false"/>:
+	/// <code><![CDATA[var map = new Cells(xxx) { ~1 };]]></code>
 	/// which is equivalent to:
-	/// <code>
+	/// <code><![CDATA[
 	/// var map = new Cells(xxx);
 	/// map[1] = false;
-	/// </code>
+	/// ]]></code>
 	/// </para>
 	/// <para>
 	/// Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
