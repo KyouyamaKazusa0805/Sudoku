@@ -62,7 +62,7 @@
 
 				<StackPanel Style="{ThemeResource RoundedCornerStackPanel}">
 					<ToggleSwitch
-						x:Name="ToggleSwitch_ApplicationTheme"
+						x:Name="ToggleSwitch_ApplicationTheme" x:FieldModifier="Internal"
 						Margin="{StaticResource NormalThickness}"
 						OnContent="{StaticResource SettingsPage_ToggleSwitch_ApplicationTheme_OnContent}"
 						OffContent="{StaticResource SettingsPage_ToggleSwitch_ApplicationTheme_OffContent}"
@@ -94,7 +94,7 @@
 					Text="{StaticResource SettingsPage_TitleOption_Fish}" />
 				<StackPanel Style="{ThemeResource RoundedCornerStackPanel}">
 					<ToggleSwitch
-						x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned"
+						x:Name="ToggleSwitch_SashimiFishContainsKeywordFinned" x:FieldModifier="Internal"
 						Margin="{StaticResource NormalThickness}"
 						OnContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OnContent}"
 						OffContent="{StaticResource SettingsPage_ToggleSwitch_SashimiFishContainsKeywordFinned_OffContent}"
@@ -113,7 +113,8 @@
 					</ToggleSwitch>
 
 					<ToggleSwitch
-						x:Name="ToggleSwitch_UseSizedFishName" Margin="{StaticResource NormalThickness}"
+						x:Name="ToggleSwitch_UseSizedFishName" x:FieldModifier="Internal"
+						Margin="{StaticResource NormalThickness}"
 						OnContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OnContent}"
 						OffContent="{StaticResource SettingsPage_ToggleSwitch_UseSizedFishName_OffContent}"
 						Toggled="ToggleSwitch_UseSizedFishName_Toggled">

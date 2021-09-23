@@ -6,6 +6,15 @@
 public sealed partial class SettingsPage : Page
 {
 	/// <summary>
+	/// Indicates whether the <see cref="Page"/> instance has been initialized.
+	/// </summary>
+	/// <remarks>
+	/// After the constructor called, the value is always <see langword="true"/>.
+	/// This field is only used for distinguishing what phase the program executed.
+	/// </remarks>
+	private readonly bool _pageIsInitialized;
+
+	/// <summary>
 	/// Indicates the list of possible searching option values that is provided to be searched for later.
 	/// </summary>
 	/// <remarks>
@@ -32,8 +41,10 @@ public sealed partial class SettingsPage : Page
 	{
 		InitializeComponent();
 		InitializeFields();
-
+		InitializeControls();
 		AddPossibleSearchValues(_valuesToBeSearched);
+
+		_pageIsInitialized = true;
 	}
 
 
@@ -45,7 +56,7 @@ public sealed partial class SettingsPage : Page
 	private void AutoSuggestBox_OptionSearcher_TextChanged(
 		AutoSuggestBox sender,
 		AutoSuggestBoxTextChangedEventArgs args
-	) => sender.SetValue(ItemsControl.ItemsSourceProperty, (Sender: sender, Args: args) switch
+	) => sender.ItemsSource = (Sender: sender, Args: args) switch
 	{
 		(_, Args: { Reason: not AutoSuggestionBoxTextChangeReason.UserInput }) => null,
 		(Sender: { Text: var q }, _) when !string.IsNullOrWhiteSpace(q) => (
@@ -54,7 +65,7 @@ public sealed partial class SettingsPage : Page
 			select pair.Key
 		).ToArray(),
 		_ => null
-	});
+	};
 
 	/// <summary>
 	/// Triggers when the one element found is chosen.
@@ -82,7 +93,7 @@ public sealed partial class SettingsPage : Page
 						case TextBlock { Text: var text, FocusState: FocusState.Unfocused } tb
 						when text == itemValue:
 						{
-							sender.ClearValue(TextBlock.TextProperty);
+							sender.Text = string.Empty;
 							tb.Focus(FocusState.Programmatic);
 
 							continue;
@@ -116,7 +127,7 @@ public sealed partial class SettingsPage : Page
 		}
 
 		_boundSteps.Clear();
-		button.SetValue(IsEnabledProperty, false);
+		button.IsEnabled = false;
 	}
 
 	/// <summary>
@@ -127,6 +138,11 @@ public sealed partial class SettingsPage : Page
 	private void ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(object sender, [Discard] RoutedEventArgs e)
 	{
 		if (sender is not ToggleSwitch { IsOn: var isOn })
+		{
+			return;
+		}
+
+		if (!_pageIsInitialized)
 		{
 			return;
 		}
@@ -151,6 +167,11 @@ public sealed partial class SettingsPage : Page
 			return;
 		}
 
+		if (!_pageIsInitialized)
+		{
+			return;
+		}
+
 		_boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
 	}
 
@@ -162,6 +183,11 @@ public sealed partial class SettingsPage : Page
 	private void ToggleSwitch_ApplicationTheme_Toggled(object sender, [Discard] RoutedEventArgs e)
 	{
 		if (sender is not ToggleSwitch { IsOn: var isOn })
+		{
+			return;
+		}
+
+		if (!_pageIsInitialized)
 		{
 			return;
 		}

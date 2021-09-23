@@ -284,12 +284,16 @@
         </member>
         <member name="P:Sudoku.UI.Data.Preference.SashimiFishContainsKeywordFinned">
             <summary>
+            <para>
             Indicates whether the sashimi fishes are displayed with the modifier "finned", i.e. Finned Sashimi Fish.
+            </para>
+            <para>The default value is <c><see langword="false"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.UseSizedFishName">
             <summary>
-            Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..
+            <para>Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..</para>
+            <para>The default value is <c><see langword="false"/></c>.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ValueScale">
@@ -390,6 +394,9 @@
             <summary>
             Indicates the application theme that the program behaves and displays the UI.
             </summary>
+            <remarks>
+            This property is special. It will be initialized by <see cref="T:Microsoft.UI.Xaml.Controls.Page"/> instance.
+            </remarks>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.GivenColorLight">
             <summary>
@@ -727,6 +734,58 @@
             Throws when the bound control is <see langword="null"/>.
             </exception>
             <returns>The result <see cref="T:Sudoku.UI.Data.PreferenceBinding"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Data.PreferenceItemAttribute`2">
+            <summary>
+            Defines an attribute that is used onto a settable property, to tell the runtime and the user
+            that the property is bound with a UI control, as a preference item.
+            </summary>
+            <typeparam name="TControl">Indicates the type of the control.</typeparam>
+            <typeparam name="TConverter">Indicates the type of the converter.</typeparam>
+        </member>
+        <member name="P:Sudoku.UI.Data.PreferenceItemAttribute`2.ControlName">
+            <summary>
+            Indicates the control name that the preference item applied to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.PreferenceItemConverter`1">
+            <summary>
+            Indicates a converter that converts the current instance to a value, which is available to display.
+            </summary>
+            <typeparam name="TControl">The type of the control.</typeparam>
+        </member>
+        <member name="M:Sudoku.UI.Data.PreferenceItemConverter`1.Bind(System.Object,`0)">
+            <summary>
+            Binds the setting and a control value to display.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="control">The control instance to apply the value.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the bind operation is successful.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Data.PreferenceItemConverterAttribute`2">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Data.PreferenceItemConverterAttribute`2"/> instance that tells the runtime
+            and the user that the type is a converter, from a specified type to a specified type.
+            </summary>
+            <typeparam name="TFrom">The type from.</typeparam>
+            <typeparam name="TTo">The type to.</typeparam>
+        </member>
+        <member name="T:Sudoku.UI.Data.PreferenceItemConverters.ToggleSwitchReceivingApplicationThemeConverter">
+            <summary>
+            Defines a converter that allows the value converting
+            from a <see cref="T:Microsoft.UI.Xaml.ApplicationTheme"/> to a <see cref="T:System.Boolean"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.PreferenceItemConverters.ToggleSwitchReceivingApplicationThemeConverter.Bind(System.Object,Microsoft.UI.Xaml.Controls.ToggleSwitch)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Data.PreferenceItemConverters.ToggleSwitchReceivingBooleanConverter">
+            <summary>
+            Defines a converter that allows the value converting from a <see cref="T:System.Boolean"/> to a <see cref="T:System.Boolean"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.PreferenceItemConverters.ToggleSwitchReceivingBooleanConverter.Bind(System.Object,Microsoft.UI.Xaml.Controls.ToggleSwitch)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.SudokuGridCanvas">
             <summary>
@@ -1218,12 +1277,27 @@
             </summary>
             <remarks><i>This method is only called by constructor.</i></remarks>
         </member>
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeControls">
+            <summary>
+            Initializes the status of the controls via the <see cref="T:Sudoku.UI.Data.Preference"/> instance.
+            </summary>
+            <remarks><i>This method is only called by constructor.</i></remarks>
+        </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AddPossibleSearchValues(System.Collections.Generic.ICollection{System.ValueTuple{System.String,System.String[]}})">
             <summary>
             Add setting property items into the specified collection.
             </summary>
             <param name="collection">The collection.</param>
             <remarks><i>This method is only called by constructor.</i></remarks>
+        </member>
+        <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._pageIsInitialized">
+            <summary>
+            Indicates whether the <see cref="T:Microsoft.UI.Xaml.Controls.Page"/> instance has been initialized.
+            </summary>
+            <remarks>
+            After the constructor called, the value is always <see langword="true"/>.
+            This field is only used for distinguishing what phase the program executed.
+            </remarks>
         </member>
         <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._valuesToBeSearched">
             <summary>

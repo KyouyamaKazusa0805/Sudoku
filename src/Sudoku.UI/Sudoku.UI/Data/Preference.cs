@@ -16,14 +16,20 @@ public sealed class Preference : ICloneable<Preference>
 	public bool ShowLightRegion { get; set; }
 
 	/// <summary>
+	/// <para>
 	/// Indicates whether the sashimi fishes are displayed with the modifier "finned", i.e. Finned Sashimi Fish.
+	/// </para>
+	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
-	public bool SashimiFishContainsKeywordFinned { get; set; }
+	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned))]
+	public bool SashimiFishContainsKeywordFinned { get; set; } = false;
 
 	/// <summary>
-	/// Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..
+	/// <para>Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..</para>
+	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
-	public bool UseSizedFishName { get; set; }
+	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_UseSizedFishName))]
+	public bool UseSizedFishName { get; set; } = false;
 
 	/// <summary>
 	/// <para>Indicates the scale of values.</para>
@@ -136,6 +142,10 @@ public sealed class Preference : ICloneable<Preference>
 	/// <summary>
 	/// Indicates the application theme that the program behaves and displays the UI.
 	/// </summary>
+	/// <remarks>
+	/// This property is special. It will be initialized by <see cref="Page"/> instance.
+	/// </remarks>
+	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingApplicationThemeConverter>(nameof(SettingsPage.ToggleSwitch_ApplicationTheme))]
 	public ApplicationTheme ApplicationTheme { get; set; }
 
 	/// <summary>
