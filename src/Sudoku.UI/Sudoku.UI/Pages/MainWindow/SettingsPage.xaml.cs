@@ -174,9 +174,7 @@ public sealed partial class SettingsPage : Page
 					var resultTheme = isOn ? ApplicationTheme.Dark : ApplicationTheme.Light;
 
 					_preference.ApplicationTheme = resultTheme;
-#if !DEBUG
-					Application.Current.RequestedTheme = resultTheme;
-#endif
+					ApplicationData.Current.LocalSettings.Values["themeSetting"] = (int)resultTheme;
 				}
 			)
 		);
