@@ -75,7 +75,6 @@ This section you'll find the details about this solution.
     * [复杂鱼](technique-algorithm-ref/Old-Algorithm-Complex-Fish)
     * [死亡绽放](technique-algorithm-ref/Old-Algorithm-Death-Blossom)
 * 其它
-  * ~~[如何使用机器人项目](how-to/How-To-Compile-Bot-Projects)~~
   * [伪代码约定](miscellaneous/Pseudo-Code-Convention)
 
 
@@ -98,8 +97,12 @@ Please note that **NOT ALL** language features will be introduced below. I'll on
 * C# 9
   * [函数指针](language-ref/Function-Pointer)
   * [源代码生成器](language-ref/Source-Generator)
+  * [记录](language-ref/Records)
 * C# 10
   * [Lambda 拓展](language-ref/Extended-Lambdas)
   * [`static abstract` 接口成员](language-ref/Static-Abstracts-In-Interfaces)
+  * [基于文件的命名空间指令](language-ref/File-Scoped-Namespace)
+  * [泛型特性](language-ref/Generic-Attributes)
 * 综合内容
   * [模式匹配](language-ref/Pattern-Matching)
+
