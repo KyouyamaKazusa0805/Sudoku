@@ -831,6 +831,11 @@
             Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
             </param>
         </member>
+        <member name="F:Sudoku.UI.Data.SudokuGridCanvas.DefaultTextSize">
+            <summary>
+            Indicates the default text size.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Data.SudokuGridCanvas.Solver">
             <summary>
             Indicates the solver that checks the uniqueness of sudoku puzzles.
@@ -1283,13 +1288,6 @@
             </summary>
             <remarks><i>This method is only called by constructor.</i></remarks>
         </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AddPossibleSearchValues(System.Collections.Generic.ICollection{System.ValueTuple{System.String,System.String[]}})">
-            <summary>
-            Add setting property items into the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-            <remarks><i>This method is only called by constructor.</i></remarks>
-        </member>
         <member name="F:Sudoku.UI.Pages.MainWindow.SettingsPage._pageIsInitialized">
             <summary>
             Indicates whether the <see cref="T:Microsoft.UI.Xaml.Controls.Page"/> instance has been initialized.
@@ -1336,16 +1334,6 @@
             </summary>
             <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance that triggers this event.</param>
             <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.Button_Save_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when a <see cref="T:Microsoft.UI.Xaml.Controls.Button"/> instance is clicked.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.Button_Discard_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when a <see cref="T:Microsoft.UI.Xaml.Controls.Button"/> instance is clicked.
-            </summary>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>

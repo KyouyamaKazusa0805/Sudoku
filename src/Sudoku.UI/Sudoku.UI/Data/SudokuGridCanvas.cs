@@ -31,6 +31,12 @@ public sealed record class SudokuGridCanvas(
 )
 {
 	/// <summary>
+	/// Indicates the default text size.
+	/// </summary>
+	private const int DefaultTextSize = 60;
+
+
+	/// <summary>
 	/// Indicates the solver that checks the uniqueness of sudoku puzzles.
 	/// </summary>
 	private static readonly FastSolver Solver = new();
@@ -49,7 +55,6 @@ public sealed record class SudokuGridCanvas(
 	)
 	{
 		createMainGridOutlines();
-
 		createCellControls();
 		createCandidateControls();
 		createCellBorders();
@@ -138,7 +143,7 @@ public sealed record class SudokuGridCanvas(
 							? Preference.GivenColorLight
 							: Preference.GivenColorDark
 					),
-					FontSize = (double)(60 * Preference.ValueScale),
+					FontSize = (double)(DefaultTextSize * Preference.ValueScale),
 					FontFamily = new(Preference.GivenFontName),
 					FontStyle = Preference.GivenFontStyle,
 					HorizontalAlignment = HorizontalAlignment.Center,
@@ -175,7 +180,7 @@ public sealed record class SudokuGridCanvas(
 							? Preference.CandidateColorLight
 							: Preference.CandidateColorDark
 					),
-					FontSize = (double)(60 * (Preference.CandidateScale / 3M)),
+					FontSize = (double)(DefaultTextSize * (Preference.CandidateScale / 3M)),
 					FontFamily = new(Preference.CandidateFontName),
 					FontStyle = Preference.CandidateFontStyle,
 					HorizontalAlignment = HorizontalAlignment.Center,
@@ -324,9 +329,7 @@ public sealed record class SudokuGridCanvas(
 				{ IsDebuggerUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1,
 #endif
 				{ IsUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed,
-				_ => Solver.CheckValidity($"{sudoku:0}")
-					? null
-					: (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed
+				_ => Solver.CheckValidity($"{sudoku:0}") ? null : (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed
 			} is { } errorInfo
 		)
 		{

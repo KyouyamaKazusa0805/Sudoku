@@ -42,9 +42,28 @@ public sealed partial class SettingsPage : Page
 		InitializeComponent();
 		InitializeFields();
 		InitializeControls();
-		AddPossibleSearchValues(_valuesToBeSearched);
+		addPossibleSearchValues(_valuesToBeSearched);
 
 		_pageIsInitialized = true;
+
+
+		static void addPossibleSearchValues(ICollection<(string, string[])> collection)
+		{
+			const string p = "SettingsPage_Option_"; // Of length 20.
+			const string q = "_Intro"; // Of length 6.
+			const int l = 20, m = 6; // The length of 'p' and 'q'.
+
+			foreach (var mergedDictionary in UiResources.Dictionaries)
+			{
+				foreach (var kvp in mergedDictionary)
+				{
+					if (kvp is (key: string { Length: >= l } k, value: string v) && k[..l] == p && k[^m..] != q)
+					{
+						collection.Add((v, v.Contains(' ') ? v.Split(' ') : new[] { v }));
+					}
+				}
+			}
+		}
 	}
 
 
@@ -106,37 +125,6 @@ public sealed partial class SettingsPage : Page
 				break;
 			}
 		}
-	}
-
-	/// <summary>
-	/// Triggers when a <see cref="Button"/> instance is clicked.
-	/// </summary>
-	private void Button_Save_Click([Discard] object sender, [Discard] RoutedEventArgs e)
-	{
-		foreach (var (control, setter, restore) in _boundSteps)
-		{
-			setter();
-			restore(control);
-		}
-
-		_boundSteps.Clear();
-		Button_Save.IsEnabled = false;
-		Button_Discard.IsEnabled = false;
-	}
-
-	/// <summary>
-	/// Triggers when a <see cref="Button"/> instance is clicked.
-	/// </summary>
-	private void Button_Discard_Click([Discard] object sender, [Discard] RoutedEventArgs e)
-	{
-		foreach (var (control, _, restore) in _boundSteps)
-		{
-			restore(control);
-		}
-
-		_boundSteps.Clear();
-		Button_Save.IsEnabled = false;
-		Button_Discard.IsEnabled = false;
 	}
 
 	/// <summary>

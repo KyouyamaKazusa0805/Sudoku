@@ -150,12 +150,10 @@
 
 			<Button
 				x:Name="Button_Discard" Margin="{StaticResource ButtonMargin}" IsEnabled="False"
-				Content="{StaticResource SettingsPage_Discard}"
-				Click="Button_Discard_Click" />
+				Content="{StaticResource SettingsPage_Discard}" />
 			<Button
 				x:Name="Button_Save" Margin="{StaticResource ButtonMargin}" IsEnabled="False"
-				Content="{StaticResource SettingsPage_Save}"
-				Click="Button_Save_Click" />
+				Content="{StaticResource SettingsPage_Save}"  />
 		</StackPanel>
 	</Grid>
 </Page>
