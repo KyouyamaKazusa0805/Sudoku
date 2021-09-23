@@ -10,7 +10,7 @@ public sealed partial class SettingsPage : Page
 	/// </summary>
 	/// <remarks>
 	/// After the constructor called, the value is always <see langword="true"/>.
-	/// This field is only used for distinguishing what phase the program executed.
+	/// This field is only used for distinguishing what phase the program executed to.
 	/// </remarks>
 	private readonly bool _pageIsInitialized;
 
@@ -111,15 +111,8 @@ public sealed partial class SettingsPage : Page
 	/// <summary>
 	/// Triggers when a <see cref="Button"/> instance is clicked.
 	/// </summary>
-	/// <param name="sender">The <see cref="Button"/> instance triggered the event.</param>
-	/// <param name="e"></param>
-	private void Button_Save_Click(object sender, [Discard] RoutedEventArgs e)
+	private void Button_Save_Click([Discard] object sender, [Discard] RoutedEventArgs e)
 	{
-		if (sender is not Button button)
-		{
-			return;
-		}
-
 		foreach (var (control, setter, restore) in _boundSteps)
 		{
 			setter();
@@ -127,7 +120,23 @@ public sealed partial class SettingsPage : Page
 		}
 
 		_boundSteps.Clear();
-		button.IsEnabled = false;
+		Button_Save.IsEnabled = false;
+		Button_Discard.IsEnabled = false;
+	}
+
+	/// <summary>
+	/// Triggers when a <see cref="Button"/> instance is clicked.
+	/// </summary>
+	private void Button_Discard_Click([Discard] object sender, [Discard] RoutedEventArgs e)
+	{
+		foreach (var (control, _, restore) in _boundSteps)
+		{
+			restore(control);
+		}
+
+		_boundSteps.Clear();
+		Button_Save.IsEnabled = false;
+		Button_Discard.IsEnabled = false;
 	}
 
 	/// <summary>
@@ -195,13 +204,7 @@ public sealed partial class SettingsPage : Page
 		_boundSteps.Add(
 			new(
 				OptionItem_ApplicationTheme,
-				() =>
-				{
-					var resultTheme = isOn ? ApplicationTheme.Dark : ApplicationTheme.Light;
-
-					_preference.ApplicationTheme = resultTheme;
-					ApplicationData.Current.LocalSettings.Values["themeSetting"] = (int)resultTheme;
-				}
+				() => _preference.ApplicationTheme = isOn ? ApplicationTheme.Dark : ApplicationTheme.Light
 			)
 		);
 	}

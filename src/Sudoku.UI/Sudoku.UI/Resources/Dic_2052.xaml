@@ -37,6 +37,7 @@
 	<x:String x:Key="SettingsPage_SearchTitle">搜索设置项</x:String>
 	<x:String x:Key="SettingsPage_AutoSuggestBox_PlaceholderText">在此处输入内容，搜索具体的设置项</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">如果你找不到设置项，可以在这里搜索你想找的项目。</x:String>
+	<x:String x:Key="SettingsPage_Discard">放弃保存</x:String>
 	<x:String x:Key="SettingsPage_Save">保存</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions">界面基本设置</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions_Description">此处陈列关于界面的设置项，比如你看起来的程序的外观之类的。</x:String>
@@ -53,6 +54,7 @@
 	<!--SettingsPage Searching option values-->
 	<x:String x:Key="SettingsPage_Option_ApplicationTheme">程序主题</x:String>
 	<x:String x:Key="SettingsPage_Option_ApplicationTheme_Intro">通过按下按钮切换程序界面的主题，来改变呈现颜色。比如说，如果你选择了浅色主题，那么所有控件都会使用黑字白底的样式；反之如果你选择了深色主题，则所有控件会使用白字黑底的样式。</x:String>
+	<x:String x:Key="SettingsPage_Option_ApplicationTheme_Intro2">该选项要求重启系统才可生效。</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">“退化鱼”技巧在翻译时包含“鱼鳍”一词</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro">退化鱼也可以包含“鱼鳍”一词作为技巧名的一部分，即也可以叫“鱼鳍退化鱼”。该选项能够变更显示技巧名的行为。</x:String>
 	<x:String x:Key="SettingsPage_Option_UseSizedFishName">使用“n 阶鱼”来按规格表示鱼的名字</x:String>

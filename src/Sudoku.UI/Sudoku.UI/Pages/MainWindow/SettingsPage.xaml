@@ -76,6 +76,9 @@
 								<TextBlock
 									Style="{ThemeResource LongTextBlockInner}"
 									Text="{StaticResource SettingsPage_Option_ApplicationTheme_Intro}" />
+								<TextBlock
+									Style="{ThemeResource LongTextBlockInner}" Foreground="Red"
+									Text="{StaticResource SettingsPage_Option_ApplicationTheme_Intro2}" />
 							</StackPanel>
 						</ToggleSwitch.Header>
 					</ToggleSwitch>
@@ -141,8 +144,16 @@
 		<!--Buttons-->
 		<Border Grid.Row="1" BorderBrush="White" BorderThickness="0, 1, 0, 0" />
 		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+			<StackPanel.Resources>
+				<Thickness x:Key="ButtonMargin">0, 40, 40, 40</Thickness>
+			</StackPanel.Resources>
+
 			<Button
-				x:Name="Button_Save" Margin="40, 40, 40, 40" IsEnabled="False"
+				x:Name="Button_Discard" Margin="{StaticResource ButtonMargin}" IsEnabled="False"
+				Content="{StaticResource SettingsPage_Discard}"
+				Click="Button_Discard_Click" />
+			<Button
+				x:Name="Button_Save" Margin="{StaticResource ButtonMargin}" IsEnabled="False"
 				Content="{StaticResource SettingsPage_Save}"
 				Click="Button_Save_Click" />
 		</StackPanel>

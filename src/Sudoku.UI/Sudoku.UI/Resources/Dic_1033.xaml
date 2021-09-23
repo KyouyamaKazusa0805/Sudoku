@@ -52,6 +52,7 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 	<x:String x:Key="SettingsPage_SearchTitle">Search for item</x:String>
 	<x:String x:Key="SettingsPage_AutoSuggestBox_PlaceholderText">Input a value to search</x:String>
 	<x:String x:Key="SettingsPage_SearchIntro">If you can't find any possible values here, just search it here.</x:String>
+	<x:String x:Key="SettingsPage_Discard">Discard</x:String>
 	<x:String x:Key="SettingsPage_Save">Save</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions">UI basic options</x:String>
 	<x:String x:Key="SettingsPage_UiBasicOptions_Description">Here displays the options about the UI, e.g. the appearance of the program that you look.</x:String>
@@ -73,6 +74,7 @@ Copyright (c) Sunnie. All rights reserved.</x:String>
 		all controls will be displayed with the black foreground and white background; but if using dark theme,
 		all controls will be displayed with the white foreground and black background.
 	</x:String>
+	<x:String x:Key="SettingsPage_Option_ApplicationTheme_Intro2">This option requires you restart the program.</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned">Sashimi fishes contains the keyword "Finned" as technique displaying</x:String>
 	<x:String x:Key="SettingsPage_Option_SashimiFishContainsKeywordFinned_Intro">
 		Sashimi fishes can also contain the keyword "Finned" as its name, i.e. "Finned Sashimi Fish".

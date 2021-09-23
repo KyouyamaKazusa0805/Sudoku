@@ -6,16 +6,19 @@
 public partial class App : Application
 {
 	/// <summary>
-	/// The main window.
-	/// </summary>
-	private Window? _window;
-
-
-	/// <summary>
 	/// Initializes the singleton application object.  This is the first line of authored code
 	/// executed, and as such is the logical equivalent of main() or WinMain().
 	/// </summary>
 	public App() => InitializeComponent();
+
+
+#nullable disable warnings
+	/// <summary>
+	/// Indicates the main window.
+	/// </summary>
+	[DisallowNull]
+	internal static Window? MainWindow { get; private set; }
+#nullable restore warnings
 
 
 	/// <summary>
@@ -28,7 +31,7 @@ public partial class App : Application
 		var mainWindow = new MainWindow { ExtendsContentIntoTitleBar = true };
 		mainWindow.SetTitleBar(mainWindow.CustomTitleBar);
 
-		_window = mainWindow;
-		_window.Activate();
+		MainWindow = mainWindow;
+		MainWindow.Activate();
 	}
 }

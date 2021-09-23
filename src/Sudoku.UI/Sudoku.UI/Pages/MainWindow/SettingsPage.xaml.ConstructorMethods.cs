@@ -10,7 +10,8 @@ partial class SettingsPage
 	{
 		if (sender is NotifyChangedList<PreferenceBinding> { Count: not 0 } i)
 		{
-			Button_Save.SetValue(IsEnabledProperty, true);
+			Button_Save.IsEnabled = true;
+			Button_Discard.IsEnabled = true;
 		}
 	};
 
