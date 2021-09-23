@@ -324,9 +324,9 @@ public sealed record class SudokuGridCanvas(
 				{ IsDebuggerUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_DebuggerUndefinedFailed1,
 #endif
 				{ IsUndefined: true } => (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UndefinedFailed,
-				_ => !Solver.CheckValidity($"{sudoku:0}")
-					? (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed
-					: null
+				_ => Solver.CheckValidity($"{sudoku:0}")
+					? null
+					: (string)UiResources.Current.ContentDialog_FailedDragPuzzleFile_Content_UniquenessFailed
 			} is { } errorInfo
 		)
 		{
