@@ -110,7 +110,7 @@ public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
 					// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
 					int zDigit = TrailingZeroCount(maskToCheck);
 					var petals = new Cells(cells);
-					if ((new Cells(petals) { pivot } & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
+					if ((petals + pivot & CandMaps[zDigit]).Count != (isIncomplete ? size - 1 : size))
 					{
 						continue;
 					}

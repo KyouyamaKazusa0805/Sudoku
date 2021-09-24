@@ -219,13 +219,12 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			// Second rule: If there's only two positions for this candidate, the other ont gets on.
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				int region = RegionCalculator.ToRegion(p.Cell, label);
-				var cells = new Cells(
-					h(grid, p.Digit, region, isDynamic, enableFastProperties) & RegionMaps[region]
-				) { ~p.Cell };
+				var (pc, pd, _) = p;
+				int region = RegionCalculator.ToRegion(pc, label);
+				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
 				if (cells.Count == 1)
 				{
-					var pOn = new ChainNode((byte)cells[0], p.Digit, true, p);
+					var pOn = new ChainNode((byte)cells[0], pd, true, p);
 
 					if (
 #if DEBUG

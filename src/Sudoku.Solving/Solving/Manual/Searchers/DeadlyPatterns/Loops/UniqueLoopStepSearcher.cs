@@ -152,7 +152,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		}
 
 		var candidateOffsets = new List<(int, ColorIdentifier)>();
-		foreach (int cell in new Cells(loop) { ~extraCell })
+		foreach (int cell in loop - extraCell)
 		{
 			candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
 			candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));

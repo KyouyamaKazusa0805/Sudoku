@@ -658,6 +658,12 @@
         <member name="M:Sudoku.Data.Candidates.op_Subtraction(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Candidates.op_Subtraction(Sudoku.Data.Candidates,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Addition(Sudoku.Data.Candidates,System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Candidates.op_Modulus(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
             <inheritdoc/>
         </member>
@@ -1156,6 +1162,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_LessThan(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Addition(Sudoku.Data.Cells,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Subtraction(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
@@ -3479,6 +3491,34 @@
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Addition(`0,System.Int32)">
+            <summary>
+            <para>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </para>
+            <para>
+            The operator is same as the expression <c>new(collection) { cell }</c>, but with optimization.
+            </para>
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Subtraction(`0,System.Int32)">
+            <summary>
+            <para>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result.
+            </para>
+            <para>
+            The operator is same as the expression <c>new(collection) { ~cell }</c>, but with optimization.
+            </para>
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_BitwiseAnd(`0@,`0@)">
             <summary>

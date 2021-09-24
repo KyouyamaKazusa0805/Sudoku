@@ -98,9 +98,12 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(int[] candidates) : this((IEnumerable<int>)candidates)
+	public Candidates(int[] candidates)
 	{
+		foreach (int candidate in candidates)
+		{
+			InternalAdd(candidate, true);
+		}
 	}
 
 	/// <summary>
@@ -766,6 +769,67 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		result[11] = left._11 & ~right._11;
 
 		return new(result, Len);
+	}
+
+	/// <inheritdoc/>
+	public static Candidates operator -(Candidates collection, int offset)
+	{
+		if (!collection.Contains(offset))
+		{
+			return collection;
+		}
+
+		var pThis = &collection;
+		long* block = (offset / Shifting) switch
+		{
+			0 => &pThis->_0,
+			1 => &pThis->_1,
+			2 => &pThis->_2,
+			3 => &pThis->_3,
+			4 => &pThis->_4,
+			5 => &pThis->_5,
+			6 => &pThis->_6,
+			7 => &pThis->_7,
+			8 => &pThis->_8,
+			9 => &pThis->_9,
+			10 => &pThis->_10,
+			11 => &pThis->_11
+		};
+
+		*block &= ~(1L << offset % Shifting);
+		collection.Count--;
+
+		return collection;
+	}
+
+	/// <inheritdoc/>
+	public static Candidates operator +(Candidates collection, int offset)
+	{
+		if (collection.Contains(offset))
+		{
+			return collection;
+		}
+
+		var pThis = &collection;
+		long* block = (offset / Shifting) switch
+		{
+			0 => &pThis->_0,
+			1 => &pThis->_1,
+			2 => &pThis->_2,
+			3 => &pThis->_3,
+			4 => &pThis->_4,
+			5 => &pThis->_5,
+			6 => &pThis->_6,
+			7 => &pThis->_7,
+			8 => &pThis->_8,
+			9 => &pThis->_9,
+			10 => &pThis->_10,
+			11 => &pThis->_11
+		};
+
+		*block |= 1L << offset % Shifting;
+		collection.Count++;
+		return collection;
 	}
 
 	/// <inheritdoc/>

@@ -170,7 +170,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						for (int c2 = c1 + 1; c2 < 4; c2++)
 						{
 							int corner2 = urCells[c2];
-							var tempOtherCellsMap = new Cells(otherCellsMap) { ~corner2 };
+							var tempOtherCellsMap = otherCellsMap - corner2;
 
 							// Both diagonal and non-diagonal.
 							CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
@@ -1123,7 +1123,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
-		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
+		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		int r = abzCell.ToRegion(RegionLabel.Row), c = abzCell.ToRegion(RegionLabel.Column);
 		int* p = stackalloc[] { d1, d2 };
@@ -1421,7 +1421,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							continue;
 						}
 
-						int elimCell = new Cells(otherCellsMap) { ~otherCell }[0];
+						int elimCell = (otherCellsMap - otherCell)[0];
 						if (grid.Exists(otherCell, digit) is not true)
 						{
 							continue;
@@ -1594,7 +1594,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							continue;
 						}
 
-						int elimCell = new Cells(otherCellsMap) { ~otherCell }[0];
+						int elimCell = (otherCellsMap - otherCell)[0];
 						if (grid.Exists(otherCell, digit) is not true)
 						{
 							continue;
@@ -1884,7 +1884,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
-		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
+		var adjacentCellsMap = otherCellsMap - abzCell;
 		var pairs = stackalloc[] { (d1, d2), (d2, d1) };
 		for (int pairIndex = 0; pairIndex < 2; pairIndex++)
 		{
@@ -2005,7 +2005,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		// Step 1: Get the diagonal cell of 'cornerCell' and determine
 		// the existence of strong link.
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
-		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
+		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
@@ -2139,7 +2139,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
-		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
+		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
@@ -2267,7 +2267,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
-		var adjacentCellsMap = new Cells(otherCellsMap) { ~abzCell };
+		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
 		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
@@ -2402,7 +2402,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			}
 
 			int abwCell = GetDiagonalCell(urCells, corner1);
-			int abzCell = new Cells(otherCellsMap) { ~abwCell }[0];
+			int abzCell = (otherCellsMap - abwCell)[0];
 			var cellQuadruples = stackalloc[]
 			{
 				(corner2, corner1, abzCell, abwCell),
@@ -2564,7 +2564,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			}
 
 			int end = GetDiagonalCell(urCells, corner1);
-			int extra = new Cells(otherCellsMap) { ~end }[0];
+			int extra = (otherCellsMap - end)[0];
 			var cellQuadruples = stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) };
 			for (int cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
 			{
@@ -3541,7 +3541,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						continue;
 					}
 
-					int urCellInSameBlock = new Cells(RegionMaps[block] & cells) { ~targetCell }[0];
+					int urCellInSameBlock = ((RegionMaps[block] & cells) - targetCell)[0];
 					int coveredLine = new Cells { bivalueCellToCheck, urCellInSameBlock }.CoveredLine;
 					if (coveredLine == InvalidFirstSet)
 					{
@@ -3550,7 +3550,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						continue;
 					}
 
-					int anotherCell = (new Cells(cells) { ~urCellInSameBlock } & RegionMaps[coveredLine])[0];
+					int anotherCell = (cells - urCellInSameBlock & RegionMaps[coveredLine])[0];
 					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
 					{
 						short abcMask = (short)(comparer | (short)(1 << extraDigit));
@@ -3561,7 +3561,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						}
 
 						// Check the conjugate pair of the extra digit.
-						int resultCell = new Cells(cells) { ~urCellInSameBlock, ~anotherCell, ~targetCell }[0];
+						int resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
 						var map = new Cells { targetCell, resultCell };
 						int line = map.CoveredLine;
 						if (!IsConjugatePair(extraDigit, map, line))
@@ -3988,12 +3988,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				}
 
 				var otherCells = RegionMaps[region] & CandMaps[otherDigit] & PeerMaps[anotherCell];
-				int sameRegions = new Cells(otherCells) { anotherCell }.CoveredRegions;
+				int sameRegions = (otherCells + anotherCell).CoveredRegions;
 				foreach (int sameRegion in sameRegions)
 				{
 					// Check whether all possible positions of the digit 'b' in this region only
 					// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-					if ((new Cells(RegionMaps[sameRegion]) { ~anotherCell } & CandMaps[otherDigit]) != otherCells)
+					if ((RegionMaps[sameRegion] - anotherCell & CandMaps[otherDigit]) != otherCells)
 					{
 						continue;
 					}

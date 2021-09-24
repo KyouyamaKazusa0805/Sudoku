@@ -107,6 +107,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// </summary>
 	/// <param name="another">Another instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete("Please use the 'operator +' and 'operator -' instead.", false)]
 	public Cells(in Cells another) => this = another;
 
 	/// <summary>
@@ -1133,6 +1134,36 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator +(Cells collection, int offset)
+	{
+		if (collection.Contains(offset))
+		{
+			return collection;
+		}
+
+		(offset / Shifting == 0 ? ref collection._low : ref collection._high) |= 1L << offset % Shifting;
+		collection.Count++;
+
+		return collection;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator -(Cells collection, int offset)
+	{
+		if (!collection.Contains(offset))
+		{
+			return collection;
+		}
+
+		(offset / Shifting == 0 ? ref collection._low : ref collection._high) &= ~(1L << offset % Shifting);
+		collection.Count--;
+
+		return collection;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -165,6 +165,36 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	static abstract TCollection operator -(in TCollection left, in TCollection right);
 
 	/// <summary>
+	/// <para>
+	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+	/// and returns the added result.
+	/// </para>
+	/// <para>
+	/// The operator is same as the expression <c>new(collection) { cell }</c>, but with optimization.
+	/// </para>
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static abstract TCollection operator +(TCollection collection, int offset);
+
+	/// <summary>
+	/// <para>
+	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+	/// and returns the removed result.
+	/// </para>
+	/// <para>
+	/// The operator is same as the expression <c>new(collection) { ~cell }</c>, but with optimization.
+	/// </para>
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static abstract TCollection operator -(TCollection collection, int offset);
+
+	/// <summary>
 	/// Get all cells that two <typeparamref name="TCollection"/> instances both contain.
 	/// </summary>
 	/// <param name="left">The left instance.</param>

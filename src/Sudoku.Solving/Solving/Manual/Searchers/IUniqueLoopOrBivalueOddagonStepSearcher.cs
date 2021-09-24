@@ -37,7 +37,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 			}
 
 			int region = cell.ToRegion(label);
-			var cellsMap = RegionMaps[region] & new Cells(EmptyMap) { ~cell };
+			var cellsMap = RegionMaps[region] & EmptyMap - cell;
 			if (cellsMap.IsEmpty)
 			{
 				continue;
