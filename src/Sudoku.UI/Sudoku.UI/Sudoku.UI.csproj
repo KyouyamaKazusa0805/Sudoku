@@ -17,11 +17,11 @@
 		<DocumentationFile>..\..\docxml\Sudoku.UI.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<DefineConstants>DEBUG; DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION; WINDOWS_APP; AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<DefineConstants>DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION; WINDOWS_APP; AUTHOR_RESERVED</DefineConstants>
 	</PropertyGroup>
 
