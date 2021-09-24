@@ -43,7 +43,7 @@ public sealed record class ExtendedRectangleType3Step(
 	private string ExtraCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells(ExtraCells).ToString();
+		get => ExtraCells.ToString();
 	}
 
 	[FormatItem]

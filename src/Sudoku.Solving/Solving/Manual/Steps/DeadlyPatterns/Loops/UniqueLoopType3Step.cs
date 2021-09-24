@@ -30,7 +30,7 @@ public sealed record class UniqueLoopType3Step(
 	private string SubsetCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells(SubsetCells).ToString();
+		get => SubsetCells.ToString();
 	}
 
 	[FormatItem]

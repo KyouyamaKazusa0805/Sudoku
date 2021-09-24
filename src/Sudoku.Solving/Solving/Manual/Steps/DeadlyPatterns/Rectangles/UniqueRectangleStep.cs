@@ -83,7 +83,7 @@ public abstract record class UniqueRectangleStep(
 	protected string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells(Cells).ToString();
+		get => Cells.ToString();
 	}
 
 

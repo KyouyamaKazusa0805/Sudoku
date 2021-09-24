@@ -52,7 +52,7 @@ public sealed record class UniqueRectangleWithWingStep(
 	private string PivotsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells(Pivots).ToString();
+		get => Pivots.ToString();
 	}
 
 	[FormatItem]
