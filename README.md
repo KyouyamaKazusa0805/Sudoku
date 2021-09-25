@@ -84,7 +84,7 @@ Please visit the following tables.
   * [ ] Desktop Projects
     * [x] WPF
     * [ ] ~~UWP (This may not be considered)~~
-    * [ ] WinUI 3
+    * [ ] Windows UI
     * [x] ~~Winform (Implemented but deprecated, removed)~~
   * [ ] MAUI
     * [ ] Android

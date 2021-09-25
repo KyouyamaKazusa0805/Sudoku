@@ -19,8 +19,8 @@
 ```csharp
 #if !NET6_0_OR_GREATER
 // C# 10 开始使用 global using 指令来按程序集级别添加命名空间的引用，因此这段代码此时是可以不写的。
-// 虽然项目是按 C# 10 语法书写的，因此这段代码是可以不写出来的；
-// 不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
+// 虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，
+// 我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
 using System;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
@@ -41,7 +41,7 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
-以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 APP 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
+以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 ### 如何编译解决方案
 
@@ -87,7 +87,7 @@ Console.WriteLine(analysisResult.ToString());
   * [ ] 桌面项目
     * [x] WPF 项目
     * [ ] ~~UWP 项目（这个可能我不会考虑了）~~
-    * [ ] WinUI 3 项目
+    * [ ] Windows UI 项目
     * [x] ~~Winform 项目（已实现，但早已过时，已被移除）~~
   * [ ] MAUI 项目
     * [ ] 安卓项目
