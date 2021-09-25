@@ -18,7 +18,10 @@ public interface IParsable<T>
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the operation is successful to execute.
 	/// </returns>
-	static abstract bool TryParse([NotNullWhen(true)] string? str, [NotNullWhen(true)] out T? result);
+	static abstract bool TryParse(
+		[NotNullWhen(true)] string? str,
+		[NotNullWhen(true), DiscardWhen(false)] out T? result
+	);
 
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance
