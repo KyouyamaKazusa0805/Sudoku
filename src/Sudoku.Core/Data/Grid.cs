@@ -1096,7 +1096,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, out Grid result)
+	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out Grid result)
 	{
 		try
 		{
@@ -1122,7 +1122,11 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	public static bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out Grid result)
+	public static bool TryParse(
+		[NotNullWhen(true)] string? str,
+		GridParsingOption option,
+		[DiscardWhen(false)] out Grid result
+	)
 	{
 		try
 		{

@@ -1067,7 +1067,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 		new Parser(str).Parse(gridParsingOption);
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, out SudokuGrid result)
+	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out SudokuGrid result)
 	{
 		try
 		{
@@ -1093,7 +1093,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
+	public static bool TryParse(string str, GridParsingOption option, [DiscardWhen(false)] out SudokuGrid result)
 	{
 		try
 		{

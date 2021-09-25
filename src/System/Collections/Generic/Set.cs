@@ -113,7 +113,7 @@ where TEquatable : IEquatable<TEquatable>
 	/// Note that <paramref name="other"/> and <paramref name="result"/> aren't totally same.
 	/// The comparison is decided by the implementation of its <c>Equals</c> method.
 	/// </remarks>
-	public bool TryGetValue(TEquatable other, out TEquatable? result)
+	public bool TryGetValue(TEquatable other, [DiscardWhen(false)] out TEquatable? result)
 	{
 		foreach (var value in _list)
 		{

@@ -428,7 +428,7 @@ public sealed class Preference : ICloneable<Preference>
 	/// <param name="colorIdentifier">The color identifier.</param>
 	/// <param name="result">The result color got.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	internal bool TryGetColor(ColorIdentifier colorIdentifier, out Color result)
+	internal bool TryGetColor(ColorIdentifier colorIdentifier, [DiscardWhen(false)] out Color result)
 	{
 		if (colorIdentifier.UseId)
 		{

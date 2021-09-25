@@ -34,7 +34,7 @@ public partial class Settings : ICloneable<Settings>
 	/// <param name="id">The ID value.</param>
 	/// <param name="result">The result color.</param>
 	/// <returns>A <see cref="bool"/> indicating whether the operation is successful.</returns>
-	public bool TryGetPaletteColor(int id, out Color result)
+	public bool TryGetPaletteColor(int id, [DiscardWhen(false)] out Color result)
 	{
 		if (id is >= 0 and < 15)
 		{

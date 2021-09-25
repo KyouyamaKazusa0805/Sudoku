@@ -641,7 +641,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Candidates result)
+	public static bool TryParse(string str, [DiscardWhen(false)] out Candidates result)
 	{
 		try
 		{

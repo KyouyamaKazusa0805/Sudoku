@@ -13,7 +13,12 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 	/// <param name="row">The row.</param>
 	/// <param name="column">The column.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	protected static bool IsEmptyRectangle(in Cells @this, int block, out int row, out int column)
+	protected static bool IsEmptyRectangle(
+		in Cells @this,
+		int block,
+		[DiscardWhen(false)] out int row,
+		[DiscardWhen(false)] out int column
+	)
 	{
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)

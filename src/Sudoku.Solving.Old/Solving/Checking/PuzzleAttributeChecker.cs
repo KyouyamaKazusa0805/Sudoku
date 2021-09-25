@@ -46,7 +46,7 @@ public static class PuzzleAttributeChecker
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="SudokuGrid.Undefined"/>
-	public static bool IsValid(this in SudokuGrid @this, out SudokuGrid solutionIfValid)
+	public static bool IsValid(this in SudokuGrid @this, [DiscardWhen(false)] out SudokuGrid solutionIfValid)
 	{
 		solutionIfValid = SudokuGrid.Undefined;
 
@@ -71,7 +71,10 @@ public static class PuzzleAttributeChecker
 	/// otherwise, <see langword="null"/>.
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public static bool IsValid(this UndoableGrid @this, [NotNullWhen(true)] out UndoableGrid? solutionIfValid)
+	public static bool IsValid(
+		this UndoableGrid @this,
+		[NotNullWhen(true), DiscardWhen(false)] out UndoableGrid? solutionIfValid
+	)
 	{
 		solutionIfValid = null;
 
@@ -141,7 +144,10 @@ public static class PuzzleAttributeChecker
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="SudokuGrid.Undefined"/>
 	public static bool IsValid(
-		this in SudokuGrid @this, out SudokuGrid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
+		this in SudokuGrid @this,
+		out SudokuGrid solutionIfValid,
+		[NotNullWhen(true)] out bool? sukaku
+	)
 	{
 		if (Solver.CheckValidity(@this.ToString(null), out string? solution))
 		{
@@ -177,8 +183,9 @@ public static class PuzzleAttributeChecker
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	public static bool IsValid(
 		this UndoableGrid @this,
-		[NotNullWhen(true)] out UndoableGrid? solutionIfValid,
-		[NotNullWhen(true)] out bool? sukaku)
+		[NotNullWhen(true), DiscardWhen(false)] out UndoableGrid? solutionIfValid,
+		[NotNullWhen(true)] out bool? sukaku
+	)
 	{
 		if (Solver.CheckValidity(@this.ToString(), out string? solution))
 		{
@@ -230,9 +237,7 @@ public static class PuzzleAttributeChecker
 			tempArrays[i][r * 9 + c] = 0;
 		}
 
-		return tempArrays.All(
-			static v => !Solver.Solve(new SudokuGrid(v, GridCreatingOption.MinusOne)).IsSolved
-		);
+		return tempArrays.All(static v => !Solver.Solve(new SudokuGrid(v, GridCreatingOption.MinusOne)).IsSolved);
 	}
 
 	/// <summary>

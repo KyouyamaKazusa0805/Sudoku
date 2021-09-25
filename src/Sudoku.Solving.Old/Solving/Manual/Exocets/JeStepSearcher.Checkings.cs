@@ -37,8 +37,7 @@ partial class JeStepSearcher
 	/// <param name="pos2">The cell 2 to determine.</param>
 	/// <param name="baseCands">The candidates that is from base two cells.</param>
 	/// <param name="ahsOrConjugatePairCands">
-	/// The other candidate mask. If failed to check,
-	/// the value will be -1.
+	/// The other candidate mask. If failed to check, the value will be -1.
 	/// </param>
 	/// <returns>The <see cref="bool"/> value.</returns>
 	private unsafe partial bool CheckTarget(
@@ -46,7 +45,7 @@ partial class JeStepSearcher
 		int pos1,
 		int pos2,
 		int baseCands,
-		out short ahsOrConjugatePairCands
+		[DiscardWhen(false)] out short ahsOrConjugatePairCands
 	)
 	{
 		// According to the puzzle, we just describe for the TQ1 and TQ2 ({23567} and 9).

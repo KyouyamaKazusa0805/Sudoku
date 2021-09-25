@@ -336,7 +336,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// The <see cref="bool"/> value indicating whether the another cell is same region as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsSameRegionCell(int cell1, int cell2, out int region)
+	private static bool IsSameRegionCell(int cell1, int cell2, [DiscardWhen(false)] out int region)
 	{
 		(bool r, region) = new Cells { cell1, cell2 }.CoveredRegions is var v and not 0 ? (true, v) : (false, 0);
 		return r;

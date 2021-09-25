@@ -3131,8 +3131,7 @@
             <param name="pos2">The cell 2 to determine.</param>
             <param name="baseCands">The candidates that is from base two cells.</param>
             <param name="ahsOrConjugatePairCands">
-            The other candidate mask. If failed to check,
-            the value will be -1.
+            The other candidate mask. If failed to check, the value will be -1.
             </param>
             <returns>The <see cref="T:System.Boolean"/> value.</returns>
         </member>
