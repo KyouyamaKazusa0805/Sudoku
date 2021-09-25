@@ -1047,8 +1047,12 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <inheritdoc/>
 	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull("str")]
-	public static Grid Parse(string? str) =>
-		str is null ? throw new ArgumentNullException(nameof(str)) : new Parser(str).Parse();
+	public static Grid Parse(string? str)
+	{
+		ArgumentNullException.ThrowIfNull(str);
+
+		return new Parser(str).Parse();
+	}
 
 	/// <summary>
 	/// <para>
@@ -1070,7 +1074,12 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parser.CompatibleFirst"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, bool compatibleFirst) => new Parser(str, compatibleFirst).Parse();
+	public static Grid Parse(string? str, bool compatibleFirst)
+	{
+		ArgumentNullException.ThrowIfNull(str);
+
+		return new Parser(str, compatibleFirst).Parse();
+	}
 
 	/// <summary>
 	/// Parses a string value and converts to this type, using a specified grid parsing type.
@@ -1079,8 +1088,12 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
-		new Parser(str).Parse(gridParsingOption);
+	public static Grid Parse(string? str, GridParsingOption gridParsingOption)
+	{
+		ArgumentNullException.ThrowIfNull(str);
+
+		return new Parser(str).Parse(gridParsingOption);
+	}
 
 	/// <inheritdoc/>
 	public static bool TryParse([NotNullWhen(true)] string? str, out Grid result)
@@ -1109,14 +1122,14 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	public static bool TryParse(string str, GridParsingOption option, out Grid result)
+	public static bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out Grid result)
 	{
 		try
 		{
 			result = Parse(str, option);
 			return true;
 		}
-		catch (FormatException)
+		catch (Exception ex) when (ex is FormatException or ArgumentNullException)
 		{
 			result = Undefined;
 			return false;

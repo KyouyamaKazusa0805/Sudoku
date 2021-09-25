@@ -13,6 +13,7 @@ global using System.Runtime.Versioning;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading.Tasks;
+global using Microsoft.CodeAnalysis;
 global using Microsoft.VisualBasic.FileIO;
 global using Sudoku.CodeGenerating;
 global using static System.Math;

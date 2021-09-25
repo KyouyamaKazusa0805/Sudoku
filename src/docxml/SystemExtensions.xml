@@ -1472,9 +1472,68 @@
             <c>Gender.Boy</c> or <c>Gender.Girl</c>.
             </remarks>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity">
+            <summary>
+            Defines a severity that contains different level of the diagnostic results.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.None">
+            <summary>
+            Indicates the diagnotic severity is none.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Hidden">
+            <summary>
+            Indicates the diagnotic severity is hidden.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Info">
+            <summary>
+            Indicates the diagnotic severity is information.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Warning">
+            <summary>
+            Indicates the diagnotic severity is warning.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Error">
+            <summary>
+            Indicates the diagnotic severity is error.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DiscardAttribute">
             <summary>
             Indicates the marked parameter is a discard and can't be used.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute">
+            <summary>
+            To mark onto a parameter, to tell the compiler that the argument must be a discard
+            and can't be used when the return value is specified value.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.ReturnValue">
+            <summary>
+            Indicates the return value that makes the parameter a discard.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1">
+            <summary>
+            To mark onto a method or a constructor, to tell the compiler that
+            the exception must, should or may be thrown by the current method.
+            </summary>
+            <typeparam name="TException">The type of the exception.</typeparam>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1"/> instance
+            with <see cref="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Warning"/> as the default value.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.Severity">
+            <summary>
+            Indicates the diagnostic severity that controls how the compiler validate the exception to be thrown.
             </summary>
         </member>
         <member name="T:System.ArrayExtensions">

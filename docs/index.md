@@ -103,6 +103,7 @@ Please note that **NOT ALL** language features will be introduced below. I'll on
   * [`static abstract` 接口成员](language-ref/Static-Abstracts-In-Interfaces)
   * [基于文件的命名空间指令](language-ref/File-Scoped-Namespace)
   * [泛型特性](language-ref/Generic-Attributes)
+  * [记录结构](language-ref/Record-Structs)
 * 综合内容
   * [模式匹配](language-ref/Pattern-Matching)
 

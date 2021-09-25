@@ -30,6 +30,8 @@ public interface IParsable<T>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="str"/> is <see langword="null"/>.
 	/// </exception>
+	[method: Throws<FormatException>(DiagnosticResultSeverity.Hidden)]
+	[method: Throws<ArgumentNullException>]
 	[return: NotNullIfNotNull("str")]
 	static abstract T? Parse(string? str);
 }

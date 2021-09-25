@@ -441,6 +441,75 @@ public new void Deconstruct(out string Name, out int Age, out Gender Gender)
 
 即多一个 `new` 而已。
 
+### 记录类型实现接口
+
+记录类型除了必须从记录类型派生（如果需要自定义派生关系）的这个规则以外，还可以实现接口。它的语法和类和结构实现语法的规范规则是一样的，也是冒号后跟上实现接口的列表即可。只是要注意的是，如果此时这个记录类型有基类型主构造器调用的话，需要先写主构造器的调用，然后才是是派生接口，并且也是用的逗号隔开。比如这样：
+
+```csharp
+record Student(string Name, int Age, int Class, Gender Gender)
+: Person(Name, Age, Gender), IEquatable<Student>
+{
+    // ...
+}
+```
+
+超级简单，对吧。稍微麻烦一点的是，如果接口里包含一个和主构造器参数一样的属性名，咋办呢？举个例子。我假设有一个 `IPerson` 的接口，它里面包含了一个 `string Name` 的属性：
+
+```csharp
+public interface IPerson
+{
+    // ...
+    
+    string Name { get; init; }
+    
+    // ...
+}
+```
+
+那么我们直接写在这个类型的后面作为实现接口：
+
+```csharp
+record Student(string Name, int Age, int Class, Gender Gender)
+: Person(Name, Age, Gender), IEquatable<Student>, IPerson
+{
+    // ...
+}
+```
+
+现在，会发生什么呢？啥也不会发生，而且编译成功。原因很简单，因为我们之前说过，主构造器的参数其实就是被翻译成了一个属性，一个带 `get` 和 `init` 的属性。而这正好匹配了 `IPerson` 的同名同返回值同访问器（即 `get` 和 `init` 也都一样）属性。因此，记录类型的接口实现其实稍微麻烦一点的地方是主构造器参数的隐式属性实现。所以这种情况下，我们直接把一个个主构造器里的参数当成一个个的实体属性，并且自带 `get` 和 `init` 访问器就行。实现接口的时候，请仔细检查它们。
+
+但请注意，假设 `IPerson` 接口里属性是 `get` 和 `set` 而不是 `init` 的话，那么此时因为同名不同访问器，而 `set` 和 `init` 都是赋值行为，又不可同时出现，因此我们这种情况下，只能显式接口实现。
+
+```csharp
+: ..., IPerson
+{
+    // Explicitly implementation.
+    string IPerson.Name
+    {
+        get => Name;
+        set => throw new NotSupportedException("The operation isn't supported.") // Please note here.
+    }
+}
+```
+
+这样实现就可以了。不过注意这里的 `set` 赋值器。
+
+可能你会问为什么这里直接抛异常了。你这么想。原本的 `init` 赋值范围比 `set` 要小，所以我们不可以直接赋值，所以我们这里迫不得已使用了 `with` 表达式。我们使用 `this with { ... }` 的模式来改变 `this` 对象里的 `Name` 属性数值。因为 `Name` 属性仅可在初始化的时候修改，因此只能使用 `with` 了，因此写成 `this = this with { ... }` 是正确答案。但别急。你见过运行时还 `this = ...` 的语法吗？引用类型的 `this` 引用是任何时候都不可改的，它只能老老实实分配内存，读取数据存进去，因此，这个赋值写法是不可能成立的，编译器会告诉你，“`this` 是只读的”。所以，我选择了抛异常。这个 `NotSupportedException` 异常类型经常在操作在某个条件状态下是不支持的的时候抛出。
+
+最后，因为是自动生成，所以一个记录类型会自动生成一个 `IEquatable<T>` 接口实现语法在声明语句之后，即：
+
+```csharp
+record R(int A, double B);
+```
+
+在底层除了生成一大堆东西以外，它的声明上也会自动加上一个接口实现：
+
+```csharp
+record R(int A, double B) : IEquatable<R>;
+```
+
+这个写法和前面那个写法是等价的，因为 `IEquatable<R>` 是系统自己检测，自己实现掉了，所以不写这个接口也会被系统自动生成的代码给实现，所以它相当于是后台实现的。
+
 ## 其它无关痛痒的记录类型语法
 
 ### `partial` 修饰符修饰记录类型
@@ -472,6 +541,24 @@ record Student(in string Name, in int Age, in Gender Gender);
 
 这样是可以的。当然，`params` 也可以，不过这里没有需要数组传入的属性信息，所以就不举例说明了。
 
+### 主构造器为空的记录
+
+是的，C# 9 允许我们写一个没有主构造器的记录类型，比如长这样：
+
+```csharp
+record Student : Person;
+```
+
+可这……真的有意义吗？是的，一般来说它都没有意义，因为它没有主构造器意味着它没有参数；而且它直接在 `Person` 后面就分号结尾了，所以里面啥都没有。不过，就这个样子系统也会给你生成那些前面挨个讲过的成员。即使你知道它是没有意义的写法。
+
+当然，主构造器为空是可以不写的，不过你也可以写成一对空括号：
+
+```csharp
+record Student() : Person;
+```
+
+也可以。但是 `Person` 上无参是不行的。因为大家都知道，`Person` 类型怎么着底层也是一个类，而且自然已经实现了一些非无参的构造器，所以无参构造器不会自动生成，所以 `Person()` 是不可以的写法；不过 `Student` 如果包含无参构造器，就可以这么写：`Student()`。
+
 ### 主构造器上使用特性
 
 C# 甚至允许我们在参数表列上使用特性，而且可以使用特性目标来固定应用到某个成员上。
@@ -498,7 +585,12 @@ sealed record Student(
 
 > 这里稍微注意下，C# 最开始的特性目标语法格式是必须分开的，不是说特性可以中括号里逗号分隔就可以在这里也这么写。因为这里带有特性目标，所以特性不可使用逗号写在一起，即 `[param: DisallowNull, property: DisallowNull]` 一样的语法是不正确的，必须分开写成两对中括号。
 
-### 暂时没有结构类型的 `record`
+### 没有 `static record`
+
+你想想，`record` 的诞生是为了提供更好的 POCO 实现的，一个 `static class` 是拿来干嘛的？存储工具方法的，这样的类型叫工具类，而这样的类型本身就不应该提供实例化。所以，一个静态类就根本不可能有对应的 `record` 一说，所以 `static record` 组合是不存在的。
+
+### 暂时没有结构类型和接口类型的 `record`
 
 `record` 被翻译成了类，所以 `record` 是不支持结构的。在 C# 10 里，`record` 会被推广到 `record struct` 上，但 C# 9 还不行，而且 C# 10 的 `record struct` 和这里的 `record` 有些细节也有不同，这个我们以后再说。
 
+而因为 `interface` 是抽象的存在，如果把类和结构当成用户说明书的话，那么 `interface` 就是约束你说明书该写什么东西的存在。像是它自己都不能实例化的类型，我们创建 `record` 版本好像也没有什么大用吧。所以，接口没有记录类型的这个说法。
