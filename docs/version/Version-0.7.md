@@ -18,6 +18,7 @@
 * 添加 `Sudoku.Data.Grid` 类型作为 `Sudoku.Data.SudokuGrid` 类型的替代；
 * 添加了很多基本类型的 JSON 序列化和反序列化的嵌套类型提供序列化操作；
 * 为 `Sudoku.Solving.Manual.StepInfo` 类型追加 `Format` 属性用于代替 `ToString` 和 `ToFullString` 方法：提供接入资源字典的该 API 可直接获取资源字典上的对应信息以多语言切换显示不同的输出结果；
+* 添加一些代码生成器用来服务 `Sudoku.UI` 项目，简化代码。
 
 ### 删除
 

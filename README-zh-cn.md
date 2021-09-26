@@ -18,9 +18,6 @@
 
 ```csharp
 #if !NET6_0_OR_GREATER
-// C# 10 开始使用 global using 指令来按程序集级别添加命名空间的引用，因此这段代码此时是可以不写的。
-// 虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，
-// 我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
 using System;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
@@ -41,6 +38,10 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
+> C# 10 开始使用 global using 指令来按程序集级别添加命名空间的引用，因此 `#if` 和 `#endif` 包裹起来的这段代码此时是可以不写的。虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
+>
+> `NET6_0_OR_GREATER` 是在 .NET 6 里带有的编译符号，用于指示框架的版本是否是 .NET 6 及以上。详情请自行参考 Microsoft Docs 了解[“条件编译符号”的使用](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation)。
+
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
 ### 如何编译解决方案
@@ -51,7 +52,7 @@ Console.WriteLine(analysisResult.ToString());
 
 当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
 
-另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交）。
+另外，这个仓库可能会更新得**非常频繁**（大概一天至少一次代码提交），而仓库备份到 Gitee 则大约是一天到两天一次。
 
 ### 基本信息
 

@@ -48,7 +48,7 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
-In addition, this repo may update **frequently** (At least 1 commit in a day).
+In addition, this repo may update **frequently** (At least 1 commit in a day), and backupping the repo to Gitee per day or per 2 days.
 
 ### Basic Information
 
