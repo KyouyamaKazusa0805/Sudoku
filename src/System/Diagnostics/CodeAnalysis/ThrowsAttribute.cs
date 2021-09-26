@@ -7,7 +7,7 @@
 /// <typeparam name="TException">The type of the exception.</typeparam>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor, AllowMultiple = true, Inherited = true)]
 [Conditional("SOLUTION_WIDE_CODE_ANALYSIS")]
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class ThrowsAttribute<TException> : Attribute where TException : Exception
 {
 	/// <summary>

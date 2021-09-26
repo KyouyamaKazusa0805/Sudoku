@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a instance for saving analysis result.
 /// </summary>
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class AnalysisResultFileOutput
 {
 	/// <summary>

@@ -7,7 +7,7 @@
 /// <typeparam name="TControl">Indicates the type of the control.</typeparam>
 /// <typeparam name="TConverter">Indicates the type of the converter.</typeparam>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class PreferenceItemAttribute<TControl, TConverter> : Attribute
 where TControl : FrameworkElement
 where TConverter : PreferenceItemConverter<TControl>, new()

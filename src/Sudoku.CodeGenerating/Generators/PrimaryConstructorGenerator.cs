@@ -2,12 +2,12 @@
 
 /// <summary>
 /// Indicates a generator that generates primary constructors for <see langword="class"/>es
-/// when they're marked <see cref="AutoGeneratePrimaryConstructorAttribute"/>.
+/// when they're marked <see cref="AutoPrimaryConstructorAttribute"/>.
 /// </summary>
 /// <remarks>
 /// This generator can <b>only</b> support non-nested <see langword="class"/>es.
 /// </remarks>
-/// <seealso cref="AutoGeneratePrimaryConstructorAttribute"/>
+/// <seealso cref="AutoPrimaryConstructorAttribute"/>
 [Generator]
 public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 {
@@ -17,7 +17,7 @@ public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<AutoGeneratePrimaryConstructorAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName<AutoPrimaryConstructorAttribute>();
 		var addAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIncludedMemberAttribute>();
 		var removeAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIgnoredMemberAttribute>();
 		foreach (var type in
@@ -64,6 +64,7 @@ namespace {namespaceName};
 partial class {type.Name}{genericParametersList}
 {{
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Diagnostics.CodeAnalysis.PrimaryConstructor]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public {type.Name}({parameterList}){baseCtorInheritance}
 	{{
@@ -86,7 +87,7 @@ partial class {type.Name}{genericParametersList}
 	/// <param name="handleRecursively">
 	/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
 	/// <param name="attributeSymbol">
-	/// Indicates the attribute symbol of attribute <see cref="AutoGeneratePrimaryConstructorAttribute"/>.
+	/// Indicates the attribute symbol of attribute <see cref="AutoPrimaryConstructorAttribute"/>.
 	/// </param>
 	/// <param name="addAttributeSymbol">
 	/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIncludedMemberAttribute"/>.
@@ -95,7 +96,7 @@ partial class {type.Name}{genericParametersList}
 	/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIgnoredMemberAttribute"/>.
 	/// </param>
 	/// <returns>The result list that contains all member symbols.</returns>
-	/// <seealso cref="AutoGeneratePrimaryConstructorAttribute"/>
+	/// <seealso cref="AutoPrimaryConstructorAttribute"/>
 	/// <seealso cref="PrimaryConstructorIncludedMemberAttribute"/>
 	/// <seealso cref="PrimaryConstructorIgnoredMemberAttribute"/>
 	private static IReadOnlyList<(string Type, string ParameterName, string Name, IEnumerable<AttributeData> Attributes)> GetMembers(

@@ -12,7 +12,7 @@
 /// </remarks>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="ManualSolver"/>
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class AllStepSearcher
 {
 	/// <summary>

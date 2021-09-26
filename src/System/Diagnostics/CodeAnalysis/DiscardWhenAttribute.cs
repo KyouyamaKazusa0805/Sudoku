@@ -6,7 +6,7 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
 [Conditional("SOLUTION_WIDE_CODE_ANALYSIS")]
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class DiscardWhenAttribute : Attribute
 {
 	/// <summary>

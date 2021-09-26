@@ -112,7 +112,7 @@
 /// </item>
 /// </list>
 /// </remarks>
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class BatchExecutor
 {
 	/// <summary>

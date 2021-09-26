@@ -96,11 +96,6 @@
             <seealso cref="M:System.Object.ToString"/>
             <seealso cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute">
-            <summary>
-            Indicates the marked <see langword="class"/> should generate primary constructor automatically.
-            </summary>
-        </member>
         <member name="T:Sudoku.CodeGenerating.AutoGetEnumeratorAttribute">
             <summary>
             To mark on a type, to tell the compiler that the compiler will automatically generate
@@ -174,6 +169,11 @@
         <member name="P:Sudoku.CodeGenerating.AutoHashCodeAttribute.DataMembers">
             <summary>
             All members to generate.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute">
+            <summary>
+            Indicates the marked <see langword="class"/> should generate primary constructor automatically.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute">
@@ -997,12 +997,12 @@
         <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator">
             <summary>
             Indicates a generator that generates primary constructors for <see langword="class"/>es
-            when they're marked <see cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>.
+            when they're marked <see cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>.
             </summary>
             <remarks>
             This generator can <b>only</b> support non-nested <see langword="class"/>es.
             </remarks>
-            <seealso cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
@@ -1018,7 +1018,7 @@
             <param name="handleRecursively">
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
             <param name="attributeSymbol">
-            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>.
+            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>.
             </param>
             <param name="addAttributeSymbol">
             Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>.
@@ -1027,7 +1027,7 @@
             Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>.
             </param>
             <returns>The result list that contains all member symbols.</returns>
-            <seealso cref="T:Sudoku.CodeGenerating.AutoGeneratePrimaryConstructorAttribute"/>
+            <seealso cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>
             <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>
             <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>
         </member>

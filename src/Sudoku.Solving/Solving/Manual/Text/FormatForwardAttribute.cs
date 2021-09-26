@@ -9,7 +9,7 @@
 /// <seealso cref="Step.Format"/>
 /// <seealso cref="IStep"/>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-[AutoGeneratePrimaryConstructor]
+[AutoPrimaryConstructor]
 public sealed partial class FormatForwardAttribute : Attribute
 {
 	/// <summary>
