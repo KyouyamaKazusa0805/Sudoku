@@ -6,9 +6,6 @@
 /// </summary>
 public sealed class SdcStepSearcher : RankTheoryStepSearcher
 {
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(15, DisplayingLevel.B);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>
@@ -17,7 +14,6 @@ public sealed class SdcStepSearcher : RankTheoryStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(15, nameof(Technique.Sdc))
 	{
 		DisplayLevel = 2

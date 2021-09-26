@@ -16,7 +16,6 @@
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority))]
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason))]
 [AutoDeconstruct(nameof(IsEnabled), nameof(IsReadOnly), nameof(Priority), nameof(DisabledReason), nameof(OnlyEnableInAnalysis), nameof(DisplayLevel), nameof(DisplayLabel))]
-[Obsolete($"Please use type '{nameof(SearchingOptions)}' instead.", false)]
 public sealed partial record class TechniqueProperties(int Priority, string DisplayLabel)
 {
 	/// <summary>
@@ -98,7 +97,8 @@ public sealed partial record class TechniqueProperties(int Priority, string Disp
 	/// the return value will be <see langword="null"/>.
 	/// </returns>
 	public static TechniqueProperties? FromType(
-		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type)
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type
+	)
 	{
 		if (!type.IsSubclassOf<StepSearcher>() || type.IsAbstract)
 		{

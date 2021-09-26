@@ -12,9 +12,6 @@ public abstract class StepSearcher : IStepSearcher
 	private const string NecessaryPropertyName = "Properties";
 
 
-	/// <inheritdoc/>
-	public virtual SearchingOptions Options { get; set; }
-
 	/// <summary>
 	/// Indicates all step searchers and their type info used in the current solution.
 	/// </summary>
@@ -34,10 +31,6 @@ public abstract class StepSearcher : IStepSearcher
 
 	/// <inheritdoc/>
 	public abstract void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid);
-
-	/// <inheritdoc/>
-	public override string ToString() =>
-		$"{{ Type = {GetType().FullName}, Priority = {Options.Priority}, DisplayingLevel = {Options.DisplayingLevel} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

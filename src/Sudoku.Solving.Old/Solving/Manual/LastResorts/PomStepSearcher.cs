@@ -5,13 +5,6 @@
 /// </summary>
 public sealed class PomStepSearcher : LastResortStepSearcher
 {
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(
-		20, DisplayingLevel.C,
-		EnabledAreas: EnabledAreas.None,
-		DisabledReason: DisabledReason.LastResort
-	);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>
@@ -20,7 +13,6 @@ public sealed class PomStepSearcher : LastResortStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(20, nameof(Technique.Pom))
 	{
 		DisplayLevel = 3,

@@ -13,7 +13,6 @@ public sealed partial class XrStepSearcher : UniquenessStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(11, nameof(Technique.XrType1))
 	{
 		DisplayLevel = 2

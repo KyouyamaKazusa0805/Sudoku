@@ -7,12 +7,6 @@
 public interface IStepSearcher
 {
 	/// <summary>
-	/// Indicates the step searching options.
-	/// </summary>
-	SearchingOptions Options { get; set; }
-
-
-	/// <summary>
 	/// Accumulate all technique information instances into the specified accumulator.
 	/// </summary>
 	/// <param name="accumulator">The accumulator to store technique information.</param>
@@ -27,9 +21,15 @@ public interface IStepSearcher
 	public StepInfo? GetOne(in SudokuGrid grid)
 	{
 		var bag = new NotifyChangedList<StepInfo>();
-		bag.ElementAdded += static ([Discard] _, [Discard] _) => throw new InvalidOperationException(nameof(GetOne));
+		bag.ElementAdded += static (_, _) => throw new InvalidOperationException(nameof(GetOne));
 
-		try { GetAll(bag, grid); } catch (InvalidOperationException ex) when (ex.Message == nameof(GetOne)) { }
+		try
+		{
+			GetAll(bag, grid);
+		}
+		catch (InvalidOperationException ex) when (ex.Message == nameof(GetOne))
+		{
+		}
 
 		return bag.FirstOrDefault();
 	}

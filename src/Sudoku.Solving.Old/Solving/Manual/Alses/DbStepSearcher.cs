@@ -7,17 +7,6 @@ namespace Sudoku.Solving.Manual.Alses;
 /// </summary>
 public sealed class DbStepSearcher : AlsStepSearcher
 {
-	/// <inheritdoc/>
-	public override SearchingOptions Options { get; set; } = new(
-		31,
-		DisplayingLevel.C,
-		Stableness: Stableness.Unstable,
-#if OLD_ALGORITHM
-		EnabledAreas: EnabledAreas.None,
-		DisabledReason: DisabledReason.TooSlow
-#endif
-	);
-
 	/// <summary>
 	/// Indicates the searcher properties.
 	/// </summary>
@@ -26,7 +15,6 @@ public sealed class DbStepSearcher : AlsStepSearcher
 	/// this static property in order to display on settings window. If the searcher doesn't contain,
 	/// when we open the settings window, it'll throw an exception to report about this.
 	/// </remarks>
-	[Obsolete($"Please use the property '{nameof(Options)}' instead.", false)]
 	public static TechniqueProperties Properties { get; } = new(31, nameof(Technique.DeathBlossom))
 	{
 		DisplayLevel = 3,

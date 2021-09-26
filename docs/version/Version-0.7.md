@@ -22,7 +22,8 @@
 
 ### 删除
 
-* 删除 `SUDOKU_RECOGNITION` 条件编译符号。
+* 删除 `SUDOKU_RECOGNITION` 条件编译符号；
+* 删除本来应该在 `Sudoku.Solving.Old` 项目拓展，但没有使用机会的内容（#176）。
 
 ### 修改
 
