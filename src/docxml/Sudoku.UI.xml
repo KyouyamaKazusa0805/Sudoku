@@ -1321,11 +1321,11 @@
             Initializes a <see cref="T:Sudoku.UI.Pages.MainWindow.SettingsPage"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AutoSuggestBox_OptionSearcher_TextChanged(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs)">
+        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AutoSuggestBox_OptionSearcher_QuerySubmitted(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs)">
             <summary>
-            Triggers when the value of the property <see cref="P:Microsoft.UI.Xaml.Controls.AutoSuggestBox.Text"/> is changed.
+            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance is submitted the input.
             </summary>
-            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance to trigger the event.</param>
+            <param name="sender">The instance to trigger that event.</param>
             <param name="args">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.AutoSuggestBox_OptionSearcher_SuggestionChosen(Microsoft.UI.Xaml.Controls.AutoSuggestBox,Microsoft.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs)">
@@ -1334,27 +1334,6 @@
             </summary>
             <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.AutoSuggestBox"/> instance that triggers this event.</param>
             <param name="args">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance is toggled.
-            </summary>
-            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance toggled.</param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_UseSizedFishName_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance is toggled.
-            </summary>
-            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance toggled.</param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.ToggleSwitch_ApplicationTheme_Toggled(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the specified <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance is toggled.
-            </summary>
-            <param name="sender">The <see cref="T:Microsoft.UI.Xaml.Controls.ToggleSwitch"/> instance toggled.</param>
-            <param name="e"></param>
         </member>
         <member name="M:Sudoku.UI.Pages.MainWindow.SettingsPage.InitializeComponent">
             <summary>

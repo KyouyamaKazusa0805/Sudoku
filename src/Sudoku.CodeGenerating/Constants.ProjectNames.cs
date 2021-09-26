@@ -32,11 +32,6 @@ partial class Constants
 		/// <summary>
 		/// Indicates the project <c>Sudoku.UI</c>.
 		/// </summary>
-		public const string Maui = "Sudoku.UI";
-
-		/// <summary>
-		/// Indicates the project <c>Sudoku.UI.WinUI</c>.
-		/// </summary>
-		public const string Maui_WinUI = "Sudoku.UI.WinUI";
+		public const string WindowsUI = "Sudoku.UI";
 	}
 }

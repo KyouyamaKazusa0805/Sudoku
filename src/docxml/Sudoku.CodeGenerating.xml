@@ -222,6 +222,13 @@
             Indicates the supported diagnostic ID.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.PreferenceRouteAttribute">
+            <summary>
+            Defines a preference route attribute that marks onto a preference item, to tell the source generator
+            that the preference item is bound with a control (e.g. a <c>ToggleSwitch</c>), and creates a method
+            that delegated to the XAML file.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute">
             <summary>
             Indicates the member should be ignored while generating primary constructors.
@@ -243,6 +250,35 @@
             attribute must be <see langword="static"/>. If you marks on a method
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute">
+            <summary>
+            Defines a preference route attribute that marks onto a preference item, to tell the source generator
+            that the preference item is bound with a <c>ToggleSwitch</c>, and creates a method
+            that delegated to the XAML file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute"/> instance with the specified control name.
+            </summary>
+            <param name="controlName">The bound control name.</param>
+            <param name="effectControlName">Indicates the effect control name.</param>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.ControlName">
+            <summary>
+            Indicates the bound control name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.EffectControlName">
+            <summary>
+            Indicates the effect control name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.PreferenceSetterMethodName">
+            <summary>
+            Indicates the method name that executes the code, to assign the result.
+            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute">
             <summary>
@@ -545,14 +581,9 @@
             Indicates the project <c>Sudoku.Solving</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Maui">
+        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.WindowsUI">
             <summary>
             Indicates the project <c>Sudoku.UI</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Maui_WinUI">
-            <summary>
-            Indicates the project <c>Sudoku.UI.WinUI</c>.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator">
@@ -1088,29 +1119,23 @@
         <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator">
             <summary>
-            Indicates the XAML interact logic generator.
+            Defines a source generator that generates the code for UI preference item.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver">
+        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.ToggleSwitchRoute(Microsoft.CodeAnalysis.GeneratorExecutionContext@)">
             <summary>
-            Defines the syntax receiver.
+            Routes the toggle switch instances and records them
+            into the <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/> instance.
             </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates all possible candidate types used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.XamlInteractLogicGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
-            <inheritdoc/>
+            <param name="context">The context.</param>
         </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">
             <summary>

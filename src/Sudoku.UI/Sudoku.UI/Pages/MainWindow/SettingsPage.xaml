@@ -47,9 +47,9 @@
 					Text="{StaticResource SettingsPage_SearchIntro}" Style="{ThemeResource LongTextBlock}" />
 				<AutoSuggestBox
 					PlaceholderText="{StaticResource SettingsPage_AutoSuggestBox_PlaceholderText}"
-					Margin="{StaticResource NormalThickness}"
+					Margin="{StaticResource NormalThickness}" QueryIcon="Find"
 					CornerRadius="{x:Bind c:CornerRadiusCalculator.Create(FontSize)}"
-					TextChanged="AutoSuggestBox_OptionSearcher_TextChanged"
+					QuerySubmitted="AutoSuggestBox_OptionSearcher_QuerySubmitted"
 					SuggestionChosen="AutoSuggestBox_OptionSearcher_SuggestionChosen" />
 
 				<!--Basic options-->
@@ -70,7 +70,7 @@
 						<ToggleSwitch.Header>
 							<StackPanel>
 								<TextBlock
-									x:Name="OptionItem_ApplicationTheme"
+									x:Name="OptionItem_ApplicationTheme" x:FieldModifier="Internal"
 									Style="{ThemeResource OptionItemTextBlock}"
 									Text="{StaticResource SettingsPage_Option_ApplicationTheme}" />
 								<TextBlock
@@ -106,6 +106,7 @@
 							<StackPanel>
 								<TextBlock
 									x:Name="OptionItem_SashimiFishContainsKeywordFinned"
+									x:FieldModifier="Internal"
 									Style="{ThemeResource OptionItemTextBlock}"
 									Text="{StaticResource SettingsPage_Option_SashimiFishContainsKeywordFinned}" />
 								<TextBlock
@@ -124,7 +125,7 @@
 						<ToggleSwitch.Header>
 							<StackPanel>
 								<TextBlock
-									x:Name="OptionItem_UseSizedFishName"
+									x:Name="OptionItem_UseSizedFishName" x:FieldModifier="Internal"
 									Style="{ThemeResource OptionItemTextBlock}"
 									Text="{StaticResource SettingsPage_Option_UseSizedFishName}" />
 								<TextBlock

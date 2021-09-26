@@ -67,24 +67,33 @@ public sealed partial class SettingsPage : Page
 	}
 
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal ApplicationTheme Route_ToggleSwitch_ApplicationTheme(bool b) =>
+		_preference.ApplicationTheme = b ? ApplicationTheme.Dark : ApplicationTheme.Light;
+
+
 	/// <summary>
-	/// Triggers when the value of the property <see cref="AutoSuggestBox.Text"/> is changed.
+	/// Triggers when the specified <see cref="AutoSuggestBox"/> instance is submitted the input.
 	/// </summary>
-	/// <param name="sender">The <see cref="AutoSuggestBox"/> instance to trigger the event.</param>
+	/// <param name="sender">The instance to trigger that event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private void AutoSuggestBox_OptionSearcher_TextChanged(
+	private void AutoSuggestBox_OptionSearcher_QuerySubmitted(
 		AutoSuggestBox sender,
-		AutoSuggestBoxTextChangedEventArgs args
-	) => sender.ItemsSource = (Sender: sender, Args: args) switch
+		AutoSuggestBoxQuerySubmittedEventArgs args
+	)
 	{
-		(_, Args: { Reason: not AutoSuggestionBoxTextChangeReason.UserInput }) => null,
-		(Sender: { Text: var q }, _) when !string.IsNullOrWhiteSpace(q) => (
+		string queryText = args.QueryText;
+		if (string.IsNullOrWhiteSpace(queryText))
+		{
+			return;
+		}
+
+		sender.ItemsSource = (
 			from pair in _valuesToBeSearched
-			where Array.Exists(pair.Keywords, k => k.Contains(q, StringComparison.OrdinalIgnoreCase))
+			where Array.Exists(pair.Keywords, k => k.Contains(queryText, StringComparison.OrdinalIgnoreCase))
 			select pair.Key
-		).ToArray(),
-		_ => null
-	};
+		).ToArray();
+	}
 
 	/// <summary>
 	/// Triggers when the one element found is chosen.
@@ -127,73 +136,8 @@ public sealed partial class SettingsPage : Page
 		}
 	}
 
-	/// <summary>
-	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
-	/// </summary>
-	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
-	/// <param name="e"></param>
-	private void ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(object sender, [Discard] RoutedEventArgs e)
-	{
-		if (sender is not ToggleSwitch { IsOn: var isOn })
-		{
-			return;
-		}
 
-		if (!_pageIsInitialized)
-		{
-			return;
-		}
-
-		_boundSteps.Add(
-			new(
-				OptionItem_SashimiFishContainsKeywordFinned,
-				() => _preference.SashimiFishContainsKeywordFinned = isOn
-			)
-		);
-	}
-
-	/// <summary>
-	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
-	/// </summary>
-	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
-	/// <param name="e"></param>
-	private void ToggleSwitch_UseSizedFishName_Toggled(object sender, [Discard] RoutedEventArgs e)
-	{
-		if (sender is not ToggleSwitch { IsOn: var isOn })
-		{
-			return;
-		}
-
-		if (!_pageIsInitialized)
-		{
-			return;
-		}
-
-		_boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
-	}
-
-	/// <summary>
-	/// Triggers when the specified <see cref="ToggleSwitch"/> instance is toggled.
-	/// </summary>
-	/// <param name="sender">The <see cref="ToggleSwitch"/> instance toggled.</param>
-	/// <param name="e"></param>
-	private void ToggleSwitch_ApplicationTheme_Toggled(object sender, [Discard] RoutedEventArgs e)
-	{
-		if (sender is not ToggleSwitch { IsOn: var isOn })
-		{
-			return;
-		}
-
-		if (!_pageIsInitialized)
-		{
-			return;
-		}
-
-		_boundSteps.Add(
-			new(
-				OptionItem_ApplicationTheme,
-				() => _preference.ApplicationTheme = isOn ? ApplicationTheme.Dark : ApplicationTheme.Light
-			)
-		);
-	}
+	private partial void ToggleSwitch_SashimiFishContainsKeywordFinned_Toggled(object sender, RoutedEventArgs e);
+	private partial void ToggleSwitch_UseSizedFishName_Toggled(object sender, RoutedEventArgs e);
+	private partial void ToggleSwitch_ApplicationTheme_Toggled(object sender, RoutedEventArgs e);
 }
