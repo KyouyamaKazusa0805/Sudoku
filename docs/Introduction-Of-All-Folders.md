@@ -1,23 +1,30 @@
-﻿﻿﻿# 文件夹介绍
-这个解决方案由如下文件夹构成。
+﻿﻿﻿﻿# 项目及文件夹介绍
+这个解决方案由如下项目和文件夹构成。
 
 ## 项目介绍
 
-|        | 项目                                                         | .NET 版本         | 类型  | 描述                                 | 维护状态 |
-| ------ | ------------------------------------------------------------ | ----------------- | ----- | ------------------------------------ | -------- |
-| 默认值 |                                                              | .NET 6            | 类库  |                                      | 正在维护 |
-|        | [`Sudoku.CodeGenerating`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGenerating) | .NET Standard 2.0 |       | 提供生成源代码的服务。               |          |
-|        | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) |                   |       | 对数独基本元素的主要数据结构的实现。 |          |
-|        | [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) |                   |       | 反射解决方案本身内容的存在。         |          |
-|        | [`Sudoku.Drawing.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing.Old) |                   |       | 用于绘制和渲染数独盘面。             | 弃用     |
-|        | [`Sudoku.IO.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO.Old) |                   |       | 用于处理数独相关的文件操作。         | 弃用     |
-|        | [`Sudoku.Solving.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Old) |                   |       | 解题和出题的项目。                   | 弃用     |
-|        | [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) |                   | 终端  | 仅用于调试代码正确和健壮性。         | 不维护   |
-|        | [`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old) |                   | WPF   | WPF 项目，包含 UI 界面和控件。       | 弃用     |
-|        | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI) |                   | WinUI | WinUI 项目，提供给桌面端的 UI 内容。 |          |
-|        | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) |                   |       | 提供 .NET 库相关的扩展类型和操作。   |          |
+这些是项目的介绍。其中：
+
+* ~~划掉~~的项目是不再维护的项目。
+* **粗体**书写的项目是正在维护的项目。这些项目也会有很多更新，也不一定有更新。这个看后续需不需要添加 API。
+
+| 项目                                                         | 框架版本          | 类型         | 描述                                   |
+| ------------------------------------------------------------ | ----------------- | ------------ | -------------------------------------- |
+| **[`Sudoku.CodeGenerating`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGenerating)** | .NET Standard 2.0 | 源代码生成器 | **给其它项目提供源代码生成工作。**     |
+| **[`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)** | .NET 6            | 类库         | **数独基本元素实现的数据结构的 API。** |
+| **[`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics)** | .NET 6            | 类库         | **提供反射解决方案的 API。**           |
+| ~~[`Sudoku.Drawing.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing.Old)~~ | .NET 6            | 类库         | ~~用于绘制和渲染数独盘面。~~           |
+| ~~[`Sudoku.IO.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO.Old)~~ | .NET 6            | 类库         | ~~用于处理数独相关的文件操作。~~       |
+| **[`Sudoku.Solving`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving)** | .NET 6            | 类库         | **提供人工和计算机解题和出题的 API。** |
+| ~~[`Sudoku.Solving.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Old)~~ | .NET 6            | 类库         | ~~解题和出题的项目。~~                 |
+| [`Sudoku.Test`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Test) | .NET 6            | 控制台       | 仅用于调试、测试代码正确性。           |
+| **[`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI/Sudoku.UI)** | .NET 6            | Windows UI   | **Windows 平台使用的 UI 程序。**       |
+| ~~[`Sudoku.Windows.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Windows.Old)~~ | .NET 6            | WPF          | ~~WPF 项目，包含 UI 界面和控件。~~     |
+| **[`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)** | .NET 6            | 类库         | **扩展 .NET 内置 API 的项目。**        |
 
 ## 其它文件夹介绍
+
+这些是位于项目的根目录下的文件夹的介绍。
 
 | 文件夹                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
