@@ -76,13 +76,10 @@ partial class Constants
 		/// ]]></code>
 		/// </para>
 		/// <para>
-		/// In addition, in this data structure, "<c>CoverSet</c>" is a block and "<c>BaseSet</c>" is a line.
+		/// In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 		/// </para>
 		/// </summary>
-		public static readonly IReadOnlyDictionary<
-			(byte Line, byte Block),
-			(Cells LineMap, Cells BlockMap, Cells IntersectionMap, byte[] OtherBlocks)
-		> IntersectionMaps;
+		public static readonly IReadOnlyDictionary<(byte Line, byte Block), (Cells LineMap, Cells BlockMap, Cells IntersectionMap, byte[] OtherBlocks)> IntersectionMaps;
 
 		/// <summary>
 		/// <para>The table of all blocks to iterate for each blocks.</para>
