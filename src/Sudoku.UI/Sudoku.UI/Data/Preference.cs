@@ -22,7 +22,7 @@ public sealed class Preference : ICloneable<Preference>
 	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned))]
-	[ToggleSwitchRoute(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned), nameof(SettingsPage.OptionItem_SashimiFishContainsKeywordFinned))]
+	[PreferenceItemRoute(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned), nameof(SettingsPage.OptionItem_SashimiFishContainsKeywordFinned))]
 	public bool SashimiFishContainsKeywordFinned { get; set; } = false;
 
 	/// <summary>
@@ -30,7 +30,7 @@ public sealed class Preference : ICloneable<Preference>
 	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_UseSizedFishName))]
-	[ToggleSwitchRoute(nameof(SettingsPage.ToggleSwitch_UseSizedFishName), nameof(SettingsPage.OptionItem_UseSizedFishName))]
+	[PreferenceItemRoute(nameof(SettingsPage.ToggleSwitch_UseSizedFishName), nameof(SettingsPage.OptionItem_UseSizedFishName))]
 	public bool UseSizedFishName { get; set; } = false;
 
 	/// <summary>
@@ -148,7 +148,7 @@ public sealed class Preference : ICloneable<Preference>
 	/// This property is special. It will be initialized by <see cref="Page"/> instance.
 	/// </remarks>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingApplicationThemeConverter>(nameof(SettingsPage.ToggleSwitch_ApplicationTheme))]
-	[ToggleSwitchRoute(nameof(SettingsPage.ToggleSwitch_ApplicationTheme), nameof(SettingsPage.OptionItem_ApplicationTheme), PreferenceSetterMethodName = nameof(SettingsPage.Route_ToggleSwitch_ApplicationTheme))]
+	[PreferenceItemRoute(nameof(SettingsPage.ToggleSwitch_ApplicationTheme), nameof(SettingsPage.OptionItem_ApplicationTheme), PreferenceSetterMethodName = nameof(SettingsPage.Route_ToggleSwitch_ApplicationTheme))]
 	public ApplicationTheme ApplicationTheme { get; set; }
 
 	/// <summary>

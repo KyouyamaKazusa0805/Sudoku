@@ -222,35 +222,59 @@
             Indicates the supported diagnostic ID.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1">
+        <member name="T:Sudoku.CodeGenerating.PreferenceItemRouteAttribute">
             <summary>
-            Defines a serial of members that requires the attribute <see cref="T:Sudoku.CodeGenerating.PreferenceRouteAttribute"/>
-            and its derived types to implement.
+            Defines an attribute that marks onto a preference item, to tell the source generator
+            that the preference item is bound with a <c>ToggleSwitch</c>, and creates a method
+            that delegated to the XAML file.
             </summary>
-            <typeparam name="TSelf">
-            The type of the derived attriute type from <see cref="T:Sudoku.CodeGenerating.PreferenceRouteAttribute"/>.
-            </typeparam>
+            <remarks>
+            <para>
+            For example, in the type <c>Preference</c> we can find many properties
+            that can both be settable and gettable. If I mark this attribute onto one property such as:
+            <code><![CDATA[
+            [PreferenceItemRoute("ToggleSwitch_UseSizedFishName", "OptionItem_UseSizedFishName")]
+            public bool UseSizedFishName { get; set; } = false;
+            ]]></code>
+            Then we will get the delegated method:
+            <code><![CDATA[
+            private void ToggleSwitch_UseSizedFishName_Toggled(object sender, RoutedEventArgs e)
+            {
+                if (sender is ToggleSwitch { IsOn: var isOn } && _pageIsInitialized)
+                {
+                    _boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
+                }
+            }
+            ]]></code>
+            Where the field <c>_preference</c>, <c>_boundSteps</c> and <c>_pageIsInitialized</c>
+            you can find them in the <c>SettingsPage</c>.
+            </para>
+            <para>
+            Please note that the method is a <see langword="private partial"/> method,
+            which means you must manually write the declaration into the type.
+            </para>
+            </remarks>
         </member>
-        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.ControlName">
+        <member name="M:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.CodeGenerating.PreferenceItemRouteAttribute"/> instance with the specified control name.
+            </summary>
+            <param name="controlName">The bound control name.</param>
+            <param name="effectControlName">Indicates the effect control name.</param>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.ControlName">
             <summary>
             Indicates the bound control name.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.EffectControlName">
+        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.EffectControlName">
             <summary>
             Indicates the effect control name.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.PreferenceSetterMethodName">
+        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.PreferenceSetterMethodName">
             <summary>
             Indicates the method name that executes the code, to assign the result.
-            </summary>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.PreferenceRouteAttribute">
-            <summary>
-            Defines a preference route attribute that marks onto a preference item, to tell the source generator
-            that the preference item is bound with a control (e.g. a <c>ToggleSwitch</c>), and creates a method
-            that delegated to the XAML file.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute">
@@ -274,60 +298,6 @@
             attribute must be <see langword="static"/>. If you marks on a method
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute">
-            <summary>
-            Defines a preference route attribute that marks onto a preference item, to tell the source generator
-            that the preference item is bound with a <c>ToggleSwitch</c>, and creates a method
-            that delegated to the XAML file.
-            </summary>
-            <remarks>
-            <para>
-            For example, in the type <c>Preference</c> we can find many properties
-            that can both be settable and gettable. If I mark this attribute onto one property such as:
-            <code><![CDATA[
-            [ToggleSwitchRoute("ToggleSwitch_UseSizedFishName", "OptionItem_UseSizedFishName")]
-            public bool UseSizedFishName { get; set; } = false;
-            ]]></code>
-            Then we will get the delegated method:
-            <code><![CDATA[
-            private void ToggleSwitch_UseSizedFishName_Toggled(object sender, RoutedEventArgs e)
-            {
-                if (
-                    (Sender: sender, PageIsInitialized: _pageIsInitialized) is (
-                        Sender: ToggleSwitch { IsOn: var isOn },
-                        PageIsInitialized: true
-                    )
-                )
-                {
-                    _boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
-                }
-            }
-            ]]></code>
-            Where the field <c>_preference</c> and <c>_pageIsInitialized</c>
-            you can find them in the <c>SettingsPage</c>.
-            </para>
-            <para>
-            Please note that the method is a <see langword="private partial"/> method,
-            which means you must manually write the declaration into the type.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute"/> instance with the specified control name.
-            </summary>
-            <param name="controlName">The bound control name.</param>
-            <param name="effectControlName">Indicates the effect control name.</param>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.ControlName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.EffectControlName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.PreferenceSetterMethodName">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute">
             <summary>
@@ -1173,18 +1143,16 @@
             Defines a source generator that generates the code for UI preference item.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator._routers">
+            <summary>
+            Indicates the routers.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.ToggleSwitchRoute(Microsoft.CodeAnalysis.GeneratorExecutionContext@)">
-            <summary>
-            Routes the toggle switch instances and records them
-            into the <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/> instance.
-            </summary>
-            <param name="context">The context.</param>
         </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">
             <summary>

@@ -1093,6 +1093,19 @@
             </summary>
             <param name="color">The <see cref="T:Windows.UI.Color"/> instance.</param>
         </member>
+        <member name="T:Sudoku.UI.Data.UIColor.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the object of type <see cref="T:Sudoku.UI.Data.UIColor"/>
+            can be serialized and deserialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.UIColor.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.UI.Data.UIColor,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.CornerRadiusCalculator">
             <summary>
             Defines a simple calculator for <see cref="T:Microsoft.UI.Xaml.CornerRadius"/>.
