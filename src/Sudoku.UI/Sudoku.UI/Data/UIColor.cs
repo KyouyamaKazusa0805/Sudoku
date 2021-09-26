@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Data;
+﻿using System.Text.Json;
+
+namespace Sudoku.UI.Data;
 
 /// <summary>
 /// Defines a <see cref="UIColor"/> instance that can converts to a <see cref="Color"/>.
@@ -9,7 +11,7 @@
 /// <param name="B">The blue value.</param>
 [AutoDeconstruct(nameof(A), nameof(RgbColorInstance))]
 [AutoDeconstruct(nameof(R), nameof(G), nameof(B))]
-public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, IParsable<UIColor>, IMinMaxValue<UIColor>
+public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, IParsable<UIColor>, IMinMaxValue<UIColor>, IJsonSerializable<UIColor, UIColor.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the min value of the <see cref="UIColor"/> instance.
@@ -237,8 +239,8 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	public string ToString(string? format, IFormatProvider? formatProvider) =>
 		formatProvider.HasFormatted(this, format, out string? result) ? result : format switch
 		{
-			null or "D" => Mask.ToString(), // Decimal type.
-			"F" => $"A: {A}, R: {R}, G: {G}, B: {B}", // Full format type.
+			null or "D" or "d" or "#" => Mask.ToString(), // Decimal type.
+			"F" or "f" or ":" => $"A: {A}, R: {R}, G: {G}, B: {B}", // Full format type.
 			_ => throw new FormatException("The specified format is invalid.")
 		};
 

@@ -222,6 +222,30 @@
             Indicates the supported diagnostic ID.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1">
+            <summary>
+            Defines a serial of members that requires the attribute <see cref="T:Sudoku.CodeGenerating.PreferenceRouteAttribute"/>
+            and its derived types to implement.
+            </summary>
+            <typeparam name="TSelf">
+            The type of the derived attriute type from <see cref="T:Sudoku.CodeGenerating.PreferenceRouteAttribute"/>.
+            </typeparam>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.ControlName">
+            <summary>
+            Indicates the bound control name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.EffectControlName">
+            <summary>
+            Indicates the effect control name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.IPreferenceRouteAttributeOverrides`1.PreferenceSetterMethodName">
+            <summary>
+            Indicates the method name that executes the code, to assign the result.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.PreferenceRouteAttribute">
             <summary>
             Defines a preference route attribute that marks onto a preference item, to tell the source generator
@@ -297,19 +321,13 @@
             <param name="effectControlName">Indicates the effect control name.</param>
         </member>
         <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.ControlName">
-            <summary>
-            Indicates the bound control name.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.EffectControlName">
-            <summary>
-            Indicates the effect control name.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.CodeGenerating.ToggleSwitchRouteAttribute.PreferenceSetterMethodName">
-            <summary>
-            Indicates the method name that executes the code, to assign the result.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute">
             <summary>

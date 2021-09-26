@@ -36,7 +36,7 @@
 /// which means you must manually write the declaration into the type.
 /// </para>
 /// </remarks>
-public sealed class ToggleSwitchRouteAttribute : PreferenceRouteAttribute
+public sealed class ToggleSwitchRouteAttribute : PreferenceRouteAttribute, IPreferenceRouteAttributeOverrides<ToggleSwitchRouteAttribute>
 {
 	/// <summary>
 	/// Initializes a <see cref="ToggleSwitchRouteAttribute"/> instance with the specified control name.
@@ -51,19 +51,13 @@ public sealed class ToggleSwitchRouteAttribute : PreferenceRouteAttribute
 	}
 
 
-	/// <summary>
-	/// Indicates the bound control name.
-	/// </summary>
+	/// <inheritdoc/>
 	public string ControlName { get; }
 
-	/// <summary>
-	/// Indicates the effect control name.
-	/// </summary>
+	/// <inheritdoc/>
 	public string EffectControlName { get; }
 
-	/// <summary>
-	/// Indicates the method name that executes the code, to assign the result.
-	/// </summary>
+	/// <inheritdoc/>
 #if NETSTANDARD2_1_OR_GREATER
 	[DisallowNull]
 #endif
