@@ -31,9 +31,9 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <exception cref="FailedToFillValueException">
 	/// Throws when the processing is wrong or unhandleable.
 	/// </exception>
-	public SudokuGrid RecognizeDigits(Field field)
+	public Grid RecognizeDigits(Field field)
 	{
-		var result = SudokuGrid.Empty;
+		var result = Grid.Empty;
 		int w = field.Width / 9, o = w / 6;
 		for (int x = 0; x < 9; x++)
 		{

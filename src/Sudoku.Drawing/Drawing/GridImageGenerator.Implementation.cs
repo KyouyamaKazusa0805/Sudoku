@@ -47,7 +47,7 @@ partial record class GridImageGenerator
 				{
 					// Draw candidates.
 					bool overlaps = View.UnknownIdentifierOverlapsWithCell(cell);
-					foreach (int digit in (short)(mask & SudokuGrid.MaxCandidatesMask))
+					foreach (int digit in (short)(mask & Grid.MaxCandidatesMask))
 					{
 						var point = Calculator.GetMousePointInCenter(cell, digit).WithY(vOffsetCandidate);
 						g.DrawValue(

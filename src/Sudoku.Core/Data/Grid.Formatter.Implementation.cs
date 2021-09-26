@@ -82,7 +82,7 @@ partial struct Grid
 							default:
 							{
 								throw new InvalidPuzzleException(
-									grid.ToSudokuGrid(),
+									grid,
 									"The specified grid is invalid to output the formatted string."
 								);
 							}

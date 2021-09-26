@@ -157,7 +157,7 @@ public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidates
 					conclusions.Add(new(ConclusionType.Elimination, aCell, digit));
 				}
 			}
-			foreach (int digit in SudokuGrid.MaxCandidatesMask & ~mask)
+			foreach (int digit in Grid.MaxCandidatesMask & ~mask)
 			{
 				foreach (int ahsCell in ahsCells & CandMaps[digit])
 				{

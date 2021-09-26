@@ -144,19 +144,20 @@ partial struct Grid
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The string.</returns>
-		public string ToString(in Grid grid) => Sukaku
-			? ToSukakuString(grid)
-			: Multiline
-				? WithCandidates
-					? ToMultiLineStringCore(grid)
-					: Excel
-						? ToExcelString(grid)
-						: ToMultiLineSimpleGridCore(grid)
-				: HodokuCompatible
-					? ToHodokuLibraryFormatString(grid)
-					: OpenSudoku
-						? ToOpenSudokuString(grid)
-						: ToSingleLineStringCore(grid);
+		public string ToString(in Grid grid) =>
+			Sukaku
+				? ToSukakuString(grid)
+				: Multiline
+					? WithCandidates
+						? ToMultiLineStringCore(grid)
+						: Excel
+							? ToExcelString(grid)
+							: ToMultiLineSimpleGridCore(grid)
+					: HodokuCompatible
+						? ToHodokuLibraryFormatString(grid)
+						: OpenSudoku
+							? ToOpenSudokuString(grid)
+							: ToSingleLineStringCore(grid);
 
 		/// <summary>
 		/// Represents a string value indicating this instance, with the specified format string.

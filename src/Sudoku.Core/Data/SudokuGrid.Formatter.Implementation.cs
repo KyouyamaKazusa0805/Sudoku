@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿#pragma warning disable CS0618
+
+namespace Sudoku.Data;
 
 partial struct SudokuGrid
 {
