@@ -35,7 +35,6 @@ global using System.Reflection;
 [assembly: InternalsVisibleTo("Sudoku.Solving")]
 [assembly: InternalsVisibleTo("Sudoku.Windows.Old")]
 [assembly: InternalsVisibleTo("Sudoku.UI")]
-[assembly: InternalsVisibleTo("Sudoku.UI.Drawing")]
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Sudoku.Test")]
