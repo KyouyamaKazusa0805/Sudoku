@@ -2,9 +2,9 @@
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
 	<CodeSnippet Format="1.0.0">
 		<Header>
-			<Title>fitem</Title>
+			<Title>Format Item</Title>
 			<Shortcut>fitem</Shortcut>
-			<Author>Sunnie</Author>
+			<Description>The snippet that allows you creating the format properties that routes to the resource dictionary.</Description>
 			<SnippetTypes>
 				<SnippetType>Expansion</SnippetType>
 				<SnippetType>SurroundsWith</SnippetType>
@@ -22,16 +22,12 @@
 					<Default>"String Expression Here"</Default>
 					<ToolTip>The expression of the string value.</ToolTip>
 				</Literal>
-				<Literal Editable="false">
-					<ID>metodImplOptionsType</ID>
-					<Function>SimpleTypeName(global::System.Runtime.CompilerServices.MethodImplOptions)</Function>
-				</Literal>
 			</Declarations>
 			<Code Language="CSharp">
 				<![CDATA[[FormatItem]
 private string $propertyName$
 {
-	[MethodImpl($metodImplOptionsType$.AggressiveInlining)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	get => $expression$;$end$
 }]]>
 			</Code>
