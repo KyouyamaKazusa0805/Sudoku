@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI.CodeGenerating</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.CodeGenerating.DependencyObjectGenerator">
+            <summary>
+            Defines a source generator that generates the code for the dependency objects.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.CodeGenerating.DependencyObjectGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.CodeGenerating.DependencyObjectGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>
