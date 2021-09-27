@@ -3,9 +3,9 @@
 partial class SettingsPage
 {
 	/// <summary>
-	/// Initializes fields.
+	/// <para>Initializes fields.</para>
+	/// <para><i>This method is only called by constructor.</i></para>
 	/// </summary>
-	/// <remarks><i>This method is only called by constructor.</i></remarks>
 	private void InitializeFields()
 	{
 		_boundSteps.ElementAdded += (sender, [Discard] _) =>
@@ -44,9 +44,9 @@ partial class SettingsPage
 	}
 
 	/// <summary>
-	/// Initializes the status of the controls via the <see cref="Preference"/> instance.
+	/// <para>Initializes the status of the controls via the <see cref="Preference"/> instance.</para>
+	/// <para><i>This method is only called by constructor.</i></para>
 	/// </summary>
-	/// <remarks><i>This method is only called by constructor.</i></remarks>
 	private void InitializeControls()
 	{
 		_preference.ApplicationTheme = Application.Current.RequestedTheme;

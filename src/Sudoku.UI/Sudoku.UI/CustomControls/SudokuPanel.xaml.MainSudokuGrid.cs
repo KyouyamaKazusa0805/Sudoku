@@ -2,11 +2,6 @@
 
 partial class SudokuPanel
 {
-	/// <summary>
-	/// Triggers when the specified object received a file that dragged-and-dropped here.
-	/// </summary>
-	/// <param name="sender">The instance to trigger this event.</param>
-	/// <param name="e">The event data provided.</param>
 	private async partial void MainSudokuGrid_DragEnterAsync([Discard] object sender, DragEventArgs e)
 	{
 		try

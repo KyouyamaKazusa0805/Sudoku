@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a customized settings option navigation view.
 /// </summary>
-public class CustomizedSettingsNavigationView : NavigationView
+public partial class CustomizedSettingsNavigationView : NavigationView
 {
 	/// <summary>
 	/// Indicates the settings navigation view item default name.
