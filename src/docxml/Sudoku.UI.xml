@@ -224,12 +224,6 @@
             Defines a basic sudoku panel.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.InitializeProperties">
-            <summary>
-            Initializes property values.
-            </summary>
-            <remarks><i>This method is only called by constructor.</i></remarks>
-        </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.CustomControls.SudokuPanel"/> instance.
@@ -245,11 +239,20 @@
             Indicates the preference used.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.CustomControls.SudokuPanel.This_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current control is loaded.
+            </summary>
+            <param name="sender">
+            The instance to trigger the event. The argument is always the <see langword="this"/> reference.
+            </param>
+            <param name="e">The event arguments provided for the event.</param>
+        </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.MainSudokuGrid_DragEnterAsync(System.Object,Microsoft.UI.Xaml.DragEventArgs)">
             <summary>
             Triggers when the specified object received a file that dragged-and-dropped here.
             </summary>
-            <param name="sender"><inheritdoc cref="M:Microsoft.UI.Xaml.DragEventHandler.Invoke(System.Object,Microsoft.UI.Xaml.DragEventArgs)"/></param>
+            <param name="sender">The instance to trigger this event.</param>
             <param name="e">The event data provided.</param>
         </member>
         <member name="M:Sudoku.UI.CustomControls.SudokuPanel.InitializeComponent">
@@ -862,6 +865,19 @@
             </summary>
             <param name="sudoku">The base sudoku grid.</param>
         </member>
+        <member name="M:Sudoku.UI.Data.SudokuGridCanvas.CreateAsync(Sudoku.UI.Data.Preference,Microsoft.UI.Xaml.Controls.Grid)">
+            <summary>
+            Creates the <see cref="T:Sudoku.UI.Data.SudokuGridCanvas"/> instance using the specified <see cref="T:Sudoku.UI.Data.Preference"/> 
+            and <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance asynchronuous.
+            </summary>
+            <param name="preference">The <see cref="T:Sudoku.UI.Data.Preference"/> instance.</param>
+            <param name="baseGrid">The base <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <returns>A task that returns the <see cref="T:Sudoku.UI.Data.SudokuGridCanvas"/> instance.</returns>
+            <remarks>
+            Please note that the return value is of type <see cref="T:System.Threading.Tasks.ValueTask`1"/>,
+            which means you can <b>only</b> <see langword="await"/> in caller one time.
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Data.UIColor">
             <summary>
             Defines a <see cref="T:Sudoku.UI.Data.UIColor"/> instance that can converts to a <see cref="T:Windows.UI.Color"/>.
@@ -1153,6 +1169,20 @@
             <param name="divisor">The divisor.</param>
             <returns>The result <see cref="T:Microsoft.UI.Xaml.CornerRadius"/> instance.</returns>
             <exception cref="T:System.ArgumentException">Throws when four values aren't the same.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.DoubleCalculator">
+            <summary>
+            Defines a simple calculator for <see cref="T:System.Double"/>.
+            </summary>
+            <seealso cref="T:System.Double"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DoubleCalculator.Divide(System.Double,System.Double)">
+            <summary>
+            Make the division.
+            </summary>
+            <param name="dividend">The dividend.</param>
+            <param name="divisor">The divisor.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.HyperLinkConverter">
             <summary>

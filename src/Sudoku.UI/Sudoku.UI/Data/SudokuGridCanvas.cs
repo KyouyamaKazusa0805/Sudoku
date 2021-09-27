@@ -48,7 +48,7 @@ public sealed record class SudokuGridCanvas(
 	/// </summary>
 	/// <param name="preference">Indicates the <see cref="Data.Preference"/> instance.</param>
 	/// <param name="baseGrid">The base <see cref="Grid"/> instance.</param>
-	public SudokuGridCanvas(Preference preference, Grid baseGrid)
+	private SudokuGridCanvas(Preference preference, Grid baseGrid)
 	: this(
 		preference, baseGrid, new TextBlock[81], new TextBlock[729],
 		new Border[81], new Ellipse[729], new Border[27]
@@ -405,4 +405,20 @@ public sealed record class SudokuGridCanvas(
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Creates the <see cref="SudokuGridCanvas"/> instance using the specified <see cref="Data.Preference"/> 
+	/// and <see cref="Grid"/> instance asynchronuous.
+	/// </summary>
+	/// <param name="preference">The <see cref="Data.Preference"/> instance.</param>
+	/// <param name="baseGrid">The base <see cref="Grid"/> instance.</param>
+	/// <returns>A task that returns the <see cref="SudokuGridCanvas"/> instance.</returns>
+	/// <remarks>
+	/// Please note that the return value is of type <see cref="ValueTask{TResult}"/>,
+	/// which means you can <b>only</b> <see langword="await"/> in caller one time.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ValueTask<SudokuGridCanvas> CreateAsync(Preference preference, Grid baseGrid) =>
+		ValueTask.FromResult<SudokuGridCanvas>(new(preference, baseGrid));
 }
