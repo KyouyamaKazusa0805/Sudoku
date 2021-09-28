@@ -22,6 +22,7 @@ global using Sudoku.CodeGenerating;
 global using Sudoku.Data;
 global using Sudoku.Models;
 global using Sudoku.Solving.BruteForces;
+global using Sudoku.UI.CodeGenerating;
 global using Sudoku.UI.Data;
 global using Sudoku.UI.Data.PreferenceItemConverters;
 global using Sudoku.UI.Pages.MainWindow;

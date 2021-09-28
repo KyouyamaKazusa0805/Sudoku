@@ -46,6 +46,7 @@
 		<ProjectReference Include="..\..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\..\System\SystemExtensions.csproj" />
 		<ProjectReference Include="..\..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\..\Sudoku.UI.CodeGenerating\Sudoku.UI.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->

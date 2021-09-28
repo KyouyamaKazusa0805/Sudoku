@@ -1,9 +1,4 @@
-﻿using C = Microsoft.CodeAnalysis.GeneratorExecutionContext;
-using CArgs = System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.TypedConstant>;
-using NArgs = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, Microsoft.CodeAnalysis.TypedConstant>>;
-using Ptr = System.IntPtr;
-
-namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.UI.CodeGenerating;
 
 /// <summary>
 /// Defines a source generator that generates the code for UI preference item.
@@ -14,24 +9,23 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 	/// <summary>
 	/// Indicates the routers.
 	/// </summary>
-	private readonly (string ControlTypeName, Ptr MethodPtr)[] _routers = new[]
+	private readonly (string ControlTypeName, ControlRouting Routing)[] _routers = new (string, ControlRouting)[]
 	{
 		(
 			"Microsoft.UI.Xaml.Controls.ToggleSwitch",
-			(Ptr)(void*)(delegate*<ref C, string, CArgs, NArgs, string, void>)&RouteToggleSwitch
+			RouteToggleSwitch
 		)
 	};
 
 
 	/// <inheritdoc/>
-	public void Execute(C context)
+	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context.IsNotInProject(ProjectNames.WindowsUI))
+		if (context is not { Compilation: { AssemblyName: "Sudoku.UI" } compilation })
 		{
 			return;
 		}
 
-		var compilation = context.Compilation;
 		if (compilation.GetTypeByMetadataName("Sudoku.UI.Data.Preference") is not { } preferenceTypeSymbol)
 		{
 			return;
@@ -43,15 +37,14 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 		}
 
 		var fieldsInSettingsPage = settingsPageTypeSymbol.GetMembers().OfType<IFieldSymbol>();
-		var routeTypeSymbol = compilation.GetTypeByMetadataName<PreferenceItemRouteAttribute>();
-		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
+		var routeTypeSymbol = compilation.GetTypeByMetadataName(typeof(PreferenceItemRouteAttribute).FullName);
 
 		foreach (var (property, attributeData) in
 			from property in preferenceTypeSymbol.GetMembers().OfType<IPropertySymbol>()
 			where property is { IsIndexer: false, IsReadOnly: false, IsWriteOnly: false }
 			let attributeData = (
 				from attributeData in property.GetAttributes()
-				where f(attributeData.AttributeClass, routeTypeSymbol)
+				where SymbolEqualityComparer.Default.Equals(attributeData.AttributeClass, routeTypeSymbol)
 				select attributeData
 			).FirstOrDefault()
 			where attributeData is not null
@@ -73,7 +66,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 
 			string controlName = (string)ctorArgs[0].Value!;
 			if (
-				fieldsInSettingsPage.FirstOrDefault(fieldSymbol => fieldSymbol.Name == controlName) is not
+				fieldsInSettingsPage.FirstOrDefault(f => f.Name == controlName) is not
 				{
 					IsFixedSizeBuffer: false,
 					IsConst: false,
@@ -92,9 +85,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 				continue;
 			}
 
-			(
-				(delegate*<ref C, string, CArgs, NArgs, string, void>)(void*)_routers[index].MethodPtr
-			)(ref context, propertyName, ctorArgs, namedArgs, controlName);
+			_routers[index].Routing(ref context, propertyName, ctorArgs, namedArgs, controlName);
 		}
 	}
 
@@ -105,42 +96,34 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 
 
 	private static void RouteToggleSwitch(
-		ref C context,
+		ref GeneratorExecutionContext context,
 		string propertyName,
-		CArgs ctorArgs,
-		NArgs namedArgs,
+		ImmutableArray<TypedConstant> ctorArgs,
+		ImmutableArray<KeyValuePair<string, TypedConstant>> namedArgs,
 		string controlName
 	)
 	{
 		string effectControlName = (string)ctorArgs[1].Value!;
 		string conversion = namedArgs switch
 		{
-			{ Length: >= 1 }
-			when namedArgs.First(
-				static arg => arg.Key == nameof(PreferenceItemRouteAttribute.PreferenceSetterMethodName)
-			) is { Value.Value: string methodName } => $"{methodName}(isOn)",
+			{ Length: >= 1 } when namedArgs.First(predicate).Value.Value is string methodName => $"{methodName}(isOn)",
 			_ => $"_preference.{propertyName} = isOn"
 		};
 
 		context.AddSource(
 			propertyName,
-			"PreferenceItemRoute",
+			"r",
 			$@"namespace Sudoku.UI.Pages.MainWindow;
 
 partial class SettingsPage
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""{VersionValue}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""{Version.CurrentVersion}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	private partial void {controlName}_Toggled(object sender, RoutedEventArgs e)
+	private partial void {controlName}_Toggled(object sender, [Discard] RoutedEventArgs e)
 	{{
 		if (
-			(
-				Sender: sender,
-				EventArgs: e,
-				PageIsInitialized: _pageIsInitialized
-			) is not (
+			(Sender: sender, PageIsInitialized: _pageIsInitialized) is not (
 				Sender: ToggleSwitch {{ IsOn: var isOn }},
-				_,
 				PageIsInitialized: true
 			)
 		)
@@ -158,5 +141,10 @@ partial class SettingsPage
 }}
 "
 		);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool predicate<T>(KeyValuePair<string, T> arg) =>
+			arg.Key == nameof(PreferenceItemRouteAttribute.PreferenceSetterMethodName);
 	}
 }

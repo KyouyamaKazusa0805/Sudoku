@@ -222,61 +222,6 @@
             Indicates the supported diagnostic ID.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGenerating.PreferenceItemRouteAttribute">
-            <summary>
-            Defines an attribute that marks onto a preference item, to tell the source generator
-            that the preference item is bound with a <c>ToggleSwitch</c>, and creates a method
-            that delegated to the XAML file.
-            </summary>
-            <remarks>
-            <para>
-            For example, in the type <c>Preference</c> we can find many properties
-            that can both be settable and gettable. If I mark this attribute onto one property such as:
-            <code><![CDATA[
-            [PreferenceItemRoute("ToggleSwitch_UseSizedFishName", "OptionItem_UseSizedFishName")]
-            public bool UseSizedFishName { get; set; } = false;
-            ]]></code>
-            Then we will get the delegated method:
-            <code><![CDATA[
-            private void ToggleSwitch_UseSizedFishName_Toggled(object sender, RoutedEventArgs e)
-            {
-                if (sender is ToggleSwitch { IsOn: var isOn } && _pageIsInitialized)
-                {
-                    _boundSteps.Add(new(OptionItem_UseSizedFishName, () => _preference.UseSizedFishName = isOn));
-                }
-            }
-            ]]></code>
-            Where the field <c>_preference</c>, <c>_boundSteps</c> and <c>_pageIsInitialized</c>
-            you can find them in the <c>SettingsPage</c>.
-            </para>
-            <para>
-            Please note that the method is a <see langword="private partial"/> method,
-            which means you must manually write the declaration into the type.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CodeGenerating.PreferenceItemRouteAttribute"/> instance with the specified control name.
-            </summary>
-            <param name="controlName">The bound control name.</param>
-            <param name="effectControlName">Indicates the effect control name.</param>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.ControlName">
-            <summary>
-            Indicates the bound control name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.EffectControlName">
-            <summary>
-            Indicates the effect control name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.PreferenceItemRouteAttribute.PreferenceSetterMethodName">
-            <summary>
-            Indicates the method name that executes the code, to assign the result.
-            </summary>
-        </member>
         <member name="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute">
             <summary>
             Indicates the member should be ignored while generating primary constructors.
@@ -298,22 +243,6 @@
             attribute must be <see langword="static"/>. If you marks on a method
             that isn't a <see langword="static"/> method, the source generator will do nothing.
             </remarks>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute">
-            <summary>
-            Indicates the class is the interact logic bound with the specified XAML file.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.XamlInteractLogicAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.CodeGenerating.XamlInteractLogicAttribute"/> instance with the specified file name.
-            </summary>
-            <param name="xamlFileName"></param>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.XamlInteractLogicAttribute.XamlFileName">
-            <summary>
-            Indicates the XAML file name.
-            </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Collections.Cells">
             <summary>
@@ -598,11 +527,6 @@
         <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.Solving">
             <summary>
             Indicates the project <c>Sudoku.Solving</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.ProjectNames.WindowsUI">
-            <summary>
-            Indicates the project <c>Sudoku.UI</c>.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator">
@@ -1136,22 +1060,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator">
-            <summary>
-            Defines a source generator that generates the code for UI preference item.
-            </summary>
-        </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator._routers">
-            <summary>
-            Indicates the routers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">

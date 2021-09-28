@@ -19,13 +19,7 @@ public partial class CustomizedSettingsNavigationView : NavigationView
 		nameof(SettingsItemText),
 		typeof(string),
 		typeof(CustomizedSettingsNavigationView),
-		new(default(string), static (dependencyObject, [Discard] _) =>
-		{
-			if (dependencyObject is CustomizedSettingsNavigationView navigationView)
-			{
-				navigationView.UpdateSettingsItemText();
-			}
-		})
+		new(default(string), Callback)
 	);
 
 
@@ -73,6 +67,15 @@ public partial class CustomizedSettingsNavigationView : NavigationView
 		{
 			_settingsItem.Content = SettingsItemText ?? "Settings";
 			_settingsItem.Icon = new SymbolIcon(Symbol.Setting);
+		}
+	}
+
+
+	private static void Callback(DependencyObject d, [Discard] DependencyPropertyChangedEventArgs e)
+	{
+		if (d is CustomizedSettingsNavigationView navigationView)
+		{
+			navigationView.UpdateSettingsItemText();
 		}
 	}
 }

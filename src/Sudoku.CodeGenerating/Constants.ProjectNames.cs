@@ -28,10 +28,5 @@ partial class Constants
 		/// Indicates the project <c>Sudoku.Solving</c>.
 		/// </summary>
 		public const string Solving = "Sudoku.Solving.Old";
-
-		/// <summary>
-		/// Indicates the project <c>Sudoku.UI</c>.
-		/// </summary>
-		public const string WindowsUI = "Sudoku.UI";
 	}
 }

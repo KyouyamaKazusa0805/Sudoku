@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CodeGenerating;
+﻿namespace Sudoku.UI.CodeGenerating;
 
 /// <summary>
 /// Defines an attribute that marks onto a preference item, to tell the source generator
