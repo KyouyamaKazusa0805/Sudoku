@@ -51,5 +51,10 @@ partial class Constants
 		/// Indicates the code fixer.
 		/// </summary>
 		public const string CodeFixer = "f";
+
+		/// <summary>
+		/// Indicates the core constants.
+		/// </summary>
+		public const string CoreConstants = "s";
 	}
 }

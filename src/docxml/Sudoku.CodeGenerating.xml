@@ -537,6 +537,11 @@
             Indicates the code fixer.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CoreConstants">
+            <summary>
+            Indicates the core constants.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
             <summary>
             Indicates the operator names.
