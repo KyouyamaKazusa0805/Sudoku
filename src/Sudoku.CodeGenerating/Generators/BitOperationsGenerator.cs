@@ -20,88 +20,69 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 		context.AddSource(typeName, null, G_GlobalFile());
 
 		var sb = new StringBuilder();
-		var actions = new Action[] { a, b, c, d, e, f };
-		Array.ForEach(actions, static action => action());
-
+		foreach (var action in new[] { a, b, c, d, e, f })
+		{
+			action();
+		}
 
 		void a()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in GetAllSetsTypes select G_GetAllSets(name)))
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.gas", sb.ToString());
-
-			sb.Clear();
+			string code = string.Join(separator, from name in GetAllSetsTypes select G_GetAllSets(name));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_GetAllSets,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 
 		void b()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select G_GetEnumerator(name)))
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.ge", sb.ToString());
-
-			sb.Clear();
+			string code = string.Join(separator, from name in GetEnumeratorTypes select G_GetEnumerator(name));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_GetEnumerator,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 
 		void c()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size)
-					)
-				)
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.gns", sb.ToString());
-
-			sb.Clear();
+			string code = string.Join(separator, from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_GetNextSet,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 
 		void d()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(
-					string.Join(
-						separator,
-						from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size)
-					)
-				)
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.rb", sb.ToString());
-
-			sb.Clear();
+			string code = string.Join(separator, from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_ReverseBits,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 
 		void e()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in SetAtTypes select G_SetAt(name)))
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.sa", sb.ToString());
-
-			sb.Clear();
+			string code = string.Join(separator, from name in SetAtTypes select G_SetAt(name));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_SetAt,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 
 		void f()
 		{
-			sb
-				.Append(LeadingText)
-				.AppendLine(string.Join(separator, from name in SkipSetBitTypes select G_SkipSetBit(name)))
-				.Append(TrailingText);
-
-			context.AddSource(typeName, "b.ssb", sb.ToString());
+			string code = string.Join(separator, from name in SkipSetBitTypes select G_SkipSetBit(name));
+			context.AddSource(
+				typeName,
+				GeneratedFileShortcuts.BitOperations_SkipSetBit,
+				$"{LeadingText}{code}\r\n{TrailingText}"
+			);
 		}
 	}
 

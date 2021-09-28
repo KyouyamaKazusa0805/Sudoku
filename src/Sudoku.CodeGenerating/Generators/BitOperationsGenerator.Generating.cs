@@ -5,7 +5,7 @@ partial class BitOperationsGenerator
 	/// <summary>
 	/// Indicates the leading text.
 	/// </summary>
-	private const string LeadingText = @"#pragma warning disable 1591
+	private const string LeadingText = @"#pragma warning disable CS1591
 
 using static System.Numerics.BitOperations;
 
@@ -81,9 +81,7 @@ partial class BitOperationsExensions
 		const string baseModifiers = "\tpublic static partial";
 
 		var sb = new StringBuilder();
-		sb.AppendLine($@"#pragma warning disable 1591
-
-namespace System.Numerics;
+		sb.AppendLine($@"namespace System.Numerics;
 
 /// <summary>
 /// Provides extension methods on <see cref=""BitOperations""/>.
