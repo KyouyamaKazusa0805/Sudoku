@@ -41,5 +41,15 @@ partial class Constants
 		/// Indicates the bit operations skip set bit.
 		/// </summary>
 		public const string BitOperations_SkipSetBit = "b.ssb";
+
+		/// <summary>
+		/// Indicates the code analyzer.
+		/// </summary>
+		public const string CodeAnalyzer = "a";
+
+		/// <summary>
+		/// Indicates the code fixer.
+		/// </summary>
+		public const string CodeFixer = "f";
 	}
 }

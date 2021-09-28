@@ -527,6 +527,16 @@
             Indicates the bit operations skip set bit.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CodeAnalyzer">
+            <summary>
+            Indicates the code analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CodeFixer">
+            <summary>
+            Indicates the code fixer.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
             <summary>
             Indicates the operator names.
@@ -708,6 +718,7 @@
         <member name="F:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
             <summary>
             Indicates the regular expression for extraction of the information.
+            The regular expression is <c><![CDATA[(?<=\(")[A-Za-z]{2}\d{4}(?="\))]]></c>.
             </summary>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">

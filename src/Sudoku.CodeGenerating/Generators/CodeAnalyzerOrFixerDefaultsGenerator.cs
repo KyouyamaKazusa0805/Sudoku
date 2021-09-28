@@ -3,7 +3,9 @@
 /// <summary>
 /// A generator that generates the code for code analyzer and fix defaults.
 /// </summary>
-//[Generator]
+#if false
+[Generator]
+#endif
 public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenerator
 {
 	/// <summary>
@@ -14,6 +16,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 
 	/// <summary>
 	/// Indicates the regular expression for extraction of the information.
+	/// The regular expression is <c><![CDATA[(?<=\(")[A-Za-z]{2}\d{4}(?="\))]]></c>.
 	/// </summary>
 	private static readonly Regex InfoRegex = new(
 		@"(?<=\("")[A-Za-z]{2}\d{4}(?=""\))",
@@ -39,17 +42,18 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName<CodeAnalyzerAttribute>();
 		var attributeFixerSymbol = compilation.GetTypeByMetadataName<CodeFixProviderAttribute>();
-		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		string[] list = File.ReadAllLines(csvTableFilePath);
 		string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 		string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
 
-		foreach (var type in
+		foreach (var (type, attributeData) in
 			from type in receiver.Candidates
 			let model = compilation.GetSemanticModel(type.SyntaxTree)
-			select model.GetDeclaredSymbol(type)! into type
-			where type.GetAttributes().Any(a => f(a.AttributeClass, attributeAnalyzerSymbol))
-			select type)
+			select model.GetDeclaredSymbol(type)! into typeSymbol
+			let attributesData = typeSymbol.GetAttributes()
+			let attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeAnalyzerSymbol))
+			where attributeData is { ConstructorArguments.IsDefaultOrEmpty: false }
+			select (typeSymbol, attributeData))
 		{
 			type.DeconstructInfo(
 				false, out string fullTypeName, out string namespaceName,
@@ -60,18 +64,10 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 				continue;
 			}
 
-			var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
-			var selection =
-				from attributeStr in type.GetAttributeStrings(attributeSymbol)
-				let tokenStartIndex = attributeStr.IndexOf("({")
-				where tokenStartIndex != -1
-				select attributeStr.GetMemberValues(tokenStartIndex);
-			if (!selection.Any())
-			{
-				continue;
-			}
-
-			string[] diagnosticIds = selection.First();
+			string[] diagnosticIds = (
+				from arg in attributeData.ConstructorArguments[0].Values
+				select ((string)arg.Value!).Trim()
+			).ToArray();
 			string diagnosticResults = string.Join(
 				"\r\n",
 				from diagnosticId in diagnosticIds
@@ -103,7 +99,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 
 			context.AddSource(
 				type.ToFileName(),
-				"a",
+				GeneratedFileShortcuts.CodeAnalyzer,
 				$@"using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -139,7 +135,7 @@ partial class {type.Name}
 			from type in receiver.Candidates
 			let model = compilation.GetSemanticModel(type.SyntaxTree)
 			select model.GetDeclaredSymbol(type)! into type
-			where type.GetAttributes().Any(a => f(a.AttributeClass, attributeFixerSymbol))
+			where type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeFixerSymbol))
 			select type)
 		{
 			type.DeconstructInfo(
@@ -151,11 +147,10 @@ partial class {type.Name}
 				continue;
 			}
 
-			var attributeSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
 			string typeName = type.Name;
 			string id = (
 				from attribute in type.GetAttributes()
-				where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
+				where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeFixerSymbol)
 				select InfoRegex.Match(attribute.ToString()) into match
 				where match.Success
 				select match.Value
@@ -164,7 +159,7 @@ partial class {type.Name}
 
 			context.AddSource(
 				type.ToFileName(),
-				"f",
+				GeneratedFileShortcuts.CodeFixer,
 				$@"using System.Collections.Immutable;
 using System.Composition;
 using Microsoft.CodeAnalysis;
