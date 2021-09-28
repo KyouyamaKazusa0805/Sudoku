@@ -19,7 +19,7 @@ public sealed partial class GetEnumeratorGenerator : ISourceGenerator
 			var semanticModel = compilation.GetSemanticModel(attribute.SyntaxTree);
 			if (getGetEnumeratorCode(type, attribute, semanticModel) is { } c)
 			{
-				context.AddSource(type.ToFileName(), "GetEnumerator", c);
+				context.AddSource(type.ToFileName(), "ge", c);
 			}
 		}
 

@@ -22,9 +22,7 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 			string commentsForGenericTypeParams = string.Join(
 				"\r\n",
 				from i in values
-				select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{
-					generics
-				}}}.Item{i}""/>.</typeparam>"
+				select $@"/// <typeparam name=""T{i}"">The type of the property <see cref=""KeyedTuple{{{generics}}}.Item{i}""/>.</typeparam>"
 			);
 			string commentsForParams = string.Join(
 				"\r\n",

@@ -173,7 +173,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 
 		context.AddSource(
 			"Sudoku.Constants.Tables",
-			"StaticConstructor",
+			"s",
 			$@"using System;
 using System.Collections.Generic;
 using Sudoku.Data;

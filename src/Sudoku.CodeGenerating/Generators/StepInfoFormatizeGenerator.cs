@@ -36,7 +36,7 @@ public sealed class StepInfoFormatizeGenerator : ISourceGenerator
 
 		context.AddSource(
 			"Sudoku.Solving.Manual.StepInfo",
-			"DynamicDependencies",
+			"dd",
 			$@"#pragma warning disable 1591
 
 using global::System.Diagnostics.CodeAnalysis;

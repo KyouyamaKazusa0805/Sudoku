@@ -31,7 +31,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{i + 1}";
 				nameDic[typeSymbol.Name] = i + 1;
-				context.AddSource($"{name}", "DeconstructionMethods", getDeconstructionCode(typeSymbol, p));
+				context.AddSource($"{name}", "ed", getDeconstructionCode(typeSymbol, p));
 			}
 		}
 

@@ -32,7 +32,7 @@ internal static class GeneratorExecutionContextExtensions
 		this ref GeneratorExecutionContext @this, string fileName,
 		string? sourceGeneratorName, string sourceCode) =>
 		@this.AddSource(
-			$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".{sourceGeneratorName}")}.g.cs",
+			$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".g.{sourceGeneratorName}")}.cs",
 			SourceText.From(sourceCode, Encoding.UTF8)
 		);
 
@@ -50,7 +50,7 @@ internal static class GeneratorExecutionContextExtensions
 		this ref GeneratorExecutionContext @this, string fileName,
 		string? sourceGeneratorName, string sourceCode, Encoding encoding) =>
 		@this.AddSource(
-			$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".{sourceGeneratorName}")}.g.cs",
+			$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".g.{sourceGeneratorName}")}.cs",
 			SourceText.From(sourceCode, encoding)
 		);
 }

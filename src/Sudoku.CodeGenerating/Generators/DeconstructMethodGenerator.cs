@@ -60,7 +60,7 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"DeconstructionMethods",
+				"d",
 				$@"#pragma warning disable 618, 1591
 
 using System;

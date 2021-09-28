@@ -31,7 +31,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				.AppendLine(string.Join(separator, from name in GetAllSetsTypes select G_GetAllSets(name)))
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "GetAllSets", sb.ToString());
+			context.AddSource(typeName, "b.gas", sb.ToString());
 
 			sb.Clear();
 		}
@@ -43,7 +43,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				.AppendLine(string.Join(separator, from name in GetEnumeratorTypes select G_GetEnumerator(name)))
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "GetEnumerator", sb.ToString());
+			context.AddSource(typeName, "b.ge", sb.ToString());
 
 			sb.Clear();
 		}
@@ -60,7 +60,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				)
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "GetNextSet", sb.ToString());
+			context.AddSource(typeName, "b.gns", sb.ToString());
 
 			sb.Clear();
 		}
@@ -77,7 +77,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				)
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "ReverseBits", sb.ToString());
+			context.AddSource(typeName, "b.rb", sb.ToString());
 
 			sb.Clear();
 		}
@@ -89,7 +89,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				.AppendLine(string.Join(separator, from name in SetAtTypes select G_SetAt(name)))
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "SetAt", sb.ToString());
+			context.AddSource(typeName, "b.sa", sb.ToString());
 
 			sb.Clear();
 		}
@@ -101,7 +101,7 @@ public sealed partial class BitOperationsGenerator : ISourceGenerator
 				.AppendLine(string.Join(separator, from name in SkipSetBitTypes select G_SkipSetBit(name)))
 				.Append(TrailingText);
 
-			context.AddSource(typeName, "SkipSetBit", sb.ToString());
+			context.AddSource(typeName, "b.ssb", sb.ToString());
 		}
 	}
 

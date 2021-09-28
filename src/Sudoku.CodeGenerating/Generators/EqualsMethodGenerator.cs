@@ -89,7 +89,7 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"Equality",
+				"e",
 				$@"#pragma warning disable 1591
 
 #nullable enable

@@ -3,7 +3,7 @@
 /// <summary>
 /// A generator that generates the code for code analyzer and fix defaults.
 /// </summary>
-[Generator]
+//[Generator]
 public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenerator
 {
 	/// <summary>
@@ -103,7 +103,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 
 			context.AddSource(
 				type.ToFileName(),
-				"Analyzer",
+				"a",
 				$@"using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -164,7 +164,7 @@ partial class {type.Name}
 
 			context.AddSource(
 				type.ToFileName(),
-				"Fixer",
+				"f",
 				$@"using System.Collections.Immutable;
 using System.Composition;
 using Microsoft.CodeAnalysis;

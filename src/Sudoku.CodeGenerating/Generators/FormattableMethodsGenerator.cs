@@ -33,7 +33,7 @@ public sealed partial class FormattableMethodsGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"ToString",
+				"t",
 				$@"#nullable enable
 
 namespace {namespaceName};

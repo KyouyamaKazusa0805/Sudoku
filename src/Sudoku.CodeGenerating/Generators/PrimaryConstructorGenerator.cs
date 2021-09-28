@@ -54,7 +54,7 @@ public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"PrimaryConstructor",
+				"p",
 				$@"#pragma warning disable 1591
 
 #nullable enable

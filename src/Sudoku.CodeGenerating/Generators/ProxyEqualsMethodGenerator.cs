@@ -62,7 +62,7 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"ProxyEquality",
+				"ep",
 				$@"#pragma warning disable 1591
 
 #nullable enable

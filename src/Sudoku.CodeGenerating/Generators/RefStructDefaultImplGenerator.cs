@@ -98,7 +98,7 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 
 		context.AddSource(
 			type.ToFileName(),
-			"RefStructDefaults",
+			"rsd",
 			$@"#pragma warning disable 809, IDE0005
 
 using System;
@@ -295,7 +295,7 @@ partial struct {type.Name}{genericParametersList}
 
 		context.AddSource(
 			type.ToFileName(),
-			"RefStructDefaults",
+			"rsd",
 			$@"#pragma warning disable 809, IDE0005
 
 using System;
