@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Steps.Singles;
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 partial record class ManualSolverResult
 {
