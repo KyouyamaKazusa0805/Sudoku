@@ -12,7 +12,7 @@ public sealed partial class AutoGetHashCodeGenerator : ISourceGenerator
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<AutoHashCodeAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoHashCodeAttribute).FullName);
 
 		foreach (var (typeSymbol, attributeData) in
 			from type in receiver.Candidates

@@ -81,7 +81,9 @@ partial class BitOperationsExensions
 		const string baseModifiers = "\tpublic static partial";
 
 		var sb = new StringBuilder();
-		sb.AppendLine($@"namespace System.Numerics;
+		sb.AppendLine($@"#pragma warning disable CS1591
+
+namespace System.Numerics;
 
 /// <summary>
 /// Provides extension methods on <see cref=""BitOperations""/>.

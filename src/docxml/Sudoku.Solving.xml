@@ -1410,6 +1410,16 @@
             <param name="countryCode">The country code.</param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Manual.Step}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Deconstruct(System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.TimeSpan@,System.Int32@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Manual.Step}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Grid}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>

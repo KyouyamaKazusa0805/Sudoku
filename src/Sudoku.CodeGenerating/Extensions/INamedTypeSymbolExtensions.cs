@@ -92,6 +92,69 @@ internal static class INamedTypeSymbolExtensions
 	}
 
 	/// <summary>
+	/// <para>
+	/// Check all type arguments recursively whether any types are marked specified attribute type.
+	/// </para>
+	/// <para>
+	/// This method will check all type arguments for this type symbol.
+	/// For example, if the type symbol is like this:
+	/// <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
+	/// this method will check those parts:
+	/// <list type="bullet">
+	/// <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
+	/// <item><c>string</c></item>
+	/// <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
+	/// <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
+	/// <item><c>int</c></item>
+	/// </list>
+	/// </para>
+	/// </summary>
+	/// <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
+	/// <param name="symbol">The symbol to check.</param>
+	/// <param name="compilation">The compilation.</param>
+	/// <returns>
+	/// A <see cref="bool"/> result indicating:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>
+	/// The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public static bool CheckAnyTypeArgumentIsMarked<TAttribute>(
+#if NETSTANDARD2_1_OR_GREATER
+		[NotNullWhen(true)]
+#endif
+		this INamedTypeSymbol? symbol,
+		Compilation compilation
+	) where TAttribute : Attribute
+	{
+		var obsolete = compilation.GetTypeByMetadataName(typeof(TAttribute).FullName)!;
+		Func<ISymbol?, ISymbol?, bool> e = SymbolEqualityComparer.Default.Equals;
+
+		return f(symbol);
+
+
+		bool f(
+#if NETSTANDARD2_1_OR_GREATER
+			[NotNullWhen(true)]
+#endif
+			INamedTypeSymbol? symbol
+		) => symbol switch
+		{
+			null => false,
+			{ IsGenericType: false } => symbol.GetAttributes().Any(a => e(a.AttributeClass, obsolete)),
+			{ TypeArguments: var typeArgs } => typeArgs.All(t => f(t as INamedTypeSymbol))
+		};
+	}
+
+	/// <summary>
 	/// Get all base types of this instance.
 	/// </summary>
 	/// <param name="this">The type.</param>

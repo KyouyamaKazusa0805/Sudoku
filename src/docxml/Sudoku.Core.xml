@@ -1234,6 +1234,11 @@
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Cells.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1503,6 +1508,16 @@
             <param name="isOn">The on/off status.</param>
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Int16@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
@@ -1847,6 +1862,11 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.ConclusionType">
             <summary>
@@ -2966,6 +2986,11 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="M:Sudoku.Data.Grid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -3652,6 +3677,11 @@
         <member name="M:Sudoku.Data.Link.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.LinkType">
             <summary>
             Indicates a link type.
@@ -3787,6 +3817,16 @@
         </member>
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IList{Sudoku.Data.Node}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.Parsers.CellParser">
             <summary>
@@ -5434,6 +5474,11 @@
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Inequality(Sudoku.Data.SudokuGrid.ValueChangedArgs@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -6130,6 +6175,11 @@
             </summary>
             <param name="pair">The pair value.</param>
         </member>
+        <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
             Encapsulates a progress result used for report the current state.
@@ -6179,6 +6229,16 @@
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Models.IProgressResult">
             <summary>

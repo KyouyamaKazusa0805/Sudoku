@@ -457,6 +457,11 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <seealso cref="P:System.Collections.Generic.TreeNode`1.Id"/>
         </member>
+        <member name="M:System.Collections.Generic.TreeNode`1.Deconstruct(System.Int32@,System.Int32@,System.Boolean@,`0@,System.Collections.Generic.ICollection{System.Collections.Generic.TreeNode{`0}}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:System.Collections.Generic.ValueDictionary`2">
             <summary>
             Represents a collection of keys and values, which is similar with the type

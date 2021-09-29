@@ -523,6 +523,16 @@
             <param name="countryCode">The country code.</param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.Deconstruct(System.String@,System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.SudokuGrid@,System.Nullable{Sudoku.Data.SudokuGrid}@,System.TimeSpan@,System.Int32@,System.Collections.Generic.IReadOnlyList{Sudoku.Solving.Manual.StepInfo}@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.SudokuGrid}@,System.Object@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.AnalysisResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1309,6 +1319,16 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All ALSes searched.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepInfo">
             <summary>
@@ -2828,6 +2848,11 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo">
             <summary>
             Provides a usage of <b>exocet</b> technique.
@@ -3153,6 +3178,21 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.SeStepInfo">
             <summary>
@@ -6070,6 +6110,21 @@
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.StepInfo.Format"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepInfo.Deconstruct(System.String@,System.Decimal@,Sudoku.Solving.Manual.DifficultyLevel@,System.Collections.Generic.IReadOnlyList{Sudoku.Data.Conclusion}@,System.Collections.Generic.IReadOnlyList{Sudoku.Drawing.View}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.StepSearcher">
             <summary>
             Encapsulates a step finder that used in solving in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>.
@@ -6531,6 +6586,26 @@
             or not <see cref="T:Sudoku.Solving.Manual.StepSearcher"/> at all,
             the return value will be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.TechniqueProperties.Deconstruct(System.Boolean@,System.Boolean@,System.Int32@,Sudoku.Solving.Manual.DisabledReason@,System.Boolean@,System.Int32@,System.String@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Bugs.BugMultipleStepInfo">
             <summary>
@@ -7733,6 +7808,11 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeStepInfo">
             <summary>

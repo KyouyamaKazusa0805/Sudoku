@@ -494,52 +494,57 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.AutoGetHashCode">
             <summary>
-            Indicates the auto get hash code.
+            Indicates the source generator is for auto get hash code.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
             <summary>
-            Indicates the bit operations get all sets.
+            Indicates the source generator is for bit operations get all sets.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_GetEnumerator">
             <summary>
-            Indicates the bit operations get enumerator.
+            Indicates the source generator is for bit operations get enumerator.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_GetNextSet">
             <summary>
-            Indicates the bit operations get next set.
+            Indicates the source generator is for bit operations get next set.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_ReverseBits">
             <summary>
-            Indicates the bit operations reverse bits.
+            Indicates the source generator is for bit operations reverse bits.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_SetAt">
             <summary>
-            Indicates the bit operations set at.
+            Indicates the source generator is for bit operations set at.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_SkipSetBit">
             <summary>
-            Indicates the bit operations skip set bit.
+            Indicates the source generator is for bit operations skip set bit.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CodeAnalyzer">
             <summary>
-            Indicates the code analyzer.
+            Indicates the source generator is for code analyzer.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CodeFixer">
             <summary>
-            Indicates the code fixer.
+            Indicates the source generator is for code fixer.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.CoreConstants">
             <summary>
-            Indicates the core constants.
+            Indicates the source generator is for core constants.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.DeconstructionMethod">
+            <summary>
+            Indicates the source generator is for deconstruction methods.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
@@ -805,21 +810,26 @@
             Provides a generator that generates the deconstruction methods.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.KeywordsToBclNames">
+            <summary>
+            Indicates the collection that stores the conversion relations from type keywords to their BCL names.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
             <summary>
             Try to get all possible fields or properties in the specified type.
             </summary>
-            <param name="symbol">The specified symbol.</param>
+            <param name="typeSymbol">The specified symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
             <param name="handleRecursively">
             A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.
             </param>
-            <param name="attributeSymbol">The attribute symbol to check.</param>
             <returns>The result list that contains all member symbols.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver">
@@ -1299,6 +1309,44 @@
             <param name="typeKind">The type kind, e.g. <c>struct</c>.</param>
             <param name="readonlyKeyword">The read-only keyword on members.</param>
             <param name="isGeneric">Indicates whether the type is a generic type.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.CheckAnyTypeArgumentIsMarked``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            <para>
+            Check all type arguments recursively whether any types are marked specified attribute type.
+            </para>
+            <para>
+            This method will check all type arguments for this type symbol.
+            For example, if the type symbol is like this:
+            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
+            this method will check those parts:
+            <list type="bullet">
+            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
+            <item><c>string</c></item>
+            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
+            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
+            <item><c>int</c></item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
+            <param name="symbol">The symbol to check.</param>
+            <param name="compilation">The compilation.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetBaseTypes(Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>

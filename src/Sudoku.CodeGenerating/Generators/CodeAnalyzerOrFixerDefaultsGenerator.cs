@@ -40,8 +40,8 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 
 		var compilation = context.Compilation;
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-		var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName<CodeAnalyzerAttribute>();
-		var attributeFixerSymbol = compilation.GetTypeByMetadataName<CodeFixProviderAttribute>();
+		var attributeAnalyzerSymbol = compilation.GetTypeByMetadataName(typeof(CodeAnalyzerAttribute).FullName);
+		var attributeFixerSymbol = compilation.GetTypeByMetadataName(typeof(CodeFixProviderAttribute).FullName);
 		string[] list = File.ReadAllLines(csvTableFilePath);
 		string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 		string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();

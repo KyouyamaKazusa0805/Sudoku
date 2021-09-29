@@ -8,53 +8,58 @@ partial class Constants
 	public static class GeneratedFileShortcuts
 	{
 		/// <summary>
-		/// Indicates the auto get hash code.
+		/// Indicates the source generator is for auto get hash code.
 		/// </summary>
 		public const string AutoGetHashCode = "g";
 
 		/// <summary>
-		/// Indicates the bit operations get all sets.
+		/// Indicates the source generator is for bit operations get all sets.
 		/// </summary>
 		public const string BitOperations_GetAllSets = "b.gas";
 
 		/// <summary>
-		/// Indicates the bit operations get enumerator.
+		/// Indicates the source generator is for bit operations get enumerator.
 		/// </summary>
 		public const string BitOperations_GetEnumerator = "b.ge";
 
 		/// <summary>
-		/// Indicates the bit operations get next set.
+		/// Indicates the source generator is for bit operations get next set.
 		/// </summary>
 		public const string BitOperations_GetNextSet = "b.gns";
 
 		/// <summary>
-		/// Indicates the bit operations reverse bits.
+		/// Indicates the source generator is for bit operations reverse bits.
 		/// </summary>
 		public const string BitOperations_ReverseBits = "b.rb";
 
 		/// <summary>
-		/// Indicates the bit operations set at.
+		/// Indicates the source generator is for bit operations set at.
 		/// </summary>
 		public const string BitOperations_SetAt = "b.sa";
 
 		/// <summary>
-		/// Indicates the bit operations skip set bit.
+		/// Indicates the source generator is for bit operations skip set bit.
 		/// </summary>
 		public const string BitOperations_SkipSetBit = "b.ssb";
 
 		/// <summary>
-		/// Indicates the code analyzer.
+		/// Indicates the source generator is for code analyzer.
 		/// </summary>
 		public const string CodeAnalyzer = "a";
 
 		/// <summary>
-		/// Indicates the code fixer.
+		/// Indicates the source generator is for code fixer.
 		/// </summary>
 		public const string CodeFixer = "f";
 
 		/// <summary>
-		/// Indicates the core constants.
+		/// Indicates the source generator is for core constants.
 		/// </summary>
 		public const string CoreConstants = "s";
+
+		/// <summary>
+		/// Indicates the source generator is for deconstruction methods.
+		/// </summary>
+		public const string DeconstructionMethod = "d";
 	}
 }
