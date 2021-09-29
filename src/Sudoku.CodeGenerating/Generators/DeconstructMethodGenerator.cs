@@ -66,18 +66,23 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 				select (from memberArg in memberArgs select ((string)memberArg.Value!).Trim()) into members
 				where members.All(m => possibleMembers.Any(p => p.Info.Name == m))
 				let paramInfos = from m in members select possibleMembers.First(p => p.Info.Name == m)
-				let deprecatedTypeNames =
+				let deprecatedTypeNames = (
 					from paramInfo in paramInfos
 					select paramInfo.Info into info
 					let tempTypeName = info.Type
 					where !KeywordsToBclNames.ContainsKey(tempTypeName)
-					where info.Symbol.CheckAnyTypeArgumentIsMarked<ObsoleteAttribute>(compilation)
-					select tempTypeName
-				let obsoleteAttributeStr =
-					deprecatedTypeNames.Any() && string.Join(", ", deprecatedTypeNames) is var deprecatedTypesStr
-						? $@"
-	[global::System.Obsolete(""The method is deprecated because the inner type(s) {deprecatedTypesStr} is (are) deprecated."", false)]"
-						: string.Empty
+					let tempSymbol = info.Symbol
+					where tempSymbol.CheckAnyTypeArgumentIsMarked<ObsoleteAttribute>(compilation)
+					select $"'{tempTypeName}'"
+				).ToArray()
+				let obsoleteAttributeStr = deprecatedTypeNames.Length switch
+				{
+					0 => string.Empty,
+					1 => $@"
+	[global::System.Obsolete(""The method is deprecated because the inner type {deprecatedTypeNames[0]} is deprecated."", false)]",
+					> 1 => $@"
+	[global::System.Obsolete(""The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated."", false)]",
+				}
 				let paramNames = from paramInfo in paramInfos select paramInfo.Param
 				let paramNamesStr = string.Join(", ", paramNames)
 				let assignments =
