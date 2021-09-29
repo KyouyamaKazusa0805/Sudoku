@@ -71,5 +71,10 @@ partial class Constants
 		/// Indicates the source generator is for extension deconstruction methods.
 		/// </summary>
 		public const string ExtensionDeconstructionMethod = "ed";
+
+		/// <summary>
+		/// Indicates the source generator is for formatted methods.
+		/// </summary>
+		public const string FormattedMethods = "t";
 	}
 }

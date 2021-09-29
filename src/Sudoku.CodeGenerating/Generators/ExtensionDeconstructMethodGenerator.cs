@@ -33,6 +33,9 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 			group (TypeArgument: typeArgConverted, Members: argStrs, Namespace: n) by typeArgStr)
 		{
 			var (typeArg, argStrs, n) = groupedResult.First();
+			string namespaceResult = n ?? typeArg.ContainingNamespace.ToDisplayString();
+			string typeResult = typeArg.Name;
+			string deconstructionMethodsCode = string.Join("\r\n\r\n\t", q());
 			context.AddSource(
 				typeArg.ToFileName(),
 				GeneratedFileShortcuts.ExtensionDeconstructionMethod,
@@ -40,14 +43,14 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 
 #nullable enable
 
-namespace {n ?? typeArg.ContainingNamespace.ToDisplayString()};
+namespace {namespaceResult};
 
 /// <summary>
 /// Provides the extension methods on this type.
 /// </summary>
-public static class {typeArg.Name}_DeconstructionMethods
+public static class {typeResult}_DeconstructionMethods
 {{
-	{string.Join("\r\n\r\n\t", q())}
+	{deconstructionMethodsCode}
 }}
 "
 			);

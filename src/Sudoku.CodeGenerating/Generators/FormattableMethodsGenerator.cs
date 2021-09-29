@@ -15,15 +15,15 @@ public sealed partial class FormattableMethodsGenerator : ISourceGenerator
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<AutoFormattableAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoFormattableAttribute).FullName);
 		foreach (var type in
-			from candidate in receiver.Candidates
-			let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-			select model.GetDeclaredSymbol(candidate)! into type
-			where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
-			select type)
+			from type in receiver.Candidates
+			let model = compilation.GetSemanticModel(type.SyntaxTree)
+			select model.GetDeclaredSymbol(type)! into typeSymbol
+			let attributesData = typeSymbol.GetAttributes()
+			where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
+			select typeSymbol)
 		{
 			type.DeconstructInfo(
 				false, out string fullTypeName, out string namespaceName, out string genericParametersList,
@@ -33,7 +33,7 @@ public sealed partial class FormattableMethodsGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"t",
+				GeneratedFileShortcuts.FormattedMethods,
 				$@"#nullable enable
 
 namespace {namespaceName};
