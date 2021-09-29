@@ -12,6 +12,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
 		var nameDic = new Dictionary<string, int>();
+
 		foreach (var groupResult in
 			from attribute in receiver.Attributes
 			let argList = attribute.ArgumentList
@@ -31,7 +32,11 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 				_ = nameDic.TryGetValue(typeSymbol.Name, out int i);
 				string name = i == 0 ? typeSymbol.Name : $"{typeSymbol.Name}{i + 1}";
 				nameDic[typeSymbol.Name] = i + 1;
-				context.AddSource($"{name}", "ed", getDeconstructionCode(typeSymbol, p));
+				context.AddSource(
+					$"{name}",
+					GeneratedFileShortcuts.ExtensionDeconstructionMethod,
+					getDeconstructionCode(typeSymbol, p)
+				);
 			}
 		}
 
@@ -39,7 +44,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		string getDeconstructionCode(ITypeSymbol symbol, AttributeArgumentListSyntax argList)
 		{
 			string? tempNamespace = argList.Arguments.FirstOrDefault(
-				static arg => arg is { NameEquals.Name.Identifier.ValueText: "Namespace" }
+				static arg => arg.NameEquals?.Name.Identifier.ValueText == "Namespace"
 			)?.Expression.ToString();
 			string namespaceName = tempNamespace?.Substring(1, tempNamespace.Length - 2)
 				?? $"{symbol.ContainingNamespace}";
@@ -79,7 +84,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 		{assignments}
 	}}";
 
-			return $@"#pragma warning disable 618, 1591
+			return $@"#pragma warning disable CS0618, CS1591
 
 #nullable enable
 

@@ -36,8 +36,7 @@ partial class ExtensionDeconstructMethodGenerator
 						Name: GenericNameSyntax
 						{
 							Identifier.ValueText:
-								"AutoDeconstructExtension"
-								or "AutoDeconstructExtensionAttribute"
+								"AutoDeconstructExtension" or "AutoDeconstructExtensionAttribute"
 						}
 					}
 				)

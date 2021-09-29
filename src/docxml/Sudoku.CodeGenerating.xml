@@ -552,6 +552,11 @@
             Indicates the source generator is for equal methods.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for extension deconstruction methods.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
             <summary>
             Indicates the operator names.
