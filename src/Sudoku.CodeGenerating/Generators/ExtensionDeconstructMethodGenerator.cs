@@ -36,7 +36,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 			context.AddSource(
 				typeArg.ToFileName(),
 				GeneratedFileShortcuts.ExtensionDeconstructionMethod,
-				$@"#pragma warning disable CS0618, CS1591
+				$@"#pragma warning disable CS0618
 
 #nullable enable
 
