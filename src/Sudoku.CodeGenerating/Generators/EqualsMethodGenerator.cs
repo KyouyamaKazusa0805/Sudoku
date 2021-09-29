@@ -21,46 +21,36 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		var compilation = context.Compilation;
 		var attributeSymbol = compilation.GetTypeByMetadataName<AutoEqualityAttribute>();
-		foreach (var type in
-			from candidate in receiver.Candidates
-			let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-			select model.GetDeclaredSymbol(candidate)! into type
-			where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
-			select type)
+
+		foreach (var (typeSymbol, attributeData) in
+			from type in receiver.Candidates
+			select compilation.GetSemanticModel(type.SyntaxTree).GetDeclaredSymbol(type)! into typeSymbol
+			let attributesData = typeSymbol.GetAttributes()
+			let attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
+			where attributeData is { ConstructorArguments.IsDefaultOrEmpty: false }
+			select (typeSymbol, attributeData))
 		{
-			if (type.GetAttributeString(attributeSymbol) is not { } attributeStr)
-			{
-				continue;
-			}
-
-			int tokenStartIndex = attributeStr.IndexOf("({");
-			if (tokenStartIndex == -1)
-			{
-				continue;
-			}
-
-			if (attributeStr.GetMemberValues(tokenStartIndex) is not { Length: not 0 } members)
-			{
-				continue;
-			}
-
-			type.DeconstructInfo(
+			typeSymbol.DeconstructInfo(
 				false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 				out string genericParametersListWithoutConstraint, out string typeKind,
 				out string readonlyKeyword, out _
 			);
-			string inKeyword = type.TypeKind == TypeKind.Struct ? "in " : string.Empty;
-			string nullableAnnotation = type.TypeKind == TypeKind.Class ? "?" : string.Empty;
-			string nullCheck = type.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
-			string memberCheck = string.Join(" && ", from member in members select $"{member} == other.{member}");
+			string inKeyword = typeSymbol.TypeKind == TypeKind.Struct ? "in " : string.Empty;
+			string nullableAnnotation = typeSymbol.TypeKind == TypeKind.Class ? "?" : string.Empty;
+			string nullCheck = typeSymbol.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
+			string memberCheck = string.Join(
+				" && ",
+				from arg in attributeData.ConstructorArguments[0].Values
+				select ((string)arg.Value!).Trim() into member
+				select $"{member} == other.{member}"
+			);
 
-			string typeName = type.Name;
-			string objectEqualsMethod = type.IsRefLikeType
+			string typeName = typeSymbol.Name;
+			string objectEqualsMethod = typeSymbol.IsRefLikeType
 				? "// This type is a ref struct, so 'bool Equals(object?) is useless."
-				: type.IsRecord && type.TypeKind == TypeKind.Struct
+				: typeSymbol.IsRecord && typeSymbol.TypeKind == TypeKind.Struct
 				? "// This type is a record struct, so 'bool Equals(object?) can't be syntheized."
 				: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
@@ -72,7 +62,7 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 	public {readonlyKeyword}bool Equals({inKeyword}{typeName}{genericParametersListWithoutConstraint}{nullableAnnotation} other) => {nullCheck}{memberCheck};";
 
-			var memberSymbols = type.GetMembers().OfType<IMethodSymbol>();
+			var memberSymbols = typeSymbol.GetMembers().OfType<IMethodSymbol>();
 			string opEquality = isOp(memberSymbols, OperatorNames.Equality)
 				? $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
@@ -88,9 +78,9 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 				: "// 'operator !=' does exist in the type.";
 
 			context.AddSource(
-				type.ToFileName(),
-				"e",
-				$@"#pragma warning disable 1591
+				typeSymbol.ToFileName(),
+				GeneratedFileShortcuts.EqualsMethod,
+				$@"#pragma warning disable CS1591
 
 #nullable enable
 

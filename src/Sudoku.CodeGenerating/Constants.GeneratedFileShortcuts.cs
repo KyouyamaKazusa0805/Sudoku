@@ -61,5 +61,10 @@ partial class Constants
 		/// Indicates the source generator is for deconstruction methods.
 		/// </summary>
 		public const string DeconstructionMethod = "d";
+
+		/// <summary>
+		/// Indicates the source generator is for equal methods.
+		/// </summary>
+		public const string EqualsMethod = "e";
 	}
 }

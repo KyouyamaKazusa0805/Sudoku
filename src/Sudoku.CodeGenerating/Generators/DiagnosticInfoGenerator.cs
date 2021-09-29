@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the generator that generates the diagnostic information used in code analysis.
 /// </summary>
-[Generator]
+//[Generator]
 public sealed class DiagnosticInfoGenerator : ISourceGenerator
 {
 	/// <summary>
