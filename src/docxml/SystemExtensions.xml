@@ -4793,5 +4793,15 @@
             two of them, so the result set bit positions to iterate on are only 2 and 4.
             </remarks>
         </member>
+        <member name="T:System.Index_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Index_DeconstructionMethods.Deconstruct(System.Index@,System.Boolean@,System.Int32@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
     </members>
 </doc>

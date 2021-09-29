@@ -2171,6 +2171,16 @@
             <param name="hex">The hex string.</param>
             <returns>The <see cref="T:System.Windows.Media.Color"/>.</returns>
         </member>
+        <member name="T:System.Windows.Media.Color_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Color_DeconstructionMethods.Deconstruct(System.Windows.Media.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
         <member name="T:System.Windows.Input.KeyExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Windows.Input.Key"/>.
@@ -2271,6 +2281,36 @@
             </summary>
             <param name="this">The current size.</param>
             <returns>The another instance of type <see cref="T:System.Drawing.SizeF"/>.</returns>
+        </member>
+        <member name="T:System.Windows.Controls.Image_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.Image_DeconstructionMethods.Deconstruct(System.Windows.Controls.Image,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Point_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Point_DeconstructionMethods.Deconstruct(System.Windows.Point@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Size_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Size_DeconstructionMethods.Deconstruct(System.Windows.Size@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
         </member>
         <member name="T:System.SystemClipboard">
             <summary>

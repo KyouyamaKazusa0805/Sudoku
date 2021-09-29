@@ -1626,5 +1626,75 @@
             <param name="this">The rectangle.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:System.Drawing.Color_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.Color_DeconstructionMethods.Deconstruct(System.Drawing.Color@,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Drawing.Point_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.Point_DeconstructionMethods.Deconstruct(System.Drawing.Point@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Drawing.PointF_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.PointF_DeconstructionMethods.Deconstruct(System.Drawing.PointF@,System.Single@,System.Single@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Drawing.Size_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.Size_DeconstructionMethods.Deconstruct(System.Drawing.Size@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Drawing.SizeF_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.SizeF_DeconstructionMethods.Deconstruct(System.Drawing.SizeF@,System.Single@,System.Single@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:System.Drawing.RectangleF_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.RectangleF_DeconstructionMethods.Deconstruct(System.Drawing.RectangleF@,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:Emgu.CV.Structure.RotatedRect_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:Emgu.CV.Structure.RotatedRect_DeconstructionMethods.Deconstruct(Emgu.CV.Structure.RotatedRect@,System.Drawing.PointF@,System.Drawing.SizeF@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
     </members>
 </doc>
