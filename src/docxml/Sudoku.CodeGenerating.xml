@@ -1126,18 +1126,6 @@
         <member name="M:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator">
-            <summary>
-            Indicates the source generator that generates the code about the attributes to mark onto
-            the method <c>Formatize</c> in the type <c>StepInfo</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.MemberAccessibility">
             <summary>
             Indicates the accessibility of a member.
