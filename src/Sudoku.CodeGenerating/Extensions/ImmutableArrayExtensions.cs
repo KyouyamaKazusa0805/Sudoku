@@ -24,20 +24,38 @@ internal static class ImmutableArrayExtensions
 		params NullableAnnotation[] nullableAnnotations
 	)
 	{
-		if (@this.Length != nullableAnnotations.Length)
+		switch ((A: @this.Length, B: nullableAnnotations.Length))
 		{
-			throw new ArgumentException("The length doesn't match.", nameof(nullableAnnotations));
-		}
-
-		for (int i = 0, length = nullableAnnotations.Length; i < length; i++)
-		{
-			if (@this[i].NullableAnnotation != nullableAnnotations[i])
+			case (A: var thisLength and not 0, B: var comparerLength) when thisLength == comparerLength:
 			{
-				return false;
+				for (int i = 0, length = nullableAnnotations.Length; i < length; i++)
+				{
+					if (@this[i].NullableAnnotation != nullableAnnotations[i])
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+			case (A: >= 1, B: 1):
+			{
+				var onlyElementToCompare = nullableAnnotations[0];
+				for (int i = 0, length = nullableAnnotations.Length; i < length; i++)
+				{
+					if (@this[i].NullableAnnotation != onlyElementToCompare)
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+			default:
+			{
+				throw new ArgumentException("The length doesn't match.", nameof(nullableAnnotations));
 			}
 		}
-
-		return true;
 	}
 
 	/// <summary>

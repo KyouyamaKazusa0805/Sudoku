@@ -576,6 +576,11 @@
             Indicates the source generator is for primary constructors for <see langword="class"/>.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.ProxyEqualsMethod">
+            <summary>
+            Indicates the source generator is for auto equals method that binds with a proxy equality method.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
             <summary>
             Indicates the operator names.

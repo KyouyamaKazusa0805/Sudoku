@@ -353,6 +353,28 @@
         <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
             <inheritdoc cref="M:System.Object.GetHashCode" />
         </member>
+        <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.Equals(System.Collections.Generic.Set{`0})">
+            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.Set`1.op_Inequality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.Collections.Generic.TreeNode`1">
             <summary>
             Encapsulates a tree node.
@@ -2880,6 +2902,25 @@
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
             <inheritdoc cref="M:System.Object.GetHashCode" />
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
+            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

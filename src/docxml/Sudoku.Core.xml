@@ -3018,6 +3018,28 @@
             </param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@)">
+            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+        </member>
+        <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Grid.op_Inequality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
             Indicates the grid creating option.
@@ -5506,6 +5528,28 @@
             </param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@)">
+            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.op_Inequality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Data.SudokuGridExtensions">
             <summary>
             Provides extension methods on <see cref="T:Sudoku.Data.SudokuGrid"/>.
@@ -5730,6 +5774,25 @@
             <summary>
             Indicates the pinned item is <c>_candidateList</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.Equals(Sudoku.Data.SudokuGridSegment@)">
+            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.op_Equality(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGridSegment.op_Inequality(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGridSegment.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

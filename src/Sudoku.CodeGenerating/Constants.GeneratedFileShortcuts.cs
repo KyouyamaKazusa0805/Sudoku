@@ -86,5 +86,10 @@ partial class Constants
 		/// Indicates the source generator is for primary constructors for <see langword="class"/>.
 		/// </summary>
 		public const string PrimaryConstructorMethod = "p";
+
+		/// <summary>
+		/// Indicates the source generator is for auto equals method that binds with a proxy equality method.
+		/// </summary>
+		public const string ProxyEqualsMethod = "ep";
 	}
 }
