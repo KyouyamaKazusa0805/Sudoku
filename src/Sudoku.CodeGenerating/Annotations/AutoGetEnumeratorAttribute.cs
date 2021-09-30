@@ -27,9 +27,7 @@ public sealed class AutoGetEnumeratorAttribute : Attribute
 	/// <remarks>
 	/// <para>
 	/// This property should be stored a lambda body. One of possible syntaxes is:
-	/// <code><![CDATA[
-	/// [AutoGetEnumerator(nameof(MemberName), "((IEnumerable<int>)@).*")]
-	/// ]]></code>
+	/// <code><![CDATA[[AutoGetEnumerator(nameof(MemberName), "((IEnumerable<int>)@).*")]]]></code>
 	/// Where:
 	/// <list type="table">
 	/// <item>
