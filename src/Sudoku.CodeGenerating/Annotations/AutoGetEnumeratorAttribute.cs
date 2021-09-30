@@ -52,8 +52,8 @@ public sealed class AutoGetEnumeratorAttribute : Attribute
 	public string[]? ExtraNamespaces { get; init; }
 
 	/// <summary>
-	/// Indicates the return type. If <see langword="null"/>, the value of type <see cref="IEnumerable{T}"/>
-	/// of <see cref="int"/> will be returned.
+	/// Indicates the return type. If <see langword="null"/>, the source generator will uses
+	/// <see cref="IEnumerable"/>&lt;<see cref="int"/>&gt; as the return type to generate the code.
 	/// </summary>
 	/// <seealso cref="IEnumerable{T}"/>
 	public Type? ReturnType { get; init; }

@@ -63,7 +63,7 @@ partial class Constants
 		public const string DeconstructionMethod = "d";
 
 		/// <summary>
-		/// Indicates the source generator is for equal methods.
+		/// Indicates the source generator is for auto equals methods.
 		/// </summary>
 		public const string EqualsMethod = "e";
 
@@ -73,8 +73,13 @@ partial class Constants
 		public const string ExtensionDeconstructionMethod = "ed";
 
 		/// <summary>
-		/// Indicates the source generator is for formatted methods.
+		/// Indicates the source generator is for auto format methods.
 		/// </summary>
 		public const string FormattedMethods = "t";
+
+		/// <summary>
+		/// Indicates the source generator is for auto get enumerator methods.
+		/// </summary>
+		public const string GetEnumeratorMethod = "ge";
 	}
 }

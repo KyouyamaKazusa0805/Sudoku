@@ -1432,6 +1432,9 @@
             </param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
+            <inheritdoc cref="M:System.Object.GetHashCode" />
+        </member>
         <member name="T:Sudoku.Solving.Manual.MaskMarshal">
             <summary>
             Provides with a serial of methods that handles with masks.

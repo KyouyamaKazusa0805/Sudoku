@@ -545,6 +545,9 @@
             </param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
+            <inheritdoc cref="M:System.Object.GetHashCode" />
+        </member>
         <member name="T:Sudoku.Solving.AnalysisResultFormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Solving.AnalysisResult"/> instance.
@@ -2852,6 +2855,9 @@
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetEnumerator">
+            <inheritdoc cref="M:System.Object.GetHashCode" />
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo">
             <summary>

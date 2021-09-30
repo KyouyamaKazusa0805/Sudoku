@@ -147,8 +147,8 @@
         </member>
         <member name="P:Sudoku.CodeGenerating.AutoGetEnumeratorAttribute.ReturnType">
             <summary>
-            Indicates the return type. If <see langword="null"/>, the value of type <see cref="T:System.Collections.Generic.IEnumerable`1"/>
-            of <see cref="T:System.Int32"/> will be returned.
+            Indicates the return type. If <see langword="null"/>, the source generator will uses
+            <see cref="T:System.Collections.IEnumerable"/>&lt;<see cref="T:System.Int32"/>&gt; as the return type to generate the code.
             </summary>
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
@@ -547,7 +547,7 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.EqualsMethod">
             <summary>
-            Indicates the source generator is for equal methods.
+            Indicates the source generator is for auto equals methods.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
@@ -557,7 +557,12 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.FormattedMethods">
             <summary>
-            Indicates the source generator is for formatted methods.
+            Indicates the source generator is for auto format methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
+            <summary>
+            Indicates the source generator is for auto get enumerator methods.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
@@ -954,6 +959,11 @@
             Indicates a source generator that generates the code for the method <c>GetEnumerator</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.Replacements">
+            <summary>
+            All possible replacements.
+            </summary>
+        </member>
         <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
@@ -967,7 +977,7 @@
         </member>
         <member name="P:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver.Candidates">
             <summary>
-            Indicates the types that satisfy the condition.
+            Indicates all possible candidate types used.
             </summary>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">

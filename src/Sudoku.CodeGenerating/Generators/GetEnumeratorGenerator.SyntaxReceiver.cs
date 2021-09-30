@@ -8,41 +8,18 @@ partial class GetEnumeratorGenerator
 	private sealed class SyntaxReceiver : ISyntaxReceiver
 	{
 		/// <summary>
-		/// Indicates the types that satisfy the condition.
+		/// Indicates all possible candidate types used.
 		/// </summary>
-		public IList<(TypeDeclarationSyntax Node, AttributeSyntax Attribute)> Candidates { get; } =
-			new List<(TypeDeclarationSyntax, AttributeSyntax)>();
+		public IList<TypeDeclarationSyntax> Candidates { get; } = new List<TypeDeclarationSyntax>();
 
 
 		/// <inheritdoc/>
 		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
-			if (
-				syntaxNode is TypeDeclarationSyntax
-				{
-					AttributeLists: { Count: not 0 } attributeLists
-				} declaration
-			)
+			// Any field with at least one attribute is a candidate for property generation.
+			if (syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: not 0 } typeDeclaration)
 			{
-				foreach (var attributeList in attributeLists)
-				{
-					foreach (var attribute in attributeList.Attributes)
-					{
-						if (
-							attribute.Name is IdentifierNameSyntax identifierName
-							&& identifierName.Identifier.ValueText is var t
-							&& nameof(AutoGetEnumeratorAttribute) is var attributeName
-							&& (
-								t == attributeName
-								|| t == attributeName.Substring(0, attributeName.Length - 9)
-							)
-						)
-						{
-							Candidates.Add((declaration, attribute));
-							return;
-						}
-					}
-				}
+				Candidates.Add(typeDeclaration);
 			}
 		}
 	}
