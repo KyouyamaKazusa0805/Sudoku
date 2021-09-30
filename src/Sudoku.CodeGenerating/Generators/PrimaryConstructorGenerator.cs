@@ -16,7 +16,7 @@ public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<AutoPrimaryConstructorAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoPrimaryConstructorAttribute).FullName);
 		foreach (var (typeSymbol, accessibility, includes, excludes) in
 			from type in receiver.CandidateClasses
 			let model = compilation.GetSemanticModel(type.SyntaxTree)

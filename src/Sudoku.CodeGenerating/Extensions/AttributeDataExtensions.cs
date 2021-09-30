@@ -20,15 +20,10 @@ internal static class AttributeDataExtensions
 			goto ReturnDefault;
 		}
 
-#if NETSTANDARD2_1_OR_GREATER
-		foreach (var (argName, argValue) in namedArgs)
-		{
-#else
 		foreach (var kvp in namedArgs)
 		{
 			string argName = kvp.Key;
 			var argValue = kvp.Value;
-#endif
 
 			if (argName == namedArg)
 			{

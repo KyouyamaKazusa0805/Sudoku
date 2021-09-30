@@ -22,7 +22,7 @@ public sealed partial class EqualsMethodGenerator : ISourceGenerator
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<AutoEqualityAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoEqualityAttribute).FullName);
 
 		foreach (var (typeSymbol, attributeData) in
 			from type in receiver.Candidates

@@ -128,9 +128,6 @@ internal static class INamedTypeSymbolExtensions
 	/// </list>
 	/// </returns>
 	public static bool CheckAnyTypeArgumentIsMarked<TAttribute>(
-#if NETSTANDARD2_1_OR_GREATER
-		[NotNullWhen(true)]
-#endif
 		this INamedTypeSymbol? symbol,
 		Compilation compilation
 	) where TAttribute : Attribute
@@ -153,44 +150,6 @@ internal static class INamedTypeSymbolExtensions
 			{ TypeArguments: var typeArgs } => typeArgs.All(t => f(t as INamedTypeSymbol))
 		};
 	}
-
-	/// <summary>
-	/// Get all base types of this instance.
-	/// </summary>
-	/// <param name="this">The type.</param>
-	/// <returns>All base types.</returns>
-	public static IEnumerable<ISymbol> GetBaseTypes(this INamedTypeSymbol @this)
-	{
-		for (var s = @this; s is not null; s = s.BaseType)
-		{
-			yield return s;
-		}
-	}
-
-	/// <summary>
-	/// Get the attribute string representation from the specified type symbol.
-	/// </summary>
-	/// <param name="this">The type symbol.</param>
-	/// <param name="attributeSymbol">The attribute symbol to check.</param>
-	/// <returns>The result string.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static string? GetAttributeString(this INamedTypeSymbol @this, ISymbol? attributeSymbol) => (
-		from attribute in @this.GetAttributes()
-		where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-		select attribute
-	).FirstOrDefault()?.ToString();
-
-	/// <summary>
-	/// Get the attribute strings from the specified type symbol.
-	/// </summary>
-	/// <param name="this">The type symbol.</param>
-	/// <param name="attributeSymbol">The attribute symbol to check.</param>
-	/// <returns>The result string.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static IEnumerable<string?> GetAttributeStrings(this INamedTypeSymbol @this, ISymbol? attributeSymbol) =>
-		from attribute in @this.GetAttributes()
-		where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-		select attribute.ToString();
 
 	/// <summary>
 	/// Get the file name of the type symbol.

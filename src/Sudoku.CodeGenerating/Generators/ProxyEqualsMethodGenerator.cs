@@ -12,7 +12,7 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var processedList = new List<INamedTypeSymbol>();
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName<ProxyEqualityAttribute>();
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
 		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
 		foreach (var (typeSymbol, method) in
 			from candidate in receiver.Candidates
