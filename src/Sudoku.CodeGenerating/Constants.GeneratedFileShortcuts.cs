@@ -91,5 +91,10 @@ partial class Constants
 		/// Indicates the source generator is for auto equals method that binds with a proxy equality method.
 		/// </summary>
 		public const string ProxyEqualsMethod = "ep";
+
+		/// <summary>
+		/// Indicates the <see langword="ref struct"/> default overriden methods.
+		/// </summary>
+		public const string RefStructDefaultMethod = "rsd";
 	}
 }

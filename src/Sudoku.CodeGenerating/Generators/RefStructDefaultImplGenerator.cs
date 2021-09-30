@@ -13,15 +13,17 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		var compilation = context.Compilation;
 
 		foreach (var typeGroup in
-#pragma warning disable RS1024
 			from type in receiver.Types
 			let model = compilation.GetSemanticModel(type.SyntaxTree)
-			select model.GetDeclaredSymbol(type)! into type
-			group type by type.ContainingType is null
-#pragma warning restore RS1024
+			select model.GetDeclaredSymbol(type)! into typeSymbol
+			let whetherSymbolIsNull = typeSymbol.ContainingType is null
+			group typeSymbol by whetherSymbolIsNull
 		)
 		{
-			Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key ? Q : R;
+			Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key
+				? TopLevelStructGenerating
+				: NestedStructGenerating;
+
 			foreach (var type in typeGroup)
 			{
 				f(context, type, compilation);
@@ -33,14 +35,17 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 
-	private void Q(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	private void TopLevelStructGenerating(
+		GeneratorExecutionContext context,
+		INamedTypeSymbol type,
+		Compilation compilation
+	)
 	{
 		type.DeconstructInfo(
 			false, out _, out string namespaceName, out string genericParametersList,
 			out _, out _, out string readonlyKeyword, out _
 		);
 
-		Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
 		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
 		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
 		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
@@ -50,11 +55,11 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		string equalsMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
-				&& c(parameters[0].Type, objectSymbol)
-				&& c(symbol.ReturnType, boolSymbol)
+				symbol is { IsStatic: false, Name: nameof(Equals), Parameters: { Length: 1 } parameters }
+				&& SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
 		)
-			? @"// Can't generate 'Equals' because the method is impl'ed by user."
+			? $@"// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -67,10 +72,10 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		string getHashCodeMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
-				&& c(symbol.ReturnType, intSymbol)
+				symbol is { IsStatic: false, Name: nameof(GetHashCode), Parameters: { Length: 0 } parameters }
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
 		)
-			? @"// Can't generate 'GetHashCode' because the method is impl'ed by user."
+			? $@"// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -83,10 +88,10 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		string toStringMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
-				&& c(symbol.ReturnType, stringSymbol)
+				symbol is { IsStatic: false, Name: nameof(ToString), Parameters: { Length: 0 } parameters }
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
 		)
-			? @"// Can't generate 'ToString' because the method is impl'ed by user."
+			? $@"// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.ToString""/>
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -98,10 +103,8 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 
 		context.AddSource(
 			type.ToFileName(),
-			"rsd",
-			$@"#pragma warning disable 809, IDE0005
-
-using System;
+			GeneratedFileShortcuts.RefStructDefaultMethod,
+			$@"#pragma warning disable CS0809
 
 #nullable enable
 
@@ -121,7 +124,11 @@ partial struct {type.Name}{genericParametersList}
 		);
 	}
 
-	private void R(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	private void NestedStructGenerating(
+		GeneratorExecutionContext context,
+		INamedTypeSymbol type,
+		Compilation compilation
+	)
 	{
 		type.DeconstructInfo(
 			false, out _, out string namespaceName, out string genericParametersList,
@@ -214,22 +221,15 @@ partial struct {type.Name}{genericParametersList}
 			string indenting = new('\t', currentIndenting - 1);
 
 			outerTypeDeclarationsStart
-				.Append(indenting)
-				.Append("partial ")
-				.Append(outerTypeKind)
-				.Append(outerType.Name)
-				.AppendLine(outerGenericParametersList)
-				.Append(indenting)
-				.AppendLine("{");
+				.AppendLine($"{indenting}partial {outerTypeKind}{outerType.Name}{outerGenericParametersList}")
+				.AppendLine($"{indenting}{{");
 
 			indentingStack.Push(indenting);
 		}
 
 		foreach (string indenting in indentingStack)
 		{
-			outerTypeDeclarationsEnd
-				.Append(indenting)
-				.AppendLine("}");
+			outerTypeDeclarationsEnd.AppendLine($"{indenting}}}");
 		}
 
 
@@ -247,11 +247,11 @@ partial struct {type.Name}{genericParametersList}
 		string equalsMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "Equals", Parameters: { Length: 1 } parameters }
+				symbol is { IsStatic: false, Name: nameof(Equals), Parameters: { Length: 1 } parameters }
 				&& c(parameters[0].Type, objectSymbol)
 				&& c(symbol.ReturnType, boolSymbol)
 		)
-			? $"{methodIndenting}// Can't generate 'Equals' because the method is impl'ed by user."
+			? $"{methodIndenting}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -264,10 +264,10 @@ partial struct {type.Name}{genericParametersList}
 		string getHashCodeMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "GetHashCode", Parameters: { Length: 0 } parameters }
+				symbol is { IsStatic: false, Name: nameof(GetHashCode), Parameters: { Length: 0 } parameters }
 				&& c(symbol.ReturnType, intSymbol)
 		)
-			? $"{methodIndenting}// Can't generate 'GetHashCode' because the method is impl'ed by user."
+			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -280,10 +280,10 @@ partial struct {type.Name}{genericParametersList}
 		string toStringMethod = Array.Exists(
 			methods,
 			symbol =>
-				symbol is { IsStatic: false, Name: "ToString", Parameters: { Length: 0 } parameters }
+				symbol is { IsStatic: false, Name: nameof(ToString), Parameters: { Length: 0 } parameters }
 				&& c(symbol.ReturnType, stringSymbol)
 		)
-			? $"{methodIndenting}// Can't generate 'ToString' because the method is impl'ed by user."
+			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
 {methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
@@ -295,13 +295,10 @@ partial struct {type.Name}{genericParametersList}
 
 		context.AddSource(
 			type.ToFileName(),
-			"rsd",
-			$@"#pragma warning disable 809, IDE0005
+			GeneratedFileShortcuts.RefStructDefaultMethod,
+			$@"#pragma warning disable CS0809
 
-using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 
 #nullable enable
 
