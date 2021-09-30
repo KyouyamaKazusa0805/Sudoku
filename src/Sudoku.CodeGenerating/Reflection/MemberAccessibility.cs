@@ -4,7 +4,7 @@
 /// Indicates the accessibility of a member.
 /// </summary>
 [Flags]
-public enum Accessibility : byte
+public enum MemberAccessibility : byte
 {
 	/// <summary>
 	/// Indicates the accessibility is none.

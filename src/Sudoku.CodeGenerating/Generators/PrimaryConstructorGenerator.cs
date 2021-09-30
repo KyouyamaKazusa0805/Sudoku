@@ -14,34 +14,39 @@ public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		Func<ISymbol?, ISymbol?, bool> f = SymbolEqualityComparer.Default.Equals;
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
 		var attributeSymbol = compilation.GetTypeByMetadataName<AutoPrimaryConstructorAttribute>();
-		var addAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIncludedMemberAttribute>();
-		var removeAttributeSymbol = compilation.GetTypeByMetadataName<PrimaryConstructorIgnoredMemberAttribute>();
-		foreach (var type in
-			from candidate in receiver.CandidateClasses
-			let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-			select model.GetDeclaredSymbol(candidate)! into type
-			where type.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
-			select type)
+		foreach (var (typeSymbol, accessibility, includes, excludes) in
+			from type in receiver.CandidateClasses
+			let model = compilation.GetSemanticModel(type.SyntaxTree)
+			select model.GetDeclaredSymbol(type)! into typeSymbol
+			let attributesData = typeSymbol.GetAttributes()
+			let attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
+			where attributeData is not null
+			let accessibility = attributeData.TryGetNamedArgument(nameof(AutoPrimaryConstructorAttribute.Accessibility), out var result) ? (MemberAccessibility)result.Value! : MemberAccessibility.Public
+			let includedMemberArg = attributeData.TryGetNamedArgument(nameof(AutoPrimaryConstructorAttribute.IncludedMemberNames), out var result) ? result.Values : ImmutableArray.Create<TypedConstant>()
+			let included = from arg in includedMemberArg select (string)arg.Value!
+			let excludedMemberArg = attributeData.TryGetNamedArgument(nameof(AutoPrimaryConstructorAttribute.ExcludedMemberNames), out var result) ? result.Values : ImmutableArray.Create<TypedConstant>()
+			let excluded = from arg in excludedMemberArg select (string)arg.Value!
+			select (typeSymbol, accessibility, included, excluded))
 		{
-			type.DeconstructInfo(
+			typeSymbol.DeconstructInfo(
 				false, out string fullTypeName, out string namespaceName, out string genericParametersList,
 				out _, out _, out _, out _
 			);
 
 			var baseClassCtorArgs =
-				type.BaseType is { } baseType && baseType.GetAttributes().Any(a => f(a.AttributeClass, attributeSymbol))
-				? GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol)
-				: null;
+				typeSymbol.BaseType is { } baseType
+				&& baseType.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
+					? getMembers(baseType, true, includes, excludes)
+					: null;
 
 			string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
 				? null
 				: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 
-			var members = GetMembers(type, false, attributeSymbol, addAttributeSymbol, removeAttributeSymbol);
+			var members = getMembers(typeSymbol, false, includes, excludes);
 			string parameterList = string.Join(
 				", ",
 				from x in baseClassCtorArgs is null ? members : members.Concat(baseClassCtorArgs)
@@ -53,20 +58,21 @@ public sealed partial class PrimaryConstructorGenerator : ISourceGenerator
 			);
 
 			context.AddSource(
-				type.ToFileName(),
-				"p",
-				$@"#pragma warning disable 1591
-
-#nullable enable
+				typeSymbol.ToFileName(),
+				GeneratedFileShortcuts.PrimaryConstructorMethod,
+				$@"#nullable enable
 
 namespace {namespaceName};
 
-partial class {type.Name}{genericParametersList}
+partial class {typeSymbol.Name}{genericParametersList}
 {{
+	/// <summary>
+	/// Initializes an instance via those arguments.
+	/// </summary>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Diagnostics.CodeAnalysis.PrimaryConstructor]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public {type.Name}({parameterList}){baseCtorInheritance}
+	public {typeSymbol.Name}({parameterList}){baseCtorInheritance}
 	{{
 		{memberAssignments}
 	}}
@@ -74,77 +80,50 @@ partial class {type.Name}{genericParametersList}
 "
 			);
 		}
+
+
+		static IReadOnlyList<(string Type, string ParameterName, string Name)> getMembers(
+			INamedTypeSymbol type,
+			bool executeRecursively,
+			IEnumerable<string> included,
+			IEnumerable<string> excluded
+		)
+		{
+			var result = new List<(string, string, string)>(
+				(
+					from x in type.GetMembers().OfType<IFieldSymbol>()
+					where
+						x is { CanBeReferencedByName: true, IsStatic: false }
+						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
+						&& !excluded.Contains(x.Name)
+					select (
+						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+						x.Name.ToCamelCase(),
+						x.Name
+					)
+				).Concat(
+					from x in type.GetMembers().OfType<IPropertySymbol>()
+					where
+						x is { CanBeReferencedByName: true, IsStatic: false }
+						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
+						&& !excluded.Contains(x.Name)
+					select (
+						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+						x.Name.ToCamelCase(),
+						x.Name
+					)
+				)
+			);
+
+			if (executeRecursively && type.BaseType is { } baseType)
+			{
+				result.AddRange(getMembers(baseType, true, included, excluded));
+			}
+
+			return result;
+		}
 	}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
-
-
-	/// <summary>
-	/// Try to get all possible fields or properties in the specified <see langword="class"/> type.
-	/// </summary>
-	/// <param name="type">The specified class symbol.</param>
-	/// <param name="handleRecursively">
-	/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.</param>
-	/// <param name="attributeSymbol">
-	/// Indicates the attribute symbol of attribute <see cref="AutoPrimaryConstructorAttribute"/>.
-	/// </param>
-	/// <param name="addAttributeSymbol">
-	/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIncludedMemberAttribute"/>.
-	/// </param>
-	/// <param name="removeAttributeSymbol">
-	/// Indicates the attribute symbol of attribute <see cref="PrimaryConstructorIgnoredMemberAttribute"/>.
-	/// </param>
-	/// <returns>The result list that contains all member symbols.</returns>
-	/// <seealso cref="AutoPrimaryConstructorAttribute"/>
-	/// <seealso cref="PrimaryConstructorIncludedMemberAttribute"/>
-	/// <seealso cref="PrimaryConstructorIgnoredMemberAttribute"/>
-	private static IReadOnlyList<(string Type, string ParameterName, string Name, IEnumerable<AttributeData> Attributes)> GetMembers(
-		INamedTypeSymbol type,
-		bool handleRecursively,
-		INamedTypeSymbol? attributeSymbol,
-		INamedTypeSymbol? addAttributeSymbol,
-		INamedTypeSymbol? removeAttributeSymbol
-	)
-	{
-		var result = new List<(string, string, string, IEnumerable<AttributeData>)>(
-			(
-				from x in type.GetMembers().OfType<IFieldSymbol>()
-				where x is { CanBeReferencedByName: true, IsStatic: false }
-					&& (x.IsReadOnly && !x.HasInitializer() || x.GetAttributes().Any(p_include))
-					&& !x.GetAttributes().Any(p_ignore)
-				select (
-					x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-					x.Name.ToCamelCase(),
-					x.Name,
-					x.GetAttributes().AsEnumerable()
-				)
-			).Concat(
-				from x in type.GetMembers().OfType<IPropertySymbol>()
-				where x is { CanBeReferencedByName: true, IsStatic: false }
-					&& (x.IsReadOnly && !x.HasInitializer() || x.GetAttributes().Any(p_include))
-					&& !x.GetAttributes().Any(p_ignore)
-				select (
-					x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-					x.Name.ToCamelCase(),
-					x.Name,
-					x.GetAttributes().AsEnumerable()
-				)
-			)
-		);
-
-		if (handleRecursively && type.BaseType is { } baseType && baseType.GetAttributes().Any(p_attribute))
-		{
-			result.AddRange(
-				GetMembers(baseType, true, attributeSymbol, addAttributeSymbol, removeAttributeSymbol)
-			);
-		}
-
-		return result;
-
-
-		bool p_include(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, addAttributeSymbol);
-		bool p_ignore(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, removeAttributeSymbol);
-		bool p_attribute(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol);
-	}
 }

@@ -174,6 +174,22 @@
             Indicates the marked <see langword="class"/> should generate primary constructor automatically.
             </summary>
         </member>
+        <member name="P:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute.Accessibility">
+            <summary>
+            <para>Indicates the custom accessibility.</para>
+            <para>The default value is <see cref="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.Public"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute.IncludedMemberNames">
+            <summary>
+            Indicates the included member names.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute.ExcludedMemberNames">
+            <summary>
+            Indicates the excluded member names.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.CodeAnalyzerAttribute">
             <summary>
             To mark on a code analyzer type, to tell the compiler and the source generator that
@@ -218,16 +234,6 @@
         <member name="P:Sudoku.CodeGenerating.CodeFixProviderAttribute.SupportedDiagnosticId">
             <summary>
             Indicates the supported diagnostic ID.
-            </summary>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute">
-            <summary>
-            Indicates the member should be ignored while generating primary constructors.
-            </summary>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute">
-            <summary>
-            Indicates the member should be included while generating primary constructors.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.ProxyEqualityAttribute">
@@ -563,6 +569,11 @@
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
             <summary>
             Indicates the source generator is for auto get enumerator methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.PrimaryConstructorMethod">
+            <summary>
+            Indicates the source generator is for primary constructors for <see langword="class"/>.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
@@ -1010,27 +1021,6 @@
         <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Try to get all possible fields or properties in the specified <see langword="class"/> type.
-            </summary>
-            <param name="type">The specified class symbol.</param>
-            <param name="handleRecursively">
-            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.</param>
-            <param name="attributeSymbol">
-            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>.
-            </param>
-            <param name="addAttributeSymbol">
-            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>.
-            </param>
-            <param name="removeAttributeSymbol">
-            Indicates the attribute symbol of attribute <see cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>.
-            </param>
-            <returns>The result list that contains all member symbols.</returns>
-            <seealso cref="T:Sudoku.CodeGenerating.AutoPrimaryConstructorAttribute"/>
-            <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIncludedMemberAttribute"/>
-            <seealso cref="T:Sudoku.CodeGenerating.PrimaryConstructorIgnoredMemberAttribute"/>
-        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SymbolInfo">
             <summary>
             Indicates the inner member symbol information quadruple.
@@ -1138,42 +1128,42 @@
         <member name="M:Sudoku.CodeGenerating.Generators.StepInfoFormatizeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Reflection.Accessibility">
+        <member name="T:Sudoku.CodeGenerating.Reflection.MemberAccessibility">
             <summary>
             Indicates the accessibility of a member.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.None">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.None">
             <summary>
             Indicates the accessibility is none.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.Public">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.Public">
             <summary>
             Indicates the <see langword="public"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.Internal">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.Internal">
             <summary>
             Indicates the <see langword="internal"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.Protected">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.Protected">
             <summary>
             Indicates the <see langword="protected"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.ProtectedInternal">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.ProtectedInternal">
             <summary>
             Indicates the <see langword="protected internal"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.Private">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.Private">
             <summary>
             Indicates the <see langword="private"/> modifier.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Reflection.Accessibility.PrivateProtected">
+        <member name="F:Sudoku.CodeGenerating.Reflection.MemberAccessibility.PrivateProtected">
             <summary>
             Indicates the <see langword="private protected"/> modifier.
             </summary>

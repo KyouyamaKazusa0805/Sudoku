@@ -1529,6 +1529,11 @@
             Indicates the return value that makes the parameter a discard.
             </summary>
         </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance via those arguments.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.PrimaryConstructorAttribute">
             <summary>
             <para>
@@ -1559,6 +1564,11 @@
         <member name="P:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.Severity">
             <summary>
             Indicates the diagnostic severity that controls how the compiler validate the exception to be thrown.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.#ctor(System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity)">
+            <summary>
+            Initializes an instance via those arguments.
             </summary>
         </member>
         <member name="T:System.ArrayExtensions">

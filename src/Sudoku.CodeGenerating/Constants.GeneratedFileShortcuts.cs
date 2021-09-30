@@ -81,5 +81,10 @@ partial class Constants
 		/// Indicates the source generator is for auto get enumerator methods.
 		/// </summary>
 		public const string GetEnumeratorMethod = "ge";
+
+		/// <summary>
+		/// Indicates the source generator is for primary constructors for <see langword="class"/>.
+		/// </summary>
+		public const string PrimaryConstructorMethod = "p";
 	}
 }

@@ -6123,6 +6123,11 @@
             Indicates the identifier that the name the runtime will get from the resource dictionary.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Text.FormatForwardAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an instance via those arguments.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">
             <summary>
             Marks on a property to tell the user the property is only used for the formatting.

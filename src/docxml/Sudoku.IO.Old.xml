@@ -62,6 +62,11 @@
             <param name="alignment">The alignment.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.IO.AnalysisResultFileOutput.#ctor(Sudoku.Solving.AnalysisResult,Sudoku.Drawing.Settings)">
+            <summary>
+            Initializes an instance via those arguments.
+            </summary>
+        </member>
         <member name="T:Sudoku.IO.AnalysisResultOutputType">
             <summary>
             Indicates the analysis result output type.
@@ -344,6 +349,11 @@
             <param name="settings">The settings.</param>
             <param name="result">The result.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.IO.BatchExecutor.#ctor(Sudoku.Drawing.Settings)">
+            <summary>
+            Initializes an instance via those arguments.
+            </summary>
         </member>
         <member name="T:Sudoku.IO.PictureFileType">
             <summary>
