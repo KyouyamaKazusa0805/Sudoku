@@ -97,7 +97,7 @@ partial class {typeSymbol.Name}{genericParametersList}
 						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
 						&& !excluded.Contains(x.Name)
 					select (
-						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+						x.Type.ToDisplayString(TypeFormats.FullName),
 						x.Name.ToCamelCase(),
 						x.Name
 					)
@@ -108,7 +108,7 @@ partial class {typeSymbol.Name}{genericParametersList}
 						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
 						&& !excluded.Contains(x.Name)
 					select (
-						x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+						x.Type.ToDisplayString(TypeFormats.FullName),
 						x.Name.ToCamelCase(),
 						x.Name
 					)

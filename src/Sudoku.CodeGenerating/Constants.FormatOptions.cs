@@ -3,28 +3,38 @@
 partial class Constants
 {
 	/// <summary>
-	/// Provides the format options.
+	/// Provides <see cref="SymbolDisplayFormat"/> instance that is for types.
 	/// </summary>
-	public static class FormatOptions
+	public static class TypeFormats
 	{
 		/// <summary>
-		/// Indicates the type format.
+		/// Indicates the type format that is the full name of the type,
+		/// and is with type argument constraints.
 		/// </summary>
-		public static readonly SymbolDisplayFormat TypeFormat = new(
-			OmittedAsContaining,
-			NameAndContainingTypesAndNamespaces,
-			IncludeTypeParameters | IncludeTypeConstraints,
-			miscellaneousOptions: UseSpecialTypes | EscapeKeywordIdentifiers | IncludeNullableReferenceTypeModifier
+		public static readonly SymbolDisplayFormat FullNameWithConstraints = new(
+			globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
+			typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+			genericsOptions:
+				SymbolDisplayGenericsOptions.IncludeTypeParameters
+				| SymbolDisplayGenericsOptions.IncludeTypeConstraints,
+			miscellaneousOptions:
+				SymbolDisplayMiscellaneousOptions.UseSpecialTypes
+				| SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
+				| SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier
 		);
 
 		/// <summary>
-		/// Indicates the property format. Sometimes the option can also be used on field member symbol output.
+		/// Indicates the type format that is the full name of the type,
+		/// and is without type argument constraints.
 		/// </summary>
-		public static readonly SymbolDisplayFormat PropertyTypeFormat = new(
-			OmittedAsContaining,
-			NameAndContainingTypesAndNamespaces,
-			IncludeTypeParameters,
-			miscellaneousOptions: UseSpecialTypes | EscapeKeywordIdentifiers | IncludeNullableReferenceTypeModifier
+		public static readonly SymbolDisplayFormat FullName = new(
+			globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
+			typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+			genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+			miscellaneousOptions:
+				SymbolDisplayMiscellaneousOptions.UseSpecialTypes
+				| SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
+				| SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier
 		);
 	}
 }

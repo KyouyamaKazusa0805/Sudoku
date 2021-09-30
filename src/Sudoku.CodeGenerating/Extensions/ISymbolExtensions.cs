@@ -25,8 +25,8 @@ internal static class ISymbolExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static string? GetMemberType(this ISymbol @this) => @this switch
 	{
-		IFieldSymbol f => f.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
-		IPropertySymbol p => p.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+		IFieldSymbol f => f.Type.ToDisplayString(TypeFormats.FullName),
+		IPropertySymbol p => p.Type.ToDisplayString(TypeFormats.FullName),
 		_ => null
 	};
 }

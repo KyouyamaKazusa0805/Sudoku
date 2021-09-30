@@ -77,7 +77,7 @@ internal static class INamedTypeSymbolExtensions
 		out bool isGeneric
 	)
 	{
-		fullTypeName = @this.ToDisplayString(FormatOptions.TypeFormat);
+		fullTypeName = @this.ToDisplayString(TypeFormats.FullNameWithConstraints);
 		namespaceName = @this.ContainingNamespace.ToDisplayString();
 
 		int i = fullTypeName.IndexOf('<');
@@ -210,7 +210,7 @@ internal static class INamedTypeSymbolExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static string ToFileName(this INamedTypeSymbol @this)
 	{
-		string result = @this.ToDisplayString(FormatOptions.TypeFormat);
+		string result = @this.ToDisplayString(TypeFormats.FullNameWithConstraints);
 		var buffer = (stackalloc char[result.Length]);
 		buffer.Fill('\0');
 		int pointer = 0;

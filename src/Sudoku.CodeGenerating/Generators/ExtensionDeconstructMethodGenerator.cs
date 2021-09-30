@@ -25,7 +25,7 @@ public sealed partial class ExtensionDeconstructMethodGenerator : ISourceGenerat
 			let typeArg = typeArgs[0]
 			let typeArgConverted = typeArg as INamedTypeSymbol
 			where typeArgConverted is not null
-			let typeArgStr = typeArgConverted.ToDisplayString(FormatOptions.PropertyTypeFormat)
+			let typeArgStr = typeArgConverted.ToDisplayString(TypeFormats.FullName)
 			let arguments = attributeData.ConstructorArguments
 			where !arguments.IsDefaultOrEmpty
 			let argStrs = from arg in arguments[0].Values select ((string)arg.Value!).Trim()
@@ -62,7 +62,7 @@ public static class {typeResult}_DeconstructionMethods
 						false, out _, out _, out _, out string genericParameterListWithoutConstraint,
 						out _, out _, out _
 					);
-					string fullTypeNameWithoutConstraint = typeArgument.ToDisplayString(FormatOptions.TypeFormat);
+					string fullTypeNameWithoutConstraint = typeArgument.ToDisplayString(TypeFormats.FullNameWithConstraints);
 					string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
 						? fullTypeNameWithoutConstraint.Substring(index)
 						: string.Empty;

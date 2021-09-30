@@ -476,19 +476,21 @@
             Indictaes the version of this project.
             </summary>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Constants.FormatOptions">
+        <member name="T:Sudoku.CodeGenerating.Constants.TypeFormats">
             <summary>
-            Provides the format options.
+            Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.FormatOptions.TypeFormat">
+        <member name="F:Sudoku.CodeGenerating.Constants.TypeFormats.FullNameWithConstraints">
             <summary>
-            Indicates the type format.
+            Indicates the type format that is the full name of the type,
+            and is with type argument constraints.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.FormatOptions.PropertyTypeFormat">
+        <member name="F:Sudoku.CodeGenerating.Constants.TypeFormats.FullName">
             <summary>
-            Indicates the property format. Sometimes the option can also be used on field member symbol output.
+            Indicates the type format that is the full name of the type,
+            and is without type argument constraints.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts">

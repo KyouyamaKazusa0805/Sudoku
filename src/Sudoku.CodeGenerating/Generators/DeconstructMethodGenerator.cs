@@ -143,7 +143,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 			(
 				from x in typeSymbol.GetMembers().OfType<IFieldSymbol>()
 				select (
-					x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+					x.Type.ToDisplayString(TypeFormats.FullName),
 					x.Name.ToCamelCase(),
 					x.Name,
 					x.Type as INamedTypeSymbol,
@@ -152,7 +152,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 			).Concat(
 				from x in typeSymbol.GetMembers().OfType<IPropertySymbol>()
 				select (
-					x.Type.ToDisplayString(FormatOptions.PropertyTypeFormat),
+					x.Type.ToDisplayString(TypeFormats.FullName),
 					x.Name.ToCamelCase(),
 					x.Name,
 					x.Type as INamedTypeSymbol,
