@@ -46,7 +46,7 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 			string nullableMark = typeSymbol.TypeKind == TypeKind.Class || typeSymbol.IsRecord ? "?" : string.Empty;
 			string objectEqualityMethod = typeSymbol.IsRefLikeType
 				? "// This type is a ref struct, so 'bool Equals(object?) is useless."
-				: $@"/// <inheritdoc />
+				: $@"/// <inheritdoc/>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -63,7 +63,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 {{
 	{objectEqualityMethod}
 
-	/// <inheritdoc cref=""IEquatable{{T}}.Equals(T?)"" />
+	/// <inheritdoc cref=""IEquatable{{T}}.Equals(T)"" />
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

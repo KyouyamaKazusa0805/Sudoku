@@ -3019,10 +3019,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@)">
-            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
         </member>
         <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
             <summary>
@@ -5529,10 +5529,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Equals(System.Object)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@)">
-            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.op_Equality(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
             <summary>
@@ -5776,7 +5776,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGridSegment.Equals(Sudoku.Data.SudokuGridSegment@)">
-            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
         </member>
         <member name="M:Sudoku.Data.SudokuGridSegment.op_Equality(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
             <summary>

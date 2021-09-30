@@ -354,10 +354,10 @@
             <inheritdoc cref="M:System.Object.GetHashCode" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Collections.Generic.Set{`0})">
-            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
         </member>
         <member name="M:System.Collections.Generic.Set`1.op_Equality(System.Collections.Generic.Set{`0},System.Collections.Generic.Set{`0})">
             <summary>
@@ -2904,7 +2904,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode" />
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
-            <inheritdoc cref="!:IEquatable&lt;T&gt;.Equals(T?)" />
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
         </member>
         <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
             <summary>
