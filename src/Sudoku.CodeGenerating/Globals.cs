@@ -1,4 +1,5 @@
 ﻿global using System;
+global using System.Buffers;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
@@ -12,7 +13,6 @@ global using System.Text.RegularExpressions;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
-global using Microsoft.CodeAnalysis.Operations;
 global using Microsoft.CodeAnalysis.Text;
 global using static Microsoft.CodeAnalysis.SymbolDisplayGenericsOptions;
 global using static Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;

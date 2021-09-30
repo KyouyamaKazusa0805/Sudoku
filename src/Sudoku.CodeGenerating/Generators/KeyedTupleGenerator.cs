@@ -14,7 +14,6 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 			return;
 		}
 
-		var sb = new StringBuilder();
 		for (int length = 2; length <= 4; length++)
 		{
 			int[] values = Enumerable.Range(1, length).ToArray();
@@ -44,9 +43,8 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 
 			context.AddSource(
 				$"KeyedTuple_{length}.cs",
-				$@"#pragma warning disable 8509
-
-#nullable enable
+				null,
+				$@"#nullable enable
 
 namespace System.Collections.Generic;
 
@@ -59,8 +57,7 @@ namespace System.Collections.Generic;
 /// <param name=""PriorKey"">The prior key.</param>
 [global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 [global::System.Runtime.CompilerServices.CompilerGenerated]
-public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamList})
-	: global::System.Runtime.CompilerServices.ITuple
+public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamList}) : global::System.Runtime.CompilerServices.ITuple
 {{
 	/// <summary>
 	/// Initializes an instance with the specified {length} items, and the first one is the prior key.
@@ -89,7 +86,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 	object? global::System.Runtime.CompilerServices.ITuple.this[int index]
 	{{
 		[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-		get => index switch {{ {indexerValues} }};
+		get => index switch {{ {indexerValues}, _ => null }};
 	}}
 
 
