@@ -13,8 +13,8 @@
 
 ### 增加
 
-* 添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目；
-* 添加 MAUI 的 WinUI 的程序图标（#159）；
+* ~~添加 `Sudoku.UI` 和 `Sudoku.UI.WinUI` 项目，是 MAUI 的项目；~~
+* ~~添加 MAUI 的 WinUI 的程序图标（#159）；~~
 * 添加 `Sudoku.Data.Grid` 类型作为 `Sudoku.Data.SudokuGrid` 类型的替代；
 * 添加了很多基本类型的 JSON 序列化和反序列化的嵌套类型提供序列化操作；
 * 为 `Sudoku.Solving.Manual.StepInfo` 类型追加 `Format` 属性用于代替 `ToString` 和 `ToFullString` 方法：提供接入资源字典的该 API 可直接获取资源字典上的对应信息以多语言切换显示不同的输出结果；
@@ -23,7 +23,8 @@
 ### 删除
 
 * 删除 `SUDOKU_RECOGNITION` 条件编译符号；
-* 删除本来应该在 `Sudoku.Solving.Old` 项目拓展，但没有使用机会的内容（#176）。
+* 删除本来应该在 `Sudoku.Solving.Old` 项目拓展，但没有使用机会的内容（#176）；
+* 删除 `MemberInfoExtensions` 类型，删除 `TypeExtensions.IsSubclassOf<>` 方法。
 
 ### 修改
 
@@ -38,7 +39,8 @@
 * 删除 `StepInfoExtensions` 类型，但把它们内部的方法用属性的形式直接放进了 `StepInfo` 记录类型里；
 * 将一些项目的所有类型的命名空间添加上后缀 `Old`，自己也添加 `Old` 后缀，比如 `Sudoku.Drawing.Old`，暗示项目不再被别的项目引用；
 * 提升 C# 版本到 C# 10，更进新语法；
-* **重大修改：所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，并修改命名空间到这个类型自身的命名空间下。**；
+* 所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，**并修改命名空间到这个类型自身的命名空间下**；
+* 代码重构，修改源代码生成器的基本代码，使用面向 LINQ 的源代码生成器，使得代码更具可读性。
 
 ## UI 变动
 
