@@ -27,10 +27,7 @@ global using static Sudoku.Constants.Tables;
 global using System.Reflection;
 #endif
 
-[assembly: InternalsVisibleTo("Sudoku.Bot")]
-[assembly: InternalsVisibleTo("Sudoku.CodeAnalysis")]
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]
-[assembly: InternalsVisibleTo("Sudoku.Drawing")]
 [assembly: InternalsVisibleTo("Sudoku.Drawing.Old")]
 [assembly: InternalsVisibleTo("Sudoku.Solving")]
 [assembly: InternalsVisibleTo("Sudoku.Windows.Old")]
