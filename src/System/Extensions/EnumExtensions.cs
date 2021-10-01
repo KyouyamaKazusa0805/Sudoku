@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="Enum"/>.
 /// </summary>
 /// <seealso cref="Enum"/>
-public static class EnumExtensions
+public static unsafe class EnumExtensions
 {
 	/// <summary>
 	/// Checks whether the current enumeration field is a flag.
@@ -13,7 +13,7 @@ public static class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+	public static bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 	{
 		switch (sizeof(TEnum))
 		{
@@ -43,7 +43,7 @@ public static class EnumExtensions
 	/// <param name="left">The left one.</param>
 	/// <param name="right">The right one.</param>
 	/// <returns>The comparison result.</returns>
-	public static unsafe TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+	public static TEnum Min<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 	{
 		switch (sizeof(TEnum))
 		{
@@ -75,7 +75,7 @@ public static class EnumExtensions
 	/// <param name="left">The left one.</param>
 	/// <param name="right">The right one.</param>
 	/// <returns>The comparison result.</returns>
-	public static unsafe TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+	public static TEnum Max<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
 	{
 		switch (sizeof(TEnum))
 		{
@@ -109,7 +109,7 @@ public static class EnumExtensions
 	/// All flags. If the enumeration field doesn't contain any flags,
 	/// the return value will be <see langword="null"/>.
 	/// </returns>
-	public static unsafe TEnum[]? GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
+	public static TEnum[]? GetAllFlags<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 	{
 		// Create a buffer to record all possible flags.
 		var buffer = stackalloc TEnum[Enum.GetValues<TEnum>().Length];
@@ -143,14 +143,12 @@ public static class EnumExtensions
 	/// <returns>All flags.</returns>
 	public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 	{
-		unsafe
-		{
-			return typeof(TEnum).IsDefined<FlagsAttribute>()
-				? inner(@this, sizeof(TEnum))
-				: ((IEnumerable<TEnum>)Array.Empty<TEnum>()).GetEnumerator();
-		}
+		return (
+			typeof(TEnum).IsDefined(typeof(FlagsAttribute)) ? inner(@this, sizeof(TEnum)) : Array.Empty<TEnum>()
+		).GetEnumerator();
 
-		static IEnumerator<TEnum> inner(TEnum @this, int size)
+
+		static IEnumerable<TEnum> inner(TEnum @this, int size)
 		{
 			var array = Enum.GetValues<TEnum>();
 			for (int index = 0, length = array.Length; index < length; index++)
@@ -189,7 +187,7 @@ public static class EnumExtensions
 	/// </remarks>
 	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 	/// <seealso cref="Enum.HasFlag(Enum)"/>
-	public static unsafe bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
+	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
 	{
 		switch (sizeof(TEnum))
 		{
@@ -219,7 +217,7 @@ public static class EnumExtensions
 	/// <param name="this">The instance.</param>
 	/// <param name="flags">All flags used.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static unsafe bool MultiFlags<TEnum>(this TEnum @this, TEnum flags) where TEnum : unmanaged, Enum
+	public static bool MultiFlags<TEnum>(this TEnum @this, TEnum flags) where TEnum : unmanaged, Enum
 	{
 		foreach (var flag in flags)
 		{

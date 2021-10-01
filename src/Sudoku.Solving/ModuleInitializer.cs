@@ -15,7 +15,7 @@ internal static class ModuleInitializer
 	public static void Initialize() =>
 		StepSearcherPool.Collection = (
 			from type in typeof(ModuleInitializer).Assembly.GetTypes()
-			where type.IsDefined<StepSearcherAttribute>() && !type.IsAbstract && type.ContainsParameterlessConstructor()
+			where type.IsDefined(typeof(StepSearcherAttribute)) && !type.IsAbstract && type.ContainsParameterlessConstructor()
 			select Activator.CreateInstance(type) as IStepSearcher into instance
 			where instance is not null
 			orderby instance.Options.Priority

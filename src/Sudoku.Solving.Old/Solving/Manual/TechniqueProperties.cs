@@ -100,7 +100,7 @@ public sealed partial record class TechniqueProperties(int Priority, string Disp
 		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type type
 	)
 	{
-		if (!type.IsSubclassOf<StepSearcher>() || type.IsAbstract)
+		if (!type.IsSubclassOf(typeof(StepSearcher)) || type.IsAbstract)
 		{
 			return null;
 		}

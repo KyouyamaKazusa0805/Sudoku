@@ -2053,23 +2053,6 @@
             <param name="c">The third value.</param>
             <returns>Which is the maximum value.</returns>
         </member>
-        <member name="T:System.Reflection.MemberInfoExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Reflection.MemberInfo"/>.
-            </summary>
-            <seealso cref="T:System.Reflection.MemberInfo"/>
-        </member>
-        <member name="M:System.Reflection.MemberInfoExtensions.IsDefined``1(System.Reflection.MemberInfo)">
-            <summary>
-            Indicates whether custom attributes of a specified type are applied to a specified member.
-            </summary>
-            <typeparam name="TAttribute">The type of that attribute.</typeparam>
-            <param name="this">The member information instance.</param>
-            <returns>
-            <see langword="true"/> if an attribute of the specified type is applied to <paramref name="this"/>;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
@@ -3169,14 +3152,6 @@
             Provides extension method on <see cref="T:System.Type"/>.
             </summary>
             <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:System.TypeExtensions.IsSubclassOf``1(System.Type)">
-            <summary>
-            Determine whether the type is the subclass of the specified one.
-            </summary>
-            <typeparam name="TClass">The specified type to check.</typeparam>
-            <param name="this">The type to check.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.TypeExtensions.HasImplemented``1(System.Type)">
             <summary>

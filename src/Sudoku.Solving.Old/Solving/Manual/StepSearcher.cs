@@ -21,7 +21,7 @@ public abstract class StepSearcher : IStepSearcher
 	/// </remarks>
 	public static IEnumerable<(Type CurrentType, string SearcherName, TechniqueProperties Properties)> AllStepSearchers =>
 		from type in Assembly.GetExecutingAssembly().GetTypes()
-		where !type.IsAbstract && type.IsSubclassOf<StepSearcher>() && !type.IsDefined<ObsoleteAttribute>()
+		where !type.IsAbstract && type.IsSubclassOf(typeof(StepSearcher)) && !type.IsDefined(typeof(ObsoleteAttribute))
 		orderby TechniqueProperties.FromType(type)!.Priority
 		let v = type.GetProperty(NecessaryPropertyName, BindingFlags.Public | BindingFlags.Static)
 		let casted = v?.GetValue(null) as TechniqueProperties

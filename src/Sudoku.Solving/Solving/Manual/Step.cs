@@ -265,7 +265,7 @@ public abstract record class Step(
 		string[] matchedFormats = (
 			from f in formats
 			select type.GetProperty(f, flags) into property
-			where property?.IsDefined<FormatItemAttribute>() ?? false
+			where property?.IsDefined(typeof(FormatItemAttribute)) ?? false
 			let propertyGetMethod = property.GetMethod
 			where propertyGetMethod is not null && isPrivateOrProtected(propertyGetMethod)
 			select property.GetValue(propertyGetMethod.IsStatic ? null : this) as string into result
