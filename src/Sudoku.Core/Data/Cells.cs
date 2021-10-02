@@ -484,32 +484,29 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 			long value;
 			int i, pos = 0;
-			int* result = stackalloc int[Count];
-			if (_low != 0)
-			{
-				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						result[pos++] = i;
-					}
-				}
-			}
-			if (_high != 0)
-			{
-				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						result[pos++] = i;
-					}
-				}
-			}
-
 			int[] arr = new int[Count];
-			fixed (int* ptr = arr)
+			fixed (int* pArr = arr)
 			{
-				UnsafeExtensions.CopyBlock(ptr, result, (uint)Count);
+				if (_low != 0)
+				{
+					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
+					{
+						if ((value & 1) != 0)
+						{
+							pArr[pos++] = i;
+						}
+					}
+				}
+				if (_high != 0)
+				{
+					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
+					{
+						if ((value & 1) != 0)
+						{
+							pArr[pos++] = i;
+						}
+					}
+				}
 			}
 
 			return arr;
@@ -867,6 +864,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 
 			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
+
 
 			static string g(int v) => (v + 1).ToString();
 		}
