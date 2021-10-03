@@ -282,7 +282,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// Indicates the mask of block that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are { 0, 1, 27, 28 }, all spanned blocks are 0 and 3, so the return
+	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned blocks are 0 and 3, so the return
 	/// mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
 	public readonly short BlockMask
@@ -309,7 +309,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// Indicates the mask of row that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are { 0, 1, 27, 28 }, all spanned rows are 0 and 3, so the return
+	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return
 	/// mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
 	public readonly short RowMask
@@ -336,7 +336,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// Indicates the mask of column that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are { 0, 1, 27, 28 }, all spanned columns are 0 and 1, so the return
+	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return
 	/// mask is <c>0b000000011</c> (i.e. 3).
 	/// </remarks>
 	public readonly short ColumnMask
@@ -378,14 +378,14 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 	/// <summary>
 	/// Indicates all regions covered. This property is used to check all regions that all cells
-	/// of this instance covered. For example, if the cells are { 0, 1 }, the property
+	/// of this instance covered. For example, if the cells are <c>{ 0, 1 }</c>, the property
 	/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-	/// however, if cells spanned two regions or more (e.g. cells { 0, 1, 27 }), this property won't contain
-	/// any regions.
+	/// however, if cells spanned two regions or more (e.g. cells <c>{ 0, 1, 27 }</c>),
+	/// this property won't contain any regions.
 	/// </summary>
 	/// <remarks>
-	/// The return value will be an <see cref="int"/> value indicating each regions. Bits set 1 are
-	/// covered regions.
+	/// The return value will be an <see cref="int"/> value indicating each regions.
+	/// Bits set 1 are covered regions.
 	/// </remarks>
 	public readonly int CoveredRegions
 	{
@@ -429,7 +429,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 	/// <summary>
 	/// All regions that the map spanned. This property is used to check all regions that all cells of
-	/// this instance spanned. For example, if the cells are { 0, 1 }, the property
+	/// this instance spanned. For example, if the cells are <c>{ 0, 1 }</c>, the property
 	/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
 	/// and the region 19 (column 2).
 	/// </summary>
