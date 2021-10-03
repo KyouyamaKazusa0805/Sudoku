@@ -19,13 +19,13 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 		{
 			result.Add(
 				(
-					new(@this[i] * 9 + offset, @this[i + 1] * 9 + offset, ChainLinkType.Line),
+					new(@this[i] * 9 + offset, @this[i + 1] * 9 + offset, ChainLinkTypes.Line),
 					(ColorIdentifier)0
 				)
 			);
 		}
 
-		result.Add((new(@this[^1] * 9 + offset, @this[0] * 9 + offset, ChainLinkType.Line), (ColorIdentifier)0));
+		result.Add((new(@this[^1] * 9 + offset, @this[0] * 9 + offset, ChainLinkTypes.Line), (ColorIdentifier)0));
 
 		return result;
 	}

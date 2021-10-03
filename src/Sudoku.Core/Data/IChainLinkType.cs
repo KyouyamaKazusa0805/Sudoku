@@ -23,4 +23,17 @@ internal interface IChainLinkType<TSelf> where TSelf : struct, IChainLinkType<TS
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	int GetHashCode();
+
+
+	/// <summary>
+	/// Explicit cast from <see cref="byte"/> to <typeparamref name="TSelf"/>.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	static abstract explicit operator TSelf(byte value);
+
+	/// <summary>
+	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="byte"/>.
+	/// </summary>
+	/// <param name="linkType">The link type.</param>
+	static abstract explicit operator byte(TSelf linkType);
 }

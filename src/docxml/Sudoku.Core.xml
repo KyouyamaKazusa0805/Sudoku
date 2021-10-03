@@ -1370,33 +1370,55 @@
             <summary>
             Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
             </summary>
-            <param name="TypeKind">The <see cref="T:System.Byte"/> value as the eigenvalue of the type.</param>
+            <param name="TypeKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Default"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Weak"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Strong"/>.</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Line"/>.</description>
+            </item>
+            </list>
+            </param>
+            <completionlist cref="T:Sudoku.Data.ChainLinkTypes"/>
         </member>
         <member name="M:Sudoku.Data.ChainLinkType.#ctor(System.Byte)">
             <summary>
             Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
             </summary>
-            <param name="TypeKind">The <see cref="T:System.Byte"/> value as the eigenvalue of the type.</param>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkType.Default">
-            <summary>
-            Indicates the default link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkType.Weak">
-            <summary>
-            Indicates the weak link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkType.Strong">
-            <summary>
-            Indicates the strong link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkType.Line">
-            <summary>
-            Indicates the line link.
-            </summary>
+            <param name="TypeKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Default"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Weak"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Strong"/>.</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Line"/>.</description>
+            </item>
+            </list>
+            </param>
+            <completionlist cref="T:Sudoku.Data.ChainLinkTypes"/>
         </member>
         <member name="M:Sudoku.Data.ChainLinkType.GetHashCode">
             <inheritdoc/>
@@ -1407,17 +1429,39 @@
         <member name="M:Sudoku.Data.ChainLinkType.GetNotation">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.ChainLinkType.System#IValueEquatable{Sudoku#Data#ChainLinkType}#Equals(Sudoku.Data.ChainLinkType@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(System.Byte)~Sudoku.Data.ChainLinkType">
-            <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Data.ChainLinkType"/>.
-            </summary>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(Sudoku.Data.ChainLinkType)~System.Byte">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.ChainLinkTypes">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Data.ChainLinkType"/> to <see cref="T:System.Byte"/>.
+            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.ChainLinkType"/> instances.
             </summary>
-            <param name="linkType">The link type.</param>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkTypes.Default">
+            <summary>
+            Indicates the default link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkTypes.Weak">
+            <summary>
+            Indicates the weak link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkTypes.Strong">
+            <summary>
+            Indicates the strong link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkTypes.Line">
+            <summary>
+            Indicates the line link.
+            </summary>
         </member>
         <member name="T:Sudoku.Data.ChainNode">
             <summary>
@@ -3829,6 +3873,18 @@
         </member>
         <member name="M:Sudoku.Data.IChainLinkType`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(System.Byte)~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(`0)~System.Byte">
+            <summary>
+            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="linkType">The link type.</param>
         </member>
         <member name="T:Sudoku.Data.Link">
             <summary>

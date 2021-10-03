@@ -69,9 +69,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					(
 						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
 						{
-							(A: false, B: true) => ChainLinkType.Strong,
-							(A: true, B: false) => ChainLinkType.Weak,
-							_ => ChainLinkType.Default
+							(A: false, B: true) => ChainLinkTypes.Strong,
+							(A: true, B: false) => ChainLinkTypes.Weak,
+							_ => ChainLinkTypes.Default
 						}),
 						(ColorIdentifier)0
 					)

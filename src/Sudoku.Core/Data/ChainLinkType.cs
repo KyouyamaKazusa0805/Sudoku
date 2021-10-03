@@ -3,32 +3,32 @@
 /// <summary>
 /// Defines a type of a link that constructed by 2 <see cref="ChainNode"/>s.
 /// </summary>
-/// <param name="TypeKind">The <see cref="byte"/> value as the eigenvalue of the type.</param>
+/// <param name="TypeKind">
+/// The <see cref="byte"/> value as the eigenvalue of the type. All possible values are:
+/// <list type="table">
+/// <item>
+/// <term>0</term>
+/// <description>The link is <see cref="ChainLinkTypes.Default"/>.</description>
+/// </item>
+/// <item>
+/// <term>1</term>
+/// <description>The link is <see cref="ChainLinkTypes.Weak"/>.</description>
+/// </item>
+/// <item>
+/// <term>2</term>
+/// <description>The link is <see cref="ChainLinkTypes.Strong"/>.</description>
+/// </item>
+/// <item>
+/// <term>3</term>
+/// <description>The link is <see cref="ChainLinkTypes.Line"/>.</description>
+/// </item>
+/// </list>
+/// </param>
+/// <completionlist cref="ChainLinkTypes"/>
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto, Pack = 0, Size = sizeof(byte))]
 [DiscriminatedUnion(ExceptionThrowsWhenOutOfRange = true)]
-public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKind) : IChainLinkType<ChainLinkType>
+public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKind) : IValueEquatable<ChainLinkType>, IChainLinkType<ChainLinkType>
 {
-	/// <summary>
-	/// Indicates the default link.
-	/// </summary>
-	public static readonly ChainLinkType Default = new(0);
-
-	/// <summary>
-	/// Indicates the weak link.
-	/// </summary>
-	public static readonly ChainLinkType Weak = new(1);
-
-	/// <summary>
-	/// Indicates the strong link.
-	/// </summary>
-	public static readonly ChainLinkType Strong = new(2);
-
-	/// <summary>
-	/// Indicates the line link.
-	/// </summary>
-	public static readonly ChainLinkType Line = new(3);
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => TypeKind;
@@ -38,10 +38,10 @@ public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKin
 	public override string ToString() =>
 		TypeKind switch
 		{
-			0 => nameof(Default),
-			1 => nameof(Weak),
-			2 => nameof(Strong),
-			3 => nameof(Line),
+			0 => nameof(ChainLinkTypes.Default),
+			1 => nameof(ChainLinkTypes.Weak),
+			2 => nameof(ChainLinkTypes.Strong),
+			3 => nameof(ChainLinkTypes.Line),
 			_ => throw new InvalidOperationException("The value is out of range.")
 		};
 
@@ -49,18 +49,16 @@ public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKin
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string GetNotation() => TypeKind switch { 0 => " -> ", 1 => " -- ", 2 => " == ", 3 => " -- " };
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IValueEquatable<ChainLinkType>.Equals(in ChainLinkType other) => this == other;
 
-	/// <summary>
-	/// Explicit cast from <see cref="byte"/> to <see cref="ChainLinkType"/>.
-	/// </summary>
-	/// <param name="value">The value.</param>
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator ChainLinkType(byte value) => new(value);
 
-	/// <summary>
-	/// Explicit cast from <see cref="ChainLinkType"/> to <see cref="byte"/>.
-	/// </summary>
-	/// <param name="linkType">The link type.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator byte(ChainLinkType linkType) => linkType.TypeKind;
 }
