@@ -35,13 +35,8 @@ internal static class PuzzleTechniqueUsageCounter
 		for (int i = 0; i < puzzlesCount; i++)
 		{
 			Clear();
-			WriteLine(
-				"Progress: {0}%  [{1} / {2}]",
-				(i * 100D / puzzlesCount).ToString("0.00"),
-				i.ToString(),
-				puzzlesCount.ToString()
-			);
-			WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
+			WriteLine($"Progress: {i * 100D / puzzlesCount:0.00}%  [{i} / {puzzlesCount}]");
+			WriteLine($@"Time elapsed: {stopwatch.Elapsed:hh\:mm\:ss\.fff}");
 
 			var puzzle = generator.Generate()!.Value;
 			var analysisResult = solver.Solve(puzzle);
@@ -79,14 +74,14 @@ internal static class PuzzleTechniqueUsageCounter
 		stopwatch.Stop();
 
 		Clear();
-		WriteLine("Time elapsed: {0}", stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.fff"));
+		WriteLine($@"Time elapsed: {stopwatch.Elapsed:hh\:mm\:ss\.fff}");
 		WriteLine();
 		WriteLine("Technique used:");
 		WriteLine(
 			string.Join(
-				Environment.NewLine,
+				"\r\n",
 				from pair in techniqueDic
-				orderby pair.Value descending, pair.Key
+				orderby pair.Value descending, pair.Key ascending
 				select $"{(string)TextResources.Current[pair.Key.ToString()]}: {pair.Value}"
 			)
 		);
@@ -95,7 +90,7 @@ internal static class PuzzleTechniqueUsageCounter
 		WriteLine("Difficulty level distribution:");
 		WriteLine(
 			string.Join(
-				Environment.NewLine,
+				"\r\n",
 				from pair in difficultyLevelDic orderby pair.Key select $"{pair.Key}: {pair.Value}"
 			)
 		);
