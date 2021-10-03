@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.CodeGenerating;
+﻿namespace Sudoku.UI.CodeGenerating.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the code for UI preference item.
@@ -21,7 +21,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { Compilation: { AssemblyName: "Sudoku.UI" } compilation })
+		if (context.Compilation is not { AssemblyName: "Sudoku.UI" } compilation)
 		{
 			return;
 		}
@@ -42,11 +42,11 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 		foreach (var (property, attributeData) in
 			from property in preferenceTypeSymbol.GetMembers().OfType<IPropertySymbol>()
 			where property is { IsIndexer: false, IsReadOnly: false, IsWriteOnly: false }
-			let attributeData = (
+			let rawAttributeData =
 				from attributeData in property.GetAttributes()
 				where SymbolEqualityComparer.Default.Equals(attributeData.AttributeClass, routeTypeSymbol)
 				select attributeData
-			).FirstOrDefault()
+			let attributeData = rawAttributeData.FirstOrDefault()
 			where attributeData is not null
 			select (property, attributeData))
 		{

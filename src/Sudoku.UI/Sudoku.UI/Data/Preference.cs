@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with the preference instance.
 /// </summary>
-public sealed class Preference : ICloneable<Preference>
+public sealed partial class Preference : ICloneable<Preference>
 {
 	/// <summary>
 	/// Indicates whether the form shows candidates.
@@ -23,7 +23,8 @@ public sealed class Preference : ICloneable<Preference>
 	/// </summary>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned))]
 	[PreferenceItemRoute(nameof(SettingsPage.ToggleSwitch_SashimiFishContainsKeywordFinned), nameof(SettingsPage.OptionItem_SashimiFishContainsKeywordFinned))]
-	public bool SashimiFishContainsKeywordFinned { get; set; } = false;
+	[DefaultValue("false")]
+	public bool SashimiFishContainsKeywordFinned { get; set; }
 
 	/// <summary>
 	/// <para>Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..</para>
@@ -31,31 +32,36 @@ public sealed class Preference : ICloneable<Preference>
 	/// </summary>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_UseSizedFishName))]
 	[PreferenceItemRoute(nameof(SettingsPage.ToggleSwitch_UseSizedFishName), nameof(SettingsPage.OptionItem_UseSizedFishName))]
-	public bool UseSizedFishName { get; set; } = false;
+	[DefaultValue("false")]
+	public bool UseSizedFishName { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the scale of values.</para>
 	/// <para>The default value is <c>0.(6)</c>, i.e. <c>2.0 / 3.0</c>.</para>
 	/// </summary>
-	public decimal ValueScale { get; set; } = 2M / 3M;
+	[DefaultValue("2M / 3M")]
+	public decimal ValueScale { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the scale of candidates.</para>
 	/// <para>The default value is <c>0.8</c>, i.e. <c>4.0 / 5.0</c>.</para>
 	/// </summary>
-	public decimal CandidateScale { get; set; } = 4M / 5M;
+	[DefaultValue("4M / 5M")]
+	public decimal CandidateScale { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the grid line width of the sudoku grid to render.</para>
 	/// <para>The default value is <c>1</c>.</para>
 	/// </summary>
-	public double GridLineWidth { get; set; } = 1;
+	[DefaultValue("1")]
+	public double GridLineWidth { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the block line width of the sudoku grid to render.</para>
 	/// <para>The default value is <c>3</c>.</para>
 	/// </summary>
-	public double BlockLineWidth { get; set; } = 3;
+	[DefaultValue("3")]
+	public double BlockLineWidth { get; set; }
 
 	/// <summary>
 	/// Indicates the size of the cross-hatching outline width.
@@ -71,75 +77,74 @@ public sealed class Preference : ICloneable<Preference>
 	/// <para>Indicates the width of the highlight cell borders.</para>
 	/// <para>The default value is <c>1.5</c>.</para>
 	/// </summary>
-	public double CellBorderWidth { get; set; } = 1.5;
+	[DefaultValue("1.5")]
+	public double CellBorderWidth { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the width of the highlight candidate borders.</para>
 	/// <para>The default value is <c>1.5</c>.</para>
 	/// </summary>
-	public double CandidateBorderWidth { get; set; } = 1.5;
+	[DefaultValue("1.5")]
+	public double CandidateBorderWidth { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the width of the highlight region borders.</para>
 	/// <para>The default value is <c>1.5</c>.</para>
 	/// </summary>
-	public double RegionBorderWidth { get; set; } = 1.5;
+	[DefaultValue("1.5")]
+	public double RegionBorderWidth { get; set; }
 
-#if AUTHOR_RESERVED
 	/// <summary>
 	/// <para>Indicates the font of given digits to render.</para>
-	/// <para>The default value is <c>Fira Code</c>.</para>
+	/// <para>The default value is <c>Fira Code</c> on symbol <c>AUTHOR_RESERVED</c> is set.</para>
 	/// </summary>
-	public string? GivenFontName { get; set; } = "Fira Code";
-#else
-	/// <summary>
-	/// Indicates the font of given digits to render.
-	/// </summary>
+	[DefaultValue("AUTHOR_RESERVED", "Fira Code", null, "_")]
+	[DisallowNull]
 	public string? GivenFontName { get; set; }
-#endif
 
-#if AUTHOR_RESERVED
 	/// <summary>
 	/// <para>Indicates the font of modifiable digits to render.</para>
-	/// <para>The default value is <c>Fira Code</c>.</para>
+	/// <para>The default value is <c>Fira Code</c> on symbol <c>AUTHOR_RESERVED</c> is set.</para>
 	/// </summary>
-	public string? ModifiableFontName { get; set; } = "Fira Code";
-#else
-	/// <summary>
-	/// Indicates the font of modifiable digits to render.
-	/// </summary>
+	[DefaultValue("AUTHOR_RESERVED", "Fira Code", null, "_")]
+	[DisallowNull]
 	public string? ModifiableFontName { get; set; }
-#endif
 
 	/// <summary>
 	/// <para>Indicates the font of candidate digits to render.</para>
 	/// <para>The default value is <c>Times New Roman</c>.</para>
 	/// </summary>
-	public string? CandidateFontName { get; set; } = "Times New Roman";
+	[DefaultValue("Times New Roman")]
+	[DisallowNull]
+	public string? CandidateFontName { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the font style of the givens.</para>
 	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle GivenFontStyle { get; set; } = FontStyle.Normal;
+	[DefaultValue("FontStyle.Normal")]
+	public FontStyle GivenFontStyle { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the font style of the modifiables.</para>
 	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle ModifiableFontStyle { get; set; } = FontStyle.Normal;
+	[DefaultValue("FontStyle.Normal")]
+	public FontStyle ModifiableFontStyle { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the font style of the candidates.</para>
 	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Normal;
+	[DefaultValue("FontStyle.Normal")]
+	public FontStyle CandidateFontStyle { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the font style of an unknown identifier.</para>
 	/// <para>The default value is <c><see cref="FontStyle.Normal"/></c>.</para>
 	/// </summary>
-	public FontStyle UnknownIdentfierFontStyle { get; set; } = FontStyle.Normal;
+	[DefaultValue("FontStyle.Normal")]
+	public FontStyle UnknownIdentfierFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the application theme that the program behaves and displays the UI.
@@ -155,84 +160,98 @@ public sealed class Preference : ICloneable<Preference>
 	/// <para>Indicates the given digits to render which is used in light mode.</para>
 	/// <para>The default value is <c>~<see cref="Colors.WhiteSmoke"/></c>.</para>
 	/// </summary>
-	public UIColor GivenColorLight { get; set; } = ~(UIColor)Colors.WhiteSmoke;
+	[DefaultValue("~(UIColor)Colors.WhiteSmoke")]
+	public UIColor GivenColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the given digits to render which is used in dark mode.</para>
 	/// <para>The default value is <c><see cref="Colors.WhiteSmoke"/></c>.</para>
 	/// </summary>
-	public UIColor GivenColorDark { get; set; } = Colors.WhiteSmoke;
+	[DefaultValue("Colors.WhiteSmoke")]
+	public UIColor GivenColorDark { get; set; }
 
 	/// <summary>
 	/// Indicates the color that renders modifiable digits which is used in light mode.
 	/// </summary>
-	public UIColor ModifiableColorLight { get; set; } = Colors.Blue;
+	[DefaultValue("Colors.Blue")]
+	public UIColor ModifiableColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color that renders modifiable digits which is used in dark mode.</para>
 	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor ModifiableColorDark { get; set; } = new(86, 156, 214);
+	[DefaultValue("new(86, 156, 214)")]
+	public UIColor ModifiableColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the candidate digits to render which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Gray"/></c>.</para>
 	/// </summary>
-	public UIColor CandidateColorLight { get; set; } = Colors.Gray;
+	[DefaultValue("Colors.Gray")]
+	public UIColor CandidateColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the candidate digits to render which is used in dark mode.</para>
 	/// <para>The default value is <c>~<see cref="Colors.Gray"/></c>.</para>
 	/// </summary>
-	public UIColor CandidateColorDark { get; set; } = ~(UIColor)Colors.Gray;
+	[DefaultValue("~(UIColor)Colors.Gray")]
+	public UIColor CandidateColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight cell borders which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
 	/// </summary>
-	public UIColor CellBorderColorLight { get; set; } = Colors.Blue;
+	[DefaultValue("Colors.Blue")]
+	public UIColor CellBorderColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight cell borders which is used in dark mode.</para>
 	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor CellBorderColorDark { get; set; } = new(86, 156, 214);
+	[DefaultValue("new(86, 156, 214)")]
+	public UIColor CellBorderColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight candidate borders which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
 	/// </summary>
-	public UIColor CandidateBorderColorLight { get; set; } = Colors.Blue;
+	[DefaultValue("Colors.Blue")]
+	public UIColor CandidateBorderColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight candidate borders which is used in dark mode.</para>
 	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor CandidateBorderColorDark { get; set; } = new(86, 156, 214);
+	[DefaultValue("new(86, 156, 214)")]
+	public UIColor CandidateBorderColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight region borders which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c>.</para>
 	/// </summary>
-	public UIColor RegionBorderColorLight { get; set; } = Colors.Blue;
+	[DefaultValue("Colors.Blue")]
+	public UIColor RegionBorderColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight region borders which is used in dark mode.</para>
 	/// <para>The default value is <c>(R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor RegionBorderColorDark { get; set; } = new(86, 156, 214);
+	[DefaultValue("new(86, 156, 214)")]
+	public UIColor RegionBorderColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the background color of the highlight cell borders which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
 	/// </summary>
-	public UIColor CellBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+	[DefaultValue("new(64, Colors.Blue)")]
+	public UIColor CellBorderBackgroundColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the background color of the highlight cell borders which is used in dark mode.</para>
 	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor CellBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
+	[DefaultValue("new(64, 86, 156, 214)")]
+	public UIColor CellBorderBackgroundColorDark { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -240,7 +259,8 @@ public sealed class Preference : ICloneable<Preference>
 	/// </para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
 	/// </summary>
-	public UIColor CandidateBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+	[DefaultValue("new(64, Colors.Blue)")]
+	public UIColor CandidateBorderBackgroundColorLight { get; set; }
 
 	/// <summary>
 	/// <para>
@@ -248,19 +268,22 @@ public sealed class Preference : ICloneable<Preference>
 	/// </para>
 	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor CandidateBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
+	[DefaultValue("new(64, 86, 156, 214)")]
+	public UIColor CandidateBorderBackgroundColorDark { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the background color of the highlight region borders which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Blue"/></c> with the alpha <c>64</c>.</para>
 	/// </summary>
-	public UIColor RegionBorderBackgroundColorLight { get; set; } = new(64, Colors.Blue);
+	[DefaultValue("new(64, Colors.Blue)")]
+	public UIColor RegionBorderBackgroundColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the background color of the highlight region borders which is used in dark mode.</para>
 	/// <para>The default value is <c>(A: 64, R: 86, G: 156, B: 214)</c>.</para>
 	/// </summary>
-	public UIColor RegionBorderBackgroundColorDark { get; set; } = new(64, 86, 156, 214);
+	[DefaultValue("new(64, 86, 156, 214)")]
+	public UIColor RegionBorderBackgroundColorDark { get; set; }
 
 	/// <summary>
 	/// Indicates the color used for painting for focused cells.
@@ -291,13 +314,15 @@ public sealed class Preference : ICloneable<Preference>
 	/// <para>Indicates the grid line color of the sudoku grid to render which is used in light mode.</para>
 	/// <para>The default value is <c><see cref="Colors.Black"/></c>.</para>
 	/// </summary>
-	public UIColor GridLineColorLight { get; set; } = Colors.Black;
+	[DefaultValue("Colors.Black")]
+	public UIColor GridLineColorLight { get; set; }
 
 	/// <summary>
 	/// <para>Indicates the grid line color of the sudoku grid to render which is used in dark mode.</para>
 	/// <para>The default value is <c><see cref="Colors.White"/></c>.</para>
 	/// </summary>
-	public UIColor GridLineColorDark { get; set; } = Colors.White;
+	[DefaultValue("Colors.White")]
+	public UIColor GridLineColorDark { get; set; }
 
 	/// <summary>
 	/// Indicates the color of the crosshatching outline.

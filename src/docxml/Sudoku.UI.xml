@@ -338,13 +338,13 @@
         <member name="P:Sudoku.UI.Data.Preference.GivenFontName">
             <summary>
             <para>Indicates the font of given digits to render.</para>
-            <para>The default value is <c>Fira Code</c>.</para>
+            <para>The default value is <c>Fira Code</c> on symbol <c>AUTHOR_RESERVED</c> is set.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.ModifiableFontName">
             <summary>
             <para>Indicates the font of modifiable digits to render.</para>
-            <para>The default value is <c>Fira Code</c>.</para>
+            <para>The default value is <c>Fira Code</c> on symbol <c>AUTHOR_RESERVED</c> is set.</para>
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.Preference.CandidateFontName">
@@ -645,6 +645,11 @@
             <param name="result">The result color got.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.UI.Data.Preference.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Data.Preference"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Data.PreferenceBinding">
             <summary>
             Provides a binding relation that binds a method that sets a value in the type <see cref="T:Sudoku.UI.Data.Preference"/>,
@@ -733,6 +738,11 @@
         <member name="P:Sudoku.UI.Data.PreferenceItemAttribute`2.ControlName">
             <summary>
             Indicates the control name that the preference item applied to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.PreferenceItemAttribute`2.#ctor(System.String)">
+            <summary>
+            Initializes an instance via those arguments.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.PreferenceItemConverter`1">
@@ -1549,6 +1559,16 @@
             can be successfully opened. If <see langword="true"/>, the argument <paramref name="this"/>
             shouldn't <see langword="null"/>.
             </returns>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.CornerRadius_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.CornerRadius_DeconstructionMethods.Deconstruct(Microsoft.UI.Xaml.CornerRadius@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
         </member>
     </members>
 </doc>
