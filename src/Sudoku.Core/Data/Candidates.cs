@@ -186,14 +186,12 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
 
 	/// <summary>
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(IEnumerable<int> candidates) : this() => AddRange(candidates);
 
 	/// <summary>
@@ -414,11 +412,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 					cells.AddAnyway(candidate / 9);
 				}
 
-				sb.Append(cells.ToString());
-				sb.Append('(');
-				sb.Append(digitGroup.Key + 1);
-				sb.Append(')');
-				sb.Append(separator);
+				sb.Append($"{cells}({digitGroup.Key + 1}){separator}");
 			}
 
 			sb.RemoveFromEnd(separator.Length);
