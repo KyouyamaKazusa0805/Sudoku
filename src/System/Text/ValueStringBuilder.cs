@@ -22,27 +22,26 @@
 /// </remarks>
 /// <seealso cref="ValueStringBuilder()"/>
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-public ref partial struct ValueStringBuilder
+public unsafe ref partial struct ValueStringBuilder
 {
 	/// <summary>
 	/// Indicates the inner character series that is created by <see cref="ArrayPool{T}"/>.
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// In the general cases, this field always keeps the <see langword="null"/> value. This
-	/// field is not <see langword="null"/> when you calls the constructor <see cref="ValueStringBuilder(int)"/>
-	/// because that constructor will be called if you want to create a large buffer.
+	/// In the general cases, this field always keeps the <see langword="null"/> value.
+	/// This field isn't <see langword="null"/> when you calls the constructor
+	/// <see cref="ValueStringBuilder(int)"/> because that constructor will be called
+	/// if you want to create a large buffer.
 	/// </para>
 	/// <para>
-	/// The field
-	/// is as the same reference as the rent buffer array segment. If called that constructor,
+	/// The field is as the same reference as the rent buffer array segment. If called that constructor,
 	/// the inner code will execute <see cref="ArrayPool{T}.Rent(int)"/> to rent the specified number
 	/// of bytes of buffer to be used, which won't allocate any memory.
 	/// </para>
 	/// <para>
 	/// If the field is not <see langword="null"/> and when we calls the method <see cref="ToString"/>
-	/// and <see cref="ToStringAndClear"/>,
-	/// the buffer will be returned and the inner data will be released.
+	/// and <see cref="ToStringAndClear"/>, the buffer will be returned and the inner data will be released.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ArrayPool{T}"/>
@@ -66,7 +65,7 @@ public ref partial struct ValueStringBuilder
 	/// This constructor should be used when you know the maximum length of the return string. In addition,
 	/// the string shouldn't be too long; below 300 (approximately) is okay.
 	/// </remarks>
-	public unsafe ValueStringBuilder(string s)
+	public ValueStringBuilder(string s)
 	{
 		_chunk = null;
 		Length = s.Length;
@@ -137,43 +136,13 @@ public ref partial struct ValueStringBuilder
 
 
 	/// <summary>
-	/// Determines whether two instances has same values with the other instance.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[ProxyEquality]
-	public static unsafe bool Equals(in ValueStringBuilder left, in ValueStringBuilder right)
-	{
-		if (left.Length != right.Length)
-		{
-			return false;
-		}
-
-		fixed (char* pThis = left._chars, pOther = right._chars)
-		{
-			int i = 0;
-			char* p = pThis, q = pOther;
-			for (int length = left.Length; i < length; i++)
-			{
-				if (*p++ != *q++)
-				{
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
-
-	/// <summary>
 	/// Try to copy the current instance to the specified builder.
 	/// </summary>
 	/// <param name="builder">The builder.</param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the target argument doesn't contain the enough space.
 	/// </exception>
-	public readonly unsafe void CopyTo(ref ValueStringBuilder builder)
+	public readonly void CopyTo(ref ValueStringBuilder builder)
 	{
 		if (builder.Capacity < Length)
 		{
@@ -314,7 +283,7 @@ public ref partial struct ValueStringBuilder
 	/// <remarks>
 	/// This method will be costly (move a lot of elements), so you shouldn't call this method usually.
 	/// </remarks>
-	public unsafe void Remove(int startIndex, int length)
+	public void Remove(int startIndex, int length)
 	{
 		fixed (char* pThis = _chars)
 		{
@@ -413,7 +382,7 @@ public ref partial struct ValueStringBuilder
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void Append(string? s)
+	public void Append(string? s)
 	{
 		switch (s)
 		{
@@ -445,7 +414,7 @@ public ref partial struct ValueStringBuilder
 	/// </summary>
 	/// <param name="value">The string.</param>
 	/// <param name="length">The length of the string.</param>
-	public unsafe void Append([DisallowNull, NotNull] char* value, int length)
+	public void Append([DisallowNull, NotNull] char* value, int length)
 	{
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -521,7 +490,7 @@ public ref partial struct ValueStringBuilder
 	/// <param name="s">The string.</param>
 	/// <param name="length">The length.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void AppendLine(char* s, int length)
+	public void AppendLine([DisallowNull, NotNull] char* s, int length)
 	{
 		Append(s, length);
 		AppendLine();
@@ -594,7 +563,7 @@ public ref partial struct ValueStringBuilder
 	/// <param name="list">The list of elements.</param>
 	/// <param name="converter">The converter.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
-	public unsafe void AppendRange<TUnmanaged>(
+	public void AppendRange<TUnmanaged>(
 		IEnumerable<TUnmanaged> list,
 		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
 		string? separator = null
@@ -622,7 +591,11 @@ public ref partial struct ValueStringBuilder
 	/// <param name="list">The list of elements.</param>
 	/// <param name="length">The length of the list.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
-	public unsafe void AppendRange<TUnmanaged>(TUnmanaged* list, int length, string? separator = null)
+	public void AppendRange<TUnmanaged>(
+		[DisallowNull, NotNull] TUnmanaged* list,
+		int length,
+		string? separator = null
+	)
 	where TUnmanaged : unmanaged
 	{
 		int index = 0;
@@ -649,12 +622,13 @@ public ref partial struct ValueStringBuilder
 	/// <param name="length">The length of the list.</param>
 	/// <param name="converter">The converter.</param>
 	/// <param name="separator">The separator when an element is finished to append.</param>
-	public unsafe void AppendRange<TUnmanaged>(
-		TUnmanaged* list,
+	public void AppendRange<TUnmanaged>(
+		[DisallowNull, NotNull] TUnmanaged* list,
 		int length,
 		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
 		string? separator = null
-	) where TUnmanaged : unmanaged
+	)
+	where TUnmanaged : unmanaged
 	{
 		int index = 0;
 		for (var p = list; index < length; index++, p++)
@@ -694,7 +668,7 @@ public ref partial struct ValueStringBuilder
 	/// Reverse the string builder instance. For example, if the list holds a string <c>"Hello"</c>,
 	/// after called this method, the string will be <c>"olleH"</c>.
 	/// </summary>
-	public unsafe void Reverse()
+	public void Reverse()
 	{
 		fixed (char* p = _chars)
 		{
@@ -818,5 +792,36 @@ public ref partial struct ValueStringBuilder
 		{
 			ArrayPool<char>.Shared.Return(toReturn);
 		}
+	}
+
+
+	/// <summary>
+	/// Determines whether two instances has same values with the other instance.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[ProxyEquality]
+	public static bool Equals(in ValueStringBuilder left, in ValueStringBuilder right)
+	{
+		if (left.Length != right.Length)
+		{
+			return false;
+		}
+
+		fixed (char* pThis = left._chars, pOther = right._chars)
+		{
+			int i = 0;
+			char* p = pThis, q = pOther;
+			for (int length = left.Length; i < length; i++)
+			{
+				if (*p++ != *q++)
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 }
