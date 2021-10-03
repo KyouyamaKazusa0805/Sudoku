@@ -50,7 +50,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 				var selectedType = allTypes[Random.Shared.Next(count)];
 				fixed (char* pTempSolution = tempSolution)
 				{
-					UnsafeExtensions.CopyBlock(pSolution, pTempSolution, 81);
+					Unsafe.CopyBlock(pSolution, pTempSolution, sizeof(char) * 81);
 				}
 
 				var totalMap = Cells.Empty;

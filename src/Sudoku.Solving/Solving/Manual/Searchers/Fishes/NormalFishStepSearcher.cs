@@ -52,7 +52,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						if (r[digit] == null)
 						{
 							int* ptr = stackalloc int[10];
-							UnsafeExtensions.InitBlock(ptr, 0, 10);
+							Unsafe.InitBlock(ptr, 0, 10);
 
 							r[digit] = ptr;
 						}
@@ -64,7 +64,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						if (c[digit] == null)
 						{
 							int* ptr = stackalloc int[10];
-							UnsafeExtensions.InitBlock(ptr, 0, 10);
+							Unsafe.InitBlock(ptr, 0, 10);
 
 							c[digit] = ptr;
 						}

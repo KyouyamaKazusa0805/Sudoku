@@ -32,20 +32,17 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
 			{
-				UnsafeExtensions.CopyBlock(puzzle, pEmptyString, 81);
-				UnsafeExtensions.CopyBlock(solution, pEmptyString, 81);
+				Unsafe.CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
+				Unsafe.CopyBlock(solution, pEmptyString, sizeof(char) * 81);
 			}
 
 			GenerateAnswerGrid(puzzle, solution);
 
-			UnsafeExtensions.InitBlock(holeCells, 0, 81);
+			Unsafe.InitBlock(holeCells, 0, 81);
 			CreatePattern(holeCells);
 			for (int trial = 0; trial < 1000; trial++)
 			{
-				if (cancellationToken is { IsCancellationRequested: true })
-				{
-					throw new OperationCanceledException();
-				}
+				cancellationToken.ThrowIfCancellationRequested();
 
 				for (int cell = 0; cell < 81; cell++)
 				{

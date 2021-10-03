@@ -94,7 +94,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 		{
 			if (solution != null)
 			{
-				UnsafeExtensions.CopyBlock(solution, solutionStr, BufferLength);
+				Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 			}
 		}
 	}
@@ -119,7 +119,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 			{
 				if (solution != null)
 				{
-					UnsafeExtensions.CopyBlock(solution, solutionStr, BufferLength);
+					Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 				}
 			}
 		}
@@ -322,7 +322,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 				g->Bands[band] = BitSet27;
 			}
 
-			UnsafeExtensions.InitBlock(g->PrevBands, 0, 27);
+			Unsafe.InitBlock(g->PrevBands, 0, 27);
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
@@ -878,7 +878,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					UnsafeExtensions.CopyBlock(_g + 1, _g, 1);
+					Unsafe.CopyBlock(_g + 1, _g, 1);
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.

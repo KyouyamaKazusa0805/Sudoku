@@ -190,7 +190,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 		fixed (short* pArray = masks, pValues = _values)
 		{
-			UnsafeExtensions.CopyBlock(pValues, pArray, Length);
+			Unsafe.CopyBlock(pValues, pArray, sizeof(short) * Length);
 		}
 	}
 
@@ -879,7 +879,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		short[] arr = ArrayPool<short>.Shared.Rent(Length);
 		fixed (short* pArr = arr, pGrid = this)
 		{
-			UnsafeExtensions.CopyBlock(pArr, pGrid, Length);
+			Unsafe.CopyBlock(pArr, pGrid, sizeof(short) * Length);
 		}
 
 		try

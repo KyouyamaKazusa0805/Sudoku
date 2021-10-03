@@ -96,7 +96,7 @@ public static class StringExtensions
 		resultPtr[@this.Length] = '\0';
 		fixed (char* pThis = @this)
 		{
-			UnsafeExtensions.CopyBlock(resultPtr, pThis, (uint)@this.Length);
+			Unsafe.CopyBlock(resultPtr, pThis, (uint)(sizeof(char) * @this.Length));
 		}
 
 		resultPtr[index] = charToInsert;
