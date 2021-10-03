@@ -17,7 +17,8 @@ public sealed partial class Preference : ICloneable<Preference>
 
 	/// <summary>
 	/// <para>
-	/// Indicates whether the sashimi fishes are displayed with the modifier "finned", i.e. Finned Sashimi Fish.
+	/// Indicates whether the sashimi fishes are displayed with the modifier "finned",
+	/// e.g. "Finned Sashimi Fish".
 	/// </para>
 	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
@@ -27,7 +28,7 @@ public sealed partial class Preference : ICloneable<Preference>
 	public bool SashimiFishContainsKeywordFinned { get; set; }
 
 	/// <summary>
-	/// <para>Indicates whether the fish name is used the sized one, i.e. 3-Fish, 4-Fish, etc..</para>
+	/// <para>Indicates whether the fish name is used the sized one, e.g. "3-Fish", "4-Fish", etc.. </para>
 	/// <para>The default value is <c><see langword="false"/></c>.</para>
 	/// </summary>
 	[PreferenceItem<ToggleSwitch, ToggleSwitchReceivingBooleanConverter>(nameof(SettingsPage.ToggleSwitch_UseSizedFishName))]
