@@ -29,4 +29,4 @@ v.Append("Hello");
 v.Append(',');
 v.Append("world");
 v.Append('!');
-Console.WriteLine(v.ToString());
+Console.WriteLine(v.ToStringAndClear());

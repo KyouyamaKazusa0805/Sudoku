@@ -43,7 +43,7 @@ public sealed record class DbStepInfo(
 
 			var sb = new ValueStringBuilder(stackalloc char[50]);
 			sb.AppendRange(Petals, &converter, separator);
-			return sb.ToString();
+			return sb.ToStringAndClear();
 
 
 			static string converter(KeyValuePair<int, Als> pair) => $"{pair.Key - 1} - {pair.Value}";

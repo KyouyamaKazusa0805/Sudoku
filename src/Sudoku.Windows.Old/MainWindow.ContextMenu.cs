@@ -90,7 +90,7 @@ partial class MainWindow
 
 			try
 			{
-				SystemClipboard.Text = sb.ToString();
+				SystemClipboard.Text = sb.ToStringAndClear();
 			}
 			catch
 			{

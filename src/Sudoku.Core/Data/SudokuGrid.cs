@@ -380,7 +380,7 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 				sb.Append(Base64List[(int)(temp % Base64Length)]);
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 
@@ -814,8 +814,9 @@ public unsafe partial struct SudokuGrid : IValueEquatable<SudokuGrid>, IFormatta
 		{
 			var sb = new ValueStringBuilder(400);
 			sb.AppendRange(pArr, Length, &p, separator);
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
+
 
 		static string p(short v) => v.ToString();
 	}

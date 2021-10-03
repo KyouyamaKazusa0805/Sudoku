@@ -232,7 +232,7 @@ partial struct SudokuGrid
 				}
 			}
 
-			return SudokuGrid.Parse(sb.ToString());
+			return SudokuGrid.Parse(sb.ToStringAndClear());
 		}
 
 		/// <summary>
@@ -394,8 +394,7 @@ partial struct SudokuGrid
 		/// <returns>The grid.</returns>
 		private static SudokuGrid OnParsingSimpleTable(ref Parser parser)
 		{
-			string? match = parser.ParsingValue.Match(RegularExpressions.SimpleTable);
-			if (match is null)
+			if (parser.ParsingValue.Match(RegularExpressions.SimpleTable) is not { } match)
 			{
 				return Undefined;
 			}
@@ -407,7 +406,7 @@ partial struct SudokuGrid
 				sb.Append(c);
 			}
 
-			parser.ParsingValue = sb.ToString();
+			parser.ParsingValue = sb.ToStringAndClear();
 			return OnParsingSusser(ref parser);
 		}
 

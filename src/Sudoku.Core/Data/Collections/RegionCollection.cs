@@ -101,7 +101,7 @@ public readonly ref partial struct RegionCollection
 				}
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 
@@ -120,7 +120,7 @@ public readonly ref partial struct RegionCollection
 			}
 		}
 
-		return sb.ToString();
+		return sb.ToStringAndClear();
 	}
 
 	/// <summary>

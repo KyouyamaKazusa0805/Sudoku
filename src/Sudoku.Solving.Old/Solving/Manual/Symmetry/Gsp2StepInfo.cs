@@ -70,7 +70,7 @@ public sealed record class Gsp2StepInfo(
 				}
 
 				sb.RemoveFromEnd(separator.Length);
-				return $"{(string)TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
+				return $"{(string)TextResources.Current.MappingRelationSnippet}{sb.ToStringAndClear()}";
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public sealed record class Gsp2StepInfo(
 
 				sb.Append((string)TextResources.Current.SymmetryThenWeGet);
 
-				return sb.ToString();
+				return sb.ToStringAndClear();
 			}
 			else
 			{

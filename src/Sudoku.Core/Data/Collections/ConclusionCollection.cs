@@ -119,7 +119,7 @@ public readonly ref partial struct ConclusionCollection
 				static string p(Conclusion conclusion) => conclusion.ToString();
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 
 		static int cmp(in Conclusion left, in Conclusion right) => left.CompareTo(right);

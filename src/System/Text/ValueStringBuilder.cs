@@ -4,9 +4,8 @@
 /// Encapsulates a string builder implementation that is used via a <see langword="struct"/>.
 /// </summary>
 /// <remarks>
-/// You shouldn't use the parameterless constructor <see cref="ValueStringBuilder()"/>.
-/// </remarks>
-/// <example>
+/// <para>You shouldn't use the parameterless constructor <see cref="ValueStringBuilder()"/>.</para>
+/// <para>
 /// You can use this struct like this:
 /// <code><![CDATA[
 /// var sb = new ValueStringBuilder(stackalloc char[100]);
@@ -19,7 +18,8 @@
 /// 
 /// Console.WriteLine(sb.ToString()); // Dispose method will be called here.
 /// ]]></code>
-/// </example>
+/// </para>
+/// </remarks>
 /// <seealso cref="ValueStringBuilder()"/>
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 public ref partial struct ValueStringBuilder
@@ -40,7 +40,8 @@ public ref partial struct ValueStringBuilder
 	/// of bytes of buffer to be used, which won't allocate any memory.
 	/// </para>
 	/// <para>
-	/// If the field is not <see langword="null"/> and when we calls the method <see cref="ToString"/>,
+	/// If the field is not <see langword="null"/> and when we calls the method <see cref="ToString"/>
+	/// and <see cref="ToStringAndClear"/>,
 	/// the buffer will be returned and the inner data will be released.
 	/// </para>
 	/// </remarks>
@@ -48,6 +49,7 @@ public ref partial struct ValueStringBuilder
 	/// <seealso cref="ArrayPool{T}.Rent(int)"/>
 	/// <seealso cref="ValueStringBuilder(int)"/>
 	/// <seealso cref="ToString"/>
+	/// <seealso cref="ToStringAndClear"/>
 	private char[]? _chunk;
 
 	/// <summary>
@@ -234,27 +236,19 @@ public ref partial struct ValueStringBuilder
 		return ref MemoryMarshal.GetReference(_chars);
 	}
 
-	/// <summary>
-	/// To dispose the collection, all fields and properties will be cleared. In other words,
-	/// this method is nearly equivalent to the code <c>this = default;</c>.
-	/// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Dispose() => Dispose(true);
-
 #if DEBUG
 	/// <summary>
 	/// To ensure the capacity in order to append characters into this collection.
 	/// </summary>
 	/// <param name="capacity">The capacity value to ensure.</param>
 #else
-		/// <summary>
-		/// To ensure the capacity in order to append characters into this collection.
-		/// </summary>
-		/// <param name="capacity">The capacity value to ensure.</param>
-		/// <exception cref="ArgumentOutOfRangeException">
-		/// Throws when the argument <paramref name="capacity"/> is below 0.
-		/// </exception>
+	/// <summary>
+	/// To ensure the capacity in order to append characters into this collection.
+	/// </summary>
+	/// <param name="capacity">The capacity value to ensure.</param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="capacity"/> is below 0.
+	/// </exception>
 #endif
 	public void EnsureCapacity(int capacity)
 	{
@@ -262,10 +256,10 @@ public ref partial struct ValueStringBuilder
 		// This is not expected to be called this with negative capacity
 		Debug.Assert(capacity >= 0);
 #else
-			if (capacity < 0)
-			{
-				throw new ArgumentOutOfRange(nameof(capacity));
-			}
+		if (capacity < 0)
+		{
+			throw new ArgumentOutOfRange(nameof(capacity));
+		}
 #endif
 
 		// If the caller has a bug and calls this with negative capacity,
@@ -451,7 +445,7 @@ public ref partial struct ValueStringBuilder
 	/// </summary>
 	/// <param name="value">The string.</param>
 	/// <param name="length">The length of the string.</param>
-	public unsafe void Append(char* value, int length)
+	public unsafe void Append([DisallowNull, NotNull] char* value, int length)
 	{
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -602,7 +596,7 @@ public ref partial struct ValueStringBuilder
 	/// <param name="separator">The separator when an element is finished to append.</param>
 	public unsafe void AppendRange<TUnmanaged>(
 		IEnumerable<TUnmanaged> list,
-		delegate*<TUnmanaged, string?> converter,
+		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
 		string? separator = null
 	) where TUnmanaged : unmanaged
 	{
@@ -658,10 +652,9 @@ public ref partial struct ValueStringBuilder
 	public unsafe void AppendRange<TUnmanaged>(
 		TUnmanaged* list,
 		int length,
-		delegate*<TUnmanaged, string?> converter,
+		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
 		string? separator = null
-	)
-	where TUnmanaged : unmanaged
+	) where TUnmanaged : unmanaged
 	{
 		int index = 0;
 		for (var p = list; index < length; index++, p++)
@@ -715,35 +708,32 @@ public ref partial struct ValueStringBuilder
 	}
 
 	/// <summary>
-	/// Returns the string result that is combined and constructed from the current instance,
+	/// Returns the <see cref="string"/> result that is combined and constructed from the current instance.
+	/// </summary>
+	/// <returns>The <see cref="string"/> representation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => _chars[..Length].ToString();
+
+	/// <summary>
+	/// Returns the <see cref="string"/> result combined and constructed from the current instance,
 	/// and then dispose the instance.
 	/// </summary>
-	/// <returns>The string representation.</returns>
+	/// <returns>The <see cref="string"/> representation.</returns>
 	/// <remarks>
-	/// <para>
-	/// Please note that the dispose method will be invoked in the execution of this method <c>ToString</c>.
-	/// Therefore, you can't or don't need to:
-	/// <list type="bullet">
-	/// <item>
-	/// Use the keyword <see langword="using"/> onto the variable declaration, such as
-	/// <c>using var sb = new ValueStringBuilder(stackalloc char[20]);</c>.
-	/// </item>
-	/// <item>
-	/// Use the current string builder instance after had been called this method <c>ToString</c>.
-	/// </item>
-	/// </list>
-	/// </para>
-	/// <para>Because of the such behavior, this method isn't <see langword="readonly"/>.</para>
+	/// Please note that the method <see cref="Dispose(bool)"/> will be invoked in the execution of this method,
+	/// so this method isn't <see langword="readonly"/>, which is different from <see cref="ToString"/>.
 	/// </remarks>
-	public override string ToString()
+	/// <seealso cref="Dispose(bool)"/>
+	/// <seealso cref="ToString"/>
+	public string ToStringAndClear()
 	{
 		try
 		{
-			return _chars[..Length].ToString();
+			return ToString();
 		}
 		finally
 		{
-			Dispose();
+			Dispose(true);
 		}
 	}
 
@@ -802,10 +792,10 @@ public ref partial struct ValueStringBuilder
 	/// <summary>
 	/// To dispose the collection. Although this method is <see langword="public"/>,
 	/// you may not call this method, because this method will be called automatically when
-	/// the method <see cref="ToString"/> is called.
+	/// the method <see cref="ToStringAndClear"/> is called.
 	/// </summary>
 	/// <param name="clearAll">Indicates whether we should return the buffer.</param>
-	/// <seealso cref="ToString"/>
+	/// <seealso cref="ToStringAndClear"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void Dispose(bool clearAll)
 	{

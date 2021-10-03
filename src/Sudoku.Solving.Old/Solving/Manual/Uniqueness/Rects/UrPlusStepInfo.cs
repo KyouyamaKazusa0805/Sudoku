@@ -45,7 +45,7 @@ public record class UrPlusStepInfo(
 			var sb = new ValueStringBuilder(stackalloc char[100]);
 			sb.AppendRange(ConjugatePairs, separator);
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 

@@ -71,7 +71,7 @@ public readonly ref partial struct LinkCollection
 				digit = prevValue;
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 }

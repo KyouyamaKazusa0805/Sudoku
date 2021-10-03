@@ -85,7 +85,7 @@ public readonly ref partial struct DigitCollection
 		}
 
 		sb.RemoveFromEnd(separator.Length);
-		return sb.ToString();
+		return sb.ToStringAndClear();
 	}
 
 

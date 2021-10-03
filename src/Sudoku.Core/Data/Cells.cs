@@ -796,7 +796,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				}
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 
 		static string normalToString(in Cells @this)
@@ -863,7 +863,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				sbColumn.Append(rightCurlyBrace);
 			}
 
-			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToString();
+			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
 
 
 			static string g(int v) => (v + 1).ToString();
@@ -900,7 +900,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 
 			sb.Reverse();
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 

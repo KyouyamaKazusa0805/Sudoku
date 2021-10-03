@@ -46,7 +46,7 @@ public static class SymmetryTypeExtensions
 			if (sb.Length != 0)
 			{
 				sb.RemoveFromEnd(separator.Length);
-				return sb.ToString();
+				return sb.ToStringAndClear();
 			}
 
 			return string.Empty;

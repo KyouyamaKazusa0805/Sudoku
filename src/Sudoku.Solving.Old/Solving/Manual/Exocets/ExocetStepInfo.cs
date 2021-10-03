@@ -125,7 +125,7 @@ public abstract record class ExocetStepInfo(
 		sb.AppendLine(base.ToFullString());
 		sb.AppendLineRange(Eliminations);
 
-		return sb.ToString();
+		return sb.ToStringAndClear();
 	}
 
 

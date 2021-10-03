@@ -97,7 +97,7 @@ partial struct Grid
 				}
 			}
 
-			return Grid.Parse(sb.ToString());
+			return Grid.Parse(sb.ToStringAndClear());
 		}
 
 		/// <summary>
@@ -258,8 +258,7 @@ partial struct Grid
 		/// <returns>The grid.</returns>
 		private static partial Grid OnParsingSimpleTable(ref Parser parser)
 		{
-			string? match = parser.ParsingValue.Match(RegularExpressions.SimpleTable);
-			if (match is null)
+			if (parser.ParsingValue.Match(RegularExpressions.SimpleTable) is not { } match)
 			{
 				return Undefined;
 			}
@@ -271,7 +270,7 @@ partial struct Grid
 				sb.Append(c);
 			}
 
-			parser.ParsingValue = sb.ToString();
+			parser.ParsingValue = sb.ToStringAndClear();
 			return OnParsingSusser(ref parser);
 		}
 

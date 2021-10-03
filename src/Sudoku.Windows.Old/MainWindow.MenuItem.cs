@@ -905,7 +905,7 @@ partial class MainWindow
 				return !(e.Handled = true);
 			}
 
-			var grid = SudokuGrid.Parse(sb.ToString());
+			var grid = SudokuGrid.Parse(sb.ToStringAndClear());
 			grid.Unfix();
 
 			Puzzle = grid;
@@ -978,7 +978,7 @@ partial class MainWindow
 				}
 			}
 
-			Puzzle = SudokuGrid.Parse(newSb.ToString());
+			Puzzle = SudokuGrid.Parse(newSb.ToStringAndClear());
 			UpdateImageGrid();
 
 #if AUTHOR_RESERVED && DEBUG
@@ -1116,7 +1116,7 @@ partial class MainWindow
 					sb[cell] += (char)(grid[cell] + 1);
 				}
 
-				if (new UnsafeBitwiseSolver().Solve(sb.ToString(), null, 2) != 1)
+				if (new UnsafeBitwiseSolver().Solve(sb.ToStringAndClear(), null, 2) != 1)
 				{
 					return false;
 				}

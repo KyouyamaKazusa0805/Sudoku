@@ -59,7 +59,7 @@ public sealed record class BruteForceSolverResult(in Grid OriginalPuzzle) : ISol
 		sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
 		sb.AppendLine($"{ElapsedTime:hh\\:mm\\:ss\\.ffffff}");
 
-		return sb.ToString();
+		return sb.ToStringAndClear();
 	}
 
 	/// <inheritdoc/>

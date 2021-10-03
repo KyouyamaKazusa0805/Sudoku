@@ -283,7 +283,7 @@ partial record class AnalysisResult
 				sb.AppendLine(additional);
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

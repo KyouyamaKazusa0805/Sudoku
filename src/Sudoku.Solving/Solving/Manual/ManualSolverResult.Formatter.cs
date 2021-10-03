@@ -231,7 +231,7 @@ partial record class ManualSolverResult
 
 			a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

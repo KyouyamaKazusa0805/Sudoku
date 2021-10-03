@@ -64,7 +64,7 @@ public sealed record class SeStepInfo(
 					sb.RemoveFromEnd(separator.Length);
 
 					string extraRegionsIncluded = TextResources.Current.IncludedExtraRegionSnippet;
-					return $"{endoTargetStr}{extraRegionsIncluded}{sb.ToString()}";
+					return $"{endoTargetStr}{extraRegionsIncluded}{sb.ToStringAndClear()}";
 				}
 			}
 

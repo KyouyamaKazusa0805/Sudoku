@@ -29,7 +29,7 @@ partial struct Grid
 				sb.AppendLine();
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 
 		/// <summary>
@@ -212,7 +212,7 @@ partial struct Grid
 			}
 
 			string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFrom(^1).ToString();
-			return $"{sb.ToString()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+			return $"{sb.ToStringAndClear()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 
 		/// <summary>
@@ -390,7 +390,7 @@ partial struct Grid
 													innerSb.Append(z + 1);
 												}
 
-												s = innerSb.ToString();
+												s = innerSb.ToStringAndClear();
 
 												break;
 											}

@@ -71,7 +71,7 @@ public readonly ref partial struct ChainLinkCollection
 				digit = prevValue;
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 }

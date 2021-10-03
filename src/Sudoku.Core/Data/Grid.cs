@@ -434,7 +434,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 				sb.Append(Base64List[(int)(temp % Base64Length)]);
 			}
 
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 
@@ -826,7 +826,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		{
 			var sb = new ValueStringBuilder(400);
 			sb.AppendRange(pArr, Length, &p, separator);
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 
 		static string p(short v) => v.ToString();

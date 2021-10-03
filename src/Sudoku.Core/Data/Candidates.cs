@@ -416,7 +416,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 			}
 
 			sb.RemoveFromEnd(separator.Length);
-			return sb.ToString();
+			return sb.ToStringAndClear();
 		}
 	}
 

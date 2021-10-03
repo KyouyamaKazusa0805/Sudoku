@@ -69,7 +69,7 @@ public sealed record class GspStepInfo(
 				}
 
 				sb.RemoveFromEnd(separator.Length);
-				return $"{(string)TextResources.Current.MappingRelationSnippet}{sb.ToString()}";
+				return $"{(string)TextResources.Current.MappingRelationSnippet}{sb.ToStringAndClear()}";
 			}
 		}
 	}

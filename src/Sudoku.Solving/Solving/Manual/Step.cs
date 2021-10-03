@@ -280,7 +280,7 @@ public abstract record class Step(
 		}
 
 		// Format and return the value.
-		return string.Format(sb.ToString(), matchedFormats);
+		return string.Format(sb.ToStringAndClear(), matchedFormats);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
