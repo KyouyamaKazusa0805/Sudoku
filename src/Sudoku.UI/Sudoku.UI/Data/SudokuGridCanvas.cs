@@ -133,10 +133,6 @@ public sealed record class SudokuGridCanvas(
 			{
 				var tb = new TextBlock
 				{
-#if AUTHOR_RESERVED
-					// Unmeaningful initialization... :D
-					Text = (cell % 9 + 1).ToString(),
-#endif
 					Visibility = Visibility.Collapsed,
 					Foreground = new SolidColorBrush(
 						UiResources.LightOrDarkMode == ApplicationTheme.Light
@@ -170,10 +166,6 @@ public sealed record class SudokuGridCanvas(
 				int cell = candidate / 9, digit = candidate % 9;
 				var tb = new TextBlock
 				{
-#if AUTHOR_RESERVED
-					// Unmeaningful initialization.
-					Text = (digit + 1).ToString(),
-#endif
 					Visibility = Visibility.Visible,
 					Foreground = new SolidColorBrush(
 						UiResources.LightOrDarkMode == ApplicationTheme.Light
