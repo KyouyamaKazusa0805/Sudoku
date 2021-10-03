@@ -53,9 +53,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// draw the AIC, the elimination weak links don't need drawing.
 	/// </param>
 	/// <returns>The link.</returns>
-	protected static IList<(Link, ColorIdentifier)> GetLinks(ChainNode target, bool showAllLinks = false)
+	protected static IList<(ChainLink, ColorIdentifier)> GetLinks(ChainNode target, bool showAllLinks = false)
 	{
-		var result = new List<(Link, ColorIdentifier)>();
+		var result = new List<(ChainLink, ColorIdentifier)>();
 		var chain = target.WholeChain;
 		for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 		{
@@ -69,9 +69,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					(
 						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
 						{
-							(A: false, B: true) => LinkType.Strong,
-							(A: true, B: false) => LinkType.Weak,
-							_ => LinkType.Default
+							(A: false, B: true) => ChainLinkType.Strong,
+							(A: true, B: false) => ChainLinkType.Weak,
+							_ => ChainLinkType.Default
 						}),
 						(ColorIdentifier)0
 					)

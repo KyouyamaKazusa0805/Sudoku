@@ -1784,7 +1784,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -1798,7 +1798,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -1813,7 +1813,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -1828,7 +1828,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 4.
             </summary>
@@ -2864,7 +2864,7 @@
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}}}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}}}})">
             <summary>
             Searches for possible bi-value oddagon or unique loop patterns.
             </summary>

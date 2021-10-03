@@ -236,6 +236,24 @@
             Indicates the supported diagnostic ID.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.DiscriminatedUnionAttribute">
+            <summary>
+            Indicates the type is a discriminated union.
+            </summary>
+            <remarks>
+            A <b>discriminated union</b> is a type that is a same implementation
+            for the concept <see langword="enum class"/> in Java.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.DiscriminatedUnionAttribute.ExceptionThrowsWhenOutOfRange">
+            <summary>
+            <para>
+            A <see cref="T:System.Boolean"/> value that indicates whether an <see cref="T:System.InvalidOperationException"/> throws
+            when the value is out of range.
+            </para>
+            <para>The default value is <c><see langword="false"/>.</c></para>
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.ProxyEqualityAttribute">
             <summary>
             Indicates an attribute instance which is marked on a method,

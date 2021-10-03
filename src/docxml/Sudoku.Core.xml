@@ -1299,6 +1299,126 @@
             </remarks>
             <seealso cref="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Data.ChainLink">
+            <summary>
+            Encapsulates a link used for drawing.
+            </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.#ctor(System.Int32,System.Int32,Sudoku.Data.ChainLinkType)">
+            <summary>
+            Encapsulates a link used for drawing.
+            </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.StartDigit">
+            <summary>
+            Indicates the start digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.EndDigit">
+            <summary>
+            Indicates the end digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.EigenValue">
+            <summary>
+            Indicates the eigen value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Data.ChainLink.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.ChainLink.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.ChainLink,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.ChainLinkType@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.ChainLinkType">
+            <summary>
+            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
+            </summary>
+            <param name="TypeKind">The <see cref="T:System.Byte"/> value as the eigenvalue of the type.</param>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.#ctor(System.Byte)">
+            <summary>
+            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
+            </summary>
+            <param name="TypeKind">The <see cref="T:System.Byte"/> value as the eigenvalue of the type.</param>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkType.Default">
+            <summary>
+            Indicates the default link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkType.Weak">
+            <summary>
+            Indicates the weak link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkType.Strong">
+            <summary>
+            Indicates the strong link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.ChainLinkType.Line">
+            <summary>
+            Indicates the line link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.GetNotation">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(System.Byte)~Sudoku.Data.ChainLinkType">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Data.ChainLinkType"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(Sudoku.Data.ChainLinkType)~System.Byte">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Data.ChainLinkType"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="linkType">The link type.</param>
+        </member>
         <member name="T:Sudoku.Data.ChainNode">
             <summary>
             Defines a chain node, with basic information about the node. At the same time you can get the root node
@@ -1527,6 +1647,39 @@
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
+        </member>
+        <member name="T:Sudoku.Data.Collections.ChainLinkCollection">
+            <summary>
+            Provides a collection that contains the chain links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Collections.ChainLinkCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.ChainLink}@)">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.ChainLink})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Data.Collections.ConclusionCollection">
             <summary>
@@ -3651,6 +3804,29 @@
             Explicit cast from <typeparamref name="TCollection"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+        </member>
+        <member name="T:Sudoku.Data.IChainLinkType`1">
+            <summary>
+            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.ChainLinkType"/>.
+            </summary>
+            <typeparam name="TSelf">The type. The type is always <see cref="T:Sudoku.Data.ChainLinkType"/>.</typeparam>
+        </member>
+        <member name="P:Sudoku.Data.IChainLinkType`1.TypeKind">
+            <summary>
+            The type kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.IChainLinkType`1.GetNotation">
+            <summary>
+            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
+            </summary>
+            <returns>The notation <see cref="T:System.String"/> representation.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IChainLinkType`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.IChainLinkType`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
@@ -6347,7 +6523,7 @@
             <param name="DirectLines">The direct lines.</param>
             <param name="UnknownValues">The unknown values.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
             <summary>
             Indicates the presentation data that is used for present the information.
             </summary>

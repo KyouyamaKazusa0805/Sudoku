@@ -242,6 +242,6 @@ public sealed unsafe record class AlternatingInferenceChainStep(
 	private string ChainStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new LinkCollection(from pair in Views[0].Links! select pair.Link).ToString();
+		get => new ChainLinkCollection(from pair in Views[0].Links! select pair.Link).ToString();
 	}
 }

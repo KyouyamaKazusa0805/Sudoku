@@ -4,6 +4,7 @@
 /// Indicates a link type.
 /// </summary>
 [Closed]
+[Obsolete($"Please use the type '{nameof(ChainLinkType)}' instead.", false)]
 public enum LinkType : byte
 {
 	/// <summary>

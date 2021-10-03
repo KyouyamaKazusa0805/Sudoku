@@ -27,7 +27,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		}
 
 		var resultAccumulator = new List<UniqueLoopStep>();
-		var loops = new List<(Cells, IList<(Link, ColorIdentifier)>)>();
+		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);
 		var loopMap = Cells.Empty;
 
@@ -140,7 +140,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, bool onlyFindOne)
+		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -196,7 +196,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType2(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = 0;
 		foreach (int cell in extraCellsMap)
@@ -265,7 +265,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType3(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -400,7 +400,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType4(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		if (!extraCellsMap.InOneRegion)
 		{

@@ -4,26 +4,26 @@
 /// Provides a collection that contains the chain links.
 /// </summary>
 [AutoEquality(nameof(_collection))]
-[Obsolete($"Please use the type '{nameof(ChainLinkCollection)}' instead.", false)]
-public readonly ref partial struct LinkCollection
+public readonly ref partial struct ChainLinkCollection
 {
 	/// <summary>
 	/// The internal collection.
 	/// </summary>
-	private readonly Span<Link> _collection;
+	private readonly Span<ChainLink> _collection;
 
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public LinkCollection(in Span<Link> collection) : this() => _collection = collection;
+	public ChainLinkCollection(in Span<ChainLink> collection) : this() => _collection = collection;
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public LinkCollection(IEnumerable<Link> collection) : this() => _collection = collection.ToArray().AsSpan();
+	public ChainLinkCollection(IEnumerable<ChainLink> collection) : this() =>
+		_collection = collection.ToArray().AsSpan();
 
 
 	/// <inheritdoc cref="object.ToString"/>
@@ -36,7 +36,7 @@ public readonly ref partial struct LinkCollection
 			_ => f(_collection)
 		};
 
-		static string f(in Span<Link> collection)
+		static string f(in Span<ChainLink> collection)
 		{
 			var links = collection.ToArray();
 			var sb = new ValueStringBuilder(stackalloc char[100]);

@@ -13,7 +13,7 @@ public partial record struct PresentationData(
 	IList<(int Cell, ColorIdentifier Color)>? Cells,
 	IList<(int Candidate, ColorIdentifier Color)>? Candidates,
 	IList<(int Region, ColorIdentifier Color)>? Regions,
-	IList<(Link Link, ColorIdentifier Color)>? Links,
+	IList<(ChainLink Link, ColorIdentifier Color)>? Links,
 	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
 	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
 ) : IValueEquatable<PresentationData>, IParsable<PresentationData>
@@ -99,7 +99,7 @@ public partial record struct PresentationData(
 
 				return index;
 			}
-			case PresentationDataKind.Links when element is Link e && Links is not null:
+			case PresentationDataKind.Links when element is ChainLink e && Links is not null:
 			{
 				int index = -1;
 				for (int i = 0, count = Links.Count; i < count; i++)
@@ -202,7 +202,7 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Links when element is Link e:
+			case PresentationDataKind.Links when element is ChainLink e:
 			{
 				var collection = Links;
 				EnsureNotNull(ref collection);
@@ -300,7 +300,7 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Links when element is Link e && Links is not null:
+			case PresentationDataKind.Links when element is ChainLink e && Links is not null:
 			{
 				int index = -1;
 				for (int i = 0, count = Links.Count; i < count; i++)
