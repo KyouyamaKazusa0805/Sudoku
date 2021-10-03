@@ -12,7 +12,7 @@ char d = '!';
 Console.WriteLine($"{a}{b}{c}{d}");
 
 //
-// Imrpoved interpolated string
+// Improved interpolated string
 //
 var s = new DefaultInterpolatedStringHandler();
 s.AppendFormatted("Hello");
