@@ -114,13 +114,12 @@ public readonly ref partial struct ConclusionCollection
 			}
 			else
 			{
-				sb.AppendRange(conclusions, &p, separator);
-
-				static string p(Conclusion conclusion) => conclusion.ToString();
+				sb.AppendRange(conclusions, static c => c.ToString(), separator);
 			}
 
 			return sb.ToStringAndClear();
 		}
+
 
 		static int cmp(in Conclusion left, in Conclusion right) => left.CompareTo(right);
 	}

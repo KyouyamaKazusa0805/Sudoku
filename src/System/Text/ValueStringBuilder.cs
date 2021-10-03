@@ -567,7 +567,37 @@ public unsafe ref partial struct ValueStringBuilder
 		IEnumerable<TUnmanaged> list,
 		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
 		string? separator = null
-	) where TUnmanaged : unmanaged
+	)
+	where TUnmanaged : unmanaged
+	{
+		foreach (var element in list)
+		{
+			Append(converter(element));
+			if (separator is not null)
+			{
+				Append(separator);
+			}
+		}
+
+		if (separator is not null)
+		{
+			RemoveFromEnd(separator.Length);
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="converter">The converter.</param>
+	/// <param name="separator">The separator when an element is finished to append.</param>
+	public void AppendRange<TUnmanaged>(
+		IEnumerable<TUnmanaged> list,
+		Func<TUnmanaged, string?> converter,
+		string? separator = null
+	)
+	where TUnmanaged : unmanaged
 	{
 		foreach (var element in list)
 		{
@@ -626,6 +656,38 @@ public unsafe ref partial struct ValueStringBuilder
 		[DisallowNull, NotNull] TUnmanaged* list,
 		int length,
 		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
+		string? separator = null
+	)
+	where TUnmanaged : unmanaged
+	{
+		int index = 0;
+		for (var p = list; index < length; index++, p++)
+		{
+			Append(converter(list[index]));
+			if (separator is not null)
+			{
+				Append(separator);
+			}
+		}
+
+		if (separator is not null)
+		{
+			RemoveFromEnd(separator.Length);
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements specified as a pointer.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="length">The length of the list.</param>
+	/// <param name="converter">The converter.</param>
+	/// <param name="separator">The separator when an element is finished to append.</param>
+	public void AppendRange<TUnmanaged>(
+		[DisallowNull, NotNull] TUnmanaged* list,
+		int length,
+		Func<TUnmanaged, string?> converter,
 		string? separator = null
 	)
 	where TUnmanaged : unmanaged

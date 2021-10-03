@@ -823,7 +823,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				sbRow.Append('r');
 				sbRow.Append(row + 1);
 				sbRow.Append('c');
-				sbRow.AppendRange(dic[row], &g);
+				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
 				sbRow.Append(separator);
 			}
 			sbRow.RemoveFromEnd(separator.Length);
@@ -852,7 +852,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			foreach (int column in dic.Keys)
 			{
 				sbColumn.Append('r');
-				sbColumn.AppendRange(dic[column], &g);
+				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
 				sbColumn.Append('c');
 				sbColumn.Append(column + 1);
 				sbColumn.Append(separator);
@@ -864,9 +864,6 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 
 			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
-
-
-			static string g(int v) => (v + 1).ToString();
 		}
 
 		static string binaryToString(in Cells @this, bool withSeparator)

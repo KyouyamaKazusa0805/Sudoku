@@ -42,11 +42,8 @@ public sealed record class DbStepInfo(
 			const string separator = ", ";
 
 			var sb = new ValueStringBuilder(stackalloc char[50]);
-			sb.AppendRange(Petals, &converter, separator);
+			sb.AppendRange(Petals, static pair => $"{pair.Key - 1} - {pair.Value}", separator);
 			return sb.ToStringAndClear();
-
-
-			static string converter(KeyValuePair<int, Als> pair) => $"{pair.Key - 1} - {pair.Value}";
 		}
 	}
 }

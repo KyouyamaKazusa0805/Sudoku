@@ -825,11 +825,9 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 		fixed (short* pArr = _values)
 		{
 			var sb = new ValueStringBuilder(400);
-			sb.AppendRange(pArr, Length, &p, separator);
+			sb.AppendRange(pArr, Length, static v => v.ToString(), separator);
 			return sb.ToStringAndClear();
 		}
-
-		static string p(short v) => v.ToString();
 	}
 
 	/// <inheritdoc/>

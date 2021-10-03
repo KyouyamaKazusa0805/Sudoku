@@ -2746,6 +2746,15 @@
             <param name="converter">The converter.</param>
             <param name="separator">The separator when an element is finished to append.</param>
         </member>
+        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">The converter.</param>
+            <param name="separator">The separator when an element is finished to append.</param>
+        </member>
         <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,System.String)">
             <summary>
             Append a serial of strings from a serial of elements specified as a pointer.
@@ -2756,6 +2765,16 @@
             <param name="separator">The separator when an element is finished to append.</param>
         </member>
         <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,,System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements specified as a pointer.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="length">The length of the list.</param>
+            <param name="converter">The converter.</param>
+            <param name="separator">The separator when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
             <summary>
             Append a serial of strings converted from a serial of elements specified as a pointer.
             </summary>
