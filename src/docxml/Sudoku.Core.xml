@@ -3551,7 +3551,9 @@
             <summary>
             Provides with a basic collection that is a <see cref="T:Sudoku.Data.Cells"/> or a <see cref="T:Sudoku.Data.Candidates"/> collection.
             </summary>
-            <typeparam name="TCollection">The type.</typeparam>
+            <typeparam name="TCollection">
+            The type. The type should always be <see cref="T:Sudoku.Data.Cells"/> or <see cref="T:Sudoku.Data.Candidates"/>.
+            </typeparam>
             <seealso cref="T:Sudoku.Data.Cells"/>
             <seealso cref="T:Sudoku.Data.Candidates"/>
         </member>

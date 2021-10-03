@@ -3,10 +3,12 @@
 /// <summary>
 /// Provides with a basic collection that is a <see cref="Cells"/> or a <see cref="Candidates"/> collection.
 /// </summary>
-/// <typeparam name="TCollection">The type.</typeparam>
+/// <typeparam name="TCollection">
+/// The type. The type should always be <see cref="Cells"/> or <see cref="Candidates"/>.
+/// </typeparam>
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
-public unsafe interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
+internal interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
 where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>
@@ -43,7 +45,7 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	void CopyTo(int* arr, int length);
+	unsafe void CopyTo(int* arr, int length);
 
 	/// <summary>
 	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
@@ -176,7 +178,6 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static abstract TCollection operator +(TCollection collection, int offset);
 
 	/// <summary>
@@ -191,7 +192,6 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static abstract TCollection operator -(TCollection collection, int offset);
 
 	/// <summary>
