@@ -1438,6 +1438,28 @@
         <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(Sudoku.Data.ChainLinkType)~System.Byte">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Data.ChainLinkTypeConstantAttribute">
+            <summary>
+            Indicates the value is a constant of type <see cref="T:Sudoku.Data.ChainLinkType"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ChainLinkTypeConstantAttribute.#ctor(System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.ChainLinkTypeConstantAttribute"/> instance
+            via a specified <see cref="T:System.Byte"/> value as the type kind of a chain link.
+            </summary>
+            <param name="typeKind">The type kind.</param>
+        </member>
+        <member name="P:Sudoku.Data.ChainLinkTypeConstantAttribute.ValueWithoutBoxOperation">
+            <summary>
+            Indicates the real value stored. The property is same as the overriden property <see cref="P:Sudoku.Data.ChainLinkTypeConstantAttribute.Value"/>
+            but without any box and unbox operations.
+            </summary>
+            <seealso cref="P:Sudoku.Data.ChainLinkTypeConstantAttribute.Value"/>
+        </member>
+        <member name="P:Sudoku.Data.ChainLinkTypeConstantAttribute.Value">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Data.ChainLinkTypes">
             <summary>
             Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.ChainLinkType"/> instances.
