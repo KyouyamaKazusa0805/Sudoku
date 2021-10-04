@@ -1092,8 +1092,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	public static Grid Parse([NotNull, DisallowNull] char* ptrStr) => Parse(new string(ptrStr));
 
 	/// <inheritdoc/>
-	[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[return: NotNullIfNotNull("str")]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string? str)
 	{
 		ArgumentNullException.ThrowIfNull(str);
