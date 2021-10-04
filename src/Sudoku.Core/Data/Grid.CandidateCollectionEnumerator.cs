@@ -4,9 +4,9 @@ partial struct Grid
 {
 	/// <summary>
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
-	/// via the candidates in the current <see cref="Grid"/> instance.
+	/// through the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public unsafe ref partial struct CandidatesCollectionEnumerator
+	public unsafe ref partial struct CandidateCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -38,7 +38,7 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CandidatesCollectionEnumerator(short* arr) : this()
+		public CandidateCollectionEnumerator(short* arr) : this()
 		{
 			_currentPointer = _start = arr - 1;
 			_currentIndex = -1;
@@ -54,6 +54,12 @@ partial struct Grid
 			get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
 		}
 
+
+		/// <summary>
+		/// Gets the current instance that used for iteration.
+		/// </summary>
+		/// <returns>The instance.</returns>
+		public readonly CandidateCollectionEnumerator GetEnumerator() => this;
 
 		/// <summary>
 		/// Advances the enumerator to the next element of the collection.

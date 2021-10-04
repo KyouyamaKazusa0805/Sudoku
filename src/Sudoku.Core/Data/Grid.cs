@@ -382,17 +382,62 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <summary>
 	/// Indicates the total number of given cells.
 	/// </summary>
-	public readonly int GivensCount => Triplet.C;
+	public readonly int GivensCount
+	{
+		get
+		{
+			int result = 0;
+			for (int i = 0; i < Length; i++)
+			{
+				if (GetStatus(i) == CellStatus.Given)
+				{
+					result++;
+				}
+			}
+
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// Indicates the total number of modifiable cells.
 	/// </summary>
-	public readonly int ModifiablesCount => Triplet.B;
+	public readonly int ModifiablesCount
+	{
+		get
+		{
+			int result = 0;
+			for (int i = 0; i < Length; i++)
+			{
+				if (GetStatus(i) == CellStatus.Modifiable)
+				{
+					result++;
+				}
+			}
+
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// Indicates the total number of empty cells.
 	/// </summary>
-	public readonly int EmptiesCount => Triplet.A;
+	public readonly int EmptiesCount
+	{
+		get
+		{
+			int result = 0;
+			for (int i = 0; i < Length; i++)
+			{
+				if (GetStatus(i) == CellStatus.Empty)
+				{
+					result++;
+				}
+			}
+
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// <para>Indicates which regions are null regions.</para>
@@ -531,20 +576,32 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	}
 
 	/// <summary>
-	/// The triplet of three main information.
+	/// Gets an enumerator that iterates the candidates.
 	/// </summary>
-	private readonly (int A, int B, int C) Triplet
+	public readonly CandidateCollectionEnumerator CandidatesEnumerator
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			int a = 0, b = 0, c = 0;
-			for (int i = 0; i < Length; i++)
+			fixed (short* arr = _values)
 			{
-				var s = GetStatus(i);
-				(s == CellStatus.Empty ? ref a : ref s == CellStatus.Modifiable ? ref b : ref c)++;
+				return new(arr);
 			}
+		}
+	}
 
-			return (a, b, c);
+	/// <summary>
+	/// Gets an enumerator that iterates the masks.
+	/// </summary>
+	public readonly MaskCollectionEnumerator MasksEnumerator
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			fixed (short* arr = _values)
+			{
+				return new(arr);
+			}
 		}
 	}
 
@@ -857,20 +914,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidatesCollectionEnumerator GetEnumerator() => GetCandidatesCollectionEnumerator();
-
-	/// <summary>
-	/// Gets an enumerator that iterates the candidates.
-	/// </summary>
-	/// <returns>The enumerator that iterates the candidates.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidatesCollectionEnumerator GetCandidatesCollectionEnumerator()
-	{
-		fixed (short* arr = _values)
-		{
-			return new CandidatesCollectionEnumerator(arr);
-		}
-	}
+	public readonly CandidateCollectionEnumerator GetEnumerator() => CandidatesEnumerator;
 
 	/// <summary>
 	/// Convertes the current instance to a <see cref="SudokuGrid"/>.
