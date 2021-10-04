@@ -33,7 +33,7 @@ public static class ManualSolverExtensions
 			}
 		}
 
-		return dic.ToArray<int, IList<StepSearcher>, StepSearcher>();
+		return dic.ToArray();
 	}
 
 	/// <summary>

@@ -20,7 +20,8 @@ public static class CloneableExtensions
 	/// <see langword="null"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TClass? TryCloneAs<TClass>(this ICloneable @this) where TClass : class => @this.Clone() as TClass;
+	public static TClass? TryCloneAs<TClass>(this ICloneable @this) where TClass : class =>
+		@this.Clone() as TClass;
 
 	/// <summary>
 	/// Clone this object and cast to the specified type no matter how.

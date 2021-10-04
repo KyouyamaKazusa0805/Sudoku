@@ -16,18 +16,8 @@ public static class ArrayExtensions
 	/// The first element that satisfies the specified condition.
 	/// If none found, return <see langword="default"/>(<typeparamref name="T"/>).
 	/// </returns>
-	public static T? First<T>(this T?[] @this, Predicate<T?> predicate)
-	{
-		foreach (var element in @this)
-		{
-			if (predicate(element))
-			{
-				return element;
-			}
-		}
-
-		return default;
-	}
+	public static T? First<T>(this T?[] @this, Predicate<T?> predicate) =>
+		Array.FindIndex(@this, predicate) is var i and not -1 ? @this[i] : default;
 
 	/// <summary>
 	/// Gets the first element that satisfies the specified condition, and throws an exception
@@ -40,16 +30,8 @@ public static class ArrayExtensions
 	/// The first element that satisfies the specified condition.
 	/// </returns>
 	/// <exception cref="ArgumentException">Throws when none possible elements found.</exception>
-	public static T? FirstOnThrow<T>(this T?[] @this, Predicate<T?> predicate)
-	{
-		foreach (var element in @this)
-		{
-			if (predicate(element))
-			{
-				return element;
-			}
-		}
-
-		throw new ArgumentException("Can't fetch the result due to none satisfied elements.", nameof(@this));
-	}
+	public static T? FirstOnThrow<T>(this T?[] @this, Predicate<T?> predicate) =>
+		Array.FindIndex(@this, predicate) is var i and not -1
+			? @this[i]
+			: throw new ArgumentException("Can't fetch the result due to none satisfied elements.", nameof(@this));
 }

@@ -217,23 +217,10 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
-	public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption)
-	{
-		if (!pattern.IsRegexPattern())
-		{
-			throw new InvalidRegexStringException { WrongRegexString = pattern };
-		}
-
-		var result = new List<string>();
-
-		// Do not use 'var' ('var' is 'object?').
-		foreach (Match match in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan))
-		{
-			result.Add(match.Value);
-		}
-
-		return result.ToArray();
-	}
+	public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption) =>
+		pattern.IsRegexPattern()
+			? (from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value).ToArray()
+			: throw new InvalidRegexStringException { WrongRegexString = pattern };
 
 	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.
