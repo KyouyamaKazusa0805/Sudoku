@@ -3004,13 +3004,6 @@
             <param name="format">The string format.</param>
             <returns>The string.</returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.Formatter.Create(Sudoku.Data.GridFormattingOptions)">
-            <summary>
-            Create a <see cref="T:Sudoku.Data.Grid.Formatter"/> according to the specified grid output options.
-            </summary>
-            <param name="gridOutputOption">The grid output options.</param>
-            <returns>The grid formatter.</returns>
-        </member>
         <member name="M:Sudoku.Data.Grid.Formatter.Create(System.String)">
             <summary>
             Create a <see cref="T:Sudoku.Data.Grid.Formatter"/> according to the specified format.
@@ -3018,6 +3011,13 @@
             <param name="format">The format.</param>
             <returns>The grid formatter.</returns>
             <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.Formatter.Create(Sudoku.Data.GridFormattingOptions)">
+            <summary>
+            Create a <see cref="T:Sudoku.Data.Grid.Formatter"/> according to the specified grid output options.
+            </summary>
+            <param name="gridOutputOption">The grid output options.</param>
+            <returns>The grid formatter.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Formatter.ToExcelString(Sudoku.Data.Grid@)">
             <summary>

@@ -169,27 +169,6 @@ partial struct Grid
 
 
 		/// <summary>
-		/// Create a <see cref="Formatter"/> according to the specified grid output options.
-		/// </summary>
-		/// <param name="gridOutputOption">The grid output options.</param>
-		/// <returns>The grid formatter.</returns>
-		public static Formatter Create(GridFormattingOptions gridOutputOption) => gridOutputOption switch
-		{
-			GridFormattingOptions.Excel => new(true) { Excel = true },
-			GridFormattingOptions.OpenSudoku => new(false) { OpenSudoku = true },
-			_ => new(gridOutputOption.Flags(GridFormattingOptions.Multiline))
-			{
-				WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
-				WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
-				TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
-				SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
-				HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),
-				Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
-				Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
-			}
-		};
-
-		/// <summary>
 		/// Create a <see cref="Formatter"/> according to the specified format.
 		/// </summary>
 		/// <param name="format">The format.</param>
@@ -229,6 +208,27 @@ partial struct Grid
 			"%" => new(true) { Excel = true },
 			"^" => new(false) { OpenSudoku = true },
 			_ => throw new FormatException("The specified format is invalid.")
+		};
+
+		/// <summary>
+		/// Create a <see cref="Formatter"/> according to the specified grid output options.
+		/// </summary>
+		/// <param name="gridOutputOption">The grid output options.</param>
+		/// <returns>The grid formatter.</returns>
+		public static Formatter Create(GridFormattingOptions gridOutputOption) => gridOutputOption switch
+		{
+			GridFormattingOptions.Excel => new(true) { Excel = true },
+			GridFormattingOptions.OpenSudoku => new(false) { OpenSudoku = true },
+			_ => new(gridOutputOption.Flags(GridFormattingOptions.Multiline))
+			{
+				WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
+				WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
+				TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
+				SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
+				HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),
+				Sukaku = gridOutputOption == GridFormattingOptions.Sukaku,
+				Placeholder = gridOutputOption.Flags(GridFormattingOptions.DotPlaceholder) ? '.' : '0'
+			}
 		};
 
 
