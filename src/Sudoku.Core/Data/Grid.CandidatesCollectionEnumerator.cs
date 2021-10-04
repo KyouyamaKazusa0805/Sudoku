@@ -3,9 +3,10 @@
 partial struct Grid
 {
 	/// <summary>
-	/// The inner enumerator.
+	/// Defines the default enumerator that iterates the <see cref="Grid"/>
+	/// via the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public unsafe ref partial struct Enumerator
+	public unsafe ref partial struct CandidatesCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -37,7 +38,7 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Enumerator(short* arr) : this()
+		public CandidatesCollectionEnumerator(short* arr) : this()
 		{
 			_currentPointer = _start = arr - 1;
 			_currentIndex = -1;
@@ -58,8 +59,20 @@ partial struct Grid
 		/// Advances the enumerator to the next element of the collection.
 		/// </summary>
 		/// <returns>
-		/// <see langword="true"/> if the enumerator was successfully advanced to the next element;
-		/// <see langword="false"/> if the enumerator has passed the end of the collection.
+		/// <list type="table">
+		/// <listheader>
+		/// <term>Return value</term>
+		/// <description>Meaning</description>
+		/// </listheader>
+		/// <item>
+		/// <term><see langword="true"/></term>
+		/// <description>If the enumerator was successfully advanced to the next element.</description>
+		/// </item>
+		/// <item>
+		/// <term><see langword="false"/></term>
+		/// <description>If the enumerator has passed the end of the collection.</description>
+		/// </item>
+		/// </list>
 		/// </returns>
 		public bool MoveNext()
 		{
@@ -84,8 +97,7 @@ partial struct Grid
 				goto ReturnFalse;
 			}
 
-			_currentPointer = _start + _currentIndex + 1;
-			_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
+			_currentMask = (short)(*(_currentPointer = _start + _currentIndex + 1) & MaxCandidatesMask);
 
 		ReturnTrue:
 			return true;

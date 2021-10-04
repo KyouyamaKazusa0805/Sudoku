@@ -857,11 +857,18 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Enumerator GetEnumerator()
+	public readonly CandidatesCollectionEnumerator GetEnumerator() => GetCandidatesCollectionEnumerator();
+
+	/// <summary>
+	/// Gets an enumerator that iterates the candidates.
+	/// </summary>
+	/// <returns>The enumerator that iterates the candidates.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CandidatesCollectionEnumerator GetCandidatesCollectionEnumerator()
 	{
 		fixed (short* arr = _values)
 		{
-			return new Enumerator(arr);
+			return new CandidatesCollectionEnumerator(arr);
 		}
 	}
 
