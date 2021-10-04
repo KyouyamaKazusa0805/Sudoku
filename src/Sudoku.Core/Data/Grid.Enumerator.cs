@@ -63,19 +63,13 @@ partial struct Grid
 		/// </returns>
 		public bool MoveNext()
 		{
-			if (_currentMask == 0)
+			if (_currentMask == 0 || (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) == 0)
 			{
 				goto MovePointer;
 			}
 			else
 			{
-				_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask));
-				if (_currentMask == 0)
-				{
-					goto MovePointer;
-				}
-
-				return true;
+				goto ReturnTrue;
 			}
 
 		MovePointer:
@@ -87,12 +81,17 @@ partial struct Grid
 
 			if (_currentIndex == Length + 1)
 			{
-				return false;
+				goto ReturnFalse;
 			}
 
 			_currentPointer = _start + _currentIndex + 1;
 			_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
+
+		ReturnTrue:
 			return true;
+
+		ReturnFalse:
+			return false;
 		}
 
 		/// <summary>

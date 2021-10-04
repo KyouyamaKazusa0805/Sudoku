@@ -609,10 +609,8 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 					// Set cell status to 'CellStatus.Modifiable'.
 					result = (short)(ModifiableMask | 1 << value);
 
-					// To trigger the event, which is used for eliminate
-					// all same candidates in peer cells.
-					var onValueChanged = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-					onValueChanged(ref this, cell, copied, result, value);
+					// To trigger the event, which is used for eliminate all same candidates in peer cells.
+					((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, result, value);
 
 					break;
 				}
@@ -651,8 +649,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 				}
 
 				// To trigger the event.
-				var onValueChanged = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-				onValueChanged(ref this, cell, copied, _values[cell], -1);
+				((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, _values[cell], -1);
 			}
 		}
 	}
@@ -872,6 +869,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// Convertes the current instance to a <see cref="SudokuGrid"/>.
 	/// </summary>
 	/// <returns>The sudoku grid result.</returns>
+	[Obsolete($"The method is deprecated due to the usage of type '{nameof(SudokuGrid)}'.", false)]
 	public readonly SudokuGrid ToSudokuGrid()
 	{
 		short[] arr = ArrayPool<short>.Shared.Rent(Length);
