@@ -1,17 +1,17 @@
 ﻿namespace Sudoku.CodeGenerating.Generators;
 
 /// <summary>
-/// Provides a generator that generates the deconstruction methods.
+/// Defines a source generator that generates the deconstruction methods with expressions.
 /// </summary>
 [Generator]
-public sealed partial class DeconstructMethodGenerator : ISourceGenerator
+public sealed partial class LambdaedDeconstructMethodGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName)!;
+		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoDeconstructLambdaAttribute).FullName)!;
 
 		foreach (var (typeSymbol, attributesData) in
 			from type in receiver.Candidates
@@ -34,6 +34,7 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 				from x in GetMembers(typeSymbol, attributeSymbol, false)
 				select (Info: x, Param: $"out {x.Type} {x.ParameterName}")
 			).ToArray();
+
 			string methods = string.Join(
 				"\r\n\r\n\t",
 				from attributeData in attributesData
@@ -46,24 +47,24 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 					select paramInfo.Info into info
 					let tempTypeName = info.Type
 					where !KeywordsToBclNames.ContainsKey(tempTypeName)
-					let tempSymbol = info.Symbol
+					let tempSymbol = info.TypeSymbol
 					where tempSymbol.CheckAnyTypeArgumentIsMarked<ObsoleteAttribute>(compilation)
 					select $"'{tempTypeName}'"
 				).ToArray()
 				let obsoleteAttributeStr = deprecatedTypeNames.Length switch
 				{
 					0 => string.Empty,
-					1 => $@"
-	[global::System.Obsolete(""The method is deprecated because the inner type {deprecatedTypeNames[0]} is deprecated."", false)]",
-					> 1 => $@"
-	[global::System.Obsolete(""The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated."", false)]",
+					1 => $"\r\n\t[global::System.Obsolete(\"The method is deprecated because the inner type {deprecatedTypeNames[0]} is deprecated.\", false)]",
+					> 1 => $"\r\n\t[global::System.Obsolete(\"The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated.\", false)]",
 				}
 				let paramNames = from paramInfo in paramInfos select paramInfo.Param
 				let paramNamesStr = string.Join(", ", paramNames)
 				let assignments =
 					from m in members
-					let paramName = possibleMembers.First(p => p.Info.Name == m).Info.ParameterName
-					select $"{paramName} = {m};"
+					let possibleMemberInfo = possibleMembers.First(p => p.Info.Name == m).Info
+					let parameterName = possibleMemberInfo.ParameterName
+					let expression = getExpression(possibleMemberInfo.MemberSymbol, context.CancellationToken)
+					select $"{parameterName} = {expression ?? m};"
 				let assignmentsStr = string.Join("\r\n\t\t", assignments)
 				select $@"/// <summary>
 	/// Deconstruct the instance into multiple elements.
@@ -79,10 +80,8 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
-				GeneratedFileShortcuts.DeconstructionMethod,
-				$@"using System;
-
-#nullable enable
+				GeneratedFileShortcuts.LambdaedDeconstructionMethod,
+				$@"#nullable enable
 
 namespace {namespaceName};
 
@@ -93,6 +92,39 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 "
 			);
 		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string? getExpression(ISymbol fieldOrPropertySymbol, CancellationToken ct) =>
+			fieldOrPropertySymbol switch
+			{
+				IPropertySymbol { GetMethod: not null } p
+				when !p.IsAutoImplemented() && p.Locations[0] is { SourceTree: { } st } l =>
+					(PropertyDeclarationSyntax?)st.GetRoot(ct)?.FindNode(l.SourceSpan) switch
+					{
+						// public int Property => value;
+						{ ExpressionBody.Expression: var expressionNode } => expressionNode.ToString(),
+
+						{ AccessorList.Accessors: { Count: not 0 } a }
+						when a.FirstOrDefault(static a => a is { Keyword.ValueText: "get" }) is { } getAccessor =>
+							getAccessor switch
+							{
+								// public int Property { get { return value; } }
+								{Body.Statements: { Count: 1 } statements}
+								when statements[0] is ReturnStatementSyntax
+								{
+									Expression: { } expressionNode
+								} => expressionNode.ToString(),
+
+								// public int Property { get => value; }
+								{ ExpressionBody.Expression: var expressionNode } => expressionNode.ToString(),
+
+								_ => null
+							},
+						_ => null
+					},
+				_ => null
+			};
 	}
 
 	/// <inheritdoc/>
@@ -108,19 +140,20 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.
 	/// </param>
 	/// <returns>The result list that contains all member symbols.</returns>
-	private static IReadOnlyList<(string Type, string ParameterName, string Name, INamedTypeSymbol? Symbol, ImmutableArray<AttributeData> Attributes)> GetMembers(
+	private static IReadOnlyList<(string Type, string ParameterName, string Name, ISymbol MemberSymbol, INamedTypeSymbol? TypeSymbol, ImmutableArray<AttributeData> Attributes)> GetMembers(
 		INamedTypeSymbol typeSymbol,
 		INamedTypeSymbol? attributeSymbol,
 		bool handleRecursively
 	)
 	{
-		var result = new List<(string, string, string, INamedTypeSymbol?, ImmutableArray<AttributeData>)>(
+		var result = new List<(string, string, string, ISymbol, INamedTypeSymbol?, ImmutableArray<AttributeData>)>(
 			(
 				from x in typeSymbol.GetMembers().OfType<IFieldSymbol>()
 				select (
 					x.Type.ToDisplayString(TypeFormats.FullName),
 					x.Name.ToCamelCase(),
 					x.Name,
+					(ISymbol)x,
 					x.Type as INamedTypeSymbol,
 					x.GetAttributes()
 				)
@@ -130,6 +163,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 					x.Type.ToDisplayString(TypeFormats.FullName),
 					x.Name.ToCamelCase(),
 					x.Name,
+					(ISymbol)x,
 					x.Type as INamedTypeSymbol,
 					x.GetAttributes()
 				)

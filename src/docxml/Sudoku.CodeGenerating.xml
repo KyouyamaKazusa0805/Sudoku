@@ -70,6 +70,40 @@
             Indicates the member names.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.AutoDeconstructionExtensionLambdaAttribute">
+            <summary>
+            Mark this attribute onto a type, to tell the source generator that the source generator will
+            generates the extension deconstruction methods, with expressions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.AutoDeconstructionExtensionLambdaAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CodeGenerating.AutoDeconstructLambdaAttribute"/> instance via the member names.
+            </summary>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.AutoDeconstructionExtensionLambdaAttribute.MemberNames">
+            <summary>
+            Indicates the member names to deconstruct.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.AutoDeconstructLambdaAttribute">
+            <summary>
+            Mark this attribute onto a type, to tell the source generator that the source generator will
+            generates the deconstruction methods, with expressions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.AutoDeconstructLambdaAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.CodeGenerating.AutoDeconstructLambdaAttribute"/> instance via the member names.
+            </summary>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.AutoDeconstructLambdaAttribute.MemberNames">
+            <summary>
+            Indicates the member names to deconstruct.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.AutoEqualityAttribute">
             <summary>
             Indicates an attribute to mark a type, to indicate the type will be generated a default method
@@ -276,6 +310,11 @@
             Indictaes the version of this project.
             </summary>
         </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.KeywordsToBclNames">
+            <summary>
+            Indicates the collection that stores the conversion relations from type keywords to their BCL names.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Constants.TypeFormats">
             <summary>
             Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
@@ -298,9 +337,9 @@
             Indicates the shortcuts for the generated files.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.AutoGetHashCode">
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.GetHashCode">
             <summary>
-            Indicates the source generator is for auto get hash code.
+            Indicates the source generator is for get hash code.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
@@ -355,7 +394,7 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.EqualsMethod">
             <summary>
-            Indicates the source generator is for auto equals methods.
+            Indicates the source generator is for equals methods.
             </summary>
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
@@ -385,7 +424,17 @@
         </member>
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.RefStructDefaultMethod">
             <summary>
-            Indicates the <see langword="ref struct"/> default overriden methods.
+            Indicates the source generator is for <see langword="ref struct"/> default overriden methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.LambdaedDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.LambdaedExtensionDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for extension deconstruction methods with expressions.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
@@ -651,11 +700,6 @@
             Provides a generator that generates the deconstruction methods.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.KeywordsToBclNames">
-            <summary>
-            Indicates the collection that stores the conversion relations from type keywords to their BCL names.
-            </summary>
-        </member>
         <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
@@ -815,6 +859,41 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator">
+            <summary>
+            Defines a source generator that generates the deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Try to get all possible fields or properties in the specified type.
+            </summary>
+            <param name="typeSymbol">The specified symbol.</param>
+            <param name="attributeSymbol">The attribute symbol to check.</param>
+            <param name="handleRecursively">
+            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.
+            </param>
+            <returns>The result list that contains all member symbols.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator">
@@ -1140,6 +1219,27 @@
             <item>The character is <c>' '</c>: Remove it.</item>
             </list>
             </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.IPropertySymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
+            </summary>
+            <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.IPropertySymbolExtensions.IsAutoImplemented(Microsoft.CodeAnalysis.IPropertySymbol)">
+            <summary>
+            <para>
+            Checks whether the property member that specified as an <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/> instance
+            is an auto-implemented property.
+            </para>
+            <para>
+            An <b>auto-implemented property</b> is a property that only contains the keyword <see langword="get"/>,
+            <see langword="set"/> or <see langword="init"/> as the body,
+            e.g. <c>public int Property { get; set; }</c>.
+            </para>
+            </summary>
+            <param name="this">The property symbol to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
             <summary>

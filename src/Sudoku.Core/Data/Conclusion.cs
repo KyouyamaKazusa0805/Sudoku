@@ -18,7 +18,7 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
-[AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
+[AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
 [AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {

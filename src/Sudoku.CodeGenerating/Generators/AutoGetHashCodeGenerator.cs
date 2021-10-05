@@ -37,7 +37,7 @@ public sealed partial class AutoGetHashCodeGenerator : ISourceGenerator
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
-				GeneratedFileShortcuts.AutoGetHashCode,
+				GeneratedFileShortcuts.GetHashCode,
 				$@"#nullable enable
 
 namespace {namespaceName};

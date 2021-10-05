@@ -5,12 +5,12 @@ partial class Constants
 	/// <summary>
 	/// Indicates the shortcuts for the generated files.
 	/// </summary>
-	public static class GeneratedFileShortcuts
+	internal static class GeneratedFileShortcuts
 	{
 		/// <summary>
-		/// Indicates the source generator is for auto get hash code.
+		/// Indicates the source generator is for get hash code.
 		/// </summary>
-		public const string AutoGetHashCode = "g";
+		public new const string GetHashCode = "g";
 
 		/// <summary>
 		/// Indicates the source generator is for bit operations get all sets.
@@ -63,7 +63,7 @@ partial class Constants
 		public const string DeconstructionMethod = "d";
 
 		/// <summary>
-		/// Indicates the source generator is for auto equals methods.
+		/// Indicates the source generator is for equals methods.
 		/// </summary>
 		public const string EqualsMethod = "e";
 
@@ -93,8 +93,18 @@ partial class Constants
 		public const string ProxyEqualsMethod = "ep";
 
 		/// <summary>
-		/// Indicates the <see langword="ref struct"/> default overriden methods.
+		/// Indicates the source generator is for <see langword="ref struct"/> default overriden methods.
 		/// </summary>
 		public const string RefStructDefaultMethod = "rsd";
+
+		/// <summary>
+		/// Indicates the source generator is for deconstruction methods with expressions.
+		/// </summary>
+		public const string LambdaedDeconstructionMethod = "ld";
+
+		/// <summary>
+		/// Indicates the source generator is for extension deconstruction methods with expressions.
+		/// </summary>
+		public const string LambdaedExtensionDeconstructionMethod = "eld";
 	}
 }
