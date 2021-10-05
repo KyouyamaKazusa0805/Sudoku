@@ -35,7 +35,7 @@
 /// </remarks>
 /// <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
 [AutoEquality(nameof(Mask))]
-[AutoDeconstruct(nameof(Candidate), nameof(IsOn))]
+[AutoDeconstructLambda(nameof(Candidate), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
 public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainNode>
 {

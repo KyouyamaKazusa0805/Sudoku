@@ -1682,12 +1682,12 @@
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Int16@,System.Boolean@)">
+        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Int16@,System.Boolean@)">
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>

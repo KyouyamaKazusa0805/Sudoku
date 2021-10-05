@@ -9,7 +9,7 @@ namespace Sudoku.UI.Data;
 /// <param name="R">The red value.</param>
 /// <param name="G">The green value.</param>
 /// <param name="B">The blue value.</param>
-[AutoDeconstruct(nameof(A), nameof(RgbColorInstance))]
+[AutoDeconstructLambda(nameof(A), nameof(RgbColorInstance))]
 [AutoDeconstruct(nameof(R), nameof(G), nameof(B))]
 public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, IParsable<UIColor>, IMinMaxValue<UIColor>, IJsonSerializable<UIColor, UIColor.JsonConverter>
 {

@@ -33,7 +33,7 @@
 /// and the lines of two target cells lying on can't contain any base digits.
 /// </para>
 /// </summary>
-[AutoDeconstruct(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
+[AutoDeconstructLambda(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
 [AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2))]
 [AutoDeconstruct(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
 [AutoHashCode(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
