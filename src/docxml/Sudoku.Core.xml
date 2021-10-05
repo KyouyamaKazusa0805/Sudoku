@@ -2042,22 +2042,31 @@
         <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.CompareTo(Sudoku.Data.Conclusion@)">
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion)">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.CompareTo(Sudoku.Data.Conclusion)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
+        <member name="M:Sudoku.Data.Conclusion.System#IValueEquatable{Sudoku#Data#Conclusion}#Equals(Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_LessThanOrEqual(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
+        <member name="M:Sudoku.Data.Conclusion.System#IValueComparable{Sudoku#Data#Conclusion}#CompareTo(Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_GreaterThan(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
+        <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.op_GreaterThanOrEqual(Sudoku.Data.Conclusion@,Sudoku.Data.Conclusion@)">
+        <member name="M:Sudoku.Data.Conclusion.op_LessThanOrEqual(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_GreaterThan(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Conclusion.op_GreaterThanOrEqual(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Conclusion.JsonConverter">

@@ -20,7 +20,7 @@
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstruct(nameof(ConclusionType), nameof(Candidate))]
 [AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
+public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
@@ -70,6 +70,7 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete($"Please use the method '{nameof(ApplyTo)}(ref {nameof(Grid)})' instead.", false)]
 	public void ApplyTo(ref SudokuGrid grid)
 	{
 		switch (ConclusionType)
@@ -91,9 +92,13 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
 
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
+	public int CompareTo(Conclusion other) => GetHashCode() - other.GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -104,16 +109,22 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 			ConclusionType.Elimination => "<>"
 		}} {Digit + 1}";
 
+	/// <inheritdoc/>
+	bool IValueEquatable<Conclusion>.Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
 
 	/// <inheritdoc/>
-	public static bool operator <(in Conclusion left, in Conclusion right) => left.CompareTo(right) < 0;
+	int IValueComparable<Conclusion>.CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
+
 
 	/// <inheritdoc/>
-	public static bool operator <=(in Conclusion left, in Conclusion right) => left.CompareTo(right) <= 0;
+	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
 
 	/// <inheritdoc/>
-	public static bool operator >(in Conclusion left, in Conclusion right) => left.CompareTo(right) > 0;
+	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
-	public static bool operator >=(in Conclusion left, in Conclusion right) => left.CompareTo(right) >= 0;
+	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
 }
