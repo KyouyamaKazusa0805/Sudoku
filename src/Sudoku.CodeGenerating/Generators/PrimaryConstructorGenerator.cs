@@ -82,7 +82,7 @@ partial class {typeSymbol.Name}{genericParametersList}
 		}
 
 
-		static IReadOnlyList<(string Type, string ParameterName, string Name)> getMembers(
+		IReadOnlyList<(string Type, string ParameterName, string Name)> getMembers(
 			INamedTypeSymbol type,
 			bool executeRecursively,
 			IEnumerable<string> included,
@@ -94,7 +94,7 @@ partial class {typeSymbol.Name}{genericParametersList}
 					from x in type.GetMembers().OfType<IFieldSymbol>()
 					where
 						x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
+						&& (x.IsReadOnly && !x.HasInitializer(context.CancellationToken) || included.Contains(x.Name))
 						&& !excluded.Contains(x.Name)
 					select (
 						x.Type.ToDisplayString(TypeFormats.FullName),
@@ -105,7 +105,7 @@ partial class {typeSymbol.Name}{genericParametersList}
 					from x in type.GetMembers().OfType<IPropertySymbol>()
 					where
 						x is { CanBeReferencedByName: true, IsStatic: false }
-						&& (x.IsReadOnly && !x.HasInitializer() || included.Contains(x.Name))
+						&& (x.IsReadOnly && !x.HasInitializer(context.CancellationToken) || included.Contains(x.Name))
 						&& !excluded.Contains(x.Name)
 					select (
 						x.Type.ToDisplayString(TypeFormats.FullName),

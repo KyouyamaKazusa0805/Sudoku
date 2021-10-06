@@ -1331,12 +1331,13 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol)">
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol,System.Threading.CancellationToken)">
             <summary>
             To determine whether the specified symbol (should be property or field members)
             has an initializer.
             </summary>
             <param name="this">The symbol to check.</param>
+            <param name="cancellationToken">The cancellation token used for cancelling the operation.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
@@ -1344,7 +1345,35 @@
             Gets the member type string representation.
             </summary>
             <param name="this">The symbol.</param>
-            <returns>The result string.</returns>
+            <returns>
+            The result string that is the string representation of the type gotten.
+            <list type="table">
+            <listheader>
+            <term>Type</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IFieldSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IFieldSymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IPropertySymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IMethodSymbol.ReturnType"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IEventSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IEventSymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>Constant value <see langword="null"/> will be returned.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.ITypeSymbolExtensions">
             <summary>
@@ -1359,12 +1388,6 @@
             </summary>
             <param name="this">The symbol.</param>
             <returns>All members.</returns>
-        </member>
-        <member name="T:Microsoft.CodeAnalysis.SyntaxReferenceExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
         </member>
         <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
             <summary>
