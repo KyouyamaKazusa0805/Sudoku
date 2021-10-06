@@ -8,9 +8,9 @@ internal static class ModuleInitializer
 	/// <summary>
 	/// The initialize method.
 	/// </summary>
-	[ModuleInitializer, MethodImpl(MethodImplOptions.NoInlining)]
+	[ModuleInitializer]
 #if false
-	[MemberNotNull(nameof(StepSearcherPool.InnerCollection))]
+	[MemberNotNull($"{nameof(StepSearcherPool)}.{nameof(StepSearcherPool.InnerCollection)}")]
 #endif
 	public static void Initialize() =>
 		StepSearcherPool.Collection = (
