@@ -67,7 +67,7 @@ public interface IChainStep : IStep
 				}
 			}
 
-			return true;
+			goto ReturnTrue;
 		}
 		else
 		{
@@ -79,8 +79,11 @@ public interface IChainStep : IStep
 				}
 			}
 
-			return true;
+			goto ReturnTrue;
 		}
+
+	ReturnTrue:
+		return true;
 
 	ReturnFalse:
 		return false;
