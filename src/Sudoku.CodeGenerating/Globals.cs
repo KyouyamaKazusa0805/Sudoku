@@ -17,6 +17,15 @@ global using Microsoft.CodeAnalysis.Text;
 global using Sudoku.CodeGenerating.Reflection;
 global using static Sudoku.CodeGenerating.Constants;
 
+#if SUPPORT_SOURCE_GENERATOR
+global using Sudoku.CodeGenerating;
+#endif
+
+
 #if !NETSTANDARD2_1_OR_GREATER
-[module: SuppressMessage("Style", "IDE0057:Use range operator", Justification = "<Pending>")]
+[assembly: SuppressMessage("Style", "IDE0057:Use range operator", Justification = "<Pending>")]
+#endif
+
+#if SUPPORT_SOURCE_GENERATOR
+[assembly: AutoDeconstructExtensionLambda<SyntaxReference>(nameof(SyntaxReference.Span), $"{nameof(SyntaxReference)}.{nameof(SyntaxReferenceDeconstructArgumentProvider.SyntaxNode)}")]
 #endif

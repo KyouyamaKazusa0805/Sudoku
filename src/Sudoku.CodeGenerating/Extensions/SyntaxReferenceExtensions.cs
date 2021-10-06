@@ -1,5 +1,6 @@
 ﻿namespace Microsoft.CodeAnalysis;
 
+#if !SUPPORT_SOURCE_GENERATOR
 /// <summary>
 /// Provides extension methods on <see cref="SyntaxReference"/>.
 /// </summary>
@@ -16,3 +17,13 @@ internal static class SyntaxReferenceExtensions
 #pragma warning restore CS1591
 #pragma warning restore IDE0079
 }
+#else
+internal sealed class SyntaxReferenceDeconstructArgumentProvider
+{
+	private SyntaxReferenceDeconstructArgumentProvider() { }
+
+
+	[DeconstructArgumentProvider]
+	internal static SyntaxNode SyntaxNode(SyntaxReference @this) => @this.GetSyntax();
+}
+#endif

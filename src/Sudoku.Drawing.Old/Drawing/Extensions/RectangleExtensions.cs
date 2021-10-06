@@ -49,10 +49,4 @@ internal static class RectangleExtensions
 	/// <returns>The result.</returns>
 	public static Rectangle Truncate(this in RectangleF @this) =>
 		new((int)@this.X, (int)@this.Y, (int)@this.Width, (int)@this.Height);
-
-	public static void Deconstruct(this in RectangleF @this, out PointF point, out SizeF size)
-	{
-		point = new(@this.X, @this.Y);
-		size = new(@this.Size);
-	}
 }

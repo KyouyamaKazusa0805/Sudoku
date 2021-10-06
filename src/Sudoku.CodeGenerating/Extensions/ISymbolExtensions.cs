@@ -27,6 +27,7 @@ internal static class ISymbolExtensions
 	{
 		IFieldSymbol f => f.Type.ToDisplayString(TypeFormats.FullName),
 		IPropertySymbol p => p.Type.ToDisplayString(TypeFormats.FullName),
+		IMethodSymbol m => m.ReturnType.ToDisplayString(TypeFormats.FullName),
 		_ => null
 	};
 }

@@ -5809,54 +5809,21 @@
             <summary>
             Provides arguments for the event <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
             </summary>
+            <param name="Cell">The cell offset. Must be in range 0 to 80.</param>
+            <param name="OldMask">The old mask before modified.</param>
+            <param name="NewMask">The mask to modify the cell.</param>
+            <param name="SetValue">The value. -1 when this value is not required.</param>
             <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.#ctor(System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
-            Initializes the instance with some data.
+            Provides arguments for the event <see cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>.
             </summary>
-            <param name="cell">The cell offset. Must be in range 0 to 80.</param>
-            <param name="oldMask">The old mask before modified.</param>
-            <param name="newMask">The mask to modify the cell.</param>
-            <param name="setValue">
-            The value to set on the cell. If the action is deletion,
-            this argument should be -1.
-            </param>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.Cell">
-            <summary>
-            The cell offset. Must be in range 0 to 80.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.OldMask">
-            <summary>
-            The old mask before modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.NewMask">
-            <summary>
-            The new mask after modified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.SudokuGrid.ValueChangedArgs.SetValue">
-            <summary>
-            The value. -1 when this value is not required.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.Equals(Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Equality(Sudoku.Data.SudokuGrid.ValueChangedArgs@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGrid.ValueChangedArgs.op_Inequality(Sudoku.Data.SudokuGrid.ValueChangedArgs@,Sudoku.Data.SudokuGrid.ValueChangedArgs@)">
-            <inheritdoc/>
+            <param name="Cell">The cell offset. Must be in range 0 to 80.</param>
+            <param name="OldMask">The old mask before modified.</param>
+            <param name="NewMask">The mask to modify the cell.</param>
+            <param name="SetValue">The value. -1 when this value is not required.</param>
+            <seealso cref="F:Sudoku.Data.SudokuGrid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@,Sudoku.Data.Cells[]@)">
             <summary>

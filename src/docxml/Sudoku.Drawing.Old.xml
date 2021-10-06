@@ -1686,6 +1686,16 @@
             Deconstruct the instance to multiple elements.
             </summary>
         </member>
+        <member name="T:System.Drawing.RectangleF_LambdaedDeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:System.Drawing.RectangleF_LambdaedDeconstructionMethods.Deconstruct(System.Drawing.RectangleF@,System.Drawing.PointF@,System.Drawing.SizeF@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
         <member name="T:Emgu.CV.Structure.RotatedRect_DeconstructionMethods">
             <summary>
             Provides the extension methods on this type.
