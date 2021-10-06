@@ -28,4 +28,12 @@
 		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<EditorConfigFiles Remove="..\Sudoku.Solving\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Sudoku.Solving\.editorconfig" />
+	</ItemGroup>
+
 </Project>
