@@ -3,7 +3,7 @@
 /// <summary>
 /// A generator that generates the code for code analyzer and fix defaults.
 /// </summary>
-#if false
+#if SUPPORT_CODE_ANALYZER || SUPPORT_CODE_FIXER
 [Generator]
 #endif
 public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenerator
@@ -14,6 +14,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 	private const string CsvTableName = "DiagnosticResults.csv";
 
 
+#if SUPPORT_CODE_FIXER
 	/// <summary>
 	/// Indicates the regular expression for extraction of the information.
 	/// The regular expression is <c><![CDATA[(?<=\(")[A-Za-z]{2}\d{4}(?="\))]]></c>.
@@ -23,6 +24,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 		RegexOptions.ExplicitCapture,
 		TimeSpan.FromSeconds(5)
 	);
+#endif
 
 
 	/// <inheritdoc/>
@@ -46,6 +48,7 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 		string[] withoutHeader = new Memory<string>(list, 1, list.Length - 1).ToArray();
 		string[][] info = (from line in withoutHeader select line.SplitInfo()).ToArray();
 
+#if SUPPORT_CODE_ANALYZER
 		foreach (var (type, attributeData) in
 			from type in receiver.Candidates
 			let model = compilation.GetSemanticModel(type.SyntaxTree)
@@ -75,7 +78,8 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 				select $@"/// <item>
 /// <term><see href=""https://sunnieshine.github.io/Sudoku/rules/Rule-{id}"">{diagnosticId}</see></term>
 /// <description>{GetDescription(info, id)}</description>
-/// </item>");
+/// </item>"
+			);
 			string descriptors = string.Join(
 				"\r\n\r\n\t",
 				from diagnosticId in diagnosticIds
@@ -90,20 +94,38 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 	private static readonly DiagnosticDescriptor {id} = new(
 		DiagnosticIds.{id}, Titles.{id}, Messages.{id}, Categories.{id},
 		DiagnosticSeverities.{id}, true, helpLinkUri: HelpLinks.{id}{tags}
-	);");
-
+	);"
+			);
 			string supportedInstances = string.Join(
 				", ",
 				from diagnosticId in diagnosticIds select Cut(diagnosticId)
 			);
+			string attributeApplied =
+#if SUPPORT_CODE_ANALYZER_VSIX
+				@"[DiagnosticAnalyzer(LanguageNames.CSharp)]
+";
+#else
+				string.Empty;
+#endif
+			string overridenProperties =
+#if SUPPORT_CODE_ANALYZER_VSIX
+				$@"
+
+
+	/// <inheritdoc/>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
+		{supportedInstances}
+	);";
+#else
+				string.Empty;
+#endif
 
 			context.AddSource(
 				type.ToFileName(),
 				GeneratedFileShortcuts.CodeAnalyzer,
-				$@"using System.Collections.Immutable;
-using Microsoft.CodeAnalysis.Diagnostics;
-
-#nullable enable
+				$@"#nullable enable
 
 namespace {namespaceName};
 
@@ -113,23 +135,16 @@ namespace {namespaceName};
 {diagnosticResults}
 /// </list>
 /// </summary>
-[DiagnosticAnalyzer(LanguageNames.CSharp)]
-partial class {type.Name}
+{attributeApplied}partial class {type.Name}
 {{
-	{descriptors}
-
-
-	/// <inheritdoc/>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(
-		{supportedInstances}
-	);
+	{descriptors}{overridenProperties}
 }}
 "
 			);
 		}
+#endif
 
+#if SUPPORT_CODE_FIXER
 		foreach (var type in
 			from type in receiver.Candidates
 			let model = compilation.GetSemanticModel(type.SyntaxTree)
@@ -192,6 +207,7 @@ partial class {typeName}
 "
 			);
 		}
+#endif
 	}
 
 
@@ -199,6 +215,7 @@ partial class {typeName}
 	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
 
 
+#if SUPPORT_CODE_ANALYZER || SUPPORT_CODE_FIXER
 	/// <summary>
 	/// Cut the diagnostic ID and get the base ID part. This method will remove the suffix <c>"F"</c>
 	/// if exists.
@@ -227,4 +244,5 @@ partial class {typeName}
 	private static string GetDescription(string[][] info, string id) => (
 		from line in info select (Id: line[0], Title: line[3])
 	).First(pair => pair.Id == id).Title.Replace("{", "&lt;").Replace("}", "&gt;");
+#endif
 }

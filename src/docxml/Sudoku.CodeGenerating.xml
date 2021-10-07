@@ -674,12 +674,6 @@
             Indicates the name that stores the diagnostic information.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.InfoRegex">
-            <summary>
-            Indicates the regular expression for extraction of the information.
-            The regular expression is <c><![CDATA[(?<=\(")[A-Za-z]{2}\d{4}(?="\))]]></c>.
-            </summary>
-        </member>
         <member name="M:Sudoku.CodeGenerating.Generators.CodeAnalyzerOrFixerDefaultsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>

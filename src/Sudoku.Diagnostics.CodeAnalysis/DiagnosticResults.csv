@@ -1,0 +1,5 @@
+﻿ID,Severity,Category,Title,Message Format
+SD0305,Error,Usage,The input value in this initializer is invalid.,
+SD0306,Warning,Usage,The remove expression in the initializer following with the current constructor has no effect.,The remove expression in the initializer following with the constructor '{0}.{0}()' has no effect.
+SD0307,Info,Usage,The expression can be simplified.,The expression can be simplified to '{0}'.
+SD0308,Warning,Usage,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.

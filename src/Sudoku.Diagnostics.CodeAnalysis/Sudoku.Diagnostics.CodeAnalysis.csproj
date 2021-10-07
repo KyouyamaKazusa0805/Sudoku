@@ -4,21 +4,21 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>0.3</Version>
+		<Version>0.1</Version>
 		<Authors>Sunnie</Authors>
-		<Description>A project that generates the source code.</Description>
+		<Description>A project that diagnostics about the solution codes.</Description>
 		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<DocumentationFile>..\docxml\Sudoku.CodeGenerating.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SUPPORT_CODE_ANALYZER</DefineConstants>
-	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="DiagnosticResults.csv" />
+	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SUPPORT_CODE_ANALYZER</DefineConstants>
-	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="IsExternalInit" Version="1.0.1">

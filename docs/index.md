@@ -74,6 +74,9 @@ This section you'll find the details about this solution.
   * 老的技巧算法参考
     * [复杂鱼](technique-algorithm-ref/Old-Algorithm-Complex-Fish)
     * [死亡绽放](technique-algorithm-ref/Old-Algorithm-Death-Blossom)
+* 注入式代码分析器（用源代码生成器实现的）
+  * [诊断信息的大体分类](code-analysis/Code-Analysis-Table)
+  * [所有诊断信息的列举表格](code-analysis/Code-Analysis-Rule-List)
 * 其它
   * [伪代码约定](miscellaneous/Pseudo-Code-Convention)
 

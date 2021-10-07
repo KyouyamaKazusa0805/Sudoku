@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿# 项目及文件夹介绍
+﻿﻿﻿﻿﻿﻿# 项目及文件夹介绍
 这个解决方案由如下项目和文件夹构成。
 
 ## 项目介绍
@@ -13,6 +13,7 @@
 | **[`Sudoku.CodeGenerating`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CodeGenerating)** | .NET Standard 2.0 | 源代码生成器 | **给其它项目提供源代码生成工作。**          |
 | **[`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)** | .NET 6            | 类库         | **数独基本元素实现的数据结构的 API。**      |
 | **[`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics)** | .NET 6            | 类库         | **提供反射解决方案的 API。**                |
+| **[`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis)** | .NET Standard 2.0 | 源代码生成器 | **对代码健壮性、API 使用正确性进行分析。**  |
 | ~~[`Sudoku.Drawing.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing.Old)~~ | .NET 6            | 类库         | ~~用于绘制和渲染数独盘面。~~                |
 | ~~[`Sudoku.IO.Old`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO.Old)~~ | .NET 6            | 类库         | ~~用于处理数独相关的文件操作。~~            |
 | **[`Sudoku.Solving`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving)** | .NET 6            | 类库         | **提供人工和计算机解题和出题的 API。**      |
