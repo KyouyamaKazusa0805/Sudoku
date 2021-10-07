@@ -10,7 +10,7 @@
 #if DEBUG
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif
-[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
+[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
 public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, IParsable<Grid>
 {
@@ -520,7 +520,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly Cells[] CandidateMap
+	public readonly Cells[] CandidatesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -537,11 +537,11 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </para>
 	/// <para>
-	/// Different with <see cref="CandidateMap"/>, this property contains all givens, modifiables and
+	/// Different with <see cref="CandidatesMap"/>, this property contains all givens, modifiables and
 	/// empty cells only if it contains the digit in the mask.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="CandidateMap"/>
+	/// <seealso cref="CandidatesMap"/>
 	public readonly Cells[] DigitsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -559,11 +559,11 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </para>
 	/// <para>
-	/// Different with <see cref="CandidateMap"/>, the value only contains the given or modifiable
+	/// Different with <see cref="CandidatesMap"/>, the value only contains the given or modifiable
 	/// cells whose mask contain the set bit of that digit.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="CandidateMap"/>
+	/// <seealso cref="CandidatesMap"/>
 	public readonly Cells[] ValuesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -751,6 +751,45 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	}
 
 	/// <summary>
+	/// Indicates whether the current grid contains the specified candidate offset.
+	/// </summary>
+	/// <param name="candidate">The candidate offset.</param>
+	/// <returns>
+	/// The method will return a <see cref="bool"/>? value (contains three possible cases:
+	/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+	/// All values corresponding to the cases are below:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>
+	/// The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
+	/// that the candidate specified.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>
+	/// The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
+	/// that the candidate specified.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>
+	/// The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <remarks>
+	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+	/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+	/// to decide whether a condition is true.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool? Exists(int candidate) => Exists(candidate / 9, candidate % 9);
+
+	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell offset.</param>
@@ -780,7 +819,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// </returns>
 	/// <remarks>
 	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
-	/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+	/// '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
 	/// to decide whether a condition is true.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -998,12 +1037,11 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	}
 
 	/// <summary>
-	/// Called by properties <see cref="CandidateMap"/>, <see cref="DigitsMap"/>
-	/// and <see cref="ValuesMap"/>.
+	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>
 	/// <returns>The map of digits.</returns>
-	/// <seealso cref="CandidateMap"/>
+	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
 	private readonly Cells[] GetMap(delegate*<in Grid, int, int, bool> predicate)

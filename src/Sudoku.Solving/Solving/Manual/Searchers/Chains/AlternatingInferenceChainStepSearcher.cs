@@ -293,7 +293,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			{
 				foreach (int candidate in elimMap)
 				{
-					if (grid.Exists(candidate / 9, candidate % 9) is true)
+					if (grid.Exists(candidate) is true)
 					{
 						conclusions.Add(new(ConclusionType.Elimination, candidate));
 					}
@@ -336,7 +336,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 			foreach (int candidate in elimMap)
 			{
-				if (grid.Exists(candidate / 9, candidate % 9) is true)
+				if (grid.Exists(candidate) is true)
 				{
 					conclusions.Add(new(ConclusionType.Elimination, candidate));
 				}

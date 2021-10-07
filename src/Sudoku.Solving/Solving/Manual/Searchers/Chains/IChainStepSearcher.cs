@@ -259,7 +259,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			if (!isDynamic)
 			{
 				// If not dynamic chains, we can use this property to optimize performance.
-				return enableFastProperties ? CandMaps[digit] : grid.CandidateMap[digit];
+				return enableFastProperties ? CandMaps[digit] : grid.CandidatesMap[digit];
 			}
 
 			var result = Cells.Empty;
