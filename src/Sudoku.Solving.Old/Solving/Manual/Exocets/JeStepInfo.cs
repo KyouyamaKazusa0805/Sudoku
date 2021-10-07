@@ -9,7 +9,7 @@
 /// <param name="LockedMemberQ">The locked member Q.</param>
 /// <param name="LockedMemberR">The locked member R.</param>
 /// <param name="Eliminations">All eliminations.</param>
-public sealed record class JeStepInfo(
+public sealed record JeStepInfo(
 	IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
 	IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
 	IReadOnlyList<Elimination> Eliminations

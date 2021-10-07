@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">The conjugate pair.</param>
 /// <param name="WDigitsMask">The W digit mask.</param>
 /// <param name="X">The digit X.</param>
-public sealed record class AlsWWingStepInfo(
+public sealed record AlsWWingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
 	in ConjugatePair ConjugatePair, short WDigitsMask, int X
 ) : AlsStepInfo(Conclusions, Views)

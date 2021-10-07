@@ -32,7 +32,7 @@
 /// </list>
 /// </para>
 /// </param>
-public sealed record class UniqueRectangleType3Step(
+public sealed record UniqueRectangleType3Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

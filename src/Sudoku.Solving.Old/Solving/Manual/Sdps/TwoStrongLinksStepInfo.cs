@@ -8,7 +8,7 @@
 /// <param name="Digit">The digit used.</param>
 /// <param name="BaseRegion">The base region.</param>
 /// <param name="TargetRegion">The target region.</param>
-public sealed record class TwoStrongLinksStepInfo(
+public sealed record TwoStrongLinksStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit, int BaseRegion, int TargetRegion
 ) : SdpStepInfo(Conclusions, Views, Digit)

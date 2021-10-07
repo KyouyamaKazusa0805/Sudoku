@@ -8,7 +8,7 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseRegion">Indicates the base region used.</param>
 /// <param name="TargetRegion">Indicates the target region used.</param>
-public sealed record class TwoStrongLinksStep(
+public sealed record TwoStrongLinksStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit,

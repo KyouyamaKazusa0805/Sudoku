@@ -6,7 +6,7 @@
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
 /// <param name="Cells">All cells used.</param>
-public sealed record class SkLoopStepInfo(
+public sealed record SkLoopStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Cells
 ) : RankTheoryStepInfo(Conclusions, Views)
 {

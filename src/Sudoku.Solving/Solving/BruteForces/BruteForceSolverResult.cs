@@ -4,7 +4,7 @@
 /// Encapsulates a solver result information that is created by a brute force solver.
 /// </summary>
 /// <param name="OriginalPuzzle"><inheritdoc/></param>
-public sealed record class BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverResult
+public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverResult
 {
 	/// <inheritdoc/>
 	/// <remarks>The default value is <see langword="true"/>.</remarks>

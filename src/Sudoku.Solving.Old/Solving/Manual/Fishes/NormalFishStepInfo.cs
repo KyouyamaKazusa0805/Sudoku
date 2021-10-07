@@ -24,7 +24,7 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record class NormalFishStepInfo(
+public sealed record NormalFishStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 	IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi
 ) : FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)

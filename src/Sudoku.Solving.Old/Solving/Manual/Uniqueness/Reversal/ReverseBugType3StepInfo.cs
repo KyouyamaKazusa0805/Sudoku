@@ -11,7 +11,7 @@
 /// <param name="Digit2">The digit 2 used.</param>
 /// <param name="DigitsMask">All extra digits used.</param>
 /// <param name="IsNaked">Indicates whether the subset is naked.</param>
-public sealed record class ReverseBugType3StepInfo(
+public sealed record ReverseBugType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop,
 	in Cells ExtraCells, int Digit1, int Digit2, short DigitsMask, bool IsNaked
 ) : ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)

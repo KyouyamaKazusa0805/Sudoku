@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Solving.Manual.Fishes;
 
-partial record class ComplexFishStepInfo
+partial record ComplexFishStepInfo
 {
 	/// <summary>
 	/// Indicates the shape modifiers.

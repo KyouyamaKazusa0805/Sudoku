@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Candidates">All candidates.</param>
 /// <param name="Chains">The sub-chains.</param>
-public sealed record class BugMultipleWithFcStepInfo(
+public sealed record BugMultipleWithFcStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates,
 	IReadOnlyDictionary<int, Node> Chains
 ) : BugStepInfo(Conclusions, Views)

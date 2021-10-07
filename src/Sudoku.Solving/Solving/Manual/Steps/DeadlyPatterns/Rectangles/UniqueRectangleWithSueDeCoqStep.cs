@@ -29,7 +29,7 @@
 /// Indicates the cells in the intersection from regions <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleWithSueDeCoqStep(
+public sealed record UniqueRectangleWithSueDeCoqStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

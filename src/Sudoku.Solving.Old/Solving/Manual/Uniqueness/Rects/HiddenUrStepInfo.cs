@@ -12,7 +12,7 @@
 /// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 /// <param name="ConjugatePairs">All conjugate pairs.</param>
 /// <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
-public sealed record class HiddenUrStepInfo(
+public sealed record HiddenUrStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
 	IReadOnlyList<ConjugatePair> ConjugatePairs, int AbsoluteOffset

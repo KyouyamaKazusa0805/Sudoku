@@ -10,7 +10,7 @@
 /// <param name="Digit1">The digit 1 used.</param>
 /// <param name="Digit2">The digit 2 used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair.</param>
-public sealed record class ReverseBugType4StepInfo(
+public sealed record ReverseBugType4StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop,
 	in Cells ExtraCells, int Digit1, int Digit2, in ConjugatePair ConjugatePair
 ) : ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)

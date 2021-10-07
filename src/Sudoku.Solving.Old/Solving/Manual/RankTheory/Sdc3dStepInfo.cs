@@ -11,7 +11,7 @@
 /// <param name="RowCells">The row cells map.</param>
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
-public sealed record class Sdc3dStepInfo(
+public sealed record Sdc3dStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
 	in Cells RowCells, in Cells ColumnCells, in Cells BlockCells

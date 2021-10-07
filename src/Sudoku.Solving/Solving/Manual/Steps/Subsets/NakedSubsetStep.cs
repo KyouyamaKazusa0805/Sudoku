@@ -25,7 +25,7 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record class NakedSubsetStep(
+public sealed record NakedSubsetStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Region,

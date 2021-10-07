@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Pivot">The pivot cell.</param>
 /// <param name="Petals">All ALSes used.</param>
-public sealed record class DbStepInfo(
+public sealed record DbStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Pivot, IReadOnlyDictionary<int, Als> Petals
 ) : AlsStepInfo(Conclusions, Views)

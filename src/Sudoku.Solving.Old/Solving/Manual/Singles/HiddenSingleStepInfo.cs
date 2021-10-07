@@ -9,7 +9,7 @@
 /// <param name="Digit">The digit.</param>
 /// <param name="Region">The region.</param>
 /// <param name="EnableAndIsLastDigit">Indicates whether the current technique is a last digit.</param>
-public sealed record class HiddenSingleStepInfo(
+public sealed record HiddenSingleStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Cell, int Digit, int Region, bool EnableAndIsLastDigit
 ) : SingleStepInfo(Conclusions, Views, Cell, Digit)

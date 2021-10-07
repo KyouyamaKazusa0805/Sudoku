@@ -9,7 +9,7 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
-public sealed record class BivalueOddagonType1Step(
+public sealed record BivalueOddagonType1Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	in Cells Loop,

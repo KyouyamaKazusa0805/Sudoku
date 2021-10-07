@@ -13,7 +13,7 @@
 /// Indicates the digit when the anchor cell is filled with it, then the structure may
 /// form a deadly pattern.
 /// </param>
-public sealed record class ReverseBugType1StepInfo(
+public sealed record ReverseBugType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop,
 	int Digit1, int Digit2, int Anchor, int AnchorLastDigit
 ) : ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)

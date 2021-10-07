@@ -9,7 +9,7 @@
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record class BivalueOddagonType2StepInfo(
+public sealed record BivalueOddagonType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Loop, int Digit1, int Digit2, int ExtraDigit
 ) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)

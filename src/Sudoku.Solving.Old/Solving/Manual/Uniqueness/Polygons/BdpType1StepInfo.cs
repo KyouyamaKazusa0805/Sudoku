@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Map">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-public sealed record class BdpType1StepInfo(
+public sealed record BdpType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask
 ) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 {

@@ -12,7 +12,7 @@
 /// <param name="TargetCell">The target cell.</param>
 /// <param name="TargetRegion">The target region.</param>
 /// <param name="AbsoluteOffset">The absolute offset.</param>
-public sealed record class ArWithHiddenSingleStepInfo(
+public sealed record ArWithHiddenSingleStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
 	int[] Cells, int BaseCell, int TargetCell, int TargetRegion, int AbsoluteOffset
 ) : UrStepInfo(

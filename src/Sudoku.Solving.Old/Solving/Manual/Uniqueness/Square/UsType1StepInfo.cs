@@ -8,7 +8,7 @@
 /// <param name="Cells">The cells.</param>
 /// <param name="DigitsMask">The digits mask.</param>
 /// <param name="Candidate">Indicates the true candidate.</param>
-public sealed record class UsType1StepInfo(
+public sealed record UsType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Cells, short DigitsMask, int Candidate
 ) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)

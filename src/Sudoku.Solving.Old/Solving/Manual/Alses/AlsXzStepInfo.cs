@@ -30,7 +30,7 @@
 /// </list>
 /// </para>
 /// </param>
-public sealed record class AlsXzStepInfo(
+public sealed record AlsXzStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
 	short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked
 ) : AlsStepInfo(Conclusions, Views)

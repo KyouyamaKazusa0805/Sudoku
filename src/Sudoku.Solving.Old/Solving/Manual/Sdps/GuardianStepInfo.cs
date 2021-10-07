@@ -9,7 +9,7 @@
 /// <param name="Loop">The loop.</param>
 /// <param name="Guardians">All guardians.</param>
 [AutoHashCode(nameof(Digit), nameof(Loop), nameof(Guardians))]
-public sealed partial record class GuardianStepInfo(
+public sealed partial record GuardianStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit, in Cells Loop, in Cells Guardians
 ) : SdpStepInfo(Conclusions, Views, Digit)

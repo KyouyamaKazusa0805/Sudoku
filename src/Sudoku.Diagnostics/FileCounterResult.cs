@@ -13,7 +13,7 @@
 /// please write this property explicitly.
 /// </param>
 /// <seealso cref="FileCounter"/>
-public sealed record class FileCounterResult(
+public sealed record FileCounterResult(
 	int ResultLines,
 	int FilesCount,
 	long CharactersCount,

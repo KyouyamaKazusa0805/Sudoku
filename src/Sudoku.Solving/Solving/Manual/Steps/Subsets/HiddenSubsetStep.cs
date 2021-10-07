@@ -8,7 +8,7 @@
 /// <param name="Region"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-public sealed record class HiddenSubsetStep(
+public sealed record HiddenSubsetStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Region,

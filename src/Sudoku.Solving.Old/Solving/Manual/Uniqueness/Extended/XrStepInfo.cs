@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Cells">All cells.</param>
 /// <param name="DigitsMask">All digits mask.</param>
-public abstract record class XrStepInfo(
+public abstract record XrStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask
 ) : UniquenessStepInfo(Conclusions, Views)
 {

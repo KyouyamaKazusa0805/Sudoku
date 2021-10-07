@@ -3,13 +3,13 @@ using CountryCode = Sudoku.Globalization.CountryCode;
 
 namespace Sudoku.Solving;
 
-partial record class AnalysisResult
+partial record AnalysisResult
 {
 	/// <summary>
 	/// Provides operations for analysis result formatting.
 	/// </summary>
 	/// <param name="Result">Indicates the analysis result.</param>
-	private sealed record class Formatter(AnalysisResult Result) : IFormattable
+	private sealed record Formatter(AnalysisResult Result) : IFormattable
 	{
 		/// <inheritdoc/>
 		public override string ToString() => ToString(null, null);

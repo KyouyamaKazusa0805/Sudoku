@@ -8,7 +8,7 @@
 /// <param name="DigitsMask">The digits mask.</param>
 /// <param name="Cells">All cells.</param>
 /// <param name="ExtraCell">The extra cell.</param>
-public sealed record class BugXzStepInfo(
+public sealed record BugXzStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell
 ) : BugStepInfo(Conclusions, Views)

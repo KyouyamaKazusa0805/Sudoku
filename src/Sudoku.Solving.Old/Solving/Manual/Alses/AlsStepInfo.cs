@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
-public abstract record class AlsStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+public abstract record AlsStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	: StepInfo(Conclusions, Views)
 {
 	/// <inheritdoc/>

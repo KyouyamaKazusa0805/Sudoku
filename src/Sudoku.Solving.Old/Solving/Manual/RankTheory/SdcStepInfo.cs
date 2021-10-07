@@ -15,7 +15,7 @@
 /// <param name="BlockCells">The map of block cells.</param>
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
-public sealed record class SdcStepInfo(
+public sealed record SdcStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
 	bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,

@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
-public sealed record class PomStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+public sealed record PomStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
 	: LastResortStepInfo(Conclusions, Views)
 {
 	/// <summary>

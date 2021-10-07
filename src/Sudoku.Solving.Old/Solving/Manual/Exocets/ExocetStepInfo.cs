@@ -9,7 +9,7 @@
 /// <param name="LockedMemberQ">The locked member Q.</param>
 /// <param name="LockedMemberR">The locked member R.</param>
 /// <param name="Eliminations">The eliminations.</param>
-public abstract record class ExocetStepInfo(
+public abstract record ExocetStepInfo(
 	IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
 	IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR, IReadOnlyList<Elimination> Eliminations
 ) : StepInfo(GatherConclusions(Eliminations), Views)

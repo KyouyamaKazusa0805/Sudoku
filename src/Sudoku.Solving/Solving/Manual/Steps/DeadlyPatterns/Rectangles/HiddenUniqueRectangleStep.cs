@@ -11,7 +11,7 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class HiddenUniqueRectangleStep(
+public sealed record HiddenUniqueRectangleStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

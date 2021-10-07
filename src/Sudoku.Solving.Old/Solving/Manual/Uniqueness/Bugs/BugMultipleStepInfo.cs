@@ -6,7 +6,7 @@
 /// <param name="Conclusions">All conclusions.</param>
 /// <param name="Views">All views.</param>
 /// <param name="Candidates">All candidates used.</param>
-public sealed record class BugMultipleStepInfo(
+public sealed record BugMultipleStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates
 ) : BugStepInfo(Conclusions, Views)
 {

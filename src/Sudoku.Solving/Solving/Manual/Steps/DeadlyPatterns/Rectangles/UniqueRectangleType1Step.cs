@@ -10,7 +10,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleType1Step(
+public sealed record UniqueRectangleType1Step(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

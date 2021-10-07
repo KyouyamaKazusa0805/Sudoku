@@ -6,7 +6,7 @@
 /// <param name="Digit">Indicates the digit.</param>
 /// <param name="Cell">Indicates the cell.</param>
 [Obsolete("In the future, this type won't be used.", false)]
-public sealed record class EliminationStep(int Digit, int Cell) : IStep
+public sealed record EliminationStep(int Digit, int Cell) : IStep
 {
 	/// <inheritdoc/>
 	public unsafe void UndoStepTo(UndoableGrid grid)

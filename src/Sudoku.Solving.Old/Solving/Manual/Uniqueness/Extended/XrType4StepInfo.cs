@@ -8,7 +8,7 @@
 /// <param name="Cells">All cells.</param>
 /// <param name="DigitsMask">All digits mask.</param>
 /// <param name="ConjugatePair">The conjugate pair.</param>
-public sealed record class XrType4StepInfo(
+public sealed record XrType4StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Cells, short DigitsMask, in ConjugatePair ConjugatePair
 ) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)

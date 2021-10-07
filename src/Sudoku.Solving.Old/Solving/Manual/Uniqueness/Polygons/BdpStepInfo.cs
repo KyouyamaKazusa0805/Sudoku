@@ -7,7 +7,7 @@
 /// <param name="Views">All views.</param>
 /// <param name="Map">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
-public abstract record class BdpStepInfo(
+public abstract record BdpStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask
 ) : UniquenessStepInfo(Conclusions, Views)
 {

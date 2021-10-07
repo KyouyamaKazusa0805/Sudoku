@@ -8,7 +8,7 @@
 /// <param name="Digit">The digit used.</param>
 /// <param name="Block">The block that the empty rectangle lies in.</param>
 /// <param name="ConjugatePair">The conjugate pair.</param>
-public sealed record class ErStepInfo(
+public sealed record ErStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit, int Block, in ConjugatePair ConjugatePair
 ) : SdpStepInfo(Conclusions, Views, Digit)

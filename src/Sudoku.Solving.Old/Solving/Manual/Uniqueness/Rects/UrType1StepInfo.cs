@@ -11,7 +11,7 @@
 /// <param name="Cells">All cells.</param>
 /// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public sealed record class UrType1StepInfo(
+public sealed record UrType1StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset
 ) : UrStepInfo(

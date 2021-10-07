@@ -14,7 +14,7 @@
 /// <param name="Petals">Indicates the petals used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class UniqueRectangleWithWingStep(
+public sealed record UniqueRectangleWithWingStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	Technique TechniqueCode2,

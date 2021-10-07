@@ -12,7 +12,7 @@
 /// <param name="IsMultiple">Indicates whether the chain is multiple.</param>
 /// <param name="IsNishio">Indicates whether the chain is nishio.</param>
 /// <param name="Level">Indicates the dynamic level of the chain.</param>
-public sealed record class BinaryChainingStepInfo(
+public sealed record BinaryChainingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Node SourceNode, in Node FromOnNode, in Node FromOffNode,
 	bool IsAbsurd, bool IsMultiple, bool IsNishio, int Level

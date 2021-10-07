@@ -8,7 +8,7 @@
 /// <param name="StartCell">The start cell.</param>
 /// <param name="EndCell">The end cell.</param>
 /// <param name="ConjugatePair">The conjugate pair.</param>
-public sealed record class WWingStepInfo(
+public sealed record WWingStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int StartCell, int EndCell, in ConjugatePair ConjugatePair
 ) : IrregularWingStepInfo(Conclusions, Views)

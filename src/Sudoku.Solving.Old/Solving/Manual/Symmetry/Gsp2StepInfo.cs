@@ -11,7 +11,7 @@
 /// The mapping table. The value is always not <see langword="null"/> unless the current instance
 /// contains multiple different symmetry types.
 /// </param>
-public sealed record class Gsp2StepInfo(
+public sealed record Gsp2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	SymmetryType SymmetryType, int[]?[]? SwappingTable, int?[]? MappingTable
 ) : SymmetryStepInfo(Conclusions, Views)

@@ -8,7 +8,7 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
 /// <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
-public abstract record class FishStep(
+public abstract record FishStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit,

@@ -13,7 +13,7 @@
 /// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
 /// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
-public sealed record class UrType2StepInfo(
+public sealed record UrType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, Technique TechniqueCode,
 	int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int ExtraDigit, int AbsoluteOffset
 ) : UrStepInfo(Conclusions, Views, TechniqueCode, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)

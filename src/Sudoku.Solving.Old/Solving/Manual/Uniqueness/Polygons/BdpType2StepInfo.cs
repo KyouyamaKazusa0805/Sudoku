@@ -8,7 +8,7 @@
 /// <param name="Map">The cells used.</param>
 /// <param name="DigitsMask">The digits mask.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record class BdpType2StepInfo(
+public sealed record BdpType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Map, short DigitsMask, int ExtraDigit
 ) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)

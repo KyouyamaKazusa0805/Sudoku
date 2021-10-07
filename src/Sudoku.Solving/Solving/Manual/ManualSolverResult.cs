@@ -8,7 +8,7 @@
 [AutoDeconstruct(nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(OriginalPuzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, ReturnType = typeof(ImmutableArray<Step>.Enumerator), MemberConversion = "@.*")]
 [AutoFormattable]
-public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle) : ISolverResult, IFormattable
+public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolverResult, IFormattable
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }

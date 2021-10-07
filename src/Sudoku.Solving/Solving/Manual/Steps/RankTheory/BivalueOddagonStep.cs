@@ -8,7 +8,7 @@
 /// <param name="Loop">Indicates the loop used.</param>
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
-public abstract record class BivalueOddagonStep(
+public abstract record BivalueOddagonStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	in Cells Loop,

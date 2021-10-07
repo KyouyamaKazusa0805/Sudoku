@@ -12,7 +12,7 @@
 /// <param name="TargetCell"></param>
 /// <param name="Region"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record class AvoidableRectangleWithHiddenSingleStep(
+public sealed record AvoidableRectangleWithHiddenSingleStep(
 	in ImmutableArray<Conclusion> Conclusions,
 	in ImmutableArray<PresentationData> Views,
 	int Digit1,

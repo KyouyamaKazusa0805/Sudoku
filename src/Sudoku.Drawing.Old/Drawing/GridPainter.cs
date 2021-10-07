@@ -13,7 +13,7 @@ namespace Sudoku.Drawing;
 /// because they will be colored using another method (draw candidates).
 /// </remarks>
 [Obsolete("Please use 'GridImageGenerator' instead.", false)]
-public sealed record class GridPainter(PointConverter Converter, Settings Preferences, UndoableGrid Grid)
+public sealed record GridPainter(PointConverter Converter, Settings Preferences, UndoableGrid Grid)
 {
 	/// <summary>
 	/// The square root of 2.

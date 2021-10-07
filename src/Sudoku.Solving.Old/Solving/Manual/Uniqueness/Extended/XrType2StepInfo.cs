@@ -8,7 +8,7 @@
 /// <param name="Cells">All cells.</param>
 /// <param name="DigitsMask">All digits mask.</param>
 /// <param name="ExtraDigit">The extra digit.</param>
-public sealed record class XrType2StepInfo(
+public sealed record XrType2StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Cells, short DigitsMask, int ExtraDigit
 ) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)
