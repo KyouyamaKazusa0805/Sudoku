@@ -3,7 +3,9 @@
 /// <summary>
 /// Indicates the source generator that generates the code for the resource dictionary.
 /// </summary>
+#if (SUPPORT_CODE_ANALYZER || SUPPORT_CODE_ANALYZER_VSIX) && !WINDOWS_APP
 [Generator]
+#endif
 public sealed class ResourceDictionaryGenerator : ISourceGenerator
 {
 	/// <summary>

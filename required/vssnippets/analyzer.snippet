@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>Custom Analyzer Implemented by Source Generator</Title>
+			<Shortcut>analyzer</Shortcut>
+			<Description>The snippet that allows you creating a source generator of convenience.</Description>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>code_analyzer_name</ID>
+					<Default>My</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>receiver_name</ID>
+					<Default>Code</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp" Delimiter="$">
+				<![CDATA[[Generator]
+public sealed partial class $code_analyzer_name$Analyzer : ISourceGenerator
+{
+	/// <inheritdoc/>
+	public void Execute(GeneratorExecutionContext context)
+	{
+		foreach (var diagnostic in (($receiver_name$Analyzer)context.SyntaxContextReceiver!).DiagnosticList)
+		{
+			context.ReportDiagnostic(diagnostic);
+		}
+	}
+
+	/// <inheritdoc/>
+	public void Initialize(GeneratorInitializationContext context)
+	{
+		context.RegisterForSyntaxNotifications(() => new $receiver_name$Analyzer(context.CancellationToken));
+	}
+
+
+	/// <summary>
+	/// Defines the syntax receiver.
+	/// </summary>
+	private sealed class $receiver_name$Analyzer : IAnalyzer
+	{
+		/// <summary>
+		/// Initializes a <see cref="CodeAnalyzer"/> instance via the specified cancellation token.
+		/// </summary>
+		/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+		public $receiver_name$Analyzer(CancellationToken cancellationToken) =>
+			CancellationToken = cancellationToken;
+
+
+		/// <inheritdoc/>
+		public CancellationToken CancellationToken { get; }
+
+		/// <inheritdoc/>
+		public IList<Diagnostic> DiagnosticList { get; } = new List<Diagnostic>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			// TODO: Finish the code here.$end$
+		}
+	}
+}
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

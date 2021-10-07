@@ -2,35 +2,32 @@
 
 [Generator]
 [CodeAnalyzer("SD0305", "SD0306F", "SD0307", "SD0308F")]
-public sealed partial class DataStructureAnalyzer : ISourceGenerator
+public sealed partial class CellsOrCandidatesInitializerAnalyzer : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		foreach (var diagnostic in ((CellsOrCandidatesInitializerAnalyzer)context.SyntaxContextReceiver!).DiagnosticList)
+		foreach (var diagnostic in ((CodeAnalyzer)context.SyntaxContextReceiver!).DiagnosticList)
 		{
 			context.ReportDiagnostic(diagnostic);
 		}
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-	{
-		context.RegisterForSyntaxNotifications(() => new CellsOrCandidatesInitializerAnalyzer(context.CancellationToken));
-	}
+	public void Initialize(GeneratorInitializationContext context) =>
+		context.RegisterForSyntaxNotifications(() => new CodeAnalyzer(context.CancellationToken));
 
 
 	/// <summary>
 	/// Defines the syntax receiver.
 	/// </summary>
-	private sealed class CellsOrCandidatesInitializerAnalyzer : IAnalyzer
+	private sealed class CodeAnalyzer : IAnalyzer
 	{
 		/// <summary>
-		/// Initializes a <see cref="CellsOrCandidatesInitializerAnalyzer"/> instance via the specified cancellation token.
+		/// Initializes a <see cref="CodeAnalyzer"/> instance via the specified cancellation token.
 		/// </summary>
 		/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-		public CellsOrCandidatesInitializerAnalyzer(CancellationToken cancellationToken) =>
-			CancellationToken = cancellationToken;
+		public CodeAnalyzer(CancellationToken cancellationToken) => CancellationToken = cancellationToken;
 
 
 		/// <inheritdoc/>

@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeAnalysis</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0305">SD0305</see></term>
+            <description>The input value in this initializer is invalid</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0306">SD0306F</see></term>
+            <description>The remove expression in the initializer following with the current constructor has no effect</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0307">SD0307</see></term>
+            <description>The expression can be simplified</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0308">SD0308F</see></term>
+            <description>The initializer contains the duplicate value</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.SD0305">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0305">SD0305</see>
+            diagnostic result (The input value in this initializer is invalid).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.SD0306">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0306">SD0306</see>
+            diagnostic result (The remove expression in the initializer following with the current constructor has no effect).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.SD0307">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0307">SD0307</see>
+            diagnostic result (The expression can be simplified).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CellsOrCandidatesInitializerAnalyzer.SD0308">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0308">SD0308</see>
+            diagnostic result (The initializer contains the duplicate value).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0302">SD0302</see></term>
+            <description>Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer.SD0302">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0302">SD0302</see>
+            diagnostic result (Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty').
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0303">SD0303</see></term>
+            <description>Please use the default-value field to avoid instantiation</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0304">SD0304</see></term>
+            <description>Please use the specific property to simplify the invocation</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SD0303">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0303">SD0303</see>
+            diagnostic result (Please use the default-value field to avoid instantiation).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.DefaultExpressionAnalyzer.SD0304">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0304">SD0304</see>
+            diagnostic result (Please use the specific property to simplify the invocation).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer">
+            <summary>
+            Provides a constraint set that defines an analyzer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer.CancellationToken">
+            <summary>
+            The cancellation token to cancel the current operation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer.DiagnosticList">
+            <summary>
+            Indicates the possible diagnostic list to report.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</see></term>
+            <description>'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer.SD0309">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</see>
+            diagnostic result ('stackalloc' or 'new' expression is unnecessary; Please use object initializer instead).
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>
