@@ -70,7 +70,7 @@ public sealed class DiagnosticInfoGenerator : ISourceGenerator
 		context.AddSource(
 			"DiagnosticIds",
 			null,
-			$@"#pragma warning disable 1591
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 
@@ -88,9 +88,7 @@ internal static class DiagnosticIds
 		context.AddSource(
 			"DiagnosticSeverities",
 			null,
-			$@"#pragma warning disable 1591
-
-using Microsoft.CodeAnalysis;
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 
@@ -108,7 +106,7 @@ internal static class DiagnosticSeverities
 		context.AddSource(
 			"Categories",
 			null,
-			$@"#pragma warning disable 1591
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 
@@ -126,7 +124,7 @@ internal static class Categories
 		context.AddSource(
 			"HelpLinks",
 			null,
-			$@"#pragma warning disable 1591
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 
@@ -144,7 +142,7 @@ internal static class HelpLinks
 		context.AddSource(
 			"Titles",
 			null,
-			$@"#pragma warning disable 1591
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 
@@ -162,7 +160,7 @@ internal static class Titles
 		context.AddSource(
 			"Messages",
 			null,
-			$@"#pragma warning disable 1591
+			$@"#pragma warning disable CS1591
 
 #nullable enable
 

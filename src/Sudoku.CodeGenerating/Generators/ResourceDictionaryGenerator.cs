@@ -41,9 +41,7 @@ public sealed class ResourceDictionaryGenerator : ISourceGenerator
 			).Distinct()
 		);
 
-		string code = $@"using System.Collections.Generic;
-
-#nullable enable
+		string code = $@"#nullable enable
 
 namespace Sudoku.CodeGenerating;
 

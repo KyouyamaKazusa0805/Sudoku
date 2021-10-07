@@ -101,7 +101,6 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 				type.ToFileName(),
 				GeneratedFileShortcuts.CodeAnalyzer,
 				$@"using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 #nullable enable

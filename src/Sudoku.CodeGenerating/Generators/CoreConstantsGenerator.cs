@@ -174,11 +174,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 		context.AddSource(
 			"Sudoku.Constants.Tables",
 			GeneratedFileShortcuts.CoreConstants,
-			$@"using System;
-using System.Collections.Generic;
-using Sudoku.Data;
-
-#nullable enable
+			$@"#nullable enable
 
 namespace Sudoku;
 
