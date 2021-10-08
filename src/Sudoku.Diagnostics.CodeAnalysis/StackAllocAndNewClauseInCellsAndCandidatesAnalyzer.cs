@@ -65,8 +65,8 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 				return;
 			}
 
-			var cellsSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Cells");
-			var candidatesSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Candidates");
+			var cellsSymbol = compilation.GetTypeByMetadataName(TypeNames.Cells);
+			var candidatesSymbol = compilation.GetTypeByMetadataName(TypeNames.Candidates);
 			bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(typeSymbol, cellsSymbol);
 			bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(typeSymbol, candidatesSymbol);
 			if (!isOfTypeCells && !isOfTypeCandidates)
@@ -82,7 +82,7 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 						Diagnostic.Create(
 							descriptor: SD0309,
 							location: newExpression.GetLocation(),
-							messageArgs: new[] { "new" }
+							messageArgs: new[] { TokenValues.NewKeyword }
 						)
 					);
 
@@ -94,7 +94,7 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 						Diagnostic.Create(
 							descriptor: SD0309,
 							location: implicitNewExpression.GetLocation(),
-							messageArgs: new[] { "new" }
+							messageArgs: new[] { TokenValues.NewKeyword }
 						)
 					);
 
@@ -106,7 +106,7 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 						Diagnostic.Create(
 							descriptor: SD0309,
 							location: stackAllocExpression.GetLocation(),
-							messageArgs: new[] { "stackalloc" }
+							messageArgs: new[] { TokenValues.StackAllocKeyword }
 						)
 					);
 
@@ -118,7 +118,7 @@ public sealed partial class StackAllocAndNewClauseInCellsAndCandidatesAnalyzer :
 						Diagnostic.Create(
 							descriptor: SD0309,
 							location: implicitStackAllocExpression.GetLocation(),
-							messageArgs: new[] { "stackalloc" }
+							messageArgs: new[] { TokenValues.StackAllocKeyword }
 						)
 					);
 

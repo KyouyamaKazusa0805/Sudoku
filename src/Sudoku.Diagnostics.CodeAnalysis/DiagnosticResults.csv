@@ -7,3 +7,4 @@ SD0306,Warning,Usage,The remove expression in the initializer following with the
 SD0307,Info,Usage,The expression can be simplified.,The expression can be simplified to '{0}'.
 SD0308,Warning,Usage,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.
 SD0309,Info,Usage,'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead.,'{0}' expression is unnecessary; Please use object initializer instead.
+SD0403,Error,Usage,'StepSearcherAttribute' attribute can be only used for step searchers.,'StepSearcherAttribute' attribute cann't be used for the type '{0}' because it isn't a step searcher.

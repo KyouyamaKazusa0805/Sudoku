@@ -55,10 +55,10 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 			string typeName;
 			bool isOfTypeSudokuGrid;
 			SyntaxNode? parent;
-			var cellsSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Cells");
-			var candidatesSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Candidates");
-			var gridSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Grid");
-			var sudokuGridSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.SudokuGrid");
+			var cellsSymbol = compilation.GetTypeByMetadataName(TypeNames.Cells);
+			var candidatesSymbol = compilation.GetTypeByMetadataName(TypeNames.Candidates);
+			var gridSymbol = compilation.GetTypeByMetadataName(TypeNames.Grid);
+			var sudokuGridSymbol = compilation.GetTypeByMetadataName(TypeNames.SudokuGrid);
 			switch (originalNode)
 			{
 				case BaseObjectCreationExpressionSyntax
@@ -84,10 +84,10 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 
 					parent = parentNode;
 					typeName = isOfTypeCells
-						? "Sudoku.Data.Cells"
+						? TypeNames.Cells
 						: isOfTypeCandidates
-							? "Sudoku.Data.Candidates"
-							: "Sudoku.Data.SudokuGrid or Sudoku.Data.Grid";
+							? TypeNames.Candidates
+							: $"{TypeNames.SudokuGrid} or {TypeNames.Grid}";
 
 					break;
 				}
@@ -105,10 +105,10 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 
 					parent = parentNode;
 					typeName = isOfTypeCells
-						? "Sudoku.Data.Cells"
+						? TypeNames.Cells
 						: isOfTypeCandidates
-							? "Sudoku.Data.Candidates"
-							: "Sudoku.Data.SudokuGrid or Sudoku.Data.Grid";
+							? TypeNames.Candidates
+							: $"{TypeNames.SudokuGrid} or {TypeNames.Grid}";
 
 					break;
 				}
@@ -130,10 +130,10 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 
 					parent = parentNode;
 					typeName = isOfTypeCells
-						? "Sudoku.Data.Cells"
+						? TypeNames.Cells
 						: isOfTypeCandidates
-							? "Sudoku.Data.Candidates"
-							: "Sudoku.Data.SudokuGrid or Sudoku.Data.Grid";
+							? TypeNames.Candidates
+							: $"{TypeNames.SudokuGrid} or {TypeNames.Grid}";
 
 					break;
 				}
@@ -153,7 +153,7 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 					)
 				} binaryExpr:
 				{
-					string propertyName = isOfTypeSudokuGrid ? "IsUndefined" : "IsEmpty";
+					string propertyName = isOfTypeSudokuGrid ? PropertyNames.IsUndefined : PropertyNames.IsEmpty;
 					DiagnosticList.Add(
 						Diagnostic.Create(
 							descriptor: SD0304,
@@ -172,7 +172,7 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 							{
 								expressionOrVariable.ToString(),
 								propertyName,
-								kind == (int)SyntaxKind.EqualsExpression ? string.Empty : "!"
+								kind == (int)SyntaxKind.EqualsExpression ? string.Empty : TokenValues.NegateOperator
 							}
 						)
 					);
@@ -181,7 +181,7 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 				}
 				default:
 				{
-					string propertyName = isOfTypeSudokuGrid ? "Undefined" : "Empty";
+					string propertyName = isOfTypeSudokuGrid ? PropertyNames.Undefined : PropertyNames.Empty;
 					DiagnosticList.Add(
 						Diagnostic.Create(
 							descriptor: SD0303,

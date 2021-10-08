@@ -50,12 +50,12 @@ public sealed partial class CountIsEqualToZeroAnalyzer : ISourceGenerator
 						{
 							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 							Expression: var exprNode,
-							Name.Identifier.ValueText: "Count"
+							Name.Identifier.ValueText: PropertyNames.Count
 						},
 						Right: LiteralExpressionSyntax
 						{
 							RawKind: (int)SyntaxKind.NumericLiteralExpression,
-							Token.ValueText: "0"
+							Token.ValueText: TokenValues.Zero
 						}
 					} node,
 					SemanticModel: { Compilation: var compilation } semanticModel
@@ -76,15 +76,17 @@ public sealed partial class CountIsEqualToZeroAnalyzer : ISourceGenerator
 				return;
 			}
 
-			var cellsSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Cells");
-			var candidatesSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Candidates");
+			var cellsSymbol = compilation.GetTypeByMetadataName(TypeNames.Cells);
+			var candidatesSymbol = compilation.GetTypeByMetadataName(TypeNames.Candidates);
 			if (!SymbolEqualityComparer.Default.Equals(typeSymbol, cellsSymbol)
 				&& !SymbolEqualityComparer.Default.Equals(typeSymbol, candidatesSymbol))
 			{
 				return;
 			}
 
-			string equalityToken = kind == (int)SyntaxKind.NotEqualsExpression ? "!=" : "==";
+			string equalityToken = kind == (int)SyntaxKind.NotEqualsExpression
+				? TokenValues.InequalityOperator
+				: TokenValues.EqualityOperator;
 			DiagnosticList.Add(
 				Diagnostic.Create(
 					descriptor: SD0302,
@@ -102,7 +104,7 @@ public sealed partial class CountIsEqualToZeroAnalyzer : ISourceGenerator
 					{
 						exprNode.ToString(),
 						equalityToken,
-						equalityToken == "==" ? string.Empty : "!"
+						equalityToken == TokenValues.EqualityOperator ? string.Empty : TokenValues.NegateOperator
 					}
 				)
 			);

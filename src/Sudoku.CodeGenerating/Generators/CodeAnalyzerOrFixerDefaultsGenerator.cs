@@ -127,6 +127,8 @@ public sealed partial class CodeAnalyzerOrFixerDefaultsGenerator : ISourceGenera
 				GeneratedFileShortcuts.CodeAnalyzer,
 				$@"#nullable enable
 
+using Microsoft.CodeAnalysis.Diagnostics;
+
 namespace {namespaceName};
 
 /// <summary>

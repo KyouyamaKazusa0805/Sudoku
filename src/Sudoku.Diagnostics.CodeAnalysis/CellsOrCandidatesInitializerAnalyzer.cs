@@ -67,8 +67,8 @@ public sealed partial class CellsOrCandidatesInitializerAnalyzer : ISourceGenera
 				return;
 			}
 
-			var cellsSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Cells");
-			var candidatesSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Candidates");
+			var cellsSymbol = compilation.GetTypeByMetadataName(TypeNames.Cells);
+			var candidatesSymbol = compilation.GetTypeByMetadataName(TypeNames.Candidates);
 			bool isOfTypeCells = SymbolEqualityComparer.Default.Equals(typeSymbol, cellsSymbol);
 			bool isOfTypeCandidates = SymbolEqualityComparer.Default.Equals(typeSymbol, candidatesSymbol);
 			if (!isOfTypeCells && !isOfTypeCandidates)
@@ -215,7 +215,7 @@ public sealed partial class CellsOrCandidatesInitializerAnalyzer : ISourceGenera
 									location: expr.GetLocation(),
 									messageArgs: new[]
 									{
-										isOfTypeCells ? "Sudoku.Data.Cells" : "Sudoku.Data.Candidates"
+										isOfTypeCells ? TypeNames.Cells : TypeNames.Candidates
 									}
 								)
 							);

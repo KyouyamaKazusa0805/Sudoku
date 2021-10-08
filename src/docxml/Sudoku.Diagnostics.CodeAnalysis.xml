@@ -77,6 +77,111 @@
             diagnostic result (The initializer contains the duplicate value).
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants">
+            <summary>
+            Provides the constant values used in this project.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames">
+            <summary>
+            Indicates the special property names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Count">
+            <summary>
+            Indicates the property <c>Count</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.IsUndefined">
+            <summary>
+            Indicates the property <c>IsUndefined</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.IsEmpty">
+            <summary>
+            Indicates the property <c>IsEmpty</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Undefined">
+            <summary>
+            Indicates the property <c>Undefined</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Empty">
+            <summary>
+            Indicates the property <c>Empty</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues">
+            <summary>
+            Indicates the token values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.Zero">
+            <summary>
+            Indicates the constant value <c>0</c> of the string representation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.EqualityOperator">
+            <summary>
+            Indicates the string representation of the <c>operator ==</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.InequalityOperator">
+            <summary>
+            Indicates the string representation of the <c>operator !=</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.NegateOperator">
+            <summary>
+            Indicates the string representation of the <c>operator !</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.NewKeyword">
+            <summary>
+            Indicates the token value of the keyword <see langword="new"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues.StackAllocKeyword">
+            <summary>
+            Indicates the token value of the keyword <see langword="stackalloc"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames">
+            <summary>
+            Indicates the full names of some special types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.Cells">
+            <summary>
+            Indicates the type <c>Cells</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.Candidates">
+            <summary>
+            Indicates the type <c>Candidates</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.Grid">
+            <summary>
+            Indicates the type <c>Grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.SudokuGrid">
+            <summary>
+            Indicates the type <c>SudokuGrid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.StepSearcherAttribute">
+            <summary>
+            Indicates the type <c>StepSearcherAttribute</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.IStepSearcher">
+            <summary>
+            Indicates the type <c>IStepSearcher</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.CountIsEqualToZeroAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -230,6 +335,63 @@
             Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0309">SD0309</see>
             diagnostic result ('stackalloc' or 'new' expression is unnecessary; Please use object initializer instead).
             </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0403">SD0403</see></term>
+            <description>'StepSearcherAttribute' attribute can be only used for step searchers</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.StepSearcherAttributeAnalyzer.SD0403">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0403">SD0403</see>
+            diagnostic result ('StepSearcherAttribute' attribute can be only used for step searchers).
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.DerivedFrom(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines whether the current type is derived from the specified type.
+            </summary>
+            <param name="this">The type symbol.</param>
+            <param name="typeSymbol">The type symbol.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
