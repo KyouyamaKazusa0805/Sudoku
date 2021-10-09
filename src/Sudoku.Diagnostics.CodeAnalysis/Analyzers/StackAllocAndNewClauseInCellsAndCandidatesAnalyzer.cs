@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [Generator]
 [CodeAnalyzer("SD0309")]
