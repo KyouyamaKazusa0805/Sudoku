@@ -50,7 +50,7 @@ public sealed partial class CountIsEqualToZeroAnalyzer : ISourceGenerator
 						{
 							RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
 							Expression: var exprNode,
-							Name.Identifier.ValueText: PropertyNames.Count
+							Name.Identifier.ValueText: MemberNames.Count
 						},
 						Right: LiteralExpressionSyntax
 						{

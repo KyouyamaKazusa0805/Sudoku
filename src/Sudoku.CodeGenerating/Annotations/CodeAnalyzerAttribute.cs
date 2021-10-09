@@ -16,6 +16,7 @@
 /// </list>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
+[Conditional("SUPPORT_CODE_ANALYZER")]
 public sealed class CodeAnalyzerAttribute : Attribute
 {
 	/// <summary>

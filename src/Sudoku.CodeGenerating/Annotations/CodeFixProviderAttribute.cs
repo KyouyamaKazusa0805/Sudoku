@@ -5,6 +5,7 @@
 /// generates the code for the code fix defaults.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
+[Conditional("SUPPORT_CODE_FIXER")]
 public sealed class CodeFixProviderAttribute : Attribute
 {
 	/// <summary>

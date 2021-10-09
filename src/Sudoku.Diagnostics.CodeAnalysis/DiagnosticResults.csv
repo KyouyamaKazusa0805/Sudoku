@@ -1,4 +1,5 @@
 ﻿ID,Severity,Category,Title,Message Format
+SD0301,Error,Usage,The member can't be invoked because they are reserved.,The member '{0}' can't be invoked because they are reserved.
 SD0302,Info,Usage,Replace 'Count == 0' or 'Count != 0' with 'IsEmpty' or '!IsEmpty'.,Replace '{0}.Count {1} 0' with '{2}{0}.IsEmpty'.
 SD0303,Warning,Performance,Please use the default-value field to avoid instantiation.,Please use the read-only field '{0}.{1}' to avoid instantiation.
 SD0304,Warning,Performance,Please use the specific property to simplify the invocation.,Please use the property '{2}{0}.{1}' to simplify the invocation.
@@ -7,4 +8,25 @@ SD0306,Warning,Usage,The remove expression in the initializer following with the
 SD0307,Info,Usage,The expression can be simplified.,The expression can be simplified to '{0}'.
 SD0308,Warning,Usage,The initializer contains the duplicate value.,The initializer contains the duplicate value '{0}'.
 SD0309,Info,Usage,'stackalloc' or 'new' expression is unnecessary; Please use object initializer instead.,'{0}' expression is unnecessary; Please use object initializer instead.
+SD0310,Info,Usage,"Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case.",
+SD0311,Error,Usage,Invalid format string in 'SudokuGrid.ToString'.,Invalid format string in 'SudokuGrid.ToString'.
+SD0312,Warning,Usage,Please use 'stackalloc' clause to create a buffer of type 'Span{char}' as the argument of the constructor of type 'ValueStringBuilder'.,
+SD0313,Warning,Performance,The length of the buffer is too long; please use another constructor passing an 'int' value.,
+SD0314,Error,Usage,You can't invoke any operations after called 'ValueStringBuilder.ToString' method because this object has been already disposed implicitly.,
+SD0315,Warning,Usage,Don't use 'using' statement onto the instance of type 'ValueStringBuilder'.,
+SD0316,Warning,Usage,Don't call 'ValueStringBuilder.Dispose' method explicitly.,
+SD0401,Warning,Usage,Please use 'nameof' expression instead.,
+SD0402,Warning,Usage,This attribute must contain the specified number of parameters.,'{0}' must contain at least {1} parameters.
 SD0403,Error,Usage,'StepSearcherAttribute' attribute can be only used for step searchers.,'StepSearcherAttribute' attribute cann't be used for the type '{0}' because it isn't a step searcher.
+SD0404,Warning,Usage,"If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps'.",
+SD0405,Warning,Usage,The type of this expression should overload the operator '=='.,
+SD0406,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' is 'static'.,
+SD0407,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should return 'bool'.,
+SD0408,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should contain a pair of parameters that is of the current type.,
+SD0409,Warning,Usage,The source generator will be well-working until the number of methods marked '[ProxyEquality]' should be only 1.,
+SD0410,Warning,Usage,The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters.,
+SD0411,Error,Usage,The field should be a string when marked '[Regex]'.,
+SD0412,Warning,Usage,The field value isn't an invalid regular expression when marked '[Regex]'.,
+SD0413,Error,Usage,The parameter marked '[Discard]' can't be used in anywhere unless in a 'nameof' expression.,{0}.
+SD0501,Info,Naming,The local functions will use camel case as its name.,
+SD0502,Info,Naming,The 'this' parameter in the extension methods are named '@this'.,

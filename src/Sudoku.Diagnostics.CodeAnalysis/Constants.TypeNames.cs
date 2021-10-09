@@ -36,5 +36,10 @@ partial class Constants
 		/// Indicates the type <c>IStepSearcher</c>.
 		/// </summary>
 		public const string IStepSearcher = "Sudoku.Solving.Manual.Searchers.IStepSearcher";
+
+		/// <summary>
+		/// Indicates the type <c>Sudoku.Solving.Manual.FastProperties</c>.
+		/// </summary>
+		public const string FastProperties = "Sudoku.Solving.Manual.FastProperties";
 	}
 }

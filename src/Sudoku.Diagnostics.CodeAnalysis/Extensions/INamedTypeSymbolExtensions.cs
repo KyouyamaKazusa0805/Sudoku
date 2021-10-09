@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="INamedTypeSymbol"/>.
 /// </summary>
 /// <seealso cref="INamedTypeSymbol"/>
-public static class INamedTypeSymbolExtensions
+internal static class INamedTypeSymbolExtensions
 {
 	/// <summary>
 	/// Determines whether the current type is derived from the specified type.

@@ -153,7 +153,7 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 					)
 				} binaryExpr:
 				{
-					string propertyName = isOfTypeSudokuGrid ? PropertyNames.IsUndefined : PropertyNames.IsEmpty;
+					string propertyName = isOfTypeSudokuGrid ? MemberNames.IsUndefined : MemberNames.IsEmpty;
 					DiagnosticList.Add(
 						Diagnostic.Create(
 							descriptor: SD0304,
@@ -181,7 +181,7 @@ public sealed partial class DefaultExpressionAnalyzer : ISourceGenerator
 				}
 				default:
 				{
-					string propertyName = isOfTypeSudokuGrid ? PropertyNames.Undefined : PropertyNames.Empty;
+					string propertyName = isOfTypeSudokuGrid ? MemberNames.Undefined : MemberNames.Empty;
 					DiagnosticList.Add(
 						Diagnostic.Create(
 							descriptor: SD0303,

@@ -259,39 +259,97 @@
             diagnostic result ('StepSearcherAttribute' attribute can be only used for step searchers).
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0404">SD0404</see></term>
+            <description>If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeUsageAnalyzer.SD0404">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0404">SD0404</see>
+            diagnostic result (If a step searcher doesn't mark 'DirectSearcherAttribute' attribute, the searcher can't be initialized unless the variable declaration above contains a method invocation 'FastProperties.InitializeMaps').
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants">
             <summary>
             Provides the constant values used in this project.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames">
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames">
             <summary>
             Indicates the special property names.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Count">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.Undefined">
+            <summary>
+            Indicates the field <c>Undefined</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.Empty">
+            <summary>
+            Indicates the field <c>Empty</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.Count">
             <summary>
             Indicates the property <c>Count</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.IsUndefined">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.IsUndefined">
             <summary>
             Indicates the property <c>IsUndefined</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.IsEmpty">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.IsEmpty">
             <summary>
             Indicates the property <c>IsEmpty</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Undefined">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.IsDirect">
             <summary>
-            Indicates the property <c>Undefined</c>.
+            Indicates the property <c>IsDirect</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.PropertyNames.Empty">
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.InitializeMaps">
             <summary>
-            Indicates the property <c>Empty</c>.
+            Indicates the method <c>InitializeMaps</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.FastProperties">
+            <summary>
+            Indicates the type <c>FastProperty</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Constants.TokenValues">
@@ -364,6 +422,11 @@
             Indicates the type <c>IStepSearcher</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.FastProperties">
+            <summary>
+            Indicates the type <c>Sudoku.Solving.Manual.FastProperties</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer">
             <summary>
             Provides a constraint set that defines an analyzer.
@@ -379,6 +442,21 @@
             Indicates the possible diagnostic list to report.
             </summary>
         </member>
+        <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.AttributeData"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.AttributeDataExtensions.TryGetNamedArgument(Microsoft.CodeAnalysis.AttributeData,System.String,Microsoft.CodeAnalysis.TypedConstant@)">
+            <summary>
+            Try to get the named argument using the specified name.
+            </summary>
+            <param name="this">The attribute data instance.</param>
+            <param name="namedArg">The named argument name.</param>
+            <param name="result">The result got.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
@@ -392,6 +470,26 @@
             <param name="this">The type symbol.</param>
             <param name="typeSymbol">The type symbol.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorSyntaxContext_DeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorSyntaxContext_DeconstructionMethods.Deconstruct(Microsoft.CodeAnalysis.GeneratorSyntaxContext@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.SemanticModel@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorSyntaxContext_LambdaedDeconstructionMethods">
+            <summary>
+            Provides the extension methods on this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorSyntaxContext_LambdaedDeconstructionMethods.Deconstruct(Microsoft.CodeAnalysis.GeneratorSyntaxContext@,Microsoft.CodeAnalysis.SyntaxNode@,Microsoft.CodeAnalysis.SemanticModel@,Microsoft.CodeAnalysis.IOperation@)">
+            <summary>
+            Deconstruct the instance to multiple elements.
+            </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
