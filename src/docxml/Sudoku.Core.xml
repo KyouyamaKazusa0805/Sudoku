@@ -370,7 +370,10 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -718,7 +721,10 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Candidates.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
@@ -1258,7 +1264,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
@@ -1865,7 +1874,10 @@
             <returns>The result collection.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1969,7 +1981,10 @@
             <returns>The label.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2242,10 +2257,7 @@
             <param name="mask">The pointer to the mask list.</param>
         </member>
         <member name="M:Sudoku.Data.Grid.CandidateCollection.GetEnumerator">
-            <summary>
-            Gets the enumerator of the iteration.
-            </summary>
-            <returns>The enumerator of the iteration.</returns>
+            <inheritdoc cref="M:Sudoku.Data.Grid.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.Data.Grid.CandidateCollection.Enumerator">
             <summary>
@@ -3193,10 +3205,7 @@
             <param name="mask">The pointer to the mask list.</param>
         </member>
         <member name="M:Sudoku.Data.Grid.MaskCollection.GetEnumerator">
-            <summary>
-            Gets the enumerator of the iteration.
-            </summary>
-            <returns>The enumerator of the iteration.</returns>
+            <inheritdoc cref="M:Sudoku.Data.Grid.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.Data.Grid.MaskCollection.Enumerator">
             <summary>
@@ -3419,7 +3428,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
             <inheritdoc/>

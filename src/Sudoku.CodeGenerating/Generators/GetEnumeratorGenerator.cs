@@ -78,7 +78,10 @@ namespace {namespaceName};
 
 partial {typeKind}{typeSymbol.Name}{genericParameterList}
 {{
-	/// <inheritdoc cref=""object.GetHashCode"" />
+	/// <summary>
+	/// Returns an enumerator that iterates through the collection.
+	/// </summary>
+	/// <returns>An enumerator that can be used to iterate through the collection.</returns>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

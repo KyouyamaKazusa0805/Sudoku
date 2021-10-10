@@ -153,7 +153,10 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Collections.Generic.NotifyChangedList`1.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:System.Collections.Generic.Set`1">
             <summary>
@@ -351,7 +354,10 @@
             <seealso cref="M:System.Collections.Generic.Set`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
         <member name="M:System.Collections.Generic.Set`1.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:System.Collections.Generic.Set`1.Equals(System.Object)">
             <inheritdoc/>
@@ -2880,7 +2886,10 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />

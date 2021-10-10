@@ -20,10 +20,7 @@ partial struct Grid
 		public CandidateCollection(short* mask) => _enumerator = new(mask);
 
 
-		/// <summary>
-		/// Gets the enumerator of the iteration.
-		/// </summary>
-		/// <returns>The enumerator of the iteration.</returns>
+		/// <inheritdoc cref="Grid.GetEnumerator"/>
 		public Enumerator GetEnumerator() => _enumerator;
 	}
 }

@@ -546,7 +546,10 @@
             <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Solving.AnalysisResult.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Solving.AnalysisResultFormattingOptions">
             <summary>
@@ -2862,7 +2865,10 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetEnumerator">
-            <inheritdoc cref="M:System.Object.GetHashCode" />
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo">
             <summary>
