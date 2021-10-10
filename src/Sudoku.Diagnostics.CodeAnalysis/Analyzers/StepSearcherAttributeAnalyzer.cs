@@ -93,9 +93,14 @@ public sealed partial class StepSearcherAttributeAnalyzer : ISourceGenerator
 						break;
 					}
 
-					var currentSymbol = (INamedTypeSymbol)semanticModel.GetDeclaredSymbol(originalNode)!;
+					var currentSymbol = semanticModel.GetDeclaredSymbol(originalNode);
+					if (currentSymbol is not INamedTypeSymbol { AllInterfaces: var allInterfaces })
+					{
+						break;
+					}
+
 					var stepSearcherSymbol = compilation.GetTypeByMetadataName(TypeNames.IStepSearcher)!;
-					if (currentSymbol.DerivedFrom(stepSearcherSymbol))
+					if (allInterfaces.Any(i => SymbolEqualityComparer.Default.Equals(i, stepSearcherSymbol)))
 					{
 						break;
 					}

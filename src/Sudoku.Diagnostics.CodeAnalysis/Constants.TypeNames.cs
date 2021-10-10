@@ -40,7 +40,7 @@ partial class Constants
 		/// <summary>
 		/// Indicates the type <c>FastProperties</c>.
 		/// </summary>
-		public const string FastProperties = "Sudoku.Solving.Manual.FastProperties";
+		public const string FastProperties = "Sudoku.Solving.Manual.Buffers.FastProperties";
 
 		/// <summary>
 		/// Indicates the type <c>ProxyEqualityAttribute</c>.
