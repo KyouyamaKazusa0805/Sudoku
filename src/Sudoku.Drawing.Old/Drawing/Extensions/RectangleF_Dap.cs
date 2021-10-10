@@ -1,8 +1,8 @@
 ﻿namespace System.Drawing;
 
-internal sealed class RectangleFDeconstructionArgumentProvider
+internal sealed class RectangleF_Dap
 {
-	private RectangleFDeconstructionArgumentProvider() { }
+	private RectangleF_Dap() { }
 
 
 	[DeconstructArgumentProvider]

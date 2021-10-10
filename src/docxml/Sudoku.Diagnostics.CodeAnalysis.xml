@@ -173,6 +173,89 @@
             diagnostic result (Please use the specific property to simplify the invocation).
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0406">SD0406</see></term>
+            <description>The source generator will be well-working until the method marked '[ProxyEquality]' is 'static'</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0407">SD0407</see></term>
+            <description>The source generator will be well-working until the method marked '[ProxyEquality]' should return 'bool'</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0408">SD0408</see></term>
+            <description>The source generator will be well-working until the method marked '[ProxyEquality]' should contain a pair of parameters that is of the current type</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0409">SD0409</see></term>
+            <description>The source generator will be well-working until the number of methods marked '[ProxyEquality]' should be only 1</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0410">SD0410</see></term>
+            <description>The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.SD0406">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0406">SD0406</see>
+            diagnostic result (The source generator will be well-working until the method marked '[ProxyEquality]' is 'static').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.SD0407">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0407">SD0407</see>
+            diagnostic result (The source generator will be well-working until the method marked '[ProxyEquality]' should return 'bool').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.SD0408">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0408">SD0408</see>
+            diagnostic result (The source generator will be well-working until the method marked '[ProxyEquality]' should contain a pair of parameters that is of the current type).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.SD0409">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0409">SD0409</see>
+            diagnostic result (The source generator will be well-working until the number of methods marked '[ProxyEquality]' should be only 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer.SD0410">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0410">SD0410</see>
+            diagnostic result (The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters).
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -424,7 +507,12 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.FastProperties">
             <summary>
-            Indicates the type <c>Sudoku.Solving.Manual.FastProperties</c>.
+            Indicates the type <c>FastProperties</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.ProxyEqualityAttribute">
+            <summary>
+            Indicates the type <c>ProxyEqualityAttribute</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer">

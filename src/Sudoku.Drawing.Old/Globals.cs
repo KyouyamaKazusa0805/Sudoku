@@ -43,4 +43,4 @@ global using System.Threading.Tasks;
 [assembly: AutoDeconstructExtension<RectangleF>(nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]
 [assembly: AutoDeconstructExtension<RotatedRect>(nameof(RotatedRect.Center), nameof(RotatedRect.Size), Namespace = "Emgu.CV.Structure")]
 
-[assembly: AutoDeconstructExtensionLambda<RectangleF, RectangleFDeconstructionArgumentProvider>($".{nameof(RectangleFDeconstructionArgumentProvider.Point)}", nameof(RectangleF.Size))]
+[assembly: AutoDeconstructExtensionLambda<RectangleF, RectangleF_Dap>($".{nameof(RectangleF_Dap.Point)}", nameof(RectangleF.Size))]
