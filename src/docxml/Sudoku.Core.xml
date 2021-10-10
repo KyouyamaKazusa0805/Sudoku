@@ -2225,33 +2225,55 @@
             </remarks>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
-        <member name="T:Sudoku.Data.Grid.CandidateCollectionEnumerator">
+        <member name="T:Sudoku.Data.Grid.CandidateCollection">
+            <summary>
+            Defines a collection that iterates the candidate list of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Grid.CandidateCollection._enumerator">
+            <summary>
+            Indicates the enumerator created.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.#ctor(System.Int16*)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Grid.CandidateCollection"/> via the mask pointer.
+            </summary>
+            <param name="mask">The pointer to the mask list.</param>
+        </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator of the iteration.
+            </summary>
+            <returns>The enumerator of the iteration.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Grid.CandidateCollection.Enumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Data.Grid"/>
             through the candidates in the current <see cref="T:Sudoku.Data.Grid"/> instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.CandidateCollectionEnumerator._start">
+        <member name="F:Sudoku.Data.Grid.CandidateCollection.Enumerator._start">
             <summary>
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.CandidateCollectionEnumerator._currentPointer">
+        <member name="F:Sudoku.Data.Grid.CandidateCollection.Enumerator._currentPointer">
             <summary>
             The current pointer.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.CandidateCollectionEnumerator._currentMask">
+        <member name="F:Sudoku.Data.Grid.CandidateCollection.Enumerator._currentMask">
             <summary>
             Indicates the current mask.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.CandidateCollectionEnumerator._currentIndex">
+        <member name="F:Sudoku.Data.Grid.CandidateCollection.Enumerator._currentIndex">
             <summary>
             The current index.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.#ctor(System.Int16*)">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.#ctor(System.Int16*)">
             <summary>
             Initializes an instance with the specified pointer to an array to iterate.
             </summary>
@@ -2260,18 +2282,12 @@
             Note here we should point at the one-unit-lengthed memory before the array start.
             </remarks>
         </member>
-        <member name="P:Sudoku.Data.Grid.CandidateCollectionEnumerator.Current">
+        <member name="P:Sudoku.Data.Grid.CandidateCollection.Enumerator.Current">
             <summary>
             Gets the element in the collection at the current position of the enumerator.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.GetEnumerator">
-            <summary>
-            Gets the current instance that used for iteration.
-            </summary>
-            <returns>The instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.MoveNext">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.MoveNext">
             <summary>
             Advances the enumerator to the next element of the collection.
             </summary>
@@ -2292,21 +2308,33 @@
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.Reset">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.Reset">
             <summary>
             Sets the enumerator to its initial position, which is before the first element
             in the collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.Equals(System.Object)">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.GetHashCode">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.ToString">
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
@@ -2602,12 +2630,12 @@
             </summary>
             <seealso cref="P:Sudoku.Data.Grid.CandidatesMap"/>
         </member>
-        <member name="P:Sudoku.Data.Grid.CandidatesEnumerator">
+        <member name="P:Sudoku.Data.Grid.Candidates">
             <summary>
             Gets an enumerator that iterates the candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Grid.MasksEnumerator">
+        <member name="P:Sudoku.Data.Grid.Masks">
             <summary>
             Gets an enumerator that iterates the masks.
             </summary>
@@ -2805,9 +2833,6 @@
             </summary>
             <param name="cell">The cell.</param>
             <returns>The cell status.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Grid.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToSudokuGrid">
             <summary>
@@ -3151,28 +3176,50 @@
         <member name="M:Sudoku.Data.Grid.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.Grid.MaskCollectionEnumerator">
+        <member name="T:Sudoku.Data.Grid.MaskCollection">
+            <summary>
+            Defines a collection that iterates the mask list of the sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Grid.MaskCollection._enumerator">
+            <summary>
+            Indicates the enumerator created.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollection.#ctor(System.Int16*)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Grid.MaskCollection"/> via the mask pointer.
+            </summary>
+            <param name="mask">The pointer to the mask list.</param>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator of the iteration.
+            </summary>
+            <returns>The enumerator of the iteration.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Grid.MaskCollection.Enumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Data.Grid"/>
             through the masks in the current <see cref="T:Sudoku.Data.Grid"/> instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.MaskCollectionEnumerator._start">
+        <member name="F:Sudoku.Data.Grid.MaskCollection.Enumerator._start">
             <summary>
             The pointer to the start value.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.MaskCollectionEnumerator._currentPointer">
+        <member name="F:Sudoku.Data.Grid.MaskCollection.Enumerator._currentPointer">
             <summary>
             The current pointer.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Grid.MaskCollectionEnumerator._currentIndex">
+        <member name="F:Sudoku.Data.Grid.MaskCollection.Enumerator._currentIndex">
             <summary>
             The current index.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.#ctor(System.Int16*)">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.#ctor(System.Int16*)">
             <summary>
             Initializes an instance with the specified pointer to an array to iterate.
             </summary>
@@ -3181,18 +3228,12 @@
             Note here we should point at the one-unit-lengthed memory before the array start.
             </remarks>
         </member>
-        <member name="P:Sudoku.Data.Grid.MaskCollectionEnumerator.Current">
+        <member name="P:Sudoku.Data.Grid.MaskCollection.Enumerator.Current">
             <summary>
             Gets the element in the collection at the current position of the enumerator.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.GetEnumerator">
-            <summary>
-            Gets the current instance that used for iteration.
-            </summary>
-            <returns>The instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.MoveNext">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.MoveNext">
             <summary>
             Advances the enumerator to the next element of the collection.
             </summary>
@@ -3213,21 +3254,33 @@
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.Reset">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.Reset">
             <summary>
             Sets the enumerator to its initial position, which is before the first element
             in the collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.Equals(System.Object)">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.GetHashCode">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.ToString">
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
@@ -3364,6 +3417,9 @@
             The format. If available, the parameter can be <see langword="null"/>.
             </param>
             <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Grid.GetEnumerator">
+            <inheritdoc cref="M:System.Object.GetHashCode" />
         </member>
         <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
             <inheritdoc/>

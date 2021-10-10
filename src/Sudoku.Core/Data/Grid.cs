@@ -12,6 +12,7 @@
 #endif
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
+[AutoGetEnumerator(nameof(Candidates), MemberConversion = "@.*", ReturnType = typeof(CandidateCollection.Enumerator))]
 public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, IParsable<Grid>
 {
 	/// <summary>
@@ -578,7 +579,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <summary>
 	/// Gets an enumerator that iterates the candidates.
 	/// </summary>
-	public readonly CandidateCollectionEnumerator CandidatesEnumerator
+	public readonly CandidateCollection Candidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -593,7 +594,7 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <summary>
 	/// Gets an enumerator that iterates the masks.
 	/// </summary>
-	public readonly MaskCollectionEnumerator MasksEnumerator
+	public readonly MaskCollection Masks
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -950,10 +951,6 @@ public unsafe partial struct Grid : IValueEquatable<Grid>, IFormattable, IJsonSe
 	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CellStatus GetStatus(int cell) => _values[cell].MaskToStatus();
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateCollectionEnumerator GetEnumerator() => CandidatesEnumerator;
 
 	/// <summary>
 	/// Convertes the current instance to a <see cref="SudokuGrid"/>.
