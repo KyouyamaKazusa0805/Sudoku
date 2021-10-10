@@ -8,8 +8,8 @@ global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Operations;
 global using Sudoku.CodeGenerating;
-global using static Sudoku.Diagnostics.CodeAnalysis.Constants;
 global using Sudoku.Diagnostics.CodeAnalysis.Extensions;
+global using static Sudoku.Diagnostics.CodeAnalysis.Constants;
 
 #if SUPPORT_CODE_FIXER
 global using System.Collections.Immutable;

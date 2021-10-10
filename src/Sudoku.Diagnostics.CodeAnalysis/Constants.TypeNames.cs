@@ -38,8 +38,13 @@ partial class Constants
 		public const string IStepSearcher = "Sudoku.Solving.Manual.Searchers.IStepSearcher";
 
 		/// <summary>
-		/// Indicates the type <c>Sudoku.Solving.Manual.FastProperties</c>.
+		/// Indicates the type <c>FastProperties</c>.
 		/// </summary>
 		public const string FastProperties = "Sudoku.Solving.Manual.FastProperties";
+
+		/// <summary>
+		/// Indicates the type <c>ProxyEqualityAttribute</c>.
+		/// </summary>
+		public const string ProxyEqualityAttribute = "Sudoku.CodeGenerating.ProxyEqualityAttribute";
 	}
 }
