@@ -46,5 +46,10 @@ partial class Constants
 		/// Indicates the type <c>ProxyEqualityAttribute</c>.
 		/// </summary>
 		public const string ProxyEqualityAttribute = "Sudoku.CodeGenerating.ProxyEqualityAttribute";
+
+		/// <summary>
+		/// Indicates the type <c>RegexAttribute</c>.
+		/// </summary>
+		public const string RegexAttribute = "System.Text.RegularExpressions.RegexAttribute";
 	}
 }

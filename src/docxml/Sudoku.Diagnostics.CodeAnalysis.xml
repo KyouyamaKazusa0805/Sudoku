@@ -256,6 +256,59 @@
             diagnostic result (The source generator will be well-working until the method marked '[ProxyEquality]' should contain 2 parameters).
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0411">SD0411</see></term>
+            <description>The field should be a string when marked '[Regex]'</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0412">SD0412</see></term>
+            <description>The field value isn't an invalid regular expression when marked '[Regex]'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.SD0411">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0411">SD0411</see>
+            diagnostic result (The field should be a string when marked '[Regex]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegexAttributeAnalyzer.SD0412">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0412">SD0412</see>
+            diagnostic result (The field value isn't an invalid regular expression when marked '[Regex]').
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StackAllocAndNewClauseInCellsAndCandidatesAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -513,6 +566,11 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.ProxyEqualityAttribute">
             <summary>
             Indicates the type <c>ProxyEqualityAttribute</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.TypeNames.RegexAttribute">
+            <summary>
+            Indicates the type <c>RegexAttribute</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.IAnalyzer">
