@@ -12,7 +12,10 @@ public static unsafe class PointerMarshal
 	/// <param name="left">The left variable.</param>
 	/// <param name="right">The right variable.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>([NotNull] TUnmanaged* left, [NotNull] TUnmanaged* right)
+	public static void Swap<TUnmanaged>(
+		[NotNull, DisallowNull] TUnmanaged* left,
+		[NotNull, DisallowNull] TUnmanaged* right
+	)
 	where TUnmanaged : unmanaged
 	{
 		var temp = *left;
@@ -32,7 +35,7 @@ public static unsafe class PointerMarshal
 	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	public static int StringLengthOf([NotNull] char* ptr)
+	public static int StringLengthOf([NotNull, DisallowNull] char* ptr)
 	{
 		int result = 0;
 		for (char* p = ptr; *p != '\0'; p++, result++) ;
@@ -56,7 +59,11 @@ public static unsafe class PointerMarshal
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>([NotNull] TUnmanaged* ptr, int length, int index)
+	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(
+		[NotNull, DisallowNull] TUnmanaged* ptr,
+		int length,
+		int index
+	)
 	where TUnmanaged : unmanaged
 	{
 		var result = new TUnmanaged[length - index];
@@ -86,7 +93,12 @@ public static unsafe class PointerMarshal
 	/// 5 elements in this case.
 	/// </remarks>
 	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
-	public static int[] GetArrayFromStart([NotNull] int* ptr, int length, int index, bool removeTrailingZeros)
+	public static int[] GetArrayFromStart(
+		[NotNull, DisallowNull] int* ptr,
+		int length,
+		int index,
+		bool removeTrailingZeros
+	)
 	{
 		if (removeTrailingZeros)
 		{
