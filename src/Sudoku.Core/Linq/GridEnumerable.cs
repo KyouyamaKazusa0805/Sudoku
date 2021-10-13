@@ -85,21 +85,6 @@ public static unsafe class GridEnumerable
 	}
 
 	/// <summary>
-	/// Determines whether a sequence contains any candidate.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> to check for emptiness.</param>
-	/// <returns>
-	/// <see langword="true"/> if the source sequence contains any candidate; otherwise, <see langword="false"/>.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool Any(this in Grid @this) =>
-#if true
-		@this.IsSolved;
-#else
-		@this.GetEnumerator().MoveNext();
-#endif
-
-	/// <summary>
 	/// Determines whether any candidate of a sequence satisfies a condition.
 	/// </summary>
 	/// <param name="this">A <see cref="Grid"/> whose elements to apply the predicate to.</param>

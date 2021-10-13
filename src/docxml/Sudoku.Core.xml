@@ -6767,15 +6767,6 @@
             </param>
             <returns>The transformed final accumulator value.</returns>
         </member>
-        <member name="M:Sudoku.Linq.GridEnumerable.Any(Sudoku.Data.Grid@)">
-            <summary>
-            Determines whether a sequence contains any candidate.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Data.Grid"/> to check for emptiness.</param>
-            <returns>
-            <see langword="true"/> if the source sequence contains any candidate; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
         <member name="M:Sudoku.Linq.GridEnumerable.Any(Sudoku.Data.Grid@,)">
             <summary>
             Determines whether any candidate of a sequence satisfies a condition.
