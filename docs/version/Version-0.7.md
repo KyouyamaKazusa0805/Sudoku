@@ -25,7 +25,8 @@
 * 删除 `SUDOKU_RECOGNITION` 条件编译符号；
 * 删除本来应该在 `Sudoku.Solving.Old` 项目拓展，但没有使用机会的内容（#176）；
 * 删除 `MemberInfoExtensions` 类型，删除 `TypeExtensions.IsSubclassOf<>` 方法；
-* 删除 `UnsafeExtensions` 类型。
+* 删除 `UnsafeExtensions` 类型；
+* 删除 `ClosedAttribute` 和 `ThrowsAttribute<T>` 类型。
 
 ### 修改
 
