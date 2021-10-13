@@ -486,22 +486,4 @@ public static unsafe class GridEnumerable
 
 		return result;
 	}
-
-	/// <summary>
-	/// Reverses the candidate collection of a <see cref="Grid"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Grid"/> whose candidate collection will be reversed.</param>
-	/// <returns>The array of reversed candidate collection.</returns>
-	public static int[] ReverseCandidates(this in Grid @this)
-	{
-		int[] collection = new int[@this.CandidatesCount];
-		int i = 0;
-		foreach (int candidate in @this.Candidates)
-		{
-			collection[i++] = candidate;
-		}
-
-		Array.Reverse(collection);
-		return collection;
-	}
 }

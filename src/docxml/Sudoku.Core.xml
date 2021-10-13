@@ -6966,13 +6966,6 @@
             <param name="selector">A function to extract the key for each element.</param>
             <returns>The value with the minimum key in the sequence.</returns>
         </member>
-        <member name="M:Sudoku.Linq.GridEnumerable.ReverseCandidates(Sudoku.Data.Grid@)">
-            <summary>
-            Reverses the candidate collection of a <see cref="T:Sudoku.Data.Grid"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Data.Grid"/> whose candidate collection will be reversed.</param>
-            <returns>The array of reversed candidate collection.</returns>
-        </member>
         <member name="T:Sudoku.Models.ColorIdentifier">
             <summary>
             Indicates the color identifier that used to identify the color.
