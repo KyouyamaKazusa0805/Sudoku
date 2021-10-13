@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates the rarity of the technique.
 /// </summary>
-[Closed]
 public enum Rarity : byte
 {
 	/// <summary>

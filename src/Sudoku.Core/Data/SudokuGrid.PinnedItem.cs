@@ -32,7 +32,6 @@ partial struct SudokuGrid
 	/// </remarks>
 	/// <see cref="GetPinnableReference()"/>
 	/// <see cref="GetPinnableReference(PinnedItem)"/>
-	[Closed]
 	public enum PinnedItem : byte
 	{
 		/// <summary>

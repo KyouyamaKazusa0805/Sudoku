@@ -3,7 +3,6 @@
 /// <summary>
 /// Used internally to control behavior of insertion into a <see cref="ValueDictionary{TKey, TValue}"/>.
 /// </summary>
-[Closed]
 internal enum InsertionBehavior : byte
 {
 	/// <summary>

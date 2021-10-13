@@ -3,7 +3,6 @@
 /// <summary>
 /// Encapsulates a picture type.
 /// </summary>
-[Closed]
 public enum PictureFileType : byte
 {
 	/// <summary>

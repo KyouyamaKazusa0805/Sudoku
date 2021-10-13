@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a type that represents the reason why the eliminations can be removed.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum EliminatedReason : byte
 {
 	/// <summary>

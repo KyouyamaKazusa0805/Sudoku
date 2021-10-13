@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a grid format option.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum GridFormattingOptions : short
 {
 	/// <summary>

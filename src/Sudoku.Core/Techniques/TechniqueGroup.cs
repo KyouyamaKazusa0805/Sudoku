@@ -8,7 +8,6 @@
 /// the real technique group that the technique belongs to. In addition, the value
 /// of this type may effect the displaying of the analysis result.
 /// </remarks>
-[Closed]
 public enum TechniqueGroup : byte
 {
 	/// <summary>

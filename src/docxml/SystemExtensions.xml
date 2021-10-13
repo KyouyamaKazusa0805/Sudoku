@@ -1497,25 +1497,6 @@
             <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
             <seealso cref="F:System.Int32.MaxValue"/>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.ClosedAttribute">
-            <summary>
-            Marks on an enumeration type, which means the enumeration type is a closed enumeration type.
-            </summary>
-            <remarks>
-            A <b>closed</b> enumeration type is an enumeration type
-            of which you can only uses those constant values from declared fields. Therefore <b>all</b>
-            operators can't be used here.
-            For example:
-            <code><![CDATA[
-            [Closed]
-            public enum Gender { Boy; Girl; }
-            ]]></code>
-            The code snippet means the type <c>Gender</c> is a closed enumeration type,
-            so you can't use any arithmetic operators (such as the <see langword="operator"/> <c>+</c>)
-            to calculate and get the new result of this type, because the operator may get the result that isn't
-            <c>Gender.Boy</c> or <c>Gender.Girl</c>.
-            </remarks>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity">
             <summary>
             Defines a severity that contains different level of the diagnostic results.
@@ -1579,29 +1560,6 @@
             <see langword="record struct"/>s, this concept is nearly totally same as the primary constructors
             in <see langword="record"/>s.
             </para>
-            </summary>
-        </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1">
-            <summary>
-            To mark onto a method or a constructor, to tell the compiler that
-            the exception must, should or may be thrown by the current method.
-            </summary>
-            <typeparam name="TException">The type of the exception.</typeparam>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1"/> instance
-            with <see cref="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Warning"/> as the default value.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.Severity">
-            <summary>
-            Indicates the diagnostic severity that controls how the compiler validate the exception to be thrown.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.ThrowsAttribute`1.#ctor(System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity)">
-            <summary>
-            Initializes an instance via those arguments.
             </summary>
         </member>
         <member name="T:System.ArrayExtensions">

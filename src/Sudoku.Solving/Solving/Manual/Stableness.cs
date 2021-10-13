@@ -3,7 +3,6 @@
 /// <summary>
 /// Defines a stableness of a technique.
 /// </summary>
-[Closed]
 public enum Stableness : byte
 {
 	/// <summary>

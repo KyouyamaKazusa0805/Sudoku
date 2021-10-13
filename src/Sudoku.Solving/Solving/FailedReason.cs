@@ -4,7 +4,6 @@
 /// Defines a reason why the <see cref="IPuzzleSolver"/> is failed to solve a puzzle.
 /// </summary>
 /// <seealso cref="IPuzzleSolver"/>
-[Closed]
 public enum FailedReason : byte
 {
 	/// <summary>

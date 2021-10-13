@@ -5,7 +5,7 @@ partial record ComplexFishStepInfo
 	/// <summary>
 	/// Indicates the shape modifiers.
 	/// </summary>
-	[Flags, Closed]
+	[Flags]
 	private enum ShapeModifiers
 	{
 		/// <summary>

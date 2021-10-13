@@ -5,7 +5,7 @@ partial record ComplexFishStepInfo
 	/// <summary>
 	/// Indicates the fin modifiers.
 	/// </summary>
-	[Flags, Closed]
+	[Flags]
 	private enum FinModifiers
 	{
 		/// <summary>

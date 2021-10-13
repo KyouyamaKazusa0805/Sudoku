@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates the analysis result output type.
 /// </summary>
-[Closed]
 public enum AnalysisResultOutputType : byte
 {
 	/// <summary>

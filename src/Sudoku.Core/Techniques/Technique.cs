@@ -3,7 +3,6 @@
 /// <summary>
 /// Represents a technique instance, which is used for comparison.
 /// </summary>
-[Closed]
 public enum Technique : short
 {
 	/// <summary>

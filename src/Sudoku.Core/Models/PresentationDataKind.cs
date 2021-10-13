@@ -3,7 +3,6 @@
 /// <summary>
 /// Presents a kind to identify the inner presentation data.
 /// </summary>
-[Closed]
 public enum PresentationDataKind : byte
 {
 	/// <summary>

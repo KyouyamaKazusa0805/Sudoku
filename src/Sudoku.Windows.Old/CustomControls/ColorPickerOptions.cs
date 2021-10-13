@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the option using in initialization for a <see cref="ColorPickerWindow"/>.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum ColorPickerOptions
 {
 	/// <summary>

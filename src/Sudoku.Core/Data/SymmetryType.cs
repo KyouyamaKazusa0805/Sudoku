@@ -3,7 +3,7 @@
 /// <summary>
 /// Define a symmetry type.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum SymmetryType : byte
 {
 	/// <summary>

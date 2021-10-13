@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the formatting options of <see cref="AnalysisResult"/> instance.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum AnalysisResultFormattingOptions : short
 {
 	/// <summary>

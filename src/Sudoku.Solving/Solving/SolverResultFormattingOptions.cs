@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the formatting options of <see cref="ISolverResult"/> instance.
 /// </summary>
-[Flags, Closed]
+[Flags]
 public enum SolverResultFormattingOptions : short
 {
 	/// <summary>

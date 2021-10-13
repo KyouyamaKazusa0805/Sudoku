@@ -3,7 +3,6 @@
 /// <summary>
 /// Represents a grid parsing type.
 /// </summary>
-[Closed]
 public enum GridParsingOption : byte
 {
 	/// <summary>

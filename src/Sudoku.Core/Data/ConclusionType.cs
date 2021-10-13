@@ -3,7 +3,6 @@
 /// <summary>
 /// Provides a conclusion type.
 /// </summary>
-[Closed]
 public enum ConclusionType : byte
 {
 	/// <summary>

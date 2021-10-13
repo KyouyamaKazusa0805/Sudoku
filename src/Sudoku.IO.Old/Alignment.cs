@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates an alignment type.
 /// </summary>
-[Closed]
 public enum Alignment : byte
 {
 	/// <summary>

@@ -3,7 +3,6 @@
 /// <summary>
 /// Defines a severity that contains different level of the diagnostic results.
 /// </summary>
-[Closed]
 public enum DiagnosticResultSeverity : byte
 {
 	/// <summary>

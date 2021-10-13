@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates the grid creating option.
 /// </summary>
-[Closed]
 public enum GridCreatingOption : byte
 {
 	/// <summary>
