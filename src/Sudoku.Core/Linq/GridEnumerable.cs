@@ -438,17 +438,17 @@ public static unsafe class GridEnumerable
 	/// <summary>
 	/// Returns the minimum value in a candidate sequence according to a specified key selector function.
 	/// </summary>
-	/// <typeparam name="TComparable">The type of key to compare candidates by.</typeparam>
+	/// <typeparam name="TComparableWithMaxValue">The type of key to compare candidates by.</typeparam>
 	/// <param name="this">A sequence of values to determine the minimum value of.</param>
 	/// <param name="selector">A function to extract the key for each element.</param>
 	/// <returns>The value with the minimum key in the sequence.</returns>
-	public static TComparable? MinBy<TComparable>(
+	public static TComparableWithMaxValue MinBy<TComparableWithMaxValue>(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, TComparable> selector
+		[NotNull, DisallowNull] delegate*<int, TComparableWithMaxValue> selector
 	)
-	where TComparable : IComparable<TComparable>
+	where TComparableWithMaxValue : IComparable<TComparableWithMaxValue>, IMinMaxValue<TComparableWithMaxValue>
 	{
-		TComparable? result = default;
+		var result = TComparableWithMaxValue.MaxValue;
 		foreach (int candidate in @this.Candidates)
 		{
 			var selected = selector(candidate);
@@ -464,17 +464,17 @@ public static unsafe class GridEnumerable
 	/// <summary>
 	/// Returns the maximum value in a candidate sequence according to a specified key selector function.
 	/// </summary>
-	/// <typeparam name="TComparable">The type of key to compare candidates by.</typeparam>
+	/// <typeparam name="TComparableWithMinValue">The type of key to compare candidates by.</typeparam>
 	/// <param name="this">A sequence of values to determine the minimum value of.</param>
 	/// <param name="selector">A function to extract the key for each element.</param>
 	/// <returns>The value with the minimum key in the sequence.</returns>
-	public static TComparable? MaxBy<TComparable>(
+	public static TComparableWithMinValue MaxBy<TComparableWithMinValue>(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, TComparable> selector
+		[NotNull, DisallowNull] delegate*<int, TComparableWithMinValue> selector
 	)
-	where TComparable : IComparable<TComparable>
+	where TComparableWithMinValue : IComparable<TComparableWithMinValue>, IMinMaxValue<TComparableWithMinValue>
 	{
-		TComparable? result = default;
+		var result = TComparableWithMinValue.MinValue;
 		foreach (int candidate in @this.Candidates)
 		{
 			var selected = selector(candidate);
