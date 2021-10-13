@@ -2351,29 +2351,19 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="F:Sudoku.Data.Grid.DefaultMask">
-            <summary>
-            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.ModifiableMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ModifiableMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.GivenMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.GivenMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Base64List">
             <summary>
@@ -2397,40 +2387,19 @@
             <seealso cref="F:Sudoku.Data.Grid.Base64List"/>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyString">
-            <summary>
-            Indicates the empty grid string.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyString"/>
         </member>
         <member name="F:Sudoku.Data.Grid.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ValueChanged"/>
         </member>
         <member name="F:Sudoku.Data.Grid.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.RefreshingCandidates"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Undefined">
-            <summary>
-            Indicates the default grid that all values are initialized 0, which is same as
-            <see cref="M:Sudoku.Data.Grid.#ctor"/>.
-            </summary>
-            <remarks>
-            We recommend you should use this static field instead of the default constructor
-            to reduce object creation.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.Grid.#ctor"/>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Undefined"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Empty">
-            <summary>
-            The empty grid that is valid during implementation or running the program
-            (all values are <see cref="F:Sudoku.Data.Grid.DefaultMask"/>, i.e. empty cells).
-            </summary>
-            <remarks>
-            This field is initialized by the static constructor of this structure.
-            </remarks>
-            <seealso cref="F:Sudoku.Data.Grid.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Empty"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Lookup">
             <summary>
@@ -2505,79 +2474,28 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.IsSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.IsUndefined">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Data.Grid.Undefined"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Data.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.IsEmpty">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Data.Grid.Empty"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Data.Grid.Empty"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.Grid.Empty"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.IsDebuggerUndefined">
-            <summary>
-            Indicates whether the grid is as same behaviors as <see cref="F:Sudoku.Data.Grid.Undefined"/>
-            in debugging mode.
-            </summary>
-            <remarks>
-            <para>
-            This property checks whether all non-first masks are all 0. This checking behavior
-            is aiming to the debugger because the debugger can't recognize the fixed buffer.
-            </para>
-            <para>
-            The debugger can't recognize fixed buffer.
-            The fixed buffer whose code is like:
-            <code><![CDATA[
-            private fixed short _values[81];
-            ]]></code>
-            However, internally, the field <c>_values</c> is implemented
-            with a fixed buffer using a inner struct, which is just like:
-            <code><![CDATA[
-            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-            private struct FixedBuffer
-            {
-                public short _internalValue;
-            }
-            ]]></code>
-            And that field:
-            <code><![CDATA[
-            private FixedBuffer _fixedField;
-            ]]></code>
-            From the code we can learn that only 2 bytes of the inner struct can be detected,
-            because the buffer struct only contains 2 bytes data.
-            </para>
-            </remarks>
-            <see cref="F:Sudoku.Data.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.NullRegions">
             <summary>
@@ -2591,56 +2509,25 @@
             </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.Token">
-            <summary>
-            Gets the token of this sudoku grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.EigenString">
-            <summary>
-            Indicates the eigen string value that can introduce the current sudoku grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.EmptyCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid is empty.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.BivalueCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid contain two candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.CandidatesMap">
-            <summary>
-            Indicates the map of possible positions of the existence of the candidate value for each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.DigitsMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of each digit. The return value will
-            be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.Grid.CandidatesMap"/>, this property contains all givens, modifiables and
-            empty cells only if it contains the digit in the mask.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Data.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.ValuesMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of that value of each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.Grid.CandidatesMap"/>, the value only contains the given or modifiable
-            cells whose mask contain the set bit of that digit.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Data.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.Candidates">
             <summary>
@@ -2652,199 +2539,74 @@
             Gets an enumerator that iterates the masks.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#DefaultMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#MaxCandidatesMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#EmptyMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#ModifiableMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#GivenMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#EmptyString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#ValueChanged">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#RefreshingCandidates">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#Undefined">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#Empty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
-            <summary>
-            Gets or sets the value in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get or set a value.</param>
-            <value>
-            The value you want to set. The value should be between 0 and 8. If assigning -1,
-            that means to re-compute all candidates.
-            </value>
-            <returns>
-            The value that the cell filled with. The possible values are:
-            <list type="table">
-            <item>
-            <term>-2</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Undefined"/>.</description>
-            </item>
-            <item>
-            <term>-1</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
-            </item>
-            <item>
-            <term>0 to 8</term>
-            <description>
-            The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
-            </description>
-            </item>
-            </list>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="false"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.SimplyValidate">
-            <summary>
-            Check whether the current grid is valid (no duplicate values on same row, column or block).
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Exists(System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the specified candidate offset.
-            </summary>
-            <param name="candidate">The candidate offset.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
-            that the candidate specified.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
-            that the candidate specified.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
-            </description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
-            to decide whether a condition is true.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Exists(System.Int32,System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the digit in the specified cell.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
-            to decide whether a condition is true.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetMask(System.Int32)">
-            <summary>
-            Get a mask at the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetCandidates(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            <para>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where each bit will be:
-            <list type="table">
-            <item>
-            <term><c>0</c></term>
-            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
-            </item>
-            <item>
-            <term><c>1</c></term>
-            <description>The cell <b>contains</b> the possibility of the digit.</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
-            the value will indicate the cell contains the digit 2, 4 and 9.
-            </para>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetPinnableReference">
-            <summary>
-            Returns a reference to the element of the <see cref="T:Sudoku.Data.Grid"/> at index zero.
-            </summary>
-            <returns>A reference to the element of the <see cref="T:Sudoku.Data.Grid"/> at index zero.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToMaskString">
-            <summary>
-            Get all masks and print them.
-            </summary>
-            <returns>The result.</returns>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetStatus(System.Int32)">
-            <summary>
-            Get the cell status at the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The cell status.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.ToSudokuGrid">
             <summary>
@@ -2853,28 +2615,16 @@
             <returns>The sudoku grid result.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Fix">
-            <summary>
-            To fix the current grid (all modifiable values will be changed to given ones).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Unfix">
-            <summary>
-            To unfix the current grid (all given values will be changed to modifiable ones).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <summary>
-            Set the specified cell to the specified status.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="status">The status.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.SetMask(System.Int32,System.Int16)">
-            <summary>
-            Set the specified cell to the specified mask.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="mask">The mask to set.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetMap()">
             <summary>
@@ -2896,80 +2646,28 @@
             <seealso cref="P:Sudoku.Data.Grid.BivalueCells"/>
         </member>
         <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
-            <summary>
-            To determine whether two sudoku grid is totally same.
-            </summary>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.ReadOnlySpan{System.Char}@)">
-            <summary>
-            <para>Parses a string value and converts to this type.</para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.Char*)">
-            <summary>
-            Parses a pointer that points to a string value and converts to this type.
-            </summary>
-            <param name="ptrStr">The pointer that points to string.</param>
-            <returns>The result instance.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String,System.Boolean)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, you should decide the mode to parse.
-            If you use compatible mode to parse, all single values will be treated as
-            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
-            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
-            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Data.Grid.Parser.CompatibleFirst"/> to learn more.
-            </param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="P:Sudoku.Data.Grid.Parser.CompatibleFirst"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.String,Sudoku.Data.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type, using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="option">The grid parsing type.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed,
-            this argument will be <see cref="F:Sudoku.Data.Grid.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Grid.Formatter">
             <summary>
@@ -4104,6 +3802,482 @@
             </summary>
             <param name="linkType">The link type.</param>
         </member>
+        <member name="T:Sudoku.Data.IGrid`1">
+            <summary>
+            Defines a data structure that describes a sudoku grid.
+            </summary>
+            <typeparam name="TGrid">The type to implement this interface.</typeparam>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.MaxCandidatesMask">
+            <summary>
+            Indicates the maximum candidate mask that used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.EmptyMask">
+            <summary>
+            Indicates the empty mask, modifiable mask and given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.ModifiableMask">
+            <summary>
+            Indicates the modifiable mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.GivenMask">
+            <summary>
+            Indicates the given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.EmptyString">
+            <summary>
+            Indicates the empty grid string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.ValueChanged">
+            <summary>
+            Indicates the event triggered when the value is changed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.RefreshingCandidates">
+            <summary>
+            Indicates the event triggered when should re-compute candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.Undefined">
+            <summary>
+            Indicates the default grid that all values are initialized 0, which is same as
+            <typeparamref name="TGrid"/>().
+            </summary>
+            <remarks>
+            We recommend you should use this static field instead of the default constructor
+            to reduce object creation.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.Empty">
+            <summary>
+            The empty grid that is valid during implementation or running the program
+            (all values are <see cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>, i.e. empty cells).
+            </summary>
+            <remarks>
+            This field is initialized by the static constructor of this structure.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.IsSolved">
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>,
+            the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.IsUndefined">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.IsEmpty">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Data.IGrid`1.Empty"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Data.IGrid`1.Empty"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Data.IGrid`1.Empty"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.IsDebuggerUndefined">
+            <summary>
+            Indicates whether the grid is as same behaviors as <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>
+            in debugging mode.
+            </summary>
+            <remarks>
+            <para>
+            This property checks whether all non-first masks are all 0. This checking behavior
+            is aiming to the debugger because the debugger can't recognize the fixed buffer.
+            </para>
+            <para>
+            The debugger can't recognize fixed buffer.
+            The fixed buffer whose code is like:
+            <code><![CDATA[
+            private fixed short _values[81];
+            ]]></code>
+            However, internally, the field <c>_values</c> is implemented
+            with a fixed buffer using a inner struct, which is just like:
+            <code><![CDATA[
+            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
+            private struct FixedBuffer
+            {
+                public short _internalValue;
+            }
+            ]]></code>
+            And that field:
+            <code><![CDATA[
+            private FixedBuffer _fixedField;
+            ]]></code>
+            From the code we can learn that only 2 bytes of the inner struct can be detected,
+            because the buffer struct only contains 2 bytes data.
+            </para>
+            </remarks>
+            <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.GivensCount">
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.Token">
+            <summary>
+            Gets the token of this sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.EigenString">
+            <summary>
+            Indicates the eigen string value that can introduce the current sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.EmptyCells">
+            <summary>
+            Indicates the cells that corresponding position in this grid is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.BivalueCells">
+            <summary>
+            Indicates the cells that corresponding position in this grid contain two candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.CandidatesMap">
+            <summary>
+            Indicates the map of possible positions of the existence of the candidate value for each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.DigitsMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of each digit. The return value will
+            be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>, this property contains all givens, modifiables and
+            empty cells only if it contains the digit in the mask.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.ValuesMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of that value of each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>, the value only contains the given or modifiable
+            cells whose mask contain the set bit of that digit.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the value in the specified cell.
+            </summary>
+            <param name="cell">The cell you want to get or set a value.</param>
+            <value>
+            The value you want to set. The value should be between 0 and 8. If assigning -1,
+            that means to re-compute all candidates.
+            </value>
+            <returns>
+            The value that the cell filled with. The possible values are:
+            <list type="table">
+            <item>
+            <term>-2</term>
+            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Undefined"/>.</description>
+            </item>
+            <item>
+            <term>-1</term>
+            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
+            </item>
+            <item>
+            <term>0 to 8</term>
+            <description>
+            The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <value>
+            The case you want to set. <see langword="false"/> means that this candidate
+            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
+            </value>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.SimplyValidate">
+            <summary>
+            Check whether the current grid is valid (no duplicate values on same row, column or block).
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Exists(System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the specified candidate offset.
+            </summary>
+            <param name="candidate">The candidate offset.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
+            that the candidate specified.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
+            that the candidate specified.
+            </description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
+            </description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+            to decide whether a condition is true.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Exists(System.Int32,System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the digit in the specified cell.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The cell is an empty cell <b>and</b> contains the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The cell is <b>not</b> an empty cell.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
+            to decide whether a condition is true.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.ToArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are between 0 to 9, where 0 means the
+            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.GetMask(System.Int32)">
+            <summary>
+            Get a mask at the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.GetCandidates(System.Int32)">
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="cell">The cell offset you want to get.</param>
+            <returns>
+            <para>
+            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
+            value, where each bit will be:
+            <list type="table">
+            <item>
+            <term><c>0</c></term>
+            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+            </item>
+            <item>
+            <term><c>1</c></term>
+            <description>The cell <b>contains</b> the possibility of the digit.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
+            the value will indicate the cell contains the digit 2, 4 and 9.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.GetPinnableReference">
+            <summary>
+            Returns a reference to the element of the <typeparamref name="TGrid"/> at index zero.
+            </summary>
+            <returns>A reference to the element of the <typeparamref name="TGrid"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.ToMaskString">
+            <summary>
+            Get all masks and print them.
+            </summary>
+            <returns>The result.</returns>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.GetStatus(System.Int32)">
+            <summary>
+            Get the cell status at the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Fix">
+            <summary>
+            To fix the current grid (all modifiable values will be changed to given ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Unfix">
+            <summary>
+            To unfix the current grid (all given values will be changed to modifiable ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
+            <summary>
+            Set the specified cell to the specified status.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.SetMask(System.Int32,System.Int16)">
+            <summary>
+            Set the specified cell to the specified mask.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Equals(`0@,`0@)">
+            <summary>
+            To determine whether two sudoku grid is totally same.
+            </summary>
+            <param name="left">The left one.</param>
+            <param name="right">The right one.</param>
+            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            <para>Parses a string value and converts to this type.</para>
+            <para>
+            If you want to parse a PM grid, we recommend you use the method
+            <see cref="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The result instance had converted.</returns>
+            <seealso cref="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Parse(System.Char*)">
+            <summary>
+            Parses a pointer that points to a string value and converts to this type.
+            </summary>
+            <param name="ptrStr">The pointer that points to string.</param>
+            <returns>The result instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Parse(System.String,System.Boolean)">
+            <summary>
+            <para>
+            Parses a string value and converts to this type.
+            </para>
+            <para>
+            If you want to parse a PM grid, you should decide the mode to parse.
+            If you use compatible mode to parse, all single values will be treated as
+            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
+            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
+            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check PM grid.
+            </param>
+            <returns>The result instance had converted.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)">
+            <summary>
+            Parses a string value and converts to this type, using a specified grid parsing type.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="gridParsingOption">The grid parsing type.</param>
+            <returns>The result instance had converted.</returns>
+        </member>
+        <member name="M:Sudoku.Data.IGrid`1.TryParse(System.String,Sudoku.Data.GridParsingOption,`0@)">
+            <summary>
+            Try to parse a string and converts to this type, and returns a
+            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="option">The grid parsing type.</param>
+            <param name="result">
+            The result parsed. If the conversion is failed,
+            this argument will be <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
+        </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
             Encapsulates a link used for drawing.
@@ -4866,29 +5040,19 @@
             </summary>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.DefaultMask">
-            <summary>
-            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.EmptyMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.ModifiableMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ModifiableMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.GivenMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.GivenMask"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Base64List">
             <summary>
@@ -4912,40 +5076,19 @@
             <seealso cref="F:Sudoku.Data.SudokuGrid.Base64List"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.EmptyString">
-            <summary>
-            Indicates the empty grid string.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyString"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ValueChanged"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.RefreshingCandidates"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Undefined">
-            <summary>
-            Indicates the default grid that all values are initialized 0, which is same as
-            <see cref="M:Sudoku.Data.SudokuGrid.#ctor"/>.
-            </summary>
-            <remarks>
-            We recommend you should use this static field instead of the default constructor
-            to reduce object creation.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.SudokuGrid.#ctor"/>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Undefined"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Empty">
-            <summary>
-            The empty grid that is valid during implementation or running the program
-            (all values are <see cref="F:Sudoku.Data.SudokuGrid.DefaultMask"/>, i.e. empty cells).
-            </summary>
-            <remarks>
-            This field is initialized by the static constructor of this structure.
-            </remarks>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Empty"/>
         </member>
         <member name="F:Sudoku.Data.SudokuGrid.Lookup">
             <summary>
@@ -5009,285 +5152,117 @@
             <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.IsSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.IsUndefined">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.IsEmpty">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Data.SudokuGrid.Empty"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Data.SudokuGrid.Empty"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.Empty"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.IsDebuggerUndefined">
-            <summary>
-            Indicates whether the grid is as same behaviors as <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
-            in debugging mode.
-            </summary>
-            <remarks>
-            <para>
-            This property checks whether all non-first masks are all 0. This checking behavior
-            is aiming to the debugger because the debugger can't recognize the fixed buffer.
-            </para>
-            <para>
-            The debugger can't recognize fixed buffer.
-            The fixed buffer whose code is like:
-            <code><![CDATA[private fixed short _values[81];]]></code>
-            However, internally, the field <c>_values</c> is implemented
-            with a fixed buffer using a inner struct, which is just like:
-            <code><![CDATA[
-            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-            private struct FixedBuffer
-            {
-                public short _internalValue;
-            }
-            ]]></code>
-            And that field:
-            <code><![CDATA[private FixedBuffer _fixedField;]]></code>
-            From the code we can learn that only 2 bytes of the inner struct can be detected,
-            because the buffer struct only contains 2 bytes data.
-            </para>
-            </remarks>
-            <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.Token">
-            <summary>
-            Gets the token of this sudoku grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.EigenString">
-            <summary>
-            Indicates the eigen string value that can introduce the current sudoku grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.EmptyCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid is empty.
-            </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.BivalueCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid contain two candidates.
-            </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.CandidateMap">
-            <summary>
-            Indicates the map of possible positions of the existence of the candidate value for each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.DigitsMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of each digit. The return value will
-            be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>, this property contains all givens, modifiables and
-            empty cells only if it contains the digit in the mask.
-            </para>
-            </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.ValuesMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of that value of each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>, the value only contains the given or modifiable
-            cells whose mask contain the set bit of that digit.
-            </para>
-            </summary>
-            <remarks>
-            Note that this property isn't a promptly one because the value won't be calculated
-            until this property called.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.SudokuGrid.CandidateMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.Triplet">
             <summary>
             The triplet of three main information.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#CandidatesMap">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#DefaultMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#MaxCandidatesMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#EmptyMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#ModifiableMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#GivenMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#EmptyString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#ValueChanged">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#RefreshingCandidates">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#Undefined">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.SudokuGrid.Sudoku#Data#IGrid{Sudoku#Data#SudokuGrid}#Empty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Data.SudokuGrid.Item(System.Int32)">
-            <summary>
-            Gets or sets the value in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get or set a value.</param>
-            <value>
-            The value you want to set. The value should be between 0 and 8. If assigning -1,
-            that means to re-compute all candidates.
-            </value>
-            <returns>
-            The value that the cell filled with. The possible values are:
-            <list type="table">
-            <item>
-            <term>-2</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Undefined"/>.</description>
-            </item>
-            <item>
-            <term>-1</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
-            </item>
-            <item>
-            <term>0 to 8</term>
-            <description>
-            The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
-            </description>
-            </item>
-            </list>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.SudokuGrid.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="false"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.SimplyValidate">
-            <summary>
-            Check whether the current grid is valid (no duplicate values on same row, column or block).
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Exists(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Exists(System.Int32,System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the digit in the specified cell.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
-            to decide whether a condition is true.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetMask(System.Int32)">
-            <summary>
-            Get a mask at the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetCandidates(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            <para>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where each bit will be:
-            <list type="table">
-            <item>
-            <term><c>0</c></term>
-            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
-            </item>
-            <item>
-            <term><c>1</c></term>
-            <description>The cell <b>contains</b> the possibility of the digit.</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
-            the value will indicate the cell contains the digit 2, 4 and 9.
-            </para>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetPinnableReference">
-            <summary>
-            Returns a reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.
-            </summary>
-            <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetPinnableReference(Sudoku.Data.SudokuGrid.PinnedItem)">
             <summary>
@@ -5313,40 +5288,22 @@
             <returns>A reference to the element of the <see cref="T:Sudoku.Data.SudokuGrid"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToMaskString">
-            <summary>
-            Get all masks and print them.
-            </summary>
-            <returns>The result.</returns>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetStatus(System.Int32)">
-            <summary>
-            Get the cell status at the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The cell status.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Fix">
-            <summary>
-            To fix the current grid (all modifiable values will be changed to given ones).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Unfix">
-            <summary>
-            To unfix the current grid (all given values will be changed to modifiable ones).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Reset">
             <summary>
@@ -5354,18 +5311,10 @@
             </summary>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <summary>
-            Set the specified cell to the specified status.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="status">The status.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.SetMask(System.Int32,System.Int16)">
-            <summary>
-            Set the specified cell to the specified mask.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="mask">The mask to set.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.UpdateInitialMasks">
             <summary>
@@ -5393,73 +5342,28 @@
             <seealso cref="P:Sudoku.Data.SudokuGrid.BivalueCells"/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
-            <summary>
-            To determine whether two sudoku grid is totally same.
-            </summary>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
-            <summary>
-            <para>Parses a string value and converts to this type.</para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.Char*)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,System.Boolean)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, you should decide the mode to parse.
-            If you use compatible mode to parse, all single values will be treated as
-            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
-            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
-            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Data.SudokuGrid.Parser.CompatibleFirst"/> to learn more.
-            </param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="P:Sudoku.Data.SudokuGrid.Parser.CompatibleFirst"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,Sudoku.Data.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type, using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.SudokuGrid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="option">The grid parsing type.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed,
-            this argument will be <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.op_Division(Sudoku.Data.SudokuGrid@,System.Int32)">
             <summary>
