@@ -2233,11 +2233,9 @@
         </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
-            Represents a sudoku grid. The type is the substitution plan of type <see cref="T:Sudoku.Data.SudokuGrid"/>.
+            Represents a sudoku grid that contains the mask list of a sudoku grid.
+            The type is the substitution plan of type <see cref="T:Sudoku.Data.SudokuGrid"/>.
             </summary>
-            <remarks>
-            The type doesn't contain the initial sudoku grid data.
-            </remarks>
             <seealso cref="T:Sudoku.Data.SudokuGrid"/>
         </member>
         <member name="T:Sudoku.Data.Grid.CandidateCollection">

@@ -1,20 +1,16 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Represents a sudoku grid. The type is the substitution plan of type <see cref="SudokuGrid"/>.
+/// Represents a sudoku grid that contains the mask list of a sudoku grid.
+/// The type is the substitution plan of type <see cref="SudokuGrid"/>.
 /// </summary>
-/// <remarks>
-/// The type doesn't contain the initial sudoku grid data.
-/// </remarks>
 /// <seealso cref="SudokuGrid"/>
 #if DEBUG
-[DebuggerDisplay(
 #if USE_TO_MASK_STRING_METHOD
-	$@"{{{nameof(ToMaskString)}("".+:""),nq}}"
+[DebuggerDisplay($@"{{{nameof(ToMaskString)}("".+:""),nq}}")]
 #else
-	$@"{{{nameof(ToString)}("".+:""),nq}}"
+[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]	
 #endif // !USE_TO_MASK_STRING_METHOD
-)]
 #endif // !DEBUG
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
