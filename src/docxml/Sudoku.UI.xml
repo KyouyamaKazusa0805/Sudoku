@@ -1117,12 +1117,12 @@
         <member name="M:Sudoku.UI.Data.UIColor.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.UI.Data.UIColor,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Data.UIColor.Deconstruct(System.Byte@,Sudoku.UI.Data.UIColor@)">
+        <member name="M:Sudoku.UI.Data.UIColor.Deconstruct(System.Byte@,System.Byte@,System.Byte@)">
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.UIColor.Deconstruct(System.Byte@,System.Byte@,System.Byte@)">
+        <member name="M:Sudoku.UI.Data.UIColor.Deconstruct(System.Byte@,Sudoku.UI.Data.UIColor@)">
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
