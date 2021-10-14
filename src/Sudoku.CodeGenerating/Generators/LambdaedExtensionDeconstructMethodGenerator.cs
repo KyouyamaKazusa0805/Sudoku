@@ -143,5 +143,6 @@ public static class {typeResult}_LambdaedDeconstructionMethods
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+	public void Initialize(GeneratorInitializationContext context) =>
+		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 }

@@ -64,5 +64,6 @@ partial {typeKind}{type.Name}{genericParametersList}
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+	public void Initialize(GeneratorInitializationContext context) =>
+		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 }

@@ -1175,21 +1175,6 @@
             <param name="encoding">The encoding.</param>
             <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
         </member>
-        <member name="T:Microsoft.CodeAnalysis.GeneratorInitializationContextExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorInitializationContext"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.GeneratorInitializationContextExtensions.FastRegister``1(Microsoft.CodeAnalysis.GeneratorInitializationContext@)">
-            <summary>
-            Fast invokes the method
-            <see cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>.
-            </summary>
-            <typeparam name="TSyntaxReceiver">The type of the syntax receiver.</typeparam>
-            <param name="this">The current initialization context.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorInitializationContext.RegisterForSyntaxNotifications(Microsoft.CodeAnalysis.SyntaxReceiverCreator)"/>
-        </member>
         <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.

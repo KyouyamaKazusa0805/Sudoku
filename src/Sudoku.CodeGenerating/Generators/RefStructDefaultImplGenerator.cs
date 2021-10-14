@@ -32,7 +32,8 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+	public void Initialize(GeneratorInitializationContext context) =>
+		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
 
 	private void TopLevelStructGenerating(

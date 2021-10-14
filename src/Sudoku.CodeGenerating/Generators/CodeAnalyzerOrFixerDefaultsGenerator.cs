@@ -214,7 +214,8 @@ partial class {typeName}
 
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) => context.FastRegister<SyntaxReceiver>();
+	public void Initialize(GeneratorInitializationContext context) =>
+		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 
 
 #if SUPPORT_CODE_ANALYZER || SUPPORT_CODE_FIXER
