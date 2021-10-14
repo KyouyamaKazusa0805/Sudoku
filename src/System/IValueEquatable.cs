@@ -4,7 +4,7 @@ namespace System;
 
 /// <summary>
 /// Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
-/// for detemining equality of instances.
+/// for determining equality of instances.
 /// </summary>
 /// <typeparam name="TStruct">
 /// The type of objects to compare. Here it should be a <see langword="struct"/>.

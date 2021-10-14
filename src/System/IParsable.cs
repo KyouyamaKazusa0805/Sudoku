@@ -10,7 +10,7 @@ public interface IParsable<T>
 	/// Try to parse the specified string text, and get the same-meaning instance
 	/// of type <typeparamref name="T"/>.
 	/// </summary>
-	/// <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
+	/// <param name="str">The string to parse. The value shouldn't be <see langword="null"/>.</param>
 	/// <param name="result">
 	/// The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
 	/// i.e. <see langword="default"/>(<typeparamref name="T"/>).

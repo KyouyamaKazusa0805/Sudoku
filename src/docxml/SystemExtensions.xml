@@ -3169,7 +3169,7 @@
             Try to parse the specified string text, and get the same-meaning instance
             of type <typeparamref name="T"/>.
             </summary>
-            <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
+            <param name="str">The string to parse. The value shouldn't be <see langword="null"/>.</param>
             <param name="result">
             The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
             i.e. <see langword="default"/>(<typeparamref name="T"/>).
@@ -3235,7 +3235,7 @@
         <member name="T:System.IValueEquatable`1">
             <summary>
             Defines a generalized method that a <see langword="struct"/> implements to create a type-specific method
-            for detemining equality of instances.
+            for determining equality of instances.
             </summary>
             <typeparam name="TStruct">
             The type of objects to compare. Here it should be a <see langword="struct"/>.
