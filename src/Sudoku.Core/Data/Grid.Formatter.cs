@@ -8,6 +8,12 @@ partial struct Grid
 	public readonly ref partial struct Formatter
 	{
 		/// <summary>
+		/// Indicates the inner mask that stores the flags.
+		/// </summary>
+		private readonly short _flags;
+
+
+		/// <summary>
 		/// Initializes an instance with a <see cref="bool"/> value
 		/// indicating multi-line.
 		/// </summary>
@@ -15,6 +21,7 @@ partial struct Grid
 		/// The multi-line identifier. If the value is <see langword="true"/>, the output will
 		/// be multi-line.
 		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public Formatter(bool multiline) : this(
 			placeholder: '.', multiline: multiline, withModifiables: false,
 			withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
@@ -22,6 +29,13 @@ partial struct Grid
 		)
 		{
 		}
+
+		/// <summary>
+		/// Initializes a <see cref="Formatter"/> instance using the specified mask storing all possible flags.
+		/// </summary>
+		/// <param name="flags">The flags.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public Formatter(short flags) => _flags = flags;
 
 		/// <summary>
 		/// Initialize an instance with the specified information.
@@ -46,6 +60,7 @@ partial struct Grid
 		/// <param name="openSudoku">
 		/// Indicates whether the formatter will output as open sudoku format.
 		/// </param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private Formatter(
 			char placeholder,
 			bool multiline,
@@ -59,33 +74,60 @@ partial struct Grid
 			bool openSudoku
 		)
 		{
-			Placeholder = placeholder;
-			Multiline = multiline;
-			WithModifiables = withModifiables;
-			WithCandidates = withCandidates;
-			TreatValueAsGiven = treatValueAsGiven;
-			SubtleGridLines = subtleGridLines;
-			HodokuCompatible = hodokuCompatible;
-			Sukaku = sukaku;
-			Excel = excel;
-			OpenSudoku = openSudoku;
+			_flags = placeholder switch { '.' => 0, '0' => 512 };
+			_flags |= (short)(multiline ? 256 : 0);
+			_flags |= (short)(withModifiables ? 128 : 0);
+			_flags |= (short)(withCandidates ? 64 : 0);
+			_flags |= (short)(treatValueAsGiven ? 32 : 0);
+			_flags |= (short)(subtleGridLines ? 16 : 0);
+			_flags |= (short)(hodokuCompatible ? 8 : 0);
+			_flags |= (short)(sukaku ? 4 : 0);
+			_flags |= (short)(excel ? 2 : 0);
+			_flags |= (short)(openSudoku ? 1 : 0);
 		}
 
 
 		/// <summary>
 		/// The place holder.
 		/// </summary>
-		public char Placeholder { get; init; }
+		/// <returns>The result placeholder text.</returns>
+		/// <value>The value to assign. The value must be 46 (<c>'.'</c>) or 48 (<c>'0'</c>).</value>
+		public char Placeholder
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 9 & 1) != 0 ? '.' : '0';
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags = value switch { '.' => (short)(_flags & 511 | 512), '0' => (short)(_flags & 511) };
+		}
 
 		/// <summary>
 		/// Indicates whether the output should be multi-line.
 		/// </summary>
-		public bool Multiline { get; }
+		public bool Multiline
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 8 & 1) != 0;
+
+#if false
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 256 : 0);
+#endif
+		}
 
 		/// <summary>
 		/// Indicates the output should be with modifiable values.
 		/// </summary>
-		public bool WithModifiables { get; init; }
+		/// <returns>The output should be with modifiable values.</returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool WithModifiables
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 7 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 128 : 0);
+		}
 
 		/// <summary>
 		/// <para>
@@ -102,7 +144,16 @@ partial struct Grid
 		/// 'column offset' in order.
 		/// </para>
 		/// </summary>
-		public bool WithCandidates { get; init; }
+		/// <returns>The output should be with candidates.</returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool WithCandidates
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 6 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 64 : 0);
+		}
 
 		/// <summary>
 		/// Indicates the output will treat modifiable values as given ones.
@@ -110,33 +161,98 @@ partial struct Grid
 		/// If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
 		/// of '<c>*digit*</c>'.
 		/// </summary>
-		public bool TreatValueAsGiven { get; init; }
+		/// <returns>The output will treat modifiable values as given ones.</returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool TreatValueAsGiven
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 5 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 32 : 0);
+		}
 
 		/// <summary>
 		/// Indicates whether need to handle all grid outlines while outputting.
 		/// </summary>
-		public bool SubtleGridLines { get; init; }
+		/// <returns>
+		/// The <see cref="bool"/> result indicating whether need to handle all grid outlines while outputting.
+		/// </returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool SubtleGridLines
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 4 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 16 : 0);
+		}
 
 		/// <summary>
 		/// Indicates whether the output will be compatible with Hodoku library format.
 		/// </summary>
-		public bool HodokuCompatible { get; init; }
+		/// <returns>
+		/// The <see cref="bool"/> result indicating whether the output will be compatible
+		/// with Hodoku library format.
+		/// </returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool HodokuCompatible
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 3 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 8 : 0);
+		}
 
 		/// <summary>
 		/// Indicates the output will be sukaku format (all single-valued digit will
 		/// be all treated as candidates).
 		/// </summary>
-		public bool Sukaku { get; init; }
+		/// <returns>
+		/// The output will be sukaku format (all single-valued digit will
+		/// be all treated as candidates).
+		/// </returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool Sukaku
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 2 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 4 : 0);
+		}
 
 		/// <summary>
 		/// Indicates the output will be Excel format.
 		/// </summary>
-		public bool Excel { get; init; }
+		/// <returns>The output will be Excel format.</returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool Excel
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 1 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 2 : 0);
+		}
 
 		/// <summary>
 		/// Indicates whether the current output mode is aiming to open sudoku format.
 		/// </summary>
-		public bool OpenSudoku { get; init; }
+		/// <returns>
+		/// The <see cref="bool"/> result indicating whether the current output mode
+		/// is aiming to open sudoku format.
+		/// </returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool OpenSudoku
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 1 : 0);
+		}
 
 
 		/// <summary>
@@ -144,6 +260,7 @@ partial struct Grid
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public string ToString(in Grid grid) =>
 			Sukaku
 				? ToSukakuString(grid)
@@ -165,6 +282,7 @@ partial struct Grid
 		/// <param name="grid">The grid.</param>
 		/// <param name="format">The string format.</param>
 		/// <returns>The string.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public string ToString(in Grid grid, string? format) => Create(format).ToString(grid);
 
 
@@ -174,6 +292,7 @@ partial struct Grid
 		/// <param name="format">The format.</param>
 		/// <returns>The grid formatter.</returns>
 		/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Formatter Create(string? format) => format switch
 		{
 			null or "." => new(false),
@@ -215,6 +334,7 @@ partial struct Grid
 		/// </summary>
 		/// <param name="gridOutputOption">The grid output options.</param>
 		/// <returns>The grid formatter.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Formatter Create(GridFormattingOptions gridOutputOption) => gridOutputOption switch
 		{
 			GridFormattingOptions.Excel => new(true) { Excel = true },

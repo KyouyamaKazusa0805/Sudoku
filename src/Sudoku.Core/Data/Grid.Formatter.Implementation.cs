@@ -11,7 +11,7 @@ partial struct Grid
 		/// <returns>The string.</returns>
 		private partial string ToExcelString(in Grid grid)
 		{
-			var span = grid.ToString("0").AsSpan();
+			var span = $"{grid:0}".AsSpan();
 			var sb = new ValueStringBuilder(stackalloc char[81 + 72 + 9]);
 			for (int i = 0; i < 9; i++)
 			{
