@@ -568,7 +568,8 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 					result = (short)(ModifiableMask | 1 << value);
 
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
-					((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, result, value);
+					var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+					f(ref this, cell, copied, result, value);
 
 					break;
 				}
@@ -598,7 +599,8 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 				}
 
 				// To trigger the event.
-				((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, _values[cell], -1);
+				var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+				f(ref this, cell, copied, _values[cell], -1);
 			}
 		}
 	}
@@ -777,7 +779,8 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		short copied = mask;
 		mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
 
-		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
+		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+		f(ref this, cell, copied, mask, -1);
 	}
 
 	/// <inheritdoc/>
@@ -788,7 +791,8 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		short copied = m;
 		m = mask;
 
-		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
+		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
+		f(ref this, cell, copied, m, -1);
 	}
 
 	/// <summary>
