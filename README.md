@@ -6,7 +6,7 @@
 
 If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
 
-> None at present.
+> I'm busy recently, so some updates may be slow.
 
 ## Content
 
@@ -68,7 +68,7 @@ Please visit the following tables.
 | Programming language and version   | C# 10                                         |
 | Framework                          | .NET 6                                        |
 | Indenting                          | Tabs `\t`                                     |
-| Integrated development environment | Visual Studio 2022 (Version 17.0 Preview 4)   |
+| Integrated development environment | Visual Studio 2022 (Version 17.0 Preview 5)   |
 | Natural languages support          | English, Simplified Chinese                   |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
