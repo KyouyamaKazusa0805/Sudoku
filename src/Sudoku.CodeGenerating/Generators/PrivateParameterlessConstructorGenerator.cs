@@ -20,13 +20,18 @@ public sealed partial class PrivateParameterlessConstructorGenerator : ISourceGe
 			select semanticModel.GetDeclaredSymbol(type, context.CancellationToken)! into typeSymbol
 			let attributesData = typeSymbol.GetAttributes()
 			let attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
-			where attributeData is { ConstructorArguments.IsDefaultOrEmpty: false }
+			where attributeData is not null
 			select (typeSymbol, attributeData))
 		{
 			typeSymbol.DeconstructInfo(
-				true, out _, out string namespaceName, out string genericParametersList,
+				true, out _, out string namespaceName, out _,
 				out _, out _, out _, out _
 			);
+
+			if (typeSymbol is not { TypeArguments.IsDefaultOrEmpty: true, Name: var typeName })
+			{
+				continue;
+			}
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
@@ -35,19 +40,18 @@ public sealed partial class PrivateParameterlessConstructorGenerator : ISourceGe
 
 namespace {namespaceName};
 
-partial class {typeSymbol.Name}{genericParametersList}
+partial class {typeName}
 {{
 	/// <summary>
-	/// Indicates the parameterless constructor.
+	/// <para>Indicates the parameterless constructor.</para>
+	/// <para><i>This constructor can't be used anyway.</i></para>
 	/// </summary>
-	/// <remarks>
-	/// <i>This constructor can't be used anyway.</i>
-	/// </remarks>
+	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 	[global::System.Obsolete(""You can't call or invoke this constructor anyway."", true, DiagnosticId = ""BAN"")]
-	[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-	private {typeSymbol.Name}() {{ }}
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	private {typeName}() => throw new NotSupportedException();
 }}
 "
 			);

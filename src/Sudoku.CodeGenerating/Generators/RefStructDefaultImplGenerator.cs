@@ -65,7 +65,9 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
 	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+#endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
@@ -81,7 +83,9 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
 	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+#endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
@@ -97,7 +101,9 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
 	[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+#endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";

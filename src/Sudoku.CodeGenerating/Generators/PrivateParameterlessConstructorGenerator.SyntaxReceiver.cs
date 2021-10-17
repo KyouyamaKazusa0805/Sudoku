@@ -10,14 +10,14 @@ partial class PrivateParameterlessConstructorGenerator
 		/// <summary>
 		/// Indicates all possible candidate types used.
 		/// </summary>
-		public IList<TypeDeclarationSyntax> Candidates { get; } = new List<TypeDeclarationSyntax>();
+		public IList<ClassDeclarationSyntax> Candidates { get; } = new List<ClassDeclarationSyntax>();
 
 
 		/// <inheritdoc/>
 		public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
 		{
 			// Any field with at least one attribute is a candidate for property generation.
-			if (syntaxNode is TypeDeclarationSyntax { AttributeLists.Count: not 0 } classDeclaration)
+			if (syntaxNode is ClassDeclarationSyntax { AttributeLists.Count: not 0 } classDeclaration)
 			{
 				Candidates.Add(classDeclaration);
 			}

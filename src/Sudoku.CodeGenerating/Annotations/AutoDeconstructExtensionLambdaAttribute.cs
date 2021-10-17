@@ -23,7 +23,7 @@
 /// We suppose that the value <c>.C</c> is an expression that is defined by ours:
 /// <code><![CDATA[
 /// [PrivatizeParameterlessConstructor]
-/// internal sealed class Provider
+/// internal sealed partial class Provider
 /// {
 ///		[DeconstructArgumentProvider]
 ///     internal static int C(Class instance) => instance.A + instance.B;
