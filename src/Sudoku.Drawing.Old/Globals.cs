@@ -4,6 +4,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using System.Drawing;
 global using System.Drawing.Drawing2D;
 global using System.Drawing.Imaging;
+global using System.Drawing.Providers;
 global using System.Drawing.Text;
 global using System.IO;
 global using System.Linq;

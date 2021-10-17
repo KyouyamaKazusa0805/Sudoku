@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.Extensions;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis.Providers;
 
 internal sealed class GeneratorSyntaxContext_Dap
 {

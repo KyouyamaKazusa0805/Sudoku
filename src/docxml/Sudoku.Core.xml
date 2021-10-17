@@ -2672,6 +2672,11 @@
             Provides operations for grid formatting.
             </summary>
         </member>
+        <member name="F:Sudoku.Data.Grid.Formatter._flags">
+            <summary>
+            Indicates the inner mask that stores the flags.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Grid.Formatter.#ctor(System.Boolean)">
             <summary>
             Initializes an instance with a <see cref="T:System.Boolean"/> value
@@ -2681,6 +2686,12 @@
             The multi-line identifier. If the value is <see langword="true"/>, the output will
             be multi-line.
             </param>
+        </member>
+        <member name="M:Sudoku.Data.Grid.Formatter.#ctor(System.Int16)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Grid.Formatter"/> instance using the specified mask storing all possible flags.
+            </summary>
+            <param name="flags">The flags.</param>
         </member>
         <member name="M:Sudoku.Data.Grid.Formatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -2711,6 +2722,8 @@
             <summary>
             The place holder.
             </summary>
+            <returns>The result placeholder text.</returns>
+            <value>The value to assign. The value must be 46 (<c>'.'</c>) or 48 (<c>'0'</c>).</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.Multiline">
             <summary>
@@ -2721,6 +2734,8 @@
             <summary>
             Indicates the output should be with modifiable values.
             </summary>
+            <returns>The output should be with modifiable values.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.WithCandidates">
             <summary>
@@ -2738,6 +2753,8 @@
             'column offset' in order.
             </para>
             </summary>
+            <returns>The output should be with candidates.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.TreatValueAsGiven">
             <summary>
@@ -2746,32 +2763,55 @@
             If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
             of '<c>*digit*</c>'.
             </summary>
+            <returns>The output will treat modifiable values as given ones.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.SubtleGridLines">
             <summary>
             Indicates whether need to handle all grid outlines while outputting.
             </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether need to handle all grid outlines while outputting.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.HodokuCompatible">
             <summary>
             Indicates whether the output will be compatible with Hodoku library format.
             </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the output will be compatible
+            with Hodoku library format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.Sukaku">
             <summary>
             Indicates the output will be sukaku format (all single-valued digit will
             be all treated as candidates).
             </summary>
+            <returns>
+            The output will be sukaku format (all single-valued digit will
+            be all treated as candidates).
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.Excel">
             <summary>
             Indicates the output will be Excel format.
             </summary>
+            <returns>The output will be Excel format.</returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.OpenSudoku">
             <summary>
             Indicates whether the current output mode is aiming to open sudoku format.
             </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
+            is aiming to open sudoku format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
         <member name="M:Sudoku.Data.Grid.Formatter.ToString(Sudoku.Data.Grid@)">
             <summary>
