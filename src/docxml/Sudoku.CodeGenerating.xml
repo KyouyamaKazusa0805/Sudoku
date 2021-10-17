@@ -93,10 +93,11 @@
             <para>
             We suppose that the value <c>.C</c> is an expression that is defined by ours:
             <code><![CDATA[
-            public sealed class Provider
+            [PrivatizeParameterlessConstructor]
+            internal sealed class Provider
             {
             	[DeconstructArgumentProvider]
-                public static int C(Class instance) => instance.A + instance.B;
+                internal static int C(Class instance) => instance.A + instance.B;
             }
             ]]></code>
             then you'll get the generated code:
@@ -347,6 +348,12 @@
             <para>The default value is <c><see langword="false"/>.</c></para>
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.PrivatizeParameterlessConstructorAttribute">
+            <summary>
+            Marks onto a <see langword="class"/> type, to tell the source generator the type should contain
+            a <see langword="private"/> parameterless constructor that can't be accessed out of its type field.
+            </summary>
+        </member>
         <member name="T:Sudoku.CodeGenerating.ProxyEqualityAttribute">
             <summary>
             Indicates an attribute instance which is marked on a method,
@@ -494,6 +501,11 @@
         <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.LambdaedExtensionDeconstructionMethod">
             <summary>
             Indicates the source generator is for extension deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.CodeGenerating.Constants.GeneratedFileShortcuts.PrivateParameterlessConstructor">
+            <summary>
+            Indicates the source generator is for parameterless constructors.
             </summary>
         </member>
         <member name="T:Sudoku.CodeGenerating.Constants.OperatorNames">
@@ -1019,6 +1031,31 @@
             </summary>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator">
+            <summary>
+            Provides a source generator that automatically generates the source code for disability of the
+            usage of the parameterless constructor outside the type range.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator">

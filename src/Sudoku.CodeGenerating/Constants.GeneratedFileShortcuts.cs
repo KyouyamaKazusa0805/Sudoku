@@ -106,5 +106,10 @@ partial class Constants
 		/// Indicates the source generator is for extension deconstruction methods with expressions.
 		/// </summary>
 		public const string LambdaedExtensionDeconstructionMethod = "eld";
+
+		/// <summary>
+		/// Indicates the source generator is for parameterless constructors.
+		/// </summary>
+		public const string PrivateParameterlessConstructor = "ppc";
 	}
 }

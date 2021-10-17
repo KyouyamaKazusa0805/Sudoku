@@ -1,6 +1,7 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.Providers;
 
-internal sealed class GeneratorSyntaxContext_Dap
+[PrivatizeParameterlessConstructor]
+internal sealed partial class GeneratorSyntaxContext_Dap
 {
 	[DeconstructArgumentProvider]
 	internal static IOperation? Operation(GeneratorSyntaxContext generatorSyntaxContext) =>

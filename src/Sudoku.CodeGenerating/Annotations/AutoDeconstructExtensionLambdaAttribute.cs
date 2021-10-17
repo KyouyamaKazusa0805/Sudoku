@@ -22,10 +22,11 @@
 /// <para>
 /// We suppose that the value <c>.C</c> is an expression that is defined by ours:
 /// <code><![CDATA[
-/// public sealed class Provider
+/// [PrivatizeParameterlessConstructor]
+/// internal sealed class Provider
 /// {
 ///		[DeconstructArgumentProvider]
-///     public static int C(Class instance) => instance.A + instance.B;
+///     internal static int C(Class instance) => instance.A + instance.B;
 /// }
 /// ]]></code>
 /// then you'll get the generated code:
