@@ -31,7 +31,7 @@
 /// for more information.
 /// </para>
 /// </remarks>
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
+[AttributeUsage(Assembly, AllowMultiple = true, Inherited = false)]
 public sealed class AutoDeconstructExtensionAttribute<T> : Attribute
 {
 	/// <summary>

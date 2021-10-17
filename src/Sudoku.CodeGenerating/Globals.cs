@@ -16,6 +16,7 @@ global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Text;
 global using Sudoku.CodeGenerating.Reflection;
+global using static System.AttributeTargets;
 global using static Sudoku.CodeGenerating.Constants;
 
 #if !NETSTANDARD2_1_OR_GREATER

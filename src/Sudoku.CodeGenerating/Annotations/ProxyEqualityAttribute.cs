@@ -10,7 +10,7 @@
 /// attribute must be <see langword="static"/>. If you marks on a method
 /// that isn't a <see langword="static"/> method, the source generator will do nothing.
 /// </remarks>
-[AttributeUsage(AttributeTargets.Method)]
+[AttributeUsage(Method, AllowMultiple = false, Inherited = false)]
 public sealed class ProxyEqualityAttribute : Attribute
 {
 }

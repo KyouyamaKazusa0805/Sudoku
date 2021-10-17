@@ -3,7 +3,7 @@
 /// <summary>
 /// Indicates the marked <see langword="class"/> should generate primary constructor automatically.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class)]
+[AttributeUsage(Class, AllowMultiple = false, Inherited = false)]
 public sealed class AutoPrimaryConstructorAttribute : Attribute
 {
 	/// <summary>

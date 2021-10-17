@@ -5,7 +5,7 @@
 /// usage of the parameterless constructor outside the type range.
 /// </summary>
 [Generator]
-public sealed partial class PrivateParameterlessConstructorGenerator : ISourceGenerator
+public sealed partial class PrivatizeParameterlessConstructorGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
@@ -49,7 +49,11 @@ partial class {typeName}
 	/// <exception cref=""NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
 	[global::System.Obsolete(""You can't call or invoke this constructor anyway."", true, DiagnosticId = ""BAN"")]
+#else
+	[global::System.Obsolete(""You can't call or invoke this constructor anyway."", true)]
+#endif
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	private {typeName}() => throw new NotSupportedException();
 }}

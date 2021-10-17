@@ -4,7 +4,7 @@
 /// To mark on a type, to tell the compiler that the compiler will automatically generate
 /// <c>GetEnumerator</c> methods for that type.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+[AttributeUsage(Class | Struct, AllowMultiple = false, Inherited = false)]
 public sealed class AutoGetEnumeratorAttribute : Attribute
 {
 	/// <summary>

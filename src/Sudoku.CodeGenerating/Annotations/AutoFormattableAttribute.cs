@@ -7,6 +7,7 @@
 /// </summary>
 /// <seealso cref="object.ToString"/>
 /// <seealso cref="IFormattable.ToString(string, IFormatProvider)"/>
+[AttributeUsage(Class | Struct, AllowMultiple = false, Inherited = false)]
 public sealed class AutoFormattableAttribute : Attribute
 {
 }

@@ -651,6 +651,13 @@
             Indicates the possible diagnostic list to report.
             </summary>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Providers.GeneratorSyntaxContext_Dap.#ctor">
+            <summary>
+            <para>Indicates the parameterless constructor.</para>
+            <para><i>This constructor can't be used anyway.</i></para>
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.

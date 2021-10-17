@@ -52,7 +52,7 @@
 /// for more information.
 /// </para>
 /// </remarks>
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
+[AttributeUsage(Assembly, AllowMultiple = true, Inherited = false)]
 public sealed class AutoDeconstructExtensionLambdaAttribute<T, TProvider> : Attribute where TProvider : class
 {
 	/// <summary>

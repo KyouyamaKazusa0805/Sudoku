@@ -7,7 +7,7 @@
 /// A <b>discriminated union</b> is a type that is a same implementation
 /// for the concept <see langword="enum class"/> in Java.
 /// </remarks>
-[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+[AttributeUsage(Struct | Class, AllowMultiple = false, Inherited = false)]
 public sealed class DiscriminatedUnionAttribute : Attribute
 {
 	/// <summary>

@@ -4,7 +4,7 @@
 /// Indicates an attribute that marks a <see langword="class"/> or a <see langword="struct"/>
 /// that tells the compiler the type should generate a default <c>GetHashCode</c> method.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+[AttributeUsage(Class | Struct, AllowMultiple = false, Inherited = false)]
 public sealed class AutoHashCodeAttribute : Attribute
 {
 	/// <summary>

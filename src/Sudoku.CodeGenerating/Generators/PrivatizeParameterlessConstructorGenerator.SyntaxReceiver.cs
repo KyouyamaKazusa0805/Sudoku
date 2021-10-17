@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.CodeGenerating.Generators;
 
-partial class PrivateParameterlessConstructorGenerator
+partial class PrivatizeParameterlessConstructorGenerator
 {
 	/// <summary>
 	/// Defines the syntax receiver.

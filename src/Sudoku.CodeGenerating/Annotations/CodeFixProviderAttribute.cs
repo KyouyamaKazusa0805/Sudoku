@@ -4,7 +4,7 @@
 /// To mark on a code fixer type, to tell the compiler and the source generator that
 /// generates the code for the code fix defaults.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class)]
+[AttributeUsage(Class, AllowMultiple = false, Inherited = false)]
 [Conditional("SUPPORT_CODE_FIXER")]
 public sealed class CodeFixProviderAttribute : Attribute
 {

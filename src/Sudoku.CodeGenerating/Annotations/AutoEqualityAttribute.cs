@@ -4,7 +4,7 @@
 /// Indicates an attribute to mark a type, to indicate the type will be generated a default method
 /// called <c>Equals</c>.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+[AttributeUsage(Class | Struct, AllowMultiple = false, Inherited = false)]
 public sealed class AutoEqualityAttribute : Attribute
 {
 	/// <summary>

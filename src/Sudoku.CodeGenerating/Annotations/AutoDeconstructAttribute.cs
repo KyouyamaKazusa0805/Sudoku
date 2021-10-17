@@ -3,7 +3,7 @@
 /// <summary>
 /// Allows the type can be deconstructed to multiple elements.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
+[AttributeUsage(Class | Struct, AllowMultiple = true, Inherited = false)]
 public sealed class AutoDeconstructAttribute : Attribute
 {
 	/// <summary>

@@ -1033,29 +1033,29 @@
         <member name="M:Sudoku.CodeGenerating.Generators.PrimaryConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator">
+        <member name="T:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator">
             <summary>
             Provides a source generator that automatically generates the source code for disability of the
             usage of the parameterless constructor outside the type range.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver">
+        <member name="T:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
             </summary>
         </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver.Candidates">
+        <member name="P:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.Candidates">
             <summary>
             Indicates all possible candidate types used.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.PrivateParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.ProxyEqualsMethodGenerator">
