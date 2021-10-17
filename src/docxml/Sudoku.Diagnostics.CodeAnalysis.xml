@@ -173,6 +173,64 @@
             diagnostic result (Please use the specific property to simplify the invocation).
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer">
+            <summary>
+            Indicates an analyzer that analyzes the code for the following diagnostic results:
+            <list type="table">
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</see></term>
+            <description>Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case</description>
+            </item>
+            <item>
+            <term><see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0311">SD0311</see></term>
+            <description>Invalid format string in 'SudokuGrid.ToString'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer.PossibleFormats">
+            <summary>
+            All possible format strings to check.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer"/> instance via the specified cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer.CancellationToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer.DiagnosticList">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.CodeAnalyzer.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.SD0310">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0310">SD0310</see>
+            diagnostic result (Please add the format string as the argument into the method invocation of 'SudokuGrid', such as '.' for default case, or '#' for intelligent-handling case).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridFormatStringAnalyzer.SD0311">
+            <summary>
+            Indicates the <see href="https://sunnieshine.github.io/Sudoku/rules/Rule-SD0311">SD0311</see>
+            diagnostic result (Invalid format string in 'SudokuGrid.ToString').
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ProxyEqualityAttributeAnalyzer">
             <summary>
             Indicates an analyzer that analyzes the code for the following diagnostic results:
@@ -481,6 +539,11 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.InitializeMaps">
             <summary>
             Indicates the method <c>InitializeMaps</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.ToString">
+            <summary>
+            Indicates the method <c>ToString</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.Constants.MemberNames.FastProperties">

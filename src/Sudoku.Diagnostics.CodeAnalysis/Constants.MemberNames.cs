@@ -43,6 +43,11 @@ partial class Constants
 		public const string InitializeMaps = nameof(InitializeMaps);
 
 		/// <summary>
+		/// Indicates the method <c>ToString</c>.
+		/// </summary>
+		public new const string ToString = nameof(ToString);
+
+		/// <summary>
 		/// Indicates the type <c>FastProperty</c>.
 		/// </summary>
 		public const string FastProperties = nameof(FastProperties);
