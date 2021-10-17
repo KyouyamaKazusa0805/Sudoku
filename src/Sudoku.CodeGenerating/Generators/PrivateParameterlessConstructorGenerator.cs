@@ -30,7 +30,7 @@ public sealed partial class PrivateParameterlessConstructorGenerator : ISourceGe
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
-				GeneratedFileShortcuts.GetHashCode,
+				GeneratedFileShortcuts.PrivateParameterlessConstructor,
 				$@"#nullable enable
 
 namespace {namespaceName};
