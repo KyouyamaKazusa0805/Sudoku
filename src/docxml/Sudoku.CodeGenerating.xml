@@ -554,25 +554,8 @@
             <summary>
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
             </summary>
-            <seealso cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver">
-            <summary>
-            Defines the syntax receiver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates all possible candidate types used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.BitOperationsGenerator">
@@ -1347,6 +1330,18 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
         </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.FirstAttributeData(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Try to fetch the first <see cref="T:Microsoft.CodeAnalysis.AttributeData"/> whose <see cref="P:Microsoft.CodeAnalysis.AttributeData.AttributeClass"/>
+            is the specified <paramref name="attributeSymbol"/>.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The attribute symbol.</param>
+            <returns>
+            The result <see cref="T:Microsoft.CodeAnalysis.AttributeData"/> instance, or <see langword="null"/> if not found.
+            </returns>
+            <seealso cref="P:Microsoft.CodeAnalysis.AttributeData.AttributeClass"/>
+        </member>
         <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol,System.Threading.CancellationToken)">
             <summary>
             To determine whether the specified symbol (should be property or field members)
@@ -1404,6 +1399,33 @@
             </summary>
             <param name="this">The symbol.</param>
             <returns>All members.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.SourceProductionContextExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SourceProductionContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SourceProductionContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.SourceProductionContextExtensions.AddSource(Microsoft.CodeAnalysis.SourceProductionContext@,System.String,System.String,System.String)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.SourceProductionContext.AddSource(System.String,System.String)"/>.
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.SourceProductionContext.AddSource(System.String,System.String)"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.SourceProductionContextExtensions.AddSource(Microsoft.CodeAnalysis.SourceProductionContext@,System.String,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.SourceProductionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>.
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <param name="encoding">The encoding.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.SourceProductionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
         </member>
         <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
             <summary>

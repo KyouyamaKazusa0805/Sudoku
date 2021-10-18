@@ -7,6 +7,21 @@
 internal static class ISymbolExtensions
 {
 	/// <summary>
+	/// Try to fetch the first <see cref="AttributeData"/> whose <see cref="AttributeData.AttributeClass"/>
+	/// is the specified <paramref name="attributeSymbol"/>.
+	/// </summary>
+	/// <param name="typeSymbol">The type symbol.</param>
+	/// <param name="attributeSymbol">The attribute symbol.</param>
+	/// <returns>
+	/// The result <see cref="AttributeData"/> instance, or <see langword="null"/> if not found.
+	/// </returns>
+	/// <seealso cref="AttributeData.AttributeClass"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static AttributeData? FirstAttributeData(this ISymbol typeSymbol, INamedTypeSymbol attributeSymbol) =>
+		typeSymbol.GetAttributes()
+		.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol));
+
+	/// <summary>
 	/// To determine whether the specified symbol (should be property or field members)
 	/// has an initializer.
 	/// </summary>

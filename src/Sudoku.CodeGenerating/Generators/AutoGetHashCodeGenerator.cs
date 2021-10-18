@@ -3,42 +3,75 @@
 /// <summary>
 /// Indicates the generator that generates the code that overrides <see cref="object.GetHashCode"/>.
 /// </summary>
-/// <seealso cref="object.GetHashCode"/>
-[Generator]
-public sealed partial class AutoGetHashCodeGenerator : ISourceGenerator
+[Generator(LanguageNames.CSharp)]
+public sealed class AutoGetHashCodeGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context) =>
+		context.RegisterImplementationSourceOutput(
+			context.SyntaxProvider.CreateSyntaxProvider(WithAttributes, Transform),
+			SourceProduce
+		);
+
+	private bool WithAttributes(SyntaxNode n, CancellationToken _) =>
+		n is TypeDeclarationSyntax { AttributeLists.Count: not 0 };
+
+	private (INamedTypeSymbol, AttributeData)? Transform(GeneratorSyntaxContext gsc, CancellationToken c)
 	{
-		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
-		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoHashCodeAttribute).FullName);
-
-		foreach (var (typeSymbol, attributeData) in
-			from type in receiver.Candidates
-			let semanticModel = compilation.GetSemanticModel(type.SyntaxTree)
-			select semanticModel.GetDeclaredSymbol(type, context.CancellationToken)! into typeSymbol
-			let attributesData = typeSymbol.GetAttributes()
-			let attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
-			where attributeData is { ConstructorArguments.IsDefaultOrEmpty: false }
-			select (typeSymbol, attributeData))
+		if (
+			gsc is not
+			{
+				Node: var originalNode,
+				SemanticModel: { Compilation: var compilation } semanticModel
+			}
+		)
 		{
-			typeSymbol.DeconstructInfo(
-				true, out string fullTypeName, out string namespaceName, out string genericParametersList,
-				out _, out string typeKind, out string readonlyKeyword, out _
-			);
+			return null;
+		}
 
-			string hashCodeStr = string.Join(
-				" ^ ",
-				from member in attributeData.ConstructorArguments[0].Values
-				let memberValue = ((string)member.Value!).Trim()
-				select $"{memberValue}.GetHashCode()"
-			);
+		if (originalNode is not TypeDeclarationSyntax { AttributeLists.Count: not 0 } node)
+		{
+			return null;
+		}
 
-			context.AddSource(
-				typeSymbol.ToFileName(),
-				GeneratedFileShortcuts.GetHashCode,
-				$@"#nullable enable
+		if (semanticModel.GetDeclaredSymbol(node, c) is not { } typeSymbol)
+		{
+			return null;
+		}
+
+		var attribute = compilation.GetTypeByMetadataName(typeof(AutoHashCodeAttribute).FullName)!;
+		var attributeData = typeSymbol.FirstAttributeData(attribute);
+		if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
+		{
+			return null;
+		}
+
+		return (typeSymbol, attributeData);
+	}
+
+	private void SourceProduce(SourceProductionContext spc, (INamedTypeSymbol, AttributeData)? pair)
+	{
+		if (pair is not (var typeSymbol, var attributeData))
+		{
+			return;
+		}
+
+		typeSymbol.DeconstructInfo(
+			true, out string fullTypeName, out string namespaceName, out string genericParametersList,
+			out _, out string typeKind, out string readonlyKeyword, out _
+		);
+
+		string hashCodeStr = string.Join(
+			" ^ ",
+			from member in attributeData.ConstructorArguments[0].Values
+			let memberValue = ((string)member.Value!).Trim()
+			select $"{memberValue}.GetHashCode()"
+		);
+
+		spc.AddSource(
+			typeSymbol.ToFileName(),
+			GeneratedFileShortcuts.GetHashCode,
+			$@"#nullable enable
 
 namespace {namespaceName};
 
@@ -51,11 +84,6 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	public override {readonlyKeyword}int GetHashCode() => {hashCodeStr};
 }}
 "
-			);
-		}
+		);
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
 }
