@@ -31,23 +31,22 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 				out _, out string typeKind, out string readonlyKeyword, out _
 			);
 			var possibleMembers = (
-				from x in GetMembers(typeSymbol, attributeSymbol, false)
-				select (Info: x, Param: $"out {x.Type} {x.ParameterName}")
+				from typeDetail in TypeDetail.GetDetailList(typeSymbol, attributeSymbol, false)
+				select typeDetail
 			).ToArray();
 			string methods = string.Join(
 				"\r\n\r\n\t",
 				from attributeData in attributesData
 				let memberArgs = attributeData.ConstructorArguments[0].Values
 				select (from memberArg in memberArgs select ((string)memberArg.Value!).Trim()) into members
-				where members.All(m => possibleMembers.Any(p => p.Info.Name == m))
-				let paramInfos = from m in members select possibleMembers.First(p => p.Info.Name == m)
+				where members.All(m => possibleMembers.Any(p => p.Name == m))
+				let details = from m in members select possibleMembers.First(p => p.Name == m)
 				let deprecatedTypeNames = (
-					from paramInfo in paramInfos
-					select paramInfo.Info into info
-					let tempTypeName = info.Type
+					from detail in details
+					let tempTypeName = detail.FullTypeName
 					where !KeywordsToBclNames.ContainsKey(tempTypeName)
-					let tempSymbol = info.Symbol
-					where tempSymbol.CheckAnyTypeArgumentIsMarked<ObsoleteAttribute>(compilation)
+					let tempSymbol = detail.Symbol
+					where compilation.TypeArgumentMarked<ObsoleteAttribute>(tempSymbol)
 					select $"'{tempTypeName}'"
 				).ToArray()
 				let obsoleteAttributeStr = deprecatedTypeNames.Length switch
@@ -58,11 +57,11 @@ public sealed partial class DeconstructMethodGenerator : ISourceGenerator
 					> 1 => $@"
 	[global::System.Obsolete(""The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated."", false)]",
 				}
-				let paramNames = from paramInfo in paramInfos select paramInfo.Param
+				let paramNames = from paramInfo in details select paramInfo.OutParameterDeclaration
 				let paramNamesStr = string.Join(", ", paramNames)
 				let assignments =
 					from m in members
-					let paramName = possibleMembers.First(p => p.Info.Name == m).Info.ParameterName
+					let paramName = possibleMembers.First(p => p.Name == m).Name.ToCamelCase()
 					select $"{paramName} = {m};"
 				let assignmentsStr = string.Join("\r\n\t\t", assignments)
 				select $@"/// <summary>
@@ -98,52 +97,4 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
-
-
-	/// <summary>
-	/// Try to get all possible fields or properties in the specified type.
-	/// </summary>
-	/// <param name="typeSymbol">The specified symbol.</param>
-	/// <param name="attributeSymbol">The attribute symbol to check.</param>
-	/// <param name="handleRecursively">
-	/// A <see cref="bool"/> value indicating whether the method will handle the type recursively.
-	/// </param>
-	/// <returns>The result list that contains all member symbols.</returns>
-	private static IReadOnlyList<(string Type, string ParameterName, string Name, INamedTypeSymbol? Symbol, ImmutableArray<AttributeData> Attributes)> GetMembers(
-		INamedTypeSymbol typeSymbol,
-		INamedTypeSymbol? attributeSymbol,
-		bool handleRecursively
-	)
-	{
-		var result = new List<(string, string, string, INamedTypeSymbol?, ImmutableArray<AttributeData>)>(
-			(
-				from x in typeSymbol.GetMembers().OfType<IFieldSymbol>()
-				select (
-					x.Type.ToDisplayString(TypeFormats.FullName),
-					x.Name.ToCamelCase(),
-					x.Name,
-					x.Type as INamedTypeSymbol,
-					x.GetAttributes()
-				)
-			).Concat(
-				from x in typeSymbol.GetMembers().OfType<IPropertySymbol>()
-				select (
-					x.Type.ToDisplayString(TypeFormats.FullName),
-					x.Name.ToCamelCase(),
-					x.Name,
-					x.Type as INamedTypeSymbol,
-					x.GetAttributes()
-				)
-			)
-		);
-
-		if (handleRecursively && typeSymbol.BaseType is { } baseType
-			&& baseType.GetAttributes() is var attributesData
-			&& attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol)))
-		{
-			result.AddRange(GetMembers(baseType, attributeSymbol, true));
-		}
-
-		return result;
-	}
 }

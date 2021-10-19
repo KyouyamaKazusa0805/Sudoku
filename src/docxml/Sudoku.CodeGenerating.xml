@@ -754,17 +754,6 @@
         <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.GetMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
-            <summary>
-            Try to get all possible fields or properties in the specified type.
-            </summary>
-            <param name="typeSymbol">The specified symbol.</param>
-            <param name="attributeSymbol">The attribute symbol to check.</param>
-            <param name="handleRecursively">
-            A <see cref="T:System.Boolean"/> value indicating whether the method will handle the type recursively.
-            </param>
-            <returns>The result list that contains all member symbols.</returns>
-        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver">
             <summary>
             Defines the syntax receiver.
@@ -1105,6 +1094,30 @@
         <member name="M:Sudoku.CodeGenerating.Generators.ResourceDictionaryGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.TypeDetail">
+            <summary>
+            Encapsulates the type detail.
+            </summary>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Symbol">The type symbol.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.TypeDetail.#ctor(System.String,System.String,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData},System.String)">
+            <summary>
+            Encapsulates the type detail.
+            </summary>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Symbol">The type symbol.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.MemberAccessibility">
             <summary>
             Indicates the accessibility of a member.
@@ -1159,6 +1172,50 @@
             <param name="namedArg">The named argument name.</param>
             <param name="result">The result got.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.CompilationExtensions.TypeArgumentMarked``1(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            <para>
+            Check all type arguments recursively whether any types are marked specified attribute type.
+            </para>
+            <para>
+            This method will check all type arguments for this type symbol.
+            For example, if the type symbol is like this:
+            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
+            this method will check those parts:
+            <list type="bullet">
+            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
+            <item><c>string</c></item>
+            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
+            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
+            <item><c>int</c></item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
+            <param name="this">The compilation.</param>
+            <param name="symbol">The symbol to check.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
