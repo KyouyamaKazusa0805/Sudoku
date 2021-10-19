@@ -11,7 +11,7 @@ internal static class CompilationExtensions
 	/// Check all type arguments recursively whether any types are marked specified attribute type.
 	/// </para>
 	/// <para>
-	/// This method will check all type arguments for this type symbol.
+	/// This method will check all type arguments for this type symbol recursively.
 	/// For example, if the type symbol is like this:
 	/// <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
 	/// this method will check those parts:

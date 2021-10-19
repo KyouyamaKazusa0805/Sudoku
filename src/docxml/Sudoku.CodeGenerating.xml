@@ -558,6 +558,24 @@
         <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{`0})"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.BitOperationsGenerator">
             <summary>
             Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
@@ -745,26 +763,59 @@
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator">
             <summary>
-            Provides a generator that generates the deconstruction methods.
+            Indicates the source generator that generates the source code for deconstruction methods.
             </summary>
+            <remarks>
+            <para>
+            A <b>deconstruction method</b> is a method that allows an instance can use value-tuple syntax to
+            be separated into multiple instances, for example:
+            <code><![CDATA[
+            class T
+            {
+                public void Deconstruct(out int a, out double b, out string? c)
+                {
+                    a = something;
+                    b = something;
+                    c = something;
+                }
+            }
+            ]]></code>
+            Then you can use the syntax to deconstruct an instance of type <c>T</c>:
+            <code><![CDATA[
+            var t = new T(arguments);
+            var (a, b, c) = t; // Calls 't.Deconstruct'.
+            ]]></code>
+            </para>
+            <para>
+            Deconstruct methods can be also used on pattern matching:
+            <code><![CDATA[
+            if (t is (a: 10, b: _, c: "Hello"))
+            {
+                // Do something.
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData},Microsoft.CodeAnalysis.Compilation}})">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{`0})"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{Microsoft#CodeAnalysis#AttributeData},Microsoft#CodeAnalysis#Compilation)}#WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver">
-            <summary>
-            Defines the syntax receiver.
-            </summary>
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{Microsoft#CodeAnalysis#AttributeData},Microsoft#CodeAnalysis#Compilation)}#Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates all possible candidate types used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+        <member name="M:Sudoku.CodeGenerating.Generators.DeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{Microsoft#CodeAnalysis#AttributeData},Microsoft#CodeAnalysis#Compilation)}#SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData},Microsoft.CodeAnalysis.Compilation}})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator">
@@ -1118,6 +1169,102 @@
             The string representation of the <see langword="out"/> parameter declaration.
             </param>
         </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Creates the <see cref="T:Sudoku.CodeGenerating.Generators.TypeDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <returns>The list of <see cref="T:Sudoku.CodeGenerating.Generators.TypeDetail"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Creates the <see cref="T:Sudoku.CodeGenerating.Generators.TypeDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <param name="handleRecursively">
+            Indicates whether the method will handle all nested types recursively.
+            </param>
+            <returns>The list of <see cref="T:Sudoku.CodeGenerating.Generators.TypeDetail"/>s.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.GlobalConfigs.Configuration">
+            <summary>
+            Encapsulates the methods that checks the configuration attributes in these current source generator types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.GlobalConfigs.Configuration.EmitsNullableEnable(System.Type)">
+            <summary>
+            Determines whether the specified source generator is marked <see cref="T:Sudoku.CodeGenerating.GlobalConfigs.EmitNullableEnableAttribute"/>.
+            </summary>
+            <param name="type">The source genrator type.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.GlobalConfigs.Configuration.EmitsNullableEnable``1">
+            <summary>
+            Determines whether the specified source generator is marked <see cref="T:Sudoku.CodeGenerating.GlobalConfigs.EmitNullableEnableAttribute"/>.
+            </summary>
+            <typeparam name="T">The source generator type.</typeparam>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.GlobalConfigs.Configuration.GetNullableEnableString(System.Type)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation of the <c>#nullable enable</c>
+            if the source generator type allows emitting the <c>#nullable</c> directive.
+            </summary>
+            <param name="type">The source generator type.</param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.GlobalConfigs.EmitNullableEnableAttribute">
+            <summary>
+            Indicates whether the <see cref="T:Microsoft.CodeAnalysis.ISourceGenerator"/> or <see cref="T:Microsoft.CodeAnalysis.IIncrementalGenerator"/> instances
+            will emit the <c>#nullable enable</c> directives into the generated code.
+            </summary>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.ISyntaxHandling`1">
+            <summary>
+            Defines a set of members that source generators must implement.
+            </summary>
+            <typeparam name="TStruct">
+            The type of the gathered result. The type must be a <see cref="T:System.ValueTuple"/>.
+            </typeparam>
+            <remarks>
+            All those members in this type should be implemented explicitly in order not to expose to outside.
+            </remarks>
+            <seealso cref="T:System.ValueTuple"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.ISyntaxHandling`1.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <summary>
+            The method is invoked while pre-filtering.
+            </summary>
+            <param name="n">The syntax node.</param>
+            <param name="c">The cancellation token that can cancel the operation.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the syntax node satisfies the requirements.
+            </returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.ISyntaxHandling`1.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <summary>
+            The method is invoked while transforming from a syntax context instance
+            to a result information instance of type <typeparamref name="TStruct"/>.
+            </summary>
+            <param name="gsc">
+            The specified generator syntax context. The context instance contains the syntax node itself,
+            and the semantic model that allows the syntax node converting to a symbol,
+            or getting operations from the syntax node itself.
+            </param>
+            <param name="c">The cancellation token that can cancel the operation.</param>
+            <returns>The gathered information result instance.</returns>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.ISyntaxHandling`1.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{`0})">
+            <summary>
+            The method is invoked while producing a source code file.
+            </summary>
+            <param name="spc">The context that can output the source files.</param>
+            <param name="gathered">The gathered information result instance.</param>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Reflection.MemberAccessibility">
             <summary>
             Indicates the accessibility of a member.
@@ -1185,7 +1332,7 @@
             Check all type arguments recursively whether any types are marked specified attribute type.
             </para>
             <para>
-            This method will check all type arguments for this type symbol.
+            This method will check all type arguments for this type symbol recursively.
             For example, if the type symbol is like this:
             <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
             this method will check those parts:

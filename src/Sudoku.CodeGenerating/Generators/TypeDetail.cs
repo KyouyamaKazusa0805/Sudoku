@@ -18,11 +18,28 @@ internal sealed record TypeDetail(
 	string OutParameterDeclaration
 )
 {
+	/// <summary>
+	/// Creates the <see cref="TypeDetail"/> instance via the specified type, and the attribute marks onto
+	/// the type.
+	/// </summary>
+	/// <param name="typeSymbol">The type symbol.</param>
+	/// <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+	/// <returns>The list of <see cref="TypeDetail"/>s.</returns>
 	public static IReadOnlyCollection<TypeDetail> GetDetailList(
 		INamedTypeSymbol typeSymbol,
 		INamedTypeSymbol? attributeSymbol
 	) => GetDetailList(typeSymbol, attributeSymbol, true);
 
+	/// <summary>
+	/// Creates the <see cref="TypeDetail"/> instance via the specified type, and the attribute marks onto
+	/// the type.
+	/// </summary>
+	/// <param name="typeSymbol">The type symbol.</param>
+	/// <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+	/// <param name="handleRecursively">
+	/// Indicates whether the method will handle all nested types recursively.
+	/// </param>
+	/// <returns>The list of <see cref="TypeDetail"/>s.</returns>
 	public static IReadOnlyCollection<TypeDetail> GetDetailList(
 		INamedTypeSymbol typeSymbol,
 		INamedTypeSymbol? attributeSymbol,
