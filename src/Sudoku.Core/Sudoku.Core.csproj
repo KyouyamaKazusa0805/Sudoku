@@ -3,25 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Authors>Sunnie</Authors>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-		<LangVersion>preview</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
-		<Version>0.7</Version>
-		<Nullable>enable</Nullable>
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS; WINDOWS_APP</DefineConstants>
-		<NoWarn>1701;1702</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS; WINDOWS_APP</DefineConstants>
+		<DefineConstants>WINDOWS_APP</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -5,31 +5,16 @@
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<PackageId>Sunnie's sudoku solution</PackageId>
-		<Authors>Sunnie</Authors>
 		<Product>Sunnie's sudoku solution</Product>
 		<Description>This is Sunnie's sudoku solution, you can use this to analyze, generate or solve sudokus.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<ApplicationIcon>icon-64.ico</ApplicationIcon>
 		<PackageProjectUrl>https://github.com/Sunnie-Shine/Sudoku</PackageProjectUrl>
-		<AssemblyVersion>0.4.0.0</AssemblyVersion>
-		<FileVersion>0.4.0.0</FileVersion>
+		<AssemblyVersion>0.4</AssemblyVersion>
+		<FileVersion>0.4</FileVersion>
 		<PackageIcon>ImageIcon-Generate.png</PackageIcon>
-		<LangVersion>preview</LangVersion>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Windows.Old.xml</DocumentationFile>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<Version>0.7</Version>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG;AUTHOR_RESERVED;SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-		<NoWarn>1701;1702</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>AUTHOR_RESERVED;SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

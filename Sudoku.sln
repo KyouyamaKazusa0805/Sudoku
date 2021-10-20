@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
+		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
 		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md

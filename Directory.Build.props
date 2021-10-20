@@ -1,0 +1,38 @@
+<Project>
+
+	<PropertyGroup>
+		<!--Project configuration-->
+		<Authors>Sunnie</Authors>
+		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
+		<Version>0.7</Version>
+
+		<!--Syntax configuration-->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'==''">
+		<Configuration>Debug</Configuration>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(LangVersion)'=='preview'">
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.Old`))'=='true'">
+		<NoWarn>618</NoWarn>
+	</PropertyGroup>
+
+</Project>

@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
 		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		<RootNamespace>Sudoku.UI</RootNamespace>
@@ -10,19 +8,8 @@
 		<Platforms>x86;x64;arm64</Platforms>
 		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 		<UseWinUI>true</UseWinUI>
-		<LangVersion>preview</LangVersion>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 		<DocumentationFile>..\..\docxml\Sudoku.UI.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DefineConstants>DEBUG; DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION; WINDOWS_APP; AUTHOR_RESERVED</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DefineConstants>DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION; WINDOWS_APP; AUTHOR_RESERVED</DefineConstants>
+		<DefineConstants>DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION; WINDOWS_APP</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

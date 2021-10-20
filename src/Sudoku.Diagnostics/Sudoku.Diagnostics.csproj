@@ -2,24 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
-		<Authors>Sunnie</Authors>
 		<Description>This project encapsulates operations for diagnosing the whole solution, such as checking the number of code lines.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.Diagnostics.xml</DocumentationFile>
-		<Version>0.7</Version>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

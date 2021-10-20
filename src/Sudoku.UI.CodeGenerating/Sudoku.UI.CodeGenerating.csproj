@@ -2,15 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>..\docxml\Sudoku.UI.CodeGenerating.xml</DocumentationFile>
 		<Description>A project that generates the source code for UI projects.</Description>
-		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<Authors>Sunnie</Authors>
-		<Version>0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

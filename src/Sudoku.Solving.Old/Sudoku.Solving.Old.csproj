@@ -3,28 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Authors>Sunnie</Authors>
 		<Description>Provides all solving operations for a sudoku grid.</Description>
-		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<LangVersion>preview</LangVersion>
 		<DocumentationFile>..\docxml\Sudoku.Solving.Old.xml</DocumentationFile>
-		<Optimize>false</Optimize>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<Version>0.7</Version>
-		<Nullable>enable</Nullable>
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-		<NoWarn>1701;1702</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

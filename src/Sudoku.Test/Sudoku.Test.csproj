@@ -2,23 +2,9 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<LangVersion>preview</LangVersion>
 		<TargetFramework>net6.0</TargetFramework>
-		<Authors>Sunnie</Authors>
-		<Company>Sunnie</Company>
 		<Description>The debugging project.</Description>
-		<Copyright>Copyright (c) Sunnie 2021</Copyright>
-		<Version>0.7</Version>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<DocumentationFile>..\docxml\Sudoku.Test.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

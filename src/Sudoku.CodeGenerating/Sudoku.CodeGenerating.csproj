@@ -2,21 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
-		<Version>0.3</Version>
-		<Authors>Sunnie</Authors>
 		<Description>A project that generates the source code.</Description>
-		<Copyright>Copyright (c) Sunnie 2021</Copyright>
 		<DocumentationFile>..\docxml\Sudoku.CodeGenerating.xml</DocumentationFile>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants>DEBUG; WINDOWS_APP; SUPPORT_CODE_ANALYZER</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants>WINDOWS_APP; SUPPORT_CODE_ANALYZER</DefineConstants>
 	</PropertyGroup>
 
