@@ -1331,6 +1331,35 @@
             <param name="grid">The grid.</param>
             <returns>All ALSes searched.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(Sudoku.Solving.Manual.Alses.Als@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Equality(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.op_Inequality(Sudoku.Solving.Manual.Alses.Als@,Sudoku.Solving.Manual.Alses.Als@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
             <summary>
             Deconstruct the instance into multiple elements.
@@ -2856,6 +2885,35 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(Sudoku.Solving.Manual.Exocets.Elimination@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_Equality(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.op_Inequality(Sudoku.Solving.Manual.Exocets.Elimination@,Sudoku.Solving.Manual.Exocets.Elimination@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -3192,6 +3250,35 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(Sudoku.Solving.Manual.Exocets.Pattern@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Equality(Sudoku.Solving.Manual.Exocets.Pattern@,Sudoku.Solving.Manual.Exocets.Pattern@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.op_Inequality(Sudoku.Solving.Manual.Exocets.Pattern@,Sudoku.Solving.Manual.Exocets.Pattern@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -7787,6 +7874,35 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@,Sudoku.Solving.Manual.Uniqueness.Polygons.Pattern@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern">
             <summary>
             Encapsulates a pattern for Qiu's deadly pattern (QDP).
@@ -7822,6 +7938,35 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.op_Equality(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.op_Inequality(Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@,Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

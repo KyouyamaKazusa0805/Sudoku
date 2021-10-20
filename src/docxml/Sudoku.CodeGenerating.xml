@@ -550,6 +550,43 @@
             Indicates the project <c>Sudoku.Solving</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator">
+            <summary>
+            Indicates the generator that generates the methods about the equality checking. The methods below
+            will be generated:
+            <list type="bullet">
+            <item><c>bool Equals(object? obj)</c></item>
+            <item><c>bool Equals(T comparer)</c></item>
+            <item><c>bool ==(T left, T right)</c></item>
+            <item><c>bool !=(T left, T right)</c></item>
+            </list>
+            </summary>
+            <remarks>
+            Please note that if the type is a <see langword="ref struct"/>, the first one won't be generated
+            because this method is useless in the by-ref-like types.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{`0})"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.AutoEqualityGenerator.Sudoku#CodeGenerating#ISyntaxHandling{(Microsoft#CodeAnalysis#INamedTypeSymbol,Microsoft#CodeAnalysis#AttributeData)}#SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.AutoGetHashCodeGenerator">
             <summary>
             Indicates the generator that generates the code that overrides <see cref="M:System.Object.GetHashCode"/>.
@@ -832,41 +869,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.CodeGenerating.Generators.DiagnosticInfoGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator">
-            <summary>
-            Indicates the generator that generates the methods about the equality checking. The methods below
-            will be generated:
-            <list type="bullet">
-            <item><c>bool Equals(object? obj)</c></item>
-            <item><c>bool Equals(T comparer)</c></item>
-            <item><c>bool ==(T left, T right)</c></item>
-            <item><c>bool !=(T left, T right)</c></item>
-            </list>
-            </summary>
-            <remarks>
-            Please note that if the type is a <see langword="ref struct"/>, the first one won't be generated
-            because this method is useless in the by-ref-like types.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver">
-            <summary>
-            Defines the syntax receiver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates all possible candidate types used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.EqualsMethodGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator">

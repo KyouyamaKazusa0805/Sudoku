@@ -717,6 +717,35 @@
         <member name="M:Sudoku.Data.Candidates.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Candidates,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.Equals(Sudoku.Data.Candidates@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Equality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Inequality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Candidates.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -1246,6 +1275,35 @@
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.Equals(Sudoku.Data.Cells@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Equality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Inequality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
             <summary>
             Deconstruct the instance into multiple elements.
@@ -1366,6 +1424,16 @@
         </member>
         <member name="M:Sudoku.Data.ChainLink.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.ChainLink,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ChainLink.Equals(Sudoku.Data.ChainLink@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Data.ChainLink.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -1691,6 +1759,16 @@
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Data.ChainNode.Equals(Sudoku.Data.ChainNode@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
             <summary>
             Deconstruct the instance into multiple elements.
@@ -1725,6 +1803,32 @@
         </member>
         <member name="M:Sudoku.Data.Collections.ChainLinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.Equals(Sudoku.Data.Collections.ChainLinkCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.op_Equality(Sudoku.Data.Collections.ChainLinkCollection@,Sudoku.Data.Collections.ChainLinkCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.op_Inequality(Sudoku.Data.Collections.ChainLinkCollection@,Sudoku.Data.Collections.ChainLinkCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.ChainLinkCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1782,6 +1886,32 @@
             <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1912,6 +2042,32 @@
         <member name="M:Sudoku.Data.Collections.LinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(Sudoku.Data.Collections.LinkCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Equality(Sudoku.Data.Collections.LinkCollection@,Sudoku.Data.Collections.LinkCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.LinkCollection.op_Inequality(Sudoku.Data.Collections.LinkCollection@,Sudoku.Data.Collections.LinkCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Collections.LinkCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
@@ -1979,6 +2135,32 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Collections.RegionCollection.GetEnumerator">
             <summary>
@@ -2099,6 +2281,16 @@
         <member name="M:Sudoku.Data.Conclusion.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
             <summary>
             Deconstruct the instance into multiple elements.
@@ -2193,6 +2385,16 @@
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.ConjugatePair,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.Equals(Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="T:Sudoku.Data.Crosshatch">
             <summary>
@@ -4375,6 +4577,16 @@
         <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
         <member name="M:Sudoku.Data.Link.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -4518,6 +4730,35 @@
         </member>
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Node.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_Equality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.op_Inequality(Sudoku.Data.Node@,Sudoku.Data.Node@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
             <summary>
@@ -7062,6 +7303,35 @@
             </summary>
             <param name="pair">The pair value.</param>
         </member>
+        <member name="M:Sudoku.Models.DrawingInfo.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Models.DrawingInfo.Equals(Sudoku.Models.DrawingInfo@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Models.DrawingInfo.op_Equality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.DrawingInfo.op_Inequality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
             <summary>
             Deconstruct the instance into multiple elements.
@@ -7113,6 +7383,35 @@
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Equals(Sudoku.Models.GridProgressResult@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.op_Equality(Sudoku.Models.GridProgressResult@,Sudoku.Models.GridProgressResult@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.op_Inequality(Sudoku.Models.GridProgressResult@,Sudoku.Models.GridProgressResult@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
