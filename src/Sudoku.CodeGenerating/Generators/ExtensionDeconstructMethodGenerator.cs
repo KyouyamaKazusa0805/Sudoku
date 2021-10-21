@@ -111,8 +111,46 @@ public sealed partial class ExtensionDeconstructMethodGenerator : IIncrementalGe
 			var (typeArg, argStrs, n, _) = groupedResult.First();
 			string namespaceResult = n ?? typeArg.ContainingNamespace.ToDisplayString();
 			string typeResult = typeArg.Name;
-			string deconstructionMethodsCode = string.Join("\r\n\r\n\t", q());
 
+			var deconstrcutionMethodsStr = new List<string>();
+			foreach (var (typeArgument, arguments, namedArgumentNamespace, _) in groupedResult)
+			{
+				typeArgument.DeconstructInfo(
+					false, out _, out _, out _, out string genericParameterListWithoutConstraint,
+					out _, out _, out _
+				);
+				string fullTypeNameWithoutConstraint = typeArgument.ToDisplayString(TypeFormats.FullNameWithConstraints);
+				string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
+					? fullTypeNameWithoutConstraint.Substring(index)
+					: string.Empty;
+				string inModifier = typeArgument.TypeKind == TypeKind.Struct ? "in " : string.Empty;
+				string parameterList = string.Join(
+					", ",
+					from member in arguments
+					let memberFound = typeArgument.GetAllMembers().FirstOrDefault(m => m.Name == member)
+					where memberFound is not null
+					let memberType = memberFound.GetMemberType()
+					where memberType is not null
+					select $@"out {memberType} {member.ToCamelCase()}"
+				);
+				string assignments = string.Join(
+					"\r\n\t\t",
+					from member in arguments select $"{member.ToCamelCase()} = @this.{member};"
+				);
+
+				deconstrcutionMethodsStr.Add($@"/// <summary>
+	/// Deconstruct the instance to multiple elements.
+	/// </summary>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
+	{{
+		{assignments}
+	}}");
+			}
+
+			string deconstructionMethodsCode = string.Join("\r\n\r\n\t", deconstrcutionMethodsStr);
 			string sourceCode = $@"{Configuration.GetNullableEnableString(GetType())}
 
 namespace {namespaceResult};
@@ -126,46 +164,6 @@ public static class {typeResult}_DeconstructionMethods
 }}
 ";
 			spc.AddSource(typeArg.ToFileName(), GeneratedFileShortcuts.ExtensionDeconstructionMethod, sourceCode);
-
-
-			IEnumerable<string> q()
-			{
-				foreach (var (typeArgument, arguments, namedArgumentNamespace, _) in groupedResult)
-				{
-					typeArgument.DeconstructInfo(
-						false, out _, out _, out _, out string genericParameterListWithoutConstraint,
-						out _, out _, out _
-					);
-					string fullTypeNameWithoutConstraint = typeArgument.ToDisplayString(TypeFormats.FullNameWithConstraints);
-					string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
-						? fullTypeNameWithoutConstraint.Substring(index)
-						: string.Empty;
-					string inModifier = typeArgument.TypeKind == TypeKind.Struct ? "in " : string.Empty;
-					string parameterList = string.Join(
-						", ",
-						from member in arguments
-						let memberFound = typeArgument.GetAllMembers().FirstOrDefault(m => m.Name == member)
-						where memberFound is not null
-						let memberType = memberFound.GetMemberType()
-						where memberType is not null
-						select $@"out {memberType} {member.ToCamelCase()}"
-					);
-					string assignments = string.Join(
-						"\r\n\t\t",
-						from member in arguments select $"{member.ToCamelCase()} = @this.{member};"
-					);
-					yield return $@"/// <summary>
-	/// Deconstruct the instance to multiple elements.
-	/// </summary>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
-	{{
-		{assignments}
-	}}";
-				}
-			}
 		}
 	}
 
