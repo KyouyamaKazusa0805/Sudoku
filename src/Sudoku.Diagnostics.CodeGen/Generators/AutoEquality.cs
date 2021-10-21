@@ -22,7 +22,7 @@ public sealed class AutoEquality : ISourceGenerator
 			var (
 				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
 				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = typeSymbol.GetSymbolOutputInfo();
+			) = SymbolOutputInfo.FromSymbol(typeSymbol);
 			string nullCheck = typeSymbol.TypeKind == TypeKind.Class ? "other is not null && " : string.Empty;
 			string memberCheck = string.Join(
 				" && ",

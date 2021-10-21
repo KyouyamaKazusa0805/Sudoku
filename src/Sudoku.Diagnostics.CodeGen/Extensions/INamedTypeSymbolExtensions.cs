@@ -6,41 +6,6 @@
 /// <seealso cref="INamedTypeSymbol"/>
 internal static class INamedTypeSymbolExtensions
 {
-	public static SymbolOutputInfo GetSymbolOutputInfo(this INamedTypeSymbol @this, bool checkNotRefStruct = false)
-	{
-		string typeName = @this.Name;
-		string fullTypeName = @this.ToDisplayString(TypeFormats.FullNameWithConstraints);
-		string namespaceName = @this.ContainingNamespace.ToDisplayString();
-
-		int i = fullTypeName.IndexOf('<');
-		bool isGeneric = i != -1;
-		string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
-
-		int j = fullTypeName.IndexOf('>');
-		string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName.Substring(i, j - i + 1);
-
-		string typeKind = (@this.IsRecord, @this.TypeKind) switch
-		{
-			(IsRecord: true, TypeKind: TypeKind.Class) => "record ",
-			(IsRecord: true, TypeKind: TypeKind.Struct) => "record struct ",
-			(IsRecord: false, TypeKind: TypeKind.Class) => "class ",
-			(IsRecord: false, TypeKind: TypeKind.Struct) => "struct "
-		};
-		string readonlyKeyword = (
-			checkNotRefStruct
-			? @this is { TypeKind: TypeKind.Struct, IsRefLikeType: false, IsReadOnly: false }
-			: @this is { TypeKind: TypeKind.Struct, IsReadOnly: false }
-		) ? "readonly " : string.Empty;
-		string inKeyword = @this.TypeKind == TypeKind.Struct ? "in " : string.Empty;
-		string nullableAnnotation = @this.TypeKind == TypeKind.Class ? "?" : string.Empty;
-
-		return new(
-			typeName, fullTypeName, namespaceName, genericParametersList,
-			genericParametersListWithoutConstraint, typeKind, readonlyKeyword,
-			inKeyword, nullableAnnotation, isGeneric
-		);
-	}
-
 	/// <summary>
 	/// <para>
 	/// Check all type arguments recursively whether any types are marked specified attribute type.
