@@ -876,10 +876,30 @@
             Provides a generator that generates the deconstruction methods that are extension methods.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="F:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator._hasAssemblyAttribute">
+            <summary>
+            Indicates whether the current project has any assembly attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.Collections.Immutable.ImmutableArray{System.Linq.IGrouping{System.String,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{System.String},System.String,System.String}}}})">
+            <inheritdoc cref="M:Sudoku.CodeGenerating.ISyntaxHandling`1.SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{`0})"/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{System#Collections#Immutable#ImmutableArray{System#Linq#IGrouping{System#String,(Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{System#String},System#String,System#String)}}}#WithAttributes(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{System#Collections#Immutable#ImmutableArray{System#Linq#IGrouping{System#String,(Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{System#String},System#String,System#String)}}}#Transform(Microsoft.CodeAnalysis.GeneratorSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.ExtensionDeconstructMethodGenerator.Sudoku#CodeGenerating#ISyntaxHandling{System#Collections#Immutable#ImmutableArray{System#Linq#IGrouping{System#String,(Microsoft#CodeAnalysis#INamedTypeSymbol,System#Collections#Generic#IEnumerable{System#String},System#String,System#String)}}}#SourceProduce(Microsoft.CodeAnalysis.SourceProductionContext,System.Nullable{System.Collections.Immutable.ImmutableArray{System.Linq.IGrouping{System.String,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{System.String},System.String,System.String}}}})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.FormattableMethodsGenerator">
