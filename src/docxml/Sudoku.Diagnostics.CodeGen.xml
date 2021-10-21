@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute">
+            <summary>
+            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
+            as a mark that interacts with the source generator, to tell the source generator that
+            it'll generate the source code for equality methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
+            <summary>
+            Defines the constants used in this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indictaes the version of this project.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.KeywordsToBclNames">
+            <summary>
+            Indicates the collection that stores the conversion relations from type keywords to their BCL names.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.TypeFormats">
+            <summary>
+            Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.TypeFormats.FullNameWithConstraints">
+            <summary>
+            Indicates the type format that is the full name of the type,
+            and is with type argument constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.TypeFormats.FullName">
+            <summary>
+            Indicates the type format that is the full name of the type,
+            and is without type argument constraints.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts">
+            <summary>
+            Indicates the shortcuts for the generated files.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetHashCode">
+            <summary>
+            Indicates the source generator is for get hash code.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
+            <summary>
+            Indicates the source generator is for bit operations get all sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetEnumerator">
+            <summary>
+            Indicates the source generator is for bit operations get enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetNextSet">
+            <summary>
+            Indicates the source generator is for bit operations get next set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_ReverseBits">
+            <summary>
+            Indicates the source generator is for bit operations reverse bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SetAt">
+            <summary>
+            Indicates the source generator is for bit operations set at.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SkipSetBit">
+            <summary>
+            Indicates the source generator is for bit operations skip set bit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CodeAnalyzer">
+            <summary>
+            Indicates the source generator is for code analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CodeFixer">
+            <summary>
+            Indicates the source generator is for code fixer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CoreConstants">
+            <summary>
+            Indicates the source generator is for core constants.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.DeconstructionMethod">
+            <summary>
+            Indicates the source generator is for deconstruction methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.EqualsMethod">
+            <summary>
+            Indicates the source generator is for equals methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for extension deconstruction methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.FormattedMethods">
+            <summary>
+            Indicates the source generator is for auto format methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
+            <summary>
+            Indicates the source generator is for auto get enumerator methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.PrimaryConstructorMethod">
+            <summary>
+            Indicates the source generator is for primary constructors for <see langword="class"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ProxyEqualsMethod">
+            <summary>
+            Indicates the source generator is for auto equals method that binds with a proxy equality method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.RefStructDefaultMethod">
+            <summary>
+            Indicates the source generator is for <see langword="ref struct"/> default overriden methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.LambdaedDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.LambdaedExtensionDeconstructionMethod">
+            <summary>
+            Indicates the source generator is for extension deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.PrivateParameterlessConstructor">
+            <summary>
+            Indicates the source generator is for parameterless constructors.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames">
+            <summary>
+            Indicates the operator names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames.Equality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>==</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames.Inequality">
+            <summary>
+            Indicates the name of the <see langword="operator"/> <c>!=</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames">
+            <summary>
+            Indicates the project names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.SystemExtensions">
+            <summary>
+            Indicates the project <c>SystemExtensions</c>.
+            The project uses the namespace <c>System</c> to store types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.Core">
+            <summary>
+            Indicates the project <c>Sudouk.Core</c>.
+            The project uses the namespace <c>Sudoku</c> to store types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.CodeAnalysis">
+            <summary>
+            Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.Solving">
+            <summary>
+            Indicates the project <c>Sudoku.Solving</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality">
+            <summary>
+            Defines a source generator that generates the source code
+            for equality methods and the equality operator overloading.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality._resultCollection">
+            <summary>
+            The result node collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator">
+            <summary>
+            Encapsulates a set of methods to create the <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>s.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.Create(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
+            <summary>
+            Creates a <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/> instance to determine whether the syntax node satisfies
+            some condition and can be used by the source generator.
+            </summary>
+            <param name="syntaxNodeVisitor">The syntax node visitor method.</param>
+            <returns>The <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver">
+            <summary>
+            Indicates the default syntax context receiver.
+            </summary>
+            <param name="SyntaxNodeVisitor">
+            The syntax node visitor method that determines
+            whether the syntax node can be used by a source generator.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.#ctor(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
+            <summary>
+            Indicates the default syntax context receiver.
+            </summary>
+            <param name="SyntaxNodeVisitor">
+            The syntax node visitor method that determines
+            whether the syntax node can be used by a source generator.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.IsNotInProject(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String[])">
+            <summary>
+            To check whether the context isn't executed on the specified projects.
+            </summary>
+            <param name="this">The context.</param>
+            <param name="projectNames">The project names to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <param name="encoding">The encoding.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.CheckAnyTypeArgumentIsMarked``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            <para>
+            Check all type arguments recursively whether any types are marked specified attribute type.
+            </para>
+            <para>
+            This method will check all type arguments for this type symbol.
+            For example, if the type symbol is like this:
+            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
+            this method will check those parts:
+            <list type="bullet">
+            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
+            <item><c>string</c></item>
+            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
+            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
+            <item><c>int</c></item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
+            <param name="symbol">The symbol to check.</param>
+            <param name="compilation">The compilation.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get the file name of the type symbol.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>
+            The file name. Due to the limited file name and the algorithm, if:
+            <list type="bullet">
+            <item>
+            The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
+            Change them to <c>'['</c> and <c>']'</c>.
+            </item>
+            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
+            <item>The character is <c>' '</c>: Remove it.</item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+    </members>
+</doc>
