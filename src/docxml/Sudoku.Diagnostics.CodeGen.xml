@@ -82,6 +82,14 @@
             it'll generate the source code for equality methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoFormattableAttribute">
+            <summary>
+            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
+            as a mark that interacts with the source generator, to tell the source generator that
+            it'll generate the source code for <c>ToString</c> overriden,
+            and being with <see cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute">
             <summary>
             Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
@@ -315,6 +323,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable">
+            <summary>
+            Defines a source generator that generates the source code for formatting methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode">
