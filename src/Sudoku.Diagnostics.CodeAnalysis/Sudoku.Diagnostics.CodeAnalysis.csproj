@@ -11,10 +11,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="IsExternalInit" Version="1.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -26,7 +26,7 @@
 /// </item>
 /// </list>
 /// </param>
-[AutoHashCode(nameof(BaseHashCode), nameof(BaseSetHashCode), nameof(CoverSetHashCode), nameof(Exofins), nameof(Endofins))]
+[AutoGetHashCode(nameof(BaseHashCode), nameof(BaseSetHashCode), nameof(CoverSetHashCode), nameof(Exofins), nameof(Endofins))]
 public sealed partial record ComplexFishStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
 	IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,

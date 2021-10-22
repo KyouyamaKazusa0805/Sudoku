@@ -1626,13 +1626,6 @@
             <param name="this">The rectangle.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:System.Drawing.Providers.RectangleF_Dap.#ctor">
-            <summary>
-            <para>Indicates the parameterless constructor.</para>
-            <para><i>This constructor can't be used anyway.</i></para>
-            </summary>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Drawing.Color_DeconstructionMethods">
             <summary>
             Provides the extension methods on this type.

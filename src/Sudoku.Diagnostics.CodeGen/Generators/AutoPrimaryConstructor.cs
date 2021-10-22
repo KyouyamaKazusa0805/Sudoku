@@ -4,7 +4,7 @@
 /// Defines a source generator that generates the source code for primary constructors.
 /// </summary>
 [Generator]
-public sealed class PrimaryConstructorGenerator : ISourceGenerator
+public sealed class AutoPrimaryConstructor : ISourceGenerator
 {
 	/// <summary>
 	/// The result collection.
@@ -147,7 +147,7 @@ partial class {typeName}{genericParameterList}
 					var attribute = compilation.GetTypeByMetadataName(typeof(AutoPrimaryConstructorAttribute).FullName)!;
 					var attributesData = typeSymbol.GetAttributes();
 					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
+					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: true })
 					{
 						return;
 					}

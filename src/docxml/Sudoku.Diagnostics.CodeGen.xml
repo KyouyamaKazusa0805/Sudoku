@@ -170,6 +170,17 @@
             it'll generate the source code for equality methods.
             </summary>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an instance with the specified members.
+            </summary>
+            <param name="members">The members.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute.FieldOrPropertyList">
+            <summary>
+            Indicates the field of property list.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoFormattableAttribute">
             <summary>
             Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
@@ -241,6 +252,17 @@
             it'll generate the source code for <c>GetHashCode</c> overriden.
             </summary>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an instance with the specified member list.
+            </summary>
+            <param name="dataMembers">The data members.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute.DataMembers">
+            <summary>
+            All members to generate.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute">
             <summary>
             Indicates the marked <see langword="class"/> should generate primary constructor automatically.
@@ -260,6 +282,11 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.ExcludedMemberNames">
             <summary>
             Indicates the excluded member names.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.LambdaBodyAttribute">
+            <summary>
+            Indicates the method is provided as a lambda conversion that is used by source generators.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.PrivatizeParameterlessConstructorAttribute">
@@ -589,20 +616,20 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor">
             <summary>
             Defines a source generator that generates the source code for primary constructors.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator._resultCollection">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor._resultCollection">
             <summary>
             The result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor">
@@ -622,20 +649,20 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod">
             <summary>
             Indicates a generator that generates the code about the equality method.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator._resultCollection">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod._resultCollection">
             <summary>
             The result collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">

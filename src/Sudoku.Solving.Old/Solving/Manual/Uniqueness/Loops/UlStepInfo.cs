@@ -8,7 +8,7 @@
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
 /// <param name="Loop">The loop.</param>
-[AutoHashCode(nameof(Type), nameof(Digit1), nameof(Digit2), nameof(Loop))]
+[AutoGetHashCode(nameof(Type), nameof(Digit1), nameof(Digit2), nameof(Loop))]
 public abstract partial record UlStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit1, int Digit2, in Cells Loop

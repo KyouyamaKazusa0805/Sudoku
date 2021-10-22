@@ -8,4 +8,15 @@
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
 public sealed class AutoGetHashCodeAttribute : Attribute
 {
+	/// <summary>
+	/// Initializes an instance with the specified member list.
+	/// </summary>
+	/// <param name="dataMembers">The data members.</param>
+	public AutoGetHashCodeAttribute(params string[] dataMembers) => DataMembers = dataMembers;
+
+
+	/// <summary>
+	/// All members to generate.
+	/// </summary>
+	public string[] DataMembers { get; }
 }

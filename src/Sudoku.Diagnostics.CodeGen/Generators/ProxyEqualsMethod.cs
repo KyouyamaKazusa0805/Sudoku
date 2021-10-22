@@ -4,7 +4,7 @@
 /// Indicates a generator that generates the code about the equality method.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class ProxyEqualsMethodGenerator : ISourceGenerator
+public sealed class ProxyEqualsMethod : ISourceGenerator
 {
 	/// <summary>
 	/// The result collection.
@@ -121,14 +121,6 @@ partial {typeKind}{typeName}{genericParameterList}
 					}
 
 					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoEqualityAttribute).FullName)!;
-					var attributesData = typeSymbol.GetAttributes();
-					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
 					{
 						return;
 					}

@@ -1497,36 +1497,6 @@
             <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
             <seealso cref="F:System.Int32.MaxValue"/>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity">
-            <summary>
-            Defines a severity that contains different level of the diagnostic results.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.None">
-            <summary>
-            Indicates the diagnotic severity is none.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Hidden">
-            <summary>
-            Indicates the diagnotic severity is hidden.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Info">
-            <summary>
-            Indicates the diagnotic severity is information.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Warning">
-            <summary>
-            Indicates the diagnotic severity is warning.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.DiagnosticResultSeverity.Error">
-            <summary>
-            Indicates the diagnotic severity is error.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DiscardAttribute">
             <summary>
             Indicates the marked parameter is a discard and can't be used.
@@ -1538,14 +1508,15 @@
             and can't be used when the return value is specified value.
             </summary>
         </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.#ctor(System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute"/> instance.
+            </summary>
+            <param name="returnValue">The return value.</param>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.ReturnValue">
             <summary>
             Indicates the return value that makes the parameter a discard.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance via those arguments.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.PrimaryConstructorAttribute">
@@ -3189,6 +3160,20 @@
             <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="str"/> is <see langword="null"/>.
             </exception>
+        </member>
+        <member name="T:System.IProxyEqualityComparer`1">
+            <summary>
+            Defines a type that can compare the equality with other instances.
+            </summary>
+            <typeparam name="T">The type to compare.</typeparam>
+        </member>
+        <member name="M:System.IProxyEqualityComparer`1.Equals(`0,`0)">
+            <summary>
+            Determines whether two <typeparamref name="T"/> instances hold the same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.IValueComparable`1">
             <summary>

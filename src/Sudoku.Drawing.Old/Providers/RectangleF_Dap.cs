@@ -3,9 +3,9 @@
 [PrivatizeParameterlessConstructor]
 internal sealed partial class RectangleF_Dap
 {
-	[DeconstructArgumentProvider]
+	[LambdaBody]
 	internal static PointF Point(RectangleF @this) => new(@this.X, @this.Y);
 
-	[DeconstructArgumentProvider]
+	[LambdaBody]
 	internal static SizeF Size(RectangleF @this) => new(@this.Size);
 }

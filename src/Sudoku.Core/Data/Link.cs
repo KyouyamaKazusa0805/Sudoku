@@ -7,7 +7,7 @@
 /// <param name="EndCandidate">Indicates the end candidate.</param>
 /// <param name="LinkType">Indicates the link type.</param>
 [AutoDeconstructLambda(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
-[AutoHashCode(nameof(EigenValue))]
+[AutoGetHashCode(nameof(EigenValue))]
 [AutoEquality(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 [Obsolete($"Please use the type '{nameof(ChainLink)}' instead.", false)]
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType) : IValueEquatable<Link>, IJsonSerializable<Link, Link.JsonConverter>

@@ -84,7 +84,7 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 					var attribute = compilation.GetTypeByMetadataName(typeof(AutoFormattableAttribute).FullName)!;
 					var attributesData = typeSymbol.GetAttributes();
 					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
+					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: true })
 					{
 						return;
 					}

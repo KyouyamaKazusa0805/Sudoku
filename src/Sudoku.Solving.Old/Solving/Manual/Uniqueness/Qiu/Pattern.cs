@@ -4,7 +4,7 @@
 /// Encapsulates a pattern for Qiu's deadly pattern (QDP).
 /// </summary>
 [AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
-[AutoHashCode(nameof(FullMap))]
+[AutoGetHashCode(nameof(FullMap))]
 [AutoEquality(nameof(Pair), nameof(Square), nameof(BaseLine))]
 public readonly partial struct Pattern : IValueEquatable<Pattern>
 {

@@ -1331,6 +1331,16 @@
             <param name="grid">The grid.</param>
             <returns>All ALSes searched.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Alses.Als.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -1359,16 +1369,6 @@
             <param name="left">The left-side-operator instance to compare.</param>
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Alses.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Alses.AlsStepInfo">
             <summary>
@@ -2885,6 +2885,11 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -2914,19 +2919,14 @@
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Manual.Exocets.EliminatedReason@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Elimination.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Exocets.ExocetStepInfo">
             <summary>
@@ -3251,6 +3251,16 @@
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -3282,16 +3292,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Exocets.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
@@ -7939,6 +7939,11 @@
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -7970,11 +7975,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Uniqueness.Qiu.Pattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Uniqueness.Qiu.QdpLockedTypeStepInfo">
             <summary>

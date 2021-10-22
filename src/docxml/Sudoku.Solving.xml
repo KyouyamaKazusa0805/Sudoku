@@ -6121,14 +6121,15 @@
             <seealso cref="P:Sudoku.Solving.Manual.Step.Format"/>
             <seealso cref="T:Sudoku.Solving.Manual.Steps.IStep"/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Text.FormatForwardAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.Text.FormatForwardAttribute"/> instance via an identifier name.
+            </summary>
+            <param name="identifierName">The identifier name.</param>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Text.FormatForwardAttribute.IdentifierName">
             <summary>
             Indicates the identifier that the name the runtime will get from the resource dictionary.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.FormatForwardAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an instance via those arguments.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">

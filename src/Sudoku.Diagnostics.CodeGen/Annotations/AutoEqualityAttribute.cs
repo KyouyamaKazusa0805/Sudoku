@@ -8,4 +8,15 @@
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
 public sealed class AutoEqualityAttribute : Attribute
 {
+	/// <summary>
+	/// Initializes an instance with the specified members.
+	/// </summary>
+	/// <param name="members">The members.</param>
+	public AutoEqualityAttribute(params string[] members) => FieldOrPropertyList = members;
+
+
+	/// <summary>
+	/// Indicates the field of property list.
+	/// </summary>
+	public string[] FieldOrPropertyList { get; }
 }

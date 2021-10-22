@@ -10,8 +10,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
-		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.Core.CodeGen\Sudoku.Core.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->

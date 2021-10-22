@@ -6,9 +6,15 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
 [Conditional("SOLUTION_WIDE_CODE_ANALYSIS")]
-[AutoPrimaryConstructor]
 public sealed partial class DiscardWhenAttribute : Attribute
 {
+	/// <summary>
+	/// Initializes a <see cref="DiscardWhenAttribute"/> instance.
+	/// </summary>
+	/// <param name="returnValue">The return value.</param>
+	public DiscardWhenAttribute(bool returnValue) => ReturnValue = returnValue;
+
+
 	/// <summary>
 	/// Indicates the return value that makes the parameter a discard.
 	/// </summary>

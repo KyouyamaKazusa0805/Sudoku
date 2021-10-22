@@ -8,7 +8,7 @@
 /// <param name="Digit">The digit used.</param>
 /// <param name="Loop">The loop.</param>
 /// <param name="Guardians">All guardians.</param>
-[AutoHashCode(nameof(Digit), nameof(Loop), nameof(Guardians))]
+[AutoGetHashCode(nameof(Digit), nameof(Loop), nameof(Guardians))]
 public sealed partial record GuardianStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	int Digit, in Cells Loop, in Cells Guardians

@@ -10,15 +10,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
-		<ProjectReference Include="..\Sudoku.CodeGenerating\Sudoku.CodeGenerating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EditorConfigFiles Remove="..\Sudoku.Solving\.editorconfig" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\Sudoku.Solving\.editorconfig" />
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 </Project>

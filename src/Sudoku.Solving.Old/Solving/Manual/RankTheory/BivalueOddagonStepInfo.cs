@@ -8,7 +8,7 @@
 /// <param name="Loop">The loop used.</param>
 /// <param name="Digit1">The digit 1.</param>
 /// <param name="Digit2">The digit 2.</param>
-[AutoHashCode(nameof(Code), nameof(Loop), nameof(Digit1), nameof(Digit2))]
+[AutoGetHashCode(nameof(Code), nameof(Loop), nameof(Digit1), nameof(Digit2))]
 public abstract partial record BivalueOddagonStepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
 	in Cells Loop, int Digit1, int Digit2

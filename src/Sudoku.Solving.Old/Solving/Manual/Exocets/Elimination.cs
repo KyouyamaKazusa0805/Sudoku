@@ -4,7 +4,7 @@
 /// Encapsulates an instance to represent a series of eliminations in JE or SE.
 /// </summary>
 [AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
-[AutoHashCode(nameof(Eliminations), nameof(Reason))]
+[AutoGetHashCode(nameof(Eliminations), nameof(Reason))]
 [AutoEquality(nameof(Eliminations), nameof(Reason))]
 [AutoGetEnumerator("@", MemberConversion = "@.AsSpan().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
 public readonly partial struct Elimination : IValueEquatable<Elimination>

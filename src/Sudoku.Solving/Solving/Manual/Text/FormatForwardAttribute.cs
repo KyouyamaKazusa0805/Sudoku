@@ -9,9 +9,15 @@
 /// <seealso cref="Step.Format"/>
 /// <seealso cref="IStep"/>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-[AutoPrimaryConstructor]
 public sealed partial class FormatForwardAttribute : Attribute
 {
+	/// <summary>
+	/// Initializes a <see cref="FormatForwardAttribute"/> instance via an identifier name.
+	/// </summary>
+	/// <param name="identifierName">The identifier name.</param>
+	public FormatForwardAttribute(string identifierName) => IdentifierName = identifierName;
+
+
 	/// <summary>
 	/// Indicates the identifier that the name the runtime will get from the resource dictionary.
 	/// </summary>

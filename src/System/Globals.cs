@@ -14,7 +14,7 @@ global using System.Text.RegularExpressions;
 global using System.Threading.Tasks;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.VisualBasic.FileIO;
-global using Sudoku.CodeGenerating;
+global using Sudoku.Diagnostics.CodeGen;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 

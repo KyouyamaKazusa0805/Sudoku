@@ -746,14 +746,14 @@
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Candidates.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Data.Candidates.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
@@ -1275,6 +1275,11 @@
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Cells.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -1303,11 +1308,6 @@
             <param name="left">The left-side-operator instance to compare.</param>
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.Deconstruct(System.Int64@,System.Int64@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.Cells.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -1759,6 +1759,11 @@
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.ChainNode.Equals(Sudoku.Data.ChainNode@)">
             <summary>
             Indicates whether the current object is equal to another object of the same type.
@@ -1768,11 +1773,6 @@
             <see langword="true"/> if the current object is equal to the other parameter;
             otherwise, <see langword="false"/>.
             </returns>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Int16@,System.Boolean@)">
             <summary>
@@ -4731,6 +4731,16 @@
         <member name="M:Sudoku.Data.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IList{Sudoku.Data.Node}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Node.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -4759,16 +4769,6 @@
             <param name="left">The left-side-operator instance to compare.</param>
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int32@,System.Boolean@,System.Collections.Generic.IList{Sudoku.Data.Node}@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Data.Parsers.CellParser">
             <summary>
@@ -6377,25 +6377,6 @@
             Indicates the pinned item is <c>_candidateList</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.SudokuGridSegment.Equals(Sudoku.Data.SudokuGridSegment@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
-        </member>
-        <member name="M:Sudoku.Data.SudokuGridSegment.op_Equality(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
-            <summary>
-            Determine whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.SudokuGridSegment.op_Inequality(Sudoku.Data.SudokuGridSegment@,Sudoku.Data.SudokuGridSegment@)">
-            <summary>
-            Determine whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Data.SudokuGridSegment.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
@@ -7303,6 +7284,11 @@
             </summary>
             <param name="pair">The pair value.</param>
         </member>
+        <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Models.DrawingInfo.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -7331,11 +7317,6 @@
             <param name="left">The left-side-operator instance to compare.</param>
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
@@ -7384,6 +7365,16 @@
         <member name="M:Sudoku.Models.GridProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="M:Sudoku.Models.GridProgressResult.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -7415,16 +7406,6 @@
         </member>
         <member name="M:Sudoku.Models.GridProgressResult.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.GridProgressResult.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Models.IProgressResult">
             <summary>

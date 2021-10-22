@@ -5,7 +5,7 @@
 /// </summary>
 [AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount))]
 [AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount))]
-[AutoHashCode(nameof(BaseHashCode), nameof(InitialCandidatesCount), nameof(CountryCode))]
+[AutoGetHashCode(nameof(BaseHashCode), nameof(InitialCandidatesCount), nameof(CountryCode))]
 [AutoEquality(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount), nameof(CountryCode))]
 public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
 {
