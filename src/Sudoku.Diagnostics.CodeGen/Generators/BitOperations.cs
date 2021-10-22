@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
