@@ -573,6 +573,22 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">
+            <summary>
+            Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
             <summary>
             Encapsulates the member detail.

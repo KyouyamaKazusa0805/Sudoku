@@ -1,24 +1,25 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
 /// </summary>
-[Generator]
-public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
+[Generator(LanguageNames.CSharp)]
+public sealed class RefStructOverridens : ISourceGenerator
 {
+	/// <summary>
+	/// The result collection.
+	/// </summary>
+	private readonly ICollection<INamedTypeSymbol> _resultCollection = new List<INamedTypeSymbol>();
+
+
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var compilation = context.Compilation;
-
 		foreach (var typeGroup in
-			from type in receiver.Types
-			let model = compilation.GetSemanticModel(type.SyntaxTree)
-			select model.GetDeclaredSymbol(type)! into typeSymbol
+			from typeSymbol in _resultCollection
 			let whetherSymbolIsNull = typeSymbol.ContainingType is null
-			group typeSymbol by whetherSymbolIsNull
-		)
+			group typeSymbol by whetherSymbolIsNull)
 		{
 			Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key
 				? TopLevelStructGenerating
@@ -33,7 +34,29 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		context.RegisterForSyntaxNotifications(
+			() => SyntaxContextReceiverCreator.Create(
+				(syntaxNode, semanticModel) =>
+				{
+					if (syntaxNode is not StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration)
+					{
+						return;
+					}
+
+					if (!(modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword)))
+					{
+						return;
+					}
+
+					if (semanticModel.GetDeclaredSymbol(declaration, context.CancellationToken) is not { } typeSymbol)
+					{
+						return;
+					}
+
+					_resultCollection.Add(typeSymbol);
+				}
+			)
+		);
 
 
 	private void TopLevelStructGenerating(
@@ -42,10 +65,9 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 		Compilation compilation
 	)
 	{
-		type.DeconstructInfo(
-			false, out _, out string namespaceName, out string genericParametersList,
-			out _, out _, out string readonlyKeyword, out _
-		);
+		var (
+			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
+		) = SymbolOutputInfo.FromSymbol(type);
 
 		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
 		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
@@ -70,7 +92,7 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
+	public override {readOnlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -88,7 +110,7 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
+	public override {readOnlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 		string toStringMethod = Array.Exists(
 			methods,
@@ -106,7 +128,7 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
+	public override {readOnlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 		context.AddSource(
 			type.ToFileName(),
@@ -117,15 +139,13 @@ public sealed partial class RefStructDefaultImplGenerator : ISourceGenerator
 
 namespace {namespaceName};
 
-partial struct {type.Name}{genericParametersList}
+partial struct {type.Name}{genericParameterList}
 {{
-#line hidden
 	{equalsMethod}
 
 	{getHashCodeMethod}
 
 	{toStringMethod}
-#line default
 }}
 "
 		);
@@ -137,28 +157,27 @@ partial struct {type.Name}{genericParametersList}
 		Compilation compilation
 	)
 	{
-		type.DeconstructInfo(
-			false, out _, out string namespaceName, out string genericParametersList,
-			out _, out _, out string readonlyKeyword, out _
-		);
+		var (
+			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
+		) = SymbolOutputInfo.FromSymbol(type);
 
 		// If nested type, the 'genericParametersList' may contain the dot '.' such as
 		//
 		//     <TKey, TValue>.KeyCollection
 		//
 		// We should remove the characters before the dot.
-		if (!string.IsNullOrEmpty(genericParametersList)
-			&& genericParametersList.LastIndexOf('.') is var dot and not -1)
+		if (!string.IsNullOrEmpty(genericParameterList)
+			&& genericParameterList.LastIndexOf('.') is var dot and not -1)
 		{
-			if (dot + 1 >= genericParametersList.Length)
+			if (dot + 1 >= genericParameterList.Length)
 			{
 				return;
 			}
 
-			genericParametersList = genericParametersList.Substring(dot + 1);
-			if (genericParametersList.IndexOf('<') == -1)
+			genericParameterList = genericParameterList.Substring(dot + 1);
+			if (genericParameterList.IndexOf('<') == -1)
 			{
-				genericParametersList = string.Empty;
+				genericParameterList = string.Empty;
 			}
 		}
 
@@ -178,10 +197,9 @@ partial struct {type.Name}{genericParametersList}
 		var indentingStack = new Stack<string>();
 		foreach (var (outerType, currentIndenting) in outerTypes)
 		{
-			outerType.DeconstructInfo(
-				false, out string outerFullTypeName, out _, out _, out _,
-				out string outerTypeKind, out _, out _
-			);
+			var (
+				_, outerFullTypeName, _, _, _, outerTypeKind, _, _, _, _
+			) = SymbolOutputInfo.FromSymbol(outerType);
 
 			string outerGenericParametersList;
 			int lastDot = outerFullTypeName.LastIndexOf('.');
@@ -266,7 +284,7 @@ partial struct {type.Name}{genericParametersList}
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readonlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -282,7 +300,7 @@ partial struct {type.Name}{genericParametersList}
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readonlyKeyword}int GetHashCode() => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}int GetHashCode() => throw new NotSupportedException();";
 
 		string toStringMethod = Array.Exists(
 			methods,
@@ -298,7 +316,7 @@ partial struct {type.Name}{genericParametersList}
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readonlyKeyword}string? ToString() => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}string? ToString() => throw new NotSupportedException();";
 
 		context.AddSource(
 			type.ToFileName(),
@@ -312,15 +330,13 @@ using System.ComponentModel;
 namespace {namespaceName};
 
 {outerTypeDeclarationsStart}
-{typeIndenting}partial struct {type.Name}{genericParametersList}
+{typeIndenting}partial struct {type.Name}{genericParameterList}
 {typeIndenting}{{
-#line hidden
 {equalsMethod}
 
 {getHashCodeMethod}
 
 {toStringMethod}
-#line default
 {typeIndenting}}}
 {outerTypeDeclarationsEnd}
 "
