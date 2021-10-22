@@ -887,19 +887,18 @@
             <summary>
             Indicates the default syntax context receiver.
             </summary>
-            <param name="SyntaxNodeVisitor">
-            The syntax node visitor method that determines
-            whether the syntax node can be used by a source generator.
-            </param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.#ctor(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
             <summary>
-            Indicates the default syntax context receiver.
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver"/> instance via the syntax node visitor.
             </summary>
-            <param name="SyntaxNodeVisitor">
+            <param name="syntaxNodeVisitor">The syntax node visitor.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.SyntaxNodeVisitor">
+            <summary>
             The syntax node visitor method that determines
             whether the syntax node can be used by a source generator.
-            </param>
+            </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
