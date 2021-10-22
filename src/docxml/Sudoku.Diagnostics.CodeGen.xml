@@ -75,6 +75,94 @@
             Indicates the member names.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2">
+            <summary>
+            Mark this attribute onto a type, to tell the source generator that the source generator will
+            generates the extension deconstruction methods, with expressions.
+            </summary>
+            <typeparam name="T">
+            The type of the element as the type of the generated code for the deconstruction methods.
+            </typeparam>
+            <typeparam name="TProvider">
+            The type of the provider class that provides the extension methods for the argument provider
+            of extension deconstruction methods.
+            </typeparam>
+            <remarks>
+            <para>
+            For example, if you write the code like:
+            <code><![CDATA[
+            [assembly: AutoDeconstructExtensionLambda<Class, Provider>(nameof(Class.A), nameof(Class.B), $".{nameof(Provider.C)}")]
+            ]]></code>
+            (Real arguments are <c>"A"</c>, <c>"B"</c> and <c>".C"</c>.)
+            </para>
+            <para>
+            We suppose that the value <c>.C</c> is an expression that is defined by ours:
+            <code><![CDATA[
+            [PrivatizeParameterlessConstructor]
+            internal sealed partial class Provider
+            {
+            	[DeconstructArgumentProvider]
+                internal static int C(Class instance) => instance.A + instance.B;
+            }
+            ]]></code>
+            then you'll get the generated code:
+            <code><![CDATA[
+            public static partial class ClassExtensions
+            {
+                [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+                public static void Deconstruct(this Class @this, out int a, out int b, out int c)
+                {
+                    a = @this.A;
+                    b = @this.B;
+                    c = Provider.C(@this); // Translated into '@this.A + @this.B' here.
+                }
+            }
+            ]]></code>
+            </para>
+            <para>
+            Please note that this attribute is a generic attribute, which is introduced in C# 10.
+            If you don't know this feature (generic attribute), please visit
+            <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-10.0/generic-attributes.md">
+            this link
+            </see>
+            for more information.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute"/> instance via the member names.
+            </summary>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.Namespace">
+            <summary>
+            Indicates the namespace that the output extension class stored. If the value is
+            <see langword="null"/>, the namespace will use the basic namespace of the type itself.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.MemberNames">
+            <summary>
+            Indicates the member names to deconstruct.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute">
+            <summary>
+            Mark this attribute onto a type, to tell the source generator that the source generator will
+            generates the deconstruction methods, with expressions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute"/> instance via the member names.
+            </summary>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute.MemberNames">
+            <summary>
+            Indicates the member names to deconstruct.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute">
             <summary>
             Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
@@ -434,6 +522,69 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct">
+            <summary>
+            Defines a source generator that generates the deconstruction methods with expressions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
+            <summary>
+            Encapsulates the member detail.
+            </summary>
+            <param name="MemberSymbol">The member symbol.</param>
+            <param name="TypeSymbol">The type symbol.</param>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.#ctor(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.String,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData},System.String)">
+            <summary>
+            Encapsulates the member detail.
+            </summary>
+            <param name="MemberSymbol">The member symbol.</param>
+            <param name="TypeSymbol">The type symbol.</param>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <param name="handleRecursively">
+            Indicates whether the method will handle all nested types recursively.
+            </param>
+            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator">
             <summary>
             Encapsulates a set of methods to create the <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>s.
@@ -468,51 +619,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.TypeDetail">
-            <summary>
-            Encapsulates the type detail.
-            </summary>
-            <param name="FullTypeName">The full type name.</param>
-            <param name="Name">The simple type name.</param>
-            <param name="Symbol">The type symbol.</param>
-            <param name="Attributes">The attributes of the type.</param>
-            <param name="OutParameterDeclaration">
-            The string representation of the <see langword="out"/> parameter declaration.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.#ctor(System.String,System.String,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData},System.String)">
-            <summary>
-            Encapsulates the type detail.
-            </summary>
-            <param name="FullTypeName">The full type name.</param>
-            <param name="Name">The simple type name.</param>
-            <param name="Symbol">The type symbol.</param>
-            <param name="Attributes">The attributes of the type.</param>
-            <param name="OutParameterDeclaration">
-            The string representation of the <see langword="out"/> parameter declaration.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/> instance via the specified type, and the attribute marks onto
-            the type.
-            </summary>
-            <param name="typeSymbol">The type symbol.</param>
-            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
-            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
-            <summary>
-            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/> instance via the specified type, and the attribute marks onto
-            the type.
-            </summary>
-            <param name="typeSymbol">The type symbol.</param>
-            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
-            <param name="handleRecursively">
-            Indicates whether the method will handle all nested types recursively.
-            </param>
-            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/>s.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.BitOperations">
             <summary>
@@ -769,6 +875,27 @@
             <item>The character is <c>' '</c>: Remove it.</item>
             </list>
             </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.IPropertySymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
+            </summary>
+            <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.IPropertySymbolExtensions.IsAutoImplemented(Microsoft.CodeAnalysis.IPropertySymbol)">
+            <summary>
+            <para>
+            Checks whether the property member that specified as an <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/> instance
+            is an auto-implemented property.
+            </para>
+            <para>
+            An <b>auto-implemented property</b> is a property that only contains the keyword <see langword="get"/>,
+            <see langword="set"/> or <see langword="init"/> as the body,
+            e.g. <c>public int Property { get; set; }</c>.
+            </para>
+            </summary>
+            <param name="this">The property symbol to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
             <summary>

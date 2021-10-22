@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Defines a source generator that generates the source code for deconstruction methods.
+/// Defines a source generator that generates the deconstruction methods with expressions.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoDeconstruct : ISourceGenerator
+public sealed class AutoLambdaedDeconstruct : ISourceGenerator
 {
 	/// <summary>
 	/// The result collection.
@@ -24,11 +24,11 @@ public sealed class AutoDeconstruct : ISourceGenerator
 				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
 				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
 			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-
 			var possibleMembers = (
 				from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
 				select typeDetail
 			).ToArray();
+
 			string methods = string.Join(
 				"\r\n\r\n\t",
 				from attributeData in attributesData
@@ -41,7 +41,7 @@ public sealed class AutoDeconstruct : ISourceGenerator
 					let tempTypeName = detail.FullTypeName
 					where !KeywordsToBclNames.ContainsKey(tempTypeName)
 					let tempSymbol = detail.TypeSymbol
-					where compilation.TypeArgumentMarked<ObsoleteAttribute>(tempSymbol)
+					where tempSymbol.CheckAnyTypeArgumentIsMarked<ObsoleteAttribute>(compilation)
 					select $"'{tempTypeName}'"
 				).ToArray()
 				let obsoleteAttributeStr = deprecatedTypeNames.Length switch
@@ -54,8 +54,10 @@ public sealed class AutoDeconstruct : ISourceGenerator
 				let paramNamesStr = string.Join(", ", paramNames)
 				let assignments =
 					from m in members
-					let paramName = possibleMembers.First(p => p.Name == m).Name.ToCamelCase()
-					select $"{paramName} = {m};"
+					let possibleMemberInfo = possibleMembers.First(p => p.Name == m)
+					let parameterName = possibleMemberInfo.Name.ToCamelCase()
+					let expression = getExpression(possibleMemberInfo.MemberSymbol, context.CancellationToken)
+					select $"{parameterName} = {expression ?? m};"
 				let assignmentsStr = string.Join("\r\n\t\t", assignments)
 				select $@"/// <summary>
 	/// Deconstruct the instance into multiple elements.
@@ -71,7 +73,7 @@ public sealed class AutoDeconstruct : ISourceGenerator
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
-				GeneratedFileShortcuts.DeconstructionMethod,
+				GeneratedFileShortcuts.LambdaedDeconstructionMethod,
 				$@"#nullable enable
 
 namespace {namespaceName};
@@ -83,6 +85,40 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 "
 			);
 		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string? getExpression(ISymbol fieldOrPropertySymbol, CancellationToken ct) =>
+			fieldOrPropertySymbol switch
+			{
+				IPropertySymbol { GetMethod: not null } p when !p.IsAutoImplemented() && p.Locations[0] is { SourceTree: { } st } l =>
+					(PropertyDeclarationSyntax?)st.GetRoot(ct)?.FindNode(l.SourceSpan) switch
+					{
+						// public int Property => value;
+						{ ExpressionBody.Expression: var expressionNode } =>
+							expressionNode.ToString(),
+
+						{ AccessorList.Accessors: { Count: not 0 } a } when a.FirstOrDefault(isGetKeyword) is { } getAccessor =>
+							getAccessor switch
+							{
+								// public int Property { get { return value; } }
+								{ Body.Statements: { Count: 1 } statements } when statements[0] is ReturnStatementSyntax
+								{
+									Expression: { } expressionNode
+								} => expressionNode.ToString(),
+
+								// public int Property { get => value; }
+								{ ExpressionBody.Expression: var expressionNode } => expressionNode.ToString(),
+
+								_ => null
+							},
+						_ => null
+					},
+				_ => null
+			};
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool isGetKeyword(AccessorDeclarationSyntax a) => a is { Keyword.ValueText: "get" };
 	}
 
 	/// <inheritdoc/>
@@ -111,7 +147,7 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 						return;
 					}
 
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName)!;
+					var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructLambdaAttribute).FullName)!;
 					var attributesData =
 						from attributeData in typeSymbol.GetAttributes()
 						where !attributeData.ConstructorArguments.IsDefaultOrEmpty
