@@ -1,31 +1,34 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates a generator that generates the code about the equality method.
 /// </summary>
-[Generator]
-public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
+[Generator(LanguageNames.CSharp)]
+public sealed class ProxyEqualsMethodGenerator : ISourceGenerator
 {
+	/// <summary>
+	/// The result collection.
+	/// </summary>
+	private readonly ICollection<INamedTypeSymbol> _resultCollection = new List<INamedTypeSymbol>();
+
+
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		var receiver = (SyntaxReceiver)context.SyntaxReceiver!;
 		var processedList = new List<INamedTypeSymbol>();
 		var compilation = context.Compilation;
 		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
-		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
+		var boolean = compilation.GetSpecialType(SpecialType.System_Boolean);
 		foreach (var (typeSymbol, method) in
-			from candidate in receiver.Candidates
-			let model = compilation.GetSemanticModel(candidate.SyntaxTree)
-			select model.GetDeclaredSymbol(candidate)! into typeSymbol
+			from typeSymbol in _resultCollection
 			from member in typeSymbol.GetMembers().OfType<IMethodSymbol>()
 			let attributesData = member.GetAttributes()
 			where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
-				&& SymbolEqualityComparer.Default.Equals(member.ReturnType, boolSymbol)
+				&& SymbolEqualityComparer.Default.Equals(member.ReturnType, boolean)
 			let parameters = member.Parameters
 			where parameters.Length == 2
 				&& parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, typeSymbol))
-				&& !processedList.Contains(typeSymbol, SymbolEqualityComparer.Default)
+				&& !processedList.Exists(t => SymbolEqualityComparer.Default.Equals(t, typeSymbol))
 			let method = (
 				from member in typeSymbol.GetMembers().OfType<IMethodSymbol>()
 				from attribute in member.GetAttributes()
@@ -36,21 +39,18 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 			where !typeSymbol.IsReferenceType || methodParams.NullableMatches(NullableAnnotation.Annotated)
 			select (typeSymbol, method))
 		{
-			typeSymbol.DeconstructInfo(
-				false, out string fullTypeName, out string namespaceName, out string genericParametersList,
-				out string genericParametersListWithoutConstraint, out string typeKind,
-				out string readonlyKeyword, out _
-			);
+			var (
+				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
+				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
+			) = SymbolOutputInfo.FromSymbol(typeSymbol);
 			string methodName = method.Name;
-			string inModifier = typeSymbol.MemberShouldAppendIn() ? "in " : string.Empty;
-			string nullableMark = typeSymbol.TypeKind == TypeKind.Class || typeSymbol.IsRecord ? "?" : string.Empty;
 			string objectEqualityMethod = typeSymbol.IsRefLikeType
-				? "// This type is a ref struct, so 'bool Equals(object?) is useless."
+				? "// This type is a ref struct, so 'bool Equals(object?)' is useless."
 				: $@"/// <inheritdoc/>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public override {readonlyKeyword}bool Equals(object? obj) => obj is {typeSymbol.Name}{genericParametersListWithoutConstraint} comparer && {methodName}(this, comparer);";
+	public override {readOnlyKeyword}bool Equals(object? obj) => obj is {typeSymbol.Name}{genericParameterListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
@@ -59,7 +59,7 @@ public sealed partial class ProxyEqualsMethodGenerator : ISourceGenerator
 
 namespace {namespaceName};
 
-partial {typeKind}{typeSymbol.Name}{genericParametersList}
+partial {typeKind}{typeName}{genericParameterList}
 {{
 	{objectEqualityMethod}
 
@@ -67,7 +67,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public bool Equals({inModifier}{typeSymbol.Name}{genericParametersListWithoutConstraint}{nullableMark} other) => {methodName}(this, other);
+	public bool Equals({inKeyword}{typeName}{genericParameterListWithoutConstraint}{nullableAnnotation} other) => {methodName}(this, other);
 
 
 	/// <summary>
@@ -79,7 +79,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==({inModifier}{typeSymbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{typeSymbol.Name}{genericParametersListWithoutConstraint} right) => {methodName}(left, right);
+	public static bool operator ==({inKeyword}{typeName}{genericParameterListWithoutConstraint} left, {inKeyword}{typeName}{genericParameterListWithoutConstraint} right) => {methodName}(left, right);
 
 	/// <summary>
 	/// Determine whether two instances don't hold a same value.
@@ -90,7 +90,7 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=({inModifier}{typeSymbol.Name}{genericParametersListWithoutConstraint} left, {inModifier}{typeSymbol.Name}{genericParametersListWithoutConstraint} right) => !(left == right);
+	public static bool operator !=({inKeyword}{typeName}{genericParameterListWithoutConstraint} left, {inKeyword}{typeName}{genericParameterListWithoutConstraint} right) => !(left == right);
 }}
 "
 			);
@@ -101,5 +101,40 @@ partial {typeKind}{typeSymbol.Name}{genericParametersList}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+		context.RegisterForSyntaxNotifications(
+			() => SyntaxContextReceiverCreator.Create(
+				(syntaxNode, semanticModel) =>
+				{
+					if (
+						(
+							SyntaxNode: syntaxNode,
+							SemanticModel: semanticModel,
+							Context: context
+						) is not (
+							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n and not InterfaceDeclarationSyntax,
+							SemanticModel: { Compilation: { } compilation },
+							Context: { CancellationToken: var cancellationToken }
+						)
+					)
+					{
+						return;
+					}
+
+					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
+					{
+						return;
+					}
+
+					var attribute = compilation.GetTypeByMetadataName(typeof(AutoEqualityAttribute).FullName)!;
+					var attributesData = typeSymbol.GetAttributes();
+					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
+					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
+					{
+						return;
+					}
+
+					_resultCollection.Add(typeSymbol);
+				}
+			)
+		);
 }

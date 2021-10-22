@@ -247,6 +247,18 @@
             a <see langword="private"/> parameterless constructor that can't be accessed out of its type field.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.ProxyEqualityAttribute">
+            <summary>
+            Indicates an attribute instance which is marked on a method,
+            to tell the users and the compiler that this method is an equality
+            method to judge whether two instances contain the same value.
+            </summary>
+            <remarks>
+            Because of the limitation of the algorithm and the source generator, the method marked this
+            attribute must be <see langword="static"/>. If you marks on a method
+            that isn't a <see langword="static"/> method, the source generator will do nothing.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
             Defines the constants used in this project.
@@ -571,6 +583,22 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator">
+            <summary>
+            Indicates a generator that generates the code about the equality method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethodGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">
@@ -1109,6 +1137,37 @@
             is a <see langword="ref struct"/>.
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
+        </member>
+        <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+            </summary>
+            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.NullableMatches(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol}@,Microsoft.CodeAnalysis.NullableAnnotation[])">
+            <summary>
+            Matches the array of <see cref="T:Microsoft.CodeAnalysis.IParameterSymbol"/> instances, to check whether the
+            types matches the nullable annotation list.
+            </summary>
+            <param name="this">The array of parameter symbols.</param>
+            <param name="nullableAnnotations">The nullable annotation list to check.</param>
+            <returns>
+            Returns <see langword="true"/> when all parameters matches the corresponding nullable annotation;
+            otherwise, <see langword="false"/>.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the current length isn't equal to <paramref name="nullableAnnotations"/>.Length.
+            </exception>
+        </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.GetPath(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AdditionalText}@,System.Predicate{System.String})">
+            <summary>
+            Try to get the path in the additional file list that satisify the specified condition.
+            </summary>
+            <param name="this">The list of additional files.</param>
+            <param name="predicate">The condition</param>
+            <returns>
+            The file name found. If none of all files satisfies the condition, <see langword="null"/>.
+            </returns>
         </member>
         <member name="T:System.StringExtensions">
             <summary>
