@@ -241,6 +241,27 @@
             it'll generate the source code for <c>GetHashCode</c> overriden.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute">
+            <summary>
+            Indicates the marked <see langword="class"/> should generate primary constructor automatically.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.Accessibility">
+            <summary>
+            <para>Indicates the custom accessibility.</para>
+            <para>The default value is <see cref="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Public"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.IncludedMemberNames">
+            <summary>
+            Indicates the included member names.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.ExcludedMemberNames">
+            <summary>
+            Indicates the excluded member names.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.PrivatizeParameterlessConstructorAttribute">
             <summary>
             Marks onto a <see langword="class"/> type, to tell the source generator the type should contain
@@ -568,6 +589,22 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator">
+            <summary>
+            Defines a source generator that generates the source code for primary constructors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor">
             <summary>
             Provides a source generator that automatically generates the source code for disability of the
@@ -663,6 +700,46 @@
             Indicates whether the method will handle all nested types recursively.
             </param>
             <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility">
+            <summary>
+            Indicates the accessibility of a member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.None">
+            <summary>
+            Indicates the accessibility is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Public">
+            <summary>
+            Indicates the <see langword="public"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Internal">
+            <summary>
+            Indicates the <see langword="internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Protected">
+            <summary>
+            Indicates the <see langword="protected"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.ProtectedInternal">
+            <summary>
+            Indicates the <see langword="protected internal"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Private">
+            <summary>
+            Indicates the <see langword="private"/> modifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.PrivateProtected">
+            <summary>
+            Indicates the <see langword="private protected"/> modifier.
+            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator">
             <summary>
