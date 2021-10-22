@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.UI.CodeGenerating</name>
+        <name>Sudoku.UI.CodeGen</name>
     </assembly>
     <members>
         <member name="T:Sudoku.UI.CodeGenerating.DefaultValueAttribute">
@@ -178,16 +178,6 @@
         </member>
         <member name="M:Sudoku.UI.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.UI.CodeGenerating.Version">
-            <summary>
-            Encapsulates the version values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CodeGenerating.Version.CurrentVersion">
-            <summary>
-            Indicates the current version.
-            </summary>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>

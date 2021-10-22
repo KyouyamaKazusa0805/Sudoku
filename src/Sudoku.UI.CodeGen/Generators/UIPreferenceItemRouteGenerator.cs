@@ -21,11 +21,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context.Compilation is not { AssemblyName: "Sudoku.UI" } compilation)
-		{
-			return;
-		}
-
+		var compilation = context.Compilation;
 		if (compilation.GetTypeByMetadataName("Sudoku.UI.Data.Preference") is not { } preferenceTypeSymbol)
 		{
 			return;
@@ -117,7 +113,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 
 partial class SettingsPage
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""{Version.CurrentVersion}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""0.7"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	private partial void {controlName}_Toggled(object sender, [Discard] RoutedEventArgs e)
 	{{

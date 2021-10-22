@@ -25,7 +25,7 @@
 /// [PrivatizeParameterlessConstructor]
 /// internal sealed partial class Provider
 /// {
-///		[DeconstructArgumentProvider]
+///		[LambdaBody]
 ///     internal static int C(Class instance) => instance.A + instance.B;
 /// }
 /// ]]></code>

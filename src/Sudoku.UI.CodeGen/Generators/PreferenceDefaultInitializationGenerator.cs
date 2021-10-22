@@ -9,11 +9,7 @@ public sealed class PreferenceDefaultInitializationGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context.Compilation is not { Assembly.Name: "Sudoku.UI" } compilation)
-		{
-			return;
-		}
-
+		var compilation = context.Compilation;
 		if (compilation.GetTypeByMetadataName("Sudoku.UI.Data.Preference") is not { } typeSymbol)
 		{
 			return;
@@ -47,7 +43,7 @@ partial class Preference
 	/// <summary>
 	/// Initializes a <see cref=""Preference""/> instance.
 	/// </summary>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{Version.CurrentVersion}"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public Preference()
 	{{
@@ -126,8 +122,7 @@ partial class Preference
 			}
 
 
-			return $@"#region Property '{propertySymbol.Name}'
-{innerLogic}		#endregion";
+			return $"#region Property '{propertySymbol.Name}'\r\n{innerLogic}\t\t#endregion";
 		}
 	}
 

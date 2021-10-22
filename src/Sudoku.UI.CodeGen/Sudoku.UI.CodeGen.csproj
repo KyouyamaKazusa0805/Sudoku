@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<DocumentationFile>..\docxml\Sudoku.UI.CodeGenerating.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.UI.CodeGen.xml</DocumentationFile>
 		<Description>A project that generates the source code for UI projects.</Description>
 	</PropertyGroup>
 
