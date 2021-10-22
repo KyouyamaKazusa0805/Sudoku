@@ -4,6 +4,24 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute">
+            <summary>
+            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
+            as a mark that interacts with the source generator, to tell the source generator that
+            it'll generate the source code for deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an instance with the specified member list.
+            </summary>
+            <param name="members">The members.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute.FieldOrPropertyList">
+            <summary>
+            All members to deconstruct.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute">
             <summary>
             Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
@@ -202,6 +220,22 @@
             Indicates the project <c>Sudoku.Solving</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct">
+            <summary>
+            Defines a source generator that generates the source code for deconstruction methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality">
             <summary>
             Defines a source generator that generates the source code
@@ -210,7 +244,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality._resultCollection">
             <summary>
-            The result node collection.
+            The result collection.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
@@ -226,7 +260,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode._resultCollection">
             <summary>
-            The result node collection.
+            The result collection.
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
@@ -269,6 +303,51 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.TypeDetail">
+            <summary>
+            Encapsulates the type detail.
+            </summary>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Symbol">The type symbol.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.#ctor(System.String,System.String,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData},System.String)">
+            <summary>
+            Encapsulates the type detail.
+            </summary>
+            <param name="FullTypeName">The full type name.</param>
+            <param name="Name">The simple type name.</param>
+            <param name="Symbol">The type symbol.</param>
+            <param name="Attributes">The attributes of the type.</param>
+            <param name="OutParameterDeclaration">
+            The string representation of the <see langword="out"/> parameter declaration.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.TypeDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/> instance via the specified type, and the attribute marks onto
+            the type.
+            </summary>
+            <param name="typeSymbol">The type symbol.</param>
+            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
+            <param name="handleRecursively">
+            Indicates whether the method will handle all nested types recursively.
+            </param>
+            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.TypeDetail"/>s.</returns>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.BitOperations">
             <summary>
@@ -370,6 +449,50 @@
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.CompilationExtensions.TypeArgumentMarked``1(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            <para>
+            Check all type arguments recursively whether any types are marked specified attribute type.
+            </para>
+            <para>
+            This method will check all type arguments for this type symbol recursively.
+            For example, if the type symbol is like this:
+            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
+            this method will check those parts:
+            <list type="bullet">
+            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
+            <item><c>string</c></item>
+            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
+            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
+            <item><c>int</c></item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
+            <param name="this">The compilation.</param>
+            <param name="symbol">The symbol to check.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
@@ -551,6 +674,52 @@
             is a <see langword="ref struct"/>.
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:System.StringExtensions.EndsWith(System.String,System.Char)">
+            <summary>
+            Check whether the last character is the specified character.
+            </summary>
+            <param name="this">The string.</param>
+            <param name="character">The character to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result</returns>
+        </member>
+        <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
+            <summary>
+            Count how many specified characters are in the current string.
+            </summary>
+            <param name="this">The current string.</param>
+            <param name="character">The character to count.</param>
+            <returns>The number of characters found.</returns>
+        </member>
+        <member name="M:System.StringExtensions.ToCamelCase(System.String)">
+            <summary>
+            Converts the current string into the camel case.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.StringExtensions.GetMemberValues(System.String,System.Int32)">
+            <summary>
+            Separate the attribute string representation into multiple elements.
+            The attribute string will be like <c>Type({value1, value2, value3})</c>.
+            </summary>
+            <param name="this">The attribute string.</param>
+            <param name="tokenStartIndex">The token start index.</param>
+            <returns>The array of separated values.</returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitInfo(System.String)">
+            <summary>
+            To split the info on the <c>*.csv</c> file line.
+            </summary>
+            <param name="this">A line of the file.</param>
+            <returns>The <see cref="T:System.String"/>[] result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>

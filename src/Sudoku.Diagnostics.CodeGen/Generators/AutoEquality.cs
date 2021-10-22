@@ -8,7 +8,7 @@
 public sealed class AutoEquality : ISourceGenerator
 {
 	/// <summary>
-	/// The result node collection.
+	/// The result collection.
 	/// </summary>
 	private readonly ICollection<(INamedTypeSymbol Symbol, AttributeData AttributeData)> _resultCollection =
 		new List<(INamedTypeSymbol, AttributeData)>();
