@@ -960,17 +960,6 @@
         <member name="M:Sudoku.CodeGenerating.Generators.GetEnumeratorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator">
-            <summary>
-            Define a keyed tuple generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.CodeGenerating.Generators.LambdaedDeconstructMethodGenerator">
             <summary>
             Defines a source generator that generates the deconstruction methods with expressions.
