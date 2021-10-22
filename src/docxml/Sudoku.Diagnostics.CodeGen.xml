@@ -241,6 +241,12 @@
             it'll generate the source code for <c>GetHashCode</c> overriden.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.PrivatizeParameterlessConstructorAttribute">
+            <summary>
+            Marks onto a <see langword="class"/> type, to tell the source generator the type should contain
+            a <see langword="private"/> parameterless constructor that can't be accessed out of its type field.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
             Defines the constants used in this project.
@@ -550,6 +556,23 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor">
+            <summary>
+            Provides a source generator that automatically generates the source code for disability of the
+            usage of the parameterless constructor outside the type range.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor._resultCollection">
+            <summary>
+            The result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
             <summary>
             Encapsulates the member detail.
@@ -732,6 +755,19 @@
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
+        </member>
+        <member name="T:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver">
+            <summary>
+            Defines the syntax receiver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.Candidates">
+            <summary>
+            Indicates all possible candidate types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
+            <inheritdoc/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
             <summary>
