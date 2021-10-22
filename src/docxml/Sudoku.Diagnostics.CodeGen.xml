@@ -11,6 +11,13 @@
             it'll generate the source code for equality methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute">
+            <summary>
+            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
+            as a mark that interacts with the source generator, to tell the source generator that
+            it'll generate the source code for <c>GetHashCode</c> overriden.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
             Defines the constants used in this project.
@@ -212,6 +219,22 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode">
+            <summary>
+            Defines a source generator that generates the source code for getting hash code.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode._resultCollection">
+            <summary>
+            The result node collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator">
             <summary>
             Encapsulates a set of methods to create the <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>s.
@@ -342,6 +365,91 @@
             <item>The character is <c>' '</c>: Remove it.</item>
             </list>
             </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.SymbolOutputInfo">
+            <summary>
+            Provides the basic information used for output a source code via an <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <param name="TypeName">The type name of the type symbol.</param>
+            <param name="FullTypeName">The full type name of the type symbol.</param>
+            <param name="NamespaceName">The namespace name that the type symbol belongs to.</param>
+            <param name="GenericParameterList">
+            The generic parameter list if the type symbol contains the type parameters.
+            </param>
+            <param name="GenericParameterListWithoutConstraint">
+            The generic parameter list without the constraints if the type symbol contains the type parameters.
+            </param>
+            <param name="TypeKind">
+            The type kind of the type symbol. All possible type kinds are:
+            <list type="bullet">
+            <item><see langword="class"/></item>
+            <item><see langword="struct"/></item>
+            <item><see langword="record class"/> (Denotes as a keyword <c>record</c>)</item>
+            <item><see langword="record struct"/></item>
+            </list>
+            </param>
+            <param name="ReadOnlyKeyword">
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="readonly"/>) onto the members to implement.
+            </param>
+            <param name="InKeyword">
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="in"/>) onto the parameters in methods.
+            </param>
+            <param name="NullableAnnotation">
+            Indicates whether the type symbol is a <see langword="class"/>. If so, this property will keep the value
+            as a nullable annotation <c>?</c> onto the parameter types.
+            </param>
+            <param name="IsGeneric">A <see cref="T:System.Boolean"/> value indicating whether the type is a generic type.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.SymbolOutputInfo.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Provides the basic information used for output a source code via an <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <param name="TypeName">The type name of the type symbol.</param>
+            <param name="FullTypeName">The full type name of the type symbol.</param>
+            <param name="NamespaceName">The namespace name that the type symbol belongs to.</param>
+            <param name="GenericParameterList">
+            The generic parameter list if the type symbol contains the type parameters.
+            </param>
+            <param name="GenericParameterListWithoutConstraint">
+            The generic parameter list without the constraints if the type symbol contains the type parameters.
+            </param>
+            <param name="TypeKind">
+            The type kind of the type symbol. All possible type kinds are:
+            <list type="bullet">
+            <item><see langword="class"/></item>
+            <item><see langword="struct"/></item>
+            <item><see langword="record class"/> (Denotes as a keyword <c>record</c>)</item>
+            <item><see langword="record struct"/></item>
+            </list>
+            </param>
+            <param name="ReadOnlyKeyword">
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="readonly"/>) onto the members to implement.
+            </param>
+            <param name="InKeyword">
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="in"/>) onto the parameters in methods.
+            </param>
+            <param name="NullableAnnotation">
+            Indicates whether the type symbol is a <see langword="class"/>. If so, this property will keep the value
+            as a nullable annotation <c>?</c> onto the parameter types.
+            </param>
+            <param name="IsGeneric">A <see cref="T:System.Boolean"/> value indicating whether the type is a generic type.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.SymbolOutputInfo.FromSymbol(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance via the specified <paramref name="symbol"/>,
+            and set a <see cref="T:System.Boolean"/> value indicating whether the method will check whether the type
+            is a <see langword="ref struct"/>.
+            </summary>
+            <param name="symbol">The type symbol.</param>
+            <param name="checkNotRefStruct">
+            A <see cref="T:System.Boolean"/> value indicating whether the method will check whether the type
+            is a <see langword="ref struct"/>.
+            </param>
+            <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
