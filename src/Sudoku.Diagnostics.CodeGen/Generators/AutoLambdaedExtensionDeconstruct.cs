@@ -1,11 +1,11 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Provides a source generator that generates the source code for extension deconstruction methods
 /// with expressions.
 /// </summary>
-[Generator]
-public sealed partial class LambdaedExtensionDeconstructMethodGenerator : ISourceGenerator
+[Generator(LanguageNames.CSharp)]
+public sealed class AutoLambdaedExtensionDeconstruct : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
@@ -62,15 +62,13 @@ public static class {typeResult}_LambdaedDeconstructionMethods
 			{
 				foreach (var (type, providerType, arguments, namedArgumentNamespace) in groupedResult)
 				{
-					type.DeconstructInfo(
-						false, out _, out _, out _, out string genericParameterListWithoutConstraint,
-						out _, out _, out _
-					);
+					var (
+						_, _, _, _, genericParameterListWithoutConstraint, _, _, inKeyword, _, _
+					) = SymbolOutputInfo.FromSymbol(type);
 					string fullTypeNameWithoutConstraint = type.ToDisplayString(TypeFormats.FullNameWithConstraints);
 					string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
 						? fullTypeNameWithoutConstraint.Substring(index)
 						: string.Empty;
-					string inModifier = type.TypeKind == TypeKind.Struct ? "in " : string.Empty;
 					string parameterList = string.Join(
 						", ",
 						from member in arguments
@@ -113,7 +111,7 @@ public static class {typeResult}_LambdaedDeconstructionMethods
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static void Deconstruct{genericParameterListWithoutConstraint}(this {inModifier}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
+	public static void Deconstruct{genericParameterListWithoutConstraint}(this {inKeyword}{fullTypeNameWithoutConstraint} @this, {parameterList}){constraint}
 	{{
 		{assignments}
 	}}";
@@ -143,6 +141,7 @@ public static class {typeResult}_LambdaedDeconstructionMethods
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(static () => new SyntaxReceiver());
+	public void Initialize(GeneratorInitializationContext context)
+	{
+	}
 }

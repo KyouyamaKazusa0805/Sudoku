@@ -538,6 +538,18 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct">
+            <summary>
+            Provides a source generator that generates the source code for extension deconstruction methods
+            with expressions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
             <summary>
             Encapsulates the member detail.
