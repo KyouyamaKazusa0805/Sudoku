@@ -45,10 +45,8 @@ public sealed class AutoDeconstruct : ISourceGenerator
 				let obsoleteAttributeStr = deprecatedTypeNames.Length switch
 				{
 					0 => string.Empty,
-					1 => $@"
-	[global::System.Obsolete(""The method is deprecated because the inner type {deprecatedTypeNames[0]} is deprecated."", false)]",
-					> 1 => $@"
-	[global::System.Obsolete(""The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated."", false)]",
+					1 => $"\r\n\t[global::System.Obsolete(\"The method is deprecated because the inner type {deprecatedTypeNames[0]} is deprecated.\", false)]",
+					> 1 => $"\r\n\t[global::System.Obsolete(\"The method is deprecated because the inner types {string.Join(", ", deprecatedTypeNames)} are deprecated.\", false)]",
 				}
 				let paramNames = from paramInfo in details select paramInfo.OutParameterDeclaration
 				let paramNamesStr = string.Join(", ", paramNames)
