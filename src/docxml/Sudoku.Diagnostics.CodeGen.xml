@@ -22,6 +22,59 @@
             All members to deconstruct.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1">
+            <summary>
+            Used on an assembly, to tell the compiler this assembly will generate a serial of extension methods called
+            <c>Deconstruct</c> that used for deconstruction of an instance.
+            </summary>
+            <typeparam name="T">
+            The type that is the aim for the source generator to generate the extension deconstruction methods.
+            </typeparam>
+            <remarks>
+            <para>
+            For example, if you write the code like:
+            <code><![CDATA[[assembly: AutoDeconstructExtension<Class>(nameof(Class.A), nameof(Class.B), nameof(Class.C))]]]></code>
+            then you'll get the generated code:
+            <code><![CDATA[
+            public static partial class ClassExtensions
+            {
+                [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
+                public static void Deconstruct(this Class @this, out int a, out int b, out int c)
+                {
+                    a = @this.A;
+                    b = @this.B;
+                    c = @this.C;
+                }
+            }
+            ]]></code>
+            </para>
+            <para>
+            Please note that this attribute is a generic attribute, which is introduced in C# 10.
+            If you don't know this feature (generic attribute), please visit
+            <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-10.0/generic-attributes.md">
+            this link
+            </see>
+            for more information.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute"/> instance with the members.
+            </summary>
+            <param name="memberNames">The member names.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.Namespace">
+            <summary>
+            Indicates the namespace that the output extension class stored. If the value is
+            <see langword="null"/>, the namespace will use the basic namespace of the type itself.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.MemberNames">
+            <summary>
+            Indicates the member names.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute">
             <summary>
             Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
@@ -253,6 +306,17 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct">
+            <summary>
+            Provides a generator that generates the deconstruction methods that are extension methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode">
             <summary>
             Defines a source generator that generates the source code for getting hash code.
@@ -450,6 +514,21 @@
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
+        <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.AttributeData"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.AttributeDataExtensions.TryGetNamedArgument(Microsoft.CodeAnalysis.AttributeData,System.String,Microsoft.CodeAnalysis.TypedConstant@)">
+            <summary>
+            Try to get the named argument using the specified name.
+            </summary>
+            <param name="this">The attribute data instance.</param>
+            <param name="namedArg">The named argument name.</param>
+            <param name="result">The result got.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
@@ -589,6 +668,70 @@
             <item>The character is <c>' '</c>: Remove it.</item>
             </list>
             </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol,System.Threading.CancellationToken)">
+            <summary>
+            To determine whether the specified symbol (should be property or field members)
+            has an initializer.
+            </summary>
+            <param name="this">The symbol to check.</param>
+            <param name="cancellationToken">The cancellation token used for cancelling the operation.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Gets the member type string representation.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>
+            The result string that is the string representation of the type gotten.
+            <list type="table">
+            <listheader>
+            <term>Type</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IFieldSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IFieldSymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IPropertySymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IMethodSymbol.ReturnType"/> will be returned.</description>
+            </item>
+            <item>
+            <term><see cref="T:Microsoft.CodeAnalysis.IEventSymbol"/></term>
+            <description>The property <see cref="P:Microsoft.CodeAnalysis.IEventSymbol.Type"/> will be returned.</description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>Constant value <see langword="null"/> will be returned.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ITypeSymbolExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Get all members that belongs to the type and its base types
+            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>All members.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.SymbolOutputInfo">
             <summary>
