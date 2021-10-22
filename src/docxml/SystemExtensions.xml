@@ -3161,20 +3161,6 @@
             Throws when the argument <paramref name="str"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="T:System.IProxyEqualityComparer`1">
-            <summary>
-            Defines a type that can compare the equality with other instances.
-            </summary>
-            <typeparam name="T">The type to compare.</typeparam>
-        </member>
-        <member name="M:System.IProxyEqualityComparer`1.Equals(`0,`0)">
-            <summary>
-            Determines whether two <typeparamref name="T"/> instances hold the same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:System.IValueComparable`1">
             <summary>
             Defines a generalized comparison method that a <see langword="struct"/> implements
