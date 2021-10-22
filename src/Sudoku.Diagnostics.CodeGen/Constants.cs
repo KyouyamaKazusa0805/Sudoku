@@ -8,7 +8,7 @@ internal static partial class Constants
 	/// <summary>
 	/// Indictaes the version of this project.
 	/// </summary>
-	public const string VersionValue = "0.3";
+	public const string VersionValue = "0.7";
 
 
 	/// <summary>

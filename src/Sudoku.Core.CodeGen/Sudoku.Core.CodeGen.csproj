@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Description>A project that generates the source code.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Core.CodeGen.xml</DocumentationFile>
+		<DefineConstants>WINDOWS_APP; SUPPORT_CODE_ANALYZER</DefineConstants>
+		<RootNamespace>Sudoku.Diagnostics.CodeGen.Generators</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IsExternalInit" Version="1.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-4.final" />
+	</ItemGroup>
+
+</Project>
