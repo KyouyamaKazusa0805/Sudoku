@@ -57,7 +57,7 @@ partial class {typeName}
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(
-			() => SyntaxContextReceiverCreator.Create(
+			() => new DefaultSyntaxContextReceiver(
 				(syntaxNode, semanticModel) =>
 				{
 					if (

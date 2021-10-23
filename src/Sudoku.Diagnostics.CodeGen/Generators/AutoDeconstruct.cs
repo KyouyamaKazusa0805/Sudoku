@@ -9,26 +9,24 @@ public sealed class AutoDeconstruct : ISourceGenerator
 	/// <summary>
 	/// The result collection.
 	/// </summary>
-	private readonly ICollection<(INamedTypeSymbol Symbol, IEnumerable<AttributeData> AttributesData)> _resultCollection =
-		new List<(INamedTypeSymbol, IEnumerable<AttributeData>)>();
+	private readonly ICollection<(INamedTypeSymbol Symbol, IEnumerable<AttributeData> AttributesData, SymbolOutputInfo OutputInfo, MemberDetail[] MemberDetails)> _resultCollection =
+		new List<(INamedTypeSymbol, IEnumerable<AttributeData>, SymbolOutputInfo, MemberDetail[])>();
 
 
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var compilation = context.Compilation;
-		var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName);
-		foreach (var (typeSymbol, attributesData) in _resultCollection)
-		{
+		foreach (
 			var (
-				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
-				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-
-			var possibleMembers = (
-				from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
-				select typeDetail
-			).ToArray();
+				typeSymbol, attributesData, (
+					typeName, fullTypeName, namespaceName, genericParameterList,
+					genericParameterListWithoutConstraint, typeKind, readOnlyKeyword,
+					inKeyword, nullableAnnotation, _
+				), possibleMembers
+			) in _resultCollection
+		)
+		{
 			string methods = string.Join(
 				"\r\n\r\n\t",
 				from attributeData in attributesData
@@ -88,7 +86,7 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(
-			() => SyntaxContextReceiverCreator.Create(
+			() => new DefaultSyntaxContextReceiver(
 				(syntaxNode, semanticModel) =>
 				{
 					if (
@@ -123,7 +121,17 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 						return;
 					}
 
-					_resultCollection.Add((typeSymbol, attributesData));
+					_resultCollection.Add(
+						(
+							typeSymbol,
+							attributesData,
+							SymbolOutputInfo.FromSymbol(typeSymbol),
+							(
+								from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
+								select typeDetail
+							).ToArray()
+						)
+					);
 				}
 			)
 		);

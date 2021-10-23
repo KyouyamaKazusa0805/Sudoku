@@ -35,7 +35,7 @@ public sealed class RefStructOverridens : ISourceGenerator
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(
-			() => SyntaxContextReceiverCreator.Create(
+			() => new DefaultSyntaxContextReceiver(
 				(syntaxNode, semanticModel) =>
 				{
 					if (syntaxNode is not StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration)

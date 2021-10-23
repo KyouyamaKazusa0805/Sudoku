@@ -491,6 +491,27 @@
             Indicates the project <c>Sudoku.Solving</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver">
+            <summary>
+            Indicates the default syntax context receiver.
+            </summary>
+            <param name="SyntaxNodeVisitor">
+            The syntax node visitor method that determines
+            whether the syntax node can be used by a source generator.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.#ctor(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
+            <summary>
+            Indicates the default syntax context receiver.
+            </summary>
+            <param name="SyntaxNodeVisitor">
+            The syntax node visitor method that determines
+            whether the syntax node can be used by a source generator.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct">
             <summary>
             Defines a source generator that generates the source code for deconstruction methods.
@@ -868,40 +889,6 @@
             <summary>
             Indicates the <see langword="private protected"/> modifier.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator">
-            <summary>
-            Encapsulates a set of methods to create the <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>s.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.Create(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
-            <summary>
-            Creates a <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/> instance to determine whether the syntax node satisfies
-            some condition and can be used by the source generator.
-            </summary>
-            <param name="syntaxNodeVisitor">The syntax node visitor method.</param>
-            <returns>The <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver">
-            <summary>
-            Indicates the default syntax context receiver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.#ctor(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver"/> instance via the syntax node visitor.
-            </summary>
-            <param name="syntaxNodeVisitor">The syntax node visitor.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.SyntaxNodeVisitor">
-            <summary>
-            The syntax node visitor method that determines
-            whether the syntax node can be used by a source generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceiverCreator.DefaultReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver">
             <summary>

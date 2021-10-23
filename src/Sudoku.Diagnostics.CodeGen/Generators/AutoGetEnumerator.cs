@@ -95,7 +95,7 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(
-			() => SyntaxContextReceiverCreator.Create(
+			() => new DefaultSyntaxContextReceiver(
 				(syntaxNode, semanticModel) =>
 				{
 					if (
