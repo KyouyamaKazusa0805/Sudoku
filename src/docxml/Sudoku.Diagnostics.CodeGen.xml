@@ -561,15 +561,28 @@
             Defines a source generator that generates the source code for formatting methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable._resultCollection">
-            <summary>
-            The result collection.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator">
@@ -802,6 +815,17 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1">
+            <summary>
+            Defines a result collection receiver.
+            </summary>
+            <typeparam name="T">The type of each result value.</typeparam>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1.Collection">
+            <summary>
+            Indicates the result collection.
+            </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
             <summary>

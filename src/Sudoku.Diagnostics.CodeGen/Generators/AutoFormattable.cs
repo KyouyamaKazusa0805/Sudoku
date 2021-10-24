@@ -6,23 +6,19 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class AutoFormattable : ISourceGenerator
 {
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<(INamedTypeSymbol Symbol, AttributeData AttributeData)> _resultCollection =
-		new List<(INamedTypeSymbol, AttributeData)>();
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		foreach (var (typeSymbol, attributeData) in _resultCollection)
-		{
+		foreach (
 			var (
-				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
-				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-
+				typeSymbol, attributeData, (
+					typeName, fullTypeName, namespaceName, genericParameterList,
+					genericParameterListWithoutConstraint, typeKind, readOnlyKeyword,
+					inKeyword, nullableAnnotation, _
+				)
+			) in ((Receiver)context.SyntaxContextReceiver!).Collection
+		)
+		{
 			context.AddSource(
 				typeSymbol.ToFileName(),
 				GeneratedFileShortcuts.FormattedMethods,
@@ -57,40 +53,47 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver, IResultCollectionReceiver<AutoFormattableInfo>
+	{
+		/// <inheritdoc/>
+		public ICollection<AutoFormattableInfo> Collection { get; } = new List<AutoFormattableInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
 				{
-					if (
-						(
-							SyntaxNode: syntaxNode,
-							SemanticModel: semanticModel,
-							Context: context
-						) is not (
-							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
-							SemanticModel: { Compilation: { } compilation },
-							Context: { CancellationToken: var cancellationToken }
-						)
-					)
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoFormattableAttribute).FullName)!;
-					var attributesData = typeSymbol.GetAttributes();
-					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: true })
-					{
-						return;
-					}
-
-					_resultCollection.Add((typeSymbol, attributeData));
+					Node: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
+					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
-		);
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			var attribute = compilation.GetTypeByMetadataName(typeof(AutoFormattableAttribute).FullName)!;
+			var attributesData = typeSymbol.GetAttributes();
+			var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
+			if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: true })
+			{
+				return;
+			}
+
+			Collection.Add((typeSymbol, attributeData, SymbolOutputInfo.FromSymbol(typeSymbol)));
+		}
+	}
 }
