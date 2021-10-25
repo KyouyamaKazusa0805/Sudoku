@@ -49,3 +49,13 @@ global using AutoDeconstructInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
 >;
+global using AutoPrimaryConstructorInfo = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility,
+	System.Collections.Generic.IEnumerable<string>,
+	System.Collections.Generic.IEnumerable<string>,
+	Microsoft.CodeAnalysis.SymbolOutputInfo,
+	string?,
+	string,
+	System.ValueTuple<string>
+>;
