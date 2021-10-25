@@ -3,7 +3,7 @@ using static Microsoft.CodeAnalysis.SymbolDisplayGlobalNamespaceStyle;
 using static Microsoft.CodeAnalysis.SymbolDisplayMiscellaneousOptions;
 using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 
-namespace Sudoku.UI.CodeGenerating;
+namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Provides the format options.

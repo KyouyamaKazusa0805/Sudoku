@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Encapsulates a source generator that generates the source code for the constants initialization
@@ -85,6 +85,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 					.AppendLine($"new byte[] {{ {a,2}, {b,2} }},");
 			}
 		}
+
 		intersectionBlockSb.Append("\t\t\t").Append('}');
 		#endregion
 
@@ -115,8 +116,10 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 			{
 				peersSb.Append($"{peers[j],2}, ");
 			}
+
 			peersSb.AppendLine("},");
 		}
+
 		peersSb.Append("\t\t\t").Append('}');
 		#endregion
 
@@ -138,9 +141,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 					{
 						cells[x++] = j;
 						if (x >= 9)
-						{
 							break;
-						}
 					}
 				}
 				regionCells[regionLabel] = cells;
@@ -150,6 +151,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 				{
 					regionCellsSb.Append($"{cells[j],2}, ");
 				}
+
 				regionCellsSb.AppendLine("},");
 			}
 		}

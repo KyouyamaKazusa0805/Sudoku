@@ -4,36 +4,36 @@
         <name>Sudoku.Core.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator">
             <summary>
             Encapsulates a source generator that generates the source code for the constants initialization
             that is in the project <c>Sudoku.Core</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.IntersectionBlockCoreValues">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.IntersectionBlockCoreValues">
             <summary>
             The table that used for the table <c>IntersectionBlockTable</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.BlockTable">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.BlockTable">
             <summary>
             The block table.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.RowTable">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.RowTable">
             <summary>
             The row table.
             </summary>
         </member>
-        <member name="F:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.ColumnTable">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.ColumnTable">
             <summary>
             The column table.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.CoreConstantsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.CoreConstantsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">

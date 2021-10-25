@@ -4,15 +4,15 @@
         <name>SystemExtensions.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator">
             <summary>
             Define a source generator that generates the source code for tuples with the key.
             </summary>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">

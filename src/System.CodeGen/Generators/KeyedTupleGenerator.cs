@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Define a source generator that generates the source code for tuples with the key.

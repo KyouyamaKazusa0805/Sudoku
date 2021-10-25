@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.CodeGenerating.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the code for default initialization on type <c>Preference</c>.

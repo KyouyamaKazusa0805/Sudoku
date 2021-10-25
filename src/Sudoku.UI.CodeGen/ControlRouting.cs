@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI.CodeGenerating;
+﻿namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Indicates a routing method that makes the UI control and a preference item become a relation.

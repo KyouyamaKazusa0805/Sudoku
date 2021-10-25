@@ -4,20 +4,20 @@
         <name>Sudoku.UI.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.UI.CodeGenerating.DefaultValueAttribute">
+        <member name="T:Sudoku.Diagnostics.CodeGen.DefaultValueAttribute">
             <summary>
             Defines an attribute that marks onto a preference property item to tell the source generator
             that the attribute will help the source generator to generates the property initialization clause,
             with the default values.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.DefaultValueAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.Diagnostics.CodeGen.DefaultValueAttribute.#ctor(System.String[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.CodeGenerating.DefaultValueAttribute"/> with the specified values.
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.DefaultValueAttribute"/> with the specified values.
             </summary>
             <param name="symbolsAndDefaultValues">The symbols and the default values.</param>
         </member>
-        <member name="P:Sudoku.UI.CodeGenerating.DefaultValueAttribute.SymbolsAndDefaultValues">
+        <member name="P:Sudoku.Diagnostics.CodeGen.DefaultValueAttribute.SymbolsAndDefaultValues">
             <summary>
             Indicates the symbols and the default values corresponding.
             </summary>
@@ -72,7 +72,7 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute">
+        <member name="T:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute">
             <summary>
             Defines an attribute that marks onto a preference item, to tell the source generator
             that the preference item is bound with a <c>ToggleSwitch</c>, and creates a method
@@ -105,29 +105,29 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute.#ctor(System.String,System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute"/> instance with the specified control name.
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute"/> instance with the specified control name.
             </summary>
             <param name="controlName">The bound control name.</param>
             <param name="effectControlName">Indicates the effect control name.</param>
         </member>
-        <member name="P:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute.ControlName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute.ControlName">
             <summary>
             Indicates the bound control name.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute.EffectControlName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute.EffectControlName">
             <summary>
             Indicates the effect control name.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.CodeGenerating.PreferenceItemRouteAttribute.PreferenceSetterMethodName">
+        <member name="P:Sudoku.Diagnostics.CodeGen.PreferenceItemRouteAttribute.PreferenceSetterMethodName">
             <summary>
             Indicates the method name that executes the code, to assign the result.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.CodeGenerating.ControlRouting">
+        <member name="T:Sudoku.Diagnostics.CodeGen.ControlRouting">
             <summary>
             Indicates a routing method that makes the UI control and a preference item become a relation.
             </summary>
@@ -137,46 +137,46 @@
             <param name="namedArgs">The named arguments in attribute.</param>
             <param name="controlName">The control name bound.</param>
         </member>
-        <member name="T:Sudoku.UI.CodeGenerating.FormatOptions">
+        <member name="T:Sudoku.Diagnostics.CodeGen.FormatOptions">
             <summary>
             Provides the format options.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.CodeGenerating.FormatOptions.TypeFormat">
+        <member name="F:Sudoku.Diagnostics.CodeGen.FormatOptions.TypeFormat">
             <summary>
             Indicates the type format.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.CodeGenerating.FormatOptions.PropertyTypeFormat">
+        <member name="F:Sudoku.Diagnostics.CodeGen.FormatOptions.PropertyTypeFormat">
             <summary>
             Indicates the property format. Sometimes the option can also be used on field member symbol output.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.CodeGenerating.Generators.PreferenceDefaultInitializationGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PreferenceDefaultInitializationGenerator">
             <summary>
             Defines a source generator that generates the code for default initialization on type <c>Preference</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.Generators.PreferenceDefaultInitializationGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PreferenceDefaultInitializationGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.Generators.PreferenceDefaultInitializationGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PreferenceDefaultInitializationGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.CodeGenerating.Generators.UIPreferenceItemRouteGenerator">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.UIPreferenceItemRouteGenerator">
             <summary>
             Defines a source generator that generates the code for UI preference item.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.CodeGenerating.Generators.UIPreferenceItemRouteGenerator._routers">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.UIPreferenceItemRouteGenerator._routers">
             <summary>
             Indicates the routers.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.UIPreferenceItemRouteGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.CodeGenerating.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">

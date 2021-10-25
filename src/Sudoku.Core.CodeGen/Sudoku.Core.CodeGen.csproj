@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Description>A project that generates the source code.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Core.CodeGen.xml</DocumentationFile>
 		<DefineConstants>WINDOWS_APP; SUPPORT_CODE_ANALYZER</DefineConstants>
-		<RootNamespace>Sudoku.Diagnostics.CodeGen.Generators</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

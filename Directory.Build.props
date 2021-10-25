@@ -35,4 +35,8 @@
 		<NoWarn>618</NoWarn>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`)'=='true'">
+		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+	</PropertyGroup>
+
 </Project>

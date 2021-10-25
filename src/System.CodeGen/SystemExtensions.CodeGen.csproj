@@ -5,7 +5,6 @@
 		<Description>A project that generates the source code.</Description>
 		<AssemblyName>SystemExtensions.CodeGen</AssemblyName>
 		<DocumentationFile>..\docxml\SystemExtensions.CodeGen.xml</DocumentationFile>
-		<RootNamespace>System</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
