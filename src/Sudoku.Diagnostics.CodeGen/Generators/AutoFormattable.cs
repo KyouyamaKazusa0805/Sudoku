@@ -60,7 +60,7 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 	/// Defines a syntax context receiver.
 	/// </summary>
 	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-	private sealed record Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver, IResultCollectionReceiver<AutoFormattableInfo>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<AutoFormattableInfo>
 	{
 		/// <inheritdoc/>
 		public ICollection<AutoFormattableInfo> Collection { get; } = new List<AutoFormattableInfo>();

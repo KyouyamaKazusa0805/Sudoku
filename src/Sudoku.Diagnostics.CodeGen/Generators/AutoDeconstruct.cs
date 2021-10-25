@@ -6,13 +6,6 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class AutoDeconstruct : ISourceGenerator
 {
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<(INamedTypeSymbol Symbol, IEnumerable<AttributeData> AttributesData, SymbolOutputInfo OutputInfo, MemberDetail[] MemberDetails)> _resultCollection =
-		new List<(INamedTypeSymbol, IEnumerable<AttributeData>, SymbolOutputInfo, MemberDetail[])>();
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
@@ -24,7 +17,7 @@ public sealed class AutoDeconstruct : ISourceGenerator
 					genericParameterListWithoutConstraint, typeKind, readOnlyKeyword,
 					inKeyword, nullableAnnotation, _
 				), possibleMembers
-			) in _resultCollection
+			) in ((Receiver)context.SyntaxContextReceiver!).Collection
 		)
 		{
 			string methods = string.Join(
@@ -85,54 +78,58 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<AutoDeconstructInfo>
+	{
+		/// <inheritdoc/>
+		public ICollection<AutoDeconstructInfo> Collection { get; } = new List<AutoDeconstructInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
 				{
-					if (
-						(
-							SyntaxNode: syntaxNode,
-							SemanticModel: semanticModel,
-							Context: context
-						) is not (
-							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
-							SemanticModel: { Compilation: { } compilation },
-							Context: { CancellationToken: var cancellationToken }
-						)
-					)
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName)!;
-					var attributesData =
-						from attributeData in typeSymbol.GetAttributes()
-						where !attributeData.ConstructorArguments.IsDefaultOrEmpty
-						let tempSymbol = attributeData.AttributeClass
-						where SymbolEqualityComparer.Default.Equals(tempSymbol, attribute)
-						select attributeData;
-					if (!attributesData.Any())
-					{
-						return;
-					}
-
-					_resultCollection.Add(
-						(
-							typeSymbol,
-							attributesData,
-							SymbolOutputInfo.FromSymbol(typeSymbol),
-							(
-								from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
-								select typeDetail
-							).ToArray()
-						)
-					);
+					Node: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
+					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
-		);
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName)!;
+			var attributesData =
+				from attributeData in typeSymbol.GetAttributes()
+				where !attributeData.ConstructorArguments.IsDefaultOrEmpty
+				let tempSymbol = attributeData.AttributeClass
+				where SymbolEqualityComparer.Default.Equals(tempSymbol, attribute)
+				select attributeData;
+			if (!attributesData.Any())
+			{
+				return;
+			}
+
+			Collection.Add(
+				(
+					typeSymbol,
+					attributesData,
+					SymbolOutputInfo.FromSymbol(typeSymbol),
+					MemberDetail.GetDetailList(typeSymbol, attribute, false)
+				)
+			);
+		}
+	}
 }
