@@ -253,7 +253,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static UIColor Parse(string? str)
 	{
-		ArgumentNullException.ThrowIfNull(str);
+		Nullability.ThrowIfNull(str);
 
 		return parseArgb(str, out var resultArgb)
 			? resultArgb

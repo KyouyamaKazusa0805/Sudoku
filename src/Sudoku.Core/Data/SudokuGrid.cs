@@ -800,8 +800,12 @@ public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<Sud
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuGrid Parse(string? str) =>
-		str is null ? throw new ArgumentNullException(nameof(str)) : new Parser(str).Parse();
+	public static SudokuGrid Parse(string? str)
+	{
+		Nullability.ThrowIfNull(str);
+
+		return new Parser(str).Parse();
+	}
 
 #nullable disable
 	/// <inheritdoc/>

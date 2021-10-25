@@ -1037,7 +1037,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 	/// <inheritdoc/>
 	public static Cells Parse(string? str)
 	{
-		ArgumentNullException.ThrowIfNull(str);
+		Nullability.ThrowIfNull(str);
 
 		var regex = new Regex(
 			RegularExpressions.CellOrCellList,

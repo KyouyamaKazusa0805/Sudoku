@@ -3225,6 +3225,39 @@
         <member name="M:System.IValueEquatable`1.System#IEquatable{TStruct}#Equals(`0)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Nullability">
+            <summary>
+            Encapsulates a set of methods that checks the nullability of an object.
+            </summary>
+        </member>
+        <member name="M:System.Nullability.ThrowIfNull``1(System.Nullable{``0},System.String)">
+            <summary>
+            Checks the nullability of the specified instance of a <see cref="T:System.Nullable`1"/>.
+            If the instance is <see langword="null"/>, the method will throw <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <typeparam name="TStruct">The type of the instance to be checked.</typeparam>
+            <param name="obj">The instance to be checked.</param>
+            <param name="paramName">
+            The parameter name. The parameter is always set to <see langword="null"/> intentionally.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the specified object is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:System.Nullability.ThrowIfNull``1(``0,System.String)">
+            <summary>
+            Checks the nullability of the specified instance.
+            If the instance is <see langword="null"/>, the method will throw <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <typeparam name="TClass">The type of the instance to be checked.</typeparam>
+            <param name="obj">The instance to be checked.</param>
+            <param name="paramName">
+            The argument name. The parameter is always set to <see langword="null"/> intentionally.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the specified object is <see langword="null"/>.
+            </exception>
+        </member>
         <member name="T:System.PointerMarshal">
             <summary>
             Provides methods for pointer handling.

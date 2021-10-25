@@ -72,7 +72,7 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <exception cref="TesseractException">Throws when the OCR engine error.</exception>
 	private int RecognizeCellNumber(Field cellImg)
 	{
-		ArgumentNullException.ThrowIfNull(_ocr);
+		Nullability.ThrowIfNull(_ocr);
 
 		// Convert the image to gray-scale and filter out the noisy points.
 		var imgGray = new Mat();

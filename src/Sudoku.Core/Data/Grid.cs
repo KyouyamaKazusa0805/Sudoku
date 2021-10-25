@@ -874,7 +874,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string? str)
 	{
-		ArgumentNullException.ThrowIfNull(str);
+		Nullability.ThrowIfNull(str);
 
 		return new Parser(str).Parse();
 	}
@@ -883,7 +883,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string? str, bool compatibleFirst)
 	{
-		ArgumentNullException.ThrowIfNull(str);
+		Nullability.ThrowIfNull(str);
 
 		return new Parser(str, compatibleFirst).Parse();
 	}
@@ -892,7 +892,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string? str, GridParsingOption gridParsingOption)
 	{
-		ArgumentNullException.ThrowIfNull(str);
+		Nullability.ThrowIfNull(str);
 
 		return new Parser(str).Parse(gridParsingOption);
 	}
