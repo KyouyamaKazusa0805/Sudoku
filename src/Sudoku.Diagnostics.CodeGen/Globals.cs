@@ -12,6 +12,7 @@ global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Text;
 global using Sudoku.Diagnostics.CodeGen.Reflection;
 global using static Sudoku.Diagnostics.CodeGen.Constants;
+global using RefStructInfo = Microsoft.CodeAnalysis.INamedTypeSymbol;
 global using AutoEqualityInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	Microsoft.CodeAnalysis.AttributeData,
@@ -32,15 +33,19 @@ global using AutoGetHashCodeInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.AttributeData,
 	Microsoft.CodeAnalysis.SymbolOutputInfo
 >;
-global using AutoDeconstructInfo = System.ValueTuple<
+global using PrivatizeParameterlessConstructorInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
-	Microsoft.CodeAnalysis.SymbolOutputInfo,
-	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
+	Microsoft.CodeAnalysis.AttributeData,
+	Microsoft.CodeAnalysis.SymbolOutputInfo
 >;
 global using ProxyEqualsMethodInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	string
 >;
-global using RefStructInfo = Microsoft.CodeAnalysis.INamedTypeSymbol;
+global using AutoDeconstructInfo = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
+	Microsoft.CodeAnalysis.SymbolOutputInfo,
+	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
+>;
