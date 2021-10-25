@@ -9,7 +9,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\System\SystemExtensions.csproj">
+		  <Aliases>extended_system</Aliases>
+		</ProjectReference>
 		<ProjectReference Include="..\Sudoku.Core.CodeGen\Sudoku.Core.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>

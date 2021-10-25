@@ -3134,13 +3134,13 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="T:System.IParsable`1">
+        <member name="T:System.IParseable`1">
             <summary>
             Defines a type that supports the custom parsing operations.
             </summary>
             <typeparam name="T">The type to parse.</typeparam>
         </member>
-        <member name="M:System.IParsable`1.TryParse(System.String,`0@)">
+        <member name="M:System.IParseable`1.TryParse(System.String,`0@)">
             <summary>
             Try to parse the specified string text, and get the same-meaning instance
             of type <typeparamref name="T"/>.
@@ -3154,7 +3154,7 @@
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
             </returns>
         </member>
-        <member name="M:System.IParsable`1.Parse(System.String)">
+        <member name="M:System.IParseable`1.Parse(System.String)">
             <summary>
             Parse the specified string text, and get the same-meaning instance
             of type <typeparamref name="T"/>.

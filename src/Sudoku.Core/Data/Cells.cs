@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿extern alias extended_system;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
@@ -13,7 +15,7 @@
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 [AutoFormattable]
-public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, IParsable<Cells>
+public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJsonSerializable<Cells, Cells.JsonConverter>, extended_system::System.IParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>

@@ -4,7 +4,7 @@
 /// Defines a type that supports the custom parsing operations.
 /// </summary>
 /// <typeparam name="T">The type to parse.</typeparam>
-public interface IParsable<T>
+public interface IParseable<T>
 {
 	/// <summary>
 	/// Try to parse the specified string text, and get the same-meaning instance

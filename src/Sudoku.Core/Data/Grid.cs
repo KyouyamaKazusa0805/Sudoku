@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿extern alias extended_system;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Represents a sudoku grid that contains the mask list of a sudoku grid.
@@ -15,7 +17,7 @@
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
 [AutoGetEnumerator(nameof(Candidates), MemberConversion = "@.*", ReturnType = typeof(CandidateCollection.Enumerator))]
-public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, IParsable<Grid>
+public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, extended_system::System.IParseable<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;

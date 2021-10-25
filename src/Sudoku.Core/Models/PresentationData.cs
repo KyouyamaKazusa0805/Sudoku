@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Models;
+﻿extern alias extended_system;
+
+namespace Sudoku.Models;
 
 /// <summary>
 /// Indicates the presentation data that is used for present the information.
@@ -16,7 +18,7 @@ public partial record struct PresentationData(
 	IList<(ChainLink Link, ColorIdentifier Color)>? Links,
 	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
 	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
-) : IValueEquatable<PresentationData>, IParsable<PresentationData>
+) : IValueEquatable<PresentationData>, extended_system::System.IParseable<PresentationData>
 {
 	/// <summary>
 	/// Indicates the default instance of this type.

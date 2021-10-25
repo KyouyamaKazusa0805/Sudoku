@@ -1,10 +1,12 @@
-﻿namespace Sudoku.Data;
+﻿extern alias extended_system;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Defines a data structure that describes a sudoku grid.
 /// </summary>
 /// <typeparam name="TGrid">The type to implement this interface.</typeparam>
-internal unsafe interface IGrid<TGrid> : IValueEquatable<TGrid>, IFormattable, IParsable<TGrid>
+internal unsafe interface IGrid<TGrid> : IValueEquatable<TGrid>, IFormattable, extended_system::System.IParseable<TGrid>
 where TGrid : struct, IGrid<TGrid>
 {
 	/// <summary>
