@@ -16,13 +16,6 @@ public sealed class AutoGetEnumerator : ISourceGenerator
 	};
 
 
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<(INamedTypeSymbol Symbol, AttributeData AttributeData)> _resultCollection =
-		new List<(INamedTypeSymbol, AttributeData)>();
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
@@ -30,13 +23,15 @@ public sealed class AutoGetEnumerator : ISourceGenerator
 		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(AutoGetEnumeratorAttribute).FullName);
 		var ienumerableTypeSymbol = compilation.GetTypeByMetadataName(typeof(IEnumerable).FullName);
 		var ienumerableGenericTypeSymbol = compilation.GetTypeByMetadataName(typeof(IEnumerable<>).FullName)!.ConstructUnboundGenericType();
-		foreach (var (typeSymbol, attributeData) in _resultCollection)
-		{
+		foreach (
 			var (
-				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
-				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-
+				typeSymbol, attributeData, (
+					typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
+					typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
+				)
+			) in ((Receiver)context.SyntaxContextReceiver!).Collection
+		)
+		{
 			string memberName = (string)attributeData.ConstructorArguments[0].Value!;
 			string memberConversion = attributeData.TryGetNamedArgument(nameof(AutoGetEnumeratorAttribute.MemberConversion), out var mnResult) ? (string)mnResult.Value! : "@";
 			var extraNamespaces = attributeData.TryGetNamedArgument(nameof(AutoGetEnumeratorAttribute.ExtraNamespaces), out var enResult) ? from arg in enResult.Values select (string?)arg.Value : null;
@@ -49,22 +44,29 @@ public sealed class AutoGetEnumerator : ISourceGenerator
 				where SymbolEqualityComparer.Default.Equals(unboundType, ienumerableGenericTypeSymbol)
 				select @interface
 			).FirstOrDefault()?.TypeArguments[0];
-			string? returnTypeStr = ienumerableGeneric is not null
+			string returnTypeStr = ienumerableGeneric is not null
 				? $"System.Collections.Generic.IEnumerator<{ienumerableGeneric}>"
-				: returnType?.ToString();
+				: returnType!.ToString();
 			string memberConversionStr = memberConversion;
 			foreach (var (key, func) in Replacements)
 			{
 				memberConversionStr = memberConversionStr.Replace(key, func(memberName));
 			}
 
-			string extraNamespacesStr = (extraNamespaces?.Any() ?? false) && string.Join("\r\n", from extraNamespace in extraNamespaces select $"using {extraNamespace};") is var code
-				? $"{code}\r\n\r\n"
-				: string.Empty;
-			bool implementsIEnumerableNongeneric = typeSymbol.AllInterfaces.Any(i => SymbolEqualityComparer.Default.Equals(i, ienumerableTypeSymbol));
-			string interfaceExplicitlyImplementation = typeSymbol.IsRefLikeType || !implementsIEnumerableNongeneric ? string.Empty : $@"
-
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+			string extraNamespacesStr =
+				(extraNamespaces?.Any() ?? false)
+				&& string.Join(
+					"\r\n",
+					from extraNamespace in extraNamespaces
+					select $"using {extraNamespace};"
+				) is var code ? $"{code}\r\n\r\n" : "// No extra namespaces.";
+			string interfaceExplicitlyImplementation =
+				typeSymbol.IsRefLikeType
+				|| !typeSymbol.AllInterfaces.Any(
+					i => SymbolEqualityComparer.Default.Equals(i, ienumerableTypeSymbol)
+				)
+					? "// Don't need any explicit interface implementation."
+					: $@"[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 	{readOnlyKeyword}global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();";
@@ -72,11 +74,13 @@ public sealed class AutoGetEnumerator : ISourceGenerator
 			context.AddSource(
 				typeSymbol.ToFileName(),
 				GeneratedFileShortcuts.GetEnumeratorMethod,
-				$@"{extraNamespacesStr}#nullable enable
+				$@"{extraNamespacesStr}
+
+#nullable enable
 
 namespace {namespaceName};
 
-partial {typeKind}{typeSymbol.Name}{genericParameterList}
+partial {typeKind}{typeName}{genericParameterList}
 {{
 	/// <summary>
 	/// Returns an enumerator that iterates through the collection.
@@ -85,7 +89,9 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public {readOnlyKeyword}{returnTypeStr} GetEnumerator() => {memberConversionStr};{interfaceExplicitlyImplementation}
+	public {readOnlyKeyword}{returnTypeStr} GetEnumerator() => {memberConversionStr};
+
+	{interfaceExplicitlyImplementation}
 }}
 "
 			);
@@ -94,40 +100,47 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<AutoGetEnumeratorInfo>
+	{
+		/// <inheritdoc/>
+		public ICollection<AutoGetEnumeratorInfo> Collection { get; } = new List<AutoGetEnumeratorInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
 				{
-					if (
-						(
-							SyntaxNode: syntaxNode,
-							SemanticModel: semanticModel,
-							Context: context
-						) is not (
-							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
-							SemanticModel: { Compilation: { } compilation },
-							Context: { CancellationToken: var cancellationToken }
-						)
-					)
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoGetEnumeratorAttribute).FullName)!;
-					var attributesData = typeSymbol.GetAttributes();
-					var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-					if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
-					{
-						return;
-					}
-
-					_resultCollection.Add((typeSymbol, attributeData));
+					Node: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
+					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
-		);
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			var attribute = compilation.GetTypeByMetadataName(typeof(AutoGetEnumeratorAttribute).FullName)!;
+			var attributesData = typeSymbol.GetAttributes();
+			var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
+			if (attributeData is not { ConstructorArguments.IsDefaultOrEmpty: false })
+			{
+				return;
+			}
+
+			Collection.Add((typeSymbol, attributeData, SymbolOutputInfo.FromSymbol(typeSymbol)));
+		}
+	}
 }

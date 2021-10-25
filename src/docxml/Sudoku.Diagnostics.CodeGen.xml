@@ -621,15 +621,28 @@
             All possible replacements.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator._resultCollection">
-            <summary>
-            The result collection.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Receiver">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Receiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode">

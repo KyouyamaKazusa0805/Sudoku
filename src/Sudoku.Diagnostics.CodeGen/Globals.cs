@@ -29,3 +29,8 @@ global using AutoFormattableInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.AttributeData,
 	Microsoft.CodeAnalysis.SymbolOutputInfo
 >;
+global using AutoGetEnumeratorInfo = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	Microsoft.CodeAnalysis.AttributeData,
+	Microsoft.CodeAnalysis.SymbolOutputInfo
+>;
