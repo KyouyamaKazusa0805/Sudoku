@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿using Handler = System.Action<
+	Microsoft.CodeAnalysis.GeneratorExecutionContext,
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	Microsoft.CodeAnalysis.Compilation
+>;
+
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
@@ -6,25 +12,16 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class RefStructOverridens : ISourceGenerator
 {
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<INamedTypeSymbol> _resultCollection = new List<INamedTypeSymbol>();
-
-
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public unsafe void Execute(GeneratorExecutionContext context)
 	{
 		var compilation = context.Compilation;
 		foreach (var typeGroup in
-			from typeSymbol in _resultCollection
+			from typeSymbol in ((Receiver)context.SyntaxContextReceiver!).Collection
 			let whetherSymbolIsNull = typeSymbol.ContainingType is null
 			group typeSymbol by whetherSymbolIsNull)
 		{
-			Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation> f = typeGroup.Key
-				? TopLevelStructGenerating
-				: NestedStructGenerating;
-
+			Handler f = typeGroup.Key ? OnTopLevel : OnNested;
 			foreach (var type in typeGroup)
 			{
 				f(context, type, compilation);
@@ -34,36 +31,10 @@ public sealed class RefStructOverridens : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
-				{
-					if (syntaxNode is not StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } declaration)
-					{
-						return;
-					}
-
-					if (!(modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword)))
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(declaration, context.CancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					_resultCollection.Add(typeSymbol);
-				}
-			)
-		);
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 
-	private void TopLevelStructGenerating(
-		GeneratorExecutionContext context,
-		INamedTypeSymbol type,
-		Compilation compilation
-	)
+	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
 		var (
 			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
@@ -151,11 +122,7 @@ partial struct {type.Name}{genericParameterList}
 		);
 	}
 
-	private void NestedStructGenerating(
-		GeneratorExecutionContext context,
-		INamedTypeSymbol type,
-		Compilation compilation
-	)
+	private void OnNested(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
 		var (
 			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
@@ -257,12 +224,10 @@ partial struct {type.Name}{genericParameterList}
 			outerTypeDeclarationsEnd.AppendLine($"{indenting}}}");
 		}
 
-
 		// Remove the last new line.
 		outerTypeDeclarationsStart.Remove(outerTypeDeclarationsStart.Length - 2, 2);
 		outerTypeDeclarationsEnd.Remove(outerTypeDeclarationsEnd.Length - 2, 2);
 
-		Func<ISymbol, ISymbol, bool> c = SymbolEqualityComparer.Default.Equals;
 		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
 		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
 		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
@@ -273,8 +238,8 @@ partial struct {type.Name}{genericParameterList}
 			methods,
 			symbol =>
 				symbol is { IsStatic: false, Name: nameof(Equals), Parameters: { Length: 1 } parameters }
-				&& c(parameters[0].Type, objectSymbol)
-				&& c(symbol.ReturnType, boolSymbol)
+				&& SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
@@ -290,7 +255,7 @@ partial struct {type.Name}{genericParameterList}
 			methods,
 			symbol =>
 				symbol is { IsStatic: false, Name: nameof(GetHashCode), Parameters: { Length: 0 } parameters }
-				&& c(symbol.ReturnType, intSymbol)
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
@@ -306,7 +271,7 @@ partial struct {type.Name}{genericParameterList}
 			methods,
 			symbol =>
 				symbol is { IsStatic: false, Name: nameof(ToString), Parameters: { Length: 0 } parameters }
-				&& c(symbol.ReturnType, stringSymbol)
+				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
@@ -341,5 +306,44 @@ namespace {namespaceName};
 {outerTypeDeclarationsEnd}
 "
 		);
+	}
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<RefStructInfo>
+	{
+		/// <inheritdoc/>
+		public ICollection<RefStructInfo> Collection { get; } = new List<RefStructInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
+				{
+					Node: StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } n,
+					SemanticModel: { Compilation: { } compilation } semanticModel
+				}
+			)
+			{
+				return;
+			}
+
+			if (!(modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword)))
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			Collection.Add(typeSymbol);
+		}
 	}
 }

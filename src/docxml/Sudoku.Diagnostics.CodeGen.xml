@@ -857,15 +857,28 @@
             Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens._resultCollection">
-            <summary>
-            The result collection.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1">

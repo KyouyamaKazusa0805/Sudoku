@@ -38,3 +38,4 @@ global using AutoDeconstructInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
 >;
+global using RefStructInfo = Microsoft.CodeAnalysis.INamedTypeSymbol;
