@@ -3110,7 +3110,9 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.ICloneable`1">
-            <inheritdoc cref="T:System.ICloneable"/>
+            <summary>
+            Supports cloning, which creates a new instance of a class with the same value as an existing instance.
+            </summary>
             <typeparam name="TClass">
             The type of this instance. This type should be only a class because the cloning
             operation is needed only in reference types, while the value types will be passed
@@ -3124,7 +3126,10 @@
             <seealso cref="T:System.ICloneable"/>
         </member>
         <member name="M:System.ICloneable`1.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
+            <summary>
+            Creates a new object of type <typeparamref name="TClass"/> that is a copy of the current instance.
+            </summary>
+            <returns>A new object of type <typeparamref name="TClass"/> that is a copy of this instance.</returns>
         </member>
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
