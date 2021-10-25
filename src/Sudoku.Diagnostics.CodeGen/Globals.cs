@@ -59,3 +59,9 @@ global using AutoPrimaryConstructorInfo = System.ValueTuple<
 	string,
 	System.ValueTuple<string>
 >;
+global using AutoLambdaedDeconstructInfo = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
+	Microsoft.CodeAnalysis.SymbolOutputInfo,
+	Sudoku.Diagnostics.CodeGen.MemberDetail[]
+>;

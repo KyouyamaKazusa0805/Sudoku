@@ -6,29 +6,19 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class AutoLambdaedDeconstruct : ISourceGenerator
 {
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<(INamedTypeSymbol Symbol, IEnumerable<AttributeData> AttributesData)> _resultCollection =
-		new List<(INamedTypeSymbol, IEnumerable<AttributeData>)>();
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var compilation = context.Compilation;
-		var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructAttribute).FullName);
-		foreach (var (typeSymbol, attributesData) in _resultCollection)
-		{
+		foreach (
 			var (
-				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
-				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-			var possibleMembers = (
-				from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
-				select typeDetail
-			).ToArray();
-
+				typeSymbol, attributesData, (
+					typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
+					typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
+				), possibleMembers
+			) in ((Receiver)context.SyntaxContextReceiver!).Collection
+		)
+		{
 			string methods = string.Join(
 				"\r\n\r\n\t",
 				from attributeData in attributesData
@@ -78,7 +68,7 @@ public sealed class AutoLambdaedDeconstruct : ISourceGenerator
 
 namespace {namespaceName};
 
-partial {typeKind}{typeSymbol.Name}{genericParameterList}
+partial {typeKind}{typeName}{genericParameterList}
 {{
 	{methods}
 }}
@@ -123,44 +113,61 @@ partial {typeKind}{typeSymbol.Name}{genericParameterList}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<AutoLambdaedDeconstructInfo>
+	{
+		/// <inheritdoc/>
+		public ICollection<AutoLambdaedDeconstructInfo> Collection { get; } = new List<AutoLambdaedDeconstructInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
 				{
-					if (
-						(
-							SyntaxNode: syntaxNode,
-							SemanticModel: semanticModel,
-							Context: context
-						) is not (
-							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
-							SemanticModel: { Compilation: { } compilation },
-							Context: { CancellationToken: var cancellationToken }
-						)
-					)
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructLambdaAttribute).FullName)!;
-					var attributesData =
-						from attributeData in typeSymbol.GetAttributes()
-						where !attributeData.ConstructorArguments.IsDefaultOrEmpty
-						let tempSymbol = attributeData.AttributeClass
-						where SymbolEqualityComparer.Default.Equals(tempSymbol, attribute)
-						select attributeData;
-					if (!attributesData.Any())
-					{
-						return;
-					}
-
-					_resultCollection.Add((typeSymbol, attributesData));
+					Node: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n,
+					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
-		);
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			var attribute = compilation.GetTypeByMetadataName(typeof(AutoDeconstructLambdaAttribute).FullName)!;
+			var attributesData =
+				from attributeData in typeSymbol.GetAttributes()
+				where !attributeData.ConstructorArguments.IsDefaultOrEmpty
+				let tempSymbol = attributeData.AttributeClass
+				where SymbolEqualityComparer.Default.Equals(tempSymbol, attribute)
+				select attributeData;
+			if (!attributesData.Any())
+			{
+				return;
+			}
+
+			Collection.Add(
+				(
+					typeSymbol,
+					attributesData,
+					SymbolOutputInfo.FromSymbol(typeSymbol),
+					(
+						from typeDetail in MemberDetail.GetDetailList(typeSymbol, attribute, false)
+						select typeDetail
+					).ToArray()
+				)
+			);
+		}
+	}
 }
