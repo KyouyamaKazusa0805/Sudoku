@@ -19,6 +19,11 @@ global using AutoDeconstructInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
 >;
+global using AutoEqualityInfo = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	Microsoft.CodeAnalysis.AttributeData,
+	Microsoft.CodeAnalysis.SymbolOutputInfo
+>;
 global using AutoFormattableInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	Microsoft.CodeAnalysis.AttributeData,

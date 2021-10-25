@@ -547,15 +547,28 @@
             for equality methods and the equality operator overloading.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality._resultCollection">
-            <summary>
-            The result collection.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Defines a syntax context receiver.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct">
