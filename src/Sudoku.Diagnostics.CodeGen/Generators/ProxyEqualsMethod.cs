@@ -6,51 +6,27 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class ProxyEqualsMethod : ISourceGenerator
 {
-	/// <summary>
-	/// The result collection.
-	/// </summary>
-	private readonly ICollection<INamedTypeSymbol> _resultCollection = new List<INamedTypeSymbol>();
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		var processedList = new List<INamedTypeSymbol>();
-		var compilation = context.Compilation;
-		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
-		var boolean = compilation.GetSpecialType(SpecialType.System_Boolean);
-		foreach (var (typeSymbol, method) in
-			from typeSymbol in _resultCollection
-			from member in typeSymbol.GetMembers().OfType<IMethodSymbol>()
-			let attributesData = member.GetAttributes()
-			where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeSymbol))
-				&& SymbolEqualityComparer.Default.Equals(member.ReturnType, boolean)
-			let parameters = member.Parameters
-			where parameters.Length == 2
-				&& parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, typeSymbol))
-				&& !processedList.Exists(t => SymbolEqualityComparer.Default.Equals(t, typeSymbol))
-			let method = (
-				from member in typeSymbol.GetMembers().OfType<IMethodSymbol>()
-				from attribute in member.GetAttributes()
-				where SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)
-				select member
-			).First()
-			let methodParams = method.Parameters
-			where !typeSymbol.IsReferenceType || methodParams.NullableMatches(NullableAnnotation.Annotated)
-			select (typeSymbol, method))
-		{
+		foreach (
 			var (
-				typeName, fullTypeName, namespaceName, genericParameterList, genericParameterListWithoutConstraint,
-				typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
-			) = SymbolOutputInfo.FromSymbol(typeSymbol);
-			string methodName = method.Name;
+				typeSymbol, (
+					typeName, fullTypeName, namespaceName, genericParameterList,
+					genericParameterListWithoutConstraint,
+					typeKind, readOnlyKeyword, inKeyword, nullableAnnotation, _
+				), methodName
+			)
+			in ((Receiver)context.SyntaxContextReceiver!).Collection
+		)
+		{
 			string objectEqualityMethod = typeSymbol.IsRefLikeType
 				? "// This type is a ref struct, so 'bool Equals(object?)' is useless."
 				: $@"/// <inheritdoc/>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public override {readOnlyKeyword}bool Equals(object? obj) => obj is {typeSymbol.Name}{genericParameterListWithoutConstraint} comparer && {methodName}(this, comparer);";
+	public override {readOnlyKeyword}bool Equals(object? obj) => obj is {typeName}{genericParameterListWithoutConstraint} comparer && {methodName}(this, comparer);";
 
 			context.AddSource(
 				typeSymbol.ToFileName(),
@@ -94,39 +70,80 @@ partial {typeKind}{typeName}{genericParameterList}
 }}
 "
 			);
-
-			processedList.Add(typeSymbol);
 		}
 	}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(
-			() => new DefaultSyntaxContextReceiver(
-				(syntaxNode, semanticModel) =>
+		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+
+
+	/// <summary>
+	/// Defines a syntax context receiver.
+	/// </summary>
+	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<ProxyEqualsMethodInfo>
+	{
+		/// <summary>
+		/// Indicates the processed list that records the type symbols had been handled,
+		/// which is used for removing duplicate cases.
+		/// </summary>
+		private readonly List<INamedTypeSymbol> _processedList = new();
+
+
+		/// <inheritdoc/>
+		public ICollection<ProxyEqualsMethodInfo> Collection { get; } = new List<ProxyEqualsMethodInfo>();
+
+
+		/// <inheritdoc/>
+		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+		{
+			if (
+				context is not
 				{
-					if (
-						(
-							SyntaxNode: syntaxNode,
-							SemanticModel: semanticModel,
-							Context: context
-						) is not (
-							SyntaxNode: TypeDeclarationSyntax { AttributeLists.Count: not 0 } n and not InterfaceDeclarationSyntax,
-							SemanticModel: { Compilation: { } compilation },
-							Context: { CancellationToken: var cancellationToken }
-						)
-					)
-					{
-						return;
-					}
-
-					if (semanticModel.GetDeclaredSymbol(n, cancellationToken) is not { } typeSymbol)
-					{
-						return;
-					}
-
-					_resultCollection.Add(typeSymbol);
+					Node: TypeDeclarationSyntax n and not InterfaceDeclarationSyntax,
+					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
-		);
+			{
+				return;
+			}
+
+			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			{
+				return;
+			}
+
+			var autoEqualityAttribute = compilation.GetTypeByMetadataName(typeof(AutoEqualityAttribute).FullName)!;
+			var typeAttributesData = typeSymbol.GetAttributes();
+			if (typeAttributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, autoEqualityAttribute)))
+			{
+				// To avoid the contradiction for the generation of 'Equals' method and here.
+				return;
+			}
+
+			var @bool = compilation.GetSpecialType(SpecialType.System_Boolean);
+			var attribute = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
+			var methodSymbol = typeSymbol.GetMembers().OfType<IMethodSymbol>().SingleOrDefault(
+				methodSymbol =>
+					methodSymbol is { ReturnType: var returnType, Parameters: { Length: 2 } parameters }
+						&& methodSymbol.GetAttributes() is var attributesData
+						&& attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute))
+						&& SymbolEqualityComparer.Default.Equals(returnType, @bool)
+						&& parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, typeSymbol))
+						&& !_processedList.Exists(t => SymbolEqualityComparer.Default.Equals(t, typeSymbol))
+						&& !(
+							typeSymbol.IsReferenceType
+							&& !parameters.NullableMatches(NullableAnnotation.Annotated)
+						)
+			);
+			if (methodSymbol is not { Name: var methodName })
+			{
+				return;
+			}
+
+			Collection.Add((typeSymbol, SymbolOutputInfo.FromSymbol(typeSymbol), methodName));
+			_processedList.Add(typeSymbol);
+		}
+	}
 }
