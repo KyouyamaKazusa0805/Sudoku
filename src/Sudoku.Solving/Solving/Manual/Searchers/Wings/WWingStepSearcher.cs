@@ -8,10 +8,24 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class WWingStepSearcher : IIregularWingStepSearcher
+public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(7, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		get
+		{
+			// The grid with possible W-Wing structure should contain
+			// at least two empty cells (start and end cell).
+			return &isWorth;
+
+
+			static bool isWorth(in Grid grid) => BivalueMap.Count >= 2;
+		}
+	}
 
 
 	/// <inheritdoc/>
@@ -22,12 +36,6 @@ public sealed class WWingStepSearcher : IIregularWingStepSearcher
 	/// </remarks>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (BivalueMap.Count < 2)
-		{
-			// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
-			goto NoPossibleSteps;
-		}
-
 		// Iterate on each cells.
 		for (int c1 = 0; c1 < 72; c1++)
 		{
@@ -133,7 +141,6 @@ public sealed class WWingStepSearcher : IIregularWingStepSearcher
 			}
 		}
 
-	NoPossibleSteps:
 		return null;
 	}
 }

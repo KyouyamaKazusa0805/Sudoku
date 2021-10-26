@@ -15,7 +15,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
+public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <summary>
 	/// The inner field of the property <see cref="MaxSize"/>.
@@ -33,6 +33,13 @@ public sealed class RegularWingStepSearcher : IRegularWingStepSearcher
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

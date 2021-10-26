@@ -51,4 +51,10 @@ public sealed class StepSearcherAttribute : Attribute
 	/// <seealso cref="IStepSearcher"/>
 	/// <seealso cref="FastProperties"/>
 	public bool IsDirect { get; init; }
+
+	/// <summary>
+	/// Indicates whether the specified step searcher doesn't rely on the puzzle.
+	/// The default value is <see langword="false"/>.
+	/// </summary>
+	public bool PuzzleNotRelying { get; init; }
 }

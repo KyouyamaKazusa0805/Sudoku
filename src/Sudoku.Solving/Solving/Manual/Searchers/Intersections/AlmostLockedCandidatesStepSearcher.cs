@@ -10,13 +10,20 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
+public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 	/// <inheritdoc/>
 	bool IAlmostLockedCandidatesStepSearcher.CheckForValues { get; set; } = false;

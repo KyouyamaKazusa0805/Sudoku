@@ -10,23 +10,30 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
+public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(15, DisplayingLevel.C);
 
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		get
+		{
+			// A vaild SdC needs at least 4 cells like:
+			//
+			//     abcd abcd | ab
+			//     cd        |
+			return &isWorth;
+
+
+			static bool isWorth(in Grid grid) => EmptyMap.Count >= 4;
+		}
+	}
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (EmptyMap.Count < 4)
-		{
-			// SdC needs at least 4 cells like:
-			// abcd abcd | ab
-			// cd        |
-			return null;
-		}
-
 		var list = new List<Cells>(4);
 		foreach (bool cannibalMode in stackalloc[] { false, true })
 		{
@@ -128,8 +135,8 @@ public sealed class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 
 									short maskIsolated = (short)(
 										cannibalMode
-										? lineMask & blockMask & selectedInterMask
-										: selectedInterMask & ~(blockMask | lineMask)
+											? lineMask & blockMask & selectedInterMask
+											: selectedInterMask & ~(blockMask | lineMask)
 									);
 									short maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
 									if (
@@ -153,8 +160,8 @@ public sealed class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 									{
 										elimMapIsolated = (
 											cannibalMode
-											? (currentBlockMap | currentLineMap)
-											: currentInterMap
+												? (currentBlockMap | currentLineMap)
+												: currentInterMap
 										) % CandMaps[digitIsolated] & EmptyMap;
 									}
 

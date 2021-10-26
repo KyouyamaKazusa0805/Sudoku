@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
+public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearcher
 {
 	/// <summary>
 	/// Indicates all possible extended rectangle pattern combinations.
@@ -144,6 +144,13 @@ public sealed class ExtendedRectangleStepSearcher : IExtendedRectangleStepSearch
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(11, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

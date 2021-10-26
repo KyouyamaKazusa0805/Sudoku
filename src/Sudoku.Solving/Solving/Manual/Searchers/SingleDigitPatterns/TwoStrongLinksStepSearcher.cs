@@ -9,11 +9,18 @@
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-public sealed class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
+[StepSearcher(PuzzleNotRelying = true)]
+public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(5, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

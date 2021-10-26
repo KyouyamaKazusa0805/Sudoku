@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed partial class StepsGatherer
+public sealed unsafe partial class StepsGatherer
 {
 	/// <summary>
 	/// Search for all possible steps in a grid.
@@ -36,7 +36,7 @@ public sealed partial class StepsGatherer
 					// UR searchers will be disabled in sukaku mode.
 					continue;
 				}
-				case { Options.DisplayingLevel: var currentLevel }:
+				case { Predicate: var predicate, Options.DisplayingLevel: var currentLevel }:
 				{
 					// Check the level of the searcher.
 					// If a searcher contains the upper level value than the current searcher holding,
@@ -50,6 +50,11 @@ public sealed partial class StepsGatherer
 					}
 
 					cancellationToken.ThrowIfCancellationRequested();
+
+					if (predicate != null && !predicate(puzzle))
+					{
+						continue;
+					}
 
 					// Searching.
 					var tempBag = new List<Step>();

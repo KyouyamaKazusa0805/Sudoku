@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Searchers.Singles;
 /// </list>
 /// </summary>
 [StepSearcher(IsDirect = true, IsOptionsFixed = true)]
-public sealed class SingleStepSearcher : ISingleStepSearcher
+public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool EnableFullHouse { get; set; }
@@ -25,6 +25,13 @@ public sealed class SingleStepSearcher : ISingleStepSearcher
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

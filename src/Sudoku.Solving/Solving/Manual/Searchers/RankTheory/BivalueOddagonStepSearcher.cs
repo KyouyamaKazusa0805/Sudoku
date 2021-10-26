@@ -16,15 +16,22 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
 
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		get
+		{
+			return &isWorth;
+
+
+			static bool isWorth(in Grid grid) => BivalueMap.Count >= 4;
+		}
+	}
+
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		if (BivalueMap.Count < 4)
-		{
-			goto ReturnNull;
-		}
-
 		var resultAccumulator = new List<BivalueOddagonStep>();
 		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);
@@ -106,18 +113,13 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 
 			if (onlyFindOne)
 			{
-				goto ReturnFirstElement;
+				return resultList.First();
 			}
 
 			accumulator.AddRange(resultList);
 		}
 
-
-	ReturnNull:
 		return null;
-
-	ReturnFirstElement:
-		return resultList.First();
 
 
 		static bool isValid(ref Cells cells)
@@ -135,8 +137,15 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	}
 
 	private Step? CheckType1(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator,
+		in Grid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		IList<(ChainLink, ColorIdentifier)> links,
+		in Cells extraCellsMap,
+		bool onlyFindOne
+	)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -175,8 +184,16 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	}
 
 	private Step? CheckType2(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator,
+		in Grid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		IList<(ChainLink, ColorIdentifier)> links,
+		in Cells extraCellsMap,
+		short comparer,
+		bool onlyFindOne
+	)
 	{
 		short mask = 0;
 		foreach (int cell in extraCellsMap)
@@ -227,8 +244,16 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	}
 
 	private Step? CheckType3(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator,
+		in Grid grid,
+		int d1,
+		int d2,
+		in Cells loop,
+		IList<(ChainLink, ColorIdentifier)> links,
+		in Cells extraCellsMap,
+		short comparer,
+		bool onlyFindOne
+	)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)

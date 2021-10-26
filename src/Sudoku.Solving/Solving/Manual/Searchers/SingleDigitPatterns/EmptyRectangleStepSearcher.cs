@@ -8,10 +8,17 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
+public sealed unsafe class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(12, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

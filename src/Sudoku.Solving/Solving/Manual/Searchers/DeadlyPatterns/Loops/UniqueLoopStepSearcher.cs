@@ -16,16 +16,24 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);
 
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			// A valid unique loop must contain at least 5 bivalue cells.
+			return &IsWorth;
+
+
+			static bool IsWorth(in Grid grid) => BivalueMap.Count >= 5;
+		}
+	}
+
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		// A valid unique loop must contain at least 6 bivalue cells.
-		if (BivalueMap.Count < 6)
-		{
-			goto ReturnNull;
-		}
-
 		var resultAccumulator = new List<UniqueLoopStep>();
 		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);
@@ -111,19 +119,13 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 
 			if (onlyFindOne)
 			{
-				goto ReturnFirstElement;
+				return resultList.First();
 			}
 
 			accumulator.AddRange(resultList);
 		}
 
-	ReturnNull:
-		// Invalid cases ('onlyFindOne' is false, the grid doesn't exist any possible ULs, etc.).
-		// Just return null is okay.
 		return null;
-
-	ReturnFirstElement:
-		return resultList.First();
 	}
 
 	/// <summary>
