@@ -9,7 +9,7 @@
 /// in order that multiple steps of the same type can be recognized by the relative methods,
 /// to filter and remove same-value instances.
 /// </remarks>
-public interface IDistinctableStep<in TStep> : IStep where TStep : Step
+public interface IDistinctableStep<in TStep> : IStep where TStep : notnull, Step
 {
 	/// <summary>
 	/// To compare 2 instances of type <typeparamref name="TStep"/>,
@@ -45,7 +45,7 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
 	public static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
-	where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
+	where TDistinctableStep : notnull, Step, IDistinctableStep<TDistinctableStep>
 	{
 		var resultList = new List<TDistinctableStep>();
 		for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)

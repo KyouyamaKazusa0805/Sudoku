@@ -2913,6 +2913,28 @@
             Defines a step searcher that searches for rank theory steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.ISueDeCoqStepSearcher">
+            <summary>
+            Defines a step searcher that searches for bi-value oddagon steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoqStepSearcher">
+            <summary>
+            Provides with a <b>Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Sue de Coq Basic Type</item>
+            <item>Sue de Coq Isolated</item>
+            <item>Cannibalistic Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoqStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoqStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher">
             <summary>
             Provides with a <b>Empty Rectangle</b> step searcher.
@@ -5570,6 +5592,58 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Block">The block.</param>
+            <param name="Line">The line.</param>
+            <param name="BlockMask">The block mask.</param>
+            <param name="LineMask">The line mask.</param>
+            <param name="IntersectionMask">The intersection mask.</param>
+            <param name="IsCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="IsolatedDigitsMask">The isolated digits mask.</param>
+            <param name="BlockCells">The map of block cells.</param>
+            <param name="LineCells">The map of line cells.</param>
+            <param name="IntersectionCells">The map of intersection cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep">
