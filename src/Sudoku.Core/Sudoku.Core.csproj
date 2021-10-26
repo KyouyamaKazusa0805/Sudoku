@@ -10,7 +10,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\System\SystemExtensions.csproj">
-		  <Aliases>extended_system</Aliases>
+		  <Aliases>extended</Aliases>
 		</ProjectReference>
 		<ProjectReference Include="..\Sudoku.Core.CodeGen\Sudoku.Core.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />

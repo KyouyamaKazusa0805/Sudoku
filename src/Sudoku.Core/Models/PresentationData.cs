@@ -1,4 +1,4 @@
-﻿extern alias extended_system;
+﻿extern alias extended;
 
 namespace Sudoku.Models;
 
@@ -18,7 +18,7 @@ public partial record struct PresentationData(
 	IList<(ChainLink Link, ColorIdentifier Color)>? Links,
 	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
 	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
-) : IValueEquatable<PresentationData>, extended_system::System.IParseable<PresentationData>
+) : IValueEquatable<PresentationData>, extended::System.IParseable<PresentationData>
 {
 	/// <summary>
 	/// Indicates the default instance of this type.

@@ -1,4 +1,4 @@
-﻿extern alias extended_system;
+﻿extern alias extended;
 
 namespace Sudoku.Data;
 
@@ -11,7 +11,7 @@ namespace Sudoku.Data;
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
 [Obsolete($"Please use the type '{nameof(Grid)}' instead.", false)]
-public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>, extended_system::System.IParseable<SudokuGrid>
+public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<SudokuGrid>, IFormattable, IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>, extended::System.IParseable<SudokuGrid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
