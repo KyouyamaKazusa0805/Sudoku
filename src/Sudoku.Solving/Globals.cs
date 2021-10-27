@@ -36,6 +36,7 @@ global using Sudoku.Solving.Manual.Steps.Chains;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
+global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
 global using Sudoku.Solving.Manual.Steps.Fishes;
 global using Sudoku.Solving.Manual.Steps.Intersections;
 global using Sudoku.Solving.Manual.Steps.RankTheory;

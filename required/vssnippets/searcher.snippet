@@ -28,19 +28,24 @@
 				</Literal>
 			</Declarations>
 			<Code Language="csharp" Delimiter="$">
-				<![CDATA[namespace Sudoku.Solving.Manual.Searchers;
-
-/// <summary>
+				<![CDATA[/// <summary>
 /// Provides with a <b>$stepsearchername$</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>$item$</item>
 /// </list>
 /// </summary>
-internal sealed class $detail$StepSearcher : I$detail$StepSearcher
+internal sealed unsafe class $detail$StepSearcher : I$detail$StepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new($priority$, $level$);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>

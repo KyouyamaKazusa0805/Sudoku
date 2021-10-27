@@ -19,7 +19,7 @@
 /// In order to enhance the performance, this attribute is used on <see cref="StepsGatherer"/>.
 /// For example, if Alternating Inference Chain (AIC) is at the level <see cref="DisplayingLevel.D"/>
 /// but Forcing Chains (FC) is at the level <see cref="DisplayingLevel.E"/>,
-/// when we find any AIC technique instances, FC won't be checked at the same time
+/// when we find any AIC technique instances, FC won't be checked at the same time.
 /// </para>
 /// <para>
 /// This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.

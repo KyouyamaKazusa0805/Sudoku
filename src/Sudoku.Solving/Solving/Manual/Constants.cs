@@ -17,4 +17,9 @@ internal static class Constants
 	/// <seealso cref="TrailingZeroCount(int)"/>
 	/// <seealso cref="TrailingZeroCount(uint)"/>
 	public const int InvalidFirstSet = 32;
+
+	/// <summary>
+	/// Indicates the number of all possible Unique Square templates.
+	/// </summary>
+	public const int UniqueSquareTemplatesCount = 162;
 }

@@ -652,8 +652,8 @@
             (i.e. in <see cref="T:Sudoku.Solving.Manual.ManualSolver"/>).
             </para>
             <para>
-            Some step searchers rely on this class. If you want to call them alone, you should ensure the method
-            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> in this class is called before using these properties.
+            Some step searchers rely on this type. If you want to call them separately, you should ensure the method
+            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Data.Grid@)"/> in this type must be called before using these properties.
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
@@ -898,6 +898,11 @@
             </remarks>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.UniqueSquareTemplatesCount">
+            <summary>
+            Indicates the number of all possible Unique Square templates.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
@@ -2578,6 +2583,42 @@
             The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.IUniqueSquareStepSearcher">
+            <summary>
+            Defines a step searcher that searches for unique sqaure steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher">
+            <summary>
+            Provides with a <b>Unique Square</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Square Type 1</item>
+            <item>Unique Square Type 2</item>
+            <item>Unique Square Type 3</item>
+            <item>Unique Square Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.#cctor">
+            <summary>
+            Indicates the <see langword="static"/> constructor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher">
             <summary>
             Defines a step searcher that searches for fish steps.
@@ -3282,7 +3323,7 @@
             In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/>.
             For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
             but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
-            when we find any AIC technique instances, FC won't be checked at the same time
+            when we find any AIC technique instances, FC won't be checked at the same time.
             </para>
             <para>
             This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
@@ -3321,7 +3362,7 @@
             In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/>.
             For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
             but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
-            when we find any AIC technique instances, FC won't be checked at the same time
+            when we find any AIC technique instances, FC won't be checked at the same time.
             </para>
             <para>
             This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
@@ -4961,6 +5002,160 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep">
+            <summary>
+            Provides with a step that is a <b>Unique Square</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Square</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Candidate">Indicates the true candidate.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Candidate">Indicates the true candidate.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="ExtraDigitsMask">
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Digit1">Indicates the digit 1 used.</param>
+            <param name="Digit2">Indicates the digit 2 used.</param>
+            <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Unique Square Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="Digit1">Indicates the digit 1 used.</param>
+            <param name="Digit2">Indicates the digit 2 used.</param>
+            <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">

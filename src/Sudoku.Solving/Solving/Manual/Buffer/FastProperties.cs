@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Buffer;
 /// (i.e. in <see cref="ManualSolver"/>).
 /// </para>
 /// <para>
-/// Some step searchers rely on this class. If you want to call them alone, you should ensure the method
-/// <see cref="InitializeMaps"/> in this class is called before using these properties.
+/// Some step searchers rely on this type. If you want to call them separately, you should ensure the method
+/// <see cref="InitializeMaps"/> in this type must be called before using these properties.
 /// </para>
 /// <para>
 /// If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named

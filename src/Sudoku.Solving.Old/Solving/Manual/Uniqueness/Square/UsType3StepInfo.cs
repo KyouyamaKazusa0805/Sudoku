@@ -11,7 +11,8 @@
 /// <param name="ExtraCells">The extra cells.</param>
 public sealed record UsType3StepInfo(
 	IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-	short ExtraDigitsMask, IReadOnlyList<int> ExtraCells) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+	short ExtraDigitsMask, IReadOnlyList<int> ExtraCells
+) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + ExtraDifficulty;
