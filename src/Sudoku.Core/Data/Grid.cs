@@ -412,7 +412,25 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 	}
 
 	/// <inheritdoc/>
-	public readonly string EigenString => ToString("0").TrimStart('0');
+	public readonly string EigenString
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString("0").TrimStart('0');
+	}
+
+	/// <summary>
+	/// Gets the pattern of the current sudoku grid.
+	/// </summary>
+	/// <remarks>
+	/// A <b>pattern</b> is a template that holds the values (i.e. givens and modifiables).
+	/// This property is equivalent to the expression <c>~EmptyCells</c>,
+	/// but useful in some cases you want to create a puzzle with the specified pattern.
+	/// </remarks>
+	public readonly Cells Pattern
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ~EmptyCells;
+	}
 
 	/// <inheritdoc/>
 	public readonly Cells EmptyCells
@@ -421,6 +439,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		get
 		{
 			return GetCells(&p);
+
 
 			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
 		}
@@ -434,6 +453,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		{
 			return GetCells(&p);
 
+
 			static bool p(in Grid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
 		}
 	}
@@ -445,6 +465,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		get
 		{
 			return GetMap(&p);
+
 
 			static bool p(in Grid g, int cell, int digit) => g.Exists(cell, digit) is true;
 		}
@@ -469,6 +490,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		get
 		{
 			return GetMap(&p);
+
 
 			static bool p(in Grid g, int cell, int digit) => g[cell] == digit;
 		}

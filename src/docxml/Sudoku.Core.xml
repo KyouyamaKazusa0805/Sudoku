@@ -2714,6 +2714,16 @@
         <member name="P:Sudoku.Data.Grid.EigenString">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Data.Grid.Pattern">
+            <summary>
+            Gets the pattern of the current sudoku grid.
+            </summary>
+            <remarks>
+            A <b>pattern</b> is a template that holds the values (i.e. givens and modifiables).
+            This property is equivalent to the expression <c>~EmptyCells</c>,
+            but useful in some cases you want to create a puzzle with the specified pattern.
+            </remarks>
+        </member>
         <member name="P:Sudoku.Data.Grid.EmptyCells">
             <inheritdoc/>
         </member>
