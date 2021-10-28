@@ -22,13 +22,13 @@ public static class MissingCandidateSearcher
 	/// at least two missing candidates should be checked.
 	/// </returns>
 	/// <exception cref="InvalidPuzzleException">
-	/// Throws when the puzzle has multiple solutions or no solution.
+	/// Throws when the puzzle contain no solution or a unique solution.
 	/// </exception>
-	public static int GetMissingCandidate(in Grid grid)
+	public static unsafe int GetMissingCandidate(in Grid grid)
 	{
-		if (!Solver.CheckValidity(grid.ToString("0")))
+		if (Solver.Solve(grid.ToString("0"), null, 2) is 0 or 1)
 		{
-			throw new InvalidPuzzleException(grid, "the puzzle must contain unique solution.");
+			throw new InvalidPuzzleException(grid, "the puzzle must contain more than one solution.");
 		}
 
 		foreach (int candidate in grid)
