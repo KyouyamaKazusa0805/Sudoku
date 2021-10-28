@@ -275,6 +275,9 @@ dotnet_diagnostic.CS8509.severity = silent
 # CS8524: The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
 dotnet_diagnostic.CS8524.severity = silent
 
+# CS8597: Thrown value may be null.
+dotnet_diagnostic.CS8597.severity = error
+
 # CS8600: Converting null literal or possible null value to non-nullable type.
 dotnet_diagnostic.CS8600.severity = error
 

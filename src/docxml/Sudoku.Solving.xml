@@ -762,6 +762,31 @@
             Gets the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Checkers.MissingCandidateSearcher">
+            <summary>
+            Provides a searcher that checks the missing candidate for a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Checkers.MissingCandidateSearcher.Solver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Checkers.MissingCandidateSearcher.GetMissingCandidate(Sudoku.Data.Grid@)">
+            <summary>
+            Gets the missing candidate that makes the grid have unique solution when it's restored.
+            Returns <c>-1</c> when this metohd doesn't find out any possible missing candidates.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The candidate found and confirmed being missing, whose valid range is from 0 to 728.
+            <c>-1</c> will be returned if no possible missing candidate found. For example,
+            at least two missing candidates should be checked.
+            </returns>
+            <exception cref="T:Sudoku.InvalidPuzzleException">
+            Throws when the puzzle has multiple solutions or no solution.
+            </exception>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Checkers.PuzzleChecker">
             <summary>
             Defines a puzzle checker.
