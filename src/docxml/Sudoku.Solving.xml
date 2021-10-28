@@ -784,7 +784,7 @@
             at least two missing candidates should be checked.
             </returns>
             <exception cref="T:Sudoku.InvalidPuzzleException">
-            Throws when the puzzle has multiple solutions or no solution.
+            Throws when the puzzle contain no solution or a unique solution.
             </exception>
         </member>
         <member name="T:Sudoku.Solving.Manual.Checkers.PuzzleChecker">

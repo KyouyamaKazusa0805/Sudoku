@@ -2739,6 +2739,11 @@
         <member name="P:Sudoku.Data.Grid.ValuesMap">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Data.Grid.ResetGrid">
+            <summary>
+            Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Grid.Candidates">
             <summary>
             Gets an enumerator that iterates the candidates.
@@ -2823,6 +2828,11 @@
             Convertes the current instance to a <see cref="T:Sudoku.Data.SudokuGrid"/>.
             </summary>
             <returns>The sudoku grid result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Grid.Reset">
+            <summary>
+            Reset the sudoku grid, to set all modifiable values to empty ones.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Grid.Fix">
             <inheritdoc/>

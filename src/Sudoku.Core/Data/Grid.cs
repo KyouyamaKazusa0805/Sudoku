@@ -497,6 +497,20 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 	}
 
 	/// <summary>
+	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+	/// </summary>
+	public readonly Grid ResetGrid
+	{
+		get
+		{
+			var result = this; // Copy an instance.
+			result.Reset();
+
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Gets an enumerator that iterates the candidates.
 	/// </summary>
 	public readonly CandidateCollection Candidates
@@ -768,6 +782,20 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 		finally
 		{
 			ArrayPool<short>.Shared.Return(arr);
+		}
+	}
+
+	/// <summary>
+	/// Reset the sudoku grid, to set all modifiable values to empty ones.
+	/// </summary>
+	public void Reset()
+	{
+		for (int i = 0; i < Length; i++)
+		{
+			if (GetStatus(i) == CellStatus.Modifiable)
+			{
+				this[i] = -1; // Reset the cell, and then re-compute all candidates.
+			}
 		}
 	}
 

@@ -26,22 +26,59 @@ public static class MissingCandidateSearcher
 	/// </exception>
 	public static unsafe int GetMissingCandidate(in Grid grid)
 	{
-		if (Solver.Solve(grid.ToString("0"), null, 2) is 0 or 1)
-		{
-			throw new InvalidPuzzleException(grid, "the puzzle must contain more than one solution.");
-		}
+		// Optimization: Check the symmetry. User-created sudoku puzzles often contain patterns with symmetry.
+		return Solver.Solve(grid.ToString("0"), null, 2) is 0 or 1
+			? throw new InvalidPuzzleException(grid, "the puzzle must contain more than one solution.")
+			: (
+				testSymmetry(grid, &GridTransformations.RotatePi)
+				?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
+				?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
+				?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
+				?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
+				?? testSymmetry(grid, &GridTransformations.RotateClockwise)
+				?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
+				?? testNoSymmetry(grid)
+				?? -1
+			);
 
-		foreach (int candidate in grid)
-		{
-			var newGrid = grid;
-			newGrid[candidate / 9, candidate % 9] = true;
 
-			if (Solver.CheckValidity(newGrid.ToString("0")))
+		static int? testSymmetry(in Grid grid, delegate*<in Grid, Grid> transform)
+		{
+			if ((grid.ResetGrid.Pattern ^ transform(grid).ResetGrid.Pattern) is not { Count: 1 } xorPattern)
 			{
-				return candidate;
+				goto ReturnNull;
 			}
+
+			int cell = xorPattern[0];
+			foreach (int digit in grid.GetCandidates(cell))
+			{
+				var newGrid = grid;
+				newGrid[cell] = digit;
+
+				if (Solver.CheckValidity(newGrid.ToString("0")))
+				{
+					return cell * 9 + digit;
+				}
+			}
+
+		ReturnNull:
+			return null;
 		}
 
-		return -1;
+		static int? testNoSymmetry(in Grid grid)
+		{
+			foreach (int candidate in grid)
+			{
+				var newGrid = grid;
+				newGrid[candidate / 9, candidate % 9] = true;
+
+				if (Solver.CheckValidity(newGrid.ToString("0")))
+				{
+					return candidate;
+				}
+			}
+
+			return null;
+		}
 	}
 }
