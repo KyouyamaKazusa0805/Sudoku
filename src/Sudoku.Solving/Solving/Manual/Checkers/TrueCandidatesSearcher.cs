@@ -196,6 +196,6 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The task to get all true candidates.</returns>
 	public ValueTask<Candidates> GetAllTrueCandidatesAsync(
-		int maximumEmptyCells, CancellationToken cancellationToken = default) =>
-		new(GetAllTrueCandidates(maximumEmptyCells, cancellationToken));
+		int maximumEmptyCells, CancellationToken cancellationToken = default
+	) => new(GetAllTrueCandidates(maximumEmptyCells, cancellationToken));
 }
