@@ -10,6 +10,7 @@
 /// <item>Unique Square Type 4</item>
 /// </list>
 /// </summary>
+[StepSearcher]
 public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 {
 	/// <summary>

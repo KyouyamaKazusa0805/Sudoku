@@ -10,7 +10,8 @@
 /// <item>Unique Polygon Type 4</item>
 /// </list>
 /// </summary>
-internal sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
+[StepSearcher]
+public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearcher
 {
 	/// <summary>
 	/// Indicates all possible patterns to iterate.
