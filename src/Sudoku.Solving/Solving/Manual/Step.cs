@@ -282,8 +282,6 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool isPrivateOrProtected(MethodInfo propertyGetMethod) =>
-			propertyGetMethod.IsPrivate // private
-			|| propertyGetMethod.IsFamily // protected
-			|| propertyGetMethod.IsPrivate && propertyGetMethod.IsFamily; // private protected
+			propertyGetMethod is { IsPrivate: true } or { IsFamily: true } or { IsPrivate: true, IsFamily: true };
 	}
 }
