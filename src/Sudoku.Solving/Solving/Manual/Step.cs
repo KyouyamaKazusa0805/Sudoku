@@ -79,7 +79,9 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 	/// <list type="bullet">
 	/// <item><see cref="IExtendedRectangleStepSearcher">Extended rectangle</see></item>
 	/// <item><see cref="IUniqueSquareStepSearcher">Unique square</see></item>
-	/// <item><see cref="#">Borescoper's deadly pattern</see></item>
+	/// <item>
+	/// <see cref="IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
+	/// </item>
 	/// <item><see cref="#">Qiu's deadly pattern</see></item>
 	/// </list>
 	/// </item>

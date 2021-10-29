@@ -22,4 +22,14 @@ internal static class Constants
 	/// Indicates the number of all possible Unique Square templates.
 	/// </summary>
 	public const int UniqueSquareTemplatesCount = 162;
+
+	/// <summary>
+	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+	/// </summary>
+	public const int BdpTemplatesSize3Count = 14580;
+
+	/// <summary>
+	/// Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+	/// </summary>
+	public const int BdpTemplatesSize4Count = 11664;
 }

@@ -502,6 +502,133 @@
             <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
             <returns>The result strings (i.e. All solutions).</returns>
         </member>
+        <member name="T:Sudoku.Solving.Collections.IPattern`2">
+            <summary>
+            Defines a normal pattern.
+            </summary>
+            <typeparam name="TSelf">The type of the pattern itself.</typeparam>
+            <typeparam name="TMask">The type of the mask.</typeparam>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.IPattern`2.Mask">
+            <summary>
+            Indicates the mask value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.IPattern`2.Map">
+            <summary>
+            Indicates the summary map that holds all cells of this pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.IPattern`2.op_Implicit(`1)~`0">
+            <summary>
+            Implicit cast from <typeparamref name="TMask"/> to <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Collections.UniquePolygonPattern">
+            <summary>
+            Defines a pattern that is a unique polygon technique structure in theory.
+            </summary>
+            <param name="Mask">The mask that forms a structure.</param>
+            <remarks>
+            <para>
+            This <paramref name="Mask"/> is of type <see cref="T:System.Int64"/>,
+            where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.#ctor(System.Int64)">
+            <summary>
+            Defines a pattern that is a unique polygon technique structure in theory.
+            </summary>
+            <param name="Mask">The mask that forms a structure.</param>
+            <remarks>
+            <para>
+            This <paramref name="Mask"/> is of type <see cref="T:System.Int64"/>,
+            where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.IsHeptagon">
+            <summary>
+            Indicates whether the specified pattern is a heptagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair1Map">
+            <summary>
+            Indicates the map of pair 1 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair2Map">
+            <summary>
+            Indicates the map of pair 2 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.CenterCellsMap">
+            <summary>
+            The map of other three (or four) cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.CenterCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.op_Implicit(System.Int64)~Sudoku.Solving.Collections.UniquePolygonPattern">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.FailedReason">
             <summary>
             Defines a reason why the <see cref="T:Sudoku.Solving.IPuzzleSolver"/> is failed to solve a puzzle.
@@ -927,6 +1054,16 @@
         <member name="F:Sudoku.Solving.Manual.Constants.UniqueSquareTemplatesCount">
             <summary>
             Indicates the number of all possible Unique Square templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
@@ -1884,6 +2021,45 @@
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.IUniquePolygonStepSearcher">
+            <summary>
+            Defines a step that searches for unique polygon steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher">
+            <summary>
+            Provides with a <b>Unique Polygon</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Unique Polygon Type 1</item>
+            <item>Unique Polygon Type 2</item>
+            <item>Unique Polygon Type 3</item>
+            <item>Unique Polygon Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.Patterns">
+            <summary>
+            Indicates all possible patterns to iterate.
+            </summary>
+            <remarks>
+            Please note that all possible heptagons and octagons are in here.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.#cctor">
+            <summary>
+            Indicates the static constructor of this type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher">
             <summary>
@@ -3515,7 +3691,9 @@
             <list type="bullet">
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.IExtendedRectangleStepSearcher">Extended rectangle</see></item>
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.IUniqueSquareStepSearcher">Unique square</see></item>
-            <item><see cref="!:#">Borescoper's deadly pattern</see></item>
+            <item>
+            <see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
+            </item>
             <item><see cref="!:#">Qiu's deadly pattern</see></item>
             </list>
             </item>
@@ -4433,6 +4611,152 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map">The map that contains the cells used for this technique.</param>
+            <param name="DigitsMask">The mask that contains all digits used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map">The map that contains the cells used for this technique.</param>
+            <param name="DigitsMask">The mask that contains all digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.DigitsStr">
+            <summary>
+            Indicates the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.CellsStr">
+            <summary>
+            Indicates the cells string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType1Step">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraDigit">The extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
+            <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
+            <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
+            <param name="ExtraMask">Indicates the extra digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Map"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
+            <param name="ExtraMask">Indicates the extra digits mask.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep">
