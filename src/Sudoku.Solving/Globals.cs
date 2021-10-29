@@ -29,6 +29,7 @@ global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
 global using Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 global using Sudoku.Solving.Manual.Searchers.Wings;
 global using Sudoku.Solving.Manual.Steps;

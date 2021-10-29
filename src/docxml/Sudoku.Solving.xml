@@ -3514,7 +3514,7 @@
             Multi-value patterns
             <list type="bullet">
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.IExtendedRectangleStepSearcher">Extended rectangle</see></item>
-            <item><see cref="!:#">Unique square</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.IUniqueSquareStepSearcher">Unique square</see></item>
             <item><see cref="!:#">Borescoper's deadly pattern</see></item>
             <item><see cref="!:#">Qiu's deadly pattern</see></item>
             </list>

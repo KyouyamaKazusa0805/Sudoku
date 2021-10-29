@@ -7,10 +7,7 @@ namespace Sudoku.Solving.Manual;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views
-) : IStep
+public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in ImmutableArray<PresentationData> Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;
@@ -81,7 +78,7 @@ public abstract record Step(
 	/// Multi-value patterns
 	/// <list type="bullet">
 	/// <item><see cref="IExtendedRectangleStepSearcher">Extended rectangle</see></item>
-	/// <item><see cref="#">Unique square</see></item>
+	/// <item><see cref="IUniqueSquareStepSearcher">Unique square</see></item>
 	/// <item><see cref="#">Borescoper's deadly pattern</see></item>
 	/// <item><see cref="#">Qiu's deadly pattern</see></item>
 	/// </list>
