@@ -39,11 +39,13 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : notnull, Step
 
 
 	/// <summary>
-	/// Distinct the list, that is, remove all duplicate elements in this list.
+	/// Distinct the list, that is, remove all duplicate elements in this list, that uses the method
+	/// <see cref="Equals(TStep, TStep)"/> defined in this interface.
 	/// </summary>
 	/// <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
 	/// <param name="list">The list of steps to be processed.</param>
 	/// <returns>The list of steps.</returns>
+	/// <seealso cref="Equals(TStep, TStep)"/>
 	public static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 	where TDistinctableStep : notnull, Step, IDistinctableStep<TDistinctableStep>
 	{

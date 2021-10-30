@@ -3177,6 +3177,47 @@
             </param>
             <param name="loops">The possible loops found.</param>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.ILastResortStepSearcher">
+            <summary>
+            Defines a step searcher that searches for last resort steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.IPatternOverlayStepSearcher">
+            <summary>
+            Defines a step searcher that searches for pattern overlay steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.IPatternOverlayStepSearcher.GetInvalidPos(Sudoku.Data.Grid@)">
+            <summary>
+            Get all invalid positions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The 9 maps for invalid positions of each digit.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.IPatternOverlayStepSearcher.GetTemplates">
+            <summary>
+            Get all possible templates. The total number of all possbile pattern overlay templates is 46656.
+            </summary>
+            <returns>The templates.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher">
+            <summary>
+            Provides with a <b>Pattern Overlay</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Pattern Overlay</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher">
             <summary>
             Provides with a <b>Bi-value Oddagon</b> step searcher.
@@ -3257,6 +3298,24 @@
             forming an empty rectangle.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.GuardianStepSearcher">
+            <summary>
+            Provides with a <b>Guardian</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Guardian</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.GuardianStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.GuardianStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.GuardianStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IEmptyRectangleStepSearcher">
             <summary>
             Defines a step searcher that searches for an empty rectangle step.
@@ -3271,6 +3330,33 @@
             <param name="row">The row.</param>
             <param name="column">The column.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IGuardianStepSearcher">
+            <summary>
+            Defines a step searcher that searches for guardian steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IGuardianStepSearcher.GetLinks(System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32)">
+            <summary>
+            Converts all cells to the links that is used in drawing ULs or Reverse BUGs.
+            </summary>
+            <param name="cells">The list of cells.</param>
+            <param name="offset">The offset. The default value is 4.</param>
+            <returns>All links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IGuardianStepSearcher.CreateGuardianMap(System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+            <summary>
+            Create the guardian map.
+            </summary>
+            <param name="cell1">The first cell.</param>
+            <param name="cell2">The second cell.</param>
+            <param name="digit">The current digit.</param>
+            <param name="guardians">
+            The current guardian cells.
+            This map may not contain cells that lies in the region
+            that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
+            </param>
+            <returns>All guardians.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.ISingleDigitPatternStepSearcher">
             <summary>
@@ -5727,11 +5813,13 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Distinct``1(System.Collections.Generic.IList{``0})">
             <summary>
-            Distinct the list, that is, remove all duplicate elements in this list.
+            Distinct the list, that is, remove all duplicate elements in this list, that uses the method
+            <see cref="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Equals(`0,`0)"/> defined in this interface.
             </summary>
             <typeparam name="TDistinctableStep">The type of the steps.</typeparam>
             <param name="list">The list of steps to be processed.</param>
             <returns>The list of steps.</returns>
+            <seealso cref="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Equals(`0,`0)"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ILoopStep">
             <summary>
@@ -6056,6 +6144,58 @@
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.Steps.IStep.Format"/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+            <summary>
+            Provides with a step that is a <b>Last Resort</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep">
+            <summary>
+            Provides with a step that is a <b>Pattern Overlay</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@)">
+            <summary>
+            Provides with a step that is a <b>Pattern Overlay</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Rarity">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
@@ -6306,6 +6446,47 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop cells used.</param>
+            <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Provides with a step that is a <b>Guardian</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="Loop">Indicates the loop cells used.</param>
+            <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.Equals(Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep,Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep">

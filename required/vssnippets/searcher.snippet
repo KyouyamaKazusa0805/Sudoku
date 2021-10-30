@@ -12,7 +12,7 @@
 		<Snippet>
 			<Declarations>
 				<Literal Editable="true">
-					<ID>stepsearchername</ID>
+					<ID>step_searcher_name</ID>
 					<Default>My</Default>
 				</Literal>
 				<Literal Editable="true">
@@ -26,16 +26,20 @@
 				<Literal Editable="true">
 					<ID>detail</ID>
 				</Literal>
+				<Literal Editable="true">
+					<ID>base_type</ID>
+				</Literal>
 			</Declarations>
 			<Code Language="csharp" Delimiter="$">
 				<![CDATA[/// <summary>
-/// Provides with a <b>$stepsearchername$</b> step searcher.
+/// Provides with a <b>$step_searcher_name$</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>$item$</item>
+/// <item>$step_searcher_name$</item>
 /// </list>
 /// </summary>
-internal sealed unsafe class $detail$StepSearcher : I$detail$StepSearcher
+[StepSearcher]
+public sealed unsafe class $detail$StepSearcher : I$detail$StepSearcher
 {
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new($priority$, $level$);
@@ -53,6 +57,13 @@ internal sealed unsafe class $detail$StepSearcher : I$detail$StepSearcher
 	{
 		return null;$end$
 	}
+}
+
+/// <summary>
+/// Defines a step searcher that searches for $detail$ steps.
+/// </summary>
+public interface I$detail$StepSearcher : I$base_type$StepSearcher
+{
 }
 ]]>
 			</Code>
