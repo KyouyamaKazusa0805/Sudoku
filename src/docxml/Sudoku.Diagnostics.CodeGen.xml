@@ -312,11 +312,6 @@
             Defines the constants used in this project.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
-            <summary>
-            Indictaes the version of this project.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.KeywordsToBclNames">
             <summary>
             Indicates the collection that stores the conversion relations from type keywords to their BCL names.
@@ -489,6 +484,11 @@
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.Solving">
             <summary>
             Indicates the project <c>Sudoku.Solving</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indictaes the version of this project.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver">

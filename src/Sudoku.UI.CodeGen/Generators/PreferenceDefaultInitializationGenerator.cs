@@ -43,7 +43,7 @@ partial class Preference
 	/// <summary>
 	/// Initializes a <see cref=""Preference""/> instance.
 	/// </summary>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	public Preference()
 	{{

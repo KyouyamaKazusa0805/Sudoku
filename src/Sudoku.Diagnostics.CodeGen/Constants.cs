@@ -6,12 +6,6 @@
 internal static partial class Constants
 {
 	/// <summary>
-	/// Indictaes the version of this project.
-	/// </summary>
-	public const string VersionValue = "0.7";
-
-
-	/// <summary>
 	/// Indicates the collection that stores the conversion relations from type keywords to their BCL names.
 	/// </summary>
 	public static readonly IReadOnlyDictionary<string, string> KeywordsToBclNames = new Dictionary<string, string>

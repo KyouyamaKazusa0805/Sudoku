@@ -179,6 +179,11 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.UIPreferenceItemRouteGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indictaes the version of this project.
+            </summary>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.

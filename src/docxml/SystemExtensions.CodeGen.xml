@@ -15,6 +15,11 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indictaes the version of this project.
+            </summary>
+        </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
                 Reserved to be used by the compiler for tracking metadata.

@@ -113,7 +113,7 @@ public sealed unsafe class UIPreferenceItemRouteGenerator : ISourceGenerator
 
 partial class SettingsPage
 {{
-	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	private partial void {controlName}_Toggled(object sender, [Discard] RoutedEventArgs e)
 	{{

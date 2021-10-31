@@ -49,7 +49,7 @@ namespace System.Collections.Generic;
 {commentsForGenericTypeParams}
 {commentsForParams}
 /// <param name=""PriorKey"">The prior key.</param>
-[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 [global::System.Runtime.CompilerServices.CompilerGenerated]
 public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamList}) : global::System.Runtime.CompilerServices.ITuple
 {{
@@ -57,7 +57,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 	/// Initializes an instance with the specified {length} items, and the first one is the prior key.
 	/// </summary>
 	{commentsForConstructorParams}
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 	public KeyedTuple({constructorParamList}) : this({constructorParamListWithoutType}, 1)
@@ -66,7 +66,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 
 
 	/// <inheritdoc/>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	int global::System.Runtime.CompilerServices.ITuple.Length
 	{{
@@ -75,7 +75,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 	}}
 
 	/// <inheritdoc/>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	object? global::System.Runtime.CompilerServices.ITuple.this[int index]
 	{{
@@ -85,7 +85,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 
 
 	/// <inheritdoc/>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ((global::System.Runtime.CompilerServices.ITuple)this)[PriorKey]?.ToString() ?? string.Empty;

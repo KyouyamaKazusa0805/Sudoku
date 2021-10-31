@@ -175,7 +175,7 @@ partial class Constants
 		/// <remarks><i>
 		/// The interactive logic is implemented by source generator, so you can't modify the inner logic.
 		/// </i></remarks>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		static Tables()
 		{{
