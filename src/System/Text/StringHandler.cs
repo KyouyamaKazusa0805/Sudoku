@@ -1,4 +1,6 @@
-﻿namespace System.Text;
+﻿#define DISCARD_INTERPOLATION_INFO
+
+namespace System.Text;
 
 /// <summary>
 /// <para>
@@ -61,6 +63,18 @@ public unsafe ref partial struct StringHandler
 	private const int MinimumArrayPoolLength = 256;
 
 
+#if !DISCARD_INTERPOLATION_INFO
+	/// <summary>
+	/// The number of constant characters outside of interpolation expressions in the interpolated string.
+	/// </summary>
+	private readonly int _literalLength = 0;
+
+	/// <summary>
+	/// The number of interpolation expressions in the interpolated string.
+	/// </summary>
+	private readonly int _holeCount = 0;
+#endif
+
 	/// <summary>
 	/// Array rented from the array pool and used to back <see cref="_chars"/>.
 	/// </summary>
@@ -115,9 +129,23 @@ public unsafe ref partial struct StringHandler
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments are not validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public StringHandler([Discard] int literalLength, [Discard] int holeCount, Span<char> initialBuffer)
+	public StringHandler(
+#if DISCARD_INTERPOLATION_INFO
+		[Discard]
+#endif
+		int literalLength,
+#if DISCARD_INTERPOLATION_INFO
+		[Discard]
+#endif
+		int holeCount,
+		Span<char> initialBuffer
+	)
 	{
+#if !DISCARD_INTERPOLATION_INFO
+		_literalLength = literalLength;
+		_holeCount = holeCount;
+#endif
+
 		_chars = initialBuffer;
 		_arrayToReturnToPool = null;
 	}
