@@ -3,9 +3,7 @@
 /// <summary>
 /// <para>
 /// Provides a handler used by the language compiler to process interpolated strings
-/// into <see cref="string"/> instances, whose code structure is similar
-/// with the type <see cref="ValueStringBuilder"/>, because this type is a handler-typed
-/// <see cref="string"/> builder.
+/// into <see cref="string"/> instances.
 /// </para>
 /// <para>
 /// Different with <see cref="DefaultInterpolatedStringHandler"/>, this type won't contain
@@ -13,23 +11,25 @@
 /// </para>
 /// </summary>
 /// <remarks>
-/// <para>
-/// (From the Microsoft documentation comments) Implementation note:
-/// </para>
-/// <para>
-/// As this type lives in <see cref="Runtime.CompilerServices"/>
-/// and is only intended to be targeted by the compiler,
-/// public APIs eschew argument validation logic in a variety of places,
-/// e.g. allowing a <see langword="null"/> input when one isn't expected to produce
-/// a <see cref="NullReferenceException"/> rather than an <see cref="ArgumentNullException"/>.
-/// </para>
+/// You can use this type like this:
+/// <code><![CDATA[
+/// var sb = new InterpolatedStringHandlerWithoutFormatter(100);
+/// 
+/// sb.AppendLiteral("Hello");
+/// sb.AppendFormatted(',');
+/// sb.AppendLiteral("World");
+/// sb.AppendFormatted('!');
+/// 
+/// Console.WriteLine(sb.ToStringAndClear());
+/// ]]></code>
 /// </remarks>
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 #if false
 [InterpolatedStringHandler]
 #endif
-public ref partial struct InterpolatedStringHandlerWithoutFormatter
+[AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
+public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 {
 	/// <summary>
 	/// Expected average length of formatted data used for an individual interpolation expression result.
@@ -46,9 +46,10 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// for the three extra characters in <c>"{d}"</c>, since the compiler-provided base length won't include
 	/// the equivalent character count.
 	/// </para>
+	/// <para><i>The original value implemented by .NET foundation is 11, but I change it to 8.</i></para>
 	/// </remarks>
 	/// <seealso cref="string.Format(string, object?[])"/>
-	private const int GuessedLengthPerHole = 11;
+	private const int GuessedLengthPerHole = 8;
 
 	/// <summary>
 	/// Minimum size array to rent from the pool.
@@ -66,15 +67,19 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	private char[]? _arrayToReturnToPool;
 
 	/// <summary>
-	/// Position at which to write the next character.
-	/// </summary>
-	private int _pos;
-
-	/// <summary>
 	/// The span to write into.
 	/// </summary>
 	private Span<char> _chars;
 
+
+	/// <summary>
+	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
+	/// </summary>
+	/// <param name="initialCapacity">
+	/// The number of constant characters as the default memory to initialize.
+	/// </param>
+	public InterpolatedStringHandlerWithoutFormatter(int initialCapacity) =>
+		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
@@ -87,17 +92,13 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments aren't validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
-	public InterpolatedStringHandlerWithoutFormatter(int literalLength, int holeCount)
-	{
+	public InterpolatedStringHandlerWithoutFormatter(int literalLength, int holeCount) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 			Max(
 				MinimumArrayPoolLength,
 				literalLength + holeCount * GuessedLengthPerHole
 			)
 		);
-
-		_pos = 0;
-	}
 
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
@@ -123,15 +124,99 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	{
 		_chars = initialBuffer;
 		_arrayToReturnToPool = null;
-		_pos = 0;
 	}
 
 
 	/// <summary>
+	/// Position at which to write the next character.
+	/// </summary>
+	public int Length { get; private set; } = 0;
+
+	/// <summary>
 	/// Gets a span of the written characters thus far.
 	/// </summary>
-	private readonly ReadOnlySpan<char> Text => _chars[.._pos];
+	private readonly ReadOnlySpan<char> Text => _chars[..Length];
 
+
+	/// <summary>
+	/// <para>
+	/// Get a pinnable reference to the builder.
+	/// Does not ensure there is a null char after <see cref="Length"/>.
+	/// </para>
+	/// <para>
+	/// This overload is pattern matched in the C# 7.3+ compiler so you can omit
+	/// the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
+	/// </para>
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
+
+	/// <summary>
+	/// Inserts a new character into the collection at the specified index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <param name="value">The character you want to insert into the collection.</param>
+	/// <param name="count">The number.</param>
+	public void Insert(int index, char value, int count)
+	{
+		if (Length > _chars.Length - count)
+		{
+			Grow(count);
+		}
+
+		_chars[index..Length].CopyTo(_chars[(index + count)..]);
+		_chars[index..(index + count)].Fill(value);
+		Length += count;
+	}
+
+	/// <summary>
+	/// Inserts a new string into the collection at the specified index.
+	/// </summary>
+	/// <param name="index">The index you want to insert.</param>
+	/// <param name="s">The string you want to insert.</param>
+	public void Insert(int index, string s)
+	{
+		int count = s.Length;
+		if (Length > _chars.Length - count)
+		{
+			Grow(count);
+		}
+
+		_chars[index..Length].CopyTo(_chars[(index + count)..]);
+		s.AsSpan().CopyTo(_chars[index..]);
+		Length += count;
+	}
+
+	/// <summary>
+	/// Remove a serial of characters from the specified index, with the specified length.
+	/// </summary>
+	/// <param name="startIndex">The start index.</param>
+	/// <param name="length">The length you want to remove.</param>
+	/// <remarks>
+	/// This method will be costly (move a lot of elements), so you shouldn't call this method usually.
+	/// </remarks>
+	public void Remove(int startIndex, int length)
+	{
+		fixed (char* pThis = _chars)
+		{
+			int i = startIndex;
+			for (char* p = pThis + startIndex; i < Length; i++, p++)
+			{
+				// Assign the value.
+				// Please note that 'p[a]' is equivalent to '*(p + a)'.
+				*p = p[length];
+			}
+		}
+
+		Length -= length;
+	}
+
+	/// <summary>
+	/// Removes the specified number of characters from the end of the collection.
+	/// </summary>
+	/// <param name="length">The number of characters you want to remove.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RemoveFromEnd(int length) => Length -= length;
 
 	/// <summary>
 	/// Writes the specified string to the handler.
@@ -156,7 +241,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void AppendLiteral(string value)
+	public void AppendLiteral(string? value)
 	{
 		// TODO: https://github.com/dotnet/runtime/issues/41692#issuecomment-685192193
 
@@ -167,16 +252,25 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 		// could be unrolled based on the literal, a.k.a. https://github.com/dotnet/runtime/pull/46392, we might
 		// be able to remove all special-casing here.
 
+		if (value is null)
+		{
+			return;
+		}
+
 		switch (value.Length)
 		{
+			case 0:
+			{
+				return;
+			}
 			case 1:
 			{
 				var chars = _chars;
-				int pos = _pos;
+				int pos = Length;
 				if ((uint)pos < (uint)chars.Length)
 				{
 					chars[pos] = value[0];
-					_pos = pos + 1;
+					Length = pos + 1;
 				}
 				else
 				{
@@ -188,7 +282,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 			case 2:
 			{
 				var chars = _chars;
-				int pos = _pos;
+				int pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
 					fixed (char* pFirstChar = value)
@@ -199,7 +293,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 						);
 					}
 
-					_pos = pos + 2;
+					Length = pos + 2;
 				}
 				else
 				{
@@ -218,6 +312,88 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	}
 
 	/// <summary>
+	/// Append a string that is represented as a <see cref="char"/>*.
+	/// </summary>
+	/// <param name="value">The string.</param>
+	/// <param name="length">The length of the string.</param>
+	public void AppendLiteralUnsafe([DisallowNull, NotNull] char* value, int length)
+	{
+		int pos = Length;
+		if (pos > _chars.Length - length)
+		{
+			Grow(length);
+		}
+
+		var dst = _chars.Slice(Length, length);
+		for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
+		{
+			dst[i] = *value++;
+		}
+		Length += length;
+	}
+
+	/// <summary>
+	/// Append a new line string <see cref="Environment.NewLine"/>.
+	/// </summary>
+	/// <seealso cref="Environment.NewLine"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AppendLine() => AppendLiteral(Environment.NewLine);
+
+	/// <summary>
+	/// Append a character at the tail of the collection.
+	/// </summary>
+	/// <param name="c">The character.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AppendChar(char c)
+	{
+		int pos = Length;
+		if ((uint)pos < (uint)_chars.Length)
+		{
+			_chars[pos] = c;
+			Length = pos + 1;
+		}
+		else
+		{
+			Grow(1);
+			AppendChar(c);
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of same characters into the collection.
+	/// </summary>
+	/// <param name="c">The character.</param>
+	/// <param name="count">The number of the character you want to append.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AppendRepeatedChars(char c, int count)
+	{
+		if (Length > _chars.Length - count)
+		{
+			Grow(count);
+		}
+
+		var dst = _chars.Slice(Length, count);
+		for (int i = 0, length = dst.Length; i < length; i++)
+		{
+			dst[i] = c;
+		}
+
+		Length += count;
+	}
+
+	/// <summary>
+	/// Append a string representation of a specified instance, and then append a new line.
+	/// </summary>
+	/// <typeparam name="T">The type of the instance.</typeparam>
+	/// <param name="value">The value.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void AppendFormattedAndLine<T>(T value)
+	{
+		AppendFormatted(value);
+		AppendLine();
+	}
+
+	/// <summary>
 	/// Writes the specified value to the handler.
 	/// </summary>
 	/// <param name="value">The value to write.</param>
@@ -229,12 +405,12 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 			int charsWritten;
 
 			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[_pos..], out charsWritten, null, null))
+			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
 			{
 				Grow();
 			}
 
-			_pos += charsWritten;
+			Length += charsWritten;
 
 			return;
 		}
@@ -258,12 +434,12 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 			int charsWritten;
 
 			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[_pos..], out charsWritten, format, null))
+			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
 			{
 				Grow();
 			}
 
-			_pos += charsWritten;
+			Length += charsWritten;
 			return;
 		}
 
@@ -284,7 +460,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value, int alignment)
 	{
-		int startingPos = _pos;
+		int startingPos = Length;
 		AppendFormatted(value);
 		if (alignment != 0)
 		{
@@ -304,7 +480,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value, int alignment, string? format)
 	{
-		int startingPos = _pos;
+		int startingPos = Length;
 		AppendFormatted(value, format);
 		if (alignment != 0)
 		{
@@ -319,9 +495,9 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	public void AppendFormatted(ReadOnlySpan<char> value)
 	{
 		// Fast path for when the value fits in the current buffer
-		if (value.TryCopyTo(_chars[_pos..]))
+		if (value.TryCopyTo(_chars[Length..]))
 		{
-			_pos += value.Length;
+			Length += value.Length;
 		}
 		else
 		{
@@ -360,17 +536,17 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 		EnsureCapacityForAdditionalChars(value.Length + paddingRequired);
 		if (leftAlign)
 		{
-			value.CopyTo(_chars[_pos..]);
-			_pos += value.Length;
-			_chars.Slice(_pos, paddingRequired).Fill(' ');
-			_pos += paddingRequired;
+			value.CopyTo(_chars[Length..]);
+			Length += value.Length;
+			_chars.Slice(Length, paddingRequired).Fill(' ');
+			Length += paddingRequired;
 		}
 		else
 		{
-			_chars.Slice(_pos, paddingRequired).Fill(' ');
-			_pos += paddingRequired;
-			value.CopyTo(_chars[_pos..]);
-			_pos += value.Length;
+			_chars.Slice(Length, paddingRequired).Fill(' ');
+			Length += paddingRequired;
+			value.CopyTo(_chars[Length..]);
+			Length += value.Length;
 		}
 	}
 
@@ -381,9 +557,9 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	public void AppendFormatted(string? value)
 	{
 		// Fast-path for no custom formatter and a non-null string that fits in the current destination buffer.
-		if (value is not null && value.TryCopyTo(_chars[_pos..]))
+		if (value is not null && value.TryCopyTo(_chars[Length..]))
 		{
-			_pos += value.Length;
+			Length += value.Length;
 		}
 		else
 		{
@@ -434,6 +610,165 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 		AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
+	/// Append a serial of strings from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	public void AppendRange<T>(IEnumerable<T> list)
+	{
+		foreach (var element in list)
+		{
+			AppendFormatted(element);
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the function pointer as this argument.
+	/// </param>
+	public void AppendRange<T>(IEnumerable<T> list, [DisallowNull, NotNull] delegate*<T, string?> converter)
+	{
+		foreach (var element in list)
+		{
+			AppendLiteral(converter(element));
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	public void AppendRange<T>(IEnumerable<T> list, Func<T, string?> converter)
+	{
+		foreach (var element in list)
+		{
+			AppendLiteral(converter(element));
+		}
+	}
+
+	/// <summary>
+	/// Append a serial of strings from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	public void AppendRangeWithSeparator<T>(IEnumerable<T> list, string separator)
+	{
+		foreach (var element in list)
+		{
+			AppendFormatted(element);
+			AppendFormatted(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the function pointer as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	public void AppendRangeWithSeparator<T>(
+		IEnumerable<T> list,
+		[DisallowNull, NotNull] delegate*<T, string?> converter,
+		string separator
+	)
+	{
+		foreach (var element in list)
+		{
+			AppendLiteral(converter(element));
+			AppendLiteral(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list of elements.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	public void AppendRangeWithSeparator<T>(IEnumerable<T> list, Func<T, string?> converter, string separator)
+	{
+		foreach (var element in list)
+		{
+			AppendLiteral(converter(element));
+			AppendLiteral(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a series of elements into the current collection.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="list">The list.</param>
+	public void AppendRangeWithLines<T>(IEnumerable<T?> list)
+	{
+		foreach (var element in list)
+		{
+			AppendLiteral(element?.ToString());
+			AppendLine();
+		}
+	}
+
+	/// <summary>
+	/// Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
+	/// after called this method, the string will be <c>"olleH"</c>.
+	/// </summary>
+	public void Reverse()
+	{
+		fixed (char* p = _chars)
+		{
+			for (int i = 0, iterationLength = Length >> 1; i < iterationLength; i++)
+			{
+				char c = p[i];
+				p[i] = p[Length - 1 - i];
+				p[Length - 1 - i] = c;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Get a pinnable reference to the builder.
+	/// </summary>
+	/// <param name="withTerminate">
+	/// Ensures that the builder has a null character after <see cref="Length"/>.
+	/// </param>
+	/// <seealso cref="Length"/>
+	public ref readonly char GetPinnableReference(bool withTerminate)
+	{
+		if (withTerminate)
+		{
+			EnsureCapacityForAdditionalChars(1);
+			_chars[Length] = '\0';
+		}
+
+		return ref MemoryMarshal.GetReference(_chars);
+	}
+
+	/// <summary>
 	/// Gets the built <see cref="string"/>.
 	/// </summary>
 	/// <returns>The built string.</returns>
@@ -473,9 +808,9 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// <param name="value">The string to write.</param>
 	private void AppendStringDirect(string value)
 	{
-		if (value.TryCopyTo(_chars[_pos..]))
+		if (value.TryCopyTo(_chars[Length..]))
 		{
-			_pos += value.Length;
+			Length += value.Length;
 		}
 		else
 		{
@@ -495,8 +830,8 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 		if (value is not null)
 		{
 			EnsureCapacityForAdditionalChars(value.Length);
-			value.CopyTo(_chars[_pos..]);
-			_pos += value.Length;
+			value.CopyTo(_chars[Length..]);
+			Length += value.Length;
 		}
 	}
 
@@ -510,10 +845,10 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// </param>
 	private void AppendOrInsertAlignmentIfNeeded(int startingPos, int alignment)
 	{
-		Debug.Assert(startingPos >= 0 && startingPos <= _pos);
+		Debug.Assert(startingPos >= 0 && startingPos <= Length);
 		Debug.Assert(alignment != 0);
 
-		int charsWritten = _pos - startingPos;
+		int charsWritten = Length - startingPos;
 		(alignment, bool leftAlign) = alignment < 0 ? (-alignment, true) : (alignment, false);
 		if (alignment - charsWritten is var paddingNeeded and > 0)
 		{
@@ -521,7 +856,7 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 
 			if (leftAlign)
 			{
-				_chars.Slice(_pos, paddingNeeded).Fill(' ');
+				_chars.Slice(Length, paddingNeeded).Fill(' ');
 			}
 			else
 			{
@@ -529,18 +864,18 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 				_chars.Slice(startingPos, paddingNeeded).Fill(' ');
 			}
 
-			_pos += paddingNeeded;
+			Length += paddingNeeded;
 		}
 	}
 
 	/// <summary>
 	/// Ensures <see cref="_chars"/> has the capacity to store <paramref name="additionalChars"/>
-	/// beyond <see cref="_pos"/>.
+	/// beyond <see cref="Length"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void EnsureCapacityForAdditionalChars(int additionalChars)
 	{
-		if (_chars.Length - _pos < additionalChars)
+		if (_chars.Length - Length < additionalChars)
 		{
 			Grow(additionalChars);
 		}
@@ -555,8 +890,8 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	private void GrowThenCopyString(string value)
 	{
 		Grow(value.Length);
-		value.CopyTo(_chars[_pos..]);
-		_pos += value.Length;
+		value.CopyTo(_chars[Length..]);
+		Length += value.Length;
 	}
 
 	/// <summary>
@@ -568,33 +903,36 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	private void GrowThenCopySpan(ReadOnlySpan<char> value)
 	{
 		Grow(value.Length);
-		value.CopyTo(_chars[_pos..]);
-		_pos += value.Length;
+		value.CopyTo(_chars[Length..]);
+		Length += value.Length;
 	}
 
 	/// <summary>
 	/// Grows <see cref="_chars"/> to have the capacity to store at least <paramref name="additionalChars"/>
-	/// beyond <see cref="_pos"/>.
+	/// beyond <see cref="Length"/>.
 	/// </summary>
+	/// <remarks>
+	/// This method is called when the remaining space <c>_chars.Length - _pos</c> is
+	/// insufficient to store a specific number of additional characters.
+	/// Thus, we need to grow to at least that new total. <see cref="GrowCore(uint)"/>
+	/// will handle growing by more than that if possible.
+	/// </remarks>
+	/// <seealso cref="GrowCore(uint)"/>
 	[MethodImpl(MethodImplOptions.NoInlining)]
 	private void Grow(int additionalChars)
 	{
-		// This method is called when the remaining space (_chars.Length - _pos) is
-		// insufficient to store a specific number of additional characters.  Thus, we
-		// need to grow to at least that new total. GrowCore will handle growing by more
-		// than that if possible.
-		Debug.Assert(additionalChars > _chars.Length - _pos);
+		Debug.Assert(additionalChars > _chars.Length - Length);
 
-		GrowCore((uint)_pos + (uint)additionalChars);
+		GrowCore((uint)Length + (uint)additionalChars);
 	}
 
 	/// <summary>
 	/// Grows the size of <see cref="_chars"/>.
 	/// </summary>
 	/// <remarks>
-	/// This method is called when the remaining space in _chars isn't sufficient to continue
-	/// the operation. Thus, we need at least one character beyond _chars.Length. <see cref="GrowCore(uint)"/>
-	/// will handle growing by more than that if possible.
+	/// This method is called when the remaining space in <c>_chars</c> isn't sufficient to continue
+	/// the operation. Thus, we need at least one character beyond <c>_chars.Length</c>.
+	/// <see cref="GrowCore(uint)"/> will handle growing by more than that if possible.
 	/// </remarks>
 	/// <seealso cref="GrowCore(uint)"/>
 	[MethodImpl(MethodImplOptions.NoInlining)]
@@ -604,22 +942,26 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// Grow the size of <see cref="_chars"/> to at least the specified <paramref name="requiredMinCapacity"/>.
 	/// </summary>
 	/// <param name="requiredMinCapacity">The required minimum capacity.</param>
+	/// <remarks>
+	/// <para>Design notes:</para>
+	/// <para>
+	/// We want the max of how much space we actually required and doubling our capacity (without going
+	/// beyond the max allowed length). We also want to avoid asking for small arrays,
+	/// to reduce the number of times we need to grow, and since we're working with unsigned integers
+	/// that could technically overflow if someone tried to, for example, append a huge string
+	/// to a huge string, we also clamp to <see cref="int.MaxValue"/>. Even if the array creation
+	/// fails in such a case, we may later fail in <see cref="ToStringAndClear"/>.
+	/// </para>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void GrowCore(uint requiredMinCapacity)
 	{
-		// We want the max of how much space we actually required and doubling our capacity
-		// (without going beyond the max allowed length).
-		// We also want to avoid asking for small arrays, to reduce the number of times we need to grow,
-		// and since we're working with unsigned integers that could technically overflow if someone tried to,
-		// for example, append a huge string to a huge string, we also clamp to int.MaxValue.
-		// Even if the array creation fails in such a case, we may later fail in ToStringAndClear.
-
 		// 0x3FFFFFDF: string.MaxLength
 		uint newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF));
 		int arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
 
 		char[] newArray = ArrayPool<char>.Shared.Rent(arraySize);
-		_chars[.._pos].CopyTo(newArray);
+		_chars[..Length].CopyTo(newArray);
 
 		char[]? toReturn = _arrayToReturnToPool;
 		_chars = _arrayToReturnToPool = newArray;
@@ -628,5 +970,39 @@ public ref partial struct InterpolatedStringHandlerWithoutFormatter
 		{
 			ArrayPool<char>.Shared.Return(toReturn);
 		}
+	}
+
+
+	/// <summary>
+	/// Determines whether two instances has same values with the other instance.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[ProxyEquality]
+	public static bool Equals(
+		in InterpolatedStringHandlerWithoutFormatter left,
+		in InterpolatedStringHandlerWithoutFormatter right
+	)
+	{
+		if (left.Length != right.Length)
+		{
+			return false;
+		}
+
+		fixed (char* pThis = left._chars, pOther = right._chars)
+		{
+			int i = 0;
+			char* p = pThis, q = pOther;
+			for (int length = left.Length; i < length; i++)
+			{
+				if (*p++ != *q++)
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 }
