@@ -1,4 +1,5 @@
 ﻿#define DISCARD_INTERPOLATION_INFO
+#define DECREASE_INITIALIZATION_MEMORY_ALLOCATION
 
 namespace System.Text;
 
@@ -108,10 +109,11 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	public StringHandler(int literalLength, int holeCount) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
-			Max(
-				MinimumArrayPoolLength,
-				literalLength + holeCount * GuessedLengthPerHole
-			)
+#if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
+			GetGreaterNearestPowerOf2(literalLength + holeCount * GuessedLengthPerHole)
+#else
+			Max(MinimumArrayPoolLength, literalLength + holeCount * GuessedLengthPerHole)
+#endif
 		);
 
 	/// <summary>
@@ -1004,10 +1006,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[ProxyEquality]
-	public static bool Equals(
-		in StringHandler left,
-		in StringHandler right
-	)
+	public static bool Equals(in StringHandler left, in StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{
@@ -1028,5 +1027,47 @@ public unsafe ref partial struct StringHandler
 		}
 
 		return true;
+	}
+
+	/// <summary>
+	/// Gets the greater nearest value of power of 2 for the specified value.
+	/// </summary>
+	/// <param name="base">The base value.</param>
+	/// <returns>The result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int GetGreaterNearestPowerOf2(int @base)
+	{
+		switch (@base)
+		{
+			case <= 0 or 1: { return 1; }
+			case 2: { return 2; }
+			case 3 or 4: { return 4; }
+			case 5 or 6 or 7 or 8: { return 8; }
+			default:
+			{
+				int n = @base - 1;
+				n |= unsignedRightShift(n, 1);
+				n |= unsignedRightShift(n, 2);
+				n |= unsignedRightShift(n, 4);
+				n |= unsignedRightShift(n, 8);
+				n |= unsignedRightShift(n, 16);
+
+				return n < 0 ? 1 : n + 1;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static int unsignedRightShift(int v, int p)
+				{
+					if (p != 0)
+					{
+						v >>= 1;
+						v &= int.MaxValue;
+						v >>= p - 1;
+					}
+
+					return v;
+				}
+			}
+		}
 	}
 }
