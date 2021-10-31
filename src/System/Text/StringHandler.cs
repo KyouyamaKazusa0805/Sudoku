@@ -13,7 +13,7 @@
 /// <remarks>
 /// You can use this type like this:
 /// <code><![CDATA[
-/// var sb = new InterpolatedStringHandlerWithoutFormatter(100);
+/// var sb = new StringHandler(100);
 /// 
 /// sb.AppendLiteral("Hello");
 /// sb.AppendFormatted(',');
@@ -29,7 +29,7 @@
 [InterpolatedStringHandler]
 #endif
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
+public unsafe ref partial struct StringHandler
 {
 	/// <summary>
 	/// Expected average length of formatted data used for an individual interpolation expression result.
@@ -78,7 +78,7 @@ public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// <param name="initialCapacity">
 	/// The number of constant characters as the default memory to initialize.
 	/// </param>
-	public InterpolatedStringHandlerWithoutFormatter(int initialCapacity) =>
+	public StringHandler(int initialCapacity) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
@@ -92,7 +92,7 @@ public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments aren't validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
-	public InterpolatedStringHandlerWithoutFormatter(int literalLength, int holeCount) =>
+	public StringHandler(int literalLength, int holeCount) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 			Max(
 				MinimumArrayPoolLength,
@@ -116,11 +116,7 @@ public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// Arguments are not validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
 	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	public InterpolatedStringHandlerWithoutFormatter(
-		[Discard] int literalLength,
-		[Discard] int holeCount,
-		Span<char> initialBuffer
-	)
+	public StringHandler([Discard] int literalLength, [Discard] int holeCount, Span<char> initialBuffer)
 	{
 		_chars = initialBuffer;
 		_arrayToReturnToPool = null;
@@ -140,12 +136,12 @@ public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 
 	/// <summary>
 	/// <para>
-	/// Get a pinnable reference to the builder.
-	/// Does not ensure there is a null char after <see cref="Length"/>.
+	/// Get a pinnable reference to the handler.
+	/// The operation does not ensure there is a null char after <see cref="Length"/>.
 	/// </para>
 	/// <para>
 	/// This overload is pattern matched in the C# 7.3+ compiler so you can omit
-	/// the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
+	/// the explicit method call, and write eg <c>fixed (char* c = handler)</c>.
 	/// </para>
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -981,8 +977,8 @@ public unsafe ref partial struct InterpolatedStringHandlerWithoutFormatter
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[ProxyEquality]
 	public static bool Equals(
-		in InterpolatedStringHandlerWithoutFormatter left,
-		in InterpolatedStringHandlerWithoutFormatter right
+		in StringHandler left,
+		in StringHandler right
 	)
 	{
 		if (left.Length != right.Length)

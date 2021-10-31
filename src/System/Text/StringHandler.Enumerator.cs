@@ -1,6 +1,6 @@
 ﻿namespace System.Text;
 
-partial struct InterpolatedStringHandlerWithoutFormatter
+partial struct StringHandler
 {
 	/// <summary>
 	/// Encapsulates the enumerator of this collection.
@@ -28,7 +28,7 @@ partial struct InterpolatedStringHandlerWithoutFormatter
 		/// </summary>
 		/// <param name="chars">The characters.</param>
 		/// <seealso cref="Span{T}"/>
-		public Enumerator(in InterpolatedStringHandlerWithoutFormatter chars) : this()
+		public Enumerator(in StringHandler chars) : this()
 		{
 			_length = chars.Length;
 			_index = -1;

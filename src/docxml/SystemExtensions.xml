@@ -2323,593 +2323,6 @@
             <param name="converter">The JSON converter to append.</param>
             <returns>The reference of the current instance.</returns>
         </member>
-        <member name="T:System.Text.InterpolatedStringHandlerWithoutFormatter">
-            <summary>
-            <para>
-            Provides a handler used by the language compiler to process interpolated strings
-            into <see cref="T:System.String"/> instances.
-            </para>
-            <para>
-            Different with <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>, this type won't contain
-            any formatters, i.e. <see cref="T:System.IFormatProvider"/>.
-            </para>
-            </summary>
-            <remarks>
-            You can use this type like this:
-            <code><![CDATA[
-            var sb = new InterpolatedStringHandlerWithoutFormatter(100);
-            
-            sb.AppendLiteral("Hello");
-            sb.AppendFormatted(',');
-            sb.AppendLiteral("World");
-            sb.AppendFormatted('!');
-            
-            Console.WriteLine(sb.ToStringAndClear());
-            ]]></code>
-            </remarks>
-            <seealso cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter.GuessedLengthPerHole">
-            <summary>
-            Expected average length of formatted data used for an individual interpolation expression result.
-            </summary>
-            <remarks>
-            <para>
-            This is inherited from <see cref="M:System.String.Format(System.String,System.Object[])"/>,
-            and could be changed based on further data.
-            </para>
-            <para>
-            <see cref="M:System.String.Format(System.String,System.Object[])"/> actually uses <c>format.Length + args.Length * 8</c>,
-            but <c>format.Length</c> includes the format items themselves, e.g. <c>"{0}"</c>,
-            and since it's rare to have double-digit numbers of items, we bump the 8 up to 11 to account
-            for the three extra characters in <c>"{d}"</c>, since the compiler-provided base length won't include
-            the equivalent character count.
-            </para>
-            <para><i>The original value implemented by .NET foundation is 11, but I change it to 8.</i></para>
-            </remarks>
-            <seealso cref="M:System.String.Format(System.String,System.Object[])"/>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter.MinimumArrayPoolLength">
-            <summary>
-            Minimum size array to rent from the pool.
-            </summary>
-            <remarks>
-            Same as stack-allocation size used today by <see cref="M:System.String.Format(System.String,System.Object[])"/>.
-            </remarks>
-            <seealso cref="M:System.String.Format(System.String,System.Object[])"/>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter._arrayToReturnToPool">
-            <summary>
-            Array rented from the array pool and used to back <see cref="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars"/>.
-            </summary>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars">
-            <summary>
-            The span to write into.
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.#ctor(System.Int32)">
-            <summary>
-            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
-            </summary>
-            <param name="initialCapacity">
-            The number of constant characters as the default memory to initialize.
-            </param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
-            </summary>
-            <param name="literalLength">
-            The number of constant characters outside of interpolation expressions in the interpolated string.
-            </param>
-            <param name="holeCount">The number of interpolation expressions in the interpolated string.</param>
-            <remarks>
-            This is intended to be called only by compiler-generated code.
-            Arguments aren't validated as they'd otherwise be for members intended to be used directly.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.#ctor(System.Int32,System.Int32,System.Span{System.Char})">
-            <summary>
-            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
-            </summary>
-            <param name="literalLength">
-            The number of constant characters outside of interpolation expressions in the interpolated string.
-            </param>
-            <param name="holeCount">The number of interpolation expressions in the interpolated string.</param>
-            <param name="initialBuffer">
-            A buffer temporarily transferred to the handler for use as part of its formatting.
-            Contents may be overwritten.
-            </param>
-            <remarks>
-            This is intended to be called only by compiler-generated code.
-            Arguments are not validated as they'd otherwise be for members intended to be used directly.
-            </remarks>
-        </member>
-        <member name="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length">
-            <summary>
-            Position at which to write the next character.
-            </summary>
-        </member>
-        <member name="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Text">
-            <summary>
-            Gets a span of the written characters thus far.
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GetPinnableReference">
-            <summary>
-            <para>
-            Get a pinnable reference to the builder.
-            Does not ensure there is a null char after <see cref="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length"/>.
-            </para>
-            <para>
-            This overload is pattern matched in the C# 7.3+ compiler so you can omit
-            the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Insert(System.Int32,System.Char,System.Int32)">
-            <summary>
-            Inserts a new character into the collection at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <param name="value">The character you want to insert into the collection.</param>
-            <param name="count">The number.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Insert(System.Int32,System.String)">
-            <summary>
-            Inserts a new string into the collection at the specified index.
-            </summary>
-            <param name="index">The index you want to insert.</param>
-            <param name="s">The string you want to insert.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Remove(System.Int32,System.Int32)">
-            <summary>
-            Remove a serial of characters from the specified index, with the specified length.
-            </summary>
-            <param name="startIndex">The start index.</param>
-            <param name="length">The length you want to remove.</param>
-            <remarks>
-            This method will be costly (move a lot of elements), so you shouldn't call this method usually.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.RemoveFromEnd(System.Int32)">
-            <summary>
-            Removes the specified number of characters from the end of the collection.
-            </summary>
-            <param name="length">The number of characters you want to remove.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLiteral(System.String)">
-            <summary>
-            Writes the specified string to the handler.
-            </summary>
-            <param name="value">The string to write.</param>
-            <remarks>
-            <para>
-            <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLiteral(System.String)"/> is expected to always be called by compiler-generated code
-            with a literal string. By inlining it, the method body is exposed to the constant length of that literal,
-            allowing the JIT to prune away the irrelevant cases.
-            This effectively enables multiple implementations of <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLiteral(System.String)"/>,
-            special-cased on and optimized for the literal's length.
-            </para>
-            <para>
-            We special-case lengths 1 and 2 because they're very common, e.g.
-            <list type="number">
-            <item><c>' '</c>, <c>'.'</c>, <c>'-'</c>, <c>'\t'</c>, etc.</item>
-            <item><c>", "</c>, <c>"0x"</c>, <c>"=>"</c>, <c>": "</c>, etc.</item>
-            </list>
-            but we refrain from adding more because, in the rare case where <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLiteral(System.String)"/>
-            is called with a non-literal, there is a lot of code here to be inlined.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLiteralUnsafe(System.Char*,System.Int32)">
-            <summary>
-            Append a string that is represented as a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="value">The string.</param>
-            <param name="length">The length of the string.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendLine">
-            <summary>
-            Append a new line string <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <seealso cref="P:System.Environment.NewLine"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendChar(System.Char)">
-            <summary>
-            Append a character at the tail of the collection.
-            </summary>
-            <param name="c">The character.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRepeatedChars(System.Char,System.Int32)">
-            <summary>
-            Append a serial of same characters into the collection.
-            </summary>
-            <param name="c">The character.</param>
-            <param name="count">The number of the character you want to append.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormattedAndLine``1(``0)">
-            <summary>
-            Append a string representation of a specified instance, and then append a new line.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted``1(``0)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted``1(``0,System.String)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="format">The format string.</param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted``1(``0,System.Int32)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted``1(``0,System.Int32,System.String)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="format">The format string.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.ReadOnlySpan{System.Char})">
-            <summary>
-            Writes the specified character span to the handler.
-            </summary>
-            <param name="value">The span to write.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)">
-            <summary>
-            Writes the specified string of chars to the handler.
-            </summary>
-            <param name="value">The span to write.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <param name="format">The format string.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.String)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.String,System.Int32,System.String)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <param name="format">The format string.</param>
-            <remarks>
-            Format is meaningless for strings and doesn't make sense for someone to specify.
-            We have the overload simply to disambiguate between <c><![CDATA[ROS<char>]]></c> and <see cref="T:System.Object"/>,
-            just in case someone does specify a format, as <see cref="T:System.String"/> is implicitly convertible to both.
-            Just delegate to the <c>T</c>-based implementation.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.Object,System.Int32,System.String)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <param name="format">The format string.</param>
-            <remarks>
-            This overload is expected to be used rarely, only if either:
-            <list type="bullet">
-            <item>
-            a) something strongly typed as <see cref="T:System.Object"/> is formatted with both an alignment and a format.
-            </item>
-            <item>
-            b) the compiler is unable to target type to <c>T</c>.
-            </item>
-            </list>
-            It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a serial of strings from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRange``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the function pointer as this argument.
-            </param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.String)">
-            <summary>
-            Append a serial of strings from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},,System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the function pointer as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements into the current collection.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Reverse">
-            <summary>
-            Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
-            after called this method, the string will be <c>"olleH"</c>.
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GetPinnableReference(System.Boolean)">
-            <summary>
-            Get a pinnable reference to the builder.
-            </summary>
-            <param name="withTerminate">
-            Ensures that the builder has a null character after <see cref="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length"/>.
-            </param>
-            <seealso cref="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.ToString">
-            <summary>
-            Gets the built <see cref="T:System.String"/>.
-            </summary>
-            <returns>The built string.</returns>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.ToStringAndClear">
-            <summary>
-            Gets the built <see cref="T:System.String"/> and clears the handler.
-            </summary>
-            <returns>The built string.</returns>
-            <remarks>
-            This releases any resources used by the handler. The method should be invoked only
-            once and as the last thing performed on the handler. Subsequent use is erroneous, ill-defined,
-            and may destabilize the process, as may using any other copies of the handler after
-            <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.ToStringAndClear"/> is called on any one of them.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendStringDirect(System.String)">
-            <summary>
-            Writes the specified string to the handler.
-            </summary>
-            <param name="value">The string to write.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormattedSlow(System.String)">
-            <summary>Writes the specified value to the handler.</summary>
-            <param name="value">The value to write.</param>
-            <remarks>
-            Slow path to handle a custom formatter, potentially null value,
-            or a string that doesn't fit in the current buffer.
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendOrInsertAlignmentIfNeeded(System.Int32,System.Int32)">
-            <summary>
-            Handles adding any padding required for aligning a formatted value in an interpolation expression.
-            </summary>
-            <param name="startingPos">The position at which the written value started.</param>
-            <param name="alignment">
-            Non-zero minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.EnsureCapacityForAdditionalChars(System.Int32)">
-            <summary>
-            Ensures <see cref="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars"/> has the capacity to store <paramref name="additionalChars"/>
-            beyond <see cref="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length"/>.
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowThenCopyString(System.String)">
-            <summary>
-            Fallback for fast path in <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendStringDirect(System.String)"/>
-            when there's not enough space in the destination.
-            </summary>
-            <param name="value">The string to write.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowThenCopySpan(System.ReadOnlySpan{System.Char})">
-            <summary>
-            Fallback for <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.AppendFormatted(System.ReadOnlySpan{System.Char})"/> for when not enough space exists
-            in the current buffer.
-            </summary>
-            <param name="value">The span to write.</param>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Grow(System.Int32)">
-            <summary>
-            Grows <see cref="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars"/> to have the capacity to store at least <paramref name="additionalChars"/>
-            beyond <see cref="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Length"/>.
-            </summary>
-            <remarks>
-            This method is called when the remaining space <c>_chars.Length - _pos</c> is
-            insufficient to store a specific number of additional characters.
-            Thus, we need to grow to at least that new total. <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowCore(System.UInt32)"/>
-            will handle growing by more than that if possible.
-            </remarks>
-            <seealso cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowCore(System.UInt32)"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Grow">
-            <summary>
-            Grows the size of <see cref="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars"/>.
-            </summary>
-            <remarks>
-            This method is called when the remaining space in <c>_chars</c> isn't sufficient to continue
-            the operation. Thus, we need at least one character beyond <c>_chars.Length</c>.
-            <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowCore(System.UInt32)"/> will handle growing by more than that if possible.
-            </remarks>
-            <seealso cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowCore(System.UInt32)"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GrowCore(System.UInt32)">
-            <summary>
-            Grow the size of <see cref="F:System.Text.InterpolatedStringHandlerWithoutFormatter._chars"/> to at least the specified <paramref name="requiredMinCapacity"/>.
-            </summary>
-            <param name="requiredMinCapacity">The required minimum capacity.</param>
-            <remarks>
-            <para>Design notes:</para>
-            <para>
-            We want the max of how much space we actually required and doubling our capacity (without going
-            beyond the max allowed length). We also want to avoid asking for small arrays,
-            to reduce the number of times we need to grow, and since we're working with unsigned integers
-            that could technically overflow if someone tried to, for example, append a huge string
-            to a huge string, we also clamp to <see cref="F:System.Int32.MaxValue"/>. Even if the array creation
-            fails in such a case, we may later fail in <see cref="M:System.Text.InterpolatedStringHandlerWithoutFormatter.ToStringAndClear"/>.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Equals(System.Text.InterpolatedStringHandlerWithoutFormatter@,System.Text.InterpolatedStringHandlerWithoutFormatter@)">
-            <summary>
-            Determines whether two instances has same values with the other instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator">
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator._length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator._index">
-            <summary>
-            Indicates whether 
-            </summary>
-        </member>
-        <member name="F:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator._ptr">
-            <summary>
-            Indicates the pointer that points to the current character.
-            </summary>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.#ctor(System.Text.InterpolatedStringHandlerWithoutFormatter@)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="P:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Equals(System.Text.InterpolatedStringHandlerWithoutFormatter@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.op_Equality(System.Text.InterpolatedStringHandlerWithoutFormatter@,System.Text.InterpolatedStringHandlerWithoutFormatter@)">
-            <summary>
-            Determine whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.op_Inequality(System.Text.InterpolatedStringHandlerWithoutFormatter@,System.Text.InterpolatedStringHandlerWithoutFormatter@)">
-            <summary>
-            Determine whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.InterpolatedStringHandlerWithoutFormatter.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>
             Indicates an error for reporting a string is an invalid regular expression.
@@ -2951,6 +2364,593 @@
             <summary>
             Indicates a data member is a regular expression value that represents using a <see cref="T:System.String"/>.
             </summary>
+        </member>
+        <member name="T:System.Text.StringHandler">
+            <summary>
+            <para>
+            Provides a handler used by the language compiler to process interpolated strings
+            into <see cref="T:System.String"/> instances.
+            </para>
+            <para>
+            Different with <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>, this type won't contain
+            any formatters, i.e. <see cref="T:System.IFormatProvider"/>.
+            </para>
+            </summary>
+            <remarks>
+            You can use this type like this:
+            <code><![CDATA[
+            var sb = new StringHandler(100);
+            
+            sb.AppendLiteral("Hello");
+            sb.AppendFormatted(',');
+            sb.AppendLiteral("World");
+            sb.AppendFormatted('!');
+            
+            Console.WriteLine(sb.ToStringAndClear());
+            ]]></code>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>
+            <seealso cref="T:System.IFormatProvider"/>
+        </member>
+        <member name="F:System.Text.StringHandler.GuessedLengthPerHole">
+            <summary>
+            Expected average length of formatted data used for an individual interpolation expression result.
+            </summary>
+            <remarks>
+            <para>
+            This is inherited from <see cref="M:System.String.Format(System.String,System.Object[])"/>,
+            and could be changed based on further data.
+            </para>
+            <para>
+            <see cref="M:System.String.Format(System.String,System.Object[])"/> actually uses <c>format.Length + args.Length * 8</c>,
+            but <c>format.Length</c> includes the format items themselves, e.g. <c>"{0}"</c>,
+            and since it's rare to have double-digit numbers of items, we bump the 8 up to 11 to account
+            for the three extra characters in <c>"{d}"</c>, since the compiler-provided base length won't include
+            the equivalent character count.
+            </para>
+            <para><i>The original value implemented by .NET foundation is 11, but I change it to 8.</i></para>
+            </remarks>
+            <seealso cref="M:System.String.Format(System.String,System.Object[])"/>
+        </member>
+        <member name="F:System.Text.StringHandler.MinimumArrayPoolLength">
+            <summary>
+            Minimum size array to rent from the pool.
+            </summary>
+            <remarks>
+            Same as stack-allocation size used today by <see cref="M:System.String.Format(System.String,System.Object[])"/>.
+            </remarks>
+            <seealso cref="M:System.String.Format(System.String,System.Object[])"/>
+        </member>
+        <member name="F:System.Text.StringHandler._arrayToReturnToPool">
+            <summary>
+            Array rented from the array pool and used to back <see cref="F:System.Text.StringHandler._chars"/>.
+            </summary>
+        </member>
+        <member name="F:System.Text.StringHandler._chars">
+            <summary>
+            The span to write into.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.#ctor(System.Int32)">
+            <summary>
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
+            </summary>
+            <param name="initialCapacity">
+            The number of constant characters as the default memory to initialize.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
+            </summary>
+            <param name="literalLength">
+            The number of constant characters outside of interpolation expressions in the interpolated string.
+            </param>
+            <param name="holeCount">The number of interpolation expressions in the interpolated string.</param>
+            <remarks>
+            This is intended to be called only by compiler-generated code.
+            Arguments aren't validated as they'd otherwise be for members intended to be used directly.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.#ctor(System.Int32,System.Int32,System.Span{System.Char})">
+            <summary>
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
+            </summary>
+            <param name="literalLength">
+            The number of constant characters outside of interpolation expressions in the interpolated string.
+            </param>
+            <param name="holeCount">The number of interpolation expressions in the interpolated string.</param>
+            <param name="initialBuffer">
+            A buffer temporarily transferred to the handler for use as part of its formatting.
+            Contents may be overwritten.
+            </param>
+            <remarks>
+            This is intended to be called only by compiler-generated code.
+            Arguments are not validated as they'd otherwise be for members intended to be used directly.
+            </remarks>
+        </member>
+        <member name="P:System.Text.StringHandler.Length">
+            <summary>
+            Position at which to write the next character.
+            </summary>
+        </member>
+        <member name="P:System.Text.StringHandler.Text">
+            <summary>
+            Gets a span of the written characters thus far.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.GetPinnableReference">
+            <summary>
+            <para>
+            Get a pinnable reference to the handler.
+            The operation does not ensure there is a null char after <see cref="P:System.Text.StringHandler.Length"/>.
+            </para>
+            <para>
+            This overload is pattern matched in the C# 7.3+ compiler so you can omit
+            the explicit method call, and write eg <c>fixed (char* c = handler)</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.Char,System.Int32)">
+            <summary>
+            Inserts a new character into the collection at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="value">The character you want to insert into the collection.</param>
+            <param name="count">The number.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.String)">
+            <summary>
+            Inserts a new string into the collection at the specified index.
+            </summary>
+            <param name="index">The index you want to insert.</param>
+            <param name="s">The string you want to insert.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Remove(System.Int32,System.Int32)">
+            <summary>
+            Remove a serial of characters from the specified index, with the specified length.
+            </summary>
+            <param name="startIndex">The start index.</param>
+            <param name="length">The length you want to remove.</param>
+            <remarks>
+            This method will be costly (move a lot of elements), so you shouldn't call this method usually.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.RemoveFromEnd(System.Int32)">
+            <summary>
+            Removes the specified number of characters from the end of the collection.
+            </summary>
+            <param name="length">The number of characters you want to remove.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLiteral(System.String)">
+            <summary>
+            Writes the specified string to the handler.
+            </summary>
+            <param name="value">The string to write.</param>
+            <remarks>
+            <para>
+            <see cref="M:System.Text.StringHandler.AppendLiteral(System.String)"/> is expected to always be called by compiler-generated code
+            with a literal string. By inlining it, the method body is exposed to the constant length of that literal,
+            allowing the JIT to prune away the irrelevant cases.
+            This effectively enables multiple implementations of <see cref="M:System.Text.StringHandler.AppendLiteral(System.String)"/>,
+            special-cased on and optimized for the literal's length.
+            </para>
+            <para>
+            We special-case lengths 1 and 2 because they're very common, e.g.
+            <list type="number">
+            <item><c>' '</c>, <c>'.'</c>, <c>'-'</c>, <c>'\t'</c>, etc.</item>
+            <item><c>", "</c>, <c>"0x"</c>, <c>"=>"</c>, <c>": "</c>, etc.</item>
+            </list>
+            but we refrain from adding more because, in the rare case where <see cref="M:System.Text.StringHandler.AppendLiteral(System.String)"/>
+            is called with a non-literal, there is a lot of code here to be inlined.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLiteralUnsafe(System.Char*,System.Int32)">
+            <summary>
+            Append a string that is represented as a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="value">The string.</param>
+            <param name="length">The length of the string.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLine">
+            <summary>
+            Append a new line string <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <seealso cref="P:System.Environment.NewLine"/>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendChar(System.Char)">
+            <summary>
+            Append a character at the tail of the collection.
+            </summary>
+            <param name="c">The character.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRepeatedChars(System.Char,System.Int32)">
+            <summary>
+            Append a serial of same characters into the collection.
+            </summary>
+            <param name="c">The character.</param>
+            <param name="count">The number of the character you want to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormattedAndLine``1(``0)">
+            <summary>
+            Append a string representation of a specified instance, and then append a new line.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted``1(``0)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted``1(``0,System.String)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="format">The format string.</param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted``1(``0,System.Int32)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted``1(``0,System.Int32,System.String)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="format">The format string.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Writes the specified character span to the handler.
+            </summary>
+            <param name="value">The span to write.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)">
+            <summary>
+            Writes the specified string of chars to the handler.
+            </summary>
+            <param name="value">The span to write.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <param name="format">The format string.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.String)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.String,System.Int32,System.String)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <param name="format">The format string.</param>
+            <remarks>
+            Format is meaningless for strings and doesn't make sense for someone to specify.
+            We have the overload simply to disambiguate between <c><![CDATA[ROS<char>]]></c> and <see cref="T:System.Object"/>,
+            just in case someone does specify a format, as <see cref="T:System.String"/> is implicitly convertible to both.
+            Just delegate to the <c>T</c>-based implementation.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.Object,System.Int32,System.String)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <param name="format">The format string.</param>
+            <remarks>
+            This overload is expected to be used rarely, only if either:
+            <list type="bullet">
+            <item>
+            a) something strongly typed as <see cref="T:System.Object"/> is formatted with both an alignment and a format.
+            </item>
+            <item>
+            b) the compiler is unable to target type to <c>T</c>.
+            </item>
+            </list>
+            It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a serial of strings from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the function pointer as this argument.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Append a serial of strings from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},,System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the function pointer as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a series of elements into the current collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Reverse">
+            <summary>
+            Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
+            after called this method, the string will be <c>"olleH"</c>.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
+            <summary>
+            Get a pinnable reference to the builder.
+            </summary>
+            <param name="withTerminate">
+            Ensures that the builder has a null character after <see cref="P:System.Text.StringHandler.Length"/>.
+            </param>
+            <seealso cref="P:System.Text.StringHandler.Length"/>
+        </member>
+        <member name="M:System.Text.StringHandler.ToString">
+            <summary>
+            Gets the built <see cref="T:System.String"/>.
+            </summary>
+            <returns>The built string.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.ToStringAndClear">
+            <summary>
+            Gets the built <see cref="T:System.String"/> and clears the handler.
+            </summary>
+            <returns>The built string.</returns>
+            <remarks>
+            This releases any resources used by the handler. The method should be invoked only
+            once and as the last thing performed on the handler. Subsequent use is erroneous, ill-defined,
+            and may destabilize the process, as may using any other copies of the handler after
+            <see cref="M:System.Text.StringHandler.ToStringAndClear"/> is called on any one of them.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendStringDirect(System.String)">
+            <summary>
+            Writes the specified string to the handler.
+            </summary>
+            <param name="value">The string to write.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormattedSlow(System.String)">
+            <summary>Writes the specified value to the handler.</summary>
+            <param name="value">The value to write.</param>
+            <remarks>
+            Slow path to handle a custom formatter, potentially null value,
+            or a string that doesn't fit in the current buffer.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendOrInsertAlignmentIfNeeded(System.Int32,System.Int32)">
+            <summary>
+            Handles adding any padding required for aligning a formatted value in an interpolation expression.
+            </summary>
+            <param name="startingPos">The position at which the written value started.</param>
+            <param name="alignment">
+            Non-zero minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.EnsureCapacityForAdditionalChars(System.Int32)">
+            <summary>
+            Ensures <see cref="F:System.Text.StringHandler._chars"/> has the capacity to store <paramref name="additionalChars"/>
+            beyond <see cref="P:System.Text.StringHandler.Length"/>.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.GrowThenCopyString(System.String)">
+            <summary>
+            Fallback for fast path in <see cref="M:System.Text.StringHandler.AppendStringDirect(System.String)"/>
+            when there's not enough space in the destination.
+            </summary>
+            <param name="value">The string to write.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.GrowThenCopySpan(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Fallback for <see cref="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char})"/> for when not enough space exists
+            in the current buffer.
+            </summary>
+            <param name="value">The span to write.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Grow(System.Int32)">
+            <summary>
+            Grows <see cref="F:System.Text.StringHandler._chars"/> to have the capacity to store at least <paramref name="additionalChars"/>
+            beyond <see cref="P:System.Text.StringHandler.Length"/>.
+            </summary>
+            <remarks>
+            This method is called when the remaining space <c>_chars.Length - _pos</c> is
+            insufficient to store a specific number of additional characters.
+            Thus, we need to grow to at least that new total. <see cref="M:System.Text.StringHandler.GrowCore(System.UInt32)"/>
+            will handle growing by more than that if possible.
+            </remarks>
+            <seealso cref="M:System.Text.StringHandler.GrowCore(System.UInt32)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Grow">
+            <summary>
+            Grows the size of <see cref="F:System.Text.StringHandler._chars"/>.
+            </summary>
+            <remarks>
+            This method is called when the remaining space in <c>_chars</c> isn't sufficient to continue
+            the operation. Thus, we need at least one character beyond <c>_chars.Length</c>.
+            <see cref="M:System.Text.StringHandler.GrowCore(System.UInt32)"/> will handle growing by more than that if possible.
+            </remarks>
+            <seealso cref="M:System.Text.StringHandler.GrowCore(System.UInt32)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.GrowCore(System.UInt32)">
+            <summary>
+            Grow the size of <see cref="F:System.Text.StringHandler._chars"/> to at least the specified <paramref name="requiredMinCapacity"/>.
+            </summary>
+            <param name="requiredMinCapacity">The required minimum capacity.</param>
+            <remarks>
+            <para>Design notes:</para>
+            <para>
+            We want the max of how much space we actually required and doubling our capacity (without going
+            beyond the max allowed length). We also want to avoid asking for small arrays,
+            to reduce the number of times we need to grow, and since we're working with unsigned integers
+            that could technically overflow if someone tried to, for example, append a huge string
+            to a huge string, we also clamp to <see cref="F:System.Int32.MaxValue"/>. Even if the array creation
+            fails in such a case, we may later fail in <see cref="M:System.Text.StringHandler.ToStringAndClear"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determines whether two instances has same values with the other instance.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Text.StringHandler.Enumerator">
+            <summary>
+            Encapsulates the enumerator of this collection.
+            </summary>
+        </member>
+        <member name="F:System.Text.StringHandler.Enumerator._length">
+            <summary>
+            Indicates the length.
+            </summary>
+        </member>
+        <member name="F:System.Text.StringHandler.Enumerator._index">
+            <summary>
+            Indicates whether 
+            </summary>
+        </member>
+        <member name="F:System.Text.StringHandler.Enumerator._ptr">
+            <summary>
+            Indicates the pointer that points to the current character.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler@)">
+            <summary>
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="chars">The characters.</param>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="P:System.Text.StringHandler.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
+        </member>
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determine whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determine whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:System.Text.ValueStringBuilder">
             <summary>
