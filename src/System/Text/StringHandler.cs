@@ -355,6 +355,7 @@ public unsafe ref partial struct StringHandler
 		{
 			dst[i] = *value++;
 		}
+
 		Length += length;
 	}
 
