@@ -193,14 +193,14 @@ partial record ManualSolverResult
 					}
 
 					sb.AppendFormatted(solvingStepsGroup.Count(), 3);
-					sb.AppendLiteral(" * ");
+					sb.AppendFormatted(" * ");
 					sb.AppendFormatted(solvingStepsGroup.Key);
 					sb.AppendLine();
 				}
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.AppendLiteral("  (---");
+					sb.AppendFormatted("  (---");
 					sb.AppendFormatted(total, 8);
 					sb.AppendChar(')');
 					sb.AppendChar(' ');

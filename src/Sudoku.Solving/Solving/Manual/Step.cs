@@ -205,14 +205,14 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 				}
 				case (Left: '{', Right: '{'):
 				{
-					sb.AppendLiteral("{{");
+					sb.AppendFormatted("{{");
 					i++;
 
 					break;
 				}
 				case (Left: '}', Right: '}'):
 				{
-					sb.AppendLiteral("}}");
+					sb.AppendFormatted("}}");
 					i++;
 
 					break;

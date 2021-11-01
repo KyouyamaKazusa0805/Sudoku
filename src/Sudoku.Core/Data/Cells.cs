@@ -783,7 +783,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 						if (j != 2)
 						{
-							sb.AppendLiteral("| ");
+							sb.AppendFormatted("| ");
 						}
 						else
 						{
@@ -794,7 +794,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 				if (i != 2)
 				{
-					sb.AppendLiteral("------+-------+------");
+					sb.AppendFormatted("------+-------+------");
 					sb.AppendLine();
 				}
 			}
@@ -819,7 +819,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			bool addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbRow.AppendLiteral(leftCurlyBrace);
+				sbRow.AppendFormatted(leftCurlyBrace);
 			}
 			foreach (int row in dic.Keys)
 			{
@@ -827,12 +827,12 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				sbRow.AppendFormatted(row + 1);
 				sbRow.AppendChar('c');
 				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
-				sbRow.AppendLiteral(separator);
+				sbRow.AppendFormatted(separator);
 			}
 			sbRow.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbRow.AppendLiteral(rightCurlyBrace);
+				sbRow.AppendFormatted(rightCurlyBrace);
 			}
 
 			dic.Clear();
@@ -849,7 +849,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbColumn.AppendLiteral(leftCurlyBrace);
+				sbColumn.AppendFormatted(leftCurlyBrace);
 			}
 
 			foreach (int column in dic.Keys)
@@ -858,12 +858,12 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
 				sbColumn.AppendChar('c');
 				sbColumn.AppendFormatted(column + 1);
-				sbColumn.AppendLiteral(separator);
+				sbColumn.AppendFormatted(separator);
 			}
 			sbColumn.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbColumn.AppendLiteral(rightCurlyBrace);
+				sbColumn.AppendFormatted(rightCurlyBrace);
 			}
 
 			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
