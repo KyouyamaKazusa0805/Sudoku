@@ -2,31 +2,11 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 
-//
-// string.Format
-//
-string a = "Hello";
-char b = ',';
-string c = "world";
-char d = '!';
-Console.WriteLine($"{a}{b}{c}{d}");
+Console.WriteLine(StringCatenatation($"{1}, {"2"}, {3F:N2}, {$"{4}"}"));
 
-//
-// Improved interpolated string
-//
-var s = new DefaultInterpolatedStringHandler();
-s.AppendFormatted("Hello");
-s.AppendFormatted(',');
-s.AppendFormatted("world");
-s.AppendFormatted('!');
-Console.WriteLine(s.ToStringAndClear());
-
-//
-// ValueStringBuilder
-//
-var v = new ValueStringBuilder();
-v.Append("Hello");
-v.Append(',');
-v.Append("world");
-v.Append('!');
-Console.WriteLine(v.ToStringAndClear());
+static partial class Program
+{
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string StringCatenatation([InterpolatedStringHandlerArgument] StringHandler handler) =>
+		handler.ToStringAndClear();
+}

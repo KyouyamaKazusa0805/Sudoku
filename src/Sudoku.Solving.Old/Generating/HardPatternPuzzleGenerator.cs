@@ -58,18 +58,18 @@ public class HardPatternPuzzleGenerator : DiggingPuzzleGenerator
 		ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 		progress?.Report(defaultValue);
 
-		StringBuilder
-			puzzle = new() { Length = 81 },
-			solution = new() { Length = 81 },
+		StringHandler
+			puzzle = new(initialCapacity: 81),
+			solution = new(initialCapacity: 81),
 			emptyGridStr = new(SudokuGrid.EmptyString);
 
 		var holeCells = (stackalloc int[81]);
 
 		while (true)
 		{
-			emptyGridStr.CopyTo(puzzle);
-			emptyGridStr.CopyTo(solution);
-			GenerateAnswerGrid(puzzle, solution);
+			emptyGridStr.CopyTo(ref puzzle);
+			emptyGridStr.CopyTo(ref solution);
+			GenerateAnswerGrid(ref puzzle, ref solution);
 
 			holeCells.Fill(0);
 			CreatePattern(ref holeCells);

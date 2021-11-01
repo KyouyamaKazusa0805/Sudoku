@@ -11,18 +11,18 @@ partial struct Grid
 		/// <returns>The string.</returns>
 		private partial string ToExcelString(in Grid grid)
 		{
-			var span = $"{grid:0}".AsSpan();
-			var sb = new ValueStringBuilder(stackalloc char[81 + 72 + 9]);
+			ReadOnlySpan<char> span = grid.ToString("0");
+			var sb = new StringHandler(initialCapacity: 81 + 72 + 9);
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
 					if (span[i * 9 + j] - '0' is var digit and not 0)
 					{
-						sb.Append(digit);
+						sb.AppendFormatted(digit);
 					}
 
-					sb.Append('\t');
+					sb.AppendChar('\t');
 				}
 
 				sb.RemoveFromEnd(1);
@@ -178,8 +178,8 @@ partial struct Grid
 		/// <returns>The result.</returns>
 		private partial string ToSingleLineStringCore(in Grid grid)
 		{
-			var sb = new ValueStringBuilder(stackalloc char[162]);
-			var elims = new StringBuilder();
+			var sb = new StringHandler(initialCapacity: 162);
+			var elims = new StringHandler();
 			var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
 			unsafe
@@ -197,21 +197,58 @@ partial struct Grid
 							if (!grid[c, i])
 							{
 								// The value is 'true', which means the digit has already been deleted.
-								elims.Append(i + 1).Append(c / 9 + 1).Append(c % 9 + 1).Append(' ');
+								elims.AppendFormatted(i + 1);
+								elims.AppendFormatted(c / 9 + 1);
+								elims.AppendFormatted(c % 9 + 1);
+								elims.AppendChar(' ');
 							}
 						}
 					}
 
-					sb.Append(status switch
+					switch (status)
 					{
-						CellStatus.Empty => Placeholder.ToString(),
-						CellStatus.Modifiable => WithModifiables ? $"+{grid[c] + 1}" : $"{Placeholder}",
-						CellStatus.Given => $"{grid[c] + 1}"
-					});
+						case CellStatus.Empty:
+						{
+							sb.AppendChar(Placeholder);
+							break;
+						}
+						case CellStatus.Modifiable:
+						{
+							if (WithModifiables)
+							{
+								sb.AppendFormatted($"+{grid[c] + 1}");
+							}
+							else
+							{
+								sb.AppendChar(Placeholder);
+							}
+
+							break;
+						}
+						case CellStatus.Given:
+						{
+							sb.AppendFormatted($"{grid[c] + 1}");
+							break;
+						}
+						default:
+						{
+							throw new InvalidOperationException("The specified status is invalid.");
+						}
+					}
 				}
 			}
 
-			string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFrom(^1).ToString();
+			string elimsStr;
+			if (elims.Length <= 3)
+			{
+				elimsStr = elims.ToStringAndClear();
+			}
+			else
+			{
+				elims.RemoveFromEnd(1);
+				elimsStr = elims.ToStringAndClear();
+			}
+
 			return $"{sb.ToStringAndClear()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 
@@ -296,33 +333,33 @@ partial struct Grid
 				}
 
 				// Step 3: outputs all characters.
-				var sb = new StringBuilder();
+				var sb = new StringHandler();
 				for (int i = 0; i < 13; i++)
 				{
 					switch (i)
 					{
 						case 0: // Print tabs of the first line.
 						{
-							if (SubtleGridLines) printTabLines('.', '.', '-', maxLengths);
-							else printTabLines('+', '+', '-', maxLengths);
+							if (SubtleGridLines) printTabLines(ref sb, '.', '.', '-', maxLengths);
+							else printTabLines(ref sb, '+', '+', '-', maxLengths);
 							break;
 						}
 						case 4:
 						case 8: // Print tabs of mediate lines.
 						{
-							if (SubtleGridLines) printTabLines(':', '+', '-', maxLengths);
-							else printTabLines('+', '+', '-', maxLengths);
+							if (SubtleGridLines) printTabLines(ref sb, ':', '+', '-', maxLengths);
+							else printTabLines(ref sb, '+', '+', '-', maxLengths);
 							break;
 						}
 						case 12: // Print tabs of the foot line.
 						{
-							if (SubtleGridLines) printTabLines('\'', '\'', '-', maxLengths);
-							else printTabLines('+', '+', '-', maxLengths);
+							if (SubtleGridLines) printTabLines(ref sb, '\'', '\'', '-', maxLengths);
+							else printTabLines(ref sb, '+', '+', '-', maxLengths);
 							break;
 						}
 						default: // Print values and tabs.
 						{
-							p(this, valuesByRow[i switch
+							p(this, ref sb, valuesByRow[i switch
 							{
 								1 or 2 or 3 or 4 => i - 1,
 								5 or 6 or 7 or 8 => i - 2,
@@ -332,32 +369,35 @@ partial struct Grid
 							break;
 
 
-							void p(
+							static void p(
 								in Formatter formatter,
+								ref StringHandler sb,
 								IList<short> valuesByRow,
 								char c1,
 								char c2,
 								int* maxLengths
 							)
 							{
-								sb.Append(c1);
-								printValues(formatter, valuesByRow, 0, 2, maxLengths);
-								sb.Append(c2);
-								printValues(formatter, valuesByRow, 3, 5, maxLengths);
-								sb.Append(c2);
-								printValues(formatter, valuesByRow, 6, 8, maxLengths);
-								sb.AppendLine(c1);
+								sb.AppendChar(c1);
+								printValues(formatter, ref sb, valuesByRow, 0, 2, maxLengths);
+								sb.AppendChar(c2);
+								printValues(formatter, ref sb, valuesByRow, 3, 5, maxLengths);
+								sb.AppendChar(c2);
+								printValues(formatter, ref sb, valuesByRow, 6, 8, maxLengths);
+								sb.AppendChar(c1);
+								sb.AppendLine();
 
 
-								void printValues(
+								static void printValues(
 									in Formatter formatter,
+									ref StringHandler sb,
 									IList<short> valuesByRow,
 									int start,
 									int end,
 									int* maxLengths
 								)
 								{
-									sb.Append(' ');
+									sb.AppendChar(' ');
 									for (int i = start; i <= end; i++)
 									{
 										// Get digit.
@@ -384,10 +424,10 @@ partial struct Grid
 											}
 											default:
 											{
-												var innerSb = new ValueStringBuilder(stackalloc char[9]);
+												var innerSb = new StringHandler(initialCapacity: 9);
 												foreach (int z in value)
 												{
-													innerSb.Append(z + 1);
+													innerSb.AppendFormatted(z + 1);
 												}
 
 												s = innerSb.ToStringAndClear();
@@ -396,7 +436,8 @@ partial struct Grid
 											}
 										}
 
-										sb.Append(s.PadRight(maxLengths[i])).Append(i != end ? "  " : " ");
+										sb.AppendFormatted(s.PadRight(maxLengths[i]));
+										sb.AppendFormatted(i != end ? "  " : " ");
 									}
 								}
 							}
@@ -407,14 +448,18 @@ partial struct Grid
 				// The last step: returns the value.
 				return sb.ToString();
 
-				void printTabLines(char c1, char c2, char fillingChar, int* m) => sb
-					.Append(c1)
-					.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar))
-					.Append(c2)
-					.Append(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar))
-					.Append(c2)
-					.Append(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar))
-					.AppendLine(c1);
+
+				static void printTabLines(ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
+				{
+					sb.AppendChar(c1);
+					sb.AppendFormatted(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
+					sb.AppendChar(c2);
+					sb.AppendFormatted(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar));
+					sb.AppendChar(c2);
+					sb.AppendFormatted(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar));
+					sb.AppendChar(c1);
+					sb.AppendLine();
+				}
 			}
 		}
 

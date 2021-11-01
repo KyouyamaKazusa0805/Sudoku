@@ -42,8 +42,8 @@ public record UrPlusStepInfo(
 		{
 			const string separator = ", ";
 
-			var sb = new ValueStringBuilder(stackalloc char[100]);
-			sb.AppendRange(ConjugatePairs, separator);
+			var sb = new StringHandler(initialCapacity: 100);
+			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
 
 			return sb.ToStringAndClear();
 		}

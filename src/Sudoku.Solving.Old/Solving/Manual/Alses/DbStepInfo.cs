@@ -41,8 +41,8 @@ public sealed record DbStepInfo(
 		{
 			const string separator = ", ";
 
-			var sb = new ValueStringBuilder(stackalloc char[50]);
-			sb.AppendRange(Petals, static pair => $"{pair.Key - 1} - {pair.Value}", separator);
+			var sb = new StringHandler(initialCapacity: 50);
+			sb.AppendRangeWithSeparator(Petals, static pair => $"{pair.Key - 1} - {pair.Value}", separator);
 			return sb.ToStringAndClear();
 		}
 	}

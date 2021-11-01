@@ -16,21 +16,19 @@ namespace System.Text;
 /// <remarks>
 /// You can use this type like this:
 /// <code><![CDATA[
-/// var sb = new StringHandler(100);
+/// var sb = new StringHandler(initialCapacity: 100);
 /// 
-/// sb.AppendLiteral("Hello");
-/// sb.AppendFormatted(',');
-/// sb.AppendLiteral("World");
-/// sb.AppendFormatted('!');
+/// sb.AppendFormatted("Hello");
+/// sb.AppendChar(',');
+/// sb.AppendFormatted("World");
+/// sb.AppendChar('!');
 /// 
 /// Console.WriteLine(sb.ToStringAndClear());
 /// ]]></code>
 /// </remarks>
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
-#if false
 [InterpolatedStringHandler]
-#endif
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 public unsafe ref partial struct StringHandler
 {
@@ -88,12 +86,21 @@ public unsafe ref partial struct StringHandler
 
 
 	/// <summary>
+	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>,
+	/// with the default-sized buffer 256.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public StringHandler() : this(MinimumArrayPoolLength)
+	{
+	}
+
+	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
 	/// </summary>
 	/// <param name="initialCapacity">
 	/// The number of constant characters as the default memory to initialize.
 	/// </param>
-	public StringHandler(int initialCapacity) =>
+	public StringHandler(int initialCapacity = MinimumArrayPoolLength) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
@@ -107,6 +114,7 @@ public unsafe ref partial struct StringHandler
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments aren't validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public StringHandler(int literalLength, int holeCount) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
@@ -131,6 +139,7 @@ public unsafe ref partial struct StringHandler
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments are not validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public StringHandler(
 #if DISCARD_INTERPOLATION_INFO
 		[Discard]
@@ -152,6 +161,21 @@ public unsafe ref partial struct StringHandler
 		_arrayToReturnToPool = null;
 	}
 
+	/// <summary>
+	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>
+	/// that is initialized by a string value.
+	/// </summary>
+	/// <param name="initialString">The initialized string.</param>
+	public StringHandler(string initialString)
+	{
+		fixed (char* pChars = _chars, pInitialString = initialString)
+		{
+			Unsafe.CopyBlock(pChars, pInitialString, (uint)(sizeof(char) * initialString.Length));
+		}
+
+		_arrayToReturnToPool = null;
+	}
+
 
 	/// <summary>
 	/// Position at which to write the next character.
@@ -165,6 +189,31 @@ public unsafe ref partial struct StringHandler
 
 
 	/// <summary>
+	/// Gets the reference of a character at the specified index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>The reference of the character.</returns>
+	/// <remarks>
+	/// This property returns a <see langword="ref"/> <see cref="char"/>, which
+	/// means you can use the return value to re-assign a new value, as the same behavior
+	/// as the <see langword="set"/> accessor.
+	/// </remarks>
+	public ref char this[int index] => ref _chars[index];
+
+
+	/// <summary>
+	/// Copies the current colletion into the specified collection.
+	/// </summary>
+	/// <param name="handler">The collection.</param>
+	public readonly void CopyTo(ref StringHandler handler)
+	{
+		fixed (char* old = _chars, @new = handler._chars)
+		{
+			Unsafe.CopyBlock(@new, old, (uint)(sizeof(char) * Length));
+		}
+	}
+
+	/// <summary>
 	/// <para>
 	/// Get a pinnable reference to the handler.
 	/// The operation does not ensure there is a null char after <see cref="Length"/>.
@@ -176,6 +225,12 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
+
+	/// <summary>
+	/// Gets the built <see cref="string"/>.
+	/// </summary>
+	/// <returns>The built string.</returns>
+	public override readonly string ToString() => new(Text);
 
 	/// <summary>
 	/// Inserts a new character into the collection at the specified index.
@@ -267,6 +322,7 @@ public unsafe ref partial struct StringHandler
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void AppendLiteral(string? value)
 	{
 		// TODO: https://github.com/dotnet/runtime/issues/41692#issuecomment-685192193
@@ -338,28 +394,6 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
-	/// Append a string that is represented as a <see cref="char"/>*.
-	/// </summary>
-	/// <param name="value">The string.</param>
-	/// <param name="length">The length of the string.</param>
-	public void AppendLiteralUnsafe([DisallowNull, NotNull] char* value, int length)
-	{
-		int pos = Length;
-		if (pos > _chars.Length - length)
-		{
-			Grow(length);
-		}
-
-		var dst = _chars.Slice(Length, length);
-		for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
-		{
-			dst[i] = *value++;
-		}
-
-		Length += length;
-	}
-
-	/// <summary>
 	/// Append a new line string <see cref="Environment.NewLine"/>.
 	/// </summary>
 	/// <seealso cref="Environment.NewLine"/>
@@ -387,6 +421,18 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
+	/// Append a serial of characters at the tail of the collection.
+	/// </summary>
+	/// <param name="chars">The serial of characters.</param>
+	public void AppendCharList(IEnumerable<char> chars)
+	{
+		foreach (char @char in chars)
+		{
+			AppendChar(@char);
+		}
+	}
+
+	/// <summary>
 	/// Append a serial of same characters into the collection.
 	/// </summary>
 	/// <param name="c">The character.</param>
@@ -406,18 +452,6 @@ public unsafe ref partial struct StringHandler
 		}
 
 		Length += count;
-	}
-
-	/// <summary>
-	/// Append a string representation of a specified instance, and then append a new line.
-	/// </summary>
-	/// <typeparam name="T">The type of the instance.</typeparam>
-	/// <param name="value">The value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AppendFormattedAndLine<T>(T value)
-	{
-		AppendFormatted(value);
-		AppendLine();
 	}
 
 	/// <summary>
@@ -613,6 +647,23 @@ public unsafe ref partial struct StringHandler
 		AppendFormatted<string?>(value, alignment, format);
 
 	/// <summary>
+	/// Writes the specified interpolated string into the handler.
+	/// </summary>
+	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
+	public void AppendFormatted([InterpolatedStringHandlerArgument] in StringHandler handler)
+	{
+		string result = handler.ToStringAndClear();
+		if (result.TryCopyTo(_chars[Length..]))
+		{
+			Length += result.Length;
+		}
+		else
+		{
+			AppendFormattedSlow(result);
+		}
+	}
+
+	/// <summary>
 	/// Writes the specified value to the handler.
 	/// </summary>
 	/// <param name="value">The value to write.</param>
@@ -635,6 +686,28 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	public void AppendFormatted(object? value, int alignment = 0, string? format = null) =>
 		AppendFormatted<object?>(value, alignment, format);
+
+	/// <summary>
+	/// Append a string that is represented as a <see cref="char"/>*.
+	/// </summary>
+	/// <param name="value">The string.</param>
+	/// <param name="length">The length of the string.</param>
+	public void AppendFormattedUnsafe([DisallowNull, NotNull] char* value, int length)
+	{
+		int pos = Length;
+		if (pos > _chars.Length - length)
+		{
+			Grow(length);
+		}
+
+		var dst = _chars.Slice(Length, length);
+		for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
+		{
+			dst[i] = *value++;
+		}
+
+		Length += length;
+	}
 
 	/// <summary>
 	/// Append a serial of strings from a serial of elements.
@@ -662,7 +735,7 @@ public unsafe ref partial struct StringHandler
 	{
 		foreach (var element in list)
 		{
-			AppendLiteral(converter(element));
+			AppendFormatted(converter(element));
 		}
 	}
 
@@ -679,7 +752,7 @@ public unsafe ref partial struct StringHandler
 	{
 		foreach (var element in list)
 		{
-			AppendLiteral(converter(element));
+			AppendFormatted(converter(element));
 		}
 	}
 
@@ -718,8 +791,8 @@ public unsafe ref partial struct StringHandler
 	{
 		foreach (var element in list)
 		{
-			AppendLiteral(converter(element));
-			AppendLiteral(separator);
+			AppendFormatted(converter(element));
+			AppendFormatted(separator);
 		}
 
 		Length -= separator.Length;
@@ -739,8 +812,66 @@ public unsafe ref partial struct StringHandler
 	{
 		foreach (var element in list)
 		{
-			AppendLiteral(converter(element));
-			AppendLiteral(separator);
+			AppendFormatted(converter(element));
+			AppendFormatted(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements that is represented as a pointer.</param>
+	/// <param name="length">The length of the list.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
+		[DisallowNull, NotNull] TUnmanaged* list,
+		int length,
+		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
+		string separator
+	)
+	where TUnmanaged : unmanaged
+	{
+		for (int i = 0; i < length; i++)
+		{
+			var element = list[i];
+			AppendFormatted(converter(element));
+			AppendFormatted(separator);
+		}
+
+		Length -= separator.Length;
+	}
+
+	/// <summary>
+	/// Append a serial of strings converted from a serial of elements.
+	/// </summary>
+	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
+	/// <param name="list">The list of elements that is represented as a pointer.</param>
+	/// <param name="length">The length of the list.</param>
+	/// <param name="converter">
+	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
+	/// whose the rule is defined as a method specified as the delegate instance as this argument.
+	/// </param>
+	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
+		[DisallowNull, NotNull] TUnmanaged* list,
+		int length,
+		Func<TUnmanaged, string?> converter,
+		string separator
+	)
+	where TUnmanaged : unmanaged
+	{
+		for (int i = 0; i < length; i++)
+		{
+			var element = list[i];
+			AppendFormatted(converter(element));
+			AppendFormatted(separator);
 		}
 
 		Length -= separator.Length;
@@ -748,6 +879,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <summary>
 	/// Append a series of elements into the current collection.
+	/// In addition, new line characters will be inserted after each element.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="list">The list.</param>
@@ -755,7 +887,7 @@ public unsafe ref partial struct StringHandler
 	{
 		foreach (var element in list)
 		{
-			AppendLiteral(element?.ToString());
+			AppendFormatted(element?.ToString());
 			AppendLine();
 		}
 	}
@@ -795,11 +927,6 @@ public unsafe ref partial struct StringHandler
 		return ref MemoryMarshal.GetReference(_chars);
 	}
 
-	/// <summary>
-	/// Gets the built <see cref="string"/>.
-	/// </summary>
-	/// <returns>The built string.</returns>
-	public override readonly string ToString() => new(Text);
 
 	/// <summary>
 	/// Gets the built <see cref="string"/> and clears the handler.
@@ -819,13 +946,21 @@ public unsafe ref partial struct StringHandler
 		}
 		finally
 		{
-			// Clears the memory usage.
-			char[]? toReturn = _arrayToReturnToPool;
-			this = default;
-			if (toReturn is not null)
-			{
-				ArrayPool<char>.Shared.Return(toReturn);
-			}
+			Clear();
+		}
+	}
+
+	/// <summary>
+	/// Clears the handler, returning any rented array to the pool.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void Clear()
+	{
+		char[]? toReturn = _arrayToReturnToPool;
+		this = default;
+		if (toReturn is not null)
+		{
+			ArrayPool<char>.Shared.Return(toReturn);
 		}
 	}
 

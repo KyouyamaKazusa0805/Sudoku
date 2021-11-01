@@ -44,9 +44,10 @@
 * 提升 C# 版本到 C# 10，更进新语法；
 * 所有带 `Ex` 后缀的扩展类型（带扩展方法的类型）全部从 `Ex` 改为 `Extensions`，**并修改命名空间到这个类型自身的命名空间下**；
 * 代码重构，修改源代码生成器的基本代码，使用面向 LINQ 的源代码生成器，使得代码更具可读性；
-* 给 `ValueStringBuilder` 类型添加 `ToStringAndClear` 方法，原因有二：第一是为了避免和 `ToString` 的基本用法，帮助用户使用代码；第二是为了分离开基本输出字符串和释放内存的逻辑；
+* ~~给 `ValueStringBuilder` 类型添加 `ToStringAndClear` 方法，原因有二：第一是为了避免和 `ToString` 的基本用法，帮助用户使用代码；第二是为了分离开基本输出字符串和释放内存的逻辑；~~
 * 统一命名，更改 `Grid.CandidateMap` 名字为 `Grid.CandidatesMap`；
-* 使用新的源代码生成器项目 `Sudoku.Diagnostics.CodeGen`（#181）。
+* 使用新的源代码生成器项目 `Sudoku.Diagnostics.CodeGen`（#181）；
+* 添加新的数据类型 `StringHandler`，用来表示一个内插字符串的拼接对象，同时也可以作为 `ValueStringBuilder` 类型的替代品，并弃用 `ValueStringBuilder` 数据类型（#184）。
 
 ## UI 变动
 

@@ -192,7 +192,7 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 
 		// Get the interpolation values, and extract them into a new collection to store the format values.
 		int length = format.Length;
-		var sb = new ValueStringBuilder(stackalloc char[length]);
+		var sb = new StringHandler(initialCapacity: length);
 		var formats = new List<string>(10);
 		int formatCount = 0;
 		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
@@ -205,14 +205,14 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 				}
 				case (Left: '{', Right: '{'):
 				{
-					sb.Append("{{");
+					sb.AppendLiteral("{{");
 					i++;
 
 					break;
 				}
 				case (Left: '}', Right: '}'):
 				{
-					sb.Append("}}");
+					sb.AppendLiteral("}}");
 					i++;
 
 					break;
@@ -233,9 +233,10 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 						throw new InvalidOperationException("Missing the closed brace character '}'.");
 					}
 
-					sb.Append('{');
-					sb.Append(formatCount++);
-					sb.Append('}');
+					sb.AppendChar('{');
+					sb.AppendFormatted(formatCount++);
+					sb.AppendChar('}');
+
 					formats.Add(format[(i + 1)..pos]);
 
 					i = pos;
@@ -244,14 +245,14 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 				}
 				case (Left: '\\', Right: var right) when handleEscaping: // De-escape the escaping characters.
 				{
-					sb.Append(right);
+					sb.AppendChar(right);
 					i++;
 
 					break;
 				}
 				case (Left: var left, _):
 				{
-					sb.Append(left);
+					sb.AppendChar(left);
 
 					break;
 				}

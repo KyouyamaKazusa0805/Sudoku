@@ -41,18 +41,18 @@ public sealed class BasicPuzzleGenerator : DiggingPuzzleGenerator
 		ref var progressResult = ref progress is null ? ref defaultValue : ref pr;
 		progress?.Report(defaultValue);
 
-		StringBuilder puzzle = new(SudokuGrid.EmptyString), solution = new(SudokuGrid.EmptyString);
-		GenerateAnswerGrid(puzzle, solution);
+		StringHandler puzzle = new(SudokuGrid.EmptyString), solution = new();
+		GenerateAnswerGrid(ref puzzle, ref solution);
 
 		// Now we remove some digits from the grid.
 		var allTypes = symmetricalType.GetAllFlags() ?? new[] { SymmetryType.None };
 		int count = allTypes.Length;
-		var tempSb = new ValueStringBuilder(solution.ToString());
+		var tempSb = new StringHandler(solution.ToString());
 		string result;
 		do
 		{
 			var selectedType = allTypes[IPuzzleGenerator.Rng.Next(count)];
-			tempSb.CopyTo(solution);
+			tempSb.CopyTo(ref solution);
 
 			var totalMap = Cells.Empty;
 			do

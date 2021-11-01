@@ -59,14 +59,19 @@ public sealed record Gsp2StepInfo(
 			{
 				const string separator = ", ";
 
-				var sb = new ValueStringBuilder(stackalloc char[100]);
+				var sb = new StringHandler(initialCapacity: 100);
 				for (int i = 0; i < 9; i++)
 				{
 					int? value = MappingTable[i];
 
-					sb.Append(i + 1);
-					sb.Append(value is { } v && value != i ? $" -> {v + 1}" : string.Empty);
-					sb.Append(separator);
+					sb.AppendFormatted(i + 1);
+
+					if (value is { } v && value != i)
+					{
+						sb.AppendFormatted($" -> {v + 1}");
+					}
+
+					sb.AppendFormatted(separator);
 				}
 
 				sb.RemoveFromEnd(separator.Length);
@@ -99,21 +104,21 @@ public sealed record Gsp2StepInfo(
 			{
 				const string separator = ", ";
 
-				var sb = new ValueStringBuilder(stackalloc char[100]);
-				sb.Append((string)TextResources.Current.SymmetrySnippet);
+				var sb = new StringHandler(initialCapacity: 100);
+				sb.AppendFormatted((string)TextResources.Current.SymmetrySnippet);
 
 				foreach (int[]? swappingRegionPair in SwappingTable)
 				{
 					if (swappingRegionPair is not null)
 					{
-						sb.Append(new RegionCollection(swappingRegionPair[0]).ToString());
-						sb.Append((string)TextResources.Current.WithKeyword);
-						sb.Append(new RegionCollection(swappingRegionPair[1]).ToString());
-						sb.Append(separator);
+						sb.AppendFormatted(new RegionCollection(swappingRegionPair[0]).ToString());
+						sb.AppendFormatted((string)TextResources.Current.WithKeyword);
+						sb.AppendFormatted(new RegionCollection(swappingRegionPair[1]).ToString());
+						sb.AppendFormatted(separator);
 					}
 				}
 
-				sb.Append((string)TextResources.Current.SymmetryThenWeGet);
+				sb.AppendFormatted((string)TextResources.Current.SymmetryThenWeGet);
 
 				return sb.ToStringAndClear();
 			}

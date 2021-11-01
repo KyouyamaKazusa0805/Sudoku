@@ -77,11 +77,11 @@ public readonly ref partial struct DigitCollection
 		}
 
 		string separator = format ?? string.Empty;
-		var sb = new ValueStringBuilder(stackalloc char[9]);
+		var sb = new StringHandler(initialCapacity: 9);
 		foreach (int digit in this)
 		{
-			sb.Append(digit + 1);
-			sb.Append(separator);
+			sb.AppendFormatted(digit + 1);
+			sb.AppendFormatted(separator);
 		}
 
 		sb.RemoveFromEnd(separator.Length);

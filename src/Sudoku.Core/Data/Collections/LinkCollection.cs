@@ -36,16 +36,17 @@ public readonly ref partial struct LinkCollection
 			_ => f(_collection)
 		};
 
+
 		static string f(in Span<Link> collection)
 		{
 			var links = collection.ToArray();
-			var sb = new ValueStringBuilder(stackalloc char[100]);
+			var sb = new StringHandler(initialCapacity: 100);
 			foreach (var (start, _, type) in links)
 			{
-				sb.Append(new Candidates { start });
-				sb.Append(type.GetNotation());
+				sb.AppendFormatted(new Candidates { start });
+				sb.AppendFormatted(type.GetNotation());
 			}
-			sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
+			sb.AppendFormatted(new Candidates { links[^1].EndCandidate }.ToString());
 
 			// Remove redundant digit labels:
 			// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).

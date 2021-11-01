@@ -303,10 +303,10 @@ public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<Sud
 		get
 		{
 			// The maximum grid as the base 64 is of length 45.
-			var sb = new ValueStringBuilder(stackalloc char[45]);
+			var sb = new StringHandler(initialCapacity: 45);
 			for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= Base64Length)
 			{
-				sb.Append(Base64List[(int)(temp % Base64Length)]);
+				sb.AppendChar(Base64List[(int)(temp % Base64Length)]);
 			}
 
 			return sb.ToStringAndClear();
@@ -613,8 +613,8 @@ public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<Sud
 		const string separator = ", ";
 		fixed (short* pArr = _values)
 		{
-			var sb = new ValueStringBuilder(400);
-			sb.AppendRange(pArr, Length, static v => v.ToString(), separator);
+			var sb = new StringHandler(initialCapacity: 400);
+			sb.AppendRangeWithSeparatorUnsafe(pArr, Length, static v => v.ToString(), separator);
 			return sb.ToStringAndClear();
 		}
 	}

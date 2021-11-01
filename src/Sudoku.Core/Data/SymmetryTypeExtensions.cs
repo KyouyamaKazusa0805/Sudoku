@@ -32,14 +32,14 @@ public static class SymmetryTypeExtensions
 		static string f(SymmetryType type)
 		{
 			const string separator = ", ";
-			var sb = new ValueStringBuilder(stackalloc char[210]);
+			var sb = new StringHandler(initialCapacity: 210);
 			var flags = Enum.GetValues<SymmetryType>()[1..];
 			foreach (var flag in flags)
 			{
 				if (type.Flags(flag))
 				{
-					sb.Append(flag.ToString());
-					sb.Append(separator);
+					sb.AppendFormatted(flag.ToString());
+					sb.AppendLiteral(separator);
 				}
 			}
 

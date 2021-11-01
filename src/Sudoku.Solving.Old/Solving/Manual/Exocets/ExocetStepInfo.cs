@@ -121,9 +121,10 @@ public abstract record ExocetStepInfo(
 	/// <inheritdoc/>
 	public sealed override string ToFullString()
 	{
-		var sb = new ValueStringBuilder(stackalloc char[100]);
-		sb.AppendLine(base.ToFullString());
-		sb.AppendLineRange(Eliminations);
+		var sb = new StringHandler(initialCapacity: 100);
+		sb.AppendFormatted(base.ToFullString());
+		sb.AppendLine();
+		sb.AppendRangeWithLines(Eliminations);
 
 		return sb.ToStringAndClear();
 	}

@@ -13,18 +13,18 @@ partial struct SudokuGrid
 		/// <returns>The string.</returns>
 		private partial string ToExcelString(in SudokuGrid grid)
 		{
-			var span = grid.ToString("0").AsSpan();
-			var sb = new ValueStringBuilder(stackalloc char[81 + 72 + 9]);
+			ReadOnlySpan<char> span = grid.ToString("0");
+			var sb = new StringHandler(initialCapacity: 81 + 72 + 9);
 			for (int i = 0; i < 9; i++)
 			{
 				for (int j = 0; j < 9; j++)
 				{
 					if (span[i * 9 + j] - '0' is var digit and not 0)
 					{
-						sb.Append(digit);
+						sb.AppendFormatted(digit);
 					}
 
-					sb.Append('\t');
+					sb.AppendChar('\t');
 				}
 
 				sb.RemoveFromEnd(1);
@@ -180,8 +180,8 @@ partial struct SudokuGrid
 		/// <returns>The result.</returns>
 		private partial string ToSingleLineStringCore(in SudokuGrid grid)
 		{
-			var sb = new ValueStringBuilder(stackalloc char[162]);
-			var elims = new StringBuilder();
+			var sb = new StringHandler(initialCapacity: 162);
+			var elims = new StringHandler();
 			var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
 
 			unsafe
@@ -199,21 +199,58 @@ partial struct SudokuGrid
 							if (!grid[c, i])
 							{
 								// The value is 'true', which means the digit has already been deleted.
-								elims.Append(i + 1).Append(c / 9 + 1).Append(c % 9 + 1).Append(' ');
+								elims.AppendFormatted(i + 1);
+								elims.AppendFormatted(c / 9 + 1);
+								elims.AppendFormatted(c % 9 + 1);
+								elims.AppendChar(' ');
 							}
 						}
 					}
 
-					sb.Append(status switch
+					switch (status)
 					{
-						CellStatus.Empty => Placeholder.ToString(),
-						CellStatus.Modifiable => WithModifiables ? $"+{grid[c] + 1}" : $"{Placeholder}",
-						CellStatus.Given => $"{grid[c] + 1}"
-					});
+						case CellStatus.Empty:
+						{
+							sb.AppendChar(Placeholder);
+							break;
+						}
+						case CellStatus.Modifiable:
+						{
+							if (WithModifiables)
+							{
+								sb.AppendFormatted($"+{grid[c] + 1}");
+							}
+							else
+							{
+								sb.AppendChar(Placeholder);
+							}
+
+							break;
+						}
+						case CellStatus.Given:
+						{
+							sb.AppendFormatted($"{grid[c] + 1}");
+							break;
+						}
+						default:
+						{
+							throw new InvalidOperationException("The specified status is invalid.");
+						}
+					}
 				}
 			}
 
-			string elimsStr = elims.Length <= 3 ? elims.ToString() : elims.RemoveFrom(^1).ToString();
+			string elimsStr;
+			if (elims.Length <= 3)
+			{
+				elimsStr = elims.ToStringAndClear();
+			}
+			else
+			{
+				elims.RemoveFromEnd(1);
+				elimsStr = elims.ToStringAndClear();
+			}
+
 			return $"{sb.ToStringAndClear()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
 		}
 
@@ -386,10 +423,10 @@ partial struct SudokuGrid
 											}
 											default:
 											{
-												var innerSb = new ValueStringBuilder(stackalloc char[9]);
+												var innerSb = new StringHandler(initialCapacity: 9);
 												foreach (int z in value)
 												{
-													innerSb.Append(z + 1);
+													innerSb.AppendFormatted(z + 1);
 												}
 
 												s = innerSb.ToStringAndClear();

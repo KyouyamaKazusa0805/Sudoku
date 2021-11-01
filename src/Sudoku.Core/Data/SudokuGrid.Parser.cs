@@ -220,14 +220,14 @@ partial struct SudokuGrid
 				return Undefined;
 			}
 
-			var sb = new ValueStringBuilder(stackalloc char[81]);
+			var sb = new StringHandler(initialCapacity: 81);
 			foreach (string value in values)
 			{
 				foreach (string digitString in value.Split(new[] { '\t' }))
 				{
 					fixed (char* c = digitString)
 					{
-						sb.Append(string.IsNullOrEmpty(digitString) ? '.' : *c);
+						sb.AppendChar(string.IsNullOrEmpty(digitString) ? '.' : *c);
 					}
 				}
 			}
@@ -400,11 +400,8 @@ partial struct SudokuGrid
 			}
 
 			// Remove all '\r's and '\n's.
-			var sb = new ValueStringBuilder(stackalloc char[81 + (9 << 1)]);
-			foreach (char c in from @char in match where @char is not ('\r' or '\n') select @char)
-			{
-				sb.Append(c);
-			}
+			var sb = new StringHandler(initialCapacity: 81 + (9 << 1));
+			sb.AppendCharList(from @char in match where @char is not ('\r' or '\n') select @char);
 
 			parser.ParsingValue = sb.ToStringAndClear();
 			return OnParsingSusser(ref parser);

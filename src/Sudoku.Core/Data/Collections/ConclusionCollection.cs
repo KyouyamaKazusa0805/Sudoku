@@ -77,7 +77,7 @@ public readonly ref partial struct ConclusionCollection
 		unsafe string internalToString(in ReadOnlySpan<Conclusion> collection)
 		{
 			var conclusions = collection.ToArray();
-			var sb = new ValueStringBuilder(stackalloc char[50]);
+			var sb = new StringHandler(initialCapacity: 50);
 			if (shouldSort)
 			{
 				conclusions.Sort(&cmp);
@@ -94,16 +94,16 @@ public readonly ref partial struct ConclusionCollection
 						from conclusion in typeGroup
 						group conclusion by conclusion.Digit)
 					{
-						sb.Append(new Cells(from conclusion in digitGroup select conclusion.Cell));
-						sb.Append(op);
-						sb.Append(digitGroup.Key + 1);
-						sb.Append(separator);
+						sb.AppendFormatted(new Cells(from conclusion in digitGroup select conclusion.Cell));
+						sb.AppendFormatted(op);
+						sb.AppendFormatted(digitGroup.Key + 1);
+						sb.AppendFormatted(separator);
 					}
 
 					sb.RemoveFromEnd(separator.Length);
 					if (!hasOnlyOneType)
 					{
-						sb.Append(separator);
+						sb.AppendFormatted(separator);
 					}
 				}
 
@@ -114,7 +114,7 @@ public readonly ref partial struct ConclusionCollection
 			}
 			else
 			{
-				sb.AppendRange(conclusions, static c => c.ToString(), separator);
+				sb.AppendRangeWithSeparator(conclusions, static c => c.ToString(), separator);
 			}
 
 			return sb.ToStringAndClear();

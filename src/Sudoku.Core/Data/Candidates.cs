@@ -398,7 +398,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		static string f(int[] offsets)
 		{
 			const string separator = ", ";
-			var sb = new ValueStringBuilder(stackalloc char[50]);
+			var sb = new StringHandler(initialCapacity: 50);
 
 			foreach (var digitGroup in
 				from candidate in offsets
@@ -412,7 +412,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 					cells.AddAnyway(candidate / 9);
 				}
 
-				sb.Append($"{cells}({digitGroup.Key + 1}){separator}");
+				sb.AppendFormatted($"{cells}({digitGroup.Key + 1}){separator}");
 			}
 
 			sb.RemoveFromEnd(separator.Length);

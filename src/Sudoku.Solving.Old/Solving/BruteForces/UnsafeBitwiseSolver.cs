@@ -118,39 +118,16 @@ public sealed unsafe partial class UnsafeBitwiseSolver : ISolver
 	/// </param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
-	public long Solve(string puzzle, StringBuilder? solution, int limit)
+	public long Solve(string puzzle, ref StringHandler solution, int limit)
 	{
 		fixed (char* p = puzzle)
 		{
 			char* solutionStr = stackalloc char[BufferLength];
 			long result = InternalSolve(p, solutionStr, limit);
 
-			solution?.Clear().Append(new string(solutionStr));
-
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// The inner solver.
-	/// </summary>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <param name="solution">
-	/// The solution receiver. This parameter is used when you want
-	/// to use the solution string. The receiver is represented as a <see cref="ValueStringBuilder"/>.
-	/// </param>
-	/// <param name="limit">The limit.</param>
-	/// <returns>The number of all solutions.</returns>
-	/// <seealso cref="ValueStringBuilder"/>
-	public long Solve(string puzzle, ref ValueStringBuilder solution, int limit)
-	{
-		fixed (char* p = puzzle)
-		{
-			char* solutionStr = stackalloc char[BufferLength];
-			long result = InternalSolve(p, solutionStr, limit);
-
-			solution.Clear();
-			solution.Append(solutionStr, BufferLength);
+			_ = solution.ToStringAndClear();
+			solution = new(BufferLength - 1);
+			solution.AppendFormattedUnsafe(solutionStr, BufferLength - 1);
 
 			return result;
 		}

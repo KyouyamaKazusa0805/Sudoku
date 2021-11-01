@@ -768,7 +768,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 		static string tableToString(in Cells @this)
 		{
-			var sb = new ValueStringBuilder(stackalloc char[(3 * 7 + 2) * 13]);
+			var sb = new StringHandler(initialCapacity: (3 * 7 + 2) * 13);
 			for (int i = 0; i < 3; i++)
 			{
 				for (int bandLn = 0; bandLn < 3; bandLn++)
@@ -777,13 +777,13 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 					{
 						for (int columnLn = 0; columnLn < 3; columnLn++)
 						{
-							sb.Append(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
-							sb.Append(' ');
+							sb.AppendChar(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
+							sb.AppendChar(' ');
 						}
 
 						if (j != 2)
 						{
-							sb.Append("| ");
+							sb.AppendLiteral("| ");
 						}
 						else
 						{
@@ -794,7 +794,8 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 				if (i != 2)
 				{
-					sb.AppendLine("------+-------+------");
+					sb.AppendLiteral("------+-------+------");
+					sb.AppendLine();
 				}
 			}
 
@@ -804,7 +805,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 		static string normalToString(in Cells @this)
 		{
 			const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
-			var sbRow = new ValueStringBuilder(stackalloc char[50]);
+			var sbRow = new StringHandler(initialCapacity: 50);
 			var dic = new Dictionary<int, ICollection<int>>();
 			foreach (int cell in @this)
 			{
@@ -818,24 +819,24 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			bool addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbRow.Append(leftCurlyBrace);
+				sbRow.AppendLiteral(leftCurlyBrace);
 			}
 			foreach (int row in dic.Keys)
 			{
-				sbRow.Append('r');
-				sbRow.Append(row + 1);
-				sbRow.Append('c');
+				sbRow.AppendChar('r');
+				sbRow.AppendFormatted(row + 1);
+				sbRow.AppendChar('c');
 				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
-				sbRow.Append(separator);
+				sbRow.AppendLiteral(separator);
 			}
 			sbRow.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbRow.Append(rightCurlyBrace);
+				sbRow.AppendLiteral(rightCurlyBrace);
 			}
 
 			dic.Clear();
-			var sbColumn = new ValueStringBuilder(stackalloc char[50]);
+			var sbColumn = new StringHandler(initialCapacity: 50);
 			foreach (int cell in @this)
 			{
 				if (!dic.ContainsKey(cell % 9))
@@ -848,21 +849,21 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbColumn.Append(leftCurlyBrace);
+				sbColumn.AppendLiteral(leftCurlyBrace);
 			}
 
 			foreach (int column in dic.Keys)
 			{
-				sbColumn.Append('r');
+				sbColumn.AppendChar('r');
 				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
-				sbColumn.Append('c');
-				sbColumn.Append(column + 1);
-				sbColumn.Append(separator);
+				sbColumn.AppendChar('c');
+				sbColumn.AppendFormatted(column + 1);
+				sbColumn.AppendLiteral(separator);
 			}
 			sbColumn.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbColumn.Append(rightCurlyBrace);
+				sbColumn.AppendLiteral(rightCurlyBrace);
 			}
 
 			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
@@ -870,32 +871,32 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 		static string binaryToString(in Cells @this, bool withSeparator)
 		{
-			var sb = new ValueStringBuilder(stackalloc char[81]);
+			var sb = new StringHandler(initialCapacity: 81);
 			int i;
 			long value = @this._low;
 			for (i = 0; i < 27; i++, value >>= 1)
 			{
-				sb.Append(value & 1);
+				sb.AppendFormatted(value & 1);
 			}
 			if (withSeparator)
 			{
-				sb.Append(' ');
+				sb.AppendChar(' ');
 			}
 			for (; i < 41; i++, value >>= 1)
 			{
-				sb.Append(value & 1);
+				sb.AppendFormatted(value & 1);
 			}
 			for (value = @this._high; i < 54; i++, value >>= 1)
 			{
-				sb.Append(value & 1);
+				sb.AppendFormatted(value & 1);
 			}
 			if (withSeparator)
 			{
-				sb.Append(' ');
+				sb.AppendChar(' ');
 			}
 			for (; i < 81; i++, value >>= 1)
 			{
-				sb.Append(value & 1);
+				sb.AppendFormatted(value & 1);
 			}
 
 			sb.Reverse();

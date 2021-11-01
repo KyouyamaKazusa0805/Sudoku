@@ -2379,12 +2379,12 @@
             <remarks>
             You can use this type like this:
             <code><![CDATA[
-            var sb = new StringHandler(100);
+            var sb = new StringHandler(initialCapacity: 100);
             
-            sb.AppendLiteral("Hello");
-            sb.AppendFormatted(',');
-            sb.AppendLiteral("World");
-            sb.AppendFormatted('!');
+            sb.AppendFormatted("Hello");
+            sb.AppendChar(',');
+            sb.AppendFormatted("World");
+            sb.AppendChar('!');
             
             Console.WriteLine(sb.ToStringAndClear());
             ]]></code>
@@ -2431,6 +2431,12 @@
             The span to write into.
             </summary>
         </member>
+        <member name="M:System.Text.StringHandler.#ctor">
+            <summary>
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>,
+            with the default-sized buffer 256.
+            </summary>
+        </member>
         <member name="M:System.Text.StringHandler.#ctor(System.Int32)">
             <summary>
             Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
@@ -2469,6 +2475,13 @@
             Arguments are not validated as they'd otherwise be for members intended to be used directly.
             </remarks>
         </member>
+        <member name="M:System.Text.StringHandler.#ctor(System.String)">
+            <summary>
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>
+            that is initialized by a string value.
+            </summary>
+            <param name="initialString">The initialized string.</param>
+        </member>
         <member name="P:System.Text.StringHandler.Length">
             <summary>
             Position at which to write the next character.
@@ -2478,6 +2491,24 @@
             <summary>
             Gets a span of the written characters thus far.
             </summary>
+        </member>
+        <member name="P:System.Text.StringHandler.Item(System.Int32)">
+            <summary>
+            Gets the reference of a character at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The reference of the character.</returns>
+            <remarks>
+            This property returns a <see langword="ref"/> <see cref="T:System.Char"/>, which
+            means you can use the return value to re-assign a new value, as the same behavior
+            as the <see langword="set"/> accessor.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.CopyTo(System.Text.StringHandler@)">
+            <summary>
+            Copies the current colletion into the specified collection.
+            </summary>
+            <param name="handler">The collection.</param>
         </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference">
             <summary>
@@ -2490,6 +2521,12 @@
             the explicit method call, and write eg <c>fixed (char* c = handler)</c>.
             </para>
             </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.ToString">
+            <summary>
+            Gets the built <see cref="T:System.String"/>.
+            </summary>
+            <returns>The built string.</returns>
         </member>
         <member name="M:System.Text.StringHandler.Insert(System.Int32,System.Char,System.Int32)">
             <summary>
@@ -2546,13 +2583,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:System.Text.StringHandler.AppendLiteralUnsafe(System.Char*,System.Int32)">
-            <summary>
-            Append a string that is represented as a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="value">The string.</param>
-            <param name="length">The length of the string.</param>
-        </member>
         <member name="M:System.Text.StringHandler.AppendLine">
             <summary>
             Append a new line string <see cref="P:System.Environment.NewLine"/>.
@@ -2565,19 +2595,18 @@
             </summary>
             <param name="c">The character.</param>
         </member>
+        <member name="M:System.Text.StringHandler.AppendCharList(System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            Append a serial of characters at the tail of the collection.
+            </summary>
+            <param name="chars">The serial of characters.</param>
+        </member>
         <member name="M:System.Text.StringHandler.AppendRepeatedChars(System.Char,System.Int32)">
             <summary>
             Append a serial of same characters into the collection.
             </summary>
             <param name="c">The character.</param>
             <param name="count">The number of the character you want to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendFormattedAndLine``1(``0)">
-            <summary>
-            Append a string representation of a specified instance, and then append a new line.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="value">The value.</param>
         </member>
         <member name="M:System.Text.StringHandler.AppendFormatted``1(``0)">
             <summary>
@@ -2657,6 +2686,12 @@
             Just delegate to the <c>T</c>-based implementation.
             </remarks>
         </member>
+        <member name="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler@)">
+            <summary>
+            Writes the specified interpolated string into the handler.
+            </summary>
+            <param name="handler">The handler that creates the interpolated string as this argument.</param>
+        </member>
         <member name="M:System.Text.StringHandler.AppendFormatted(System.Object,System.Int32,System.String)">
             <summary>
             Writes the specified value to the handler.
@@ -2679,6 +2714,13 @@
             </list>
             It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
             </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendFormattedUnsafe(System.Char*,System.Int32)">
+            <summary>
+            Append a string that is represented as a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="value">The string.</param>
+            <param name="length">The length of the string.</param>
         </member>
         <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -2741,9 +2783,36 @@
             </param>
             <param name="separator">The separator to append when an element is finished to append.</param>
         </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,,System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements that is represented as a pointer.</param>
+            <param name="length">The length of the list.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements that is represented as a pointer.</param>
+            <param name="length">The length of the list.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
         <member name="M:System.Text.StringHandler.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Append a series of elements into the current collection.
+            In addition, new line characters will be inserted after each element.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="list">The list.</param>
@@ -2762,12 +2831,6 @@
             Ensures that the builder has a null character after <see cref="P:System.Text.StringHandler.Length"/>.
             </param>
             <seealso cref="P:System.Text.StringHandler.Length"/>
-        </member>
-        <member name="M:System.Text.StringHandler.ToString">
-            <summary>
-            Gets the built <see cref="T:System.String"/>.
-            </summary>
-            <returns>The built string.</returns>
         </member>
         <member name="M:System.Text.StringHandler.ToStringAndClear">
             <summary>
@@ -2956,488 +3019,6 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Text.StringHandler.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:System.Text.ValueStringBuilder">
-            <summary>
-            Encapsulates a string builder implementation that is used via a <see langword="struct"/>.
-            </summary>
-            <remarks>
-            <para>You shouldn't use the parameterless constructor <see cref="M:System.Text.ValueStringBuilder.#ctor"/>.</para>
-            <para>
-            You can use this struct like this:
-            <code><![CDATA[
-            var sb = new ValueStringBuilder(stackalloc char[100]);
-            
-            // Appending operations...
-            sb.Append("Hello");
-            sb.Append(',');
-            sb.Append("World");
-            sb.Append('!');
-            
-            Console.WriteLine(sb.ToString()); // Dispose method will be called here.
-            ]]></code>
-            </para>
-            </remarks>
-            <seealso cref="M:System.Text.ValueStringBuilder.#ctor"/>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder._chunk">
-            <summary>
-            Indicates the inner character series that is created by <see cref="T:System.Buffers.ArrayPool`1"/>.
-            </summary>
-            <remarks>
-            <para>
-            In the general cases, this field always keeps the <see langword="null"/> value.
-            This field isn't <see langword="null"/> when you calls the constructor
-            <see cref="M:System.Text.ValueStringBuilder.#ctor(System.Int32)"/> because that constructor will be called
-            if you want to create a large buffer.
-            </para>
-            <para>
-            The field is as the same reference as the rent buffer array segment. If called that constructor,
-            the inner code will execute <see cref="M:System.Buffers.ArrayPool`1.Rent(System.Int32)"/> to rent the specified number
-            of bytes of buffer to be used, which won't allocate any memory.
-            </para>
-            <para>
-            If the field is not <see langword="null"/> and when we calls the method <see cref="M:System.Text.ValueStringBuilder.ToString"/>
-            and <see cref="M:System.Text.ValueStringBuilder.ToStringAndClear"/>, the buffer will be returned and the inner data will be released.
-            </para>
-            </remarks>
-            <seealso cref="T:System.Buffers.ArrayPool`1"/>
-            <seealso cref="M:System.Buffers.ArrayPool`1.Rent(System.Int32)"/>
-            <seealso cref="M:System.Text.ValueStringBuilder.#ctor(System.Int32)"/>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToStringAndClear"/>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder._chars">
-            <summary>
-            Indicates the character pool.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.#ctor(System.String)">
-            <summary>
-            Initializes an instance with the specified string as the basic buffer.
-            </summary>
-            <param name="s">The string value.</param>
-            <remarks>
-            This constructor should be used when you know the maximum length of the return string. In addition,
-            the string shouldn't be too long; below 300 (approximately) is okay.
-            </remarks>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.#ctor(System.Span{System.Char}@)">
-            <summary>
-            Initializes an instance with the buffer specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="buffer">The initial buffer.</param>
-            <remarks>
-            <para>
-            For the buffer, you can use the nested <see langword="stackalloc"/> expression to create
-            a serial of buffer, such as <c>stackalloc char[10]</c>, where the length 10 is the value
-            that holds the approximate maximum number of characters when output from your evaluation.
-            </para>
-            <para>
-            You can also use the constructor: <see cref="M:System.Text.ValueStringBuilder.#ctor(System.Int32)"/> like:
-            <code><![CDATA[var sb = new ValueStringBuilder(10);]]></code>
-            The code is nearly equivalent to
-            <code><![CDATA[var sb = new ValueStringBuilder(stackalloc char[10]);]]></code>
-            but uses shared array pool (i.e. the property <see cref="P:System.Buffers.ArrayPool`1.Shared"/>)
-            to create the buffer rather than using <see cref="T:System.Span`1"/>.
-            </para>
-            </remarks>
-            <seealso cref="T:System.Span`1"/>
-            <seealso cref="M:System.Text.ValueStringBuilder.#ctor(System.Int32)"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.#ctor(System.Int32)">
-            <summary>
-            Initializes an instance with the specified capacity.
-            </summary>
-            <param name="capacity">The capacity.</param>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Length">
-            <summary>
-            Indicates the length of the string builder.
-            </summary>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Capacity">
-            <summary>
-            Indicates the total capacity.
-            </summary>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Item(System.Int32)">
-            <summary>
-            Gets the reference of a character at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The reference of the character.</returns>
-            <remarks>
-            This property returns a <see langword="ref"/> <see cref="T:System.Char"/>, which
-            means you can use the return value to re-assign a new value, as the same behavior
-            as the <see langword="set"/> accessor.
-            </remarks>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.ValueStringBuilder@)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">The builder.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the target argument doesn't contain the enough space.
-            </exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.CopyTo(System.Text.StringBuilder)">
-            <summary>
-            Try to copy the current instance to the specified builder.
-            </summary>
-            <param name="builder">The builder.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
-            <summary>
-            <para>
-            Get a pinnable reference to the builder.
-            Does not ensure there is a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
-            </para>
-            <para>
-            This overload is pattern matched in the C# 7.3+ compiler so you can omit
-            the explicit method call, and write eg <c>fixed (char* c = builder)</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference(System.Boolean)">
-            <summary>
-            Get a pinnable reference to the builder.
-            </summary>
-            <param name="withTerminate">
-            Ensures that the builder has a null character after <see cref="P:System.Text.ValueStringBuilder.Length"/>.
-            </param>
-            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.EnsureCapacity(System.Int32)">
-            <summary>
-            To ensure the capacity in order to append characters into this collection.
-            </summary>
-            <param name="capacity">The capacity value to ensure.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Insert(System.Int32,System.Char,System.Int32)">
-            <summary>
-            Inserts a new character into the collection at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <param name="value">The character you want to insert into the collection.</param>
-            <param name="count">The number.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Insert(System.Int32,System.String)">
-            <summary>
-            Inserts a new string into the collection at the specified index.
-            </summary>
-            <param name="index">The index you want to insert.</param>
-            <param name="s">The string you want to insert.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Remove(System.Int32,System.Int32)">
-            <summary>
-            Remove a serial of characters from the specified index, with the specified length.
-            </summary>
-            <param name="startIndex">The start index.</param>
-            <param name="length">The length you want to remove.</param>
-            <remarks>
-            This method will be costly (move a lot of elements), so you shouldn't call this method usually.
-            </remarks>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.RemoveFromEnd(System.Int32)">
-            <summary>
-            Removes the specified number of characters from the end of the collection.
-            </summary>
-            <param name="length">The number of characters you want to remove.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Clear">
-            <summary>
-            To clear the builder.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append(System.Char)">
-            <summary>
-            Append a character at the tail of the collection.
-            </summary>
-            <param name="c">The character.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append(System.Char,System.Int32)">
-            <summary>
-            Append a serial of same characters into the collection.
-            </summary>
-            <param name="c">The character.</param>
-            <param name="count">The number of the character you want to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append``1(``0)">
-            <summary>
-            Append a value.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the value.</typeparam>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append(System.String)">
-            <summary>
-            Append a string into the collection.
-            </summary>
-            <param name="s">The string.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append(System.Char*,System.Int32)">
-            <summary>
-            Append a string that is represented as a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="value">The string.</param>
-            <param name="length">The length of the string.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Append(System.ReadOnlySpan{System.Char}@)">
-            <summary>
-            Append a serial of characters.
-            </summary>
-            <param name="value">The characters.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine">
-            <summary>
-            Append a new line string.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine(System.Object)">
-            <summary>
-            Append a new line string through the specified unknown typed instance.
-            </summary>
-            <param name="instance">The instance.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine(System.Char)">
-            <summary>
-            Append a character, and then append a new line string.
-            </summary>
-            <param name="c">The character.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine(System.Char,System.Int32)">
-            <summary>
-            Append a series of same characters, whose length is specified
-            as the argument <paramref name="count"/>.
-            </summary>
-            <param name="c">The character.</param>
-            <param name="count">The number of characters.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine(System.Char*,System.Int32)">
-            <summary>
-            Append a string that represented as a pointer.
-            </summary>
-            <param name="s">The string.</param>
-            <param name="length">The length.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine(System.String)">
-            <summary>
-            Append a string, and then append a new line.
-            </summary>
-            <param name="s">The string.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLine``1(``0)">
-            <summary>
-            Append a string representation of a specified instance, and then append a new line.
-            </summary>
-            <typeparam name="TUnmanaged">The type of the instance.</typeparam>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendLineRange``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements into the current collection.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.String)">
-            <summary>
-            Append a serial of strings from a serial of elements.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(System.Collections.Generic.IEnumerable{``0},,System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">The converter.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">The converter.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,System.String)">
-            <summary>
-            Append a serial of strings from a serial of elements specified as a pointer.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="length">The length of the list.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,,System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements specified as a pointer.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="length">The length of the list.</param>
-            <param name="converter">The converter.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendRange``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements specified as a pointer.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="length">The length of the list.</param>
-            <param name="converter">The converter.</param>
-            <param name="separator">The separator when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendSpan(System.Int32)">
-            <summary>
-            Append a span.
-            </summary>
-            <param name="length">The length of the characters.</param>
-            <returns>The span.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Reverse">
-            <summary>
-            Reverse the string builder instance. For example, if the list holds a string <c>"Hello"</c>,
-            after called this method, the string will be <c>"olleH"</c>.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.ToString">
-            <summary>
-            Returns the <see cref="T:System.String"/> result that is combined and constructed from the current instance.
-            </summary>
-            <returns>The <see cref="T:System.String"/> representation.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.ToStringAndClear">
-            <summary>
-            Returns the <see cref="T:System.String"/> result combined and constructed from the current instance,
-            and then dispose the instance.
-            </summary>
-            <returns>The <see cref="T:System.String"/> representation.</returns>
-            <remarks>
-            Please note that the method <see cref="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)"/> will be invoked in the execution of this method,
-            so this method isn't <see langword="readonly"/>, which is different from <see cref="M:System.Text.ValueStringBuilder.ToString"/>.
-            </remarks>
-            <seealso cref="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)"/>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToString"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
-            <summary>
-            Resize the internal buffer either by doubling current buffer size or
-            by adding <paramref name="additionalCapacityBeyondPos"/> to
-            <see cref="P:System.Text.ValueStringBuilder.Length"/> whichever is greater.
-            </summary>
-            <param name="additionalCapacityBeyondPos">Number of chars requested beyond current position.</param>
-            <seealso cref="P:System.Text.ValueStringBuilder.Length"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.AppendSlow(System.String)">
-            <summary>
-            Append a string.
-            </summary>
-            <param name="s">The string.</param>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Dispose(System.Boolean)">
-            <summary>
-            To dispose the collection. Although this method is <see langword="public"/>,
-            you may not call this method, because this method will be called automatically when
-            the method <see cref="M:System.Text.ValueStringBuilder.ToStringAndClear"/> is called.
-            </summary>
-            <param name="clearAll">Indicates whether we should return the buffer.</param>
-            <seealso cref="M:System.Text.ValueStringBuilder.ToStringAndClear"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
-            <summary>
-            Determines whether two instances has same values with the other instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.Text.ValueStringBuilder.Enumerator">
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._index">
-            <summary>
-            Indicates whether 
-            </summary>
-        </member>
-        <member name="F:System.Text.ValueStringBuilder.Enumerator._ptr">
-            <summary>
-            Indicates the pointer that points to the current character.
-            </summary>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.#ctor(System.Text.ValueStringBuilder@)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="P:System.Text.ValueStringBuilder.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Text.ValueStringBuilder@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Equality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
-            <summary>
-            Determine whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.op_Inequality(System.Text.ValueStringBuilder@,System.Text.ValueStringBuilder@)">
-            <summary>
-            Determine whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.ValueStringBuilder.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>

@@ -151,36 +151,6 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	}
 
 	/// <summary>
-	/// The inner solver.
-	/// </summary>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <param name="solution">
-	/// The solution receiver. This parameter is used when you want
-	/// to use the solution string. The receiver is represented as a <see cref="ValueStringBuilder"/>.
-	/// </param>
-	/// <param name="limit">The limit.</param>
-	/// <returns>The number of all solutions.</returns>
-	/// <seealso cref="ValueStringBuilder"/>
-	public long Solve(string puzzle, ref ValueStringBuilder solution, int limit)
-	{
-		fixed (char* p = puzzle)
-		{
-			char* solutionStr = stackalloc char[BufferLength];
-			try
-			{
-				return InternalSolve(p, solutionStr, limit);
-			}
-			finally
-			{
-				// There's no way to check whether a managed struct typed instance references to null.
-
-				solution.Clear();
-				solution.Append(solutionStr, BufferLength);
-			}
-		}
-	}
-
-	/// <summary>
 	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
 	/// any <see langword="out"/> parameters.
 	/// </summary>

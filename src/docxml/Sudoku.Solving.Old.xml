@@ -67,7 +67,7 @@
             The fast solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.GenerateAnswerGrid(System.Text.StringBuilder,System.Text.StringBuilder)">
+        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.GenerateAnswerGrid(System.Text.StringHandler@,System.Text.StringHandler@)">
             <summary>
             To generate an answer grid.
             </summary>
@@ -83,7 +83,7 @@
             </summary>
             <param name="pattern">The pattern array.</param>
         </member>
-        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.CheckDuplicate(System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Generating.DiggingPuzzleGenerator.CheckDuplicate(System.Text.StringHandler@,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
@@ -738,7 +738,7 @@
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.Text.StringBuilder,System.Int32)">
+        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.Text.StringHandler@,System.Int32)">
             <summary>
             The inner solver.
             </summary>
@@ -748,19 +748,6 @@
             </param>
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.Solve(System.String,System.Text.ValueStringBuilder@,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">
-            The solution receiver. This parameter is used when you want
-            to use the solution string. The receiver is represented as a <see cref="T:System.Text.ValueStringBuilder"/>.
-            </param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-            <seealso cref="T:System.Text.ValueStringBuilder"/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.UnsafeBitwiseSolver.CheckValidity(System.String)">
             <summary>

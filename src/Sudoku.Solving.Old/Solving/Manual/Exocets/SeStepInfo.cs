@@ -43,7 +43,7 @@ public sealed record SeStepInfo(
 			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraRegionsMask is not null)
 			{
-				var sb = new ValueStringBuilder(stackalloc char[100]);
+				var sb = new StringHandler(initialCapacity: 100);
 				int count = 0;
 				for (int digit = 0; digit < 9; digit++)
 				{
@@ -52,9 +52,9 @@ public sealed record SeStepInfo(
 						continue;
 					}
 
-					sb.Append(digit + 1);
-					sb.Append(new RegionCollection(mask.GetAllSets()).ToString());
-					sb.Append(separator);
+					sb.AppendFormatted(digit + 1);
+					sb.AppendFormatted(new RegionCollection(mask.GetAllSets()).ToString());
+					sb.AppendFormatted(separator);
 
 					count++;
 				}

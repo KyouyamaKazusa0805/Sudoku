@@ -17,7 +17,7 @@ public abstract class DiggingPuzzleGenerator : IPuzzleGenerator
 	/// </summary>
 	/// <param name="puzzle">The puzzle string.</param>
 	/// <param name="solution">The solution string.</param>
-	protected virtual void GenerateAnswerGrid(StringBuilder puzzle, StringBuilder solution)
+	protected virtual void GenerateAnswerGrid(ref StringHandler puzzle, ref StringHandler solution)
 	{
 		do
 		{
@@ -47,7 +47,7 @@ public abstract class DiggingPuzzleGenerator : IPuzzleGenerator
 					puzzle[cell] = (char)(IPuzzleGenerator.Rng.Next(1, 9) + '0');
 				} while (CheckDuplicate(puzzle, cell));
 			}
-		} while (FastSolver.Solve(puzzle.ToString(), solution, 2) == 0);
+		} while (FastSolver.Solve(puzzle.ToString(), ref solution, 2) == 0);
 	}
 
 	/// <inheritdoc/>
@@ -65,7 +65,7 @@ public abstract class DiggingPuzzleGenerator : IPuzzleGenerator
 	/// <param name="gridArray">The grid array.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(StringBuilder gridArray, int cell)
+	private static bool CheckDuplicate(in StringHandler gridArray, int cell)
 	{
 		char value = gridArray[cell];
 		foreach (int c in PeerMaps[cell])

@@ -58,14 +58,19 @@ public sealed record GspStepInfo(
 			{
 				const string separator = ", ";
 
-				var sb = new ValueStringBuilder(stackalloc char[100]);
+				var sb = new StringHandler(initialCapacity: 100);
 				for (int i = 0; i < 9; i++)
 				{
 					int? value = MappingTable[i];
 
-					sb.Append(i + 1);
-					sb.Append(value is { } v && value != i ? $" -> {v + 1}" : string.Empty);
-					sb.Append(separator);
+					sb.AppendFormatted(i + 1);
+
+					if (value is { } v && value != i)
+					{
+						sb.AppendFormatted($" -> {v + 1}");
+					}
+
+					sb.AppendFormatted(separator);
 				}
 
 				sb.RemoveFromEnd(separator.Length);
