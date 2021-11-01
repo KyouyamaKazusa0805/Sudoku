@@ -2214,6 +2214,12 @@
             from the base one.
             </exception>
         </member>
+        <member name="T:System.Text.StringHandlerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.StringHandler"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringHandler"/>
+        </member>
         <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
@@ -2369,11 +2375,12 @@
             <summary>
             <para>
             Provides a handler used by the language compiler to process interpolated strings
-            into <see cref="T:System.String"/> instances.
+            into <see cref="T:System.String"/> instances, or used as a <see cref="T:System.String"/> builder to
+            appending and catenating multiple <see cref="T:System.String"/>s to a whole one.
             </para>
             <para>
             Different with <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>, this type won't contain
-            any formatters, i.e. <see cref="T:System.IFormatProvider"/>.
+            any formatters to construct any custom format operations, i.e. using <see cref="T:System.IFormatProvider"/>.
             </para>
             </summary>
             <remarks>
@@ -2482,14 +2489,14 @@
             </summary>
             <param name="initialString">The initialized string.</param>
         </member>
-        <member name="P:System.Text.StringHandler.Length">
-            <summary>
-            Position at which to write the next character.
-            </summary>
-        </member>
         <member name="P:System.Text.StringHandler.Text">
             <summary>
             Gets a span of the written characters thus far.
+            </summary>
+        </member>
+        <member name="P:System.Text.StringHandler.Length">
+            <summary>
+            Position at which to write the next character.
             </summary>
         </member>
         <member name="P:System.Text.StringHandler.Item(System.Int32)">
@@ -2843,6 +2850,11 @@
             and may destabilize the process, as may using any other copies of the handler after
             <see cref="M:System.Text.StringHandler.ToStringAndClear"/> is called on any one of them.
             </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.Clear">
+            <summary>
+            Clears the handler, returning any rented array to the pool.
+            </summary>
         </member>
         <member name="M:System.Text.StringHandler.AppendStringDirect(System.String)">
             <summary>

@@ -1,16 +1,18 @@
-﻿#define DISCARD_INTERPOLATION_INFO
-#define DECREASE_INITIALIZATION_MEMORY_ALLOCATION
+﻿#define DECREASE_INITIALIZATION_MEMORY_ALLOCATION
+#define DISCARD_INTERPOLATION_INFO
+#define USE_NEWER_CONSTANT_VALUES
 
 namespace System.Text;
 
 /// <summary>
 /// <para>
 /// Provides a handler used by the language compiler to process interpolated strings
-/// into <see cref="string"/> instances.
+/// into <see cref="string"/> instances, or used as a <see cref="string"/> builder to
+/// appending and catenating multiple <see cref="string"/>s to a whole one.
 /// </para>
 /// <para>
 /// Different with <see cref="DefaultInterpolatedStringHandler"/>, this type won't contain
-/// any formatters, i.e. <see cref="IFormatProvider"/>.
+/// any formatters to construct any custom format operations, i.e. using <see cref="IFormatProvider"/>.
 /// </para>
 /// </summary>
 /// <remarks>
@@ -50,7 +52,12 @@ public unsafe ref partial struct StringHandler
 	/// <para><i>The original value implemented by .NET foundation is 11, but I change it to 8.</i></para>
 	/// </remarks>
 	/// <seealso cref="string.Format(string, object?[])"/>
-	private const int GuessedLengthPerHole = 8;
+	private const int GuessedLengthPerHole =
+#if USE_NEWER_CONSTANT_VALUES
+		8;
+#else
+		11;
+#endif
 
 	/// <summary>
 	/// Minimum size array to rent from the pool.
@@ -178,14 +185,14 @@ public unsafe ref partial struct StringHandler
 
 
 	/// <summary>
-	/// Position at which to write the next character.
-	/// </summary>
-	public int Length { get; private set; } = 0;
-
-	/// <summary>
 	/// Gets a span of the written characters thus far.
 	/// </summary>
 	private readonly ReadOnlySpan<char> Text => _chars[..Length];
+
+	/// <summary>
+	/// Position at which to write the next character.
+	/// </summary>
+	public int Length { get; private set; } = 0;
 
 
 	/// <summary>
@@ -198,7 +205,7 @@ public unsafe ref partial struct StringHandler
 	/// means you can use the return value to re-assign a new value, as the same behavior
 	/// as the <see langword="set"/> accessor.
 	/// </remarks>
-	public ref char this[int index] => ref _chars[index];
+	public readonly ref char this[int index] => ref _chars[index];
 
 
 	/// <summary>
