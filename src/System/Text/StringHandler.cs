@@ -34,6 +34,7 @@ namespace System.Text;
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 public unsafe ref partial struct StringHandler
 {
+#if USE_NEWER_CONSTANT_VALUES
 	/// <summary>
 	/// Expected average length of formatted data used for an individual interpolation expression result.
 	/// </summary>
@@ -52,6 +53,25 @@ public unsafe ref partial struct StringHandler
 	/// <para><i>The original value implemented by .NET foundation is 11, but I change it to 8.</i></para>
 	/// </remarks>
 	/// <seealso cref="string.Format(string, object?[])"/>
+#else
+	/// <summary>
+	/// Expected average length of formatted data used for an individual interpolation expression result.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// This is inherited from <see cref="string.Format(string, object?[])"/>,
+	/// and could be changed based on further data.
+	/// </para>
+	/// <para>
+	/// <see cref="string.Format(string, object?[])"/> actually uses <c>format.Length + args.Length * 8</c>,
+	/// but <c>format.Length</c> includes the format items themselves, e.g. <c>"{0}"</c>,
+	/// and since it's rare to have double-digit numbers of items, we bump the 8 up to 11 to account
+	/// for the three extra characters in <c>"{d}"</c>, since the compiler-provided base length won't include
+	/// the equivalent character count.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="string.Format(string, object?[])"/>
+#endif
 	private const int GuessedLengthPerHole =
 #if USE_NEWER_CONSTANT_VALUES
 		8;
