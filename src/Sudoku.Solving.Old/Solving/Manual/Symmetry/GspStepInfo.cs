@@ -67,7 +67,8 @@ public sealed record GspStepInfo(
 
 					if (value is { } v && value != i)
 					{
-						sb.AppendFormatted($" -> {v + 1}");
+						sb.AppendFormatted(" -> ");
+						sb.AppendFormatted(v + 1);
 					}
 
 					sb.AppendFormatted(separator);

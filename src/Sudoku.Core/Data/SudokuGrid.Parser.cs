@@ -227,7 +227,7 @@ partial struct SudokuGrid
 				{
 					fixed (char* c = digitString)
 					{
-						sb.AppendChar(string.IsNullOrEmpty(digitString) ? '.' : *c);
+						sb.Append(string.IsNullOrEmpty(digitString) ? '.' : *c);
 					}
 				}
 			}
@@ -401,7 +401,7 @@ partial struct SudokuGrid
 
 			// Remove all '\r's and '\n's.
 			var sb = new StringHandler(initialCapacity: 81 + (9 << 1));
-			sb.AppendCharList(from @char in match where @char is not ('\r' or '\n') select @char);
+			sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
 
 			parser.ParsingValue = sb.ToStringAndClear();
 			return OnParsingSusser(ref parser);

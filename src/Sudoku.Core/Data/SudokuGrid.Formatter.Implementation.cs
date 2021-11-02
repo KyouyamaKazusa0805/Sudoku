@@ -24,7 +24,7 @@ partial struct SudokuGrid
 						sb.AppendFormatted(digit);
 					}
 
-					sb.AppendChar('\t');
+					sb.Append('\t');
 				}
 
 				sb.RemoveFromEnd(1);
@@ -202,7 +202,7 @@ partial struct SudokuGrid
 								elims.AppendFormatted(i + 1);
 								elims.AppendFormatted(c / 9 + 1);
 								elims.AppendFormatted(c % 9 + 1);
-								elims.AppendChar(' ');
+								elims.Append(' ');
 							}
 						}
 					}
@@ -211,25 +211,26 @@ partial struct SudokuGrid
 					{
 						case CellStatus.Empty:
 						{
-							sb.AppendChar(Placeholder);
+							sb.Append(Placeholder);
 							break;
 						}
 						case CellStatus.Modifiable:
 						{
 							if (WithModifiables)
 							{
-								sb.AppendFormatted($"+{grid[c] + 1}");
+								sb.Append('+');
+								sb.AppendFormatted(grid[c] + 1);
 							}
 							else
 							{
-								sb.AppendChar(Placeholder);
+								sb.Append(Placeholder);
 							}
 
 							break;
 						}
 						case CellStatus.Given:
 						{
-							sb.AppendFormatted($"{grid[c] + 1}");
+							sb.AppendFormatted(grid[c] + 1);
 							break;
 						}
 						default:

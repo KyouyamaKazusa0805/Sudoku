@@ -96,7 +96,7 @@ partial record AnalysisResult
 			// Print header.
 			var sb = new StringHandler(initialCapacity: 300);
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
-			sb.AppendFormatted($"{puzzle:#}");
+			sb.AppendGridFormatted(puzzle, "#");
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultSolvingTool);
 			sb.AppendFormatted(solverName);
 			sb.AppendLine();
@@ -151,7 +151,7 @@ partial record AnalysisResult
 							sb.AppendFormatted((string)TextResources.Current.Colon);
 						}
 
-						sb.AppendChar(' ');
+						sb.Append(' ');
 						sb.AppendFormatted(bInfo);
 						sb.AppendLine();
 					}
@@ -172,8 +172,8 @@ partial record AnalysisResult
 				if (options.Flags(ShowStepDetail))
 				{
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultMin, 6);
-					sb.AppendChar(',');
-					sb.AppendChar(' ');
+					sb.Append(',');
+					sb.Append(' ');
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTotal, 6);
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsing);
 					sb.AppendLine();
@@ -192,17 +192,17 @@ partial record AnalysisResult
 						}
 
 						sb.AppendFormatted(currentMinimum, 6, "0.0");
-						sb.AppendChar(',');
-						sb.AppendChar(' ');
+						sb.Append(',');
+						sb.Append(' ');
 						sb.AppendFormatted(currentTotal, 6, "0.0");
-						sb.AppendChar(')');
-						sb.AppendChar(' ');
+						sb.Append(')');
+						sb.Append(' ');
 					}
 
 					sb.AppendFormatted(solvingStepsGroup.Count(), 3);
-					sb.AppendChar(' ');
-					sb.AppendChar('*');
-					sb.AppendChar(' ');
+					sb.Append(' ');
+					sb.Append('*');
+					sb.Append(' ');
 					sb.AppendFormatted(solvingStepsGroup.Key);
 					sb.AppendLine();
 				}
@@ -211,12 +211,12 @@ partial record AnalysisResult
 				{
 					sb.AppendFormatted("  (---");
 					sb.AppendFormatted(total, 8);
-					sb.AppendChar(')');
-					sb.AppendChar(' ');
+					sb.Append(')');
+					sb.Append(' ');
 				}
 
 				sb.AppendFormatted(stepsCount, 3);
-				sb.AppendChar(' ');
+				sb.Append(' ');
 				sb.AppendFormatted(
 					stepsCount == 1
 						? (string)TextResources.Current.AnalysisResultStepSingular
@@ -231,9 +231,9 @@ partial record AnalysisResult
 			// Print detail data.
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleRating);
 			sb.AppendFormatted(max, "0.0");
-			sb.AppendChar('/');
+			sb.Append('/');
 			sb.AppendFormatted(pearl, "0.0");
-			sb.AppendChar('/');
+			sb.Append('/');
 			sb.AppendFormatted(diamond, "0.0");
 			sb.AppendLine();
 
@@ -241,7 +241,7 @@ partial record AnalysisResult
 			if (solution is { } solutionNotNull)
 			{
 				sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendFormatted($"{solutionNotNull:!}");
+				sb.AppendGridFormatted(solutionNotNull, "!");
 				sb.AppendLine();
 			}
 
@@ -275,11 +275,11 @@ partial record AnalysisResult
 				{
 					var grid = (SudokuGrid)methodInfo.Invoke(null, new object[] { puzzle })!;
 
-					sb.AppendRepeatedChars(' ', 4);
+					sb.Append(' ', 4);
 					sb.AppendFormatted(methodInfo.Name);
-					sb.AppendChar(':');
-					sb.AppendChar(' ');
-					sb.AppendFormatted($"{grid:0}");
+					sb.Append(':');
+					sb.Append(' ');
+					sb.AppendGridFormatted(grid, "0");
 					sb.AppendLine();
 				}
 
@@ -295,7 +295,7 @@ partial record AnalysisResult
 				var searcher = new BackdoorSearcher();
 				foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 				{
-					sb.AppendRepeatedChars(' ', 4);
+					sb.Append(' ', 4);
 					sb.AppendFormatted(assignment[0]);
 					sb.AppendLine();
 				}
@@ -317,7 +317,7 @@ partial record AnalysisResult
 			{
 				if (showSeparator)
 				{
-					sb.AppendRepeatedChars('-', 10);
+					sb.Append('-', 10);
 					sb.AppendLine();
 				}
 			}

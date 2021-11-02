@@ -9662,5 +9662,75 @@
             and the compiler that the type is only used in algorithms-studying scenarios.
             </summary>
         </member>
+        <member name="T:System.Text.StringHandlerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.StringHandler"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringHandler"/>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGrid(System.Text.StringHandler@,Sudoku.Data.Grid@)">
+            <summary>
+            Appends a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGrid(System.Text.StringHandler@,Sudoku.Data.SudokuGrid@)">
+            <summary>
+            Appends a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.Grid@,System.Int32)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="alignment">Alignment value.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.Grid@,System.String)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="format">The format string.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.Grid@,System.Int32,System.String)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="alignment">Alignment value.</param>
+            <param name="format">The format string.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.SudokuGrid@,System.Int32)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="alignment">Alignment value.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.SudokuGrid@,System.String)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="format">The format string.</param>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendGridFormatted(System.Text.StringHandler@,Sudoku.Data.SudokuGrid@,System.Int32,System.String)">
+            <summary>
+            Append a sudoku grid into the handler.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="grid">The sudoku grid.</param>
+            <param name="alignment">Alignment value.</param>
+            <param name="format">The format string.</param>
+        </member>
     </members>
 </doc>

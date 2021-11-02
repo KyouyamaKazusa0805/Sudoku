@@ -777,8 +777,8 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 					{
 						for (int columnLn = 0; columnLn < 3; columnLn++)
 						{
-							sb.AppendChar(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
-							sb.AppendChar(' ');
+							sb.Append(@this.Contains((i * 3 + bandLn) * 9 + j * 3 + columnLn) ? '*' : '.');
+							sb.Append(' ');
 						}
 
 						if (j != 2)
@@ -823,9 +823,9 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 			foreach (int row in dic.Keys)
 			{
-				sbRow.AppendChar('r');
+				sbRow.Append('r');
 				sbRow.AppendFormatted(row + 1);
-				sbRow.AppendChar('c');
+				sbRow.Append('c');
 				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
 				sbRow.AppendFormatted(separator);
 			}
@@ -854,9 +854,9 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 			foreach (int column in dic.Keys)
 			{
-				sbColumn.AppendChar('r');
+				sbColumn.Append('r');
 				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
-				sbColumn.AppendChar('c');
+				sbColumn.Append('c');
 				sbColumn.AppendFormatted(column + 1);
 				sbColumn.AppendFormatted(separator);
 			}
@@ -880,7 +880,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 			if (withSeparator)
 			{
-				sb.AppendChar(' ');
+				sb.Append(' ');
 			}
 			for (; i < 41; i++, value >>= 1)
 			{
@@ -892,7 +892,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 			if (withSeparator)
 			{
-				sb.AppendChar(' ');
+				sb.Append(' ');
 			}
 			for (; i < 81; i++, value >>= 1)
 			{

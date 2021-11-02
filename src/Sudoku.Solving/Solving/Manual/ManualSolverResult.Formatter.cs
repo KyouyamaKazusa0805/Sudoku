@@ -89,7 +89,7 @@ partial record ManualSolverResult
 			// Print header.
 			var sb = new StringHandler();
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
-			sb.AppendFormatted($"{puzzle:#}");
+			sb.AppendGridFormatted(puzzle, "#");
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
@@ -148,7 +148,7 @@ partial record ManualSolverResult
 							sb.AppendFormatted((string)TextResources.Current.Colon);
 						}
 
-						sb.AppendChar(' ');
+						sb.Append(' ');
 						sb.AppendFormatted(bInfo);
 						sb.AppendLine();
 					}
@@ -166,8 +166,8 @@ partial record ManualSolverResult
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultMin, 6);
-					sb.AppendChar(',');
-					sb.AppendChar(' ');
+					sb.Append(',');
+					sb.Append(' ');
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTotal, 6);
 					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsing);
 				}
@@ -185,11 +185,11 @@ partial record ManualSolverResult
 						}
 
 						sb.AppendFormatted(currentMinimum, 6, "0.0");
-						sb.AppendChar(',');
-						sb.AppendChar(' ');
+						sb.Append(',');
+						sb.Append(' ');
 						sb.AppendFormatted(currentTotal, 6, "0.0");
-						sb.AppendChar(')');
-						sb.AppendChar(' ');
+						sb.Append(')');
+						sb.Append(' ');
 					}
 
 					sb.AppendFormatted(solvingStepsGroup.Count(), 3);
@@ -202,12 +202,12 @@ partial record ManualSolverResult
 				{
 					sb.AppendFormatted("  (---");
 					sb.AppendFormatted(total, 8);
-					sb.AppendChar(')');
-					sb.AppendChar(' ');
+					sb.Append(')');
+					sb.Append(' ');
 				}
 
 				sb.AppendFormatted(stepsCount, 3);
-				sb.AppendChar(' ');
+				sb.Append(' ');
 				sb.AppendFormatted(
 					stepsCount == 1
 						? (string)TextResources.Current.AnalysisResultStepSingular
@@ -221,9 +221,9 @@ partial record ManualSolverResult
 			// Print detail data.
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleRating);
 			sb.AppendFormatted(max, "0.0");
-			sb.AppendChar('/');
+			sb.Append('/');
 			sb.AppendFormatted(pearl, "0.0");
-			sb.AppendChar('/');
+			sb.Append('/');
 			sb.AppendFormatted(diamond, "0.0");
 			sb.AppendLine();
 
@@ -231,7 +231,7 @@ partial record ManualSolverResult
 			if (!solution.IsUndefined)
 			{
 				sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendFormatted($"{solution:!}");
+				sb.AppendGridFormatted(solution, "!");
 			}
 
 			// Print the elapsed time.
@@ -257,7 +257,7 @@ partial record ManualSolverResult
 			{
 				if (showSeparator)
 				{
-					sb.AppendRepeatedChars('-', 10);
+					sb.Append('-', 10);
 					sb.AppendLine();
 				}
 			}

@@ -233,9 +233,9 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 						throw new InvalidOperationException("Missing the closed brace character '}'.");
 					}
 
-					sb.AppendChar('{');
+					sb.Append('{');
 					sb.AppendFormatted(formatCount++);
-					sb.AppendChar('}');
+					sb.Append('}');
 
 					formats.Add(format[(i + 1)..pos]);
 
@@ -245,14 +245,14 @@ public abstract record Step(in ImmutableArray<Conclusion> Conclusions, in Immuta
 				}
 				case (Left: '\\', Right: var right) when handleEscaping: // De-escape the escaping characters.
 				{
-					sb.AppendChar(right);
+					sb.Append(right);
 					i++;
 
 					break;
 				}
 				case (Left: var left, _):
 				{
-					sb.AppendChar(left);
+					sb.Append(left);
 
 					break;
 				}

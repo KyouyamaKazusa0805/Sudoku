@@ -43,14 +43,14 @@ public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverRes
 		// Print header.
 		var sb = new StringHandler();
 		sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
-		sb.AppendFormatted($"{OriginalPuzzle:#}");
+		sb.AppendGridFormatted(OriginalPuzzle, "#");
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
 			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
-			sb.AppendFormatted($"{Solution:!}");
+			sb.AppendGridFormatted(Solution, "!");
 			sb.AppendLine();
 		}
 
@@ -60,7 +60,7 @@ public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverRes
 		sb.AppendFormatted((string)TextResources.Current.AnalysisResultBeenSolved);
 		sb.AppendLine();
 		sb.AppendFormatted((string)TextResources.Current.AnalysisResultTimeElapsed);
-		sb.AppendFormatted(ElapsedTime, "hh\\:mm\\:ss\\.ffffff}");
+		sb.AppendFormatted(ElapsedTime, @"hh\:mm\:ss\.ffffff");
 		sb.AppendLine();
 
 		return sb.ToStringAndClear();

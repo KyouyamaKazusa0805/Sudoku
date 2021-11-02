@@ -127,7 +127,7 @@ public sealed unsafe partial class UnsafeBitwiseSolver : ISolver
 
 			_ = solution.ToStringAndClear();
 			solution = new(BufferLength - 1);
-			solution.AppendFormattedUnsafe(solutionStr, BufferLength - 1);
+			solution.Append(solutionStr, BufferLength - 1);
 
 			return result;
 		}

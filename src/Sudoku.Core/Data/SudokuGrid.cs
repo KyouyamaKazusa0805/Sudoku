@@ -306,7 +306,7 @@ public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<Sud
 			var sb = new StringHandler(initialCapacity: 45);
 			for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= Base64Length)
 			{
-				sb.AppendChar(Base64List[(int)(temp % Base64Length)]);
+				sb.Append(Base64List[(int)(temp % Base64Length)]);
 			}
 
 			return sb.ToStringAndClear();

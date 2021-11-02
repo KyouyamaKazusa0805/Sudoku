@@ -32,7 +32,7 @@ namespace System.Text;
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-public unsafe ref partial struct StringHandler
+public ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
 	/// <summary>
@@ -193,7 +193,7 @@ public unsafe ref partial struct StringHandler
 	/// that is initialized by a string value.
 	/// </summary>
 	/// <param name="initialString">The initialized string.</param>
-	public StringHandler(string initialString)
+	public unsafe StringHandler(string initialString)
 	{
 		fixed (char* pChars = _chars, pInitialString = initialString)
 		{
@@ -232,7 +232,7 @@ public unsafe ref partial struct StringHandler
 	/// Copies the current colletion into the specified collection.
 	/// </summary>
 	/// <param name="handler">The collection.</param>
-	public readonly void CopyTo(ref StringHandler handler)
+	public readonly unsafe void CopyTo(ref StringHandler handler)
 	{
 		fixed (char* old = _chars, @new = handler._chars)
 		{
@@ -260,73 +260,6 @@ public unsafe ref partial struct StringHandler
 	public override readonly string ToString() => new(Text);
 
 	/// <summary>
-	/// Inserts a new character into the collection at the specified index.
-	/// </summary>
-	/// <param name="index">The index.</param>
-	/// <param name="value">The character you want to insert into the collection.</param>
-	/// <param name="count">The number.</param>
-	public void Insert(int index, char value, int count)
-	{
-		if (Length > _chars.Length - count)
-		{
-			Grow(count);
-		}
-
-		_chars[index..Length].CopyTo(_chars[(index + count)..]);
-		_chars[index..(index + count)].Fill(value);
-		Length += count;
-	}
-
-	/// <summary>
-	/// Inserts a new string into the collection at the specified index.
-	/// </summary>
-	/// <param name="index">The index you want to insert.</param>
-	/// <param name="s">The string you want to insert.</param>
-	public void Insert(int index, string s)
-	{
-		int count = s.Length;
-		if (Length > _chars.Length - count)
-		{
-			Grow(count);
-		}
-
-		_chars[index..Length].CopyTo(_chars[(index + count)..]);
-		s.AsSpan().CopyTo(_chars[index..]);
-		Length += count;
-	}
-
-	/// <summary>
-	/// Remove a serial of characters from the specified index, with the specified length.
-	/// </summary>
-	/// <param name="startIndex">The start index.</param>
-	/// <param name="length">The length you want to remove.</param>
-	/// <remarks>
-	/// This method will be costly (move a lot of elements), so you shouldn't call this method usually.
-	/// </remarks>
-	public void Remove(int startIndex, int length)
-	{
-		fixed (char* pThis = _chars)
-		{
-			int i = startIndex;
-			for (char* p = pThis + startIndex; i < Length; i++, p++)
-			{
-				// Assign the value.
-				// Please note that 'p[a]' is equivalent to '*(p + a)'.
-				*p = p[length];
-			}
-		}
-
-		Length -= length;
-	}
-
-	/// <summary>
-	/// Removes the specified number of characters from the end of the collection.
-	/// </summary>
-	/// <param name="length">The number of characters you want to remove.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void RemoveFromEnd(int length) => Length -= length;
-
-	/// <summary>
 	/// Writes the specified string to the handler.
 	/// </summary>
 	/// <param name="value">The string to write.</param>
@@ -350,7 +283,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void AppendLiteral(string? value)
+	public unsafe void AppendLiteral(string? value)
 	{
 		// TODO: https://github.com/dotnet/runtime/issues/41692#issuecomment-685192193
 
@@ -421,64 +354,141 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
-	/// Append a new line string <see cref="Environment.NewLine"/>.
+	/// Writes the specified value to the handler.
 	/// </summary>
-	/// <seealso cref="Environment.NewLine"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AppendLine() => AppendFormatted(Environment.NewLine);
+	/// <param name="value">The value to write.</param>
+	/// <param name="alignment">
+	/// Minimum number of characters that should be written for this value.
+	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+	/// </param>
+	/// <param name="format">The format string.</param>
+	/// <remarks>
+	/// This overload is expected to be used rarely, only if either:
+	/// <list type="bullet">
+	/// <item>
+	/// a) something strongly typed as <see cref="object"/> is formatted with both an alignment and a format.
+	/// </item>
+	/// <item>
+	/// b) the compiler is unable to target type to <c>T</c>.
+	/// </item>
+	/// </list>
+	/// It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
+	/// </remarks>
+	public void AppendFormatted(object? value, int alignment = 0, string? format = null) =>
+		AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
-	/// Append a character at the tail of the collection.
+	/// Writes the specified value to the handler.
 	/// </summary>
-	/// <param name="c">The character.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AppendChar(char c)
+	/// <param name="value">The value to write.</param>
+	public void AppendFormatted(string? value)
 	{
-		int pos = Length;
-		if ((uint)pos < (uint)_chars.Length)
+		// Fast-path for no custom formatter and a non-null string that fits in the current destination buffer.
+		if (value is not null && value.TryCopyTo(_chars[Length..]))
 		{
-			_chars[pos] = c;
-			Length = pos + 1;
+			Length += value.Length;
 		}
 		else
 		{
-			Grow();
-			AppendChar(c);
+			AppendFormattedSlow(value);
 		}
 	}
 
 	/// <summary>
-	/// Append a serial of characters at the tail of the collection.
+	/// Writes the specified value to the handler.
 	/// </summary>
-	/// <param name="chars">The serial of characters.</param>
-	public void AppendCharList(IEnumerable<char> chars)
+	/// <param name="value">The value to write.</param>
+	/// <param name="alignment">
+	/// Minimum number of characters that should be written for this value.
+	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+	/// </param>
+	/// <param name="format">The format string.</param>
+	/// <remarks>
+	/// Format is meaningless for strings and doesn't make sense for someone to specify.
+	/// We have the overload simply to disambiguate between <c><![CDATA[ReadOnlySpan<char>]]></c>
+	/// and <see cref="object"/>, just in case someone does specify a format,
+	/// as <see cref="string"/> is implicitly convertible to both.
+	/// Just delegate to the <c>T</c>-based implementation.
+	/// </remarks>
+	public void AppendFormatted(string? value, int alignment = 0, string? format = null) =>
+		AppendFormatted<string?>(value, alignment, format);
+
+	/// <summary>
+	/// Writes the specified character span to the handler.
+	/// </summary>
+	/// <param name="value">The span to write.</param>
+	public void AppendFormatted(ReadOnlySpan<char> value)
 	{
-		foreach (char @char in chars)
+		// Fast path for when the value fits in the current buffer
+		if (value.TryCopyTo(_chars[Length..]))
 		{
-			AppendChar(@char);
+			Length += value.Length;
+		}
+		else
+		{
+			GrowThenCopySpan(value);
 		}
 	}
 
 	/// <summary>
-	/// Append a serial of same characters into the collection.
+	/// Writes the specified string of chars to the handler.
 	/// </summary>
-	/// <param name="c">The character.</param>
-	/// <param name="count">The number of the character you want to append.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AppendRepeatedChars(char c, int count)
+	/// <param name="value">The span to write.</param>
+	/// <param name="alignment">
+	/// Minimum number of characters that should be written for this value.
+	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+	/// </param>
+	/// <param name="format">The format string.</param>
+	public void AppendFormatted(ReadOnlySpan<char> value, int alignment = 0, string? format = null)
 	{
-		if (Length > _chars.Length - count)
+		(bool leftAlign, alignment) = alignment < 0 ? (true, -alignment) : (false, alignment);
+
+		int paddingRequired = alignment - value.Length;
+		if (paddingRequired <= 0)
 		{
-			Grow(count);
+			// The value is as large or larger than the required amount of padding,
+			// so just write the value.
+			AppendFormatted(value);
+			return;
 		}
 
-		var dst = _chars.Slice(Length, count);
-		for (int i = 0, length = dst.Length; i < length; i++)
+		// Write the value along with the appropriate padding.
+		EnsureCapacityForAdditionalChars(value.Length + paddingRequired);
+		if (leftAlign)
 		{
-			dst[i] = c;
+			value.CopyTo(_chars[Length..]);
+			Length += value.Length;
+			_chars.Slice(Length, paddingRequired).Fill(' ');
+			Length += paddingRequired;
 		}
+		else
+		{
+			_chars.Slice(Length, paddingRequired).Fill(' ');
+			Length += paddingRequired;
+			value.CopyTo(_chars[Length..]);
+			Length += value.Length;
+		}
+	}
 
-		Length += count;
+	/// <summary>
+	/// Writes the specified interpolated string into the handler.
+	/// </summary>
+	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
+	/// <remarks><b>
+	/// Don't use <see langword="ref"/> keyword instead of here <see langword="in"/> <paramref name="handler"/>;
+	/// otherwise, the compiler error CS8751 (internal compiler erorr) will be raised.
+	/// </b></remarks>
+	public void AppendFormatted([InterpolatedStringHandlerArgument] in StringHandler handler)
+	{
+		string result = handler.ToStringAndClear();
+		if (result.TryCopyTo(_chars[Length..]))
+		{
+			Length += result.Length;
+		}
+		else
+		{
+			AppendFormattedSlow(result);
+		}
 	}
 
 	/// <summary>
@@ -577,370 +587,6 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
-	/// Writes the specified character span to the handler.
-	/// </summary>
-	/// <param name="value">The span to write.</param>
-	public void AppendFormatted(ReadOnlySpan<char> value)
-	{
-		// Fast path for when the value fits in the current buffer
-		if (value.TryCopyTo(_chars[Length..]))
-		{
-			Length += value.Length;
-		}
-		else
-		{
-			GrowThenCopySpan(value);
-		}
-	}
-
-	/// <summary>
-	/// Writes the specified string of chars to the handler.
-	/// </summary>
-	/// <param name="value">The span to write.</param>
-	/// <param name="alignment">
-	/// Minimum number of characters that should be written for this value.
-	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-	/// </param>
-	/// <param name="format">The format string.</param>
-	public void AppendFormatted(ReadOnlySpan<char> value, int alignment = 0, string? format = null)
-	{
-		bool leftAlign = false;
-		if (alignment < 0)
-		{
-			leftAlign = true;
-			alignment = -alignment;
-		}
-
-		int paddingRequired = alignment - value.Length;
-		if (paddingRequired <= 0)
-		{
-			// The value is as large or larger than the required amount of padding,
-			// so just write the value.
-			AppendFormatted(value);
-			return;
-		}
-
-		// Write the value along with the appropriate padding.
-		EnsureCapacityForAdditionalChars(value.Length + paddingRequired);
-		if (leftAlign)
-		{
-			value.CopyTo(_chars[Length..]);
-			Length += value.Length;
-			_chars.Slice(Length, paddingRequired).Fill(' ');
-			Length += paddingRequired;
-		}
-		else
-		{
-			_chars.Slice(Length, paddingRequired).Fill(' ');
-			Length += paddingRequired;
-			value.CopyTo(_chars[Length..]);
-			Length += value.Length;
-		}
-	}
-
-	/// <summary>
-	/// Writes the specified value to the handler.
-	/// </summary>
-	/// <param name="value">The value to write.</param>
-	public void AppendFormatted(string? value)
-	{
-		// Fast-path for no custom formatter and a non-null string that fits in the current destination buffer.
-		if (value is not null && value.TryCopyTo(_chars[Length..]))
-		{
-			Length += value.Length;
-		}
-		else
-		{
-			AppendFormattedSlow(value);
-		}
-	}
-
-	/// <summary>
-	/// Writes the specified value to the handler.
-	/// </summary>
-	/// <param name="value">The value to write.</param>
-	/// <param name="alignment">
-	/// Minimum number of characters that should be written for this value.
-	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-	/// </param>
-	/// <param name="format">The format string.</param>
-	/// <remarks>
-	/// Format is meaningless for strings and doesn't make sense for someone to specify.
-	/// We have the overload simply to disambiguate between <c><![CDATA[ROS<char>]]></c> and <see cref="object"/>,
-	/// just in case someone does specify a format, as <see cref="string"/> is implicitly convertible to both.
-	/// Just delegate to the <c>T</c>-based implementation.
-	/// </remarks>
-	public void AppendFormatted(string? value, int alignment = 0, string? format = null) =>
-		AppendFormatted<string?>(value, alignment, format);
-
-	/// <summary>
-	/// Writes the specified interpolated string into the handler.
-	/// </summary>
-	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
-	/// <remarks><b>
-	/// Don't use <see langword="ref"/> keyword instead of here <see langword="in"/> <paramref name="handler"/>;
-	/// otherwise, the compiler error CS8751 (internal compiler erorr) will be raised.
-	/// </b></remarks>
-	public void AppendFormatted([InterpolatedStringHandlerArgument] in StringHandler handler)
-	{
-		string result = handler.ToStringAndClear();
-		if (result.TryCopyTo(_chars[Length..]))
-		{
-			Length += result.Length;
-		}
-		else
-		{
-			AppendFormattedSlow(result);
-		}
-	}
-
-	/// <summary>
-	/// Writes the specified value to the handler.
-	/// </summary>
-	/// <param name="value">The value to write.</param>
-	/// <param name="alignment">
-	/// Minimum number of characters that should be written for this value.
-	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-	/// </param>
-	/// <param name="format">The format string.</param>
-	/// <remarks>
-	/// This overload is expected to be used rarely, only if either:
-	/// <list type="bullet">
-	/// <item>
-	/// a) something strongly typed as <see cref="object"/> is formatted with both an alignment and a format.
-	/// </item>
-	/// <item>
-	/// b) the compiler is unable to target type to <c>T</c>.
-	/// </item>
-	/// </list>
-	/// It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
-	/// </remarks>
-	public void AppendFormatted(object? value, int alignment = 0, string? format = null) =>
-		AppendFormatted<object?>(value, alignment, format);
-
-	/// <summary>
-	/// Append a string that is represented as a <see cref="char"/>*.
-	/// </summary>
-	/// <param name="value">The string.</param>
-	/// <param name="length">The length of the string.</param>
-	public void AppendFormattedUnsafe([DisallowNull, NotNull] char* value, int length)
-	{
-		int pos = Length;
-		if (pos > _chars.Length - length)
-		{
-			Grow(length);
-		}
-
-		var dst = _chars.Slice(Length, length);
-		for (int i = 0, iterationLength = dst.Length; i < iterationLength; i++)
-		{
-			dst[i] = *value++;
-		}
-
-		Length += length;
-	}
-
-	/// <summary>
-	/// Append a serial of strings from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	public void AppendRange<T>(IEnumerable<T> list)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(element);
-		}
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the function pointer as this argument.
-	/// </param>
-	public void AppendRange<T>(IEnumerable<T> list, [DisallowNull, NotNull] delegate*<T, string?> converter)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(converter(element));
-		}
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the delegate instance as this argument.
-	/// </param>
-	public void AppendRange<T>(IEnumerable<T> list, Func<T, string?> converter)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(converter(element));
-		}
-	}
-
-	/// <summary>
-	/// Append a serial of strings from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public void AppendRangeWithSeparator<T>(IEnumerable<T> list, string separator)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(element);
-			AppendFormatted(separator);
-		}
-
-		Length -= separator.Length;
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the function pointer as this argument.
-	/// </param>
-	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public void AppendRangeWithSeparator<T>(
-		IEnumerable<T> list,
-		[DisallowNull, NotNull] delegate*<T, string?> converter,
-		string separator
-	)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(converter(element));
-			AppendFormatted(separator);
-		}
-
-		Length -= separator.Length;
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list of elements.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the delegate instance as this argument.
-	/// </param>
-	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public void AppendRangeWithSeparator<T>(IEnumerable<T> list, Func<T, string?> converter, string separator)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(converter(element));
-			AppendFormatted(separator);
-		}
-
-		Length -= separator.Length;
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
-	/// <param name="list">The list of elements that is represented as a pointer.</param>
-	/// <param name="length">The length of the list.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the delegate instance as this argument.
-	/// </param>
-	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		[DisallowNull, NotNull] TUnmanaged* list,
-		int length,
-		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
-		string separator
-	)
-	where TUnmanaged : unmanaged
-	{
-		for (int i = 0; i < length; i++)
-		{
-			var element = list[i];
-			AppendFormatted(converter(element));
-			AppendFormatted(separator);
-		}
-
-		Length -= separator.Length;
-	}
-
-	/// <summary>
-	/// Append a serial of strings converted from a serial of elements.
-	/// </summary>
-	/// <typeparam name="TUnmanaged">The type of each element.</typeparam>
-	/// <param name="list">The list of elements that is represented as a pointer.</param>
-	/// <param name="length">The length of the list.</param>
-	/// <param name="converter">
-	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
-	/// whose the rule is defined as a method specified as the delegate instance as this argument.
-	/// </param>
-	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		[DisallowNull, NotNull] TUnmanaged* list,
-		int length,
-		Func<TUnmanaged, string?> converter,
-		string separator
-	)
-	where TUnmanaged : unmanaged
-	{
-		for (int i = 0; i < length; i++)
-		{
-			var element = list[i];
-			AppendFormatted(converter(element));
-			AppendFormatted(separator);
-		}
-
-		Length -= separator.Length;
-	}
-
-	/// <summary>
-	/// Append a series of elements into the current collection.
-	/// In addition, new line characters will be inserted after each element.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="list">The list.</param>
-	public void AppendRangeWithLines<T>(IEnumerable<T?> list)
-	{
-		foreach (var element in list)
-		{
-			AppendFormatted(element?.ToString());
-			AppendLine();
-		}
-	}
-
-	/// <summary>
-	/// Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
-	/// after called this method, the string will be <c>"olleH"</c>.
-	/// </summary>
-	public void Reverse()
-	{
-		fixed (char* p = _chars)
-		{
-			for (int i = 0, iterationLength = Length >> 1; i < iterationLength; i++)
-			{
-				char c = p[i];
-				p[i] = p[Length - 1 - i];
-				p[Length - 1 - i] = c;
-			}
-		}
-	}
-
-	/// <summary>
 	/// Get a pinnable reference to the builder.
 	/// </summary>
 	/// <param name="withTerminate">
@@ -957,7 +603,6 @@ public unsafe ref partial struct StringHandler
 
 		return ref MemoryMarshal.GetReference(_chars);
 	}
-
 
 	/// <summary>
 	/// Gets the built <see cref="string"/> and clears the handler.
@@ -981,190 +626,6 @@ public unsafe ref partial struct StringHandler
 		}
 	}
 
-	/// <summary>
-	/// Clears the handler, returning any rented array to the pool.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void Clear()
-	{
-		char[]? toReturn = _arrayToReturnToPool;
-		this = default;
-		if (toReturn is not null)
-		{
-			ArrayPool<char>.Shared.Return(toReturn);
-		}
-	}
-
-	/// <summary>
-	/// Writes the specified string to the handler.
-	/// </summary>
-	/// <param name="value">The string to write.</param>
-	private void AppendStringDirect(string value)
-	{
-		if (value.TryCopyTo(_chars[Length..]))
-		{
-			Length += value.Length;
-		}
-		else
-		{
-			GrowThenCopyString(value);
-		}
-	}
-
-	/// <summary>Writes the specified value to the handler.</summary>
-	/// <param name="value">The value to write.</param>
-	/// <remarks>
-	/// Slow path to handle a custom formatter, potentially null value,
-	/// or a string that doesn't fit in the current buffer.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void AppendFormattedSlow(string? value)
-	{
-		if (value is not null)
-		{
-			EnsureCapacityForAdditionalChars(value.Length);
-			value.CopyTo(_chars[Length..]);
-			Length += value.Length;
-		}
-	}
-
-	/// <summary>
-	/// Handles adding any padding required for aligning a formatted value in an interpolation expression.
-	/// </summary>
-	/// <param name="startingPos">The position at which the written value started.</param>
-	/// <param name="alignment">
-	/// Non-zero minimum number of characters that should be written for this value.
-	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-	/// </param>
-	private void AppendOrInsertAlignmentIfNeeded(int startingPos, int alignment)
-	{
-		Debug.Assert(startingPos >= 0 && startingPos <= Length);
-		Debug.Assert(alignment != 0);
-
-		int charsWritten = Length - startingPos;
-		(alignment, bool leftAlign) = alignment < 0 ? (-alignment, true) : (alignment, false);
-		if (alignment - charsWritten is var paddingNeeded and > 0)
-		{
-			EnsureCapacityForAdditionalChars(paddingNeeded);
-
-			if (leftAlign)
-			{
-				_chars.Slice(Length, paddingNeeded).Fill(' ');
-			}
-			else
-			{
-				_chars.Slice(startingPos, charsWritten).CopyTo(_chars[(startingPos + paddingNeeded)..]);
-				_chars.Slice(startingPos, paddingNeeded).Fill(' ');
-			}
-
-			Length += paddingNeeded;
-		}
-	}
-
-	/// <summary>
-	/// Ensures <see cref="_chars"/> has the capacity to store <paramref name="additionalChars"/>
-	/// beyond <see cref="Length"/>.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void EnsureCapacityForAdditionalChars(int additionalChars)
-	{
-		if (_chars.Length - Length < additionalChars)
-		{
-			Grow(additionalChars);
-		}
-	}
-
-	/// <summary>
-	/// Fallback for fast path in <see cref="AppendStringDirect"/>
-	/// when there's not enough space in the destination.
-	/// </summary>
-	/// <param name="value">The string to write.</param>
-	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void GrowThenCopyString(string value)
-	{
-		Grow(value.Length);
-		value.CopyTo(_chars[Length..]);
-		Length += value.Length;
-	}
-
-	/// <summary>
-	/// Fallback for <see cref="AppendFormatted(ReadOnlySpan{char})"/> for when not enough space exists
-	/// in the current buffer.
-	/// </summary>
-	/// <param name="value">The span to write.</param>
-	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void GrowThenCopySpan(ReadOnlySpan<char> value)
-	{
-		Grow(value.Length);
-		value.CopyTo(_chars[Length..]);
-		Length += value.Length;
-	}
-
-	/// <summary>
-	/// Grows <see cref="_chars"/> to have the capacity to store at least <paramref name="additionalChars"/>
-	/// beyond <see cref="Length"/>.
-	/// </summary>
-	/// <remarks>
-	/// This method is called when the remaining space <c>_chars.Length - _pos</c> is
-	/// insufficient to store a specific number of additional characters.
-	/// Thus, we need to grow to at least that new total. <see cref="GrowCore(uint)"/>
-	/// will handle growing by more than that if possible.
-	/// </remarks>
-	/// <seealso cref="GrowCore(uint)"/>
-	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void Grow(int additionalChars)
-	{
-		Debug.Assert(additionalChars > _chars.Length - Length);
-
-		GrowCore((uint)Length + (uint)additionalChars);
-	}
-
-	/// <summary>
-	/// Grows the size of <see cref="_chars"/>.
-	/// </summary>
-	/// <remarks>
-	/// This method is called when the remaining space in <c>_chars</c> isn't sufficient to continue
-	/// the operation. Thus, we need at least one character beyond <c>_chars.Length</c>.
-	/// <see cref="GrowCore(uint)"/> will handle growing by more than that if possible.
-	/// </remarks>
-	/// <seealso cref="GrowCore(uint)"/>
-	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void Grow() => GrowCore((uint)_chars.Length + 1);
-
-	/// <summary>
-	/// Grow the size of <see cref="_chars"/> to at least the specified <paramref name="requiredMinCapacity"/>.
-	/// </summary>
-	/// <param name="requiredMinCapacity">The required minimum capacity.</param>
-	/// <remarks>
-	/// <para>Design notes:</para>
-	/// <para>
-	/// We want the max of how much space we actually required and doubling our capacity (without going
-	/// beyond the max allowed length). We also want to avoid asking for small arrays,
-	/// to reduce the number of times we need to grow, and since we're working with unsigned integers
-	/// that could technically overflow if someone tried to, for example, append a huge string
-	/// to a huge string, we also clamp to <see cref="int.MaxValue"/>. Even if the array creation
-	/// fails in such a case, we may later fail in <see cref="ToStringAndClear"/>.
-	/// </para>
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void GrowCore(uint requiredMinCapacity)
-	{
-		// 0x3FFFFFDF: string.MaxLength
-		uint newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF));
-		int arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
-
-		char[] newArray = ArrayPool<char>.Shared.Rent(arraySize);
-		_chars[..Length].CopyTo(newArray);
-
-		char[]? toReturn = _arrayToReturnToPool;
-		_chars = _arrayToReturnToPool = newArray;
-
-		if (toReturn is not null)
-		{
-			ArrayPool<char>.Shared.Return(toReturn);
-		}
-	}
-
 
 	/// <summary>
 	/// Determines whether two instances has same values with the other instance.
@@ -1173,7 +634,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[ProxyEquality]
-	public static bool Equals(in StringHandler left, in StringHandler right)
+	public static unsafe bool Equals(in StringHandler left, in StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{

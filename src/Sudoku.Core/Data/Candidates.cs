@@ -390,10 +390,10 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		return Count switch
 		{
 			0 => "{ }",
-			1 when this[0] is var candidate && (candidate / 9, candidate % 9) is (var cell, var digit) =>
-				$"r{cell / 9 + 1}c{cell % 9 + 1}({digit + 1})",
+			1 when this[0] is var a && (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
 			_ => f(Offsets)
 		};
+
 
 		static string f(int[] offsets)
 		{
@@ -412,7 +412,11 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 					cells.AddAnyway(candidate / 9);
 				}
 
-				sb.AppendFormatted($"{cells}({digitGroup.Key + 1}){separator}");
+				sb.AppendFormatted(cells);
+				sb.Append('(');
+				sb.AppendFormatted(digitGroup.Key + 1);
+				sb.Append(')');
+				sb.AppendFormatted(separator);
 			}
 
 			sb.RemoveFromEnd(separator.Length);
