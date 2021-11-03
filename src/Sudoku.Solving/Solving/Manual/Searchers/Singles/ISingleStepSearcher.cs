@@ -16,6 +16,11 @@ public interface ISingleStepSearcher : IStepSearcher
 	bool EnableLastDigit { get; set; }
 
 	/// <summary>
+	/// Indicates whether the solver checks for hidden single in block firstly.
+	/// </summary>
+	bool HiddenSinglesInBlockFirst { get; set; }
+
+	/// <summary>
 	/// Indicates whether the solver shows the direct lines (cross-hatching information).
 	/// </summary>
 	/// <remarks>

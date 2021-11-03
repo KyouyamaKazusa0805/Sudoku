@@ -44,11 +44,16 @@ public unsafe interface IStepSearcher
 	/// Accumulate all possible steps into the specified accumulator.
 	/// </summary>
 	/// <param name="accumulator">
+	/// <para>
 	/// <para>The accumulator to store each step.</para>
+	/// </para>
 	/// <para>
 	/// If <paramref name="onlyFindOne"/> is set to <see langword="true"/>,
 	/// this argument will become useless because we only finding one step is okay,
 	/// so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+	/// Therefore, this argument can be <see langword="null"/>
+	/// (i.e. the expression <c><see langword="null"/>!</c>) when the argument
+	/// <paramref name="onlyFindOne"/> is <see langword="true"/>.
 	/// </para>
 	/// </param>
 	/// <param name="grid">The grid to search for techniques.</param>

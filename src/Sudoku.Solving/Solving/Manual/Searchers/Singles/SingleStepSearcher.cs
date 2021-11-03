@@ -1,6 +1,4 @@
-﻿#define HIDDEN_SINGLE_BLOCK_FIRST
-
-namespace Sudoku.Solving.Manual.Searchers.Singles;
+﻿namespace Sudoku.Solving.Manual.Searchers.Singles;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
@@ -19,6 +17,9 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 
 	/// <inheritdoc/>
 	public bool EnableLastDigit { get; set; }
+
+	/// <inheritdoc/>
+	public bool HiddenSinglesInBlockFirst { get; set; }
 
 	/// <inheritdoc/>
 	public bool ShowDirectLines { get; set; }
@@ -83,66 +84,70 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 			accumulator.Add(step);
 		}
 	CheckHiddenSingle:
-#if HIDDEN_SINGLE_BLOCK_FIRST
-		// If block first, we'll extract all blocks and iterate on them firstly.
-		for (int region = 0; region < 9; region++)
+		if (HiddenSinglesInBlockFirst)
 		{
+			// If block first, we'll extract all blocks and iterate on them firstly.
+			for (int region = 0; region < 9; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					if (g(grid, digit, region) is not { } step)
+					{
+						continue;
+					}
+
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
+				}
+			}
+
+			// Then secondly rows and columns.
+			for (int region = 9; region < 27; region++)
+			{
+				for (int digit = 0; digit < 9; digit++)
+				{
+					if (g(grid, digit, region) is not { } step)
+					{
+						continue;
+					}
+
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
+				}
+			}
+		}
+		else
+		{
+			// We'll directly iterate on each region.
+			// Theoretically, this iteration should be faster than above one, but in practice,
+			// we may found hidden singles in block much more times than in row or column.
 			for (int digit = 0; digit < 9; digit++)
 			{
-				if (g(accumulator, grid, digit, region) is not { } step)
+				for (int region = 0; region < 27; region++)
 				{
-					continue;
-				}
+					if (g(grid, digit, region) is not { } step)
+					{
+						continue;
+					}
 
-				if (onlyFindOne)
-				{
-					return step;
-				}
+					if (onlyFindOne)
+					{
+						return step;
+					}
 
-				accumulator.Add(step);
+					accumulator.Add(step);
+				}
 			}
 		}
 
-		// Then secondly rows and columns.
-		for (int region = 9; region < 27; region++)
-		{
-			for (int digit = 0; digit < 9; digit++)
-			{
-				if (g(accumulator, grid, digit, region) is not { } step)
-				{
-					continue;
-				}
-
-				if (onlyFindOne)
-				{
-					return step;
-				}
-
-				accumulator.Add(step);
-			}
-		}
-#else
-		// We'll directly iterate on each region.
-		// Theoretically, this iteration should be faster than above one, but in practice,
-		// we may found hidden singles in block much more times than in row or column.
-		for (int digit = 0; digit < 9; digit++)
-		{
-			for (int region = 0; region < 27; region++)
-			{
-				if (g(accumulator, grid, digit, region) is not { } step)
-				{
-					continue;
-				}
-
-				if (onlyFindOne)
-				{
-					return step;
-				}
-
-				accumulator.Add(step);
-			}
-		}
-#endif
 		for (int cell = 0; cell < 81; cell++)
 		{
 			if (grid.GetStatus(cell) != CellStatus.Empty)
@@ -205,7 +210,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 		return null;
 
 
-		Step? g(ICollection<Step> accumulator, in Grid grid, int digit, int region)
+		Step? g(in Grid grid, int digit, int region)
 		{
 			// The main idea of hidden single is to search for a digit can only appear once in a region,
 			// so we should check all possibilities in a region to found whether the region exists a digit

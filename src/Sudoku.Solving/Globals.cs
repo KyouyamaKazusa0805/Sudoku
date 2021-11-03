@@ -34,6 +34,7 @@ global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
 global using Sudoku.Solving.Manual.Searchers.LastResorts;
 global using Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
+global using Sudoku.Solving.Manual.Searchers.Singles;
 global using Sudoku.Solving.Manual.Searchers.Wings;
 global using Sudoku.Solving.Manual.Steps;
 global using Sudoku.Solving.Manual.Steps.Chains;

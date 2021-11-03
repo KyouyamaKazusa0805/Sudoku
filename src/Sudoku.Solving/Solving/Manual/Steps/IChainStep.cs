@@ -24,7 +24,7 @@ public interface IChainStep : IStep
 	/// </summary>
 	/// <param name="length">The length.</param>
 	/// <returns>The difficulty.</returns>
-	protected static decimal GetExtraDifficultyByLength(int length)
+	protected internal static decimal GetExtraDifficultyByLength(int length)
 	{
 		decimal added = 0;
 		int ceil = 4;

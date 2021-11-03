@@ -3108,11 +3108,16 @@
             Accumulate all possible steps into the specified accumulator.
             </summary>
             <param name="accumulator">
+            <para>
             <para>The accumulator to store each step.</para>
+            </para>
             <para>
             If <paramref name="onlyFindOne"/> is set to <see langword="true"/>,
             this argument will become useless because we only finding one step is okay,
             so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, this argument can be <see langword="null"/>
+            (i.e. the expression <c><see langword="null"/>!</c>) when the argument
+            <paramref name="onlyFindOne"/> is <see langword="true"/>.
             </para>
             </param>
             <param name="grid">The grid to search for techniques.</param>
@@ -3163,6 +3168,80 @@
             Indicates the condition that checks whether the procedured structure is a valid loop.
             </param>
             <param name="loops">The possible loops found.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher">
+            <summary>
+            Provides with a <b>Bowman's Bingo</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bowman's Bingo</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher._searcher">
+            <summary>
+            The singles searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher._tempConclusions">
+            <summary>
+            All temporary conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.MaxLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.GetLinks">
+            <summary>
+            Get links.
+            </summary>
+            <returns>The links.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.RecordUndoInfo(Sudoku.Data.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Record all information to be used in undo grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.UndoGrid(Sudoku.Data.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Int32,System.Int16)">
+            <summary>
+            Undo the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="list">The list.</param>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BowmanBingoStepSearcher.IsValidGrid(Sudoku.Data.Grid@,System.Int32)">
+            <summary>
+            To check the specified cell has a same digit filled in a cell
+            which is same region with the current one.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.IBowmanBingoStepSearcher">
+            <summary>
+            Defines a step searcher that searches for bowman's bingo steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.IBowmanBingoStepSearcher.MaxLength">
+            <summary>
+            Indicates the maximum length of the bowman bingo you want to search for.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.ILastResortStepSearcher">
             <summary>
@@ -3390,6 +3469,11 @@
             Indicates whether the solver enables the technique last digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher.HiddenSinglesInBlockFirst">
+            <summary>
+            Indicates whether the solver checks for hidden single in block firstly.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Singles.ISingleStepSearcher.ShowDirectLines">
             <summary>
             Indicates whether the solver shows the direct lines (cross-hatching information).
@@ -3442,6 +3526,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.EnableLastDigit">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.HiddenSinglesInBlockFirst">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Singles.SingleStepSearcher.ShowDirectLines">
@@ -6130,6 +6217,43 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.Steps.IStep.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep">
+            <summary>
+            Provides with a step that is a <b>Bowman's Bingo</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion})">
+            <summary>
+            Provides with a step that is a <b>Bowman's Bingo</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Stableness">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep">
             <summary>
