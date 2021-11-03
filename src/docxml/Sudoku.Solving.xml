@@ -519,12 +519,14 @@
             <param name="Mask">The mask that forms a structure.</param>
             <remarks>
             <para>
-            This <paramref name="Mask"/> is of type <see cref="T:System.Int64"/>,
+            This <see cref="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
             where the distribution of each bit is as follows:
             <code><![CDATA[
             0      7     14     21     28     35     42     49     56
             ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
             |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
             ]]></code>
             where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
@@ -541,12 +543,14 @@
             <param name="Mask">The mask that forms a structure.</param>
             <remarks>
             <para>
-            This <paramref name="Mask"/> is of type <see cref="T:System.Int64"/>,
+            This <see cref="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
             where the distribution of each bit is as follows:
             <code><![CDATA[
             0      7     14     21     28     35     42     49     56
             ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
             |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
             ]]></code>
             where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.

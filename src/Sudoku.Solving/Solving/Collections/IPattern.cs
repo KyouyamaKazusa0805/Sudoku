@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TSelf">The type of the pattern itself.</typeparam>
 /// <typeparam name="TMask">The type of the mask.</typeparam>
-internal interface IPattern<TSelf, TMask>
+public interface IPattern<TSelf, TMask>
 where TSelf : struct, IEquatable<TSelf>, IPattern<TSelf, TMask>
 where TMask : struct
 {
