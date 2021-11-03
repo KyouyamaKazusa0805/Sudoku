@@ -10,11 +10,11 @@ public sealed record BowmanBingoStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	ImmutableArray<Conclusion> ContradictionLinks
-) : LastResortStep(Conclusions, Views)
+) : LastResortStep(Conclusions, Views), IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		8.0M + IChainStep.GetExtraDifficultyByLength(ContradictionLinks.Length);
+		8.0M + IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length);
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

@@ -5814,6 +5814,18 @@
             Indicates the internal name.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IChainLikeStep">
+            <summary>
+            Defines a step is chain-like one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.IChainLikeStep.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IChainStep">
             <summary>
             Defines a chain step.
