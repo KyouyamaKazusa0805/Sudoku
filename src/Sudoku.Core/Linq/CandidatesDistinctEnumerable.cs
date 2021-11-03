@@ -9,13 +9,11 @@ public readonly unsafe ref partial struct CandidatesDistinctEnumerable
 	/// <summary>
 	/// Indicates the pointer to a grid.
 	/// </summary>
-	[NotNull, DisallowNull]
 	private readonly Grid* _gridHandle;
 
 	/// <summary>
 	/// Indicates the key selector method.
 	/// </summary>
-	[NotNull, DisallowNull]
 	private readonly delegate*<int, int, bool> _keySelector;
 
 
@@ -26,7 +24,7 @@ public readonly unsafe ref partial struct CandidatesDistinctEnumerable
 	/// <param name="grid">The grid.</param>
 	/// <param name="selector">The key selector.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidatesDistinctEnumerable(in Grid grid, [NotNull, DisallowNull] delegate*<int, int, bool> selector)
+	public CandidatesDistinctEnumerable(in Grid grid, delegate*<int, int, bool> selector)
 	{
 		fixed (Grid* gridHandle = &grid)
 		{

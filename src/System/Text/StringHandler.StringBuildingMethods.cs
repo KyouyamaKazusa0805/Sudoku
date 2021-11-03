@@ -49,7 +49,7 @@ partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The string.</param>
 	/// <param name="length">The length of the string.</param>
-	public unsafe void Append([DisallowNull, NotNull] char* value, int length)
+	public unsafe void Append(char* value, int length)
 	{
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -202,10 +202,7 @@ partial struct StringHandler
 	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
 	/// whose the rule is defined as a method specified as the function pointer as this argument.
 	/// </param>
-	public unsafe void AppendRange<T>(
-		IEnumerable<T> list,
-		[DisallowNull, NotNull] delegate*<T, string?> converter
-	)
+	public unsafe void AppendRange<T>(IEnumerable<T> list, delegate*<T, string?> converter)
 	{
 		foreach (var element in list)
 		{
@@ -257,11 +254,7 @@ partial struct StringHandler
 	/// whose the rule is defined as a method specified as the function pointer as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public unsafe void AppendRangeWithSeparator<T>(
-		IEnumerable<T> list,
-		[DisallowNull, NotNull] delegate*<T, string?> converter,
-		string separator
-	)
+	public unsafe void AppendRangeWithSeparator<T>(IEnumerable<T> list, delegate*<T, string?> converter, string separator)
 	{
 		foreach (var element in list)
 		{
@@ -305,9 +298,9 @@ partial struct StringHandler
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
 	public unsafe void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		[DisallowNull, NotNull] TUnmanaged* list,
+		TUnmanaged* list,
 		int length,
-		[DisallowNull, NotNull] delegate*<TUnmanaged, string?> converter,
+		delegate*<TUnmanaged, string?> converter,
 		string separator
 	)
 	where TUnmanaged : unmanaged
@@ -334,7 +327,7 @@ partial struct StringHandler
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
 	public unsafe void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		[DisallowNull, NotNull] TUnmanaged* list,
+		TUnmanaged* list,
 		int length,
 		Func<TUnmanaged, string?> converter,
 		string separator

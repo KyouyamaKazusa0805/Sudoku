@@ -78,7 +78,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pSolution">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private void GenerateAnswerGrid([NotNull, DisallowNull] char* pPuzzle, char* pSolution)
+	private void GenerateAnswerGrid(char* /*restrict*/pPuzzle, char* /*restrict*/pSolution)
 	{
 		do
 		{
@@ -115,7 +115,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// Creates a start pattern based on a base pattern.
 	/// </summary>
 	/// <param name="pattern">The base pattern.</param>
-	private void CreatePattern([NotNull, DisallowNull] int* pattern)
+	private void CreatePattern(int* pattern)
 	{
 		int a = 54, b = 0;
 		for (int i = 0; i < 9; i++)
@@ -138,7 +138,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// To re-create the pattern.
 	/// </summary>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
-	private static void RecreatePattern([NotNull, DisallowNull] int* pattern)
+	private static void RecreatePattern(int* pattern)
 	{
 		for (int i = 23; i >= 0; i--)
 		{

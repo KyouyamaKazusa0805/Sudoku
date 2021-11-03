@@ -83,7 +83,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
-	public long Solve([NotNull, DisallowNull] char* puzzle, char* solution, int limit)
+	public long Solve(char* /*restrict*/puzzle, char* /*restrict*/solution, int limit)
 	{
 		char* solutionStr = stackalloc char[BufferLength];
 		try
@@ -282,7 +282,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// </summary>
 	/// <param name="puzzle">The pointer that points to a puzzle buffer.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	private bool InitSudoku([NotNull, DisallowNull] char* puzzle)
+	private bool InitSudoku(char* puzzle)
 	{
 		fixed (State* g = _stack)
 		{
@@ -612,7 +612,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 		// The core Update routine from zhouyundong.
 		// This copy has been optimized by champagne and JasonLion in minor ways.
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool updn([NotNull, DisallowNull] uint* s, uint i, uint j, uint k, uint l)
+		bool updn(uint* s, uint i, uint j, uint k, uint l)
 		{
 			a = _g->Bands[i * 3 + j];
 			shrink = (uint)(TblShrinkMask[a & 0x1FF] | TblShrinkMask[(a >> 9) & 0x1FF] << 3 | TblShrinkMask[a >> 18] << 6);
@@ -733,7 +733,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve([NotNull, DisallowNull] char* puzzle, char* solutionPtr, int limit)
+	private long InternalSolve(char* /*restrict*/puzzle, char* /*restrict*/solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;
@@ -767,7 +767,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// The solution pointer. <b>The buffer should be at least <see cref="BufferLength"/>
 	/// of value of length.</b>
 	/// </param>
-	private void ExtractSolution([NotNull, DisallowNull] char* solution)
+	private void ExtractSolution(char* solution)
 	{
 		for (int cell = 0; cell < 81; cell++)
 		{

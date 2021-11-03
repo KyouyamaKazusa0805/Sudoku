@@ -1,6 +1,4 @@
-﻿using CAE = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Encapsulates a set of methods that checks the nullability of an object.
@@ -20,7 +18,10 @@ public static class Nullability
 	/// Throws when the specified object is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNull<TStruct>([NotNull] TStruct? obj, [CAE("obj")] string? paramName = null)
+	public static void ThrowIfNull<TStruct>(
+		[NotNull] TStruct? obj,
+		[CallerArgumentExpression("obj")] string? paramName = null
+	)
 	where TStruct : struct
 	{
 		if (!obj.HasValue)
@@ -42,7 +43,10 @@ public static class Nullability
 	/// Throws when the specified object is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNull<TClass>([NotNull] TClass? obj, [CAE("obj")] string? paramName = null)
+	public static void ThrowIfNull<TClass>(
+		[NotNull] TClass? obj,
+		[CallerArgumentExpression("obj")] string? paramName = null
+	)
 	where TClass : class
 	{
 		if (obj is null)

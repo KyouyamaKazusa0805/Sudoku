@@ -440,7 +440,7 @@ where TGrid : struct, IGrid<TGrid>
 	/// </summary>
 	/// <param name="ptrStr">The pointer that points to string.</param>
 	/// <returns>The result instance.</returns>
-	static abstract TGrid Parse([NotNull, DisallowNull] char* ptrStr);
+	static abstract TGrid Parse(char* ptrStr);
 
 	/// <summary>
 	/// <para>

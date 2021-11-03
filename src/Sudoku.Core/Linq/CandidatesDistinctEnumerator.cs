@@ -18,7 +18,6 @@ public unsafe ref partial struct CandidatesDistinctEnumerator
 	/// <summary>
 	/// Indicates the key selector method.
 	/// </summary>
-	[NotNull, DisallowNull]
 	private readonly delegate*<int, int, bool> _keySelector;
 
 
@@ -35,10 +34,7 @@ public unsafe ref partial struct CandidatesDistinctEnumerator
 	/// <param name="gridHandle">The pointer to a grid.</param>
 	/// <param name="keySelector">The key selector.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidatesDistinctEnumerator(
-		[NotNull, DisallowNull] Grid* gridHandle,
-		[NotNull, DisallowNull] delegate*<int, int, bool> keySelector
-	)
+	public CandidatesDistinctEnumerator(Grid* gridHandle, delegate*<int, int, bool> keySelector)
 	{
 		_enumerator = gridHandle->Candidates.GetEnumerator();
 		_keySelector = keySelector;

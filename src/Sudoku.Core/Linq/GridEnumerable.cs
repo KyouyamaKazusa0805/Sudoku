@@ -13,7 +13,7 @@ public static unsafe class GridEnumerable
 	/// <param name="func">An accumulator function to be invoked on each element.</param>
 	/// <returns>The final accumulator value.</returns>
 	/// <exception cref="InvalidOperationException">Throws when there's no elements to be iterated.</exception>
-	public static int Aggregate(this in Grid source, [NotNull, DisallowNull] delegate*<int, int, int> func)
+	public static int Aggregate(this in Grid source, delegate*<int, int, int> func)
 	{
 		var e = source.GetEnumerator();
 		if (!e.MoveNext())
@@ -42,7 +42,7 @@ public static unsafe class GridEnumerable
 	public static TAccumulate Aggregate<TAccumulate>(
 		this in Grid @this,
 		TAccumulate seed,
-		[NotNull, DisallowNull] delegate*<TAccumulate, int, TAccumulate> func
+		delegate*<TAccumulate, int, TAccumulate> func
 	)
 	{
 		var result = seed;
@@ -71,8 +71,8 @@ public static unsafe class GridEnumerable
 	public static TResult Aggregate<TAccumulate, TResult>(
 		this in Grid @this,
 		TAccumulate seed,
-		[NotNull, DisallowNull] delegate*<TAccumulate, int, TAccumulate> func,
-		[NotNull, DisallowNull] delegate*<TAccumulate, TResult> resultSelector
+		delegate*<TAccumulate, int, TAccumulate> func,
+		delegate*<TAccumulate, TResult> resultSelector
 	)
 	{
 		var result = seed;
@@ -93,7 +93,7 @@ public static unsafe class GridEnumerable
 	/// <see langword="true"/> if the source sequence isn't empty and at least one of its candidates passes
 	/// the test in the specified predicate; otherwise, <see langword="false"/>.
 	/// </returns>
-	public static bool Any(this in Grid @this, [NotNull, DisallowNull] delegate*<int, bool> predicate)
+	public static bool Any(this in Grid @this, delegate*<int, bool> predicate)
 	{
 		foreach (int element in @this)
 		{
@@ -115,7 +115,7 @@ public static unsafe class GridEnumerable
 	/// <see langword="true"/> if every candidate of the source sequence passes the test in the specified
 	/// predicate, or if the sequence is empty; otherwise, <see langword="false"/>.
 	/// </returns>
-	public static bool All(this in Grid @this, [NotNull, DisallowNull] delegate*<int, bool> predicate)
+	public static bool All(this in Grid @this, delegate*<int, bool> predicate)
 	{
 		foreach (int element in @this)
 		{
@@ -169,7 +169,7 @@ public static unsafe class GridEnumerable
 	/// <see langword="true"/> if the source sequence contains an element that has the specified value;
 	/// otherwise, <see langword="false"/>.
 	/// </returns>
-	public static bool Contains(this in Grid @this, [NotNull, DisallowNull] delegate*<int, bool> predicate)
+	public static bool Contains(this in Grid @this, delegate*<int, bool> predicate)
 	{
 		foreach (int cand in @this)
 		{
@@ -195,7 +195,7 @@ public static unsafe class GridEnumerable
 	/// </returns>
 	public static bool Contains(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, bool> predicate,
+		delegate*<int, bool> predicate,
 		[DiscardWhen(false)] out int result
 	)
 	{
@@ -226,7 +226,7 @@ public static unsafe class GridEnumerable
 	/// <param name="this">The <see cref="Grid"/> instance.</param>
 	/// <param name="predicate">The predicate to filter the candidates.</param>
 	/// <returns>The number of candidates found that satisfy the specified condition.</returns>
-	public static int Count(this in Grid @this, [NotNull, DisallowNull] delegate*<int, bool> predicate)
+	public static int Count(this in Grid @this, delegate*<int, bool> predicate)
 	{
 		int result = 0;
 		foreach (int candidate in @this)
@@ -250,7 +250,7 @@ public static unsafe class GridEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidatesDistinctEnumerable DistinctBy(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, int, bool> keySelector
+		delegate*<int, int, bool> keySelector
 	) => new(@this, keySelector);
 
 	/// <summary>
@@ -429,7 +429,7 @@ public static unsafe class GridEnumerable
 	/// <returns>The value with the minimum key in the sequence.</returns>
 	public static TComparableWithMaxValue MinBy<TComparableWithMaxValue>(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, TComparableWithMaxValue> selector
+		delegate*<int, TComparableWithMaxValue> selector
 	)
 	where TComparableWithMaxValue : IComparable<TComparableWithMaxValue>, IMinMaxValue<TComparableWithMaxValue>
 	{
@@ -455,7 +455,7 @@ public static unsafe class GridEnumerable
 	/// <returns>The value with the minimum key in the sequence.</returns>
 	public static TComparableWithMinValue MaxBy<TComparableWithMinValue>(
 		this in Grid @this,
-		[NotNull, DisallowNull] delegate*<int, TComparableWithMinValue> selector
+		delegate*<int, TComparableWithMinValue> selector
 	)
 	where TComparableWithMinValue : IComparable<TComparableWithMinValue>, IMinMaxValue<TComparableWithMinValue>
 	{

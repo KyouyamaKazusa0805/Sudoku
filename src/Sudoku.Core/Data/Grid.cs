@@ -920,7 +920,7 @@ public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormatt
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse([NotNull, DisallowNull] char* ptrStr) => Parse(new string(ptrStr));
+	public static Grid Parse(char* ptrStr) => Parse(new string(ptrStr));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

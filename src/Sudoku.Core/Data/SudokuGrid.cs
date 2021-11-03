@@ -798,7 +798,7 @@ public unsafe partial struct SudokuGrid : IGrid<SudokuGrid>, IValueEquatable<Sud
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuGrid Parse([NotNull, DisallowNull] char* ptrStr) => Parse(new string(ptrStr));
+	public static SudokuGrid Parse(char* ptrStr) => Parse(new string(ptrStr));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
